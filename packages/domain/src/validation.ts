@@ -166,7 +166,6 @@ export function validatePublishPlan(value: unknown) {
   const parsed = parse(PublishPlan, value);
   if (!parsed.success) return parsed;
   const issues = scanForPublishedPathIssues(parsed.data);
-  if (!parsed.data.dryRun) issues.push(issue("dryRun", "Phase 2A PublishPlan validation only accepts dry-run plans"));
   return appendCrossIssues(parsed, issues);
 }
 

@@ -1,5 +1,6 @@
 import { mkdir, readFile, rename, writeFile } from "node:fs/promises";
 import path from "node:path";
+import { DEFAULT_CATALOG_PATH, DEFAULT_LEGACY_ASSET_ROOT } from "../../domain/src/index.js";
 
 export type AdminConfig = {
   arcaeaApkDir: string;
@@ -43,9 +44,9 @@ export function normalizeAdminConfig(value: Partial<AdminConfig>): AdminConfig {
     arcaeaApkDir: optionalDirectory(value.arcaeaApkDir),
     phigrosApkDir: optionalDirectory(value.phigrosApkDir),
     workspaceRuntimePath: requiredDirectory(value.workspaceRuntimePath),
-    legacyAssetRoot: optionalDirectory(value.legacyAssetRoot),
+    legacyAssetRoot: optionalDirectory(value.legacyAssetRoot) || DEFAULT_LEGACY_ASSET_ROOT,
     legacyExtractorRoot: optionalDirectory(value.legacyExtractorRoot),
-    catalogPath: optionalFile(value.catalogPath),
+    catalogPath: optionalFile(value.catalogPath) || DEFAULT_CATALOG_PATH,
   };
 }
 

@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { mkdir, mkdtemp, rename, rm, stat, writeFile } from "node:fs/promises";
+import { mkdir, mkdtemp, readFile, rename, rm, stat, writeFile } from "node:fs/promises";
 import { request as httpRequest } from "node:http";
 import { tmpdir } from "node:os";
 import path from "node:path";
@@ -117,6 +117,25 @@ test("Admin APIs confirm, override, rescan, upscale, publish dry-run and restore
     assert.equal(publish.status, 200);
     assert.equal(publish.body.plan.dryRun, true);
     assert.equal(publish.body.summary.uploadObjects, 1);
+
+    const rosStatus = await jsonRequest(fixture.baseUrl, "/api/ros/status");
+    assert.equal(rosStatus.status, 200);
+    assert.equal(rosStatus.body.configured, false);
+    assert.equal(rosStatus.body.endpoint, "https://cn-nb1.rains3.com");
+    assert.equal(rosStatus.body.bucket, "rhythm-assets");
+    assert.equal(Object.hasOwn(rosStatus.body, "accessKey"), false);
+    assert.equal(Object.hasOwn(rosStatus.body, "secretKey"), false);
+
+    const realPublish = await jsonRequest(fixture.baseUrl, `/api/workspaces/${fixture.workspaceId}/publish`, { method: "POST", body: "{}" });
+    assert.equal(realPublish.status, 409);
+    assert.equal(realPublish.body.error.message, "ROS 凭据未配置。");
+    assert.equal(JSON.stringify(realPublish.body).includes("secret"), false);
+
+    const configResponse = await jsonRequest(fixture.baseUrl, "/api/config", { method: "PUT", body: JSON.stringify({ ROS_ACCESS_KEY: "ak-test", ROS_SECRET_KEY: "sk-test" }) });
+    assert.equal(configResponse.status, 200);
+    assert.equal(Object.hasOwn(configResponse.body.config, "ROS_ACCESS_KEY"), false);
+    assert.equal(Object.hasOwn(configResponse.body.config, "ROS_SECRET_KEY"), false);
+    assert.equal((await readFile(path.join(fixture.root, "admin-config.json"), "utf8")).includes("sk-test"), false);
 
     await new Promise<void>((resolve, reject) => fixture.server.close((error) => error ? reject(error) : resolve()));
     const restarted = createAdminServer({ config: fixture.config, configPath: path.join(fixture.root, "admin-config.json") });

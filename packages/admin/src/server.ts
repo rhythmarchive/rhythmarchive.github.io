@@ -7,6 +7,7 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 import {
   ExtractorAdapterError,
   createWorkspaceFromExtractorResult,
+  rosStorageStatus,
   type ExtractorApk,
   type ExtractorResult,
 } from "../../domain/src/index.js";
@@ -24,6 +25,8 @@ import {
   prepareUpscale,
   previewFilePath,
   publishPreview,
+  publishExecute,
+  legacyMigrationDryRun,
   rescanWorkspace,
   resolveCandidateIdentity,
   rescanUpscale,
@@ -39,6 +42,7 @@ const MAX_BODY_BYTES = 1024 * 1024;
 type AdminRuntime = {
   config: AdminConfig;
   configPath: string;
+  legacyPlan?: Awaited<ReturnType<typeof legacyMigrationDryRun>>;
 };
 
 type DiscoveredApk = {
@@ -126,6 +130,10 @@ function sendError(response: ServerResponse, error: unknown): void {
       ...(normalized.detail ? { detail: normalized.detail } : {}),
     },
   });
+}
+
+function publicAdminState(config: AdminConfig): { config: AdminConfig; ros: ReturnType<typeof rosStorageStatus> } {
+  return { config, ros: rosStorageStatus() };
 }
 
 async function readJsonBody(request: IncomingMessage): Promise<Record<string, unknown>> {
@@ -366,17 +374,22 @@ async function handleApi(runtime: AdminRuntime, request: IncomingMessage, respon
     return;
   }
   if (request.method === "GET" && url.pathname === "/api/bootstrap") {
-    sendJson(response, 200, { config: runtime.config, games: publicGameConfigs(), workspaces: await listWorkspaces(runtime.config) });
+    sendJson(response, 200, { ...publicAdminState(runtime.config), games: publicGameConfigs(), workspaces: await listWorkspaces(runtime.config) });
+    return;
+  }
+  if (request.method === "GET" && url.pathname === "/api/ros/status") {
+    sendJson(response, 200, publicAdminState(runtime.config).ros);
     return;
   }
   if (request.method === "GET" && url.pathname === "/api/config") {
-    sendJson(response, 200, runtime.config);
+    sendJson(response, 200, publicAdminState(runtime.config));
     return;
   }
   if (request.method === "PUT" && url.pathname === "/api/config") {
     const body = await readJsonBody(request);
     runtime.config = await saveAdminConfig(normalizeAdminConfig({ ...runtime.config, ...body }), runtime.configPath);
-    sendJson(response, 200, runtime.config);
+    delete runtime.legacyPlan;
+    sendJson(response, 200, publicAdminState(runtime.config));
     return;
   }
   if (request.method === "GET" && url.pathname === "/api/apks") {
@@ -399,6 +412,15 @@ async function handleApi(runtime: AdminRuntime, request: IncomingMessage, respon
   }
   if (request.method === "POST" && url.pathname === "/api/workspaces/create") {
     sendJson(response, 201, await createWorkspaceFromApks(runtime, await readJsonBody(request)));
+    return;
+  }
+  if (request.method === "GET" && url.pathname === "/api/legacy/migration") {
+    sendJson(response, 200, { sourceRoot: runtime.config.legacyAssetRoot, plan: runtime.legacyPlan ?? null, ros: publicAdminState(runtime.config).ros });
+    return;
+  }
+  if (request.method === "POST" && url.pathname === "/api/legacy/migration/rescan") {
+    runtime.legacyPlan = await legacyMigrationDryRun(runtime.config);
+    sendJson(response, 200, { sourceRoot: runtime.config.legacyAssetRoot, plan: runtime.legacyPlan, ros: publicAdminState(runtime.config).ros });
     return;
   }
 
@@ -458,6 +480,10 @@ async function handleApi(runtime: AdminRuntime, request: IncomingMessage, respon
   }
   if (action === "publish/dry-run") {
     sendJson(response, 200, await publishPreview(runtime.config, workspaceId));
+    return;
+  }
+  if (action === "publish") {
+    sendJson(response, 200, await publishExecute(runtime.config, workspaceId));
     return;
   }
   if (action === "open-folder") {

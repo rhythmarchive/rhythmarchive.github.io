@@ -1,4 +1,4 @@
-import { mkdir, readdir, readFile, realpath, stat } from "node:fs/promises";
+import { mkdir, readdir, realpath, stat } from "node:fs/promises";
 import path from "node:path";
 import {
   Catalog,
@@ -11,6 +11,12 @@ import {
   convertSelectedUpscale,
   createPublishPlanDryRun,
   createReleaseManifestDraft,
+  executePublishPlan,
+  rosStorageStatus,
+  S3StorageClient,
+  scanFirstMigrationPlan,
+  type LegacyMigrationPlan,
+  type PublishProgress,
   effectiveCandidateArtist,
   effectiveCandidateFilename,
   effectiveCandidateTitle,
@@ -28,6 +34,7 @@ import {
   type UpscaleReconciliationResult,
 } from "../../domain/src/index.js";
 import { createUuidV7 } from "../../domain/src/identity.js";
+import { loadCatalogFile } from "../../domain/src/catalog.js";
 import { GAME_REGISTRY, gameConfig, type GameId } from "./registry.js";
 import type { AdminConfig } from "./config.js";
 
@@ -109,6 +116,16 @@ export type PublishPreview = {
     uploadObjects: number;
     uploadBytes: number;
   };
+  ros: ReturnType<typeof rosStorageStatus>;
+};
+
+export type PublishExecutionView = {
+  status: "published";
+  uploadedObjectKeys: string[];
+  skippedObjectKeys: string[];
+  releaseManifestId: string;
+  progress: PublishProgress[];
+  ros: ReturnType<typeof rosStorageStatus>;
 };
 
 export class AdminOperationError extends Error {
@@ -321,11 +338,9 @@ export async function listWorkspaces(config: AdminConfig): Promise<WorkspaceSumm
 }
 
 export async function loadCatalog(config: AdminConfig): Promise<CatalogType> {
-  if (!config.catalogPath) {
-    return Catalog.parse({ catalogSchemaVersion: "1.0", catalogId: createUuidV7(), generatedAt: new Date().toISOString(), resources: [], variants: [], renditions: [], objects: [], releaseManifestIds: [] });
-  }
+  if (!config.catalogPath) return Catalog.parse({ catalogSchemaVersion: "1.0", catalogId: createUuidV7(), generatedAt: new Date().toISOString(), resources: [], variants: [], renditions: [], objects: [], releaseManifestIds: [] });
   try {
-    return Catalog.parse(JSON.parse(await readFile(config.catalogPath, "utf8")));
+    return await loadCatalogFile(config.catalogPath);
   } catch (error) {
     throw new AdminOperationError("CATALOG_READ_FAILED", "Catalog 文件无法读取或格式不正确。", 409, error instanceof Error ? error.message : String(error));
   }
@@ -428,11 +443,53 @@ export async function publishPreview(config: AdminConfig, workspaceId: string): 
         uploadObjects: plan.objectsToCreate.length,
         uploadBytes: plan.objectsToCreate.reduce((sum, object) => sum + object.sizeBytes, 0),
       },
+      ros: rosStorageStatus(),
     };
   } catch (error) {
     if (error instanceof AdminOperationError) throw error;
     throw new AdminOperationError("PUBLISH_PREVIEW_BLOCKED", "当前工作区还不能生成发布计划。请先完成审核、超分和发布目标绑定。", 409, error instanceof Error ? error.message : String(error));
   }
+}
+
+export async function publishExecute(config: AdminConfig, workspaceId: string): Promise<PublishExecutionView> {
+  const rootPath = workspaceRootFor(config, workspaceId);
+  const state = await loadWorkspaceState(rootPath);
+  const catalog = await loadCatalog(config);
+  const manifest = await createReleaseManifestDraft({ batch: state.batch, candidates: state.candidates, workspaceRoot: rootPath, catalog });
+  const plan = await createPublishPlanDryRun({ batch: state.batch, candidates: state.candidates, workspaceRoot: rootPath, catalog, releaseManifest: manifest });
+  const progress: PublishProgress[] = [];
+  try {
+    const result = await executePublishPlan({
+      plan,
+      manifest,
+      batch: state.batch,
+      candidates: state.candidates,
+      catalog,
+      workspaceRoot: rootPath,
+      storage: new S3StorageClient(),
+      ...(config.catalogPath ? { catalogPath: config.catalogPath } : {}),
+      ...(config.catalogPath ? { releasesDirectory: path.join(path.dirname(config.catalogPath), "releases") } : {}),
+      onProgress: (value) => progress.push(value),
+    });
+    return { status: "published", uploadedObjectKeys: result.uploadedObjectKeys, skippedObjectKeys: result.skippedObjectKeys, releaseManifestId: result.releaseManifest.id, progress, ros: rosStorageStatus() };
+  } catch (error) {
+    if (error instanceof Error && error.message === "ROS credentials are not configured.") throw new AdminOperationError("ROS_NOT_CONFIGURED", "ROS 凭据未配置。", 409);
+    if (error instanceof Error && "code" in error && (error as { code?: unknown }).code === "NOT_CONFIGURED") throw new AdminOperationError("ROS_NOT_CONFIGURED", "ROS 凭据未配置。", 409);
+    throw error;
+  }
+}
+
+export async function legacyMigrationDryRun(config: AdminConfig): Promise<LegacyMigrationPlan> {
+  if (!config.legacyAssetRoot) throw new AdminOperationError("LEGACY_ROOT_NOT_CONFIGURED", "Legacy 目录未配置。", 409);
+  try {
+    return await scanFirstMigrationPlan({
+      sourceRoot: config.legacyAssetRoot,
+      ...(config.arcaeaApkDir ? { arcaeaApkDirectory: config.arcaeaApkDir } : {}),
+      ...(config.legacyExtractorRoot ? { legacyExtractorRoot: config.legacyExtractorRoot } : {}),
+      runtimeRoot: config.workspaceRuntimePath,
+    });
+  }
+  catch { throw new AdminOperationError("LEGACY_SCAN_FAILED", "Legacy 目录无法读取。", 409); }
 }
 
 export async function previewFilePath(config: AdminConfig, workspaceId: string, candidateId: string): Promise<{ filePath: string; mime: CandidateType["files"][number]["mime"] }> {

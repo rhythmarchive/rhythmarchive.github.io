@@ -31,6 +31,10 @@ function hasText(value: unknown): value is string {
   return typeof value === "string" && value.trim().length > 0;
 }
 
+export function isUpscaleEligible(game: "arcaea" | "phigros", resourceType: CandidateType["suggestedMapping"]["resourceType"]): boolean {
+  return game === "arcaea" && resourceType === "jacket";
+}
+
 /**
  * Game-specific review policy.  A review is a human confirmation step; a
  * naming edit is an exceptional correction and is tracked separately.
@@ -38,6 +42,7 @@ function hasText(value: unknown): value is string {
 export function applyReviewPolicy(input: GameReviewPolicyInput): ReviewRequirementsType {
   const reasons: string[] = [];
   const isJacket = input.resourceType === "jacket";
+  const upscaleEligible = isUpscaleEligible(input.game, input.resourceType);
   const manualNamingRequired = !hasText(input.suggestedFilename) || input.confidence === "low" || input.confidence === "unknown";
   if (!hasText(input.suggestedFilename)) reasons.push("filename proposal missing");
   if (manualNamingRequired && hasText(input.suggestedFilename)) reasons.push("filename proposal has low confidence");
@@ -54,7 +59,7 @@ export function applyReviewPolicy(input: GameReviewPolicyInput): ReviewRequireme
       manualNamingRequired,
       metadataReviewRequired,
       identityReviewRequired: identityAmbiguous,
-      upscaleRecommended: isJacket,
+      upscaleRecommended: upscaleEligible,
       upscaleRequired: false,
       reasons,
     };

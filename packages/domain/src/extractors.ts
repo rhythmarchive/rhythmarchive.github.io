@@ -13,7 +13,7 @@ import {
   type CandidateProvenance,
   type ReviewRequirements,
 } from "./schema.js";
-import { applyReviewPolicy, type GameReviewPolicyInput } from "./review.js";
+import { applyReviewPolicy, isUpscaleEligible, type GameReviewPolicyInput } from "./review.js";
 import { createUuidV7 } from "./identity.js";
 import { createVersionWorkspace, type CandidateManifestAdapterInput, type CreateWorkspaceOptions, type WorkspaceHandle } from "./workspace.js";
 
@@ -541,7 +541,7 @@ export function extractorResultToAdapterInput(result: ExtractorResult): Candidat
       reviewRequirements: candidate.reviewRequirements,
       ...(candidate.initialStatus ? { initialStatus: candidate.initialStatus } : {}),
       ...(candidate.blockedReason ? { blockedReason: candidate.blockedReason } : {}),
-      requiresUpscale: candidate.requiresUpscale,
+      requiresUpscale: isUpscaleEligible(parsed.game, candidate.suggestedCategory) && candidate.requiresUpscale,
       provenance: candidate.provenance,
     })),
   };

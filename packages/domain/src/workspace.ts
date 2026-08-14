@@ -37,6 +37,7 @@ import {
   resolveCandidateIdentity as resolveCandidateIdentityReview,
   effectiveCandidateFilename,
   identityReviewSatisfied,
+  isUpscaleEligible,
   metadataReviewSatisfied,
   type CandidateMetadataOverride,
 } from "./review.js";
@@ -472,10 +473,11 @@ export async function createVersionWorkspace(options: CreateWorkspaceOptions): P
     rawEntries.push({ candidateId, relativePath: rawRelativePath, filename: sourceFilename, sizeBytes: rawStats.size, sha256: rawSha256 });
 
     const existingCandidate = isCandidate(rawCandidate) ? rawCandidate : undefined;
-    const requiresUpscale = !isCandidate(rawCandidate)
+    const resourceType = isCandidate(rawCandidate) ? rawCandidate.suggestedMapping.resourceType : rawCandidate.resourceType ?? "other";
+    const requestedRequiresUpscale = !isCandidate(rawCandidate)
       ? rawCandidate.requiresUpscale ?? false
       : rawCandidate.processing.requiresUpscale;
-    const resourceType = isCandidate(rawCandidate) ? rawCandidate.suggestedMapping.resourceType : rawCandidate.resourceType ?? "other";
+    const requiresUpscale = isUpscaleEligible(options.game, resourceType) && requestedRequiresUpscale;
     const metadata = isCandidate(rawCandidate) ? rawCandidate.suggestedMapping.metadata : rawCandidate.metadata ?? {};
     const variantKind = isCandidate(rawCandidate) ? rawCandidate.suggestedMapping.variantKind : rawCandidate.variantKind;
     const variantKey = isCandidate(rawCandidate) ? rawCandidate.suggestedMapping.variantKey : rawCandidate.variantKey;

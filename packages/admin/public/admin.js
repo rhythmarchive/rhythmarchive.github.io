@@ -8,9 +8,11 @@
     currentView: null,
     filter: "all",
     publish: null,
+    publishExecution: null,
+    legacy: null,
   };
 
-  const pageNames = { dashboard: "Dashboard", new: "新建更新", review: "更新审核", upscale: "AI 超分", publish: "发布预览", settings: "设置" };
+  const pageNames = { dashboard: "Dashboard", new: "新建更新", review: "更新审核", upscale: "AI 超分", publish: "发布", legacy: "首次迁移", settings: "设置" };
   const resourceNames = {
     jacket: "曲绘", "pack-cover": "曲包封面", background: "背景", "character-portrait": "角色立绘", "character-avatar": "角色头像",
     "linkplay-preview": "LinkPlay", sticker: "贴纸", "story-cg": "剧情 CG", "story-texture": "剧情贴图", startup: "启动页", "world-mode": "世界模式",
@@ -74,7 +76,9 @@
 
   function navigate(nextPage) {
     state.page = nextPage;
-    if (nextPage === "review" || nextPage === "upscale" || nextPage === "publish") {
+    if (nextPage === "legacy") {
+      if (!state.legacy) loadLegacy().catch(showError);
+    } else if (nextPage === "review" || nextPage === "upscale" || nextPage === "publish") {
       if (!state.currentWorkspaceId) { state.page = "dashboard"; notify("先选择一个工作区", "创建或打开版本工作区后再继续。", "warn"); }
       else if (!state.currentView) loadWorkspace(state.currentWorkspaceId).catch(showError);
     }
@@ -95,7 +99,7 @@
 
   function renderPage() {
     if (!state.bootstrap) { page().innerHTML = '<div class="loading">正在读取工作区…</div>'; return; }
-    const renderers = { dashboard: renderDashboard, new: renderNew, review: renderReview, upscale: renderUpscale, publish: renderPublish, settings: renderSettings };
+    const renderers = { dashboard: renderDashboard, new: renderNew, review: renderReview, upscale: renderUpscale, publish: renderPublish, legacy: renderLegacy, settings: renderSettings };
     renderers[state.page]?.();
     page().focus({ preventScroll: true });
   }
@@ -234,14 +238,6 @@
     return `<div class="upscale-row"><div><div class="upscale-title">${escapeHtml(candidate.title || candidate.filename)}</div><div class="upscale-meta"><span>${escapeHtml(resourceNames[candidate.resourceType] || candidate.resourceType)}</span><span>${escapeHtml(candidate.filename)}</span>${candidate.issues.length ? `<span class="issue">${escapeHtml(candidate.issues[0])}</span>` : ""}</div>${attempts}${conversion}</div><div class="upscale-actions">${selected && !candidate.upscale.converted ? `<button class="button button-primary button-small" data-action="convert-upscale" data-candidate-id="${escapeHtml(candidate.id)}">转换为 JPG</button>` : ""}</div></div>`;
   }
 
-  function renderPublish() {
-    const view = state.currentView;
-    if (!view) { page().innerHTML = '<div class="loading">正在读取工作区…</div>'; return; }
-    const publish = state.publish;
-    page().innerHTML = `<div class="page-head"><div><h1>发布预览</h1><p>${escapeHtml(view.gameName)} ${escapeHtml(view.targetVersion)} · 当前只生成 dry-run 计划，不会上传。</p></div><div class="head-actions"><button class="button button-primary" data-action="generate-publish">生成发布计划</button></div></div>
-      <div class="panel"><div class="inline-note ${view.blockedCount ? "danger" : view.readyCount ? "ok" : "warn"}">${view.blockedCount ? `还有 ${view.blockedCount} 个候选阻塞，暂不能生成计划。` : view.readyCount ? `${view.readyCount} 个候选已准备发布。` : "先完成审核并绑定发布目标，再生成计划。"}</div>${publish ? `<div class="publish-summary"><div class="publish-number"><strong>${publish.summary.addedResources}</strong><span>新增资源</span></div><div class="publish-number"><strong>${publish.summary.updatedResources}</strong><span>更新资源</span></div><div class="publish-number"><strong>${publish.summary.uploadObjects}</strong><span>新增文件</span></div><div class="publish-number"><strong>${formatBytes(publish.summary.uploadBytes)}</strong><span>预计上传</span></div></div><details open><summary>详细变化</summary><div class="change-list">${publish.manifest.changes.length ? publish.manifest.changes.map((change) => `<div class="change-row">${escapeHtml(change.detail)}</div>`).join("") : '<div class="input-note">没有 Catalog 变化。</div>'}</div></details><details style="margin-top:12px"><summary>计划说明</summary><div class="detail-content">${publish.plan.notes.map((note) => `<div class="input-note">${escapeHtml(note)}</div>`).join("")}</div></details>` : '<div class="empty-state" style="margin-top:16px"><strong>还没有发布计划</strong><span>生成 dry-run 后，这里会显示新增资源、更新资源和对象体积。</span></div>'}</div>`;
-  }
-
   function renderSettings() {
     const config = state.bootstrap.config;
     page().innerHTML = `<div class="page-head"><div><h1>设置</h1><p>只配置本机目录；Admin 不保存账号或密钥。</p></div><div class="head-actions"><span class="tag accent">仅监听 127.0.0.1</span></div></div><form class="panel" data-form="settings"><div class="form-grid"><div class="form-field full"><label for="setting-arcaea">Arcaea APK 本地目录</label><input id="setting-arcaea" name="arcaeaApkDir" value="${escapeHtml(config.arcaeaApkDir)}" placeholder="例如 D:\\Games\\Arcaea\\APK" /></div><div class="form-field full"><label for="setting-phigros">Phigros APK 本地目录</label><input id="setting-phigros" name="phigrosApkDir" value="${escapeHtml(config.phigrosApkDir)}" placeholder="例如 D:\\Games\\Phigros\\APK" /></div><div class="form-field full"><label for="setting-runtime">workspace / runtime 路径</label><input id="setting-runtime" name="workspaceRuntimePath" value="${escapeHtml(config.workspaceRuntimePath)}" /><span class="input-note">工作区会按 game/version 保存，重启后从这里恢复。</span></div><div class="form-field full"><label for="setting-extractor">旧项目提取器根目录（可选）</label><input id="setting-extractor" name="legacyExtractorRoot" value="${escapeHtml(config.legacyExtractorRoot)}" placeholder="包含 scripts/extract-arcaea-update.ts 的目录" /><span class="input-note">只用于调用已完成的 Phase 2C 前置提取脚本，不会修改旧项目。</span></div><div class="form-field full"><label for="setting-legacy">Legacy Asset Root（可选）</label><input id="setting-legacy" name="legacyAssetRoot" value="${escapeHtml(config.legacyAssetRoot)}" /><span class="input-note">仅用于首次迁移/查看；它不是日常版本归档目录。</span></div><div class="form-field full"><label for="setting-catalog">Catalog JSON（可选）</label><input id="setting-catalog" name="catalogPath" value="${escapeHtml(config.catalogPath)}" placeholder="留空则使用空 Catalog 做 dry-run" /></div></div><div class="form-actions"><button class="button button-primary" type="submit">保存设置</button><span class="input-note">保存后重新扫描工作区即可生效。</span></div></form>`;
@@ -262,6 +258,41 @@
     if (state.bootstrap) state.bootstrap.workspaces = state.bootstrap.workspaces.map((item) => item.id === state.currentView?.id ? { ...item, ...state.currentView } : item);
     renderShell();
     renderPage();
+  }
+
+  async function loadLegacy() {
+    state.legacy = await api("/api/legacy/migration");
+    renderPage();
+  }
+
+  function renderPublish() {
+    const view = state.currentView;
+    if (!view) { page().innerHTML = '<div class="loading">正在读取工作区…</div>'; return; }
+    const publish = state.publish;
+    const execution = state.publishExecution;
+    const ros = state.bootstrap.ros || publish?.ros || {};
+    const configured = ros.configured === true;
+    const publishButton = configured
+      ? '<button class="button button-primary" data-action="execute-publish">发布</button>'
+      : '<button class="button button-primary" data-action="publish-not-configured">发布</button>';
+    page().innerHTML = `<div class="page-head"><div><h1>发布</h1><p>${escapeHtml(view.gameName)} ${escapeHtml(view.targetVersion)}</p></div><div class="head-actions">${publishButton}<button class="button" data-action="generate-publish">生成预览</button></div></div>
+      <div class="panel"><div class="inline-note ${configured ? "ok" : "warn"}">${configured ? "ROS 已配置。" : "ROS 凭据未配置。"}</div>${publish ? `<div class="publish-summary"><div class="publish-number"><strong>${publish.summary.addedResources}</strong><span>新增资源</span></div><div class="publish-number"><strong>${publish.summary.updatedResources}</strong><span>更新资源</span></div><div class="publish-number"><strong>${publish.summary.uploadObjects}</strong><span>新增文件</span></div><div class="publish-number"><strong>${formatBytes(publish.summary.uploadBytes)}</strong><span>预计上传</span></div></div><details open><summary>变化</summary><div class="change-list">${publish.manifest.changes.length ? publish.manifest.changes.map((change) => `<div class="change-row">${escapeHtml(change.detail)}</div>`).join("") : '<div class="input-note">没有 Catalog 变化。</div>'}</div></details>` : '<div class="empty-state" style="margin-top:16px"><strong>还没有预览</strong><span>先生成预览，确认对象和 Catalog 变化。</span></div>'}</div>${execution ? `<div class="panel"><div class="section-head" style="margin-top:0"><h2>发布进度</h2><span class="tag ok">完成</span></div><div class="change-list">${execution.progress.map((item) => `<div class="change-row">${escapeHtml(item.message)}</div>`).join("")}</div></div>` : ""}`;
+  }
+
+  function renderLegacy() {
+    const stateValue = state.legacy;
+    if (!stateValue) { page().innerHTML = '<div class="loading">正在读取 Legacy…</div>'; return; }
+    const plan = stateValue.plan;
+    const stats = plan?.stats;
+    const blockingIssues = plan?.blockingIssues || [];
+    const warnings = plan?.warnings || [];
+    const issueItems = [...blockingIssues.map((item) => ({ ...item, level: "阻塞" })), ...warnings.map((item) => ({ ...item, level: "提示" }))];
+    const sourceSummary = plan?.sourceSummary;
+    const currentApkNote = sourceSummary?.currentArcaeaApk
+      ? `其他图片：当前 APK · ${sourceSummary.currentArcaeaApk.version}`
+      : "其他图片：未找到 Arcaea APK。";
+    page().innerHTML = `<div class="page-head"><div><h1>首次迁移</h1><p>${escapeHtml(stateValue.sourceRoot || "未配置")}</p></div><div class="head-actions"><button class="button button-primary" data-action="rescan-legacy">重新扫描</button>${plan ? '<button class="button" data-action="show-legacy-issues">查看异常</button>' : ""}</div></div>
+      <div class="panel">${stats ? `<div class="publish-summary"><div class="publish-number"><strong>${stats.resourceCount}</strong><span>资源</span></div><div class="publish-number"><strong>${stats.fileCount}</strong><span>文件</span></div><div class="publish-number"><strong>${formatBytes(stats.estimatedUploadBytes)}</strong><span>预计上传</span></div><div class="publish-number"><strong>${stats.sourceFileCount}</strong><span>源文件</span></div></div><div class="detail-content"><div>Arcaea 曲绘：历史整理资源 · ${currentApkNote}</div><div>源文件 ${stats.sourceFileCount} · upscaled ${stats.upscaledCount} · Variant ${stats.variantCount}</div><div>阻塞 ${stats.blockingIssueCount} · 提示 ${stats.warningCount} · 重复 Object ${stats.duplicateObjectCount} · 预计 ROS Object ${stats.estimatedRosObjectCount}</div>${stateValue.ros?.configured ? "" : '<div class="inline-note warn" style="margin-top:12px">ROS 凭据未配置，暂不能上传。</div>'}</div>${issueItems.length ? `<details id="legacy-issues" style="margin-top:12px"><summary>异常 ${issueItems.length}</summary>${issueItems.slice(0, 100).map((item) => `<div class="change-row">${escapeHtml(item.level)} · ${escapeHtml(item.code)} · ${escapeHtml(item.sourceRelativePath || "")} · ${escapeHtml(item.message)}</div>`).join("")}</details>` : ""}` : '<div class="empty-state"><strong>还没有扫描结果</strong><span>点击重新扫描。源目录只读，不会修改。</span></div>'}</div>`;
   }
 
   async function handleAction(button) {
@@ -289,7 +320,11 @@
     }
     if (action === "open-folder") { await api(`/api/workspaces/${encodeURIComponent(state.currentWorkspaceId)}/open-folder`, { method: "POST", body: JSON.stringify({ folder: button.dataset.folder }) }); notify("已打开文件夹", "", "ok"); return; }
     if (action === "finalize-new") { if (!window.confirm("将这个候选标记为新资源并加入发布预览？")) return; updateView(await api(`/api/workspaces/${encodeURIComponent(state.currentWorkspaceId)}/candidates/${encodeURIComponent(button.dataset.candidateId)}/finalize`, { method: "POST", body: JSON.stringify({ createNewTarget: true }) })); notify("已加入发布预览", "这是明确的新资源操作，尚未上传。", "ok"); return; }
-    if (action === "generate-publish") { state.publish = await api(`/api/workspaces/${encodeURIComponent(state.currentWorkspaceId)}/publish/dry-run`, { method: "POST", body: "{}" }); renderPage(); notify("发布计划已生成", "这是 dry-run，不会连接 ROS 或上传。", "ok"); return; }
+    if (action === "generate-publish") { state.publish = await api(`/api/workspaces/${encodeURIComponent(state.currentWorkspaceId)}/publish/dry-run`, { method: "POST", body: "{}" }); state.publishExecution = null; renderPage(); notify("预览已生成", "不会连接 ROS 或上传。", "ok"); return; }
+    if (action === "publish-not-configured") { notify("ROS 凭据未配置。", "请先配置 ROS_ACCESS_KEY 和 ROS_SECRET_KEY。", "warn"); return; }
+    if (action === "execute-publish") { const result = await api(`/api/workspaces/${encodeURIComponent(state.currentWorkspaceId)}/publish`, { method: "POST", body: "{}" }); state.publishExecution = result; renderPage(); notify("完成", `上传 ${result.uploadedObjectKeys.length} 个，跳过 ${result.skippedObjectKeys.length} 个。`, "ok"); return; }
+    if (action === "rescan-legacy") { state.legacy = await api("/api/legacy/migration/rescan", { method: "POST", body: "{}" }); renderPage(); notify("扫描完成", "源目录未修改。", "ok"); return; }
+    if (action === "show-legacy-issues") { document.querySelector("#legacy-issues")?.setAttribute("open", ""); return; }
   }
 
   async function handleSubmit(form) {
@@ -315,7 +350,7 @@
     }
     if (form.dataset.form === "settings") {
       const data = Object.fromEntries(new FormData(form).entries());
-      try { state.bootstrap.config = await api("/api/config", { method: "PUT", body: JSON.stringify(data) }); state.bootstrap.workspaces = await api("/api/workspaces").then((result) => result.workspaces); renderShell(); renderPage(); notify("设置已保存", "目录配置已更新。", "ok"); } catch (error) { showError(error); }
+      try { const saved = await api("/api/config", { method: "PUT", body: JSON.stringify(data) }); state.bootstrap.config = saved.config; state.bootstrap.ros = saved.ros; state.legacy = null; state.bootstrap.workspaces = await api("/api/workspaces").then((result) => result.workspaces); renderShell(); renderPage(); notify("设置已保存", "目录配置已更新。", "ok"); } catch (error) { showError(error); }
     }
   }
 

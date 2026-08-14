@@ -15,7 +15,6 @@ playwright-report/
 # Local configuration and secrets
 .env
 .env.*
-!.env.example
 *.local
 *.pem
 *.key

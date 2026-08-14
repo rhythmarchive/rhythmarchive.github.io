@@ -8,16 +8,21 @@
   },
   "scripts": {
     "test": "tsx --test packages/domain/tests/*.test.ts packages/admin/tests/*.test.ts",
-    "admin": "tsx packages/admin/src/server.ts",
+    "admin": "node --env-file-if-exists=.env --import tsx packages/admin/src/server.ts",
     "typecheck": "tsc --noEmit",
     "test:all": "npm run typecheck && npm test",
     "experiment:upscale": "tsx tools/upscale-experiment.ts",
     "experiment:upscale:phase2b": "tsx tools/phase2b-upscale-experiment.ts",
     "test:phase2b": "tsx --test packages/domain/tests/phase2b.test.ts",
     "phase2b:workspace": "tsx tools/phase2b-workspace.ts",
-    "phase2c:rehearsal": "tsx tools/phase2c-rehearsal.ts"
+    "phase2c:rehearsal": "tsx tools/phase2c-rehearsal.ts",
+    "legacy:dry-run": "tsx tools/legacy-dry-run.ts",
+    "legacy:migrate": "node --env-file-if-exists=.env --import tsx tools/legacy-migrate.ts",
+    "legacy:check": "node --env-file-if-exists=.env --import tsx tools/legacy-consistency.ts",
+    "ros:verify": "node --env-file-if-exists=.env --import tsx tools/ros-verify.ts"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.1110.0",
     "sharp": "^0.34.5",
     "zod": "^3.25.76"
   },
