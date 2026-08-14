@@ -1,0 +1,34 @@
+{
+  "schemaVersion": "1.0",
+  "id": "0198a8de-0000-7000-8000-000000001001",
+  "game": "arcaea",
+  "resourceType": "jacket",
+  "title": "Acid God",
+  "aliases": [],
+  "externalIdentities": [
+    { "namespace": "arcaea", "key": "songId", "value": "acid-god", "source": "legacy-index", "confidence": "high" }
+  ],
+  "metadata": { "idx": 543, "artist": "Yuta Imai" },
+  "relations": [],
+  "provenance": [
+    {
+      "sourceType": "legacy",
+      "sourceSnapshot": "phase1-audit-2026-08-14",
+      "gameVersion": "6.16.0",
+      "sourceRelativePath": "Arcaea（至6.16.0）/曲绘/Acid God_Yuta Imai_6.16_single_IDX 543_BPM 160_SIDE 1_chuni-ikazuchi_1080_base.jpg",
+      "sourceFilename": "Acid God_Yuta Imai_6.16_single_IDX 543_BPM 160_SIDE 1_chuni-ikazuchi_1080_base.jpg",
+      "sourceSha256": "fa80a68c1fef5324dd663fbea4dfc6f41867b5b0907bc91d718a352d541365d5",
+      "evidence": [
+        { "kind": "source-path", "detail": "archive-inventory.json", "confidence": "high" },
+        { "kind": "filename-parser", "detail": "IDX 543 and song basename", "confidence": "high" },
+        { "kind": "normalized-pair", "detail": "616/616 original↔AI pairing baseline", "confidence": "high" }
+      ]
+    }
+  ],
+  "lifecycle": {
+    "status": "published",
+    "createdAt": "2026-08-14T00:00:00Z",
+    "updatedAt": "2026-08-14T00:00:00Z",
+    "publishedAt": "2026-08-14T00:00:00Z"
+  }
+}

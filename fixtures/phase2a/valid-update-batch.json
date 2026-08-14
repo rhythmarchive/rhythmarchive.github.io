@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "1.0",
+  "id": "0198a8de-0000-7000-8000-000000004001",
+  "game": "arcaea",
+  "targetVersion": "6.17.0",
+  "baseVersion": "6.16.0",
+  "baseApk": { "role": "base", "version": "6.16.0", "filename": "arcaea-6.16.0.apk", "absolutePath": "E:\\incoming\\arcaea-6.16.0.apk", "verification": "verified" },
+  "targetApk": { "role": "target", "version": "6.17.0", "filename": "arcaea-6.17.0.apk", "absolutePath": "E:\\incoming\\arcaea-6.17.0.apk", "verification": "verified" },
+  "createdAt": "2026-08-14T00:00:00Z",
+  "extractorVersion": "arcaea-local-extractor-prototype@0.1.0",
+  "workspace": {
+    "rootPath": "E:\\rhythm-assets-gallery-v2\\.runtime\\updates\\arcaea\\6.17.0",
+    "layout": { "raw": "raw", "work": "work", "upscaleInput": "upscale-input", "upscaleOutput": "upscale-output", "processed": "processed", "metadata": "metadata", "batchManifest": "metadata/batch.json" }
+  },
+  "candidateIds": ["0198a8de-0000-7000-8000-000000005001"],
+  "candidateCount": 1,
+  "filenameReviewProgress": { "total": 1, "completed": 1, "blocked": 0 },
+  "upscaleProgress": { "total": 1, "completed": 1, "blocked": 0 },
+  "finalReviewProgress": { "total": 1, "completed": 0, "blocked": 0 },
+  "status": "PROCESSING"
+}

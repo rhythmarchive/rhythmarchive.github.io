@@ -1,0 +1,97 @@
+{
+  "generatedAt": "2026-08-14T07:38:05.177Z",
+  "input": {
+    "path": "fixtures/phase2a/images/Acid God_optimization.png",
+    "bytes": 17965264
+  },
+  "parameters": {
+    "quality": 95,
+    "chromaSubsampling": "4:4:4",
+    "progressive": true,
+    "mozjpeg": false,
+    "alphaPolicy": "block",
+    "flattenBackground": "#ffffff"
+  },
+  "alphaProbe": {
+    "path": "fixtures/phase2a/images/Transparent_optimization.png",
+    "hasAlphaChannel": true,
+    "isOpaque": false,
+    "hasActualTransparency": true,
+    "width": 64,
+    "height": 64,
+    "format": "png"
+  },
+  "qualityResults": [
+    {
+      "quality": 92,
+      "status": "converted",
+      "outputBytes": 3843988,
+      "savingsRatio": 0.7860322008070686,
+      "width": 3072,
+      "height": 3072,
+      "inputSha256": "ddf462118686c2d9f0eb5eeb7a110aabdfef23847129a9069bc9f5a7b884e29e",
+      "outputSha256": "09a653a30274d753d3819659408f0b467276b4716b9a946753599e604abb9a60",
+      "sourcePngRetained": true,
+      "pixelDiff": {
+        "comparable": true,
+        "meanAbsoluteChannelDifference": 1.2215870751274958,
+        "maxAbsoluteChannelDifference": 41,
+        "pixelsAboveFiveRatio": 0.05462000105116102,
+        "width": 3072,
+        "height": 3072
+      }
+    },
+    {
+      "quality": 95,
+      "status": "converted",
+      "outputBytes": 4498957,
+      "savingsRatio": 0.7495746792254208,
+      "width": 3072,
+      "height": 3072,
+      "inputSha256": "ddf462118686c2d9f0eb5eeb7a110aabdfef23847129a9069bc9f5a7b884e29e",
+      "outputSha256": "00b32d2ce7bf0a1377028a546649b53cc509fa2be835e6124588e0f940623cec",
+      "sourcePngRetained": true,
+      "pixelDiff": {
+        "comparable": true,
+        "meanAbsoluteChannelDifference": 0.13798992722122758,
+        "maxAbsoluteChannelDifference": 8,
+        "pixelsAboveFiveRatio": 0.000002013312445746528,
+        "width": 3072,
+        "height": 3072
+      }
+    },
+    {
+      "quality": 97,
+      "status": "converted",
+      "outputBytes": 5268025,
+      "savingsRatio": 0.7067660681190101,
+      "width": 3072,
+      "height": 3072,
+      "inputSha256": "ddf462118686c2d9f0eb5eeb7a110aabdfef23847129a9069bc9f5a7b884e29e",
+      "outputSha256": "70f82319216e7ca0267a063f8be9368d7150946a11475f7646207e83073095be",
+      "sourcePngRetained": true,
+      "pixelDiff": {
+        "comparable": true,
+        "meanAbsoluteChannelDifference": 0.451502764666522,
+        "maxAbsoluteChannelDifference": 14,
+        "pixelsAboveFiveRatio": 0.0012297100490993923,
+        "width": 3072,
+        "height": 3072
+      }
+    }
+  ],
+  "transparentResult": {
+    "status": "blocked",
+    "inputPath": "E:\\rhythm-assets-gallery-v2\\fixtures\\phase2a\\images\\Transparent_optimization.png",
+    "outputPath": "E:\\rhythm-assets-gallery-v2\\.runtime\\phase2a-upscale-experiment\\processed\\transparent-blocked.jpg",
+    "inputBytes": 262,
+    "inputSha256": "5e8724c278221aca5267dd84697e1c56c49dace63701a2941289b75c37bcdb8f",
+    "width": 64,
+    "height": 64,
+    "hasActualTransparency": true,
+    "sourcePngRetained": true,
+    "renditionType": "upscaled",
+    "message": "PNG has actual transparency; choose an explicit flatten policy before JPEG conversion"
+  },
+  "note": "The input PNG is a V2 fixture derived from a copied historical AI JPG; no source archive file was modified."
+}

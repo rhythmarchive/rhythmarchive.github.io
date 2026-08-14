@@ -1,0 +1,205 @@
+{
+  "schemaVersion": "1.0",
+  "sourceSnapshot": "phase1-audit-2026-08-14",
+  "sourceReports": [
+    "docs/audit/HANDOFF.md",
+    "docs/audit/03-resource-relationship-audit.md",
+    "docs/audit/07-legacy-migration-analysis.md",
+    "docs/audit/data/archive-inventory.json",
+    "docs/audit/data/archive-hashes.json",
+    "docs/audit/data/archive-image-metadata.json",
+    "docs/audit/data/legacy-index-analysis.json"
+  ],
+  "cases": [
+    {
+      "id": "arcaea-acid-god-original-ai",
+      "kind": "ordinary-arcaea-rendition-pair",
+      "game": "arcaea",
+      "resourceType": "jacket",
+      "externalIdentity": { "namespace": "arcaea", "key": "songId", "value": "acid-god" },
+      "original": {
+        "relativePath": "Arcaea（至6.16.0）/曲绘/Acid God_Yuta Imai_6.16_single_IDX 543_BPM 160_SIDE 1_chuni-ikazuchi_1080_base.jpg",
+        "sha256": "fa80a68c1fef5324dd663fbea4dfc6f41867b5b0907bc91d718a352d541365d5",
+        "sizeBytes": 579884,
+        "width": 768,
+        "height": 768
+      },
+      "upscaled": {
+        "relativePath": "Arcaea（至6.16.0）/曲绘（AI超分后）/Acid God_Yuta Imai_6.16_single_IDX 543_BPM 160_SIDE 1_chuni-ikazuchi_1080_base.jpg_opt.jpg",
+        "sha256": "22ca2fd82b31b573dd663fbea4dfc6f41867b5b0907bc91d718a352d541365d5",
+        "sizeBytes": 4649027,
+        "width": 3072,
+        "height": 3072
+      },
+      "evidence": "Phase 1 measured 616/616 normalized original↔AI pairs and all pair hashes differ."
+    },
+    {
+      "id": "arcaea-avril-original-ai",
+      "kind": "ordinary-arcaea-rendition-pair",
+      "game": "arcaea",
+      "resourceType": "jacket",
+      "externalIdentity": { "namespace": "arcaea", "key": "songId", "value": "avril" },
+      "original": {
+        "relativePath": "Arcaea/曲绘/Ävril -Flicka i krans-_Rigël Theatre_3.12_base_IDX 260_BPM 130_SIDE 0_alice_light_avril_base.jpg",
+        "sha256": "d4d98900f69b88d103f4d1df269d0b0c3c31d148597056c5a1243b7e01bd49b1",
+        "sizeBytes": 213528,
+        "width": 768,
+        "height": 768
+      },
+      "upscaled": {
+        "relativePath": "Arcaea/曲绘（AI超分后）/Ävril -Flicka i krans-_Rigël Theatre_3.12_base_IDX 260_BPM 130_SIDE 0_alice_light_avril_base.jpg_opt.jpg",
+        "sha256": "9f741084c6ca80dc2b03db23cb2a6ed81809f878d1e7c81159c6a4d20d10e817",
+        "sizeBytes": 2238239,
+        "width": 3072,
+        "height": 3072
+      },
+      "evidence": "Historical archive record: normalized base filename paired across 曲绘 and 曲绘（AI超分后）; .jpg_opt.jpg suffix is retained as naming evidence."
+    },
+    {
+      "id": "arcaea-asgore-256-original-ai",
+      "kind": "unresolved-256-rendition-pair",
+      "game": "arcaea",
+      "resourceType": "jacket",
+      "externalIdentity": { "namespace": "arcaea", "key": "songId", "value": "asgore" },
+      "semanticStatus": "unresolved",
+      "unresolved": ["_256_semantics"],
+      "original": {
+        "relativePath": "Arcaea/曲绘/アズゴア_Toby Fox_6.14_undertale_append_1_IDX 529_BPM 229.69_SIDE 0_undertale_light_asgore_256.jpg",
+        "sha256": "8ef323dda461927430a1d8268d7157f05837bdfa9f432c7c664496e4d8f015b0",
+        "sizeBytes": 37287,
+        "width": 384,
+        "height": 384
+      },
+      "upscaled": {
+        "relativePath": "Arcaea/曲绘（AI超分后）/アズゴア_Toby Fox_6.14_undertale_append_1_IDX 529_BPM 229.69_SIDE 0_undertale_light_asgore_256.jpg_opt.jpg",
+        "sha256": "ecf70594d4ec9d0607665f176b3854a2f1ed7bd57606e0ea4d067a4a3a137d05",
+        "sizeBytes": 166804,
+        "width": 1536,
+        "height": 1536
+      },
+      "evidence": "Historical archive record: _256 original↔AI pair is real, but Phase 1 did not determine whether _256 is a Variant, Rendition, or compatibility artifact."
+    },
+    {
+      "id": "arcaea-avril-three-variants",
+      "kind": "three-visual-variants",
+      "game": "arcaea",
+      "resourceType": "jacket",
+      "externalIdentity": { "namespace": "arcaea", "key": "songId", "value": "avril" },
+      "variants": [
+        { "key": "base", "relativePath": "Arcaea/曲绘/Ävril -Flicka i krans-_Rigël Theatre_3.12_base_IDX 260_BPM 130_SIDE 0_alice_light_avril_base.jpg", "sha256": "d4d98900f69b88d103f4d1df269d0b0c3c31d148597056c5a1243b7e01bd49b1" },
+        { "key": "pst", "difficulty": "PST", "relativePath": "Arcaea/曲绘/Ävril -Flicka i krans-_Rigël Theatre_3.12_base_IDX 260_BPM 130_SIDE 0_alice_light_avril_0.jpg", "sha256": "15e7f0c918850ddc59f56e7033b6303f7369c006021fe0ad866d48c64e3d738f" },
+        { "key": "prs", "difficulty": "PRS", "relativePath": "Arcaea/曲绘/Ävril -Flicka i krans-_Rigël Theatre_3.12_base_IDX 260_BPM 130_SIDE 0_alice_light_avril_1.jpg", "sha256": "6859453bba6199bac2bce470886777c867dfb0ffc1cc1fc65ee180277576d300" }
+      ],
+      "evidence": "Phase 1 identified seven songIds with three original visual files; this is one of the seven."
+    },
+    {
+      "id": "arcaea-stasis-three-variants",
+      "kind": "three-visual-variants",
+      "game": "arcaea",
+      "resourceType": "jacket",
+      "externalIdentity": { "namespace": "arcaea", "key": "songId", "value": "stasis" },
+      "variants": [
+        { "key": "base", "relativePath": "Arcaea/曲绘/Stasis_Maozon_3.12_lanota_append_1_IDX 266_BPM 180_SIDE 0_quon_stasis_base.jpg", "sha256": "49c2a13e8f621b563857c66fe27bd7487bc68a73760fb287545d39b724de3aae" },
+        { "key": "pst", "difficulty": "PST", "relativePath": "Arcaea/曲绘/Stasis_Maozon_3.12_lanota_append_1_IDX 266_BPM 180_SIDE 0_quon_stasis_0.jpg", "sha256": "1dcf9025bf625a56d0eafd00a19a2b0f21eee684ca599e7c0c2c97e7eccf4391" },
+        { "key": "prs", "difficulty": "PRS", "relativePath": "Arcaea/曲绘/Stasis_Maozon_3.12_lanota_append_1_IDX 266_BPM 180_SIDE 0_quon_stasis_1.jpg", "sha256": "7800d7ba8e4ce84df292b4147bcd98f4638d5c7146cbad7f4f6bec9f9a43ef6e" }
+      ],
+      "evidence": "Phase 1 identified seven songIds with three original visual files; this is another of the seven."
+    },
+    {
+      "id": "arcaea-by-difficulty-markers",
+      "kind": "difficulty-marker",
+      "game": "arcaea",
+      "resourceType": "jacket",
+      "examples": [
+        { "marker": "_0", "difficulty": "PST", "relativePath": "Arcaea/曲绘/Ävril -Flicka i krans-_Rigël Theatre_3.12_base_IDX 260_BPM 130_SIDE 0_alice_light_avril_0.jpg" },
+        { "marker": "_1", "difficulty": "PRS", "relativePath": "Arcaea/曲绘/Ävril -Flicka i krans-_Rigël Theatre_3.12_base_IDX 260_BPM 130_SIDE 0_alice_light_avril_1.jpg" },
+        { "marker": "_2", "difficulty": "FTR", "relativePath": "Arcaea/曲绘/Lucid Traveler_Akira Complex vs 3R2_4.5_cytusii_IDX 326_BPM 170-200_SIDE 1_cytus_conflict_lucidtraveler_2.jpg" },
+        { "marker": "_3", "difficulty": "BYD", "relativePath": "Arcaea/曲绘/Ignotus_ak+q_1.1_BYD 3.12_base_IDX 41_BPM 170_SIDE 1_base_conflict_ignotus_3.jpg" }
+      ],
+      "evidence": "Phase 1 counted 57 independent original files with _0/_1/_2/_3 markers; no _4 file was observed."
+    },
+    {
+      "id": "arcaea-asgore-256-unresolved",
+      "kind": "unresolved-256",
+      "game": "arcaea",
+      "resourceType": "jacket",
+      "relativePath": "Arcaea/曲绘/アズゴア_Toby Fox_6.14_undertale_append_1_IDX 529_BPM 229.69_SIDE 0_undertale_light_asgore_256.jpg",
+      "sha256": "8ef323dda461927430a1d8268d7157f05837bdfa9f432c7c664496e4d8f015b0",
+      "width": 384,
+      "height": 384,
+      "semanticStatus": "unresolved",
+      "unresolved": ["_256_semantics"],
+      "evidence": "The old extractor excluded _256 while the historical index retained it; Phase 1 did not determine rendition vs Variant semantics."
+    },
+    {
+      "id": "same-hash-cross-semantic",
+      "kind": "same-object-different-semantics",
+      "objectSha256": "20f0801520c91d418516d2be942511554a2d3e2ebe495e97068be826a2bd2636",
+      "files": [
+        { "relativePath": "Phigros/曲绘/After ZABANIYA (MUG Edit)」 - Daily天利.png", "semanticClassification": "normal-jacket" },
+        { "relativePath": "Phigros/April Fools/After ZABANIYA (MUG Edit)」 - Daily天利.png", "semanticClassification": "april-fools" }
+      ],
+      "expected": "one shared Object, two independently reviewed semantic Resources"
+    },
+    {
+      "id": "arcaea-renamed-alias",
+      "kind": "renamed-same-hash",
+      "objectSha256": "12bda842b223a89a193f94a53c354b4b9070577188751384a150cf0ba6100145",
+      "files": [
+        { "relativePath": "Arcaea/曲绘/Ignotus Afterburn.jpg", "semanticClassification": "short-alias-unmapped" },
+        { "relativePath": "Arcaea/曲绘/Ignotus_ak+q_1.1_BYD 3.12_base_IDX 41_BPM 170_SIDE 1_base_conflict_ignotus_3.jpg", "semanticClassification": "BYD-candidate" }
+      ],
+      "expected": "alias candidate only; no automatic merge or deletion"
+    },
+    {
+      "id": "arcaea-short-alias",
+      "kind": "short-alias-unmapped",
+      "game": "arcaea",
+      "examples": ["Overdead..jpg", "Ignotus Afterburn.jpg", "Red and Blue and Green.jpg", "Singularity VVVIP.jpg"],
+      "expected": "Candidate with low/unknown mapping confidence and manual review"
+    },
+    {
+      "id": "arcaea-character-roles",
+      "kind": "character-role-separation",
+      "game": "arcaea",
+      "examples": [
+        { "resourceType": "character-portrait", "relativePath": "Arcaea/角色/立绘/10.png", "sha256": "d802b0e79e6fac1d0b2850881708f80db8d9f9e22f97d99efe70a156d4d65f5c" },
+        { "resourceType": "character-avatar", "relativePath": "Arcaea/角色/头像/10_icon.png", "sha256": "123c6da7e15e7ecb495da8ff94ad5cd3e939a8c4d54bb27f44602615b28876e1" },
+        { "resourceType": "linkplay-preview", "relativePath": "Arcaea/角色/LinkPlay预览/5_mp.png", "sha256": "67c3a4e4ca199378ed69c3a1340494118b108319a153ecd4194e6eadb2cafbcf" }
+      ],
+      "evidence": "Phase 1 distinguishes char/1080, char/*_icon and char/*_mp; these are not original/upscaled renditions of one file."
+    },
+    {
+      "id": "arcaea-story-cg",
+      "kind": "story-cg",
+      "game": "arcaea",
+      "resourceType": "story-cg",
+      "relativePath": "Arcaea/剧情/epilogue/last1_c3_epilogue.jpg",
+      "sha256": "40711bf78a08105f67cd9059814acb5d30bcba1b2a76f797717b551cd643b688",
+      "expected": "story relation may be incomplete; keep missing metadata as unknown"
+    },
+    {
+      "id": "phigros-risk-cases",
+      "kind": "phigros-low-confidence",
+      "game": "phigros",
+      "examples": [
+        { "resourceType": "jacket", "relativePath": "Phigros/曲绘/Antithese.png", "sha256": "a33b899ae200d5ab08da0447008ecc325cdd4a10261f4f8a25e9db82c9137679", "metadata": { "artist": null } },
+        { "resourceType": "jacket", "relativePath": "Phigros/曲绘/Cipher.png", "note": "renamed same-hash public/archive case" },
+        { "resourceType": "phigros-april-fools", "relativePath": "Phigros/April Fools/Oblivion： Phin.png", "note": "event classification must remain separate until reviewed" }
+      ],
+      "evidence": "Phase 1 reports only 22/496 non-empty Phigros artist fields and no reliable root version."
+    },
+    {
+      "id": "optimization-workflow-fixture",
+      "kind": "optimization-png-to-jpeg",
+      "synthetic": true,
+      "sourceBasis": "A copied V2 fixture derived from a historical Arcaea image; source history remains untouched.",
+      "files": [
+        { "relativePath": "work/Testify Final.jpg", "role": "work-original" },
+        { "relativePath": "upscale-output/Testify Final_optimization.png", "role": "external-ai-output" },
+        { "relativePath": "processed/Testify Final.jpg", "role": "processed-upscaled" }
+      ],
+      "expected": "match by Candidate filename aliases, retain source PNG, represent output as renditionType=upscaled"
+    }
+  ]
+}

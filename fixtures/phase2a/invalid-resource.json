@@ -1,0 +1,16 @@
+{
+  "schemaVersion": "1.0",
+  "id": "Acid God.jpg",
+  "game": "arcaea",
+  "resourceType": "jacket",
+  "provenance": [
+    {
+      "sourceType": "legacy",
+      "sourceRelativePath": "E:\\曲绘\\Arcaea\\曲绘\\Acid God.jpg",
+      "sourceFilename": "Acid God.jpg",
+      "sourceSha256": "not-a-sha256",
+      "evidence": []
+    }
+  ],
+  "lifecycle": { "status": "published", "createdAt": "not-a-date", "updatedAt": "not-a-date" }
+}

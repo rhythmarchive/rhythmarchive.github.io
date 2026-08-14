@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "1.0",
+  "id": "0198a8de-0000-7000-8000-000000008001",
+  "updateBatchId": "0198a8de-0000-7000-8000-000000004001",
+  "game": "arcaea",
+  "baseVersion": "6.16.0",
+  "targetVersion": "6.17.0",
+  "createdAt": "2026-08-14T00:00:00Z",
+  "status": "validated",
+  "changes": [
+    { "changeType": "added-resource", "resourceId": "0198a8de-0000-7000-8000-000000001001", "detail": "new ordinary jacket Resource" },
+    { "changeType": "added-variant", "resourceId": "0198a8de-0000-7000-8000-000000001001", "variantId": "0198a8de-0000-7000-8000-000000002001", "detail": "default Variant" },
+    { "changeType": "added-rendition", "resourceId": "0198a8de-0000-7000-8000-000000001001", "variantId": "0198a8de-0000-7000-8000-000000002001", "renditionId": "0198a8de-0000-7000-8000-000000003001", "objectId": "sha256:fa80a68c1fef5324dd663fbea4dfc6f41867b5b0907bc91d718a352d541365d5", "detail": "extracted original" },
+    { "changeType": "added-rendition", "resourceId": "0198a8de-0000-7000-8000-000000001001", "variantId": "0198a8de-0000-7000-8000-000000002001", "renditionId": "0198a8de-0000-7000-8000-000000003002", "objectId": "sha256:22ca2fd82b31b573dd663fbea4dfc6f41867b5b0907bc91d718a352d541365d5", "detail": "human-approved upscaled rendition" }
+  ],
+  "affectedResourceIds": ["0198a8de-0000-7000-8000-000000001001"],
+  "publishedRenditions": [
+    { "resourceId": "0198a8de-0000-7000-8000-000000001001", "variantId": "0198a8de-0000-7000-8000-000000002001", "renditionId": "0198a8de-0000-7000-8000-000000003001", "objectId": "sha256:fa80a68c1fef5324dd663fbea4dfc6f41867b5b0907bc91d718a352d541365d5", "displayFilename": "Acid God.jpg" },
+    { "resourceId": "0198a8de-0000-7000-8000-000000001001", "variantId": "0198a8de-0000-7000-8000-000000002001", "renditionId": "0198a8de-0000-7000-8000-000000003002", "objectId": "sha256:22ca2fd82b31b573dd663fbea4dfc6f41867b5b0907bc91d718a352d541365d5", "displayFilename": "Acid God.jpg" }
+  ],
+  "ignoredCandidates": [],
+  "notes": ["Staging cleanup is not implied by this manifest."]
+}

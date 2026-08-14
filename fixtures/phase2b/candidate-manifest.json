@@ -1,0 +1,20 @@
+{
+  "game": "arcaea",
+  "sourceType": "arcaea_apk",
+  "sourceSnapshot": "phase2b-cli-fixture",
+  "extractorVersion": "fixture-adapter@phase2b",
+  "candidates": [
+    {
+      "sourcePath": "fixtures/phase2b/images/bright-world.jpg",
+      "sourceRelativePath": "songs/fixture/bright-world.jpg",
+      "sourceFilename": "bright-world.jpg",
+      "suggestedFilename": "Bright World.jpg",
+      "resourceType": "jacket",
+      "title": "Bright World",
+      "variantKey": "default",
+      "variantKind": "default",
+      "metadata": { "fixture": true },
+      "requiresUpscale": false
+    }
+  ]
+}

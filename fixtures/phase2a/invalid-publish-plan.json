@@ -1,0 +1,12 @@
+{
+  "schemaVersion": "1.0",
+  "id": "0198a8de-0000-7000-8000-000000006001",
+  "updateBatchId": "0198a8de-0000-7000-8000-000000004001",
+  "generatedAt": "2026-08-14T00:00:00Z",
+  "dryRun": true,
+  "objectsToCreate": [{ "objectId": "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc", "objectKey": "objects/cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc/jpg", "sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc", "sizeBytes": 10, "mime": "image/jpeg" }],
+  "catalogMutations": [{ "operation": "replace-rendition", "renditionId": "0198a8de-0000-7000-8000-000000003001", "objectId": "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc", "previousObjectId": "sha256:fa80a68c1fef5324dd663fbea4dfc6f41867b5b0907bc91d718a352d541365d5", "summary": "invalid test plan" }],
+  "releaseManifestMutation": { "operation": "create", "manifestId": "0198a8de-0000-7000-8000-000000007001", "targetVersion": "6.17.0" },
+  "objectsEligibleForGC": [{ "objectId": "sha256:fa80a68c1fef5324dd663fbea4dfc6f41867b5b0907bc91d718a352d541365d5", "reason": "same plan replacement", "eligibleAfter": "2026-08-14T00:00:00Z", "catalogReferencesAfter": 0 }],
+  "validation": { "schemaValid": true, "referencesValid": true, "objectBytesVerified": true, "humanApprovalRequired": false }
+}

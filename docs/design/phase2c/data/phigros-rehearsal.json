@@ -1,0 +1,18 @@
+{
+  "generatedAt": "2026-08-14T09:27:41.710Z",
+  "game": "phigros",
+  "status": "REAL_APK_REHEARSAL_BLOCKED_MISSING_LOCAL_INPUT",
+  "apkDirectory": "D:\\Files\\曲绘\\Phigros\\APK",
+  "foundApks": [
+    {
+      "filename": "Phigros_3.19.5.apk",
+      "absolutePath": "D:\\Files\\曲绘\\Phigros\\APK\\Phigros_3.19.5.apk",
+      "version": "3.19.5",
+      "sizeBytes": 2652431993,
+      "modifiedAt": "2026-07-30T11:52:34.000Z"
+    }
+  ],
+  "requiredInput": "at least two distinct local APK versions: one base/old and one target/new",
+  "requiredCommand": "Phigros_<old-version>.apk and Phigros_<new-version>.apk",
+  "note": "Only one Phigros APK is currently present. This is recorded as a missing-base input, not as a zero-update result. No network download was attempted."
+}

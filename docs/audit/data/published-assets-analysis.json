@@ -1,0 +1,93 @@
+{
+  "totals": {
+    "files": 2672,
+    "images": 2670,
+    "nonImages": 2,
+    "sizeBytes": 3165547898
+  },
+  "categories": [
+    {
+      "key": "Arcaea/曲绘",
+      "files": 603,
+      "sizeBytes": 175891082
+    },
+    {
+      "key": "Arcaea/曲绘（AI超分后）",
+      "files": 603,
+      "sizeBytes": 1542591742
+    },
+    {
+      "key": "Phigros/曲绘",
+      "files": 315,
+      "sizeBytes": 759148511
+    },
+    {
+      "key": "Arcaea/曲包封面",
+      "files": 194,
+      "sizeBytes": 48962135
+    },
+    {
+      "key": "Arcaea/游玩背景",
+      "files": 154,
+      "sizeBytes": 77522898
+    },
+    {
+      "key": "Arcaea/角色/LinkPlay预览",
+      "files": 148,
+      "sizeBytes": 98107902
+    },
+    {
+      "key": "Arcaea/剧情",
+      "files": 147,
+      "sizeBytes": 96242550
+    },
+    {
+      "key": "Arcaea/角色/立绘",
+      "files": 139,
+      "sizeBytes": 230955907
+    },
+    {
+      "key": "Arcaea/角色/头像",
+      "files": 130,
+      "sizeBytes": 8492506
+    },
+    {
+      "key": "Phigros/角色/头像",
+      "files": 107,
+      "sizeBytes": 2082511
+    },
+    {
+      "key": "Phigros/曲包封面",
+      "files": 41,
+      "sizeBytes": 31521658
+    },
+    {
+      "key": "Arcaea/启动页面",
+      "files": 39,
+      "sizeBytes": 31438317
+    },
+    {
+      "key": "Phigros/April Fools",
+      "files": 33,
+      "sizeBytes": 38619864
+    },
+    {
+      "key": "Arcaea/世界模式",
+      "files": 17,
+      "sizeBytes": 23899308
+    }
+  ],
+  "missingFromIndex": {
+    "count": 0,
+    "examples": []
+  },
+  "missingFromAssets": {
+    "count": 0,
+    "examples": []
+  },
+  "indexedStableIdMismatches": {
+    "count": 0,
+    "examples": []
+  },
+  "duplicateRelativePathsInIndex": []
+}

@@ -1,0 +1,29 @@
+{
+  "name": "rhythm-assets-gallery-v2-phase2b",
+  "private": true,
+  "type": "module",
+  "version": "0.2.0-phase2b",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "test": "tsx --test packages/domain/tests/*.test.ts packages/admin/tests/*.test.ts",
+    "admin": "tsx packages/admin/src/server.ts",
+    "typecheck": "tsc --noEmit",
+    "test:all": "npm run typecheck && npm test",
+    "experiment:upscale": "tsx tools/upscale-experiment.ts",
+    "experiment:upscale:phase2b": "tsx tools/phase2b-upscale-experiment.ts",
+    "test:phase2b": "tsx --test packages/domain/tests/phase2b.test.ts",
+    "phase2b:workspace": "tsx tools/phase2b-workspace.ts",
+    "phase2c:rehearsal": "tsx tools/phase2c-rehearsal.ts"
+  },
+  "dependencies": {
+    "sharp": "^0.34.5",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.0"
+  }
+}

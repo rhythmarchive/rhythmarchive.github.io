@@ -1,0 +1,16 @@
+{
+  "schemaVersion": "1.0",
+  "id": "0198a8de-0000-7000-8000-000000005000",
+  "sourceType": "arcaea_apk",
+  "game": "arcaea",
+  "sourceSnapshot": "target-apk-6.17.0",
+  "createdAt": "2026-08-14T00:00:00Z",
+  "extractorVersion": "local-extractor-prototype",
+  "candidateIds": [
+    "0198a8de-0000-7000-8000-000000005001"
+  ],
+  "candidateCount": 1,
+  "notes": [
+    "CandidateManifest is a source-neutral review input; source-specific evidence remains on Candidate."
+  ]
+}

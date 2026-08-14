@@ -1,0 +1,348 @@
+{
+  "generatedAt": "2026-08-14T08:47:50.278Z",
+  "parameters": {
+    "qualities": [
+      92,
+      95,
+      97
+    ],
+    "chromaSubsampling": "4:4:4",
+    "progressive": true,
+    "mozjpeg": false,
+    "alphaPolicy": "block",
+    "note": "quality 95 is a provisional safe default, not a universal optimum"
+  },
+  "samples": [
+    {
+      "id": "acid-god-fixture",
+      "source": "fixtures/phase2a/images/Acid God_optimization.png",
+      "inputBytes": 17965264,
+      "alpha": {
+        "hasAlphaChannel": false,
+        "isOpaque": true,
+        "hasActualTransparency": false,
+        "width": 3072,
+        "height": 3072,
+        "format": "png"
+      },
+      "qualityResults": [
+        {
+          "quality": 92,
+          "status": "converted",
+          "outputBytes": 3843988,
+          "reduction": 0.7860322008070686,
+          "inputSha256": "ddf462118686c2d9f0eb5eeb7a110aabdfef23847129a9069bc9f5a7b884e29e",
+          "outputSha256": "09a653a30274d753d3819659408f0b467276b4716b9a946753599e604abb9a60",
+          "pixelDiff": {
+            "comparable": true,
+            "meanAbsoluteChannelDifference": 1.2215870751274958,
+            "maxAbsoluteChannelDifference": 41,
+            "pixelsAboveFiveRatio": 0.05462000105116102,
+            "width": 3072,
+            "height": 3072
+          }
+        },
+        {
+          "quality": 95,
+          "status": "converted",
+          "outputBytes": 4498957,
+          "reduction": 0.7495746792254208,
+          "inputSha256": "ddf462118686c2d9f0eb5eeb7a110aabdfef23847129a9069bc9f5a7b884e29e",
+          "outputSha256": "00b32d2ce7bf0a1377028a546649b53cc509fa2be835e6124588e0f940623cec",
+          "pixelDiff": {
+            "comparable": true,
+            "meanAbsoluteChannelDifference": 0.13798992722122758,
+            "maxAbsoluteChannelDifference": 8,
+            "pixelsAboveFiveRatio": 0.000002013312445746528,
+            "width": 3072,
+            "height": 3072
+          }
+        },
+        {
+          "quality": 97,
+          "status": "converted",
+          "outputBytes": 5268025,
+          "reduction": 0.7067660681190101,
+          "inputSha256": "ddf462118686c2d9f0eb5eeb7a110aabdfef23847129a9069bc9f5a7b884e29e",
+          "outputSha256": "70f82319216e7ca0267a063f8be9368d7150946a11475f7646207e83073095be",
+          "pixelDiff": {
+            "comparable": true,
+            "meanAbsoluteChannelDifference": 0.451502764666522,
+            "maxAbsoluteChannelDifference": 14,
+            "pixelsAboveFiveRatio": 0.0012297100490993923,
+            "width": 3072,
+            "height": 3072
+          }
+        }
+      ]
+    },
+    {
+      "id": "bright-world",
+      "source": "fixtures/phase2b/images/bright-world.jpg",
+      "inputBytes": 3418688,
+      "alpha": {
+        "hasAlphaChannel": false,
+        "isOpaque": true,
+        "hasActualTransparency": false,
+        "width": 1920,
+        "height": 2297,
+        "format": "png"
+      },
+      "qualityResults": [
+        {
+          "quality": 92,
+          "status": "converted",
+          "outputBytes": 383709,
+          "reduction": 0.8877613283224441,
+          "inputSha256": "a4a1ce102be4aabc351d912d1ee8530abc57e3f1dc7e10261f322c8e7ac3a2e0",
+          "outputSha256": "f91e1e7312fd7d1d4bccb95e6749a70ed0ac444ccaac514523a894f9fbda3df7",
+          "pixelDiff": {
+            "comparable": true,
+            "meanAbsoluteChannelDifference": 0.1577681335558458,
+            "maxAbsoluteChannelDifference": 9,
+            "pixelsAboveFiveRatio": 0.000004081410535481062,
+            "width": 1920,
+            "height": 2297
+          }
+        },
+        {
+          "quality": 95,
+          "status": "converted",
+          "outputBytes": 466250,
+          "reduction": 0.8636172707190595,
+          "inputSha256": "a4a1ce102be4aabc351d912d1ee8530abc57e3f1dc7e10261f322c8e7ac3a2e0",
+          "outputSha256": "e5d88d0b5b780f96ed8d3e7ad4d0384eabb05edfd87ba0115c24d18d30d92dfd",
+          "pixelDiff": {
+            "comparable": true,
+            "meanAbsoluteChannelDifference": 0.06585832063561167,
+            "maxAbsoluteChannelDifference": 9,
+            "pixelsAboveFiveRatio": 0.0000013604701784936874,
+            "width": 1920,
+            "height": 2297
+          }
+        },
+        {
+          "quality": 97,
+          "status": "converted",
+          "outputBytes": 557944,
+          "reduction": 0.8367958702285789,
+          "inputSha256": "a4a1ce102be4aabc351d912d1ee8530abc57e3f1dc7e10261f322c8e7ac3a2e0",
+          "outputSha256": "cf19a105e275ebb17a4612d5f52438e2adbe52b1261aaa166bc436b11336429a",
+          "pixelDiff": {
+            "comparable": true,
+            "meanAbsoluteChannelDifference": 0.0715503011173995,
+            "maxAbsoluteChannelDifference": 8,
+            "pixelsAboveFiveRatio": 2.267450297489479e-7,
+            "width": 1920,
+            "height": 2297
+          }
+        }
+      ]
+    },
+    {
+      "id": "detail-story",
+      "source": "fixtures/phase2b/images/detail-story.jpg",
+      "inputBytes": 5262059,
+      "alpha": {
+        "hasAlphaChannel": false,
+        "isOpaque": true,
+        "hasActualTransparency": false,
+        "width": 1920,
+        "height": 1080,
+        "format": "png"
+      },
+      "qualityResults": [
+        {
+          "quality": 92,
+          "status": "converted",
+          "outputBytes": 1200629,
+          "reduction": 0.7718328509809563,
+          "inputSha256": "db6a849e527f6fee989de85bd543dc0fe182348b9d5bd7433f534e5ee9ffc3c6",
+          "outputSha256": "8b9a6311c7e2c602a8e16e0c7681cd3e211108dcdd7478a30e8089f25e7e3dc3",
+          "pixelDiff": {
+            "comparable": true,
+            "meanAbsoluteChannelDifference": 3.2692147312242796,
+            "maxAbsoluteChannelDifference": 47,
+            "pixelsAboveFiveRatio": 0.22184895833333335,
+            "width": 1920,
+            "height": 1080
+          }
+        },
+        {
+          "quality": 95,
+          "status": "converted",
+          "outputBytes": 1529141,
+          "reduction": 0.7094025361555238,
+          "inputSha256": "db6a849e527f6fee989de85bd543dc0fe182348b9d5bd7433f534e5ee9ffc3c6",
+          "outputSha256": "85858c79333d7728ce9d9cb3f6d85f5984d68e522cad8f96c6bc8708bbdbd5ea",
+          "pixelDiff": {
+            "comparable": true,
+            "meanAbsoluteChannelDifference": 1.234809670781893,
+            "maxAbsoluteChannelDifference": 21,
+            "pixelsAboveFiveRatio": 0.012964409722222223,
+            "width": 1920,
+            "height": 1080
+          }
+        },
+        {
+          "quality": 97,
+          "status": "converted",
+          "outputBytes": 1750132,
+          "reduction": 0.667405477589666,
+          "inputSha256": "db6a849e527f6fee989de85bd543dc0fe182348b9d5bd7433f534e5ee9ffc3c6",
+          "outputSha256": "2a92a3e6b764d0640f8dc693243535e704aea4990f053943ff4e9257bf1d208c",
+          "pixelDiff": {
+            "comparable": true,
+            "meanAbsoluteChannelDifference": 0.9170703125,
+            "maxAbsoluteChannelDifference": 14,
+            "pixelsAboveFiveRatio": 0.002298900462962963,
+            "width": 1920,
+            "height": 1080
+          }
+        }
+      ]
+    },
+    {
+      "id": "gradient-background",
+      "source": "fixtures/phase2b/images/gradient-background.jpg",
+      "inputBytes": 7604100,
+      "alpha": {
+        "hasAlphaChannel": false,
+        "isOpaque": true,
+        "hasActualTransparency": false,
+        "width": 1920,
+        "height": 2880,
+        "format": "png"
+      },
+      "qualityResults": [
+        {
+          "quality": 92,
+          "status": "converted",
+          "outputBytes": 1512738,
+          "reduction": 0.8010628476742809,
+          "inputSha256": "3be3fce63c5d5999e082031cf2c1953c0e95d9a6c4fcc376d494ca0dbcbf1723",
+          "outputSha256": "ea2c203046ab5f62e767756a0b3c04d446cebf2b9d4ec351226cb08534d6c74e",
+          "pixelDiff": {
+            "comparable": true,
+            "meanAbsoluteChannelDifference": 0.41824616608796295,
+            "maxAbsoluteChannelDifference": 11,
+            "pixelsAboveFiveRatio": 0.00022026909722222223,
+            "width": 1920,
+            "height": 2880
+          }
+        },
+        {
+          "quality": 95,
+          "status": "converted",
+          "outputBytes": 1746031,
+          "reduction": 0.7703829513025868,
+          "inputSha256": "3be3fce63c5d5999e082031cf2c1953c0e95d9a6c4fcc376d494ca0dbcbf1723",
+          "outputSha256": "2aa8fe695ca1227f929f5ffda434b5b10fa7fd6073d2b9cda897c822b3e65feb",
+          "pixelDiff": {
+            "comparable": true,
+            "meanAbsoluteChannelDifference": 0.3875799937307099,
+            "maxAbsoluteChannelDifference": 8,
+            "pixelsAboveFiveRatio": 0.00004539207175925926,
+            "width": 1920,
+            "height": 2880
+          }
+        },
+        {
+          "quality": 97,
+          "status": "converted",
+          "outputBytes": 1990753,
+          "reduction": 0.7382000499730408,
+          "inputSha256": "3be3fce63c5d5999e082031cf2c1953c0e95d9a6c4fcc376d494ca0dbcbf1723",
+          "outputSha256": "4b0fb6f94e47e41499d3009e132feb80121617a1e4841274978a7419f3eb44d7",
+          "pixelDiff": {
+            "comparable": true,
+            "meanAbsoluteChannelDifference": 0.216430362654321,
+            "maxAbsoluteChannelDifference": 7,
+            "pixelsAboveFiveRatio": 0.0000016276041666666668,
+            "width": 1920,
+            "height": 2880
+          }
+        }
+      ]
+    },
+    {
+      "id": "fine-text-pack",
+      "source": "fixtures/phase2b/images/fine-text-pack.png",
+      "inputBytes": 707030,
+      "alpha": {
+        "hasAlphaChannel": true,
+        "isOpaque": false,
+        "hasActualTransparency": true,
+        "width": 374,
+        "height": 750,
+        "format": "png"
+      },
+      "qualityResults": [
+        {
+          "quality": 92,
+          "status": "blocked",
+          "reduction": null,
+          "inputSha256": "2b26a5abfd21cf8208286f6b32a3360eaf22e185cffe0faa114f82462024f55d",
+          "pixelDiff": null,
+          "message": "PNG has actual transparency; choose an explicit flatten policy before JPEG conversion"
+        },
+        {
+          "quality": 95,
+          "status": "blocked",
+          "reduction": null,
+          "inputSha256": "2b26a5abfd21cf8208286f6b32a3360eaf22e185cffe0faa114f82462024f55d",
+          "pixelDiff": null,
+          "message": "PNG has actual transparency; choose an explicit flatten policy before JPEG conversion"
+        },
+        {
+          "quality": 97,
+          "status": "blocked",
+          "reduction": null,
+          "inputSha256": "2b26a5abfd21cf8208286f6b32a3360eaf22e185cffe0faa114f82462024f55d",
+          "pixelDiff": null,
+          "message": "PNG has actual transparency; choose an explicit flatten policy before JPEG conversion"
+        }
+      ]
+    },
+    {
+      "id": "phigros-text",
+      "source": "fixtures/phase2b/images/phigros-text.png",
+      "inputBytes": 379949,
+      "alpha": {
+        "hasAlphaChannel": true,
+        "isOpaque": false,
+        "hasActualTransparency": true,
+        "width": 976,
+        "height": 477,
+        "format": "png"
+      },
+      "qualityResults": [
+        {
+          "quality": 92,
+          "status": "blocked",
+          "reduction": null,
+          "inputSha256": "71ee3bb1a25487215743f1968965eed1f38d66198a66a452c939b3dc83484ebc",
+          "pixelDiff": null,
+          "message": "PNG has actual transparency; choose an explicit flatten policy before JPEG conversion"
+        },
+        {
+          "quality": 95,
+          "status": "blocked",
+          "reduction": null,
+          "inputSha256": "71ee3bb1a25487215743f1968965eed1f38d66198a66a452c939b3dc83484ebc",
+          "pixelDiff": null,
+          "message": "PNG has actual transparency; choose an explicit flatten policy before JPEG conversion"
+        },
+        {
+          "quality": 97,
+          "status": "blocked",
+          "reduction": null,
+          "inputSha256": "71ee3bb1a25487215743f1968965eed1f38d66198a66a452c939b3dc83484ebc",
+          "pixelDiff": null,
+          "message": "PNG has actual transparency; choose an explicit flatten policy before JPEG conversion"
+        }
+      ]
+    }
+  ],
+  "note": "Five representative read-only copies from E:\\曲绘 plus the Phase 2A fixture were copied into V2 fixtures. The source directory was not modified; this is an engineering comparison, not a paper-quality visual study."
+}

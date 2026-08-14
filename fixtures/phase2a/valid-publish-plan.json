@@ -1,0 +1,13 @@
+{
+  "schemaVersion": "1.0",
+  "id": "0198a8de-0000-7000-8000-000000009001",
+  "updateBatchId": "0198a8de-0000-7000-8000-000000004001",
+  "generatedAt": "2026-08-14T00:00:00Z",
+  "dryRun": true,
+  "objectsToCreate": [{ "objectId": "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd", "objectKey": "objects/dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd/jpg", "sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd", "sizeBytes": 450000, "mime": "image/jpeg" }],
+  "catalogMutations": [{ "operation": "create-rendition", "resourceId": "0198a8de-0000-7000-8000-000000001001", "variantId": "0198a8de-0000-7000-8000-000000002001", "renditionId": "0198a8de-0000-7000-8000-000000009101", "objectId": "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd", "summary": "create validated processed upscaled rendition" }],
+  "releaseManifestMutation": { "operation": "create", "manifestId": "0198a8de-0000-7000-8000-000000008001", "targetVersion": "6.17.0" },
+  "objectsEligibleForGC": [],
+  "validation": { "schemaValid": true, "referencesValid": true, "objectBytesVerified": true, "humanApprovalRequired": true },
+  "notes": ["Dry-run only; no ROS call and no Catalog commit."]
+}

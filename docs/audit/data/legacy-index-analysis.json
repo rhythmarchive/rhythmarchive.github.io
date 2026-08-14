@@ -1,0 +1,4255 @@
+{
+  "files": {
+    "arcaea": 2174,
+    "phigros": 496,
+    "total": 2670
+  },
+  "categories": {
+    "arcaea": [
+      {
+        "key": "曲绘",
+        "files": 603,
+        "sizeBytes": 175891082
+      },
+      {
+        "key": "曲绘（AI超分后）",
+        "files": 603,
+        "sizeBytes": 1542591742
+      },
+      {
+        "key": "曲包封面",
+        "files": 194,
+        "sizeBytes": 48962135
+      },
+      {
+        "key": "游玩背景",
+        "files": 154,
+        "sizeBytes": 77522898
+      },
+      {
+        "key": "LinkPlay预览",
+        "files": 148,
+        "sizeBytes": 98107902
+      },
+      {
+        "key": "剧情",
+        "files": 147,
+        "sizeBytes": 96242550
+      },
+      {
+        "key": "立绘",
+        "files": 139,
+        "sizeBytes": 230955907
+      },
+      {
+        "key": "头像",
+        "files": 130,
+        "sizeBytes": 8492506
+      },
+      {
+        "key": "启动页面",
+        "files": 39,
+        "sizeBytes": 31438317
+      },
+      {
+        "key": "世界模式",
+        "files": 17,
+        "sizeBytes": 23899308
+      }
+    ],
+    "phigros": [
+      {
+        "key": "曲绘",
+        "files": 315,
+        "sizeBytes": 759148511
+      },
+      {
+        "key": "头像",
+        "files": 107,
+        "sizeBytes": 2082511
+      },
+      {
+        "key": "曲包封面",
+        "files": 41,
+        "sizeBytes": 31521658
+      },
+      {
+        "key": "April Fools",
+        "files": 33,
+        "sizeBytes": 38619864
+      }
+    ]
+  },
+  "fields": {
+    "arcaea": [
+      {
+        "field": "artist",
+        "present": 1184,
+        "missing": 990,
+        "uniqueNonEmpty": 387
+      },
+      {
+        "field": "bg",
+        "present": 1338,
+        "missing": 836,
+        "uniqueNonEmpty": 154
+      },
+      {
+        "field": "bgInverse",
+        "present": 1000,
+        "missing": 1174,
+        "uniqueNonEmpty": 84
+      },
+      {
+        "field": "bpm",
+        "present": 1184,
+        "missing": 990,
+        "uniqueNonEmpty": 169
+      },
+      {
+        "field": "bydVersion",
+        "present": 160,
+        "missing": 2014,
+        "uniqueNonEmpty": 13
+      },
+      {
+        "field": "category",
+        "present": 2174,
+        "missing": 0,
+        "uniqueNonEmpty": 10
+      },
+      {
+        "field": "characterEnglishName",
+        "present": 405,
+        "missing": 1769,
+        "uniqueNonEmpty": 98
+      },
+      {
+        "field": "characterId",
+        "present": 406,
+        "missing": 1768,
+        "uniqueNonEmpty": 99
+      },
+      {
+        "field": "characterName",
+        "present": 405,
+        "missing": 1769,
+        "uniqueNonEmpty": 74
+      },
+      {
+        "field": "characterVariant",
+        "present": 406,
+        "missing": 1768,
+        "uniqueNonEmpty": 14
+      },
+      {
+        "field": "chartDesigner",
+        "present": 110,
+        "missing": 2064,
+        "uniqueNonEmpty": 47
+      },
+      {
+        "field": "difficulty",
+        "present": 114,
+        "missing": 2060,
+        "uniqueNonEmpty": 4
+      },
+      {
+        "field": "difficultyLabel",
+        "present": 114,
+        "missing": 2060,
+        "uniqueNonEmpty": 4
+      },
+      {
+        "field": "difficultyRating",
+        "present": 114,
+        "missing": 2060,
+        "uniqueNonEmpty": 13
+      },
+      {
+        "field": "difficultyRatings",
+        "present": 1184,
+        "missing": 990,
+        "uniqueNonEmpty": 142
+      },
+      {
+        "field": "etrVersion",
+        "present": 6,
+        "missing": 2168,
+        "uniqueNonEmpty": 1
+      },
+      {
+        "field": "extension",
+        "present": 2174,
+        "missing": 0,
+        "uniqueNonEmpty": 2
+      },
+      {
+        "field": "filename",
+        "present": 2174,
+        "missing": 0,
+        "uniqueNonEmpty": 2167
+      },
+      {
+        "field": "game",
+        "present": 2174,
+        "missing": 0,
+        "uniqueNonEmpty": 1
+      },
+      {
+        "field": "height",
+        "present": 2174,
+        "missing": 0,
+        "uniqueNonEmpty": 104
+      },
+      {
+        "field": "id",
+        "present": 2174,
+        "missing": 0,
+        "uniqueNonEmpty": 2174
+      },
+      {
+        "field": "idx",
+        "present": 1184,
+        "missing": 990,
+        "uniqueNonEmpty": 530
+      },
+      {
+        "field": "jacketDesigner",
+        "present": 92,
+        "missing": 2082,
+        "uniqueNonEmpty": 38
+      },
+      {
+        "field": "mtimeMs",
+        "present": 2174,
+        "missing": 0,
+        "uniqueNonEmpty": 160
+      },
+      {
+        "field": "pack",
+        "present": 1583,
+        "missing": 591,
+        "uniqueNonEmpty": 62
+      },
+      {
+        "field": "packDescription",
+        "present": 1124,
+        "missing": 1050,
+        "uniqueNonEmpty": 58
+      },
+      {
+        "field": "packDisplayName",
+        "present": 1312,
+        "missing": 862,
+        "uniqueNonEmpty": 60
+      },
+      {
+        "field": "packSection",
+        "present": 1312,
+        "missing": 862,
+        "uniqueNonEmpty": 5
+      },
+      {
+        "field": "relatedCharacterIds",
+        "present": 37,
+        "missing": 2137,
+        "uniqueNonEmpty": 15
+      },
+      {
+        "field": "relatedCharacterNames",
+        "present": 39,
+        "missing": 2135,
+        "uniqueNonEmpty": 16
+      },
+      {
+        "field": "relatedSongId",
+        "present": 174,
+        "missing": 2000,
+        "uniqueNonEmpty": 121
+      },
+      {
+        "field": "relatedSongTitle",
+        "present": 30,
+        "missing": 2144,
+        "uniqueNonEmpty": 28
+      },
+      {
+        "field": "relativePath",
+        "present": 2174,
+        "missing": 0,
+        "uniqueNonEmpty": 2174
+      },
+      {
+        "field": "side",
+        "present": 1184,
+        "missing": 990,
+        "uniqueNonEmpty": 4
+      },
+      {
+        "field": "sideLabel",
+        "present": 1184,
+        "missing": 990,
+        "uniqueNonEmpty": 4
+      },
+      {
+        "field": "sizeBytes",
+        "present": 2174,
+        "missing": 0,
+        "uniqueNonEmpty": 2154
+      },
+      {
+        "field": "songId",
+        "present": 1184,
+        "missing": 990,
+        "uniqueNonEmpty": 530
+      },
+      {
+        "field": "storyAct",
+        "present": 37,
+        "missing": 2137,
+        "uniqueNonEmpty": 5
+      },
+      {
+        "field": "storyNode",
+        "present": 39,
+        "missing": 2135,
+        "uniqueNonEmpty": 38
+      },
+      {
+        "field": "storyPathTitle",
+        "present": 37,
+        "missing": 2137,
+        "uniqueNonEmpty": 19
+      },
+      {
+        "field": "storyType",
+        "present": 39,
+        "missing": 2135,
+        "uniqueNonEmpty": 3
+      },
+      {
+        "field": "tags",
+        "present": 2174,
+        "missing": 0,
+        "uniqueNonEmpty": 1537
+      },
+      {
+        "field": "thumbnailLarge",
+        "present": 2174,
+        "missing": 0,
+        "uniqueNonEmpty": 2174
+      },
+      {
+        "field": "thumbnailMedium",
+        "present": 2174,
+        "missing": 0,
+        "uniqueNonEmpty": 2174
+      },
+      {
+        "field": "thumbnailSmall",
+        "present": 2174,
+        "missing": 0,
+        "uniqueNonEmpty": 2174
+      },
+      {
+        "field": "title",
+        "present": 2174,
+        "missing": 0,
+        "uniqueNonEmpty": 1379
+      },
+      {
+        "field": "url",
+        "present": 2174,
+        "missing": 0,
+        "uniqueNonEmpty": 2174
+      },
+      {
+        "field": "version",
+        "present": 1184,
+        "missing": 990,
+        "uniqueNonEmpty": 61
+      },
+      {
+        "field": "width",
+        "present": 2174,
+        "missing": 0,
+        "uniqueNonEmpty": 83
+      },
+      {
+        "field": "wikiUrl",
+        "present": 1453,
+        "missing": 721,
+        "uniqueNonEmpty": 597
+      }
+    ],
+    "phigros": [
+      {
+        "field": "artist",
+        "present": 22,
+        "missing": 474,
+        "uniqueNonEmpty": 20
+      },
+      {
+        "field": "category",
+        "present": 496,
+        "missing": 0,
+        "uniqueNonEmpty": 4
+      },
+      {
+        "field": "extension",
+        "present": 496,
+        "missing": 0,
+        "uniqueNonEmpty": 1
+      },
+      {
+        "field": "filename",
+        "present": 496,
+        "missing": 0,
+        "uniqueNonEmpty": 478
+      },
+      {
+        "field": "game",
+        "present": 496,
+        "missing": 0,
+        "uniqueNonEmpty": 1
+      },
+      {
+        "field": "height",
+        "present": 496,
+        "missing": 0,
+        "uniqueNonEmpty": 6
+      },
+      {
+        "field": "id",
+        "present": 496,
+        "missing": 0,
+        "uniqueNonEmpty": 496
+      },
+      {
+        "field": "mtimeMs",
+        "present": 496,
+        "missing": 0,
+        "uniqueNonEmpty": 275
+      },
+      {
+        "field": "relativePath",
+        "present": 496,
+        "missing": 0,
+        "uniqueNonEmpty": 496
+      },
+      {
+        "field": "sizeBytes",
+        "present": 496,
+        "missing": 0,
+        "uniqueNonEmpty": 494
+      },
+      {
+        "field": "tags",
+        "present": 496,
+        "missing": 0,
+        "uniqueNonEmpty": 25
+      },
+      {
+        "field": "thumbnailLarge",
+        "present": 496,
+        "missing": 0,
+        "uniqueNonEmpty": 496
+      },
+      {
+        "field": "thumbnailMedium",
+        "present": 496,
+        "missing": 0,
+        "uniqueNonEmpty": 496
+      },
+      {
+        "field": "thumbnailSmall",
+        "present": 496,
+        "missing": 0,
+        "uniqueNonEmpty": 496
+      },
+      {
+        "field": "title",
+        "present": 496,
+        "missing": 0,
+        "uniqueNonEmpty": 476
+      },
+      {
+        "field": "url",
+        "present": 496,
+        "missing": 0,
+        "uniqueNonEmpty": 496
+      },
+      {
+        "field": "width",
+        "present": 496,
+        "missing": 0,
+        "uniqueNonEmpty": 7
+      }
+    ]
+  },
+  "ids": {
+    "collisions": [],
+    "collisionGroupCount": 0,
+    "stablePathMismatches": [],
+    "stablePathMismatchCount": 0
+  },
+  "relationships": {
+    "arcaea": {
+      "songArt": {
+        "files": 1206,
+        "uniqueNormalizedKeys": 603,
+        "pairGroups": 603,
+        "onlyOriginalGroups": 0,
+        "onlyAiGroups": 0,
+        "pairGroupExamples": [
+          {
+            "key": "［筏］は云う。幾ら漂流すれど不撓の心さえ有れば軈て行到ると。_庭師_6.11_single_idx 512_bpm 161_side 1_eden_conflict_theraft",
+            "originalCount": 1,
+            "aiCount": 1,
+            "originalIds": [
+              "b3eea83500efc142"
+            ],
+            "aiIds": [
+              "83440b2efcdd72a1"
+            ]
+          },
+          {
+            "key": "[x]_blacklolita_4.3_maimai_append_1_idx 306_bpm 162-180_side 1_maimai_conflict_infinity",
+            "originalCount": 1,
+            "aiCount": 1,
+            "originalIds": [
+              "58ffb580681f603d"
+            ],
+            "aiIds": [
+              "d3459fcef34c0dc3"
+            ]
+          },
+          {
+            "key": "#1f1e33_かめりあ(edp)_3.0_vs_idx 159_bpm 181_side 1_vs_conflict_ifi",
+            "originalCount": 1,
+            "aiCount": 1,
+            "originalIds": [
+              "5a5aa474393aa00f"
+            ],
+            "aiIds": [
+              "6d246807350a38b2"
+            ]
+          },
+          {
+            "key": "+1(unknown)-number_memodemo × aquasine ^ (hackerling)_6.12_single_idx 521_bpm 145_side 1_single2_conflict_unknownnum",
+            "originalCount": 1,
+            "aiCount": 1,
+            "originalIds": [
+              "a3b20d1fac8622f2"
+            ],
+            "aiIds": [
+              "567f315f477061bf"
+            ]
+          },
+          {
+            "key": "~_+_aquasine ~ memodemo + metaroom_6.11_extend_4_idx 509_bpm 213.5_side 0_nijuusei2_light_mask",
+            "originalCount": 1,
+            "aiCount": 1,
+            "originalIds": [
+              "a3b107e277151ded"
+            ],
+            "aiIds": [
+              "5a1228c02ecf749b"
+            ]
+          },
+          {
+            "key": "0xe0e1ccull",
+            "originalCount": 1,
+            "aiCount": 1,
+            "originalIds": [
+              "30b197865aa54051"
+            ],
+            "aiIds": [
+              "f335a50890b11002"
+            ]
+          },
+          {
+            "key": "10pt8ion_lite show magic_5.8_groovecoaster_append_1_idx 397_bpm 128-185_side 1_gc_conflict_temptationgc",
+            "originalCount": 1,
+            "aiCount": 1,
+            "originalIds": [
+              "3d5ec36e224e6baa"
+            ],
+            "aiIds": [
+              "8e915e477eac92b8"
+            ]
+          },
+          {
+            "key": "1f√_whitefists_3.0_extend_idx 167_bpm 130_side 0_mirai_light_onefr",
+            "originalCount": 1,
+            "aiCount": 1,
+            "originalIds": [
+              "ac69071777a30732"
+            ],
+            "aiIds": [
+              "d6128c6d6e8b5332"
+            ]
+          },
+          {
+            "key": "3rd avenue_sound souler_6.13_extend_4_idx 522_bpm 130_side 1_nihil_thirdavenue",
+            "originalCount": 1,
+            "aiCount": 1,
+            "originalIds": [
+              "6fa85b349d38a9ea"
+            ],
+            "aiIds": [
+              "5bd510f0e897a473"
+            ]
+          },
+          {
+            "key": "7thsense_削除_3.4_maimai_idx 196_bpm 150_side 1_maimai_conflict_seventhsense",
+            "originalCount": 1,
+            "aiCount": 1,
+            "originalIds": [
+              "0e622869b23bdaa5"
+            ],
+            "aiIds": [
+              "ad39af4798235a4a"
+            ]
+          },
+          {
+            "key": "8-em_sampling masters aya_6.1_chunithm_append_3_idx 437_bpm 168_side 1_chunithmnew_conflict_eightem",
+            "originalCount": 1,
+            "aiCount": 1,
+            "originalIds": [
+              "82b8e7e100cfd040"
+            ],
+            "aiIds": [
+              "f18c2357127e0d76"
+            ]
+          },
+          {
+            "key": "99 glooms_sta_4.6_cytusii_append_1_idx 332_bpm 185_side 1_cytus_conflict_nnglooms",
+            "originalCount": 1,
+            "aiCount": 1,
+            "originalIds": [
+              "379b021b814a3696"
+            ],
+            "aiIds": [
+              "bce1d63ebaefdb8d"
+            ]
+          },
+          {
+            "key": "白道、多希望羊と信じありく。_apo11o program ft. 大瀬良あい_1.7_base_idx 94_bpm 192_side 1_mirai_conflict_espebranch",
+            "originalCount": 1,
+            "aiCount": 1,
+            "originalIds": [
+              "d1619a17b6170c64"
+            ],
+            "aiIds": [
+              "f8ed446e02ce8b9f"
+            ]
+          },
+          {
+            "key": "彼方の夢へと_iinight feat. 綺良雪_4.7_single_idx 343_bpm 183_side 2_epilogue_tothefurthestdream_0",
+            "originalCount": 1,
+            "aiCount": 1,
+            "originalIds": [
+              "c3b30d8aec7fcde8"
+            ],
+            "aiIds": [
+              "5b141774fc737893"
+            ]
+          },
+          {
+            "key": "彼方の夢へと_iinight feat. 綺良雪_4.7_single_idx 343_bpm 183_side 2_epilogue_tothefurthestdream_1",
+            "originalCount": 1,
+            "aiCount": 1,
+            "originalIds": [
+              "7b01d69b840769ed"
+            ],
+            "aiIds": [
+              "8a72b2bac7f8a48e"
+            ]
+          },
+          {
+            "key": "彼方の夢へと_iinight feat. 綺良雪_4.7_single_idx 343_bpm 183_side 2_epilogue_tothefurthestdream_base",
+            "originalCount": 1,
+            "aiCount": 1,
+            "originalIds": [
+              "6664d4ad695a2008"
+            ],
+            "aiIds": [
+              "064016176acb2cde"
+            ]
+          },
+          {
+            "key": "不浄な白い鳥_missionary_1.1_single_idx 40_bpm 184_side 0_single_light_impurebird",
+            "originalCount": 1,
+            "aiCount": 1,
+            "originalIds": [
+              "2aad8c2c9200bcf0"
+            ],
+            "aiIds": [
+              "f7b487b869fd9ee1"
+            ]
+          },
+          {
+            "key": "彩る夏の恋花火_karatopαnchii feat.はるの_3.9_single_idx 243_bpm 160_side 0_omatsuri_light_summerfireworks",
+            "originalCount": 1,
+            "aiCount": 1,
+            "originalIds": [
+              "8f09bd7b62179875"
+            ],
+            "aiIds": [
+              "8aa37b38bc546857"
+            ]
+          },
+          {
+            "key": "多次元宇宙融合論_takio feat. つぐ_6.7_anima_idx 477_bpm 180-300_side 1_extradimensional_extradimensional",
+            "originalCount": 1,
+            "aiCount": 1,
+            "originalIds": [
+              "7a95da12b520609b"
+            ],
+            "aiIds": [
+              "be355f56c7f21d38"
+            ]
+          },
+          {
+            "key": "堕楽の園_gmtn. (witch's slave)_1.7_base_idx 90_bpm 168_side 1_base_conflict_darakunosono",
+            "originalCount": 1,
+            "aiCount": 1,
+            "originalIds": [
+              "f63fa16ebeecc203"
+            ],
+            "aiIds": [
+              "475cfdd2e1a0c953"
+            ]
+          }
+        ],
+        "onlyOriginalExamples": [],
+        "onlyAiExamples": []
+      },
+      "multipleSongIds": [
+        {
+          "songId": "avril",
+          "count": 6,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [
+            "PST",
+            "PRS"
+          ],
+          "filenames": [
+            "Ävril -Flicka i krans-_Rigël Theatre_3.12_base_IDX 260_BPM 130_SIDE 0_alice_light_avril_0.jpg_opt.jpg",
+            "Ävril -Flicka i krans-_Rigël Theatre_3.12_base_IDX 260_BPM 130_SIDE 0_alice_light_avril_1.jpg_opt.jpg",
+            "Ävril -Flicka i krans-_Rigël Theatre_3.12_base_IDX 260_BPM 130_SIDE 0_alice_light_avril_base.jpg_opt.jpg",
+            "Ävril -Flicka i krans-_Rigël Theatre_3.12_base_IDX 260_BPM 130_SIDE 0_alice_light_avril_0.jpg",
+            "Ävril -Flicka i krans-_Rigël Theatre_3.12_base_IDX 260_BPM 130_SIDE 0_alice_light_avril_1.jpg",
+            "Ävril -Flicka i krans-_Rigël Theatre_3.12_base_IDX 260_BPM 130_SIDE 0_alice_light_avril_base.jpg"
+          ]
+        },
+        {
+          "songId": "ii",
+          "count": 6,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [
+            "PST",
+            "PRS"
+          ],
+          "filenames": [
+            "͟͝͞Ⅱ́̕_Cytus_4.6_cytusii_append_1_IDX 333_BPM 130-150_SIDE 1_cytus_boss_ii_0.jpg_opt.jpg",
+            "͟͝͞Ⅱ́̕_Cytus_4.6_cytusii_append_1_IDX 333_BPM 130-150_SIDE 1_cytus_boss_ii_1.jpg_opt.jpg",
+            "͟͝͞Ⅱ́̕_Cytus_4.6_cytusii_append_1_IDX 333_BPM 130-150_SIDE 1_cytus_boss_ii_base.jpg_opt.jpg",
+            "͟͝͞Ⅱ́̕_Cytus_4.6_cytusii_append_1_IDX 333_BPM 130-150_SIDE 1_cytus_boss_ii_0.jpg",
+            "͟͝͞Ⅱ́̕_Cytus_4.6_cytusii_append_1_IDX 333_BPM 130-150_SIDE 1_cytus_boss_ii_1.jpg",
+            "͟͝͞Ⅱ́̕_Cytus_4.6_cytusii_append_1_IDX 333_BPM 130-150_SIDE 1_cytus_boss_ii_base.jpg"
+          ]
+        },
+        {
+          "songId": "prism",
+          "count": 6,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [
+            "PST",
+            "PRS"
+          ],
+          "filenames": [
+            "Prism_bermei.inazawa ft. Chata_3.12_lanota_append_1_IDX 264_BPM 107-109_SIDE 0_lanota-light_prism_0.jpg_opt.jpg",
+            "Prism_bermei.inazawa ft. Chata_3.12_lanota_append_1_IDX 264_BPM 107-109_SIDE 0_lanota-light_prism_1.jpg_opt.jpg",
+            "Prism_bermei.inazawa ft. Chata_3.12_lanota_append_1_IDX 264_BPM 107-109_SIDE 0_lanota-light_prism_base.jpg_opt.jpg",
+            "Prism_bermei.inazawa ft. Chata_3.12_lanota_append_1_IDX 264_BPM 107-109_SIDE 0_lanota-light_prism_0.jpg",
+            "Prism_bermei.inazawa ft. Chata_3.12_lanota_append_1_IDX 264_BPM 107-109_SIDE 0_lanota-light_prism_1.jpg",
+            "Prism_bermei.inazawa ft. Chata_3.12_lanota_append_1_IDX 264_BPM 107-109_SIDE 0_lanota-light_prism_base.jpg"
+          ]
+        },
+        {
+          "songId": "protoflicker",
+          "count": 6,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [
+            "PST",
+            "PRS"
+          ],
+          "filenames": [
+            "Protoflicker_Silentroom_3.12_lanota_append_1_IDX 265_BPM 140_SIDE 1_lanota-conflict_protoflicker_0.jpg_opt.jpg",
+            "Protoflicker_Silentroom_3.12_lanota_append_1_IDX 265_BPM 140_SIDE 1_lanota-conflict_protoflicker_1.jpg_opt.jpg",
+            "Protoflicker_Silentroom_3.12_lanota_append_1_IDX 265_BPM 140_SIDE 1_lanota-conflict_protoflicker_base.jpg_opt.jpg",
+            "Protoflicker_Silentroom_3.12_lanota_append_1_IDX 265_BPM 140_SIDE 1_lanota-conflict_protoflicker_0.jpg",
+            "Protoflicker_Silentroom_3.12_lanota_append_1_IDX 265_BPM 140_SIDE 1_lanota-conflict_protoflicker_1.jpg",
+            "Protoflicker_Silentroom_3.12_lanota_append_1_IDX 265_BPM 140_SIDE 1_lanota-conflict_protoflicker_base.jpg"
+          ]
+        },
+        {
+          "songId": "stager",
+          "count": 6,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [
+            "PST",
+            "PRS"
+          ],
+          "filenames": [
+            "STAGER (ALL STAGE CLEAR)_Ras_1.8_tonesphere_IDX 97_BPM 145_SIDE 0_tonesphere-solarsphere_stager_0.jpg_opt.jpg",
+            "STAGER (ALL STAGE CLEAR)_Ras_1.8_tonesphere_IDX 97_BPM 145_SIDE 0_tonesphere-solarsphere_stager_1.jpg_opt.jpg",
+            "STAGER (ALL STAGE CLEAR)_Ras_1.8_tonesphere_IDX 97_BPM 145_SIDE 0_tonesphere-solarsphere_stager_base.jpg_opt.jpg",
+            "STAGER (ALL STAGE CLEAR)_Ras_1.8_tonesphere_IDX 97_BPM 145_SIDE 0_tonesphere-solarsphere_stager_0.jpg",
+            "STAGER (ALL STAGE CLEAR)_Ras_1.8_tonesphere_IDX 97_BPM 145_SIDE 0_tonesphere-solarsphere_stager_1.jpg",
+            "STAGER (ALL STAGE CLEAR)_Ras_1.8_tonesphere_IDX 97_BPM 145_SIDE 0_tonesphere-solarsphere_stager_base.jpg"
+          ]
+        },
+        {
+          "songId": "stasis",
+          "count": 6,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [
+            "PST",
+            "PRS"
+          ],
+          "filenames": [
+            "Stasis_Maozon_3.12_lanota_append_1_IDX 266_BPM 180_SIDE 0_quon_stasis_0.jpg_opt.jpg",
+            "Stasis_Maozon_3.12_lanota_append_1_IDX 266_BPM 180_SIDE 0_quon_stasis_1.jpg_opt.jpg",
+            "Stasis_Maozon_3.12_lanota_append_1_IDX 266_BPM 180_SIDE 0_quon_stasis_base.jpg_opt.jpg",
+            "Stasis_Maozon_3.12_lanota_append_1_IDX 266_BPM 180_SIDE 0_quon_stasis_0.jpg",
+            "Stasis_Maozon_3.12_lanota_append_1_IDX 266_BPM 180_SIDE 0_quon_stasis_1.jpg",
+            "Stasis_Maozon_3.12_lanota_append_1_IDX 266_BPM 180_SIDE 0_quon_stasis_base.jpg"
+          ]
+        },
+        {
+          "songId": "tothefurthestdream",
+          "count": 6,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [
+            "PST",
+            "PRS"
+          ],
+          "filenames": [
+            "彼方の夢へと_iinight feat. 綺良雪_4.7_single_IDX 343_BPM 183_SIDE 2_epilogue_tothefurthestdream_0.jpg_opt.jpg",
+            "彼方の夢へと_iinight feat. 綺良雪_4.7_single_IDX 343_BPM 183_SIDE 2_epilogue_tothefurthestdream_1.jpg_opt.jpg",
+            "彼方の夢へと_iinight feat. 綺良雪_4.7_single_IDX 343_BPM 183_SIDE 2_epilogue_tothefurthestdream_base.jpg_opt.jpg",
+            "彼方の夢へと_iinight feat. 綺良雪_4.7_single_IDX 343_BPM 183_SIDE 2_epilogue_tothefurthestdream_0.jpg",
+            "彼方の夢へと_iinight feat. 綺良雪_4.7_single_IDX 343_BPM 183_SIDE 2_epilogue_tothefurthestdream_1.jpg",
+            "彼方の夢へと_iinight feat. 綺良雪_4.7_single_IDX 343_BPM 183_SIDE 2_epilogue_tothefurthestdream_base.jpg"
+          ]
+        },
+        {
+          "songId": "antithese",
+          "count": 4,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [
+            "BYD"
+          ],
+          "filenames": [
+            "Antithese_Blacklolita_2.0_BYD 3.10_zettai_IDX 113_BPM 172_SIDE 1_zettai_antithese_3.jpg_opt.jpg",
+            "Antithese_Blacklolita_2.0_BYD 3.10_zettai_IDX 113_BPM 172_SIDE 1_zettai_antithese_base.jpg_opt.jpg",
+            "Antithese_Blacklolita_2.0_BYD 3.10_zettai_IDX 113_BPM 172_SIDE 1_zettai_antithese_3.jpg",
+            "Antithese_Blacklolita_2.0_BYD 3.10_zettai_IDX 113_BPM 172_SIDE 1_zettai_antithese_base.jpg"
+          ]
+        },
+        {
+          "songId": "asgore",
+          "count": 4,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "アズゴア_Toby Fox_6.14_undertale_append_1_IDX 529_BPM 229.69_SIDE 0_undertale_light_asgore_256.jpg_opt.jpg",
+            "アズゴア_Toby Fox_6.14_undertale_append_1_IDX 529_BPM 229.69_SIDE 0_undertale_light_asgore.jpg_opt.jpg",
+            "アズゴア_Toby Fox_6.14_undertale_append_1_IDX 529_BPM 229.69_SIDE 0_undertale_light_asgore_256.jpg",
+            "アズゴア_Toby Fox_6.14_undertale_append_1_IDX 529_BPM 229.69_SIDE 0_undertale_light_asgore.jpg"
+          ]
+        },
+        {
+          "songId": "axiumcrisis",
+          "count": 4,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [
+            "BYD"
+          ],
+          "filenames": [
+            "Axium Crisis_ak+q_1.5_BYD 6.13_yugamu_IDX 55_BPM 170_SIDE 1_axiumcrisis_axiumcrisis_3.jpg_opt.jpg",
+            "Axium Crisis_ak+q_1.5_yugamu_IDX 55_BPM 170_SIDE 1_axiumcrisis_axiumcrisis.jpg_opt.jpg",
+            "Axium Crisis_ak+q_1.5_BYD 6.13_yugamu_IDX 55_BPM 170_SIDE 1_axiumcrisis_axiumcrisis_3.jpg",
+            "Axium Crisis_ak+q_1.5_yugamu_IDX 55_BPM 170_SIDE 1_axiumcrisis_axiumcrisis.jpg"
+          ]
+        },
+        {
+          "songId": "bethere",
+          "count": 4,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [
+            "BYD"
+          ],
+          "filenames": [
+            "Be There_PSYQUI_1.6_BYD 6.13_single_IDX 78_BPM 164_SIDE 0_base_light_bethere_3.jpg_opt.jpg",
+            "Be There_PSYQUI_1.6_single_IDX 78_BPM 164_SIDE 0_base_light_bethere.jpg_opt.jpg",
+            "Be There_PSYQUI_1.6_BYD 6.13_single_IDX 78_BPM 164_SIDE 0_base_light_bethere_3.jpg",
+            "Be There_PSYQUI_1.6_single_IDX 78_BPM 164_SIDE 0_base_light_bethere.jpg"
+          ]
+        },
+        {
+          "songId": "bookmaker",
+          "count": 4,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [
+            "BYD"
+          ],
+          "filenames": [
+            "Bookmaker (2D Version)_Kobaryo_1.7_BYD 3.6_base_IDX 89_BPM 175_SIDE 1_yugamu_bookmaker_3.jpg_opt.jpg",
+            "Bookmaker (2D Version)_Kobaryo_1.7_BYD 3.6_base_IDX 89_BPM 175_SIDE 1_yugamu_bookmaker_base.jpg_opt.jpg",
+            "Bookmaker (2D Version)_Kobaryo_1.7_BYD 3.6_base_IDX 89_BPM 175_SIDE 1_yugamu_bookmaker_3.jpg",
+            "Bookmaker (2D Version)_Kobaryo_1.7_BYD 3.6_base_IDX 89_BPM 175_SIDE 1_yugamu_bookmaker_base.jpg"
+          ]
+        },
+        {
+          "songId": "cyberneciacatharsis",
+          "count": 4,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [
+            "BYD"
+          ],
+          "filenames": [
+            "Cybernecia Catharsis_Tanchiky_1.6_BYD 5.3_base_IDX 79_BPM 184_SIDE 1_yugamu_cyberneciacatharsis_3.jpg_opt.jpg",
+            "Cybernecia Catharsis_Tanchiky_1.6_BYD 5.3_base_IDX 79_BPM 184_SIDE 1_yugamu_cyberneciacatharsis_base.jpg_opt.jpg",
+            "Cybernecia Catharsis_Tanchiky_1.6_BYD 5.3_base_IDX 79_BPM 184_SIDE 1_yugamu_cyberneciacatharsis_3.jpg",
+            "Cybernecia Catharsis_Tanchiky_1.6_BYD 5.3_base_IDX 79_BPM 184_SIDE 1_yugamu_cyberneciacatharsis_base.jpg"
+          ]
+        },
+        {
+          "songId": "dement",
+          "count": 4,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [
+            "BYD"
+          ],
+          "filenames": [
+            "Dement ~after legend~_Cosmograph_1.0_BYD 3.1_base_IDX 19_BPM 210_SIDE 1_base_conflict_dement_3.jpg_opt.jpg",
+            "Dement ~after legend~_Cosmograph_1.0_BYD 3.1_base_IDX 19_BPM 210_SIDE 1_base_conflict_dement_base.jpg_opt.jpg",
+            "Dement ~after legend~_Cosmograph_1.0_BYD 3.1_base_IDX 19_BPM 210_SIDE 1_base_conflict_dement_3.jpg",
+            "Dement ~after legend~_Cosmograph_1.0_BYD 3.1_base_IDX 19_BPM 210_SIDE 1_base_conflict_dement_base.jpg"
+          ]
+        },
+        {
+          "songId": "dropdead",
+          "count": 4,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [
+            "BYD"
+          ],
+          "filenames": [
+            "dropdead_Frums_1.7_BYD 3.12_single_IDX 91_BPM 50_SIDE 1_base_conflict_dropdead_3.jpg_opt.jpg",
+            "dropdead_Frums_1.7_BYD 3.12_single_IDX 91_BPM 50_SIDE 1_base_conflict_dropdead_base.jpg_opt.jpg",
+            "dropdead_Frums_1.7_BYD 3.12_single_IDX 91_BPM 50_SIDE 1_base_conflict_dropdead_3.jpg",
+            "dropdead_Frums_1.7_BYD 3.12_single_IDX 91_BPM 50_SIDE 1_base_conflict_dropdead_base.jpg"
+          ]
+        },
+        {
+          "songId": "eccentrictale",
+          "count": 4,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [
+            "BYD"
+          ],
+          "filenames": [
+            "Eccentric Tale_Yamajet_3.3_alice_IDX 184_BPM 132_SIDE 1_alice_conflict_eccentrictale.jpg_opt.jpg",
+            "Eccentric Tale_Yamajet_3.3_BYD 6.13_alice_IDX 184_BPM 132_SIDE 1_alice_conflict_eccentrictale_3.jpg_opt.jpg",
+            "Eccentric Tale_Yamajet_3.3_alice_IDX 184_BPM 132_SIDE 1_alice_conflict_eccentrictale.jpg",
+            "Eccentric Tale_Yamajet_3.3_BYD 6.13_alice_IDX 184_BPM 132_SIDE 1_alice_conflict_eccentrictale_3.jpg"
+          ]
+        },
+        {
+          "songId": "einherjar",
+          "count": 4,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [
+            "BYD"
+          ],
+          "filenames": [
+            "Einherjar Joker_DJ Genki vs Gram_2.5_BYD 5.3_single_IDX 147_BPM 222_SIDE 1_tanoc_conflict_einherjar_3.jpg_opt.jpg",
+            "Einherjar Joker_DJ Genki vs Gram_2.5_BYD 5.3_single_IDX 147_BPM 222_SIDE 1_tanoc_conflict_einherjar_base.jpg_opt.jpg",
+            "Einherjar Joker_DJ Genki vs Gram_2.5_BYD 5.3_single_IDX 147_BPM 222_SIDE 1_tanoc_conflict_einherjar_3.jpg",
+            "Einherjar Joker_DJ Genki vs Gram_2.5_BYD 5.3_single_IDX 147_BPM 222_SIDE 1_tanoc_conflict_einherjar_base.jpg"
+          ]
+        },
+        {
+          "songId": "fairytale",
+          "count": 4,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [
+            "BYD"
+          ],
+          "filenames": [
+            "Fairytale_chitose_1.0_BYD 3.0_base_IDX 6_BPM 189_SIDE 0_base_light_fairytale_3.jpg_opt.jpg",
+            "Fairytale_chitose_1.0_BYD 3.0_base_IDX 6_BPM 189_SIDE 0_base_light_fairytale_base.jpg_opt.jpg",
+            "Fairytale_chitose_1.0_BYD 3.0_base_IDX 6_BPM 189_SIDE 0_base_light_fairytale_3.jpg",
+            "Fairytale_chitose_1.0_BYD 3.0_base_IDX 6_BPM 189_SIDE 0_base_light_fairytale_base.jpg"
+          ]
+        },
+        {
+          "songId": "freefall",
+          "count": 4,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [
+            "BYD"
+          ],
+          "filenames": [
+            "FREEF4LL_YUKIYANAGI_2.4_BYD 4.1_base_IDX 138_BPM 170_SIDE 1_omatsuri_conflict_freefall_3.jpg_opt.jpg",
+            "FREEF4LL_YUKIYANAGI_2.4_BYD 4.1_base_IDX 138_BPM 170_SIDE 1_omatsuri_conflict_freefall_base.jpg_opt.jpg",
+            "FREEF4LL_YUKIYANAGI_2.4_BYD 4.1_base_IDX 138_BPM 170_SIDE 1_omatsuri_conflict_freefall_3.jpg",
+            "FREEF4LL_YUKIYANAGI_2.4_BYD 4.1_base_IDX 138_BPM 170_SIDE 1_omatsuri_conflict_freefall_base.jpg"
+          ]
+        },
+        {
+          "songId": "goodtek",
+          "count": 4,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [
+            "BYD"
+          ],
+          "filenames": [
+            "GOODTEK (Arcaea Edit)_EBIMAYO_1.0_BYD 3.0_base_IDX 2_BPM 190_SIDE 0_base_light_goodtek_3.jpg_opt.jpg",
+            "GOODTEK (Arcaea Edit)_EBIMAYO_1.0_BYD 3.0_base_IDX 2_BPM 190_SIDE 0_base_light_goodtek_base.jpg_opt.jpg",
+            "GOODTEK (Arcaea Edit)_EBIMAYO_1.0_BYD 3.0_base_IDX 2_BPM 190_SIDE 0_base_light_goodtek_3.jpg",
+            "GOODTEK (Arcaea Edit)_EBIMAYO_1.0_BYD 3.0_base_IDX 2_BPM 190_SIDE 0_base_light_goodtek_base.jpg"
+          ]
+        },
+        {
+          "songId": "heavenlycaress",
+          "count": 4,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [
+            "BYD"
+          ],
+          "filenames": [
+            "Heavenly caress_Noah_2.4_BYD 6.13_single_IDX 141_BPM 241_SIDE 0_omatsuri_light_heavenlycaress_3.jpg_opt.jpg",
+            "Heavenly caress_Noah_2.4_single_IDX 141_BPM 241_SIDE 0_omatsuri_light_heavenlycaress.jpg_opt.jpg",
+            "Heavenly caress_Noah_2.4_BYD 6.13_single_IDX 141_BPM 241_SIDE 0_omatsuri_light_heavenlycaress_3.jpg",
+            "Heavenly caress_Noah_2.4_single_IDX 141_BPM 241_SIDE 0_omatsuri_light_heavenlycaress.jpg"
+          ]
+        },
+        {
+          "songId": "heavensdoor",
+          "count": 4,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [
+            "BYD"
+          ],
+          "filenames": [
+            "Heavensdoor_LeaF_2.2_BYD 3.10_prelude_IDX 129_BPM 240_SIDE 1_prelude_conflict_heavensdoor_3.jpg_opt.jpg",
+            "Heavensdoor_LeaF_2.2_BYD 3.10_prelude_IDX 129_BPM 240_SIDE 1_prelude_conflict_heavensdoor_base.jpg_opt.jpg",
+            "Heavensdoor_LeaF_2.2_BYD 3.10_prelude_IDX 129_BPM 240_SIDE 1_prelude_conflict_heavensdoor_3.jpg",
+            "Heavensdoor_LeaF_2.2_BYD 3.10_prelude_IDX 129_BPM 240_SIDE 1_prelude_conflict_heavensdoor_base.jpg"
+          ]
+        },
+        {
+          "songId": "ignotus",
+          "count": 4,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [
+            "BYD"
+          ],
+          "filenames": [
+            "Ignotus_ak+q_1.1_BYD 3.12_base_IDX 41_BPM 170_SIDE 1_base_conflict_ignotus_3.jpg_opt.jpg",
+            "Ignotus_ak+q_1.1_BYD 3.12_base_IDX 41_BPM 170_SIDE 1_base_conflict_ignotus_base.jpg_opt.jpg",
+            "Ignotus_ak+q_1.1_BYD 3.12_base_IDX 41_BPM 170_SIDE 1_base_conflict_ignotus_3.jpg",
+            "Ignotus_ak+q_1.1_BYD 3.12_base_IDX 41_BPM 170_SIDE 1_base_conflict_ignotus_base.jpg"
+          ]
+        },
+        {
+          "songId": "infinityheaven",
+          "count": 4,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [
+            "BYD"
+          ],
+          "filenames": [
+            "Infinity Heaven_HyuN_1.0_BYD 3.0_base_IDX 22_BPM 160_SIDE 0_base_light_infinityheaven_3.jpg_opt.jpg",
+            "Infinity Heaven_HyuN_1.0_BYD 3.0_base_IDX 22_BPM 160_SIDE 0_base_light_infinityheaven_base.jpg_opt.jpg",
+            "Infinity Heaven_HyuN_1.0_BYD 3.0_base_IDX 22_BPM 160_SIDE 0_base_light_infinityheaven_3.jpg",
+            "Infinity Heaven_HyuN_1.0_BYD 3.0_base_IDX 22_BPM 160_SIDE 0_base_light_infinityheaven_base.jpg"
+          ]
+        },
+        {
+          "songId": "inkarusi",
+          "count": 4,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [
+            "BYD"
+          ],
+          "filenames": [
+            "inkar-usi_DIA_1.6_BYD 5.3_base_IDX 81_BPM 102_SIDE 0_base_light_inkarusi_3.jpg_opt.jpg",
+            "inkar-usi_DIA_1.6_BYD 5.3_base_IDX 81_BPM 102_SIDE 0_base_light_inkarusi_base.jpg_opt.jpg",
+            "inkar-usi_DIA_1.6_BYD 5.3_base_IDX 81_BPM 102_SIDE 0_base_light_inkarusi_3.jpg",
+            "inkar-usi_DIA_1.6_BYD 5.3_base_IDX 81_BPM 102_SIDE 0_base_light_inkarusi_base.jpg"
+          ]
+        },
+        {
+          "songId": "kanagawa",
+          "count": 4,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [
+            "BYD"
+          ],
+          "filenames": [
+            "神奈川電脳暗渠_南ゆに_1.1_BYD 3.10_base_IDX 33_BPM 180_SIDE 0_base_light_kanagawa_3.jpg_opt.jpg",
+            "神奈川電脳暗渠_南ゆに_1.1_BYD 3.10_base_IDX 33_BPM 180_SIDE 0_base_light_kanagawa_base.jpg_opt.jpg",
+            "神奈川電脳暗渠_南ゆに_1.1_BYD 3.10_base_IDX 33_BPM 180_SIDE 0_base_light_kanagawa_3.jpg",
+            "神奈川電脳暗渠_南ゆに_1.1_BYD 3.10_base_IDX 33_BPM 180_SIDE 0_base_light_kanagawa_base.jpg"
+          ]
+        },
+        {
+          "songId": "kyogenkigo",
+          "count": 4,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [
+            "BYD"
+          ],
+          "filenames": [
+            "狂言綺語_影虎。 & ikaruga_nex_3.7_BYD 6.13_extend_IDX 221_BPM 155_SIDE 1_nijuusei-conflict-b_kyogenkigo_3.jpg_opt.jpg",
+            "狂言綺語_影虎。 & ikaruga_nex_3.7_extend_IDX 221_BPM 155_SIDE 1_nijuusei-conflict-b_kyogenkigo.jpg_opt.jpg",
+            "狂言綺語_影虎。 & ikaruga_nex_3.7_BYD 6.13_extend_IDX 221_BPM 155_SIDE 1_nijuusei-conflict-b_kyogenkigo_3.jpg",
+            "狂言綺語_影虎。 & ikaruga_nex_3.7_extend_IDX 221_BPM 155_SIDE 1_nijuusei-conflict-b_kyogenkigo.jpg"
+          ]
+        },
+        {
+          "songId": "laqryma",
+          "count": 4,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [
+            "BYD"
+          ],
+          "filenames": [
+            "La'qryma of the Wasteland_DJ Noriken_2.5_BYD 3.6_single_IDX 146_BPM 168_SIDE 1_tanoc_conflict_laqryma_3.jpg_opt.jpg",
+            "La'qryma of the Wasteland_DJ Noriken_2.5_BYD 3.6_single_IDX 146_BPM 168_SIDE 1_tanoc_conflict_laqryma_base.jpg_opt.jpg",
+            "La'qryma of the Wasteland_DJ Noriken_2.5_BYD 3.6_single_IDX 146_BPM 168_SIDE 1_tanoc_conflict_laqryma_3.jpg",
+            "La'qryma of the Wasteland_DJ Noriken_2.5_BYD 3.6_single_IDX 146_BPM 168_SIDE 1_tanoc_conflict_laqryma_base.jpg"
+          ]
+        },
+        {
+          "songId": "last",
+          "count": 4,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [
+            "BYD"
+          ],
+          "filenames": [
+            "Last_onoken_4.0_epilogue_IDX 282_BPM 175_SIDE 2_epilogue_last_3.jpg_opt.jpg",
+            "Last_onoken_4.0_epilogue_IDX 282_BPM 175_SIDE 2_epilogue_last_base.jpg_opt.jpg",
+            "Last_onoken_4.0_epilogue_IDX 282_BPM 175_SIDE 2_epilogue_last_3.jpg",
+            "Last_onoken_4.0_epilogue_IDX 282_BPM 175_SIDE 2_epilogue_last_base.jpg"
+          ]
+        },
+        {
+          "songId": "libertas",
+          "count": 4,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [
+            "BYD"
+          ],
+          "filenames": [
+            "Libertas_Zekk_1.9_BYD 5.3_single_IDX 111_BPM 160_SIDE 0_single_light_libertas_3.jpg_opt.jpg",
+            "Libertas_Zekk_1.9_BYD 5.3_single_IDX 111_BPM 160_SIDE 0_single_light_libertas_base.jpg_opt.jpg",
+            "Libertas_Zekk_1.9_BYD 5.3_single_IDX 111_BPM 160_SIDE 0_single_light_libertas_3.jpg",
+            "Libertas_Zekk_1.9_BYD 5.3_single_IDX 111_BPM 160_SIDE 0_single_light_libertas_base.jpg"
+          ]
+        },
+        {
+          "songId": "lostcivilization",
+          "count": 4,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [
+            "BYD"
+          ],
+          "filenames": [
+            "Lost Civilization_Laur vs CK_1.0_BYD 3.6_base_IDX 1_BPM 75 - 210_SIDE 1_base_conflict_lostcivilization_3.jpg_opt.jpg",
+            "Lost Civilization_Laur vs CK_1.0_BYD 3.6_base_IDX 1_BPM 75 - 210_SIDE 1_base_conflict_lostcivilization_base.jpg_opt.jpg",
+            "Lost Civilization_Laur vs CK_1.0_BYD 3.6_base_IDX 1_BPM 75 - 210_SIDE 1_base_conflict_lostcivilization_3.jpg",
+            "Lost Civilization_Laur vs CK_1.0_BYD 3.6_base_IDX 1_BPM 75 - 210_SIDE 1_base_conflict_lostcivilization_base.jpg"
+          ]
+        },
+        {
+          "songId": "lucidtraveler",
+          "count": 4,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [
+            "FTR"
+          ],
+          "filenames": [
+            "Lucid Traveler_Akira Complex vs 3R2_4.5_cytusii_IDX 326_BPM 170-200_SIDE 1_cytus_conflict_lucidtraveler_2.jpg_opt.jpg",
+            "Lucid Traveler_Akira Complex vs 3R2_4.5_cytusii_IDX 326_BPM 170-200_SIDE 1_cytus_conflict_lucidtraveler_base.jpg_opt.jpg",
+            "Lucid Traveler_Akira Complex vs 3R2_4.5_cytusii_IDX 326_BPM 170-200_SIDE 1_cytus_conflict_lucidtraveler_2.jpg",
+            "Lucid Traveler_Akira Complex vs 3R2_4.5_cytusii_IDX 326_BPM 170-200_SIDE 1_cytus_conflict_lucidtraveler_base.jpg"
+          ]
+        },
+        {
+          "songId": "lumia",
+          "count": 4,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [
+            "BYD"
+          ],
+          "filenames": [
+            "Lumia_sky_delta_1.0_BYD 3.2_core_IDX 18_BPM 180_SIDE 0_base_light_lumia_3.jpg_opt.jpg",
+            "Lumia_sky_delta_1.0_BYD 3.2_core_IDX 18_BPM 180_SIDE 0_base_light_lumia_base.jpg_opt.jpg",
+            "Lumia_sky_delta_1.0_BYD 3.2_core_IDX 18_BPM 180_SIDE 0_base_light_lumia_3.jpg",
+            "Lumia_sky_delta_1.0_BYD 3.2_core_IDX 18_BPM 180_SIDE 0_base_light_lumia_base.jpg"
+          ]
+        },
+        {
+          "songId": "melodyoflove",
+          "count": 4,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "迷える音色は恋の唄_からとPαnchii少年 feat.はるの_2.3_omatsuri_IDX 133_BPM 165_SIDE 0_omatsuri_light_melodyoflove_base_night.jpg_opt.jpg",
+            "迷える音色は恋の唄_からとPαnchii少年 feat.はるの_2.3_omatsuri_IDX 133_BPM 165_SIDE 0_omatsuri_light_melodyoflove_base.jpg_opt.jpg",
+            "迷える音色は恋の唄_からとPαnchii少年 feat.はるの_2.3_omatsuri_IDX 133_BPM 165_SIDE 0_omatsuri_light_melodyoflove_base_night.jpg",
+            "迷える音色は恋の唄_からとPαnchii少年 feat.はるの_2.3_omatsuri_IDX 133_BPM 165_SIDE 0_omatsuri_light_melodyoflove_base.jpg"
+          ]
+        },
+        {
+          "songId": "moonheart",
+          "count": 4,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [
+            "BYD"
+          ],
+          "filenames": [
+            "Moonheart_翡乃イスカ_1.1_BYD 3.4_mirai_IDX 45_BPM 180_SIDE 0_mirai_light_moonheart_3.jpg_opt.jpg",
+            "Moonheart_翡乃イスカ_1.1_BYD 3.4_mirai_IDX 45_BPM 180_SIDE 0_mirai_light_moonheart_base.jpg_opt.jpg",
+            "Moonheart_翡乃イスカ_1.1_BYD 3.4_mirai_IDX 45_BPM 180_SIDE 0_mirai_light_moonheart_3.jpg",
+            "Moonheart_翡乃イスカ_1.1_BYD 3.4_mirai_IDX 45_BPM 180_SIDE 0_mirai_light_moonheart_base.jpg"
+          ]
+        },
+        {
+          "songId": "nexttoyou",
+          "count": 4,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [
+            "BYD"
+          ],
+          "filenames": [
+            "next to you_uma feat. 橘花音_1.6_BYD 3.6_nijuusei_IDX 73_BPM 165_SIDE 0_nijuusei-light-b_nexttoyou_3.jpg_opt.jpg",
+            "next to you_uma feat. 橘花音_1.6_BYD 3.6_nijuusei_IDX 73_BPM 165_SIDE 0_nijuusei-light-b_nexttoyou_base.jpg_opt.jpg",
+            "next to you_uma feat. 橘花音_1.6_BYD 3.6_nijuusei_IDX 73_BPM 165_SIDE 0_nijuusei-light-b_nexttoyou_3.jpg",
+            "next to you_uma feat. 橘花音_1.6_BYD 3.6_nijuusei_IDX 73_BPM 165_SIDE 0_nijuusei-light-b_nexttoyou_base.jpg"
+          ]
+        },
+        {
+          "songId": "nhelv",
+          "count": 4,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [
+            "BYD"
+          ],
+          "filenames": [
+            "Nhelv_Silentroom_1.7_BYD 6.4_base_IDX 93_BPM 174.59_SIDE 1_lethaeus_nhelv_3.jpg_opt.jpg",
+            "Nhelv_Silentroom_1.7_BYD 6.4_base_IDX 93_BPM 174.59_SIDE 1_lethaeus_nhelv_base.jpg_opt.jpg",
+            "Nhelv_Silentroom_1.7_BYD 6.4_base_IDX 93_BPM 174.59_SIDE 1_lethaeus_nhelv_3.jpg",
+            "Nhelv_Silentroom_1.7_BYD 6.4_base_IDX 93_BPM 174.59_SIDE 1_lethaeus_nhelv_base.jpg"
+          ]
+        },
+        {
+          "songId": "oblivia",
+          "count": 4,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [
+            "BYD"
+          ],
+          "filenames": [
+            "Oblivia_Saiph_2.6_BYD 5.3_base_IDX 152_BPM 180_SIDE 0_mirai_light_oblivia_3.jpg_opt.jpg",
+            "Oblivia_Saiph_2.6_BYD 5.3_base_IDX 152_BPM 180_SIDE 0_mirai_light_oblivia_base.jpg_opt.jpg",
+            "Oblivia_Saiph_2.6_BYD 5.3_base_IDX 152_BPM 180_SIDE 0_mirai_light_oblivia_3.jpg",
+            "Oblivia_Saiph_2.6_BYD 5.3_base_IDX 152_BPM 180_SIDE 0_mirai_light_oblivia_base.jpg"
+          ]
+        },
+        {
+          "songId": "partyvinyl",
+          "count": 4,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [
+            "BYD"
+          ],
+          "filenames": [
+            "Party Vinyl_モリモリあつし_1.0_BYD 4.1_shiawase_IDX 23_BPM 132_SIDE 0_shiawase_partyvinyl_3.jpg_opt.jpg",
+            "Party Vinyl_モリモリあつし_1.0_BYD 4.1_shiawase_IDX 23_BPM 132_SIDE 0_shiawase_partyvinyl_base.jpg_opt.jpg",
+            "Party Vinyl_モリモリあつし_1.0_BYD 4.1_shiawase_IDX 23_BPM 132_SIDE 0_shiawase_partyvinyl_3.jpg",
+            "Party Vinyl_モリモリあつし_1.0_BYD 4.1_shiawase_IDX 23_BPM 132_SIDE 0_shiawase_partyvinyl_base.jpg"
+          ]
+        },
+        {
+          "songId": "pragmatism",
+          "count": 4,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [
+            "BYD"
+          ],
+          "filenames": [
+            "PRAGMATISM_Laur_1.0_BYD 3.10_core_IDX 16_BPM 174_SIDE 0_pragmatism_pragmatism_3.jpg_opt.jpg",
+            "PRAGMATISM_Laur_1.0_BYD 3.10_core_IDX 16_BPM 174_SIDE 0_pragmatism_pragmatism_base.jpg_opt.jpg",
+            "PRAGMATISM_Laur_1.0_BYD 3.10_core_IDX 16_BPM 174_SIDE 0_pragmatism_pragmatism_3.jpg",
+            "PRAGMATISM_Laur_1.0_BYD 3.10_core_IDX 16_BPM 174_SIDE 0_pragmatism_pragmatism_base.jpg"
+          ]
+        },
+        {
+          "songId": "purgatorium",
+          "count": 4,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [
+            "BYD"
+          ],
+          "filenames": [
+            "Purgatorium_お月さま交響曲_1.7_BYD 3.1_base_IDX 95_BPM 150_SIDE 1_base_conflict_purgatorium_3.jpg_opt.jpg",
+            "Purgatorium_お月さま交響曲_1.7_BYD 3.1_base_IDX 95_BPM 150_SIDE 1_base_conflict_purgatorium_base.jpg_opt.jpg",
+            "Purgatorium_お月さま交響曲_1.7_BYD 3.1_base_IDX 95_BPM 150_SIDE 1_base_conflict_purgatorium_3.jpg",
+            "Purgatorium_お月さま交響曲_1.7_BYD 3.1_base_IDX 95_BPM 150_SIDE 1_base_conflict_purgatorium_base.jpg"
+          ]
+        },
+        {
+          "songId": "purpleverse",
+          "count": 4,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [
+            "BYD"
+          ],
+          "filenames": [
+            "Purple Verse_Hommarju_3.3_BYD 5.3_extend_IDX 182_BPM 170_SIDE 1_prelude_conflict_purpleverse_3.jpg_opt.jpg",
+            "Purple Verse_Hommarju_3.3_BYD 5.3_extend_IDX 182_BPM 170_SIDE 1_prelude_conflict_purpleverse_base.jpg_opt.jpg",
+            "Purple Verse_Hommarju_3.3_BYD 5.3_extend_IDX 182_BPM 170_SIDE 1_prelude_conflict_purpleverse_3.jpg",
+            "Purple Verse_Hommarju_3.3_BYD 5.3_extend_IDX 182_BPM 170_SIDE 1_prelude_conflict_purpleverse_base.jpg"
+          ]
+        },
+        {
+          "songId": "qualia",
+          "count": 4,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [
+            "BYD"
+          ],
+          "filenames": [
+            "qualia -ideaesthesia-_nitro_1.0_BYD 3.10_base_IDX 15_BPM 144_SIDE 1_base_conflict_qualia_3.jpg_opt.jpg",
+            "qualia -ideaesthesia-_nitro_1.0_BYD 3.10_base_IDX 15_BPM 144_SIDE 1_base_conflict_qualia_base.jpg_opt.jpg",
+            "qualia -ideaesthesia-_nitro_1.0_BYD 3.10_base_IDX 15_BPM 144_SIDE 1_base_conflict_qualia_3.jpg",
+            "qualia -ideaesthesia-_nitro_1.0_BYD 3.10_base_IDX 15_BPM 144_SIDE 1_base_conflict_qualia_base.jpg"
+          ]
+        },
+        {
+          "songId": "redandblue",
+          "count": 4,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [
+            "BYD"
+          ],
+          "filenames": [
+            "Red and Blue_Silentroom_1.5_BYD 3.12_base_IDX 58_BPM 150_SIDE 1_base_conflict_redandblue_3.jpg_opt.jpg",
+            "Red and Blue_Silentroom_1.5_BYD 3.12_base_IDX 58_BPM 150_SIDE 1_base_conflict_redandblue_base.jpg_opt.jpg",
+            "Red and Blue_Silentroom_1.5_BYD 3.12_base_IDX 58_BPM 150_SIDE 1_base_conflict_redandblue_3.jpg",
+            "Red and Blue_Silentroom_1.5_BYD 3.12_base_IDX 58_BPM 150_SIDE 1_base_conflict_redandblue_base.jpg"
+          ]
+        },
+        {
+          "songId": "saintorsinner",
+          "count": 4,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [
+            "BYD"
+          ],
+          "filenames": [
+            "Saint or Sinner_crayvxn_5.10_BYD 6.13_prelude_IDX 414_BPM 164_SIDE 1_prelude_conflict_saintorsinner_3.jpg_opt.jpg",
+            "Saint or Sinner_crayvxn_5.10_prelude_IDX 414_BPM 164_SIDE 1_prelude_conflict_saintorsinner.jpg_opt.jpg",
+            "Saint or Sinner_crayvxn_5.10_BYD 6.13_prelude_IDX 414_BPM 164_SIDE 1_prelude_conflict_saintorsinner_3.jpg",
+            "Saint or Sinner_crayvxn_5.10_prelude_IDX 414_BPM 164_SIDE 1_prelude_conflict_saintorsinner.jpg"
+          ]
+        },
+        {
+          "songId": "shadesoflight",
+          "count": 4,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [
+            "BYD"
+          ],
+          "filenames": [
+            "Shades of Light in a Transcendent Realm_ak+q_1.0_BYD 4.3_base_IDX 12_BPM 170_SIDE 0_base_light_shadesoflight_3.jpg_opt.jpg",
+            "Shades of Light in a Transcendent Realm_ak+q_1.0_BYD 4.3_base_IDX 12_BPM 170_SIDE 0_base_light_shadesoflight_base.jpg_opt.jpg",
+            "Shades of Light in a Transcendent Realm_ak+q_1.0_BYD 4.3_base_IDX 12_BPM 170_SIDE 0_base_light_shadesoflight_3.jpg",
+            "Shades of Light in a Transcendent Realm_ak+q_1.0_BYD 4.3_base_IDX 12_BPM 170_SIDE 0_base_light_shadesoflight_base.jpg"
+          ]
+        },
+        {
+          "songId": "singularity",
+          "count": 4,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [
+            "BYD"
+          ],
+          "filenames": [
+            "Singularity_ETIA._1.6_BYD 3.12_nijuusei_IDX 70_BPM 175_SIDE 1_nijuusei-conflict-b_singularity_3.jpg_opt.jpg",
+            "Singularity_ETIA._1.6_BYD 3.12_nijuusei_IDX 70_BPM 175_SIDE 1_nijuusei-conflict-b_singularity_base.jpg_opt.jpg",
+            "Singularity_ETIA._1.6_BYD 3.12_nijuusei_IDX 70_BPM 175_SIDE 1_nijuusei-conflict-b_singularity_3.jpg",
+            "Singularity_ETIA._1.6_BYD 3.12_nijuusei_IDX 70_BPM 175_SIDE 1_nijuusei-conflict-b_singularity_base.jpg"
+          ]
+        },
+        {
+          "songId": "smallcloud",
+          "count": 4,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [
+            "BYD"
+          ],
+          "filenames": [
+            "Small Cloud Sugar Candy_テヅカ x Aoi feat.桃雛なの_3.7_BYD 6.13_observer_append_2_IDX 224_BPM 220_SIDE 0_observer_light_smallcloud_3.jpg_opt.jpg",
+            "Small Cloud Sugar Candy_テヅカ x Aoi feat.桃雛なの_3.7_observer_append_2_IDX 224_BPM 220_SIDE 0_observer_light_smallcloud.jpg_opt.jpg",
+            "Small Cloud Sugar Candy_テヅカ x Aoi feat.桃雛なの_3.7_BYD 6.13_observer_append_2_IDX 224_BPM 220_SIDE 0_observer_light_smallcloud_3.jpg",
+            "Small Cloud Sugar Candy_テヅカ x Aoi feat.桃雛なの_3.7_observer_append_2_IDX 224_BPM 220_SIDE 0_observer_light_smallcloud.jpg"
+          ]
+        },
+        {
+          "songId": "solitarydream",
+          "count": 4,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "虚空の夢_ak+q feat. Sennzai_1.9_core_IDX 112_BPM 162_SIDE 0_solitarydream_solitarydream_base_ja.jpg_opt.jpg",
+            "虚空の夢_ak+q feat. Sennzai_1.9_core_IDX 112_BPM 162_SIDE 0_solitarydream_solitarydream_base.jpg_opt.jpg",
+            "虚空の夢_ak+q feat. Sennzai_1.9_core_IDX 112_BPM 162_SIDE 0_solitarydream_solitarydream_base_ja.jpg",
+            "虚空の夢_ak+q feat. Sennzai_1.9_core_IDX 112_BPM 162_SIDE 0_solitarydream_solitarydream_base.jpg"
+          ]
+        },
+        {
+          "songId": "spearofjustice",
+          "count": 4,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "正義の槍_Toby Fox_6.14_undertale_append_1_IDX 528_BPM 263_SIDE 0_undertale_light_spearofjustice_256.jpg_opt.jpg",
+            "正義の槍_Toby Fox_6.14_undertale_append_1_IDX 528_BPM 263_SIDE 0_undertale_light_spearofjustice_base.jpg_opt.jpg",
+            "正義の槍_Toby Fox_6.14_undertale_append_1_IDX 528_BPM 263_SIDE 0_undertale_light_spearofjustice_256.jpg",
+            "正義の槍_Toby Fox_6.14_undertale_append_1_IDX 528_BPM 263_SIDE 0_undertale_light_spearofjustice_base.jpg"
+          ]
+        },
+        {
+          "songId": "spiderdance",
+          "count": 4,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "スパイダーダンス_Toby Fox_6.14_undertale_append_1_IDX 527_BPM 230_SIDE 0_undertale_light_spiderdance_256.jpg_opt.jpg",
+            "スパイダーダンス_Toby Fox_6.14_undertale_append_1_IDX 527_BPM 230_SIDE 0_undertale_light_spiderdance.jpg_opt.jpg",
+            "スパイダーダンス_Toby Fox_6.14_undertale_append_1_IDX 527_BPM 230_SIDE 0_undertale_light_spiderdance_256.jpg",
+            "スパイダーダンス_Toby Fox_6.14_undertale_append_1_IDX 527_BPM 230_SIDE 0_undertale_light_spiderdance.jpg"
+          ]
+        },
+        {
+          "songId": "tempestissimo",
+          "count": 4,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [
+            "BYD"
+          ],
+          "filenames": [
+            "Tempestissimo_t+pazolite_3.0_vs_IDX 160_BPM 231_SIDE 1_tempestissimo_tempestissimo_3.jpg_opt.jpg",
+            "Tempestissimo_t+pazolite_3.0_vs_IDX 160_BPM 231_SIDE 1_tempestissimo_tempestissimo_base.jpg_opt.jpg",
+            "Tempestissimo_t+pazolite_3.0_vs_IDX 160_BPM 231_SIDE 1_tempestissimo_tempestissimo_3.jpg",
+            "Tempestissimo_t+pazolite_3.0_vs_IDX 160_BPM 231_SIDE 1_tempestissimo_tempestissimo_base.jpg"
+          ]
+        },
+        {
+          "songId": "trappola",
+          "count": 4,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [
+            "BYD"
+          ],
+          "filenames": [
+            "妖艶魔女 -trappola bewitching-_gmtn._1.5_BYD 4.3_yugamu_IDX 52_BPM 190_SIDE 1_yugamu_trappola_3.jpg_opt.jpg",
+            "妖艶魔女 -trappola bewitching-_gmtn._1.5_BYD 4.3_yugamu_IDX 52_BPM 190_SIDE 1_yugamu_trappola_base.jpg_opt.jpg",
+            "妖艶魔女 -trappola bewitching-_gmtn._1.5_BYD 4.3_yugamu_IDX 52_BPM 190_SIDE 1_yugamu_trappola_3.jpg",
+            "妖艶魔女 -trappola bewitching-_gmtn._1.5_BYD 4.3_yugamu_IDX 52_BPM 190_SIDE 1_yugamu_trappola_base.jpg"
+          ]
+        },
+        {
+          "songId": "vexaria",
+          "count": 4,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [
+            "BYD"
+          ],
+          "filenames": [
+            "Vexaria_ak+q_1.0_BYD 3.0_base_IDX 13_BPM 180_SIDE 0_base_light_vexaria_3.jpg_opt.jpg",
+            "Vexaria_ak+q_1.0_BYD 3.0_base_IDX 13_BPM 180_SIDE 0_base_light_vexaria_base.jpg_opt.jpg",
+            "Vexaria_ak+q_1.0_BYD 3.0_base_IDX 13_BPM 180_SIDE 0_base_light_vexaria_3.jpg",
+            "Vexaria_ak+q_1.0_BYD 3.0_base_IDX 13_BPM 180_SIDE 0_base_light_vexaria_base.jpg"
+          ]
+        },
+        {
+          "songId": "viciousheroism",
+          "count": 4,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [
+            "BYD"
+          ],
+          "filenames": [
+            "Vicious Heroism_Kobaryo_2.0_BYD 5.3_zettai_IDX 116_BPM 256_SIDE 1_zettai_viciousheroism_3.jpg_opt.jpg",
+            "Vicious Heroism_Kobaryo_2.0_BYD 5.3_zettai_IDX 116_BPM 256_SIDE 1_zettai_viciousheroism_base.jpg_opt.jpg",
+            "Vicious Heroism_Kobaryo_2.0_BYD 5.3_zettai_IDX 116_BPM 256_SIDE 1_zettai_viciousheroism_3.jpg",
+            "Vicious Heroism_Kobaryo_2.0_BYD 5.3_zettai_IDX 116_BPM 256_SIDE 1_zettai_viciousheroism_base.jpg"
+          ]
+        },
+        {
+          "songId": "abstrusedilemma",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "Abstruse Dilemma_Ashrount vs. 打打だいず_4.7_eden_IDX 341_BPM 216_SIDE 0_eden_boss_abstrusedilemma.jpg_opt.jpg",
+            "Abstruse Dilemma_Ashrount vs. 打打だいず_4.7_eden_IDX 341_BPM 216_SIDE 0_eden_boss_abstrusedilemma.jpg"
+          ]
+        },
+        {
+          "songId": "acheron",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "Acheron_KARUT_6.8_single_IDX 484_BPM 175-145_SIDE 1_single2_conflict_acheron.jpg_opt.jpg",
+            "Acheron_KARUT_6.8_single_IDX 484_BPM 175-145_SIDE 1_single2_conflict_acheron.jpg"
+          ]
+        },
+        {
+          "songId": "aegleseeker",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "Aegleseeker_Silentroom vs Frums_3.6_observer_IDX 213_BPM 234_SIDE 0_aegleseeker_aegleseeker.jpg_opt.jpg",
+            "Aegleseeker_Silentroom vs Frums_3.6_observer_IDX 213_BPM 234_SIDE 0_aegleseeker_aegleseeker.jpg"
+          ]
+        },
+        {
+          "songId": "aethercrest",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "Aether Crest Astral_void (Mournfinale) × 水野健治_6.2_chunithm_append_3_IDX 443_BPM 180_SIDE 0_aethercrest_aethercrest.jpg_opt.jpg",
+            "Aether Crest Astral_void (Mournfinale) × 水野健治_6.2_chunithm_append_3_IDX 443_BPM 180_SIDE 0_aethercrest_aethercrest.jpg"
+          ]
+        },
+        {
+          "songId": "aidrew",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "Ai Drew_Feryquitous_4.1_ongeki_append_1_IDX 286_BPM 175_SIDE 1_ongeki_conflict_aidrew.jpg_opt.jpg",
+            "Ai Drew_Feryquitous_4.1_ongeki_append_1_IDX 286_BPM 175_SIDE 1_ongeki_conflict_aidrew.jpg"
+          ]
+        },
+        {
+          "songId": "aiueoon",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "AI[UE]OON_MYUKKE._2.3_omatsuri_IDX 132_BPM 145_SIDE 0_omatsuri_light_aiueoon.jpg_opt.jpg",
+            "AI[UE]OON_MYUKKE._2.3_omatsuri_IDX 132_BPM 145_SIDE 0_omatsuri_light_aiueoon.jpg"
+          ]
+        },
+        {
+          "songId": "akinokagerou",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "秋の陽炎_karatoPαnchii feat.はるの_3.11_musedash_IDX 251_BPM 180_SIDE 0_musedash_light_akinokagerou.jpg_opt.jpg",
+            "秋の陽炎_karatoPαnchii feat.はるの_3.11_musedash_IDX 251_BPM 180_SIDE 0_musedash_light_akinokagerou.jpg"
+          ]
+        },
+        {
+          "songId": "alephzero",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "Aleph-0_LeaF_5.4_extend_2_IDX 374_BPM 35-400_SIDE 1_single2_conflict_alephzero.jpg_opt.jpg",
+            "Aleph-0_LeaF_5.4_extend_2_IDX 374_BPM 35-400_SIDE 1_single2_conflict_alephzero.jpg"
+          ]
+        },
+        {
+          "songId": "alexandrite",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "Alexandrite_WAiKURO_1.7_single_IDX 101_BPM 146_SIDE 1_alexandrite_alexandrite.jpg_opt.jpg",
+            "Alexandrite_WAiKURO_1.7_single_IDX 101_BPM 146_SIDE 1_alexandrite_alexandrite.jpg"
+          ]
+        },
+        {
+          "songId": "alicealamode",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "Alice à la mode_Masanori Akita_3.3_alice_IDX 183_BPM 80-134_SIDE 0_alice_light_alicealamode.jpg_opt.jpg",
+            "Alice à la mode_Masanori Akita_3.3_alice_IDX 183_BPM 80-134_SIDE 0_alice_light_alicealamode.jpg"
+          ]
+        },
+        {
+          "songId": "alicessuitcase",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "Alice's Suitcase_Endorfin._3.3_alice_IDX 185_BPM 190_SIDE 0_alice_light_alicessuitcase.jpg_opt.jpg",
+            "Alice's Suitcase_Endorfin._3.3_alice_IDX 185_BPM 190_SIDE 0_alice_light_alicessuitcase.jpg"
+          ]
+        },
+        {
+          "songId": "aloneandlorn",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "アローンアンドローン_Ponchi♪ feat.はぁち_5.2_extend_2_IDX 362_BPM 100_SIDE 0_eden_light_aloneandlorn.jpg_opt.jpg",
+            "アローンアンドローン_Ponchi♪ feat.はぁち_5.2_extend_2_IDX 362_BPM 100_SIDE 0_eden_light_aloneandlorn.jpg"
+          ]
+        },
+        {
+          "songId": "altair",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "Altair (feat. spiLa)_kamome sano & you_4.0_base_IDX 271_BPM 170_SIDE 0_nijuusei2_light_altair.jpg_opt.jpg",
+            "Altair (feat. spiLa)_kamome sano & you_4.0_base_IDX 271_BPM 170_SIDE 0_nijuusei2_light_altair.jpg"
+          ]
+        },
+        {
+          "songId": "altale",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "Altale_Sakuzyo_3.0_BYD 6.4_single_IDX 162_BPM 83-90_SIDE 0_prelude_light_altale.jpg_opt.jpg",
+            "Altale_Sakuzyo_3.0_BYD 6.4_single_IDX 162_BPM 83-90_SIDE 0_prelude_light_altale.jpg"
+          ]
+        },
+        {
+          "songId": "alterale",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "AlterAle_Arik Kau Delay (アラ＆かゆき＆でり）_3.7_observer_append_2_IDX 225_BPM 220-245_SIDE 0_observer_light_alterale.jpg_opt.jpg",
+            "AlterAle_Arik Kau Delay (アラ＆かゆき＆でり）_3.7_observer_append_2_IDX 225_BPM 220-245_SIDE 0_observer_light_alterale.jpg"
+          ]
+        },
+        {
+          "songId": "alterego",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "ALTER EGO_Yuta Imai vs Qlarabelle_5.9_nihil_IDX 400_BPM 195_SIDE 1_alterego_alterego.jpg_opt.jpg",
+            "ALTER EGO_Yuta Imai vs Qlarabelle_5.9_nihil_IDX 400_BPM 195_SIDE 1_alterego_alterego.jpg"
+          ]
+        },
+        {
+          "songId": "altergate",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "AlterGate_MisoilePunch♪ ~タケノコ添え~_6.8_anima_append_1_IDX 483_BPM 199_SIDE 1_altergate_altergate.jpg_opt.jpg",
+            "AlterGate_MisoilePunch♪ ~タケノコ添え~_6.8_anima_append_1_IDX 483_BPM 199_SIDE 1_altergate_altergate.jpg"
+          ]
+        },
+        {
+          "songId": "amazingmightyyyy",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "AMAZING MIGHTYYYY!!!!_WAiKURO_3.4_maimai_IDX 198_BPM 185_SIDE 1_maimai_boss_amazingmightyyyy.jpg_opt.jpg",
+            "AMAZING MIGHTYYYY!!!!_WAiKURO_3.4_maimai_IDX 198_BPM 185_SIDE 1_maimai_boss_amazingmightyyyy.jpg"
+          ]
+        },
+        {
+          "songId": "amekagura",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "雨神楽_荒谷サトル_5.0_extend_2_IDX 346_BPM 105_SIDE 0_omatsuri_light_amekagura.jpg_opt.jpg",
+            "雨神楽_荒谷サトル_5.0_extend_2_IDX 346_BPM 105_SIDE 0_omatsuri_light_amekagura.jpg"
+          ]
+        },
+        {
+          "songId": "amygdata",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "amygdata_nitro_2.6_single_IDX 153_BPM 154_SIDE 1_prelude_conflict_amygdata.jpg_opt.jpg",
+            "amygdata_nitro_2.6_single_IDX 153_BPM 154_SIDE 1_prelude_conflict_amygdata.jpg"
+          ]
+        },
+        {
+          "songId": "andorxor",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "ANDORXOR_Sobrem_6.9_eclipse_IDX 490_BPM 148_SIDE 1_eclipse_conflict_andorxor.jpg_opt.jpg",
+            "ANDORXOR_Sobrem_6.9_eclipse_IDX 490_BPM 148_SIDE 1_eclipse_conflict_andorxor.jpg"
+          ]
+        },
+        {
+          "songId": "andrevivemelody",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "And Revive The Melody_黒魔_6.0_ongeki_append_2_IDX 427_BPM 210-220_SIDE 1_lamia_andrevivemelody.jpg_opt.jpg",
+            "And Revive The Melody_黒魔_6.0_ongeki_append_2_IDX 427_BPM 210-220_SIDE 1_lamia_andrevivemelody.jpg"
+          ]
+        },
+        {
+          "songId": "angelsboundary",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "Angel's Boundary_MEMODEMO_6.10_single_IDX 498_BPM 196_SIDE 0_hime_light_angelsboundary.jpg_opt.jpg",
+            "Angel's Boundary_MEMODEMO_6.10_single_IDX 498_BPM 196_SIDE 0_hime_light_angelsboundary.jpg"
+          ]
+        },
+        {
+          "songId": "anokumene",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "Anökumene_Jun Kuroda_1.0_BYD 6.4_base_IDX 21_BPM 186_SIDE 1_base_conflict_anokumene.jpg_opt.jpg",
+            "Anökumene_Jun Kuroda_1.0_BYD 6.4_base_IDX 21_BPM 186_SIDE 1_base_conflict_anokumene.jpg"
+          ]
+        },
+        {
+          "songId": "antagonism",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "Antagonism_Yooh vs. siromaru_3.0_vs_IDX 156_BPM 160_SIDE 1_vs_conflict_antagonism.jpg_opt.jpg",
+            "Antagonism_Yooh vs. siromaru_3.0_vs_IDX 156_BPM 160_SIDE 1_vs_conflict_antagonism.jpg"
+          ]
+        },
+        {
+          "songId": "aprilshowers",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "四月の雨_cubesato_3.4_maimai_IDX 195_BPM 79_SIDE 0_maimai_light_aprilshowers.jpg_opt.jpg",
+            "四月の雨_cubesato_3.4_maimai_IDX 195_BPM 79_SIDE 0_maimai_light_aprilshowers.jpg"
+          ]
+        },
+        {
+          "songId": "arcahv",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "Arcahv_Feryquitous_3.0_vs_IDX 161_BPM 191_SIDE 0_arcahv_arcahv.jpg_opt.jpg",
+            "Arcahv_Feryquitous_3.0_vs_IDX 161_BPM 191_SIDE 0_arcahv_arcahv.jpg"
+          ]
+        },
+        {
+          "songId": "arcanaeden",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "Arcana Eden_Team Grimoire vs Sakuzyo vs Laur_4.0_finale_IDX 279_BPM 211_SIDE 1_arcanaeden_arcanaeden.jpg_opt.jpg",
+            "Arcana Eden_Team Grimoire vs Sakuzyo vs Laur_4.0_finale_IDX 279_BPM 211_SIDE 1_arcanaeden_arcanaeden.jpg"
+          ]
+        },
+        {
+          "songId": "arghena",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "Arghena_Feryquitous vs Laur_5.0_eden_append_1_IDX 352_BPM 185_SIDE 1_arghena_arghena.jpg_opt.jpg",
+            "Arghena_Feryquitous vs Laur_5.0_eden_append_1_IDX 352_BPM 185_SIDE 1_arghena_arghena.jpg"
+          ]
+        },
+        {
+          "songId": "ascent",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "Ascent_TANUKI_3.9_nijuusei_append_1_IDX 241_BPM 145_SIDE 0_nijuusei2_light_ascent.jpg_opt.jpg",
+            "Ascent_TANUKI_3.9_nijuusei_append_1_IDX 241_BPM 145_SIDE 0_nijuusei2_light_ascent.jpg"
+          ]
+        },
+        {
+          "songId": "ashenboundary",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "Ashen 6oundary_YUKIYANAGI_5.9_nihil_IDX 405_BPM 172_SIDE 1_nihil_ashenboundary.jpg_opt.jpg",
+            "Ashen 6oundary_YUKIYANAGI_5.9_nihil_IDX 405_BPM 172_SIDE 1_nihil_ashenboundary.jpg"
+          ]
+        },
+        {
+          "songId": "astralexe",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "astral.exe_Synzak & Laxeno57_6.0_extend_3_IDX 423_BPM 174_SIDE 0_nijuusei2_light_astralexe.jpg_opt.jpg",
+            "astral.exe_Synzak & Laxeno57_6.0_extend_3_IDX 423_BPM 174_SIDE 0_nijuusei2_light_astralexe.jpg"
+          ]
+        },
+        {
+          "songId": "astralquant",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "Astral Quantization_Dj Grimoire_6.0_lephon_IDX 434_BPM 185_SIDE 3_lephon_astralquant.jpg_opt.jpg",
+            "Astral Quantization_Dj Grimoire_6.0_lephon_IDX 434_BPM 185_SIDE 3_lephon_astralquant.jpg"
+          ]
+        },
+        {
+          "songId": "astraltale",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "Astral tale_Noah_1.8_single_IDX 103_BPM 134_SIDE 1_nijuusei-conflict-b_astraltale.jpg_opt.jpg",
+            "Astral tale_Noah_1.8_single_IDX 103_BPM 134_SIDE 1_nijuusei-conflict-b_astraltale.jpg"
+          ]
+        },
+        {
+          "songId": "astrawalkthrough",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "Astra walkthrough_paraoka_4.2_extend_2_IDX 297_BPM 225_SIDE 1_nijuusei2_conflict_astrawalkthrough.jpg_opt.jpg",
+            "Astra walkthrough_paraoka_4.2_extend_2_IDX 297_BPM 225_SIDE 1_nijuusei2_conflict_astrawalkthrough.jpg"
+          ]
+        },
+        {
+          "songId": "aterlbus",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "αterlβus_Aoi_1.1_dynamix_IDX 38_BPM 202_SIDE 1_dynamix_conflict_aterlbus.jpg_opt.jpg",
+            "αterlβus_Aoi_1.1_dynamix_IDX 38_BPM 202_SIDE 1_dynamix_conflict_aterlbus.jpg"
+          ]
+        },
+        {
+          "songId": "attraqtia",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "AttraqtiA_かめりあ_3.5_single_IDX 203_BPM 202_SIDE 0_rei_attraqtia.jpg_opt.jpg",
+            "AttraqtiA_かめりあ_3.5_single_IDX 203_BPM 202_SIDE 0_rei_attraqtia.jpg"
+          ]
+        },
+        {
+          "songId": "aurgelmir",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "Aurgelmir_溝口ゆうま feat. 大瀬良あい_3.12_single_IDX 261_BPM 122-230_SIDE 1_gc_ouroboros_aurgelmir.jpg_opt.jpg",
+            "Aurgelmir_溝口ゆうま feat. 大瀬良あい_3.12_single_IDX 261_BPM 122-230_SIDE 1_gc_ouroboros_aurgelmir.jpg"
+          ]
+        },
+        {
+          "songId": "auxesia",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "Auxesia_ginkiha_1.1_single_IDX 48_BPM 183_SIDE 0_auxesia_auxesia.jpg_opt.jpg",
+            "Auxesia_ginkiha_1.1_single_IDX 48_BPM 183_SIDE 0_auxesia_auxesia.jpg"
+          ]
+        },
+        {
+          "songId": "avantraze",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "Avant Raze_Sampling Masters MEGA_2.4_single_IDX 144_BPM 200_SIDE 1_yugamu_avantraze.jpg_opt.jpg",
+            "Avant Raze_Sampling Masters MEGA_2.4_single_IDX 144_BPM 200_SIDE 1_yugamu_avantraze.jpg"
+          ]
+        },
+        {
+          "songId": "awakening",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "始マリノ詩_有村京悟 feat.July_6.10_extend_4_IDX 493_BPM 128_SIDE 0_prelude_light_awakening.jpg_opt.jpg",
+            "始マリノ詩_有村京悟 feat.July_6.10_extend_4_IDX 493_BPM 128_SIDE 0_prelude_light_awakening.jpg"
+          ]
+        },
+        {
+          "songId": "awakeninruins",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "Awaken In Ruins_Supa7onyz_5.5_extend_3_IDX 380_BPM 125_SIDE 1_prelude_conflict_awakeninruins.jpg_opt.jpg",
+            "Awaken In Ruins_Supa7onyz_5.5_extend_3_IDX 380_BPM 125_SIDE 1_prelude_conflict_awakeninruins.jpg"
+          ]
+        },
+        {
+          "songId": "azalea",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "ΛZΛLEΛ_ak+q × onoken_6.10_nextstage_IDX 505_BPM 180_SIDE 0_azalea_azalea.jpg_opt.jpg",
+            "ΛZΛLEΛ_ak+q × onoken_6.10_nextstage_IDX 505_BPM 180_SIDE 0_azalea_azalea.jpg"
+          ]
+        },
+        {
+          "songId": "babaroque",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "Babaroque_cYsmix_1.0_base_IDX 8_BPM 136_SIDE 0_base_light_babaroque.jpg_opt.jpg",
+            "Babaroque_cYsmix_1.0_base_IDX 8_BPM 136_SIDE 0_base_light_babaroque.jpg"
+          ]
+        },
+        {
+          "songId": "backtobasics",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "Back to Basics_m1dy_5.7_single_IDX 394_BPM 420_SIDE 1_single2_conflict_backtobasics.jpg_opt.jpg",
+            "Back to Basics_m1dy_5.7_single_IDX 394_BPM 420_SIDE 1_single2_conflict_backtobasics.jpg"
+          ]
+        },
+        {
+          "songId": "badtek",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "BADTEK_EBIMAYO_3.1_single_IDX 173_BPM 190_SIDE 1_zettai_badtek.jpg_opt.jpg",
+            "BADTEK_EBIMAYO_3.1_single_IDX 173_BPM 190_SIDE 1_zettai_badtek.jpg"
+          ]
+        },
+        {
+          "songId": "bassline",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "ベースラインやってる？ｗ_かめりあ feat. ななひら_3.5_single_IDX 207_BPM 128_SIDE 0_prelude_light_bassline.jpg_opt.jpg",
+            "ベースラインやってる？ｗ_かめりあ feat. ななひら_3.5_single_IDX 207_BPM 128_SIDE 0_prelude_light_bassline.jpg"
+          ]
+        },
+        {
+          "songId": "battlenoone",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "BATTLE NO.1_TANOC Sound Team_2.4_single_IDX 145_BPM 200_SIDE 1_tanoc_conflict_battlenoone.jpg_opt.jpg",
+            "BATTLE NO.1_TANOC Sound Team_2.4_single_IDX 145_BPM 200_SIDE 1_tanoc_conflict_battlenoone.jpg"
+          ]
+        },
+        {
+          "songId": "bbkkbkk",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "B.B.K.K.B.K.K._nora2r_5.0_single_IDX 347_BPM 170_SIDE 1_single2_conflict_bbkkbkk.jpg_opt.jpg",
+            "B.B.K.K.B.K.K._nora2r_5.0_single_IDX 347_BPM 170_SIDE 1_single2_conflict_bbkkbkk.jpg"
+          ]
+        },
+        {
+          "songId": "beautifuldreamer",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "Beautiful Dreamer_M-Project_5.7_single_IDX 393_BPM 188_SIDE 0_single2_light_beautifuldreamer.jpg_opt.jpg",
+            "Beautiful Dreamer_M-Project_5.7_single_IDX 393_BPM 188_SIDE 0_single2_light_beautifuldreamer.jpg"
+          ]
+        },
+        {
+          "songId": "besideyou",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "Beside You_江口孝宏_3.3_alice_append_1_IDX 188_BPM 181_SIDE 0_alice_light_besideyou.jpg_opt.jpg",
+            "Beside You_江口孝宏_3.3_alice_append_1_IDX 188_BPM 181_SIDE 0_alice_light_besideyou.jpg"
+          ]
+        },
+        {
+          "songId": "blacklotus",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "Black Lotus_wa._3.0_extend_IDX 164_BPM 200_SIDE 1_zettai_blacklotus.jpg_opt.jpg",
+            "Black Lotus_wa._3.0_extend_IDX 164_BPM 200_SIDE 1_zettai_blacklotus.jpg"
+          ]
+        },
+        {
+          "songId": "blackmind",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "Black MInD_COSIO_5.8_groovecoaster_append_1_IDX 398_BPM 192_SIDE 1_gc_ouroboros_blackmind.jpg_opt.jpg",
+            "Black MInD_COSIO_5.8_groovecoaster_append_1_IDX 398_BPM 192_SIDE 1_gc_ouroboros_blackmind.jpg"
+          ]
+        },
+        {
+          "songId": "blackmirror",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "Black Mirror on the Wall_暁Records_6.3_extend_3_IDX 451_BPM 130_SIDE 1_touhou_conflict_blackmirror.jpg_opt.jpg",
+            "Black Mirror on the Wall_暁Records_6.3_extend_3_IDX 451_BPM 130_SIDE 1_touhou_conflict_blackmirror.jpg"
+          ]
+        },
+        {
+          "songId": "blackterritory",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "Black Territory_DJ Myosuke_2.0_zettai_IDX 115_BPM 200_SIDE 1_zettai_blackterritory.jpg_opt.jpg",
+            "Black Territory_DJ Myosuke_2.0_zettai_IDX 115_BPM 200_SIDE 1_zettai_blackterritory.jpg"
+          ]
+        },
+        {
+          "songId": "blaster",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "Blaster_Massive New Krew_1.5_base_IDX 75_BPM 180_SIDE 1_yugamu_blaster.jpg_opt.jpg",
+            "Blaster_Massive New Krew_1.5_base_IDX 75_BPM 180_SIDE 1_yugamu_blaster.jpg"
+          ]
+        },
+        {
+          "songId": "blazingair",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "BlazinG AIR_kanone_6.1_chunithm_append_3_IDX 436_BPM 150_SIDE 0_chunithmnew_light_blazingair.jpg_opt.jpg",
+            "BlazinG AIR_kanone_6.1_chunithm_append_3_IDX 436_BPM 150_SIDE 0_chunithmnew_light_blazingair.jpg"
+          ]
+        },
+        {
+          "songId": "blockedlibrary",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "Blocked Library_影虎。_3.10_dividedheart_IDX 246_BPM 148_SIDE 1_hime_conflict_blockedlibrary.jpg_opt.jpg",
+            "Blocked Library_影虎。_3.10_dividedheart_IDX 246_BPM 148_SIDE 1_hime_conflict_blockedlibrary.jpg"
+          ]
+        },
+        {
+          "songId": "blossoms",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "Blossoms_T2Kazuya_1.1_mirai_IDX 44_BPM 138_SIDE 0_mirai_light_blossoms.jpg_opt.jpg",
+            "Blossoms_T2Kazuya_1.1_mirai_IDX 44_BPM 138_SIDE 0_mirai_light_blossoms.jpg"
+          ]
+        },
+        {
+          "songId": "blrink",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "BLRINK_Sta_2.5_prelude_IDX 151_BPM 115_SIDE 1_prelude_conflict_blrink.jpg_opt.jpg",
+            "BLRINK_Sta_2.5_prelude_IDX 151_BPM 115_SIDE 1_prelude_conflict_blrink.jpg"
+          ]
+        },
+        {
+          "songId": "bluecomet",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "blue comet_ああああ_3.8_extend_IDX 234_BPM 100-172_SIDE 0_nijuusei-light-b_bluecomet.jpg_opt.jpg",
+            "blue comet_ああああ_3.8_extend_IDX 234_BPM 100-172_SIDE 0_nijuusei-light-b_bluecomet.jpg"
+          ]
+        },
+        {
+          "songId": "bluerose",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "Blue Rose_Cosmograph_3.10_dividedheart_IDX 245_BPM 250-295_SIDE 0_hime_light_bluerose.jpg_opt.jpg",
+            "Blue Rose_Cosmograph_3.10_dividedheart_IDX 245_BPM 250-295_SIDE 0_hime_light_bluerose.jpg"
+          ]
+        },
+        {
+          "songId": "blythe",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "BlythE_M2U_6.6_djmax_append_1_IDX 470_BPM 180_SIDE 1_djmax_conflict_blythe.jpg_opt.jpg",
+            "BlythE_M2U_6.6_djmax_append_1_IDX 470_BPM 180_SIDE 1_djmax_conflict_blythe.jpg"
+          ]
+        },
+        {
+          "songId": "brandnewworld",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "Brand new world_U-ske_1.0_base_IDX 28_BPM 160_SIDE 0_shiawase_brandnewworld.jpg_opt.jpg",
+            "Brand new world_U-ske_1.0_base_IDX 28_BPM 160_SIDE 0_shiawase_brandnewworld.jpg"
+          ]
+        },
+        {
+          "songId": "breachoffaith",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "Breach of Faith_Supire feat.eili_6.0_lephon_IDX 431_BPM 172_SIDE 3_lephon_breachoffaith.jpg_opt.jpg",
+            "Breach of Faith_Supire feat.eili_6.0_lephon_IDX 431_BPM 172_SIDE 3_lephon_breachoffaith.jpg"
+          ]
+        },
+        {
+          "songId": "breakbreak",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "BREaK! BREaK! BREaK!_HiTECH NINJA vs Cranky_6.2_maimai_append_2_IDX 439_BPM 165_SIDE 1_maimai_conflict_breakbreak.jpg_opt.jpg",
+            "BREaK! BREaK! BREaK!_HiTECH NINJA vs Cranky_6.2_maimai_append_2_IDX 439_BPM 165_SIDE 1_maimai_conflict_breakbreak.jpg"
+          ]
+        },
+        {
+          "songId": "buchigireberserker",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "BUCHiGiRE Berserker_REDALiCE vs MASAKI_3.2_single_IDX 176_BPM 200_SIDE 1_gc_buchigire_buchigireberserker.jpg_opt.jpg",
+            "BUCHiGiRE Berserker_REDALiCE vs MASAKI_3.2_single_IDX 176_BPM 200_SIDE 1_gc_buchigire_buchigireberserker.jpg"
+          ]
+        },
+        {
+          "songId": "bulletwaiting",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "Bullet Waiting for Me (James Landino remix)_Nikki Simmons_4.5_cytusii_IDX 324_BPM 107_SIDE 0_cytus_light_bulletwaiting.jpg_opt.jpg",
+            "Bullet Waiting for Me (James Landino remix)_Nikki Simmons_4.5_cytusii_IDX 324_BPM 107_SIDE 0_cytus_light_bulletwaiting.jpg"
+          ]
+        },
+        {
+          "songId": "callimakarma",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "Callima Karma_t+pazolite vs Feryquitous_4.0_epilogue_IDX 284_BPM 95_SIDE 2_epilogue_callimakarma.jpg_opt.jpg",
+            "Callima Karma_t+pazolite vs Feryquitous_4.0_epilogue_IDX 284_BPM 95_SIDE 2_epilogue_callimakarma.jpg"
+          ]
+        },
+        {
+          "songId": "callmyname",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "Call My Name feat. Yukacco_Mameyudoufu_1.6_single_IDX 80_BPM 175_SIDE 0_shiawase_callmyname.jpg_opt.jpg",
+            "Call My Name feat. Yukacco_Mameyudoufu_1.6_single_IDX 80_BPM 175_SIDE 0_shiawase_callmyname.jpg"
+          ]
+        },
+        {
+          "songId": "capella",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "Capella_ARForest_4.1_single_IDX 292_BPM 210_SIDE 0_hime_light_capella.jpg_opt.jpg",
+            "Capella_ARForest_4.1_single_IDX 292_BPM 210_SIDE 0_hime_light_capella.jpg"
+          ]
+        },
+        {
+          "songId": "caramelpop",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "キャラメルポップコーンたべたいよ〜_ヤミナベレコーズ feat. 繭糸_6.12_base_IDX 519_BPM 180_SIDE 0_hime_light_caramelpop.jpg_opt.jpg",
+            "キャラメルポップコーンたべたいよ〜_ヤミナベレコーズ feat. 繭糸_6.12_base_IDX 519_BPM 180_SIDE 0_hime_light_caramelpop.jpg"
+          ]
+        },
+        {
+          "songId": "carminescythe",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "carminescythe_かゆき_1.6_single_IDX 77_BPM 165_SIDE 1_yugamu_carminescythe.jpg_opt.jpg",
+            "carminescythe_かゆき_1.6_single_IDX 77_BPM 165_SIDE 1_yugamu_carminescythe.jpg"
+          ]
+        },
+        {
+          "songId": "chaintonite",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "CHAIN2NITE_asuzora feat. cyber milk ちゃん_6.12_megarex_IDX 514_BPM 172_SIDE 1_megarex_conflict_chaintonite.jpg_opt.jpg",
+            "CHAIN2NITE_asuzora feat. cyber milk ちゃん_6.12_megarex_IDX 514_BPM 172_SIDE 1_megarex_conflict_chaintonite.jpg"
+          ]
+        },
+        {
+          "songId": "chaos",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "CHAOS_Æsir_4.5_cytusii_IDX 327_BPM 150_SIDE 1_cytus_boss_chaos.jpg_opt.jpg",
+            "CHAOS_Æsir_4.5_cytusii_IDX 327_BPM 150_SIDE 1_cytus_boss_chaos.jpg"
+          ]
+        },
+        {
+          "songId": "chaosblast",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "CHAOSBLAST_QURELESS + 柚子花_6.8_anima_append_1_IDX 481_BPM 480_SIDE 1_anima_conflict_chaosblast.jpg_opt.jpg",
+            "CHAOSBLAST_QURELESS + 柚子花_6.8_anima_append_1_IDX 481_BPM 480_SIDE 1_anima_conflict_chaosblast.jpg"
+          ]
+        },
+        {
+          "songId": "chelsea",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "Chelsea_7mai_2.3_omatsuri_IDX 131_BPM 174_SIDE 0_omatsuri_light_chelsea.jpg_opt.jpg",
+            "Chelsea_7mai_2.3_omatsuri_IDX 131_BPM 174_SIDE 0_omatsuri_light_chelsea.jpg"
+          ]
+        },
+        {
+          "songId": "chromafill",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "Chromafill_ていぬ_5.6_single_IDX 388_BPM 179_SIDE 0_observer_light_chromafill.jpg_opt.jpg",
+            "Chromafill_ていぬ_5.6_single_IDX 388_BPM 179_SIDE 0_observer_light_chromafill.jpg"
+          ]
+        },
+        {
+          "songId": "chronicle",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "Chronicle_Lime_4.2_extend_2_IDX 298_BPM 221_SIDE 0_vs_light_chronicle.jpg_opt.jpg",
+            "Chronicle_Lime_4.2_extend_2_IDX 298_BPM 221_SIDE 0_vs_light_chronicle.jpg"
+          ]
+        },
+        {
+          "songId": "chronostasis",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "Chronostasis_黒皇帝_1.1_base_IDX 32_BPM 196_SIDE 1_base_conflict_chronostasis.jpg_opt.jpg",
+            "Chronostasis_黒皇帝_1.1_base_IDX 32_BPM 196_SIDE 1_base_conflict_chronostasis.jpg"
+          ]
+        },
+        {
+          "songId": "climax",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "Climax_USAO_3.5_chunithm_append_1_IDX 199_BPM 190_SIDE 1_chunithmthird_conflict_climax.jpg_opt.jpg",
+            "Climax_USAO_3.5_chunithm_append_1_IDX 199_BPM 190_SIDE 1_chunithmthird_conflict_climax.jpg"
+          ]
+        },
+        {
+          "songId": "clotho",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "クロートーと星の観測者_しーけー_1.1_ETR 5.4_base_IDX 39_BPM 230_SIDE 0_shiawase_clotho.jpg_opt.jpg",
+            "クロートーと星の観測者_しーけー_1.1_ETR 5.4_base_IDX 39_BPM 230_SIDE 0_shiawase_clotho.jpg"
+          ]
+        },
+        {
+          "songId": "coastalhighway",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "Coastal Highway_Glitch Droids_3.6_observer_append_1_IDX 214_BPM 110_SIDE 0_observer_light_coastalhighway.jpg_opt.jpg",
+            "Coastal Highway_Glitch Droids_3.6_observer_append_1_IDX 214_BPM 110_SIDE 0_observer_light_coastalhighway.jpg"
+          ]
+        },
+        {
+          "songId": "cocorocosmetic",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "cocorocosmetic_KOTONOHOUSE_4.1_single_IDX 291_BPM 144_SIDE 0_single2_light_cocorocosmetic.jpg_opt.jpg",
+            "cocorocosmetic_KOTONOHOUSE_4.1_single_IDX 291_BPM 144_SIDE 0_single2_light_cocorocosmetic.jpg"
+          ]
+        },
+        {
+          "songId": "codeoblivion",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "Code Oblivion_Kobaryo × Gram_6.10_nextstage_IDX 504_BPM 200_SIDE 1_codeoblivion_codeoblivion.jpg_opt.jpg",
+            "Code Oblivion_Kobaryo × Gram_6.10_nextstage_IDX 504_BPM 200_SIDE 1_codeoblivion_codeoblivion.jpg"
+          ]
+        },
+        {
+          "songId": "conflict",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "conflict_siromaru + cranky_1.5_yugamu_IDX 54_BPM 160_SIDE 1_yugamu_conflict.jpg_opt.jpg",
+            "conflict_siromaru + cranky_1.5_yugamu_IDX 54_BPM 160_SIDE 1_yugamu_conflict.jpg"
+          ]
+        },
+        {
+          "songId": "corpssansorganes",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "corps-sans-organes_cybermiso_2.6_mirai_IDX 154_BPM 105_SIDE 1_mirai_awakened_corpssansorganes.jpg_opt.jpg",
+            "corps-sans-organes_cybermiso_2.6_mirai_IDX 154_BPM 105_SIDE 1_mirai_awakened_corpssansorganes.jpg"
+          ]
+        },
+        {
+          "songId": "corruption",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "Corruption_3R2_2.0_zettai_IDX 114_BPM 170_SIDE 1_zettai_corruption.jpg_opt.jpg",
+            "Corruption_3R2_2.0_zettai_IDX 114_BPM 170_SIDE 1_zettai_corruption.jpg"
+          ]
+        },
+        {
+          "songId": "cosmica",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "Cosmica_Nhato_3.9_nijuusei_append_1_IDX 240_BPM 110_SIDE 1_nijuusei2_conflict_cosmica.jpg_opt.jpg",
+            "Cosmica_Nhato_3.9_nijuusei_append_1_IDX 240_BPM 110_SIDE 1_nijuusei2_conflict_cosmica.jpg"
+          ]
+        },
+        {
+          "songId": "cosmopop",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "コスモポップファンクラブ_ナユタン星人_4.4_chunithm_append_2_IDX 309_BPM 129_SIDE 0_chunithmnew_light_cosmopop.jpg_opt.jpg",
+            "コスモポップファンクラブ_ナユタン星人_4.4_chunithm_append_2_IDX 309_BPM 129_SIDE 0_chunithmnew_light_cosmopop.jpg"
+          ]
+        },
+        {
+          "songId": "crimsonquartz",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "Crimson Quartz_DiGiTAL WiNG with 空音_5.10_single_IDX 419_BPM 145_SIDE 1_touhou_conflict_crimsonquartz.jpg_opt.jpg",
+            "Crimson Quartz_DiGiTAL WiNG with 空音_5.10_single_IDX 419_BPM 145_SIDE 1_touhou_conflict_crimsonquartz.jpg"
+          ]
+        },
+        {
+          "songId": "crimsonthrone",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "Crimson Throne_Dimier√Lisb_4.3_single_IDX 300_BPM 210_SIDE 1_observer_conflict_crimsonthrone.jpg_opt.jpg",
+            "Crimson Throne_Dimier√Lisb_4.3_single_IDX 300_BPM 210_SIDE 1_observer_conflict_crimsonthrone.jpg"
+          ]
+        },
+        {
+          "songId": "crossover",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "CROSS†OVER_HyuN feat. LyuU_3.2_extend_IDX 178_BPM 200_SIDE 1_nijuusei-conflict-b_crossover.jpg_opt.jpg",
+            "CROSS†OVER_HyuN feat. LyuU_3.2_extend_IDX 178_BPM 200_SIDE 1_nijuusei-conflict-b_crossover.jpg"
+          ]
+        },
+        {
+          "songId": "crosssoul",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "CROSS†SOUL_HyuN feat. Syepias_1.1_single_IDX 30_BPM 200_SIDE 1_single_conflict_crosssoul.jpg_opt.jpg",
+            "CROSS†SOUL_HyuN feat. Syepias_1.1_single_IDX 30_BPM 200_SIDE 1_single_conflict_crosssoul.jpg"
+          ]
+        },
+        {
+          "songId": "cryogenic",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "Cryogenic_Camellia ft. Petra Gurin_6.13_single_IDX 525_BPM 145_SIDE 1_single2_conflict_cryogenic.jpg_opt.jpg",
+            "Cryogenic_Camellia ft. Petra Gurin_6.13_single_IDX 525_BPM 145_SIDE 1_single2_conflict_cryogenic.jpg"
+          ]
+        },
+        {
+          "songId": "crystalgravity",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "Crystal Gravity_Tanchiky vs. siromaru_3.6_observer_IDX 210_BPM 178_SIDE 1_observer_conflict_crystalgravity.jpg_opt.jpg",
+            "Crystal Gravity_Tanchiky vs. siromaru_3.6_observer_IDX 210_BPM 178_SIDE 1_observer_conflict_crystalgravity.jpg"
+          ]
+        },
+        {
+          "songId": "cyaegha",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "Cyaegha_USAO_2.0_zettai_IDX 117_BPM 200_SIDE 1_cyaegha_cyaegha.jpg_opt.jpg",
+            "Cyaegha_USAO_2.0_zettai_IDX 117_BPM 200_SIDE 1_cyaegha_cyaegha.jpg"
+          ]
+        },
+        {
+          "songId": "cyanine",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "cyanine_jioyi_1.5_lanota_IDX 62_BPM 182_SIDE 1_lanota-conflict_cyanine.jpg_opt.jpg",
+            "cyanine_jioyi_1.5_lanota_IDX 62_BPM 182_SIDE 1_lanota-conflict_cyanine.jpg"
+          ]
+        },
+        {
+          "songId": "cycles",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "CYCLES_Masayoshi Minoshima feat. 綾倉盟_4.3_maimai_append_1_IDX 304_BPM 135_SIDE 0_maimai_light_cycles.jpg_opt.jpg",
+            "CYCLES_Masayoshi Minoshima feat. 綾倉盟_4.3_maimai_append_1_IDX 304_BPM 135_SIDE 0_maimai_light_cycles.jpg"
+          ]
+        },
+        {
+          "songId": "daat",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "DA'AT -The First Seeker of Souls-_水野健治 VS 大国奏音_6.1_chunithm_append_3_IDX 438_BPM 222_SIDE 1_chuni-ikazuchi_daat.jpg_opt.jpg",
+            "DA'AT -The First Seeker of Souls-_水野健治 VS 大国奏音_6.1_chunithm_append_3_IDX 438_BPM 222_SIDE 1_chuni-ikazuchi_daat.jpg"
+          ]
+        },
+        {
+          "songId": "dandelion",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "Dandelion_Farhan_1.0_base_IDX 20_BPM 169_SIDE 0_base_light_dandelion.jpg_opt.jpg",
+            "Dandelion_Farhan_1.0_base_IDX 20_BPM 169_SIDE 0_base_light_dandelion.jpg"
+          ]
+        },
+        {
+          "songId": "dantalion",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "Dantalion_Team Grimoire_3.0_vs_IDX 158_BPM 186_SIDE 1_vs_conflict_dantalion.jpg_opt.jpg",
+            "Dantalion_Team Grimoire_3.0_vs_IDX 158_BPM 186_SIDE 1_vs_conflict_dantalion.jpg"
+          ]
+        },
+        {
+          "songId": "darakunosono",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "堕楽の園_gmtn. (witch's slave)_1.7_base_IDX 90_BPM 168_SIDE 1_base_conflict_darakunosono.jpg_opt.jpg",
+            "堕楽の園_gmtn. (witch's slave)_1.7_base_IDX 90_BPM 168_SIDE 1_base_conflict_darakunosono.jpg"
+          ]
+        },
+        {
+          "songId": "dataerror",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "DataErr0r_Cosmograph_1.1_single_IDX 29_BPM 180_SIDE 1_single_conflict_dataerror.jpg_opt.jpg",
+            "DataErr0r_Cosmograph_1.1_single_IDX 29_BPM 180_SIDE 1_single_conflict_dataerror.jpg"
+          ]
+        },
+        {
+          "songId": "dazzlehop",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "Dazzle hop_Sampling Masters MEGA_3.4_ongeki_IDX 192_BPM 220_SIDE 1_ongeki_conflict_dazzlehop.jpg_opt.jpg",
+            "Dazzle hop_Sampling Masters MEGA_3.4_ongeki_IDX 192_BPM 220_SIDE 1_ongeki_conflict_dazzlehop.jpg"
+          ]
+        },
+        {
+          "songId": "ddd",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "DDD_はがね_3.12_base_IDX 263_BPM 138_SIDE 0_nijuusei2_light_ddd.jpg_opt.jpg",
+            "DDD_はがね_3.12_base_IDX 263_BPM 138_SIDE 0_nijuusei2_light_ddd.jpg"
+          ]
+        },
+        {
+          "songId": "deathbyglamour",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "華麗なる死闘_Toby Fox_6.3_undertale_IDX 445_BPM 148_SIDE 0_undertale_light_deathbyglamour.jpg_opt.jpg",
+            "華麗なる死闘_Toby Fox_6.3_undertale_IDX 445_BPM 148_SIDE 0_undertale_light_deathbyglamour.jpg"
+          ]
+        },
+        {
+          "songId": "defection",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "Defection_TeddyLoid feat. DELTA_4.0_finale_IDX 275_BPM 160_SIDE 0_finale_light_defection.jpg_opt.jpg",
+            "Defection_TeddyLoid feat. DELTA_4.0_finale_IDX 275_BPM 160_SIDE 0_finale_light_defection.jpg"
+          ]
+        },
+        {
+          "songId": "dematerialized",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "Dematerialized_In Love With A Ghost_6.7_base_IDX 472_BPM 86_SIDE 1_eden_conflict_dematerialized.jpg_opt.jpg",
+            "Dematerialized_In Love With A Ghost_6.7_base_IDX 472_BPM 86_SIDE 1_eden_conflict_dematerialized.jpg"
+          ]
+        },
+        {
+          "songId": "desertrealm",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "Desertrealm_Masahiro Godspeed Aoki_6.13_single_IDX 526_BPM 216_SIDE 1_vs_conflict_desertrealm.jpg_opt.jpg",
+            "Desertrealm_Masahiro Godspeed Aoki_6.13_single_IDX 526_BPM 216_SIDE 1_vs_conflict_desertrealm.jpg"
+          ]
+        },
+        {
+          "songId": "designant",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "Designant._Designant_6.0_lephon_IDX 433_BPM 200_SIDE 3_designant_designant.jpg_opt.jpg",
+            "Designant._Designant_6.0_lephon_IDX 433_BPM 200_SIDE 3_designant_designant.jpg"
+          ]
+        },
+        {
+          "songId": "desive",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "Désive_MisomyL_5.6_single_IDX 389_BPM 180-230_SIDE 0_rei_desive.jpg_opt.jpg",
+            "Désive_MisomyL_5.6_single_IDX 389_BPM 180-230_SIDE 0_rei_desive.jpg"
+          ]
+        },
+        {
+          "songId": "devillicsphere",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "Devillic Sphere_3R2_4.5_cytusii_IDX 325_BPM 160_SIDE 1_cytus_conflict_devillicsphere.jpg_opt.jpg",
+            "Devillic Sphere_3R2_4.5_cytusii_IDX 325_BPM 160_SIDE 1_cytus_conflict_devillicsphere.jpg"
+          ]
+        },
+        {
+          "songId": "dialnote",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "だいあるのーと_七草くりむ_4.1_base_IDX 293_BPM 130_SIDE 0_nijuusei2_light_dialnote.jpg_opt.jpg",
+            "だいあるのーと_七草くりむ_4.1_base_IDX 293_BPM 130_SIDE 0_nijuusei2_light_dialnote.jpg"
+          ]
+        },
+        {
+          "songId": "diesirae",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "Dies irae_お月さま交響曲_5.10_single_IDX 422_BPM 172_SIDE 1_hime_conflict_diesirae.jpg_opt.jpg",
+            "Dies irae_お月さま交響曲_5.10_single_IDX 422_BPM 172_SIDE 1_hime_conflict_diesirae.jpg"
+          ]
+        },
+        {
+          "songId": "diode",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "Diode_Kolaa_2.4_base_IDX 137_BPM 132_SIDE 0_shiawase_diode.jpg_opt.jpg",
+            "Diode_Kolaa_2.4_base_IDX 137_BPM 132_SIDE 0_shiawase_diode.jpg"
+          ]
+        },
+        {
+          "songId": "disintegration",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "disintegration_ひゅ〜ぶ_6.8_extend_3_IDX 478_BPM 135_SIDE 0_eden_append_light_disintegration.jpg_opt.jpg",
+            "disintegration_ひゅ〜ぶ_6.8_extend_3_IDX 478_BPM 135_SIDE 0_eden_append_light_disintegration.jpg"
+          ]
+        },
+        {
+          "songId": "distortedfate",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "Distorted Fate_Sakuzyo_5.6_single_IDX 386_BPM 150_SIDE 1_vs_conflict_distortedfate.jpg_opt.jpg",
+            "Distorted Fate_Sakuzyo_5.6_single_IDX 386_BPM 150_SIDE 1_vs_conflict_distortedfate.jpg"
+          ]
+        },
+        {
+          "songId": "distortionhuman",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "ディストーション・ニンゲン_DJ Myosuke & KAJI_5.9_extend_3_IDX 401_BPM 200_SIDE 1_yugamu_distortionhuman.jpg_opt.jpg",
+            "ディストーション・ニンゲン_DJ Myosuke & KAJI_5.9_extend_3_IDX 401_BPM 200_SIDE 1_yugamu_distortionhuman.jpg"
+          ]
+        },
+        {
+          "songId": "divinelight",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "光速神授説 - Divine Light of Myriad -_yoho_3.7_observer_append_2_IDX 226_BPM 172_SIDE 0_observer_light_divinelight.jpg_opt.jpg",
+            "光速神授説 - Divine Light of Myriad -_yoho_3.7_observer_append_2_IDX 226_BPM 172_SIDE 0_observer_light_divinelight.jpg"
+          ]
+        },
+        {
+          "songId": "dontdie",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "Don't Die_Paul Bazooka_6.5_single_IDX 457_BPM 175_SIDE 1_djmax_conflict_dontdie.jpg_opt.jpg",
+            "Don't Die_Paul Bazooka_6.5_single_IDX 457_BPM 175_SIDE 1_djmax_conflict_dontdie.jpg"
+          ]
+        },
+        {
+          "songId": "dontfightmusic",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "Don't Fight The Music_黒魔_6.0_ongeki_append_2_IDX 426_BPM 190-200_SIDE 1_ongeki_conflict_dontfightmusic.jpg_opt.jpg",
+            "Don't Fight The Music_黒魔_6.0_ongeki_append_2_IDX 426_BPM 190-200_SIDE 1_ongeki_conflict_dontfightmusic.jpg"
+          ]
+        },
+        {
+          "songId": "dottodot",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "Dot to Dot feat. shully_Mameyudoufu_2.0_single_IDX 122_BPM 174_SIDE 0_mirai_light_dottodot.jpg_opt.jpg",
+            "Dot to Dot feat. shully_Mameyudoufu_2.0_single_IDX 122_BPM 174_SIDE 0_mirai_light_dottodot.jpg"
+          ]
+        },
+        {
+          "songId": "dreadnought",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "Dreadnought_Mastermind (xi + nora2r)_2.2_single_IDX 126_BPM 96-384_SIDE 1_nijuusei-conflict-b_dreadnought.jpg_opt.jpg",
+            "Dreadnought_Mastermind (xi + nora2r)_2.2_single_IDX 126_BPM 96-384_SIDE 1_nijuusei-conflict-b_dreadnought.jpg"
+          ]
+        },
+        {
+          "songId": "dreamgoeson",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "Dream goes on_Tiny Minim_1.5_lanota_IDX 63_BPM 174_SIDE 0_lanota-light_dreamgoeson.jpg_opt.jpg",
+            "Dream goes on_Tiny Minim_1.5_lanota_IDX 63_BPM 174_SIDE 0_lanota-light_dreamgoeson.jpg"
+          ]
+        },
+        {
+          "songId": "dreaminattraction",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "Dreamin' Attraction!!_翡乃イスカ_1.5_base_IDX 57_BPM 205_SIDE 0_base_light_dreaminattraction.jpg_opt.jpg",
+            "Dreamin' Attraction!!_翡乃イスカ_1.5_base_IDX 57_BPM 205_SIDE 0_base_light_dreaminattraction.jpg"
+          ]
+        },
+        {
+          "songId": "drg",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "DRG_onoken_4.6_cytusii_append_1_IDX 331_BPM 155_SIDE 0_cytus_light_drg.jpg_opt.jpg",
+            "DRG_onoken_4.6_cytusii_append_1_IDX 331_BPM 155_SIDE 0_cytus_light_drg.jpg"
+          ]
+        },
+        {
+          "songId": "dualdependency",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "Dual Dependency_seatrus_6.7_anima_IDX 475_BPM 155_SIDE 0_anima_light_dualdependency.jpg_opt.jpg",
+            "Dual Dependency_seatrus_6.7_anima_IDX 475_BPM 155_SIDE 0_anima_light_dualdependency.jpg"
+          ]
+        },
+        {
+          "songId": "dualdoom",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "Dual Doom Deathmatch_Kobaryo vs HyuN_5.10_rotaeno_IDX 409_BPM 222_SIDE 1_rotaeno_conflict_dualdoom.jpg_opt.jpg",
+            "Dual Doom Deathmatch_Kobaryo vs HyuN_5.10_rotaeno_IDX 409_BPM 222_SIDE 1_rotaeno_conflict_dualdoom.jpg"
+          ]
+        },
+        {
+          "songId": "dullblade",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "Dull Blade_stuv_6.4_single_IDX 455_BPM 128-160_SIDE 1_hime_conflict_dullblade.jpg_opt.jpg",
+            "Dull Blade_stuv_6.4_single_IDX 455_BPM 128-160_SIDE 1_hime_conflict_dullblade.jpg"
+          ]
+        },
+        {
+          "songId": "dxfullmetal",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "DX超性能フルメタル少女_IOSYS TRAX (uno with.ちよこ)_1.9_groovecoaster_IDX 107_BPM 160_SIDE 0_gc_light_dxfullmetal.jpg_opt.jpg",
+            "DX超性能フルメタル少女_IOSYS TRAX (uno with.ちよこ)_1.9_groovecoaster_IDX 107_BPM 160_SIDE 0_gc_light_dxfullmetal.jpg"
+          ]
+        },
+        {
+          "songId": "dynitikos",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "Dynitikós_Prower_5.0_extend_2_IDX 345_BPM 180_SIDE 1_nijuusei2_conflict_dynitikos.jpg_opt.jpg",
+            "Dynitikós_Prower_5.0_extend_2_IDX 345_BPM 180_SIDE 1_nijuusei2_conflict_dynitikos.jpg"
+          ]
+        },
+        {
+          "songId": "edenwacca",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "eden_漆黒の堕天使《Gram》†Versus†聖刻の熾天使《Gram》_5.2_wacca_append_1_IDX 360_BPM 246_SIDE 1_wacca_conflict_edenwacca.jpg_opt.jpg",
+            "eden_漆黒の堕天使《Gram》†Versus†聖刻の熾天使《Gram》_5.2_wacca_append_1_IDX 360_BPM 246_SIDE 1_wacca_conflict_edenwacca.jpg"
+          ]
+        },
+        {
+          "songId": "egoeimi",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "Ego Eimi_BlackY feat. Risa Yuzuki_5.0_eden_append_1_IDX 351_BPM 178_SIDE 1_eden_append_conflict_egoeimi.jpg_opt.jpg",
+            "Ego Eimi_BlackY feat. Risa Yuzuki_5.0_eden_append_1_IDX 351_BPM 178_SIDE 1_eden_append_conflict_egoeimi.jpg"
+          ]
+        },
+        {
+          "songId": "eightem",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "8-EM_Sampling Masters AYA_6.1_chunithm_append_3_IDX 437_BPM 168_SIDE 1_chunithmnew_conflict_eightem.jpg_opt.jpg",
+            "8-EM_Sampling Masters AYA_6.1_chunithm_append_3_IDX 437_BPM 168_SIDE 1_chunithmnew_conflict_eightem.jpg"
+          ]
+        },
+        {
+          "songId": "empireofwinter",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "Empire of Winter_Street_1.8_single_IDX 105_BPM 175_SIDE 0_nijuusei-light-b_empireofwinter.jpg_opt.jpg",
+            "Empire of Winter_Street_1.8_single_IDX 105_BPM 175_SIDE 0_nijuusei-light-b_empireofwinter.jpg"
+          ]
+        },
+        {
+          "songId": "enchantedlove",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "enchanted love_linear ring_3.5_extend_IDX 204_BPM 95_SIDE 0_rei_enchantedlove.jpg_opt.jpg",
+            "enchanted love_linear ring_3.5_extend_IDX 204_BPM 95_SIDE 0_rei_enchantedlove.jpg"
+          ]
+        },
+        {
+          "songId": "endmoonlight",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "End of The Moonlight_Forte Escape_6.5_djmax_IDX 459_BPM 155_SIDE 1_djmax_conflict_endmoonlight.jpg_opt.jpg",
+            "End of The Moonlight_Forte Escape_6.5_djmax_IDX 459_BPM 155_SIDE 1_djmax_conflict_endmoonlight.jpg"
+          ]
+        },
+        {
+          "songId": "energysynergymatrix",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "ENERGY SYNERGY MATRIX_Tanchiky_3.8_BYD 6.4_extend_IDX 235_BPM 160_SIDE 1_nijuusei-conflict-b_energysynergymatrix.jpg_opt.jpg",
+            "ENERGY SYNERGY MATRIX_Tanchiky_3.8_BYD 6.4_extend_IDX 235_BPM 160_SIDE 1_nijuusei-conflict-b_energysynergymatrix.jpg"
+          ]
+        },
+        {
+          "songId": "epicurus",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "エピクロスの虹はもう見えない_SYNC.ART'S feat.Misato_5.7_base_IDX 390_BPM 155_SIDE 0_touhou_light_epicurus.jpg_opt.jpg",
+            "エピクロスの虹はもう見えない_SYNC.ART'S feat.Misato_5.7_base_IDX 390_BPM 155_SIDE 0_touhou_light_epicurus.jpg"
+          ]
+        },
+        {
+          "songId": "epitaxy",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "epitaxy_Camellia_5.10_extend_3_IDX 407_BPM 183_SIDE 0_rotaeno_light_epitaxy.jpg_opt.jpg",
+            "epitaxy_Camellia_5.10_extend_3_IDX 407_BPM 183_SIDE 0_rotaeno_light_epitaxy.jpg"
+          ]
+        },
+        {
+          "songId": "equilibrium",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "Equilibrium_Maozon_3.0_vs_IDX 155_BPM 180_SIDE 0_vs_light_equilibrium.jpg_opt.jpg",
+            "Equilibrium_Maozon_3.0_vs_IDX 155_BPM 180_SIDE 0_vs_light_equilibrium.jpg"
+          ]
+        },
+        {
+          "songId": "espebranch",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "白道、多希望羊と信じありく。_Apo11o program ft. 大瀬良あい_1.7_base_IDX 94_BPM 192_SIDE 1_mirai_conflict_espebranch.jpg_opt.jpg",
+            "白道、多希望羊と信じありく。_Apo11o program ft. 大瀬良あい_1.7_base_IDX 94_BPM 192_SIDE 1_mirai_conflict_espebranch.jpg"
+          ]
+        },
+        {
+          "songId": "essenceoftwilight",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "Essence of Twilight_ak+q_1.0_core_IDX 14_BPM 164_SIDE 1_base_conflict_essenceoftwilight.jpg_opt.jpg",
+            "Essence of Twilight_ak+q_1.0_core_IDX 14_BPM 164_SIDE 1_base_conflict_essenceoftwilight.jpg"
+          ]
+        },
+        {
+          "songId": "eternitybreak",
+          "count": 2,
+          "categories": [
+            "曲绘（AI超分后）",
+            "曲绘"
+          ],
+          "difficulties": [],
+          "filenames": [
+            "Eternity Break_Puru_6.8_single_IDX 485_BPM 170_SIDE 1_single2_conflict_eternitybreak.jpg_opt.jpg",
+            "Eternity Break_Puru_6.8_single_IDX 485_BPM 170_SIDE 1_single2_conflict_eternitybreak.jpg"
+          ]
+        }
+      ],
+      "difficultyCounts": {
+        "BYD": 84,
+        "FTR": 2,
+        "PRS": 14,
+        "PST": 14,
+        "[none]": 1092
+      }
+    },
+    "phigros": {
+      "songArt": {
+        "files": 0,
+        "uniqueNormalizedKeys": 0,
+        "pairGroups": 0,
+        "onlyOriginalGroups": 0,
+        "onlyAiGroups": 0,
+        "pairGroupExamples": [],
+        "onlyOriginalExamples": [],
+        "onlyAiExamples": []
+      },
+      "multipleSongIds": [],
+      "difficultyCounts": {}
+    }
+  },
+  "dimensions": {
+    "arcaea": [
+      {
+        "key": "3072x3072",
+        "files": 558
+      },
+      {
+        "key": "768x768",
+        "files": 557
+      },
+      {
+        "key": "1920x1440",
+        "files": 155
+      },
+      {
+        "key": "895x873",
+        "files": 148
+      },
+      {
+        "key": "1800x1800",
+        "files": 132
+      },
+      {
+        "key": "169x170",
+        "files": 72
+      },
+      {
+        "key": "361x314",
+        "files": 64
+      },
+      {
+        "key": "1920x1080",
+        "files": 63
+      },
+      {
+        "key": "170x170",
+        "files": 58
+      },
+      {
+        "key": "374x750",
+        "files": 39
+      },
+      {
+        "key": "1003x178",
+        "files": 34
+      },
+      {
+        "key": "2048x2048",
+        "files": 32
+      },
+      {
+        "key": "512x512",
+        "files": 32
+      },
+      {
+        "key": "752x178",
+        "files": 19
+      },
+      {
+        "key": "360x314",
+        "files": 16
+      },
+      {
+        "key": "801x147",
+        "files": 10
+      },
+      {
+        "key": "1560x877",
+        "files": 8
+      },
+      {
+        "key": "1920x3072",
+        "files": 8
+      },
+      {
+        "key": "2048x1152",
+        "files": 7
+      },
+      {
+        "key": "442x525",
+        "files": 6
+      },
+      {
+        "key": "2000x2000",
+        "files": 6
+      },
+      {
+        "key": "2048x1672",
+        "files": 5
+      },
+      {
+        "key": "403x717",
+        "files": 5
+      },
+      {
+        "key": "62x48",
+        "files": 4
+      },
+      {
+        "key": "1003x179",
+        "files": 4
+      },
+      {
+        "key": "500x500",
+        "files": 4
+      },
+      {
+        "key": "940x551",
+        "files": 3
+      },
+      {
+        "key": "1177x662",
+        "files": 3
+      },
+      {
+        "key": "3072x3032",
+        "files": 3
+      },
+      {
+        "key": "1536x1536",
+        "files": 3
+      },
+      {
+        "key": "768x758",
+        "files": 3
+      },
+      {
+        "key": "384x384",
+        "files": 3
+      },
+      {
+        "key": "278x266",
+        "files": 2
+      },
+      {
+        "key": "500x633",
+        "files": 2
+      },
+      {
+        "key": "1255x557",
+        "files": 2
+      },
+      {
+        "key": "1152x2047",
+        "files": 2
+      },
+      {
+        "key": "1200x675",
+        "files": 2
+      },
+      {
+        "key": "2000x309",
+        "files": 2
+      },
+      {
+        "key": "2560x3446",
+        "files": 2
+      },
+      {
+        "key": "1920x2880",
+        "files": 2
+      },
+      {
+        "key": "2074x3686",
+        "files": 2
+      },
+      {
+        "key": "1225x1400",
+        "files": 2
+      },
+      {
+        "key": "900x147",
+        "files": 2
+      },
+      {
+        "key": "1123x1071",
+        "files": 2
+      },
+      {
+        "key": "1478x71",
+        "files": 2
+      },
+      {
+        "key": "1002x178",
+        "files": 2
+      },
+      {
+        "key": "1728x3072",
+        "files": 2
+      },
+      {
+        "key": "1847x1440",
+        "files": 1
+      },
+      {
+        "key": "1920x1079",
+        "files": 1
+      },
+      {
+        "key": "7680x4320",
+        "files": 1
+      }
+    ],
+    "phigros": [
+      {
+        "key": "2048x1080",
+        "files": 342
+      },
+      {
+        "key": "128x128",
+        "files": 105
+      },
+      {
+        "key": "1024x540",
+        "files": 40
+      },
+      {
+        "key": "976x477",
+        "files": 4
+      },
+      {
+        "key": "127x128",
+        "files": 2
+      },
+      {
+        "key": "451x123",
+        "files": 2
+      },
+      {
+        "key": "1150x414",
+        "files": 1
+      }
+    ]
+  },
+  "mtime": {
+    "minMs": 347130062000,
+    "maxMs": 1783493672165,
+    "min": "1980-12-31T17:01:02.000Z",
+    "max": "2026-07-08T06:54:32.165Z"
+  },
+  "apk": {
+    "latest": {
+      "version": "6.14.12",
+      "filename": "arcaea_6.14.12c.apk",
+      "sizeBytes": 1847391612,
+      "scrapedAt": "2026-06-14T15:55:32.234Z",
+      "hasSourceUrl": true,
+      "hasLocalPath": true
+    },
+    "history": [
+      {
+        "version": "6.14.12",
+        "filename": "arcaea_6.14.12c.apk",
+        "sizeBytes": 1847391612,
+        "scrapedAt": "2026-06-14T15:55:32.234Z",
+        "hasSourceUrl": true,
+        "hasLocalPath": true
+      }
+    ],
+    "lastChecked": "2026-06-14T15:55:32.235Z"
+  },
+  "metadataFile": {
+    "source": ".arcaea-metadata-src/assets",
+    "generatedAt": "2026-06-15T12:03:14.840Z",
+    "songs": 535,
+    "packs": 60,
+    "characters": 98,
+    "storyNodes": 228
+  },
+  "sampleRecords": {
+    "arcaea": [
+      {
+        "id": "6c2045ac280a45ec",
+        "game": "Arcaea",
+        "category": "立绘",
+        "title": "光（立绘）",
+        "characterId": 0,
+        "characterName": "光",
+        "characterEnglishName": "hikari",
+        "characterVariant": "立绘",
+        "filename": "0.png",
+        "extension": "png",
+        "relativePath": "曲绘/Arcaea/角色/立绘/0.png",
+        "url": "/assets/%E6%9B%B2%E7%BB%98/Arcaea/%E8%A7%92%E8%89%B2/%E7%AB%8B%E7%BB%98/0.png",
+        "thumbnailSmall": "/thumbs/320w/6c2045ac280a45ec.webp?v=347130062000",
+        "thumbnailMedium": "/thumbs/640w/6c2045ac280a45ec.webp?v=347130062000",
+        "thumbnailLarge": "/thumbs/1280w/6c2045ac280a45ec.webp?v=347130062000",
+        "sizeBytes": 1468045,
+        "width": 1800,
+        "height": 1800,
+        "mtimeMs": 347130062000,
+        "tags": [
+          "光",
+          "立绘",
+          "Arcaea",
+          "hikari"
+        ]
+      },
+      {
+        "id": "ef22eca3499b1881",
+        "game": "Arcaea",
+        "category": "立绘",
+        "title": "光（旧立绘）",
+        "characterId": 0,
+        "characterName": "光",
+        "characterEnglishName": "hikari",
+        "characterVariant": "旧立绘",
+        "filename": "0o.png",
+        "extension": "png",
+        "relativePath": "曲绘/Arcaea/角色/立绘/0o.png",
+        "url": "/assets/%E6%9B%B2%E7%BB%98/Arcaea/%E8%A7%92%E8%89%B2/%E7%AB%8B%E7%BB%98/0o.png",
+        "thumbnailSmall": "/thumbs/320w/ef22eca3499b1881.webp?v=347130062000",
+        "thumbnailMedium": "/thumbs/640w/ef22eca3499b1881.webp?v=347130062000",
+        "thumbnailLarge": "/thumbs/1280w/ef22eca3499b1881.webp?v=347130062000",
+        "sizeBytes": 1190111,
+        "width": 1800,
+        "height": 1800,
+        "mtimeMs": 347130062000,
+        "tags": [
+          "光",
+          "立绘",
+          "Arcaea",
+          "hikari"
+        ]
+      },
+      {
+        "id": "681eeaec4b6f1bdd",
+        "game": "Arcaea",
+        "category": "立绘",
+        "title": "光（觉醒立绘）",
+        "characterId": 0,
+        "characterName": "光",
+        "characterEnglishName": "hikari",
+        "characterVariant": "觉醒立绘",
+        "filename": "0u.png",
+        "extension": "png",
+        "relativePath": "曲绘/Arcaea/角色/立绘/0u.png",
+        "url": "/assets/%E6%9B%B2%E7%BB%98/Arcaea/%E8%A7%92%E8%89%B2/%E7%AB%8B%E7%BB%98/0u.png",
+        "thumbnailSmall": "/thumbs/320w/681eeaec4b6f1bdd.webp?v=347130062000",
+        "thumbnailMedium": "/thumbs/640w/681eeaec4b6f1bdd.webp?v=347130062000",
+        "thumbnailLarge": "/thumbs/1280w/681eeaec4b6f1bdd.webp?v=347130062000",
+        "sizeBytes": 1394823,
+        "width": 1800,
+        "height": 1800,
+        "mtimeMs": 347130062000,
+        "tags": [
+          "光",
+          "立绘",
+          "Arcaea",
+          "hikari"
+        ]
+      },
+      {
+        "id": "71a591be8a935cf1",
+        "game": "Arcaea",
+        "category": "立绘",
+        "title": "对立（立绘）",
+        "characterId": 1,
+        "characterName": "对立",
+        "characterEnglishName": "tairitsu",
+        "characterVariant": "立绘",
+        "filename": "1.png",
+        "extension": "png",
+        "relativePath": "曲绘/Arcaea/角色/立绘/1.png",
+        "url": "/assets/%E6%9B%B2%E7%BB%98/Arcaea/%E8%A7%92%E8%89%B2/%E7%AB%8B%E7%BB%98/1.png",
+        "thumbnailSmall": "/thumbs/320w/71a591be8a935cf1.webp?v=347130062000",
+        "thumbnailMedium": "/thumbs/640w/71a591be8a935cf1.webp?v=347130062000",
+        "thumbnailLarge": "/thumbs/1280w/71a591be8a935cf1.webp?v=347130062000",
+        "sizeBytes": 1411448,
+        "width": 1800,
+        "height": 1800,
+        "mtimeMs": 347130062000,
+        "tags": [
+          "对立",
+          "立绘",
+          "Arcaea",
+          "tairitsu"
+        ]
+      },
+      {
+        "id": "0b73bfa510889ca8",
+        "game": "Arcaea",
+        "category": "立绘",
+        "title": "依莉丝（立绘）",
+        "characterId": 10,
+        "characterName": "依莉丝",
+        "characterEnglishName": "ilith",
+        "characterVariant": "立绘",
+        "filename": "10.png",
+        "extension": "png",
+        "relativePath": "曲绘/Arcaea/角色/立绘/10.png",
+        "url": "/assets/%E6%9B%B2%E7%BB%98/Arcaea/%E8%A7%92%E8%89%B2/%E7%AB%8B%E7%BB%98/10.png",
+        "thumbnailSmall": "/thumbs/320w/0b73bfa510889ca8.webp?v=347130062000",
+        "thumbnailMedium": "/thumbs/640w/0b73bfa510889ca8.webp?v=347130062000",
+        "thumbnailLarge": "/thumbs/1280w/0b73bfa510889ca8.webp?v=347130062000",
+        "sizeBytes": 1778497,
+        "width": 1800,
+        "height": 1800,
+        "mtimeMs": 347130062000,
+        "tags": [
+          "立绘",
+          "依莉丝",
+          "Arcaea",
+          "ilith"
+        ]
+      },
+      {
+        "id": "5da899c78b084c42",
+        "game": "Arcaea",
+        "category": "立绘",
+        "title": "依莉丝（觉醒立绘）",
+        "characterId": 10,
+        "characterName": "依莉丝",
+        "characterEnglishName": "ilith",
+        "characterVariant": "觉醒立绘",
+        "filename": "10u.png",
+        "extension": "png",
+        "relativePath": "曲绘/Arcaea/角色/立绘/10u.png",
+        "url": "/assets/%E6%9B%B2%E7%BB%98/Arcaea/%E8%A7%92%E8%89%B2/%E7%AB%8B%E7%BB%98/10u.png",
+        "thumbnailSmall": "/thumbs/320w/5da899c78b084c42.webp?v=347130062000",
+        "thumbnailMedium": "/thumbs/640w/5da899c78b084c42.webp?v=347130062000",
+        "thumbnailLarge": "/thumbs/1280w/5da899c78b084c42.webp?v=347130062000",
+        "sizeBytes": 2831146,
+        "width": 1800,
+        "height": 1800,
+        "mtimeMs": 347130062000,
+        "tags": [
+          "立绘",
+          "依莉丝",
+          "Arcaea",
+          "ilith"
+        ]
+      },
+      {
+        "id": "3e32da714e7a759f",
+        "game": "Arcaea",
+        "category": "立绘",
+        "title": "爱托（立绘）",
+        "pack": "nijuusei",
+        "packDisplayName": "Binary Enfold",
+        "packDescription": "在双子“爱托”和“露娜”的带领下\n跃入那些充满活力的未知世界中。\n\n与爱托一起在悠远的回忆中旅行，\n并面对露娜无情的挑战……",
+        "packSection": "sidestory",
+        "characterId": 11,
+        "characterName": "爱托",
+        "characterEnglishName": "eto",
+        "characterVariant": "立绘",
+        "filename": "11.png",
+        "extension": "png",
+        "relativePath": "曲绘/Arcaea/角色/立绘/11.png",
+        "url": "/assets/%E6%9B%B2%E7%BB%98/Arcaea/%E8%A7%92%E8%89%B2/%E7%AB%8B%E7%BB%98/11.png",
+        "thumbnailSmall": "/thumbs/320w/3e32da714e7a759f.webp?v=347130062000",
+        "thumbnailMedium": "/thumbs/640w/3e32da714e7a759f.webp?v=347130062000",
+        "thumbnailLarge": "/thumbs/1280w/3e32da714e7a759f.webp?v=347130062000",
+        "sizeBytes": 927295,
+        "width": 1800,
+        "height": 1800,
+        "mtimeMs": 347130062000,
+        "tags": [
+          "爱托",
+          "立绘",
+          "Arcaea",
+          "Binary Enfold",
+          "eto"
+        ]
+      },
+      {
+        "id": "a4bf20fdeebcf1ba",
+        "game": "Arcaea",
+        "category": "立绘",
+        "title": "爱托（觉醒立绘）",
+        "pack": "nijuusei",
+        "packDisplayName": "Binary Enfold",
+        "packDescription": "在双子“爱托”和“露娜”的带领下\n跃入那些充满活力的未知世界中。\n\n与爱托一起在悠远的回忆中旅行，\n并面对露娜无情的挑战……",
+        "packSection": "sidestory",
+        "characterId": 11,
+        "characterName": "爱托",
+        "characterEnglishName": "eto",
+        "characterVariant": "觉醒立绘",
+        "filename": "11u.png",
+        "extension": "png",
+        "relativePath": "曲绘/Arcaea/角色/立绘/11u.png",
+        "url": "/assets/%E6%9B%B2%E7%BB%98/Arcaea/%E8%A7%92%E8%89%B2/%E7%AB%8B%E7%BB%98/11u.png",
+        "thumbnailSmall": "/thumbs/320w/a4bf20fdeebcf1ba.webp?v=347130062000",
+        "thumbnailMedium": "/thumbs/640w/a4bf20fdeebcf1ba.webp?v=347130062000",
+        "thumbnailLarge": "/thumbs/1280w/a4bf20fdeebcf1ba.webp?v=347130062000",
+        "sizeBytes": 1066013,
+        "width": 1800,
+        "height": 1800,
+        "mtimeMs": 347130062000,
+        "tags": [
+          "爱托",
+          "立绘",
+          "Arcaea",
+          "Binary Enfold",
+          "eto"
+        ]
+      }
+    ],
+    "phigros": [
+      {
+        "id": "979dd730349148e4",
+        "game": "Phigros",
+        "category": "曲包封面",
+        "title": "闫东炜",
+        "filename": "闫东炜.png",
+        "extension": "png",
+        "relativePath": "曲绘/Phigros/曲包封面/闫东炜.png",
+        "url": "/assets/%E6%9B%B2%E7%BB%98/Phigros/%E6%9B%B2%E5%8C%85%E5%B0%81%E9%9D%A2/%E9%97%AB%E4%B8%9C%E7%82%9C.png",
+        "thumbnailSmall": "/thumbs/320w/979dd730349148e4.webp?v=1761906901000",
+        "thumbnailMedium": "/thumbs/640w/979dd730349148e4.webp?v=1761906901000",
+        "thumbnailLarge": "/thumbs/1280w/979dd730349148e4.webp?v=1761906901000",
+        "sizeBytes": 558842,
+        "width": 1024,
+        "height": 540,
+        "mtimeMs": 1761906901000,
+        "tags": [
+          "曲包封面",
+          "Phigros"
+        ]
+      },
+      {
+        "id": "f20b9bae9ed70f10",
+        "game": "Phigros",
+        "category": "曲包封面",
+        "title": "AllSong",
+        "filename": "AllSong.png",
+        "extension": "png",
+        "relativePath": "曲绘/Phigros/曲包封面/AllSong.png",
+        "url": "/assets/%E6%9B%B2%E7%BB%98/Phigros/%E6%9B%B2%E5%8C%85%E5%B0%81%E9%9D%A2/AllSong.png",
+        "thumbnailSmall": "/thumbs/320w/f20b9bae9ed70f10.webp?v=1761906415000",
+        "thumbnailMedium": "/thumbs/640w/f20b9bae9ed70f10.webp?v=1761906415000",
+        "thumbnailLarge": "/thumbs/1280w/f20b9bae9ed70f10.webp?v=1761906415000",
+        "sizeBytes": 670468,
+        "width": 1024,
+        "height": 540,
+        "mtimeMs": 1761906415000,
+        "tags": [
+          "曲包封面",
+          "Phigros"
+        ]
+      },
+      {
+        "id": "cb3a0291b4b4918f",
+        "game": "Phigros",
+        "category": "曲包封面",
+        "title": "Camellia",
+        "filename": "Camellia.png",
+        "extension": "png",
+        "relativePath": "曲绘/Phigros/曲包封面/Camellia.png",
+        "url": "/assets/%E6%9B%B2%E7%BB%98/Phigros/%E6%9B%B2%E5%8C%85%E5%B0%81%E9%9D%A2/Camellia.png",
+        "thumbnailSmall": "/thumbs/320w/cb3a0291b4b4918f.webp?v=1761906463000",
+        "thumbnailMedium": "/thumbs/640w/cb3a0291b4b4918f.webp?v=1761906463000",
+        "thumbnailLarge": "/thumbs/1280w/cb3a0291b4b4918f.webp?v=1761906463000",
+        "sizeBytes": 844093,
+        "width": 1024,
+        "height": 540,
+        "mtimeMs": 1761906463000,
+        "tags": [
+          "曲包封面",
+          "Phigros"
+        ]
+      },
+      {
+        "id": "d0107d9f5734d658",
+        "game": "Phigros",
+        "category": "曲包封面",
+        "title": "Chronostasis",
+        "filename": "Chronostasis.png",
+        "extension": "png",
+        "relativePath": "曲绘/Phigros/曲包封面/Chronostasis.png",
+        "url": "/assets/%E6%9B%B2%E7%BB%98/Phigros/%E6%9B%B2%E5%8C%85%E5%B0%81%E9%9D%A2/Chronostasis.png",
+        "thumbnailSmall": "/thumbs/320w/d0107d9f5734d658.webp?v=1761906476000",
+        "thumbnailMedium": "/thumbs/640w/d0107d9f5734d658.webp?v=1761906476000",
+        "thumbnailLarge": "/thumbs/1280w/d0107d9f5734d658.webp?v=1761906476000",
+        "sizeBytes": 2316199,
+        "width": 2048,
+        "height": 1080,
+        "mtimeMs": 1761906476000,
+        "tags": [
+          "曲包封面",
+          "Phigros"
+        ]
+      },
+      {
+        "id": "71d743addbbb87cb",
+        "game": "Phigros",
+        "category": "曲包封面",
+        "title": "CHUNITHM",
+        "filename": "CHUNITHM.png",
+        "extension": "png",
+        "relativePath": "曲绘/Phigros/曲包封面/CHUNITHM.png",
+        "url": "/assets/%E6%9B%B2%E7%BB%98/Phigros/%E6%9B%B2%E5%8C%85%E5%B0%81%E9%9D%A2/CHUNITHM.png",
+        "thumbnailSmall": "/thumbs/320w/71d743addbbb87cb.webp?v=1761906478000",
+        "thumbnailMedium": "/thumbs/640w/71d743addbbb87cb.webp?v=1761906478000",
+        "thumbnailLarge": "/thumbs/1280w/71d743addbbb87cb.webp?v=1761906478000",
+        "sizeBytes": 527245,
+        "width": 1024,
+        "height": 540,
+        "mtimeMs": 1761906478000,
+        "tags": [
+          "曲包封面",
+          "Phigros"
+        ]
+      },
+      {
+        "id": "95acc0c8a5112fc7",
+        "game": "Phigros",
+        "category": "曲包封面",
+        "title": "Cytus2",
+        "filename": "Cytus2.png",
+        "extension": "png",
+        "relativePath": "曲绘/Phigros/曲包封面/Cytus2.png",
+        "url": "/assets/%E6%9B%B2%E7%BB%98/Phigros/%E6%9B%B2%E5%8C%85%E5%B0%81%E9%9D%A2/Cytus2.png",
+        "thumbnailSmall": "/thumbs/320w/95acc0c8a5112fc7.webp?v=1763727355000",
+        "thumbnailMedium": "/thumbs/640w/95acc0c8a5112fc7.webp?v=1763727355000",
+        "thumbnailLarge": "/thumbs/1280w/95acc0c8a5112fc7.webp?v=1763727355000",
+        "sizeBytes": 934402,
+        "width": 1024,
+        "height": 540,
+        "mtimeMs": 1763727355000,
+        "tags": [
+          "曲包封面",
+          "Phigros"
+        ]
+      },
+      {
+        "id": "512d9ab4f5cfec49",
+        "game": "Phigros",
+        "category": "曲包封面",
+        "title": "EGTS",
+        "filename": "EGTS.png",
+        "extension": "png",
+        "relativePath": "曲绘/Phigros/曲包封面/EGTS.png",
+        "url": "/assets/%E6%9B%B2%E7%BB%98/Phigros/%E6%9B%B2%E5%8C%85%E5%B0%81%E9%9D%A2/EGTS.png",
+        "thumbnailSmall": "/thumbs/320w/512d9ab4f5cfec49.webp?v=1761906520000",
+        "thumbnailMedium": "/thumbs/640w/512d9ab4f5cfec49.webp?v=1761906520000",
+        "thumbnailLarge": "/thumbs/1280w/512d9ab4f5cfec49.webp?v=1761906520000",
+        "sizeBytes": 774619,
+        "width": 1024,
+        "height": 540,
+        "mtimeMs": 1761906520000,
+        "tags": [
+          "曲包封面",
+          "Phigros"
+        ]
+      },
+      {
+        "id": "4222f12f06bbe589",
+        "game": "Phigros",
+        "category": "曲包封面",
+        "title": "Good",
+        "filename": "Good.png",
+        "extension": "png",
+        "relativePath": "曲绘/Phigros/曲包封面/Good.png",
+        "url": "/assets/%E6%9B%B2%E7%BB%98/Phigros/%E6%9B%B2%E5%8C%85%E5%B0%81%E9%9D%A2/Good.png",
+        "thumbnailSmall": "/thumbs/320w/4222f12f06bbe589.webp?v=1761906561000",
+        "thumbnailMedium": "/thumbs/640w/4222f12f06bbe589.webp?v=1761906561000",
+        "thumbnailLarge": "/thumbs/1280w/4222f12f06bbe589.webp?v=1761906561000",
+        "sizeBytes": 192940,
+        "width": 1024,
+        "height": 540,
+        "mtimeMs": 1761906561000,
+        "tags": [
+          "曲包封面",
+          "Phigros"
+        ]
+      }
+    ]
+  }
+}

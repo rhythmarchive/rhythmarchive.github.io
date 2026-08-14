@@ -1,0 +1,18 @@
+{
+  "generatedAt": "2026-08-14T09:27:41.710Z",
+  "game": "arcaea",
+  "status": "REAL_APK_REHEARSAL_BLOCKED_MISSING_LOCAL_INPUT",
+  "apkDirectory": "D:\\Files\\曲绘\\Arcaea\\APK",
+  "foundApks": [
+    {
+      "filename": "arcaea_6.16.0c.apk",
+      "absolutePath": "D:\\Files\\曲绘\\Arcaea\\APK\\arcaea_6.16.0c.apk",
+      "version": "6.16.0",
+      "sizeBytes": 1867859532,
+      "modifiedAt": "2026-07-31T01:18:47.714Z"
+    }
+  ],
+  "requiredInput": "at least two distinct local APK versions: one base/old and one target/new",
+  "requiredCommand": "two Arcaea APKs with distinct versions",
+  "note": "Fewer than two Arcaea APKs are currently present. No network download was attempted and no real diff was asserted."
+}

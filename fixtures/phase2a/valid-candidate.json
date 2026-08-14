@@ -1,0 +1,49 @@
+{
+  "schemaVersion": "1.0",
+  "id": "0198a8de-0000-7000-8000-000000005001",
+  "batchId": "0198a8de-0000-7000-8000-000000004001",
+  "sourceEvidence": {
+    "sourceType": "arcaea_apk",
+    "sourceRelativePath": "songs/pack/song/assets/Testify.jpg",
+    "sourceFilename": "Testify.jpg",
+    "sourceGameVersion": "6.17.0",
+    "detection": "added",
+    "evidence": [{ "kind": "apk-relative-path", "detail": "new relative path in target APK", "confidence": "high" }]
+  },
+  "naming": {
+    "sourceFilename": "Testify.jpg",
+    "suggestedFilename": "Testify.jpg",
+    "reviewedFilename": "Testify Final.jpg",
+    "finalFilename": "Testify Final.jpg",
+    "knownBasenames": []
+  },
+  "suggestedMapping": {
+    "resourceType": "jacket",
+    "title": "Testify",
+    "variantKey": "default",
+    "variantKind": "default",
+    "externalIdentities": [{ "namespace": "arcaea", "key": "songId", "value": "testify", "source": "filename", "confidence": "medium" }],
+    "metadata": {},
+    "confidence": "medium",
+    "evidence": [{ "kind": "filename-parser", "detail": "suggested from APK asset basename", "confidence": "medium" }]
+  },
+  "files": [
+    { "schemaVersion": "1.0", "id": "0198a8de-0000-7000-8000-000000005101", "candidateId": "0198a8de-0000-7000-8000-000000005001", "role": "raw-original", "relativePath": "raw/candidates/0198a8de-0000-7000-8000-000000005001/Testify.jpg", "filename": "Testify.jpg", "mime": "image/jpeg", "extension": "jpg", "sizeBytes": 120000, "width": 768, "height": 768, "alpha": "none", "createdAt": "2026-08-14T00:00:00Z", "generatedBy": "extractor" },
+    { "schemaVersion": "1.0", "id": "0198a8de-0000-7000-8000-000000005102", "candidateId": "0198a8de-0000-7000-8000-000000005001", "role": "work-original", "relativePath": "work/Testify Final.jpg", "filename": "Testify Final.jpg", "mime": "image/jpeg", "extension": "jpg", "sizeBytes": 120000, "width": 768, "height": 768, "alpha": "none", "createdAt": "2026-08-14T00:00:00Z", "generatedBy": "human" },
+    { "schemaVersion": "1.0", "id": "0198a8de-0000-7000-8000-000000005103", "candidateId": "0198a8de-0000-7000-8000-000000005001", "role": "upscale-input", "relativePath": "upscale-input/Testify Final.jpg", "filename": "Testify Final.jpg", "mime": "image/jpeg", "extension": "jpg", "sizeBytes": 120000, "width": 768, "height": 768, "alpha": "none", "createdAt": "2026-08-14T00:00:00Z", "generatedBy": "human" },
+    { "schemaVersion": "1.0", "id": "0198a8de-0000-7000-8000-000000005104", "candidateId": "0198a8de-0000-7000-8000-000000005001", "role": "upscale-output", "relativePath": "upscale-output/Testify Final_optimization.png", "filename": "Testify Final_optimization.png", "mime": "image/png", "extension": "png", "sizeBytes": 1800000, "width": 3072, "height": 3072, "alpha": "none", "createdAt": "2026-08-14T00:00:00Z", "generatedBy": "external-ai" },
+    { "schemaVersion": "1.0", "id": "0198a8de-0000-7000-8000-000000005105", "candidateId": "0198a8de-0000-7000-8000-000000005001", "role": "processed-upscaled", "relativePath": "processed/Testify Final.jpg", "filename": "Testify Final.jpg", "mime": "image/jpeg", "extension": "jpg", "sizeBytes": 450000, "width": 3072, "height": 3072, "alpha": "none", "createdAt": "2026-08-14T00:00:00Z", "generatedBy": "converter" }
+  ],
+  "review": { "state": "approved", "decision": "accept-new-rendition", "reviewedAt": "2026-08-14T00:00:00Z", "note": "human filename and image review complete" },
+  "processing": {
+    "state": "ready",
+    "requiresUpscale": true,
+    "inputFileId": "0198a8de-0000-7000-8000-000000005103",
+    "optimizationMatches": [{ "outputFileId": "0198a8de-0000-7000-8000-000000005104", "normalizedStem": "testify final", "state": "matched", "matchedBy": "filename-alias", "competingCandidateIds": [] }],
+    "selectedOutputFileId": "0198a8de-0000-7000-8000-000000005104",
+    "processedFileId": "0198a8de-0000-7000-8000-000000005105",
+    "conversion": { "quality": 95, "chromaSubsampling": "4:4:4", "progressive": true, "alphaPolicy": "block", "inputPngSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "outputJpgSha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb", "sourcePngRetained": true }
+  },
+  "status": "READY",
+  "target": { "resourceId": "0198a8de-0000-7000-8000-000000001001", "variantId": "0198a8de-0000-7000-8000-000000002001", "renditionId": "0198a8de-0000-7000-8000-000000003002" }
+}

@@ -1,0 +1,82 @@
+{
+  "schemaVersion": "1.0",
+  "catalogId": "0198a8de-0000-7000-8000-000000001000",
+  "generatedAt": "2026-08-14T00:00:00Z",
+  "resources": [
+    {
+      "schemaVersion": "1.0",
+      "id": "0198a8de-0000-7000-8000-000000001001",
+      "game": "arcaea",
+      "resourceType": "jacket",
+      "title": "Acid God",
+      "aliases": [],
+      "externalIdentities": [{ "namespace": "arcaea", "key": "songId", "value": "acid-god", "source": "legacy-index", "confidence": "high" }],
+      "metadata": { "idx": 543 },
+      "relations": [],
+      "provenance": [{ "sourceType": "legacy", "sourceSnapshot": "phase1-audit-2026-08-14", "gameVersion": "6.16.0", "sourceRelativePath": "Arcaea（至6.16.0）/曲绘/Acid God_Yuta Imai_6.16_single_IDX 543_BPM 160_SIDE 1_chuni-ikazuchi_1080_base.jpg", "sourceFilename": "Acid God_Yuta Imai_6.16_single_IDX 543_BPM 160_SIDE 1_chuni-ikazuchi_1080_base.jpg", "sourceSha256": "fa80a68c1fef5324dd663fbea4dfc6f41867b5b0907bc91d718a352d541365d5", "evidence": [{ "kind": "source-path", "detail": "archive-inventory.json", "confidence": "high" }, { "kind": "normalized-pair", "detail": "616/616 original↔AI pairing baseline", "confidence": "high" }] }],
+      "lifecycle": { "status": "published", "createdAt": "2026-08-14T00:00:00Z", "updatedAt": "2026-08-14T00:00:00Z", "publishedAt": "2026-08-14T00:00:00Z" }
+    },
+    {
+      "schemaVersion": "1.0",
+      "id": "0198a8de-0000-7000-8000-000000001002",
+      "game": "phigros",
+      "resourceType": "jacket",
+      "title": "After ZABANIYA",
+      "aliases": [],
+      "externalIdentities": [],
+      "metadata": {},
+      "relations": [],
+      "provenance": [{ "sourceType": "legacy", "sourceSnapshot": "phase1-audit-2026-08-14", "sourceRelativePath": "Phigros/曲绘/After ZABANIYA (MUG Edit)」 - Daily天利.png", "sourceFilename": "After ZABANIYA (MUG Edit)」 - Daily天利.png", "sourceSha256": "20f0801520c91d418516d2be942511554a2d3e2ebe495e97068be826a2bd2636", "evidence": [{ "kind": "sha256", "detail": "archive-hashes.json duplicate group", "confidence": "high" }] }],
+      "lifecycle": { "status": "published", "createdAt": "2026-08-14T00:00:00Z", "updatedAt": "2026-08-14T00:00:00Z" }
+    },
+    {
+      "schemaVersion": "1.0",
+      "id": "0198a8de-0000-7000-8000-000000001003",
+      "game": "phigros",
+      "resourceType": "phigros-april-fools",
+      "title": "After ZABANIYA (April Fools)",
+      "aliases": [{ "value": "After ZABANIYA (MUG Edit)」 - Daily天利.png", "kind": "same-hash", "note": "same Object as normal-jacket path; semantic Resource remains independent" }],
+      "externalIdentities": [],
+      "metadata": {},
+      "relations": [{ "type": "same-content-alias-candidate", "targetResourceId": "0198a8de-0000-7000-8000-000000001002", "note": "same bytes, separate reviewed classification" }],
+      "provenance": [{ "sourceType": "legacy", "sourceSnapshot": "phase1-audit-2026-08-14", "sourceRelativePath": "Phigros/April Fools/After ZABANIYA (MUG Edit)」 - Daily天利.png", "sourceFilename": "After ZABANIYA (MUG Edit)」 - Daily天利.png", "sourceSha256": "20f0801520c91d418516d2be942511554a2d3e2ebe495e97068be826a2bd2636", "evidence": [{ "kind": "sha256", "detail": "archive-hashes.json duplicate group", "confidence": "high" }, { "kind": "source-path", "detail": "April Fools directory classification", "confidence": "medium" }] }],
+      "lifecycle": { "status": "published", "createdAt": "2026-08-14T00:00:00Z", "updatedAt": "2026-08-14T00:00:00Z" }
+    },
+    {
+      "schemaVersion": "1.0",
+      "id": "0198a8de-0000-7000-8000-000000001004",
+      "game": "arcaea",
+      "resourceType": "jacket",
+      "title": "Asgore",
+      "aliases": [],
+      "externalIdentities": [{ "namespace": "arcaea", "key": "songId", "value": "asgore", "source": "filename", "confidence": "medium" }],
+      "metadata": {},
+      "relations": [],
+      "provenance": [{ "sourceType": "legacy", "sourceSnapshot": "phase1-audit-2026-08-14", "sourceRelativePath": "Arcaea/曲绘/アズゴア_Toby Fox_6.14_undertale_append_1_IDX 529_BPM 229.69_SIDE 0_undertale_light_asgore_256.jpg", "sourceFilename": "アズゴア_Toby Fox_6.14_undertale_append_1_IDX 529_BPM 229.69_SIDE 0_undertale_light_asgore_256.jpg", "sourceSha256": "8ef323dda461927430a1d8268d7157f05837bdfa9f432c7c664496e4d8f015b0", "evidence": [{ "kind": "history-report", "detail": "_256 retained by historical index but excluded by old extractor", "confidence": "high" }] }],
+      "lifecycle": { "status": "published", "createdAt": "2026-08-14T00:00:00Z", "updatedAt": "2026-08-14T00:00:00Z" }
+    }
+  ],
+  "variants": [
+    { "schemaVersion": "1.0", "id": "0198a8de-0000-7000-8000-000000002001", "resourceId": "0198a8de-0000-7000-8000-000000001001", "variantKey": "default", "kind": "default", "semanticStatus": "confirmed", "markers": { "unresolved": [] } },
+    { "schemaVersion": "1.0", "id": "0198a8de-0000-7000-8000-000000002002", "resourceId": "0198a8de-0000-7000-8000-000000001002", "variantKey": "default", "kind": "default", "semanticStatus": "manual", "markers": { "unresolved": [] } },
+    { "schemaVersion": "1.0", "id": "0198a8de-0000-7000-8000-000000002003", "resourceId": "0198a8de-0000-7000-8000-000000001003", "variantKey": "default", "kind": "event", "semanticStatus": "manual", "eventKey": "april-fools", "markers": { "unresolved": [] } },
+    { "schemaVersion": "1.0", "id": "0198a8de-0000-7000-8000-000000002004", "resourceId": "0198a8de-0000-7000-8000-000000001004", "variantKey": "default", "kind": "default", "semanticStatus": "confirmed", "markers": { "unresolved": [] } },
+    { "schemaVersion": "1.0", "id": "0198a8de-0000-7000-8000-000000002005", "resourceId": "0198a8de-0000-7000-8000-000000001004", "variantKey": "_256", "kind": "unknown", "semanticStatus": "unresolved", "markers": { "unresolved": ["_256_semantics"] }, "note": "UNRESOLVED SEMANTICS" }
+  ],
+  "renditions": [
+    { "schemaVersion": "1.0", "id": "0198a8de-0000-7000-8000-000000003001", "variantId": "0198a8de-0000-7000-8000-000000002001", "renditionType": "original", "origin": "source", "publishable": true, "objectId": "sha256:fa80a68c1fef5324dd663fbea4dfc6f41867b5b0907bc91d718a352d541365d5", "displayFilename": "Acid God.jpg", "generatedBy": "extractor", "createdAt": "2026-08-14T00:00:00Z" },
+    { "schemaVersion": "1.0", "id": "0198a8de-0000-7000-8000-000000003002", "variantId": "0198a8de-0000-7000-8000-000000002001", "renditionType": "upscaled", "origin": "derived", "publishable": true, "objectId": "sha256:22ca2fd82b31b573dd663fbea4dfc6f41867b5b0907bc91d718a352d541365d5", "displayFilename": "Acid God.jpg", "sourceRenditionId": "0198a8de-0000-7000-8000-000000003001", "generatedBy": "external-ai", "createdAt": "2026-08-14T00:00:00Z" },
+    { "schemaVersion": "1.0", "id": "0198a8de-0000-7000-8000-000000003003", "variantId": "0198a8de-0000-7000-8000-000000002002", "renditionType": "original", "origin": "source", "publishable": true, "objectId": "sha256:20f0801520c91d418516d2be942511554a2d3e2ebe495e97068be826a2bd2636", "displayFilename": "After ZABANIYA.png", "generatedBy": "extractor", "createdAt": "2026-08-14T00:00:00Z" },
+    { "schemaVersion": "1.0", "id": "0198a8de-0000-7000-8000-000000003004", "variantId": "0198a8de-0000-7000-8000-000000002003", "renditionType": "original", "origin": "source", "publishable": true, "objectId": "sha256:20f0801520c91d418516d2be942511554a2d3e2ebe495e97068be826a2bd2636", "displayFilename": "After ZABANIYA April Fools.png", "generatedBy": "extractor", "createdAt": "2026-08-14T00:00:00Z" },
+    { "schemaVersion": "1.0", "id": "0198a8de-0000-7000-8000-000000003005", "variantId": "0198a8de-0000-7000-8000-000000002004", "renditionType": "original", "origin": "source", "publishable": true, "objectId": "sha256:4d943735ac0d4ed19689f96ae2915c239366a529d0414b0954ee20e6b0ef08c8", "displayFilename": "Asgore.jpg", "generatedBy": "extractor", "createdAt": "2026-08-14T00:00:00Z" },
+    { "schemaVersion": "1.0", "id": "0198a8de-0000-7000-8000-000000003006", "variantId": "0198a8de-0000-7000-8000-000000002005", "renditionType": "original", "origin": "source", "publishable": true, "objectId": "sha256:8ef323dda461927430a1d8268d7157f05837bdfa9f432c7c664496e4d8f015b0", "displayFilename": "Asgore_256.jpg", "generatedBy": "extractor", "createdAt": "2026-08-14T00:00:00Z" }
+  ],
+  "objects": [
+    { "schemaVersion": "1.0", "id": "sha256:fa80a68c1fef5324dd663fbea4dfc6f41867b5b0907bc91d718a352d541365d5", "sha256": "fa80a68c1fef5324dd663fbea4dfc6f41867b5b0907bc91d718a352d541365d5", "mime": "image/jpeg", "extension": "jpg", "sizeBytes": 579884, "width": 768, "height": 768, "alpha": "none", "objectKey": "objects/fa80a68c1fef5324dd663fbea4dfc6f41867b5b0907bc91d718a352d541365d5/jpg", "createdAt": "2026-08-14T00:00:00Z", "provenance": [{ "sourceType": "legacy", "sourceRelativePath": "Arcaea（至6.16.0）/曲绘/Acid God_Yuta Imai_6.16_single_IDX 543_BPM 160_SIDE 1_chuni-ikazuchi_1080_base.jpg", "sourceFilename": "Acid God_Yuta Imai_6.16_single_IDX 543_BPM 160_SIDE 1_chuni-ikazuchi_1080_base.jpg", "sourceSha256": "fa80a68c1fef5324dd663fbea4dfc6f41867b5b0907bc91d718a352d541365d5", "gameVersion": "6.16.0", "evidence": [{ "kind": "sha256", "detail": "archive-hashes.json", "confidence": "high" }] }] },
+    { "schemaVersion": "1.0", "id": "sha256:22ca2fd82b31b573dd663fbea4dfc6f41867b5b0907bc91d718a352d541365d5", "sha256": "22ca2fd82b31b573dd663fbea4dfc6f41867b5b0907bc91d718a352d541365d5", "mime": "image/jpeg", "extension": "jpg", "sizeBytes": 4649027, "width": 3072, "height": 3072, "alpha": "none", "objectKey": "objects/22ca2fd82b31b573dd663fbea4dfc6f41867b5b0907bc91d718a352d541365d5/jpg", "createdAt": "2026-08-14T00:00:00Z", "provenance": [{ "sourceType": "legacy", "sourceRelativePath": "Arcaea（至6.16.0）/曲绘（AI超分后）/Acid God_Yuta Imai_6.16_single_IDX 543_BPM 160_SIDE 1_chuni-ikazuchi_1080_base.jpg_opt.jpg", "sourceFilename": "Acid God_Yuta Imai_6.16_single_IDX 543_BPM 160_SIDE 1_chuni-ikazuchi_1080_base.jpg_opt.jpg", "sourceSha256": "22ca2fd82b31b573dd663fbea4dfc6f41867b5b0907bc91d718a352d541365d5", "gameVersion": "6.16.0", "evidence": [{ "kind": "normalized-pair", "detail": "same normalized basename as original", "confidence": "high" }] }] },
+    { "schemaVersion": "1.0", "id": "sha256:20f0801520c91d418516d2be942511554a2d3e2ebe495e97068be826a2bd2636", "sha256": "20f0801520c91d418516d2be942511554a2d3e2ebe495e97068be826a2bd2636", "mime": "image/png", "extension": "png", "sizeBytes": 2826027, "width": 2048, "height": 1080, "alpha": "unknown", "objectKey": "objects/20f0801520c91d418516d2be942511554a2d3e2ebe495e97068be826a2bd2636/png", "createdAt": "2026-08-14T00:00:00Z", "provenance": [{ "sourceType": "legacy", "sourceRelativePath": "Phigros/曲绘/After ZABANIYA (MUG Edit)」 - Daily天利.png", "sourceFilename": "After ZABANIYA (MUG Edit)」 - Daily天利.png", "sourceSha256": "20f0801520c91d418516d2be942511554a2d3e2ebe495e97068be826a2bd2636", "evidence": [{ "kind": "sha256", "detail": "19 duplicate groups / 39 files audit", "confidence": "high" }] }] },
+    { "schemaVersion": "1.0", "id": "sha256:4d943735ac0d4ed19689f96ae2915c239366a529d0414b0954ee20e6b0ef08c8", "sha256": "4d943735ac0d4ed19689f96ae2915c239366a529d0414b0954ee20e6b0ef08c8", "mime": "image/jpeg", "extension": "jpg", "sizeBytes": 87899, "width": 768, "height": 768, "alpha": "none", "objectKey": "objects/4d943735ac0d4ed19689f96ae2915c239366a529d0414b0954ee20e6b0ef08c8/jpg", "createdAt": "2026-08-14T00:00:00Z", "provenance": [{ "sourceType": "legacy", "sourceRelativePath": "Arcaea/曲绘/アズゴア_Toby Fox_6.14_undertale_append_1_IDX 529_BPM 229.69_SIDE 0_undertale_light_asgore.jpg", "sourceFilename": "アズゴア_Toby Fox_6.14_undertale_append_1_IDX 529_BPM 229.69_SIDE 0_undertale_light_asgore.jpg", "sourceSha256": "4d943735ac0d4ed19689f96ae2915c239366a529d0414b0954ee20e6b0ef08c8", "evidence": [{ "kind": "source-path", "detail": "archive-image-metadata.json 768x768", "confidence": "high" }] }] },
+    { "schemaVersion": "1.0", "id": "sha256:8ef323dda461927430a1d8268d7157f05837bdfa9f432c7c664496e4d8f015b0", "sha256": "8ef323dda461927430a1d8268d7157f05837bdfa9f432c7c664496e4d8f015b0", "mime": "image/jpeg", "extension": "jpg", "sizeBytes": 37287, "width": 384, "height": 384, "alpha": "none", "objectKey": "objects/8ef323dda461927430a1d8268d7157f05837bdfa9f432c7c664496e4d8f015b0/jpg", "createdAt": "2026-08-14T00:00:00Z", "provenance": [{ "sourceType": "legacy", "sourceRelativePath": "Arcaea/曲绘/アズゴア_Toby Fox_6.14_undertale_append_1_IDX 529_BPM 229.69_SIDE 0_undertale_light_asgore_256.jpg", "sourceFilename": "アズゴア_Toby Fox_6.14_undertale_append_1_IDX 529_BPM 229.69_SIDE 0_undertale_light_asgore_256.jpg", "sourceSha256": "8ef323dda461927430a1d8268d7157f05837bdfa9f432c7c664496e4d8f015b0", "evidence": [{ "kind": "history-report", "detail": "UNRESOLVED SEMANTICS: _256", "confidence": "high" }] }] }
+  ],
+  "releaseManifestIds": []
+}
