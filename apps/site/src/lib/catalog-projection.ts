@@ -1,5 +1,6 @@
 import type { AssetObject, Catalog, Rendition, Resource, Variant } from "../../../../packages/domain/src/schema.js";
 import { categoryLabel, categoryOrderIndex, displayVariantLabel, GAME_CONFIG, type GameId, type ResourceTypeId } from "./game-config";
+import { normalizePublicDisplay } from "./public-display";
 import { normalizeSearchText } from "./search";
 import type { PublicAsset, PublicCategory, PublicDownload, PublicGameIndex, PublicPreview, PublicResource, PublicSearchEntry, PublicSiteData, PublicVariant } from "./types";
 import { objectUrl } from "./url";
@@ -64,7 +65,8 @@ export function projectCatalog(catalog: Catalog, rosBaseUrl: string): PublicSite
     for (const category of game.categories) galleries[galleryKey(game.slug, category.slug)] = gameResources.filter((resource) => resource.category === category.slug);
   }
 
-  const searchIndex = resources.map((resource) => toSearchEntry(resource));
+  const sourceResourcesById = new Map(catalog.resources.map((resource) => [resource.id, resource]));
+  const searchIndex = resources.map((resource) => toSearchEntry(resource, sourceResourcesById.get(resource.resourceId)));
   return { generatedAt: catalog.generatedAt, resources, games, searchIndex, galleries };
 }
 
@@ -73,10 +75,11 @@ function projectResource(resource: Resource, variants: Variant[], renditionsByVa
     .map((variant) => projectVariant(variant, renditionsByVariant.get(variant.id) ?? [], objectsById, rosBaseUrl))
     .sort((a, b) => a.label.localeCompare(b.label, "en") || a.variantId.localeCompare(b.variantId));
   const active = projectedVariants[0];
-  const metadata = pickPublicMetadata(resource);
-  const artist = typeof metadata.artist === "string" ? metadata.artist : undefined;
   const original = active?.original;
   const upscaled = active?.upscaled;
+  const display = normalizePublicDisplay(resource, original?.downloadFilename);
+  const metadata = { ...pickPublicMetadata(resource), ...filterPublicMetadata(display.metadata) };
+  const artist = display.artist ?? (typeof metadata.artist === "string" ? metadata.artist : undefined);
 
   return {
     resourceId: resource.id,
@@ -85,7 +88,7 @@ function projectResource(resource: Resource, variants: Variant[], renditionsByVa
     resourceType: resource.resourceType,
     category: resource.resourceType,
     categoryLabel: categoryLabel(resource.resourceType),
-    displayTitle: resource.title ?? original?.downloadFilename ?? "未命名资源",
+    displayTitle: display.title || original?.downloadFilename || "未命名资源",
     ...(artist ? { artist } : {}),
     metadata,
     variants: projectedVariants,
@@ -131,18 +134,25 @@ function projectDownload(rendition: Rendition, objectsById: Map<string, AssetObj
 }
 
 function pickPublicMetadata(resource: Resource): Record<string, string | number | boolean> {
+  return filterPublicMetadata(resource.metadata);
+}
+
+function filterPublicMetadata(input: Record<string, unknown>): Record<string, string | number | boolean> {
   const output: Record<string, string | number | boolean> = {};
-  for (const [key, value] of Object.entries(resource.metadata)) {
+  for (const [key, value] of Object.entries(input)) {
     if (!PUBLIC_METADATA_KEYS.has(key)) continue;
     if (typeof value === "string" || typeof value === "number" || typeof value === "boolean") output[key] = value;
   }
   return output;
 }
 
-function toSearchEntry(resource: PublicResource): PublicSearchEntry {
+function toSearchEntry(resource: PublicResource, sourceResource?: Resource): PublicSearchEntry {
   const keywordSet = new Set<string>();
   for (const value of Object.values(resource.metadata)) keywordSet.add(String(value));
   for (const variant of resource.variants) keywordSet.add(variant.label);
+  for (const value of [sourceResource?.title, ...(sourceResource?.aliases ?? []).map((alias) => alias.value), ...(sourceResource?.provenance ?? []).map((entry) => entry.sourceFilename)]) {
+    if (value) keywordSet.add(value);
+  }
   return {
     resourceId: resource.resourceId,
     route: resource.route,

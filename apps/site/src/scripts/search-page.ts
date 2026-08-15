@@ -1,4 +1,5 @@
 import { rankSearchEntries } from "../lib/search";
+import { cardMediaRatio } from "../lib/media-config";
 import type { PublicResource, PublicSearchEntry } from "../lib/types";
 
 const root = document.querySelector<HTMLElement>("[data-search-page]");
@@ -31,10 +32,14 @@ async function initializeSearch(root: HTMLElement): Promise<void> {
     const query = input.value;
     const ranked = rankSearchEntries(entries, query);
     if (!query.trim()) {
+      root.closest(".search-page")?.classList.remove("has-search-query");
+      root.previousElementSibling?.classList.remove("is-results");
       results.replaceChildren();
       status.textContent = "输入关键词开始搜索";
       return;
     }
+    root.closest(".search-page")?.classList.add("has-search-query");
+    root.previousElementSibling?.classList.add("is-results");
     if (ranked.length === 0) {
       results.replaceChildren();
       status.textContent = "没有找到相关资源。";
@@ -61,6 +66,10 @@ async function initializeSearch(root: HTMLElement): Promise<void> {
 function createResultCard(resource: PublicResource): HTMLElement {
   const article = document.createElement("article");
   article.className = "resource-card";
+  article.dataset.resourceCard = "";
+  article.dataset.game = resource.game;
+  article.dataset.resourceType = resource.resourceType;
+  article.dataset.mediaRatio = cardMediaRatio(resource.game, resource.resourceType);
   const anchor = document.createElement("a");
   anchor.className = "resource-card-link";
   anchor.href = resolveSitePath(resource.route);
@@ -84,17 +93,20 @@ function createResultCard(resource: PublicResource): HTMLElement {
   }
   if (resource.upscaled) {
     const badge = document.createElement("span");
-    badge.className = "resource-badge is-ai";
-    badge.textContent = "AI 超分";
+    badge.className = "resource-badge is-upscaled";
+    badge.textContent = "含超分版";
     media.append(badge);
   }
   const body = document.createElement("div");
   body.className = "resource-card-body";
   const title = document.createElement("h3");
   title.textContent = resource.displayTitle;
-  const meta = document.createElement("p");
-  meta.textContent = [resource.game === "arcaea" ? "Arcaea" : "Phigros", resource.categoryLabel, resource.artist].filter(Boolean).join(" · ");
-  body.append(title, meta);
+  body.append(title);
+  if (resource.artist) {
+    const artist = document.createElement("p");
+    artist.textContent = resource.artist;
+    body.append(artist);
+  }
   anchor.append(media, body);
   article.append(anchor);
   return article;

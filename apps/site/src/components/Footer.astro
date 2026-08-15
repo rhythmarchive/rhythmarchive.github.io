@@ -1,10 +1,21 @@
 ---
+import { BASE_PATH, BILIBILI_URL } from "../lib/site-config";
+import { createUrlHelpers } from "../lib/url";
+
+const urls = createUrlHelpers({ basePath: BASE_PATH, origin: "https://rhythmarchive.github.io", rosBaseUrl: "https://rhythm-assets.cn-nb1.rains3.com" });
 ---
 
 <footer class="site-footer">
   <div class="site-footer-inner">
-    <span>Rhythm Archive</span>
-    <span>Arcaea &amp; Phigros 图片资源</span>
+    <div class="site-footer-brand">
+      <strong>Rhythm Archive</strong>
+      <span>把节奏游戏里的图像，整理成容易找到的收藏。</span>
+    </div>
+    <nav class="site-footer-links" aria-label="页脚导航">
+      <a href={urls.sitePath("/arcaea/")}>Arcaea</a>
+      <a href={urls.sitePath("/phigros/")}>Phigros</a>
+      <a href={urls.sitePath("/feedback/")}>意见反馈</a>
+      <a href={BILIBILI_URL} target="_blank" rel="noopener noreferrer">B站主页</a>
+    </nav>
   </div>
 </footer>
-

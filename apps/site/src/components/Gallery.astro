@@ -1,6 +1,6 @@
 ---
 import ResourceCard from "./ResourceCard.astro";
-import type { GameId } from "../lib/game-config";
+import { GAME_CONFIG, type GameId } from "../lib/game-config";
 import type { PublicResource } from "../lib/types";
 import { BASE_PATH } from "../lib/site-config";
 import { formatCount } from "../lib/format";
@@ -23,7 +23,7 @@ const hasDifficulty = difficultyOptions.length > 0;
 <section class="gallery-shell" data-gallery-root data-gallery-url={galleryUrl} data-base-path={BASE_PATH} data-game={game} data-category={category} data-total={total}>
   <div class="gallery-toolbar">
     <div class="gallery-toolbar-copy">
-      <span class="section-kicker">{category === "all" ? game : categoryLabel}</span>
+      <span class="section-kicker">{category === "all" ? GAME_CONFIG[game].displayName : categoryLabel}</span>
       <p data-gallery-count>显示 {formatCount(Math.min(resources.length, total))} / {formatCount(total)}</p>
     </div>
     <div class="gallery-toolbar-actions">
@@ -44,7 +44,7 @@ const hasDifficulty = difficultyOptions.length > 0;
         </label>
       ) : null}
       {hasUpscale ? (
-        <label class="filter-check"><input type="checkbox" data-filter-ai /> <span>AI 超分</span></label>
+        <label class="filter-check"><input type="checkbox" data-filter-ai /> <span>仅看含超分版</span></label>
       ) : null}
     </div>
   ) : null}
@@ -64,7 +64,7 @@ const hasDifficulty = difficultyOptions.length > 0;
     </div>
     <div class="batch-actions">
       <button class="button button-secondary" type="button" data-batch-download="original">下载原图</button>
-      <button class="button button-primary" type="button" data-batch-download="upscaled">优先 AI 超分</button>
+      <button class="button button-primary" type="button" data-batch-download="upscaled">优先超分版</button>
     </div>
   </div>
 </section>

@@ -6,6 +6,7 @@ import { projectCatalog, selectPreviewRendition } from "../src/lib/catalog-proje
 import { parseApkManifest, publicApkDownloads } from "../src/lib/apk.js";
 import { uniqueZipFilename } from "../src/lib/batch.js";
 import { displayVariantLabel } from "../src/lib/game-config.js";
+import { GISCUS_CONFIG, GITHUB_DISCUSSIONS_URL } from "../src/lib/site-config.js";
 import { rankSearchEntries } from "../src/lib/search.js";
 import { createUrlHelpers } from "../src/lib/url.js";
 import { findWorkspaceRoot, loadFormalCatalog } from "../src/lib/site-data.js";
@@ -44,10 +45,26 @@ test("every catalog Resource shares one preview set across original and optional
   assert.ok(upscaled.every((resource) => resource.variants.every((variant) => Boolean(variant.preview.small) && Boolean(variant.preview.medium) && Boolean(variant.preview.large))));
 });
 
-test("resources without upscaled renditions expose no AI download", () => {
+test("Arcaea public titles use the real title segment and keep extraction markers out of SEO/search text", () => {
+  const projection = projectCatalog(catalog, rosBaseUrl);
+  const arcaeaResources = projection.resources.filter((resource) => resource.game === "arcaea");
+  assert.ok(arcaeaResources.every((resource) => !/(?:_IDX|_BPM|_SIDE|\.(?:jpe?g|png|webp)|_optimization)/iu.test(resource.displayTitle)));
+  const sample = projection.resources.find((resource) => resource.resourceId === "01a00090-2a2d-70ad-8998-bf48655bc664");
+  assert.equal(sample?.displayTitle, "［筏］は云う。幾ら漂流すれど不撓の心さえ有れば軈て行到ると。");
+  assert.equal(sample?.artist, "庭師");
+});
+
+test("upscaled resources expose the optional upscale download and non-upscaled resources do not", () => {
   const projection = projectCatalog(catalog, rosBaseUrl);
   assert.ok(projection.resources.filter((resource) => !resource.upscaled).every((resource) => !resource.variants.some((variant) => variant.upscaled)));
   assert.ok(projection.resources.filter((resource) => resource.game === "phigros").every((resource) => !resource.upscaled));
+});
+
+test("formal Giscus config is centralized and has a public Discussions fallback URL", () => {
+  assert.equal(GISCUS_CONFIG.repo, "rhythmarchive/rhythmarchive.github.io");
+  assert.equal(GISCUS_CONFIG.repoId, "R_kgDOT4hyIQ");
+  assert.equal(GISCUS_CONFIG.categoryId, "DIC_kwDOT4hyIc4DDbnK");
+  assert.match(GITHUB_DISCUSSIONS_URL, /github\.com\/rhythmarchive\/rhythmarchive\.github\.io\/discussions/u);
 });
 
 test("unresolved variants never render as a difficulty", () => {

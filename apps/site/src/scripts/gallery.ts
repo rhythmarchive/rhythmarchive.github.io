@@ -1,5 +1,6 @@
 import { zipSync } from "fflate";
 import { DOWNLOAD_CONCURRENCY, MAX_BATCH_BYTES, MAX_BATCH_FILES, uniqueZipFilename } from "../lib/batch";
+import { cardMediaRatio } from "../lib/media-config";
 import type { PublicDownload, PublicResource } from "../lib/types";
 
 const PAGE_SIZE = 48;
@@ -63,6 +64,7 @@ async function initializeGallery(root: HTMLElement): Promise<void> {
     const id = button.dataset.selectResource;
     if (!id) return;
     if (selected.has(id)) selected.delete(id); else selected.add(id);
+    root.classList.toggle("has-selection", selected.size > 0);
     updateBatchBar();
     button.setAttribute("aria-pressed", String(selected.has(id)));
     button.closest<HTMLElement>("[data-resource-card]")?.classList.toggle("is-selected", selected.has(id));
@@ -157,6 +159,9 @@ function createCard(resource: PublicResource, index: number, isSelected: boolean
   article.className = `resource-card${isSelected ? " is-selected" : ""}`;
   article.dataset.resourceCard = "";
   article.dataset.resourceId = resource.resourceId;
+  article.dataset.game = resource.game;
+  article.dataset.resourceType = resource.resourceType;
+  article.dataset.mediaRatio = cardMediaRatio(resource.game, resource.resourceType);
   if (resource.resourceId) {
     const select = document.createElement("button");
     select.className = "resource-select";
@@ -194,8 +199,8 @@ function createCard(resource: PublicResource, index: number, isSelected: boolean
   }
   if (resource.upscaled) {
     const badge = document.createElement("span");
-    badge.className = "resource-badge is-ai";
-    badge.textContent = "AI 超分";
+    badge.className = "resource-badge is-upscaled";
+    badge.textContent = "含超分版";
     media.append(badge);
   }
   const body = document.createElement("div");

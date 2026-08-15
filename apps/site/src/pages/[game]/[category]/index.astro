@@ -24,7 +24,7 @@ const description = `浏览并下载 ${game.displayName} ${category.label} 图�
 
 <BaseLayout title={`${game.displayName} ${category.label}图片 | Rhythm Archive`} description={description} canonicalPath={`/${game.slug}/${category.slug}/`} ogImage={firstImage} bodyClass="gallery-page">
   <section class="page-container category-hero">
-    <div><span class="archive-kicker">{game.displayName} / COLLECTION</span><h1>{category.label}</h1><p>{formatCount(category.count)} 项资源</p></div>
+    <div><span class="archive-kicker">{game.displayName}</span><h1>{category.label}</h1><p>{formatCount(category.count)} 项资源</p></div>
     <a class="text-link" href={urls.sitePath(`/${game.slug}/`)}>返回 {game.displayName}</a>
   </section>
   <nav class="page-container category-nav" aria-label={`${game.displayName} 分类`}>

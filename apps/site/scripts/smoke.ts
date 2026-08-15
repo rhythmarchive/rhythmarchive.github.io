@@ -17,6 +17,7 @@ const required = [
   "arcaea/index.html",
   "phigros/index.html",
   "search/index.html",
+  "feedback/index.html",
   "arcaea/jacket/index.html",
   "phigros/jacket/index.html",
   "robots.txt",

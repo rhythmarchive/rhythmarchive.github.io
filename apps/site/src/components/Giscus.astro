@@ -1,0 +1,96 @@
+---
+import { GITHUB_DISCUSSIONS_URL, GISCUS_CONFIG } from "../lib/site-config";
+
+interface Props {
+  fallbackLabel?: string;
+}
+
+const { fallbackLabel = "反馈区加载失败，你也可以前往 GitHub Discussions 提交反馈。" } = Astro.props;
+---
+
+<div
+  class="giscus-shell"
+  data-giscus-shell
+  data-giscus-repo={GISCUS_CONFIG.repo}
+  data-giscus-repo-id={GISCUS_CONFIG.repoId}
+  data-giscus-category={GISCUS_CONFIG.category}
+  data-giscus-category-id={GISCUS_CONFIG.categoryId}
+  data-giscus-mapping={GISCUS_CONFIG.mapping}
+  data-giscus-strict={GISCUS_CONFIG.strict}
+  data-giscus-reactions-enabled={GISCUS_CONFIG.reactionsEnabled}
+  data-giscus-emit-metadata={GISCUS_CONFIG.emitMetadata}
+  data-giscus-input-position={GISCUS_CONFIG.inputPosition}
+  data-giscus-lang={GISCUS_CONFIG.lang}
+  data-giscus-theme={GISCUS_CONFIG.theme}
+>
+  <div class="giscus-container" data-giscus-container></div>
+  <p class="giscus-fallback" data-giscus-fallback hidden>
+    {fallbackLabel}
+    <a href={GITHUB_DISCUSSIONS_URL} target="_blank" rel="noopener noreferrer">前往 GitHub Discussions</a>
+  </p>
+</div>
+
+<script is:inline>
+  (() => {
+    const root = document.querySelector("[data-giscus-shell]");
+    if (!(root instanceof HTMLElement)) return;
+    const container = root.querySelector("[data-giscus-container]");
+    const fallback = root.querySelector("[data-giscus-fallback]");
+    if (!(container instanceof HTMLElement) || !(fallback instanceof HTMLElement)) return;
+
+    const currentTheme = () => {
+      const theme = document.documentElement.dataset.theme || "system";
+      return theme === "light" || theme === "dark" ? theme : "preferred_color_scheme";
+    };
+
+    const config = {
+      repo: root.dataset.giscusRepo,
+      repoId: root.dataset.giscusRepoId,
+      category: root.dataset.giscusCategory,
+      categoryId: root.dataset.giscusCategoryId,
+      mapping: root.dataset.giscusMapping,
+      strict: root.dataset.giscusStrict,
+      reactionsEnabled: root.dataset.giscusReactionsEnabled,
+      emitMetadata: root.dataset.giscusEmitMetadata,
+      inputPosition: root.dataset.giscusInputPosition,
+      lang: root.dataset.giscusLang,
+      theme: currentTheme(),
+    };
+
+    const syncTheme = () => {
+      const iframe = root.querySelector("iframe.giscus-frame");
+      if (!(iframe instanceof HTMLIFrameElement) || !iframe.contentWindow) return;
+      if (!iframe.dataset.themeSyncBound) {
+        iframe.dataset.themeSyncBound = "true";
+        iframe.addEventListener("load", syncTheme, { once: true });
+      }
+      iframe.contentWindow.postMessage({ giscus: { setConfig: { theme: currentTheme() } } }, "https://giscus.app");
+    };
+
+    const showFallback = () => {
+      fallback.hidden = false;
+      root.dataset.giscusState = "error";
+    };
+
+    const script = document.createElement("script");
+    script.src = "https://giscus.app/client.js";
+    script.async = true;
+    script.crossOrigin = "anonymous";
+    for (const [key, value] of Object.entries(config)) {
+      if (value !== undefined) script.setAttribute(`data-${key.replace(/[A-Z]/g, (letter) => `-${letter.toLowerCase()}`)}`, value);
+    }
+    script.addEventListener("error", showFallback, { once: true });
+    container.append(script);
+
+    const observer = new MutationObserver(syncTheme);
+    observer.observe(root, { childList: true, subtree: true });
+    const syncThemeAfterChange = () => {
+      syncTheme();
+      window.setTimeout(syncTheme, 80);
+      window.setTimeout(syncTheme, 500);
+    };
+    window.addEventListener("rhythm-theme-change", syncThemeAfterChange);
+    window.setTimeout(syncTheme, 0);
+    window.setTimeout(syncTheme, 1200);
+  })();
+</script>

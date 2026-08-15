@@ -1,17 +1,58 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import SearchBox from "../../components/SearchBox.astro";
+import { formatCount } from "../../lib/format";
+import { BASE_PATH } from "../../lib/site-config";
+import { getSiteData } from "../../lib/site-data";
+import { createUrlHelpers } from "../../lib/url";
 
 const query = Astro.url.searchParams.get("q") ?? "";
 const description = "搜索 Arcaea 与 Phigros 的曲绘、角色立绘、剧情 CG 和其他图片资源。";
+const data = getSiteData();
+const urls = createUrlHelpers({ basePath: BASE_PATH, origin: "https://rhythmarchive.github.io", rosBaseUrl: "https://rhythm-assets.cn-nb1.rains3.com" });
+const quickLinks = [
+  { label: "Arcaea", href: "/arcaea/" },
+  { label: "Phigros", href: "/phigros/" },
+  { label: "曲绘", href: "/arcaea/jacket/", game: "arcaea", category: "jacket" },
+  { label: "角色立绘", href: "/arcaea/character-portrait/", game: "arcaea", category: "character-portrait" },
+  { label: "剧情 CG", href: "/arcaea/story-cg/", game: "arcaea", category: "story-cg" },
+].filter((entry) => !entry.game || data.games.find((game) => game.slug === entry.game)?.categories.some((category) => category.slug === entry.category));
+const browseGroups = data.games.map((game) => ({
+  ...game,
+  categories: game.categories.filter((category) => category.count > 0),
+})).filter((game) => game.categories.length > 0);
 ---
 
 <BaseLayout title="搜索资源 | Rhythm Archive" description={description} canonicalPath="/search/" bodyClass="search-page">
-  <section class="page-container search-page-head">
-    <span class="archive-kicker">SEARCH / ARCHIVE</span>
-    <h1>搜索资源</h1>
-    <p>按曲名、曲师或文件名查找。</p>
+  <section class="page-container search-page-head" data-search-head>
+    <div class="search-head-copy">
+      <span class="archive-kicker">Rhythm Archive</span>
+      <h1>找一张熟悉的图</h1>
+      <p>试试搜索曲名、曲师或资源名称。</p>
+    </div>
     <SearchBox initialQuery={query} />
+    <div class="search-quick-links" data-search-landing>
+      <span>快速进入</span>
+      {quickLinks.map((entry) => <a href={urls.sitePath(entry.href)}>{entry.label}{entry.game ? <small>{formatCount(data.games.find((game) => game.slug === entry.game)?.categories.find((category) => category.slug === entry.category)?.count ?? 0)}</small> : null}</a>)}
+    </div>
+  </section>
+  <section class="page-container search-landing-browse" data-search-landing>
+    <div class="search-landing-browse-heading">
+      <h2>也可以从分类开始</h2>
+      <p>不记得完整曲名时，先按游戏和资源类型浏览。</p>
+    </div>
+    <div class="search-browse-groups">
+      {browseGroups.map((game) => (
+        <div class="search-browse-row">
+          <strong>{game.displayName}</strong>
+          <div class="search-browse-links">
+            {game.categories.map((category) => (
+              <a href={urls.sitePath(`/${game.slug}/${category.slug}/`)}>{category.label}<small>{formatCount(category.count)}</small></a>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
   </section>
   <section class="page-container search-results" data-search-page data-search-query={query}>
     <div class="search-results-heading"><span data-search-status aria-live="polite">输入关键词开始搜索</span></div>
@@ -19,4 +60,3 @@ const description = "搜索 Arcaea 与 Phigros 的曲绘、角色立绘、剧情
   </section>
   <script src="../../scripts/search-page.ts"></script>
 </BaseLayout>
-

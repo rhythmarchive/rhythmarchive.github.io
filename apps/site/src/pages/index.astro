@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import GameIcon from "../components/GameIcon.astro";
 import SearchBox from "../components/SearchBox.astro";
 import { formatCount } from "../lib/format";
 import { BASE_PATH, ROS_BASE_URL } from "../lib/site-config";
@@ -10,8 +11,6 @@ import { createUrlHelpers } from "../lib/url";
 const data = getSiteData();
 const urls = createUrlHelpers({ basePath: BASE_PATH, origin: "https://rhythmarchive.github.io", rosBaseUrl: ROS_BASE_URL });
 const games = data.games;
-const gameResources = new Map(games.map((game) => [game.slug, data.resources.filter((resource) => resource.game === game.slug)]));
-const featuredCategories = games.flatMap((game) => game.featuredCategories.slice(0, 3).map((category) => ({ ...category, game: game.slug, gameName: game.displayName })));
 const apkDownloads = publicApkDownloads(readApkManifest(findWorkspaceRoot()), ROS_BASE_URL).filter((record) => record.game === "arcaea");
 const homeImage = data.resources.find((resource) => resource.preview.medium)?.preview.medium?.url;
 const description = "浏览并下载 Arcaea、Phigros 的曲绘、角色立绘、剧情 CG 与其他游戏图片资源。";
@@ -21,30 +20,31 @@ const description = "浏览并下载 Arcaea、Phigros 的曲绘、角色立绘�
   <div data-site-base data-site-base-value={BASE_PATH}></div>
   <section class="home-intro page-container">
     <div class="home-intro-copy">
-      <span class="archive-kicker">IMAGE ARCHIVE</span>
-      <h1>Rhythm Archive</h1>
-      <p>{description}</p>
+      <span class="archive-kicker">Rhythm Archive</span>
+      <h1>找到下一张<br /><em>想保存的曲绘。</em></h1>
+      <p>按游戏整理的 Arcaea、Phigros 图像资料。曲绘、角色、剧情与那些值得回看的画面，都在这里。</p>
     </div>
-    <SearchBox />
+    <div class="home-search-block">
+      <SearchBox />
+      <span>试试搜索曲名、曲师或资源名称</span>
+    </div>
   </section>
 
   <section class="page-container home-games" aria-labelledby="games-heading">
     <div class="section-heading">
-      <div><span class="section-kicker">Browse</span><h2 id="games-heading">选择游戏</h2></div>
+      <div><h2 id="games-heading">从游戏开始</h2></div>
       <span class="section-heading-note">按游戏浏览全部资源</span>
     </div>
     <div class="game-entry-grid">
       {games.map((game) => {
-        const image = gameResources.get(game.slug)?.find((resource) => resource.preview.medium)?.preview.medium;
         return (
           <a class={`game-entry-card game-${game.slug}`} href={urls.sitePath(`/${game.slug}/`)}>
             <div class="game-entry-image">
-              {image ? <img src={image.url} alt="" width={image.width} height={image.height} loading="lazy" decoding="async" /> : <span>图片暂不可用</span>}
-              <span class="game-entry-mark">{game.slug === "arcaea" ? "A" : "P"}</span>
+              <GameIcon game={game.slug} />
             </div>
             <div class="game-entry-copy">
               <div><h3>{game.displayName}</h3><span>{formatCount(game.count)} 项资源</span></div>
-              <p>{game.categories.slice(0, 3).map((category) => category.label).join(" · ")}</p>
+              <p>{game.slug === "arcaea" ? "曲绘 · 角色立绘 · 剧情 CG" : "曲绘 · 头像 · 曲包封面"}</p>
             </div>
             <span class="arrow-link" aria-hidden="true">↗</span>
           </a>
@@ -55,16 +55,26 @@ const description = "浏览并下载 Arcaea、Phigros 的曲绘、角色立绘�
 
   <section class="page-container home-categories" aria-labelledby="categories-heading">
     <div class="section-heading">
-      <div><span class="section-kicker">Collections</span><h2 id="categories-heading">主要资源分类</h2></div>
-        <span class="section-heading-note">按分类浏览</span>
+      <div><h2 id="categories-heading">主要资源分类</h2></div>
+      <span class="section-heading-note">每个游戏各自整理</span>
     </div>
-    <div class="featured-category-grid">
-      {featuredCategories.map((category) => (
-        <a class="category-tile" href={urls.sitePath(`/${category.game}/${category.slug}/`)}>
-          <span class="category-tile-game">{category.gameName}</span>
-          <strong>{category.label}</strong>
-          <span>{formatCount(category.count)} 项</span>
-        </a>
+    <div class="home-category-groups">
+      {games.map((game) => (
+        <section class="home-category-group" aria-labelledby={`home-${game.slug}-categories`}>
+          <div class="home-category-group-heading">
+            <h3 id={`home-${game.slug}-categories`}>{game.displayName}</h3>
+            <a href={urls.sitePath(`/${game.slug}/`)}>查看全部 <span aria-hidden="true">↗</span></a>
+          </div>
+          <div class="featured-category-grid">
+            {game.featuredCategories.slice(0, 5).map((category) => (
+              <a class="category-tile" href={urls.sitePath(`/${game.slug}/${category.slug}/`)}>
+                <span class="category-tile-mark" aria-hidden="true"></span>
+                <strong>{category.label}</strong>
+                <span>{formatCount(category.count)} 项</span>
+              </a>
+            ))}
+          </div>
+        </section>
       ))}
     </div>
   </section>

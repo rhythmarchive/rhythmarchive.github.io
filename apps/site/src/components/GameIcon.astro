@@ -1,0 +1,17 @@
+---
+import type { GameId } from "../lib/game-config";
+
+interface Props {
+  game: GameId;
+}
+
+const { game } = Astro.props;
+const label = game === "arcaea" ? "A" : "P";
+const name = game === "arcaea" ? "arcaea" : "phigros";
+---
+
+<span class={`game-icon game-icon-${game}`} aria-hidden="true">
+  <span class="game-icon-mark">{label}</span>
+  <span class="game-icon-name">{name}</span>
+  <span class="game-icon-wave"></span>
+</span>

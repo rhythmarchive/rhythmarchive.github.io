@@ -1,5 +1,4 @@
 ---
-import DownloadActions from "./DownloadActions.astro";
 import type { PublicVariant } from "../lib/types";
 
 interface Props {
@@ -29,5 +28,4 @@ const srcset = [variant.preview.medium ? `${variant.preview.medium.url} 640w` : 
       />
     ) : <div class="resource-card-placeholder">图片暂不可用</div>}
   </div>
-  <DownloadActions variant={variant} />
 </section>

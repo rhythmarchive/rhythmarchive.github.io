@@ -2,6 +2,7 @@
 import type { PublicResource } from "../lib/types";
 import { BASE_PATH } from "../lib/site-config";
 import { createUrlHelpers } from "../lib/url";
+import { cardMediaRatio } from "../lib/media-config";
 
 interface Props {
   resource: PublicResource;
@@ -17,7 +18,7 @@ const srcset = [resource.preview.small ? `${resource.preview.small.url} 320w` : 
 const variantLabel = resource.variants.find((variant) => variant.label !== "默认")?.label;
 ---
 
-<article class="resource-card" data-resource-card data-resource-id={resource.resourceId}>
+<article class="resource-card" data-resource-card data-resource-id={resource.resourceId} data-game={resource.game} data-resource-type={resource.resourceType} data-media-ratio={cardMediaRatio(resource.game, resource.resourceType)}>
   {selectable ? (
     <button class="resource-select" type="button" data-select-resource={resource.resourceId} aria-pressed="false" aria-label={`选择 ${resource.displayTitle}`}>
       <span aria-hidden="true">✓</span>
@@ -37,7 +38,7 @@ const variantLabel = resource.variants.find((variant) => variant.label !== "默�
           decoding="async"
         />
       ) : <div class="resource-card-placeholder" aria-label="图片加载失败">图片暂不可用</div>}
-      {resource.upscaled ? <span class="resource-badge is-ai">AI 超分</span> : null}
+      {resource.upscaled ? <span class="resource-badge is-upscaled">含超分版</span> : null}
     </div>
     <div class="resource-card-body">
       <h3>{resource.displayTitle}</h3>

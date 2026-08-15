@@ -12,6 +12,7 @@ const urls = createUrlHelpers({ basePath: BASE_PATH, origin: "https://rhythmarch
     <nav class="site-nav" aria-label="主要导航">
       <a href={urls.sitePath("/arcaea/")}>Arcaea</a>
       <a href={urls.sitePath("/phigros/")}>Phigros</a>
+      <a class="nav-feedback" href={urls.sitePath("/feedback/")}>反馈</a>
       <a class="nav-search" href={urls.sitePath("/search/")} aria-label="搜索">
         <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.3"/><path d="m16 16 4.5 4.5"/></svg>
       </a>
@@ -37,6 +38,7 @@ const urls = createUrlHelpers({ basePath: BASE_PATH, origin: "https://rhythmarch
       root.dataset.theme = theme;
       root.style.colorScheme = theme === "system" ? "light dark" : theme;
       document.querySelector("[data-theme-toggle]")?.setAttribute("data-theme-value", theme);
+      window.dispatchEvent(new CustomEvent("rhythm-theme-change", { detail: theme }));
     };
     apply(read());
     document.querySelector("[data-theme-toggle]")?.addEventListener("click", () => {
@@ -47,4 +49,3 @@ const urls = createUrlHelpers({ basePath: BASE_PATH, origin: "https://rhythmarch
     });
   })();
 </script>
-

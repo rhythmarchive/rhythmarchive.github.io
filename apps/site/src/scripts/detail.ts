@@ -7,6 +7,7 @@ if (root) {
       const variantId = button.dataset.variantSelect;
       if (!variantId) return;
       for (const panel of root.querySelectorAll<HTMLElement>("[data-variant-panel]")) panel.hidden = panel.dataset.variantPanel !== variantId;
+      for (const panel of root.querySelectorAll<HTMLElement>("[data-download-variant]")) panel.hidden = panel.dataset.downloadVariant !== variantId;
       for (const item of root.querySelectorAll<HTMLButtonElement>("[data-variant-select]")) {
         const active = item.dataset.variantSelect === variantId;
         item.classList.toggle("is-active", active);
@@ -19,4 +20,3 @@ if (root) {
     button.addEventListener("click", () => void downloadRendition(button));
   }
 }
-
