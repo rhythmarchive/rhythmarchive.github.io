@@ -1,0 +1,30 @@
+---
+import type { PublicVariant } from "../lib/types";
+import { formatBytes } from "../lib/format";
+
+interface Props {
+  variant: PublicVariant;
+}
+
+const { variant } = Astro.props;
+---
+
+<div class="download-panel" data-download-panel>
+  <div class="download-panel-heading">
+    <span class="section-kicker">下载</span>
+    <span data-download-status aria-live="polite"></span>
+  </div>
+  <div class="download-actions">
+    {variant.original ? (
+      <button class="download-button" type="button" data-download-kind="original" data-download-url={variant.original.url} data-download-filename={variant.original.downloadFilename}>
+        <span>原图</span><small>{formatBytes(variant.original.sizeBytes)}</small>
+      </button>
+    ) : null}
+    {variant.upscaled ? (
+      <button class="download-button is-accent" type="button" data-download-kind="upscaled" data-download-url={variant.upscaled.url} data-download-filename={variant.upscaled.downloadFilename}>
+        <span>AI 超分</span><small>{formatBytes(variant.upscaled.sizeBytes)}</small>
+      </button>
+    ) : null}
+  </div>
+</div>
+

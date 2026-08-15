@@ -1,0 +1,33 @@
+---
+import DownloadActions from "./DownloadActions.astro";
+import type { PublicVariant } from "../lib/types";
+
+interface Props {
+  variant: PublicVariant;
+  active?: boolean;
+  alt?: string;
+}
+
+const { variant, active = false, alt = "资源预览" } = Astro.props;
+const large = variant.preview.large ?? variant.preview.medium ?? variant.preview.small;
+const srcset = [variant.preview.medium ? `${variant.preview.medium.url} 640w` : "", variant.preview.large ? `${variant.preview.large.url} 1280w` : ""].filter(Boolean).join(", ");
+---
+
+<section class="variant-panel" data-variant-panel={variant.variantId} hidden={!active}>
+  <div class="detail-preview-frame">
+    {large ? (
+      <img
+        data-detail-image
+        src={large.url}
+        srcset={srcset || undefined}
+        sizes="(max-width: 760px) 100vw, 66vw"
+        alt={alt}
+        width={large.width}
+        height={large.height}
+        loading={active ? "eager" : "lazy"}
+        decoding="async"
+      />
+    ) : <div class="resource-card-placeholder">图片暂不可用</div>}
+  </div>
+  <DownloadActions variant={variant} />
+</section>

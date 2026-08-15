@@ -1,0 +1,65 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import VariantPanel from "../../../components/VariantPanel.astro";
+import ResourceCard from "../../../components/ResourceCard.astro";
+import { GAME_CONFIG } from "../../../lib/game-config";
+import { BASE_PATH, ROS_BASE_URL } from "../../../lib/site-config";
+import { getSiteData } from "../../../lib/site-data";
+import { createUrlHelpers } from "../../../lib/url";
+import type { PublicResource } from "../../../lib/types";
+
+const data = getSiteData();
+const urls = createUrlHelpers({ basePath: BASE_PATH, origin: "https://rhythmarchive.github.io", rosBaseUrl: ROS_BASE_URL });
+
+export function getStaticPaths() {
+  const siteData = getSiteData();
+  return siteData.resources.map((resource) => ({ params: { id: resource.resourceId }, props: { resource } }));
+}
+
+interface Props { resource: PublicResource; }
+const { resource } = Astro.props;
+const firstVariant = resource.variants[0];
+const related = data.resources
+  .filter((candidate) => candidate.resourceId !== resource.resourceId && candidate.game === resource.game && candidate.resourceType === resource.resourceType)
+  .sort((a, b) => a.resourceId.localeCompare(b.resourceId))
+  .slice(0, 6);
+const metadata = Object.entries(resource.metadata).filter(([key]) => key !== "artist" && GAME_CONFIG[resource.game].metadataLabels[key]);
+const preview = firstVariant?.preview.large?.url ?? firstVariant?.preview.medium?.url ?? firstVariant?.preview.small?.url;
+const description = `${resource.displayTitle} - ${GAME_CONFIG[resource.game].displayName} 图片资源。`;
+---
+
+<BaseLayout title={`${resource.displayTitle} - ${GAME_CONFIG[resource.game].displayName} | Rhythm Archive`} description={description} canonicalPath={resource.route} ogImage={preview} bodyClass="detail-page">
+  <div class="page-container detail-shell" data-detail-root>
+    <div class="detail-breadcrumb"><a href={urls.sitePath(`/${resource.game}/`)}>{GAME_CONFIG[resource.game].displayName}</a><span>/</span><span>{resource.categoryLabel}</span></div>
+    <div class="detail-layout">
+      <div class="detail-visual">
+        {resource.variants.length > 1 ? (
+          <div class="variant-tabs" role="tablist" aria-label="资源版本">
+            {resource.variants.map((variant, index) => <button class:list={{ "is-active": index === 0 }} type="button" data-variant-select={variant.variantId} role="tab" aria-selected={index === 0 ? "true" : "false"}>{variant.label}</button>)}
+          </div>
+        ) : null}
+        <div class="variant-panels">
+          {resource.variants.map((variant, index) => <VariantPanel variant={variant} active={index === 0} alt={resource.displayTitle} />)}
+        </div>
+      </div>
+      <aside class="detail-info">
+        <span class="section-kicker">{resource.categoryLabel}</span>
+        <h1>{resource.displayTitle}</h1>
+        {resource.artist ? <p class="detail-artist">{resource.artist}</p> : null}
+        <dl class="detail-meta">
+          <div><dt>游戏</dt><dd>{GAME_CONFIG[resource.game].displayName}</dd></div>
+          <div><dt>分类</dt><dd>{resource.categoryLabel}</dd></div>
+          {metadata.map(([key, value]) => <div><dt>{GAME_CONFIG[resource.game].metadataLabels[key]}</dt><dd>{String(value)}</dd></div>)}
+        </dl>
+        {resource.variants.length > 1 ? <p class="detail-note">可切换版本查看不同曲绘。</p> : null}
+      </aside>
+    </div>
+    {related.length > 0 ? (
+      <section class="related-section" aria-labelledby="related-heading">
+        <div class="section-heading"><div><span class="section-kicker">More like this</span><h2 id="related-heading">同类资源</h2></div></div>
+        <div class="resource-grid related-grid">{related.map((item, index) => <ResourceCard resource={item} index={index} />)}</div>
+      </section>
+    ) : null}
+  </div>
+  <script src="../../../scripts/detail.ts"></script>
+</BaseLayout>

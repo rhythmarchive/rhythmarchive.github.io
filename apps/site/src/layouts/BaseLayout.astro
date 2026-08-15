@@ -1,0 +1,54 @@
+---
+import Footer from "../components/Footer.astro";
+import SiteHeader from "../components/SiteHeader.astro";
+import { BASE_PATH, SITE_ORIGIN } from "../lib/site-config";
+import { createUrlHelpers } from "../lib/url";
+import "../styles/global.css";
+
+interface Props {
+  title: string;
+  description: string;
+  canonicalPath: string;
+  ogImage?: string | undefined;
+  bodyClass?: string;
+}
+
+const { title, description, canonicalPath, ogImage, bodyClass = "" } = Astro.props;
+const urls = createUrlHelpers({ basePath: BASE_PATH, origin: SITE_ORIGIN, rosBaseUrl: "https://rhythm-assets.cn-nb1.rains3.com" });
+const canonical = urls.absoluteUrl(canonicalPath);
+const socialImage = ogImage ?? urls.absoluteUrl("/brand-mark.svg");
+---
+
+<!doctype html>
+<html lang="zh-CN" data-theme="system" data-base-path={BASE_PATH}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#2d77d9" />
+    <link rel="icon" type="image/svg+xml" href={urls.sitePath("/favicon.svg")} />
+    <link rel="manifest" href={urls.sitePath("/site.webmanifest")} />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Rhythm Archive" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={socialImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <title>{title}</title>
+    <script is:inline>
+      (() => {
+        try {
+          const saved = localStorage.getItem("rhythm-archive-theme");
+          if (saved === "light" || saved === "dark" || saved === "system") document.documentElement.dataset.theme = saved;
+        } catch { /* system theme remains the default */ }
+      })();
+    </script>
+  </head>
+  <body class={bodyClass}>
+    <SiteHeader />
+    <main class="site-main"><slot /></main>
+    <Footer />
+  </body>
+</html>

@@ -1,0 +1,12 @@
+---
+import { BASE_PATH } from "../lib/site-config";
+import { createUrlHelpers } from "../lib/url";
+
+const urls = createUrlHelpers({ basePath: BASE_PATH, origin: "https://rhythmarchive.github.io", rosBaseUrl: "https://rhythm-assets.cn-nb1.rains3.com" });
+---
+
+<a class="brand-mark" href={urls.sitePath("/")} aria-label="Rhythm Archive 首页">
+  <img src={urls.sitePath("/brand-mark.svg")} alt="" width="32" height="32" />
+  <span class="brand-wordmark"><span>Rhythm</span> <em>Archive</em></span>
+</a>
+

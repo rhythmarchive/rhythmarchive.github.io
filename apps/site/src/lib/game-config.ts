@@ -1,0 +1,97 @@
+import type { Resource } from "../../../../packages/domain/src/schema.js";
+
+export type GameId = Resource["game"];
+export type ResourceTypeId = Resource["resourceType"];
+
+export type GameConfig = {
+  slug: GameId;
+  displayName: string;
+  categoryOrder: ResourceTypeId[];
+  featuredCategories: ResourceTypeId[];
+  filters: {
+    difficulty: boolean;
+    upscale: boolean;
+  };
+  metadataLabels: Record<string, string>;
+};
+
+export const CATEGORY_LABELS: Record<ResourceTypeId, string> = {
+  jacket: "曲绘",
+  "character-portrait": "角色立绘",
+  "character-avatar": "头像",
+  "story-cg": "剧情 CG",
+  "story-texture": "剧情贴图",
+  "pack-cover": "曲包封面",
+  background: "游玩背景",
+  "linkplay-preview": "LinkPlay",
+  sticker: "LinkPlay 贴纸",
+  "world-mode": "世界模式",
+  startup: "启动页面",
+  "phigros-april-fools": "April Fools",
+  other: "其他",
+};
+
+export const GAME_CONFIG: Record<GameId, GameConfig> = {
+  arcaea: {
+    slug: "arcaea",
+    displayName: "Arcaea",
+    categoryOrder: [
+      "jacket",
+      "pack-cover",
+      "character-portrait",
+      "character-avatar",
+      "story-cg",
+      "story-texture",
+      "background",
+      "linkplay-preview",
+      "sticker",
+      "world-mode",
+      "startup",
+      "other",
+    ],
+    featuredCategories: ["jacket", "character-portrait", "story-cg", "background", "pack-cover"],
+    filters: { difficulty: true, upscale: true },
+    metadataLabels: {
+      artist: "曲师",
+      pack: "曲包",
+      packName: "曲包",
+      side: "Side",
+      version: "版本",
+      bpm: "BPM",
+      characterName: "角色",
+      characterVariant: "角色版本",
+      storyPathTitle: "剧情章节",
+      storyType: "剧情类型",
+    },
+  },
+  phigros: {
+    slug: "phigros",
+    displayName: "Phigros",
+    categoryOrder: ["jacket", "character-avatar", "pack-cover", "phigros-april-fools", "other"],
+    featuredCategories: ["jacket", "pack-cover", "character-avatar", "phigros-april-fools"],
+    filters: { difficulty: false, upscale: false },
+    metadataLabels: {
+      artist: "曲师",
+      pack: "曲包",
+      packName: "曲包",
+      version: "版本",
+      characterName: "角色",
+    },
+  },
+};
+
+export function categoryLabel(resourceType: ResourceTypeId): string {
+  return CATEGORY_LABELS[resourceType] ?? "其他";
+}
+
+export function categoryOrderIndex(game: GameId, resourceType: ResourceTypeId): number {
+  const index = GAME_CONFIG[game].categoryOrder.indexOf(resourceType);
+  return index === -1 ? GAME_CONFIG[game].categoryOrder.length : index;
+}
+
+export function displayVariantLabel(variant: { variantKey: string; difficulty?: string | undefined; semanticStatus: string }): string {
+  if (variant.difficulty) return variant.difficulty;
+  if (variant.semanticStatus === "unresolved" || variant.variantKey.includes("256")) return "其他版本";
+  if (variant.variantKey === "default") return "默认";
+  return "其他版本";
+}

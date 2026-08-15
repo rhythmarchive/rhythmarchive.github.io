@@ -7,9 +7,14 @@
     "node": ">=22.12.0"
   },
   "scripts": {
-    "test": "tsx --test packages/domain/tests/*.test.ts packages/admin/tests/*.test.ts",
+    "test": "tsx --test packages/domain/tests/*.test.ts packages/admin/tests/*.test.ts apps/site/tests/*.test.ts",
     "admin": "node --env-file-if-exists=.env --import tsx packages/admin/src/server.ts",
     "typecheck": "tsc --noEmit",
+    "site:dev": "tsx apps/site/scripts/generate-public-data.ts && astro dev --root apps/site",
+    "site:check": "tsx apps/site/scripts/generate-public-data.ts && astro check --root apps/site",
+    "site:build": "tsx apps/site/scripts/generate-public-data.ts && astro build --root apps/site",
+    "site:preview": "astro preview --root apps/site",
+    "site:smoke": "tsx apps/site/scripts/smoke.ts",
     "test:all": "npm run typecheck && npm test",
     "experiment:upscale": "tsx tools/upscale-experiment.ts",
     "experiment:upscale:phase2b": "tsx tools/phase2b-upscale-experiment.ts",
@@ -23,6 +28,9 @@
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.1110.0",
+    "@astrojs/check": "^0.9.4",
+    "astro": "^6.3.1",
+    "fflate": "^0.8.2",
     "sharp": "^0.34.5",
     "zod": "^3.25.76"
   },

@@ -12,6 +12,11 @@ test-results/
 playwright-report/
 .playwright-cli/
 
+# Astro public projection generated from the frozen formal Catalog
+apps/site/.astro/
+apps/site/src/generated/
+apps/site/public/data/
+
 # Local configuration and secrets
 .env
 .env.*

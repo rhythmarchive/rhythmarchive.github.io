@@ -1,0 +1,80 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SearchBox from "../components/SearchBox.astro";
+import { formatCount } from "../lib/format";
+import { BASE_PATH, ROS_BASE_URL } from "../lib/site-config";
+import { readApkManifest, publicApkDownloads } from "../lib/apk";
+import { findWorkspaceRoot, getSiteData } from "../lib/site-data";
+import { createUrlHelpers } from "../lib/url";
+
+const data = getSiteData();
+const urls = createUrlHelpers({ basePath: BASE_PATH, origin: "https://rhythmarchive.github.io", rosBaseUrl: ROS_BASE_URL });
+const games = data.games;
+const gameResources = new Map(games.map((game) => [game.slug, data.resources.filter((resource) => resource.game === game.slug)]));
+const featuredCategories = games.flatMap((game) => game.featuredCategories.slice(0, 3).map((category) => ({ ...category, game: game.slug, gameName: game.displayName })));
+const apkDownloads = publicApkDownloads(readApkManifest(findWorkspaceRoot()), ROS_BASE_URL).filter((record) => record.game === "arcaea");
+const homeImage = data.resources.find((resource) => resource.preview.medium)?.preview.medium?.url;
+const description = "浏览并下载 Arcaea、Phigros 的曲绘、角色立绘、剧情 CG 与其他游戏图片资源。";
+---
+
+<BaseLayout title="Rhythm Archive | Arcaea / Phigros 图片资源下载站" description={description} canonicalPath="/" ogImage={homeImage} bodyClass="home-page">
+  <div data-site-base data-site-base-value={BASE_PATH}></div>
+  <section class="home-intro page-container">
+    <div class="home-intro-copy">
+      <span class="archive-kicker">IMAGE ARCHIVE</span>
+      <h1>Rhythm Archive</h1>
+      <p>{description}</p>
+    </div>
+    <SearchBox />
+  </section>
+
+  <section class="page-container home-games" aria-labelledby="games-heading">
+    <div class="section-heading">
+      <div><span class="section-kicker">Browse</span><h2 id="games-heading">选择游戏</h2></div>
+      <span class="section-heading-note">按游戏浏览全部资源</span>
+    </div>
+    <div class="game-entry-grid">
+      {games.map((game) => {
+        const image = gameResources.get(game.slug)?.find((resource) => resource.preview.medium)?.preview.medium;
+        return (
+          <a class={`game-entry-card game-${game.slug}`} href={urls.sitePath(`/${game.slug}/`)}>
+            <div class="game-entry-image">
+              {image ? <img src={image.url} alt="" width={image.width} height={image.height} loading="lazy" decoding="async" /> : <span>图片暂不可用</span>}
+              <span class="game-entry-mark">{game.slug === "arcaea" ? "A" : "P"}</span>
+            </div>
+            <div class="game-entry-copy">
+              <div><h3>{game.displayName}</h3><span>{formatCount(game.count)} 项资源</span></div>
+              <p>{game.categories.slice(0, 3).map((category) => category.label).join(" · ")}</p>
+            </div>
+            <span class="arrow-link" aria-hidden="true">↗</span>
+          </a>
+        );
+      })}
+    </div>
+  </section>
+
+  <section class="page-container home-categories" aria-labelledby="categories-heading">
+    <div class="section-heading">
+      <div><span class="section-kicker">Collections</span><h2 id="categories-heading">主要资源分类</h2></div>
+        <span class="section-heading-note">按分类浏览</span>
+    </div>
+    <div class="featured-category-grid">
+      {featuredCategories.map((category) => (
+        <a class="category-tile" href={urls.sitePath(`/${category.game}/${category.slug}/`)}>
+          <span class="category-tile-game">{category.gameName}</span>
+          <strong>{category.label}</strong>
+          <span>{formatCount(category.count)} 项</span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  {apkDownloads.length > 0 ? (
+    <section class="page-container home-apk" aria-labelledby="apk-heading">
+      <div class="section-heading"><div><span class="section-kicker">Optional</span><h2 id="apk-heading">Arcaea APK</h2></div></div>
+      <div class="apk-card">
+        {apkDownloads.map((record) => <a href={record.url} target="_blank" rel="noopener noreferrer"><strong>{record.version}</strong><span>{record.filename}</span><small>直接下载</small></a>)}
+      </div>
+    </section>
+  ) : null}
+</BaseLayout>

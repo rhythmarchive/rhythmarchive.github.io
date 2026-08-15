@@ -1,0 +1,23 @@
+---
+import { BASE_PATH } from "../lib/site-config";
+import { createUrlHelpers } from "../lib/url";
+
+interface Props {
+  compact?: boolean;
+  initialQuery?: string;
+  label?: string;
+}
+
+const { compact = false, initialQuery = "", label = "搜索资源" } = Astro.props;
+const urls = createUrlHelpers({ basePath: BASE_PATH, origin: "https://rhythmarchive.github.io", rosBaseUrl: "https://rhythm-assets.cn-nb1.rains3.com" });
+---
+
+<form class:list={["search-box", { "is-compact": compact }]} action={urls.sitePath("/search/")} method="get" role="search" data-search-entry>
+  <label class="sr-only" for={`search-${compact ? "compact" : "main"}`}>{label}</label>
+  <svg class="search-box-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.3"/><path d="m16 16 4.5 4.5"/></svg>
+  <input id={`search-${compact ? "compact" : "main"}`} name="q" type="search" value={initialQuery} placeholder="搜索曲名、曲师或文件名" autocomplete="off" />
+  <button type="submit">搜索</button>
+</form>
+
+<script src="../scripts/search-entry.ts"></script>
+

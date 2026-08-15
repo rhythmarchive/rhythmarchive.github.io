@@ -1,0 +1,17 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { BASE_PATH } from "../lib/site-config";
+import { createUrlHelpers } from "../lib/url";
+
+const urls = createUrlHelpers({ basePath: BASE_PATH, origin: "https://rhythmarchive.github.io", rosBaseUrl: "https://rhythm-assets.cn-nb1.rains3.com" });
+---
+
+<BaseLayout title="页面不存在 | Rhythm Archive" description="这个页面不存在。" canonicalPath="/404.html" bodyClass="error-page">
+  <section class="page-container error-card">
+    <span class="archive-kicker">404 / ARCHIVE</span>
+    <h1>页面不存在</h1>
+    <p>换一个分类，或者回到首页继续浏览。</p>
+    <a class="button button-primary" href={urls.sitePath("/")}>回到首页</a>
+  </section>
+</BaseLayout>
+

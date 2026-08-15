@@ -1,0 +1,22 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import SearchBox from "../../components/SearchBox.astro";
+
+const query = Astro.url.searchParams.get("q") ?? "";
+const description = "搜索 Arcaea 与 Phigros 的曲绘、角色立绘、剧情 CG 和其他图片资源。";
+---
+
+<BaseLayout title="搜索资源 | Rhythm Archive" description={description} canonicalPath="/search/" bodyClass="search-page">
+  <section class="page-container search-page-head">
+    <span class="archive-kicker">SEARCH / ARCHIVE</span>
+    <h1>搜索资源</h1>
+    <p>按曲名、曲师或文件名查找。</p>
+    <SearchBox initialQuery={query} />
+  </section>
+  <section class="page-container search-results" data-search-page data-search-query={query}>
+    <div class="search-results-heading"><span data-search-status aria-live="polite">输入关键词开始搜索</span></div>
+    <div class="resource-grid" data-search-results></div>
+  </section>
+  <script src="../../scripts/search-page.ts"></script>
+</BaseLayout>
+
