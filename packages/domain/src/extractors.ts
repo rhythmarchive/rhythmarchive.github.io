@@ -16,6 +16,7 @@ import {
 import { applyReviewPolicy, isUpscaleEligible, type GameReviewPolicyInput } from "./review.js";
 import { createUuidV7 } from "./identity.js";
 import { createVersionWorkspace, type CandidateManifestAdapterInput, type CreateWorkspaceOptions, type WorkspaceHandle } from "./workspace.js";
+import { atomicWriteJson } from "./catalog.js";
 
 const UUIDV7 = z.string().regex(/^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i);
 const ABSOLUTE_PATH = z.string().min(1);
@@ -69,6 +70,22 @@ export const ExtractorCandidate = z.object({
   provenance: CandidateProvenanceSchema,
 });
 
+export const ExtractorSourceInventoryRecord = z.object({
+  resourceType: ResourceType,
+  sourceKey: z.string().min(1).optional(),
+  sourceKeyType: z.string().min(1).optional(),
+  variantKey: z.string().min(1).optional(),
+  bundle: z.string().min(1).optional(),
+  objectName: z.string().min(1).optional(),
+  objectPathId: z.string().min(1).optional(),
+  sourceRelativePath: z.string().min(1).optional(),
+  width: z.number().int().positive().optional(),
+  height: z.number().int().positive().optional(),
+  bundleHash: z.string().min(1).optional(),
+  imageContentHash: z.string().regex(/^[0-9a-f]{64}$/i).optional(),
+  metadata: z.record(z.unknown()).default({}),
+});
+
 export const ExtractorResult = z.object({
   status: z.enum(["ok", "blocked", "failed"]),
   game: z.enum(["arcaea", "phigros"]),
@@ -80,6 +97,7 @@ export const ExtractorResult = z.object({
   sourceSnapshot: z.string().min(1),
   extractorVersion: z.string().min(1),
   candidates: z.array(ExtractorCandidate),
+  sourceInventory: z.array(ExtractorSourceInventoryRecord).default([]),
   diagnostics: z.array(ExtractorDiagnostic).default([]),
   limitations: z.array(z.string().min(1)).default([]),
 });
@@ -87,6 +105,7 @@ export const ExtractorResult = z.object({
 export type ExtractorDiagnostic = z.infer<typeof ExtractorDiagnostic>;
 export type ExtractorApk = z.infer<typeof ExtractorApk>;
 export type ExtractorCandidate = z.infer<typeof ExtractorCandidate>;
+export type ExtractorSourceInventoryRecord = z.infer<typeof ExtractorSourceInventoryRecord>;
 export type ExtractorResult = z.infer<typeof ExtractorResult>;
 
 export class ExtractorAdapterError extends Error {
@@ -201,7 +220,7 @@ function assertKnownPhigrosCategory(category: string): void {
   }
 }
 
-function evidence(kind: "apk-relative-path" | "metadata" | "filename-parser" | "manual-note", detail: string, confidence: "high" | "medium" | "low" | "unknown") {
+function evidence(kind: "apk-relative-path" | "metadata" | "filename-parser" | "sha256" | "manual-note", detail: string, confidence: "high" | "medium" | "low" | "unknown") {
   return { kind, detail, confidence } as const;
 }
 
@@ -288,9 +307,10 @@ export async function adaptArcaeaLegacyReport(options: ArcaeaLegacyAdapterOption
     const packMatch = portable(item.sourcePath).match(/^songs\/pack\/([^/]+)/i);
     const exactIdentity = resourceType === "jacket" ? Boolean(context.songId && context.song) : Boolean(context.songId || characterId !== undefined || packMatch);
     const identityList: Array<z.infer<typeof ExternalIdentity>> = [];
-    if (context.songId && context.song) identityList.push({ namespace: "arcaea", key: "songId", value: context.songId, source: "apk-metadata", confidence: "high" });
+    if (context.songId) identityList.push({ namespace: "arcaea", key: "songId", value: context.songId, source: context.song ? "apk-metadata" : "filename", confidence: context.song ? "high" : "medium" });
     if (packMatch) identityList.push({ namespace: "arcaea", key: "packId", value: packMatch[1]!, source: "apk-metadata", confidence: packs.has(packMatch[1]!) ? "high" : "medium" });
-    if (characterId !== undefined) identityList.push({ namespace: "arcaea", key: "characterId", value: String(characterId), source: "apk-metadata", confidence: character ? "high" : "medium" });
+    if (characterId !== undefined) identityList.push({ namespace: "arcaea", key: "characterId", value: String(characterId), source: character ? "apk-metadata" : "filename", confidence: character ? "high" : "medium" });
+    if (identityList.length === 0) identityList.push({ namespace: "arcaea", key: "path", value: portable(item.sourcePath), source: "filename", confidence: "high" });
     const variantKey = context.difficultyCode ?? "default";
     const mappingEvidence = [
       evidence("apk-relative-path", `legacy Arcaea source path: ${portable(item.sourcePath)}`, "high"),
@@ -351,7 +371,10 @@ export async function adaptArcaeaLegacyReport(options: ArcaeaLegacyAdapterOption
       confidence: context.song ? "high" : exactIdentity ? "medium" : "low",
       evidence: mappingEvidence,
       reviewRequirements,
-      requiresUpscale: false,
+      // Arcaea jackets enter the local upscale queue after review. The
+      // workspace repeats this guard, so non-jacket resources can never
+      // become upscale work through an extractor hint.
+      requiresUpscale: isUpscaleEligible("arcaea", resourceType),
       ...(reviewRequirements.identityReviewRequired ? { initialStatus: "BLOCKED", blockedReason: "Arcaea song identity could not be resolved from APK metadata" } : {}),
       provenance,
     }));
@@ -390,7 +413,8 @@ async function readOptionalJson<T>(filePath: string): Promise<T | undefined> {
 
 type PhigrosReport = {
   outputDir?: string;
-  exported?: Array<{ category?: string; outputPath?: string; bundle?: string; objectName?: string; width?: number; height?: number; nameSource?: string; sourceKey?: string | null }>;
+  sourceInventory?: Array<{ category?: string; bundle?: string; objectName?: string; objectPathId?: string; sourceRelativePath?: string; sourceKey?: string | null; sourceKeyType?: string; variantKey?: string; width?: number; height?: number; bundleHash?: string; imageContentHash?: string; metadata?: Record<string, unknown> }>;
+  exported?: Array<{ category?: string; outputPath?: string; bundle?: string; objectName?: string; objectPathId?: string; width?: number; height?: number; nameSource?: string; sourceKey?: string | null; detection?: "added" | "changed" | "renamed" | "unknown"; bundleHash?: string; imageContentHash?: string }>;
 };
 
 function phigrosTrackContext(sourceKey: string | undefined) {
@@ -417,6 +441,25 @@ export async function adaptPhigrosLegacyReport(options: PhigrosLegacyAdapterOpti
   const reportDir = path.dirname(options.reportPath);
   const outputDir = path.resolve(reportDir, report.outputDir ?? ".");
   const exported = report.exported ?? [];
+  const sourceInventory = (report.sourceInventory ?? []).map((item) => {
+    if (!item.category) throw new ExtractorAdapterError("Phigros source inventory contains an incomplete category", [{ code: "MALFORMED_EXTRACTOR_REPORT", severity: "error", message: "source inventory entry lacks category", evidence: [] }]);
+    assertKnownPhigrosCategory(item.category);
+    return {
+      resourceType: phigrosCategory(item.category),
+      ...(item.sourceKey ? { sourceKey: item.sourceKey } : {}),
+      ...(item.sourceKeyType ? { sourceKeyType: item.sourceKeyType } : {}),
+      ...(item.variantKey ? { variantKey: item.variantKey } : {}),
+      ...(item.bundle ? { bundle: portable(item.bundle) } : {}),
+      ...(item.objectName ? { objectName: item.objectName } : {}),
+      ...(item.objectPathId ? { objectPathId: item.objectPathId } : {}),
+      ...(item.sourceRelativePath ? { sourceRelativePath: portable(item.sourceRelativePath) } : {}),
+      ...(item.width ? { width: item.width } : {}),
+      ...(item.height ? { height: item.height } : {}),
+      ...(item.bundleHash ? { bundleHash: item.bundleHash } : {}),
+      ...(item.imageContentHash ? { imageContentHash: item.imageContentHash } : {}),
+      metadata: item.metadata ?? {},
+    };
+  });
   const candidates: ExtractorCandidate[] = [];
   for (const item of exported) {
     if (!item.outputPath || !item.category || !item.bundle) throw new ExtractorAdapterError("Phigros legacy report contains an incomplete exported entry", [{ code: "MALFORMED_EXTRACTOR_REPORT", severity: "error", message: "exported entry lacks category, outputPath, or bundle", evidence: [] }]);
@@ -433,6 +476,8 @@ export async function adaptPhigrosLegacyReport(options: PhigrosLegacyAdapterOpti
       evidence("apk-relative-path", `Addressables bundle: ${portable(item.bundle)}`, "medium"),
       ...(sourceKey ? [evidence("metadata", `Addressables key: ${sourceKey}`, exactKey ? "high" : "medium")] : [evidence("manual-note", "legacy extractor exported without a catalog key", "low")]),
       ...(item.objectName ? [evidence("filename-parser", `Texture2D object: ${item.objectName}`, "medium")] : []),
+      ...(item.objectPathId ? [evidence("metadata", `Unity object path id: ${item.objectPathId}`, "high")] : []),
+      ...(item.imageContentHash ? [evidence("sha256", `image-content-sha256:${item.imageContentHash}`, "high")] : []),
     ];
     const reviewRequirements = policy({
       game: "phigros",
@@ -446,7 +491,11 @@ export async function adaptPhigrosLegacyReport(options: PhigrosLegacyAdapterOpti
       metadataComplete: Boolean(context.title && context.artist),
     });
     const metadata = safeMetadata({ artist: context.artist, addressablesKey: sourceKey, bundle: portable(item.bundle), objectName: item.objectName, legacyCategory: item.category });
-    const identity = sourceKey ? [{ namespace: "phigros", key: "addressablesKey", value: sourceKey, source: "phigros-key" as const, confidence: exactKey ? "high" as const : "medium" as const }] : [];
+    const identity = sourceKey
+      ? [{ namespace: "phigros", key: "addressablesKey", value: sourceKey, source: "phigros-key" as const, confidence: exactKey ? "high" as const : "medium" as const }]
+      : item.objectPathId
+        ? [{ namespace: "phigros", key: "bundleObject", value: `${portable(item.bundle)}::${item.objectPathId}`, source: "unknown" as const, confidence: "medium" as const }]
+        : [];
     const provenance: CandidateProvenance = {
       baseVersion: options.baseVersion,
       targetVersion: options.targetVersion,
@@ -456,6 +505,9 @@ export async function adaptPhigrosLegacyReport(options: PhigrosLegacyAdapterOpti
       sourceHash: sourceStats.sha256,
       addressablesKey: sourceKey,
       bundleName: portable(item.bundle),
+      ...(item.objectPathId ? { objectPathId: item.objectPathId } : {}),
+      ...(item.bundleHash ? { bundleHash: item.bundleHash } : {}),
+      ...(item.imageContentHash ? { imageContentHash: item.imageContentHash } : {}),
       objectName: item.objectName,
       dimensions: item.width && item.height ? { width: item.width, height: item.height } : undefined,
       originalFilename: suggestedFilename,
@@ -469,7 +521,7 @@ export async function adaptPhigrosLegacyReport(options: PhigrosLegacyAdapterOpti
       sourceApkVersion: options.targetVersion,
       sourceApkFilename: options.targetApk.filename,
       sourceSha256: sourceStats.sha256,
-      detection: "added",
+      detection: item.detection ?? "added",
       suggestedFilename,
       ...(context.title ? { suggestedTitle: context.title } : {}),
       ...(context.artist ? { suggestedArtist: context.artist } : {}),
@@ -497,8 +549,9 @@ export async function adaptPhigrosLegacyReport(options: PhigrosLegacyAdapterOpti
     sourceSnapshot: options.sourceSnapshot ?? `${options.baseVersion}->${options.targetVersion}`,
     extractorVersion: "legacy-extract-phigros-update@v2-adapter",
     candidates,
+    sourceInventory,
     diagnostics,
-    limitations: ["Legacy Phigros extractor compares only new catalog keys and new bundle files; changed contents inside an existing bundle remain unresolved."],
+    limitations: ["Phase 6 compares same-path Phigros bundles by extracted image content hash; missing display-key mapping remains a human review item."],
   });
 }
 
@@ -541,6 +594,8 @@ export function extractorResultToAdapterInput(result: ExtractorResult): Candidat
       reviewRequirements: candidate.reviewRequirements,
       ...(candidate.initialStatus ? { initialStatus: candidate.initialStatus } : {}),
       ...(candidate.blockedReason ? { blockedReason: candidate.blockedReason } : {}),
+      // The extractor proposes the step; the workspace re-checks the game
+      // and resource type so a caller cannot opt an ineligible asset in.
       requiresUpscale: isUpscaleEligible(parsed.game, candidate.suggestedCategory) && candidate.requiresUpscale,
       provenance: candidate.provenance,
     })),
@@ -555,7 +610,7 @@ export async function createWorkspaceFromExtractorResult(result: ExtractorResult
   const parsed = ExtractorResult.parse(result);
   if (parsed.status === "failed") throw new ExtractorAdapterError("cannot create a workspace from a failed extractor result", parsed.diagnostics);
   const sourceManifest = extractorResultToAdapterInput(parsed);
-  return createVersionWorkspace({
+  const workspace = await createVersionWorkspace({
     ...options,
     rootPath: options.rootPath,
     game: parsed.game,
@@ -566,4 +621,13 @@ export async function createWorkspaceFromExtractorResult(result: ExtractorResult
     targetApk: parsed.targetApk,
     extractorVersion: parsed.extractorVersion,
   });
+  if (parsed.sourceInventory.length > 0) {
+    await atomicWriteJson(path.join(workspace.rootPath, "metadata", "source-inventory.json"), {
+      schemaVersion: "1.0",
+      game: parsed.game,
+      targetVersion: parsed.targetVersion,
+      records: parsed.sourceInventory.map((record) => ({ ...record, game: parsed.game })),
+    });
+  }
+  return workspace;
 }

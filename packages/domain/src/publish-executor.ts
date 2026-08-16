@@ -1,5 +1,5 @@
 import { createReadStream } from "node:fs";
-import { stat } from "node:fs/promises";
+import { realpath, stat } from "node:fs/promises";
 import path from "node:path";
 import {
   AssetObject,
@@ -15,11 +15,12 @@ import {
   type UpdateBatch,
 } from "./schema.js";
 import { objectIdFromSha256 } from "./identity.js";
-import { effectiveCandidateMetadata, effectiveCandidateResourceType, effectiveCandidateTitle, effectiveCandidateVariantKey } from "./review.js";
+import { effectiveCandidateMetadata, effectiveCandidateResourceType, effectiveCandidateTitle, effectiveCandidateVariantKey, isUpscaleEligible } from "./review.js";
 import { checkWorkspaceRawIntegrity, sha256File } from "./workspace.js";
 import { validateCandidate, validateCatalog, validatePublishPlan, validatePublishPlanConsistency, validateReleaseManifestConsistency } from "./validation.js";
 import { DEFAULT_CATALOG_PATH, DEFAULT_CATALOG_RELEASES_PATH, writeCatalogAndReleaseAtomic } from "./catalog.js";
 import { StorageError, type StorageClient, IMMUTABLE_OBJECT_CACHE_CONTROL } from "./storage.js";
+import { readPreviewPlan, readPublishFileMap, type PreviewArtifact } from "./publish.js";
 
 export type PublishProgressStage = "validate" | "check" | "upload" | "verify" | "catalog" | "release" | "complete";
 
@@ -42,8 +43,6 @@ export type PublishExecutorOptions = {
   releasesDirectory?: string;
   now?: Date | string;
   onProgress?: (progress: PublishProgress) => void;
-  writeCatalog?: (catalog: CatalogType) => Promise<void>;
-  writeReleaseManifest?: (manifest: ReleaseManifestType) => Promise<void>;
 };
 
 export type PublishExecutionResult = {
@@ -75,10 +74,21 @@ function timestamp(value?: Date | string): string {
 }
 
 function inside(rootPath: string, targetPath: string): boolean {
-  const root = path.resolve(rootPath);
-  const target = path.resolve(targetPath);
+  const normalize = (value: string) => process.platform === "win32" ? value.toLowerCase() : value;
+  const root = normalize(path.resolve(rootPath));
+  const target = normalize(path.resolve(targetPath));
   const prefix = root.endsWith(path.sep) ? root : `${root}${path.sep}`;
   return target === root || target.startsWith(prefix);
+}
+
+async function realWorkspaceFile(workspaceRoot: string, absolutePath: string): Promise<string | undefined> {
+  if (!inside(workspaceRoot, absolutePath)) return undefined;
+  try {
+    const [realRoot, realFile] = await Promise.all([realpath(workspaceRoot), realpath(absolutePath)]);
+    return inside(realRoot, realFile) ? realFile : undefined;
+  } catch {
+    return undefined;
+  }
 }
 
 function finalFile(candidate: Candidate): Candidate["files"][number] {
@@ -97,9 +107,11 @@ function activeCandidates(candidates: Candidate[], batch: UpdateBatch): Candidat
   if (batch.candidateIds.length !== candidates.length || !batch.candidateIds.every((id) => candidates.some((candidate) => candidate.id === id))) {
     throw new PublishExecutionError("VALIDATION_FAILED", "UpdateBatch and Candidate state do not match.");
   }
-  const active = candidates.filter((candidate) => candidate.status !== "REJECTED");
+  const active = candidates.filter((candidate) => candidate.status !== "REJECTED" && candidate.review.disposition === "active");
   for (const candidate of active) {
     if (candidate.status !== "READY" || candidate.batchId !== batch.id) throw new PublishExecutionError("VALIDATION_FAILED", "All active Candidates must be READY before publishing.");
+    if (candidate.processing.requiresUpscale && !candidate.target?.sourceRenditionId) throw new PublishExecutionError("VALIDATION_FAILED", `Candidate ${candidate.id} has no stable original sourceRenditionId.`);
+    if (candidate.processing.requiresUpscale && !isUpscaleEligible(batch.game, effectiveCandidateResourceType(candidate))) throw new PublishExecutionError("VALIDATION_FAILED", `Candidate ${candidate.id} is not eligible for upscale.`);
     const validation = validateCandidate(candidate);
     if (!validation.success) throw new PublishExecutionError("VALIDATION_FAILED", "A Candidate failed publish validation.");
   }
@@ -108,8 +120,13 @@ function activeCandidates(candidates: Candidate[], batch: UpdateBatch): Candidat
 
 function candidateForObject(candidates: Candidate[], objectId: string): { candidate: Candidate; file: Candidate["files"][number] } | undefined {
   for (const candidate of candidates) {
-    const file = finalFile(candidate);
-    if (file.sha256 && objectIdFromSha256(file.sha256) === objectId) return { candidate, file };
+    const files = [
+      ...candidate.files.filter((file) => file.role === "work-original" && file.availability === "present"),
+      finalFile(candidate),
+    ];
+    for (const file of files) {
+      if (file.sha256 && objectIdFromSha256(file.sha256) === objectId) return { candidate, file };
+    }
   }
   return undefined;
 }
@@ -143,7 +160,31 @@ function objectFromPlan(object: PublishPlan["objectsToCreate"][number], candidat
   });
 }
 
-function buildCatalog(options: { catalog: CatalogType; manifest: ReleaseManifestType; batch: UpdateBatch; candidates: Candidate[]; plan: PublishPlan; now: string }): CatalogType {
+function objectFromPreviewPlan(object: PublishPlan["objectsToCreate"][number], artifact: PreviewArtifact, candidate: Candidate, now: string) {
+  return AssetObject.parse({
+    catalogSchemaVersion: "1.0",
+    id: object.objectId,
+    sha256: object.sha256,
+    mime: object.mime,
+    extension: "webp",
+    sizeBytes: object.sizeBytes,
+    width: artifact.pixelWidth ?? artifact.width,
+    height: artifact.height,
+    alpha: "none",
+    objectKey: object.objectKey,
+    createdAt: now,
+    provenance: [{
+      sourceType: candidate.sourceEvidence.sourceType,
+      sourceRelativePath: artifact.relativePath,
+      sourceFilename: artifact.downloadFilename,
+      sourceSha256: object.sha256,
+      ...(candidate.sourceEvidence.sourceGameVersion ? { gameVersion: candidate.sourceEvidence.sourceGameVersion } : {}),
+      evidence: [{ kind: "metadata", detail: `preview generated from ${artifact.sourceObjectId}`, confidence: "high" }],
+    }],
+  });
+}
+
+function buildCatalog(options: { catalog: CatalogType; manifest: ReleaseManifestType; batch: UpdateBatch; candidates: Candidate[]; plan: PublishPlan; previewArtifacts: PreviewArtifact[]; now: string }): CatalogType {
   const active = activeCandidates(options.candidates, options.batch);
   const resources = [...options.catalog.resources];
   const variants = [...options.catalog.variants];
@@ -154,8 +195,15 @@ function buildCatalog(options: { catalog: CatalogType; manifest: ReleaseManifest
   for (const objectToCreate of options.plan.objectsToCreate) {
     if (objectIds.has(objectToCreate.objectId)) continue;
     const match = candidateForObject(active, objectToCreate.objectId);
-    if (!match) throw new PublishExecutionError("OBJECT_NOT_FOUND", `PublishPlan object ${objectToCreate.objectKey} has no workspace file.`, objectToCreate.objectKey);
-    objects.push(objectFromPlan(objectToCreate, match.candidate, match.file, options.now));
+    if (match) {
+      objects.push(objectFromPlan(objectToCreate, match.candidate, match.file, options.now));
+      objectIds.add(objectToCreate.objectId);
+      continue;
+    }
+    const preview = options.previewArtifacts.find((artifact) => artifact.objectId === objectToCreate.objectId);
+    const previewCandidate = preview ? active.find((candidate) => candidate.id === preview.candidateId) : undefined;
+    if (!preview || !previewCandidate) throw new PublishExecutionError("OBJECT_NOT_FOUND", `PublishPlan object ${objectToCreate.objectKey} has no workspace file.`, objectToCreate.objectKey);
+    objects.push(objectFromPreviewPlan(objectToCreate, preview, previewCandidate, options.now));
     objectIds.add(objectToCreate.objectId);
   }
 
@@ -226,20 +274,21 @@ function buildCatalog(options: { catalog: CatalogType; manifest: ReleaseManifest
 
     const existingRendition = renditions.find((rendition) => rendition.id === target.renditionId);
     const renditionType = candidate.processing.requiresUpscale ? "upscaled" : "original";
+    const sourceRenditionId = renditionType === "upscaled" ? target.sourceRenditionId ?? existingRendition?.sourceRenditionId : undefined;
+    if (renditionType === "upscaled" && !sourceRenditionId) throw new PublishExecutionError("VALIDATION_FAILED", `Candidate ${candidate.id} has no stable original sourceRenditionId.`);
     if (existingRendition) {
       renditions[renditions.indexOf(existingRendition)] = Rendition.parse({
         ...existingRendition,
+        renditionType,
+        origin: renditionType === "original" ? "source" : "derived",
+        sourceRenditionId,
+        generatedBy: renditionType === "upscaled" ? "converter" : "extractor",
         objectId,
         downloadFilename,
         displayFilename: undefined,
         publishable: true,
       });
     } else {
-      let sourceRenditionId: string | undefined;
-      if (renditionType === "upscaled") {
-        sourceRenditionId = renditions.find((rendition) => rendition.variantId === target.variantId && rendition.renditionType === "original")?.id;
-        if (!sourceRenditionId) throw new PublishExecutionError("VALIDATION_FAILED", `Upscaled Candidate ${candidate.id} has no original Rendition in the Catalog.`);
-      }
       renditions.push(Rendition.parse({
         catalogSchemaVersion: "1.0",
         id: target.renditionId,
@@ -251,6 +300,70 @@ function buildCatalog(options: { catalog: CatalogType; manifest: ReleaseManifest
         downloadFilename,
         ...(sourceRenditionId ? { sourceRenditionId } : {}),
         generatedBy: renditionType === "upscaled" ? "converter" : "extractor",
+        createdAt: options.now,
+      }));
+    }
+
+    if (candidate.processing.requiresUpscale && target.sourceRenditionId) {
+      const original = candidate.files.find((candidateFile) => candidateFile.role === "work-original" && candidateFile.availability === "present");
+      if (!original?.sha256) throw new PublishExecutionError("VALIDATION_FAILED", `Candidate ${candidate.id} has no verified original companion.`);
+      const originalObjectId = objectIdFromSha256(original.sha256);
+      const existingOriginal = renditions.find((rendition) => rendition.id === target.sourceRenditionId);
+      if (existingOriginal) {
+        renditions[renditions.indexOf(existingOriginal)] = Rendition.parse({
+          ...existingOriginal,
+          renditionType: "original",
+          origin: "source",
+          publishable: true,
+          objectId: originalObjectId,
+          downloadFilename,
+          displayFilename: undefined,
+          sourceRenditionId: undefined,
+          generatedBy: "extractor",
+        });
+      } else {
+        renditions.push(Rendition.parse({
+          catalogSchemaVersion: "1.0",
+          id: target.sourceRenditionId,
+          variantId: target.variantId,
+          renditionType: "original",
+          origin: "source",
+          publishable: true,
+          objectId: originalObjectId,
+          downloadFilename,
+          generatedBy: "extractor",
+          createdAt: options.now,
+        }));
+      }
+    }
+  }
+
+  for (const preview of options.previewArtifacts) {
+    const existing = renditions.find((rendition) => rendition.id === preview.renditionId);
+    if (existing) {
+      renditions[renditions.indexOf(existing)] = Rendition.parse({
+        ...existing,
+        renditionType: preview.renditionType,
+        origin: "derived",
+        publishable: false,
+        objectId: preview.objectId,
+        downloadFilename: preview.downloadFilename,
+        displayFilename: undefined,
+        ...(preview.sourceRenditionId ? { sourceRenditionId: preview.sourceRenditionId } : {}),
+        generatedBy: "thumbnailer",
+      });
+    } else {
+      renditions.push(Rendition.parse({
+        catalogSchemaVersion: "1.0",
+        id: preview.renditionId,
+        variantId: preview.variantId,
+        renditionType: preview.renditionType,
+        origin: "derived",
+        publishable: false,
+        objectId: preview.objectId,
+        downloadFilename: preview.downloadFilename,
+        ...(preview.sourceRenditionId ? { sourceRenditionId: preview.sourceRenditionId } : {}),
+        generatedBy: "thumbnailer",
         createdAt: options.now,
       }));
     }
@@ -269,7 +382,7 @@ function buildCatalog(options: { catalog: CatalogType; manifest: ReleaseManifest
   const validation = validateCatalog(nextCatalog);
   if (!validation.success) throw new PublishExecutionError("VALIDATION_FAILED", "The resulting Catalog failed consistency validation.");
   const manifestValidation = validateReleaseManifestConsistency(publishedManifest, nextCatalog);
-  if (!manifestValidation.success) throw new PublishExecutionError("VALIDATION_FAILED", "The resulting ReleaseManifest does not match the Catalog.");
+  if (!manifestValidation.success) throw new PublishExecutionError("VALIDATION_FAILED", `The resulting ReleaseManifest does not match the Catalog: ${manifestValidation.issues.map((item) => `${item.path} ${item.message}`).join("; ")}`);
   return validation.data;
 }
 
@@ -291,18 +404,53 @@ export async function executePublishPlan(options: PublishExecutorOptions): Promi
   const rawIssues = await checkWorkspaceRawIntegrity(options.workspaceRoot);
   if (rawIssues.length > 0) throw new PublishExecutionError("VALIDATION_FAILED", "Workspace raw integrity check failed.");
   const active = activeCandidates(options.candidates, options.batch);
+  const previewArtifacts = (await readPreviewPlan(options.workspaceRoot)).filter((preview) => options.manifest.changes.some((change) => change.renditionId === preview.renditionId && change.objectId === preview.objectId));
+  const publishFileEntries = await readPublishFileMap(options.workspaceRoot);
+  const candidatesById = new Map(active.map((candidate) => [candidate.id, candidate]));
+  const previewsByObjectId = new Map(previewArtifacts.map((preview) => [preview.objectId, preview]));
 
-  const fileByObjectId = new Map<string, { file: Candidate["files"][number]; candidate: Candidate }>();
-  for (const candidate of active) {
-    const file = finalFile(candidate);
-    if (!file.sha256) throw new PublishExecutionError("VALIDATION_FAILED", "A final file has no SHA-256.");
-    const absolutePath = path.resolve(options.workspaceRoot, file.relativePath);
-    if (!inside(options.workspaceRoot, absolutePath)) throw new PublishExecutionError("VALIDATION_FAILED", "A final file path escapes the workspace.");
+  type PublishFileLocation = {
+    absolutePath: string;
+    sizeBytes: number;
+    mime: string;
+    candidate?: Candidate;
+    file?: Candidate["files"][number];
+  };
+  const fileByObjectId = new Map<string, PublishFileLocation>();
+  const registerCandidateFile = async (candidate: Candidate, file: Candidate["files"][number]): Promise<void> => {
+    if (!file.sha256) return;
+    const lexicalPath = path.resolve(options.workspaceRoot, file.relativePath);
+    const absolutePath = await realWorkspaceFile(options.workspaceRoot, lexicalPath);
+    if (!absolutePath) throw new PublishExecutionError("VALIDATION_FAILED", "A publish file path escapes the workspace or resolves through a link.");
     const fileStats = await stat(absolutePath).catch(() => undefined);
     if (!fileStats || !fileStats.isFile() || fileStats.size !== file.sizeBytes || (await sha256File(absolutePath)).toLowerCase() !== file.sha256.toLowerCase()) {
-      throw new PublishExecutionError("VALIDATION_FAILED", "A final file changed after the PublishPlan was generated.");
+      throw new PublishExecutionError("VALIDATION_FAILED", "A publish file changed after the PublishPlan was generated.");
     }
-    fileByObjectId.set(objectIdFromSha256(file.sha256), { file, candidate });
+    fileByObjectId.set(objectIdFromSha256(file.sha256), { absolutePath, sizeBytes: file.sizeBytes, mime: file.mime, candidate, file });
+  };
+  for (const candidate of active) {
+    await registerCandidateFile(candidate, finalFile(candidate));
+    const original = candidate.files.find((file) => file.role === "work-original" && file.availability === "present");
+    if (original) await registerCandidateFile(candidate, original);
+  }
+  for (const entry of publishFileEntries) {
+    const candidate = candidatesById.get(entry.candidateId);
+    if (!candidate) throw new PublishExecutionError("VALIDATION_FAILED", `Publish file entry references unknown Candidate ${entry.candidateId}.`);
+    const preview = entry.kind === "preview" ? previewsByObjectId.get(entry.objectId) : undefined;
+    const file = entry.kind === "candidate" ? candidate.files.find((candidateFile) => candidateFile.relativePath === entry.relativePath && candidateFile.availability === "present") : undefined;
+    const expectedSize = preview?.sizeBytes ?? file?.sizeBytes;
+    const expectedSha = preview?.sha256 ?? file?.sha256;
+    const expectedMime = preview?.mime ?? file?.mime;
+    if (!expectedSize || !expectedSha || !expectedMime) throw new PublishExecutionError("VALIDATION_FAILED", `Publish file entry ${entry.relativePath} is incomplete.`);
+    if (entry.objectId.toLowerCase() !== objectIdFromSha256(expectedSha).toLowerCase()) throw new PublishExecutionError("VALIDATION_FAILED", `Publish file entry ${entry.relativePath} does not match its Object identity.`);
+    const lexicalPath = path.resolve(options.workspaceRoot, entry.relativePath);
+    const absolutePath = await realWorkspaceFile(options.workspaceRoot, lexicalPath);
+    if (!absolutePath) throw new PublishExecutionError("VALIDATION_FAILED", "A publish file path escapes the workspace or resolves through a link.");
+    const fileStats = await stat(absolutePath).catch(() => undefined);
+    if (!fileStats || !fileStats.isFile() || fileStats.size !== expectedSize || (await sha256File(absolutePath)).toLowerCase() !== expectedSha.toLowerCase()) {
+      throw new PublishExecutionError("VALIDATION_FAILED", "A publish file changed after the PublishPlan was generated.");
+    }
+    fileByObjectId.set(entry.objectId, { absolutePath, sizeBytes: expectedSize, mime: expectedMime, candidate, ...(file ? { file } : {}) });
   }
 
   const uploadedObjectKeys: string[] = [];
@@ -312,7 +460,8 @@ export async function executePublishPlan(options: PublishExecutorOptions): Promi
     const object = options.plan.objectsToCreate[index]!;
     const match = fileByObjectId.get(object.objectId);
     if (!match) throw new PublishExecutionError("OBJECT_NOT_FOUND", `PublishPlan object ${object.objectKey} has no final file.`, object.objectKey);
-    const existing = await options.storage.verifyObject(object.objectKey, { sizeBytes: object.sizeBytes }).catch(() => undefined);
+    if (match.sizeBytes !== object.sizeBytes || match.mime !== object.mime) throw new PublishExecutionError("VALIDATION_FAILED", "Publish file metadata does not match the PublishPlan.", object.objectKey);
+    const existing = await options.storage.verifyObject(object.objectKey, { sizeBytes: object.sizeBytes, sha256: object.sha256 }).catch(() => undefined);
     if (!existing) throw new PublishExecutionError("UPLOAD_FAILED", "ROS object check failed.", object.objectKey);
     if (existing.exists) {
       if (!existing.verified) throw new PublishExecutionError("OBJECT_VERIFY_FAILED", "Existing ROS object failed size verification.", object.objectKey);
@@ -324,7 +473,7 @@ export async function executePublishPlan(options: PublishExecutorOptions): Promi
     try {
       await options.storage.putObject({
         objectKey: object.objectKey,
-        body: createReadStream(path.resolve(options.workspaceRoot, match.file.relativePath)),
+        body: createReadStream(match.absolutePath),
         sizeBytes: object.sizeBytes,
         contentType: object.mime,
         cacheControl: IMMUTABLE_OBJECT_CACHE_CONTROL,
@@ -335,28 +484,19 @@ export async function executePublishPlan(options: PublishExecutorOptions): Promi
       throw new PublishExecutionError("UPLOAD_FAILED", "ROS object upload failed.", object.objectKey);
     }
     report({ stage: "verify", completed: index + 1, total: options.plan.objectsToCreate.length, message: "验证" });
-    const verification = await options.storage.verifyObject(object.objectKey, { sizeBytes: object.sizeBytes }).catch(() => undefined);
+    const verification = await options.storage.verifyObject(object.objectKey, { sizeBytes: object.sizeBytes, sha256: object.sha256 }).catch(() => undefined);
     if (!verification?.verified) throw new PublishExecutionError("OBJECT_VERIFY_FAILED", "Uploaded ROS object failed size verification.", object.objectKey);
   }
 
   const now = timestamp(options.now);
-  const nextCatalog = buildCatalog({ catalog: options.catalog, manifest: options.manifest, batch: options.batch, candidates: active, plan: options.plan, now });
+  const nextCatalog = buildCatalog({ catalog: options.catalog, manifest: options.manifest, batch: options.batch, candidates: active, plan: options.plan, previewArtifacts, now });
   const publishedManifest = ReleaseManifest.parse({ ...options.manifest, status: "published", notes: [...options.manifest.notes, "Published after ROS object upload and HEAD verification."] });
   const catalogPath = options.catalogPath ?? DEFAULT_CATALOG_PATH;
   const releaseDirectory = options.releasesDirectory ?? DEFAULT_CATALOG_RELEASES_PATH;
   const releaseManifestPath = path.join(releaseDirectory, `${publishedManifest.id}.json`);
-  const hasCustomWriter = Boolean(options.writeCatalog || options.writeReleaseManifest);
-  if (hasCustomWriter && (!options.writeCatalog || !options.writeReleaseManifest)) {
-    throw new PublishExecutionError("VALIDATION_FAILED", "Catalog and ReleaseManifest writers must be provided together.");
-  }
   report({ stage: "catalog", completed: 0, total: 1, message: "提交 Catalog 和 ReleaseManifest" });
   try {
-    if (hasCustomWriter) {
-      await options.writeCatalog!(nextCatalog);
-      await options.writeReleaseManifest!(publishedManifest);
-    } else {
-      await writeCatalogAndReleaseAtomic(nextCatalog, publishedManifest, { catalogPath, releasesDirectory: releaseDirectory });
-    }
+    await writeCatalogAndReleaseAtomic(nextCatalog, publishedManifest, { catalogPath, releasesDirectory: releaseDirectory });
   } catch { throw new PublishExecutionError("CATALOG_WRITE_FAILED", "Catalog and ReleaseManifest could not be committed."); }
   report({ stage: "catalog", completed: 1, total: 1, message: "更新 Catalog" });
   report({ stage: "complete", completed: 1, total: 1, message: "完成" });

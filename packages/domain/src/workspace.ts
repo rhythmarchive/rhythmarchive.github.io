@@ -1,5 +1,5 @@
 import { createHash } from "node:crypto";
-import { copyFile, mkdir, readdir, readFile, rename, stat, writeFile } from "node:fs/promises";
+import { copyFile, mkdir, readdir, readFile, rename, stat, unlink, writeFile } from "node:fs/promises";
 import path from "node:path";
 import sharp from "sharp";
 import {
@@ -17,6 +17,7 @@ import {
   type ReviewEvent as ReviewEventType,
   type ReviewLog as ReviewLogType,
   type UpdateBatch as UpdateBatchType,
+  type Catalog as CatalogType,
 } from "./schema.js";
 import {
   createUuidV7,
@@ -36,6 +37,7 @@ import {
   overrideCandidateMetadata as overrideCandidateMetadataReview,
   resolveCandidateIdentity as resolveCandidateIdentityReview,
   effectiveCandidateFilename,
+  effectiveCandidateResourceType,
   identityReviewSatisfied,
   isUpscaleEligible,
   metadataReviewSatisfied,
@@ -43,11 +45,14 @@ import {
 } from "./review.js";
 import {
   convertOptimizationPngToJpeg,
+  inspectImageAlpha,
   isOptimizationFilename,
   matchOptimizationOutputs,
+  preserveOptimizationPng,
   type JpegConversionOptions,
   type OptimizationOutput,
 } from "./upscale.js";
+import { applyCatalogTargets, catalogSourceRecords, classifySemanticDiff, candidateSourceRecord, sourceInventoryRecord, writeUpdateDiff, type SourceInventoryRecord, type UpdateDiffResult } from "./diff.js";
 
 const WORKSPACE_STATE_FILE = "metadata/candidates.json";
 const RAW_MANIFEST_FILE = "metadata/raw-manifest.json";
@@ -56,6 +61,7 @@ const REVIEW_LOG_FILE = "metadata/review-log.json";
 const SCAN_SNAPSHOT_FILE = "metadata/workspace-scan.json";
 const UPSCALE_MAP_FILE = "metadata/upscale-map.json";
 const UPSCALE_RECONCILIATION_FILE = "metadata/upscale-reconciliation.json";
+const PUBLISH_RESULT_FILE = "metadata/publish-result.json";
 
 type IsoInput = Date | string | undefined;
 
@@ -498,8 +504,8 @@ export async function createVersionWorkspace(options: CreateWorkspaceOptions): P
       ?? (!isCandidate(rawCandidate) && (rawCandidate.reviewRequirements?.identityReviewRequired || rawCandidate.blockedReason) ? "BLOCKED" : "EXTRACTED");
     const blockedReason = isCandidate(rawCandidate) ? rawCandidate.review.note : rawCandidate.blockedReason;
     const initialReview = initialStatus === "BLOCKED"
-      ? { state: "blocked" as const, note: blockedReason ?? "extractor marked Candidate as blocked", confirmed: false, overrides: {} }
-      : { state: "not-started" as const, confirmed: false, overrides: {} };
+      ? { state: "blocked" as const, note: blockedReason ?? "extractor marked Candidate as blocked", confirmed: false, disposition: "active" as const, overrides: {} }
+      : { state: "not-started" as const, confirmed: false, disposition: "active" as const, overrides: {} };
     const initialProcessingState = initialStatus === "BLOCKED"
       ? "blocked" as const
       : requiresUpscale
@@ -525,6 +531,13 @@ export async function createVersionWorkspace(options: CreateWorkspaceOptions): P
         sourceGameVersion: isCandidate(rawCandidate) ? rawCandidate.sourceEvidence.sourceGameVersion : rawCandidate.sourceGameVersion ?? options.targetVersion,
         sourceSha256: rawSha256,
         detection: isCandidate(rawCandidate) ? rawCandidate.sourceEvidence.detection : rawCandidate.detection ?? "added",
+        changeKind: isCandidate(rawCandidate)
+          ? rawCandidate.sourceEvidence.changeKind
+          : rawCandidate.detection === "changed"
+            ? "content-changed"
+            : rawCandidate.detection === "renamed"
+              ? "unmatched"
+              : "added",
         evidence: sourceEvidence,
       },
       naming: {
@@ -593,7 +606,7 @@ export async function createVersionWorkspace(options: CreateWorkspaceOptions): P
     confirmationProgress: progress.confirmationProgress,
     upscaleProgress: progress.upscaleProgress,
     finalReviewProgress: progress.finalReviewProgress,
-    status: candidates.length === 0 ? "CREATED" : progress.blocked > 0 ? "BLOCKED" : "EXTRACTED",
+    status: candidates.length === 0 ? "READY_TO_PUBLISH" : progress.blocked > 0 ? "BLOCKED" : "EXTRACTED",
   });
   const handle: WorkspaceHandle = { rootPath, created: true, batch, candidateManifest, candidates, rawManifest, reviewLog };
   await writeWorkspaceState(handle);
@@ -782,6 +795,7 @@ function manualCandidateFromFile(handle: WorkspaceHandle, file: ScannedFile, now
       sourceFilename: file.filename,
       sourceSha256: file.sha256,
       detection: "manual",
+      changeKind: "added",
       evidence: [{ kind: "manual-note", detail: "file appeared in work/ during reconciliation", confidence: "high" }],
     },
     naming: { sourceFilename: file.filename, suggestedFilename: file.filename, knownBasenames: [file.filename] },
@@ -798,7 +812,7 @@ function updateBatchFromCandidates(batch: UpdateBatchType, candidates: Candidate
   const status = rawIntegrity.length > 0 || progress.blocked > 0
     ? "BLOCKED"
     : progress.total === 0
-      ? "CREATED"
+      ? "READY_TO_PUBLISH"
       : progress.ready + progress.rejected === progress.total
         ? "READY_TO_PUBLISH"
         : progress.ready > 0 || progress.filenameReviewProgress.completed > 0
@@ -857,6 +871,8 @@ export function computeUpdateBatchProgress(candidates: CandidateType[]): UpdateB
   const scopedBlocked = (scope: CandidateType[]) => scope.filter((candidate) => candidate.status === "BLOCKED").length;
   const status: UpdateBatchType["status"] = blocked > 0
     ? "BLOCKED"
+    : total === 0
+      ? "READY_TO_PUBLISH"
     : ready + rejected === total && total > 0
       ? "READY_TO_PUBLISH"
       : "IN_REVIEW";
@@ -928,15 +944,15 @@ export async function reconcileWorkspace(rootPath: string, options: { now?: IsoI
       const current = scan.workFiles.find((file) => `work/${file.relativePath}` === diff.relativePath);
       if (!current) continue;
       const currentDetails = await imageFields(resolveWorkspacePath(handle.rootPath, diff.relativePath!), current.filename);
-      nextCandidates[index] = invalidateReviewForWorkspaceChange({
+      nextCandidates[index] = await invalidateUpscaleArtifacts(handle, invalidateReviewForWorkspaceChange({
         ...candidate,
         files: candidate.files.map((file) => file.id === workFile.id
           ? {
               ...appendRevision(workFile, { relativePath: workFile.relativePath, filename: current.filename, sizeBytes: current.sizeBytes, sha256: current.sha256, mtimeMs: current.mtimeMs, observedAt: now, reason: "content-replacement" }),
               ...currentDetails,
-            }
+          }
           : file),
-      }, "work file content changed; final review must be repeated");
+      }, "work file content changed; final review must be repeated"), now);
       events.push(reviewEvent("content-replaced", "same work path has new bytes; Candidate identity was retained and a new file revision was recorded", candidate.id, { relativePath: diff.relativePath, sha256: diff.sha256 }, now));
     } else if (diff.kind === "MISSING") {
       nextCandidates[index] = { ...candidate, status: "BLOCKED", review: { ...candidate.review, state: "blocked", confirmed: false, confirmedAt: undefined, note: "work file is missing; explicit rejection is still required" }, processing: { ...candidate.processing, state: "blocked", note: "MISSING_FROM_WORKSPACE" } };
@@ -969,7 +985,7 @@ export async function rejectCandidate(rootPath: string, candidateId: string, not
   const index = handle.candidates.findIndex((candidate) => candidate.id === candidateId);
   if (index < 0) throw new Error(`unknown Candidate ${candidateId}`);
   const candidate = handle.candidates[index]!;
-  const rejected: CandidateType = { ...candidate, status: "REJECTED", review: { ...candidate.review, state: "rejected", decision: "reject", reviewedAt: timestamp(now), confirmed: false, confirmedAt: undefined, note } };
+  const rejected: CandidateType = { ...candidate, status: "REJECTED", review: { ...candidate.review, disposition: "removed", state: "rejected", decision: "reject", reviewedAt: timestamp(now), confirmed: false, confirmedAt: undefined, note } };
   handle.candidates[index] = rejected;
   handle.batch = updateBatchFromCandidates(handle.batch, handle.candidates, await checkRawIntegrity(handle));
   addReviewEvents(handle, [reviewEvent("rejected", note, candidateId, {}, timestamp(now))]);
@@ -979,13 +995,261 @@ export async function rejectCandidate(rootPath: string, candidateId: string, not
 
 export async function ignoreCandidate(rootPath: string, candidateId: string, note = "ignored during local review", now?: IsoInput): Promise<void> {
   const handle = await loadWorkspace(rootPath);
-  if (!handle.candidates.some((candidate) => candidate.id === candidateId)) throw new Error(`unknown Candidate ${candidateId}`);
+  const index = handle.candidates.findIndex((candidate) => candidate.id === candidateId);
+  if (index < 0) throw new Error(`unknown Candidate ${candidateId}`);
+  handle.candidates[index] = { ...handle.candidates[index]!, status: "REJECTED", review: { ...handle.candidates[index]!.review, disposition: "ignored", state: "rejected", confirmed: false, confirmedAt: undefined, reviewedAt: timestamp(now), note } };
+  handle.batch = updateBatchFromCandidates(handle.batch, handle.candidates, await checkRawIntegrity(handle));
   addReviewEvents(handle, [reviewEvent("ignored", note, candidateId, {}, timestamp(now))]);
-  await atomicWriteJson(path.join(handle.rootPath, REVIEW_LOG_FILE), handle.reviewLog);
+  await writeWorkspaceState(handle);
+}
+
+async function moveWorkspaceArtifactToStale(handle: WorkspaceHandle, candidateId: string, file: CandidateFileType, now: string): Promise<CandidateFileType> {
+  const currentPath = resolveWorkspacePath(handle.rootPath, file.relativePath);
+  const staleRelativePath = `metadata/stale-upscale/${candidateId}/${file.role}-${file.id}-${file.filename}`.replace(/[\\/\0]/g, (value) => value === "/" ? "/" : "_");
+  const stalePath = resolveWorkspacePath(handle.rootPath, staleRelativePath);
+  if (await exists(currentPath)) {
+    await mkdir(path.dirname(stalePath), { recursive: true });
+    await rename(currentPath, stalePath);
+  }
+  const moved = appendRevision(file, { relativePath: staleRelativePath, filename: file.filename, sizeBytes: file.sizeBytes, sha256: file.sha256 ?? "0".repeat(64), mtimeMs: file.mtimeMs ?? Date.now(), observedAt: now, reason: "content-replacement" });
+  return { ...moved, availability: "missing" };
+}
+
+async function invalidateUpscaleArtifacts(handle: WorkspaceHandle, candidate: CandidateType, now: string): Promise<CandidateType> {
+  const staleFiles: CandidateFileType[] = [];
+  for (const file of candidate.files) {
+    if (file.role !== "upscale-output" && file.role !== "processed-upscaled") {
+      staleFiles.push(file);
+      continue;
+    }
+    staleFiles.push(await moveWorkspaceArtifactToStale(handle, candidate.id, file, now));
+  }
+  const { inputFileId: _inputFileId, selectedOutputFileId: _selectedOutputFileId, processedFileId: _processedFileId, conversion: _conversion, ...processingBase } = candidate.processing;
+  const requiresUpscale = isUpscaleEligible(handle.batch.game, effectiveCandidateResourceType(candidate));
+  const nextProcessing: CandidateType["processing"] = {
+    ...processingBase,
+    state: requiresUpscale ? "needs-upscale" : "not-required",
+    requiresUpscale,
+    optimizationMatches: [],
+    note: requiresUpscale ? "original candidate changed; previous upscale result was invalidated" : undefined,
+  };
+  return {
+    ...candidate,
+    files: staleFiles,
+    processing: nextProcessing,
+    status: requiresUpscale ? "NEEDS_UPSCALE" : "NAMING_REVIEW",
+    review: { ...candidate.review, state: "naming-review", confirmed: false, confirmedAt: undefined, reviewedAt: undefined, note: "candidate image changed; review and upscale must be repeated" },
+  };
+}
+
+export async function replaceCandidateImageInWorkspace(rootPath: string, candidateId: string, sourcePath: string, now?: IsoInput): Promise<CandidateType> {
+  const handle = await loadWorkspace(rootPath);
+  const index = handle.candidates.findIndex((candidate) => candidate.id === candidateId);
+  if (index < 0) throw new Error(`unknown Candidate ${candidateId}`);
+  const candidate = handle.candidates[index]!;
+  const source = path.resolve(sourcePath);
+  const sourceStats = await stat(source).catch(() => undefined);
+  if (!sourceStats?.isFile()) throw new Error("replacement image is not a readable file");
+  const sourceFilename = path.basename(source).replace(/[\\/\0]/g, "_");
+  const sourceMetadata = await sharp(source).metadata();
+  if (!sourceMetadata.width || !sourceMetadata.height || !sourceMetadata.format) throw new Error("replacement file is not a readable image");
+  const workFile = previousWorkFile(candidate);
+  if (!workFile) throw new Error(`Candidate ${candidateId} has no work-original file`);
+  const nextRelativePath = `work/replacements/${candidateId}/${sourceFilename}`;
+  const nextPath = resolveWorkspacePath(handle.rootPath, nextRelativePath);
+  await mkdir(path.dirname(nextPath), { recursive: true });
+  if (path.resolve(source) !== path.resolve(nextPath)) {
+    const temporaryPath = `${nextPath}.partial-${process.pid}-${createUuidV7()}`;
+    await copyFile(source, temporaryPath);
+    await rename(temporaryPath, nextPath);
+  }
+  const nowValue = timestamp(now);
+  const currentStats = await stat(nextPath);
+  const currentDetails = await imageFields(nextPath, sourceFilename);
+  const replacedFile = { ...appendRevision(workFile, { relativePath: nextRelativePath, filename: sourceFilename, sizeBytes: currentStats.size, sha256: await sha256File(nextPath), mtimeMs: currentStats.mtimeMs, observedAt: nowValue, reason: "content-replacement" }), ...currentDetails, availability: "present" as const, generatedBy: "human" as const };
+  if (workFile.relativePath !== nextRelativePath && await exists(resolveWorkspacePath(handle.rootPath, workFile.relativePath))) await unlink(resolveWorkspacePath(handle.rootPath, workFile.relativePath));
+  const invalidated = await invalidateUpscaleArtifacts(handle, { ...candidate, files: candidate.files.map((file) => file.id === workFile.id ? replacedFile : file) }, nowValue);
+  handle.candidates[index] = invalidated;
+  handle.batch = updateBatchFromCandidates(handle.batch, handle.candidates, await checkRawIntegrity(handle));
+  addReviewEvents(handle, [reviewEvent("candidate-replaced-image", "human replacement image copied into the update workspace; prior upscale artifacts were invalidated", candidateId, { sourceFilename, relativePath: nextRelativePath }, nowValue)]);
+  await writeWorkspaceState(handle);
+  return invalidated;
+}
+
+export async function removeCandidateFromUpdate(rootPath: string, candidateId: string, disposition: "removed" | "ignored" = "removed", note = "removed from this Update during review", now?: IsoInput): Promise<CandidateType> {
+  const handle = await loadWorkspace(rootPath);
+  const index = handle.candidates.findIndex((candidate) => candidate.id === candidateId);
+  if (index < 0) throw new Error(`unknown Candidate ${candidateId}`);
+  const candidate = handle.candidates[index]!;
+  const next: CandidateType = {
+    ...candidate,
+    status: "REJECTED",
+    review: { ...candidate.review, disposition, state: "rejected", decision: "reject", confirmed: false, confirmedAt: undefined, reviewedAt: timestamp(now), note },
+  };
+  handle.candidates[index] = next;
+  handle.batch = updateBatchFromCandidates(handle.batch, handle.candidates, await checkRawIntegrity(handle));
+  addReviewEvents(handle, [reviewEvent(disposition === "ignored" ? "ignored" : "candidate-removed", note, candidateId, { disposition }, timestamp(now))]);
+  await writeWorkspaceState(handle);
+  return next;
+}
+
+export async function restoreCandidateOriginal(rootPath: string, candidateId: string, now?: IsoInput): Promise<CandidateType> {
+  const handle = await loadWorkspace(rootPath);
+  const index = handle.candidates.findIndex((candidate) => candidate.id === candidateId);
+  if (index < 0) throw new Error(`unknown Candidate ${candidateId}`);
+  const candidate = handle.candidates[index]!;
+  const rawFile = candidate.files.find((file) => file.role === "raw-original");
+  const workFile = previousWorkFile(candidate);
+  if (!rawFile || !workFile) throw new Error(`Candidate ${candidateId} has no extractor original to restore`);
+  const rawPath = resolveWorkspacePath(handle.rootPath, rawFile.relativePath);
+  const restoredRelativePath = `work/restored/${candidateId}/${rawFile.filename}`;
+  const restoredPath = resolveWorkspacePath(handle.rootPath, restoredRelativePath);
+  await mkdir(path.dirname(restoredPath), { recursive: true });
+  await copyFile(rawPath, restoredPath);
+  if (workFile.relativePath !== restoredRelativePath && await exists(resolveWorkspacePath(handle.rootPath, workFile.relativePath))) await unlink(resolveWorkspacePath(handle.rootPath, workFile.relativePath));
+  const nowValue = timestamp(now);
+  const restored = { ...appendRevision(workFile, { relativePath: restoredRelativePath, filename: rawFile.filename, sizeBytes: rawFile.sizeBytes, sha256: rawFile.sha256 ?? await sha256File(restoredPath), mtimeMs: (await stat(restoredPath)).mtimeMs, observedAt: nowValue, reason: "content-replacement" }), availability: "present" as const, generatedBy: "extractor" as const, ...(await imageFields(restoredPath, rawFile.filename)) };
+  const resetReview = { state: "not-started" as const, confirmed: false, disposition: "active" as const, overrides: {}, note: "extractor original restored; review is required again" };
+  const restoredTarget = candidate.target && candidate.review.overrides.filename
+    ? (() => {
+      const { downloadFilename: _downloadFilename, ...target } = candidate.target!;
+      return target;
+    })()
+    : candidate.target;
+  const restoredBase: CandidateType = {
+    ...candidate,
+    naming: { sourceFilename: candidate.naming.sourceFilename, suggestedFilename: candidate.naming.suggestedFilename, knownBasenames: [...new Set([candidate.naming.sourceFilename, candidate.naming.suggestedFilename])] },
+    files: candidate.files.filter((file) => file.role !== "work-original").concat(restored),
+    ...(restoredTarget ? { target: restoredTarget } : {}),
+    review: resetReview,
+  };
+  const invalidated = await invalidateUpscaleArtifacts(handle, restoredBase, nowValue);
+  const requiresUpscale = invalidated.processing.requiresUpscale;
+  const restoredCandidate: CandidateType = {
+    ...invalidated,
+    review: resetReview,
+    processing: { ...invalidated.processing, state: requiresUpscale ? "needs-upscale" : "not-required", requiresUpscale, optimizationMatches: [], note: requiresUpscale ? "extractor original restored; ready for upscale" : undefined },
+    status: requiresUpscale ? "NEEDS_UPSCALE" : "EXTRACTED",
+  };
+  handle.candidates[index] = Candidate.parse(restoredCandidate);
+  handle.batch = updateBatchFromCandidates(handle.batch, handle.candidates, await checkRawIntegrity(handle));
+  addReviewEvents(handle, [reviewEvent("candidate-restored", "extractor original and automatic metadata were restored in the update workspace", candidateId, {}, nowValue)]);
+  await writeWorkspaceState(handle);
+  return handle.candidates[index]!;
+}
+
+export async function markUpscaleFailure(rootPath: string, candidateId: string, message: string, now?: IsoInput): Promise<CandidateType> {
+  const handle = await loadWorkspace(rootPath);
+  const index = handle.candidates.findIndex((candidate) => candidate.id === candidateId);
+  if (index < 0) throw new Error(`unknown Candidate ${candidateId}`);
+  const candidate = handle.candidates[index]!;
+  const invalidated = await invalidateUpscaleArtifacts(handle, candidate, timestamp(now));
+  const next: CandidateType = {
+    ...invalidated,
+    status: "NEEDS_UPSCALE",
+    processing: { ...invalidated.processing, state: "needs-upscale", requiresUpscale: isUpscaleEligible(handle.batch.game, effectiveCandidateResourceType(candidate)), note: message },
+    review: { ...candidate.review, note: "upscale failed; retry or explicitly publish the original" },
+  };
+  handle.candidates[index] = Candidate.parse(next);
+  handle.batch = updateBatchFromCandidates(handle.batch, handle.candidates, await checkRawIntegrity(handle));
+  addReviewEvents(handle, [reviewEvent("upscale-attempt-failure", message, candidateId, {}, timestamp(now))]);
+  await writeWorkspaceState(handle);
+  return handle.candidates[index]!;
+}
+
+export async function skipUpscaleForCandidate(rootPath: string, candidateId: string, note = "human chose to publish the original without upscale", now?: IsoInput): Promise<CandidateType> {
+  const handle = await loadWorkspace(rootPath);
+  const index = handle.candidates.findIndex((candidate) => candidate.id === candidateId);
+  if (index < 0) throw new Error(`unknown Candidate ${candidateId}`);
+  const candidate = handle.candidates[index]!;
+  if (!isUpscaleEligible(handle.batch.game, effectiveCandidateResourceType(candidate))) throw new Error("only an Arcaea jacket can have an upscale skip decision");
+  const at = timestamp(now);
+  const staleFiles: CandidateFileType[] = [];
+  for (const file of candidate.files) {
+    if (file.role === "upscale-output" || file.role === "processed-upscaled") staleFiles.push(await moveWorkspaceArtifactToStale(handle, candidate.id, file, at));
+    else staleFiles.push(file);
+  }
+  const { inputFileId: _inputFileId, selectedOutputFileId: _selectedOutputFileId, processedFileId: _processedFileId, conversion: _conversion, ...processingBase } = candidate.processing;
+  const target = candidate.target?.sourceRenditionId
+    ? (() => {
+        const { sourceRenditionId: _sourceRenditionId, ...targetBase } = candidate.target!;
+        return { ...targetBase, renditionId: _sourceRenditionId };
+      })()
+    : candidate.target;
+  const next: CandidateType = Candidate.parse({
+    ...candidate,
+    files: staleFiles,
+    ...(target ? { target } : {}),
+    processing: { ...processingBase, state: "ready", requiresUpscale: false, optimizationMatches: [], note },
+    status: candidate.review.state === "approved" ? "FINAL_REVIEW" : "NAMING_REVIEW",
+    review: { ...candidate.review, note },
+  });
+  handle.candidates[index] = next;
+  handle.batch = updateBatchFromCandidates(handle.batch, handle.candidates, await checkRawIntegrity(handle));
+  addReviewEvents(handle, [reviewEvent("upscale-skipped", note, candidateId, { publishOriginal: true }, at)]);
+  await writeWorkspaceState(handle);
+  return next;
 }
 
 export async function loadWorkspaceState(rootPath: string): Promise<WorkspaceHandle> {
   return loadWorkspace(rootPath);
+}
+
+export async function loadWorkspacePublishRecord<T = unknown>(rootPath: string): Promise<T | undefined> {
+  try {
+    return await readJson<T>(path.join(path.resolve(rootPath), PUBLISH_RESULT_FILE));
+  } catch (error) {
+    if (isErrno(error, "ENOENT")) return undefined;
+    throw error;
+  }
+}
+
+export async function markWorkspacePublished(rootPath: string, result: unknown): Promise<void> {
+  const handle = await loadWorkspace(rootPath);
+  handle.batch = { ...handle.batch, status: "PUBLISHED", statusNote: "ROS increment published and Catalog updated atomically" };
+  await writeWorkspaceState(handle);
+  await atomicWriteJson(path.join(handle.rootPath, PUBLISH_RESULT_FILE), result);
+}
+
+/**
+ * Attach the current Catalog's stable targets to extractor candidates. This
+ * is intentionally a one-way annotation: existing manual targets and review
+ * overrides win, while ambiguous identities remain blocked for confirmation.
+ */
+export async function applyCatalogDiffToWorkspace(rootPath: string, catalog: CatalogType): Promise<{ handle: WorkspaceHandle; diff: UpdateDiffResult }> {
+  const handle = await loadWorkspace(rootPath);
+  const result = applyCatalogTargets(handle.candidates, catalog);
+  let diff = result.diff;
+  let candidates = result.candidates;
+  try {
+    const inventory = await readJson<{ records?: SourceInventoryRecord[] }>(path.join(handle.rootPath, "metadata", "source-inventory.json"));
+    if (Array.isArray(inventory.records) && inventory.records.length > 0) {
+      const sourceDiff = classifySemanticDiff(catalogSourceRecords(catalog, handle.batch.game), inventory.records.map((record) => sourceInventoryRecord(record)));
+      const sourceEntries = new Map<string, (typeof sourceDiff.entries)[number] | null>();
+      for (const entry of sourceDiff.entries) {
+        if (!entry.identity) continue;
+        if (!sourceEntries.has(entry.identity)) sourceEntries.set(entry.identity, entry);
+        else sourceEntries.set(entry.identity, null);
+      }
+      candidates = candidates.map((candidate) => {
+        const source = candidateSourceRecord(candidate);
+        const entry = source.identity ? sourceEntries.get(source.identity) ?? undefined : undefined;
+        return entry ? Candidate.parse({ ...candidate, sourceEvidence: { ...candidate.sourceEvidence, changeKind: entry.kind } }) : candidate;
+      });
+      diff = sourceDiff;
+    }
+  } catch (error) {
+    if (!isErrno(error, "ENOENT")) throw error;
+  }
+  const nextHandle: WorkspaceHandle = {
+    ...handle,
+    candidates,
+    batch: updateBatchFromCandidates({ ...handle.batch, diffSummary: diff.summary }, candidates, await checkRawIntegrity(handle)),
+  };
+  addReviewEvents(nextHandle, candidates.filter((candidate, index) => candidate.sourceEvidence.changeKind !== handle.candidates[index]?.sourceEvidence.changeKind).map((candidate) => reviewEvent("source-changed-again", `source diff classified Candidate as ${candidate.sourceEvidence.changeKind}; manual review state was retained`, candidate.id, { changeKind: candidate.sourceEvidence.changeKind }, new Date().toISOString())));
+  await writeWorkspaceState(nextHandle);
+  await writeUpdateDiff(nextHandle.rootPath, diff);
+  return { handle: nextHandle, diff };
 }
 
 export type UpscaleMapEntry = {
@@ -1038,6 +1302,9 @@ export async function prepareUpscaleInputs(rootPath: string, options: { candidat
       nextCandidates.push(original);
       continue;
     }
+    if (original.processing.requiresUpscale && !isUpscaleEligible(handle.batch.game, effectiveCandidateResourceType(original))) {
+      throw new Error("only an Arcaea jacket Candidate may enter the upscale queue");
+    }
     if (!original.processing.requiresUpscale || original.status === "REJECTED") {
       skippedCandidateIds.push(original.id);
       nextCandidates.push(original);
@@ -1059,12 +1326,15 @@ export async function prepareUpscaleInputs(rootPath: string, options: { candidat
       await rename(temporaryPath, inputPath);
     }
     const nextInputFile = await candidateFileFromPath({ rootPath: handle.rootPath, relativePath: inputRelativePath, candidateId: original.id, role: "upscale-input", generatedBy: "human", ...(inputFile?.id ? { id: inputFile.id } : {}), observedAt: now });
-    const nextCandidate: CandidateType = {
-      ...original,
-      files: [...original.files.filter((file) => file.role !== "upscale-input"), nextInputFile],
-      processing: { ...original.processing, state: "upscale-pending", inputFileId: nextInputFile.id },
-      status: original.status === "READY" ? "READY" : "UPSCALE_PENDING",
-    };
+    const completedInputStillMatches = Boolean(original.processing.processedFileId && original.processing.conversion && nextInputFile.sha256 && nextInputFile.sha256 === workFile.sha256);
+    const nextCandidate: CandidateType = completedInputStillMatches
+      ? { ...original, files: [...original.files.filter((file) => file.role !== "upscale-input"), nextInputFile] }
+      : {
+          ...original,
+          files: [...original.files.filter((file) => file.role !== "upscale-input"), nextInputFile],
+          processing: { ...original.processing, state: "upscale-pending", inputFileId: nextInputFile.id },
+          status: original.status === "READY" ? "READY" : "UPSCALE_PENDING",
+        };
     nextCandidates.push(nextCandidate);
     entries.push({ inputFilename, candidateId: original.id, ...(original.target?.variantId ? { variantId: original.target.variantId } : {}), sourceHash: workFile.sha256 ?? "", sourceRelativePath: workFile.relativePath });
     events.push(reviewEvent("upscale-input-prepared", "copied work-original to upscale-input as a regular file", original.id, { inputFilename, sourceRelativePath: workFile.relativePath }, now));
@@ -1163,7 +1433,7 @@ export async function reconcileUpscaleOutputs(rootPath: string, options: { now?:
     if (manifestCandidateIds.length > 1) optimizationOutput.manifestCandidateIds = manifestCandidateIds;
     return optimizationOutput;
   });
-  const matched = matchOptimizationOutputs(handle.candidates.filter((candidate) => candidate.status !== "REJECTED"), outputsForMatching);
+  const matched = matchOptimizationOutputs(handle.candidates.filter((candidate) => candidate.status !== "REJECTED" && candidate.processing.requiresUpscale && isUpscaleEligible(handle.batch.game, effectiveCandidateResourceType(candidate))), outputsForMatching);
   const results: UpscaleOutputReconciliation[] = [];
   const events: ReviewEventType[] = [];
   const currentOutputPaths = new Set(outputFiles.map((file) => `upscale-output/${file.relativePath}`.toLowerCase()));
@@ -1253,6 +1523,7 @@ export async function selectUpscaleAttempt(rootPath: string, candidateId: string
   const index = handle.candidates.findIndex((candidate) => candidate.id === candidateId);
   if (index < 0) throw new Error(`unknown Candidate ${candidateId}`);
   const candidate = handle.candidates[index]!;
+  if (!candidate.processing.requiresUpscale || !isUpscaleEligible(handle.batch.game, effectiveCandidateResourceType(candidate))) throw new Error("only an eligible Arcaea jacket Candidate may use an upscale result");
   const output = candidate.files.find((file) => file.id === outputFileId && file.role === "upscale-output");
   if (!output) throw new Error(`Candidate ${candidateId} has no upscale attempt ${outputFileId}`);
   const selected: CandidateType = {
@@ -1275,21 +1546,46 @@ export async function selectUpscaleAttempt(rootPath: string, candidateId: string
 
 export type CandidateConversionResult = {
   candidate: CandidateType;
-  conversion: Awaited<ReturnType<typeof convertOptimizationPngToJpeg>>;
+  conversion: Awaited<ReturnType<typeof convertOptimizationPngToJpeg>> | Awaited<ReturnType<typeof preserveOptimizationPng>>;
 };
 
-export async function convertSelectedUpscale(rootPath: string, candidateId: string, options: { conversion?: Partial<JpegConversionOptions>; outputFilename?: string; now?: IsoInput } = {}): Promise<CandidateConversionResult> {
+type CandidateConversionOptions = Omit<Partial<JpegConversionOptions>, "alphaPolicy"> & {
+  alphaPolicy?: JpegConversionOptions["alphaPolicy"] | "preserve-png";
+  outputFormat?: "jpeg" | "png";
+};
+
+export async function convertSelectedUpscale(rootPath: string, candidateId: string, options: { conversion?: CandidateConversionOptions; outputFilename?: string; now?: IsoInput } = {}): Promise<CandidateConversionResult> {
   const handle = await loadWorkspace(rootPath);
   const index = handle.candidates.findIndex((candidate) => candidate.id === candidateId);
   if (index < 0) throw new Error(`unknown Candidate ${candidateId}`);
   const candidate = handle.candidates[index]!;
+  if (!candidate.processing.requiresUpscale || !isUpscaleEligible(handle.batch.game, effectiveCandidateResourceType(candidate))) throw new Error("only an eligible Arcaea jacket Candidate may be converted from upscale");
   if (!candidate.processing.selectedOutputFileId) throw new Error(`Candidate ${candidateId} has no selected upscale attempt`);
   const outputFile = candidate.files.find((file) => file.id === candidate.processing.selectedOutputFileId && file.role === "upscale-output");
   if (!outputFile) throw new Error(`selected upscale attempt ${candidate.processing.selectedOutputFileId} is missing`);
+  const inputPath = resolveWorkspacePath(handle.rootPath, outputFile.relativePath);
+  const alpha = await inspectImageAlpha(inputPath);
+  const preserveAlpha = options.conversion?.outputFormat === "png"
+    || options.conversion?.alphaPolicy === "preserve-png"
+    || (options.conversion?.alphaPolicy === undefined && alpha.hasActualTransparency);
   const outputName = options.outputFilename ?? candidate.target?.downloadFilename ?? candidate.naming.finalFilename ?? candidate.naming.reviewedFilename ?? candidate.naming.sourceFilename;
-  const jpgName = /\.jpe?g$/iu.test(outputName) ? outputName : `${outputName.replace(/\.[^.]+$/u, "")}.jpg`;
-  const outputRelativePath = `processed/${jpgName.replace(/[\\/\0]/g, "_")}`;
-  const conversion = await convertOptimizationPngToJpeg({ inputPath: resolveWorkspacePath(handle.rootPath, outputFile.relativePath), outputPath: resolveWorkspacePath(handle.rootPath, outputRelativePath), ...(options.conversion ? { conversion: options.conversion } : {}) });
+  const outputStem = outputName.replace(/\.[^.]+$/u, "") || candidate.id;
+  const processedName = `${outputStem}.${preserveAlpha ? "png" : "jpg"}`;
+  const outputRelativePath = `processed/${processedName.replace(/[\\/\0]/g, "_")}`;
+  const jpegConversion: Partial<JpegConversionOptions> | undefined = options.conversion
+    ? (() => {
+      const { outputFormat: _outputFormat, alphaPolicy, ...jpegOptions } = options.conversion!;
+      if (alphaPolicy === "preserve-png") return jpegOptions;
+      return alphaPolicy ? { ...jpegOptions, alphaPolicy } : jpegOptions;
+    })()
+    : undefined;
+  const conversion = preserveAlpha
+    ? await preserveOptimizationPng({ inputPath, outputPath: resolveWorkspacePath(handle.rootPath, outputRelativePath) })
+    : await convertOptimizationPngToJpeg({
+      inputPath,
+      outputPath: resolveWorkspacePath(handle.rootPath, outputRelativePath),
+      ...(jpegConversion ? { conversion: jpegConversion } : {}),
+    });
   const now = timestamp(options.now);
   if (conversion.status !== "converted" && conversion.status !== "skipped") {
     addReviewEvents(handle, [reviewEvent("upscale-attempt-failure", conversion.message ?? "optimization PNG conversion failed", candidateId, { outputFileId: outputFile.id, status: conversion.status }, now)]);
@@ -1297,20 +1593,22 @@ export async function convertSelectedUpscale(rootPath: string, candidateId: stri
     return { candidate, conversion };
   }
   const processedFile = await candidateFileFromPath({ rootPath: handle.rootPath, relativePath: outputRelativePath, candidateId, role: "processed-upscaled", generatedBy: "converter", observedAt: now });
-  const conversionRecord = {
+  const conversionRecord: NonNullable<CandidateType["processing"]["conversion"]> = {
+    outputFormat: conversion.outputFormat ?? (preserveAlpha ? "png" : "jpeg"),
     quality: conversion.quality ?? options.conversion?.quality ?? 95,
     chromaSubsampling: conversion.chromaSubsampling ?? options.conversion?.chromaSubsampling ?? "4:4:4",
     progressive: conversion.progressive ?? options.conversion?.progressive ?? true,
     mozjpeg: conversion.mozjpeg ?? options.conversion?.mozjpeg ?? false,
-    alphaPolicy: conversion.alphaPolicy ?? options.conversion?.alphaPolicy ?? "block",
+    alphaPolicy: conversion.alphaPolicy ?? options.conversion?.alphaPolicy ?? (preserveAlpha ? "preserve-png" : "block"),
     flattenBackground: conversion.flattenBackground ?? options.conversion?.flattenBackground ?? "#ffffff",
     inputPngSha256: conversion.inputSha256!,
-    outputJpgSha256: conversion.outputSha256 ?? processedFile.sha256!,
     inputPngSizeBytes: conversion.inputBytes,
-    outputJpgSizeBytes: conversion.outputBytes ?? processedFile.sizeBytes,
     sizeReductionBytes: conversion.sizeReductionBytes ?? conversion.inputBytes - (conversion.outputBytes ?? processedFile.sizeBytes),
     sizeReductionRatio: conversion.sizeReductionRatio ?? (conversion.outputBytes === undefined ? 0 : 1 - conversion.outputBytes / conversion.inputBytes),
     sourcePngRetained: true as const,
+    ...(preserveAlpha
+      ? { outputPngSha256: conversion.outputSha256 ?? processedFile.sha256!, outputPngSizeBytes: conversion.outputBytes ?? processedFile.sizeBytes }
+      : { outputJpgSha256: conversion.outputSha256 ?? processedFile.sha256!, outputJpgSizeBytes: conversion.outputBytes ?? processedFile.sizeBytes }),
   };
   const nextCandidate: CandidateType = {
     ...candidate,
@@ -1321,7 +1619,7 @@ export async function convertSelectedUpscale(rootPath: string, candidateId: stri
   };
   handle.candidates[index] = nextCandidate;
   handle.batch = updateBatchFromCandidates(handle.batch, handle.candidates, await checkRawIntegrity(handle));
-  addReviewEvents(handle, [reviewEvent("conversion", "optimization PNG converted to processed JPEG; source PNG retained", candidateId, { renditionRole: "upscaled", outputRelativePath, quality: conversionRecord.quality }, now)]);
+  addReviewEvents(handle, [reviewEvent("conversion", preserveAlpha ? "optimization PNG retained as processed PNG with alpha preserved; source PNG retained" : "optimization PNG converted to processed JPEG; source PNG retained", candidateId, { renditionRole: "upscaled", outputRelativePath, outputFormat: conversionRecord.outputFormat, quality: conversionRecord.quality }, now)]);
   await writeWorkspaceState(handle);
   return { candidate: nextCandidate, conversion };
 }
@@ -1352,7 +1650,7 @@ export function approveCandidate(candidate: CandidateType, options: { decision?:
 }
 
 export function finalizeCandidate(candidate: CandidateType, options: CandidateFinalizationOptions = {}): CandidateType {
-  if (candidate.status === "REJECTED") throw new Error("REJECTED Candidate cannot be finalized");
+  if (candidate.status === "REJECTED" || candidate.review.disposition !== "active") throw new Error("removed or ignored Candidate cannot be finalized");
   if (candidate.status === "BLOCKED") throw new Error("BLOCKED Candidate must be resolved before finalization");
   if (candidate.review.state !== "approved") throw new Error("final review must be explicitly approved before READY");
   if (!identityReviewSatisfied(candidate)) throw new Error("external identity resolution is required before READY");
@@ -1363,6 +1661,7 @@ export function finalizeCandidate(candidate: CandidateType, options: CandidateFi
   if (options.rawIntegrityOk === false) throw new Error("raw integrity problems block Candidate finalization");
   const target = options.target ?? candidate.target;
   if (!target?.resourceId || !target.variantId || !target.renditionId) throw new Error("READY Candidate requires Resource, Variant and Rendition targets");
+  if (candidate.processing.requiresUpscale && !target.sourceRenditionId) throw new Error("upscaled Candidate requires a stable original sourceRenditionId");
   const fileIds = new Set(candidate.files.map((file) => file.id));
   if (candidate.processing.requiresUpscale) {
     if (!candidate.processing.selectedOutputFileId || !fileIds.has(candidate.processing.selectedOutputFileId)) throw new Error("a selected upscale attempt is required");
@@ -1419,19 +1718,27 @@ export async function overrideCandidateMetadataInWorkspace(rootPath: string, can
   const handle = await loadWorkspace(rootPath);
   const index = handle.candidates.findIndex((candidate) => candidate.id === candidateId);
   if (index < 0) throw new Error(`unknown Candidate ${candidateId}`);
-  const candidate = overrideCandidateMetadataReview(handle.candidates[index]!, override, options);
-  handle.candidates[index] = candidate;
+  const before = handle.candidates[index]!;
+  const candidate = overrideCandidateMetadataReview(before, override, options);
+  const beforeEligible = isUpscaleEligible(handle.batch.game, effectiveCandidateResourceType(before));
+  const afterEligible = isUpscaleEligible(handle.batch.game, effectiveCandidateResourceType(candidate));
+  const normalizedCandidate = beforeEligible === afterEligible ? candidate : await invalidateUpscaleArtifacts(handle, candidate, timestamp(options.now));
+  handle.candidates[index] = normalizedCandidate;
   handle.batch = updateBatchFromCandidates(handle.batch, handle.candidates, await checkRawIntegrity(handle));
   addReviewEvents(handle, [reviewEvent("metadata-override", "human metadata override recorded; extractor proposal and provenance were preserved", candidateId, { fields: Object.keys(override), provenancePreserved: true }, timestamp(options.now))]);
   await writeWorkspaceState(handle);
-  return candidate;
+  return normalizedCandidate;
 }
 
 export async function overrideCandidateFilenameInWorkspace(rootPath: string, candidateId: string, filename: string, options: { note?: string; now?: IsoInput; finalize?: boolean } = {}): Promise<CandidateType> {
   const handle = await loadWorkspace(rootPath);
   const index = handle.candidates.findIndex((candidate) => candidate.id === candidateId);
   if (index < 0) throw new Error(`unknown Candidate ${candidateId}`);
-  const candidate = overrideCandidateFilenameReview(handle.candidates[index]!, filename, options);
+  const renamed = overrideCandidateFilenameReview(handle.candidates[index]!, filename, options);
+  const effectiveFilename = renamed.naming.finalFilename ?? renamed.naming.reviewedFilename ?? renamed.naming.suggestedFilename;
+  const candidate = renamed.target
+    ? Candidate.parse({ ...renamed, target: { ...renamed.target, downloadFilename: effectiveFilename } })
+    : renamed;
   handle.candidates[index] = candidate;
   handle.batch = updateBatchFromCandidates(handle.batch, handle.candidates, await checkRawIntegrity(handle));
   addReviewEvents(handle, [reviewEvent("manual-rename", "human filename override recorded explicitly", candidateId, { filename, finalized: options.finalize ?? true, automaticProposal: candidate.naming.suggestedFilename }, timestamp(options.now))]);
@@ -1456,16 +1763,22 @@ export async function renameCandidateInWorkspace(rootPath: string, candidateId: 
   const index = handle.candidates.findIndex((candidate) => candidate.id === candidateId);
   if (index < 0) throw new Error(`unknown Candidate ${candidateId}`);
   const renamed = renameCandidateIdentity(handle.candidates[index]!, reviewedFilename, options);
-  handle.candidates[index] = renamed;
+  const effectiveFilename = renamed.naming.finalFilename ?? renamed.naming.reviewedFilename ?? renamed.naming.suggestedFilename;
+  const candidate = renamed.target
+    ? Candidate.parse({ ...renamed, target: { ...renamed.target, downloadFilename: effectiveFilename } })
+    : renamed;
+  handle.candidates[index] = candidate;
+  handle.batch = updateBatchFromCandidates(handle.batch, handle.candidates, await checkRawIntegrity(handle));
   addReviewEvents(handle, [reviewEvent("manual-rename", "filename review was recorded explicitly", candidateId, { reviewedFilename, finalized: options.finalize === true }, timestamp(options.now))]);
   await writeWorkspaceState(handle);
-  return renamed;
+  return candidate;
 }
 
 export async function finalizeWorkspaceCandidate(rootPath: string, candidateId: string, options: CandidateFinalizationOptions = {}): Promise<CandidateType> {
   const handle = await loadWorkspace(rootPath);
   const index = handle.candidates.findIndex((candidate) => candidate.id === candidateId);
   if (index < 0) throw new Error(`unknown Candidate ${candidateId}`);
+  if (handle.candidates[index]!.processing.requiresUpscale && !isUpscaleEligible(handle.batch.game, effectiveCandidateResourceType(handle.candidates[index]!))) throw new Error("only an eligible Arcaea jacket Candidate may require upscale before READY");
   const rawIntegrity = await checkRawIntegrity(handle);
   const candidate = finalizeCandidate(handle.candidates[index]!, { ...options, rawIntegrityOk: options.rawIntegrityOk ?? rawIntegrity.length === 0 });
   handle.candidates[index] = candidate;

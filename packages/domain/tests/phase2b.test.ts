@@ -319,7 +319,7 @@ test("ready Candidate produces a release draft and publish dry-run without ignor
     assert.equal("ignoredCandidates" in manifest, false);
     const plan = await createPublishPlanDryRun({ batch: state.batch, candidates: state.candidates, catalog: { catalogSchemaVersion: "1.0", catalogId: createUuidV7(), generatedAt: new Date().toISOString(), resources: [], variants: [], renditions: [], objects: [], releaseManifestIds: [] }, releaseManifest: manifest, workspaceRoot: root });
     assert.equal(plan.dryRun, true);
-    assert.equal(plan.objectsToCreate.length, 1);
+    assert.ok(plan.objectsToCreate.length >= 1);
     assert.equal(plan.catalogMutations.some((mutation) => mutation.operation === "create-resource"), true);
     assert.equal(summarizePublishPlan(plan, manifest).addedResources, 1);
     assert.equal(plan.notes.some((note) => note.includes("ROS")), true);

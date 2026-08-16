@@ -18,10 +18,23 @@ import {
   type LegacyMigrationPlan,
   type PublishProgress,
   effectiveCandidateArtist,
+  effectiveCandidateMetadata,
   effectiveCandidateFilename,
+  effectiveCandidateResourceType,
   effectiveCandidateTitle,
+  effectiveCandidateVariantKey,
   finalizeWorkspaceCandidate,
+  applyCatalogDiffToWorkspace,
   loadWorkspaceState,
+  loadWorkspacePublishRecord,
+  markWorkspacePublished,
+  replaceCandidateImageInWorkspace,
+  removeCandidateFromUpdate,
+  restoreCandidateOriginal,
+  runUpscaleBatch,
+  retryUpscaleCandidate,
+  skipUpscaleForCandidate,
+  resolveRealEsrganConfig,
   prepareUpscaleInputs,
   reconcileUpscaleOutputs,
   reconcileWorkspace,
@@ -65,12 +78,18 @@ export type CandidateView = {
   difficulty?: string;
   status: CandidateType["status"];
   reviewState: CandidateType["review"]["state"];
+  disposition: CandidateType["review"]["disposition"];
+  modified: boolean;
+  replacedImage: boolean;
+  target?: { resourceId: string; variantId: string; renditionId: string; downloadFilename?: string };
   confirmed: boolean;
   confidence: CandidateType["suggestedMapping"]["confidence"];
   needsInfo: boolean;
   needsUpscale: boolean;
   issues: string[];
   previewUrl: string;
+  originalPreviewUrl: string;
+  upscaledPreviewUrl?: string;
   file: {
     sizeBytes: number;
     width?: number;
@@ -102,6 +121,7 @@ export type CandidateView = {
 
 export type WorkspaceView = WorkspaceSummary & {
   progress: ReturnType<typeof computeUpdateBatchProgress>;
+  diffSummary: { added: number; contentChanged: number; metadataOnly: number; unchanged: number; unmatched: number; removed: number };
   candidates: CandidateView[];
   notes: string[];
   recentOperations: Array<{ type: string; detail: string; at: string }>;
@@ -113,6 +133,11 @@ export type PublishPreview = {
   summary: {
     addedResources: number;
     updatedResources: number;
+    metadataOnly: number;
+    removedFromCurrentSource: number;
+    upscaledRenditions: number;
+    originalRenditions: number;
+    replacedImages: number;
     uploadObjects: number;
     uploadBytes: number;
   };
@@ -221,31 +246,41 @@ function previewFile(candidate: CandidateType): CandidateType["files"][number] {
 
 function candidateView(candidate: CandidateType, workspaceId: string): CandidateView {
   const file = previewFile(candidate);
+  const originalFile = candidate.files.find((item) => item.role === "work-original" && item.availability === "present") ?? candidate.files.find((item) => item.role === "raw-original") ?? file;
+  const upscaledFile = candidate.files.find((item) => item.role === "processed-upscaled" && item.availability === "present");
   const title = effectiveCandidateTitle(candidate);
   const artist = effectiveCandidateArtist(candidate);
   const issues = candidate.reviewRequirements.reasons.map(userIssue);
   if (candidate.status === "BLOCKED" && candidate.review.note) issues.push(userIssue(candidate.review.note));
   if (candidate.processing.note && candidate.processing.note !== candidate.review.note) issues.push(userIssue(candidate.processing.note));
   const uniqueIssues = [...new Set(issues)];
-  const metadata = candidate.suggestedMapping.metadata;
-  const difficulty = typeof metadata.difficulty === "string" ? metadata.difficulty : candidate.suggestedMapping.variantKey;
+  const metadata = effectiveCandidateMetadata(candidate);
+  const resourceType = effectiveCandidateResourceType(candidate);
+  const variantKey = effectiveCandidateVariantKey(candidate);
+  const difficulty = typeof metadata.difficulty === "string" ? metadata.difficulty : variantKey;
   return {
     id: candidate.id,
     ...(title ? { title } : {}),
     ...(candidate.suggestedMapping.title ? { suggestedTitle: candidate.suggestedMapping.title } : {}),
     ...(artist ? { artist } : {}),
     filename: effectiveCandidateFilename(candidate),
-    resourceType: candidate.suggestedMapping.resourceType,
-    ...(candidate.suggestedMapping.variantKey ? { variant: candidate.suggestedMapping.variantKey } : {}),
+    resourceType,
+    ...(variantKey ? { variant: variantKey } : {}),
     ...(difficulty ? { difficulty } : {}),
     status: candidate.status,
     reviewState: candidate.review.state,
+    disposition: candidate.review.disposition,
+    modified: Object.keys(candidate.review.overrides).length > 0 || Boolean(candidate.naming.reviewedFilename || candidate.naming.finalFilename) || candidate.files.some((item) => item.role === "work-original" && item.revisions.some((revision) => revision.reason === "content-replacement")),
+    replacedImage: candidate.files.some((item) => item.role === "work-original" && item.revisions.some((revision) => revision.reason === "content-replacement")),
+    ...(candidate.target?.resourceId && candidate.target.variantId && candidate.target.renditionId ? { target: { resourceId: candidate.target.resourceId, variantId: candidate.target.variantId, renditionId: candidate.target.renditionId, ...(candidate.target.downloadFilename ? { downloadFilename: candidate.target.downloadFilename } : {}) } } : {}),
     confirmed: candidate.review.confirmed,
     confidence: candidate.suggestedMapping.confidence,
     needsInfo: candidateNeedsInfo(candidate),
     needsUpscale: candidateNeedsUpscale(candidate),
     issues: uniqueIssues,
     previewUrl: `/api/workspaces/${workspaceId}/preview/${candidate.id}`,
+    originalPreviewUrl: `/api/workspaces/${workspaceId}/preview/${candidate.id}?role=original`,
+    ...(upscaledFile ? { upscaledPreviewUrl: `/api/workspaces/${workspaceId}/preview/${candidate.id}?role=upscaled` } : {}),
     file: { sizeBytes: file.sizeBytes, ...(file.width ? { width: file.width } : {}), ...(file.height ? { height: file.height } : {}), mime: file.mime },
     upscale: {
       state: candidate.processing.state,
@@ -306,6 +341,7 @@ export async function workspaceView(config: AdminConfig, id: string): Promise<Wo
   return {
     ...summary,
     progress,
+    diffSummary: handle.batch.diffSummary ?? { added: 0, contentChanged: 0, metadataOnly: 0, unchanged: 0, unmatched: 0, removed: 0 },
     candidates: handle.candidates.map((candidate) => candidateView(candidate, id)),
     notes: handle.candidateManifest.notes,
     recentOperations: handle.reviewLog.events.slice(-12).reverse().map((event) => ({ type: event.type, detail: event.detail, at: event.at })),
@@ -364,15 +400,32 @@ export async function confirmAllSafeCandidates(config: AdminConfig, workspaceId:
   return { confirmed, skipped: before.candidates.length - confirmed, view: await workspaceView(config, workspaceId) };
 }
 
-export async function applyCandidateOverride(config: AdminConfig, workspaceId: string, candidateId: string, input: { title?: string; artist?: string; filename?: string }): Promise<WorkspaceView> {
+export async function applyCandidateOverride(config: AdminConfig, workspaceId: string, candidateId: string, input: { title?: string; artist?: string; filename?: string; category?: CandidateType["suggestedMapping"]["resourceType"] }): Promise<WorkspaceView> {
   const rootPath = workspaceRootFor(config, workspaceId);
   const metadata: CandidateMetadataOverride = {
     ...(input.title?.trim() ? { title: input.title.trim() } : {}),
     ...(input.artist?.trim() ? { artist: input.artist.trim() } : {}),
+    ...(input.category ? { resourceType: input.category } : {}),
   };
   if (Object.keys(metadata).length > 0) await overrideCandidateMetadataInWorkspace(rootPath, candidateId, metadata);
   if (input.filename?.trim()) await overrideCandidateFilenameInWorkspace(rootPath, candidateId, input.filename.trim(), { finalize: true });
   if (Object.keys(metadata).length === 0 && !input.filename?.trim()) throw new AdminOperationError("EMPTY_OVERRIDE", "至少填写一项需要修改的内容。", 400);
+  return workspaceView(config, workspaceId);
+}
+
+export async function replaceCandidateImage(config: AdminConfig, workspaceId: string, candidateId: string, sourcePath: string): Promise<WorkspaceView> {
+  if (!sourcePath.trim()) throw new AdminOperationError("REPLACEMENT_REQUIRED", "请选择要替换的本地图片。", 400);
+  await replaceCandidateImageInWorkspace(workspaceRootFor(config, workspaceId), candidateId, sourcePath.trim());
+  return workspaceView(config, workspaceId);
+}
+
+export async function removeCandidate(config: AdminConfig, workspaceId: string, candidateId: string, disposition: "removed" | "ignored" = "removed"): Promise<WorkspaceView> {
+  await removeCandidateFromUpdate(workspaceRootFor(config, workspaceId), candidateId, disposition, disposition === "ignored" ? "用户确认忽略此候选资源" : "用户将候选从本次 Update 移除");
+  return workspaceView(config, workspaceId);
+}
+
+export async function restoreCandidate(config: AdminConfig, workspaceId: string, candidateId: string): Promise<WorkspaceView> {
+  await restoreCandidateOriginal(workspaceRootFor(config, workspaceId), candidateId);
   return workspaceView(config, workspaceId);
 }
 
@@ -382,19 +435,56 @@ export async function resolveCandidateIdentity(config: AdminConfig, workspaceId:
   return workspaceView(config, workspaceId);
 }
 
-export async function finalizeCandidate(config: AdminConfig, workspaceId: string, candidateId: string, input: { createNewTarget?: boolean; target?: { resourceId: string; variantId: string; renditionId: string; downloadFilename?: string }; downloadFilename?: string }): Promise<WorkspaceView> {
+export async function finalizeCandidate(config: AdminConfig, workspaceId: string, candidateId: string, input: { createNewTarget?: boolean; target?: { resourceId: string; variantId: string; renditionId: string; sourceRenditionId?: string; downloadFilename?: string }; downloadFilename?: string }): Promise<WorkspaceView> {
   const rootPath = workspaceRootFor(config, workspaceId);
   const state = await loadWorkspaceState(rootPath);
   const candidate = state.candidates.find((item) => item.id === candidateId);
   if (!candidate) throw new AdminOperationError("UNKNOWN_CANDIDATE", "找不到这个候选资源。", 404);
-  const target = input.target ?? (input.createNewTarget ? { resourceId: createUuidV7(), variantId: createUuidV7(), renditionId: createUuidV7(), ...(input.downloadFilename ? { downloadFilename: input.downloadFilename } : {}) } : undefined);
-  if (!target) throw new AdminOperationError("TARGET_REQUIRED", "请先绑定发布目标，或明确选择新建资源。", 409);
+  const requestedTarget = input.target ?? (input.createNewTarget
+    ? { resourceId: createUuidV7(), variantId: createUuidV7(), renditionId: createUuidV7(), ...(input.downloadFilename ? { downloadFilename: input.downloadFilename } : {}) }
+    : candidate.target);
+  if (!requestedTarget) throw new AdminOperationError("TARGET_REQUIRED", "请先绑定发布目标，或明确选择新建资源。", 409);
+  const target = candidate.processing.requiresUpscale && !requestedTarget.sourceRenditionId
+    ? { ...requestedTarget, sourceRenditionId: createUuidV7() }
+    : requestedTarget;
   await finalizeWorkspaceCandidate(rootPath, candidateId, { target, ...(input.downloadFilename ? { downloadFilename: input.downloadFilename } : {}), metadataValid: true });
   return workspaceView(config, workspaceId);
 }
 
 export async function prepareUpscale(config: AdminConfig, workspaceId: string, candidateIds?: string[]): Promise<WorkspaceView> {
   await prepareUpscaleInputs(workspaceRootFor(config, workspaceId), candidateIds ? { candidateIds } : {});
+  return workspaceView(config, workspaceId);
+}
+
+async function realEsrganConfig(config: AdminConfig) {
+  return resolveRealEsrganConfig({
+    ...(config.realEsrganExecutable ? { executable: config.realEsrganExecutable } : {}),
+    ...(config.realEsrganModelDir ? { modelDir: config.realEsrganModelDir } : {}),
+    ...(config.realEsrganModelName ? { modelName: config.realEsrganModelName } : {}),
+  });
+}
+
+export async function startUpscale(config: AdminConfig, workspaceId: string, candidateIds?: string[], force = false): Promise<{ view: WorkspaceView; result: Awaited<ReturnType<typeof runUpscaleBatch>> }> {
+  const rootPath = workspaceRootFor(config, workspaceId);
+  try {
+    const result = await runUpscaleBatch({ rootPath, ...(candidateIds ? { candidateIds } : {}), config: await realEsrganConfig(config), force });
+    return { view: await workspaceView(config, workspaceId), result };
+  } catch (error) {
+    throw new AdminOperationError("UPSCALER_NOT_READY", "Real-ESRGAN 尚未配置好，请检查 executable、模型目录和模型文件。", 409, error instanceof Error ? error.message : String(error));
+  }
+}
+
+export async function retryUpscale(config: AdminConfig, workspaceId: string, candidateId: string): Promise<{ view: WorkspaceView; result: Awaited<ReturnType<typeof retryUpscaleCandidate>> }> {
+  try {
+    const result = await retryUpscaleCandidate(workspaceRootFor(config, workspaceId), candidateId, await realEsrganConfig(config));
+    return { view: await workspaceView(config, workspaceId), result };
+  } catch (error) {
+    throw new AdminOperationError("UPSCALER_NOT_READY", "超分失败，可检查本机 Real-ESRGAN 配置后重试。", 409, error instanceof Error ? error.message : String(error));
+  }
+}
+
+export async function skipUpscale(config: AdminConfig, workspaceId: string, candidateId: string): Promise<WorkspaceView> {
+  await skipUpscaleForCandidate(workspaceRootFor(config, workspaceId), candidateId);
   return workspaceView(config, workspaceId);
 }
 
@@ -440,6 +530,11 @@ export async function publishPreview(config: AdminConfig, workspaceId: string): 
       summary: {
         addedResources: manifest.changes.filter((change) => change.changeType === "added-resource").length,
         updatedResources: manifest.changes.filter((change) => ["metadata-changed", "alias-added", "replaced-rendition"].includes(change.changeType)).length,
+        metadataOnly: manifest.changes.filter((change) => change.changeType === "metadata-changed").length,
+        removedFromCurrentSource: manifest.removedFromCurrentSource.length,
+        upscaledRenditions: manifest.changes.filter((change) => change.detail.includes("upscaled")).length,
+        originalRenditions: manifest.changes.filter((change) => change.detail.includes("original")).length,
+        replacedImages: state.candidates.filter((candidate) => candidate.files.some((file) => file.role === "work-original" && file.revisions.some((revision) => revision.reason === "content-replacement"))).length,
         uploadObjects: plan.objectsToCreate.length,
         uploadBytes: plan.objectsToCreate.reduce((sum, object) => sum + object.sizeBytes, 0),
       },
@@ -453,6 +548,8 @@ export async function publishPreview(config: AdminConfig, workspaceId: string): 
 
 export async function publishExecute(config: AdminConfig, workspaceId: string): Promise<PublishExecutionView> {
   const rootPath = workspaceRootFor(config, workspaceId);
+  const previous = await loadWorkspacePublishRecord<PublishExecutionView>(rootPath);
+  if (previous?.status === "published") return { ...previous, ros: rosStorageStatus() };
   const state = await loadWorkspaceState(rootPath);
   const catalog = await loadCatalog(config);
   const manifest = await createReleaseManifestDraft({ batch: state.batch, candidates: state.candidates, workspaceRoot: rootPath, catalog });
@@ -471,7 +568,9 @@ export async function publishExecute(config: AdminConfig, workspaceId: string): 
       ...(config.catalogPath ? { releasesDirectory: path.join(path.dirname(config.catalogPath), "releases") } : {}),
       onProgress: (value) => progress.push(value),
     });
-    return { status: "published", uploadedObjectKeys: result.uploadedObjectKeys, skippedObjectKeys: result.skippedObjectKeys, releaseManifestId: result.releaseManifest.id, progress, ros: rosStorageStatus() };
+    const response: PublishExecutionView = { status: "published", uploadedObjectKeys: result.uploadedObjectKeys, skippedObjectKeys: result.skippedObjectKeys, releaseManifestId: result.releaseManifest.id, progress, ros: rosStorageStatus() };
+    await markWorkspacePublished(rootPath, response);
+    return response;
   } catch (error) {
     if (error instanceof Error && error.message === "ROS credentials are not configured.") throw new AdminOperationError("ROS_NOT_CONFIGURED", "ROS 凭据未配置。", 409);
     if (error instanceof Error && "code" in error && (error as { code?: unknown }).code === "NOT_CONFIGURED") throw new AdminOperationError("ROS_NOT_CONFIGURED", "ROS 凭据未配置。", 409);
@@ -492,12 +591,17 @@ export async function legacyMigrationDryRun(config: AdminConfig): Promise<Legacy
   catch { throw new AdminOperationError("LEGACY_SCAN_FAILED", "Legacy 目录无法读取。", 409); }
 }
 
-export async function previewFilePath(config: AdminConfig, workspaceId: string, candidateId: string): Promise<{ filePath: string; mime: CandidateType["files"][number]["mime"] }> {
+export async function previewFilePath(config: AdminConfig, workspaceId: string, candidateId: string, role?: "original" | "upscaled"): Promise<{ filePath: string; mime: CandidateType["files"][number]["mime"] }> {
   const rootPath = workspaceRootFor(config, workspaceId);
   const handle = await loadWorkspaceState(rootPath);
   const candidate = handle.candidates.find((item) => item.id === candidateId);
   if (!candidate) throw new AdminOperationError("PREVIEW_NOT_FOUND", "预览文件不存在。", 404);
-  const file = previewFile(candidate);
+  const file = role === "original"
+    ? candidate.files.find((item) => item.role === "work-original" && item.availability === "present") ?? candidate.files.find((item) => item.role === "raw-original")
+    : role === "upscaled"
+      ? candidate.files.find((item) => item.role === "processed-upscaled" && item.availability === "present")
+      : previewFile(candidate);
+  if (!file) throw new AdminOperationError("PREVIEW_NOT_FOUND", "预览文件不存在。", 404);
   const filePath = path.resolve(rootPath, file.relativePath);
   if (!within(rootPath, filePath)) throw new AdminOperationError("PREVIEW_NOT_FOUND", "预览文件路径无效。", 404);
   try {

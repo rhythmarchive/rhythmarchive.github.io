@@ -1,6 +1,6 @@
 import { createHash } from "node:crypto";
 import { createReadStream } from "node:fs";
-import { mkdir, rename, rm, stat } from "node:fs/promises";
+import { copyFile, mkdir, rename, rm, stat } from "node:fs/promises";
 import path from "node:path";
 import sharp from "sharp";
 import { candidateFilenameAliasGroups, normalizeFilenameStem } from "./identity.js";
@@ -118,6 +118,7 @@ export type ConversionResult = {
   outputBytes?: number;
   inputSha256?: string;
   outputSha256?: string;
+  outputFormat?: "jpeg" | "png";
   width?: number;
   height?: number;
   hasActualTransparency?: boolean;
@@ -125,7 +126,7 @@ export type ConversionResult = {
   chromaSubsampling?: "4:2:0" | "4:4:4";
   progressive?: boolean;
   mozjpeg?: boolean;
-  alphaPolicy?: "block" | "flatten-white" | "flatten-explicit";
+  alphaPolicy?: "block" | "flatten-white" | "flatten-explicit" | "preserve-png";
   flattenBackground?: string;
   sizeReductionBytes?: number;
   sizeReductionRatio?: number;
@@ -133,6 +134,116 @@ export type ConversionResult = {
   renditionType: "upscaled";
   message?: string;
 };
+
+/**
+ * Keep a transparent Real-ESRGAN PNG as the formal processed rendition.
+ * This is deliberately separate from JPEG conversion so the original PNG is
+ * never flattened or overwritten by an implicit policy.
+ */
+export async function preserveOptimizationPng(options: {
+  inputPath: string;
+  outputPath: string;
+  overwrite?: boolean;
+}): Promise<ConversionResult> {
+  const inputPath = path.resolve(options.inputPath);
+  const outputPath = path.resolve(options.outputPath);
+  const inputStats = await stat(inputPath);
+  const inputSha256 = await sha256File(inputPath);
+  const base = {
+    inputPath,
+    outputPath,
+    inputBytes: inputStats.size,
+    inputSha256,
+    sourcePngRetained: true as const,
+    renditionType: "upscaled" as const,
+  };
+  if (inputPath === outputPath) {
+    return { ...base, status: "failed", message: "inputPath and outputPath must differ; source PNG is never overwritten" };
+  }
+  if (!/\.png$/iu.test(outputPath)) {
+    return { ...base, status: "failed", message: "alpha-preserving processed output must use a .png extension" };
+  }
+  if (path.basename(path.dirname(outputPath)).toLowerCase() !== "processed") {
+    return { ...base, status: "failed", message: "processed PNG output must be placed directly in a processed staging directory" };
+  }
+  const alpha = await inspectImageAlpha(inputPath);
+  if (alpha.format !== "png") {
+    return { ...base, status: "failed", width: alpha.width, height: alpha.height, message: "preserve input must be a PNG optimization output" };
+  }
+  let tempOutput: string | undefined;
+  let backupOutput: string | undefined;
+  try {
+    try {
+      const existing = await stat(outputPath);
+      if (existing.isFile() && !options.overwrite) {
+        const existingMetadata = await sharp(outputPath, { animated: false }).metadata();
+        if (existingMetadata.format !== "png" || existingMetadata.width !== alpha.width || existingMetadata.height !== alpha.height) {
+          return { ...base, status: "failed", width: alpha.width, height: alpha.height, hasActualTransparency: alpha.hasActualTransparency, message: "existing processed output is not a valid PNG with matching dimensions; use explicit overwrite after review" };
+        }
+        return {
+          ...base,
+          status: "skipped",
+          outputBytes: existing.size,
+          outputSha256: await sha256File(outputPath),
+          outputFormat: "png",
+          width: existingMetadata.width,
+          height: existingMetadata.height,
+          hasActualTransparency: alpha.hasActualTransparency,
+          alphaPolicy: "preserve-png",
+          sizeReductionBytes: inputStats.size - existing.size,
+          sizeReductionRatio: 1 - existing.size / inputStats.size,
+          message: "output exists; use overwrite only for staging output replacement",
+        };
+      }
+    } catch (error) {
+      if (!(error instanceof Error && "code" in error && (error as NodeJS.ErrnoException).code === "ENOENT")) throw error;
+    }
+    await mkdir(path.dirname(outputPath), { recursive: true });
+    tempOutput = `${outputPath}.partial-${process.pid}-${Date.now()}`;
+    await copyFile(inputPath, tempOutput);
+    const outputMetadata = await sharp(tempOutput, { animated: false }).metadata();
+    if (outputMetadata.format !== "png" || outputMetadata.width !== alpha.width || outputMetadata.height !== alpha.height) {
+      throw new Error("preserved PNG output did not validate with matching dimensions");
+    }
+    if (options.overwrite) {
+      try {
+        await stat(outputPath);
+        backupOutput = `${outputPath}.backup-${process.pid}-${Date.now()}`;
+        await rename(outputPath, backupOutput);
+      } catch (error) {
+        if (!(error instanceof Error && "code" in error && (error as NodeJS.ErrnoException).code === "ENOENT")) throw error;
+        backupOutput = undefined;
+      }
+    }
+    await rename(tempOutput, outputPath);
+    tempOutput = undefined;
+    if (backupOutput) {
+      await rm(backupOutput, { force: true }).catch(() => undefined);
+      backupOutput = undefined;
+    }
+    const outputStats = await stat(outputPath);
+    return {
+      ...base,
+      status: "converted",
+      outputBytes: outputStats.size,
+      outputSha256: await sha256File(outputPath),
+      outputFormat: "png",
+      width: outputMetadata.width,
+      height: outputMetadata.height,
+      hasActualTransparency: alpha.hasActualTransparency,
+      alphaPolicy: "preserve-png",
+      sizeReductionBytes: inputStats.size - outputStats.size,
+      sizeReductionRatio: 1 - outputStats.size / inputStats.size,
+    };
+  } catch (error) {
+    if (tempOutput) await rm(tempOutput, { force: true });
+    if (backupOutput) {
+      await rm(outputPath, { force: true }).catch(() => undefined);
+      await rename(backupOutput, outputPath).catch(() => undefined);
+    }
+    return { ...base, status: "failed", width: alpha.width, height: alpha.height, hasActualTransparency: alpha.hasActualTransparency, message: error instanceof Error ? error.message : String(error) };
+  }
+}
 
 async function sha256File(filePath: string): Promise<string> {
   const hash = createHash("sha256");

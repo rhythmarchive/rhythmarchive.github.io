@@ -18,8 +18,10 @@ export function selectPreviewSource<T extends PreviewSourceCandidate>(candidates
 
 export type ThumbnailResult = {
   width: ThumbnailWidth;
+  pixelWidth: number;
   relativePath: string;
   absolutePath: string;
+  height: number;
   sizeBytes: number;
   sha256: string;
   mime: "image/webp";
@@ -32,10 +34,10 @@ export async function generateThumbnailSet(inputPath: string, outputDirectory: s
     const filename = `${baseName}_${width}.webp`;
     const absolutePath = path.join(outputDirectory, filename);
     const partialPath = `${absolutePath}.partial-${process.pid}-${Date.now()}`;
-    await sharp(inputPath).resize({ width, withoutEnlargement: true }).webp().toFile(partialPath);
+    const output = await sharp(inputPath).resize({ width, withoutEnlargement: true }).webp().toFile(partialPath);
     await rename(partialPath, absolutePath);
     const file = await stat(absolutePath);
-    results.push({ width, relativePath: filename, absolutePath, sizeBytes: file.size, sha256: await sha256File(absolutePath), mime: "image/webp" });
+    results.push({ width, pixelWidth: output.width, relativePath: filename, absolutePath, height: output.height, sizeBytes: file.size, sha256: await sha256File(absolutePath), mime: "image/webp" });
   }
   return results;
 }

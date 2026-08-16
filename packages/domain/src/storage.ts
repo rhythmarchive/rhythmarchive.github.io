@@ -1,3 +1,4 @@
+import { createHash } from "node:crypto";
 import {
   DeleteObjectCommand,
   GetObjectCommand,
@@ -51,6 +52,7 @@ export type StorageVerification = {
   sizeBytes?: number;
   contentType?: string;
   cacheControl?: string;
+  sha256?: string;
 };
 
 export type StorageClient = {
@@ -61,7 +63,7 @@ export type StorageClient = {
   getObject(objectKey: string): Promise<GetObjectCommandOutput>;
   deleteObject(objectKey: string): Promise<void>;
   objectExists(objectKey: string): Promise<boolean>;
-  verifyObject(objectKey: string, expected: { sizeBytes: number }): Promise<StorageVerification>;
+  verifyObject(objectKey: string, expected: { sizeBytes: number; sha256?: string }): Promise<StorageVerification>;
 };
 
 function nonEmpty(value: string | undefined): string | undefined {
@@ -129,6 +131,22 @@ function operationError(code: Exclude<StorageError["code"], "NOT_CONFIGURED">, e
   // Do not retain the SDK error as `cause`: SDK request errors can contain
   // request metadata, and the public/admin boundary must never echo secrets.
   return new StorageError(code, `ROS ${code.replace(/_FAILED$/u, "").toLowerCase()} failed.`, { notFound: notFound || isNotFound(error) });
+}
+
+async function sha256Body(body: unknown): Promise<string | undefined> {
+  if (body === undefined || body === null) return undefined;
+  if (body instanceof Uint8Array) return createHash("sha256").update(body).digest("hex");
+  if (typeof body === "string") return createHash("sha256").update(body).digest("hex");
+  if (typeof body === "object" && "transformToByteArray" in body && typeof body.transformToByteArray === "function") {
+    const bytes = await body.transformToByteArray();
+    return createHash("sha256").update(bytes).digest("hex");
+  }
+  if (typeof body === "object" && Symbol.asyncIterator in body) {
+    const hash = createHash("sha256");
+    for await (const chunk of body as AsyncIterable<Uint8Array | string>) hash.update(typeof chunk === "string" ? chunk : chunk);
+    return hash.digest("hex");
+  }
+  return undefined;
 }
 
 export class S3StorageClient implements StorageClient {
@@ -216,16 +234,18 @@ export class S3StorageClient implements StorageClient {
     }
   }
 
-  async verifyObject(objectKey: string, expected: { sizeBytes: number }): Promise<StorageVerification> {
+  async verifyObject(objectKey: string, expected: { sizeBytes: number; sha256?: string }): Promise<StorageVerification> {
     try {
       const head = await this.headObject(objectKey);
+      const contentSha256 = expected.sha256 ? await sha256Body((await this.getObject(objectKey)).Body) : undefined;
       return {
         objectKey,
         exists: true,
-        verified: head.sizeBytes === expected.sizeBytes,
+        verified: head.sizeBytes === expected.sizeBytes && (!expected.sha256 || contentSha256?.toLowerCase() === expected.sha256.toLowerCase()),
         sizeBytes: head.sizeBytes,
         ...(head.contentType ? { contentType: head.contentType } : {}),
         ...(head.cacheControl ? { cacheControl: head.cacheControl } : {}),
+        ...(contentSha256 ? { sha256: contentSha256 } : {}),
       };
     } catch (error) {
       if (error instanceof StorageError && error.notFound) return { objectKey, exists: false, verified: false };
@@ -283,10 +303,11 @@ export class MemoryStorageClient implements StorageClient {
     return this.objects.has(objectKey);
   }
 
-  async verifyObject(objectKey: string, expected: { sizeBytes: number }): Promise<StorageVerification> {
+  async verifyObject(objectKey: string, expected: { sizeBytes: number; sha256?: string }): Promise<StorageVerification> {
     const object = this.objects.get(objectKey);
     if (!object) return { objectKey, exists: false, verified: false };
-    return { objectKey, exists: true, verified: object.sizeBytes === expected.sizeBytes, sizeBytes: object.sizeBytes, ...(object.contentType ? { contentType: object.contentType } : {}), cacheControl: object.cacheControl };
+    const sha256 = createHash("sha256").update(object.body).digest("hex");
+    return { objectKey, exists: true, verified: object.sizeBytes === expected.sizeBytes && (!expected.sha256 || sha256 === expected.sha256.toLowerCase()), sizeBytes: object.sizeBytes, ...(object.contentType ? { contentType: object.contentType } : {}), cacheControl: object.cacheControl, sha256 };
   }
 }
 

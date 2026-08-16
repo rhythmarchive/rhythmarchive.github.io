@@ -6,10 +6,14 @@ import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import {
   ExtractorAdapterError,
+  applyCatalogDiffToWorkspace,
+  buildArcaeaSourceInventory,
+  createVersionWorkspace,
   createWorkspaceFromExtractorResult,
+  ResourceType,
   rosStorageStatus,
   type ExtractorApk,
-  type ExtractorResult,
+  ExtractorResult,
 } from "../../domain/src/index.js";
 import { loadAdminConfig, normalizeAdminConfig, saveAdminConfig, type AdminConfig, DEFAULT_ADMIN_CONFIG_PATH } from "./config.js";
 import { GAME_REGISTRY, gameConfig, publicGameConfigs, type GameConfig, type GameId } from "./registry.js";
@@ -22,6 +26,13 @@ import {
   finalizeCandidate,
   knownWorkspaceFolder,
   listWorkspaces,
+  loadCatalog,
+  removeCandidate,
+  replaceCandidateImage,
+  restoreCandidate,
+  retryUpscale,
+  skipUpscale,
+  startUpscale,
   prepareUpscale,
   previewFilePath,
   publishPreview,
@@ -255,12 +266,12 @@ function inside(rootPath: string, targetPath: string): boolean {
 }
 
 async function runConfiguredExtractor(config: AdminConfig, game: GameConfig, baseApk: ExtractorApk, targetApk: ExtractorApk): Promise<ExtractorResult> {
-  if (!config.legacyExtractorRoot) {
+  if (!config.legacyExtractorRoot && game.id !== "phigros") {
     throw new AdminOperationError("EXTRACTOR_NOT_CONFIGURED", "还没有配置旧项目提取器目录。请在设置中填写包含 scripts/extract-* 的旧项目目录。", 409);
   }
   let extractorRoot: string;
   try {
-    extractorRoot = await realpath(config.legacyExtractorRoot);
+    extractorRoot = await realpath(game.id === "phigros" ? PROJECT_ROOT : config.legacyExtractorRoot);
   } catch (error) {
     throw new AdminOperationError("EXTRACTOR_NOT_FOUND", "旧项目提取器目录不存在或无法读取。", 409, error instanceof Error ? error.message : String(error));
   }
@@ -270,7 +281,10 @@ async function runConfiguredExtractor(config: AdminConfig, game: GameConfig, bas
   const runDirectory = path.join(runsRoot, `${targetApk.version}-${Date.now()}`);
   if (!inside(runtimeRoot, runDirectory)) throw new AdminOperationError("INVALID_RUNTIME_PATH", "提取运行目录不在 runtime 目录内。", 400);
   await mkdir(runDirectory, { recursive: true });
-  const configuredScriptPath = path.resolve(extractorRoot, game.extractor.script);
+  if (game.id === "phigros") extractorRoot = PROJECT_ROOT;
+  const configuredScriptPath = game.id === "phigros"
+    ? path.resolve(PROJECT_ROOT, "tools", "phase6-phigros-diff.py")
+    : path.resolve(extractorRoot, game.extractor.script);
   if (!inside(extractorRoot, configuredScriptPath)) throw new AdminOperationError("INVALID_EXTRACTOR_PATH", "提取器脚本路径无效。", 400);
   let scriptPath: string;
   try {
@@ -291,13 +305,48 @@ async function runConfiguredExtractor(config: AdminConfig, game: GameConfig, bas
   const reportPath = path.join(runDirectory, game.extractor.reportFilename);
   const adapterOptions = { reportPath, baseVersion: baseApk.version, targetVersion: targetApk.version, baseApk, targetApk };
   try {
-    return await game.adapterRunner(adapterOptions);
+    const result = await game.adapterRunner(adapterOptions);
+    if (game.id !== "arcaea") return result;
+    try {
+      const sourceInventory = await buildArcaeaSourceInventory({ sourcePath: targetApk.absolutePath, runtimeRoot: runDirectory });
+      return ExtractorResult.parse({ ...result, sourceInventory });
+    } catch (error) {
+      throw new AdminOperationError("EXTRACTOR_FAILED", "Arcaea 新版本 source inventory 生成失败，本次更新未创建工作区。", 409, error instanceof Error ? error.message : String(error));
+    }
   } catch (error) {
+    if (error instanceof AdminOperationError) throw error;
     throw operationError(error);
   }
 }
 
+async function createNoopWorkspaceFromApk(runtime: AdminRuntime, body: Record<string, unknown>): Promise<unknown> {
+  const gameValue = requiredString(body.game, "game");
+  if (gameValue !== "arcaea" && gameValue !== "phigros") throw new AdminOperationError("INVALID_GAME", "unsupported game", 400);
+  const filename = filenameOnly(requiredString(body.targetFilename ?? body.baseFilename, "APK"));
+  const targetApk = await selectedApk(runtime.config, gameValue, filename, "target");
+  const baseApk = { ...targetApk, role: "base" as const };
+  const workspaceId = Buffer.from(`${gameValue}/${targetApk.version}`, "utf8").toString("base64url");
+  const rootPath = workspaceRootFor(runtime.config, workspaceId);
+  try {
+    if ((await stat(path.join(rootPath, "metadata", "batch.json"))).isFile()) throw new AdminOperationError("WORKSPACE_EXISTS", "this version already has a workspace", 409);
+  } catch (error) {
+    if (error instanceof AdminOperationError) throw error;
+  }
+  await createVersionWorkspace({
+    rootPath,
+    game: gameValue,
+    baseVersion: targetApk.version,
+    targetVersion: targetApk.version,
+    baseApk,
+    targetApk,
+    extractorVersion: "phase6-noop-same-source",
+    sourceManifest: { game: gameValue, sourceType: gameValue === "arcaea" ? "arcaea_apk" : "phigros_apk", sourceSnapshot: `${targetApk.version}->${targetApk.version}:same-source`, extractorVersion: "phase6-noop-same-source", candidates: [], notes: ["No-op comparison used the same local APK source; no binary changes are asserted."] },
+  });
+  return { view: await workspaceView(runtime.config, workspaceId), extractor: { status: "ok", diagnostics: [], limitations: ["No-op comparison used the same local APK for base and target."] } };
+}
+
 async function createWorkspaceFromApks(runtime: AdminRuntime, body: Record<string, unknown>): Promise<unknown> {
+  if (body.compareSameSource === true) return createNoopWorkspaceFromApk(runtime, body);
   const game = requiredString(body.game, "游戏");
   if (game !== "arcaea" && game !== "phigros") throw new AdminOperationError("INVALID_GAME", "不支持这个游戏。", 400);
   const gameDefinition = gameConfig(game);
@@ -320,8 +369,13 @@ async function createWorkspaceFromApks(runtime: AdminRuntime, body: Record<strin
   }
   const result = await runConfiguredExtractor(runtime.config, gameDefinition, baseApk, targetApk);
   if (result.status === "failed") throw new AdminOperationError("EXTRACTOR_FAILED", "提取器报告失败，未创建工作区。", 409, result.diagnostics.map((item) => item.message).join("\n"));
-  if (result.candidates.length === 0) throw new AdminOperationError("NO_CANDIDATES", "提取完成，但没有发现可审核的更新资源。", 409, result.diagnostics.map((item) => `${item.code}: ${item.message}`).join("\n"));
+  if (result.candidates.length === 0 && result.sourceInventory.length === 0) throw new AdminOperationError("NO_CANDIDATES", "提取完成，但没有发现可审核的更新资源。", 409, result.diagnostics.map((item) => `${item.code}: ${item.message}`).join("\n"));
   await createWorkspaceFromExtractorResult(result, { rootPath });
+  try {
+    await applyCatalogDiffToWorkspace(rootPath, await loadCatalog(runtime.config));
+  } catch (error) {
+    if (!(error instanceof AdminOperationError) || error.code !== "CATALOG_READ_FAILED") throw error;
+  }
   return { view: await workspaceView(runtime.config, workspaceId), extractor: { status: result.status, diagnostics: result.diagnostics, limitations: result.limitations } };
 }
 
@@ -437,7 +491,8 @@ async function handleApi(runtime: AdminRuntime, request: IncomingMessage, respon
   }
   if (request.method === "GET" && action.startsWith("preview/")) {
     const candidateId = decodePathSegment(action.slice("preview/".length), "候选资源");
-    const preview = await previewFilePath(runtime.config, workspaceId, candidateId);
+    const role = url.searchParams.get("role");
+    const preview = await previewFilePath(runtime.config, workspaceId, candidateId, role === "original" || role === "upscaled" ? role : undefined);
     response.writeHead(200, { "Content-Type": preview.mime, "Cache-Control": "no-store" });
     createReadStream(preview.filePath).pipe(response);
     return;
@@ -462,6 +517,19 @@ async function handleApi(runtime: AdminRuntime, request: IncomingMessage, respon
   if (action === "upscale/prepare") {
     const candidateIds = Array.isArray(body.candidateIds) ? body.candidateIds.filter((value): value is string => typeof value === "string") : undefined;
     sendJson(response, 200, await prepareUpscale(runtime.config, workspaceId, candidateIds));
+    return;
+  }
+  if (action === "upscale/run") {
+    const candidateIds = Array.isArray(body.candidateIds) ? body.candidateIds.filter((value): value is string => typeof value === "string") : undefined;
+    sendJson(response, 200, await startUpscale(runtime.config, workspaceId, candidateIds));
+    return;
+  }
+  if (action === "upscale/retry") {
+    sendJson(response, 200, await retryUpscale(runtime.config, workspaceId, requiredString(body.candidateId, "candidate")));
+    return;
+  }
+  if (action === "upscale/skip-original") {
+    sendJson(response, 200, await skipUpscale(runtime.config, workspaceId, requiredString(body.candidateId, "candidate")));
     return;
   }
   if (action === "upscale/rescan") {
@@ -494,18 +562,34 @@ async function handleApi(runtime: AdminRuntime, request: IncomingMessage, respon
     sendJson(response, 200, { ok: true });
     return;
   }
-  const candidateAction = action.match(/^candidates\/([^/]+)\/(override|identity|finalize)$/u);
+  const candidateAction = action.match(/^candidates\/([^/]+)\/(override|identity|finalize|replace|remove|ignore|restore)$/u);
   if (candidateAction) {
     const candidateId = decodePathSegment(candidateAction[1]!, "候选资源");
     const operation = candidateAction[2]!;
+    if (operation === "replace") {
+      sendJson(response, 200, await replaceCandidateImage(runtime.config, workspaceId, candidateId, requiredString(body.sourcePath, "replacement image")));
+      return;
+    }
+    if (operation === "remove" || operation === "ignore") {
+      sendJson(response, 200, await removeCandidate(runtime.config, workspaceId, candidateId, operation === "ignore" ? "ignored" : "removed"));
+      return;
+    }
+    if (operation === "restore") {
+      sendJson(response, 200, await restoreCandidate(runtime.config, workspaceId, candidateId));
+      return;
+    }
     if (operation === "override") {
-      const override: { title?: string; artist?: string; filename?: string } = {};
+      const override: { title?: string; artist?: string; filename?: string; category?: "jacket" | "pack-cover" | "story-cg" | "story-texture" | "character-portrait" | "character-avatar" | "linkplay-preview" | "background" | "sticker" | "world-mode" | "startup" | "phigros-april-fools" | "other" } = {};
       const title = optionalString(body.title);
       const artist = optionalString(body.artist);
       const filename = optionalString(body.filename);
+      const category = optionalString(body.category);
+      const parsedCategory = category ? ResourceType.safeParse(category) : undefined;
+      if (parsedCategory && !parsedCategory.success) throw new AdminOperationError("INVALID_CATEGORY", "category is not a supported resource type", 400);
       if (title) override.title = title;
       if (artist) override.artist = artist;
       if (filename) override.filename = filename;
+      if (parsedCategory?.success) override.category = parsedCategory.data;
       sendJson(response, 200, await applyCandidateOverride(runtime.config, workspaceId, candidateId, override));
       return;
     }
@@ -522,13 +606,15 @@ async function handleApi(runtime: AdminRuntime, request: IncomingMessage, respon
     }
     if (operation === "finalize") {
       const target = body.target && typeof body.target === "object" && !Array.isArray(body.target) ? body.target as Record<string, unknown> : undefined;
-      const finalizeInput: { createNewTarget?: boolean; target?: { resourceId: string; variantId: string; renditionId: string; downloadFilename?: string }; downloadFilename?: string } = { createNewTarget: body.createNewTarget === true };
+      const finalizeInput: { createNewTarget?: boolean; target?: { resourceId: string; variantId: string; renditionId: string; sourceRenditionId?: string; downloadFilename?: string }; downloadFilename?: string } = { createNewTarget: body.createNewTarget === true };
       if (target) {
-        const targetInput: { resourceId: string; variantId: string; renditionId: string; downloadFilename?: string } = {
+        const targetInput: { resourceId: string; variantId: string; renditionId: string; sourceRenditionId?: string; downloadFilename?: string } = {
           resourceId: requiredString(target.resourceId, "Resource ID"),
           variantId: requiredString(target.variantId, "Variant ID"),
           renditionId: requiredString(target.renditionId, "Rendition ID"),
         };
+        const sourceRenditionId = optionalString(target.sourceRenditionId);
+        if (sourceRenditionId) targetInput.sourceRenditionId = sourceRenditionId;
         const targetFilename = optionalString(target.downloadFilename);
         if (targetFilename) targetInput.downloadFilename = targetFilename;
         finalizeInput.target = targetInput;

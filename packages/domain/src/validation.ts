@@ -353,9 +353,13 @@ export function validatePublishPlanConsistency(planValue: unknown, catalogValue:
     if (gcIds.has(object.objectId)) issues.push(issue("objectsEligibleForGC", `Object ${object.objectId} cannot be created and GC-eligible in one plan`));
   }
   for (const mutation of plan.data.catalogMutations) {
-    for (const [field, id] of [["resourceId", mutation.resourceId], ["variantId", mutation.variantId], ["renditionId", mutation.renditionId]] as const) {
-      if (!id) continue;
-      const key = `${field}:${mutation.operation}:${id}`;
+    const identity = mutation.operation.endsWith("resource")
+      ? ["resourceId", mutation.resourceId] as const
+      : mutation.operation.endsWith("variant")
+        ? ["variantId", mutation.variantId] as const
+        : ["renditionId", mutation.renditionId] as const;
+    if (identity[1]) {
+      const key = `${identity[0]}:${mutation.operation}:${identity[1]}`;
       if (mutationIds.has(key)) issues.push(issue("catalogMutations", `mutation ${key} is repeated in one plan`));
       mutationIds.add(key);
     }

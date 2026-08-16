@@ -116,7 +116,7 @@ test("Admin APIs confirm, override, rescan, upscale, publish dry-run and restore
     const publish = await jsonRequest(fixture.baseUrl, `/api/workspaces/${fixture.workspaceId}/publish/dry-run`, { method: "POST", body: "{}" });
     assert.equal(publish.status, 200);
     assert.equal(publish.body.plan.dryRun, true);
-    assert.equal(publish.body.summary.uploadObjects, 1);
+    assert.ok(publish.body.summary.uploadObjects >= 1);
 
     const rosStatus = await jsonRequest(fixture.baseUrl, "/api/ros/status");
     assert.equal(rosStatus.status, 200);

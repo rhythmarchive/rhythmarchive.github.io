@@ -10,9 +10,11 @@ import {
 } from "./schema.js";
 import { validateCandidate, validatePublishPlan, validatePublishPlanConsistency, validateReleaseManifest, validateReleaseManifestConsistency } from "./validation.js";
 import { checkWorkspaceRawIntegrity, sha256File } from "./workspace.js";
-import { effectiveCandidateMetadata } from "./review.js";
+import { effectiveCandidateMetadata, effectiveCandidateResourceType, isUpscaleEligible } from "./review.js";
 import path from "node:path";
-import { stat } from "node:fs/promises";
+import { mkdir, realpath, rename, stat, writeFile } from "node:fs/promises";
+import { readFile } from "node:fs/promises";
+import { generateThumbnailSet, type ThumbnailWidth } from "./thumbnails.js";
 
 function iso(value?: Date | string): string {
   const result = value instanceof Date ? value.toISOString() : value ?? new Date().toISOString();
@@ -22,6 +24,25 @@ function iso(value?: Date | string): string {
 
 function deepEqual(left: unknown, right: unknown): boolean {
   return JSON.stringify(left) === JSON.stringify(right);
+}
+
+function inside(rootPath: string, targetPath: string): boolean {
+  const normalize = (value: string) => process.platform === "win32" ? value.toLowerCase() : value;
+  const root = normalize(path.resolve(rootPath));
+  const target = normalize(path.resolve(targetPath));
+  const prefix = root.endsWith(path.sep) ? root : `${root}${path.sep}`;
+  return target === root || target.startsWith(prefix);
+}
+
+async function realWorkspaceFile(workspaceRoot: string, relativePath: string): Promise<string | undefined> {
+  const lexicalPath = path.resolve(workspaceRoot, relativePath);
+  if (!inside(workspaceRoot, lexicalPath)) return undefined;
+  try {
+    const [realRoot, realFile] = await Promise.all([realpath(workspaceRoot), realpath(lexicalPath)]);
+    return inside(realRoot, realFile) ? realFile : undefined;
+  } catch {
+    return undefined;
+  }
 }
 
 function finalFile(candidate: Candidate): Candidate["files"][number] {
@@ -38,6 +59,154 @@ function finalFile(candidate: Candidate): Candidate["files"][number] {
   return work;
 }
 
+const PREVIEW_PLAN_FILE = "metadata/preview-plan.json";
+const PUBLISH_FILES_FILE = "metadata/publish-files.json";
+
+export type PreviewArtifact = {
+  candidateId: string;
+  resourceId: string;
+  variantId: string;
+  renditionId: string;
+  renditionType: `thumbnail-${ThumbnailWidth}`;
+  width: ThumbnailWidth;
+  pixelWidth: number;
+  sourceRenditionId?: string;
+  sourceObjectId: string;
+  relativePath: string;
+  objectId: string;
+  objectKey: string;
+  sha256: string;
+  sizeBytes: number;
+  height: number;
+  mime: "image/webp";
+  downloadFilename: string;
+};
+
+export type PublishFileEntry = {
+  objectId: string;
+  candidateId: string;
+  relativePath: string;
+  kind: "candidate" | "preview";
+};
+
+async function atomicJson(filePath: string, value: unknown): Promise<void> {
+  await mkdir(path.dirname(filePath), { recursive: true });
+  const temporaryPath = `${filePath}.partial-${process.pid}-${createUuidV7()}`;
+  await writeFile(temporaryPath, `${JSON.stringify(value, null, 2)}\n`, "utf8");
+  await rename(temporaryPath, filePath);
+}
+
+async function readJsonIfPresent<T>(filePath: string, fallback: T): Promise<T> {
+  try {
+    return JSON.parse(await readFile(filePath, "utf8")) as T;
+  } catch {
+    return fallback;
+  }
+}
+
+export async function readPreviewPlan(workspaceRoot: string): Promise<PreviewArtifact[]> {
+  const value = await readJsonIfPresent<{ entries?: PreviewArtifact[] }>(path.join(workspaceRoot, PREVIEW_PLAN_FILE), {});
+  return Array.isArray(value.entries) ? value.entries : [];
+}
+
+export async function readPublishFileMap(workspaceRoot: string): Promise<PublishFileEntry[]> {
+  const value = await readJsonIfPresent<{ entries?: PublishFileEntry[] }>(path.join(workspaceRoot, PUBLISH_FILES_FILE), {});
+  return Array.isArray(value.entries) ? value.entries : [];
+}
+
+function originalWorkFile(candidate: Candidate): Candidate["files"][number] | undefined {
+  return candidate.files.find((file) => file.role === "work-original" && file.availability === "present");
+}
+
+function originalCompanion(candidate: Candidate): { file: Candidate["files"][number]; renditionId: string; objectId: string } | undefined {
+  if (!candidate.processing.requiresUpscale) return undefined;
+  if (!candidate.target?.sourceRenditionId) throw new Error(`upscaled Candidate ${candidate.id} has no original sourceRenditionId`);
+  const file = originalWorkFile(candidate);
+  if (!file?.sha256) return undefined;
+  return { file, renditionId: candidate.target.sourceRenditionId, objectId: `sha256:${file.sha256}` };
+}
+
+async function ensurePreviewArtifacts(options: { batch: UpdateBatch; candidates: Candidate[]; catalog: CatalogType; workspaceRoot: string }): Promise<PreviewArtifact[]> {
+  const previous = await readPreviewPlan(options.workspaceRoot);
+  const previousByKey = new Map(previous.map((entry) => [`${entry.candidateId}:${entry.width}:${entry.sourceObjectId}`, entry]));
+  const previewRoot = path.join(options.workspaceRoot, "previews");
+  await mkdir(previewRoot, { recursive: true });
+  const realRoot = await realpath(options.workspaceRoot);
+  const realPreviewRoot = await realpath(previewRoot);
+  if (!inside(realRoot, realPreviewRoot)) throw new Error("preview directory resolves outside the update workspace");
+  const artifacts: PreviewArtifact[] = [];
+  for (const candidate of options.candidates) {
+    if (candidate.status === "REJECTED" || candidate.review.disposition !== "active") continue;
+    const target = candidate.target;
+    if (!target?.resourceId || !target.variantId || !target.renditionId) continue;
+    const final = finalFile(candidate);
+    if (!final.sha256) continue;
+    const finalObjectId = `sha256:${final.sha256}`;
+    const variantRenditions = options.catalog.renditions.filter((rendition) => rendition.variantId === target.variantId);
+    const existingTargetRendition = variantRenditions.find((rendition) => rendition.id === target.renditionId);
+    const existingPreviewSource = variantRenditions.find((rendition) => rendition.renditionType === "upscaled")
+      ?? variantRenditions.find((rendition) => rendition.renditionType === "original");
+    const finalChanged = !existingTargetRendition || existingTargetRendition.objectId !== finalObjectId;
+    const sourceObjectId = candidate.processing.requiresUpscale || finalChanged
+      ? finalObjectId
+      : existingPreviewSource?.objectId ?? finalObjectId;
+    const previewRenditions = new Map<number, CatalogType["renditions"][number]>();
+    for (const rendition of variantRenditions) {
+      const match = rendition.renditionType.match(/^thumbnail-(320|640|1280)$/u);
+      if (match) previewRenditions.set(Number(match[1]), rendition);
+    }
+    const needsGeneration = sourceObjectId === finalObjectId && [320, 640, 1280].some((width) => !previewRenditions.get(width)?.objectId);
+    const sourceChanged = sourceObjectId === finalObjectId && existingPreviewSource?.objectId !== sourceObjectId;
+    if (sourceObjectId !== finalObjectId || (!needsGeneration && !sourceChanged)) continue;
+    const sourcePath = path.resolve(options.workspaceRoot, final.relativePath);
+    const candidatePreviewRoot = path.join(previewRoot, candidate.id);
+    await mkdir(candidatePreviewRoot, { recursive: true });
+    const realCandidatePreviewRoot = await realpath(candidatePreviewRoot);
+    if (!inside(realRoot, realCandidatePreviewRoot)) throw new Error(`preview directory for Candidate ${candidate.id} resolves outside the update workspace`);
+    for (const width of [320, 640, 1280]) {
+      const existingPreview = path.join(candidatePreviewRoot, `preview_${width}.webp`);
+      try {
+        const realExistingPreview = await realpath(existingPreview);
+        if (!inside(realRoot, realExistingPreview)) throw new Error(`preview file for Candidate ${candidate.id} resolves outside the update workspace`);
+      } catch (error) {
+        if (!(error instanceof Error && "code" in error && (error as NodeJS.ErrnoException).code === "ENOENT")) throw error;
+      }
+    }
+    const generated = await generateThumbnailSet(sourcePath, candidatePreviewRoot, "preview");
+    for (const thumbnail of generated) {
+      const existing = previewRenditions.get(thumbnail.width);
+      if (existing?.objectId === `sha256:${thumbnail.sha256}`) continue;
+      const prior = previousByKey.get(`${candidate.id}:${thumbnail.width}:${sourceObjectId}`);
+      const renditionId = existing?.id ?? prior?.renditionId ?? createUuidV7();
+      const sourceRenditionId = candidate.processing.requiresUpscale || finalChanged
+        ? target.sourceRenditionId ?? target.renditionId
+        : existingPreviewSource?.id ?? target.renditionId;
+      if (!thumbnail.height) throw new Error(`generated preview ${thumbnail.relativePath} has no height`);
+      artifacts.push({
+        candidateId: candidate.id,
+        resourceId: target.resourceId,
+        variantId: target.variantId,
+        renditionId,
+        renditionType: `thumbnail-${thumbnail.width}`,
+        width: thumbnail.width,
+        pixelWidth: thumbnail.pixelWidth,
+        ...(sourceRenditionId ? { sourceRenditionId } : {}),
+        sourceObjectId,
+        relativePath: path.relative(options.workspaceRoot, thumbnail.absolutePath).split(path.sep).join("/"),
+        objectId: `sha256:${thumbnail.sha256}`,
+        objectKey: immutableObjectKey(thumbnail.sha256, "webp"),
+        sha256: thumbnail.sha256,
+        sizeBytes: thumbnail.sizeBytes,
+        height: thumbnail.height,
+        mime: thumbnail.mime,
+        downloadFilename: `${thumbnail.width}.webp`,
+      });
+    }
+  }
+  await atomicJson(path.join(options.workspaceRoot, PREVIEW_PLAN_FILE), { schemaVersion: "1.0", entries: artifacts });
+  return artifacts;
+}
+
 async function readyCandidates(batch: UpdateBatch, candidates: Candidate[], workspaceRoot: string): Promise<Candidate[]> {
   if (batch.status !== "READY_TO_PUBLISH") throw new Error(`UpdateBatch must be READY_TO_PUBLISH, got ${batch.status}`);
   if (batch.candidateIds.length !== candidates.length || !batch.candidateIds.every((id) => candidates.some((candidate) => candidate.id === id))) {
@@ -45,7 +214,7 @@ async function readyCandidates(batch: UpdateBatch, candidates: Candidate[], work
   }
   const blocked = candidates.filter((candidate) => candidate.status === "BLOCKED");
   if (blocked.length > 0) throw new Error(`cannot publish while ${blocked.length} Candidate(s) are BLOCKED`);
-  const active = candidates.filter((candidate) => candidate.status !== "REJECTED");
+  const active = candidates.filter((candidate) => candidate.status !== "REJECTED" && candidate.review.disposition === "active");
   if (active.some((candidate) => candidate.batchId !== batch.id)) throw new Error("all active Candidates must belong to the supplied UpdateBatch");
   if (active.some((candidate) => candidate.status !== "READY")) throw new Error("all non-rejected Candidates must be READY before creating a ReleaseManifest draft");
   return Promise.all(active.map(async (candidate) => {
@@ -53,8 +222,12 @@ async function readyCandidates(batch: UpdateBatch, candidates: Candidate[], work
     if (!validation.success) throw new Error(`Candidate ${candidate.id} is not publishable: ${validation.issues.map((issue) => `${issue.path} ${issue.message}`).join("; ")}`);
     if (!candidate.naming.finalFilename) throw new Error(`Candidate ${candidate.id} has no finalized filename`);
     if (candidate.review.state !== "approved") throw new Error(`Candidate ${candidate.id} has no approved final review`);
+    if (candidate.processing.requiresUpscale && !candidate.target?.sourceRenditionId) throw new Error(`Candidate ${candidate.id} has no stable original sourceRenditionId`);
     if (candidate.processing.requiresUpscale && (!candidate.processing.selectedOutputFileId || !candidate.processing.processedFileId || !candidate.processing.conversion)) {
       throw new Error(`Candidate ${candidate.id} requires a selected and converted upscale result`);
+    }
+    if (candidate.processing.requiresUpscale && !isUpscaleEligible(batch.game, effectiveCandidateResourceType(candidate))) {
+      throw new Error(`Candidate ${candidate.id} is not eligible for upscale`);
     }
     const file = finalFile(candidate);
     if (!(await verifyCandidateFile(candidate, file, workspaceRoot))) throw new Error(`Candidate ${candidate.id} final file bytes no longer match its recorded size/SHA-256`);
@@ -63,7 +236,6 @@ async function readyCandidates(batch: UpdateBatch, candidates: Candidate[], work
 }
 
 function assertReleaseManifestMatchesCandidates(manifest: ReleaseManifestType, candidates: Candidate[]): void {
-  if (manifest.publishedRenditions.length !== candidates.length) throw new Error("ReleaseManifest published rendition count does not match active READY Candidates");
   for (const candidate of candidates) {
     const target = candidate.target;
     if (!target?.resourceId || !target.variantId || !target.renditionId) throw new Error(`READY Candidate ${candidate.id} has incomplete publication target`);
@@ -73,6 +245,11 @@ function assertReleaseManifestMatchesCandidates(manifest: ReleaseManifestType, c
     if (!file.sha256 || entries[0]!.objectId !== `sha256:${file.sha256}`) throw new Error(`ReleaseManifest object does not match Candidate ${candidate.id} final file`);
     const expectedFilename = target.downloadFilename ?? candidate.naming.finalFilename;
     if (!expectedFilename || entries[0]!.downloadFilename !== expectedFilename) throw new Error(`ReleaseManifest downloadFilename does not match Candidate ${candidate.id}`);
+    const companion = originalCompanion(candidate);
+    if (companion) {
+      const companionEntries = manifest.publishedRenditions.filter((entry) => entry.resourceId === target.resourceId && entry.variantId === target.variantId && entry.renditionId === companion.renditionId);
+      if (companionEntries.length !== 1 || companionEntries[0]!.objectId !== companion.objectId) throw new Error(`ReleaseManifest original companion does not match Candidate ${candidate.id}`);
+    }
   }
 }
 
@@ -92,6 +269,7 @@ async function assertWorkspaceRawIntegrity(workspaceRoot: string): Promise<void>
 export async function createReleaseManifestDraft(options: ReleaseManifestDraftOptions): Promise<ReleaseManifestType> {
   await assertWorkspaceRawIntegrity(options.workspaceRoot);
   const candidates = await readyCandidates(options.batch, options.candidates, options.workspaceRoot);
+  const previewArtifacts = await ensurePreviewArtifacts({ batch: options.batch, candidates, catalog: options.catalog, workspaceRoot: options.workspaceRoot });
   const changes: ReleaseManifestType["changes"] = [];
   const publishedRenditions: ReleaseManifestType["publishedRenditions"] = [];
   const affectedResourceIds = new Set<string>();
@@ -124,6 +302,40 @@ export async function createReleaseManifestDraft(options: ReleaseManifestDraftOp
       changes.push({ changeType: "alias-added", resourceId: resource.id, detail: `download filename alias added: ${downloadFilename}` });
     }
     publishedRenditions.push({ resourceId: target.resourceId, variantId: target.variantId, renditionId: target.renditionId, objectId: `sha256:${file.sha256}`, downloadFilename });
+
+    const companion = originalCompanion(candidate);
+    if (companion) {
+      const existingCompanion = renditionById.get(companion.renditionId);
+      if (!existingCompanion) {
+        changes.push({ changeType: "added-rendition", resourceId: target.resourceId, variantId: target.variantId, renditionId: companion.renditionId, objectId: companion.objectId, detail: `add original companion for Candidate ${candidate.id}` });
+      } else if (existingCompanion.objectId !== companion.objectId) {
+        changes.push({ changeType: "replaced-rendition", resourceId: target.resourceId, variantId: target.variantId, renditionId: companion.renditionId, objectId: companion.objectId, previousObjectId: existingCompanion.objectId, detail: `replace original companion for Candidate ${candidate.id}` });
+      }
+      publishedRenditions.push({ resourceId: target.resourceId, variantId: target.variantId, renditionId: companion.renditionId, objectId: companion.objectId, downloadFilename });
+    }
+  }
+  for (const preview of previewArtifacts) {
+    affectedResourceIds.add(preview.resourceId);
+    const existing = renditionById.get(preview.renditionId);
+    if (!existing) {
+      changes.push({ changeType: "added-rendition", resourceId: preview.resourceId, variantId: preview.variantId, renditionId: preview.renditionId, objectId: preview.objectId, detail: `add ${preview.renditionType} preview` });
+    } else if (existing.objectId !== preview.objectId) {
+      changes.push({ changeType: "replaced-rendition", resourceId: preview.resourceId, variantId: preview.variantId, renditionId: preview.renditionId, objectId: preview.objectId, previousObjectId: existing.objectId, detail: `replace ${preview.renditionType} preview` });
+    }
+  }
+  const removedFromCurrentSource: ReleaseManifestType["removedFromCurrentSource"] = [];
+  try {
+    const diff = JSON.parse(await readFile(path.join(options.workspaceRoot, "metadata", "update-diff.json"), "utf8")) as { removed?: Array<{ identity?: string; sourceRelativePath?: string; resourceId?: string; detail?: string; kind?: string }> };
+    for (const entry of diff.removed ?? []) {
+      if (entry.kind && entry.kind !== "removed") continue;
+      if (!entry.identity) continue;
+      removedFromCurrentSource.push({ identity: entry.identity, ...(entry.sourceRelativePath ? { sourceRelativePath: entry.sourceRelativePath } : {}), ...(entry.resourceId ? { resourceId: entry.resourceId } : {}), detail: entry.detail ? `source missing in target: ${entry.detail}` : "source missing in target; historical Catalog and ROS Object retained" });
+      if (entry.resourceId) affectedResourceIds.add(entry.resourceId);
+      changes.push({ changeType: "removed-from-current-source", ...(entry.resourceId ? { resourceId: entry.resourceId } : {}), detail: `source identity ${entry.identity} is absent from the target source; no Catalog or ROS deletion is performed` });
+    }
+  } catch {
+    // A report-based update may not have a complete target inventory. Absence
+    // is never inferred from a partial candidate list.
   }
   const manifest = ReleaseManifest.parse({
     releaseSchemaVersion: "1.0",
@@ -137,6 +349,7 @@ export async function createReleaseManifestDraft(options: ReleaseManifestDraftOp
     changes,
     affectedResourceIds: [...affectedResourceIds],
     publishedRenditions,
+    removedFromCurrentSource,
     notes: ["Draft generated from READY Candidates only; rejected and ignored review history remains local to ReviewLog."],
   });
   const validation = validateReleaseManifest(manifest);
@@ -178,8 +391,10 @@ function finalFileAbsolutePath(workspaceRoot: string | undefined, candidate: Can
 
 async function verifyCandidateFile(candidate: Candidate, file: Candidate["files"][number], workspaceRoot?: string): Promise<boolean> {
   if (!file.sha256 || file.sizeBytes < 0) return false;
-  const absolutePath = finalFileAbsolutePath(workspaceRoot, candidate, file);
-  if (!absolutePath) return true;
+  const absolutePath = workspaceRoot
+    ? await realWorkspaceFile(workspaceRoot, file.relativePath)
+    : finalFileAbsolutePath(workspaceRoot, candidate, file);
+  if (!absolutePath) return workspaceRoot === undefined;
   try {
     const fileStats = await stat(absolutePath);
     if (fileStats.size !== file.sizeBytes) return false;
@@ -209,16 +424,46 @@ export async function createPublishPlanDryRun(options: PublishPlanDryRunOptions)
   const manifestConsistency = validateReleaseManifestConsistency(manifestValidation.data, options.catalog);
   if (!manifestConsistency.success) throw new Error(`ReleaseManifest references are invalid: ${manifestConsistency.issues.map((issue) => `${issue.path} ${issue.message}`).join("; ")}`);
   assertReleaseManifestMatchesCandidates(manifestValidation.data, candidates);
+  const previewArtifacts = await ensurePreviewArtifacts({ batch: options.batch, candidates, catalog: options.catalog, workspaceRoot: options.workspaceRoot });
+  for (const preview of previewArtifacts) {
+    const change = manifestValidation.data.changes.find((item) => item.renditionId === preview.renditionId && item.objectId === preview.objectId);
+    if (!change) throw new Error(`ReleaseManifest does not contain generated preview ${preview.renditionType} for Candidate ${preview.candidateId}`);
+  }
   const existingObjectIds = new Set(options.catalog.objects.map((object) => object.id));
   const filesByObjectId = new Map<string, { sizeBytes: number; mime: Candidate["files"][number]["mime"]; extension: Candidate["files"][number]["extension"] }>();
+  const publishFiles = new Map<string, PublishFileEntry>();
+  const addPublishFile = (objectId: string, entry: PublishFileEntry): void => {
+    if (!publishFiles.has(objectId)) publishFiles.set(objectId, entry);
+  };
   let objectBytesVerified = true;
   for (const candidate of candidates) {
     const file = finalFile(candidate);
     objectBytesVerified = objectBytesVerified && await verifyCandidateFile(candidate, file, options.workspaceRoot);
-    if (!file.sha256) continue;
-    filesByObjectId.set(`sha256:${file.sha256}`, { sizeBytes: file.sizeBytes, mime: file.mime, extension: file.extension });
+    if (file.sha256) {
+      const objectId = `sha256:${file.sha256}`;
+      filesByObjectId.set(objectId, { sizeBytes: file.sizeBytes, mime: file.mime, extension: file.extension });
+      addPublishFile(objectId, { objectId, candidateId: candidate.id, relativePath: file.relativePath, kind: "candidate" });
+    }
+    const companion = originalCompanion(candidate);
+    if (companion) {
+      objectBytesVerified = objectBytesVerified && await verifyCandidateFile(candidate, companion.file, options.workspaceRoot);
+      filesByObjectId.set(companion.objectId, { sizeBytes: companion.file.sizeBytes, mime: companion.file.mime, extension: companion.file.extension });
+      addPublishFile(companion.objectId, { objectId: companion.objectId, candidateId: candidate.id, relativePath: companion.file.relativePath, kind: "candidate" });
+    }
+  }
+  for (const preview of previewArtifacts) {
+    const absolutePath = await realWorkspaceFile(options.workspaceRoot, preview.relativePath);
+    const previewStats = absolutePath ? await stat(absolutePath).catch(() => undefined) : undefined;
+    const previewHash = previewStats?.isFile() && absolutePath ? await sha256File(absolutePath) : undefined;
+    if (!previewStats?.isFile() || previewStats.size !== preview.sizeBytes || previewHash?.toLowerCase() !== preview.sha256.toLowerCase()) {
+      objectBytesVerified = false;
+    } else {
+      filesByObjectId.set(preview.objectId, { sizeBytes: preview.sizeBytes, mime: preview.mime, extension: "webp" });
+      addPublishFile(preview.objectId, { objectId: preview.objectId, candidateId: preview.candidateId, relativePath: preview.relativePath, kind: "preview" });
+    }
   }
   if (!objectBytesVerified) throw new Error("final file bytes could not be verified; PublishPlan generation is blocked");
+  await atomicJson(path.join(options.workspaceRoot, PUBLISH_FILES_FILE), { schemaVersion: "1.0", entries: [...publishFiles.values()] });
   const objectsToCreate = [...filesByObjectId.entries()]
     .filter(([objectId]) => !existingObjectIds.has(objectId))
     .map(([objectId, file]) => ({ objectId, objectKey: immutableObjectKey(objectId.slice("sha256:".length), file.extension), sha256: objectId.slice("sha256:".length), sizeBytes: file.sizeBytes, mime: file.mime }));

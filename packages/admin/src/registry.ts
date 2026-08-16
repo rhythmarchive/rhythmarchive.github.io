@@ -55,7 +55,7 @@ export const GAME_REGISTRY: readonly GameConfig[] = [
     adapter: "phigros-legacy-report",
     adapterRunner: adaptPhigrosLegacyReport,
     extractor: { runner: "python", script: "scripts/extract-phigros-update.py", reportFilename: "phigros-update-report.json", includeApkDir: true },
-    capabilities: { quickConfirm: false, metadataOverride: true, filenameOverride: true, upscale: true, publishDryRun: true },
+    capabilities: { quickConfirm: false, metadataOverride: true, filenameOverride: true, upscale: false, publishDryRun: true },
   },
 ];
 

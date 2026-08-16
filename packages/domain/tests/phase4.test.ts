@@ -104,15 +104,15 @@ test("publish uploads only missing objects and writes Catalog after successful v
     const storage = new MemoryStorageClient();
     const catalogPath = path.join(root, "catalog", "index.json");
     const first = await executePublishPlan({ plan, manifest, batch: state.batch, candidates: state.candidates, catalog, workspaceRoot, storage, catalogPath, releasesDirectory: path.join(root, "catalog", "releases") });
-    assert.equal(first.uploadedObjectKeys.length, 1);
+    assert.equal(first.uploadedObjectKeys.length, plan.objectsToCreate.length);
     assert.equal(first.skippedObjectKeys.length, 0);
-    assert.equal(first.catalog.objects.length, 1);
+    assert.equal(first.catalog.objects.length, plan.objectsToCreate.length);
     assert.equal(first.releaseManifest.status, "published");
     assert.equal((await stat(catalogPath)).isFile(), true);
     assert.equal((await stat(path.join(root, "catalog", "releases", `${first.releaseManifest.id}.json`))).isFile(), true);
-    const second = await executePublishPlan({ plan, manifest, batch: state.batch, candidates: state.candidates, catalog, workspaceRoot, storage, writeCatalog: async () => undefined, writeReleaseManifest: async () => undefined });
+    const second = await executePublishPlan({ plan, manifest, batch: state.batch, candidates: state.candidates, catalog, workspaceRoot, storage, catalogPath, releasesDirectory: path.join(root, "catalog", "releases") });
     assert.equal(second.uploadedObjectKeys.length, 0);
-    assert.equal(second.skippedObjectKeys.length, 1);
+    assert.equal(second.skippedObjectKeys.length, plan.objectsToCreate.length);
   } finally {
     await rm(root, { recursive: true, force: true });
   }

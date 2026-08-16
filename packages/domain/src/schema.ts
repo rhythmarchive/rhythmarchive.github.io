@@ -91,7 +91,8 @@ export const ProcessingState = z.enum([
   "blocked",
 ]);
 export const UpdateBatchStatus = z.enum(["CREATED", "EXTRACTED", "IN_REVIEW", "PROCESSING", "READY_TO_PUBLISH", "PUBLISHED", "CLEANED", "BLOCKED"]);
-export const ChangeType = z.enum(["added-resource", "added-variant", "added-rendition", "replaced-rendition", "metadata-changed", "alias-added"]);
+export const UpdateChangeKind = z.enum(["added", "content-changed", "metadata-only", "unchanged", "unmatched", "removed"]);
+export const ChangeType = z.enum(["added-resource", "added-variant", "added-rendition", "replaced-rendition", "metadata-changed", "alias-added", "removed-from-current-source"]);
 
 export const ExternalIdentity = z.object({
   namespace: z.string().min(1),
@@ -290,6 +291,14 @@ export const UpdateBatch = z.object({
   finalReviewProgress: Progress,
   status: UpdateBatchStatus,
   statusNote: z.string().min(1).optional(),
+  diffSummary: z.object({
+    added: z.number().int().nonnegative().default(0),
+    contentChanged: z.number().int().nonnegative().default(0),
+    metadataOnly: z.number().int().nonnegative().default(0),
+    unchanged: z.number().int().nonnegative().default(0),
+    unmatched: z.number().int().nonnegative().default(0),
+    removed: z.number().int().nonnegative().default(0),
+  }).optional(),
 });
 
 export const CandidateFileRevision = z.object({
@@ -332,6 +341,7 @@ export const CandidateSourceEvidence = z.object({
   sourceGameVersion: z.string().min(1).optional(),
   sourceSha256: SHA256.optional(),
   detection: z.enum(["added", "changed", "renamed", "legacy-seed", "manual", "unknown"]),
+  changeKind: UpdateChangeKind.default("added"),
   oldRelativePath: PORTABLE_RELATIVE_PATH.optional(),
   evidence: z.array(Evidence).min(1),
 });
@@ -346,7 +356,9 @@ export const CandidateProvenance = z.object({
   metadataSource: z.string().min(1).optional(),
   addressablesKey: z.string().min(1).optional(),
   bundleName: z.string().min(1).optional(),
+  objectPathId: z.string().min(1).optional(),
   bundleHash: z.string().min(1).optional(),
+  imageContentHash: SHA256.optional(),
   objectName: z.string().min(1).optional(),
   dimensions: z.object({ width: z.number().int().positive(), height: z.number().int().positive() }).optional(),
   originalFilename: FILE_NAME.optional(),
@@ -368,6 +380,7 @@ export const CandidateReview = z.object({
   note: z.string().min(1).optional(),
   confirmed: z.boolean().default(false),
   confirmedAt: ISO_DATE.optional(),
+  disposition: z.enum(["active", "removed", "ignored"]).default("active"),
   overrides: z.object({
     title: z.string().min(1).optional(),
     artist: z.string().min(1).optional(),
@@ -398,16 +411,19 @@ export const CandidateProcessing = z.object({
   selectedOutputFileId: UUIDV7.optional(),
   processedFileId: UUIDV7.optional(),
   conversion: z.object({
+    outputFormat: z.enum(["jpeg", "png"]).optional(),
     quality: z.number().int().min(1).max(100),
     chromaSubsampling: z.enum(["4:2:0", "4:4:4"]),
     progressive: z.boolean(),
     mozjpeg: z.boolean().optional(),
-    alphaPolicy: z.enum(["block", "flatten-white", "flatten-explicit"]),
+    alphaPolicy: z.enum(["block", "flatten-white", "flatten-explicit", "preserve-png"]),
     flattenBackground: z.string().min(1).optional(),
     inputPngSha256: SHA256,
-    outputJpgSha256: SHA256,
+    outputJpgSha256: SHA256.optional(),
+    outputPngSha256: SHA256.optional(),
     inputPngSizeBytes: z.number().int().nonnegative().optional(),
     outputJpgSizeBytes: z.number().int().nonnegative().optional(),
+    outputPngSizeBytes: z.number().int().nonnegative().optional(),
     sizeReductionBytes: z.number().int().optional(),
     sizeReductionRatio: z.number().finite().optional(),
     sourcePngRetained: z.literal(true),
@@ -450,6 +466,7 @@ export const Candidate = z.object({
     resourceId: UUIDV7.optional(),
     variantId: UUIDV7.optional(),
     renditionId: UUIDV7.optional(),
+    sourceRenditionId: UUIDV7.optional(),
     downloadFilename: FILE_NAME.optional(),
   }).optional(),
 });
@@ -507,6 +524,14 @@ export const ReviewEvent = z.object({
     "upscale-selected",
     "conversion",
     "final-review",
+    "candidate-removed",
+    "candidate-restored",
+    "candidate-replaced-image",
+    "upscale-started",
+    "upscale-completed",
+    "upscale-skipped",
+    "source-changed-again",
+    "publish-reused",
   ]),
   detail: z.string().min(1),
   data: z.record(z.string(), JsonValue).default({}),
@@ -547,6 +572,13 @@ export const ReleaseChange = z.object({
   detail: z.string().min(1),
 });
 
+export const RemovedSourceEntry = z.object({
+  identity: z.string().min(1),
+  sourceRelativePath: PORTABLE_RELATIVE_PATH.optional(),
+  resourceId: UUIDV7.optional(),
+  detail: z.string().min(1),
+});
+
 export const ReleaseManifest = z.object({
   schemaVersion: LEGACY_RELEASE_SCHEMA_VERSION,
   releaseSchemaVersion: z.literal(RELEASE_SCHEMA_VERSION).default(RELEASE_SCHEMA_VERSION),
@@ -578,6 +610,7 @@ export const ReleaseManifest = z.object({
       context.addIssue({ code: z.ZodIssueCode.custom, path: ["displayFilename"], message: "displayFilename compatibility alias must equal downloadFilename" });
     }
   }))),
+  removedFromCurrentSource: z.array(RemovedSourceEntry).default([]),
   notes: z.array(z.string().min(1)).default([]),
 });
 
@@ -662,6 +695,7 @@ export type ReviewLog = z.infer<typeof ReviewLog>;
 export type WorkspaceScanSnapshot = z.infer<typeof WorkspaceScanSnapshot>;
 export type ReleaseManifest = z.infer<typeof ReleaseManifest>;
 export type ReleaseChange = z.infer<typeof ReleaseChange>;
+export type RemovedSourceEntry = z.infer<typeof RemovedSourceEntry>;
 export type ObjectToCreate = z.infer<typeof ObjectToCreate>;
 export type CatalogMutation = z.infer<typeof CatalogMutation>;
 export type ReleaseManifestMutation = z.infer<typeof ReleaseManifestMutation>;
@@ -671,3 +705,4 @@ export type CandidateStatus = z.infer<typeof CandidateStatus>;
 export type UpdateBatchStatus = z.infer<typeof UpdateBatchStatus>;
 export type RenditionType = z.infer<typeof RenditionType>;
 export type ProcessingState = z.infer<typeof ProcessingState>;
+export type UpdateChangeKind = z.infer<typeof UpdateChangeKind>;
