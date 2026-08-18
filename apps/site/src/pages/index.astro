@@ -3,25 +3,25 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import GameIcon from "../components/GameIcon.astro";
 import SearchBox from "../components/SearchBox.astro";
 import { formatCount } from "../lib/format";
-import { BASE_PATH, ROS_BASE_URL } from "../lib/site-config";
+import { BASE_PATH, ROS_BASE_URL, SITE_ORIGIN } from "../lib/site-config";
 import { getSiteData } from "../lib/site-data";
 import { createUrlHelpers } from "../lib/url";
 
 const data = getSiteData();
-const urls = createUrlHelpers({ basePath: BASE_PATH, origin: "https://rhythmarchive.github.io", rosBaseUrl: ROS_BASE_URL });
+const urls = createUrlHelpers({ basePath: BASE_PATH, origin: SITE_ORIGIN, rosBaseUrl: ROS_BASE_URL });
 const games = data.games;
-const homeImage = data.resources.find((resource) => resource.preview.medium)?.preview.medium?.url;
+const homeOgImage = urls.absoluteUrl("/og/home.png");
 const description = "浏览并下载 Arcaea、Phigros 的曲绘、角色立绘、剧情 CG 与其他游戏图片资源。";
 const arcaeaApkManifestUrl = `${ROS_BASE_URL}/apk/arcaea/latest.json`;
 ---
 
-<BaseLayout title="Rhythm Archive | Arcaea / Phigros 图片资源下载站" description={description} canonicalPath="/" ogImage={homeImage} bodyClass="home-page">
+<BaseLayout title="Rhythm Archive | Arcaea / Phigros 图片资源下载站" description={description} canonicalPath="/" ogImage={homeOgImage} bodyClass="home-page">
   <div data-site-base data-site-base-value={BASE_PATH}></div>
   <section class="home-intro page-container">
     <div class="home-intro-copy">
       <span class="archive-kicker">Rhythm Archive</span>
-      <h1>找到下一张<br /><em>想保存的曲绘。</em></h1>
-      <p>按游戏整理的 Arcaea、Phigros 图像资料。曲绘、角色、剧情与那些值得回看的画面，都在这里。</p>
+      <h1>Arcaea / Phigros <em>图片资源</em></h1>
+      <p>Arcaea、Phigros 曲绘、角色立绘、剧情 CG 与其他图片资源。</p>
     </div>
     <div class="home-search-block">
       <SearchBox />

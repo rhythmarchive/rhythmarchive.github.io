@@ -6,6 +6,7 @@ import ResourceCard from "../../../components/ResourceCard.astro";
 import { GAME_CONFIG } from "../../../lib/game-config";
 import { BASE_PATH, ROS_BASE_URL } from "../../../lib/site-config";
 import { getSiteData } from "../../../lib/site-data";
+import { rankRelatedResources } from "../../../lib/related";
 import { createUrlHelpers } from "../../../lib/url";
 import type { PublicResource } from "../../../lib/types";
 
@@ -20,10 +21,7 @@ export function getStaticPaths() {
 interface Props { resource: PublicResource; }
 const { resource } = Astro.props;
 const firstVariant = resource.variants[0];
-const related = data.resources
-  .filter((candidate) => candidate.resourceId !== resource.resourceId && candidate.game === resource.game && candidate.resourceType === resource.resourceType)
-  .sort((a, b) => a.resourceId.localeCompare(b.resourceId))
-  .slice(0, 6);
+const related = rankRelatedResources(resource, data.resources);
 const metadata = Object.entries(resource.metadata).filter(([key]) => key !== "artist" && GAME_CONFIG[resource.game].metadataLabels[key]);
 const preview = firstVariant?.preview.large?.url ?? firstVariant?.preview.medium?.url ?? firstVariant?.preview.small?.url;
 const description = `${resource.displayTitle}${resource.artist ? ` · ${resource.artist}` : ""} - ${GAME_CONFIG[resource.game].displayName} 图片资源。`;
@@ -64,6 +62,13 @@ const description = `${resource.displayTitle}${resource.artist ? ` · ${resource
         <div class="resource-grid related-grid">{related.map((item, index) => <ResourceCard resource={item} index={index} />)}</div>
       </section>
     ) : null}
+    <div class="detail-lightbox" data-detail-lightbox hidden role="dialog" aria-modal="true" aria-label="大图预览">
+      <button class="detail-lightbox-backdrop" type="button" data-lightbox-close aria-label="关闭大图预览"></button>
+      <div class="detail-lightbox-content">
+        <img data-lightbox-image alt="" decoding="async" />
+        <button class="detail-lightbox-close" type="button" data-lightbox-close aria-label="关闭大图预览">×</button>
+      </div>
+    </div>
   </div>
   <script src="../../../scripts/detail.ts"></script>
 </BaseLayout>

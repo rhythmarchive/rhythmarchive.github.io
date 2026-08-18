@@ -15,17 +15,20 @@ const srcset = [variant.preview.medium ? `${variant.preview.medium.url} 640w` : 
 <section class="variant-panel" data-variant-panel={variant.variantId} hidden={!active}>
   <div class="detail-preview-frame">
     {large ? (
-      <img
-        data-detail-image
-        src={large.url}
-        srcset={srcset || undefined}
-        sizes="(max-width: 760px) 100vw, 66vw"
-        alt={alt}
-        width={large.width}
-        height={large.height}
-        loading={active ? "eager" : "lazy"}
-        decoding="async"
-      />
+      <button class="detail-preview-trigger" type="button" data-lightbox-open data-lightbox-preview-url={large.url} data-lightbox-preview-width={large.width} data-lightbox-preview-height={large.height} data-lightbox-preview-alt={alt} aria-label={`点击查看${alt}大图`}>
+        <img
+          data-detail-image
+          src={large.url}
+          srcset={srcset || undefined}
+          sizes="(max-width: 760px) 100vw, 66vw"
+          alt={alt}
+          width={large.width}
+          height={large.height}
+          loading={active ? "eager" : "lazy"}
+          decoding="async"
+        />
+        <span class="detail-preview-hint">点击查看大图</span>
+      </button>
     ) : <div class="resource-card-placeholder">图片暂不可用</div>}
   </div>
 </section>

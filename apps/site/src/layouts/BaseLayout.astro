@@ -17,6 +17,7 @@ const { title, description, canonicalPath, ogImage, bodyClass = "" } = Astro.pro
 const urls = createUrlHelpers({ basePath: BASE_PATH, origin: SITE_ORIGIN, rosBaseUrl: ROS_BASE_URL });
 const canonical = urls.absoluteUrl(canonicalPath);
 const socialImage = ogImage ?? urls.absoluteUrl("/brand-mark.svg");
+const rosOrigin = new URL(ROS_BASE_URL).origin;
 ---
 
 <!doctype html>
@@ -28,6 +29,8 @@ const socialImage = ogImage ?? urls.absoluteUrl("/brand-mark.svg");
     <meta name="theme-color" content="#2d77d9" />
     <link rel="icon" type="image/svg+xml" href={urls.sitePath("/favicon.svg")} />
     <link rel="manifest" href={urls.sitePath("/site.webmanifest")} />
+    <link rel="preconnect" href={rosOrigin} crossorigin="anonymous" />
+    <link rel="dns-prefetch" href={rosOrigin} />
     <link rel="canonical" href={canonical} />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Rhythm Archive" />

@@ -2,21 +2,16 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import SearchBox from "../../components/SearchBox.astro";
 import { formatCount } from "../../lib/format";
-import { BASE_PATH } from "../../lib/site-config";
+import { BASE_PATH, ROS_BASE_URL, SITE_ORIGIN } from "../../lib/site-config";
+import { buildSearchQuickLinks } from "../../lib/search-quick-links";
 import { getSiteData } from "../../lib/site-data";
 import { createUrlHelpers } from "../../lib/url";
 
 const query = Astro.url.searchParams.get("q") ?? "";
 const description = "搜索 Arcaea 与 Phigros 的曲绘、角色立绘、剧情 CG 和其他图片资源。";
 const data = getSiteData();
-const urls = createUrlHelpers({ basePath: BASE_PATH, origin: "https://rhythmarchive.github.io", rosBaseUrl: "https://rhythm-assets.cn-nb1.rains3.com" });
-const quickLinks = [
-  { label: "Arcaea", href: "/arcaea/" },
-  { label: "Phigros", href: "/phigros/" },
-  { label: "曲绘", href: "/arcaea/jacket/", game: "arcaea", category: "jacket" },
-  { label: "角色立绘", href: "/arcaea/character-portrait/", game: "arcaea", category: "character-portrait" },
-  { label: "剧情 CG", href: "/arcaea/story-cg/", game: "arcaea", category: "story-cg" },
-].filter((entry) => !entry.game || data.games.find((game) => game.slug === entry.game)?.categories.some((category) => category.slug === entry.category));
+const urls = createUrlHelpers({ basePath: BASE_PATH, origin: SITE_ORIGIN, rosBaseUrl: ROS_BASE_URL });
+const quickLinks = buildSearchQuickLinks(data);
 const browseGroups = data.games.map((game) => ({
   ...game,
   categories: game.categories.filter((category) => category.count > 0),
@@ -33,7 +28,7 @@ const browseGroups = data.games.map((game) => ({
     <SearchBox initialQuery={query} />
     <div class="search-quick-links" data-search-landing>
       <span>快速进入</span>
-      {quickLinks.map((entry) => <a href={urls.sitePath(entry.href)}>{entry.label}{entry.game ? <small>{formatCount(data.games.find((game) => game.slug === entry.game)?.categories.find((category) => category.slug === entry.category)?.count ?? 0)}</small> : null}</a>)}
+      {quickLinks.map((entry) => <a href={urls.sitePath(entry.href)}>{entry.label}<small>{formatCount(entry.count)}</small></a>)}
     </div>
   </section>
   <section class="page-container search-landing-browse" data-search-landing>

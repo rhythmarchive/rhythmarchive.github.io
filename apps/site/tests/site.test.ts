@@ -1,17 +1,23 @@
 import assert from "node:assert/strict";
+import fs from "node:fs";
+import path from "node:path";
 import test from "node:test";
+import sharp from "sharp";
 import { projectCatalog, selectPreviewRendition } from "../src/lib/catalog-projection.js";
 import { formatPublicApkBytes, parsePublicArcaeaApkManifest } from "../src/lib/apk.js";
 import { uniqueZipFilename } from "../src/lib/batch.js";
 import { displayVariantLabel } from "../src/lib/game-config.js";
+import { rankRelatedResources } from "../src/lib/related.js";
+import { buildSearchQuickLinks } from "../src/lib/search-quick-links.js";
 import { GISCUS_CONFIG, GITHUB_DISCUSSIONS_URL } from "../src/lib/site-config.js";
 import { rankSearchEntries } from "../src/lib/search.js";
 import { createUrlHelpers } from "../src/lib/url.js";
 import { loadFormalCatalog } from "../src/lib/site-data.js";
-import type { PublicSearchEntry } from "../src/lib/types.js";
+import type { PublicResource, PublicSearchEntry } from "../src/lib/types.js";
 
 const catalog = loadFormalCatalog();
 const rosBaseUrl = "https://rhythm-assets.cn-nb1.rains3.com";
+const siteRoot = path.resolve(process.cwd(), "apps", "site");
 
 test("public projection excludes local paths, credentials, and internal provenance", () => {
   const projection = projectCatalog(catalog, rosBaseUrl);
@@ -128,4 +134,93 @@ test("homepage APK parser accepts GitHub/official downloads and rejects unsafe U
   assert.equal(parsePublicArcaeaApkManifest({ schemaVersion: 2, game: "arcaea", generatedAt: "now", latest: { ...entry("6.17.1"), downloads: { ...entry("6.17.1").downloads, github: "https://evil.example/releases/download/arcaea-apk-6.17.1/Arcaea_6.17.1.apk" } }, previous: null }), null);
   assert.equal(parsePublicArcaeaApkManifest({ schemaVersion: 2, game: "arcaea", generatedAt: "now", latest: { ...entry("6.17.1"), downloads: { ...entry("6.17.1").downloads, official: "http://arcaea-static.lowiro-cdn.net/arcaea.apk" } }, previous: null }), null);
   assert.equal(formatPublicApkBytes(1234), "1.21 KB");
+});
+
+test("homepage uses an information-first intro and a stable social image", () => {
+  const source = fs.readFileSync(path.join(siteRoot, "src", "pages", "index.astro"), "utf8");
+  assert.doesNotMatch(source, /找到下一张|想保存的曲绘/u);
+  assert.match(source, /Arcaea \/ Phigros/u);
+  assert.match(source, /ogImage=\{homeOgImage\}/u);
+  assert.match(source, /\/og\/home\.png/u);
+  assert.equal(fs.existsSync(path.join(siteRoot, "public", "og", "home.png")), true);
+  assert.doesNotMatch(source, /data\.resources\.find\(/u);
+});
+
+test("game icons use real assets with a non-breaking fallback", () => {
+  const source = fs.readFileSync(path.join(siteRoot, "src", "components", "GameIcon.astro"), "utf8");
+  assert.match(source, /game-icons\/\$\{name\}\.png/u);
+  assert.match(source, /game-icon-fallback/u);
+  assert.match(source, /onerror=/u);
+  assert.equal(fs.existsSync(path.join(siteRoot, "public", "game-icons", "arcaea.png")), true);
+  assert.equal(fs.existsSync(path.join(siteRoot, "public", "game-icons", "phigros.png")), true);
+});
+
+test("Arcaea icon does not retain the adaptive green edge", async () => {
+  const icon = await sharp(path.join(siteRoot, "public", "game-icons", "arcaea.png")).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
+  let greenEdgePixels = 0;
+  for (let y = 0; y < icon.info.height; y += 1) {
+    for (let x = 0; x < icon.info.width; x += 1) {
+      const edge = Math.min(x, y, icon.info.width - 1 - x, icon.info.height - 1 - y);
+      const offset = (y * icon.info.width + x) * icon.info.channels;
+      const red = icon.data[offset] ?? 0;
+      const green = icon.data[offset + 1] ?? 0;
+      const blue = icon.data[offset + 2] ?? 0;
+      const alpha = icon.data[offset + 3] ?? 0;
+      if (edge <= 32 && alpha > 10 && green > red + 50 && blue > red + 30) greenEdgePixels += 1;
+    }
+  }
+  assert.equal(greenEdgePixels, 0);
+});
+
+test("search quick links are explicit, count-gated, and game-scoped", () => {
+  const data = projectCatalog(catalog, rosBaseUrl);
+  const quickLinks = buildSearchQuickLinks(data);
+  assert.ok(quickLinks.every((entry) => entry.count > 0));
+  assert.ok(quickLinks.some((entry) => entry.label === "Arcaea 曲绘" && entry.href === "/arcaea/jacket/"));
+  assert.ok(quickLinks.some((entry) => entry.label === "Phigros 曲绘" && entry.href === "/phigros/jacket/"));
+  assert.ok(quickLinks.every((entry) => entry.label !== "曲绘"));
+});
+
+function testResource(overrides: Partial<PublicResource> = {}): PublicResource {
+  return {
+    resourceId: "resource-id",
+    route: "/r/resource-id/",
+    game: "arcaea",
+    resourceType: "jacket",
+    category: "jacket",
+    categoryLabel: "曲绘",
+    displayTitle: "Resource",
+    metadata: {},
+    variants: [],
+    preview: { small: null, medium: null, large: null },
+    ...overrides,
+  };
+}
+
+test("related ranking is deterministic and prioritizes shared artist", () => {
+  const current = testResource({ artist: "Same Artist", displayTitle: "Current" });
+  const ordinary = testResource({ resourceId: "ordinary", route: "/r/ordinary/", displayTitle: "A ordinary" });
+  const sameArtist = testResource({ resourceId: "same-artist", route: "/r/same-artist/", displayTitle: "Z same artist", artist: "Same Artist", resourceType: "pack-cover", category: "pack-cover", categoryLabel: "曲包封面" });
+  const candidates = [ordinary, sameArtist];
+  assert.deepEqual(rankRelatedResources(current, candidates).map((resource) => resource.resourceId), ["same-artist", "ordinary"]);
+  assert.deepEqual(rankRelatedResources(current, [...candidates].reverse()).map((resource) => resource.resourceId), ["same-artist", "ordinary"]);
+});
+
+test("detail lightbox opens only an existing preview rendition", () => {
+  const panel = fs.readFileSync(path.join(siteRoot, "src", "components", "VariantPanel.astro"), "utf8");
+  const script = fs.readFileSync(path.join(siteRoot, "src", "scripts", "detail.ts"), "utf8");
+  const styles = fs.readFileSync(path.join(siteRoot, "src", "styles", "global.css"), "utf8");
+  assert.match(panel, /data-lightbox-preview-url=\{large\.url\}/u);
+  assert.doesNotMatch(panel, /variant\.original/u);
+  assert.match(script, /Escape/u);
+  assert.match(script, /event\.key !== "Tab"/u);
+  assert.match(script, /detail-lightbox-open/u);
+  assert.match(styles, /\.detail-lightbox\[hidden\] \{ display: none; \}/u);
+});
+
+test("ROS preconnect is derived from the configured base URL", () => {
+  const source = fs.readFileSync(path.join(siteRoot, "src", "layouts", "BaseLayout.astro"), "utf8");
+  assert.match(source, /rel="preconnect"/u);
+  assert.match(source, /rel="dns-prefetch"/u);
+  assert.match(source, /new URL\(ROS_BASE_URL\)\.origin/u);
 });

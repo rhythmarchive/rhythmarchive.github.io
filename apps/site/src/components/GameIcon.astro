@@ -1,5 +1,7 @@
 ---
 import type { GameId } from "../lib/game-config";
+import { BASE_PATH, ROS_BASE_URL, SITE_ORIGIN } from "../lib/site-config";
+import { createUrlHelpers } from "../lib/url";
 
 interface Props {
   game: GameId;
@@ -8,10 +10,14 @@ interface Props {
 const { game } = Astro.props;
 const label = game === "arcaea" ? "A" : "P";
 const name = game === "arcaea" ? "arcaea" : "phigros";
+const urls = createUrlHelpers({ basePath: BASE_PATH, origin: SITE_ORIGIN, rosBaseUrl: ROS_BASE_URL });
 ---
 
 <span class={`game-icon game-icon-${game}`} aria-hidden="true">
-  <span class="game-icon-mark">{label}</span>
-  <span class="game-icon-name">{name}</span>
-  <span class="game-icon-wave"></span>
+  <img class="game-icon-image" src={urls.sitePath(`/game-icons/${name}.png`)} alt="" width="112" height="112" loading="lazy" decoding="async" onerror="this.style.display = 'none'" />
+  <span class="game-icon-fallback" aria-hidden="true">
+    <span class="game-icon-mark">{label}</span>
+    <span class="game-icon-name">{name}</span>
+    <span class="game-icon-wave"></span>
+  </span>
 </span>
