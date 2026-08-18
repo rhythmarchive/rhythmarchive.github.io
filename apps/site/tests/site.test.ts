@@ -146,6 +146,17 @@ test("homepage uses an information-first intro and a stable social image", () =>
   assert.doesNotMatch(source, /data\.resources\.find\(/u);
 });
 
+test("site brand marks keep the accent rhythm line inside the mark", () => {
+  const brandMark = fs.readFileSync(path.join(siteRoot, "public", "brand-mark.svg"), "utf8");
+  const favicon = fs.readFileSync(path.join(siteRoot, "public", "favicon.svg"), "utf8");
+  const styles = fs.readFileSync(path.join(siteRoot, "src", "styles", "global.css"), "utf8");
+  assert.match(brandMark, /viewBox="0 0 40 32"/u);
+  assert.match(favicon, /viewBox="0 0 32 32"/u);
+  assert.match(brandMark, /<path d="M7 25\.5h5/u);
+  assert.match(favicon, /<path d="M7 25h4/u);
+  assert.match(styles, /\.brand-mark img \{ width: 40px; height: 32px; \}/u);
+});
+
 test("game icons use real assets with a non-breaking fallback", () => {
   const source = fs.readFileSync(path.join(siteRoot, "src", "components", "GameIcon.astro"), "utf8");
   const styles = fs.readFileSync(path.join(siteRoot, "src", "styles", "global.css"), "utf8");

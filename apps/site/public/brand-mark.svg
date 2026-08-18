@@ -3,5 +3,5 @@
   <desc id="desc">A blue geometric RA mark with a cyan rhythm line.</desc>
   <path d="M2 1h25l11 15-11 15H2l10-15Z" fill="#2F80ED"/>
   <path d="M8 23V9h5.1c3.3 0 5.2 1.5 5.2 4.1s-1.9 4-5.2 4H8m5.1 0 5.1 5.9M22 23l3.8-14L30 23m-6.3-4h4" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"/>
-  <path d="M4 25.5h5l2-3 2.2 3 2-2.3 2.6 2.3" fill="none" stroke="#63D8DF" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4"/>
+  <path d="M7 25.5h5l2-3 2.2 3 2-2.3 2.6 2.3" fill="none" stroke="#63D8DF" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4"/>
 </svg>
