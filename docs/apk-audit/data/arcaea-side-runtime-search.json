@@ -1,0 +1,1349 @@
+{
+  "terms": [
+    "side",
+    "light side",
+    "img/bg_colorless",
+    "img/bg_byd_light",
+    "img/bg_glow_lephon",
+    "lephonhelper",
+    "achromic",
+    "colorless",
+    "conflict"
+  ],
+  "matches": [
+    {
+      "path": "classes.dex",
+      "term": "side",
+      "offset": 5308981,
+      "context": "otocolTypes:   and remote module   and remote version is   and result   are allowed . as Animations cannot run alongside Animators. 0 as Animations cannot run alongside Transitions.  as the target of  / as this Fragment was involved in a Transition.  asked to inflate view for <  at index   autoM"
+    },
+    {
+      "path": "classes.dex",
+      "term": "side",
+      "offset": 5309029,
+      "context": "version is   and result   are allowed . as Animations cannot run alongside Animators. 0 as Animations cannot run alongside Transitions.  as the target of  / as this Fragment was involved in a Transition.  asked to inflate view for <  at index   autoMetadata  backendName  base fragment #  becau"
+    },
+    {
+      "path": "classes.dex",
+      "term": "side",
+      "offset": 5346185,
+      "context": "ebcam|weber|website|wed|wedding|weibo|weir|whoswho|wien|wiki|williamhill|win|windows|wine|winners|wme|wolterskluwer|woodside|work|works|world|wow|wtc|wtf|w[fs])|(?: | | | | | | | | | | | | | | | | | |"
+    },
+    {
+      "path": "classes.dex",
+      "term": "side",
+      "offset": 5357420,
+      "context": "ebcam|weber|website|wed|wedding|weibo|weir|whoswho|wien|wiki|williamhill|win|windows|wine|winners|wme|wolterskluwer|woodside|work|works|world|wow|wtc|wtf|w[fs])|(?: | | | | | | | | | | | | | | | | | |"
+    },
+    {
+      "path": "classes.dex",
+      "term": "side",
+      "offset": 5370182,
+      "context": "ebcam|weber|website|wed|wedding|weibo|weir|whoswho|wien|wiki|williamhill|win|windows|wine|winners|wme|wolterskluwer|woodside|work|works|world|wow|wtc|wtf|w[fs])|(?: | | | | | | | | | | | | | | | | | |"
+    },
+    {
+      "path": "classes.dex",
+      "term": "side",
+      "offset": 5381413,
+      "context": "ebcam|weber|website|wed|wedding|weibo|weir|whoswho|wien|wiki|williamhill|win|windows|wine|winners|wme|wolterskluwer|woodside|work|works|world|wow|wtc|wtf|w[fs])|(?: | | | | | | | | | | | | | | | | | |"
+    },
+    {
+      "path": "classes.dex",
+      "term": "side",
+      "offset": 5440297,
+      "context": "stId= ,   name=' ,   origin= ,   parameters= ,   prfExtension= ,   registerResponse= ,   requestId= ,   requireResidentKey= ,   requireUserVerification= ,   residentKeyRequirement= ,   rpId=' ,   signResponse= ,,   simpleTransactionAuthorizationExtension= ,   timeoutSeconds= ,   tokenBindin"
+    },
+    {
+      "path": "classes.dex",
+      "term": "side",
+      "offset": 5440345,
+      "context": " ,   prfExtension= ,   registerResponse= ,   requestId= ,   requireResidentKey= ,   requireUserVerification= ,   residentKeyRequirement= ,   rpId=' ,   signResponse= ,,   simpleTransactionAuthorizationExtension= ,   timeoutSeconds= ,   tokenBinding= ,   transports= ,   user= ,   userVerifica"
+    },
+    {
+      "path": "classes.dex",
+      "term": "side",
+      "offset": 5443739,
+      "context": "seudonymousId= , qosTier= , remaining delay=[ , renderUri= , reportingDestinations= , requestUptimeMs= , requireResidentKey= , residentKey= , right= , saltAuth= , saltEnc= , scope= , selectionLogicUri= , seller= , sellerSignals= , setFuture=[ , shouldRecordObservation= , size  , source"
+    },
+    {
+      "path": "classes.dex",
+      "term": "side",
+      "offset": 5443755,
+      "context": ", qosTier= , remaining delay=[ , renderUri= , reportingDestinations= , requestUptimeMs= , requireResidentKey= , residentKey= , right= , saltAuth= , saltEnc= , scope= , selectionLogicUri= , seller= , sellerSignals= , setFuture=[ , shouldRecordObservation= , size  , source= , sourceExten"
+    },
+    {
+      "path": "classes.dex",
+      "term": "side",
+      "offset": 5466114,
+      "context": "ION_START_INT %ACTION_ARGUMENT_SET_TEXT_CHARSEQUENCE ACTION_BAR_ANIMATE_DELAY ACTION_BENCHMARK_OPERATION ACTION_BIND_SIDE_CHANNEL ACTION_CHECKOUT ACTION_CHECKOUT_OPTION ACTION_CHECKOUT_OPTIONS  ACTION_CLEAR_ACCESSIBILITY_FOCUS ACTION_CLEAR_FOCUS ACTION_CLEAR_SELECTION ACTION_CLICK ACTION_COLLA"
+    },
+    {
+      "path": "classes.dex",
+      "term": "side",
+      "offset": 5480618,
+      "context": "AppCompat AlertDialog_AppCompat_Light AlertDialog_android_layout AlertDialog_buttonIconDimen !AlertDialog_buttonPanelSideLayout AlertDialog_listItemLayout AlertDialog_listLayout !AlertDialog_multiChoiceItemLayout AlertDialog_showTitle \"AlertDialog_singleChoiceItemLayout AlertParams Algorithm wit"
+    },
+    {
+      "path": "classes.dex",
+      "term": "side",
+      "offset": 5485040,
+      "context": "essary. It will be removed in a future release of this library. Instead, use `Build.VERSION.SDK_INT >= 33`. Android UpsideDownCase is a finalized release and this method is no longer necessary. It will be removed in a future release of this library. Instead, use `Build.VERSION.SDK_INT >= 34`. Android"
+    },
+    {
+      "path": "classes.dex",
+      "term": "side",
+      "offset": 5497786,
+      "context": "ng authentication:  Attempting to add fragment  'Attempting to assign undefined value %s 2Attempting to get element outside of current array /Attempting to get retain instance for fragment  0Attempting to get target fragment from fragment  4Attempting to get target request code from fragment  JAttempti"
+    },
+    {
+      "path": "classes.dex",
+      "term": "side",
+      "offset": 5529760,
+      "context": "his from your main thread can lead to deadlock 0Calling thread must be a prepared Looper thread. Calling updateData inside updateData on the same DataStore instance is not supported since updates made in the parent updateData call will not be visible to the nested updateData call. See https://issuetra"
+    },
+    {
+      "path": "classes.dex",
+      "term": "side",
+      "offset": 5530655,
+      "context": " not perform this action after onSaveInstanceState .Can't access ViewModels from detached fragment $Can't access key outside migration:  {Can't access the Fragment View's LifecycleOwner when getView() is null i.e., before onCreateView() or after onDestroyView() Can't add fragment  Can't be here withou"
+    },
+    {
+      "path": "classes.dex",
+      "term": "side",
+      "offset": 5530987,
+      "context": "th a custom content view &Can't change container ID of fragment  Can't change tag of fragment  GCan't create handler inside thread that has not called Looper.prepare() 'Can't deliver not submitted measurement .Can't find activity to handle intent; ignoring Can't find package  +Can't get fragment for u"
+    },
+    {
+      "path": "classes.dex",
+      "term": "side",
+      "offset": 5533038,
+      "context": "truct an Api with a null ClientBuilder -Cannot construct an Api with a null ClientKey &Cannot convert to JSON on client side. Cannot create an instance of  Cannot create fragment  ICannot detach Fragment attached to a different FragmentManager. Fragment  Cannot display null dialog ZCannot execute tas"
+    },
+    {
+      "path": "classes.dex",
+      "term": "side",
+      "offset": 5533513,
+      "context": " Cannot find app view &Cannot find context from the provider. Cannot find value for key  ECannot flingCapturedView outside of a call to Callback#onViewReleased GCannot hide Fragment attached to a different FragmentManager. Fragment  %Cannot initialize %s. Cycle detected. Cannot instantiate class:  C"
+    },
+    {
+      "path": "classes.dex",
+      "term": "side",
+      "offset": 5534982,
+      "context": "ot setPrimaryNavigation for Fragment attached to a different FragmentManager. Fragment  HCannot settleCapturedViewAt outside of a call to Callback#onViewReleased GCannot show Fragment attached to a different FragmentManager. Fragment  ?Cannot specify both RECEIVER_EXPORTED and RECEIVER_NOT_EXPORTED NCan"
+    },
+    {
+      "path": "classes.dex",
+      "term": "conflict",
+      "offset": 5556691,
+      "context": " DELIMITED_VALUE DENIED DEPENDENCIES DEPENDENCY_FIELD_NUMBER DEPRECATED_FIELD_NUMBER 3DEPRECATED_LEGACY_JSON_FIELD_CONFLICTS_FIELD_NUMBER  DEPRECATION_WARNING_FIELD_NUMBER DESCENDING DESCRIPTION_MAX_CHAR_LIMIT DESCRIPTOR DESIRED_LOCALE DESTINATION_NAME DESTROYED DETACH DETAILS_LIST DETECT_FLAS"
+    },
+    {
+      "path": "classes.dex",
+      "term": "conflict",
+      "offset": 5559768,
+      "context": "r reference of type  DataCloneError.kt DataError.kt DataHolder DataMigration.kt DataMigrationInitializer.kt DataOrConflict >DataStore scope was cancelled before updateData could complete DataStore.kt DataStoreDelegate.android.kt DataStoreDelegateUtils.kt DataStoreFactory.jvm.kt DataStoreFile.andr"
+    },
+    {
+      "path": "classes.dex",
+      "term": "conflict",
+      "offset": 6049139,
+      "context": "s/games/RecallAccess; +Lcom/google/android/gms/games/RecallClient; =Lcom/google/android/gms/games/SnapshotsClient$DataOrConflict; =Lcom/google/android/gms/games/SnapshotsClient$DataOrConflict< ?Lcom/google/android/gms/games/SnapshotsClient$ResolutionPolicy; ?Lcom/google/android/gms/games/SnapshotsClient$Sna"
+    },
+    {
+      "path": "classes.dex",
+      "term": "conflict",
+      "offset": 6049202,
+      "context": "nt; =Lcom/google/android/gms/games/SnapshotsClient$DataOrConflict; =Lcom/google/android/gms/games/SnapshotsClient$DataOrConflict< ?Lcom/google/android/gms/games/SnapshotsClient$ResolutionPolicy; ?Lcom/google/android/gms/games/SnapshotsClient$SnapshotConflict; ULcom/google/android/gms/games/SnapshotsClient$S"
+    },
+    {
+      "path": "classes.dex",
+      "term": "conflict",
+      "offset": 6049332,
+      "context": "?Lcom/google/android/gms/games/SnapshotsClient$ResolutionPolicy; ?Lcom/google/android/gms/games/SnapshotsClient$SnapshotConflict; ULcom/google/android/gms/games/SnapshotsClient$SnapshotContentUnavailableApiException; .Lcom/google/android/gms/games/SnapshotsClient; ?Lcom/google/android/gms/games/VideosClient"
+    },
+    {
+      "path": "classes.dex",
+      "term": "conflict",
+      "offset": 6497126,
+      "context": "L 1#1,181:1 1#2:182 *E SMART_PIXEL SMS_CODE_RETRIEVED_ACTION SMS_RETRIEVED_ACTION SNAPSHOT_COMMIT_FAILED SNAPSHOT_CONFLICT SNAPSHOT_CONFLICT_MISSING SNAPSHOT_CONTENTS_UNAVAILABLE SNAPSHOT_CREATION_FAILED SNAPSHOT_FOLDER_UNAVAILABLE SNAPSHOT_NOT_FOUND SOCIAL SOCIAL_1P SOCIAL_ACTION SOCIAL_ACTI"
+    },
+    {
+      "path": "classes.dex",
+      "term": "conflict",
+      "offset": 6497145,
+      "context": " *E SMART_PIXEL SMS_CODE_RETRIEVED_ACTION SMS_RETRIEVED_ACTION SNAPSHOT_COMMIT_FAILED SNAPSHOT_CONFLICT SNAPSHOT_CONFLICT_MISSING SNAPSHOT_CONTENTS_UNAVAILABLE SNAPSHOT_CREATION_FAILED SNAPSHOT_FOLDER_UNAVAILABLE SNAPSHOT_NOT_FOUND SOCIAL SOCIAL_1P SOCIAL_ACTION SOCIAL_ACTION_TARGET SOCIAL_N"
+    },
+    {
+      "path": "classes.dex",
+      "term": "conflict",
+      "offset": 6501091,
+      "context": "S #STATUS_REQUEST_UPDATE_TOTAL_FAILURE STATUS_RESOLVE_STALE_OR_NO_DATA STATUS_SNAPSHOT_COMMIT_FAILED STATUS_SNAPSHOT_CONFLICT  STATUS_SNAPSHOT_CONFLICT_MISSING $STATUS_SNAPSHOT_CONTENTS_UNAVAILABLE STATUS_SNAPSHOT_CREATION_FAILED STATUS_SNAPSHOT_NOT_FOUND STATUS_SUCCESSFUL STATUS_TIMEOUT STATUS_UNEX"
+    },
+    {
+      "path": "classes.dex",
+      "term": "conflict",
+      "offset": 6501117,
+      "context": "OTAL_FAILURE STATUS_RESOLVE_STALE_OR_NO_DATA STATUS_SNAPSHOT_COMMIT_FAILED STATUS_SNAPSHOT_CONFLICT  STATUS_SNAPSHOT_CONFLICT_MISSING $STATUS_SNAPSHOT_CONTENTS_UNAVAILABLE STATUS_SNAPSHOT_CREATION_FAILED STATUS_SNAPSHOT_NOT_FOUND STATUS_SUCCESSFUL STATUS_TIMEOUT STATUS_UNEXPECTED_DATA_PROVIDED STAT"
+    },
+    {
+      "path": "classes.dex",
+      "term": "conflict",
+      "offset": 6513319,
+      "context": " (ms) SmallSortedMap.java SmsCodeAutofill.API SmsCodeBrowser.API SmsRetriever.API Snapshot already closed SnapshotConflict &SnapshotContentUnavailableApiException SnapshotContents already closed SnapshotContentsEntity SnapshotId SocialBuilder SocketTimeout %SoftwareKeyboardControllerCompat.java *"
+    },
+    {
+      "path": "classes.dex",
+      "term": "conflict",
+      "offset": 6704097,
+      "context": "tAccountAndReconnect clearDefaultValue clearDefaults clearDependency clearDeprecated 'clearDeprecatedLegacyJsonFieldConflicts clearDeprecationWarning clearDouble clearDoubleValue clearEdition clearEditionDefaults clearEditionDeprecated clearEditionIntroduced clearEditionRemoved clearEnd clearE"
+    },
+    {
+      "path": "classes.dex",
+      "term": "conflict",
+      "offset": 6756853,
+      "context": "eliverSelfNotifications delta density densityDpi dependencies dependency_ deprecatedIds #deprecatedLegacyJsonFieldConflicts_ deprecated_ deprecationWarning_ depth dequeueWork deriveDimension descendants descendingEntrySet descendingIterator descendingKeySet descendingMap descendingSet desc"
+    },
+    {
+      "path": "classes.dex",
+      "term": "conflict",
+      "offset": 6798329,
+      "context": " getConditionalUserProperties getConfidence getConfig getConfiguration getConfigurationLocales getConfirmLabel getConflict -getConflict called when there is no conflict. getConflictId getConflictingSnapshot getConnectionHint getConnectionManager getConnectionResult getConnectionState getConnect"
+    },
+    {
+      "path": "classes.dex",
+      "term": "conflict",
+      "offset": 6798342,
+      "context": "alUserProperties getConfidence getConfig getConfiguration getConfigurationLocales getConfirmLabel getConflict -getConflict called when there is no conflict. getConflictId getConflictingSnapshot getConnectionHint getConnectionManager getConnectionResult getConnectionState getConnectionStatusCode"
+    },
+    {
+      "path": "classes.dex",
+      "term": "conflict",
+      "offset": 6798375,
+      "context": "getConfig getConfiguration getConfigurationLocales getConfirmLabel getConflict -getConflict called when there is no conflict. getConflictId getConflictingSnapshot getConnectionHint getConnectionManager getConnectionResult getConnectionState getConnectionStatusCode getConnectionType getConsentPe"
+    },
+    {
+      "path": "classes.dex",
+      "term": "conflict",
+      "offset": 6798389,
+      "context": "Configuration getConfigurationLocales getConfirmLabel getConflict -getConflict called when there is no conflict. getConflictId getConflictingSnapshot getConnectionHint getConnectionManager getConnectionResult getConnectionState getConnectionStatusCode getConnectionType getConsentPendingIntent g"
+    },
+    {
+      "path": "classes.dex",
+      "term": "conflict",
+      "offset": 6798404,
+      "context": "getConfigurationLocales getConfirmLabel getConflict -getConflict called when there is no conflict. getConflictId getConflictingSnapshot getConnectionHint getConnectionManager getConnectionResult getConnectionState getConnectionStatusCode getConnectionType getConsentPendingIntent getConsolidatedA"
+    },
+    {
+      "path": "classes.dex",
+      "term": "conflict",
+      "offset": 6801838,
+      "context": "getCustomSizePreset getCustomView getCutoutPath getDName getDailyUpdateUri getData (getData called when there is a conflict. getDataDir getDataMimeType getDataModel getDataOnlyRemoteInputs getDataResultsFromIntent getDataRow getDataUri getDatabasePath getDaysSinceLastPlayed getDb getDebugKey"
+    },
+    {
+      "path": "classes.dex",
+      "term": "conflict",
+      "offset": 6803345,
+      "context": "i getDependency getDependencyBytes getDependencyCount getDependencyList getDeprecated %getDeprecatedLegacyJsonFieldConflicts getDeprecationWarning getDeprecationWarningBytes getDepth getDepthBinForLength getDescendantFocusability getDescendants getDescription getDescriptorMessageInfoFactory ge"
+    },
+    {
+      "path": "classes.dex",
+      "term": "conflict",
+      "offset": 6858993,
+      "context": " hasData hasDebugRedact hasDefaultIcon hasDefaultValue hasDeliveredData hasDeprecated %hasDeprecatedLegacyJsonFieldConflicts hasDeprecationWarning hasDividerBeforeChildAt hasDouble hasDoubleValue hasEdition hasEditionDeprecated hasEditionIntroduced hasEditionRemoved hasEmbeddedTabs hasEnabled"
+    },
+    {
+      "path": "classes2.dex",
+      "term": "side",
+      "offset": 5391248,
+      "context": "tends  ? super  ?subject= @ {@Subscribe method %s's parameter is %s. Subscriber methods cannot accept primitives. Consider changing the parameter to %s. 1@com.google.firebase.encoders.proto.Protobuf(tag= A (A HashCode must contain at least 1 byte. >A Linux-specific random number provider that uses /"
+    },
+    {
+      "path": "classes2.dex",
+      "term": "side",
+      "offset": 5404592,
+      "context": "AppCompat AlertDialog_AppCompat_Light AlertDialog_android_layout AlertDialog_buttonIconDimen !AlertDialog_buttonPanelSideLayout AlertDialog_listItemLayout AlertDialog_listLayout !AlertDialog_multiChoiceItemLayout AlertDialog_showTitle \"AlertDialog_singleChoiceItemLayout ?All ArrayList elements mus"
+    },
+    {
+      "path": "classes2.dex",
+      "term": "side",
+      "offset": 5451600,
+      "context": "t calculate quantiles of an empty dataset uCannot call edgeConnecting() when parallel edges exist between %s and %s. Consider calling edgesConnecting() instead. CCannot call finishToFuture() after calling finishToValueAndCloser() 8Cannot call finishToFuture() after deriving another step \"Cannot call fin"
+    },
+    {
+      "path": "classes2.dex",
+      "term": "side",
+      "offset": 5452112,
+      "context": "all lowerCase() on a mixed-case alphabet Cannot call source()/target() on a EndpointPair from an undirected graph. Consider calling adjacentNode(node) if you already have a node, or nodeU()/nodeV() if you don't. 0Cannot call upperCase() on a mixed-case alphabet Cannot close input stream Cannot close"
+    },
+    {
+      "path": "classes2.dex",
+      "term": "side",
+      "offset": 5489772,
+      "context": " 'poll' documentation ,Deprecated in the favour of 'trySend' method Deprecated in the favour of 'trySendBlocking'. Consider handling the result of 'trySendBlocking' explicitly and rethrow exception if necessary RDeprecated without replacement as an internal method never intended for public use Deprec"
+    },
+    {
+      "path": "classes2.dex",
+      "term": "side",
+      "offset": 6080928,
+      "context": "eckerframework/dataflow/qual/Pure$Kind; )Lorg/checkerframework/dataflow/qual/Pure; 3Lorg/checkerframework/dataflow/qual/SideEffectFree; 8Lorg/checkerframework/dataflow/qual/TerminatesExecution; 2Lorg/checkerframework/framework/qual/AnnotatedFor; /Lorg/checkerframework/framework/qual/CFComment; HLorg/che"
+    },
+    {
+      "path": "classes2.dex",
+      "term": "side",
+      "offset": 6111910,
+      "context": "et for session   No valid URI scheme was provided No value $No version control information found >No way to upload. Consider using the full version of Analytics 0No-Cache directive MUST NOT include a field name NoAllocation.java NoConnectionReuseStrategy.java NoDefaultQualifierForUse.java NoHttpRes"
+    },
+    {
+      "path": "classes2.dex",
+      "term": "side",
+      "offset": 6117857,
+      "context": "_LETTER OTHER_NEUTRALS OTHER_NUMBER OTHER_PUNCTUATION OTHER_SYMBOL OUT OUTPUT_BUFFER_SIZE OUTPUT_FUTURE_DONE OUTSIDE OVERFLOWCOUNT_DESCRIPTOR OVERFLOW_DIGIT_START OVERFLOW_ZONE OVERWRITE OWNED_BY_ENCLOSING_CLASS ObjectArrays.java ObjectCountHashMap.java ObjectCountLinkedHashMap.java Obj"
+    },
+    {
+      "path": "classes2.dex",
+      "term": "side",
+      "offset": 6147031,
+      "context": "roups by name is not supported on this platform. Retry interval Retry strategy ORetry with an exponential backoff. Consider filing a bug if fails consistently. Retry-After RetryExec.java RetryHandler.java Retrying connect to  Retrying request to  /Retrying trigger URI registration in foreground "
+    },
+    {
+      "path": "classes2.dex",
+      "term": "side",
+      "offset": 6154977,
+      "context": "190S SHW-M300W SHW-M380K SHW-M380S SHW-M380W SHW-M430W SHW-M440S SHW-M480K SHW-M480W SHW-M485W SHW-M486W SI SIDE_EFFECT_FREE SIEVE_30 SIGNAL_DEFAULT SIGNAL_DESCRIPTOR SIGNATURE SIGNED SIGNIFICAND_BITS SIGNIFICAND_MASK SIGN_MASK SIGN_UP SIGN_UP_METHOD SIMULATOR_DESCRIPTOR SINGLE_C"
+    },
+    {
+      "path": "classes2.dex",
+      "term": "side",
+      "offset": 6357101,
+      "context": "rectly ShowAchievements Showing notification Shutting down Shutting down connection Shutting down is not allowed. SideEffectFree.java SignIn SignIn.API SignIn.INTERNAL_API SignInButton SignInButton_buttonSize SignInButton_colorScheme SignInButton_scopeUris SignInClientImpl Signal SignalH"
+    },
+    {
+      "path": "classes2.dex",
+      "term": "side",
+      "offset": 6362175,
+      "context": "rent version 3Storage version upgraded. Previous, current version Store full, deleting  Store.java LStoring bundle outside of the max uploading time span. appId, now, timestamp QStoring trigger URI outside of the max retention time span. appId, now, timestamp Strategy Stream has been already closed "
+    },
+    {
+      "path": "classes2.dex",
+      "term": "side",
+      "offset": 6362258,
+      "context": "ting  Store.java LStoring bundle outside of the max uploading time span. appId, now, timestamp QStoring trigger URI outside of the max retention time span. appId, now, timestamp Strategy Stream has been already closed /Stream.consumeAsFlow can be collected only once Stream.kt StreamWrapper 5Streami"
+    },
+    {
+      "path": "classes2.dex",
+      "term": "side",
+      "offset": 6400943,
+      "context": " USERINFO USER_AGENT USER_DESCRIPTOR USER_DIR USER_HOME USER_NAME (USER_PROPERTY_FIREBASE_LAST_NOTIFICATION USER_SIDELOAD USER_TOKEN USE_CACHE USE_EXPECT_CONTINUE USE_LEGACY_SERIALIZATION US_ASCII US_ENGLISH US_ENGLISH_MAPPING US_ENGLISH_MAPPING_STRING US_PER_MILLIS UShort.kt UShortArr"
+    },
+    {
+      "path": "classes2.dex",
+      "term": "side",
+      "offset": 6403933,
+      "context": "O error while de-serializing auth scheme 2Unexpected I/O error while serializing auth scheme Unexpected call on client side Unexpected cell state:  Unexpected code point: 0x #Unexpected connection proxy class:  &Unexpected content at the end of chunk \"Unexpected data length. Bytes read Unexpected en"
+    },
+    {
+      "path": "classes2.dex",
+      "term": "side",
+      "offset": 6408505,
+      "context": " Upgrade-Insecure-Requests  Upgrading database from version  Upload Component not created <Upload called in the client side when service should be used GUpload data called on the client side before use of service was decided KUpload has been suspended. Will update scheduling later in approximately ms $"
+    },
+    {
+      "path": "classes2.dex",
+      "term": "side",
+      "offset": 6408572,
+      "context": "d Component not created <Upload called in the client side when service should be used GUpload data called on the client side before use of service was decided KUpload has been suspended. Will update scheduling later in approximately ms $Upload scheduled in approximately ms EUpload uri is null or empty. "
+    },
+    {
+      "path": "classes2.dex",
+      "term": "side",
+      "offset": 6446966,
+      "context": "cessed last Scion upload request.  [sgtm] Bad upload url for row_id 8[sgtm] Client upload is not enabled on the service side. >[sgtm] Completed client-side batch upload work. total, success =[sgtm] Discarding data. Failed to update batch upload status. -[sgtm] Eligible for client side upload. appId 6[sg"
+    },
+    {
+      "path": "classes2.dex",
+      "term": "side",
+      "offset": 6446997,
+      "context": "t.  [sgtm] Bad upload url for row_id 8[sgtm] Client upload is not enabled on the service side. >[sgtm] Completed client-side batch upload work. total, success =[sgtm] Discarding data. Failed to update batch upload status. -[sgtm] Eligible for client side upload. appId 6[sgtm] Eligible for local service "
+    },
+    {
+      "path": "classes2.dex",
+      "term": "side",
+      "offset": 6447127,
+      "context": " upload work. total, success =[sgtm] Discarding data. Failed to update batch upload status. -[sgtm] Eligible for client side upload. appId 6[sgtm] Eligible for local service direct upload. appId =[sgtm] Failed to get upload batches; not connected to service 5[sgtm] Failed to get upload batches; remote e"
+    },
+    {
+      "path": "classes2.dex",
+      "term": "conflict",
+      "offset": 5464969,
+      "context": "atedBroadcastChannel is deprecated in the favour of SharedFlow and is no longer supported ConflatedBufferedChannel.kt Conflict ConnAdapter ConnConnectionPNames.java ConnConnectionParamBean.java ConnFactory.java ConnManagerPNames.java ConnManagerParamBean.java ConnManagerParams.java ConnPerRoute.ja"
+    },
+    {
+      "path": "classes2.dex",
+      "term": "conflict",
+      "offset": 6150564,
+      "context": "E SCREEN_VIEW SCV31 SCV33 SCV34 SCV35 SCV36 SCV37 SCV38 SCV39 SC_ACCEPTED SC_BAD_GATEWAY SC_BAD_REQUEST SC_CONFLICT SC_CONTINUE SC_CREATED SC_EXPECTATION_FAILED SC_FAILED_DEPENDENCY SC_FORBIDDEN SC_GATEWAY_TIMEOUT SC_GONE SC_HTTP_VERSION_NOT_SUPPORTED !SC_INSUFFICIENT_SPACE_ON_RESOURCE "
+    },
+    {
+      "path": "classes2.dex",
+      "term": "conflict",
+      "offset": 6573037,
+      "context": "utable checkIsMutable$kotlin_stdlib checkIsNotBuilt checkKey checkMainThread checkModCount checkNewLineAt checkNoConflict checkNoDuplicate checkNoOverflow checkNonLoadingCache checkNonNegative checkNonnegative checkNotClosed checkNotDefined checkNotDeleted checkNotDone checkNotEmpty checkN"
+    },
+    {
+      "path": "classes2.dex",
+      "term": "conflict",
+      "offset": 6596772,
+      "context": "ng  configureSharing$FlowKt__ShareKt configureWith \"confirm_device_credential_password confirmation_intent conflate conflictException conflictingStackTrace conn connConfig connFactory connHolder connManager connManagerShared connMetrics connOperator connPerRoute connSecure connStrategy conn"
+    },
+    {
+      "path": "classes2.dex",
+      "term": "conflict",
+      "offset": 6596791,
+      "context": "g$FlowKt__ShareKt configureWith \"confirm_device_credential_password confirmation_intent conflate conflictException conflictingStackTrace conn connConfig connFactory connHolder connManager connManagerShared connMetrics connOperator connPerRoute connSecure connStrategy connTTL connTTLTimeUni"
+    },
+    {
+      "path": "classes2.dex",
+      "term": "conflict",
+      "offset": 6661052,
+      "context": "d getConcurrencyLevel getCondensedHeader getCondition getConditionalUserProperties getConfig getConfiguration getConflictingStackTrace getConnectTimeout getConnectingEdge getConnection getConnectionBackoffStrategy getConnectionConfig getConnectionKeepAliveStrategy getConnectionManager getConn"
+    },
+    {
+      "path": "classes2.dex",
+      "term": "conflict",
+      "offset": 6714365,
+      "context": "nstallationEntry insertOrUpdatePrefs insertProvider insertRange insertText insertTextAtCursorPosition insertWithOnConflict insertion inspectNetworkCapabilities install install$kotlinx_coroutines_core installExecutorFactory installHandler \"installHandlerDuringPrepareSession installIdProvider in"
+    },
+    {
+      "path": "classes2.dex",
+      "term": "conflict",
+      "offset": 6784284,
+      "context": "ration 0measurement.rb.max_trigger_registrations_per_day )measurement.redaction.app_instance_id.ttl 3measurement.remove_conflicting_first_party_apis.dev %measurement.sdk.attribution.cache.ttl <measurement.sdk.collection.last_deep_link_referrer_campaign2 9measurement.service.ad_impression.convert_value_to_do"
+    },
+    {
+      "path": "lib/arm64-v8a/libcocos2dcpp.so",
+      "term": "side",
+      "offset": 315985,
+      "context": "s_base5clearEj _ZNSt6__ndk113basic_ostreamIcNS_11char_traitsIcEEE6sentryD1Ev _ZNSt6__ndk18ios_base33__set_badbit_and_consider_rethrowEv _ZTINSt6__ndk119basic_istringstreamIcNS_11char_traitsIcEENS_9allocatorIcEEEE _ZTSNSt6__ndk119basic_istringstreamIcNS_11char_traitsIcEENS_9allocatorIcEEEE vsnprintf _ZNS"
+    },
+    {
+      "path": "lib/arm64-v8a/libcocos2dcpp.so",
+      "term": "side",
+      "offset": 343818,
+      "context": "Copy FT_Glyph_To_Bitmap FT_Glyph_Transform ft_bitmap_glyph_class ft_outline_glyph_class FT_Glyph_Stroke FT_Outline_GetInsideBorder FT_Outline_GetOutsideBorder FT_Stroker_BeginSubPath FT_Stroker_ConicTo FT_Stroker_CubicTo FT_Stroker_EndSubPath FT_Stroker_Export FT_Stroker_ExportBorder FT_Stroker_GetBorde"
+    },
+    {
+      "path": "lib/arm64-v8a/libcocos2dcpp.so",
+      "term": "side",
+      "offset": 343846,
+      "context": "lyph_Transform ft_bitmap_glyph_class ft_outline_glyph_class FT_Glyph_Stroke FT_Outline_GetInsideBorder FT_Outline_GetOutsideBorder FT_Stroker_BeginSubPath FT_Stroker_ConicTo FT_Stroker_CubicTo FT_Stroker_EndSubPath FT_Stroker_Export FT_Stroker_ExportBorder FT_Stroker_GetBorderCounts FT_Stroker_GetCounts"
+    },
+    {
+      "path": "lib/arm64-v8a/libcocos2dcpp.so",
+      "term": "side",
+      "offset": 459841,
+      "context": "INFO_free X509_REQ_INFO_new X509_REQ_dup X509_REQ_free X509_REQ_new d2i_X509_REQ_INFO i2d_X509_REQ_INFO X509_CINF_free ASIdentifiers_free CRL_DIST_POINTS_free IPAddressFamily_free NAME_CONSTRAINTS_free X509_CERT_AUX_free X509_CINF_new X509_get_ex_data X509_new X509_set_ex_data d2i_X509_CERT_AUX d2i_X509"
+    },
+    {
+      "path": "lib/arm64-v8a/libcocos2dcpp.so",
+      "term": "side",
+      "offset": 463112,
+      "context": "2i_GENERAL_NAMES v2i_GENERAL_NAME_ex v3_alt x509v3_add_len_value_uchar ASIdOrRange_free ASIdOrRange_it ASIdOrRange_new ASIdentifierChoice_free ASIdentifierChoice_it ASIdentifierChoice_new ASIdentifiers_it ASIdentifiers_new ASRange_free ASRange_it ASRange_new X509V3_get_value_int X509v3_asid_add_id_or_ra"
+    },
+    {
+      "path": "lib/arm64-v8a/libcocos2dcpp.so",
+      "term": "side",
+      "offset": 463136,
+      "context": "ERAL_NAME_ex v3_alt x509v3_add_len_value_uchar ASIdOrRange_free ASIdOrRange_it ASIdOrRange_new ASIdentifierChoice_free ASIdentifierChoice_it ASIdentifierChoice_new ASIdentifiers_it ASIdentifiers_new ASRange_free ASRange_it ASRange_new X509V3_get_value_int X509v3_asid_add_id_or_range X509v3_asid_add_inhe"
+    },
+    {
+      "path": "lib/arm64-v8a/libcocos2dcpp.so",
+      "term": "side",
+      "offset": 463158,
+      "context": "09v3_add_len_value_uchar ASIdOrRange_free ASIdOrRange_it ASIdOrRange_new ASIdentifierChoice_free ASIdentifierChoice_it ASIdentifierChoice_new ASIdentifiers_it ASIdentifiers_new ASRange_free ASRange_it ASRange_new X509V3_get_value_int X509v3_asid_add_id_or_range X509v3_asid_add_inherit X509v3_asid_canoni"
+    },
+    {
+      "path": "lib/arm64-v8a/libcocos2dcpp.so",
+      "term": "side",
+      "offset": 463181,
+      "context": "r ASIdOrRange_free ASIdOrRange_it ASIdOrRange_new ASIdentifierChoice_free ASIdentifierChoice_it ASIdentifierChoice_new ASIdentifiers_it ASIdentifiers_new ASRange_free ASRange_it ASRange_new X509V3_get_value_int X509v3_asid_add_id_or_range X509v3_asid_add_inherit X509v3_asid_canonize X509v3_asid_inherits"
+    },
+    {
+      "path": "lib/arm64-v8a/libcocos2dcpp.so",
+      "term": "side",
+      "offset": 463198,
+      "context": "e ASIdOrRange_it ASIdOrRange_new ASIdentifierChoice_free ASIdentifierChoice_it ASIdentifierChoice_new ASIdentifiers_it ASIdentifiers_new ASRange_free ASRange_it ASRange_new X509V3_get_value_int X509v3_asid_add_id_or_range X509v3_asid_add_inherit X509v3_asid_canonize X509v3_asid_inherits X509v3_asid_is_c"
+    },
+    {
+      "path": "lib/arm64-v8a/libcocos2dcpp.so",
+      "term": "side",
+      "offset": 463465,
+      "context": "X509v3_asid_inherits X509v3_asid_is_canonical X509v3_asid_subset X509v3_asid_validate_resource_set d2i_ASIdOrRange d2i_ASIdentifierChoice d2i_ASIdentifiers d2i_ASRange i2d_ASIdOrRange i2d_ASIdentifierChoice i2d_ASIdentifiers i2d_ASRange v3_asid BASIC_CONSTRAINTS_free BASIC_CONSTRAINTS_it BASIC_CONSTRAIN"
+    },
+    {
+      "path": "lib/arm64-v8a/libcocos2dcpp.so",
+      "term": "side",
+      "offset": 463488,
+      "context": "09v3_asid_is_canonical X509v3_asid_subset X509v3_asid_validate_resource_set d2i_ASIdOrRange d2i_ASIdentifierChoice d2i_ASIdentifiers d2i_ASRange i2d_ASIdOrRange i2d_ASIdentifierChoice i2d_ASIdentifiers i2d_ASRange v3_asid BASIC_CONSTRAINTS_free BASIC_CONSTRAINTS_it BASIC_CONSTRAINTS_new d2i_BASIC_CONSTR"
+    },
+    {
+      "path": "lib/arm64-v8a/libcocos2dcpp.so",
+      "term": "side",
+      "offset": 463534,
+      "context": "v3_asid_validate_resource_set d2i_ASIdOrRange d2i_ASIdentifierChoice d2i_ASIdentifiers d2i_ASRange i2d_ASIdOrRange i2d_ASIdentifierChoice i2d_ASIdentifiers i2d_ASRange v3_asid BASIC_CONSTRAINTS_free BASIC_CONSTRAINTS_it BASIC_CONSTRAINTS_new d2i_BASIC_CONSTRAINTS i2d_BASIC_CONSTRAINTS v3_bcons i2v_ASN1_"
+    },
+    {
+      "path": "lib/arm64-v8a/libcocos2dcpp.so",
+      "term": "side",
+      "offset": 463557,
+      "context": "ce_set d2i_ASIdOrRange d2i_ASIdentifierChoice d2i_ASIdentifiers d2i_ASRange i2d_ASIdOrRange i2d_ASIdentifierChoice i2d_ASIdentifiers i2d_ASRange v3_asid BASIC_CONSTRAINTS_free BASIC_CONSTRAINTS_it BASIC_CONSTRAINTS_new d2i_BASIC_CONSTRAINTS i2d_BASIC_CONSTRAINTS v3_bcons i2v_ASN1_BIT_STRING v2i_ASN1_BIT"
+    },
+    {
+      "path": "lib/arm64-v8a/libcocos2dcpp.so",
+      "term": "side",
+      "offset": 481833,
+      "context": "__ndk113basic_ostreamIcNS_11char_traitsIcEEElsEPNS_15basic_streambufIcS2_EE _ZNSt6__ndk18ios_base34__set_failbit_and_consider_rethrowEv _ZNSt6__ndk113basic_ostreamIcNS_11char_traitsIcEEE5tellpEv _ZNSt6__ndk113basic_ostreamIcNS_11char_traitsIcEEE5seekpENS_4fposI9mbstate_tEE _ZNSt6__ndk113basic_ostreamIcN"
+    },
+    {
+      "path": "lib/arm64-v8a/libcocos2dcpp.so",
+      "term": "side",
+      "offset": 4100814,
+      "context": "yer4initEvE3$_4NS_9allocatorIS3_EEFvPN7cocos2d3RefENS6_2ui6Widget14TouchEventTypeEEEE ZN19PartnerSelectDialog13switchToBSideEbE3$_0 % NSt6__ndk110__function6__funcIZZN20WorldGameResultScene4initEvENK3$_2clEvEUlfE_NS_9allocatorIS4_EEFvfEEE 11VNStatement ZZZZN15SongSelectScene15showProgBoostUIEvENK5$_"
+    },
+    {
+      "path": "lib/arm64-v8a/libcocos2dcpp.so",
+      "term": "side",
+      "offset": 4101670,
+      "context": "4$_49NS_9allocatorIS3_EEFvfEEE NSt6__ndk16__nodeIcEE N7cocos2d15TransitionSceneE ZN24PartnerSelectDialogASide4initEvE4$_18 ZZN26UndyingMaculaPuzzleManager29showMayaAtRestAnimationOnNodeEPN7cocos2d4NodeENSt6__ndk18functionIFvvEEEENK4$_12clEvEUlfE_ NSt6__ndk110__function6__funcIZN21Multipla"
+    },
+    {
+      "path": "lib/arm64-v8a/libcocos2dcpp.so",
+      "term": "side",
+      "offset": 4102454,
+      "context": "__function6__funcIZN17SongPurchaseLayer4initEP4Pack15DifficultyClassP20SongPurchaseDelegateE3$_6NS_9allocatorIS8_EEFvP15SideDialogLayerEEE ZN7UILayer4initEP18PauseLayerDelegateP4Song15DifficultyClassi12PlayModifier8GameModeP16CharacterAbilityP9GameModel14PlayParametersE3$_0 NSt6__ndk110__function6__func"
+    },
+    {
+      "path": "lib/arm64-v8a/libcocos2dcpp.so",
+      "term": "side",
+      "offset": 4102977,
+      "context": "showUserRegistrationENSt6__ndk112basic_stringIcNS0_11char_traitsIcEENS0_9allocatorIcEEEES6_E4$_29 24PartnerSelectDialogASide N8tinyxml28MemPoolTILi88EEE NSt6__ndk110__function6__funcIZN19FinaleOverviewLayer21playPendingAnimationsEbEN30AnimationTimelineSequenceEntryUlvE_ENS_9allocatorIS4_EEFvvEEE NSt6__n"
+    },
+    {
+      "path": "lib/arm64-v8a/libcocos2dcpp.so",
+      "term": "side",
+      "offset": 4103210,
+      "context": "30AnimationTimelineSequenceEntryUlvE_ENS_9allocatorIS4_EEFvvEEE NSt6__ndk110__function6__funcIZZZN24PartnerSelectDialogASide27syncChangedUserDataToServerEvENK4$_27clE11OnlineErrorENKUlfE_clEfEUlP11DialogLayerE_NS_9allocatorIS8_EEFvS7_EEE 28UnlockConditionSpellMagnolia 11GameSession 20WorldGameResultScen"
+    },
+    {
+      "path": "lib/arm64-v8a/libcocos2dcpp.so",
+      "term": "side",
+      "offset": 4108404,
+      "context": "sitionDidFinishEvENK4$_16clEfEUlfE_NS_9allocatorIS4_EEFvfEEE ZN8MapScene13animateRewardEvE4$_40 ZN24PartnerSelectDialogASide4initEvE3$_3 N12_GLOBAL__N_116itanium_demangle10NestedNameE A A N10cocostudio16ComExtensionDataE ZN15SettingsLayerV26createEP16SettingsDelegatebbE3$_7 N7cocos2d10Laye"
+    },
+    {
+      "path": "lib/arm64-v8a/libcocos2dcpp.so",
+      "term": "light side",
+      "offset": 5187019,
+      "context": "_vita ilith_awakened_skill skill_luin_uncap skill_lost_to_85 skill_hprate_based_on_hp Earn +%@ Fragments when playing a Light Side song STEP progress carries over to the next World play when using Stamina (Current: %@) ca_wacca_luin_awakened_k S skill_unlock_level img/char_icon_border.png img/gamescene/pm-mp-"
+    },
+    {
+      "path": "lib/arm64-v8a/libcocos2dcpp.so",
+      "term": "img/bg_colorless",
+      "offset": 5159564,
+      "context": "ync_dialog img/help_button2.png mainstory2 Purchases are available on all of your Arcaea devices. Obtain %@ Unlock pack img/bg_colorless.jpg You can also organize songs into groups by Version, Level, or Grade. startAlterEgoHideSongSelect updateAlterEgoTimer fadeOutAction Stamina refilled! layouts/songselect/SongSel"
+    },
+    {
+      "path": "lib/arm64-v8a/libcocos2dcpp.so",
+      "term": "img/bg_byd_light",
+      "offset": 5204841,
+      "context": "ext Tap the button once on every 3rd Beat Yes LEVEL ??? FR ratingPlus Not enough %@ %@/%2@ songs unlocked lovelessdress img/bg_byd_light.jpg img/bg_glow_lephon.png remoteDownloadPresent: timeTheInsightAnimation removeDim fixUpRealEdenCell favorite_bg unlock_text img/t_difficulty_cut.png particleTexture hikari_jp.pn"
+    },
+    {
+      "path": "lib/arm64-v8a/libcocos2dcpp.so",
+      "term": "img/bg_glow_lephon",
+      "offset": 5204862,
+      "context": "ce on every 3rd Beat Yes LEVEL ??? FR ratingPlus Not enough %@ %@/%2@ songs unlocked lovelessdress img/bg_byd_light.jpg img/bg_glow_lephon.png remoteDownloadPresent: timeTheInsightAnimation removeDim fixUpRealEdenCell favorite_bg unlock_text img/t_difficulty_cut.png particleTexture hikari_jp.png vita_kr.png stickerpu"
+    },
+    {
+      "path": "lib/arm64-v8a/libcocos2dcpp.so",
+      "term": "lephonhelper",
+      "offset": 4098940,
+      "context": "neUser12UserCellModeNSt6__ndk18functionIFvvEEEP10GameResultbNS4_IFvibbEEEbS6_S6_E3$_0 NSt6__ndk110__function6__funcIZN12LephonHelper36showInsightLv20UnlockAnimationOnNodeEPN7cocos2d4NodeES5_S5_EUlfE_NS_9allocatorIS6_EEFvfEEE NSt6__ndk110__function6__funcIZZN15SongSelectScene15showProgBoostUIEvENK5$_167clEP11Dia"
+    },
+    {
+      "path": "lib/arm64-v8a/libcocos2dcpp.so",
+      "term": "lephonhelper",
+      "offset": 4110511,
+      "context": "ocos2d4NodeENS_8functionIFvvEEEbE3$_0NS_9allocatorIS9_EEFbPNS3_5TouchEPNS3_5EventEEEE NSt6__ndk110__function6__funcIZN12LephonHelper38showInsightInvadeUnlockAnimationOnNodeEPN7cocos2d4NodeES5_S5_EUlfE5_NS_9allocatorIS6_EEFvfEEE NSt6__ndk110__function6__funcIZN21MultiplayerLobbyLayer23createRoomOptionsDialogEvE4"
+    },
+    {
+      "path": "lib/arm64-v8a/libcocos2dcpp.so",
+      "term": "lephonhelper",
+      "offset": 4126331,
+      "context": "idget14TouchEventTypeEEEE ZN11SyncManager26sendAndOverwriteServerDataENSt6__ndk18functionIFvb11OnlineErrorEEEbE3$_1 ZN12LephonHelper42submitPostDesignantFirstPlayNetworkRequestEP25OnlineManagerClientHandleRKNSt6__ndk18functionIFvb11OnlineErrorEEEEUlbS4_18InsightUnlockStateE_ NSt6__ndk110__function6__funcIZZZN31"
+    },
+    {
+      "path": "lib/arm64-v8a/libcocos2dcpp.so",
+      "term": "lephonhelper",
+      "offset": 4127821,
+      "context": "ocatorIS6_EEFvP11DialogLayerEEE ZN20MissionOverviewLayer24configureCardWithMissionEPN7cocos2d4NodeEP7MissionE4$_10 ZZN12LephonHelper38showInsightInvadeUnlockAnimationOnNodeEPN7cocos2d4NodeES2_S2_ENKUlfE0_clEfEUlfE_ W[ _ c gi 4 ! $ * "
+    },
+    {
+      "path": "lib/arm64-v8a/libcocos2dcpp.so",
+      "term": "lephonhelper",
+      "offset": 4170712,
+      "context": "15SideDialogLayerE4$_46NS_9allocatorIS9_EEFvPNS3_3RefENS4_6Widget14TouchEventTypeEEEE NSt6__ndk110__function6__funcIZN12LephonHelper38showInsightInvadeUnlockAnimationOnNodeEPN7cocos2d4NodeES5_S5_EUlfE1_NS_9allocatorIS6_EEFvfEEE NSt6__ndk110__function6__funcIZN12StorySceneV224legacyShowPurchaseDialogENS_12basic_"
+    },
+    {
+      "path": "lib/arm64-v8a/libcocos2dcpp.so",
+      "term": "lephonhelper",
+      "offset": 4219653,
+      "context": "ayerE2_NS_9allocatorISC_EEFvSB_EEE / %MS Y _ fZN19FinaleOverviewLayer21playPendingAnimationsEbE4$_26 ZN12LephonHelper36showInsightLv20UnlockAnimationOnNodeEPN7cocos2d4NodeES2_S2_EUlfE1_ ZZZN15PurchaseManager31handlePurchaseSuccessForProductENSt6__ndk112basic_stringIcNS0_11char_traitsIcEENS0_9allo"
+    },
+    {
+      "path": "lib/arm64-v8a/libcocos2dcpp.so",
+      "term": "lephonhelper",
+      "offset": 4224253,
+      "context": "ctionIFvvEEEENK3$_6clEPN7cocos2d3RefENS9_2ui6Widget14TouchEventTypeEEUlP11DialogLayerE0_NS_9allocatorISH_EEFvSG_EEE ZN12LephonHelper19showLamentRainStoryEPN7cocos2d5SceneENSt6__ndk18functionIFvP12StoryLayerV2bbEEEEUlfE_ ZZZN21MultiplayerLobbyLayer4initEvENK3$_8clEPN7cocos2d3RefEENKUlb11OnlineErrorxE_clEbS4_xEUl"
+    },
+    {
+      "path": "lib/arm64-v8a/libcocos2dcpp.so",
+      "term": "lephonhelper",
+      "offset": 4233148,
+      "context": "ishedEvENK3$_0clEvEUlvE_NS_9allocatorIS4_EEFvvEEE N10cocostudio8timeline10EventFrameE NSt6__ndk110__function6__funcIZN12LephonHelper36showInsightLv20UnlockAnimationOnNodeEPN7cocos2d4NodeES5_S5_EUlfE0_NS_9allocatorIS6_EEFvfEEE PFNSt6__ndk16vectorIhNS_9allocatorIhEEEERN7cocos2d4DataEE ZN10StartScene21updateDataCh"
+    },
+    {
+      "path": "lib/arm64-v8a/libcocos2dcpp.so",
+      "term": "lephonhelper",
+      "offset": 4273813,
+      "context": "function6__funcIZN15SongSelectScene14doEnterEndviewEbE4$_64NS_9allocatorIS3_EEFvvEEE NSt6__ndk110__function6__funcIZZN12LephonHelper36showInsightLv20UnlockAnimationOnNodeEPN7cocos2d4NodeES5_S5_ENKUlfE1_clEfEUlPNS3_3RefENS3_2ui6Widget14TouchEventTypeEE_NS_9allocatorISC_EEFvS8_SB_EEE ZN8MapScene13animateRewardEvE"
+    },
+    {
+      "path": "lib/arm64-v8a/libcocos2dcpp.so",
+      "term": "lephonhelper",
+      "offset": 4383375,
+      "context": "S4_NS_9allocatorIS4_EEEEEEiiNS_8functionIFvlliiEEENSA_IFvbN7cocos2d18ContentBundleErrorEEEEE4$_18NS6_ISH_EEFvSE_EEE ZN12LephonHelper38showInsightInvadeUnlockAnimationOnNodeEPN7cocos2d4NodeES2_S2_EUlfE6_ NSt6__ndk110__function6__funcIZN23ParallelGameResultScene14showNextButtonEbE4$_14NS_9allocatorIS3_EEFvPN7coco"
+    },
+    {
+      "path": "lib/arm64-v8a/libcocos2dcpp.so",
+      "term": "lephonhelper",
+      "offset": 4388637,
+      "context": "functionIFvvEEEENK3$_4clEvENKUlfE_clEfEUlPNS0_3RefENS0_2ui6Widget14TouchEventTypeEE_ NSt6__ndk110__function6__funcIZZN12LephonHelper38showInsightInvadeUnlockAnimationOnNodeEPN7cocos2d4NodeES5_S5_ENKUlfE0_clEfEUlfE_NS_9allocatorIS7_EEFvfEEE ZZN13OnlineManager16downloadFileListExRNSt6__ndk16vectorI16SongDownloadI"
+    },
+    {
+      "path": "lib/arm64-v8a/libcocos2dcpp.so",
+      "term": "lephonhelper",
+      "offset": 4460756,
+      "context": " ? i H r Q ] NSt6__ndk110__function6__funcIZN12LephonHelper38showInsightInvadeUnlockAnimationOnNodeEPN7cocos2d4NodeES5_S5_EUlfE4_NS_9allocatorIS6_EEFvfEEE ZN12StoryLayerV225doProgressUserInteractionEvE4$_11 NSt6__ndk110__function6__funcIZZ"
+    },
+    {
+      "path": "lib/arm64-v8a/libcocos2dcpp.so",
+      "term": "lephonhelper",
+      "offset": 4542858,
+      "context": "ContentEvE3$_4NS_9allocatorIS3_EEFvfEEE ZN29FinaleStoryOneShotPromptLayer4initEvE3$_4 NSt6__ndk110__function6__funcIZN12LephonHelper38showInsightInvadeUnlockAnimationOnNodeEPN7cocos2d4NodeES5_S5_EUlfE3_NS_9allocatorIS6_EEFvfEEE NSt6__ndk120__time_get_c_storageIwEE NSt6__ndk110__function6__funcIZZZN21NormalGameR"
+    },
+    {
+      "path": "lib/arm64-v8a/libcocos2dcpp.so",
+      "term": "lephonhelper",
+      "offset": 4566301,
+      "context": "vENK3$_2clEvEUlfE_NS_9allocatorIS4_EEFvfEEE ZN24PartnerSelectDialogASide4initEvE4$_16 NSt6__ndk110__function6__funcIZN12LephonHelper38showInsightInvadeUnlockAnimationOnNodeEPN7cocos2d4NodeES5_S5_EUlfE_NS_9allocatorIS6_EEFvfEEE 12LifeBarState NSt6__ndk114__num_put_baseE ZZZN20WorldGameResultScene17submitOnlineSc"
+    },
+    {
+      "path": "lib/arm64-v8a/libcocos2dcpp.so",
+      "term": "lephonhelper",
+      "offset": 4613219,
+      "context": "onIFvvEEEiENK4$_43clEvEUlfE_NS_9allocatorIS7_EEFvfEEE ZN15SongSelectScene4initEvE3$_6 NSt6__ndk110__function6__funcIZN12LephonHelper36showInsightLv20UnlockAnimationOnNodeEPN7cocos2d4NodeES5_S5_EUlfE1_NS_9allocatorIS6_EEFvfEEE ZN11StickerTray4initEvE3$_2 NSt6__ndk110__function6__funcIZZN21NormalGameResultSc"
+    },
+    {
+      "path": "lib/arm64-v8a/libcocos2dcpp.so",
+      "term": "lephonhelper",
+      "offset": 4622617,
+      "context": "yer4initE39TempestissimoChallengeCompleteCutinTypefE3$_0NS_9allocatorIS4_EEFvfEEE \\\\ &2N8tinyxml214XMLDeclarationE ZN12LephonHelper36showInsightLv20UnlockAnimationOnNodeEPN7cocos2d4NodeES2_S2_EUlfE_ NSt6__ndk110__function6__funcIZN6TopBar15setupLeftButtonENS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcE"
+    },
+    {
+      "path": "lib/arm64-v8a/libcocos2dcpp.so",
+      "term": "lephonhelper",
+      "offset": 4744975,
+      "context": "DelegateE4$_10 NSt6__ndk110__function6__funcIZN19PartnerSelectDialog13switchToASideEbE3$_3NS_9allocatorIS3_EEFvvEEE ZN12LephonHelper38showInsightInvadeUnlockAnimationOnNodeEPN7cocos2d4NodeES2_S2_EUlfE2_ 3 ! NSt6__ndk118__weak_result_typeIMN7cocos2d2ui10TabControlEFviNS2_9TabHeader9EventTypeEEEE WWWWWWW"
+    },
+    {
+      "path": "lib/arm64-v8a/libcocos2dcpp.so",
+      "term": "lephonhelper",
+      "offset": 4748386,
+      "context": "_8functionIFvvEEEENK3$_7clEPN7cocos2d3RefENS9_2ui6Widget14TouchEventTypeEEUlSB_SE_E_NS_9allocatorISF_EEFvSB_SE_EEE ZZN12LephonHelper38showInsightInvadeUnlockAnimationOnNodeEPN7cocos2d4NodeES2_S2_ENKUlfE0_clEfEUlfE0_ NSt6__ndk110__function6__funcIZZN21BeyondGameResultScene17submitOnlineScoreEvENK4$_15clEb11Onlin"
+    },
+    {
+      "path": "lib/arm64-v8a/libcocos2dcpp.so",
+      "term": "lephonhelper",
+      "offset": 4750369,
+      "context": "laDiaryLayer17startSongSequenceEvENK3$_9clEvENKUlfE_clEfEUlfE0_NS_9allocatorIS5_EEFvfEEE N10cocostudio10TextReaderE ZN12LephonHelper38showInsightInvadeUnlockAnimationOnNodeEPN7cocos2d4NodeES2_S2_EUlfE_ N8tinyxml210XMLUnknownE 7 7 N21MultiplayerLobbyLayer25onFriendInviteLayerOpenedMUlvE_E PKl ZN7V"
+    },
+    {
+      "path": "lib/arm64-v8a/libcocos2dcpp.so",
+      "term": "lephonhelper",
+      "offset": 4765717,
+      "context": "SelectScene15initMultiplayerEvENK4$_26clEPN7cocos2d3RefENS1_2ui6Widget14TouchEventTypeEEUlvE_ #, ( ( # ZN12LephonHelper38showInsightInvadeUnlockAnimationOnNodeEPN7cocos2d4NodeES2_S2_EUlfE0_ NSt6__ndk110__function6__funcIZZN19FinaleOverviewLayer17showTutorialLayerEbENK4$_29clEPN7cocos2d3RefENS4_2ui6"
+    },
+    {
+      "path": "lib/arm64-v8a/libcocos2dcpp.so",
+      "term": "colorless",
+      "offset": 5158448,
+      "context": "ry Unlocked img/1080/arghena/irruption_shadow_only.png img/terminal-forgotten.png particle/note_light.png particle/note_colorless.png fatalis_is_limited status require_id is_breached maps This feature has already been used on this device. bundleBundle value= &near_count= setFavouriteCharacter uncapCharacter "
+    },
+    {
+      "path": "lib/arm64-v8a/libcocos2dcpp.so",
+      "term": "colorless",
+      "offset": 5159571,
+      "context": "log img/help_button2.png mainstory2 Purchases are available on all of your Arcaea devices. Obtain %@ Unlock pack img/bg_colorless.jpg You can also organize songs into groups by Version, Level, or Grade. startAlterEgoHideSongSelect updateAlterEgoTimer fadeOutAction Stamina refilled! layouts/songselect/SongSel"
+    },
+    {
+      "path": "lib/arm64-v8a/libcocos2dcpp.so",
+      "term": "colorless",
+      "offset": 5174283,
+      "context": "protocolVersion= &is_char_uncapped_override=true version_data= updated_characters layouts/1080/songselect/packselect/ps-colorless-bar.png fav_songs_tutorial singlePackIsShowingFullCombo layouts/world/parallel-world-boost-small.png layouts/world/parallel-sync-boost-2.png Sync Boost grants a bonus to progress "
+    },
+    {
+      "path": "lib/arm64-v8a/libcocos2dcpp.so",
+      "term": "colorless",
+      "offset": 5174971,
+      "context": "7.jpg p_v p_k Failed to store FinaleState for user layouts/songselect/DifficultySelector.csb Genre img/song_jacket_back_colorless.png Double Tap Offset img/dialog_v2/Arrow R.png settings_layer_v2_widget_button4_right_more_button Audio offset is used to compensate for delays playing back audio on your device."
+    },
+    {
+      "path": "lib/arm64-v8a/libcocos2dcpp.so",
+      "term": "colorless",
+      "offset": 5190334,
+      "context": "t songs, appearing as messages. Tap a message to quickly jump to a suggested song. img/songselect/1080/song_cell_corner_colorless.png scene_gate img/1080/designant_hp_4.png etherstrikeHPdrain showUnderlay %@ Second(s) Until Full performancemode performInitAfterHeavy startup/m1_core.png MB lethe_en.png eto_jp"
+    },
+    {
+      "path": "lib/arm64-v8a/libcocos2dcpp.so",
+      "term": "colorless",
+      "offset": 5392502,
+      "context": " +  ether_drop_bonus_2 img/course/1080/dan-banner_02.png img/course/1080/diff-eternal.png arrow_ img/course/indicator-s-colorless.png cybermiso   cg img/1080/customize/bgm-btn.png img/1080/customize/close-btn-pressed.png img/skill_trigger_text.p"
+    },
+    {
+      "path": "lib/arm64-v8a/libcocos2dcpp.so",
+      "term": "colorless",
+      "offset": 5438491,
+      "context": "ourse/1080/dan-banner_07.png img/core_3.png layouts/results/coursemode/ResultCourseCardLarge.csb img/course/indicator-l-colorless.png img/course/timer_normal.png 341a19 PV Production Audio Mastering MuangMuang Project Manager SPACELECTRO Sober Bear Arcaea Illustration img/1080/customize/show-ui.png"
+    },
+    {
+      "path": "lib/arm64-v8a/libcocos2dcpp.so",
+      "term": "colorless",
+      "offset": 5500526,
+      "context": "ve.png Use Cloud Save cloudPmCount Are you sure you want to overwrite your Cloud Save? img/loadout-arrows.png img/track_colorless.png   M controller_bottom_inputs_left cutoff_dia img/hp_item_gain_main.png img/skills/c2/health-outline.png img/skills/c2/node-step.png signFinal h Clear %1@ %2@ songs from M"
+    },
+    {
+      "path": "lib/arm64-v8a/libcocos2dcpp.so",
+      "term": "colorless",
+      "offset": 5545166,
+      "context": "ayouts/songselect/LastingEdenWarning.csb acidgod_ja back %@ Unlock using %2@ %3@? img/axiom-btn_pressed.png img/bg_glow_colorless.png img/bg_glow_dark.png pack_selector_restriction Skip stallABitToPreventWeirdLag song_ img/songselect/1080/song_cell_corner_4.png etherstrike_end.ogg manual_update img/cutoff_di"
+    },
+    {
+      "path": "lib/arm64-v8a/libcocos2dcpp.so",
+      "term": "colorless",
+      "offset": 5545710,
+      "context": "e_dot_png layouts/1080/topbar/fragstack-single.png layouts/1080/topbar/fragstack-doubleplus.png img/track_critical_line_colorless.png img/songload_shadow.png   RS invain Watch the upper input area for Sky notes. Let's try it out for real! img/hp_item_gain_over.png img/dot_fr.png img/ink_frpm.png layouts"
+    },
+    {
+      "path": "lib/arm64-v8a/libcocos2dcpp.so",
+      "term": "conflict",
+      "offset": 322856,
+      "context": "qlite3_get_table sqlite3_free_table sqlite3_create_module sqlite3_create_module_v2 sqlite3_declare_vtab sqlite3_vtab_on_conflict sqlite3_vtab_config sqlite3_complete sqlite3_complete16 sqlite3_libversion sqlite3_version sqlite3_sourceid sqlite3_libversion_number sqlite3_threadsafe sqlite3_shutdown sqlite3_d"
+    },
+    {
+      "path": "lib/arm64-v8a/libcocos2dcpp.so",
+      "term": "conflict",
+      "offset": 4215761,
+      "context": "vE_NS_9allocatorIS4_EEFvvEEE NSt6__ndk110__function6__funcIZN10StartScene4initEvE4$_15NS_9allocatorIS3_EEFvvEEE ZN19SyncConflictUILayer4showENSt6__ndk112basic_stringIcNS0_11char_traitsIcEENS0_9allocatorIcEEEExNS0_8functionIFvbEEEE3$_1 NSt6__ndk110__function6__funcIZZZN20MissionOverviewLayer30handleResultOfC"
+    },
+    {
+      "path": "lib/arm64-v8a/libcocos2dcpp.so",
+      "term": "conflict",
+      "offset": 4251910,
+      "context": "ndk110__function6__funcIZZN15SongSelectScene4initEvENK4$_15clEPN7cocos2d3RefEEUlvE0_NS_9allocatorIS7_EEFvvEEE ZZZN19SyncConflictUILayer4showENSt6__ndk112basic_stringIcNS0_11char_traitsIcEENS0_9allocatorIcEEEExNS0_8functionIFvbEEEENK3$_2clEPN7cocos2d3RefENSB_2ui6Widget14TouchEventTypeEENKUlP11DialogLayerE_cl"
+    },
+    {
+      "path": "lib/arm64-v8a/libcocos2dcpp.so",
+      "term": "conflict",
+      "offset": 4317389,
+      "context": "_9allocatorISP_EEFvSO_EEE 12CCVideoLayer ZN13MainMenuScene19showSceneryTutorialEvE4$_68 20CustomizeSelectLayer ZZN19SyncConflictUILayer4showENSt6__ndk112basic_stringIcNS0_11char_traitsIcEENS0_9allocatorIcEEEExNS0_8functionIFvbEEEENK3$_2clEPN7cocos2d3RefENSB_2ui6Widget14TouchEventTypeEEUlP11DialogLayerE_ NSt"
+    },
+    {
+      "path": "lib/arm64-v8a/libcocos2dcpp.so",
+      "term": "conflict",
+      "offset": 4400755,
+      "context": "tTypeEEEE NSt6__ndk110__function6__funcIZN15SongSelectScene14showSongSelectEvE4$_67NS_9allocatorIS3_EEFvfEEE ZZZZN19SyncConflictUILayer4showENSt6__ndk112basic_stringIcNS0_11char_traitsIcEENS0_9allocatorIcEEEExNS0_8functionIFvbEEEENK3$_1clEPN7cocos2d3RefENSB_2ui6Widget14TouchEventTypeEENKUlP11DialogLayerE_cl"
+    },
+    {
+      "path": "lib/arm64-v8a/libcocos2dcpp.so",
+      "term": "conflict",
+      "offset": 4406326,
+      "context": "ainMenuScene34processPostLoginStateEnterMainMenuEvE4$_16NS_9allocatorIS3_EEFvvEEE NSt6__ndk110__function6__funcIZN19SyncConflictUILayer4showENS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEExNS_8functionIFvbEEEE3$_0NS6_ISC_EEFvP11DialogLayerEEE ZN15SongSelectScene15initMultiplayerEvE4$_31 NSt6__ndk"
+    },
+    {
+      "path": "lib/arm64-v8a/libcocos2dcpp.so",
+      "term": "conflict",
+      "offset": 4434100,
+      "context": "UlPN7cocos2d3RefENS7_2ui6Widget14TouchEventTypeEE_NS_9allocatorISD_EEFvS9_SC_EEE NSt6__ndk110__function6__funcIZZN19SyncConflictUILayer4showENS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEExNS_8functionIFvbEEEENK3$_2clEPN7cocos2d3RefENSD_2ui6Widget14TouchEventTypeEEUlP11DialogLayerE_NS6_ISL_EEFvSK"
+    },
+    {
+      "path": "lib/arm64-v8a/libcocos2dcpp.so",
+      "term": "conflict",
+      "offset": 4459058,
+      "context": "4TouchEventTypeEE_NS_9allocatorISA_EEFvS6_S9_EEE ZN15SongSelectScene4initEvE3$_0 NSt6__ndk110__function6__funcIZZN19SyncConflictUILayer4showENS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEExNS_8functionIFvbEEEENK3$_1clEPN7cocos2d3RefENSD_2ui6Widget14TouchEventTypeEEUlP11DialogLayerE_NS6_ISL_EEFvSK"
+    },
+    {
+      "path": "lib/arm64-v8a/libcocos2dcpp.so",
+      "term": "conflict",
+      "offset": 4570865,
+      "context": "torIcEEEES6_S6_bE4$_35 ZN21MultiplayerLobbyLayer23createRoomOptionsDialogEvE4$_27 NSt6__ndk110__function6__funcIZN19SyncConflictUILayer4showENS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEExNS_8functionIFvbEEEE3$_1NS6_ISC_EEFvPN7cocos2d3RefENSE_2ui6Widget14TouchEventTypeEEEE 14VNScriptVolume N7coc"
+    },
+    {
+      "path": "lib/arm64-v8a/libcocos2dcpp.so",
+      "term": "conflict",
+      "offset": 4612704,
+      "context": " 7m N lV ez x%. t K p> fH a5W i U( BhA - T NSt6__ndk110__function6__funcIZZZZN19SyncConflictUILayer4showENS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEExNS_8functionIFvbEEEENK3$_2clEPN7cocos2d3RefENSD_2ui6Widget14TouchEventTypeEENKUlP11DialogLayerE_clESK_ENKUlf"
+    },
+    {
+      "path": "lib/arm64-v8a/libcocos2dcpp.so",
+      "term": "conflict",
+      "offset": 4630972,
+      "context": "eE3$_1 NSt6__ndk110__function6__baseIFiRKNS_12basic_stringIDsNS_11char_traitsIDsEENS_9allocatorIDsEEEEiiEEE ZZZZZN19SyncConflictUILayer4showENSt6__ndk112basic_stringIcNS0_11char_traitsIcEENS0_9allocatorIcEEEExNS0_8functionIFvbEEEENK3$_2clEPN7cocos2d3RefENSB_2ui6Widget14TouchEventTypeEENKUlP11DialogLayerE_cl"
+    },
+    {
+      "path": "lib/arm64-v8a/libcocos2dcpp.so",
+      "term": "conflict",
+      "offset": 4661977,
+      "context": "pResultUIEvE3$_8NS_9allocatorIS3_EEFvfEEE ZN18MultiplayerManager21popMultiplayerInvitesEPN7cocos2d4NodeEE4$_22 ZZN19SyncConflictUILayer4showENSt6__ndk112basic_stringIcNS0_11char_traitsIcEENS0_9allocatorIcEEEExNS0_8functionIFvbEEEENK3$_1clEPN7cocos2d3RefENSB_2ui6Widget14TouchEventTypeEEUlP11DialogLayerE_ NSt"
+    },
+    {
+      "path": "lib/arm64-v8a/libcocos2dcpp.so",
+      "term": "conflict",
+      "offset": 4681352,
+      "context": "rmedSyncTypeNS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEExEEEE3$_0NS9_ISE_EEFvbS4_8SyncDataEEE ZZZZZN19SyncConflictUILayer4showENSt6__ndk112basic_stringIcNS0_11char_traitsIcEENS0_9allocatorIcEEEExNS0_8functionIFvbEEEENK3$_2clEPN7cocos2d3RefENSB_2ui6Widget14TouchEventTypeEENKUlP11DialogLayerE_cl"
+    },
+    {
+      "path": "lib/arm64-v8a/libcocos2dcpp.so",
+      "term": "conflict",
+      "offset": 4729163,
+      "context": "ium_demangle10DeleteExprE 7l2 G + !18AchievementManager -0369<?cB E HKfi Nl Q!ux$TWZ{'o~ ] * `rZN19SyncConflictUILayer4showENSt6__ndk112basic_stringIcNS0_11char_traitsIcEENS0_9allocatorIcEEEExNS0_8functionIFvbEEEE3$_0 ZZZN15PurchaseManager30handlePurchaseCompleteFinishedEvENK4$_10clEvENKUlv"
+    },
+    {
+      "path": "lib/arm64-v8a/libcocos2dcpp.so",
+      "term": "conflict",
+      "offset": 4755050,
+      "context": "2clEPN7cocos2d3RefENS4_2ui6Widget14TouchEventTypeEEUlvE_NS_9allocatorISA_EEFbvEEE NSt6__ndk110__function6__funcIZN19SyncConflictUILayer4showENS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEExNS_8functionIFvbEEEE3$_2NS6_ISC_EEFvPN7cocos2d3RefENSE_2ui6Widget14TouchEventTypeEEEE ZN13OnlineManager17sub"
+    },
+    {
+      "path": "lib/arm64-v8a/libcocos2dcpp.so",
+      "term": "conflict",
+      "offset": 4757829,
+      "context": "os2d3RefENS7_2ui6Widget14TouchEventTypeEENKUlS9_SC_E_clES9_SC_ENKUlP11DialogLayerE_clESF_EUlb11OnlineErrorE_ ZZZZN19SyncConflictUILayer4showENSt6__ndk112basic_stringIcNS0_11char_traitsIcEENS0_9allocatorIcEEEExNS0_8functionIFvbEEEENK3$_2clEPN7cocos2d3RefENSB_2ui6Widget14TouchEventTypeEENKUlP11DialogLayerE_cl"
+    },
+    {
+      "path": "lib/arm64-v8a/libcocos2dcpp.so",
+      "term": "conflict",
+      "offset": 4763114,
+      "context": "N7cocos2d6VectorIP21LazySongSelectionCellEEb12SongSortModeP21SongGroupCellDelegateiNSC_4Vec2E13SongSortOrderE3$_5 19SyncConflictUILayer ?? ZN12StoryLayerV24showEvE3$_9 NSt6__ndk110__function6__funcIZZN15SongSelectScene30playArghenaRevealMayaAnimationEvENK5$_140clEvEUlfE_NS_9allocatorIS4_EEFvfEEE ZN7ArcUt"
+    },
+    {
+      "path": "lib/arm64-v8a/libcocos2dcpp.so",
+      "term": "conflict",
+      "offset": 4812442,
+      "context": "__funcIZN25SpecialSceneLastChallenge4initEvE3$_0NS_9allocatorIS3_EEFvPN7cocos2d3RefEEEE 20FinaleMinorNodeLayer ZZN19SyncConflictUILayer4showENSt6__ndk112basic_stringIcNS0_11char_traitsIcEENS0_9allocatorIcEEEExNS0_8functionIFvbEEEENK3$_2clEPN7cocos2d3RefENSB_2ui6Widget14TouchEventTypeEEUlP11DialogLayerE0_ NS"
+    },
+    {
+      "path": "lib/arm64-v8a/libcocos2dcpp.so",
+      "term": "conflict",
+      "offset": 4819522,
+      "context": "IMMEDIATEJOINSERTMATCHPLANALYZEPRAGMABORTVALUESVIRTUALIMITWHENWHERENAMEAFTEREPLACEANDEFAULTAUTOINCREMENTCASTCOLUMNCOMMITCONFLICTCROSSCURRENT_TIMESTAMPRIMARYDEFERREDISTINCTDROPFAILFROMFULLGLOBYIFISNULLORDERESTRICTRIGHTROLLBACKROWUNIONUSINGVACUUMVIEWINITIALLYZN18ChapterSelectScene4initEvE3$_6 N6Tokens6TFALSEE"
+    },
+    {
+      "path": "lib/arm64-v8a/libcocos2dcpp.so",
+      "term": "conflict",
+      "offset": 4838002,
+      "context": "__funcIZN9TrackBase26performTrackSplitAnimationEvE3$_6NS_9allocatorIS3_EEFvvEEE NSt6__ndk110__function6__funcIZZZN19SyncConflictUILayer4showENS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEExNS_8functionIFvbEEEENK3$_2clEPN7cocos2d3RefENSD_2ui6Widget14TouchEventTypeEENKUlP11DialogLayerE_clESK_EUlfE_"
+    },
+    {
+      "path": "lib/arm64-v8a/libfmod.so",
+      "term": "side",
+      "offset": 198042,
+      "context": "FMOD Ogg Vorbis Codec <?WPL VERSION Number of channels Ratio Compressor attack time. [0.1ms,500ms]  Default = 20ms. Use sidechain Delay ch9 Delay RMS Spectral centroid of analysis band. FFT window size.  256, 512, 1024, 2048, 4096.  Default = 1024.  Increase this to reduce 'smearing'.  This effect is a "
+    },
+    {
+      "path": "lib/arm64-v8a/libfmod.so",
+      "term": "side",
+      "offset": 206443,
+      "context": "eg too big getEncodedP x8 x28 FDE is really a CIE ChannelControl::getDSP wsmp IARL FMOD FLAC Codec #EXTINF Analyse the sidechain signal instead of the input signal. Delay ch3 Volume of original signal to pass to output.  -80.0f to 10.0f. Default = 0.0. Mix Flange speed in Hz.  0.0 to 20.0.  Default = 0"
+    },
+    {
+      "path": "lib/arm64-v8a/libfmod.so",
+      "term": "side",
+      "offset": 225744,
+      "context": " @ F ? ? @ F C Cms B) Attack @ @ $ $ $ C) Q Hz Sidechain ~ ? D, d ? g B) Ratio B) Release B) Response C) Release t< = < 4< C? ? ? ?^ ? ?B) Mode "
+    },
+    {
+      "path": "lib/armeabi-v7a/libcocos2dcpp.so",
+      "term": "side",
+      "offset": 242222,
+      "context": "6sentryC1ERS3_ _ZNSt6__ndk113basic_ostreamIcNS_11char_traitsIcEEE6sentryD1Ev _ZNSt6__ndk18ios_base33__set_badbit_and_consider_rethrowEv _ZNKSt6__ndk18ios_base6getlocEv _ZNSt6__ndk16localeD1Ev _ZNKSt6__ndk16locale9use_facetERNS0_2idE _ZNSt6__ndk15ctypeIcE2idE _ZNSt6__ndk18ios_base5clearEj _ZTINSt6__ndk11"
+    },
+    {
+      "path": "lib/armeabi-v7a/libcocos2dcpp.so",
+      "term": "side",
+      "offset": 273323,
+      "context": "_Transform FT_Bitmap_Copy FT_Glyph_Copy ft_outline_glyph_class ft_bitmap_glyph_class FT_Glyph_To_Bitmap FT_Outline_GetInsideBorder FT_Outline_GetOutsideBorder FT_Stroker_Rewind FT_Stroker_LineTo FT_Stroker_ConicTo FT_Stroker_CubicTo FT_Stroker_BeginSubPath FT_Stroker_EndSubPath FT_Stroker_GetBorderCount"
+    },
+    {
+      "path": "lib/armeabi-v7a/libcocos2dcpp.so",
+      "term": "side",
+      "offset": 273351,
+      "context": "_Glyph_Copy ft_outline_glyph_class ft_bitmap_glyph_class FT_Glyph_To_Bitmap FT_Outline_GetInsideBorder FT_Outline_GetOutsideBorder FT_Stroker_Rewind FT_Stroker_LineTo FT_Stroker_ConicTo FT_Stroker_CubicTo FT_Stroker_BeginSubPath FT_Stroker_EndSubPath FT_Stroker_GetBorderCounts FT_Stroker_GetCounts FT_St"
+    },
+    {
+      "path": "lib/armeabi-v7a/libcocos2dcpp.so",
+      "term": "side",
+      "offset": 386749,
+      "context": "INFO_free X509_REQ_INFO_new X509_REQ_dup X509_REQ_free X509_REQ_new d2i_X509_REQ_INFO i2d_X509_REQ_INFO X509_CINF_free ASIdentifiers_free CRL_DIST_POINTS_free IPAddressFamily_free NAME_CONSTRAINTS_free X509_CERT_AUX_free X509_CINF_new X509_get_ex_data X509_new X509_set_ex_data d2i_X509_CERT_AUX d2i_X509"
+    },
+    {
+      "path": "lib/armeabi-v7a/libcocos2dcpp.so",
+      "term": "side",
+      "offset": 390020,
+      "context": "2i_GENERAL_NAMES v2i_GENERAL_NAME_ex v3_alt x509v3_add_len_value_uchar ASIdOrRange_free ASIdOrRange_it ASIdOrRange_new ASIdentifierChoice_free ASIdentifierChoice_it ASIdentifierChoice_new ASIdentifiers_it ASIdentifiers_new ASRange_free ASRange_it ASRange_new X509V3_get_value_int X509v3_asid_add_id_or_ra"
+    },
+    {
+      "path": "lib/armeabi-v7a/libcocos2dcpp.so",
+      "term": "side",
+      "offset": 390044,
+      "context": "ERAL_NAME_ex v3_alt x509v3_add_len_value_uchar ASIdOrRange_free ASIdOrRange_it ASIdOrRange_new ASIdentifierChoice_free ASIdentifierChoice_it ASIdentifierChoice_new ASIdentifiers_it ASIdentifiers_new ASRange_free ASRange_it ASRange_new X509V3_get_value_int X509v3_asid_add_id_or_range X509v3_asid_add_inhe"
+    },
+    {
+      "path": "lib/armeabi-v7a/libcocos2dcpp.so",
+      "term": "side",
+      "offset": 390066,
+      "context": "09v3_add_len_value_uchar ASIdOrRange_free ASIdOrRange_it ASIdOrRange_new ASIdentifierChoice_free ASIdentifierChoice_it ASIdentifierChoice_new ASIdentifiers_it ASIdentifiers_new ASRange_free ASRange_it ASRange_new X509V3_get_value_int X509v3_asid_add_id_or_range X509v3_asid_add_inherit X509v3_asid_canoni"
+    },
+    {
+      "path": "lib/armeabi-v7a/libcocos2dcpp.so",
+      "term": "side",
+      "offset": 390089,
+      "context": "r ASIdOrRange_free ASIdOrRange_it ASIdOrRange_new ASIdentifierChoice_free ASIdentifierChoice_it ASIdentifierChoice_new ASIdentifiers_it ASIdentifiers_new ASRange_free ASRange_it ASRange_new X509V3_get_value_int X509v3_asid_add_id_or_range X509v3_asid_add_inherit X509v3_asid_canonize X509v3_asid_inherits"
+    },
+    {
+      "path": "lib/armeabi-v7a/libcocos2dcpp.so",
+      "term": "side",
+      "offset": 390106,
+      "context": "e ASIdOrRange_it ASIdOrRange_new ASIdentifierChoice_free ASIdentifierChoice_it ASIdentifierChoice_new ASIdentifiers_it ASIdentifiers_new ASRange_free ASRange_it ASRange_new X509V3_get_value_int X509v3_asid_add_id_or_range X509v3_asid_add_inherit X509v3_asid_canonize X509v3_asid_inherits X509v3_asid_is_c"
+    },
+    {
+      "path": "lib/armeabi-v7a/libcocos2dcpp.so",
+      "term": "side",
+      "offset": 390373,
+      "context": "X509v3_asid_inherits X509v3_asid_is_canonical X509v3_asid_subset X509v3_asid_validate_resource_set d2i_ASIdOrRange d2i_ASIdentifierChoice d2i_ASIdentifiers d2i_ASRange i2d_ASIdOrRange i2d_ASIdentifierChoice i2d_ASIdentifiers i2d_ASRange v3_asid BASIC_CONSTRAINTS_free BASIC_CONSTRAINTS_it BASIC_CONSTRAIN"
+    },
+    {
+      "path": "lib/armeabi-v7a/libcocos2dcpp.so",
+      "term": "side",
+      "offset": 390396,
+      "context": "09v3_asid_is_canonical X509v3_asid_subset X509v3_asid_validate_resource_set d2i_ASIdOrRange d2i_ASIdentifierChoice d2i_ASIdentifiers d2i_ASRange i2d_ASIdOrRange i2d_ASIdentifierChoice i2d_ASIdentifiers i2d_ASRange v3_asid BASIC_CONSTRAINTS_free BASIC_CONSTRAINTS_it BASIC_CONSTRAINTS_new d2i_BASIC_CONSTR"
+    },
+    {
+      "path": "lib/armeabi-v7a/libcocos2dcpp.so",
+      "term": "side",
+      "offset": 390442,
+      "context": "v3_asid_validate_resource_set d2i_ASIdOrRange d2i_ASIdentifierChoice d2i_ASIdentifiers d2i_ASRange i2d_ASIdOrRange i2d_ASIdentifierChoice i2d_ASIdentifiers i2d_ASRange v3_asid BASIC_CONSTRAINTS_free BASIC_CONSTRAINTS_it BASIC_CONSTRAINTS_new d2i_BASIC_CONSTRAINTS i2d_BASIC_CONSTRAINTS v3_bcons i2v_ASN1_"
+    },
+    {
+      "path": "lib/armeabi-v7a/libcocos2dcpp.so",
+      "term": "side",
+      "offset": 390465,
+      "context": "ce_set d2i_ASIdOrRange d2i_ASIdentifierChoice d2i_ASIdentifiers d2i_ASRange i2d_ASIdOrRange i2d_ASIdentifierChoice i2d_ASIdentifiers i2d_ASRange v3_asid BASIC_CONSTRAINTS_free BASIC_CONSTRAINTS_it BASIC_CONSTRAINTS_new d2i_BASIC_CONSTRAINTS i2d_BASIC_CONSTRAINTS v3_bcons i2v_ASN1_BIT_STRING v2i_ASN1_BIT"
+    },
+    {
+      "path": "lib/armeabi-v7a/libcocos2dcpp.so",
+      "term": "side",
+      "offset": 408503,
+      "context": "__ndk113basic_ostreamIcNS_11char_traitsIcEEElsEPNS_15basic_streambufIcS2_EE _ZNSt6__ndk18ios_base34__set_failbit_and_consider_rethrowEv _ZNSt6__ndk113basic_ostreamIcNS_11char_traitsIcEEE5seekpENS_4fposI9mbstate_tEE _ZNSt6__ndk113basic_ostreamIcNS_11char_traitsIcEEE5seekpExNS_8ios_base7seekdirE _ZNSt6__n"
+    },
+    {
+      "path": "lib/armeabi-v7a/libcocos2dcpp.so",
+      "term": "side",
+      "offset": 2756503,
+      "context": "rror14PlayParametersE_clEbS1_S2_ENKUlfE_clEfEUlP11DialogLayerE2_ NSt6__ndk110__function6__funcIZN24PartnerSelectDialogASide4initEvE3$_7NS_9allocatorIS3_EEFvvEEE ZZN15SongSelectScene15showProgBoostUIEvENK5$_164clEP11DialogLayerEUlS2_E_ ZN13OnlineManager13setHideRatingEbNSt6__ndk18functionIFvb11OnlineErr"
+    },
+    {
+      "path": "lib/armeabi-v7a/libcocos2dcpp.so",
+      "term": "side",
+      "offset": 2761469,
+      "context": "cultyClassP7MapStep8GameModeiP20SpecialSceneModifier14PlayParametersENK4$_72clEfEUlvE_ ZN13SongGroupCell28initCustomSongSideSwitchableENSt6__ndk112basic_stringIcNS0_11char_traitsIcEENS0_9allocatorIcEEEES6_S6_S6_RNS0_6vectorI18SongDifficultyPairNS4_IS8_EEEEN7cocos2d6VectorIP21LazySongSelectionCellEEb12So"
+    },
+    {
+      "path": "lib/armeabi-v7a/libcocos2dcpp.so",
+      "term": "side",
+      "offset": 2763379,
+      "context": "_function6__funcIZN17SongPurchaseLayer4initEP4Pack15DifficultyClassP20SongPurchaseDelegateE4$_12NS_9allocatorIS8_EEFvP15SideDialogLayerEEE ZN21BeyondGameResultScene13setupResultUIEvE3$_6 ZN13OnlineManager29requestOneTimeFragmentsCouponEiNSt6__ndk18functionIFvb11OnlineErrorbNS0_12basic_stringIcNS0_11char"
+    },
+    {
+      "path": "lib/armeabi-v7a/libcocos2dcpp.so",
+      "term": "side",
+      "offset": 2771718,
+      "context": "adeOutBGMAndUnloadEibbE3$_3 NSt6__ndk110__function6__baseIFvb11OnlineError14PlayParametersEEE ZZZN24PartnerSelectDialogASide27syncChangedUserDataToServerEvENK4$_27clE11OnlineErrorENKUlfE_clEfEUlP11DialogLayerE_ 13TabItemReader NSt6__ndk110__function6__funcIZN7cocos2d7Console27commandTouchSubCommandSwipe"
+    },
+    {
+      "path": "lib/armeabi-v7a/libcocos2dcpp.so",
+      "term": "side",
+      "offset": 2776395,
+      "context": "e14showNavigationEvE4$_19NS_9allocatorIS3_EEFvPN7cocos2d3RefENS6_2ui6Widget14TouchEventTypeEEEE ZN24PartnerSelectDialogBSide4initEvE3$_1 ZZN21BeyondGameResultScene4initEvENK3$_5clEPN7cocos2d2ui6ButtonEPNS2_4TextEEUlb11OnlineError17PerformedSyncTypeNSt6__ndk112basic_stringIcNS9_11char_traitsIcEENS9_9allo"
+    },
+    {
+      "path": "lib/armeabi-v7a/libcocos2dcpp.so",
+      "term": "side",
+      "offset": 2777094,
+      "context": "_NS_9allocatorIS5_EEFvfEEE NSt6__ndk110__function6__funcIZN6TopBar20showPurchaseMemoriesEvE4$_21NS_9allocatorIS3_EEFvP15SideDialogLayerEEE NSt6__ndk110__function6__funcIZN8MapScene11centerStepsE21MapSceneMoveDirectionE4$_12NS_9allocatorIS4_EEFvfEEE NSt6__ndk110__function6__funcIZN14MapSelectScene11perfo"
+    },
+    {
+      "path": "lib/armeabi-v7a/libcocos2dcpp.so",
+      "term": "light side",
+      "offset": 3794084,
+      "context": "_vita ilith_awakened_skill skill_luin_uncap skill_lost_to_85 skill_hprate_based_on_hp Earn +%@ Fragments when playing a Light Side song STEP progress carries over to the next World play when using Stamina (Current: %@) ca_wacca_luin_awakened_k S skill_unlock_level img/char_icon_border.png img/gamescene/pm-mp-"
+    },
+    {
+      "path": "lib/armeabi-v7a/libcocos2dcpp.so",
+      "term": "img/bg_colorless",
+      "offset": 3767558,
+      "context": "og img/help_button2.png Present mainstory2 Purchases are available on all of your Arcaea devices. Obtain %@ Unlock pack img/bg_colorless.jpg You can also organize songs into groups by Version, Level, or Grade. startAlterEgoHideSongSelect updateAlterEgoTimer fadeOutAction Stamina refilled! layouts/songselect/SongSel"
+    },
+    {
+      "path": "lib/armeabi-v7a/libcocos2dcpp.so",
+      "term": "img/bg_byd_light",
+      "offset": 3812046,
+      "context": "ton once on every 3rd Beat Yes Beyond LEVEL ??? random ratingPlus 128 Not enough %@ %@/%2@ songs unlocked lovelessdress img/bg_byd_light.jpg img/bg_glow_lephon.png remoteDownloadPresent: timeTheInsightAnimation removeDim fixUpRealEdenCell favorite_bg unlock_text img/t_difficulty_cut.png particleTexture hikari_jp.pn"
+    },
+    {
+      "path": "lib/armeabi-v7a/libcocos2dcpp.so",
+      "term": "img/bg_glow_lephon",
+      "offset": 3812067,
+      "context": " Beat Yes Beyond LEVEL ??? random ratingPlus 128 Not enough %@ %@/%2@ songs unlocked lovelessdress img/bg_byd_light.jpg img/bg_glow_lephon.png remoteDownloadPresent: timeTheInsightAnimation removeDim fixUpRealEdenCell favorite_bg unlock_text img/t_difficulty_cut.png particleTexture hikari_jp.png vita_kr.png stickerpu"
+    },
+    {
+      "path": "lib/armeabi-v7a/libcocos2dcpp.so",
+      "term": "lephonhelper",
+      "offset": 2788010,
+      "context": "2_GLOBAL__N_116itanium_demangle14ConversionExprE ZN25MultiplayerSuggestionNode4initEvE3$_0 N7cocos2d12TextureCacheE ZN12LephonHelper38showInsightInvadeUnlockAnimationOnNodeEPN7cocos2d4NodeES2_S2_EUlfE3_ 19RewardNodeCharacter N10cocostudio16ScrollViewReaderE NSt6__ndk110__function6__funcINS_6__bindIMN7cocos2d5Sc"
+    },
+    {
+      "path": "lib/armeabi-v7a/libcocos2dcpp.so",
+      "term": "lephonhelper",
+      "offset": 2813752,
+      "context": "IcNS_11char_traitsIcEENS_9allocatorIcEEEEE_clEbS8_SE_EUlfE_NSC_ISG_EEFvfEEE ZN8MapScene18triggerArcahvStoryEvE4$_77 ZN12LephonHelper42submitPostDesignantFirstPlayNetworkRequestEP25OnlineManagerClientHandleRKNSt6__ndk18functionIFvb11OnlineErrorEEEEUlbS4_18InsightUnlockStateE_ NSt6__ndk110__function6__funcIZN7UIL"
+    },
+    {
+      "path": "lib/armeabi-v7a/libcocos2dcpp.so",
+      "term": "lephonhelper",
+      "offset": 2817996,
+      "context": "dk18functionIFvvEEEENK3$_5clEvEUlfE0_ ZN12StorySceneV217showLethe2SpoilerEbE4$_37 ZN12LephonHelper38showInsightInvadeUnlockAnimationOnNodeEPN7cocos2d4NodeES2_S2_EUlfE2_ NSt6__ndk110__function6__funcINS_6__bindIMN7cocos2d5LayerEFbPNS3_5TouchEPNS3_5EventEEJPS4_RKNS_12placeholders"
+    },
+    {
+      "path": "lib/armeabi-v7a/libcocos2dcpp.so",
+      "term": "lephonhelper",
+      "offset": 2826527,
+      "context": "eneV223transitionToActAndEntryEP8StoryActP10StoryEntryE4$_52NS_9allocatorIS7_EEFvvEEE NSt6__ndk110__function6__funcIZN12LephonHelper36showInsightLv20UnlockAnimationOnNodeEPN7cocos2d4NodeES5_S5_EUlfE1_NS_9allocatorIS6_EEFvfEEE ZN20CustomizeSelectLayer4initEvE3$_0 ZZN6TopBar33openUrlAndSetMemoryUpdateCallbackENSt"
+    },
+    {
+      "path": "lib/armeabi-v7a/libcocos2dcpp.so",
+      "term": "lephonhelper",
+      "offset": 2851426,
+      "context": "eStore7OpenErrE ZN15SongSelectScene16lockedSongTappedEP4Song15DifficultyClassbE5$_100 NSt6__ndk110__function6__funcIZN12LephonHelper38showInsightInvadeUnlockAnimationOnNodeEPN7cocos2d4NodeES5_S5_EUlfE5_NS_9allocatorIS6_EEFvfEEE NSt6__ndk110__function6__funcIZN17ParallelBoostTray4initEvE3$_2NS_9allocatorIS3_EEFv"
+    },
+    {
+      "path": "lib/armeabi-v7a/libcocos2dcpp.so",
+      "term": "lephonhelper",
+      "offset": 2880352,
+      "context": "lEfEUlPN7cocos2d3RefENS7_2ui6Widget14TouchEventTypeEE_NS_9allocatorISD_EEFvS9_SC_EEE NSt6__ndk110__function6__funcIZZN12LephonHelper38showInsightInvadeUnlockAnimationOnNodeEPN7cocos2d4NodeES5_S5_ENKUlfE0_clEfEUlfE0_NS_9allocatorIS7_EEFvfEEE NSt6__ndk110__function6__baseIFbRKNS_12basic_stringIcNS_11char_traitsIc"
+    },
+    {
+      "path": "lib/armeabi-v7a/libcocos2dcpp.so",
+      "term": "lephonhelper",
+      "offset": 2934723,
+      "context": "itEvENK3$_2clEPN7cocos2d3RefEEUlvE_NS_9allocatorIS7_EEFvvEEE 21FinaleChallenge3Node4 NSt6__ndk110__function6__funcIZZN12LephonHelper36showInsightLv20UnlockAnimationOnNodeEPN7cocos2d4NodeES5_S5_ENKUlfE1_clEfEUlPNS3_3RefENS3_2ui6Widget14TouchEventTypeEE_NS_9allocatorISC_EEFvS8_SB_EEE NSt6__ndk110__function6__func"
+    },
+    {
+      "path": "lib/armeabi-v7a/libcocos2dcpp.so",
+      "term": "lephonhelper",
+      "offset": 2979128,
+      "context": "ZZN20FinaleMajorNodeLayer14setupHintNodesEvENK4$_12clEPN7cocos2d3RefEEUlP11DialogLayerE_NS_9allocatorIS9_EEFvS8_EEE ZN12LephonHelper38showInsightInvadeUnlockAnimationOnNodeEPN7cocos2d4NodeES2_S2_EUlfE6_ 24CharacterAbilityLunaIlot ZZN31ParallelLinkPlayGameResultScene4initEvENK3$_8clEvEUlfE_ ZN17CourseSelectScene"
+    },
+    {
+      "path": "lib/armeabi-v7a/libcocos2dcpp.so",
+      "term": "lephonhelper",
+      "offset": 3017477,
+      "context": "ringIcNS_11char_traitsIcEENS_9allocatorIcEEEElE_clEbSA_SB_SH_lEUlbE_NSF_ISJ_EEFvbEEE NSt6__ndk110__function6__funcIZZN12LephonHelper38showInsightInvadeUnlockAnimationOnNodeEPN7cocos2d4NodeES5_S5_ENKUlfE0_clEfEUlfE_NS_9allocatorIS7_EEFvfEEE N8CryptoPP15SelfTestFailureE NSt6__ndk110__function6__funcIZZZN19AlterEg"
+    },
+    {
+      "path": "lib/armeabi-v7a/libcocos2dcpp.so",
+      "term": "lephonhelper",
+      "offset": 3031576,
+      "context": "s2d3RefENS9_2ui6Widget14TouchEventTypeEEUlP11DialogLayerE_NS_9allocatorISH_EEFvSG_EEE NSt6__ndk110__function6__funcIZN12LephonHelper36showInsightLv20UnlockAnimationOnNodeEPN7cocos2d4NodeES5_S5_EUlfE0_NS_9allocatorIS6_EEFvfEEE NSt6__ndk110__function6__funcIZN10StartScene4initEvE4$_14NS_9allocatorIS3_EEFvvEEE ENC"
+    },
+    {
+      "path": "lib/armeabi-v7a/libcocos2dcpp.so",
+      "term": "lephonhelper",
+      "offset": 3040292,
+      "context": "ecialSceneGrievousLadyTrigger24performSpecialSongUpdateEP9GameSceneENK3$_1clEfEUlvE2_ NSt6__ndk110__function6__funcIZN12LephonHelper38showInsightInvadeUnlockAnimationOnNodeEPN7cocos2d4NodeES5_S5_EUlfE_NS_9allocatorIS6_EEFvfEEE N12_GLOBAL__N_116itanium_demangle21TemplateParamPackDeclE ZN15SettingsLayerV221create"
+    },
+    {
+      "path": "lib/armeabi-v7a/libcocos2dcpp.so",
+      "term": "lephonhelper",
+      "offset": 3057114,
+      "context": "ction6__funcIZN21BeyondGameResultScene13setupResultUIEvE3$_9NS_9allocatorIS3_EEFvfEEE NSt6__ndk110__function6__funcIZN12LephonHelper38showInsightInvadeUnlockAnimationOnNodeEPN7cocos2d4NodeES5_S5_EUlfE6_NS_9allocatorIS6_EEFvfEEE NSt6__ndk110__function6__funcIZZN14LoggedInUINode4initEP22LoggedInUINodeDelegateNS_8"
+    },
+    {
+      "path": "lib/armeabi-v7a/libcocos2dcpp.so",
+      "term": "lephonhelper",
+      "offset": 3118872,
+      "context": "tiplayerLobbyLayer4initEvE3$_3 ZN15SongSelectScene4initEvE3$_6 ZN13MainMenuScene4initEvE3$_1 z ~C C ?ZN12LephonHelper38showInsightInvadeUnlockAnimationOnNodeEPN7cocos2d4NodeES2_S2_EUlfE_ ZN12LephonHelper38showInsightInvadeUnlockAnimationOnNodeEPN7cocos2d4NodeES2_S2_EUlfE1_ ZN8MapScene4initEvE3$_9"
+    },
+    {
+      "path": "lib/armeabi-v7a/libcocos2dcpp.so",
+      "term": "lephonhelper",
+      "offset": 3118958,
+      "context": "EvE3$_1 z ~C C ?ZN12LephonHelper38showInsightInvadeUnlockAnimationOnNodeEPN7cocos2d4NodeES2_S2_EUlfE_ ZN12LephonHelper38showInsightInvadeUnlockAnimationOnNodeEPN7cocos2d4NodeES2_S2_EUlfE1_ ZN8MapScene4initEvE3$_9 NSt6__ndk110__function6__funcIZN11StickerTray4initEvE3$_1NS_9allocatorIS3_EEFvPN7coco"
+    },
+    {
+      "path": "lib/armeabi-v7a/libcocos2dcpp.so",
+      "term": "lephonhelper",
+      "offset": 3146303,
+      "context": "EEE NSt6__ndk110__function6__funcIZN8MapScene18triggerArcahvStoryEvE4$_77NS_9allocatorIS3_EEFPN7cocos2d5SceneEbEEE ZZN12LephonHelper38showInsightInvadeUnlockAnimationOnNodeEPN7cocos2d4NodeES2_S2_ENKUlfE6_clEfEUlPNS0_3RefENS0_2ui6Widget14TouchEventTypeEE_ ZN7VNScene13sceneCompleteEvE3$_6 NSt6__ndk110__function6_"
+    },
+    {
+      "path": "lib/armeabi-v7a/libcocos2dcpp.so",
+      "term": "lephonhelper",
+      "offset": 3159838,
+      "context": "chaseDelegateENK3$_5clEPN7cocos2d3RefENS9_2ui6Widget14TouchEventTypeEEUlP11DialogLayerE_NS_9allocatorISH_EEFvSG_EEE ZN12LephonHelper38showInsightInvadeUnlockAnimationOnNodeEPN7cocos2d4NodeES2_S2_EUlfE4_ ZZN17MultiplayerHelper26createPurchaseUnlockDialogEP16PackListDelegateP25OnlineManagerClientHandleP4Song15Dif"
+    },
+    {
+      "path": "lib/armeabi-v7a/libcocos2dcpp.so",
+      "term": "lephonhelper",
+      "offset": 3182384,
+      "context": "EEEES8_NS_8functionIFvb11OnlineErrorS8_lEEEE4$_64NS6_ISD_EEFvPN7cocos2d7network10HttpClientEPNSG_12HttpResponseEEEE ZN12LephonHelper38showInsightInvadeUnlockAnimationOnNodeEPN7cocos2d4NodeES2_S2_EUlfE0_ NSt6__ndk110__function6__funcINS_6__bindINS2_IMN7cocos2d5LabelEFiRKNS_12basic_stringIDsNS_11char_traitsIDsEEN"
+    },
+    {
+      "path": "lib/armeabi-v7a/libcocos2dcpp.so",
+      "term": "lephonhelper",
+      "offset": 3253473,
+      "context": "NS9_ISB_EEEEP19WorldResultResponseN7cocos2d6VectorIP9MapRewardEEENKUlvE_clEvEUlP11DialogLayerE3_NS9_ISO_EEFvSN_EEE ZZN12LephonHelper36showInsightLv20UnlockAnimationOnNodeEPN7cocos2d4NodeES2_S2_ENKUlfE1_clEfEUlPNS0_3RefENS0_2ui6Widget14TouchEventTypeEE_ N12_GLOBAL__N_116itanium_demangle11PostfixExprE ZN17SongSel"
+    },
+    {
+      "path": "lib/armeabi-v7a/libcocos2dcpp.so",
+      "term": "lephonhelper",
+      "offset": 3344823,
+      "context": "log4initEvE3$_0NS_9allocatorIS3_EEFvPN7cocos2d3RefENS6_2ui6Widget14TouchEventTypeEEEE NSt6__ndk110__function6__funcIZN12LephonHelper19showLamentRainStoryEPN7cocos2d5SceneENS_8functionIFvP12StoryLayerV2bbEEEEUlfE_NS_9allocatorISB_EEFvfEEE NSt6__ndk110__function6__funcINS_6__bindIMN7cocos2d12TextureAtlasEFvPNS3_1"
+    },
+    {
+      "path": "lib/armeabi-v7a/libcocos2dcpp.so",
+      "term": "lephonhelper",
+      "offset": 3352780,
+      "context": "ackgroundSkyBoxBrushC1EvE3$_0NS_9allocatorIS4_EEFvPNS2_11EventCustomEEEE 10VolumeStmt NSt6__ndk110__function6__funcIZN12LephonHelper36showInsightLv20UnlockAnimationOnNodeEPN7cocos2d4NodeES5_S5_EUlfE_NS_9allocatorIS6_EEFvfEEE NSt6__ndk110__function6__funcIZN7UILayer4initEP18PauseLayerDelegateP4Song15DifficultyCl"
+    },
+    {
+      "path": "lib/armeabi-v7a/libcocos2dcpp.so",
+      "term": "colorless",
+      "offset": 3766417,
+      "context": "ry Unlocked img/1080/arghena/irruption_shadow_only.png img/terminal-forgotten.png particle/note_light.png particle/note_colorless.png fatalis_is_limited status require_id is_breached maps This feature has already been used on this device. bundleBundle value= &near_count= setFavouriteCharacter value=-1 uncapC"
+    },
+    {
+      "path": "lib/armeabi-v7a/libcocos2dcpp.so",
+      "term": "colorless",
+      "offset": 3767565,
+      "context": "help_button2.png Present mainstory2 Purchases are available on all of your Arcaea devices. Obtain %@ Unlock pack img/bg_colorless.jpg You can also organize songs into groups by Version, Level, or Grade. startAlterEgoHideSongSelect updateAlterEgoTimer fadeOutAction Stamina refilled! layouts/songselect/SongSel"
+    },
+    {
+      "path": "lib/armeabi-v7a/libcocos2dcpp.so",
+      "term": "colorless",
+      "offset": 3781771,
+      "context": "protocolVersion= &is_char_uncapped_override=true version_data= updated_characters layouts/1080/songselect/packselect/ps-colorless-bar.png fav_songs_tutorial singlePackIsShowingFullCombo layouts/world/parallel-world-boost-small.png 4x layouts/world/parallel-sync-boost-2.png Sync Boost grants a bonus to progre"
+    },
+    {
+      "path": "lib/armeabi-v7a/libcocos2dcpp.so",
+      "term": "colorless",
+      "offset": 3782472,
+      "context": "7.jpg p_v p_k Failed to store FinaleState for user layouts/songselect/DifficultySelector.csb Genre img/song_jacket_back_colorless.png Double Tap Offset img/dialog_v2/Arrow R.png settings_layer_v2_widget_button4_right_more_button Audio offset is used to compensate for delays playing back audio on your device."
+    },
+    {
+      "path": "lib/armeabi-v7a/libcocos2dcpp.so",
+      "term": "colorless",
+      "offset": 3797471,
+      "context": "t songs, appearing as messages. Tap a message to quickly jump to a suggested song. img/songselect/1080/song_cell_corner_colorless.png scene_gate img/1080/designant_hp_4.png etherstrikeHPdrain showUnderlay %@ Second(s) Until Full performancemode performInitAfterHeavy 0.0.0 m2 startup/m1_core.png MB lethe_en.p"
+    },
+    {
+      "path": "lib/armeabi-v7a/libcocos2dcpp.so",
+      "term": "colorless",
+      "offset": 3996379,
+      "context": "er_drop_bonus_2 img/course/1080/dan-banner_02.png img/course/1080/diff-eternal.png arrow_ artist img/course/indicator-s-colorless.png fragment Sakuzyo cybermiso deel   kobuta mokeo cg img/1080/customize/bgm-btn.png img/1080/customize/close-btn-p"
+    },
+    {
+      "path": "lib/armeabi-v7a/libcocos2dcpp.so",
+      "term": "colorless",
+      "offset": 4041731,
+      "context": "ourse/1080/dan-banner_07.png img/core_3.png layouts/results/coursemode/ResultCourseCardLarge.csb img/course/indicator-l-colorless.png img/course/timer_normal.png 341a19 atra PV Production Audio Mastering MuangMuang Project Manager Tanchiky SPACELECTRO Sober Bear Arcaea Illustration Ancy "
+    },
+    {
+      "path": "lib/armeabi-v7a/libcocos2dcpp.so",
+      "term": "colorless",
+      "offset": 4102805,
+      "context": "ve.png Use Cloud Save cloudPmCount Are you sure you want to overwrite your Cloud Save? img/loadout-arrows.png img/track_colorless.png   M controller_bottom_inputs_left cutoff_dia img/hp_item_gain_main.png img/skills/c2/health-outline.png img/skills/c2/node-step.png signFinal h Clear %1@ %2@ songs from M"
+    },
+    {
+      "path": "lib/armeabi-v7a/libcocos2dcpp.so",
+      "term": "colorless",
+      "offset": 4146604,
+      "context": "d_1 layouts/songselect/LastingEdenWarning.csb acidgod_ja %@ Unlock using %2@ %3@? img/axiom-btn_pressed.png img/bg_glow_colorless.png img/bg_glow_dark.png pack_selector_restriction Skip stallABitToPreventWeirdLag song_ img/songselect/1080/song_cell_corner_4.png etherstrike_end.ogg manual_update img/cutoff_di"
+    },
+    {
+      "path": "lib/armeabi-v7a/libcocos2dcpp.so",
+      "term": "colorless",
+      "offset": 4147169,
+      "context": "e_dot_png layouts/1080/topbar/fragstack-single.png layouts/1080/topbar/fragstack-doubleplus.png img/track_critical_line_colorless.png img/songload_shadow.png   RS Watch the upper input area for Sky notes. Let's try it out for real! img/hp_item_gain_over.png img/dot_fr.png img/ink_frpm.png layouts/story/"
+    },
+    {
+      "path": "lib/armeabi-v7a/libcocos2dcpp.so",
+      "term": "conflict",
+      "offset": 249420,
+      "context": "qlite3_get_table sqlite3_free_table sqlite3_create_module sqlite3_create_module_v2 sqlite3_declare_vtab sqlite3_vtab_on_conflict sqlite3_vtab_config sqlite3_complete sqlite3_complete16 sqlite3_libversion sqlite3_version sqlite3_sourceid sqlite3_libversion_number sqlite3_threadsafe sqlite3_shutdown sqlite3_d"
+    },
+    {
+      "path": "lib/armeabi-v7a/libcocos2dcpp.so",
+      "term": "conflict",
+      "offset": 2790243,
+      "context": "S_9allocatorISA_EEEENS_8functionIFvPNS3_5TouchEEEENSE_IFvfEEESK_NSE_IFvvEEESI_E3$_5NSB_ISN_EEFvSG_PNS3_5EventEEEE 19SyncConflictUILayer ZN12StorySceneV24initEvE3$_4 N6Tokens3RGBE ZN13OnlineManager14selectWorldMapENSt6__ndk112basic_stringIcNS0_11char_traitsIcEENS0_9allocatorIcEEEENS0_8functionIFvb11OnlineErr"
+    },
+    {
+      "path": "lib/armeabi-v7a/libcocos2dcpp.so",
+      "term": "conflict",
+      "offset": 2843683,
+      "context": "EEFv22UserCellLongHoldStatusN7cocos2d4Vec2EEEE 28RewardNodeAnniversary5Ticket NSt6__ndk110__function6__funcIZZZZZN19SyncConflictUILayer4showENS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEExNS_8functionIFvbEEEENK3$_2clEPN7cocos2d3RefENSD_2ui6Widget14TouchEventTypeEENKUlP11DialogLayerE_clESK_ENKUlf"
+    },
+    {
+      "path": "lib/armeabi-v7a/libcocos2dcpp.so",
+      "term": "conflict",
+      "offset": 2937341,
+      "context": "erEEE ZN20CustomizeSelectLayer18switchToMenuOptionE19CustomizeMenuOptionbE3$_8 NSt6__ndk110__function6__funcIZZZZN19SyncConflictUILayer4showENS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEExNS_8functionIFvbEEEENK3$_1clEPN7cocos2d3RefENSD_2ui6Widget14TouchEventTypeEENKUlP11DialogLayerE_clESK_ENKUlb"
+    },
+    {
+      "path": "lib/armeabi-v7a/libcocos2dcpp.so",
+      "term": "conflict",
+      "offset": 2938159,
+      "context": "_8functionIFvvEEEP10GameResultbNS5_IFvibbEEEbbNS5_IFvPS2_EEES7_S7_fE3$_0NS_9allocatorISF_EEFvPN7cocos2d3RefEEEE ZN19SyncConflictUILayer4showENSt6__ndk112basic_stringIcNS0_11char_traitsIcEENS0_9allocatorIcEEEExNS0_8functionIFvbEEEE3$_0 ZN30SpecialSceneDesignantChallenge4initEvE3$_0 ZZZN23BreachedGameResultSc"
+    },
+    {
+      "path": "lib/armeabi-v7a/libcocos2dcpp.so",
+      "term": "conflict",
+      "offset": 2971608,
+      "context": "Side27syncChangedUserDataToServerEvE4$_30NS_9allocatorIS3_EEFvb11OnlineErrorEEE NSt6__ndk110__function6__funcIZZZN19SyncConflictUILayer4showENS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEExNS_8functionIFvbEEEENK3$_2clEPN7cocos2d3RefENSD_2ui6Widget14TouchEventTypeEENKUlP11DialogLayerE_clESK_EUlfE_"
+    },
+    {
+      "path": "lib/armeabi-v7a/libcocos2dcpp.so",
+      "term": "conflict",
+      "offset": 3014368,
+      "context": "ocatorIS3_EEFvPN7cocos2d3RefEEEE ZN8MapScene19animateRewardBeyondEvE4$_56 ZN18StoryV2CharaDialog4initEvE3$_1 ZZZZN19SyncConflictUILayer4showENSt6__ndk112basic_stringIcNS0_11char_traitsIcEENS0_9allocatorIcEEEExNS0_8functionIFvbEEEENK3$_1clEPN7cocos2d3RefENSB_2ui6Widget14TouchEventTypeEENKUlP11DialogLayerE_cl"
+    },
+    {
+      "path": "lib/armeabi-v7a/libcocos2dcpp.so",
+      "term": "conflict",
+      "offset": 3016362,
+      "context": "3$_0NS_9allocatorISA_EEFvfEEE 14FragRewardNode ZN17StoryProgressNode4initEvE3$_1 NSt6__ndk110__function6__funcIZZN19SyncConflictUILayer4showENS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEExNS_8functionIFvbEEEENK3$_1clEPN7cocos2d3RefENSD_2ui6Widget14TouchEventTypeEEUlP11DialogLayerE_NS6_ISL_EEFvSK"
+    },
+    {
+      "path": "lib/armeabi-v7a/libcocos2dcpp.so",
+      "term": "conflict",
+      "offset": 3027446,
+      "context": "S3_EEFvb11OnlineErrorEEE ZN11VNScriptSay10runOnSceneEP7VNSceneNSt6__ndk18functionIFvP15VNScriptElementEEEE3$_1 ZZN19SyncConflictUILayer4showENSt6__ndk112basic_stringIcNS0_11char_traitsIcEENS0_9allocatorIcEEEExNS0_8functionIFvbEEEENK3$_2clEPN7cocos2d3RefENSB_2ui6Widget14TouchEventTypeEEUlP11DialogLayerE0_ NS"
+    },
+    {
+      "path": "lib/armeabi-v7a/libcocos2dcpp.so",
+      "term": "conflict",
+      "offset": 3048503,
+      "context": "cene4initEvE3$_0 ZN20FinaleMajorNodeLayer26onEnterTransitionDidFinishEvE4$_14 NSt6__ndk110__function6__funcIZZZZZN19SyncConflictUILayer4showENS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEExNS_8functionIFvbEEEENK3$_2clEPN7cocos2d3RefENSD_2ui6Widget14TouchEventTypeEENKUlP11DialogLayerE_clESK_ENKUlf"
+    },
+    {
+      "path": "lib/armeabi-v7a/libcocos2dcpp.so",
+      "term": "conflict",
+      "offset": 3098581,
+      "context": "S2_11char_traitsIcEENS2_9allocatorIcEEEENS7_IS9_EEEEP19WorldResultResponseN7cocos2d6VectorIP9MapRewardEEEUlvE_ ZZN19SyncConflictUILayer4showENSt6__ndk112basic_stringIcNS0_11char_traitsIcEENS0_9allocatorIcEEEExNS0_8functionIFvbEEEENK3$_2clEPN7cocos2d3RefENSB_2ui6Widget14TouchEventTypeEEUlP11DialogLayerE_ ZN1"
+    },
+    {
+      "path": "lib/armeabi-v7a/libcocos2dcpp.so",
+      "term": "conflict",
+      "offset": 3108392,
+      "context": "WorldResultResponseN7cocos2d6VectorIP9MapRewardEEENKUlvE_clEvEUlfE_ 38CharacterAbilityAwardBonusBasedOnCombo ZZZZN19SyncConflictUILayer4showENSt6__ndk112basic_stringIcNS0_11char_traitsIcEENS0_9allocatorIcEEEExNS0_8functionIFvbEEEENK3$_2clEPN7cocos2d3RefENSB_2ui6Widget14TouchEventTypeEENKUlP11DialogLayerE_cl"
+    },
+    {
+      "path": "lib/armeabi-v7a/libcocos2dcpp.so",
+      "term": "conflict",
+      "offset": 3127283,
+      "context": "eEEEE ZZN23ParallelGameResultScene22startTimelineAnimationEiiiENK4$_18clEvEUlvE_ NSt6__ndk110__function6__funcIZZN19SyncConflictUILayer4showENS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEExNS_8functionIFvbEEEENK3$_1clEPN7cocos2d3RefENSD_2ui6Widget14TouchEventTypeEEUlP11DialogLayerE0_NS6_ISL_EEFvS"
+    },
+    {
+      "path": "lib/armeabi-v7a/libcocos2dcpp.so",
+      "term": "conflict",
+      "offset": 3167015,
+      "context": "2d7network10HttpClientEPNSG_12HttpResponseEEEE ZN15SongSelectScene4initEvE4$_16 NSt6__ndk110__function6__funcIZZZN19SyncConflictUILayer4showENS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEExNS_8functionIFvbEEEENK3$_1clEPN7cocos2d3RefENSD_2ui6Widget14TouchEventTypeEENKUlP11DialogLayerE_clESK_EUlb11"
+    },
+    {
+      "path": "lib/armeabi-v7a/libcocos2dcpp.so",
+      "term": "conflict",
+      "offset": 3177676,
+      "context": "_8functionIFvPNSB_10HttpClientEPNSB_12HttpResponseEEEENS_6vectorIS9_NS7_IS9_EEEES9_bEUlSG_SI_E_NS7_ISQ_EESJ_EE ZZN19SyncConflictUILayer4showENSt6__ndk112basic_stringIcNS0_11char_traitsIcEENS0_9allocatorIcEEEExNS0_8functionIFvbEEEENK3$_1clEPN7cocos2d3RefENSB_2ui6Widget14TouchEventTypeEEUlP11DialogLayerE0_ ZZ"
+    },
+    {
+      "path": "lib/armeabi-v7a/libcocos2dcpp.so",
+      "term": "conflict",
+      "offset": 3204273,
+      "context": "_5queueI25ContentBundleDownloadItemNS1_5dequeISA_NS1_9allocatorISA_EEEEEEEUlvE0_ NSt6__ndk110__function6__funcIZZN19SyncConflictUILayer4showENS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEExNS_8functionIFvbEEEENK3$_2clEPN7cocos2d3RefENSD_2ui6Widget14TouchEventTypeEEUlP11DialogLayerE0_NS6_ISL_EEFvS"
+    },
+    {
+      "path": "lib/armeabi-v7a/libcocos2dcpp.so",
+      "term": "conflict",
+      "offset": 3205535,
+      "context": "5SongSelectScene4initEvE3$_7 ZN31SpecialSceneGrievousLadyTrigger24performSpecialSongUpdateEP9GameSceneE3$_3 ZZZZZN19SyncConflictUILayer4showENSt6__ndk112basic_stringIcNS0_11char_traitsIcEENS0_9allocatorIcEEEExNS0_8functionIFvbEEEENK3$_2clEPN7cocos2d3RefENSB_2ui6Widget14TouchEventTypeEENKUlP11DialogLayerE_cl"
+    },
+    {
+      "path": "lib/armeabi-v7a/libcocos2dcpp.so",
+      "term": "conflict",
+      "offset": 3230326,
+      "context": "rIS5_EEFvfEEE ZZN19FinaleOverviewLayer21playPendingAnimationsEbENK4$_23clEvEUlfE_ NSt6__ndk110__function6__funcIZN19SyncConflictUILayer4showENS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEExNS_8functionIFvbEEEE3$_2NS6_ISC_EEFvPN7cocos2d3RefENSE_2ui6Widget14TouchEventTypeEEEE NSt6__ndk110__functio"
+    },
+    {
+      "path": "lib/armeabi-v7a/libcocos2dcpp.so",
+      "term": "conflict",
+      "offset": 3251929,
+      "context": "_8functionIFvb11OnlineErrorEEEE4$_17NS_9allocatorIS7_EEFvPN7cocos2d7network10HttpClientEPNSB_12HttpResponseEEEE ZN19SyncConflictUILayer4showENSt6__ndk112basic_stringIcNS0_11char_traitsIcEENS0_9allocatorIcEEEExNS0_8functionIFvbEEEE3$_1 NSt6__ndk110__function6__funcIZN15SongSelectScene15initMultiplayerEvE4$_3"
+    },
+    {
+      "path": "lib/armeabi-v7a/libcocos2dcpp.so",
+      "term": "conflict",
+      "offset": 3282648,
+      "context": "IcNS_11char_traitsIcEENS4_IcEEEEEEE N10cocostudio4SkinE 22MultiplayerLobbyBanner NSt6__ndk110__function6__funcIZZN19SyncConflictUILayer4showENS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEExNS_8functionIFvbEEEENK3$_2clEPN7cocos2d3RefENSD_2ui6Widget14TouchEventTypeEEUlP11DialogLayerE_NS6_ISL_EEFvSK"
+    },
+    {
+      "path": "lib/armeabi-v7a/libfmod.so",
+      "term": "side",
+      "offset": 130347,
+      "context": "FMOD Ogg Vorbis Codec <?WPL VERSION Number of channels Ratio Compressor attack time. [0.1ms,500ms]  Default = 20ms. Use sidechain Delay ch9 Delay RMS Spectral centroid of analysis band. FFT window size.  256, 512, 1024, 2048, 4096.  Default = 1024.  Increase this to reduce 'smearing'.  This effect is a "
+    },
+    {
+      "path": "lib/armeabi-v7a/libfmod.so",
+      "term": "side",
+      "offset": 138213,
+      "context": "ic_ unsigned long long DO Te r0 s7 Processor vfpv3 ChannelControl::getDSP wsmp IARL FMOD FLAC Codec #EXTINF Analyse the sidechain signal instead of the input signal. Delay ch3 Volume of original signal to pass to output.  -80.0f to 10.0f. Default = 0.0. Mix Flange speed in Hz.  0.0 to 20.0.  Default = 0"
+    },
+    {
+      "path": "lib/armeabi-v7a/libfmod.so",
+      "term": "side",
+      "offset": 172080,
+      "context": " E) Filter A) Threshold ms B) Attack $ $ $ C) Q Hz Sidechain B) Ratio B) Release B) Response C) Release B) Mode C) Ratio B) Q A) Mode A) Filter D) Frequency :1 "
+    }
+  ],
+  "interpretation": "Native strings provide runtime/UI evidence for Light Side, colorless/Colorless background naming and Lephon helper/path names, but no decoded numeric side enum table was found. Keep sideRaw numeric and sideLabel as derived/high-confidence grouping, not a raw-field overwrite.",
+  "confidence": "High for runtime label/path presence; Medium/High for numeric-to-label grouping; Unresolved for a literal enum mapping"
+}

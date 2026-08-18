@@ -1,0 +1,29 @@
+{
+  "ok": true,
+  "catalogSha256": "a5733ec270d4871fb1de5102e6576a91785594fc721c90d0238ea9a6e2301dc4",
+  "apkSha256": "c2b58dcad54203645057a859524789f59cfd5ca13613b610d04ad087b58aac90",
+  "catalogResourceCount": 603,
+  "catalogReconciliationRows": 603,
+  "apkPhysicalArtworkRows": 1208,
+  "apkSemanticSlotRows": 604,
+  "currentApkCoverageCounts": {
+    "covered": 581,
+    "missing-from-catalog": 14,
+    "multiple-catalog-matches": 7
+  },
+  "catalogMatchStatusCounts": {
+    "confirmed": 596,
+    "high": 1,
+    "medium": 1,
+    "unmatched": 5
+  },
+  "catalogSemanticStatusCounts": {
+    "april-fools-special-song-artwork": 5,
+    "current-default-artwork": 529,
+    "current-difficulty-artwork": 57,
+    "current-special-artwork": 2,
+    "legacy-duplicate-candidate": 7,
+    "unresolved": 3
+  },
+  "errors": []
+}

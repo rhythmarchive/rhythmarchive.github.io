@@ -1,0 +1,1175 @@
+songId,difficulty,field,backgroundKey,assetPath,assetExists,evidence,confidence
+sayonarahatsukoi,song,bg,base_light,assets/img/bg/1080/base_light.jpg,True,assets/songs/songlist sayonarahatsukoi bg=base_light,Confirmed
+sayonarahatsukoi,song,bg_inverse,base_conflict,assets/img/bg/1080/base_conflict.jpg,True,assets/songs/songlist sayonarahatsukoi bg_inverse=base_conflict,Confirmed
+lostcivilization,song,bg,base_conflict,assets/img/bg/1080/base_conflict.jpg,True,assets/songs/songlist lostcivilization bg=base_conflict,Confirmed
+lostcivilization,song,bg_inverse,base_light,assets/img/bg/1080/base_light.jpg,True,assets/songs/songlist lostcivilization bg_inverse=base_light,Confirmed
+goodtek,song,bg,base_light,assets/img/bg/1080/base_light.jpg,True,assets/songs/songlist goodtek bg=base_light,Confirmed
+goodtek,song,bg_inverse,base_conflict,assets/img/bg/1080/base_conflict.jpg,True,assets/songs/songlist goodtek bg_inverse=base_conflict,Confirmed
+viyella,song,bg,base_conflict,assets/img/bg/1080/base_conflict.jpg,True,assets/songs/songlist viyella bg=base_conflict,Confirmed
+viyella,song,bg_inverse,base_light,assets/img/bg/1080/base_light.jpg,True,assets/songs/songlist viyella bg_inverse=base_light,Confirmed
+rise,song,bg,base_light,assets/img/bg/1080/base_light.jpg,True,assets/songs/songlist rise bg=base_light,Confirmed
+rise,song,bg_inverse,base_conflict,assets/img/bg/1080/base_conflict.jpg,True,assets/songs/songlist rise bg_inverse=base_conflict,Confirmed
+lucifer,song,bg,base_conflict,assets/img/bg/1080/base_conflict.jpg,True,assets/songs/songlist lucifer bg=base_conflict,Confirmed
+lucifer,song,bg_inverse,base_light,assets/img/bg/1080/base_light.jpg,True,assets/songs/songlist lucifer bg_inverse=base_light,Confirmed
+fairytale,song,bg,base_light,assets/img/bg/1080/base_light.jpg,True,assets/songs/songlist fairytale bg=base_light,Confirmed
+fairytale,song,bg_inverse,base_conflict,assets/img/bg/1080/base_conflict.jpg,True,assets/songs/songlist fairytale bg_inverse=base_conflict,Confirmed
+hearditsaid,song,bg,base_light,assets/img/bg/1080/base_light.jpg,True,assets/songs/songlist hearditsaid bg=base_light,Confirmed
+hearditsaid,song,bg_inverse,base_conflict,assets/img/bg/1080/base_conflict.jpg,True,assets/songs/songlist hearditsaid bg_inverse=base_conflict,Confirmed
+babaroque,song,bg,base_light,assets/img/bg/1080/base_light.jpg,True,assets/songs/songlist babaroque bg=base_light,Confirmed
+babaroque,song,bg_inverse,base_conflict,assets/img/bg/1080/base_conflict.jpg,True,assets/songs/songlist babaroque bg_inverse=base_conflict,Confirmed
+memoryfactory,song,bg,base_light,assets/img/bg/1080/base_light.jpg,True,assets/songs/songlist memoryfactory bg=base_light,Confirmed
+memoryfactory,song,bg_inverse,base_conflict,assets/img/bg/1080/base_conflict.jpg,True,assets/songs/songlist memoryfactory bg_inverse=base_conflict,Confirmed
+snowwhite,song,bg,base_light,assets/img/bg/1080/base_light.jpg,True,assets/songs/songlist snowwhite bg=base_light,Confirmed
+snowwhite,song,bg_inverse,base_conflict,assets/img/bg/1080/base_conflict.jpg,True,assets/songs/songlist snowwhite bg_inverse=base_conflict,Confirmed
+snowwhite,BYD,bg,nijuusei2_light,assets/img/bg/1080/nijuusei2_light.jpg,True,assets/songs/songlist snowwhite bg=nijuusei2_light,Confirmed
+snowwhite,BYD,bg_inverse,nijuusei2_conflict,assets/img/bg/1080/nijuusei2_conflict.jpg,True,assets/songs/songlist snowwhite bg_inverse=nijuusei2_conflict,Confirmed
+relentless,song,bg,base_conflict,assets/img/bg/1080/base_conflict.jpg,True,assets/songs/songlist relentless bg=base_conflict,Confirmed
+relentless,song,bg_inverse,base_light,assets/img/bg/1080/base_light.jpg,True,assets/songs/songlist relentless bg_inverse=base_light,Confirmed
+shadesoflight,song,bg,base_light,assets/img/bg/1080/base_light.jpg,True,assets/songs/songlist shadesoflight bg=base_light,Confirmed
+shadesoflight,song,bg_inverse,base_conflict,assets/img/bg/1080/base_conflict.jpg,True,assets/songs/songlist shadesoflight bg_inverse=base_conflict,Confirmed
+vexaria,song,bg,base_light,assets/img/bg/1080/base_light.jpg,True,assets/songs/songlist vexaria bg=base_light,Confirmed
+vexaria,song,bg_inverse,base_conflict,assets/img/bg/1080/base_conflict.jpg,True,assets/songs/songlist vexaria bg_inverse=base_conflict,Confirmed
+essenceoftwilight,song,bg,base_conflict,assets/img/bg/1080/base_conflict.jpg,True,assets/songs/songlist essenceoftwilight bg=base_conflict,Confirmed
+essenceoftwilight,song,bg_inverse,base_light,assets/img/bg/1080/base_light.jpg,True,assets/songs/songlist essenceoftwilight bg_inverse=base_light,Confirmed
+qualia,song,bg,base_conflict,assets/img/bg/1080/base_conflict.jpg,True,assets/songs/songlist qualia bg=base_conflict,Confirmed
+qualia,song,bg_inverse,base_light,assets/img/bg/1080/base_light.jpg,True,assets/songs/songlist qualia bg_inverse=base_light,Confirmed
+pragmatism,song,bg,pragmatism,assets/img/bg/1080/pragmatism.jpg,True,assets/songs/songlist pragmatism bg=pragmatism,Confirmed
+pragmatism,BYD,bg,pragmatism3,assets/img/bg/1080/pragmatism3.jpg,True,assets/songs/songlist pragmatism bg=pragmatism3,Confirmed
+sheriruth,song,bg,sheriruth,assets/img/bg/1080/sheriruth.jpg,True,assets/songs/songlist sheriruth bg=sheriruth,Confirmed
+lumia,song,bg,base_light,assets/img/bg/1080/base_light.jpg,True,assets/songs/songlist lumia bg=base_light,Confirmed
+lumia,song,bg_inverse,base_conflict,assets/img/bg/1080/base_conflict.jpg,True,assets/songs/songlist lumia bg_inverse=base_conflict,Confirmed
+dement,song,bg,base_conflict,assets/img/bg/1080/base_conflict.jpg,True,assets/songs/songlist dement bg=base_conflict,Confirmed
+dement,song,bg_inverse,base_light,assets/img/bg/1080/base_light.jpg,True,assets/songs/songlist dement bg_inverse=base_light,Confirmed
+dandelion,song,bg,base_light,assets/img/bg/1080/base_light.jpg,True,assets/songs/songlist dandelion bg=base_light,Confirmed
+dandelion,song,bg_inverse,base_conflict,assets/img/bg/1080/base_conflict.jpg,True,assets/songs/songlist dandelion bg_inverse=base_conflict,Confirmed
+anokumene,song,bg,base_conflict,assets/img/bg/1080/base_conflict.jpg,True,assets/songs/songlist anokumene bg=base_conflict,Confirmed
+anokumene,song,bg_inverse,base_light,assets/img/bg/1080/base_light.jpg,True,assets/songs/songlist anokumene bg_inverse=base_light,Confirmed
+anokumene,BYD,bg,single2_conflict,assets/img/bg/1080/single2_conflict.jpg,True,assets/songs/songlist anokumene bg=single2_conflict,Confirmed
+anokumene,BYD,bg_inverse,single2_light,assets/img/bg/1080/single2_light.jpg,True,assets/songs/songlist anokumene bg_inverse=single2_light,Confirmed
+infinityheaven,song,bg,base_light,assets/img/bg/1080/base_light.jpg,True,assets/songs/songlist infinityheaven bg=base_light,Confirmed
+infinityheaven,song,bg_inverse,base_conflict,assets/img/bg/1080/base_conflict.jpg,True,assets/songs/songlist infinityheaven bg_inverse=base_conflict,Confirmed
+partyvinyl,song,bg,shiawase,assets/img/bg/1080/shiawase.jpg,True,assets/songs/songlist partyvinyl bg=shiawase,Confirmed
+flashback,song,bg,shiawase,assets/img/bg/1080/shiawase.jpg,True,assets/songs/songlist flashback bg=shiawase,Confirmed
+flyburg,song,bg,shiawase,assets/img/bg/1080/shiawase.jpg,True,assets/songs/songlist flyburg bg=shiawase,Confirmed
+nirvluce,song,bg,nirvluce,assets/img/bg/1080/nirvluce.jpg,True,assets/songs/songlist nirvluce bg=nirvluce,Confirmed
+paradise,song,bg,shiawase,assets/img/bg/1080/shiawase.jpg,True,assets/songs/songlist paradise bg=shiawase,Confirmed
+brandnewworld,song,bg,shiawase,assets/img/bg/1080/shiawase.jpg,True,assets/songs/songlist brandnewworld bg=shiawase,Confirmed
+dataerror,song,bg,single_conflict,assets/img/bg/1080/single_conflict.jpg,True,assets/songs/songlist dataerror bg=single_conflict,Confirmed
+dataerror,song,bg_inverse,single_light,assets/img/bg/1080/single_light.jpg,True,assets/songs/songlist dataerror bg_inverse=single_light,Confirmed
+crosssoul,song,bg,single_conflict,assets/img/bg/1080/single_conflict.jpg,True,assets/songs/songlist crosssoul bg=single_conflict,Confirmed
+crosssoul,song,bg_inverse,single_light,assets/img/bg/1080/single_light.jpg,True,assets/songs/songlist crosssoul bg_inverse=single_light,Confirmed
+yourvoiceso,song,bg,single_light,assets/img/bg/1080/single_light.jpg,True,assets/songs/songlist yourvoiceso bg=single_light,Confirmed
+yourvoiceso,song,bg_inverse,single_conflict,assets/img/bg/1080/single_conflict.jpg,True,assets/songs/songlist yourvoiceso bg_inverse=single_conflict,Confirmed
+chronostasis,song,bg,base_conflict,assets/img/bg/1080/base_conflict.jpg,True,assets/songs/songlist chronostasis bg=base_conflict,Confirmed
+chronostasis,song,bg_inverse,base_light,assets/img/bg/1080/base_light.jpg,True,assets/songs/songlist chronostasis bg_inverse=base_light,Confirmed
+kanagawa,song,bg,base_light,assets/img/bg/1080/base_light.jpg,True,assets/songs/songlist kanagawa bg=base_light,Confirmed
+kanagawa,song,bg_inverse,base_conflict,assets/img/bg/1080/base_conflict.jpg,True,assets/songs/songlist kanagawa bg_inverse=base_conflict,Confirmed
+moonlightofsandcastle,song,bg,dynamix_light,assets/img/bg/1080/dynamix_light.jpg,True,assets/songs/songlist moonlightofsandcastle bg=dynamix_light,Confirmed
+moonlightofsandcastle,song,bg_inverse,dynamix_conflict,assets/img/bg/1080/dynamix_conflict.jpg,True,assets/songs/songlist moonlightofsandcastle bg_inverse=dynamix_conflict,Confirmed
+reconstruction,song,bg,dynamix_light,assets/img/bg/1080/dynamix_light.jpg,True,assets/songs/songlist reconstruction bg=dynamix_light,Confirmed
+reconstruction,song,bg_inverse,dynamix_conflict,assets/img/bg/1080/dynamix_conflict.jpg,True,assets/songs/songlist reconstruction bg_inverse=dynamix_conflict,Confirmed
+evoltex,song,bg,dynamix_light,assets/img/bg/1080/dynamix_light.jpg,True,assets/songs/songlist evoltex bg=dynamix_light,Confirmed
+evoltex,song,bg_inverse,dynamix_conflict,assets/img/bg/1080/dynamix_conflict.jpg,True,assets/songs/songlist evoltex bg_inverse=dynamix_conflict,Confirmed
+oracle,song,bg,dynamix_conflict,assets/img/bg/1080/dynamix_conflict.jpg,True,assets/songs/songlist oracle bg=dynamix_conflict,Confirmed
+oracle,song,bg_inverse,dynamix_light,assets/img/bg/1080/dynamix_light.jpg,True,assets/songs/songlist oracle bg_inverse=dynamix_light,Confirmed
+aterlbus,song,bg,dynamix_conflict,assets/img/bg/1080/dynamix_conflict.jpg,True,assets/songs/songlist aterlbus bg=dynamix_conflict,Confirmed
+aterlbus,song,bg_inverse,dynamix_light,assets/img/bg/1080/dynamix_light.jpg,True,assets/songs/songlist aterlbus bg_inverse=dynamix_light,Confirmed
+aterlbus,FTR,bg,aterlbus,assets/img/bg/1080/aterlbus.jpg,True,assets/songs/songlist aterlbus bg=aterlbus,Confirmed
+clotho,song,bg,shiawase,assets/img/bg/1080/shiawase.jpg,True,assets/songs/songlist clotho bg=shiawase,Confirmed
+impurebird,song,bg,single_light,assets/img/bg/1080/single_light.jpg,True,assets/songs/songlist impurebird bg=single_light,Confirmed
+impurebird,song,bg_inverse,single_conflict,assets/img/bg/1080/single_conflict.jpg,True,assets/songs/songlist impurebird bg_inverse=single_conflict,Confirmed
+ignotus,song,bg,base_conflict,assets/img/bg/1080/base_conflict.jpg,True,assets/songs/songlist ignotus bg=base_conflict,Confirmed
+ignotus,song,bg_inverse,base_light,assets/img/bg/1080/base_light.jpg,True,assets/songs/songlist ignotus bg_inverse=base_light,Confirmed
+ignotus,BYD,bg,byd_conflict,assets/img/bg/1080/byd_conflict.jpg,True,assets/songs/songlist ignotus bg=byd_conflict,Confirmed
+ignotus,BYD,bg_inverse,byd_light,assets/img/bg/1080/byd_light.jpg,True,assets/songs/songlist ignotus bg_inverse=byd_light,Confirmed
+lethaeus,song,bg,lethaeus,assets/img/bg/1080/lethaeus.jpg,True,assets/songs/songlist lethaeus bg=lethaeus,Confirmed
+romancewars,song,bg,mirai_light,assets/img/bg/1080/mirai_light.jpg,True,assets/songs/songlist romancewars bg=mirai_light,Confirmed
+romancewars,song,bg_inverse,mirai_conflict,assets/img/bg/1080/mirai_conflict.jpg,True,assets/songs/songlist romancewars bg_inverse=mirai_conflict,Confirmed
+blossoms,song,bg,mirai_light,assets/img/bg/1080/mirai_light.jpg,True,assets/songs/songlist blossoms bg=mirai_light,Confirmed
+blossoms,song,bg_inverse,mirai_conflict,assets/img/bg/1080/mirai_conflict.jpg,True,assets/songs/songlist blossoms bg_inverse=mirai_conflict,Confirmed
+moonheart,song,bg,mirai_light,assets/img/bg/1080/mirai_light.jpg,True,assets/songs/songlist moonheart bg=mirai_light,Confirmed
+moonheart,song,bg_inverse,mirai_conflict,assets/img/bg/1080/mirai_conflict.jpg,True,assets/songs/songlist moonheart bg_inverse=mirai_conflict,Confirmed
+genesis,song,bg,mirai_conflict,assets/img/bg/1080/mirai_conflict.jpg,True,assets/songs/songlist genesis bg=mirai_conflict,Confirmed
+genesis,song,bg_inverse,mirai_light,assets/img/bg/1080/mirai_light.jpg,True,assets/songs/songlist genesis bg_inverse=mirai_light,Confirmed
+harutopia,song,bg,shiawase,assets/img/bg/1080/shiawase.jpg,True,assets/songs/songlist harutopia bg=shiawase,Confirmed
+auxesia,song,bg,auxesia,assets/img/bg/1080/auxesia.jpg,True,assets/songs/songlist auxesia bg=auxesia,Confirmed
+rabbitintheblackroom,song,bg,base_conflict,assets/img/bg/1080/base_conflict.jpg,True,assets/songs/songlist rabbitintheblackroom bg=base_conflict,Confirmed
+rabbitintheblackroom,song,bg_inverse,base_light,assets/img/bg/1080/base_light.jpg,True,assets/songs/songlist rabbitintheblackroom bg_inverse=base_light,Confirmed
+modelista,song,bg,modelista,assets/img/bg/1080/modelista.jpg,True,assets/songs/songlist modelista bg=modelista,Confirmed
+soundwitch,song,bg,yugamu,assets/img/bg/1080/yugamu.jpg,True,assets/songs/songlist soundwitch bg=yugamu,Confirmed
+soundwitch,song,bg_inverse,rei,assets/img/bg/1080/rei.jpg,True,assets/songs/songlist soundwitch bg_inverse=rei,Confirmed
+trappola,song,bg,yugamu,assets/img/bg/1080/yugamu.jpg,True,assets/songs/songlist trappola bg=yugamu,Confirmed
+trappola,song,bg_inverse,rei,assets/img/bg/1080/rei.jpg,True,assets/songs/songlist trappola bg_inverse=rei,Confirmed
+iconoclast,song,bg,yugamu,assets/img/bg/1080/yugamu.jpg,True,assets/songs/songlist iconoclast bg=yugamu,Confirmed
+iconoclast,song,bg_inverse,rei,assets/img/bg/1080/rei.jpg,True,assets/songs/songlist iconoclast bg_inverse=rei,Confirmed
+conflict,song,bg,yugamu,assets/img/bg/1080/yugamu.jpg,True,assets/songs/songlist conflict bg=yugamu,Confirmed
+conflict,song,bg_inverse,rei,assets/img/bg/1080/rei.jpg,True,assets/songs/songlist conflict bg_inverse=rei,Confirmed
+axiumcrisis,song,bg,axiumcrisis,assets/img/bg/1080/axiumcrisis.jpg,True,assets/songs/songlist axiumcrisis bg=axiumcrisis,Confirmed
+axiumcrisis,BYD,bg,axiumcrisis3,assets/img/bg/1080/axiumcrisis3.jpg,True,assets/songs/songlist axiumcrisis bg=axiumcrisis3,Confirmed
+grievouslady,song,bg,grievouslady,assets/img/bg/1080/grievouslady.jpg,True,assets/songs/songlist grievouslady bg=grievouslady,Confirmed
+dreaminattraction,song,bg,base_light,assets/img/bg/1080/base_light.jpg,True,assets/songs/songlist dreaminattraction bg=base_light,Confirmed
+dreaminattraction,song,bg_inverse,base_conflict,assets/img/bg/1080/base_conflict.jpg,True,assets/songs/songlist dreaminattraction bg_inverse=base_conflict,Confirmed
+redandblue,song,bg,base_conflict,assets/img/bg/1080/base_conflict.jpg,True,assets/songs/songlist redandblue bg=base_conflict,Confirmed
+redandblue,song,bg_inverse,base_light,assets/img/bg/1080/base_light.jpg,True,assets/songs/songlist redandblue bg_inverse=base_light,Confirmed
+redandblue,BYD,bg,byd_conflict,assets/img/bg/1080/byd_conflict.jpg,True,assets/songs/songlist redandblue bg=byd_conflict,Confirmed
+redandblue,BYD,bg_inverse,byd_light,assets/img/bg/1080/byd_light.jpg,True,assets/songs/songlist redandblue bg_inverse=byd_light,Confirmed
+onelastdrive,song,bg,base_light,assets/img/bg/1080/base_light.jpg,True,assets/songs/songlist onelastdrive bg=base_light,Confirmed
+onelastdrive,song,bg_inverse,base_conflict,assets/img/bg/1080/base_conflict.jpg,True,assets/songs/songlist onelastdrive bg_inverse=base_conflict,Confirmed
+surrender,song,bg,base_light,assets/img/bg/1080/base_light.jpg,True,assets/songs/songlist surrender bg=base_light,Confirmed
+surrender,song,bg_inverse,base_conflict,assets/img/bg/1080/base_conflict.jpg,True,assets/songs/songlist surrender bg_inverse=base_conflict,Confirmed
+yozakurafubuki,song,bg,base_light,assets/img/bg/1080/base_light.jpg,True,assets/songs/songlist yozakurafubuki bg=base_light,Confirmed
+yozakurafubuki,song,bg_inverse,base_conflict,assets/img/bg/1080/base_conflict.jpg,True,assets/songs/songlist yozakurafubuki bg_inverse=base_conflict,Confirmed
+cyanine,song,bg,lanota-conflict,assets/img/bg/1080/lanota-conflict.jpg,True,assets/songs/songlist cyanine bg=lanota-conflict,Confirmed
+cyanine,song,bg_inverse,lanota-light,assets/img/bg/1080/lanota-light.jpg,True,assets/songs/songlist cyanine bg_inverse=lanota-light,Confirmed
+dreamgoeson,song,bg,lanota-light,assets/img/bg/1080/lanota-light.jpg,True,assets/songs/songlist dreamgoeson bg=lanota-light,Confirmed
+dreamgoeson,song,bg_inverse,lanota-conflict,assets/img/bg/1080/lanota-conflict.jpg,True,assets/songs/songlist dreamgoeson bg_inverse=lanota-conflict,Confirmed
+journey,song,bg,lanota-light,assets/img/bg/1080/lanota-light.jpg,True,assets/songs/songlist journey bg=lanota-light,Confirmed
+journey,song,bg_inverse,lanota-conflict,assets/img/bg/1080/lanota-conflict.jpg,True,assets/songs/songlist journey bg_inverse=lanota-conflict,Confirmed
+specta,song,bg,lanota-light,assets/img/bg/1080/lanota-light.jpg,True,assets/songs/songlist specta bg=lanota-light,Confirmed
+specta,song,bg_inverse,lanota-conflict,assets/img/bg/1080/lanota-conflict.jpg,True,assets/songs/songlist specta bg_inverse=lanota-conflict,Confirmed
+quon,song,bg,quon,assets/img/bg/1080/quon.jpg,True,assets/songs/songlist quon bg=quon,Confirmed
+syro,song,bg,mirai_light,assets/img/bg/1080/mirai_light.jpg,True,assets/songs/songlist syro bg=mirai_light,Confirmed
+syro,song,bg_inverse,mirai_conflict,assets/img/bg/1080/mirai_conflict.jpg,True,assets/songs/songlist syro bg_inverse=mirai_conflict,Confirmed
+reinvent,song,bg,base_light,assets/img/bg/1080/base_light.jpg,True,assets/songs/songlist reinvent bg=base_light,Confirmed
+reinvent,song,bg_inverse,base_conflict,assets/img/bg/1080/base_conflict.jpg,True,assets/songs/songlist reinvent bg_inverse=base_conflict,Confirmed
+silentrush,song,bg,nijuusei-conflict-b,assets/img/bg/1080/nijuusei-conflict-b.jpg,True,assets/songs/songlist silentrush bg=nijuusei-conflict-b,Confirmed
+silentrush,song,bg_inverse,nijuusei-light-b,assets/img/bg/1080/nijuusei-light-b.jpg,True,assets/songs/songlist silentrush bg_inverse=nijuusei-light-b,Confirmed
+singularity,song,bg,nijuusei-conflict-b,assets/img/bg/1080/nijuusei-conflict-b.jpg,True,assets/songs/songlist singularity bg=nijuusei-conflict-b,Confirmed
+singularity,song,bg_inverse,nijuusei-light-b,assets/img/bg/1080/nijuusei-light-b.jpg,True,assets/songs/songlist singularity bg_inverse=nijuusei-light-b,Confirmed
+singularity,BYD,bg,byd_conflict,assets/img/bg/1080/byd_conflict.jpg,True,assets/songs/songlist singularity bg=byd_conflict,Confirmed
+singularity,BYD,bg_inverse,byd_light,assets/img/bg/1080/byd_light.jpg,True,assets/songs/songlist singularity bg_inverse=byd_light,Confirmed
+memoryforest,song,bg,nijuusei-light-b,assets/img/bg/1080/nijuusei-light-b.jpg,True,assets/songs/songlist memoryforest bg=nijuusei-light-b,Confirmed
+memoryforest,song,bg_inverse,nijuusei-conflict-b,assets/img/bg/1080/nijuusei-conflict-b.jpg,True,assets/songs/songlist memoryforest bg_inverse=nijuusei-conflict-b,Confirmed
+strongholds,song,bg,nijuusei-conflict-b,assets/img/bg/1080/nijuusei-conflict-b.jpg,True,assets/songs/songlist strongholds bg=nijuusei-conflict-b,Confirmed
+strongholds,song,bg_inverse,nijuusei-light-b,assets/img/bg/1080/nijuusei-light-b.jpg,True,assets/songs/songlist strongholds bg_inverse=nijuusei-light-b,Confirmed
+nexttoyou,song,bg,nijuusei-light-b,assets/img/bg/1080/nijuusei-light-b.jpg,True,assets/songs/songlist nexttoyou bg=nijuusei-light-b,Confirmed
+nexttoyou,song,bg_inverse,nijuusei-conflict-b,assets/img/bg/1080/nijuusei-conflict-b.jpg,True,assets/songs/songlist nexttoyou bg_inverse=nijuusei-conflict-b,Confirmed
+metallicpunisher,song,bg,yugamu,assets/img/bg/1080/yugamu.jpg,True,assets/songs/songlist metallicpunisher bg=yugamu,Confirmed
+metallicpunisher,song,bg_inverse,rei,assets/img/bg/1080/rei.jpg,True,assets/songs/songlist metallicpunisher bg_inverse=rei,Confirmed
+blaster,song,bg,yugamu,assets/img/bg/1080/yugamu.jpg,True,assets/songs/songlist blaster bg=yugamu,Confirmed
+blaster,song,bg_inverse,rei,assets/img/bg/1080/rei.jpg,True,assets/songs/songlist blaster bg_inverse=rei,Confirmed
+guardina,song,bg,nijuusei-light-b,assets/img/bg/1080/nijuusei-light-b.jpg,True,assets/songs/songlist guardina bg=nijuusei-light-b,Confirmed
+guardina,song,bg_inverse,nijuusei-conflict-b,assets/img/bg/1080/nijuusei-conflict-b.jpg,True,assets/songs/songlist guardina bg_inverse=nijuusei-conflict-b,Confirmed
+carminescythe,song,bg,yugamu,assets/img/bg/1080/yugamu.jpg,True,assets/songs/songlist carminescythe bg=yugamu,Confirmed
+carminescythe,song,bg_inverse,rei,assets/img/bg/1080/rei.jpg,True,assets/songs/songlist carminescythe bg_inverse=rei,Confirmed
+bethere,song,bg,base_light,assets/img/bg/1080/base_light.jpg,True,assets/songs/songlist bethere bg=base_light,Confirmed
+bethere,song,bg_inverse,base_conflict,assets/img/bg/1080/base_conflict.jpg,True,assets/songs/songlist bethere bg_inverse=base_conflict,Confirmed
+bethere,BYD,bg,single2_light,assets/img/bg/1080/single2_light.jpg,True,assets/songs/songlist bethere bg=single2_light,Confirmed
+bethere,BYD,bg_inverse,single2_conflict,assets/img/bg/1080/single2_conflict.jpg,True,assets/songs/songlist bethere bg_inverse=single2_conflict,Confirmed
+cyberneciacatharsis,song,bg,yugamu,assets/img/bg/1080/yugamu.jpg,True,assets/songs/songlist cyberneciacatharsis bg=yugamu,Confirmed
+cyberneciacatharsis,song,bg_inverse,rei,assets/img/bg/1080/rei.jpg,True,assets/songs/songlist cyberneciacatharsis bg_inverse=rei,Confirmed
+callmyname,song,bg,shiawase,assets/img/bg/1080/shiawase.jpg,True,assets/songs/songlist callmyname bg=shiawase,Confirmed
+inkarusi,song,bg,base_light,assets/img/bg/1080/base_light.jpg,True,assets/songs/songlist inkarusi bg=base_light,Confirmed
+inkarusi,song,bg_inverse,base_conflict,assets/img/bg/1080/base_conflict.jpg,True,assets/songs/songlist inkarusi bg_inverse=base_conflict,Confirmed
+mazenine,song,bg,rei,assets/img/bg/1080/rei.jpg,True,assets/songs/songlist mazenine bg=rei,Confirmed
+mazenine,song,bg_inverse,yugamu,assets/img/bg/1080/yugamu.jpg,True,assets/songs/songlist mazenine bg_inverse=yugamu,Confirmed
+themessage,song,bg,rei,assets/img/bg/1080/rei.jpg,True,assets/songs/songlist themessage bg=rei,Confirmed
+themessage,song,bg_inverse,yugamu,assets/img/bg/1080/yugamu.jpg,True,assets/songs/songlist themessage bg_inverse=yugamu,Confirmed
+sulfur,song,bg,rei,assets/img/bg/1080/rei.jpg,True,assets/songs/songlist sulfur bg=rei,Confirmed
+sulfur,song,bg_inverse,yugamu,assets/img/bg/1080/yugamu.jpg,True,assets/songs/songlist sulfur bg_inverse=yugamu,Confirmed
+halcyon,song,bg,rei,assets/img/bg/1080/rei.jpg,True,assets/songs/songlist halcyon bg=rei,Confirmed
+halcyon,song,bg_inverse,yugamu,assets/img/bg/1080/yugamu.jpg,True,assets/songs/songlist halcyon bg_inverse=yugamu,Confirmed
+etherstrike,song,bg,etherstrike,assets/img/bg/1080/etherstrike.jpg,True,assets/songs/songlist etherstrike bg=etherstrike,Confirmed
+fractureray,song,bg,fractureray,assets/img/bg/1080/fractureray.jpg,True,assets/songs/songlist fractureray bg=fractureray,Confirmed
+suomi,song,bg,nijuusei-light-b,assets/img/bg/1080/nijuusei-light-b.jpg,True,assets/songs/songlist suomi bg=nijuusei-light-b,Confirmed
+suomi,song,bg_inverse,nijuusei-conflict-b,assets/img/bg/1080/nijuusei-conflict-b.jpg,True,assets/songs/songlist suomi bg_inverse=nijuusei-conflict-b,Confirmed
+bookmaker,song,bg,yugamu,assets/img/bg/1080/yugamu.jpg,True,assets/songs/songlist bookmaker bg=yugamu,Confirmed
+bookmaker,song,bg_inverse,rei,assets/img/bg/1080/rei.jpg,True,assets/songs/songlist bookmaker bg_inverse=rei,Confirmed
+darakunosono,song,bg,base_conflict,assets/img/bg/1080/base_conflict.jpg,True,assets/songs/songlist darakunosono bg=base_conflict,Confirmed
+darakunosono,song,bg_inverse,base_light,assets/img/bg/1080/base_light.jpg,True,assets/songs/songlist darakunosono bg_inverse=base_light,Confirmed
+dropdead,song,bg,base_conflict,assets/img/bg/1080/base_conflict.jpg,True,assets/songs/songlist dropdead bg=base_conflict,Confirmed
+dropdead,song,bg_inverse,base_light,assets/img/bg/1080/base_light.jpg,True,assets/songs/songlist dropdead bg_inverse=base_light,Confirmed
+dropdead,BYD,bg,byd_conflict,assets/img/bg/1080/byd_conflict.jpg,True,assets/songs/songlist dropdead bg=byd_conflict,Confirmed
+dropdead,BYD,bg_inverse,byd_light,assets/img/bg/1080/byd_light.jpg,True,assets/songs/songlist dropdead bg_inverse=byd_light,Confirmed
+fallensquare,song,bg,mirai_conflict,assets/img/bg/1080/mirai_conflict.jpg,True,assets/songs/songlist fallensquare bg=mirai_conflict,Confirmed
+fallensquare,song,bg_inverse,mirai_light,assets/img/bg/1080/mirai_light.jpg,True,assets/songs/songlist fallensquare bg_inverse=mirai_light,Confirmed
+nhelv,song,bg,lethaeus,assets/img/bg/1080/lethaeus.jpg,True,assets/songs/songlist nhelv bg=lethaeus,Confirmed
+nhelv,BYD,bg,eden_conflict,assets/img/bg/1080/eden_conflict.jpg,True,assets/songs/songlist nhelv bg=eden_conflict,Confirmed
+espebranch,song,bg,mirai_conflict,assets/img/bg/1080/mirai_conflict.jpg,True,assets/songs/songlist espebranch bg=mirai_conflict,Confirmed
+espebranch,song,bg_inverse,mirai_light,assets/img/bg/1080/mirai_light.jpg,True,assets/songs/songlist espebranch bg_inverse=mirai_light,Confirmed
+purgatorium,song,bg,base_conflict,assets/img/bg/1080/base_conflict.jpg,True,assets/songs/songlist purgatorium bg=base_conflict,Confirmed
+purgatorium,song,bg_inverse,base_light,assets/img/bg/1080/base_light.jpg,True,assets/songs/songlist purgatorium bg_inverse=base_light,Confirmed
+hikari,song,bg,tonesphere-darksphere,assets/img/bg/1080/tonesphere-darksphere.jpg,True,assets/songs/songlist hikari bg=tonesphere-darksphere,Confirmed
+hikari,song,bg_inverse,tonesphere-solarsphere,assets/img/bg/1080/tonesphere-solarsphere.jpg,True,assets/songs/songlist hikari bg_inverse=tonesphere-solarsphere,Confirmed
+stager,song,bg,tonesphere-solarsphere,assets/img/bg/1080/tonesphere-solarsphere.jpg,True,assets/songs/songlist stager bg=tonesphere-solarsphere,Confirmed
+stager,song,bg_inverse,tonesphere-darksphere,assets/img/bg/1080/tonesphere-darksphere.jpg,True,assets/songs/songlist stager bg_inverse=tonesphere-darksphere,Confirmed
+hallofmirrors,song,bg,tonesphere-darksphere,assets/img/bg/1080/tonesphere-darksphere.jpg,True,assets/songs/songlist hallofmirrors bg=tonesphere-darksphere,Confirmed
+hallofmirrors,song,bg_inverse,tonesphere-solarsphere,assets/img/bg/1080/tonesphere-solarsphere.jpg,True,assets/songs/songlist hallofmirrors bg_inverse=tonesphere-solarsphere,Confirmed
+linearaccelerator,song,bg,tonesphere-solarsphere,assets/img/bg/1080/tonesphere-solarsphere.jpg,True,assets/songs/songlist linearaccelerator bg=tonesphere-solarsphere,Confirmed
+linearaccelerator,song,bg_inverse,tonesphere-darksphere,assets/img/bg/1080/tonesphere-darksphere.jpg,True,assets/songs/songlist linearaccelerator bg_inverse=tonesphere-darksphere,Confirmed
+tiferet,song,bg,tiferet,assets/img/bg/1080/tiferet.jpg,True,assets/songs/songlist tiferet bg=tiferet,Confirmed
+alexandrite,song,bg,alexandrite,assets/img/bg/1080/alexandrite.jpg,True,assets/songs/songlist alexandrite bg=alexandrite,Confirmed
+rugie,song,bg,base_conflict,assets/img/bg/1080/base_conflict.jpg,True,assets/songs/songlist rugie bg=base_conflict,Confirmed
+rugie,song,bg_inverse,base_light,assets/img/bg/1080/base_light.jpg,True,assets/songs/songlist rugie bg_inverse=base_light,Confirmed
+astraltale,song,bg,nijuusei-conflict-b,assets/img/bg/1080/nijuusei-conflict-b.jpg,True,assets/songs/songlist astraltale bg=nijuusei-conflict-b,Confirmed
+astraltale,song,bg_inverse,nijuusei-light-b,assets/img/bg/1080/nijuusei-light-b.jpg,True,assets/songs/songlist astraltale bg_inverse=nijuusei-light-b,Confirmed
+phantasia,song,bg,rei,assets/img/bg/1080/rei.jpg,True,assets/songs/songlist phantasia bg=rei,Confirmed
+phantasia,song,bg_inverse,yugamu,assets/img/bg/1080/yugamu.jpg,True,assets/songs/songlist phantasia bg_inverse=yugamu,Confirmed
+empireofwinter,song,bg,nijuusei-light-b,assets/img/bg/1080/nijuusei-light-b.jpg,True,assets/songs/songlist empireofwinter bg=nijuusei-light-b,Confirmed
+empireofwinter,song,bg_inverse,nijuusei-conflict-b,assets/img/bg/1080/nijuusei-conflict-b.jpg,True,assets/songs/songlist empireofwinter bg_inverse=nijuusei-conflict-b,Confirmed
+merlin,song,bg,gc_light,assets/img/bg/1080/gc_light.jpg,True,assets/songs/songlist merlin bg=gc_light,Confirmed
+merlin,song,bg_inverse,gc_conflict,assets/img/bg/1080/gc_conflict.jpg,True,assets/songs/songlist merlin bg_inverse=gc_conflict,Confirmed
+dxfullmetal,song,bg,gc_light,assets/img/bg/1080/gc_light.jpg,True,assets/songs/songlist dxfullmetal bg=gc_light,Confirmed
+dxfullmetal,song,bg_inverse,gc_conflict,assets/img/bg/1080/gc_conflict.jpg,True,assets/songs/songlist dxfullmetal bg_inverse=gc_conflict,Confirmed
+omakeno,song,bg,gc_conflict,assets/img/bg/1080/gc_conflict.jpg,True,assets/songs/songlist omakeno bg=gc_conflict,Confirmed
+omakeno,song,bg_inverse,gc_light,assets/img/bg/1080/gc_light.jpg,True,assets/songs/songlist omakeno bg_inverse=gc_light,Confirmed
+scarletlance,song,bg,gc_lance,assets/img/bg/1080/gc_lance.jpg,True,assets/songs/songlist scarletlance bg=gc_lance,Confirmed
+ouroboros,song,bg,gc_ouroboros,assets/img/bg/1080/gc_ouroboros.jpg,True,assets/songs/songlist ouroboros bg=gc_ouroboros,Confirmed
+libertas,song,bg,single_light,assets/img/bg/1080/single_light.jpg,True,assets/songs/songlist libertas bg=single_light,Confirmed
+libertas,song,bg_inverse,single_conflict,assets/img/bg/1080/single_conflict.jpg,True,assets/songs/songlist libertas bg_inverse=single_conflict,Confirmed
+solitarydream,song,bg,solitarydream,assets/img/bg/1080/solitarydream.jpg,True,assets/songs/songlist solitarydream bg=solitarydream,Confirmed
+antithese,song,bg,zettai,assets/img/bg/1080/zettai.jpg,True,assets/songs/songlist antithese bg=zettai,Confirmed
+antithese,song,bg_inverse,zettai_light,assets/img/bg/1080/zettai_light.jpg,True,assets/songs/songlist antithese bg_inverse=zettai_light,Confirmed
+corruption,song,bg,zettai,assets/img/bg/1080/zettai.jpg,True,assets/songs/songlist corruption bg=zettai,Confirmed
+corruption,song,bg_inverse,zettai_light,assets/img/bg/1080/zettai_light.jpg,True,assets/songs/songlist corruption bg_inverse=zettai_light,Confirmed
+blackterritory,song,bg,zettai,assets/img/bg/1080/zettai.jpg,True,assets/songs/songlist blackterritory bg=zettai,Confirmed
+blackterritory,song,bg_inverse,zettai_light,assets/img/bg/1080/zettai_light.jpg,True,assets/songs/songlist blackterritory bg_inverse=zettai_light,Confirmed
+viciousheroism,song,bg,zettai,assets/img/bg/1080/zettai.jpg,True,assets/songs/songlist viciousheroism bg=zettai,Confirmed
+viciousheroism,song,bg_inverse,zettai_light,assets/img/bg/1080/zettai_light.jpg,True,assets/songs/songlist viciousheroism bg_inverse=zettai_light,Confirmed
+viciousheroism,BYD,bg,viciousheroism3,assets/img/bg/1080/viciousheroism3.jpg,True,assets/songs/songlist viciousheroism bg=viciousheroism3,Confirmed
+cyaegha,song,bg,cyaegha,assets/img/bg/1080/cyaegha.jpg,True,assets/songs/songlist cyaegha bg=cyaegha,Confirmed
+revixy,song,bg,base_conflict,assets/img/bg/1080/base_conflict.jpg,True,assets/songs/songlist revixy bg=base_conflict,Confirmed
+revixy,song,bg_inverse,base_light,assets/img/bg/1080/base_light.jpg,True,assets/songs/songlist revixy bg_inverse=base_light,Confirmed
+grimheart,song,bg,rei,assets/img/bg/1080/rei.jpg,True,assets/songs/songlist grimheart bg=rei,Confirmed
+grimheart,song,bg_inverse,yugamu,assets/img/bg/1080/yugamu.jpg,True,assets/songs/songlist grimheart bg_inverse=yugamu,Confirmed
+vector,song,bg,mirai_conflict,assets/img/bg/1080/mirai_conflict.jpg,True,assets/songs/songlist vector bg=mirai_conflict,Confirmed
+vector,song,bg_inverse,mirai_light,assets/img/bg/1080/mirai_light.jpg,True,assets/songs/songlist vector bg_inverse=mirai_light,Confirmed
+supernova,song,bg,nijuusei-conflict-b,assets/img/bg/1080/nijuusei-conflict-b.jpg,True,assets/songs/songlist supernova bg=nijuusei-conflict-b,Confirmed
+supernova,song,bg_inverse,nijuusei-light-b,assets/img/bg/1080/nijuusei-light-b.jpg,True,assets/songs/songlist supernova bg_inverse=nijuusei-light-b,Confirmed
+dottodot,song,bg,mirai_light,assets/img/bg/1080/mirai_light.jpg,True,assets/songs/songlist dottodot bg=mirai_light,Confirmed
+dottodot,song,bg_inverse,mirai_conflict,assets/img/bg/1080/mirai_conflict.jpg,True,assets/songs/songlist dottodot bg_inverse=mirai_conflict,Confirmed
+garakuta,song,bg,chuni-garakuta,assets/img/bg/1080/chuni-garakuta.jpg,True,assets/songs/songlist garakuta bg=chuni-garakuta,Confirmed
+ikazuchi,song,bg,chuni-ikazuchi,assets/img/bg/1080/chuni-ikazuchi.jpg,True,assets/songs/songlist ikazuchi bg=chuni-ikazuchi,Confirmed
+worldvanquisher,song,bg,chuni-worldvanquisher,assets/img/bg/1080/chuni-worldvanquisher.jpg,True,assets/songs/songlist worldvanquisher bg=chuni-worldvanquisher,Confirmed
+dreadnought,song,bg,nijuusei-conflict-b,assets/img/bg/1080/nijuusei-conflict-b.jpg,True,assets/songs/songlist dreadnought bg=nijuusei-conflict-b,Confirmed
+dreadnought,song,bg_inverse,nijuusei-light-b,assets/img/bg/1080/nijuusei-light-b.jpg,True,assets/songs/songlist dreadnought bg_inverse=nijuusei-light-b,Confirmed
+vindication,song,bg,prelude_light,assets/img/bg/1080/prelude_light.jpg,True,assets/songs/songlist vindication bg=prelude_light,Confirmed
+vindication,song,bg_inverse,prelude_conflict,assets/img/bg/1080/prelude_conflict.jpg,True,assets/songs/songlist vindication bg_inverse=prelude_conflict,Confirmed
+heavensdoor,song,bg,prelude_conflict,assets/img/bg/1080/prelude_conflict.jpg,True,assets/songs/songlist heavensdoor bg=prelude_conflict,Confirmed
+heavensdoor,song,bg_inverse,prelude_light,assets/img/bg/1080/prelude_light.jpg,True,assets/songs/songlist heavensdoor bg_inverse=prelude_light,Confirmed
+ringedgenesis,song,bg,ringedgenesis,assets/img/bg/1080/ringedgenesis.jpg,True,assets/songs/songlist ringedgenesis bg=ringedgenesis,Confirmed
+chelsea,song,bg,omatsuri_light,assets/img/bg/1080/omatsuri_light.jpg,True,assets/songs/songlist chelsea bg=omatsuri_light,Confirmed
+chelsea,song,bg_inverse,omatsuri_conflict,assets/img/bg/1080/omatsuri_conflict.jpg,True,assets/songs/songlist chelsea bg_inverse=omatsuri_conflict,Confirmed
+aiueoon,song,bg,omatsuri_light,assets/img/bg/1080/omatsuri_light.jpg,True,assets/songs/songlist aiueoon bg=omatsuri_light,Confirmed
+aiueoon,song,bg_inverse,omatsuri_conflict,assets/img/bg/1080/omatsuri_conflict.jpg,True,assets/songs/songlist aiueoon bg_inverse=omatsuri_conflict,Confirmed
+melodyoflove,song,bg,omatsuri_light,assets/img/bg/1080/omatsuri_light.jpg,True,assets/songs/songlist melodyoflove bg=omatsuri_light,Confirmed
+melodyoflove,song,bg_inverse,omatsuri_conflict,assets/img/bg/1080/omatsuri_conflict.jpg,True,assets/songs/songlist melodyoflove bg_inverse=omatsuri_conflict,Confirmed
+tiemedowngently,song,bg,omatsuri_conflict,assets/img/bg/1080/omatsuri_conflict.jpg,True,assets/songs/songlist tiemedowngently bg=omatsuri_conflict,Confirmed
+tiemedowngently,song,bg_inverse,omatsuri_light,assets/img/bg/1080/omatsuri_light.jpg,True,assets/songs/songlist tiemedowngently bg_inverse=omatsuri_light,Confirmed
+valhallazero,song,bg,omatsuri_conflict,assets/img/bg/1080/omatsuri_conflict.jpg,True,assets/songs/songlist valhallazero bg=omatsuri_conflict,Confirmed
+valhallazero,song,bg_inverse,omatsuri_light,assets/img/bg/1080/omatsuri_light.jpg,True,assets/songs/songlist valhallazero bg_inverse=omatsuri_light,Confirmed
+mirzam,song,bg,zettai,assets/img/bg/1080/zettai.jpg,True,assets/songs/songlist mirzam bg=zettai,Confirmed
+mirzam,song,bg_inverse,zettai_light,assets/img/bg/1080/zettai_light.jpg,True,assets/songs/songlist mirzam bg_inverse=zettai_light,Confirmed
+diode,song,bg,shiawase,assets/img/bg/1080/shiawase.jpg,True,assets/songs/songlist diode bg=shiawase,Confirmed
+freefall,song,bg,omatsuri_conflict,assets/img/bg/1080/omatsuri_conflict.jpg,True,assets/songs/songlist freefall bg=omatsuri_conflict,Confirmed
+freefall,song,bg_inverse,omatsuri_light,assets/img/bg/1080/omatsuri_light.jpg,True,assets/songs/songlist freefall bg_inverse=omatsuri_light,Confirmed
+gloryroad,song,bg,shiawase2,assets/img/bg/1080/shiawase2.jpg,True,assets/songs/songlist gloryroad bg=shiawase2,Confirmed
+monochromeprincess,song,bg,omatsuri_conflict,assets/img/bg/1080/omatsuri_conflict.jpg,True,assets/songs/songlist monochromeprincess bg=omatsuri_conflict,Confirmed
+monochromeprincess,song,bg_inverse,omatsuri_light,assets/img/bg/1080/omatsuri_light.jpg,True,assets/songs/songlist monochromeprincess bg_inverse=omatsuri_light,Confirmed
+heavenlycaress,song,bg,omatsuri_light,assets/img/bg/1080/omatsuri_light.jpg,True,assets/songs/songlist heavenlycaress bg=omatsuri_light,Confirmed
+heavenlycaress,song,bg_inverse,omatsuri_conflict,assets/img/bg/1080/omatsuri_conflict.jpg,True,assets/songs/songlist heavenlycaress bg_inverse=omatsuri_conflict,Confirmed
+senkyou,song,bg,omatsuri_light,assets/img/bg/1080/omatsuri_light.jpg,True,assets/songs/songlist senkyou bg=omatsuri_light,Confirmed
+senkyou,song,bg_inverse,omatsuri_conflict,assets/img/bg/1080/omatsuri_conflict.jpg,True,assets/songs/songlist senkyou bg_inverse=omatsuri_conflict,Confirmed
+filament,song,bg,omatsuri_light,assets/img/bg/1080/omatsuri_light.jpg,True,assets/songs/songlist filament bg=omatsuri_light,Confirmed
+filament,song,bg_inverse,omatsuri_conflict,assets/img/bg/1080/omatsuri_conflict.jpg,True,assets/songs/songlist filament bg_inverse=omatsuri_conflict,Confirmed
+avantraze,song,bg,yugamu,assets/img/bg/1080/yugamu.jpg,True,assets/songs/songlist avantraze bg=yugamu,Confirmed
+avantraze,song,bg_inverse,rei,assets/img/bg/1080/rei.jpg,True,assets/songs/songlist avantraze bg_inverse=rei,Confirmed
+battlenoone,song,bg,tanoc_conflict,assets/img/bg/1080/tanoc_conflict.jpg,True,assets/songs/songlist battlenoone bg=tanoc_conflict,Confirmed
+battlenoone,song,bg_inverse,tanoc_light,assets/img/bg/1080/tanoc_light.jpg,True,assets/songs/songlist battlenoone bg_inverse=tanoc_light,Confirmed
+laqryma,song,bg,tanoc_conflict,assets/img/bg/1080/tanoc_conflict.jpg,True,assets/songs/songlist laqryma bg=tanoc_conflict,Confirmed
+laqryma,song,bg_inverse,tanoc_light,assets/img/bg/1080/tanoc_light.jpg,True,assets/songs/songlist laqryma bg_inverse=tanoc_light,Confirmed
+einherjar,song,bg,tanoc_conflict,assets/img/bg/1080/tanoc_conflict.jpg,True,assets/songs/songlist einherjar bg=tanoc_conflict,Confirmed
+einherjar,song,bg_inverse,tanoc_light,assets/img/bg/1080/tanoc_light.jpg,True,assets/songs/songlist einherjar bg_inverse=tanoc_light,Confirmed
+izana,song,bg,tanoc_light,assets/img/bg/1080/tanoc_light.jpg,True,assets/songs/songlist izana bg=tanoc_light,Confirmed
+izana,song,bg_inverse,tanoc_conflict,assets/img/bg/1080/tanoc_conflict.jpg,True,assets/songs/songlist izana bg_inverse=tanoc_conflict,Confirmed
+saikyostronger,song,bg,saikyostronger,assets/img/bg/1080/saikyostronger.jpg,True,assets/songs/songlist saikyostronger bg=saikyostronger,Confirmed
+worldexecuteme,song,bg,prelude_light,assets/img/bg/1080/prelude_light.jpg,True,assets/songs/songlist worldexecuteme bg=prelude_light,Confirmed
+worldexecuteme,song,bg_inverse,prelude_conflict,assets/img/bg/1080/prelude_conflict.jpg,True,assets/songs/songlist worldexecuteme bg_inverse=prelude_conflict,Confirmed
+blrink,song,bg,prelude_conflict,assets/img/bg/1080/prelude_conflict.jpg,True,assets/songs/songlist blrink bg=prelude_conflict,Confirmed
+blrink,song,bg_inverse,prelude_light,assets/img/bg/1080/prelude_light.jpg,True,assets/songs/songlist blrink bg_inverse=prelude_light,Confirmed
+oblivia,song,bg,mirai_light,assets/img/bg/1080/mirai_light.jpg,True,assets/songs/songlist oblivia bg=mirai_light,Confirmed
+oblivia,song,bg_inverse,mirai_conflict,assets/img/bg/1080/mirai_conflict.jpg,True,assets/songs/songlist oblivia bg_inverse=mirai_conflict,Confirmed
+amygdata,song,bg,prelude_conflict,assets/img/bg/1080/prelude_conflict.jpg,True,assets/songs/songlist amygdata bg=prelude_conflict,Confirmed
+amygdata,song,bg_inverse,prelude_light,assets/img/bg/1080/prelude_light.jpg,True,assets/songs/songlist amygdata bg_inverse=prelude_light,Confirmed
+corpssansorganes,song,bg,mirai_awakened,assets/img/bg/1080/mirai_awakened.jpg,True,assets/songs/songlist corpssansorganes bg=mirai_awakened,Confirmed
+equilibrium,song,bg,vs_light,assets/img/bg/1080/vs_light.jpg,True,assets/songs/songlist equilibrium bg=vs_light,Confirmed
+equilibrium,song,bg_inverse,vs_conflict,assets/img/bg/1080/vs_conflict.jpg,True,assets/songs/songlist equilibrium bg_inverse=vs_conflict,Confirmed
+antagonism,song,bg,vs_conflict,assets/img/bg/1080/vs_conflict.jpg,True,assets/songs/songlist antagonism bg=vs_conflict,Confirmed
+antagonism,song,bg_inverse,vs_light,assets/img/bg/1080/vs_light.jpg,True,assets/songs/songlist antagonism bg_inverse=vs_light,Confirmed
+lostdesire,song,bg,vs_conflict,assets/img/bg/1080/vs_conflict.jpg,True,assets/songs/songlist lostdesire bg=vs_conflict,Confirmed
+lostdesire,song,bg_inverse,vs_light,assets/img/bg/1080/vs_light.jpg,True,assets/songs/songlist lostdesire bg_inverse=vs_light,Confirmed
+dantalion,song,bg,vs_conflict,assets/img/bg/1080/vs_conflict.jpg,True,assets/songs/songlist dantalion bg=vs_conflict,Confirmed
+dantalion,song,bg_inverse,vs_light,assets/img/bg/1080/vs_light.jpg,True,assets/songs/songlist dantalion bg_inverse=vs_light,Confirmed
+ifi,song,bg,vs_conflict,assets/img/bg/1080/vs_conflict.jpg,True,assets/songs/songlist ifi bg=vs_conflict,Confirmed
+ifi,song,bg_inverse,vs_light,assets/img/bg/1080/vs_light.jpg,True,assets/songs/songlist ifi bg_inverse=vs_light,Confirmed
+tempestissimo,song,bg,tempestissimo,assets/img/bg/1080/tempestissimo.jpg,True,assets/songs/songlist tempestissimo bg=tempestissimo,Confirmed
+arcahv,song,bg,arcahv,assets/img/bg/1080/arcahv.jpg,True,assets/songs/songlist arcahv bg=arcahv,Confirmed
+altale,song,bg,prelude_light,assets/img/bg/1080/prelude_light.jpg,True,assets/songs/songlist altale bg=prelude_light,Confirmed
+altale,song,bg_inverse,prelude_conflict,assets/img/bg/1080/prelude_conflict.jpg,True,assets/songs/songlist altale bg_inverse=prelude_conflict,Confirmed
+givemeanightmare,song,bg,nijuusei-conflict-b,assets/img/bg/1080/nijuusei-conflict-b.jpg,True,assets/songs/songlist givemeanightmare bg=nijuusei-conflict-b,Confirmed
+givemeanightmare,song,bg_inverse,nijuusei-light-b,assets/img/bg/1080/nijuusei-light-b.jpg,True,assets/songs/songlist givemeanightmare bg_inverse=nijuusei-light-b,Confirmed
+blacklotus,song,bg,zettai,assets/img/bg/1080/zettai.jpg,True,assets/songs/songlist blacklotus bg=zettai,Confirmed
+blacklotus,song,bg_inverse,zettai_light,assets/img/bg/1080/zettai_light.jpg,True,assets/songs/songlist blacklotus bg_inverse=zettai_light,Confirmed
+gekka,song,bg,nijuusei-light-b,assets/img/bg/1080/nijuusei-light-b.jpg,True,assets/songs/songlist gekka bg=nijuusei-light-b,Confirmed
+gekka,song,bg_inverse,nijuusei-conflict-b,assets/img/bg/1080/nijuusei-conflict-b.jpg,True,assets/songs/songlist gekka bg_inverse=nijuusei-conflict-b,Confirmed
+vividtheory,song,bg,rei,assets/img/bg/1080/rei.jpg,True,assets/songs/songlist vividtheory bg=rei,Confirmed
+vividtheory,song,bg_inverse,yugamu,assets/img/bg/1080/yugamu.jpg,True,assets/songs/songlist vividtheory bg_inverse=yugamu,Confirmed
+onefr,song,bg,mirai_light,assets/img/bg/1080/mirai_light.jpg,True,assets/songs/songlist onefr bg=mirai_light,Confirmed
+onefr,song,bg_inverse,mirai_conflict,assets/img/bg/1080/mirai_conflict.jpg,True,assets/songs/songlist onefr bg_inverse=mirai_conflict,Confirmed
+scarletcage,song,bg,yugamu,assets/img/bg/1080/yugamu.jpg,True,assets/songs/songlist scarletcage bg=yugamu,Confirmed
+scarletcage,song,bg_inverse,rei,assets/img/bg/1080/rei.jpg,True,assets/songs/songlist scarletcage bg_inverse=rei,Confirmed
+faintlight,song,bg,nijuusei-light-b,assets/img/bg/1080/nijuusei-light-b.jpg,True,assets/songs/songlist faintlight bg=nijuusei-light-b,Confirmed
+faintlight,song,bg_inverse,nijuusei-conflict-b,assets/img/bg/1080/nijuusei-conflict-b.jpg,True,assets/songs/songlist faintlight bg_inverse=nijuusei-conflict-b,Confirmed
+feelssoright,song,bg,nijuusei-light-b,assets/img/bg/1080/nijuusei-light-b.jpg,True,assets/songs/songlist feelssoright bg=nijuusei-light-b,Confirmed
+feelssoright,song,bg_inverse,nijuusei-conflict-b,assets/img/bg/1080/nijuusei-conflict-b.jpg,True,assets/songs/songlist feelssoright bg_inverse=nijuusei-conflict-b,Confirmed
+teriqma,song,bg,chuni-ikazuchi,assets/img/bg/1080/chuni-ikazuchi.jpg,True,assets/songs/songlist teriqma bg=chuni-ikazuchi,Confirmed
+mahoroba,song,bg,rei,assets/img/bg/1080/rei.jpg,True,assets/songs/songlist mahoroba bg=rei,Confirmed
+mahoroba,song,bg_inverse,yugamu,assets/img/bg/1080/yugamu.jpg,True,assets/songs/songlist mahoroba bg_inverse=yugamu,Confirmed
+badtek,song,bg,zettai,assets/img/bg/1080/zettai.jpg,True,assets/songs/songlist badtek bg=zettai,Confirmed
+badtek,song,bg_inverse,zettai_light,assets/img/bg/1080/zettai_light.jpg,True,assets/songs/songlist badtek bg_inverse=zettai_light,Confirmed
+maliciousmischance,song,bg,vs_conflict,assets/img/bg/1080/vs_conflict.jpg,True,assets/songs/songlist maliciousmischance bg=vs_conflict,Confirmed
+maliciousmischance,song,bg_inverse,vs_light,assets/img/bg/1080/vs_light.jpg,True,assets/songs/songlist maliciousmischance bg_inverse=vs_light,Confirmed
+gothiveofra,song,bg,gc_light,assets/img/bg/1080/gc_light.jpg,True,assets/songs/songlist gothiveofra bg=gc_light,Confirmed
+gothiveofra,song,bg_inverse,gc_conflict,assets/img/bg/1080/gc_conflict.jpg,True,assets/songs/songlist gothiveofra bg_inverse=gc_conflict,Confirmed
+buchigireberserker,song,bg,gc_buchigire,assets/img/bg/1080/gc_buchigire.jpg,True,assets/songs/songlist buchigireberserker bg=gc_buchigire,Confirmed
+galaxyfriends,song,bg,yugamu,assets/img/bg/1080/yugamu.jpg,True,assets/songs/songlist galaxyfriends bg=yugamu,Confirmed
+galaxyfriends,song,bg_inverse,rei,assets/img/bg/1080/rei.jpg,True,assets/songs/songlist galaxyfriends bg_inverse=rei,Confirmed
+crossover,song,bg,nijuusei-conflict-b,assets/img/bg/1080/nijuusei-conflict-b.jpg,True,assets/songs/songlist crossover bg=nijuusei-conflict-b,Confirmed
+crossover,song,bg_inverse,nijuusei-light-b,assets/img/bg/1080/nijuusei-light-b.jpg,True,assets/songs/songlist crossover bg_inverse=nijuusei-light-b,Confirmed
+xeraphinite,song,bg,zettai_light,assets/img/bg/1080/zettai_light.jpg,True,assets/songs/songlist xeraphinite bg=zettai_light,Confirmed
+xeraphinite,song,bg_inverse,zettai,assets/img/bg/1080/zettai.jpg,True,assets/songs/songlist xeraphinite bg_inverse=zettai,Confirmed
+lapis,song,bg,nijuusei-light-b,assets/img/bg/1080/nijuusei-light-b.jpg,True,assets/songs/songlist lapis bg=nijuusei-light-b,Confirmed
+lapis,song,bg_inverse,nijuusei-conflict-b,assets/img/bg/1080/nijuusei-conflict-b.jpg,True,assets/songs/songlist lapis bg_inverse=nijuusei-conflict-b,Confirmed
+xanatos,song,bg,yugamu,assets/img/bg/1080/yugamu.jpg,True,assets/songs/songlist xanatos bg=yugamu,Confirmed
+xanatos,song,bg_inverse,rei,assets/img/bg/1080/rei.jpg,True,assets/songs/songlist xanatos bg_inverse=rei,Confirmed
+purpleverse,song,bg,prelude_conflict,assets/img/bg/1080/prelude_conflict.jpg,True,assets/songs/songlist purpleverse bg=prelude_conflict,Confirmed
+purpleverse,song,bg_inverse,prelude_light,assets/img/bg/1080/prelude_light.jpg,True,assets/songs/songlist purpleverse bg_inverse=prelude_light,Confirmed
+alicealamode,song,bg,alice_light,assets/img/bg/1080/alice_light.jpg,True,assets/songs/songlist alicealamode bg=alice_light,Confirmed
+alicealamode,song,bg_inverse,alice_conflict,assets/img/bg/1080/alice_conflict.jpg,True,assets/songs/songlist alicealamode bg_inverse=alice_conflict,Confirmed
+eccentrictale,song,bg,alice_conflict,assets/img/bg/1080/alice_conflict.jpg,True,assets/songs/songlist eccentrictale bg=alice_conflict,Confirmed
+eccentrictale,song,bg_inverse,alice_light,assets/img/bg/1080/alice_light.jpg,True,assets/songs/songlist eccentrictale bg_inverse=alice_light,Confirmed
+alicessuitcase,song,bg,alice_light,assets/img/bg/1080/alice_light.jpg,True,assets/songs/songlist alicessuitcase bg=alice_light,Confirmed
+alicessuitcase,song,bg_inverse,alice_conflict,assets/img/bg/1080/alice_conflict.jpg,True,assets/songs/songlist alicessuitcase bg_inverse=alice_conflict,Confirmed
+jump,song,bg,alice_light,assets/img/bg/1080/alice_light.jpg,True,assets/songs/songlist jump bg=alice_light,Confirmed
+jump,song,bg_inverse,alice_conflict,assets/img/bg/1080/alice_conflict.jpg,True,assets/songs/songlist jump bg_inverse=alice_conflict,Confirmed
+felis,song,bg,felis,assets/img/bg/1080/felis.jpg,True,assets/songs/songlist felis bg=felis,Confirmed
+besideyou,song,bg,alice_light,assets/img/bg/1080/alice_light.jpg,True,assets/songs/songlist besideyou bg=alice_light,Confirmed
+besideyou,song,bg_inverse,alice_conflict,assets/img/bg/1080/alice_conflict.jpg,True,assets/songs/songlist besideyou bg_inverse=alice_conflict,Confirmed
+heartjackin,song,bg,alice_light,assets/img/bg/1080/alice_light.jpg,True,assets/songs/songlist heartjackin bg=alice_light,Confirmed
+heartjackin,song,bg_inverse,alice_conflict,assets/img/bg/1080/alice_conflict.jpg,True,assets/songs/songlist heartjackin bg_inverse=alice_conflict,Confirmed
+toaliceliddell,song,bg,alice_conflict,assets/img/bg/1080/alice_conflict.jpg,True,assets/songs/songlist toaliceliddell bg=alice_conflict,Confirmed
+toaliceliddell,song,bg_inverse,alice_light,assets/img/bg/1080/alice_light.jpg,True,assets/songs/songlist toaliceliddell bg_inverse=alice_light,Confirmed
+lazyaddiction,song,bg,ongeki_light,assets/img/bg/1080/ongeki_light.jpg,True,assets/songs/songlist lazyaddiction bg=ongeki_light,Confirmed
+lazyaddiction,song,bg_inverse,ongeki_conflict,assets/img/bg/1080/ongeki_conflict.jpg,True,assets/songs/songlist lazyaddiction bg_inverse=ongeki_conflict,Confirmed
+dazzlehop,song,bg,ongeki_conflict,assets/img/bg/1080/ongeki_conflict.jpg,True,assets/songs/songlist dazzlehop bg=ongeki_conflict,Confirmed
+dazzlehop,song,bg_inverse,ongeki_light,assets/img/bg/1080/ongeki_light.jpg,True,assets/songs/songlist dazzlehop bg_inverse=ongeki_light,Confirmed
+viyellastears,song,bg,ongeki_conflict,assets/img/bg/1080/ongeki_conflict.jpg,True,assets/songs/songlist viyellastears bg=ongeki_conflict,Confirmed
+viyellastears,song,bg_inverse,ongeki_light,assets/img/bg/1080/ongeki_light.jpg,True,assets/songs/songlist viyellastears bg_inverse=ongeki_light,Confirmed
+omegafour,song,bg,omegafour,assets/img/bg/1080/omegafour.jpg,True,assets/songs/songlist omegafour bg=omegafour,Confirmed
+aprilshowers,song,bg,maimai_light,assets/img/bg/1080/maimai_light.jpg,True,assets/songs/songlist aprilshowers bg=maimai_light,Confirmed
+aprilshowers,song,bg_inverse,maimai_conflict,assets/img/bg/1080/maimai_conflict.jpg,True,assets/songs/songlist aprilshowers bg_inverse=maimai_conflict,Confirmed
+seventhsense,song,bg,maimai_conflict,assets/img/bg/1080/maimai_conflict.jpg,True,assets/songs/songlist seventhsense bg=maimai_conflict,Confirmed
+seventhsense,song,bg_inverse,maimai_light,assets/img/bg/1080/maimai_light.jpg,True,assets/songs/songlist seventhsense bg_inverse=maimai_light,Confirmed
+oshamascramble,song,bg,maimai_light,assets/img/bg/1080/maimai_light.jpg,True,assets/songs/songlist oshamascramble bg=maimai_light,Confirmed
+oshamascramble,song,bg_inverse,maimai_conflict,assets/img/bg/1080/maimai_conflict.jpg,True,assets/songs/songlist oshamascramble bg_inverse=maimai_conflict,Confirmed
+amazingmightyyyy,song,bg,maimai_boss,assets/img/bg/1080/maimai_boss.jpg,True,assets/songs/songlist amazingmightyyyy bg=maimai_boss,Confirmed
+climax,song,bg,chunithmthird_conflict,assets/img/bg/1080/chunithmthird_conflict.jpg,True,assets/songs/songlist climax bg=chunithmthird_conflict,Confirmed
+lastcelebration,song,bg,chunithmthird_conflict,assets/img/bg/1080/chunithmthird_conflict.jpg,True,assets/songs/songlist lastcelebration bg=chunithmthird_conflict,Confirmed
+gou,song,bg,gou,assets/img/bg/1080/gou.jpg,True,assets/songs/songlist gou bg=gou,Confirmed
+glow,song,bg,prelude_conflict,assets/img/bg/1080/prelude_conflict.jpg,True,assets/songs/songlist glow bg=prelude_conflict,Confirmed
+glow,song,bg_inverse,prelude_light,assets/img/bg/1080/prelude_light.jpg,True,assets/songs/songlist glow bg_inverse=prelude_light,Confirmed
+attraqtia,song,bg,rei,assets/img/bg/1080/rei.jpg,True,assets/songs/songlist attraqtia bg=rei,Confirmed
+attraqtia,song,bg_inverse,yugamu,assets/img/bg/1080/yugamu.jpg,True,assets/songs/songlist attraqtia bg_inverse=yugamu,Confirmed
+enchantedlove,song,bg,rei,assets/img/bg/1080/rei.jpg,True,assets/songs/songlist enchantedlove bg=rei,Confirmed
+enchantedlove,song,bg_inverse,yugamu,assets/img/bg/1080/yugamu.jpg,True,assets/songs/songlist enchantedlove bg_inverse=yugamu,Confirmed
+take,song,bg,nijuusei-light-b,assets/img/bg/1080/nijuusei-light-b.jpg,True,assets/songs/songlist take bg=nijuusei-light-b,Confirmed
+take,song,bg_inverse,nijuusei-conflict-b,assets/img/bg/1080/nijuusei-conflict-b.jpg,True,assets/songs/songlist take bg_inverse=nijuusei-conflict-b,Confirmed
+gimmedablood,song,bg,yugamu,assets/img/bg/1080/yugamu.jpg,True,assets/songs/songlist gimmedablood bg=yugamu,Confirmed
+gimmedablood,song,bg_inverse,rei,assets/img/bg/1080/rei.jpg,True,assets/songs/songlist gimmedablood bg_inverse=rei,Confirmed
+bassline,song,bg,prelude_light,assets/img/bg/1080/prelude_light.jpg,True,assets/songs/songlist bassline bg=prelude_light,Confirmed
+bassline,song,bg_inverse,prelude_conflict,assets/img/bg/1080/prelude_conflict.jpg,True,assets/songs/songlist bassline bg_inverse=prelude_conflict,Confirmed
+lifeispiano,song,bg,rei,assets/img/bg/1080/rei.jpg,True,assets/songs/songlist lifeispiano bg=rei,Confirmed
+lifeispiano,song,bg_inverse,yugamu,assets/img/bg/1080/yugamu.jpg,True,assets/songs/songlist lifeispiano bg_inverse=yugamu,Confirmed
+paperwitch,song,bg,observer_light,assets/img/bg/1080/observer_light.jpg,True,assets/songs/songlist paperwitch bg=observer_light,Confirmed
+paperwitch,song,bg_inverse,observer_conflict,assets/img/bg/1080/observer_conflict.jpg,True,assets/songs/songlist paperwitch bg_inverse=observer_conflict,Confirmed
+crystalgravity,song,bg,observer_conflict,assets/img/bg/1080/observer_conflict.jpg,True,assets/songs/songlist crystalgravity bg=observer_conflict,Confirmed
+crystalgravity,song,bg_inverse,observer_light,assets/img/bg/1080/observer_light.jpg,True,assets/songs/songlist crystalgravity bg_inverse=observer_light,Confirmed
+farawaylight,song,bg,observer_light,assets/img/bg/1080/observer_light.jpg,True,assets/songs/songlist farawaylight bg=observer_light,Confirmed
+farawaylight,song,bg_inverse,observer_conflict,assets/img/bg/1080/observer_conflict.jpg,True,assets/songs/songlist farawaylight bg_inverse=observer_conflict,Confirmed
+loschen,song,bg,observer_conflict,assets/img/bg/1080/observer_conflict.jpg,True,assets/songs/songlist loschen bg=observer_conflict,Confirmed
+loschen,song,bg_inverse,observer_light,assets/img/bg/1080/observer_light.jpg,True,assets/songs/songlist loschen bg_inverse=observer_light,Confirmed
+aegleseeker,song,bg,aegleseeker,assets/img/bg/1080/aegleseeker.jpg,True,assets/songs/songlist aegleseeker bg=aegleseeker,Confirmed
+coastalhighway,song,bg,observer_light,assets/img/bg/1080/observer_light.jpg,True,assets/songs/songlist coastalhighway bg=observer_light,Confirmed
+coastalhighway,song,bg_inverse,observer_conflict,assets/img/bg/1080/observer_conflict.jpg,True,assets/songs/songlist coastalhighway bg_inverse=observer_conflict,Confirmed
+odysseia,song,bg,observer_conflict,assets/img/bg/1080/observer_conflict.jpg,True,assets/songs/songlist odysseia bg=observer_conflict,Confirmed
+odysseia,song,bg_inverse,observer_light,assets/img/bg/1080/observer_light.jpg,True,assets/songs/songlist odysseia bg_inverse=observer_light,Confirmed
+overwhelm,song,bg,observer_light,assets/img/bg/1080/observer_light.jpg,True,assets/songs/songlist overwhelm bg=observer_light,Confirmed
+overwhelm,song,bg_inverse,observer_conflict,assets/img/bg/1080/observer_conflict.jpg,True,assets/songs/songlist overwhelm bg_inverse=observer_conflict,Confirmed
+vandalism,song,bg,prelude_conflict,assets/img/bg/1080/prelude_conflict.jpg,True,assets/songs/songlist vandalism bg=prelude_conflict,Confirmed
+vandalism,song,bg_inverse,prelude_light,assets/img/bg/1080/prelude_light.jpg,True,assets/songs/songlist vandalism bg_inverse=prelude_light,Confirmed
+turbocharger,song,bg,nijuusei-light-b,assets/img/bg/1080/nijuusei-light-b.jpg,True,assets/songs/songlist turbocharger bg=nijuusei-light-b,Confirmed
+turbocharger,song,bg_inverse,nijuusei-conflict-b,assets/img/bg/1080/nijuusei-conflict-b.jpg,True,assets/songs/songlist turbocharger bg_inverse=nijuusei-conflict-b,Confirmed
+theultimacy,song,bg,tanoc_conflict,assets/img/bg/1080/tanoc_conflict.jpg,True,assets/songs/songlist theultimacy bg=tanoc_conflict,Confirmed
+theultimacy,song,bg_inverse,tanoc_light,assets/img/bg/1080/tanoc_light.jpg,True,assets/songs/songlist theultimacy bg_inverse=tanoc_light,Confirmed
+rekkaresonance,song,bg,tanoc_red,assets/img/bg/1080/tanoc_red.jpg,True,assets/songs/songlist rekkaresonance bg=tanoc_red,Confirmed
+kyogenkigo,song,bg,nijuusei-conflict-b,assets/img/bg/1080/nijuusei-conflict-b.jpg,True,assets/songs/songlist kyogenkigo bg=nijuusei-conflict-b,Confirmed
+kyogenkigo,song,bg_inverse,nijuusei-light-b,assets/img/bg/1080/nijuusei-light-b.jpg,True,assets/songs/songlist kyogenkigo bg_inverse=nijuusei-light-b,Confirmed
+kyogenkigo,BYD,bg,nijuusei2_conflict,assets/img/bg/1080/nijuusei2_conflict.jpg,True,assets/songs/songlist kyogenkigo bg=nijuusei2_conflict,Confirmed
+kyogenkigo,BYD,bg_inverse,nijuusei2_light,assets/img/bg/1080/nijuusei2_light.jpg,True,assets/songs/songlist kyogenkigo bg_inverse=nijuusei2_light,Confirmed
+hivemind,song,bg,observer_conflict,assets/img/bg/1080/observer_conflict.jpg,True,assets/songs/songlist hivemind bg=observer_conflict,Confirmed
+hivemind,song,bg_inverse,observer_light,assets/img/bg/1080/observer_light.jpg,True,assets/songs/songlist hivemind bg_inverse=observer_light,Confirmed
+seclusion,song,bg,observer_conflict,assets/img/bg/1080/observer_conflict.jpg,True,assets/songs/songlist seclusion bg=observer_conflict,Confirmed
+seclusion,song,bg_inverse,observer_light,assets/img/bg/1080/observer_light.jpg,True,assets/songs/songlist seclusion bg_inverse=observer_light,Confirmed
+smallcloud,song,bg,observer_light,assets/img/bg/1080/observer_light.jpg,True,assets/songs/songlist smallcloud bg=observer_light,Confirmed
+smallcloud,song,bg_inverse,observer_conflict,assets/img/bg/1080/observer_conflict.jpg,True,assets/songs/songlist smallcloud bg_inverse=observer_conflict,Confirmed
+alterale,song,bg,observer_light,assets/img/bg/1080/observer_light.jpg,True,assets/songs/songlist alterale bg=observer_light,Confirmed
+alterale,song,bg_inverse,observer_conflict,assets/img/bg/1080/observer_conflict.jpg,True,assets/songs/songlist alterale bg_inverse=observer_conflict,Confirmed
+divinelight,song,bg,observer_light,assets/img/bg/1080/observer_light.jpg,True,assets/songs/songlist divinelight bg=observer_light,Confirmed
+divinelight,song,bg_inverse,observer_conflict,assets/img/bg/1080/observer_conflict.jpg,True,assets/songs/songlist divinelight bg_inverse=observer_conflict,Confirmed
+mazymetroplex,song,bg,wacca_light,assets/img/bg/1080/wacca_light.jpg,True,assets/songs/songlist mazymetroplex bg=wacca_light,Confirmed
+mazymetroplex,song,bg_inverse,wacca_conflict,assets/img/bg/1080/wacca_conflict.jpg,True,assets/songs/songlist mazymetroplex bg_inverse=wacca_conflict,Confirmed
+quonwacca,song,bg,wacca_conflict,assets/img/bg/1080/wacca_conflict.jpg,True,assets/songs/songlist quonwacca bg=wacca_conflict,Confirmed
+quonwacca,song,bg_inverse,wacca_light,assets/img/bg/1080/wacca_light.jpg,True,assets/songs/songlist quonwacca bg_inverse=wacca_light,Confirmed
+withu,song,bg,wacca_light,assets/img/bg/1080/wacca_light.jpg,True,assets/songs/songlist withu bg=wacca_light,Confirmed
+withu,song,bg_inverse,wacca_conflict,assets/img/bg/1080/wacca_conflict.jpg,True,assets/songs/songlist withu bg_inverse=wacca_conflict,Confirmed
+genocider,song,bg,wacca_boss,assets/img/bg/1080/wacca_boss.jpg,True,assets/songs/songlist genocider bg=wacca_boss,Confirmed
+letyoudivermx,song,bg,wacca_light,assets/img/bg/1080/wacca_light.jpg,True,assets/songs/songlist letyoudivermx bg=wacca_light,Confirmed
+letyoudivermx,song,bg_inverse,wacca_conflict,assets/img/bg/1080/wacca_conflict.jpg,True,assets/songs/songlist letyoudivermx bg_inverse=wacca_conflict,Confirmed
+sheriruthrmx,song,bg,wacca_conflict,assets/img/bg/1080/wacca_conflict.jpg,True,assets/songs/songlist sheriruthrmx bg=wacca_conflict,Confirmed
+sheriruthrmx,song,bg_inverse,wacca_light,assets/img/bg/1080/wacca_light.jpg,True,assets/songs/songlist sheriruthrmx bg_inverse=wacca_light,Confirmed
+eveninginscarlet,song,bg,omatsuri_conflict,assets/img/bg/1080/omatsuri_conflict.jpg,True,assets/songs/songlist eveninginscarlet bg=omatsuri_conflict,Confirmed
+eveninginscarlet,song,bg_inverse,omatsuri_light,assets/img/bg/1080/omatsuri_light.jpg,True,assets/songs/songlist eveninginscarlet bg_inverse=omatsuri_light,Confirmed
+bluecomet,song,bg,nijuusei-light-b,assets/img/bg/1080/nijuusei-light-b.jpg,True,assets/songs/songlist bluecomet bg=nijuusei-light-b,Confirmed
+bluecomet,song,bg_inverse,nijuusei-conflict-b,assets/img/bg/1080/nijuusei-conflict-b.jpg,True,assets/songs/songlist bluecomet bg_inverse=nijuusei-conflict-b,Confirmed
+energysynergymatrix,song,bg,nijuusei-conflict-b,assets/img/bg/1080/nijuusei-conflict-b.jpg,True,assets/songs/songlist energysynergymatrix bg=nijuusei-conflict-b,Confirmed
+energysynergymatrix,song,bg_inverse,nijuusei-light-b,assets/img/bg/1080/nijuusei-light-b.jpg,True,assets/songs/songlist energysynergymatrix bg_inverse=nijuusei-light-b,Confirmed
+energysynergymatrix,BYD,bg,nijuusei2_conflict,assets/img/bg/1080/nijuusei2_conflict.jpg,True,assets/songs/songlist energysynergymatrix bg=nijuusei2_conflict,Confirmed
+energysynergymatrix,BYD,bg_inverse,nijuusei2_light,assets/img/bg/1080/nijuusei2_light.jpg,True,assets/songs/songlist energysynergymatrix bg_inverse=nijuusei2_light,Confirmed
+gengaozo,song,bg,prelude_conflict,assets/img/bg/1080/prelude_conflict.jpg,True,assets/songs/songlist gengaozo bg=prelude_conflict,Confirmed
+gengaozo,song,bg_inverse,prelude_light,assets/img/bg/1080/prelude_light.jpg,True,assets/songs/songlist gengaozo bg_inverse=prelude_light,Confirmed
+goldenslaughterer,song,bg,zettai,assets/img/bg/1080/zettai.jpg,True,assets/songs/songlist goldenslaughterer bg=zettai,Confirmed
+goldenslaughterer,song,bg_inverse,zettai_light,assets/img/bg/1080/zettai_light.jpg,True,assets/songs/songlist goldenslaughterer bg_inverse=zettai_light,Confirmed
+lastendconductor,song,bg,zettai,assets/img/bg/1080/zettai.jpg,True,assets/songs/songlist lastendconductor bg=zettai,Confirmed
+lastendconductor,song,bg_inverse,zettai_light,assets/img/bg/1080/zettai_light.jpg,True,assets/songs/songlist lastendconductor bg_inverse=zettai_light,Confirmed
+redolentshape,song,bg,nijuusei2_conflict,assets/img/bg/1080/nijuusei2_conflict.jpg,True,assets/songs/songlist redolentshape bg=nijuusei2_conflict,Confirmed
+redolentshape,song,bg_inverse,nijuusei2_light,assets/img/bg/1080/nijuusei2_light.jpg,True,assets/songs/songlist redolentshape bg_inverse=nijuusei2_light,Confirmed
+cosmica,song,bg,nijuusei2_conflict,assets/img/bg/1080/nijuusei2_conflict.jpg,True,assets/songs/songlist cosmica bg=nijuusei2_conflict,Confirmed
+cosmica,song,bg_inverse,nijuusei2_light,assets/img/bg/1080/nijuusei2_light.jpg,True,assets/songs/songlist cosmica bg_inverse=nijuusei2_light,Confirmed
+ascent,song,bg,nijuusei2_light,assets/img/bg/1080/nijuusei2_light.jpg,True,assets/songs/songlist ascent bg=nijuusei2_light,Confirmed
+ascent,song,bg_inverse,nijuusei2_conflict,assets/img/bg/1080/nijuusei2_conflict.jpg,True,assets/songs/songlist ascent bg_inverse=nijuusei2_conflict,Confirmed
+livefastdieyoung,song,bg,nijuusei2_light,assets/img/bg/1080/nijuusei2_light.jpg,True,assets/songs/songlist livefastdieyoung bg=nijuusei2_light,Confirmed
+livefastdieyoung,song,bg_inverse,nijuusei2_conflict,assets/img/bg/1080/nijuusei2_conflict.jpg,True,assets/songs/songlist livefastdieyoung bg_inverse=nijuusei2_conflict,Confirmed
+summerfireworks,song,bg,omatsuri_light,assets/img/bg/1080/omatsuri_light.jpg,True,assets/songs/songlist summerfireworks bg=omatsuri_light,Confirmed
+summerfireworks,song,bg_inverse,omatsuri_conflict,assets/img/bg/1080/omatsuri_conflict.jpg,True,assets/songs/songlist summerfireworks bg_inverse=omatsuri_conflict,Confirmed
+firstsnow,song,bg,hime_light,assets/img/bg/1080/hime_light.jpg,True,assets/songs/songlist firstsnow bg=hime_light,Confirmed
+firstsnow,song,bg_inverse,hime_conflict,assets/img/bg/1080/hime_conflict.jpg,True,assets/songs/songlist firstsnow bg_inverse=hime_conflict,Confirmed
+bluerose,song,bg,hime_light,assets/img/bg/1080/hime_light.jpg,True,assets/songs/songlist bluerose bg=hime_light,Confirmed
+bluerose,song,bg_inverse,hime_conflict,assets/img/bg/1080/hime_conflict.jpg,True,assets/songs/songlist bluerose bg_inverse=hime_conflict,Confirmed
+blockedlibrary,song,bg,hime_conflict,assets/img/bg/1080/hime_conflict.jpg,True,assets/songs/songlist blockedlibrary bg=hime_conflict,Confirmed
+blockedlibrary,song,bg_inverse,hime_light,assets/img/bg/1080/hime_light.jpg,True,assets/songs/songlist blockedlibrary bg_inverse=hime_light,Confirmed
+neokosmo,song,bg,hime_conflict,assets/img/bg/1080/hime_conflict.jpg,True,assets/songs/songlist neokosmo bg=hime_conflict,Confirmed
+neokosmo,song,bg_inverse,hime_light,assets/img/bg/1080/hime_light.jpg,True,assets/songs/songlist neokosmo bg_inverse=hime_light,Confirmed
+lightningscrew,song,bg,hime_light,assets/img/bg/1080/hime_light.jpg,True,assets/songs/songlist lightningscrew bg=hime_light,Confirmed
+lightningscrew,song,bg_inverse,hime_conflict,assets/img/bg/1080/hime_conflict.jpg,True,assets/songs/songlist lightningscrew bg_inverse=hime_conflict,Confirmed
+lightsofmuse,song,bg,musedash_light,assets/img/bg/1080/musedash_light.jpg,True,assets/songs/songlist lightsofmuse bg=musedash_light,Confirmed
+lightsofmuse,song,bg_inverse,musedash_conflict,assets/img/bg/1080/musedash_conflict.jpg,True,assets/songs/songlist lightsofmuse bg_inverse=musedash_conflict,Confirmed
+finalstep,song,bg,musedash_conflict,assets/img/bg/1080/musedash_conflict.jpg,True,assets/songs/songlist finalstep bg=musedash_conflict,Confirmed
+finalstep,song,bg_inverse,musedash_light,assets/img/bg/1080/musedash_light.jpg,True,assets/songs/songlist finalstep bg_inverse=musedash_light,Confirmed
+akinokagerou,song,bg,musedash_light,assets/img/bg/1080/musedash_light.jpg,True,assets/songs/songlist akinokagerou bg=musedash_light,Confirmed
+akinokagerou,song,bg_inverse,musedash_conflict,assets/img/bg/1080/musedash_conflict.jpg,True,assets/songs/songlist akinokagerou bg_inverse=musedash_conflict,Confirmed
+medusa,song,bg,musedash_conflict,assets/img/bg/1080/musedash_conflict.jpg,True,assets/songs/songlist medusa bg=musedash_conflict,Confirmed
+medusa,song,bg_inverse,musedash_light,assets/img/bg/1080/musedash_light.jpg,True,assets/songs/songlist medusa bg_inverse=musedash_light,Confirmed
+init,song,bg,prelude_conflict,assets/img/bg/1080/prelude_conflict.jpg,True,assets/songs/songlist init bg=prelude_conflict,Confirmed
+init,song,bg_inverse,prelude_light,assets/img/bg/1080/prelude_light.jpg,True,assets/songs/songlist init bg_inverse=prelude_light,Confirmed
+internetoverdose,song,bg,single2_light,assets/img/bg/1080/single2_light.jpg,True,assets/songs/songlist internetoverdose bg=single2_light,Confirmed
+internetoverdose,song,bg_inverse,single2_conflict,assets/img/bg/1080/single2_conflict.jpg,True,assets/songs/songlist internetoverdose bg_inverse=single2_conflict,Confirmed
+sakurafubuki,song,bg,hime_light,assets/img/bg/1080/hime_light.jpg,True,assets/songs/songlist sakurafubuki bg=hime_light,Confirmed
+sakurafubuki,song,bg_inverse,hime_conflict,assets/img/bg/1080/hime_conflict.jpg,True,assets/songs/songlist sakurafubuki bg_inverse=hime_conflict,Confirmed
+nulctrl,song,bg,prelude_conflict,assets/img/bg/1080/prelude_conflict.jpg,True,assets/songs/songlist nulctrl bg=prelude_conflict,Confirmed
+nulctrl,song,bg_inverse,prelude_light,assets/img/bg/1080/prelude_light.jpg,True,assets/songs/songlist nulctrl bg_inverse=prelude_light,Confirmed
+macromod,song,bg,single2_light,assets/img/bg/1080/single2_light.jpg,True,assets/songs/songlist macromod bg=single2_light,Confirmed
+macromod,song,bg_inverse,single2_conflict,assets/img/bg/1080/single2_conflict.jpg,True,assets/songs/songlist macromod bg_inverse=single2_conflict,Confirmed
+neowings,song,bg,single2_conflict,assets/img/bg/1080/single2_conflict.jpg,True,assets/songs/songlist neowings bg=single2_conflict,Confirmed
+neowings,song,bg_inverse,single2_light,assets/img/bg/1080/single2_light.jpg,True,assets/songs/songlist neowings bg_inverse=single2_light,Confirmed
+kissinglucifer,song,bg,single2_conflict,assets/img/bg/1080/single2_conflict.jpg,True,assets/songs/songlist kissinglucifer bg=single2_conflict,Confirmed
+kissinglucifer,song,bg_inverse,single2_light,assets/img/bg/1080/single2_light.jpg,True,assets/songs/songlist kissinglucifer bg_inverse=single2_light,Confirmed
+avril,song,bg,alice_light,assets/img/bg/1080/alice_light.jpg,True,assets/songs/songlist avril bg=alice_light,Confirmed
+avril,song,bg_inverse,alice_conflict,assets/img/bg/1080/alice_conflict.jpg,True,assets/songs/songlist avril bg_inverse=alice_conflict,Confirmed
+aurgelmir,song,bg,gc_ouroboros,assets/img/bg/1080/gc_ouroboros.jpg,True,assets/songs/songlist aurgelmir bg=gc_ouroboros,Confirmed
+headbonkache,song,bg,yugamu,assets/img/bg/1080/yugamu.jpg,True,assets/songs/songlist headbonkache bg=yugamu,Confirmed
+headbonkache,song,bg_inverse,rei,assets/img/bg/1080/rei.jpg,True,assets/songs/songlist headbonkache bg_inverse=rei,Confirmed
+ddd,song,bg,nijuusei2_light,assets/img/bg/1080/nijuusei2_light.jpg,True,assets/songs/songlist ddd bg=nijuusei2_light,Confirmed
+ddd,song,bg_inverse,nijuusei2_conflict,assets/img/bg/1080/nijuusei2_conflict.jpg,True,assets/songs/songlist ddd bg_inverse=nijuusei2_conflict,Confirmed
+prism,song,bg,lanota-light,assets/img/bg/1080/lanota-light.jpg,True,assets/songs/songlist prism bg=lanota-light,Confirmed
+prism,song,bg_inverse,lanota-conflict,assets/img/bg/1080/lanota-conflict.jpg,True,assets/songs/songlist prism bg_inverse=lanota-conflict,Confirmed
+protoflicker,song,bg,lanota-conflict,assets/img/bg/1080/lanota-conflict.jpg,True,assets/songs/songlist protoflicker bg=lanota-conflict,Confirmed
+protoflicker,song,bg_inverse,lanota-light,assets/img/bg/1080/lanota-light.jpg,True,assets/songs/songlist protoflicker bg_inverse=lanota-light,Confirmed
+stasis,song,bg,quon,assets/img/bg/1080/quon.jpg,True,assets/songs/songlist stasis bg=quon,Confirmed
+picopicotranslation,song,bg,nijuusei-conflict-b,assets/img/bg/1080/nijuusei-conflict-b.jpg,True,assets/songs/songlist picopicotranslation bg=nijuusei-conflict-b,Confirmed
+picopicotranslation,song,bg_inverse,nijuusei-light-b,assets/img/bg/1080/nijuusei-light-b.jpg,True,assets/songs/songlist picopicotranslation bg_inverse=nijuusei-light-b,Confirmed
+nekonote,song,bg,alice_light,assets/img/bg/1080/alice_light.jpg,True,assets/songs/songlist nekonote bg=alice_light,Confirmed
+nekonote,song,bg_inverse,alice_conflict,assets/img/bg/1080/alice_conflict.jpg,True,assets/songs/songlist nekonote bg_inverse=alice_conflict,Confirmed
+mu,song,bg,single2_light,assets/img/bg/1080/single2_light.jpg,True,assets/songs/songlist mu bg=single2_light,Confirmed
+mu,song,bg_inverse,single2_conflict,assets/img/bg/1080/single2_conflict.jpg,True,assets/songs/songlist mu bg_inverse=single2_conflict,Confirmed
+sanskia,song,bg,alice_light,assets/img/bg/1080/alice_light.jpg,True,assets/songs/songlist sanskia bg=alice_light,Confirmed
+sanskia,song,bg_inverse,alice_conflict,assets/img/bg/1080/alice_conflict.jpg,True,assets/songs/songlist sanskia bg_inverse=alice_conflict,Confirmed
+altair,song,bg,nijuusei2_light,assets/img/bg/1080/nijuusei2_light.jpg,True,assets/songs/songlist altair bg=nijuusei2_light,Confirmed
+altair,song,bg_inverse,nijuusei2_conflict,assets/img/bg/1080/nijuusei2_conflict.jpg,True,assets/songs/songlist altair bg_inverse=nijuusei2_conflict,Confirmed
+mukishitsu,song,bg,prelude_light,assets/img/bg/1080/prelude_light.jpg,True,assets/songs/songlist mukishitsu bg=prelude_light,Confirmed
+mukishitsu,song,bg_inverse,prelude_conflict,assets/img/bg/1080/prelude_conflict.jpg,True,assets/songs/songlist mukishitsu bg_inverse=prelude_conflict,Confirmed
+trapcrow,song,bg,prelude_conflict,assets/img/bg/1080/prelude_conflict.jpg,True,assets/songs/songlist trapcrow bg=prelude_conflict,Confirmed
+trapcrow,song,bg_inverse,prelude_light,assets/img/bg/1080/prelude_light.jpg,True,assets/songs/songlist trapcrow bg_inverse=prelude_light,Confirmed
+pupa,song,bg,single2_conflict,assets/img/bg/1080/single2_conflict.jpg,True,assets/songs/songlist pupa bg=single2_conflict,Confirmed
+pupa,song,bg_inverse,single2_light,assets/img/bg/1080/single2_light.jpg,True,assets/songs/songlist pupa bg_inverse=single2_light,Confirmed
+defection,song,bg,finale_light,assets/img/bg/1080/finale_light.jpg,True,assets/songs/songlist defection bg=finale_light,Confirmed
+defection,song,bg_inverse,finale_conflict,assets/img/bg/1080/finale_conflict.jpg,True,assets/songs/songlist defection bg_inverse=finale_conflict,Confirmed
+infinitestrife,song,bg,finale_conflict,assets/img/bg/1080/finale_conflict.jpg,True,assets/songs/songlist infinitestrife bg=finale_conflict,Confirmed
+infinitestrife,song,bg_inverse,finale_light,assets/img/bg/1080/finale_light.jpg,True,assets/songs/songlist infinitestrife bg_inverse=finale_light,Confirmed
+worldender,song,bg,finale_light,assets/img/bg/1080/finale_light.jpg,True,assets/songs/songlist worldender bg=finale_light,Confirmed
+worldender,song,bg_inverse,finale_conflict,assets/img/bg/1080/finale_conflict.jpg,True,assets/songs/songlist worldender bg_inverse=finale_conflict,Confirmed
+pentiment,song,bg,pentiment,assets/img/bg/1080/pentiment.jpg,True,assets/songs/songlist pentiment bg=pentiment,Confirmed
+arcanaeden,song,bg,arcanaeden,assets/img/bg/1080/arcanaeden.jpg,True,assets/songs/songlist arcanaeden bg=arcanaeden,Confirmed
+testify,song,bg,testify,assets/img/bg/1080/testify.jpg,True,assets/songs/songlist testify bg=testify,Confirmed
+lovelessdress,song,bg,epilogue,assets/img/bg/1080/epilogue.jpg,True,assets/songs/songlist lovelessdress bg=epilogue,Confirmed
+last,song,bg,epilogue,assets/img/bg/1080/epilogue.jpg,True,assets/songs/songlist last bg=epilogue,Confirmed
+lasteternity,song,bg,epilogue,assets/img/bg/1080/epilogue.jpg,True,assets/songs/songlist lasteternity bg=epilogue,Confirmed
+callimakarma,song,bg,epilogue,assets/img/bg/1080/epilogue.jpg,True,assets/songs/songlist callimakarma bg=epilogue,Confirmed
+kokoro,song,bg,ongeki_light,assets/img/bg/1080/ongeki_light.jpg,True,assets/songs/songlist kokoro bg=ongeki_light,Confirmed
+kokoro,song,bg_inverse,ongeki_conflict,assets/img/bg/1080/ongeki_conflict.jpg,True,assets/songs/songlist kokoro bg_inverse=ongeki_conflict,Confirmed
+aidrew,song,bg,ongeki_conflict,assets/img/bg/1080/ongeki_conflict.jpg,True,assets/songs/songlist aidrew bg=ongeki_conflict,Confirmed
+aidrew,song,bg_inverse,ongeki_light,assets/img/bg/1080/ongeki_light.jpg,True,assets/songs/songlist aidrew bg_inverse=ongeki_light,Confirmed
+fluffyflash,song,bg,ongeki_light,assets/img/bg/1080/ongeki_light.jpg,True,assets/songs/songlist fluffyflash bg=ongeki_light,Confirmed
+fluffyflash,song,bg_inverse,ongeki_conflict,assets/img/bg/1080/ongeki_conflict.jpg,True,assets/songs/songlist fluffyflash bg_inverse=ongeki_conflict,Confirmed
+goodbyemerry,song,bg,ongeki_conflict,assets/img/bg/1080/ongeki_conflict.jpg,True,assets/songs/songlist goodbyemerry bg=ongeki_conflict,Confirmed
+goodbyemerry,song,bg_inverse,ongeki_light,assets/img/bg/1080/ongeki_light.jpg,True,assets/songs/songlist goodbyemerry bg_inverse=ongeki_light,Confirmed
+lamia,song,bg,lamia,assets/img/bg/1080/lamia.jpg,True,assets/songs/songlist lamia bg=lamia,Confirmed
+freemyself,song,bg,single2_light,assets/img/bg/1080/single2_light.jpg,True,assets/songs/songlist freemyself bg=single2_light,Confirmed
+freemyself,song,bg_inverse,single2_conflict,assets/img/bg/1080/single2_conflict.jpg,True,assets/songs/songlist freemyself bg_inverse=single2_conflict,Confirmed
+cocorocosmetic,song,bg,single2_light,assets/img/bg/1080/single2_light.jpg,True,assets/songs/songlist cocorocosmetic bg=single2_light,Confirmed
+cocorocosmetic,song,bg_inverse,single2_conflict,assets/img/bg/1080/single2_conflict.jpg,True,assets/songs/songlist cocorocosmetic bg_inverse=single2_conflict,Confirmed
+capella,song,bg,hime_light,assets/img/bg/1080/hime_light.jpg,True,assets/songs/songlist capella bg=hime_light,Confirmed
+capella,song,bg_inverse,hime_conflict,assets/img/bg/1080/hime_conflict.jpg,True,assets/songs/songlist capella bg_inverse=hime_conflict,Confirmed
+dialnote,song,bg,nijuusei2_light,assets/img/bg/1080/nijuusei2_light.jpg,True,assets/songs/songlist dialnote bg=nijuusei2_light,Confirmed
+dialnote,song,bg_inverse,nijuusei2_conflict,assets/img/bg/1080/nijuusei2_conflict.jpg,True,assets/songs/songlist dialnote bg_inverse=nijuusei2_conflict,Confirmed
+tsukinimurakumo,song,bg,touhou_conflict,assets/img/bg/1080/touhou_conflict.jpg,True,assets/songs/songlist tsukinimurakumo bg=touhou_conflict,Confirmed
+tsukinimurakumo,song,bg_inverse,touhou_light,assets/img/bg/1080/touhou_light.jpg,True,assets/songs/songlist tsukinimurakumo bg_inverse=touhou_light,Confirmed
+mantis,song,bg,prelude_conflict,assets/img/bg/1080/prelude_conflict.jpg,True,assets/songs/songlist mantis bg=prelude_conflict,Confirmed
+mantis,song,bg_inverse,prelude_light,assets/img/bg/1080/prelude_light.jpg,True,assets/songs/songlist mantis bg_inverse=prelude_light,Confirmed
+worldfragments,song,bg,prelude_light,assets/img/bg/1080/prelude_light.jpg,True,assets/songs/songlist worldfragments bg=prelude_light,Confirmed
+worldfragments,song,bg_inverse,prelude_conflict,assets/img/bg/1080/prelude_conflict.jpg,True,assets/songs/songlist worldfragments bg_inverse=prelude_conflict,Confirmed
+astrawalkthrough,song,bg,nijuusei2_conflict,assets/img/bg/1080/nijuusei2_conflict.jpg,True,assets/songs/songlist astrawalkthrough bg=nijuusei2_conflict,Confirmed
+astrawalkthrough,song,bg_inverse,nijuusei2_light,assets/img/bg/1080/nijuusei2_light.jpg,True,assets/songs/songlist astrawalkthrough bg_inverse=nijuusei2_light,Confirmed
+chronicle,song,bg,vs_light,assets/img/bg/1080/vs_light.jpg,True,assets/songs/songlist chronicle bg=vs_light,Confirmed
+chronicle,song,bg_inverse,vs_conflict,assets/img/bg/1080/vs_conflict.jpg,True,assets/songs/songlist chronicle bg_inverse=vs_conflict,Confirmed
+nullapophenia,song,bg,apophenia,assets/img/bg/1080/apophenia.jpg,True,assets/songs/songlist nullapophenia bg=apophenia,Confirmed
+crimsonthrone,song,bg,observer_conflict,assets/img/bg/1080/observer_conflict.jpg,True,assets/songs/songlist crimsonthrone bg=observer_conflict,Confirmed
+crimsonthrone,song,bg_inverse,observer_light,assets/img/bg/1080/observer_light.jpg,True,assets/songs/songlist crimsonthrone bg_inverse=observer_light,Confirmed
+manicjeer,song,bg,yugamu,assets/img/bg/1080/yugamu.jpg,True,assets/songs/songlist manicjeer bg=yugamu,Confirmed
+manicjeer,song,bg_inverse,rei,assets/img/bg/1080/rei.jpg,True,assets/songs/songlist manicjeer bg_inverse=rei,Confirmed
+hiirogekka,song,bg,touhou_conflict,assets/img/bg/1080/touhou_conflict.jpg,True,assets/songs/songlist hiirogekka bg=touhou_conflict,Confirmed
+hiirogekka,song,bg_inverse,touhou_light,assets/img/bg/1080/touhou_light.jpg,True,assets/songs/songlist hiirogekka bg_inverse=touhou_light,Confirmed
+letsrock,song,bg,zettai,assets/img/bg/1080/zettai.jpg,True,assets/songs/songlist letsrock bg=zettai,Confirmed
+letsrock,song,bg_inverse,zettai_light,assets/img/bg/1080/zettai_light.jpg,True,assets/songs/songlist letsrock bg_inverse=zettai_light,Confirmed
+cycles,song,bg,maimai_light,assets/img/bg/1080/maimai_light.jpg,True,assets/songs/songlist cycles bg=maimai_light,Confirmed
+cycles,song,bg_inverse,maimai_conflict,assets/img/bg/1080/maimai_conflict.jpg,True,assets/songs/songlist cycles bg_inverse=maimai_conflict,Confirmed
+maxrage,song,bg,maimai_conflict,assets/img/bg/1080/maimai_conflict.jpg,True,assets/songs/songlist maxrage bg=maimai_conflict,Confirmed
+maxrage,song,bg_inverse,maimai_light,assets/img/bg/1080/maimai_light.jpg,True,assets/songs/songlist maxrage bg_inverse=maimai_light,Confirmed
+infinity,song,bg,maimai_conflict,assets/img/bg/1080/maimai_conflict.jpg,True,assets/songs/songlist infinity bg=maimai_conflict,Confirmed
+infinity,song,bg_inverse,maimai_light,assets/img/bg/1080/maimai_light.jpg,True,assets/songs/songlist infinity bg_inverse=maimai_light,Confirmed
+temptation,song,bg,temptation,assets/img/bg/1080/temptation.jpg,True,assets/songs/songlist temptation bg=temptation,Confirmed
+primitivelights,song,bg,vs_light,assets/img/bg/1080/vs_light.jpg,True,assets/songs/songlist primitivelights bg=vs_light,Confirmed
+primitivelights,song,bg_inverse,vs_conflict,assets/img/bg/1080/vs_conflict.jpg,True,assets/songs/songlist primitivelights bg_inverse=vs_conflict,Confirmed
+cosmopop,song,bg,chunithmnew_light,assets/img/bg/1080/chunithmnew_light.jpg,True,assets/songs/songlist cosmopop bg=chunithmnew_light,Confirmed
+cosmopop,song,bg_inverse,chunithmnew_conflict,assets/img/bg/1080/chunithmnew_conflict.jpg,True,assets/songs/songlist cosmopop bg_inverse=chunithmnew_conflict,Confirmed
+impact,song,bg,chunithmnew_light,assets/img/bg/1080/chunithmnew_light.jpg,True,assets/songs/songlist impact bg=chunithmnew_light,Confirmed
+impact,song,bg_inverse,chunithmnew_conflict,assets/img/bg/1080/chunithmnew_conflict.jpg,True,assets/songs/songlist impact bg_inverse=chunithmnew_conflict,Confirmed
+genesischunithm,song,bg,chunithmnew_conflict,assets/img/bg/1080/chunithmnew_conflict.jpg,True,assets/songs/songlist genesischunithm bg=chunithmnew_conflict,Confirmed
+genesischunithm,song,bg_inverse,chunithmnew_light,assets/img/bg/1080/chunithmnew_light.jpg,True,assets/songs/songlist genesischunithm bg_inverse=chunithmnew_light,Confirmed
+trrricksters,song,bg,chunithmnew_conflict,assets/img/bg/1080/chunithmnew_conflict.jpg,True,assets/songs/songlist trrricksters bg=chunithmnew_conflict,Confirmed
+trrricksters,song,bg_inverse,chunithmnew_light,assets/img/bg/1080/chunithmnew_light.jpg,True,assets/songs/songlist trrricksters bg_inverse=chunithmnew_light,Confirmed
+spidersthread,song,bg,spidersthread,assets/img/bg/1080/spidersthread.jpg,True,assets/songs/songlist spidersthread bg=spidersthread,Confirmed
+lostemotion,song,bg,touhou_light,assets/img/bg/1080/touhou_light.jpg,True,assets/songs/songlist lostemotion bg=touhou_light,Confirmed
+lostemotion,song,bg_inverse,touhou_conflict,assets/img/bg/1080/touhou_conflict.jpg,True,assets/songs/songlist lostemotion bg_inverse=touhou_conflict,Confirmed
+gimmick,song,bg,prelude_conflict,assets/img/bg/1080/prelude_conflict.jpg,True,assets/songs/songlist gimmick bg=prelude_conflict,Confirmed
+gimmick,song,bg_inverse,prelude_light,assets/img/bg/1080/prelude_light.jpg,True,assets/songs/songlist gimmick bg_inverse=prelude_light,Confirmed
+thesurvivor,song,bg,nijuusei2_conflict,assets/img/bg/1080/nijuusei2_conflict.jpg,True,assets/songs/songlist thesurvivor bg=nijuusei2_conflict,Confirmed
+thesurvivor,song,bg_inverse,nijuusei2_light,assets/img/bg/1080/nijuusei2_light.jpg,True,assets/songs/songlist thesurvivor bg_inverse=nijuusei2_light,Confirmed
+newyorkbackraise,song,bg,single2_conflict,assets/img/bg/1080/single2_conflict.jpg,True,assets/songs/songlist newyorkbackraise bg=single2_conflict,Confirmed
+newyorkbackraise,song,bg_inverse,single2_light,assets/img/bg/1080/single2_light.jpg,True,assets/songs/songlist newyorkbackraise bg_inverse=single2_light,Confirmed
+galacticlove,song,bg,single2_light,assets/img/bg/1080/single2_light.jpg,True,assets/songs/songlist galacticlove bg=single2_light,Confirmed
+galacticlove,song,bg_inverse,single2_conflict,assets/img/bg/1080/single2_conflict.jpg,True,assets/songs/songlist galacticlove bg_inverse=single2_conflict,Confirmed
+lawlesspoint,song,bg,single2_conflict,assets/img/bg/1080/single2_conflict.jpg,True,assets/songs/songlist lawlesspoint bg=single2_conflict,Confirmed
+lawlesspoint,song,bg_inverse,single2_light,assets/img/bg/1080/single2_light.jpg,True,assets/songs/songlist lawlesspoint bg_inverse=single2_light,Confirmed
+lostintheabyss,song,bg,touhou_conflict,assets/img/bg/1080/touhou_conflict.jpg,True,assets/songs/songlist lostintheabyss bg=touhou_conflict,Confirmed
+lostintheabyss,song,bg_inverse,touhou_light,assets/img/bg/1080/touhou_light.jpg,True,assets/songs/songlist lostintheabyss bg_inverse=touhou_light,Confirmed
+hybris,song,bg,vs_conflict,assets/img/bg/1080/vs_conflict.jpg,True,assets/songs/songlist hybris bg=vs_conflict,Confirmed
+hybris,song,bg_inverse,vs_light,assets/img/bg/1080/vs_light.jpg,True,assets/songs/songlist hybris bg_inverse=vs_light,Confirmed
+tothemilkyway,song,bg,nijuusei2_light,assets/img/bg/1080/nijuusei2_light.jpg,True,assets/songs/songlist tothemilkyway bg=nijuusei2_light,Confirmed
+tothemilkyway,song,bg_inverse,nijuusei2_conflict,assets/img/bg/1080/nijuusei2_conflict.jpg,True,assets/songs/songlist tothemilkyway bg_inverse=nijuusei2_conflict,Confirmed
+internetyamero,song,bg,single2_conflict,assets/img/bg/1080/single2_conflict.jpg,True,assets/songs/songlist internetyamero bg=single2_conflict,Confirmed
+internetyamero,song,bg_inverse,single2_light,assets/img/bg/1080/single2_light.jpg,True,assets/songs/songlist internetyamero bg_inverse=single2_light,Confirmed
+bulletwaiting,song,bg,cytus_light,assets/img/bg/1080/cytus_light.jpg,True,assets/songs/songlist bulletwaiting bg=cytus_light,Confirmed
+bulletwaiting,song,bg_inverse,cytus_conflict,assets/img/bg/1080/cytus_conflict.jpg,True,assets/songs/songlist bulletwaiting bg_inverse=cytus_conflict,Confirmed
+devillicsphere,song,bg,cytus_conflict,assets/img/bg/1080/cytus_conflict.jpg,True,assets/songs/songlist devillicsphere bg=cytus_conflict,Confirmed
+devillicsphere,song,bg_inverse,cytus_light,assets/img/bg/1080/cytus_light.jpg,True,assets/songs/songlist devillicsphere bg_inverse=cytus_light,Confirmed
+lucidtraveler,song,bg,cytus_conflict,assets/img/bg/1080/cytus_conflict.jpg,True,assets/songs/songlist lucidtraveler bg=cytus_conflict,Confirmed
+lucidtraveler,song,bg_inverse,cytus_light,assets/img/bg/1080/cytus_light.jpg,True,assets/songs/songlist lucidtraveler bg_inverse=cytus_light,Confirmed
+chaos,song,bg,cytus_boss,assets/img/bg/1080/cytus_boss.jpg,True,assets/songs/songlist chaos bg=cytus_boss,Confirmed
+usedtobe,song,bg,cytus_light,assets/img/bg/1080/cytus_light.jpg,True,assets/songs/songlist usedtobe bg=cytus_light,Confirmed
+usedtobe,song,bg_inverse,cytus_conflict,assets/img/bg/1080/cytus_conflict.jpg,True,assets/songs/songlist usedtobe bg_inverse=cytus_conflict,Confirmed
+ultimatetaste,song,bg,touhou_light,assets/img/bg/1080/touhou_light.jpg,True,assets/songs/songlist ultimatetaste bg=touhou_light,Confirmed
+ultimatetaste,song,bg_inverse,touhou_conflict,assets/img/bg/1080/touhou_conflict.jpg,True,assets/songs/songlist ultimatetaste bg_inverse=touhou_conflict,Confirmed
+syuten,song,bg,cytus_light,assets/img/bg/1080/cytus_light.jpg,True,assets/songs/songlist syuten bg=cytus_light,Confirmed
+syuten,song,bg_inverse,cytus_conflict,assets/img/bg/1080/cytus_conflict.jpg,True,assets/songs/songlist syuten bg_inverse=cytus_conflict,Confirmed
+drg,song,bg,cytus_light,assets/img/bg/1080/cytus_light.jpg,True,assets/songs/songlist drg bg=cytus_light,Confirmed
+drg,song,bg_inverse,cytus_conflict,assets/img/bg/1080/cytus_conflict.jpg,True,assets/songs/songlist drg bg_inverse=cytus_conflict,Confirmed
+nnglooms,song,bg,cytus_conflict,assets/img/bg/1080/cytus_conflict.jpg,True,assets/songs/songlist nnglooms bg=cytus_conflict,Confirmed
+nnglooms,song,bg_inverse,cytus_light,assets/img/bg/1080/cytus_light.jpg,True,assets/songs/songlist nnglooms bg_inverse=cytus_light,Confirmed
+ii,song,bg,cytus_boss,assets/img/bg/1080/cytus_boss.jpg,True,assets/songs/songlist ii bg=cytus_boss,Confirmed
+magnolia,song,bg,magnolia,assets/img/bg/1080/magnolia.jpg,True,assets/songs/songlist magnolia bg=magnolia,Confirmed
+sacrifice,song,bg,touhou_conflict,assets/img/bg/1080/touhou_conflict.jpg,True,assets/songs/songlist sacrifice bg=touhou_conflict,Confirmed
+sacrifice,song,bg_inverse,touhou_light,assets/img/bg/1080/touhou_light.jpg,True,assets/songs/songlist sacrifice bg_inverse=touhou_light,Confirmed
+rgb,song,bg,observer_light,assets/img/bg/1080/observer_light.jpg,True,assets/songs/songlist rgb bg=observer_light,Confirmed
+rgb,song,bg_inverse,observer_conflict,assets/img/bg/1080/observer_conflict.jpg,True,assets/songs/songlist rgb bg_inverse=observer_conflict,Confirmed
+waitfordawn,song,bg,eden_light,assets/img/bg/1080/eden_light.jpg,True,assets/songs/songlist waitfordawn bg=eden_light,Confirmed
+waitfordawn,song,bg_inverse,eden_conflict,assets/img/bg/1080/eden_conflict.jpg,True,assets/songs/songlist waitfordawn bg_inverse=eden_conflict,Confirmed
+ravenspride,song,bg,eden_conflict,assets/img/bg/1080/eden_conflict.jpg,True,assets/songs/songlist ravenspride bg=eden_conflict,Confirmed
+ravenspride,song,bg_inverse,eden_light,assets/img/bg/1080/eden_light.jpg,True,assets/songs/songlist ravenspride bg_inverse=eden_light,Confirmed
+riseoftheworld,song,bg,eden_light,assets/img/bg/1080/eden_light.jpg,True,assets/songs/songlist riseoftheworld bg=eden_light,Confirmed
+riseoftheworld,song,bg_inverse,eden_conflict,assets/img/bg/1080/eden_conflict.jpg,True,assets/songs/songlist riseoftheworld bg_inverse=eden_conflict,Confirmed
+unknownlevels,song,bg,eden_conflict,assets/img/bg/1080/eden_conflict.jpg,True,assets/songs/songlist unknownlevels bg=eden_conflict,Confirmed
+unknownlevels,song,bg_inverse,eden_light,assets/img/bg/1080/eden_light.jpg,True,assets/songs/songlist unknownlevels bg_inverse=eden_light,Confirmed
+abstrusedilemma,song,bg,eden_boss,assets/img/bg/1080/eden_boss.jpg,True,assets/songs/songlist abstrusedilemma bg=eden_boss,Confirmed
+matenrou,song,bg,touhou_conflict,assets/img/bg/1080/touhou_conflict.jpg,True,assets/songs/songlist matenrou bg=touhou_conflict,Confirmed
+matenrou,song,bg_inverse,touhou_light,assets/img/bg/1080/touhou_light.jpg,True,assets/songs/songlist matenrou bg_inverse=touhou_light,Confirmed
+tothefurthestdream,song,bg,epilogue,assets/img/bg/1080/epilogue.jpg,True,assets/songs/songlist tothefurthestdream bg=epilogue,Confirmed
+remindthesouls,song,bg,hime_light,assets/img/bg/1080/hime_light.jpg,True,assets/songs/songlist remindthesouls bg=hime_light,Confirmed
+remindthesouls,song,bg_inverse,hime_conflict,assets/img/bg/1080/hime_conflict.jpg,True,assets/songs/songlist remindthesouls bg_inverse=hime_conflict,Confirmed
+dynitikos,song,bg,nijuusei2_conflict,assets/img/bg/1080/nijuusei2_conflict.jpg,True,assets/songs/songlist dynitikos bg=nijuusei2_conflict,Confirmed
+dynitikos,song,bg_inverse,nijuusei2_light,assets/img/bg/1080/nijuusei2_light.jpg,True,assets/songs/songlist dynitikos bg_inverse=nijuusei2_light,Confirmed
+amekagura,song,bg,omatsuri_light,assets/img/bg/1080/omatsuri_light.jpg,True,assets/songs/songlist amekagura bg=omatsuri_light,Confirmed
+amekagura,song,bg_inverse,omatsuri_conflict,assets/img/bg/1080/omatsuri_conflict.jpg,True,assets/songs/songlist amekagura bg_inverse=omatsuri_conflict,Confirmed
+bbkkbkk,song,bg,single2_conflict,assets/img/bg/1080/single2_conflict.jpg,True,assets/songs/songlist bbkkbkk bg=single2_conflict,Confirmed
+bbkkbkk,song,bg_inverse,single2_light,assets/img/bg/1080/single2_light.jpg,True,assets/songs/songlist bbkkbkk bg_inverse=single2_light,Confirmed
+primevaltexture,song,bg,eden_append_light,assets/img/bg/1080/eden_append_light.jpg,True,assets/songs/songlist primevaltexture bg=eden_append_light,Confirmed
+primevaltexture,song,bg_inverse,eden_append_conflict,assets/img/bg/1080/eden_append_conflict.jpg,True,assets/songs/songlist primevaltexture bg_inverse=eden_append_conflict,Confirmed
+technicolour,song,bg,eden_append_light,assets/img/bg/1080/eden_append_light.jpg,True,assets/songs/songlist technicolour bg=eden_append_light,Confirmed
+technicolour,song,bg_inverse,eden_append_conflict,assets/img/bg/1080/eden_append_conflict.jpg,True,assets/songs/songlist technicolour bg_inverse=eden_append_conflict,Confirmed
+logos,song,bg,eden_append_conflict,assets/img/bg/1080/eden_append_conflict.jpg,True,assets/songs/songlist logos bg=eden_append_conflict,Confirmed
+logos,song,bg_inverse,eden_append_light,assets/img/bg/1080/eden_append_light.jpg,True,assets/songs/songlist logos bg_inverse=eden_append_light,Confirmed
+egoeimi,song,bg,eden_append_conflict,assets/img/bg/1080/eden_append_conflict.jpg,True,assets/songs/songlist egoeimi bg=eden_append_conflict,Confirmed
+egoeimi,song,bg_inverse,eden_append_light,assets/img/bg/1080/eden_append_light.jpg,True,assets/songs/songlist egoeimi bg_inverse=eden_append_light,Confirmed
+arghena,song,bg,arghena,assets/img/bg/1080/arghena.jpg,True,assets/songs/songlist arghena bg=arghena,Confirmed
+arghena,song,bg_inverse,arghena,assets/img/bg/1080/arghena.jpg,True,assets/songs/songlist arghena bg_inverse=arghena,Confirmed
+fantasy,song,bg,hime_light,assets/img/bg/1080/hime_light.jpg,True,assets/songs/songlist fantasy bg=hime_light,Confirmed
+fantasy,song,bg_inverse,hime_conflict,assets/img/bg/1080/hime_conflict.jpg,True,assets/songs/songlist fantasy bg_inverse=hime_conflict,Confirmed
+transientspace,song,bg,eden_append_conflict,assets/img/bg/1080/eden_append_conflict.jpg,True,assets/songs/songlist transientspace bg=eden_append_conflict,Confirmed
+transientspace,song,bg_inverse,eden_append_light,assets/img/bg/1080/eden_append_light.jpg,True,assets/songs/songlist transientspace bg_inverse=eden_append_light,Confirmed
+namelesspassion,song,bg,eden_append_conflict,assets/img/bg/1080/eden_append_conflict.jpg,True,assets/songs/songlist namelesspassion bg=eden_append_conflict,Confirmed
+namelesspassion,song,bg_inverse,eden_append_light,assets/img/bg/1080/eden_append_light.jpg,True,assets/songs/songlist namelesspassion bg_inverse=eden_append_light,Confirmed
+teravolt,song,bg,eden_append_conflict,assets/img/bg/1080/eden_append_conflict.jpg,True,assets/songs/songlist teravolt bg=eden_append_conflict,Confirmed
+teravolt,song,bg_inverse,eden_append_light,assets/img/bg/1080/eden_append_light.jpg,True,assets/songs/songlist teravolt bg_inverse=eden_append_light,Confirmed
+stratoliner,song,bg,wacca_conflict,assets/img/bg/1080/wacca_conflict.jpg,True,assets/songs/songlist stratoliner bg=wacca_conflict,Confirmed
+stratoliner,song,bg_inverse,wacca_light,assets/img/bg/1080/wacca_light.jpg,True,assets/songs/songlist stratoliner bg_inverse=wacca_light,Confirmed
+ouverture,song,bg,wacca_conflict,assets/img/bg/1080/wacca_conflict.jpg,True,assets/songs/songlist ouverture bg=wacca_conflict,Confirmed
+ouverture,song,bg_inverse,wacca_light,assets/img/bg/1080/wacca_light.jpg,True,assets/songs/songlist ouverture bg_inverse=wacca_light,Confirmed
+xtreme,song,bg,wacca_conflict,assets/img/bg/1080/wacca_conflict.jpg,True,assets/songs/songlist xtreme bg=wacca_conflict,Confirmed
+xtreme,song,bg_inverse,wacca_light,assets/img/bg/1080/wacca_light.jpg,True,assets/songs/songlist xtreme bg_inverse=wacca_light,Confirmed
+edenwacca,song,bg,wacca_conflict,assets/img/bg/1080/wacca_conflict.jpg,True,assets/songs/songlist edenwacca bg=wacca_conflict,Confirmed
+edenwacca,song,bg_inverse,wacca_light,assets/img/bg/1080/wacca_light.jpg,True,assets/songs/songlist edenwacca bg_inverse=wacca_light,Confirmed
+metamysteria,song,bg,meta_mysteria,assets/img/bg/1080/meta_mysteria.jpg,True,assets/songs/songlist metamysteria bg=meta_mysteria,Confirmed
+metamysteria,song,bg_inverse,meta_mysteria,assets/img/bg/1080/meta_mysteria.jpg,True,assets/songs/songlist metamysteria bg_inverse=meta_mysteria,Confirmed
+aloneandlorn,song,bg,eden_light,assets/img/bg/1080/eden_light.jpg,True,assets/songs/songlist aloneandlorn bg=eden_light,Confirmed
+aloneandlorn,song,bg_inverse,eden_conflict,assets/img/bg/1080/eden_conflict.jpg,True,assets/songs/songlist aloneandlorn bg_inverse=eden_conflict,Confirmed
+wishuponasnow,song,bg,eden_light,assets/img/bg/1080/eden_light.jpg,True,assets/songs/songlist wishuponasnow bg=eden_light,Confirmed
+wishuponasnow,song,bg_inverse,eden_conflict,assets/img/bg/1080/eden_conflict.jpg,True,assets/songs/songlist wishuponasnow bg_inverse=eden_conflict,Confirmed
+overdrive,song,bg,touhou_light,assets/img/bg/1080/touhou_light.jpg,True,assets/songs/songlist overdrive bg=touhou_light,Confirmed
+overdrive,song,bg_inverse,touhou_conflict,assets/img/bg/1080/touhou_conflict.jpg,True,assets/songs/songlist overdrive bg_inverse=touhou_conflict,Confirmed
+felys,song,bg,prelude_conflict,assets/img/bg/1080/prelude_conflict.jpg,True,assets/songs/songlist felys bg=prelude_conflict,Confirmed
+felys,song,bg_inverse,prelude_light,assets/img/bg/1080/prelude_light.jpg,True,assets/songs/songlist felys bg_inverse=prelude_light,Confirmed
+onandon,song,bg,nijuusei2_light,assets/img/bg/1080/nijuusei2_light.jpg,True,assets/songs/songlist onandon bg=nijuusei2_light,Confirmed
+onandon,song,bg_inverse,nijuusei2_conflict,assets/img/bg/1080/nijuusei2_conflict.jpg,True,assets/songs/songlist onandon bg_inverse=nijuusei2_conflict,Confirmed
+lightmyway,song,bg,single2_conflict,assets/img/bg/1080/single2_conflict.jpg,True,assets/songs/songlist lightmyway bg=single2_conflict,Confirmed
+lightmyway,song,bg_inverse,single2_light,assets/img/bg/1080/single2_light.jpg,True,assets/songs/songlist lightmyway bg_inverse=single2_light,Confirmed
+hotarubinoyuki,song,bg,omatsuri_light,assets/img/bg/1080/omatsuri_light.jpg,True,assets/songs/songlist hotarubinoyuki bg=omatsuri_light,Confirmed
+hotarubinoyuki,song,bg_inverse,omatsuri_conflict,assets/img/bg/1080/omatsuri_conflict.jpg,True,assets/songs/songlist hotarubinoyuki bg_inverse=omatsuri_conflict,Confirmed
+theformula,song,bg,nijuusei2_light,assets/img/bg/1080/nijuusei2_light.jpg,True,assets/songs/songlist theformula bg=nijuusei2_light,Confirmed
+theformula,song,bg_inverse,nijuusei2_conflict,assets/img/bg/1080/nijuusei2_conflict.jpg,True,assets/songs/songlist theformula bg_inverse=nijuusei2_conflict,Confirmed
+lunarossa,song,bg,yugamu,assets/img/bg/1080/yugamu.jpg,True,assets/songs/songlist lunarossa bg=yugamu,Confirmed
+lunarossa,song,bg_inverse,rei,assets/img/bg/1080/rei.jpg,True,assets/songs/songlist lunarossa bg_inverse=rei,Confirmed
+jingle,song,bg,single2_light,assets/img/bg/1080/single2_light.jpg,True,assets/songs/songlist jingle bg=single2_light,Confirmed
+jingle,song,bg_inverse,single2_conflict,assets/img/bg/1080/single2_conflict.jpg,True,assets/songs/songlist jingle bg_inverse=single2_conflict,Confirmed
+innocence,song,bg,vs_light,assets/img/bg/1080/vs_light.jpg,True,assets/songs/songlist innocence bg=vs_light,Confirmed
+innocence,song,bg_inverse,vs_conflict,assets/img/bg/1080/vs_conflict.jpg,True,assets/songs/songlist innocence bg_inverse=vs_conflict,Confirmed
+ionostream,song,bg,nijuusei2_conflict,assets/img/bg/1080/nijuusei2_conflict.jpg,True,assets/songs/songlist ionostream bg=nijuusei2_conflict,Confirmed
+ionostream,song,bg_inverse,nijuusei2_light,assets/img/bg/1080/nijuusei2_light.jpg,True,assets/songs/songlist ionostream bg_inverse=nijuusei2_light,Confirmed
+alephzero,song,bg,single2_conflict,assets/img/bg/1080/single2_conflict.jpg,True,assets/songs/songlist alephzero bg=single2_conflict,Confirmed
+alephzero,song,bg_inverse,single2_light,assets/img/bg/1080/single2_light.jpg,True,assets/songs/songlist alephzero bg_inverse=single2_light,Confirmed
+masqueradelegion,song,bg,tanoc_conflict,assets/img/bg/1080/tanoc_conflict.jpg,True,assets/songs/songlist masqueradelegion bg=tanoc_conflict,Confirmed
+masqueradelegion,song,bg_inverse,tanoc_light,assets/img/bg/1080/tanoc_light.jpg,True,assets/songs/songlist masqueradelegion bg_inverse=tanoc_light,Confirmed
+kyorenromance,song,bg,saikyostronger,assets/img/bg/1080/saikyostronger.jpg,True,assets/songs/songlist kyorenromance bg=saikyostronger,Confirmed
+qovat,song,bg,hime_conflict,assets/img/bg/1080/hime_conflict.jpg,True,assets/songs/songlist qovat bg=hime_conflict,Confirmed
+qovat,song,bg_inverse,hime_light,assets/img/bg/1080/hime_light.jpg,True,assets/songs/songlist qovat bg_inverse=hime_light,Confirmed
+hellohell,song,bg,touhou_conflict,assets/img/bg/1080/touhou_conflict.jpg,True,assets/songs/songlist hellohell bg=touhou_conflict,Confirmed
+hellohell,song,bg_inverse,touhou_light,assets/img/bg/1080/touhou_light.jpg,True,assets/songs/songlist hellohell bg_inverse=touhou_light,Confirmed
+ichirin,song,bg,prelude_light,assets/img/bg/1080/prelude_light.jpg,True,assets/songs/songlist ichirin bg=prelude_light,Confirmed
+ichirin,song,bg_inverse,prelude_conflict,assets/img/bg/1080/prelude_conflict.jpg,True,assets/songs/songlist ichirin bg_inverse=prelude_conflict,Confirmed
+awakeninruins,song,bg,prelude_conflict,assets/img/bg/1080/prelude_conflict.jpg,True,assets/songs/songlist awakeninruins bg=prelude_conflict,Confirmed
+awakeninruins,song,bg_inverse,prelude_light,assets/img/bg/1080/prelude_light.jpg,True,assets/songs/songlist awakeninruins bg_inverse=prelude_light,Confirmed
+morningloom,song,bg,rei,assets/img/bg/1080/rei.jpg,True,assets/songs/songlist morningloom bg=rei,Confirmed
+morningloom,song,bg_inverse,yugamu,assets/img/bg/1080/yugamu.jpg,True,assets/songs/songlist morningloom bg_inverse=yugamu,Confirmed
+lethalvoltage,song,bg,single2_conflict,assets/img/bg/1080/single2_conflict.jpg,True,assets/songs/songlist lethalvoltage bg=single2_conflict,Confirmed
+lethalvoltage,song,bg_inverse,single2_light,assets/img/bg/1080/single2_light.jpg,True,assets/songs/songlist lethalvoltage bg_inverse=single2_light,Confirmed
+mirinae,song,bg,nijuusei2_light,assets/img/bg/1080/nijuusei2_light.jpg,True,assets/songs/songlist mirinae bg=nijuusei2_light,Confirmed
+mirinae,song,bg_inverse,nijuusei2_conflict,assets/img/bg/1080/nijuusei2_conflict.jpg,True,assets/songs/songlist mirinae bg_inverse=nijuusei2_conflict,Confirmed
+ultradiaxon,song,bg,single2_conflict,assets/img/bg/1080/single2_conflict.jpg,True,assets/songs/songlist ultradiaxon bg=single2_conflict,Confirmed
+ultradiaxon,song,bg_inverse,single2_light,assets/img/bg/1080/single2_light.jpg,True,assets/songs/songlist ultradiaxon bg_inverse=single2_light,Confirmed
+leaveallbehind,song,bg,prelude_conflict,assets/img/bg/1080/prelude_conflict.jpg,True,assets/songs/songlist leaveallbehind bg=prelude_conflict,Confirmed
+leaveallbehind,song,bg_inverse,prelude_light,assets/img/bg/1080/prelude_light.jpg,True,assets/songs/songlist leaveallbehind bg_inverse=prelude_light,Confirmed
+distortedfate,song,bg,vs_conflict,assets/img/bg/1080/vs_conflict.jpg,True,assets/songs/songlist distortedfate bg=vs_conflict,Confirmed
+distortedfate,song,bg_inverse,vs_light,assets/img/bg/1080/vs_light.jpg,True,assets/songs/songlist distortedfate bg_inverse=vs_light,Confirmed
+floatingworld,song,bg,nijuusei2_light,assets/img/bg/1080/nijuusei2_light.jpg,True,assets/songs/songlist floatingworld bg=nijuusei2_light,Confirmed
+floatingworld,song,bg_inverse,nijuusei2_conflict,assets/img/bg/1080/nijuusei2_conflict.jpg,True,assets/songs/songlist floatingworld bg_inverse=nijuusei2_conflict,Confirmed
+chromafill,song,bg,observer_light,assets/img/bg/1080/observer_light.jpg,True,assets/songs/songlist chromafill bg=observer_light,Confirmed
+chromafill,song,bg_inverse,observer_conflict,assets/img/bg/1080/observer_conflict.jpg,True,assets/songs/songlist chromafill bg_inverse=observer_conflict,Confirmed
+desive,song,bg,rei,assets/img/bg/1080/rei.jpg,True,assets/songs/songlist desive bg=rei,Confirmed
+desive,song,bg_inverse,yugamu,assets/img/bg/1080/yugamu.jpg,True,assets/songs/songlist desive bg_inverse=yugamu,Confirmed
+epicurus,song,bg,touhou_light,assets/img/bg/1080/touhou_light.jpg,True,assets/songs/songlist epicurus bg=touhou_light,Confirmed
+epicurus,song,bg_inverse,touhou_conflict,assets/img/bg/1080/touhou_conflict.jpg,True,assets/songs/songlist epicurus bg_inverse=touhou_conflict,Confirmed
+tasogare,song,bg,nijuusei2_conflict,assets/img/bg/1080/nijuusei2_conflict.jpg,True,assets/songs/songlist tasogare bg=nijuusei2_conflict,Confirmed
+tasogare,song,bg_inverse,nijuusei2_light,assets/img/bg/1080/nijuusei2_light.jpg,True,assets/songs/songlist tasogare bg_inverse=nijuusei2_light,Confirmed
+oldschoolsalvage,song,bg,prelude_conflict,assets/img/bg/1080/prelude_conflict.jpg,True,assets/songs/songlist oldschoolsalvage bg=prelude_conflict,Confirmed
+oldschoolsalvage,song,bg_inverse,prelude_light,assets/img/bg/1080/prelude_light.jpg,True,assets/songs/songlist oldschoolsalvage bg_inverse=prelude_light,Confirmed
+beautifuldreamer,song,bg,single2_light,assets/img/bg/1080/single2_light.jpg,True,assets/songs/songlist beautifuldreamer bg=single2_light,Confirmed
+beautifuldreamer,song,bg_inverse,single2_conflict,assets/img/bg/1080/single2_conflict.jpg,True,assets/songs/songlist beautifuldreamer bg_inverse=single2_conflict,Confirmed
+backtobasics,song,bg,single2_conflict,assets/img/bg/1080/single2_conflict.jpg,True,assets/songs/songlist backtobasics bg=single2_conflict,Confirmed
+backtobasics,song,bg_inverse,single2_light,assets/img/bg/1080/single2_light.jpg,True,assets/songs/songlist backtobasics bg_inverse=single2_light,Confirmed
+stargateextreme,song,bg,nijuusei2_conflict,assets/img/bg/1080/nijuusei2_conflict.jpg,True,assets/songs/songlist stargateextreme bg=nijuusei2_conflict,Confirmed
+stargateextreme,song,bg_inverse,nijuusei2_light,assets/img/bg/1080/nijuusei2_light.jpg,True,assets/songs/songlist stargateextreme bg_inverse=nijuusei2_light,Confirmed
+signof,song,bg,gc_light,assets/img/bg/1080/gc_light.jpg,True,assets/songs/songlist signof bg=gc_light,Confirmed
+signof,song,bg_inverse,gc_conflict,assets/img/bg/1080/gc_conflict.jpg,True,assets/songs/songlist signof bg_inverse=gc_conflict,Confirmed
+temptationgc,song,bg,gc_conflict,assets/img/bg/1080/gc_conflict.jpg,True,assets/songs/songlist temptationgc bg=gc_conflict,Confirmed
+temptationgc,song,bg_inverse,gc_light,assets/img/bg/1080/gc_light.jpg,True,assets/songs/songlist temptationgc bg_inverse=gc_light,Confirmed
+blackmind,song,bg,gc_ouroboros,assets/img/bg/1080/gc_ouroboros.jpg,True,assets/songs/songlist blackmind bg=gc_ouroboros,Confirmed
+hypervision,song,bg,single2_conflict,assets/img/bg/1080/single2_conflict.jpg,True,assets/songs/songlist hypervision bg=single2_conflict,Confirmed
+hypervision,song,bg_inverse,single2_light,assets/img/bg/1080/single2_light.jpg,True,assets/songs/songlist hypervision bg_inverse=single2_light,Confirmed
+distortionhuman,song,bg,yugamu,assets/img/bg/1080/yugamu.jpg,True,assets/songs/songlist distortionhuman bg=yugamu,Confirmed
+distortionhuman,song,bg_inverse,rei,assets/img/bg/1080/rei.jpg,True,assets/songs/songlist distortionhuman bg_inverse=rei,Confirmed
+shrink,song,bg,single2_light,assets/img/bg/1080/single2_light.jpg,True,assets/songs/songlist shrink bg=single2_light,Confirmed
+shrink,song,bg_inverse,single2_conflict,assets/img/bg/1080/single2_conflict.jpg,True,assets/songs/songlist shrink bg_inverse=single2_conflict,Confirmed
+invain,song,bg,nihil,assets/img/bg/1080/nihil.jpg,True,assets/songs/songlist invain bg=nihil,Confirmed
+invain,song,bg_inverse,nihil,assets/img/bg/1080/nihil.jpg,True,assets/songs/songlist invain bg_inverse=nihil,Confirmed
+hypnotize,song,bg,nihil,assets/img/bg/1080/nihil.jpg,True,assets/songs/songlist hypnotize bg=nihil,Confirmed
+hypnotize,song,bg_inverse,nihil,assets/img/bg/1080/nihil.jpg,True,assets/songs/songlist hypnotize bg_inverse=nihil,Confirmed
+ashenboundary,song,bg,nihil,assets/img/bg/1080/nihil.jpg,True,assets/songs/songlist ashenboundary bg=nihil,Confirmed
+ashenboundary,song,bg_inverse,nihil,assets/img/bg/1080/nihil.jpg,True,assets/songs/songlist ashenboundary bg_inverse=nihil,Confirmed
+judgement,song,bg,nihil,assets/img/bg/1080/nihil.jpg,True,assets/songs/songlist judgement bg=nihil,Confirmed
+judgement,song,bg_inverse,nihil,assets/img/bg/1080/nihil.jpg,True,assets/songs/songlist judgement bg_inverse=nihil,Confirmed
+alterego,song,bg,alterego,assets/img/bg/1080/alterego.jpg,True,assets/songs/songlist alterego bg=alterego,Confirmed
+alterego,song,bg_inverse,alterego,assets/img/bg/1080/alterego.jpg,True,assets/songs/songlist alterego bg_inverse=alterego,Confirmed
+epitaxy,song,bg,rotaeno_light,assets/img/bg/1080/rotaeno_light.jpg,True,assets/songs/songlist epitaxy bg=rotaeno_light,Confirmed
+epitaxy,song,bg_inverse,rotaeno_conflict,assets/img/bg/1080/rotaeno_conflict.jpg,True,assets/songs/songlist epitaxy bg_inverse=rotaeno_conflict,Confirmed
+waltzforlorelei,song,bg,rotaeno_light,assets/img/bg/1080/rotaeno_light.jpg,True,assets/songs/songlist waltzforlorelei bg=rotaeno_light,Confirmed
+waltzforlorelei,song,bg_inverse,rotaeno_conflict,assets/img/bg/1080/rotaeno_conflict.jpg,True,assets/songs/songlist waltzforlorelei bg_inverse=rotaeno_conflict,Confirmed
+dualdoom,song,bg,rotaeno_conflict,assets/img/bg/1080/rotaeno_conflict.jpg,True,assets/songs/songlist dualdoom bg=rotaeno_conflict,Confirmed
+dualdoom,song,bg_inverse,rotaeno_light,assets/img/bg/1080/rotaeno_light.jpg,True,assets/songs/songlist dualdoom bg_inverse=rotaeno_light,Confirmed
+invertedworld,song,bg,rotaeno_light,assets/img/bg/1080/rotaeno_light.jpg,True,assets/songs/songlist invertedworld bg=rotaeno_light,Confirmed
+invertedworld,song,bg_inverse,rotaeno_conflict,assets/img/bg/1080/rotaeno_conflict.jpg,True,assets/songs/songlist invertedworld bg_inverse=rotaeno_conflict,Confirmed
+mvurbd,song,bg,rotaeno_conflict,assets/img/bg/1080/rotaeno_conflict.jpg,True,assets/songs/songlist mvurbd bg=rotaeno_conflict,Confirmed
+mvurbd,song,bg_inverse,rotaeno_light,assets/img/bg/1080/rotaeno_light.jpg,True,assets/songs/songlist mvurbd bg_inverse=rotaeno_light,Confirmed
+vulcanus,song,bg,vulcanus,assets/img/bg/1080/vulcanus.jpg,True,assets/songs/songlist vulcanus bg=vulcanus,Confirmed
+rainofconflict,song,bg,finale_conflict,assets/img/bg/1080/finale_conflict.jpg,True,assets/songs/songlist rainofconflict bg=finale_conflict,Confirmed
+rainofconflict,song,bg_inverse,finale_light,assets/img/bg/1080/finale_light.jpg,True,assets/songs/songlist rainofconflict bg_inverse=finale_light,Confirmed
+saintorsinner,song,bg,prelude_conflict,assets/img/bg/1080/prelude_conflict.jpg,True,assets/songs/songlist saintorsinner bg=prelude_conflict,Confirmed
+saintorsinner,song,bg_inverse,prelude_light,assets/img/bg/1080/prelude_light.jpg,True,assets/songs/songlist saintorsinner bg_inverse=prelude_light,Confirmed
+hailstone,song,bg,single2_light,assets/img/bg/1080/single2_light.jpg,True,assets/songs/songlist hailstone bg=single2_light,Confirmed
+hailstone,song,bg_inverse,single2_conflict,assets/img/bg/1080/single2_conflict.jpg,True,assets/songs/songlist hailstone bg_inverse=single2_conflict,Confirmed
+furetemitai,song,bg,hime_light,assets/img/bg/1080/hime_light.jpg,True,assets/songs/songlist furetemitai bg=hime_light,Confirmed
+furetemitai,song,bg_inverse,hime_conflict,assets/img/bg/1080/hime_conflict.jpg,True,assets/songs/songlist furetemitai bg_inverse=hime_conflict,Confirmed
+gensounosatellite,song,bg,touhou_conflict,assets/img/bg/1080/touhou_conflict.jpg,True,assets/songs/songlist gensounosatellite bg=touhou_conflict,Confirmed
+gensounosatellite,song,bg_inverse,touhou_light,assets/img/bg/1080/touhou_light.jpg,True,assets/songs/songlist gensounosatellite bg_inverse=touhou_light,Confirmed
+prayer,song,bg,nijuusei2_light,assets/img/bg/1080/nijuusei2_light.jpg,True,assets/songs/songlist prayer bg=nijuusei2_light,Confirmed
+prayer,song,bg_inverse,nijuusei2_conflict,assets/img/bg/1080/nijuusei2_conflict.jpg,True,assets/songs/songlist prayer bg_inverse=nijuusei2_conflict,Confirmed
+crimsonquartz,song,bg,touhou_conflict,assets/img/bg/1080/touhou_conflict.jpg,True,assets/songs/songlist crimsonquartz bg=touhou_conflict,Confirmed
+crimsonquartz,song,bg_inverse,touhou_light,assets/img/bg/1080/touhou_light.jpg,True,assets/songs/songlist crimsonquartz bg_inverse=touhou_light,Confirmed
+thirdsun,song,bg,nijuusei-conflict-b,assets/img/bg/1080/nijuusei-conflict-b.jpg,True,assets/songs/songlist thirdsun bg=nijuusei-conflict-b,Confirmed
+thirdsun,song,bg_inverse,nijuusei-light-b,assets/img/bg/1080/nijuusei-light-b.jpg,True,assets/songs/songlist thirdsun bg_inverse=nijuusei-light-b,Confirmed
+spiritdauntless,song,bg,zettai,assets/img/bg/1080/zettai.jpg,True,assets/songs/songlist spiritdauntless bg=zettai,Confirmed
+spiritdauntless,song,bg_inverse,zettai_light,assets/img/bg/1080/zettai_light.jpg,True,assets/songs/songlist spiritdauntless bg_inverse=zettai_light,Confirmed
+diesirae,song,bg,hime_conflict,assets/img/bg/1080/hime_conflict.jpg,True,assets/songs/songlist diesirae bg=hime_conflict,Confirmed
+diesirae,song,bg_inverse,hime_light,assets/img/bg/1080/hime_light.jpg,True,assets/songs/songlist diesirae bg_inverse=hime_light,Confirmed
+astralexe,song,bg,nijuusei2_light,assets/img/bg/1080/nijuusei2_light.jpg,True,assets/songs/songlist astralexe bg=nijuusei2_light,Confirmed
+astralexe,song,bg_inverse,nijuusei2_conflict,assets/img/bg/1080/nijuusei2_conflict.jpg,True,assets/songs/songlist astralexe bg_inverse=nijuusei2_conflict,Confirmed
+liftoff,song,bg,ongeki_conflict,assets/img/bg/1080/ongeki_conflict.jpg,True,assets/songs/songlist liftoff bg=ongeki_conflict,Confirmed
+liftoff,song,bg_inverse,ongeki_light,assets/img/bg/1080/ongeki_light.jpg,True,assets/songs/songlist liftoff bg_inverse=ongeki_light,Confirmed
+superambulance,song,bg,ongeki_light,assets/img/bg/1080/ongeki_light.jpg,True,assets/songs/songlist superambulance bg=ongeki_light,Confirmed
+superambulance,song,bg_inverse,ongeki_conflict,assets/img/bg/1080/ongeki_conflict.jpg,True,assets/songs/songlist superambulance bg_inverse=ongeki_conflict,Confirmed
+dontfightmusic,song,bg,ongeki_conflict,assets/img/bg/1080/ongeki_conflict.jpg,True,assets/songs/songlist dontfightmusic bg=ongeki_conflict,Confirmed
+dontfightmusic,song,bg_inverse,ongeki_light,assets/img/bg/1080/ongeki_light.jpg,True,assets/songs/songlist dontfightmusic bg_inverse=ongeki_light,Confirmed
+andrevivemelody,song,bg,lamia,assets/img/bg/1080/lamia.jpg,True,assets/songs/songlist andrevivemelody bg=lamia,Confirmed
+swansong,song,bg,lephon,assets/img/bg/1080/lephon.jpg,True,assets/songs/songlist swansong bg=lephon,Confirmed
+swansong,song,bg_inverse,lephon,assets/img/bg/1080/lephon.jpg,True,assets/songs/songlist swansong bg_inverse=lephon,Confirmed
+renegade,song,bg,lephon,assets/img/bg/1080/lephon.jpg,True,assets/songs/songlist renegade bg=lephon,Confirmed
+renegade,song,bg_inverse,lephon,assets/img/bg/1080/lephon.jpg,True,assets/songs/songlist renegade bg_inverse=lephon,Confirmed
+raysofremnant,song,bg,lephon,assets/img/bg/1080/lephon.jpg,True,assets/songs/songlist raysofremnant bg=lephon,Confirmed
+raysofremnant,song,bg_inverse,lephon,assets/img/bg/1080/lephon.jpg,True,assets/songs/songlist raysofremnant bg_inverse=lephon,Confirmed
+breachoffaith,song,bg,lephon,assets/img/bg/1080/lephon.jpg,True,assets/songs/songlist breachoffaith bg=lephon,Confirmed
+breachoffaith,song,bg_inverse,lephon,assets/img/bg/1080/lephon.jpg,True,assets/songs/songlist breachoffaith bg_inverse=lephon,Confirmed
+lamentrain,song,bg,lamentrain,assets/img/bg/1080/lamentrain.jpg,True,assets/songs/songlist lamentrain bg=lamentrain,Confirmed
+lamentrain,song,bg_inverse,lamentrain,assets/img/bg/1080/lamentrain.jpg,True,assets/songs/songlist lamentrain bg_inverse=lamentrain,Confirmed
+designant,song,bg,designant,assets/img/bg/1080/designant.jpg,True,assets/songs/songlist designant bg=designant,Confirmed
+designant,song,bg_inverse,designant,assets/img/bg/1080/designant.jpg,True,assets/songs/songlist designant bg_inverse=designant,Confirmed
+astralquant,song,bg,lephon,assets/img/bg/1080/lephon.jpg,True,assets/songs/songlist astralquant bg=lephon,Confirmed
+astralquant,song,bg_inverse,lephon,assets/img/bg/1080/lephon.jpg,True,assets/songs/songlist astralquant bg_inverse=lephon,Confirmed
+ignition,song,bg,chunithmnew_light,assets/img/bg/1080/chunithmnew_light.jpg,True,assets/songs/songlist ignition bg=chunithmnew_light,Confirmed
+ignition,song,bg_inverse,chunithmnew_conflict,assets/img/bg/1080/chunithmnew_conflict.jpg,True,assets/songs/songlist ignition bg_inverse=chunithmnew_conflict,Confirmed
+blazingair,song,bg,chunithmnew_light,assets/img/bg/1080/chunithmnew_light.jpg,True,assets/songs/songlist blazingair bg=chunithmnew_light,Confirmed
+blazingair,song,bg_inverse,chunithmnew_conflict,assets/img/bg/1080/chunithmnew_conflict.jpg,True,assets/songs/songlist blazingair bg_inverse=chunithmnew_conflict,Confirmed
+eightem,song,bg,chunithmnew_conflict,assets/img/bg/1080/chunithmnew_conflict.jpg,True,assets/songs/songlist eightem bg=chunithmnew_conflict,Confirmed
+eightem,song,bg_inverse,chunithmnew_light,assets/img/bg/1080/chunithmnew_light.jpg,True,assets/songs/songlist eightem bg_inverse=chunithmnew_light,Confirmed
+daat,song,bg,chuni-ikazuchi,assets/img/bg/1080/chuni-ikazuchi.jpg,True,assets/songs/songlist daat bg=chuni-ikazuchi,Confirmed
+breakbreak,song,bg,maimai_conflict,assets/img/bg/1080/maimai_conflict.jpg,True,assets/songs/songlist breakbreak bg=maimai_conflict,Confirmed
+breakbreak,song,bg_inverse,maimai_light,assets/img/bg/1080/maimai_light.jpg,True,assets/songs/songlist breakbreak bg_inverse=maimai_light,Confirmed
+straightintolights,song,bg,maimai_conflict,assets/img/bg/1080/maimai_conflict.jpg,True,assets/songs/songlist straightintolights bg=maimai_conflict,Confirmed
+straightintolights,song,bg_inverse,maimai_light,assets/img/bg/1080/maimai_light.jpg,True,assets/songs/songlist straightintolights bg_inverse=maimai_light,Confirmed
+virtus,song,bg,virtus,assets/img/bg/1080/virtus.jpg,True,assets/songs/songlist virtus bg=virtus,Confirmed
+virtus,song,bg_inverse,virtus,assets/img/bg/1080/virtus.jpg,True,assets/songs/songlist virtus bg_inverse=virtus,Confirmed
+yomibitoshirazu,song,bg,maimai_light,assets/img/bg/1080/maimai_light.jpg,True,assets/songs/songlist yomibitoshirazu bg=maimai_light,Confirmed
+yomibitoshirazu,song,bg_inverse,maimai_conflict,assets/img/bg/1080/maimai_conflict.jpg,True,assets/songs/songlist yomibitoshirazu bg_inverse=maimai_conflict,Confirmed
+aethercrest,song,bg,aethercrest,assets/img/bg/1080/aethercrest.jpg,True,assets/songs/songlist aethercrest bg=aethercrest,Confirmed
+aethercrest,song,bg_inverse,aethercrest,assets/img/bg/1080/aethercrest.jpg,True,assets/songs/songlist aethercrest bg_inverse=aethercrest,Confirmed
+heartache,song,bg,undertale_light,assets/img/bg/1080/undertale_light.jpg,True,assets/songs/songlist heartache bg=undertale_light,Confirmed
+heartache,song,bg_inverse,undertale_conflict,assets/img/bg/1080/undertale_conflict.jpg,True,assets/songs/songlist heartache bg_inverse=undertale_conflict,Confirmed
+deathbyglamour,song,bg,undertale_light,assets/img/bg/1080/undertale_light.jpg,True,assets/songs/songlist deathbyglamour bg=undertale_light,Confirmed
+deathbyglamour,song,bg_inverse,undertale_conflict,assets/img/bg/1080/undertale_conflict.jpg,True,assets/songs/songlist deathbyglamour bg_inverse=undertale_conflict,Confirmed
+yourbestnightmare,song,bg,undertale_conflict,assets/img/bg/1080/undertale_conflict.jpg,True,assets/songs/songlist yourbestnightmare bg=undertale_conflict,Confirmed
+yourbestnightmare,song,bg_inverse,undertale_light,assets/img/bg/1080/undertale_light.jpg,True,assets/songs/songlist yourbestnightmare bg_inverse=undertale_light,Confirmed
+lastgoodbye,song,bg,undertale_light,assets/img/bg/1080/undertale_light.jpg,True,assets/songs/songlist lastgoodbye bg=undertale_light,Confirmed
+lastgoodbye,song,bg_inverse,undertale_conflict,assets/img/bg/1080/undertale_conflict.jpg,True,assets/songs/songlist lastgoodbye bg_inverse=undertale_conflict,Confirmed
+megalovania,song,bg,undertale_conflict,assets/img/bg/1080/undertale_conflict.jpg,True,assets/songs/songlist megalovania bg=undertale_conflict,Confirmed
+megalovania,song,bg_inverse,undertale_light,assets/img/bg/1080/undertale_light.jpg,True,assets/songs/songlist megalovania bg_inverse=undertale_light,Confirmed
+megalovaniarmx,song,bg,megalovaniarmx,assets/img/bg/1080/megalovaniarmx.jpg,True,assets/songs/songlist megalovaniarmx bg=megalovaniarmx,Confirmed
+megalovaniarmx,song,bg_inverse,megalovaniarmx,assets/img/bg/1080/megalovaniarmx.jpg,True,assets/songs/songlist megalovaniarmx bg_inverse=megalovaniarmx,Confirmed
+placebobattler,song,bg,vs_light,assets/img/bg/1080/vs_light.jpg,True,assets/songs/songlist placebobattler bg=vs_light,Confirmed
+placebobattler,song,bg_inverse,vs_conflict,assets/img/bg/1080/vs_conflict.jpg,True,assets/songs/songlist placebobattler bg_inverse=vs_conflict,Confirmed
+blackmirror,song,bg,touhou_conflict,assets/img/bg/1080/touhou_conflict.jpg,True,assets/songs/songlist blackmirror bg=touhou_conflict,Confirmed
+blackmirror,song,bg_inverse,touhou_light,assets/img/bg/1080/touhou_light.jpg,True,assets/songs/songlist blackmirror bg_inverse=touhou_light,Confirmed
+shinchoku,song,bg,touhou_light,assets/img/bg/1080/touhou_light.jpg,True,assets/songs/songlist shinchoku bg=touhou_light,Confirmed
+shinchoku,song,bg_inverse,touhou_conflict,assets/img/bg/1080/touhou_conflict.jpg,True,assets/songs/songlist shinchoku bg_inverse=touhou_conflict,Confirmed
+trpno,song,bg,alice_light,assets/img/bg/1080/alice_light.jpg,True,assets/songs/songlist trpno bg=alice_light,Confirmed
+trpno,song,bg_inverse,alice_conflict,assets/img/bg/1080/alice_conflict.jpg,True,assets/songs/songlist trpno bg_inverse=alice_conflict,Confirmed
+tau,song,bg,single2_light,assets/img/bg/1080/single2_light.jpg,True,assets/songs/songlist tau bg=single2_light,Confirmed
+tau,song,bg_inverse,single2_conflict,assets/img/bg/1080/single2_conflict.jpg,True,assets/songs/songlist tau bg_inverse=single2_conflict,Confirmed
+dullblade,song,bg,hime_conflict,assets/img/bg/1080/hime_conflict.jpg,True,assets/songs/songlist dullblade bg=hime_conflict,Confirmed
+dullblade,song,bg_inverse,hime_light,assets/img/bg/1080/hime_light.jpg,True,assets/songs/songlist dullblade bg_inverse=hime_light,Confirmed
+wontbackdown,song,bg,djmax_conflict,assets/img/bg/1080/djmax_conflict.jpg,True,assets/songs/songlist wontbackdown bg=djmax_conflict,Confirmed
+wontbackdown,song,bg_inverse,djmax_light,assets/img/bg/1080/djmax_light.jpg,True,assets/songs/songlist wontbackdown bg_inverse=djmax_light,Confirmed
+dontdie,song,bg,djmax_conflict,assets/img/bg/1080/djmax_conflict.jpg,True,assets/songs/songlist dontdie bg=djmax_conflict,Confirmed
+dontdie,song,bg_inverse,djmax_light,assets/img/bg/1080/djmax_light.jpg,True,assets/songs/songlist dontdie bg_inverse=djmax_light,Confirmed
+ladymadestar,song,bg,djmax_light,assets/img/bg/1080/djmax_light.jpg,True,assets/songs/songlist ladymadestar bg=djmax_light,Confirmed
+ladymadestar,song,bg_inverse,djmax_conflict,assets/img/bg/1080/djmax_conflict.jpg,True,assets/songs/songlist ladymadestar bg_inverse=djmax_conflict,Confirmed
+endmoonlight,song,bg,djmax_conflict,assets/img/bg/1080/djmax_conflict.jpg,True,assets/songs/songlist endmoonlight bg=djmax_conflict,Confirmed
+endmoonlight,song,bg_inverse,djmax_light,assets/img/bg/1080/djmax_light.jpg,True,assets/songs/songlist endmoonlight bg_inverse=djmax_light,Confirmed
+uad,song,bg,djmax_light,assets/img/bg/1080/djmax_light.jpg,True,assets/songs/songlist uad bg=djmax_light,Confirmed
+uad,song,bg_inverse,djmax_conflict,assets/img/bg/1080/djmax_conflict.jpg,True,assets/songs/songlist uad bg_inverse=djmax_conflict,Confirmed
+oblivion,song,bg,djmax_conflict,assets/img/bg/1080/djmax_conflict.jpg,True,assets/songs/songlist oblivion bg=djmax_conflict,Confirmed
+oblivion,song,bg_inverse,djmax_light,assets/img/bg/1080/djmax_light.jpg,True,assets/songs/songlist oblivion bg_inverse=djmax_light,Confirmed
+nightmare,song,bg,djmax_nightmare,assets/img/bg/1080/djmax_nightmare.jpg,True,assets/songs/songlist nightmare bg=djmax_nightmare,Confirmed
+tictactoe,song,bg,djmax_light,assets/img/bg/1080/djmax_light.jpg,True,assets/songs/songlist tictactoe bg=djmax_light,Confirmed
+tictactoe,song,bg_inverse,djmax_conflict,assets/img/bg/1080/djmax_conflict.jpg,True,assets/songs/songlist tictactoe bg_inverse=djmax_conflict,Confirmed
+satisfaction,song,bg,vs_conflict,assets/img/bg/1080/vs_conflict.jpg,True,assets/songs/songlist satisfaction bg=vs_conflict,Confirmed
+satisfaction,song,bg_inverse,vs_light,assets/img/bg/1080/vs_light.jpg,True,assets/songs/songlist satisfaction bg_inverse=vs_light,Confirmed
+someday,song,bg,djmax_light,assets/img/bg/1080/djmax_light.jpg,True,assets/songs/songlist someday bg=djmax_light,Confirmed
+someday,song,bg_inverse,djmax_conflict,assets/img/bg/1080/djmax_conflict.jpg,True,assets/songs/songlist someday bg_inverse=djmax_conflict,Confirmed
+miles,song,bg,djmax_light,assets/img/bg/1080/djmax_light.jpg,True,assets/songs/songlist miles bg=djmax_light,Confirmed
+miles,song,bg_inverse,djmax_conflict,assets/img/bg/1080/djmax_conflict.jpg,True,assets/songs/songlist miles bg_inverse=djmax_conflict,Confirmed
+iwantyou,song,bg,djmax_light,assets/img/bg/1080/djmax_light.jpg,True,assets/songs/songlist iwantyou bg=djmax_light,Confirmed
+iwantyou,song,bg_inverse,djmax_conflict,assets/img/bg/1080/djmax_conflict.jpg,True,assets/songs/songlist iwantyou bg_inverse=djmax_conflict,Confirmed
+syriana,song,bg,djmax_conflict,assets/img/bg/1080/djmax_conflict.jpg,True,assets/songs/songlist syriana bg=djmax_conflict,Confirmed
+syriana,song,bg_inverse,djmax_light,assets/img/bg/1080/djmax_light.jpg,True,assets/songs/songlist syriana bg_inverse=djmax_light,Confirmed
+liar,song,bg,djmax_conflict,assets/img/bg/1080/djmax_conflict.jpg,True,assets/songs/songlist liar bg=djmax_conflict,Confirmed
+liar,song,bg_inverse,djmax_light,assets/img/bg/1080/djmax_light.jpg,True,assets/songs/songlist liar bg_inverse=djmax_light,Confirmed
+blythe,song,bg,djmax_conflict,assets/img/bg/1080/djmax_conflict.jpg,True,assets/songs/songlist blythe bg=djmax_conflict,Confirmed
+blythe,song,bg_inverse,djmax_light,assets/img/bg/1080/djmax_light.jpg,True,assets/songs/songlist blythe bg_inverse=djmax_light,Confirmed
+wereallgonnadie,song,bg,djmax_wagd,assets/img/bg/1080/djmax_wagd.jpg,True,assets/songs/songlist wereallgonnadie bg=djmax_wagd,Confirmed
+dematerialized,song,bg,eden_conflict,assets/img/bg/1080/eden_conflict.jpg,True,assets/songs/songlist dematerialized bg=eden_conflict,Confirmed
+dematerialized,song,bg_inverse,eden_light,assets/img/bg/1080/eden_light.jpg,True,assets/songs/songlist dematerialized bg_inverse=eden_light,Confirmed
+seethelights,song,bg,anima_light,assets/img/bg/1080/anima_light.jpg,True,assets/songs/songlist seethelights bg=anima_light,Confirmed
+seethelights,song,bg_inverse,anima_conflict,assets/img/bg/1080/anima_conflict.jpg,True,assets/songs/songlist seethelights bg_inverse=anima_conflict,Confirmed
+scarletlunar,song,bg,anima_light,assets/img/bg/1080/anima_light.jpg,True,assets/songs/songlist scarletlunar bg=anima_light,Confirmed
+scarletlunar,song,bg_inverse,anima_conflict,assets/img/bg/1080/anima_conflict.jpg,True,assets/songs/songlist scarletlunar bg_inverse=anima_conflict,Confirmed
+dualdependency,song,bg,anima_light,assets/img/bg/1080/anima_light.jpg,True,assets/songs/songlist dualdependency bg=anima_light,Confirmed
+dualdependency,song,bg_inverse,anima_conflict,assets/img/bg/1080/anima_conflict.jpg,True,assets/songs/songlist dualdependency bg_inverse=anima_conflict,Confirmed
+lilly,song,bg,anima_light,assets/img/bg/1080/anima_light.jpg,True,assets/songs/songlist lilly bg=anima_light,Confirmed
+lilly,song,bg_inverse,anima_conflict,assets/img/bg/1080/anima_conflict.jpg,True,assets/songs/songlist lilly bg_inverse=anima_conflict,Confirmed
+extradimensional,song,bg,extradimensional,assets/img/bg/1080/extradimensional.jpg,True,assets/songs/songlist extradimensional bg=extradimensional,Confirmed
+disintegration,song,bg,eden_append_light,assets/img/bg/1080/eden_append_light.jpg,True,assets/songs/songlist disintegration bg=eden_append_light,Confirmed
+disintegration,song,bg_inverse,eden_append_conflict,assets/img/bg/1080/eden_append_conflict.jpg,True,assets/songs/songlist disintegration bg_inverse=eden_append_conflict,Confirmed
+factorder,song,bg,anima_conflict,assets/img/bg/1080/anima_conflict.jpg,True,assets/songs/songlist factorder bg=anima_conflict,Confirmed
+factorder,song,bg_inverse,anima_light,assets/img/bg/1080/anima_light.jpg,True,assets/songs/songlist factorder bg_inverse=anima_light,Confirmed
+incompleteone,song,bg,anima_conflict,assets/img/bg/1080/anima_conflict.jpg,True,assets/songs/songlist incompleteone bg=anima_conflict,Confirmed
+incompleteone,song,bg_inverse,anima_light,assets/img/bg/1080/anima_light.jpg,True,assets/songs/songlist incompleteone bg_inverse=anima_light,Confirmed
+chaosblast,song,bg,anima_conflict,assets/img/bg/1080/anima_conflict.jpg,True,assets/songs/songlist chaosblast bg=anima_conflict,Confirmed
+chaosblast,song,bg_inverse,anima_light,assets/img/bg/1080/anima_light.jpg,True,assets/songs/songlist chaosblast bg_inverse=anima_light,Confirmed
+welcomequeen,song,bg,anima_conflict,assets/img/bg/1080/anima_conflict.jpg,True,assets/songs/songlist welcomequeen bg=anima_conflict,Confirmed
+welcomequeen,song,bg_inverse,anima_light,assets/img/bg/1080/anima_light.jpg,True,assets/songs/songlist welcomequeen bg_inverse=anima_light,Confirmed
+altergate,song,bg,altergate,assets/img/bg/1080/altergate.jpg,True,assets/songs/songlist altergate bg=altergate,Confirmed
+acheron,song,bg,single2_conflict,assets/img/bg/1080/single2_conflict.jpg,True,assets/songs/songlist acheron bg=single2_conflict,Confirmed
+acheron,song,bg_inverse,single2_light,assets/img/bg/1080/single2_light.jpg,True,assets/songs/songlist acheron bg_inverse=single2_light,Confirmed
+eternitybreak,song,bg,single2_conflict,assets/img/bg/1080/single2_conflict.jpg,True,assets/songs/songlist eternitybreak bg=single2_conflict,Confirmed
+eternitybreak,song,bg_inverse,single2_light,assets/img/bg/1080/single2_light.jpg,True,assets/songs/songlist eternitybreak bg_inverse=single2_light,Confirmed
+rostpagegene,song,bg,omatsuri_light,assets/img/bg/1080/omatsuri_light.jpg,True,assets/songs/songlist rostpagegene bg=omatsuri_light,Confirmed
+rostpagegene,song,bg_inverse,omatsuri_conflict,assets/img/bg/1080/omatsuri_conflict.jpg,True,assets/songs/songlist rostpagegene bg_inverse=omatsuri_conflict,Confirmed
+violaillyria,song,bg,eclipse_light,assets/img/bg/1080/eclipse_light.jpg,True,assets/songs/songlist violaillyria bg=eclipse_light,Confirmed
+violaillyria,song,bg_inverse,eclipse_conflict,assets/img/bg/1080/eclipse_conflict.jpg,True,assets/songs/songlist violaillyria bg_inverse=eclipse_conflict,Confirmed
+vainspire,song,bg,eclipse_conflict,assets/img/bg/1080/eclipse_conflict.jpg,True,assets/songs/songlist vainspire bg=eclipse_conflict,Confirmed
+vainspire,song,bg_inverse,eclipse_light,assets/img/bg/1080/eclipse_light.jpg,True,assets/songs/songlist vainspire bg_inverse=eclipse_light,Confirmed
+nowayback,song,bg,eclipse_light,assets/img/bg/1080/eclipse_light.jpg,True,assets/songs/songlist nowayback bg=eclipse_light,Confirmed
+nowayback,song,bg_inverse,eclipse_conflict,assets/img/bg/1080/eclipse_conflict.jpg,True,assets/songs/songlist nowayback bg_inverse=eclipse_conflict,Confirmed
+andorxor,song,bg,eclipse_conflict,assets/img/bg/1080/eclipse_conflict.jpg,True,assets/songs/songlist andorxor bg=eclipse_conflict,Confirmed
+andorxor,song,bg_inverse,eclipse_light,assets/img/bg/1080/eclipse_light.jpg,True,assets/songs/songlist andorxor bg_inverse=eclipse_light,Confirmed
+undyingmacula,song,bg,macula_conflict_a,assets/img/bg/1080/macula_conflict_a.jpg,True,assets/songs/songlist undyingmacula bg=macula_conflict_a,Confirmed
+undyingmacula,song,bg_inverse,macula_light_a,assets/img/bg/1080/macula_light_a.jpg,True,assets/songs/songlist undyingmacula bg_inverse=macula_light_a,Confirmed
+awakening,song,bg,prelude_light,assets/img/bg/1080/prelude_light.jpg,True,assets/songs/songlist awakening bg=prelude_light,Confirmed
+awakening,song,bg_inverse,prelude_conflict,assets/img/bg/1080/prelude_conflict.jpg,True,assets/songs/songlist awakening bg_inverse=prelude_conflict,Confirmed
+mod,song,bg,single2_light,assets/img/bg/1080/single2_light.jpg,True,assets/songs/songlist mod bg=single2_light,Confirmed
+mod,song,bg_inverse,single2_conflict,assets/img/bg/1080/single2_conflict.jpg,True,assets/songs/songlist mod bg_inverse=single2_conflict,Confirmed
+particle,song,bg,nijuusei2_conflict,assets/img/bg/1080/nijuusei2_conflict.jpg,True,assets/songs/songlist particle bg=nijuusei2_conflict,Confirmed
+particle,song,bg_inverse,nijuusei2_light,assets/img/bg/1080/nijuusei2_light.jpg,True,assets/songs/songlist particle bg_inverse=nijuusei2_light,Confirmed
+paradoxpalette,song,bg,alice_light,assets/img/bg/1080/alice_light.jpg,True,assets/songs/songlist paradoxpalette bg=alice_light,Confirmed
+paradoxpalette,song,bg_inverse,alice_conflict,assets/img/bg/1080/alice_conflict.jpg,True,assets/songs/songlist paradoxpalette bg_inverse=alice_conflict,Confirmed
+xxium,song,bg,touhou_conflict,assets/img/bg/1080/touhou_conflict.jpg,True,assets/songs/songlist xxium bg=touhou_conflict,Confirmed
+xxium,song,bg_inverse,touhou_light,assets/img/bg/1080/touhou_light.jpg,True,assets/songs/songlist xxium bg_inverse=touhou_light,Confirmed
+angelsboundary,song,bg,hime_light,assets/img/bg/1080/hime_light.jpg,True,assets/songs/songlist angelsboundary bg=hime_light,Confirmed
+angelsboundary,song,bg_inverse,hime_conflict,assets/img/bg/1080/hime_conflict.jpg,True,assets/songs/songlist angelsboundary bg_inverse=hime_conflict,Confirmed
+xterfusion,song,bg,xterfusion,assets/img/bg/1080/xterfusion.jpg,True,assets/songs/songlist xterfusion bg=xterfusion,Confirmed
+infinitedim,song,bg,nextstage_light,assets/img/bg/1080/nextstage_light.jpg,True,assets/songs/songlist infinitedim bg=nextstage_light,Confirmed
+infinitedim,song,bg_inverse,nextstage_conflict,assets/img/bg/1080/nextstage_conflict.jpg,True,assets/songs/songlist infinitedim bg_inverse=nextstage_conflict,Confirmed
+incarnator,song,bg,nextstage_conflict,assets/img/bg/1080/nextstage_conflict.jpg,True,assets/songs/songlist incarnator bg=nextstage_conflict,Confirmed
+incarnator,song,bg_inverse,nextstage_light,assets/img/bg/1080/nextstage_light.jpg,True,assets/songs/songlist incarnator bg_inverse=nextstage_light,Confirmed
+zephyrlast,song,bg,nextstage_conflict,assets/img/bg/1080/nextstage_conflict.jpg,True,assets/songs/songlist zephyrlast bg=nextstage_conflict,Confirmed
+zephyrlast,song,bg_inverse,nextstage_light,assets/img/bg/1080/nextstage_light.jpg,True,assets/songs/songlist zephyrlast bg_inverse=nextstage_light,Confirmed
+marenyx,song,bg,nextstage_conflict,assets/img/bg/1080/nextstage_conflict.jpg,True,assets/songs/songlist marenyx bg=nextstage_conflict,Confirmed
+marenyx,song,bg_inverse,nextstage_light,assets/img/bg/1080/nextstage_light.jpg,True,assets/songs/songlist marenyx bg_inverse=nextstage_light,Confirmed
+codeoblivion,song,bg,codeoblivion,assets/img/bg/1080/codeoblivion.jpg,True,assets/songs/songlist codeoblivion bg=codeoblivion,Confirmed
+azalea,song,bg,azalea,assets/img/bg/1080/azalea.jpg,True,assets/songs/songlist azalea bg=azalea,Confirmed
+tabootears,song,bg,touhou_conflict,assets/img/bg/1080/touhou_conflict.jpg,True,assets/songs/songlist tabootears bg=touhou_conflict,Confirmed
+tabootears,song,bg_inverse,touhou_light,assets/img/bg/1080/touhou_light.jpg,True,assets/songs/songlist tabootears bg_inverse=touhou_light,Confirmed
+grandspell,song,bg,single2_conflict,assets/img/bg/1080/single2_conflict.jpg,True,assets/songs/songlist grandspell bg=single2_conflict,Confirmed
+grandspell,song,bg_inverse,single2_light,assets/img/bg/1080/single2_light.jpg,True,assets/songs/songlist grandspell bg_inverse=single2_light,Confirmed
+undefined,song,bg,single2_conflict,assets/img/bg/1080/single2_conflict.jpg,True,assets/songs/songlist undefined bg=single2_conflict,Confirmed
+undefined,song,bg_inverse,single2_light,assets/img/bg/1080/single2_light.jpg,True,assets/songs/songlist undefined bg_inverse=single2_light,Confirmed
+mask,song,bg,nijuusei2_light,assets/img/bg/1080/nijuusei2_light.jpg,True,assets/songs/songlist mask bg=nijuusei2_light,Confirmed
+mask,song,bg_inverse,nijuusei2_conflict,assets/img/bg/1080/nijuusei2_conflict.jpg,True,assets/songs/songlist mask bg_inverse=nijuusei2_conflict,Confirmed
+paranoidarc,song,bg,vs_conflict,assets/img/bg/1080/vs_conflict.jpg,True,assets/songs/songlist paranoidarc bg=vs_conflict,Confirmed
+paranoidarc,song,bg_inverse,vs_light,assets/img/bg/1080/vs_light.jpg,True,assets/songs/songlist paranoidarc bg_inverse=vs_light,Confirmed
+subsphere,song,bg,observer_light,assets/img/bg/1080/observer_light.jpg,True,assets/songs/songlist subsphere bg=observer_light,Confirmed
+subsphere,song,bg_inverse,observer_conflict,assets/img/bg/1080/observer_conflict.jpg,True,assets/songs/songlist subsphere bg_inverse=observer_conflict,Confirmed
+theraft,song,bg,eden_conflict,assets/img/bg/1080/eden_conflict.jpg,True,assets/songs/songlist theraft bg=eden_conflict,Confirmed
+theraft,song,bg_inverse,eden_light,assets/img/bg/1080/eden_light.jpg,True,assets/songs/songlist theraft bg_inverse=eden_light,Confirmed
+omajinai,song,bg,megarex_light,assets/img/bg/1080/megarex_light.jpg,True,assets/songs/songlist omajinai bg=megarex_light,Confirmed
+omajinai,song,bg_inverse,megarex_conflict,assets/img/bg/1080/megarex_conflict.jpg,True,assets/songs/songlist omajinai bg_inverse=megarex_conflict,Confirmed
+chaintonite,song,bg,megarex_conflict,assets/img/bg/1080/megarex_conflict.jpg,True,assets/songs/songlist chaintonite bg=megarex_conflict,Confirmed
+chaintonite,song,bg_inverse,megarex_light,assets/img/bg/1080/megarex_light.jpg,True,assets/songs/songlist chaintonite bg_inverse=megarex_light,Confirmed
+onestepcloser,song,bg,megarex_light,assets/img/bg/1080/megarex_light.jpg,True,assets/songs/songlist onestepcloser bg=megarex_light,Confirmed
+onestepcloser,song,bg_inverse,megarex_conflict,assets/img/bg/1080/megarex_conflict.jpg,True,assets/songs/songlist onestepcloser bg_inverse=megarex_conflict,Confirmed
+mylifeismine,song,bg,megarex_light,assets/img/bg/1080/megarex_light.jpg,True,assets/songs/songlist mylifeismine bg=megarex_light,Confirmed
+mylifeismine,song,bg_inverse,megarex_conflict,assets/img/bg/1080/megarex_conflict.jpg,True,assets/songs/songlist mylifeismine bg_inverse=megarex_conflict,Confirmed
+meltyrhapsody,song,bg,megarex_light,assets/img/bg/1080/megarex_light.jpg,True,assets/songs/songlist meltyrhapsody bg=megarex_light,Confirmed
+meltyrhapsody,song,bg_inverse,megarex_conflict,assets/img/bg/1080/megarex_conflict.jpg,True,assets/songs/songlist meltyrhapsody bg_inverse=megarex_conflict,Confirmed
+signal,song,bg,megarex_signal,assets/img/bg/1080/megarex_signal.jpg,True,assets/songs/songlist signal bg=megarex_signal,Confirmed
+caramelpop,song,bg,hime_light,assets/img/bg/1080/hime_light.jpg,True,assets/songs/songlist caramelpop bg=hime_light,Confirmed
+caramelpop,song,bg_inverse,hime_conflict,assets/img/bg/1080/hime_conflict.jpg,True,assets/songs/songlist caramelpop bg_inverse=hime_conflict,Confirmed
+shinoukyoseki,song,bg,prelude_light,assets/img/bg/1080/prelude_light.jpg,True,assets/songs/songlist shinoukyoseki bg=prelude_light,Confirmed
+shinoukyoseki,song,bg_inverse,prelude_conflict,assets/img/bg/1080/prelude_conflict.jpg,True,assets/songs/songlist shinoukyoseki bg_inverse=prelude_conflict,Confirmed
+unknownnum,song,bg,single2_conflict,assets/img/bg/1080/single2_conflict.jpg,True,assets/songs/songlist unknownnum bg=single2_conflict,Confirmed
+unknownnum,song,bg_inverse,single2_light,assets/img/bg/1080/single2_light.jpg,True,assets/songs/songlist unknownnum bg_inverse=single2_light,Confirmed
+thirdavenue,song,bg,nihil,assets/img/bg/1080/nihil.jpg,True,assets/songs/songlist thirdavenue bg=nihil,Confirmed
+vallista,song,bg,eden_light,assets/img/bg/1080/eden_light.jpg,True,assets/songs/songlist vallista bg=eden_light,Confirmed
+vallista,song,bg_inverse,eden_conflict,assets/img/bg/1080/eden_conflict.jpg,True,assets/songs/songlist vallista bg_inverse=eden_conflict,Confirmed
+goodrage,song,bg,hime_light,assets/img/bg/1080/hime_light.jpg,True,assets/songs/songlist goodrage bg=hime_light,Confirmed
+goodrage,song,bg_inverse,hime_conflict,assets/img/bg/1080/hime_conflict.jpg,True,assets/songs/songlist goodrage bg_inverse=hime_conflict,Confirmed
+cryogenic,song,bg,single2_conflict,assets/img/bg/1080/single2_conflict.jpg,True,assets/songs/songlist cryogenic bg=single2_conflict,Confirmed
+cryogenic,song,bg_inverse,single2_light,assets/img/bg/1080/single2_light.jpg,True,assets/songs/songlist cryogenic bg_inverse=single2_light,Confirmed
+desertrealm,song,bg,vs_conflict,assets/img/bg/1080/vs_conflict.jpg,True,assets/songs/songlist desertrealm bg=vs_conflict,Confirmed
+desertrealm,song,bg_inverse,vs_light,assets/img/bg/1080/vs_light.jpg,True,assets/songs/songlist desertrealm bg_inverse=vs_light,Confirmed
+spiderdance,song,bg,undertale_light,assets/img/bg/1080/undertale_light.jpg,True,assets/songs/songlist spiderdance bg=undertale_light,Confirmed
+spiderdance,song,bg_inverse,undertale_conflict,assets/img/bg/1080/undertale_conflict.jpg,True,assets/songs/songlist spiderdance bg_inverse=undertale_conflict,Confirmed
+spearofjustice,song,bg,undertale_light,assets/img/bg/1080/undertale_light.jpg,True,assets/songs/songlist spearofjustice bg=undertale_light,Confirmed
+spearofjustice,song,bg_inverse,undertale_conflict,assets/img/bg/1080/undertale_conflict.jpg,True,assets/songs/songlist spearofjustice bg_inverse=undertale_conflict,Confirmed
+asgore,song,bg,undertale_light,assets/img/bg/1080/undertale_light.jpg,True,assets/songs/songlist asgore bg=undertale_light,Confirmed
+asgore,song,bg_inverse,undertale_conflict,assets/img/bg/1080/undertale_conflict.jpg,True,assets/songs/songlist asgore bg_inverse=undertale_conflict,Confirmed
+mirrorrmx,song,bg,hime_light,assets/img/bg/1080/hime_light.jpg,True,assets/songs/songlist mirrorrmx bg=hime_light,Confirmed
+mirrorrmx,song,bg_inverse,hime_conflict,assets/img/bg/1080/hime_conflict.jpg,True,assets/songs/songlist mirrorrmx bg_inverse=hime_conflict,Confirmed
+riotsystem,song,bg,tanoc_conflict,assets/img/bg/1080/tanoc_conflict.jpg,True,assets/songs/songlist riotsystem bg=tanoc_conflict,Confirmed
+riotsystem,song,bg_inverse,tanoc_light,assets/img/bg/1080/tanoc_light.jpg,True,assets/songs/songlist riotsystem bg_inverse=tanoc_light,Confirmed
+cosmogyral,song,bg,nijuusei2_light,assets/img/bg/1080/nijuusei2_light.jpg,True,assets/songs/songlist cosmogyral bg=nijuusei2_light,Confirmed
+cosmogyral,song,bg_inverse,nijuusei2_conflict,assets/img/bg/1080/nijuusei2_conflict.jpg,True,assets/songs/songlist cosmogyral bg_inverse=nijuusei2_conflict,Confirmed
+flexidefine,song,bg,prelude_conflict,assets/img/bg/1080/prelude_conflict.jpg,True,assets/songs/songlist flexidefine bg=prelude_conflict,Confirmed
+flexidefine,song,bg_inverse,prelude_light,assets/img/bg/1080/prelude_light.jpg,True,assets/songs/songlist flexidefine bg_inverse=prelude_light,Confirmed
+altersist,song,bg,eden_light,assets/img/bg/1080/eden_light.jpg,True,assets/songs/songlist altersist bg=eden_light,Confirmed
+altersist,song,bg_inverse,eden_conflict,assets/img/bg/1080/eden_conflict.jpg,True,assets/songs/songlist altersist bg_inverse=eden_conflict,Confirmed
+csqn,song,bg,single2_conflict,assets/img/bg/1080/single2_conflict.jpg,True,assets/songs/songlist csqn bg=single2_conflict,Confirmed
+csqn,song,bg_inverse,single2_light,assets/img/bg/1080/single2_light.jpg,True,assets/songs/songlist csqn bg_inverse=single2_light,Confirmed
+sucromania,song,bg,hime_conflict,assets/img/bg/1080/hime_conflict.jpg,True,assets/songs/songlist sucromania bg=hime_conflict,Confirmed
+sucromania,song,bg_inverse,hime_light,assets/img/bg/1080/hime_light.jpg,True,assets/songs/songlist sucromania bg_inverse=hime_light,Confirmed
+lavie,song,bg,virtualsingers_conflict,assets/img/bg/1080/virtualsingers_conflict.jpg,True,assets/songs/songlist lavie bg=virtualsingers_conflict,Confirmed
+lavie,song,bg_inverse,virtualsingers_light,assets/img/bg/1080/virtualsingers_light.jpg,True,assets/songs/songlist lavie bg_inverse=virtualsingers_light,Confirmed
+kamippoi,song,bg,virtualsingers_conflict,assets/img/bg/1080/virtualsingers_conflict.jpg,True,assets/songs/songlist kamippoi bg=virtualsingers_conflict,Confirmed
+kamippoi,song,bg_inverse,virtualsingers_light,assets/img/bg/1080/virtualsingers_light.jpg,True,assets/songs/songlist kamippoi bg_inverse=virtualsingers_light,Confirmed
+override,song,bg,virtualsingers_light,assets/img/bg/1080/virtualsingers_light.jpg,True,assets/songs/songlist override bg=virtualsingers_light,Confirmed
+override,song,bg_inverse,virtualsingers_conflict,assets/img/bg/1080/virtualsingers_conflict.jpg,True,assets/songs/songlist override bg_inverse=virtualsingers_conflict,Confirmed
+telepathy,song,bg,virtualsingers_light,assets/img/bg/1080/virtualsingers_light.jpg,True,assets/songs/songlist telepathy bg=virtualsingers_light,Confirmed
+telepathy,song,bg_inverse,virtualsingers_conflict,assets/img/bg/1080/virtualsingers_conflict.jpg,True,assets/songs/songlist telepathy bg_inverse=virtualsingers_conflict,Confirmed
+aishite,song,bg,virtualsingers_conflict,assets/img/bg/1080/virtualsingers_conflict.jpg,True,assets/songs/songlist aishite bg=virtualsingers_conflict,Confirmed
+aishite,song,bg_inverse,virtualsingers_light,assets/img/bg/1080/virtualsingers_light.jpg,True,assets/songs/songlist aishite bg_inverse=virtualsingers_light,Confirmed
+synthesis,song,bg,single2_conflict,assets/img/bg/1080/single2_conflict.jpg,True,assets/songs/songlist synthesis bg=single2_conflict,Confirmed
+synthesis,song,bg_inverse,single2_light,assets/img/bg/1080/single2_light.jpg,True,assets/songs/songlist synthesis bg_inverse=single2_light,Confirmed
+acidgod,song,bg,chuni-ikazuchi,assets/img/bg/1080/chuni-ikazuchi.jpg,True,assets/songs/songlist acidgod bg=chuni-ikazuchi,Confirmed
+chronologia,song,bg,eden_light,assets/img/bg/1080/eden_light.jpg,True,assets/songs/songlist chronologia bg=eden_light,Confirmed
+chronologia,song,bg_inverse,eden_conflict,assets/img/bg/1080/eden_conflict.jpg,True,assets/songs/songlist chronologia bg_inverse=eden_conflict,Confirmed
+,,unreferenced-asset,aegleseeker_clear,assets/img/bg/1080/aegleseeker_clear.png,True,assets/img/bg/1080/aegleseeker_clear.png,Medium
+,,unreferenced-asset,aegleseeker_grey,assets/img/bg/1080/aegleseeker_grey.jpg,True,assets/img/bg/1080/aegleseeker_grey.jpg,Unresolved
+,,unreferenced-asset,aethercrest_clear,assets/img/bg/1080/aethercrest_clear.png,True,assets/img/bg/1080/aethercrest_clear.png,Medium
+,,unreferenced-asset,alice_conflict_clear,assets/img/bg/1080/alice_conflict_clear.png,True,assets/img/bg/1080/alice_conflict_clear.png,Medium
+,,unreferenced-asset,alice_light_clear,assets/img/bg/1080/alice_light_clear.png,True,assets/img/bg/1080/alice_light_clear.png,Medium
+,,unreferenced-asset,alterego_clear,assets/img/bg/1080/alterego_clear.png,True,assets/img/bg/1080/alterego_clear.png,Medium
+,,unreferenced-asset,altergate_clear,assets/img/bg/1080/altergate_clear.png,True,assets/img/bg/1080/altergate_clear.png,Medium
+,,unreferenced-asset,anima_clear,assets/img/bg/1080/anima_clear.png,True,assets/img/bg/1080/anima_clear.png,Medium
+,,unreferenced-asset,apophenia_clear,assets/img/bg/1080/apophenia_clear.png,True,assets/img/bg/1080/apophenia_clear.png,Medium
+,,unreferenced-asset,arcahv-debris,assets/img/bg/1080/arcahv-debris.png,True,assets/img/bg/1080/arcahv-debris.png,Unresolved
+,,unreferenced-asset,arcahv-srt,assets/img/bg/1080/arcahv-srt.png,True,assets/img/bg/1080/arcahv-srt.png,Unresolved
+,,unreferenced-asset,arcahv_clear,assets/img/bg/1080/arcahv_clear.png,True,assets/img/bg/1080/arcahv_clear.png,Medium
+,,unreferenced-asset,arcanaeden_clear,assets/img/bg/1080/arcanaeden_clear.png,True,assets/img/bg/1080/arcanaeden_clear.png,Medium
+,,unreferenced-asset,arghena_clear,assets/img/bg/1080/arghena_clear.png,True,assets/img/bg/1080/arghena_clear.png,Medium
+,,unreferenced-asset,axiumcrisis3_clear,assets/img/bg/1080/axiumcrisis3_clear.png,True,assets/img/bg/1080/axiumcrisis3_clear.png,Medium
+,,unreferenced-asset,axiumcrisis_,assets/img/bg/1080/axiumcrisis_.png,True,assets/img/bg/1080/axiumcrisis_.png,Unresolved
+,,unreferenced-asset,byd_2_conflict,assets/img/bg/1080/byd_2_conflict.jpg,True,assets/img/bg/1080/byd_2_conflict.jpg,Medium
+,,unreferenced-asset,byd_2_conflict_clear,assets/img/bg/1080/byd_2_conflict_clear.png,True,assets/img/bg/1080/byd_2_conflict_clear.png,Medium
+,,unreferenced-asset,byd_2_light,assets/img/bg/1080/byd_2_light.jpg,True,assets/img/bg/1080/byd_2_light.jpg,Medium
+,,unreferenced-asset,byd_2_light_clear,assets/img/bg/1080/byd_2_light_clear.png,True,assets/img/bg/1080/byd_2_light_clear.png,Medium
+,,unreferenced-asset,byd_conflict_clear,assets/img/bg/1080/byd_conflict_clear.png,True,assets/img/bg/1080/byd_conflict_clear.png,Medium
+,,unreferenced-asset,byd_light_clear,assets/img/bg/1080/byd_light_clear.png,True,assets/img/bg/1080/byd_light_clear.png,Medium
+,,unreferenced-asset,chuni-garakuta_clear,assets/img/bg/1080/chuni-garakuta_clear.png,True,assets/img/bg/1080/chuni-garakuta_clear.png,Medium
+,,unreferenced-asset,chuni-ikazuchi_clear,assets/img/bg/1080/chuni-ikazuchi_clear.png,True,assets/img/bg/1080/chuni-ikazuchi_clear.png,Medium
+,,unreferenced-asset,chuni-worldvanquisher_clear,assets/img/bg/1080/chuni-worldvanquisher_clear.png,True,assets/img/bg/1080/chuni-worldvanquisher_clear.png,Medium
+,,unreferenced-asset,chunithmnew_conflict_clear,assets/img/bg/1080/chunithmnew_conflict_clear.png,True,assets/img/bg/1080/chunithmnew_conflict_clear.png,Medium
+,,unreferenced-asset,chunithmnew_light_clear,assets/img/bg/1080/chunithmnew_light_clear.png,True,assets/img/bg/1080/chunithmnew_light_clear.png,Medium
+,,unreferenced-asset,chunithmthird_conflict_clear,assets/img/bg/1080/chunithmthird_conflict_clear.png,True,assets/img/bg/1080/chunithmthird_conflict_clear.png,Medium
+,,unreferenced-asset,codeoblivion_clear,assets/img/bg/1080/codeoblivion_clear.png,True,assets/img/bg/1080/codeoblivion_clear.png,Medium
+,,unreferenced-asset,cytus_boss_clear,assets/img/bg/1080/cytus_boss_clear.png,True,assets/img/bg/1080/cytus_boss_clear.png,Medium
+,,unreferenced-asset,cytus_conflict_clear,assets/img/bg/1080/cytus_conflict_clear.png,True,assets/img/bg/1080/cytus_conflict_clear.png,Medium
+,,unreferenced-asset,cytus_light_clear,assets/img/bg/1080/cytus_light_clear.png,True,assets/img/bg/1080/cytus_light_clear.png,Medium
+,,unreferenced-asset,designant_clear,assets/img/bg/1080/designant_clear.png,True,assets/img/bg/1080/designant_clear.png,Medium
+,,unreferenced-asset,diamond_ts_light,assets/img/bg/1080/diamond_ts_light.png,True,assets/img/bg/1080/diamond_ts_light.png,Medium
+,,unreferenced-asset,djmax_clear,assets/img/bg/1080/djmax_clear.png,True,assets/img/bg/1080/djmax_clear.png,Medium
+,,unreferenced-asset,djmax_nightmare_clear,assets/img/bg/1080/djmax_nightmare_clear.png,True,assets/img/bg/1080/djmax_nightmare_clear.png,Medium
+,,unreferenced-asset,djmax_wagd_clear,assets/img/bg/1080/djmax_wagd_clear.png,True,assets/img/bg/1080/djmax_wagd_clear.png,Medium
+,,unreferenced-asset,eclipse_clear,assets/img/bg/1080/eclipse_clear.png,True,assets/img/bg/1080/eclipse_clear.png,Medium
+,,unreferenced-asset,eden_append_conflict_clear,assets/img/bg/1080/eden_append_conflict_clear.png,True,assets/img/bg/1080/eden_append_conflict_clear.png,Medium
+,,unreferenced-asset,eden_append_light_clear,assets/img/bg/1080/eden_append_light_clear.png,True,assets/img/bg/1080/eden_append_light_clear.png,Medium
+,,unreferenced-asset,eden_boss_clear,assets/img/bg/1080/eden_boss_clear.png,True,assets/img/bg/1080/eden_boss_clear.png,Medium
+,,unreferenced-asset,eden_conflict_clear,assets/img/bg/1080/eden_conflict_clear.png,True,assets/img/bg/1080/eden_conflict_clear.png,Medium
+,,unreferenced-asset,eden_light_clear,assets/img/bg/1080/eden_light_clear.png,True,assets/img/bg/1080/eden_light_clear.png,Medium
+,,unreferenced-asset,epilogue_clear,assets/img/bg/1080/epilogue_clear.png,True,assets/img/bg/1080/epilogue_clear.png,Medium
+,,unreferenced-asset,etherstrike_,assets/img/bg/1080/etherstrike_.png,True,assets/img/bg/1080/etherstrike_.png,Unresolved
+,,unreferenced-asset,etherstrike_2,assets/img/bg/1080/etherstrike_2.png,True,assets/img/bg/1080/etherstrike_2.png,Unresolved
+,,unreferenced-asset,etherstrike_clear,assets/img/bg/1080/etherstrike_clear.png,True,assets/img/bg/1080/etherstrike_clear.png,Medium
+,,unreferenced-asset,etherstrike_o,assets/img/bg/1080/etherstrike_o.png,True,assets/img/bg/1080/etherstrike_o.png,Unresolved
+,,unreferenced-asset,felis_clear,assets/img/bg/1080/felis_clear.png,True,assets/img/bg/1080/felis_clear.png,Medium
+,,unreferenced-asset,finale_conflict_clear,assets/img/bg/1080/finale_conflict_clear.png,True,assets/img/bg/1080/finale_conflict_clear.png,Medium
+,,unreferenced-asset,finale_light_clear,assets/img/bg/1080/finale_light_clear.png,True,assets/img/bg/1080/finale_light_clear.png,Medium
+,,unreferenced-asset,gc_conflict_clear,assets/img/bg/1080/gc_conflict_clear.png,True,assets/img/bg/1080/gc_conflict_clear.png,Medium
+,,unreferenced-asset,gc_lance_clear,assets/img/bg/1080/gc_lance_clear.png,True,assets/img/bg/1080/gc_lance_clear.png,Medium
+,,unreferenced-asset,gc_light_clear,assets/img/bg/1080/gc_light_clear.png,True,assets/img/bg/1080/gc_light_clear.png,Medium
+,,unreferenced-asset,gou_clear,assets/img/bg/1080/gou_clear.png,True,assets/img/bg/1080/gou_clear.png,Medium
+,,unreferenced-asset,hime_conflict_clear,assets/img/bg/1080/hime_conflict_clear.png,True,assets/img/bg/1080/hime_conflict_clear.png,Medium
+,,unreferenced-asset,hime_light_clear,assets/img/bg/1080/hime_light_clear.png,True,assets/img/bg/1080/hime_light_clear.png,Medium
+,,unreferenced-asset,lamentrain_clear,assets/img/bg/1080/lamentrain_clear.png,True,assets/img/bg/1080/lamentrain_clear.png,Medium
+,,unreferenced-asset,lamia_clear,assets/img/bg/1080/lamia_clear.png,True,assets/img/bg/1080/lamia_clear.png,Medium
+,,unreferenced-asset,lephon_clear,assets/img/bg/1080/lephon_clear.png,True,assets/img/bg/1080/lephon_clear.png,Medium
+,,unreferenced-asset,lethaeus_clear,assets/img/bg/1080/lethaeus_clear.png,True,assets/img/bg/1080/lethaeus_clear.png,Medium
+,,unreferenced-asset,macula_conflict_a_clear,assets/img/bg/1080/macula_conflict_a_clear.png,True,assets/img/bg/1080/macula_conflict_a_clear.png,Medium
+,,unreferenced-asset,macula_conflict_b,assets/img/bg/1080/macula_conflict_b.jpg,True,assets/img/bg/1080/macula_conflict_b.jpg,Unresolved
+,,unreferenced-asset,macula_light_a_clear,assets/img/bg/1080/macula_light_a_clear.png,True,assets/img/bg/1080/macula_light_a_clear.png,Medium
+,,unreferenced-asset,macula_light_b,assets/img/bg/1080/macula_light_b.jpg,True,assets/img/bg/1080/macula_light_b.jpg,Unresolved
+,,unreferenced-asset,magnolia_clear,assets/img/bg/1080/magnolia_clear.png,True,assets/img/bg/1080/magnolia_clear.png,Medium
+,,unreferenced-asset,maimai_boss_clear,assets/img/bg/1080/maimai_boss_clear.png,True,assets/img/bg/1080/maimai_boss_clear.png,Medium
+,,unreferenced-asset,maimai_conflict_clear,assets/img/bg/1080/maimai_conflict_clear.png,True,assets/img/bg/1080/maimai_conflict_clear.png,Medium
+,,unreferenced-asset,maimai_light_clear,assets/img/bg/1080/maimai_light_clear.png,True,assets/img/bg/1080/maimai_light_clear.png,Medium
+,,unreferenced-asset,megalovaniarmx_clear,assets/img/bg/1080/megalovaniarmx_clear.png,True,assets/img/bg/1080/megalovaniarmx_clear.png,Medium
+,,unreferenced-asset,megarex_conflict_clear,assets/img/bg/1080/megarex_conflict_clear.png,True,assets/img/bg/1080/megarex_conflict_clear.png,Medium
+,,unreferenced-asset,megarex_light_clear,assets/img/bg/1080/megarex_light_clear.png,True,assets/img/bg/1080/megarex_light_clear.png,Medium
+,,unreferenced-asset,megarex_signal_clear,assets/img/bg/1080/megarex_signal_clear.png,True,assets/img/bg/1080/megarex_signal_clear.png,Medium
+,,unreferenced-asset,meta_mysteria_clear,assets/img/bg/1080/meta_mysteria_clear.png,True,assets/img/bg/1080/meta_mysteria_clear.png,Medium
+,,unreferenced-asset,mirai_awakened_clear,assets/img/bg/1080/mirai_awakened_clear.png,True,assets/img/bg/1080/mirai_awakened_clear.png,Medium
+,,unreferenced-asset,mirai_conflict_clear,assets/img/bg/1080/mirai_conflict_clear.png,True,assets/img/bg/1080/mirai_conflict_clear.png,Medium
+,,unreferenced-asset,mirai_light_clear,assets/img/bg/1080/mirai_light_clear.png,True,assets/img/bg/1080/mirai_light_clear.png,Medium
+,,unreferenced-asset,musedash_conflict_clear,assets/img/bg/1080/musedash_conflict_clear.png,True,assets/img/bg/1080/musedash_conflict_clear.png,Medium
+,,unreferenced-asset,musedash_light_clear,assets/img/bg/1080/musedash_light_clear.png,True,assets/img/bg/1080/musedash_light_clear.png,Medium
+,,unreferenced-asset,nextstage_conflict_clear,assets/img/bg/1080/nextstage_conflict_clear.png,True,assets/img/bg/1080/nextstage_conflict_clear.png,Medium
+,,unreferenced-asset,nextstage_light_clear,assets/img/bg/1080/nextstage_light_clear.png,True,assets/img/bg/1080/nextstage_light_clear.png,Medium
+,,unreferenced-asset,nihil_clear,assets/img/bg/1080/nihil_clear.png,True,assets/img/bg/1080/nihil_clear.png,Medium
+,,unreferenced-asset,nijuusei-conflict-b_clear,assets/img/bg/1080/nijuusei-conflict-b_clear.png,True,assets/img/bg/1080/nijuusei-conflict-b_clear.png,Medium
+,,unreferenced-asset,nijuusei-light-b_clear,assets/img/bg/1080/nijuusei-light-b_clear.png,True,assets/img/bg/1080/nijuusei-light-b_clear.png,Medium
+,,unreferenced-asset,nijuusei2_conflict_clear,assets/img/bg/1080/nijuusei2_conflict_clear.png,True,assets/img/bg/1080/nijuusei2_conflict_clear.png,Medium
+,,unreferenced-asset,nijuusei2_light_clear,assets/img/bg/1080/nijuusei2_light_clear.png,True,assets/img/bg/1080/nijuusei2_light_clear.png,Medium
+,,unreferenced-asset,observer_conflict_clear,assets/img/bg/1080/observer_conflict_clear.png,True,assets/img/bg/1080/observer_conflict_clear.png,Medium
+,,unreferenced-asset,observer_light_clear,assets/img/bg/1080/observer_light_clear.png,True,assets/img/bg/1080/observer_light_clear.png,Medium
+,,unreferenced-asset,omatsuri_light_clear,assets/img/bg/1080/omatsuri_light_clear.png,True,assets/img/bg/1080/omatsuri_light_clear.png,Medium
+,,unreferenced-asset,omegafour_clear,assets/img/bg/1080/omegafour_clear.png,True,assets/img/bg/1080/omegafour_clear.png,Medium
+,,unreferenced-asset,ongeki_light_clear,assets/img/bg/1080/ongeki_light_clear.png,True,assets/img/bg/1080/ongeki_light_clear.png,Medium
+,,unreferenced-asset,pentiment_clear,assets/img/bg/1080/pentiment_clear.png,True,assets/img/bg/1080/pentiment_clear.png,Medium
+,,unreferenced-asset,pragmatism3_clear,assets/img/bg/1080/pragmatism3_clear.png,True,assets/img/bg/1080/pragmatism3_clear.png,Medium
+,,unreferenced-asset,prelude_conflict_clear,assets/img/bg/1080/prelude_conflict_clear.png,True,assets/img/bg/1080/prelude_conflict_clear.png,Medium
+,,unreferenced-asset,prelude_light_clear,assets/img/bg/1080/prelude_light_clear.png,True,assets/img/bg/1080/prelude_light_clear.png,Medium
+,,unreferenced-asset,ringedgenesis_clear,assets/img/bg/1080/ringedgenesis_clear.png,True,assets/img/bg/1080/ringedgenesis_clear.png,Medium
+,,unreferenced-asset,rotaeno_conflict_clear,assets/img/bg/1080/rotaeno_conflict_clear.png,True,assets/img/bg/1080/rotaeno_conflict_clear.png,Medium
+,,unreferenced-asset,rotaeno_light_clear,assets/img/bg/1080/rotaeno_light_clear.png,True,assets/img/bg/1080/rotaeno_light_clear.png,Medium
+,,unreferenced-asset,saikyostronger_clear,assets/img/bg/1080/saikyostronger_clear.png,True,assets/img/bg/1080/saikyostronger_clear.png,Medium
+,,unreferenced-asset,shiawase_clear,assets/img/bg/1080/shiawase_clear.png,True,assets/img/bg/1080/shiawase_clear.png,Medium
+,,unreferenced-asset,single2_conflict_clear,assets/img/bg/1080/single2_conflict_clear.png,True,assets/img/bg/1080/single2_conflict_clear.png,Medium
+,,unreferenced-asset,single2_light_clear,assets/img/bg/1080/single2_light_clear.png,True,assets/img/bg/1080/single2_light_clear.png,Medium
+,,unreferenced-asset,spidersthread_clear,assets/img/bg/1080/spidersthread_clear.png,True,assets/img/bg/1080/spidersthread_clear.png,Medium
+,,unreferenced-asset,tanoc_conflict_clear,assets/img/bg/1080/tanoc_conflict_clear.png,True,assets/img/bg/1080/tanoc_conflict_clear.png,Medium
+,,unreferenced-asset,tanoc_light_clear,assets/img/bg/1080/tanoc_light_clear.png,True,assets/img/bg/1080/tanoc_light_clear.png,Medium
+,,unreferenced-asset,tanoc_red_clear,assets/img/bg/1080/tanoc_red_clear.png,True,assets/img/bg/1080/tanoc_red_clear.png,Medium
+,,unreferenced-asset,tempestissimo_clear,assets/img/bg/1080/tempestissimo_clear.png,True,assets/img/bg/1080/tempestissimo_clear.png,Medium
+,,unreferenced-asset,tempestissimo_red,assets/img/bg/1080/tempestissimo_red.jpg,True,assets/img/bg/1080/tempestissimo_red.jpg,Unresolved
+,,unreferenced-asset,temptation_clear,assets/img/bg/1080/temptation_clear.png,True,assets/img/bg/1080/temptation_clear.png,Medium
+,,unreferenced-asset,testify_clear,assets/img/bg/1080/testify_clear.png,True,assets/img/bg/1080/testify_clear.png,Medium
+,,unreferenced-asset,touhou_conflict_clear,assets/img/bg/1080/touhou_conflict_clear.png,True,assets/img/bg/1080/touhou_conflict_clear.png,Medium
+,,unreferenced-asset,touhou_light_clear,assets/img/bg/1080/touhou_light_clear.png,True,assets/img/bg/1080/touhou_light_clear.png,Medium
+,,unreferenced-asset,undertale_conflict_clear,assets/img/bg/1080/undertale_conflict_clear.png,True,assets/img/bg/1080/undertale_conflict_clear.png,Medium
+,,unreferenced-asset,undertale_light_clear,assets/img/bg/1080/undertale_light_clear.png,True,assets/img/bg/1080/undertale_light_clear.png,Medium
+,,unreferenced-asset,virtualsingers_conflict_clear,assets/img/bg/1080/virtualsingers_conflict_clear.png,True,assets/img/bg/1080/virtualsingers_conflict_clear.png,Medium
+,,unreferenced-asset,virtualsingers_light_clear,assets/img/bg/1080/virtualsingers_light_clear.png,True,assets/img/bg/1080/virtualsingers_light_clear.png,Medium
+,,unreferenced-asset,virtus_clear,assets/img/bg/1080/virtus_clear.png,True,assets/img/bg/1080/virtus_clear.png,Medium
+,,unreferenced-asset,vs_conflict_clear,assets/img/bg/1080/vs_conflict_clear.png,True,assets/img/bg/1080/vs_conflict_clear.png,Medium
+,,unreferenced-asset,vs_light_clear,assets/img/bg/1080/vs_light_clear.png,True,assets/img/bg/1080/vs_light_clear.png,Medium
+,,unreferenced-asset,vulcanus_clear,assets/img/bg/1080/vulcanus_clear.png,True,assets/img/bg/1080/vulcanus_clear.png,Medium
+,,unreferenced-asset,wacca_boss_clear,assets/img/bg/1080/wacca_boss_clear.png,True,assets/img/bg/1080/wacca_boss_clear.png,Medium
+,,unreferenced-asset,wacca_conflict_clear,assets/img/bg/1080/wacca_conflict_clear.png,True,assets/img/bg/1080/wacca_conflict_clear.png,Medium
+,,unreferenced-asset,wacca_light_clear,assets/img/bg/1080/wacca_light_clear.png,True,assets/img/bg/1080/wacca_light_clear.png,Medium
+,,unreferenced-asset,xterfusion_clear,assets/img/bg/1080/xterfusion_clear.png,True,assets/img/bg/1080/xterfusion_clear.png,Medium
+,,unreferenced-asset,zettai_clear,assets/img/bg/1080/zettai_clear.png,True,assets/img/bg/1080/zettai_clear.png,Medium
+,,unreferenced-asset,zettai_light_clear,assets/img/bg/1080/zettai_light_clear.png,True,assets/img/bg/1080/zettai_light_clear.png,Medium
+,,unreferenced-asset,bg_darken,assets/img/bg/bg_darken.png,True,assets/img/bg/bg_darken.png,Unresolved
+,,unreferenced-asset,diamond,assets/img/bg/diamond.png,True,assets/img/bg/diamond.png,Unresolved
+,,unreferenced-asset,diamond_shiawase,assets/img/bg/diamond_shiawase.png,True,assets/img/bg/diamond_shiawase.png,Unresolved
+,,unreferenced-asset,macula_conflict_wall,assets/img/bg/macula_conflict_wall.png,True,assets/img/bg/macula_conflict_wall.png,Unresolved
+,,unreferenced-asset,macula_light_wall,assets/img/bg/macula_light_wall.png,True,assets/img/bg/macula_light_wall.png,Unresolved
+,,unreferenced-asset,ongeki_conflict_diamond,assets/img/bg/ongeki_conflict_diamond.png,True,assets/img/bg/ongeki_conflict_diamond.png,Unresolved
+,,unreferenced-asset,single2_line_conflict,assets/img/bg/single2_line_conflict.png,True,assets/img/bg/single2_line_conflict.png,Medium
+,,unreferenced-asset,single2_line_light,assets/img/bg/single2_line_light.png,True,assets/img/bg/single2_line_light.png,Medium
+,,unreferenced-asset,single_line_conflict,assets/img/bg/single_line_conflict.png,True,assets/img/bg/single_line_conflict.png,Medium
+,,unreferenced-asset,single_line_light,assets/img/bg/single_line_light.png,True,assets/img/bg/single_line_light.png,Medium
+,,unreferenced-asset,touhou_bullet_wall,assets/img/bg/touhou_bullet_wall.png,True,assets/img/bg/touhou_bullet_wall.png,Unresolved
+,,unreferenced-asset,touhou_light_wall,assets/img/bg/touhou_light_wall.png,True,assets/img/bg/touhou_light_wall.png,Unresolved
+,,unreferenced-asset,triangle_light,assets/img/bg/triangle_light.png,True,assets/img/bg/triangle_light.png,Medium
+,,unreferenced-asset,undertale_conflict_wall,assets/img/bg/undertale_conflict_wall.png,True,assets/img/bg/undertale_conflict_wall.png,Unresolved
+,,unreferenced-asset,undertale_light_wall,assets/img/bg/undertale_light_wall.png,True,assets/img/bg/undertale_light_wall.png,Unresolved
+,,unreferenced-asset,undertale_megalovaniarmx_wall,assets/img/bg/undertale_megalovaniarmx_wall.png,True,assets/img/bg/undertale_megalovaniarmx_wall.png,Unresolved
+,,unreferenced-asset,undying_macula_conflict_clear,assets/img/bg/undying_macula_conflict_clear.png,True,assets/img/bg/undying_macula_conflict_clear.png,Medium
+,,unreferenced-asset,undying_macula_diamond,assets/img/bg/undying_macula_diamond.png,True,assets/img/bg/undying_macula_diamond.png,Unresolved
+,,unreferenced-asset,undying_macula_diamond_dark,assets/img/bg/undying_macula_diamond_dark.png,True,assets/img/bg/undying_macula_diamond_dark.png,Unresolved

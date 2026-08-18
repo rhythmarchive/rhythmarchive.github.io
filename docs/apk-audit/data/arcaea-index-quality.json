@@ -1,0 +1,22 @@
+{
+  "songCount": 544,
+  "idxCount": 544,
+  "idxUnique": true,
+  "idxMin": 0,
+  "idxMax": 545,
+  "missingIdxValues": [
+    492,
+    544
+  ],
+  "arrayOrderInversions": [
+    {
+      "previous": 406,
+      "current": 400
+    }
+  ],
+  "deletedSongIds": [
+    "particlearts"
+  ],
+  "interpretation": "idx is a unique internal ordering key in this APK sample, with gaps/deleted entries and a small array-order inversion; preserve it as raw integer, do not treat it as a permanent public rank",
+  "confidence": "High"
+}

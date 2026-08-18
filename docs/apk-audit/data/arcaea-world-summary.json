@@ -1,0 +1,11 @@
+{
+  "assetCount": 91,
+  "roleCounts": {
+    "world-map-background-candidate": 15,
+    "world-map-decoration-candidate": 15,
+    "world-map-tile-candidate": 15,
+    "world-mode-main-art-or-ui": 25,
+    "world-mode-ui-or-effect": 21
+  },
+  "suffixSemantics": "_b/_d/_t are grouped filename-role candidates; no authoritative enum label was found in the structured world metadata during this pass"
+}

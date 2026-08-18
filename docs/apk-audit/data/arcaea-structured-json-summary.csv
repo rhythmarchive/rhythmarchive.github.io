@@ -1,0 +1,6 @@
+path,sizeBytes,sha256,rootType,topKeys,keywordStringCount,parseError
+assets/char/characters.json,62802,a8177fe6ef08f4e91828733ae4b3657b66f6d2d4c445b8260b319b07e3e118ff,list,,7,
+assets/songs/packlist,88314,ed92cda927a36a17b79d8422e81fe863451b667e5626e7e8c1bf50ce65c6ce20,dict,packs,113,
+assets/songs/songlist,1075587,d8d01d0a32e2c9f03223d063539d47fba1375e8c77deba5794a5b83039f369de,dict,songs,193,
+assets/songs/unlocks,142381,db8847cfeb313d89dc010c3eedf1d56f3814c61cf8ab4d257ac87da6c077b773,dict,unlocks,37,
+assets/startup/missions.json,5458,eddb377c86b69260f8d024f216932354dd943b2c3e82bb1a5831ddb7978bcee6,list,,13,

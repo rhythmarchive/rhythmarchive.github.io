@@ -1,0 +1,36 @@
+{
+  "accessedDate": "2026-08-18",
+  "sourceOfTruth": "APK paths/content and local audit data; external pages are cross-checks only",
+  "references": [
+    {
+      "title": "ArcaeaChartRender",
+      "url": "https://github.com/Arcaea-Infinity/ArcaeaChartRender",
+      "purpose": "cross-check that songlist rating/ratingPlus are supplied separately from renderer constant"
+    },
+    {
+      "title": "Arcaea Wiki: Last",
+      "url": "https://arcaea.fandom.com/wiki/Last",
+      "purpose": "cross-check Last family display levels, chart constants and conditional Beyond presentation"
+    },
+    {
+      "title": "Arcaea Wiki: Songs data",
+      "url": "https://arcaea.fandom.com/wiki/Songs_data",
+      "purpose": "cross-check that chart constant is a distinct field from display level and side"
+    },
+    {
+      "title": "Arcaea Wiki*: Last",
+      "url": "https://arcwiki.mcd.blue/index.php?title=Last",
+      "purpose": "cross-check two BYD variants / audio-family interpretation"
+    },
+    {
+      "title": "Arcaea Wiki: Song Backgrounds",
+      "url": "https://arcaea.fandom.com/wiki/Song_Backgrounds",
+      "purpose": "cross-check Light/Conflict/Achromic/Lephon background labels"
+    },
+    {
+      "title": "Arcaea Wiki*: Pack order",
+      "url": "https://arcwiki.mcd.blue/index.php?title=Pack_order",
+      "purpose": "cross-check pack ordering context"
+    }
+  ]
+}

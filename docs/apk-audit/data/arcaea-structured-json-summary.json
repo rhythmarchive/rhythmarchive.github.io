@@ -1,0 +1,710 @@
+[
+  {
+    "path": "assets/char/characters.json",
+    "sizeBytes": 62802,
+    "sha256": "a8177fe6ef08f4e91828733ae4b3657b66f6d2d4c445b8260b319b07e3e118ff",
+    "rootType": "list",
+    "topKeys": [],
+    "keywordPaths": [
+      {
+        "path": "[].character_id",
+        "type": "int"
+      },
+      {
+        "path": "[].base_character",
+        "type": "bool"
+      },
+      {
+        "path": "[].skill_unlock_level",
+        "type": "int"
+      },
+      {
+        "path": "[].uncap_version_from",
+        "type": "str"
+      },
+      {
+        "path": "[].version_from",
+        "type": "str"
+      }
+    ],
+    "keywordStringCount": 7,
+    "itemCount": 98,
+    "itemKeys": [
+      "base_character",
+      "base_character_id",
+      "base_frag",
+      "base_over",
+      "base_prog",
+      "char_type",
+      "character_id",
+      "is_available",
+      "is_previewable",
+      "is_tairitsu",
+      "max_frag",
+      "max_over",
+      "max_prog",
+      "name",
+      "pack_id",
+      "search_strings",
+      "skill_id",
+      "skill_id_uncap",
+      "skill_requires_uncap",
+      "skill_unlock_level",
+      "uncap_cores",
+      "uncap_frag_growth",
+      "uncap_over_growth",
+      "uncap_prog_growth",
+      "uncap_version_from",
+      "uncap_visible_req",
+      "version_from",
+      "voice"
+    ],
+    "samples": [
+      {
+        "character_id": 0,
+        "base_character": true,
+        "name": "hikari",
+        "is_available": false,
+        "is_previewable": false,
+        "base_frag": 55,
+        "base_prog": 35,
+        "base_over": 35,
+        "max_frag": 78,
+        "max_prog": 61,
+        "max_over": 61,
+        "char_type": 1,
+        "skill_unlock_level": 0,
+        "skill_id": "gauge_easy",
+        "uncap_cores": [
+          {
+            "core_type": "core_hollow",
+            "amount": 25
+          },
+          {
+            "core_type": "core_desolate",
+            "amount": 5
+          }
+        ],
+        "uncap_version_from": "0.0.0",
+        "version_from": "0.0.0",
+        "search_strings": [
+          "光",
+          "ひかり",
+          "히카리"
+        ]
+      },
+      {
+        "character_id": 1,
+        "base_character": true,
+        "name": "tairitsu",
+        "is_available": false,
+        "is_previewable": false,
+        "base_frag": 55,
+        "base_prog": 55,
+        "base_over": 55,
+        "max_frag": 80,
+        "max_prog": 80,
+        "max_over": 80,
+        "char_type": 0,
+        "skill_unlock_level": 0,
+        "skill_id": "",
+        "uncap_cores": [
+          {
+            "core_type": "core_desolate",
+            "amount": 25
+          },
+          {
+            "core_type": "core_hollow",
+            "amount": 5
+          }
+        ],
+        "uncap_version_from": "0.0.0",
+        "version_from": "0.0.0",
+        "search_strings": [
+          "対立",
+          "对立",
+          "對立",
+          "たいりつ",
+          "타이리츠"
+        ]
+      },
+      {
+        "character_id": 2,
+        "base_character": true,
+        "name": "kou",
+        "is_available": true,
+        "is_previewable": true,
+        "base_frag": 60,
+        "base_prog": 47.5,
+        "base_over": 25,
+        "max_frag": 90,
+        "max_prog": 70,
+        "max_over": 47.5,
+        "char_type": 0,
+        "skill_unlock_level": 20,
+        "skill_requires_uncap": true,
+        "skill_id": "frags_kou",
+        "uncap_cores": [
+          {
+            "core_type": "core_crimson",
+            "amount": 25
+          },
+          {
+            "core_type": "core_hollow",
+            "amount": 5
+          }
+        ],
+        "uncap_version_from": "0.0.0",
+        "version_from": "0.0.0",
+        "search_strings": [
+          "紅",
+          "红",
+          "こう",
+          "코우"
+        ],
+        "pack_id": "shiawase"
+      }
+    ]
+  },
+  {
+    "path": "assets/songs/packlist",
+    "sizeBytes": 88314,
+    "sha256": "ed92cda927a36a17b79d8422e81fe863451b667e5626e7e8c1bf50ce65c6ce20",
+    "rootType": "dict",
+    "topKeys": [
+      "packs"
+    ],
+    "keywordPaths": [
+      {
+        "path": "packs",
+        "type": "list"
+      },
+      {
+        "path": "packs[].plus_character",
+        "type": "int"
+      },
+      {
+        "path": "packs[].cutout_pack_image",
+        "type": "bool"
+      }
+    ],
+    "keywordStringCount": 113,
+    "packsCount": 61,
+    "packsKeys": [
+      "coming_soon",
+      "custom_banner",
+      "cutout_pack_image",
+      "description_localized",
+      "id",
+      "is_active_extend_pack",
+      "is_extend_pack",
+      "limitedSaleEndTime",
+      "name_localized",
+      "pack_parent",
+      "plus_character",
+      "section",
+      "small_pack_image"
+    ],
+    "packsSamples": [
+      {
+        "id": "base",
+        "section": "arcaea",
+        "plus_character": -1,
+        "custom_banner": true,
+        "cutout_pack_image": true,
+        "name_localized": {
+          "en": "Arcaea"
+        },
+        "description_localized": {
+          "en": "",
+          "ja": ""
+        }
+      },
+      {
+        "id": "extend_4",
+        "section": "arcaea",
+        "is_extend_pack": true,
+        "is_active_extend_pack": true,
+        "custom_banner": true,
+        "cutout_pack_image": true,
+        "plus_character": -1,
+        "name_localized": {
+          "en": "World Extend 4"
+        },
+        "description_localized": {
+          "en": "Unlock this pack to obtain all \"World Extend\"\nsongs.\n\nFuture songs added to \"World Extend 4: Emanations\"\nwill be instantly unlocked at no cost. Limited-time\nmaps may still be played for other rewards.",
+          "ja": "本楽曲パックを一括解禁すると、\n『World Extend 4: Emanations』の\nすべての楽曲が入手できます。\n解禁対象は、今後の配信曲すべてです。\n\n解禁後でも楽曲以外のマップ報酬を目的に、\n期間限定マップで遊ぶことが出来ます。",
+          "ko": "해당 팩을 구매하면\nWorld Extend 내 악곡이 모두 해금됩니다.\n\n\"World Extend 4: Emanations\"에\n추후 추가될 악곡들도 무료로 해금됩니다.\n한정 맵을 플레이하여\n다른 보상을 얻는 것도 가능합니다.",
+          "zh-Hant": "World Extend中的全部曲目\n將在解鎖該曲包後立即開放。\n\n未來加入「World Extend 4: Emanations」的曲目\n也會立即解鎖，無需再次購買。\n對應曲目的限時地圖仍可遊玩，\n取得進度後可獲得地圖中的其他獎勵。",
+          "zh-Hans": "World Extend中的全部曲目\n将在解锁该曲包后立即开放。\n\n未来加入\"World Extend 4: Emanations\"的曲目\n也会立即解锁，无需再次购买。\n对应曲目的限时地图仍可游玩，\n取得进度后可获得地图中的其他奖励。"
+        }
+      },
+      {
+        "id": "extend_3",
+        "section": "arcaea",
+        "is_extend_pack": true,
+        "is_active_extend_pack": false,
+        "custom_banner": true,
+        "small_pack_image": true,
+        "plus_character": -1,
+        "name_localized": {
+          "en": "Extend Archive 3"
+        },
+        "description_localized": {
+          "en": "The third collection of Arcaea's extended\nhistory across 20 songs.\n\nThe price of this Pack is adjusted if you\nhave previously obtained the majority\nof songs within it in the past.\n",
+          "ja": "ここに系譜を継ぐ、更なる20曲。\n\n3代目のWorld Extendパックです。\n過去に獲得期間中だった時期のあいだに\n無料解禁を達成した楽曲数に応じて、\n本パックの値段は変動します。",
+          "ko": "Arcaea의 긴 역사를\n20개의 악곡에 담은 세번째 콜렉션입니다.\n\n해당 팩 내 악곡 보유수에 따라\n가격이 조정됩니다.",
+          "zh-Hant": "20首歌曲，歸檔了屬於Arcaea的\n第三批更廣闊的回憶……\n\n若此前已通過其他方式獲取大部分收錄曲目，\n曲包售價會在結算時自動做出相應調整。",
+          "zh-Hans": "20首歌曲，归档了属于Arcaea的\n第三批更广阔的回忆……\n\n若此前已通过其他方式获取大部分收录曲目，\n曲包售价会在结算时自动做出相应调整。"
+        }
+      }
+    ]
+  },
+  {
+    "path": "assets/songs/songlist",
+    "sizeBytes": 1075587,
+    "sha256": "d8d01d0a32e2c9f03223d063539d47fba1375e8c77deba5794a5b83039f369de",
+    "rootType": "dict",
+    "topKeys": [
+      "songs"
+    ],
+    "keywordPaths": [
+      {
+        "path": "songs",
+        "type": "list"
+      },
+      {
+        "path": "songs[].title_localized",
+        "type": "dict"
+      },
+      {
+        "path": "songs[].artist",
+        "type": "str"
+      },
+      {
+        "path": "songs[].search_title",
+        "type": "dict"
+      },
+      {
+        "path": "songs[].search_artist",
+        "type": "dict"
+      },
+      {
+        "path": "songs[].bpm",
+        "type": "str"
+      },
+      {
+        "path": "songs[].bpm_base",
+        "type": "int"
+      },
+      {
+        "path": "songs[].side",
+        "type": "int"
+      },
+      {
+        "path": "songs[].version",
+        "type": "str"
+      },
+      {
+        "path": "songs[].difficulties[].chartDesigner",
+        "type": "str"
+      },
+      {
+        "path": "songs[].difficulties[].jacketDesigner",
+        "type": "str"
+      }
+    ],
+    "keywordStringCount": 193,
+    "songsCount": 544,
+    "songsKeys": [
+      "additional_files",
+      "artist",
+      "audioPreview",
+      "audioPreviewEnd",
+      "bg",
+      "bg_daynight",
+      "bg_inverse",
+      "bpm",
+      "bpm_base",
+      "byd_local_unlock",
+      "category",
+      "date",
+      "deleted",
+      "difficulties",
+      "id",
+      "idx",
+      "jacket_localized",
+      "limitedSaleEndTime",
+      "no_stream",
+      "purchase",
+      "remote_dl",
+      "search_artist",
+      "search_title",
+      "set",
+      "side",
+      "songlist_hidden",
+      "source_copyright",
+      "source_localized",
+      "title_localized",
+      "version",
+      "world_unlock"
+    ],
+    "songNestedDifficultyKeys": [
+      "artist",
+      "audioOverride",
+      "bg",
+      "bg_inverse",
+      "bpm",
+      "bpm_base",
+      "chartDesigner",
+      "date",
+      "hidden_until",
+      "hidden_until_unlocked",
+      "jacketDesigner",
+      "jacketOverride",
+      "jacket_night",
+      "legacy11",
+      "plusFingers",
+      "rating",
+      "ratingClass",
+      "ratingPlus",
+      "title_localized",
+      "version",
+      "world_unlock"
+    ],
+    "songNestedChartKeys": [],
+    "songsSamples": [
+      {
+        "idx": 0,
+        "id": "sayonarahatsukoi",
+        "title_localized": {
+          "en": "Sayonara Hatsukoi"
+        },
+        "artist": "REDSHiFT",
+        "search_title": {
+          "ja": [
+            "さよならはつこい"
+          ],
+          "ko": [
+            "사요나라 하츠코이"
+          ]
+        },
+        "search_artist": {
+          "ja": [
+            "れっどしふと"
+          ],
+          "ko": [
+            "레드시프트"
+          ]
+        },
+        "bpm": "178",
+        "bpm_base": 178,
+        "set": "base",
+        "purchase": "",
+        "audioPreview": 44494,
+        "audioPreviewEnd": 76853,
+        "side": 0,
+        "bg": "base_light",
+        "bg_inverse": "base_conflict",
+        "date": 1487980800,
+        "version": "1.0",
+        "difficulties": [
+          {
+            "ratingClass": 0,
+            "chartDesigner": "Nitro",
+            "jacketDesigner": "",
+            "rating": 1
+          },
+          {
+            "ratingClass": 1,
+            "chartDesigner": "Nitro",
+            "jacketDesigner": "",
+            "rating": 4
+          },
+          {
+            "ratingClass": 2,
+            "chartDesigner": "Toaster",
+            "jacketDesigner": "",
+            "rating": 7
+          },
+          {
+            "ratingClass": 4,
+            "chartDesigner": "Luxance + Exschwasion",
+            "jacketDesigner": "",
+            "rating": 8,
+            "date": 1709856000,
+            "version": "5.4"
+          }
+        ]
+      },
+      {
+        "idx": 1,
+        "id": "lostcivilization",
+        "title_localized": {
+          "en": "Lost Civilization"
+        },
+        "artist": "Laur vs CK",
+        "search_title": {
+          "ja": [
+            "ろすとしびらいぜーしょん",
+            "ろすとしゔぃらいぜーしょん"
+          ],
+          "ko": [
+            "로스트 시빌리제이션"
+          ]
+        },
+        "search_artist": {
+          "ja": [
+            "らうる",
+            "しーけー"
+          ],
+          "ko": [
+            "라우르",
+            "시케이"
+          ]
+        },
+        "bpm": "75 - 210",
+        "bpm_base": 210,
+        "set": "base",
+        "purchase": "",
+        "audioPreview": 81142,
+        "audioPreviewEnd": 110285,
+        "side": 1,
+        "bg": "base_conflict",
+        "bg_inverse": "base_light",
+        "date": 1487980808,
+        "version": "1.0",
+        "difficulties": [
+          {
+            "ratingClass": 0,
+            "chartDesigner": "Toaster",
+            "jacketDesigner": "",
+            "rating": 4
+          },
+          {
+            "ratingClass": 1,
+            "chartDesigner": "Toaster",
+            "jacketDesigner": "",
+            "rating": 7
+          },
+          {
+            "ratingClass": 2,
+            "chartDesigner": "Toaster",
+            "jacketDesigner": "",
+            "rating": 9
+          },
+          {
+            "ratingClass": 3,
+            "chartDesigner": "Nitro affected by Nitro",
+            "jacketDesigner": "みしゃも + yoshimo",
+            "jacketOverride": true,
+            "rating": 9,
+            "ratingPlus": true,
+            "date": 1620691201,
+            "version": "3.6"
+          }
+        ]
+      },
+      {
+        "idx": 2,
+        "id": "goodtek",
+        "title_localized": {
+          "en": "GOODTEK (Arcaea Edit)"
+        },
+        "artist": "EBIMAYO",
+        "search_title": {
+          "ja": [
+            "ぐっどてっく"
+          ],
+          "ko": [
+            "굿텍"
+          ]
+        },
+        "search_artist": {
+          "ja": [
+            "えびまよ"
+          ],
+          "ko": [
+            "에비마요"
+          ]
+        },
+        "bpm": "190",
+        "bpm_base": 190,
+        "set": "base",
+        "purchase": "",
+        "audioPreview": 80842,
+        "audioPreviewEnd": 111157,
+        "side": 0,
+        "world_unlock": true,
+        "bg": "base_light",
+        "bg_inverse": "base_conflict",
+        "remote_dl": true,
+        "date": 1487980809,
+        "version": "1.0",
+        "difficulties": [
+          {
+            "ratingClass": 0,
+            "chartDesigner": "Nitro",
+            "jacketDesigner": "Koyama Mai",
+            "rating": 4
+          },
+          {
+            "ratingClass": 1,
+            "chartDesigner": "Nitro",
+            "jacketDesigner": "Koyama Mai",
+            "rating": 6
+          },
+          {
+            "ratingClass": 2,
+            "chartDesigner": "Nitro",
+            "jacketDesigner": "Koyama Mai",
+            "rating": 9
+          },
+          {
+            "ratingClass": 3,
+            "chartDesigner": "GOODTOAST",
+            "jacketDesigner": "出前",
+            "jacketOverride": true,
+            "rating": 9,
+            "ratingPlus": true,
+            "date": 1590537603,
+            "version": "3.0"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "path": "assets/songs/unlocks",
+    "sizeBytes": 142381,
+    "sha256": "db8847cfeb313d89dc010c3eedf1d56f3814c61cf8ab4d257ac87da6c077b773",
+    "rootType": "dict",
+    "topKeys": [
+      "unlocks"
+    ],
+    "keywordPaths": [
+      {
+        "path": "unlocks",
+        "type": "list"
+      },
+      {
+        "path": "unlocks[].songId",
+        "type": "str"
+      },
+      {
+        "path": "unlocks[].conditions[].song_id",
+        "type": "str"
+      },
+      {
+        "path": "unlocks[].conditions[].song_difficulty",
+        "type": "int"
+      }
+    ],
+    "keywordStringCount": 37,
+    "unlocksCount": 440,
+    "unlocksKeys": [
+      "conditions",
+      "ratingClass",
+      "songId"
+    ],
+    "unlocksSamples": [
+      {
+        "songId": "lostcivilization",
+        "ratingClass": 1,
+        "conditions": [
+          {
+            "type": 1,
+            "song_id": "snowwhite",
+            "song_difficulty": 1,
+            "grade": 0
+          },
+          {
+            "type": 0,
+            "credit": 80
+          }
+        ]
+      },
+      {
+        "songId": "lostcivilization",
+        "ratingClass": 2,
+        "conditions": [
+          {
+            "type": 1,
+            "song_id": "snowwhite",
+            "song_difficulty": 2,
+            "grade": 0
+          },
+          {
+            "type": 0,
+            "credit": 280
+          }
+        ]
+      },
+      {
+        "songId": "rise",
+        "ratingClass": 1,
+        "conditions": [
+          {
+            "type": 0,
+            "credit": 20
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "path": "assets/startup/missions.json",
+    "sizeBytes": 5458,
+    "sha256": "eddb377c86b69260f8d024f216932354dd943b2c3e82bb1a5831ddb7978bcee6",
+    "rootType": "list",
+    "topKeys": [],
+    "keywordPaths": [],
+    "keywordStringCount": 13,
+    "itemCount": 28,
+    "itemKeys": [
+      "id",
+      "missionsToClearTier",
+      "requirements",
+      "reward_bundles",
+      "tier"
+    ],
+    "samples": [
+      {
+        "id": "mission_1_1_tutorial",
+        "tier": 1,
+        "requirements": [
+          {
+            "type": "local_clear"
+          }
+        ],
+        "reward_bundles": [
+          "fragment10"
+        ]
+      },
+      {
+        "id": "mission_1_2_clearsong",
+        "tier": 1,
+        "requirements": [
+          {
+            "type": "local_clear"
+          }
+        ],
+        "reward_bundles": [
+          "fragment10"
+        ]
+      },
+      {
+        "id": "mission_1_3_settings",
+        "tier": 1,
+        "requirements": [
+          {
+            "type": "local_clear"
+          }
+        ],
+        "reward_bundles": [
+          "fragment10"
+        ]
+      }
+    ]
+  }
+]

@@ -1,0 +1,667 @@
+{
+  "apkPath": "D:\\Files\\曲绘\\Arcaea\\APK\\arcaea_6.16.8c.apk",
+  "resources": [
+    {
+      "resourceId": "0x7f080074",
+      "packageId": "0x7f",
+      "typeId": 8,
+      "type": "drawable",
+      "entryId": 116,
+      "name": "ic_launcher_background",
+      "entryFlags": 0,
+      "configHex": "40000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "value": "res/0w.xml",
+      "valueDataType": 3,
+      "valueData": "0x00000002",
+      "entryBytes": 5696
+    },
+    {
+      "resourceId": "0x7f0d0000",
+      "packageId": "0x7f",
+      "typeId": 13,
+      "type": "mipmap",
+      "entryId": 0,
+      "name": "ic_launcher",
+      "entryFlags": 0,
+      "configHex": "4000000000000000000000000000a000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "value": "res/9w.png",
+      "valueDataType": 3,
+      "valueData": "0x000000d2",
+      "entryBytes": 4480,
+      "width": 48,
+      "height": 48,
+      "format": "PNG",
+      "mode": "RGBA"
+    },
+    {
+      "resourceId": "0x7f0d0001",
+      "packageId": "0x7f",
+      "typeId": 13,
+      "type": "mipmap",
+      "entryId": 1,
+      "name": "ic_launcher_foreground",
+      "entryFlags": 0,
+      "configHex": "4000000000000000000000000000a000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "value": "res/QZ.png",
+      "valueDataType": 3,
+      "valueData": "0x000000dc",
+      "entryBytes": 13146,
+      "width": 108,
+      "height": 108,
+      "format": "PNG",
+      "mode": "RGBA"
+    },
+    {
+      "resourceId": "0x7f0d0000",
+      "packageId": "0x7f",
+      "typeId": 13,
+      "type": "mipmap",
+      "entryId": 0,
+      "name": "ic_launcher",
+      "entryFlags": 0,
+      "configHex": "4000000000000000000000000000f000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "value": "res/yn.png",
+      "valueDataType": 3,
+      "valueData": "0x0000012e",
+      "entryBytes": 8970,
+      "width": 72,
+      "height": 72,
+      "format": "PNG",
+      "mode": "RGBA"
+    },
+    {
+      "resourceId": "0x7f0d0001",
+      "packageId": "0x7f",
+      "typeId": 13,
+      "type": "mipmap",
+      "entryId": 1,
+      "name": "ic_launcher_foreground",
+      "entryFlags": 0,
+      "configHex": "4000000000000000000000000000f000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "value": "res/zr.png",
+      "valueDataType": 3,
+      "valueData": "0x0000012f",
+      "entryBytes": 27512,
+      "width": 162,
+      "height": 162,
+      "format": "PNG",
+      "mode": "RGBA"
+    },
+    {
+      "resourceId": "0x7f0d0000",
+      "packageId": "0x7f",
+      "typeId": 13,
+      "type": "mipmap",
+      "entryId": 0,
+      "name": "ic_launcher",
+      "entryFlags": 0,
+      "configHex": "40000000000000000000000000004001000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "value": "res/FS.png",
+      "valueDataType": 3,
+      "valueData": "0x0000013f",
+      "entryBytes": 15033,
+      "width": 96,
+      "height": 96,
+      "format": "PNG",
+      "mode": "RGBA"
+    },
+    {
+      "resourceId": "0x7f0d0001",
+      "packageId": "0x7f",
+      "typeId": 13,
+      "type": "mipmap",
+      "entryId": 1,
+      "name": "ic_launcher_foreground",
+      "entryFlags": 0,
+      "configHex": "40000000000000000000000000004001000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "value": "res/Em.png",
+      "valueDataType": 3,
+      "valueData": "0x0000013e",
+      "entryBytes": 46052,
+      "width": 216,
+      "height": 216,
+      "format": "PNG",
+      "mode": "RGBA"
+    },
+    {
+      "resourceId": "0x7f0d0000",
+      "packageId": "0x7f",
+      "typeId": 13,
+      "type": "mipmap",
+      "entryId": 0,
+      "name": "ic_launcher",
+      "entryFlags": 0,
+      "configHex": "4000000000000000000000000000e001000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "value": "res/RJ.png",
+      "valueDataType": 3,
+      "valueData": "0x00000171",
+      "entryBytes": 30545,
+      "width": 144,
+      "height": 144,
+      "format": "PNG",
+      "mode": "RGBA"
+    },
+    {
+      "resourceId": "0x7f0d0001",
+      "packageId": "0x7f",
+      "typeId": 13,
+      "type": "mipmap",
+      "entryId": 1,
+      "name": "ic_launcher_foreground",
+      "entryFlags": 0,
+      "configHex": "4000000000000000000000000000e001000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "value": "res/Lf.png",
+      "valueDataType": 3,
+      "valueData": "0x0000016d",
+      "entryBytes": 93984,
+      "width": 324,
+      "height": 324,
+      "format": "PNG",
+      "mode": "RGBA"
+    },
+    {
+      "resourceId": "0x7f0d0000",
+      "packageId": "0x7f",
+      "typeId": 13,
+      "type": "mipmap",
+      "entryId": 0,
+      "name": "ic_launcher",
+      "entryFlags": 0,
+      "configHex": "40000000000000000000000000008002000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "value": "res/o-.png",
+      "valueDataType": 3,
+      "valueData": "0x0000019b",
+      "entryBytes": 50648,
+      "width": 192,
+      "height": 192,
+      "format": "PNG",
+      "mode": "RGBA"
+    },
+    {
+      "resourceId": "0x7f0d0001",
+      "packageId": "0x7f",
+      "typeId": 13,
+      "type": "mipmap",
+      "entryId": 1,
+      "name": "ic_launcher_foreground",
+      "entryFlags": 0,
+      "configHex": "40000000000000000000000000008002000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "value": "res/as.png",
+      "valueDataType": 3,
+      "valueData": "0x00000199",
+      "entryBytes": 156245,
+      "width": 432,
+      "height": 432,
+      "format": "PNG",
+      "mode": "RGBA"
+    },
+    {
+      "resourceId": "0x7f0d0000",
+      "packageId": "0x7f",
+      "typeId": 13,
+      "type": "mipmap",
+      "entryId": 0,
+      "name": "ic_launcher",
+      "entryFlags": 0,
+      "configHex": "4000000000000000000000000000feff00000000000000001a000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "value": "res/BW.xml",
+      "valueDataType": 3,
+      "valueData": "0x000001a3",
+      "entryBytes": 448
+    }
+  ],
+  "xml": [
+    {
+      "path": "res/0w.xml",
+      "bytes": 5696,
+      "format": "binary-xml",
+      "parsed": {
+        "manifest": {
+          "tag": "vector",
+          "line": 7,
+          "path": "vector",
+          "attributes": {
+            "height": "typed(0x05,0x00006c01)",
+            "width": "typed(0x05,0x00006c01)",
+            "viewportWidth": "typed(0x04,0x42d80000)",
+            "viewportHeight": "typed(0x04,0x42d80000)"
+          }
+        },
+        "application": null,
+        "usesSdk": null,
+        "permissions": [],
+        "components": [],
+        "nodes": [
+          {
+            "tag": "vector",
+            "line": 7,
+            "path": "vector",
+            "attributes": {
+              "height": "typed(0x05,0x00006c01)",
+              "width": "typed(0x05,0x00006c01)",
+              "viewportWidth": "typed(0x04,0x42d80000)",
+              "viewportHeight": "typed(0x04,0x42d80000)"
+            }
+          },
+          {
+            "tag": "path",
+            "line": 9,
+            "path": "vector/path",
+            "attributes": {
+              "fillColor": "typed(0x1d,0xff3ddc84)",
+              "pathData": "M0,0h108v108h-108z"
+            }
+          },
+          {
+            "tag": "path",
+            "line": 11,
+            "path": "vector/path",
+            "attributes": {
+              "fillColor": "typed(0x1c,0x00000000)",
+              "pathData": "M9,0L9,108",
+              "strokeColor": "typed(0x1c,0x33ffffff)",
+              "strokeWidth": "typed(0x04,0x3f4ccccd)"
+            }
+          },
+          {
+            "tag": "path",
+            "line": 13,
+            "path": "vector/path",
+            "attributes": {
+              "fillColor": "typed(0x1c,0x00000000)",
+              "pathData": "M19,0L19,108",
+              "strokeColor": "typed(0x1c,0x33ffffff)",
+              "strokeWidth": "typed(0x04,0x3f4ccccd)"
+            }
+          },
+          {
+            "tag": "path",
+            "line": 15,
+            "path": "vector/path",
+            "attributes": {
+              "fillColor": "typed(0x1c,0x00000000)",
+              "pathData": "M29,0L29,108",
+              "strokeColor": "typed(0x1c,0x33ffffff)",
+              "strokeWidth": "typed(0x04,0x3f4ccccd)"
+            }
+          },
+          {
+            "tag": "path",
+            "line": 17,
+            "path": "vector/path",
+            "attributes": {
+              "fillColor": "typed(0x1c,0x00000000)",
+              "pathData": "M39,0L39,108",
+              "strokeColor": "typed(0x1c,0x33ffffff)",
+              "strokeWidth": "typed(0x04,0x3f4ccccd)"
+            }
+          },
+          {
+            "tag": "path",
+            "line": 19,
+            "path": "vector/path",
+            "attributes": {
+              "fillColor": "typed(0x1c,0x00000000)",
+              "pathData": "M49,0L49,108",
+              "strokeColor": "typed(0x1c,0x33ffffff)",
+              "strokeWidth": "typed(0x04,0x3f4ccccd)"
+            }
+          },
+          {
+            "tag": "path",
+            "line": 21,
+            "path": "vector/path",
+            "attributes": {
+              "fillColor": "typed(0x1c,0x00000000)",
+              "pathData": "M59,0L59,108",
+              "strokeColor": "typed(0x1c,0x33ffffff)",
+              "strokeWidth": "typed(0x04,0x3f4ccccd)"
+            }
+          },
+          {
+            "tag": "path",
+            "line": 23,
+            "path": "vector/path",
+            "attributes": {
+              "fillColor": "typed(0x1c,0x00000000)",
+              "pathData": "M69,0L69,108",
+              "strokeColor": "typed(0x1c,0x33ffffff)",
+              "strokeWidth": "typed(0x04,0x3f4ccccd)"
+            }
+          },
+          {
+            "tag": "path",
+            "line": 25,
+            "path": "vector/path",
+            "attributes": {
+              "fillColor": "typed(0x1c,0x00000000)",
+              "pathData": "M79,0L79,108",
+              "strokeColor": "typed(0x1c,0x33ffffff)",
+              "strokeWidth": "typed(0x04,0x3f4ccccd)"
+            }
+          },
+          {
+            "tag": "path",
+            "line": 27,
+            "path": "vector/path",
+            "attributes": {
+              "fillColor": "typed(0x1c,0x00000000)",
+              "pathData": "M89,0L89,108",
+              "strokeColor": "typed(0x1c,0x33ffffff)",
+              "strokeWidth": "typed(0x04,0x3f4ccccd)"
+            }
+          },
+          {
+            "tag": "path",
+            "line": 29,
+            "path": "vector/path",
+            "attributes": {
+              "fillColor": "typed(0x1c,0x00000000)",
+              "pathData": "M99,0L99,108",
+              "strokeColor": "typed(0x1c,0x33ffffff)",
+              "strokeWidth": "typed(0x04,0x3f4ccccd)"
+            }
+          },
+          {
+            "tag": "path",
+            "line": 31,
+            "path": "vector/path",
+            "attributes": {
+              "fillColor": "typed(0x1c,0x00000000)",
+              "pathData": "M0,9L108,9",
+              "strokeColor": "typed(0x1c,0x33ffffff)",
+              "strokeWidth": "typed(0x04,0x3f4ccccd)"
+            }
+          },
+          {
+            "tag": "path",
+            "line": 33,
+            "path": "vector/path",
+            "attributes": {
+              "fillColor": "typed(0x1c,0x00000000)",
+              "pathData": "M0,19L108,19",
+              "strokeColor": "typed(0x1c,0x33ffffff)",
+              "strokeWidth": "typed(0x04,0x3f4ccccd)"
+            }
+          },
+          {
+            "tag": "path",
+            "line": 35,
+            "path": "vector/path",
+            "attributes": {
+              "fillColor": "typed(0x1c,0x00000000)",
+              "pathData": "M0,29L108,29",
+              "strokeColor": "typed(0x1c,0x33ffffff)",
+              "strokeWidth": "typed(0x04,0x3f4ccccd)"
+            }
+          },
+          {
+            "tag": "path",
+            "line": 37,
+            "path": "vector/path",
+            "attributes": {
+              "fillColor": "typed(0x1c,0x00000000)",
+              "pathData": "M0,39L108,39",
+              "strokeColor": "typed(0x1c,0x33ffffff)",
+              "strokeWidth": "typed(0x04,0x3f4ccccd)"
+            }
+          },
+          {
+            "tag": "path",
+            "line": 39,
+            "path": "vector/path",
+            "attributes": {
+              "fillColor": "typed(0x1c,0x00000000)",
+              "pathData": "M0,49L108,49",
+              "strokeColor": "typed(0x1c,0x33ffffff)",
+              "strokeWidth": "typed(0x04,0x3f4ccccd)"
+            }
+          },
+          {
+            "tag": "path",
+            "line": 41,
+            "path": "vector/path",
+            "attributes": {
+              "fillColor": "typed(0x1c,0x00000000)",
+              "pathData": "M0,59L108,59",
+              "strokeColor": "typed(0x1c,0x33ffffff)",
+              "strokeWidth": "typed(0x04,0x3f4ccccd)"
+            }
+          },
+          {
+            "tag": "path",
+            "line": 43,
+            "path": "vector/path",
+            "attributes": {
+              "fillColor": "typed(0x1c,0x00000000)",
+              "pathData": "M0,69L108,69",
+              "strokeColor": "typed(0x1c,0x33ffffff)",
+              "strokeWidth": "typed(0x04,0x3f4ccccd)"
+            }
+          },
+          {
+            "tag": "path",
+            "line": 45,
+            "path": "vector/path",
+            "attributes": {
+              "fillColor": "typed(0x1c,0x00000000)",
+              "pathData": "M0,79L108,79",
+              "strokeColor": "typed(0x1c,0x33ffffff)",
+              "strokeWidth": "typed(0x04,0x3f4ccccd)"
+            }
+          },
+          {
+            "tag": "path",
+            "line": 47,
+            "path": "vector/path",
+            "attributes": {
+              "fillColor": "typed(0x1c,0x00000000)",
+              "pathData": "M0,89L108,89",
+              "strokeColor": "typed(0x1c,0x33ffffff)",
+              "strokeWidth": "typed(0x04,0x3f4ccccd)"
+            }
+          },
+          {
+            "tag": "path",
+            "line": 49,
+            "path": "vector/path",
+            "attributes": {
+              "fillColor": "typed(0x1c,0x00000000)",
+              "pathData": "M0,99L108,99",
+              "strokeColor": "typed(0x1c,0x33ffffff)",
+              "strokeWidth": "typed(0x04,0x3f4ccccd)"
+            }
+          },
+          {
+            "tag": "path",
+            "line": 51,
+            "path": "vector/path",
+            "attributes": {
+              "fillColor": "typed(0x1c,0x00000000)",
+              "pathData": "M19,29L89,29",
+              "strokeColor": "typed(0x1c,0x33ffffff)",
+              "strokeWidth": "typed(0x04,0x3f4ccccd)"
+            }
+          },
+          {
+            "tag": "path",
+            "line": 53,
+            "path": "vector/path",
+            "attributes": {
+              "fillColor": "typed(0x1c,0x00000000)",
+              "pathData": "M19,39L89,39",
+              "strokeColor": "typed(0x1c,0x33ffffff)",
+              "strokeWidth": "typed(0x04,0x3f4ccccd)"
+            }
+          },
+          {
+            "tag": "path",
+            "line": 55,
+            "path": "vector/path",
+            "attributes": {
+              "fillColor": "typed(0x1c,0x00000000)",
+              "pathData": "M19,49L89,49",
+              "strokeColor": "typed(0x1c,0x33ffffff)",
+              "strokeWidth": "typed(0x04,0x3f4ccccd)"
+            }
+          },
+          {
+            "tag": "path",
+            "line": 57,
+            "path": "vector/path",
+            "attributes": {
+              "fillColor": "typed(0x1c,0x00000000)",
+              "pathData": "M19,59L89,59",
+              "strokeColor": "typed(0x1c,0x33ffffff)",
+              "strokeWidth": "typed(0x04,0x3f4ccccd)"
+            }
+          },
+          {
+            "tag": "path",
+            "line": 59,
+            "path": "vector/path",
+            "attributes": {
+              "fillColor": "typed(0x1c,0x00000000)",
+              "pathData": "M19,69L89,69",
+              "strokeColor": "typed(0x1c,0x33ffffff)",
+              "strokeWidth": "typed(0x04,0x3f4ccccd)"
+            }
+          },
+          {
+            "tag": "path",
+            "line": 61,
+            "path": "vector/path",
+            "attributes": {
+              "fillColor": "typed(0x1c,0x00000000)",
+              "pathData": "M19,79L89,79",
+              "strokeColor": "typed(0x1c,0x33ffffff)",
+              "strokeWidth": "typed(0x04,0x3f4ccccd)"
+            }
+          },
+          {
+            "tag": "path",
+            "line": 63,
+            "path": "vector/path",
+            "attributes": {
+              "fillColor": "typed(0x1c,0x00000000)",
+              "pathData": "M29,19L29,89",
+              "strokeColor": "typed(0x1c,0x33ffffff)",
+              "strokeWidth": "typed(0x04,0x3f4ccccd)"
+            }
+          },
+          {
+            "tag": "path",
+            "line": 65,
+            "path": "vector/path",
+            "attributes": {
+              "fillColor": "typed(0x1c,0x00000000)",
+              "pathData": "M39,19L39,89",
+              "strokeColor": "typed(0x1c,0x33ffffff)",
+              "strokeWidth": "typed(0x04,0x3f4ccccd)"
+            }
+          },
+          {
+            "tag": "path",
+            "line": 67,
+            "path": "vector/path",
+            "attributes": {
+              "fillColor": "typed(0x1c,0x00000000)",
+              "pathData": "M49,19L49,89",
+              "strokeColor": "typed(0x1c,0x33ffffff)",
+              "strokeWidth": "typed(0x04,0x3f4ccccd)"
+            }
+          },
+          {
+            "tag": "path",
+            "line": 69,
+            "path": "vector/path",
+            "attributes": {
+              "fillColor": "typed(0x1c,0x00000000)",
+              "pathData": "M59,19L59,89",
+              "strokeColor": "typed(0x1c,0x33ffffff)",
+              "strokeWidth": "typed(0x04,0x3f4ccccd)"
+            }
+          },
+          {
+            "tag": "path",
+            "line": 71,
+            "path": "vector/path",
+            "attributes": {
+              "fillColor": "typed(0x1c,0x00000000)",
+              "pathData": "M69,19L69,89",
+              "strokeColor": "typed(0x1c,0x33ffffff)",
+              "strokeWidth": "typed(0x04,0x3f4ccccd)"
+            }
+          },
+          {
+            "tag": "path",
+            "line": 73,
+            "path": "vector/path",
+            "attributes": {
+              "fillColor": "typed(0x1c,0x00000000)",
+              "pathData": "M79,19L79,89",
+              "strokeColor": "typed(0x1c,0x33ffffff)",
+              "strokeWidth": "typed(0x04,0x3f4ccccd)"
+            }
+          }
+        ],
+        "resourceMapIds": [
+          "0x01010155",
+          "0x01010159",
+          "0x01010402",
+          "0x01010403",
+          "0x01010404",
+          "0x01010405",
+          "0x01010406",
+          "0x01010407"
+        ],
+        "stringPoolCount": 45
+      }
+    },
+    {
+      "path": "res/BW.xml",
+      "bytes": 448,
+      "format": "binary-xml",
+      "parsed": {
+        "manifest": {
+          "tag": "adaptive-icon",
+          "line": 2,
+          "path": "adaptive-icon",
+          "attributes": {}
+        },
+        "application": null,
+        "usesSdk": null,
+        "permissions": [],
+        "components": [],
+        "nodes": [
+          {
+            "tag": "adaptive-icon",
+            "line": 2,
+            "path": "adaptive-icon",
+            "attributes": {}
+          },
+          {
+            "tag": "background",
+            "line": 3,
+            "path": "adaptive-icon/background",
+            "attributes": {
+              "drawable": "@0x7f080074"
+            }
+          },
+          {
+            "tag": "foreground",
+            "line": 4,
+            "path": "adaptive-icon/foreground",
+            "attributes": {
+              "drawable": "@0x7f0d0001"
+            }
+          }
+        ],
+        "resourceMapIds": [
+          "0x01010199"
+        ],
+        "stringPoolCount": 6
+      }
+    }
+  ]
+}

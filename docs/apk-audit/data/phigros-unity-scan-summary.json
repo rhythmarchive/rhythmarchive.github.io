@@ -1,0 +1,1358 @@
+{
+  "root": ".runtime\\apk-audit\\extracted\\phigros",
+  "bundleSourceCount": 2514,
+  "serializedSourceCount": 58,
+  "scannedSourceCount": 2572,
+  "scannedObjectCount": 23208,
+  "objectTypeCounts": {
+    "Animation": 37,
+    "AnimationClip": 87,
+    "Animator": 103,
+    "AnimatorController": 61,
+    "AssetBundle": 2514,
+    "AudioClip": 379,
+    "AudioListener": 28,
+    "AudioLowPassFilter": 1,
+    "AudioManager": 1,
+    "AudioSource": 30,
+    "BoxCollider2D": 3,
+    "BuildSettings": 1,
+    "Camera": 33,
+    "Canvas": 181,
+    "CanvasGroup": 235,
+    "CanvasRenderer": 2582,
+    "CircleCollider2D": 3,
+    "DelayedCallManager": 1,
+    "Font": 9,
+    "GameObject": 3416,
+    "GraphicsSettings": 1,
+    "InputManager": 1,
+    "LightingSettings": 26,
+    "LightmapSettings": 28,
+    "Material": 96,
+    "Mesh": 2,
+    "MeshCollider": 79,
+    "MeshFilter": 106,
+    "MeshRenderer": 101,
+    "MonoBehaviour": 4036,
+    "MonoManager": 1,
+    "MonoScript": 1388,
+    "NavMeshProjectSettings": 1,
+    "NavMeshSettings": 28,
+    "ParticleSystem": 11,
+    "ParticleSystemRenderer": 11,
+    "Physics2DSettings": 1,
+    "PhysicsManager": 1,
+    "PlayerSettings": 1,
+    "PolygonCollider2D": 5,
+    "PreloadData": 29,
+    "QualitySettings": 1,
+    "RectTransform": 3056,
+    "RenderSettings": 28,
+    "RenderTexture": 1,
+    "ResourceManager": 1,
+    "RuntimeInitializeOnLoadManager": 1,
+    "ScriptMapper": 1,
+    "Shader": 37,
+    "ShaderVariantCollection": 8,
+    "Sprite": 1493,
+    "SpriteMask": 3,
+    "SpriteRenderer": 50,
+    "StreamingManager": 1,
+    "TagManager": 1,
+    "TextAsset": 1008,
+    "Texture2D": 1480,
+    "TimeManager": 1,
+    "Transform": 360,
+    "VFXManager": 1,
+    "VideoClip": 9,
+    "VideoPlayer": 9
+  },
+  "textureCount": 1480,
+  "chartTextAssetCount": 1008,
+  "chartDifficultyCounts": {
+    "AT": 46,
+    "EZ": 320,
+    "HD": 319,
+    "IN": 319,
+    "Legacy": 4
+  },
+  "chartErrorCount": 0,
+  "parseErrorCount": 3762,
+  "samples": [
+    {
+      "category": "illustration",
+      "sourcePath": "assets/aa/Android/001cfe6533943ba17aa0ec4482bef34e.bundle",
+      "pathId": "3830308659511549586",
+      "name": "Illustration",
+      "width": 2048,
+      "height": 1080,
+      "output": ".runtime\\apk-audit\\data\\phigros-3195\\unity-scan\\samples\\illustration_00.png"
+    },
+    {
+      "category": "illustration",
+      "sourcePath": "assets/aa/Android/0199cf235e43a0fe2c37ca19fd54dc3e.bundle",
+      "pathId": "-9029844883474758986",
+      "name": "Illustration",
+      "width": 2048,
+      "height": 1080,
+      "output": ".runtime\\apk-audit\\data\\phigros-3195\\unity-scan\\samples\\illustration_01.png"
+    },
+    {
+      "category": "illustration",
+      "sourcePath": "assets/aa/Android/02209f5545f3f72755ae2d9d7704a74b.bundle",
+      "pathId": "5900519027176287573",
+      "name": "Illustration",
+      "width": 2048,
+      "height": 1080,
+      "output": ".runtime\\apk-audit\\data\\phigros-3195\\unity-scan\\samples\\illustration_02.png"
+    },
+    {
+      "category": "illustration",
+      "sourcePath": "assets/aa/Android/02c6b6406c32b0c961f2fb6b92154c9e.bundle",
+      "pathId": "7957456736346542432",
+      "name": "Illustration",
+      "width": 2048,
+      "height": 1080,
+      "output": ".runtime\\apk-audit\\data\\phigros-3195\\unity-scan\\samples\\illustration_03.png"
+    },
+    {
+      "category": "illustration",
+      "sourcePath": "assets/aa/Android/031851ae60b58e28f77bcb80c2953b39.bundle",
+      "pathId": "-2172984592776827548",
+      "name": "Illustration",
+      "width": 2048,
+      "height": 1080,
+      "output": ".runtime\\apk-audit\\data\\phigros-3195\\unity-scan\\samples\\illustration_04.png"
+    },
+    {
+      "category": "illustration",
+      "sourcePath": "assets/aa/Android/039d2de8024840751fbf00cb47bc8193.bundle",
+      "pathId": "-8369108146753940790",
+      "name": "Illustration",
+      "width": 2048,
+      "height": 1080,
+      "output": ".runtime\\apk-audit\\data\\phigros-3195\\unity-scan\\samples\\illustration_05.png"
+    },
+    {
+      "category": "illustration",
+      "sourcePath": "assets/aa/Android/0519b5085b7cd884134daf76c8e064c5.bundle",
+      "pathId": "5617538967967325094",
+      "name": "Illustration",
+      "width": 2048,
+      "height": 1080,
+      "output": ".runtime\\apk-audit\\data\\phigros-3195\\unity-scan\\samples\\illustration_06.png"
+    },
+    {
+      "category": "illustration",
+      "sourcePath": "assets/aa/Android/052748b967e6c150c339558ceb946405.bundle",
+      "pathId": "-4461566636115411805",
+      "name": "Illustration",
+      "width": 2048,
+      "height": 1080,
+      "output": ".runtime\\apk-audit\\data\\phigros-3195\\unity-scan\\samples\\illustration_07.png"
+    }
+  ],
+  "errors": [
+    {
+      "sourcePath": "assets/bin/Data/level0",
+      "objectType": "MonoBehaviour",
+      "pathId": "39",
+      "error": "Expected to read 80 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level0",
+      "objectType": "MonoBehaviour",
+      "pathId": "40",
+      "error": "Expected to read 80 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level0",
+      "objectType": "MonoBehaviour",
+      "pathId": "41",
+      "error": "Expected to read 136 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level0",
+      "objectType": "MonoBehaviour",
+      "pathId": "42",
+      "error": "Expected to read 136 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level0",
+      "objectType": "MonoBehaviour",
+      "pathId": "43",
+      "error": "Expected to read 92 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level0",
+      "objectType": "MonoBehaviour",
+      "pathId": "44",
+      "error": "Expected to read 136 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level0",
+      "objectType": "MonoBehaviour",
+      "pathId": "45",
+      "error": "Expected to read 36 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level0",
+      "objectType": "MonoBehaviour",
+      "pathId": "46",
+      "error": "Expected to read 404 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level0",
+      "objectType": "MonoBehaviour",
+      "pathId": "48",
+      "error": "Expected to read 84532 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level0",
+      "objectType": "MonoBehaviour",
+      "pathId": "49",
+      "error": "Expected to read 155040 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level0",
+      "objectType": "MonoBehaviour",
+      "pathId": "50",
+      "error": "Expected to read 92 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level0",
+      "objectType": "MonoBehaviour",
+      "pathId": "51",
+      "error": "Expected to read 58212 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level0",
+      "objectType": "MonoBehaviour",
+      "pathId": "52",
+      "error": "Expected to read 116 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level0",
+      "objectType": "MonoBehaviour",
+      "pathId": "53",
+      "error": "Expected to read 44 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level0",
+      "objectType": "MonoBehaviour",
+      "pathId": "54",
+      "error": "Expected to read 80 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level0",
+      "objectType": "MonoBehaviour",
+      "pathId": "55",
+      "error": "Expected to read 36 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level1",
+      "objectType": "MonoBehaviour",
+      "pathId": "30",
+      "error": "Expected to read 52 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level1",
+      "objectType": "MonoBehaviour",
+      "pathId": "31",
+      "error": "Expected to read 100 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level1",
+      "objectType": "MonoBehaviour",
+      "pathId": "32",
+      "error": "Expected to read 44 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level1",
+      "objectType": "MonoBehaviour",
+      "pathId": "33",
+      "error": "Expected to read 80 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level1",
+      "objectType": "MonoBehaviour",
+      "pathId": "34",
+      "error": "Expected to read 92 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level1",
+      "objectType": "MonoBehaviour",
+      "pathId": "35",
+      "error": "Expected to read 660 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level1",
+      "objectType": "MonoBehaviour",
+      "pathId": "36",
+      "error": "Expected to read 44 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level1",
+      "objectType": "MonoBehaviour",
+      "pathId": "37",
+      "error": "Expected to read 136 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level1",
+      "objectType": "MonoBehaviour",
+      "pathId": "38",
+      "error": "Expected to read 40 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "627",
+      "error": "Expected to read 52 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "628",
+      "error": "Expected to read 520 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "630",
+      "error": "Expected to read 136 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "631",
+      "error": "Expected to read 44 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "632",
+      "error": "Expected to read 80 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "633",
+      "error": "Expected to read 104 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "634",
+      "error": "Expected to read 136 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "635",
+      "error": "Expected to read 416 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "636",
+      "error": "Expected to read 136 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "637",
+      "error": "Expected to read 36 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "638",
+      "error": "Expected to read 136 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "639",
+      "error": "Expected to read 76 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "640",
+      "error": "Expected to read 440 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "641",
+      "error": "Expected to read 140 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "642",
+      "error": "Expected to read 52 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "643",
+      "error": "Expected to read 424 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "644",
+      "error": "Expected to read 164 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "645",
+      "error": "Expected to read 416 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "646",
+      "error": "Expected to read 136 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "647",
+      "error": "Expected to read 40 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "648",
+      "error": "Expected to read 152 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "649",
+      "error": "Expected to read 164 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "650",
+      "error": "Expected to read 136 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "651",
+      "error": "Expected to read 160 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "652",
+      "error": "Expected to read 160 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "653",
+      "error": "Expected to read 40 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "654",
+      "error": "Expected to read 152 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "655",
+      "error": "Expected to read 40 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "656",
+      "error": "Expected to read 152 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "657",
+      "error": "Expected to read 136 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "658",
+      "error": "Expected to read 36 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "659",
+      "error": "Expected to read 36 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "660",
+      "error": "Expected to read 136 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "661",
+      "error": "Expected to read 36 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "662",
+      "error": "Expected to read 136 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "663",
+      "error": "Expected to read 152 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "665",
+      "error": "Expected to read 108 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "666",
+      "error": "Expected to read 72 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "667",
+      "error": "Expected to read 236 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "668",
+      "error": "Expected to read 136 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "669",
+      "error": "Expected to read 168 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "670",
+      "error": "Expected to read 164 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "671",
+      "error": "Expected to read 220 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "672",
+      "error": "Expected to read 456 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "673",
+      "error": "Expected to read 136 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "674",
+      "error": "Expected to read 236 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "676",
+      "error": "Expected to read 160 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "677",
+      "error": "Expected to read 416 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "678",
+      "error": "Expected to read 164 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "679",
+      "error": "Expected to read 136 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "680",
+      "error": "Expected to read 104 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "681",
+      "error": "Expected to read 112 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "682",
+      "error": "Expected to read 164 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "683",
+      "error": "Expected to read 420 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "684",
+      "error": "Expected to read 704 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "685",
+      "error": "Expected to read 152 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "686",
+      "error": "Expected to read 164 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "687",
+      "error": "Expected to read 164 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "688",
+      "error": "Expected to read 112 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "689",
+      "error": "Expected to read 424 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "690",
+      "error": "Expected to read 164 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "691",
+      "error": "Expected to read 100 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "692",
+      "error": "Expected to read 136 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "693",
+      "error": "Expected to read 136 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "694",
+      "error": "Expected to read 40 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "695",
+      "error": "Expected to read 12856 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "696",
+      "error": "Expected to read 108 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "698",
+      "error": "Expected to read 136 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "699",
+      "error": "Expected to read 36 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "700",
+      "error": "Expected to read 136 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "701",
+      "error": "Expected to read 416 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "702",
+      "error": "Expected to read 164 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "703",
+      "error": "Expected to read 136 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "704",
+      "error": "Expected to read 156 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "705",
+      "error": "Expected to read 136 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "706",
+      "error": "Expected to read 444 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "707",
+      "error": "Expected to read 136 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "708",
+      "error": "Expected to read 164 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "709",
+      "error": "Expected to read 156 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "710",
+      "error": "Expected to read 40 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "711",
+      "error": "Expected to read 156 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "712",
+      "error": "Expected to read 164 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "713",
+      "error": "Expected to read 136 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "714",
+      "error": "Expected to read 136 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "715",
+      "error": "Expected to read 136 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "716",
+      "error": "Expected to read 164 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "717",
+      "error": "Expected to read 152 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "718",
+      "error": "Expected to read 488 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "719",
+      "error": "Expected to read 36 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "720",
+      "error": "Expected to read 136 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "721",
+      "error": "Expected to read 36 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "722",
+      "error": "Expected to read 136 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "723",
+      "error": "Expected to read 136 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "724",
+      "error": "Expected to read 164 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "725",
+      "error": "Expected to read 40 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "726",
+      "error": "Expected to read 152 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "727",
+      "error": "Expected to read 40 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "728",
+      "error": "Expected to read 152 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "729",
+      "error": "Expected to read 676 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "730",
+      "error": "Expected to read 44 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "731",
+      "error": "Expected to read 80 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "732",
+      "error": "Expected to read 412 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "733",
+      "error": "Expected to read 164 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "734",
+      "error": "Expected to read 164 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "735",
+      "error": "Expected to read 72 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "736",
+      "error": "Expected to read 236 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "737",
+      "error": "Expected to read 136 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "738",
+      "error": "Expected to read 76 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "739",
+      "error": "Expected to read 172 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "740",
+      "error": "Expected to read 136 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "741",
+      "error": "Expected to read 160 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "742",
+      "error": "Expected to read 36 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "743",
+      "error": "Expected to read 164 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "744",
+      "error": "Expected to read 168 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "745",
+      "error": "Expected to read 40 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "746",
+      "error": "Expected to read 156 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "747",
+      "error": "Expected to read 288 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "748",
+      "error": "Expected to read 128 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "749",
+      "error": "Expected to read 136 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "750",
+      "error": "Expected to read 156 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "751",
+      "error": "Expected to read 172 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "752",
+      "error": "Expected to read 72 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "753",
+      "error": "Expected to read 236 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "754",
+      "error": "Expected to read 136 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "755",
+      "error": "Expected to read 160 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "756",
+      "error": "Expected to read 136 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "757",
+      "error": "Expected to read 136 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "758",
+      "error": "Expected to read 44 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "759",
+      "error": "Expected to read 152 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "761",
+      "error": "Expected to read 416 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "762",
+      "error": "Expected to read 164 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "763",
+      "error": "Expected to read 164 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "764",
+      "error": "Expected to read 164 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "765",
+      "error": "Expected to read 164 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "766",
+      "error": "Expected to read 424 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "767",
+      "error": "Expected to read 164 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "768",
+      "error": "Expected to read 416 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "769",
+      "error": "Expected to read 136 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "770",
+      "error": "Expected to read 152 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "771",
+      "error": "Expected to read 156 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "772",
+      "error": "Expected to read 136 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "773",
+      "error": "Expected to read 160 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "774",
+      "error": "Expected to read 40 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "775",
+      "error": "Expected to read 164 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "776",
+      "error": "Expected to read 160 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "777",
+      "error": "Expected to read 620 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "778",
+      "error": "Expected to read 36 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "779",
+      "error": "Expected to read 164 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "780",
+      "error": "Expected to read 164 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "781",
+      "error": "Expected to read 160 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "782",
+      "error": "Expected to read 180 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "783",
+      "error": "Expected to read 148 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "784",
+      "error": "Expected to read 176 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "785",
+      "error": "Expected to read 136 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "786",
+      "error": "Expected to read 112 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "787",
+      "error": "Expected to read 164 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "788",
+      "error": "Expected to read 136 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "789",
+      "error": "Expected to read 136 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "790",
+      "error": "Expected to read 136 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "791",
+      "error": "Expected to read 452 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "792",
+      "error": "Expected to read 140 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "793",
+      "error": "Expected to read 424 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "794",
+      "error": "Expected to read 136 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "795",
+      "error": "Expected to read 148 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "796",
+      "error": "Expected to read 160 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "797",
+      "error": "Expected to read 44 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "798",
+      "error": "Expected to read 80 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "799",
+      "error": "Expected to read 416 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "800",
+      "error": "Expected to read 164 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "801",
+      "error": "Expected to read 424 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "802",
+      "error": "Expected to read 164 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "803",
+      "error": "Expected to read 40 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "804",
+      "error": "Expected to read 152 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "805",
+      "error": "Expected to read 136 bytes, but only read 32 bytes"
+    },
+    {
+      "sourcePath": "assets/bin/Data/level10",
+      "objectType": "MonoBehaviour",
+      "pathId": "806",
+      "error": "Expected to read 136 bytes, but only read 32 bytes"
+    }
+  ]
+}

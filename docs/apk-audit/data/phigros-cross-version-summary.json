@@ -1,0 +1,75 @@
+{
+  "generatedAt": "2026-08-18T16:31:13+00:00",
+  "apkDirectory": "D:\\Files\\曲绘\\Phigros\\APK",
+  "apkFilesFound": [
+    "D:\\Files\\曲绘\\Phigros\\APK\\Phigros_3.19.5.apk"
+  ],
+  "fullApkPairAvailable": false,
+  "status": "unavailable-locally",
+  "reason": "Only Phigros_3.19.5.apk is present. 3.19.2-3.19.4 update reports reference old APK paths that are not present.",
+  "reportProvenanceTransitions": [
+    {
+      "oldVersion": "3.19.1.1",
+      "newVersion": "3.19.2",
+      "oldApk": "D:\\Files\\曲绘\\Phigros\\APK\\Phigros_3.19.1.1.apk",
+      "newApk": "D:\\Files\\曲绘\\Phigros\\APK\\Phigros_3.19.2.apk",
+      "oldApkPresent": false,
+      "newApkPresent": false,
+      "candidateIllustrationCount": 2,
+      "candidateIllustrationKeys": "Assets/Tracks/SnowDance.悠叶いのり.0/Illustration.jpg;Assets/Tracks/亂舞.NekockLK.0/Illustration.jpg",
+      "comparisonMode": "report-provenance-only",
+      "crossVersionValidation": "unavailable",
+      "evidence": "D:\\Files\\曲绘\\Phigros\\3_19_2\\phigros-update-report.json"
+    },
+    {
+      "oldVersion": "3.19.2",
+      "newVersion": "3.19.3",
+      "oldApk": "D:\\Files\\曲绘\\Phigros\\APK\\Phigros_3.19.2.apk",
+      "newApk": "D:\\Files\\曲绘\\Phigros\\APK\\Phigros_3.19.3.apk",
+      "oldApkPresent": false,
+      "newApkPresent": false,
+      "candidateIllustrationCount": 2,
+      "candidateIllustrationKeys": "Assets/Tracks/70MinutesFighters.かたぎり.0/Illustration.jpg;Assets/Tracks/Cleyera.Riya.0/Illustration.jpg",
+      "comparisonMode": "report-provenance-only",
+      "crossVersionValidation": "unavailable",
+      "evidence": "D:\\Files\\曲绘\\Phigros\\3_19_3\\phigros-update-report.json"
+    },
+    {
+      "oldVersion": "3.19.3",
+      "newVersion": "3.19.4",
+      "oldApk": "D:\\Files\\曲绘\\Phigros\\APK\\Phigros_3.19.3.apk",
+      "newApk": "D:\\Files\\曲绘\\Phigros\\APK\\Phigros_3.19.4.apk",
+      "oldApkPresent": false,
+      "newApkPresent": false,
+      "candidateIllustrationCount": 3,
+      "candidateIllustrationKeys": "Assets/Tracks/DerSchneid.Ωμεγα.0/Illustration.jpg;Assets/Tracks/GungnirFracture.Kryexe.0/Illustration.jpg;Assets/Tracks/夢の降る日に.seatrus.0/Illustration.jpg",
+      "comparisonMode": "report-provenance-only",
+      "crossVersionValidation": "unavailable",
+      "evidence": "D:\\Files\\曲绘\\Phigros\\3_19_4\\phigros-update-report.json"
+    },
+    {
+      "oldVersion": "3.19.4",
+      "newVersion": "3.19.5",
+      "oldApk": "D:\\Files\\曲绘\\Phigros\\APK\\Phigros_3.19.4.apk",
+      "newApk": "D:\\Files\\曲绘\\Phigros\\APK\\Phigros_3.19.5.apk",
+      "oldApkPresent": false,
+      "newApkPresent": true,
+      "candidateIllustrationCount": 1,
+      "candidateIllustrationKeys": "Assets/Tracks/星拂云锦featkoi.S9ryne.0/Illustration.jpg",
+      "comparisonMode": "report-provenance-only",
+      "crossVersionValidation": "unavailable",
+      "evidence": "D:\\Files\\曲绘\\Phigros\\3_19_5\\phigros-update-report.json"
+    }
+  ],
+  "currentTrackFolderCount": 319,
+  "currentAddressablesIllustrationKeyCount": 313,
+  "comparisonMetrics": {
+    "unchanged": "unavailable",
+    "changed": "unavailable",
+    "added": "report-provenance-only",
+    "removed": "unavailable",
+    "chapterMoves": "unavailable",
+    "renames": "unavailable"
+  },
+  "historicalReportsAreNotAPKIdentityEvidence": true
+}

@@ -1,0 +1,1646 @@
+packId,nameLocalized,descriptionLocalized,section,customBanner,isExtendPack,isActiveExtendPack,plusCharacter,limitedSaleEndTime,packParent,coverCandidateFiles
+base,en=Arcaea,en=;ja=,arcaea,True,,,-1,,,1080_select_base.png
+extend_4,en=World Extend 4,"en=Unlock this pack to obtain all ""World Extend""
+songs.
+
+Future songs added to ""World Extend 4: Emanations""
+will be instantly unlocked at no cost. Limited-time
+maps may still be played for other rewards.;ja=本楽曲パックを一括解禁すると、
+『World Extend 4: Emanations』の
+すべての楽曲が入手できます。
+解禁対象は、今後の配信曲すべてです。
+
+解禁後でも楽曲以外のマップ報酬を目的に、
+期間限定マップで遊ぶことが出来ます。;ko=해당 팩을 구매하면
+World Extend 내 악곡이 모두 해금됩니다.
+
+""World Extend 4: Emanations""에
+추후 추가될 악곡들도 무료로 해금됩니다.
+한정 맵을 플레이하여
+다른 보상을 얻는 것도 가능합니다.;zh-Hans=World Extend中的全部曲目
+将在解锁该曲包后立即开放。
+
+未来加入""World Extend 4: Emanations""的曲目
+也会立即解锁，无需再次购买。
+对应曲目的限时地图仍可游玩，
+取得进度后可获得地图中的其他奖励。;zh-Hant=World Extend中的全部曲目
+將在解鎖該曲包後立即開放。
+
+未來加入「World Extend 4: Emanations」的曲目
+也會立即解鎖，無需再次購買。
+對應曲目的限時地圖仍可遊玩，
+取得進度後可獲得地圖中的其他獎勵。",arcaea,True,True,True,-1,,,1080_select_extend_4.png
+extend_3,en=Extend Archive 3,"en=The third collection of Arcaea's extended
+history across 20 songs.
+
+The price of this Pack is adjusted if you
+have previously obtained the majority
+of songs within it in the past.
+;ja=ここに系譜を継ぐ、更なる20曲。
+
+3代目のWorld Extendパックです。
+過去に獲得期間中だった時期のあいだに
+無料解禁を達成した楽曲数に応じて、
+本パックの値段は変動します。;ko=Arcaea의 긴 역사를
+20개의 악곡에 담은 세번째 콜렉션입니다.
+
+해당 팩 내 악곡 보유수에 따라
+가격이 조정됩니다.;zh-Hans=20首歌曲，归档了属于Arcaea的
+第三批更广阔的回忆……
+
+若此前已通过其他方式获取大部分收录曲目，
+曲包售价会在结算时自动做出相应调整。;zh-Hant=20首歌曲，歸檔了屬於Arcaea的
+第三批更廣闊的回憶……
+
+若此前已通過其他方式獲取大部分收錄曲目，
+曲包售價會在結算時自動做出相應調整。",arcaea,True,True,False,-1,,,1080_select_extend_3.png;1080_small_extend_3.png;1080_small_extend_3_selected.png
+extend_2,en=Extend Archive 2,"en=The second collection of Arcaea's extended
+history across 20 songs.
+
+The price of this Pack is adjusted if you
+have previously obtained the majority
+of songs within it in the past.
+;ja=ここに系譜を継ぐ、更なる20曲。
+
+2代目のWorld Extendパックです。
+かつて獲得期間中だった時期のあいだ、
+無料解禁を達成した楽曲数に応じて、
+本パックの値段は変動します。;ko=Arcaea의 긴 역사를
+20개의 악곡에 담은 두번째 콜렉션입니다.
+
+해당 팩 내 악곡 보유수에 따라
+가격이 조정됩니다.;zh-Hans=20首歌曲，归档了属于Arcaea的
+第二批更广阔的回忆……
+
+若此前已通过其他方式获取大部分收录曲目，
+曲包售价会在结算时自动做出相应调整。;zh-Hant=20首歌曲，歸檔了屬於Arcaea的
+第二批更廣闊的回憶……
+
+若此前已通過其他方式獲取大部分收錄曲目，
+曲包售價會在結算時自動做出相應調整。",arcaea,True,True,False,-1,,,1080_select_extend_2.png;1080_small_extend_2.png;1080_small_extend_2_selected.png
+extend,en=Extend Archive 1,"en=The first collection of Arcaea's extended
+history across 20 songs.
+
+The price of this Pack is adjusted if you
+have previously obtained the majority
+of songs within it in the past.
+;ja=ここに聳える、始まりの20曲。
+
+初代World Extendパックです。
+かつて獲得期間中だった時期のあいだ、
+無料解禁を達成した楽曲数に応じて、
+本パックの値段は変動します。;ko=Arcaea의 긴 역사를
+20개의 악곡에 담은 첫번째 콜렉션입니다.
+
+해당 팩 내 악곡 보유수에 따라
+가격이 조정됩니다.;zh-Hans=20首歌曲，归档了属于Arcaea的
+第一批更广阔的回忆……
+
+若此前已通过其他方式获取大部分收录曲目，
+曲包售价会在结算时自动做出相应调整。;zh-Hant=20首歌曲，歸檔了屬於Arcaea的
+第一批更廣闊的回憶……
+
+若此前已通過其他方式獲取大部分收錄曲目，
+曲包售價會在結算時自動做出相應調整。",arcaea,True,True,False,-1,,,1080_select_extend.png;1080_select_extend_2.png;1080_select_extend_3.png;1080_select_extend_4.png;1080_small_extend.png;1080_small_extend_2.png;1080_small_extend_2_selected.png;1080_small_extend_3.png;1080_small_extend_3_selected.png;1080_small_extend_selected.png
+eclipse,en=Liminal Eclipse,"en=Across these many worlds, you have been brought
+to perfection. Open your strange eyes to a world
+of beauty beneath new and gorgeous stars.
+
+5 songs trace the last words and steps of Maya
+as she explores the halls of an unknown god. Until
+she can forget, and until eclipsed she is remembered.;ja=数多の世界を超え、導かれしは万全の世界。
+その異色の瞳を、真新しく豪奢な美の世界へと向けて。
+
+未知なる神の回廊を探るマヤ、
+その最期の言葉と足跡を辿る、5つの楽曲。
+日に日に蝕む忘却に、残る少女の足跡。;ko=여러 세계를 거치며 너는 완벽해졌어.
+그 두 색의 눈을 떠 낯설고 찬란한 별들 아래 펼쳐진
+아름다운 세계를 담으렴.
+
+정체불명의 신이 만들어낸 저택을 탐험하는
+마야의 마지막 발자취를 5개의 악곡이 기록합니다.
+모든 것을 잊을 때까지. 일식이 되어, 기억될 때까지.;zh-Hans=跨越这众多世界，你已抵达完美。
+睁开你奇异的双眼，探寻崭新绚丽星辰下的美丽世界。
+
+五首歌曲追溯摩耶的足迹和她最后的话语。
+她探索着一位未知神明的殿堂，
+直到她能够遗忘，直到她黯然失色……她将仍被铭记。;zh-Hant=跨越這眾多世界，妳已抵達完美。
+睜開妳奇異的雙眼，探索嶄新絢麗星辰下的美麗世界。
+
+五首歌曲追溯摩耶的足跡和她最後的話語。
+她探索著一位未知神明的殿堂，
+直到她能夠遺忘，直到她黯然失色……她將仍被銘記。",mainstory2,True,,,-1,,,1080_select_eclipse.png
+lephon,en=Lucent Historia,"en=An old history and world has been brought up.
+A tale of guidance and insight that another must tell.
+Uncover that past, and see into the soul of God...
+
+""Lucent Historia"" details a world apart from Arcaea,
+its story unfolding across 5 new songs. And within, you
+may find the Ascendant - 8th Seeker: ""Compassion""...;ja=旧き地に纏わる歴史が、いま甦る。
+ここに啓くは、導きと天啓の物語。
+神の御霊の一端に触れ、過去を明かせ──。
+
+異なる世界を巡る異譚『Lucent Historia』
+5つの新曲が示す、とある神の始まり。
+それは、天賦第八究明者『慈哀』と──。;ko=아주 오래 전 존재했던 세계와 그 역사가, 다시금.
+또 다른 이가 전해야만 할, 인도와 혜안의 이야기.
+과거를 드러내어, 신의 영혼을 보아라.
+
+""Lucent Historia""에서는 아르케아가 아닌
+또다른 세계의 이야기가 펼쳐집니다.
+다섯 개의 악곡에 걸쳐 펼쳐지는 서사시.
+그 주인공은 초월자 - 여덟 번째 추적자...
+""연민"".;zh-Hans=一段远古的往事被再次提起，
+快被遗忘的世界再度落入世人视野。
+引路人与洞察者的过往，须由另一位来讲述。
+揭开那过去的面纱，看向祂灵魂的深处吧……
+
+《Lucent Historia》为你揭开Arcaea世界之外的篇章。
+随五首歌曲寻找“至高：第八探索者 - 慈悲”的过往。;zh-Hant=一段遠古的往事被再次提起，
+快被遺忘的世界再度落入世人視野。
+引路人與洞察者的過往，須由另一位來講述。
+揭開那過去的面紗，看向祂靈魂的深處吧……
+
+《Lucent Historia》為你揭開Arcaea世界之外的篇章。
+隨五首歌曲尋找「至高：第八探索者 - 慈悲」的過往。",mainstory2,True,,,-1,,,1080_select_lephon.png
+epilogue,en=Silent Answer,en=;ja=;ko=;zh-Hans=;zh-Hant=,mainstory,,,,-1,,finale,1080/divider_epilogue-pressed.png;1080/divider_epilogue.png;1080_select_epilogue.png;1080_select_epilogue_alt.png
+finale,en=Final Verdict,"en=The final Main Story Pack of Arcaea.
+With this, bring about the story's end.
+
+In addition to 4 hidden songs, Final Verdict
+requires connection between yourself and other
+players to fully unlock. Like Light, like Conflict,
+here you stand to face truly unfathomable ordeals.;ja=Arcaeaのメインストーリー、その最終章。
+斯くして迎える、物語の終末。
+
+隠された4曲に加えて、『Final Verdict』パック
+では、全てを解禁するために他プレイヤーとの
+協同が必須となります。光と対立に待つような、
+底知れぬ試練がこの先、あなたを待つでしょう。;ko=Arcaea 마지막 메인 스토리 팩.
+이것으로 이야기의 끝을 맞이한다.
+
+4개의 숨은 곡을 포함해 Final Verdict은 완전히
+언락하기 위하여 자신과 타 플레이어 간의 연결을
+필요시 합니다. Light와 Conflict처럼 당신은
+상상할 수 없는 시련에 맞설 것이다.;zh-Hans=Arcaea 最后的主线剧情曲包。
+在这里，一切都将走向终结。
+
+除了四首隐藏歌曲外，你需要和其他玩家
+一起行动才能完全解锁 Final Verdict 曲包。
+就像光与对立一样，
+你将面临真正深不可测的考验。;zh-Hant=Arcaea 最後的主線劇情曲包。
+在這裡，一切都將走向終結。
+
+除了四首隱藏歌曲外，你需要和其他玩家
+一起行動才能完全解鎖 Final Verdict 曲包。
+就像光與對立一樣，
+你將面臨真正深不可測的考驗。",mainstory,,,,-1,,,1080_select_finale.png
+vs,en=Black Fate,"en=A storm fast approaches.
+Reconciliation may not be possible.
+Is this the only destiny afforded them?
+What truth will they find at the end of their paths?
+
+A continuation of the main story of Arcaea.
+It's suggested to play other main story packs first.;ja=嵐は来る──すぐに近くまで。
+和解はきっと、できないかもしれない。
+これが唯一、許される運命なのだろうか。
+選んだ道の先、二人が見出す真実とは──。
+
+Arcaeaメインストーリーの続編です。
+ここまでの物語をクリアの後、購入を推奨します。;ko=빠르게 다가오는 폭풍.
+아마도 불가능해 보이는 화해.
+이것이 그들에게 주어진 유일한 운명인가?
+그 여정의 끝자락에서 발견하게 될 진리는 무엇인가?
+
+이어지는 아르케아의 메인 스토리.
+다른 메인 스토리 팩을 먼저 플레이 해보시길 추천드립니다.;zh-Hans=一场暴风雨正呼啸而来。
+妥协的可能性，或许并不存在。
+一切，真的只是命中注定吗？
+在终点站等待着少女们的，究竟是怎样的真理？
+
+韵律源点主线故事的下一篇章。
+在此之前，强烈建议先游玩过去的故事包。;zh-Hant=一場暴風雨正呼嘯而來。
+妥協的可能性，或許並不存在。
+一切，真的只是命中註定嗎？
+在終點站等待著少女們的，究竟是怎樣的真理？
+
+韻律源點主線故事的下一篇章。
+在此之前，強烈建議先遊玩過去的故事包。",mainstory,,,,-1,,,1080_select_vs.png
+prelude,en=Adverse Prelude,"en=A meandering journey,
+an impossible meeting.
+One is of light, the other conflict—
+and now their fates intertwine.
+
+Five new monumental songs stand ready,
+wherever this meeting may lead...;ja=果てなき旅路の最中、
+叶い得なかった邂逅。
+一方は白き少女、もう一方には黒き少女。
+─────そして今、2つの宿命が1つに交わる。
+
+ここに在りしは不朽の楽曲が5つ、
+邂逅が導くのはいずこなりや？;ko=정처없는 여정,
+있을 수 없는 만남.
+하나의 빛과, 또 다른 대립,
+그리고 지금, 뒤얽히는 그들의 운명.
+
+새롭게 준비된 상징적인 5곡들,
+이 만남이 이끌어가는 곳 어디든..;zh-Hans=一段蜿蜒曲折的旅途，
+一场不可思议的邂逅。
+一由光芒环抱，一则缠绕纷争——
+少女们的命运，将于此刻交织。
+
+五首重量级的全新乐曲，
+将随这场相遇席卷而来……;zh-Hant=一段蜿蜒曲折的旅途，
+一場不可思議的邂逅。
+一由光芒環抱，一則纏繞紛爭——
+少女們的命運，將於此刻交織。
+
+五首重量級的全新樂曲，
+將隨這場相遇席捲而來……",mainstory,,,,-1,,,1080_select_prelude.png
+rei,en=Luminous Sky,"en=The skies of Arcaea brighten overhead.
+
+Experience an intense story of light
+as Hikari journeys into the realm of
+the mind and memories, not knowing
+of the ending that awaits her,
+nor the anomaly that could be her salvation...;ja=頭上に燦めくArcaeaで編まれた空。
+
+いまだ知り得ぬ終幕へと続く、光の記憶と
+心の目覚めを巡る苛烈な旅に旅立ちましょう。
+
+終焉の淵で待つアノマリー、はたしてそれは
+彼女にとっての救いとなるか──？;ko=Arcaea의 하늘이 머리 위를 비춥니다
+
+그녀를 기다리고 있는 알수없는 결말,
+하지만 구원의 기회가 될 수 있는
+그녀의 이상을 향해..
+
+'히카리'와 함께 마음속에 있는,
+추억과 감정이라는 강렬한 빛을 경험해보세요
+신나고 어려운 곡들이 준비되어 있습니다;zh-Hans=Arcaea的天空在头顶闪闪发亮。
+
+跟随已经踏入精神领域的光，
+穿梭于情感与回忆之中，
+体验那关于光明的紧张而又激烈的故事。
+她并不知晓那正静待着她的结局，
+也对那可能成为她的救赎的异象毫不知情……;zh-Hant=Arcaea的天空正在頭頂閃閃發光。
+
+跟隨已經踏入精神領域的光，
+穿梭于情感與回憶之中，
+體驗那有關光明的緊張而又激烈的故事。
+她並不知曉那正靜待她的結局，
+也對那可能成為她的救贖的異象毫不知情……",mainstory,,,,14,,,1080_select_rei.png
+yugamu,en=Vicious Labyrinth,"en=A tide of sorrow sweeps over the world of Arcaea.
+
+Experience Tairitsu's torments as she pursues
+the deeper, twisted pasts that await
+as well as a treacherous anomaly
+that lies hidden...
+Featuring intense, challenging songs;ja=アーケアの世界に、悲しみの波が広がる...
+
+先に待ち受けているのは、危険な「アノマリー」。
+対立が追求するその深く、ねじれた過去を体験せよ...
+
+激しくも、挑戦的な楽曲をご用意しました;ko=아르케아의 세계에 슬픔의 물결이 몰아치고 있습니다..
+
+타이리츠의 고통을 직면하게 된 이상현상 속에서
+뒤틀린 과거의 슬픔을 더욱 깊이 경험해보세요.
+
+혼돈 속에서 발견한 더욱 강렬하고 도전적인 악곡을 소개합니다. ;zh-Hans=哀伤的潮汐冲刷着Arcaea的世界。
+跟随对立探索扭曲的尘封往事以及那潜伏的恶毒异象，
+体验她所经历的苦难...
+
+紧凑、挑战性极高的旋律将接踵而至。;zh-Hant=Arcaea的世界為憂傷所淹沒。
+隨著對立探索扭曲的塵封往事以及潛伏的惡毒異象，
+體驗她所經歷的苦難...
+
+緊湊、充滿挑戰的旋律將接踵而來。",mainstory,,,,6,,,1080_select_yugamu.png
+core,en=Eternal Core,"en=Unlock the Eternal Core to access
+Arcaea's Original Songs cache.
+
+Experience a tale of Light and Conflict
+as Tairitsu and Hikari find themselves
+in a lost, broken world.;ja=オリジナル曲を開放する拡張パック
+『エターナルコア』をアンロックし
+アーケアの失われた世界で
+『光』と『対立』が奏でる物語を
+あなた自身の力で探求しよう！;ko=Arcaea의 부서져 잃어버린 세계에서
+'Hikari'와 'Tairitsu'가 연주하는
+'빛'과 '대립'의 이야기를 들어주세요.
+
+Arcaea의 오리지널 음악이
+Eternal Core에 수록되어 있습니다.;zh-Hans=解开永恒核心的封印，
+探索Arcaea的宝贵原创乐曲。
+
+你将与光和对立一同探索那失落的破碎世界
+等待着你的将会是光芒与混沌的无尽纠缠。;zh-Hant=解開永恆核心的封印，
+接受秘術之地Arcaea原創樂曲的洗禮。
+
+你將與對立和光一同探索一個失落的破碎世界，
+在充滿衝突的旅程往光明邁進。",mainstory,,,,-1,,,1080_select_core.png
+nihil,en=Absolute Nihil,"en=Reason is torn away, the sky darkens, rain falls.
+With a quiet child to her side, she starts to believe
+in pathetic fallacy. Here, Saya's story is left in ""nihil"".
+
+5 songs signal a grim encounter. In this fierce and
+hollow battle of ideals: recall your folly and fight on.
+With ""Absolute Reason"" ownership, Saya can Awaken.;ja=敗れた信条、振り始める雨。
+哀れな誤謬と無辜の子を傍らに、
+女の行き先は虚無か、それとも……
+
+5つの楽曲と新たなストーリーを収録。
+パック『Absolute Reason』の所持で
+サヤの覚醒が可能になります。;ko=찢겨나간 이성. 어두워지는 하늘. 쏟아지는 비.
+곁을 지키는 조용한 소녀. 잘못된 믿음.
+사야가 맞이할 이야기의 끝은, ""허무"".
+
+불온한 조우를 알리는 다섯개의 악곡.
+텅 빈 이상을 부딪히는 혈투.
+스스로의 잘못을 다시 되새기며 싸워나아가라.
+본 Pack과 ""Absolute Reason"" Pack 동시 보유자들은
+사야를 각성할 수 있습니다!;zh-Hans=掠夺命运之时，雨滴倾泻，天空黯然。
+文静的孩子跟随着她，而她成为了谬错的信徒。
+至此，咲弥的故事仅剩「虚无」。
+
+五首曲目与一次无情的会面：短兵相接，你自诩愚者；
+但这场激烈而空洞的信仰之战仍将继续。
+继《Absolute Reason》之后，你将觉醒。;zh-Hant=掠奪命運之時，雨滴傾瀉，天空黯然。
+文靜的孩子跟隨著她，而她成為了謬錯的信徒。
+至此，咲彌的故事僅剩「虛無」。
+
+五首曲目與一次無情的會面：短兵相接，你自詡愚者；
+但這場激烈而空洞的信仰之戰仍將繼續。
+繼《Absolute Reason》之後，你將覺醒。",mainstory2,True,,,23,,,1080_select_nihil.png
+eden,en=Lasting Eden,"en=Wrapped in the shroud of night,
+her eyes tender to the faintest glimmer,
+a lone girl wakes to a bitter gift.
+
+Journey through dusk's embrace with Maya
+and experience a dazzling voyage with 5
+winners of the ""Imagining After"" Song Contest.;ja=夜の毛布に包まれて、
+少女の双眸はきらめきに揺れる。
+それは、いつかの惨影から。
+
+楽曲コンテスト第3回
+『Imagining After』、その入賞曲5つを収録。
+追憶の夕暮れの中、マヤの道のりを見守ろう。;ko=밤의 장막에 싸여,
+그 눈은 희미한 반짝임조차 거부하네.
+잔인한 선물을 안고 깨어난 소녀여.
+
+5개의 ""Imagining After"" 컨테스트 우승곡을 통해,
+마야와 함께 눈부신 여정을 떠나보세요. ;zh-Hans=一望无际的深沉夜幕笼罩之下，
+哪怕是一丝微弱的光亮也将刺痛她的眼睛；
+少女独自醒来之时，残酷的苦痛便已加诸其身。
+
+薄暮怀抱之下，五首Imagining After比赛的优胜曲目
+将与你和摩耶一同踏上这段炫彩夺目的旅程。;zh-Hant=一望無際的深沈夜幕籠罩之下，
+哪怕是一絲微弱的光亮也將刺痛她的眼睛；
+少女獨自醒來之時，殘酷的苦痛便已加諸其身。
+
+薄暮懷抱之下，五首Imagining After比賽的優勝曲目
+將與你和摩耶一同踏上這段炫彩奪目的旅程。",mainstory2,True,,,71,,,1080/divider_eden_append_1-pressed.png;1080/divider_eden_append_1.png;1080/divider_eden_append_2-pressed.png;1080/divider_eden_append_2.png;1080/overlay_eden_append_1.png;1080/overlay_eden_append_2.png;1080/select_eden_append_1-pressed.png;1080/select_eden_append_1.png;1080/select_eden_append_1_locked-pressed.png;1080/select_eden_append_1_locked.png;1080/select_eden_append_2-pressed.png;1080/select_eden_append_2.png;1080/select_eden_append_2_locked-pressed.png;1080/select_eden_append_2_locked.png;1080_select_eden.png;1080_select_eden_alt.png
+eden_append_1,en=Lasting Eden Chapter 2,"en=Winds cast away the dust of strife and tragedy,
+and in this storm, a voice calls down:
+Arcaea will change.
+
+5 more songs from the ""Imagining After"" contest
+await in this addition to the Lasting Eden Pack as
+you come to find her, and rain begins to fall...;ja=かつての奮戦と悲劇、その名残さえ風は攫って。
+嵐が来る、嵐が来る……Arcaeaは、改竄される。
+
+楽曲コンテスト『Imagining After』より、
+5つの楽曲がLasting Edenに追加！
+
+……あなたは来た。そして今、雨は降る──。;ko=세차게 부는 바람이, 갈등과 비극의 모래를 날려보냅니다.
+휘몰아치는 폭풍 사이로 들려오는 목소리가 전합니다.
+아르케아가 변할 것이라고.
+
+""Imagining After"" 컨테스트 우승곡 5개가 수록된
+Lasting Eden 팩의 속편.
+쏟아지는 비 사이로, 그녀를 찾아온 당신...;zh-Hans=风吹散了纷争与悲剧的尘埃，
+于这场风暴之中，一个声音呼唤着：
+Arcaea将会改变。
+
+五首Imagining After大赛的优胜曲目等待着你。
+她，也一样。天空落下了她的""眼泪""，
+Lasting Eden的Pack Append之旅，缓缓启程……;zh-Hant=風吹散了紛爭與悲劇的塵埃，
+於這場風暴之中，一個聲音呼喚著：
+Arcaea將會改變。
+
+五首Imagining After大賽的優勝曲目等待著你。
+她，也一樣。天空落下了她的「眼淚」，
+Lasting Eden的Pack Append之旅，緩緩啓程……",mainstory2,,,,-1,,eden,1080/divider_eden_append_1-pressed.png;1080/divider_eden_append_1.png;1080/overlay_eden_append_1.png;1080/select_eden_append_1-pressed.png;1080/select_eden_append_1.png;1080/select_eden_append_1_locked-pressed.png;1080/select_eden_append_1_locked.png
+eden_append_2,en=Shifting Veil,"en=Not a single soul could have predicted this truth.
+The truth is what befell.
+What it entails yet remains shrouded.
+
+Find 3 more songs in this addition to
+Lasting Eden, all winning entries of
+the ""Imagining After"" Song Contest.;ja=誰も予期などしなかった。誰も防げはしなかった。
+ただ、降り掛かった現実だけが真実で。
+
+──待つモノは、ただ、未知数。
+
+『Lasting Eden』に加わる新たな音色、
+『Imagining After』の入賞曲3つが追加。;ko=그 누구도 예상하지 못했던 진실이 불러올 파동은
+아직 장막의 너머에...
+
+Lasting Eden의 Pack Append로, ""Imagining After""
+컨테스트 우승곡 3개가 찾아옵니다. ;zh-Hans=此般真相，无人能料。
+降临于此的，便是真相。
+但真相昭示着的，仍为未知。
+
+Imagining After大赛的另三首优胜曲目，
+现已加入Lasting Eden。;zh-Hant=此般真相，無人能料。
+降臨於此的，便是真相。
+但真相昭示著的，仍為未知。
+
+Imagining After大賽的另三首優勝曲目，
+現已加入Lasting Eden。",mainstory2,,,,-1,,eden,1080/divider_eden_append_2-pressed.png;1080/divider_eden_append_2.png;1080/overlay_eden_append_2.png;1080/select_eden_append_2-pressed.png;1080/select_eden_append_2.png;1080/select_eden_append_2_locked-pressed.png;1080/select_eden_append_2_locked.png
+megarex,en=MEGAREX,"en=The future waits no longer.
+
+Glide toward horizons untouched by yesterday
+with 4 songs from MEGAREX, and 1 new original!
+
+Crossing between day and night, Shirahime (Flow)
+too shines into view!;ja=未来の背中はもう見えている。
+影すら千切って、地平の先へと駆け抜けろ！
+
+MEGAREXから4つの名曲に加え、
+コラボオリジナル楽曲1つを収録。
+朝と夜の境界に輝く、『白姫 (Flow)』も登場！;ko=미래는 이미 시작되었습니다.
+
+MEGAREX에서 넘어온 4개의 악곡,
+그리고 1개의 오리지널 악곡과 함께
+과거를 뒤로하고 지평선을 향해 나아가세요.
+
+낮과 밤 사이를 건너, 시라히메 (Flow)가 등장합니다!;zh-Hans=未来已来。
+
+穿越昨日不曾触及的地平线，
+与来自MEGAREX的四首曲目及
+一首全新原创单曲会面。
+
+跨越白天与黑夜，白姬 (Flow) 闪亮登场！;zh-Hant=未來已來。
+
+穿越昨日不曾觸及的地平線，
+與來自MEGAREX的四首曲目及
+一首全新原創單曲會面。
+
+跨越白天與黑夜，白姬 (Flow) 閃亮登場！",collab,True,,,96,,,1080_select_megarex.png
+anima,en=Extant Anima,"en=Get to that distant star!
+
+Five songs from the ""Coalescence"" Song Contest
+are calling out to you from the horizon.
+
+Join Nonoka on her journey through space
+filled with brilliant lights and sounds!;ja=楽曲コンテスト第4回『Coalescence』より、
+5つの入賞曲が登場──いま、呼び声が聞こえる。
+
+美しい光と音に満ちた宇宙の旅へ、
+『ノノカ』と共に、いざ出発！
+
+───さあ、遥かなる『光』をめざして！;ko=저 머나먼 별을 향해!
+
+무한의 저편에서 5개의 악곡 콘테스트
+""Coalescence"" 수상곡들이 손짓합니다.
+
+노노카와 함께 눈부신 빛과 소리로 가득 찬 우주로
+여행을 떠나보세요!;zh-Hans=向那遥远的星辰进发！
+
+「Coalescence」歌曲竞赛的五首
+动听歌曲正在水平线远处呼唤着。
+
+在璀璨光影和动听乐声中，
+和野乃香一起踏上她的太空之旅吧！;zh-Hant=向那遙遠的星辰進發！
+
+「Coalescence」歌曲競賽的五首
+動聽歌曲正在水平線遠處呼喚着。
+
+在璀璨光影和動聽樂聲中，
+和野乃香一起踏上她的太空之旅吧！",sidestory,True,,,89,,,1080/divider_anima_append_1-pressed.png;1080/divider_anima_append_1.png;1080/overlay_anima_append_1.png;1080/select_anima_append_1-pressed.png;1080/select_anima_append_1.png;1080/select_anima_append_1_locked-pressed.png;1080/select_anima_append_1_locked.png;1080_select_anima.png;1080_select_anima_alt.png
+anima_append_1,en=Chapter Experientia,"en=It came to you because you opened your hand.
+Open your eyes, and ears, to the blissful sound
+of universal collapse.
+
+5 more songs from the ""Coalescence"" contest
+have arrived from the depths of the bluest heart, and
+await now in this addition to the Extant Anima Pack.;ja=手を開いたあなたに来たあなたに手を開いた
+来たりて開け、その眼球、その耳朶を、
+宇宙と万象が崩れるその福音に向けて。
+
+楽曲コンテスト『Coalescence』、
+大いなる青の奥底から、さらなる入賞曲。
+新たに5つがExtant Animaパックに登場。;ko=손을 펼쳐 뻗었기 때문에,
+빛이 너를 찾아온 거야.
+눈과 귀도 열어보지 않을래?
+우주가 무너지는 행복에 겨운 소리를 들어봐.
+
+""Coalescence"" 콘테스트 수상곡 5개가
+Extant Anima Pack의 추가 곡으로서
+푸른 심장 깊숙한 곳으로부터 찾아왔습니다.;zh-Hans=它来了，因你张开了双臂。
+睁开双眼，竖起双耳，
+你将聆听宇宙崩坏时美妙的声响。
+
+自最深的蓝中，最深的心底，「Coalescence」大赛
+的另外五首优胜曲也已来临。《Extant Anima》曲包
+终于迎来了它的续篇。;zh-Hant=它來了，因你張開了雙臂。
+睜開雙眼，豎起雙耳，
+你將聆聽宇宙崩壞時美妙的聲響。
+
+自最深的藍中，最深的心底，「Coalescence」大賽
+的另外五首優勝曲也已來臨。 《Extant Anima》曲包
+終於迎來了它的续篇。",sidestory,,,,-1,,anima,1080/divider_anima_append_1-pressed.png;1080/divider_anima_append_1.png;1080/overlay_anima_append_1.png;1080/select_anima_append_1-pressed.png;1080/select_anima_append_1.png;1080/select_anima_append_1_locked-pressed.png;1080/select_anima_append_1_locked.png
+observer,en=Esoteric Order,"en=A girl stands, alone, at the
+very ends of the Arcaea world,
+beyond what anyone else has seen...
+
+Featuring Lagrange and Charon,
+this pack includes six winners
+of the Arcaea Song Contest 2020!;ja=世界の果て、前人未踏のその場所で、
+佇む少女が、ただひとり。
+
+ラグランジュとカロンをテーマに、
+Arcaea楽曲コンテスト2020より、
+本楽曲パックでは6つの受賞曲を収録！;ko=한 소녀가
+그 누구도 보지 못한
+아르케아의 끄트머리에 홀로 서 있습니다...
+
+Arcaea 악곡 콘테스트 2020 우승자 여섯 명의 악곡을
+라그랑주, 카론과 함께 즐겨보세요!;zh-Hans=一名少女，
+在所有人都看不见的地方，
+孤零零地站在Arcaea世界的尽头……
+
+与拉格兰和卡戎一起，
+享受《韵律源点2020年歌曲竞赛》
+带来的六首优胜作品吧！;zh-Hant=一名少女，
+在所有人都看不見的地方，
+孤零零地站在Arcaea世界的盡頭……
+
+與拉格蘭和凱倫一起，
+享受《韻律源點2020年歌曲競賽》
+帶來的六首優勝作品吧！",sidestory,True,,,45,,,1080/divider_observer_append_1-pressed.png;1080/divider_observer_append_1.png;1080/divider_observer_append_2-pressed.png;1080/divider_observer_append_2.png;1080/overlay_observer_append_1.png;1080/overlay_observer_append_2.png;1080/select_observer_append_1-pressed.png;1080/select_observer_append_1.png;1080/select_observer_append_1_locked-pressed.png;1080/select_observer_append_1_locked.png;1080/select_observer_append_2-pressed.png;1080/select_observer_append_2.png;1080/select_observer_append_2_locked-pressed.png;1080/select_observer_append_2_locked.png;1080_select_observer.png
+observer_append_1,en=Pale Tapestry,"en=The tapestry extends, far, far
+into the distance, until...
+
+Discover three additional songs
+in this addition to Esoteric Order,
+all winners of the Arcaea Song Contest 2020!;ja=彼方を超えて広がる、世界という織物。
+遠く遠く、その果ては──。
+
+Esoteric Orderに加わる、
+Arcaea楽曲コンテスト2020受賞曲、
+3つの新曲を目撃せよ！;ko=태피스트리가 멀리,
+아주 먼 곳까지 이어지는데...
+이번 Esoteric Order 팩 속에
+3가지 추가 악곡을 만나보세요.
+아르케아 송 콘테스트 2020의 우승작입니다!;zh-Hans=美丽的织锦向外延伸，
+越来越远，直到那之后……
+
+在“Esoteric Order”的附加篇章中，
+体验《韵律源点2020年歌曲竞赛》的
+另外三首优胜作品！;zh-Hant=美麗的織錦向外延伸，
+越來越遠，直到那之後……
+
+在“Esoteric Order”的附加篇章中，
+體驗《韻律源點2020年歌曲競賽》的
+另外三首優勝作品！",sidestory,,,,-1,,observer,1080/divider_observer_append_1-pressed.png;1080/divider_observer_append_1.png;1080/overlay_observer_append_1.png;1080/select_observer_append_1-pressed.png;1080/select_observer_append_1.png;1080/select_observer_append_1_locked-pressed.png;1080/select_observer_append_1_locked.png
+observer_append_2,en=Light of Salvation,"en=A divine light appears in the
+endless void, guiding the way
+back to the world of light and conflict...
+
+Three more songs, all winners of the
+Arcaea Song Contest 2020, have
+arrived in this addition to Esoteric Order.;ja=光と対立の世界へと導く、
+終わりなき虚無に、現れた天啓。
+
+『Esoteric Order』に加わる、新たな光。
+Arcaea楽曲コンテスト2020、
+受賞曲から新たに3曲が登場。;ko=신성한 빛이 등장하여,
+영원한 어둠 속을 안내한다,
+다시 빛과 갈등의 세계 속으로...
+
+이번 Esoteric Order과 함께
+아르케아 송 콘테스트 2020의 우승자의 
+3가지 곡이 추가됐습니다.;zh-Hans=一道神圣的光芒闪亮于无尽的虚空之中，
+指引出返回光与对立的世界的道路……
+
+《韵律源点2020年歌曲竞赛》的另外三首获奖歌曲，
+现已作为“Esoteric Order”的附加篇章而到来！;zh-Hant=一道神聖的光芒閃亮於無盡的虛空之中，
+指引出返迴光與對立的世界的道路……
+
+《韻律源點2020年歌曲競賽》的另外三首獲獎歌曲，
+現已作為“Esoteric Order”的附加篇章而到來！",sidestory,,,,-1,,observer,1080/divider_observer_append_2-pressed.png;1080/divider_observer_append_2.png;1080/overlay_observer_append_2.png;1080/select_observer_append_2-pressed.png;1080/select_observer_append_2.png;1080/select_observer_append_2_locked-pressed.png;1080/select_observer_append_2_locked.png
+dividedheart,en=Divided Heart,"en=Under a divided sky,
+and plagued with uncertainty,
+remain steadfast and noble.
+
+Join Shirahime on her journey
+through five smooth, soothing,
+and exciting new songs!;ja=分かたれた空の下で、
+苛むのは割り切れない不定性。
+だからこそ貴く、胸を張る。
+
+優雅に、なだらかに、
+その道を彩る5つの新曲と共に、
+白姫(シラヒメ)の旅路を辿ろう。;ko=갈라진 하늘 아래,
+불확실성으로 괴로움에도,
+변함없고 숭고하다.
+
+시라히메, 그녀의 여행에
+동행하여 다섯 개의 잔잔한
+혹은 신나는 곡을 만나보세요!;zh-Hans=在割裂的天空下，
+饱受未知带来的折磨，
+尽管如此，她依然坚定而高贵。
+
+在五首舒缓顺滑
+而又激动人心的曲目中，
+和白姬一同踏上旅程吧！;zh-Hant=在割裂的天空下，
+飽受未知帶來的折磨，
+儘管如此，她依然堅定而高貴。
+
+在五首舒緩順滑
+而又激動人心的曲目中，
+和白姬一同踏上旅程吧！",sidestory,,,,99,,,1080_select_dividedheart.png
+alice,en=Ephemeral Page,"en=Reality seems constantly within reach,
+yet it can never truly be grasped...
+
+Discover truths and falsehoods alike
+as you travel with Alice and Tenniel,
+experiencing five brand-new stylish
+and upbeat songs along the way.;ja=常に手が届きそうに思えても、
+真に現実を掴むことなど誰にも
+出来はしない。
+
+真実と虚実が入り交じる、
+アリスとテニエルの旅を追いかけよう
+スタイリッシュなアップビートを道連れに。;ko=현실은 언제나 손에 닿을것만 같은 거리에,
+하지만 진정으로 이해할 수 없는...
+
+앨리스와 테니얼을 따라 함께
+진실과 거짓을 함께 발견하며
+그길을 따라 들려오는 경쾌한
+새로운 다섯가지 비트 스타일.;zh-Hans=现实看似触手可及，
+却始终求之不得……
+
+在爱丽丝与坦尼尔的旅途中
+揭开真相与谎言，
+同时体验五首风格鲜明的动感乐曲，
+并沉浸在音乐的世界当中。;zh-Hant=現實總是看似近在咫尺，
+但卻又虛無縹緲、捉摸不定……
+
+探掘真相與謊言，
+跟隨愛麗絲和坦尼爾的腳步，
+體驗五首別具特色的動感曲目，
+並沉浸在音樂的世界當中。",sidestory,,,,39,,,1080/divider_alice_append_1-pressed.png;1080/divider_alice_append_1.png;1080/overlay_alice_append_1.png;1080/select_alice_append_1-pressed.png;1080/select_alice_append_1.png;1080/select_alice_append_1_locked-pressed.png;1080/select_alice_append_1_locked.png;1080_select_alice.png
+alice_append_1,en=The Journey Onwards,"en=The journey of discovery is neverending...
+
+Explore three more songs by Alice's side
+in this addition to Ephemeral Page
+as the scenery of Arcaea passes by endlessly.;ja=探求の旅路、そこに終わりは訪れない。
+
+アリスと巡る3つの新曲。
+『Ephemeral Page』に加わる新たな頁。
+そしてArcaeaの情景は果てなく流れていく。;ko=탐색의 여정은 끝나지 않습니다...
+
+앨리스의 옆을 함께하며 ""Ephemeral Page""에
+추가될 3곡을 더 찾아 보세요.
+아르케아의 풍경이 끝없이 지나갈 때 말이죠.;zh-Hans=探索之旅永无止境……
+
+在“Ephemeral Page”的附加篇章中
+体验爱丽丝视角的三首歌曲
+并领略韵律源点中无尽变幻的风景。;zh-Hant=探索的旅程沒有盡頭……
+
+在「Ephemeral Page」的附加內容當中，
+隨著愛麗絲的腳步共同探索其他三首曲目，
+並欣賞《韻律源點》那無窮無盡的美麗景色。",sidestory,,,,-1,,alice,1080/divider_alice_append_1-pressed.png;1080/divider_alice_append_1.png;1080/overlay_alice_append_1.png;1080/select_alice_append_1-pressed.png;1080/select_alice_append_1.png;1080/select_alice_append_1_locked-pressed.png;1080/select_alice_append_1_locked.png
+omatsuri,en=Sunset Radiance,"en=With your wish in heaven, dream a colorful dream.
+A snow field spans the night, and crossing it
+leads to dusk. So, with a festival in your heart...
+
+Join Kanae in her Story as you trek across 6 songs:
+5 festive winners of the Arcaea Song Contest
+and 1 more song that calls to winter!;ja=かつての祭事は胸に秘め、
+雪原を越え、吹雪を越え、ただ歩く。
+願いの標、彩られた夢想はその先に。
+
+さあ、叶永の旅路を辿ろう。
+かつての楽曲コンテスト入賞曲5つに、
+新たな楽曲1つをなぞって。;ko=하늘까지 닿은 기도, 알록달록한 꿈.
+밤에 펼쳐진 눈밭을 가로지르는 사이에,
+어느샌가 진 땅거미.
+축제를 품은, 너의 마음.
+
+6개의 악곡을 가로지르는 카나에의 모험에 함께하세요.
+Arcaea 악곡 콘테스트 우승곡 5개,
+그리고 겨울을 향해 울리는 1개의 악곡이 담겨있습니다!;zh-Hans=所求均愿天遂，万紫千红，甜似酣梦。
+客路漫漫长夜，踏雪寻梅，渐入薄暮。
+庆典之声，萦绕于心……
+
+在六段优美旋律的陪伴下，听群愿娓娓道来一段往事：
+五首韵律源点歌曲大赛的优胜曲目
+及这个冬日的一首新曲，重磅登场！;zh-Hant=所求均願天遂，萬紫千紅，甜似酣夢。
+客路漫漫長夜，踏雪尋梅，漸入薄暮。
+慶典之聲，縈繞於心……
+
+在六段優美旋律的陪伴下，聽群願娓娓道來一段往事：
+五首Arcaea歌曲大賽的優勝曲目
+及這個冬日的一首新曲，重磅登場！",sidestory,True,,,30,,,1080_select_omatsuri.png
+zettai,en=Absolute Reason,"en=Memories are windows into realities,
+mysteries waiting to be unraveled...
+
+Take a journey in ruthless search of the ultimate
+truth with the enigmatic Saya during five all-new,
+hardcore songs! In addition, with ""Absolute Nihil""
+ownership, Saya can Awaken!;ja=記憶は現実へと続く窓、
+信条は過去から続く糸、
+さあ、未知をほどいて、先へ。
+
+慈悲なき探求を兆す5つの新曲、
+真実を求め、サヤが歩む道を往こう。
+(『Absolute Nihil』所持でサヤの覚醒が可能);ko=기억이란 현실로의 창문.
+풀리기를 기다리는 수수께끼.
+
+5개의 신곡과 함께,
+진리를 찾아 떠나는 수수께끼의 소녀,
+사야의 험난한 여정에 함께하세요
+(""Absolute Nihil"" Pack 보유시 사야 각성 가능);zh-Hans=记忆，是通往尚未被揭晓之
+真实与奥秘的窗户……
+
+与一名神秘少女一起，
+在一次探索究极真实的无情旅途中
+邂逅五首全新的硬核曲目！
+在获取《Absolute Nihil》之后，还可进一步觉醒她！;zh-Hant=記憶，是通往尚未被揭曉之
+真實與奧秘的窗戶……
+
+與一名神秘少女一起
+在一次探索究極真實的無情旅途中
+邂逅五首全新的硬核樂曲！
+在獲取《Absolute Nihil》之後，還可進一步覺醒她！",sidestory,,,,23,,,1080_select_zettai.png
+nijuusei,en=Binary Enfold,"en=Dive into unexplored, vibrant worlds
+guided by the twins ‘Eto’ and ‘Luna’.
+
+Join ‘Eto’ in traveling distant memories
+and face ‘Luna’s merciless challenge…;ja=不思議な双子「エト」と「ルナ」に連れられて、
+未知で鮮烈な新世界に飛び込みましょう。
+
+エトの遠い記憶を巡る旅と、
+ルナの無慈悲な試練に挑むために。;ko=쌍둥이 '에토', '루나' 와 함께
+활기찬 미지의 세계로 빠져봅시다
+
+'에토'와 함께 머나먼 추억속으로,
+그리고 '루나'의 무모한 도전...;zh-Hans=在双子“爱托”和“露娜”的带领下
+跃入那些充满活力的未知世界中。
+
+与爱托一起在悠远的回忆中旅行，
+并面对露娜无情的挑战……;zh-Hant=在雙子“愛托”和“露娜”的領導下
+躍入那些充滿活力的未知世界中。
+
+與愛托一起在悠遠的回憶中旅行，
+并面對露娜無情的挑戰……",sidestory,,,,11,,,1080/divider_nijuusei_append_1-pressed.png;1080/divider_nijuusei_append_1.png;1080/overlay_nijuusei_append_1.png;1080/select_nijuusei_append_1-pressed.png;1080/select_nijuusei_append_1.png;1080/select_nijuusei_append_1_locked-pressed.png;1080/select_nijuusei_append_1_locked.png;1080_select_nijuusei.png
+nijuusei_append_1,en=Shared Time,"en=A star and moon gaze up at the day,
+waiting for night to arrive...
+
+Reunite with Eto and Luna to experience
+three brand-new songs in this addition
+to the Binary Enfold pack!;ja=陽光を見上げる星と月は、
+いまだ夜を待つばかり。
+
+エトとルナの二人と今再び、
+新たにBinary Enfoldに加わる
+3つの新曲を体験せよ！;ko=별과 달이 낮을 바라보며
+밤이 도착하길 기다린다...
+
+에토 & 루나와 재회하여
+Binary Enfold 팩에 포함된
+3개의 신곡을 경험하세요!;zh-Hans=一缕星月在空中凝视着，
+静候着夜幕的降临……
+
+和爱托与露娜再度重逢，
+一起体验Binary Enfold曲包之上的
+三首全新曲目吧！;zh-Hant=一縷星月在空中凝視著，
+靜候著夜幕的降臨……
+
+和愛托與露娜再度重逢，
+一起體驗Binary Enfold曲包之上的
+三首全新曲目吧！",sidestory,,,,-1,,nijuusei,1080/divider_nijuusei_append_1-pressed.png;1080/divider_nijuusei_append_1.png;1080/overlay_nijuusei_append_1.png;1080/select_nijuusei_append_1-pressed.png;1080/select_nijuusei_append_1.png;1080/select_nijuusei_append_1_locked-pressed.png;1080/select_nijuusei_append_1_locked.png
+mirai,en=Ambivalent Vision,"en=The past lies foggy and shrouded
+in a world of ambivalent memories...
+Join Lethe to experience her conflicting
+view of the past and future world.
+
+Improve your Arcaea skills in this pack,
+balanced for both new and experienced players.;ja=過去の世界は、ぼんやりとした
+思い出の霧に覆われている...
+レーテーと共に、過去と未来の世界の
+相反する時の流れを覗きに行こう。
+
+初心者にも経験者にも楽しめるように作られた
+新しいパックで、君のスキルを磨こう！;ko=과거의 세계에 대한 기억은
+안개처럼 흐린 기억만 남아 있습니다..
+과거와 미래의 세계가 서로 뒤바뀌는
+혼돈의 틈을 Lethe와 함께 경험해보세요.
+
+초심자부터 숙련자까지 모두가 즐길 수 있는 곡들입니다.
+새로운 뮤직팩에서 실력을 키워보세요!;zh-Hans=过去的世界，埋藏在充满矛盾的回忆之中……
+和忘却一同探寻时间轴的两极——过去与未来。
+
+无论你的水平如何，
+相信你都可以在Arcaea的世界提升自己的技巧。;zh-Hant=過去埋藏在充滿矛盾的回憶裡...
+和忘卻一同探尋時間軸的兩極——過去和未來。
+
+無論是新手還是老手，
+都能在秘術之地提升自己的技巧。",sidestory,,,,4,,,1080_select_mirai.png
+shiawase,en=Crimson Solace,"en=Join Kou as she explores a lost,
+yet familiar, joyful world.
+
+See the brighter side of the world
+of Arcaea with brand new, original 
+songs in the midst of a haven
+dyed in Crimson.;ja=──それはどこか懐かしくも楽しげで、
+しかし今は失われた世界。
+
+新規書き下ろし楽曲多数！
+紅い安息に沈んだ欠片たちをめぐりながら、
+アーケアの明るい世界を旅しましょう。
+新しい仲間、”紅(コウ)”と共に。;ko=그때는 정말 따스하고 즐거웠던,
+하지만 지금은 기억속에만 남아있는 아름다웠던 세계..
+
+연분홍 빛으로 가득 찬
+안식의 땅이 있던 그곳에서
+Arcaea의 눈부셨던 새로운 세계를 보여주기위해
+'Kou'가 당신을 기다리고 있습니다 ;zh-Hans=和红一起探索这仍旧存在欢乐、
+会让你倍感熟悉的失落世界。
+
+在全新的原创曲目以及绯红所渲染的时空中，
+迎接Arcaea的光明。;zh-Hant=和紅一起探索這個仍舊帶來歡樂、
+讓你倍感熟悉的失落世界。
+
+在全新的原創曲目以及緋紅所渲染的時空裡，
+迎接秘術之地的光明。",sidestory,,,,2,,,1080_select_shiawase.png
+djmax,en=DJMAX,"en=Ready to pay respect?
+
+From across the DJMAX series come 5 timeless
+songs!
+
+Bring Hikari & El Clear to your side,
+let the fever take hold!;ja=DJMAXシリーズより、
+時代を超える不朽の名作を5つ収録！
+最大限の敬意を、いまのあなたへ。
+
+光＆エル・クリアと共に、
+FEVERの渦を駆け昇ろう！;ko=RESPECT! 존경을 표하세요.
+
+DJMAX로부터 건너온 5개의 시대를 초월한 악곡들!
+
+히카리 & 엘 클리어와 함께, 
+온 몸을 타고 흐르는 FEVER를 느껴보세요!;zh-Hans=准备好PAY RESPECT了吗？
+
+千禧年代经典之作——DJMAX的五首金曲到来。
+
+让光&克莱尔陪伴你，一起进入FEVER模式吧！;zh-Hant=準備好PAY RESPECT了嗎？
+
+千禧年代經典之作——DJMAX的五首金曲到來。
+
+讓光&克萊爾陪伴你，一起進入FEVER模式吧！",collab,True,,,86,,,1080/divider_djmax_append_1-pressed.png;1080/divider_djmax_append_1.png;1080/overlay_djmax_append_1.png;1080/select_djmax_append_1-pressed.png;1080/select_djmax_append_1.png;1080/select_djmax_append_1_locked-pressed.png;1080/select_djmax_append_1_locked.png;1080_select_djmax.png;1080_select_djmax_alt.png
+djmax_append_1,en=Collaboration Chapter 2,"en=Once more 5 songs from DJMAX
+have come to test the heart.
+
+Together with Nami (Twilight) & Sui,
+don't let yourself drift into silence.
+A fever is calling out again!;ja=DJMAXより再び、
+君の心が試される5曲が到来。
+
+『奈実 (宵闇)＆スイ』と共に、
+打ち寄せる波を乗りこなせ。
+FEVERの熱狂は、まだまだ終わらない！;ko=DJMAX를 다시 한 번.
+당신의 마음을 시험할 5개의 악곡.
+
+황혼 나미 & 스이와 함께,
+침묵으로 사라지지 마세요.
+FEVER의 열기가 당신을 부릅니다!;zh-Hans=又有五首DJMAX曲目到来，
+这是另一次心的试炼。
+
+同奈美（暮光）&希依一起，
+勇敢发声，拒绝沉默！
+FEVER仍在召唤！;zh-Hant=又有五首DJMAX曲目到來，
+這是另一次心之試煉。
+
+同奈美（暮光）&希依一起，
+勇敢發聲，拒絕沈默！
+FEVER仍在召喚！",collab,,,,-1,,djmax,1080/divider_djmax_append_1-pressed.png;1080/divider_djmax_append_1.png;1080/overlay_djmax_append_1.png;1080/select_djmax_append_1-pressed.png;1080/select_djmax_append_1.png;1080/select_djmax_append_1_locked-pressed.png;1080/select_djmax_append_1_locked.png
+rotaeno,en=Rotaeno,"en=In the sky, worlds invert.
+
+5 captivating songs await in this collaboration
+with Rotaeno, including one complete original,
+and a collaboration story!
+
+Together with Luna & Ilot, travel through Aquaria!;ja=ルナとイロといっしょにアクアを旅しよう！
+さあ、蒼穹の中、反転した世界へ──。
+
+Rotaenoの個性あふれる楽曲4つに加え、
+オリジナル新曲1つのほか、
+新たなコラボストーリーも登場！;ko=드높은 하늘로부터,
+세상이 뒤집힙니다.
+
+Rotaeno 콜라보레이션으로 등장하는,
+하나의 오리지널 악곡을 포함한 5개의 매력적인 악곡!
+콜라보 스토리까지!
+
+루나 & 이로와 함께 아쿠아를 탐험해보세요!;zh-Hans=世界于天空倒转。
+
+包含一首原创新曲，五首曲目开启全新联动篇章。
+更有随附全新剧情：与旋转音律的邂逅，就此出发！
+
+跟随着露娜和伊洛的脚步，尽情在阿古亚星探索吧！;zh-Hant=世界於天空倒轉。
+
+包含一首原創新曲，五首曲目開啓全新聯動篇章。
+更有隨附全新劇情：與旋轉音律的邂逅，就此出發！
+
+跟隨著露娜和伊洛的腳步，盡情在阿古亞星探索吧！",collab,True,,,76,,,1080_select_rotaeno.png;1080_select_rotaeno_alt.png
+cytusii,en=CYTUS II,"en=Get up. You have someone to awaken.
+
+The worlds of Cytus II and Arcaea finally meet.
+4 famous songs from Cytus II, and 1 brand new
+original arrive in this much awaited collaboration.
+
+Let Ilith and Ivy join you as you bring CHAOS in.;ja=""──さあ、立って。
+成すべきことがまだあるでしょう？""
+
+Arcaea × Cytus II、ついに邂逅する2つの世界。
+Cytus IIから名曲4つと、描き下ろし楽曲1つが収録。
+
+IlithとIvyと共に、渦巻く混沌に切り込もう！;ko=일어나세요. 잠에서 깨워야 할 사람이 있으니까요.
+
+Cytus II와 Arcaea의 세계가 마침내 조우합니다.
+모두가 애타게 기다리던 콜라보레이션!
+Cytus II의 인기곡 4개와 더불어
+완전히 새로운 오리지널 악곡 1개가 찾아옵니다.
+Ilith, Ivy와 함께 CHAOS를 일으키세요!;zh-Hans=动身吧，去唤醒那沉睡之人。
+
+名为Arcaea的世界终于与名为Cytus II的世界相遇。
+四首经典曲目及一首不曾出现于两个游戏中的
+全新原创曲目终于到来。
+
+让Ilith和Ivy加入你的「CHAOS」之中吧。;zh-Hant=動身吧，去喚醒那沈睡之人。
+
+名為Arcaea的世界終於與名為Cytus II的世界相遇。
+四首經典曲目及一首不曾出現於兩個遊戲中的
+全新原創曲目終於到來。
+
+讓Ilith和Ivy加入你的「CHAOS」之中吧。",collab,True,,,69,,,1080/divider_cytusii_append_1-pressed.png;1080/divider_cytusii_append_1.png;1080/overlay_cytusii_append_1.png;1080/select_cytusii_append_1-pressed.png;1080/select_cytusii_append_1.png;1080/select_cytusii_append_1_locked-pressed.png;1080/select_cytusii_append_1_locked.png;1080_select_cytusii.png
+cytusii_append_1,en=Collaboration Chapter 2,"en=""Ivy...""
+Within a pristine world of light, Hikari happens
+across an awakening Vanessa...
+
+Reach a new, hard-earned reality. The Cytus II
+collaboration goes on; face catastrophe in 4 powerful
+songs. But...another lurks outside reality's bounds...;ja=「Ivy......」
+降り注ぐ純白の光のなか、
+目覚めたVanessaと、Hikariは出逢う──
+
+Cytus IIコラボパック、第2弾。
+漸く叶う現実をいま、その手に。
+強大な4曲と堕ちた過去、かの1曲がアナタを待つ。;ko=""Ivy...""
+빛의 세계를 거닐던 Hikari가,
+잠에서 깨어나려 하는 Vanessa를 발견합니다.
+
+힘들게 손에 넣은, 당신의 새로운 세계를 마주하세요.
+Cytus II 콜라보레이션은 계속됩니다. 새롭게 등장하는
+4개의 신곡과, 어둠 속에 숨은 또 하나의 악곡이...;zh-Hans=“Ivy……”
+
+纯净的光之世界中，刚苏醒的Vanessa与Hikari相遇。
+与Cytus II联动的道路还将延展：
+去探寻那来之不易的真相吧，即使那前方的路布满荆棘。
+昭示着浩劫的四首歌曲再次袭来，
+而在那真相之后，还有一曲在等待着你……;zh-Hant=「Ivy……」
+
+純淨的光之世界中，剛甦醒的Vanessa與Hikari相遇。
+與Cytus II聯動的道路還將延展：
+去探尋那來之不易的真相吧，即使那前方的路布滿荊棘。
+昭示著浩劫的四首歌曲再次襲來，
+而在那真相之後，還有一曲在等待著你……",collab,,,,-1,,cytusii,1080/divider_cytusii_append_1-pressed.png;1080/divider_cytusii_append_1.png;1080/overlay_cytusii_append_1.png;1080/select_cytusii_append_1-pressed.png;1080/select_cytusii_append_1.png;1080/select_cytusii_append_1_locked-pressed.png;1080/select_cytusii_append_1_locked.png
+musedash,en=Muse Dash,"en=Ready? GO!!
+
+Join Marija in three lively songs
+from the parkour/music game, Muse Dash!
+Additionally features a brand new song
+commemorating this collaboration!;ja=Ready? GO!!
+
+イキイキとした三曲、そして新パートナー
+『マリヤ』がランアクションとリズムゲーム
+『Muse Dash』から参戦！
+また本コラボを記念した、
+完全新曲も一曲収録！;ko=레디? 고!!
+
+마리쟈와 함께 액션 러닝/리듬 게임 Muse Dash의 
+3가지 신나는 곡을 즐기세요! 
+이를 기념하여 추가로 신곡도 포함됩니다!;zh-Hans=Ready? GO!!
+
+和玛莉嘉一起游玩
+来自跑酷音乐游戏Muse Dash的三首动感歌曲！
+除此之外这里还包含一首
+纪念此次联动的全新曲目！;zh-Hant=Ready? GO!!
+
+和瑪莉嘉一起遊玩
+來自跑酷音樂遊戲Muse Dash的三首動感歌曲！
+除此之外這裡還包含一首
+紀念此次合作活動的全新曲目！",collab,True,,,53,,,1080_select_musedash.png
+wacca,en=WACCA,"en=Dive headfirst with Saya and Elizabeth
+into Arcaea's collaboration with WACCA!
+
+Five songs from the hit arcade
+game, including one brand-new
+remix, are waiting to run circles around you!;ja=新パートナー『サヤ & エリザベス』と一緒に、
+待望のWACCAコラボへダイブ！！
+
+WACCAでおなじみの楽曲に、
+リミックス曲を加えた5曲構成！
+さあ、つなげよう、広げよう！;ko=사야 & 엘리자베스와 함께 머리부터 퐁당
+아르케아와 WACCA의 컬래버레이션 속으로
+다이브 하자!
+
+인기 리듬게임 왓카의 곡 다섯 곡 이 선보이며,
+특별한 새로운 리믹스가 당신을 기다리고 있다!;zh-Hans=和咲弥与伊莉莎白一起潜入这次
+韵律源点Arcaea与WACCA的联动吧！
+
+环绕在你周围的，
+是来自这款火热街机音游的五首歌曲。
+这其中包括一首全新的重混歌曲哦！;zh-Hant=和咲彌與伊莉莎白一起潛入這次
+Arcaea與WACCA的合作活動吧！
+
+環繞在你周圍的，
+是來自這款火熱街機音遊的五首歌曲。
+這其中包括一首全新的remix歌曲喔！",collab,True,,,48,,,1080/divider_wacca_append_1-pressed.png;1080/divider_wacca_append_1.png;1080/overlay_wacca_append_1.png;1080/select_wacca_append_1-pressed.png;1080/select_wacca_append_1.png;1080/select_wacca_append_1_locked-pressed.png;1080/select_wacca_append_1_locked.png;1080_select_wacca.png
+wacca_append_1,en=Collaboration Chapter 2,"en=Two worlds encounter each other again.
+Discover 5 captivating songs in this next chapter
+of the WACCA collaboration!
+
+In one, a voice resounds, ""Let's bring some fun to
+this mundane world."";ja=再び交わる2つの世界、再度両度の巡り合い。
+新章加わるWACCAコラボにて、
+目が離せない新たな5曲を体感せよ！
+
+そして、内より響くとある声。
+""この退屈な世界に、楽しみを加えよう！"";ko=두 세계가 또다시 조우합니다.
+계속되는 WACCA 콜라보레이션!
+마음을 사로잡는 5개의 악곡을 경험해보세요!
+
+안으로부터 울려오는 목소리,
+""이런 세계로는 아직 부족하니까.
+나를 더 즐겁게 해줘."";zh-Hans=两个世界再度交汇。
+五首魅力十足的歌曲，
+于WACCA联动的第二弹中闪亮登场！
+
+听，从远方传来的声音说道：
+""是时候给这无趣的世界，添上有趣的一笔了！"";zh-Hant=兩個世界再度交匯。
+五首魅力十足的歌曲，
+於WACCA聯動的第二彈中閃亮登場！
+
+聽，從遠方傳來的聲音說道：
+「是時候給這無趣的世界，添上有趣的一筆了！」",collab,,,,-1,,wacca,1080/divider_wacca_append_1-pressed.png;1080/divider_wacca_append_1.png;1080/overlay_wacca_append_1.png;1080/select_wacca_append_1-pressed.png;1080/select_wacca_append_1.png;1080/select_wacca_append_1_locked-pressed.png;1080/select_wacca_append_1_locked.png
+maimai,en=maimai,"en=Prepare for splashdown!
+
+The popular rhythm game maimai
+brings the heat to Arcaea!
+Take four iconic songs for a spin—
+but don't get pulled under!;ja=さあ、着水に備えろ！
+
+人気リズムゲーム『maimai』から、
+Arcaeaに熱狂が届く！
+乗りこなせ、maimaiらしい4曲！
+呑まれるな、この熱気に！;ko=스플래시다운 준비!!
+
+인기 리듬게임 마이마이가
+아르케아를 달아오르게 합니다!
+상징적인 새로운 4곡에 빠져봅시다.
+다만, 아래쪽으로 끌려가진 마세요!;zh-Hans=做好准备让水花四溅！
+
+大受欢迎的节奏游戏maimai
+为韵律源点Arcaea掀起了新的热浪！
+千万不要错过四首标志性的
+曲目——但不要被拖下水！;zh-Hant=做好準備讓水花四濺！
+
+超人氣節奏遊戲《maimai》
+即將引爆韻律源點Arcaea的熱浪！
+體驗四首經典曲目，
+但小心不要被拖下水！",collab,True,,,-1,,,1080/divider_maimai_append_1-pressed.png;1080/divider_maimai_append_1.png;1080/divider_maimai_append_2-pressed.png;1080/divider_maimai_append_2.png;1080/overlay_maimai_append_1.png;1080/overlay_maimai_append_2.png;1080/select_maimai_append_1-pressed.png;1080/select_maimai_append_1.png;1080/select_maimai_append_1_locked-pressed.png;1080/select_maimai_append_1_locked.png;1080/select_maimai_append_2-pressed.png;1080/select_maimai_append_2.png;1080/select_maimai_append_2_locked-pressed.png;1080/select_maimai_append_2_locked.png;1080_select_maimai.png
+maimai_append_1,en=Collaboration Chapter 2,"en=A new wave is approaching!
+
+Four more exhilarating songs fly in
+from maimai DX to spin you around!
+
+And here's that inseparable pair:
+Milk and Shama are coming in, too!;ja=接近中！接近中！
+新たな波がやってくる！
+
+爽快感あふれる4曲が、
+maimai でらっくすから登場だーっ！
+そして仲良し二人のパートナー、
+『みるく』と『しゃま』も登場だーっ！！;ko=새로운 파도가 밀려오고 있습니다!
+
+maimai DX의 신나는 악곡이 4개나
+Arcaea의 세계로 날아옵니다!
+
+떼어낼 수 없는 듀오, 밀크와 샤마도 함께군요!;zh-Hans=快来迎接一波全新的浪潮！
+
+跟着来自maimai DX的四首新曲目飞舞盘旋吧！
+
+形影不离的一对伙伴也将加入我们，
+那就是——咪璐库和夏玛！;zh-Hant=快來迎接一波全新的浪潮！
+
+跟著來自maimai DX的四首新曲目飛舞盤旋吧！
+
+形影不離的一對夥伴也將加入我們，
+那就是——咪璐庫和夏瑪！",collab,,,,-1,,maimai,1080/divider_maimai_append_1-pressed.png;1080/divider_maimai_append_1.png;1080/overlay_maimai_append_1.png;1080/select_maimai_append_1-pressed.png;1080/select_maimai_append_1.png;1080/select_maimai_append_1_locked-pressed.png;1080/select_maimai_append_1_locked.png
+maimai_append_2,en=Collaboration Chapter 3,"en=The kaleidoscopic journey turns once more!
+
+4 vibrant new songs circle further into the
+world of maimai DX.
+
+You are not alone: Salt joins the party, ready
+to make wishes under a star-filled sky!;ja=めくるめくキラめきの瞬間、今再び！
+素敵な願いを携えて、ソルトもいっしょに。
+
+maimai でらっくすの世界より、
+鮮やかに輝く楽曲が4つ、燦然と。;ko=총천연색의 여행을, 다시 한 번!
+
+4개의 생생한 악곡이 소용돌이처럼 춤추며
+maimai DX의 세계로 빠져들어갑니다.
+
+여행길의 곁을 지키는 것은,
+별하늘 아래에서 소원을 비는 소녀, 솔트입니다!;zh-Hans=万花筒般绚烂而又华丽的旅程将再度变换。
+不停倾转，四首充满活力的歌曲自maimai DX袭来！
+
+不会留你孤身一人的——
+新的旅行伙伴莎露朵加入了哟！
+璀璨星辰之下许愿可是很灵验的哦，要开始了哟！;zh-Hant=萬花筒般絢爛而又華麗的旅程將再度變換。
+不停傾轉，四首充滿活力的歌曲自maimai DX襲來！
+
+不會留你孤身一人的——
+新的旅行夥伴莎露朵加入了喲！
+璀璨星辰之下許願可是很靈驗的哦，要開始了喲！",collab,,,,-1,,maimai,1080/divider_maimai_append_2-pressed.png;1080/divider_maimai_append_2.png;1080/overlay_maimai_append_2.png;1080/select_maimai_append_2-pressed.png;1080/select_maimai_append_2.png;1080/select_maimai_append_2_locked-pressed.png;1080/select_maimai_append_2_locked.png
+ongeki,en=O.N.G.E.K.I.,"en=A new type of battle that has
+never been seen before has come to Arcaea...
+
+Four stunning songs from O.N.G.E.K.I.
+have landed! With Luna and Mia at your side—
+
+Let's SHOOT!;ja=Arcaeaへと訪れる、未だ見ぬ闘争──。
+
+オンゲキより、衝撃の4曲が到来。
+ルナと美亜のコンビと一緒に、
+Let's SHOOT！;ko=지금껏 아르케아에서
+보지못한 새로운 형태의 전장...
+
+O.N.G.E.K.I. 의 멋진 4곡이
+루나와 미아가 함께 착륙했습니다!
+Let's SHOOT!;zh-Hans=一种在韵律源点Arcaea
+从未出现过的全新战斗方式……
+
+四首来自O.N.G.E.K.I.的
+精彩曲目现已登陆！
+以 露娜 & 美亚 作为搭档一同出击！;zh-Hant=前所未見的全新戰鬥
+形式即將降臨韻律源點Arcaea……
+
+O.N.G.E.K.I. 的
+四首精彩曲目現已登場！
+跟隨露娜與美亞的腳步——
+一起盛大出擊吧！",collab,True,,,40,,,1080/divider_ongeki_append_1-pressed.png;1080/divider_ongeki_append_1.png;1080/divider_ongeki_append_2-pressed.png;1080/divider_ongeki_append_2.png;1080/overlay_ongeki_append_1.png;1080/overlay_ongeki_append_2.png;1080/select_ongeki_append_1-pressed.png;1080/select_ongeki_append_1.png;1080/select_ongeki_append_1_locked-pressed.png;1080/select_ongeki_append_1_locked.png;1080/select_ongeki_append_2-pressed.png;1080/select_ongeki_append_2.png;1080/select_ongeki_append_2_locked-pressed.png;1080/select_ongeki_append_2_locked.png;1080_select_ongeki.png
+ongeki_append_1,en=Collaboration Chapter 2,"en=A new and menacing test approaches,
+challenging your convictions...
+
+This Pack Append adds five more songs
+from O.N.G.E.K.I. to face and overcome!
+And now in Chapter 2, Saki joins the fray!;ja=そして再び訪れる、さらなる試練。
+
+今登場するPack Append。
+満を持して襲来する5曲の試練。
+さらにパートナー、『咲姫』が登場！;ko=당신의 신념에 도전하는 새롭고
+위협적인 시험이 다가온다...
+
+이번 Pack Append는 O.N.G.E.K.I.를
+통해 대면하고 이겨낼 다섯 곡을 추가합니다!
+두 번째 장에서는 사키가 싸움에 가담합니다!;zh-Hans=一场全新的试炼已蓄势待发，
+你的信念会因此动摇吗？
+
+在这个Pack Append中，
+你将面对并挑战另外5首来自O.N.G.E.K.I.的歌曲。
+而作为联动第二弹的搭档，咲姬也将加入这场挑战！;zh-Hant=一場全新的試煉已蓄勢待發，
+你的信念會因此動搖嗎？
+
+在這個Pack Append中，
+你將面對並挑戰另外5首來自O.N.G.E.K.I.的歌曲。
+而作為聯動第二彈的搭檔，咲姬也將加入這場挑戰！",collab,,,,-1,,ongeki,1080/divider_ongeki_append_1-pressed.png;1080/divider_ongeki_append_1.png;1080/overlay_ongeki_append_1.png;1080/select_ongeki_append_1-pressed.png;1080/select_ongeki_append_1.png;1080/select_ongeki_append_1_locked-pressed.png;1080/select_ongeki_append_1_locked.png
+ongeki_append_2,en=Collaboration Chapter 3,"en=Seal this moment: 4 vivid songs from
+O.N.G.E.K.I. are waiting to be conquered!
+And of these, a formidable two promise
+unforgettable, lasting memories...
+
+Tsumugi too rises to the occasion. She's serious
+and ready to help! ...At least, in her own way!;ja=オンゲキより魅惑の4曲が襲来！
+記憶に刻め、そして畏れよ──
+かの名だたる双璧を。
+
+ちょっと背伸びしがちでも
+頼れるパートナー『つむぎ』も登場！;ko=기억을 새겨보세요.
+O.N.G.E.K.I.에서 건너온
+4개의 생생한 악곡들이 기다립니다!
+그리고 그 중에는, 결코 잊을 수 없는 순간을 선사할
+두 개의 압도적인 악곡이...
+
+파트너 츠무기 또한
+여러분을 도우러 등장합니다...! 좀 버겁겠지만...;zh-Hans=四首来自O.N.G.E.K.I.的
+动听歌曲等待你来征服！
+相信其中的两首强大存在一定会
+给你带去难忘的、永恒的回忆。
+
+纺也将挺身而出，用自己的方式帮助大家！
+她是认真的：""那便将此刻封存吧！"";zh-Hant=四首來自O.N.G.E.K.I.的
+動聽歌曲等待你來征服！
+相信其中的兩首強大存在一定會
+給你帶去難忘的、永恆的回憶。
+
+紡也將挺身而出，用自己的方式幫助大家！
+她是認真的：""那便將此刻封存吧！""",collab,,,,-1,,ongeki,1080/divider_ongeki_append_2-pressed.png;1080/divider_ongeki_append_2.png;1080/overlay_ongeki_append_2.png;1080/select_ongeki_append_2-pressed.png;1080/select_ongeki_append_2.png;1080/select_ongeki_append_2_locked-pressed.png;1080/select_ongeki_append_2_locked.png
+chunithm,en=CHUNITHM,"en=From over the horizon come three
+powerful new songs from the arcade
+rhythm game CHUNITHM!
+
+Join Tairitsu and Chuni Penguin as
+you take on this monumental challenge!;ja=地平線の向こうはアーケードから、
+3つの強力な楽曲がやってくる──。
+あのCHUNITHMとArcaeaがコラボ！
+
+対立とチュウニペンギンと共に、
+難敵たちに挑戦しよう！;ko=3곡의 새로운 음악이
+아케이드 리듬게임 'CHUNITHM'을 통해
+수평선 너머에서 강하게 접근 중!
+
+타이리츠와 츄니펭귄과 함께,
+기념이 될 만한 엄청난 도전에 참여하세요!;zh-Hans=三首来自街机节奏游戏
+《CHUNITHM》的震撼新曲
+已于天际展露锋芒！
+
+跟随对立与中二企鹅一起
+共同开始这一系列里程碑式的挑战！;zh-Hant=三首來自街機節奏遊戲
+《CHUNITHM》的震撼新曲
+已於天際展露鋒芒！
+
+跟隨對立與中二企鵝一起
+共同開始這一系列里程碑式的挑戰！",collab,True,,,24,,,1080/divider_chunithm_append_1-pressed.png;1080/divider_chunithm_append_1.png;1080/divider_chunithm_append_2-pressed.png;1080/divider_chunithm_append_2.png;1080/divider_chunithm_append_3-pressed.png;1080/divider_chunithm_append_3.png;1080/overlay_chunithm_append_1.png;1080/overlay_chunithm_append_2.png;1080/overlay_chunithm_append_3.png;1080/select_chunithm_append_1-pressed.png;1080/select_chunithm_append_1.png;1080/select_chunithm_append_1_locked-pressed.png;1080/select_chunithm_append_1_locked.png;1080/select_chunithm_append_2-pressed.png;1080/select_chunithm_append_2.png;1080/select_chunithm_append_2_locked-pressed.png;1080/select_chunithm_append_2_locked.png;1080/select_chunithm_append_3-pressed.png;1080/select_chunithm_append_3.png;1080/select_chunithm_append_3_locked-pressed.png;1080/select_chunithm_append_3_locked.png;1080_select_chunithm.png
+chunithm_append_1,en=Collaboration Chapter 2,"en=Three new and unrelenting songs
+have arrived in this major update
+to the CHUNITHM collaboration!
+
+And this time, even the gods
+will show no mercy...;ja=新しく、容赦などない三曲が
+CHUNITHMより襲来！
+
+また一度、CHUNITHMが帰ってきた。
+そして此度は、神さえ慈悲を棄てるだろう。;ko=신선하면서도 가혹하기 그지없는
+3곡이 츄니즘 콜라보레이션의
+메인 곡으로 찾아왔습니다!
+
+이번에도 그 신들은,
+무자비한 모습으로...;zh-Hans=本次 CHUNITHM 联动的大型更新
+将推出三首全新的高难度曲目！
+
+而这次，即使是众神也不再有怜悯……;zh-Hant=本次 CHUNITHM 合作活動的大型更新
+推出了三首氣勢磅礡的全新曲目！
+
+而且這次就連上帝也不會心慈手軟……",collab,,,,-1,,chunithm,1080/divider_chunithm_append_1-pressed.png;1080/divider_chunithm_append_1.png;1080/overlay_chunithm_append_1.png;1080/select_chunithm_append_1-pressed.png;1080/select_chunithm_append_1.png;1080/select_chunithm_append_1_locked-pressed.png;1080/select_chunithm_append_1_locked.png
+chunithm_append_2,en=Collaboration Chapter 3,"en=Joy and terror both await you in this next
+CHUNITHM chapter!
+
+Five more heart-pounding songs are lying in wait...
+
+Carry with you a heart of justice.
+Carry with you a heart unafraid.;ja=悲喜交交のCHUNITHMコラボ、
+あらたなチャプターが登場！
+
+正義の心と、恐れぬ心。
+心躍る5つの曲があなたを待つ。;ko=새로운 CHUNITHM 콜라보레이션에서는
+즐거움과 공포가 동시에...!
+
+심장을 뛰게 만드는 다섯 개의 악곡이
+여러분을 기다립니다.
+
+정의와 용기의 마음을 안고 나아가세요.;zh-Hans=与CHUNITHM联动的下一章节，既让人鼓舞欢欣，
+或许也同样使人胆战心惊……
+
+这五首令人心跳加速的曲目正等待着你！
+
+请前去吧，怀揣一颗正义的心；请迈步吧，
+沉着冷静是最好的锦囊。;zh-Hant=與CHUNITHM聯動的下一章節，既讓人鼓舞歡欣，
+或許也同樣使人膽戰心驚……
+
+這五首令人心跳加速的曲目正等待著你！
+
+請前去吧，懷揣一顆正義的心；請邁步吧，
+沈著冷靜是最好的錦囊。",collab,,,,-1,,chunithm,1080/divider_chunithm_append_2-pressed.png;1080/divider_chunithm_append_2.png;1080/overlay_chunithm_append_2.png;1080/select_chunithm_append_2-pressed.png;1080/select_chunithm_append_2.png;1080/select_chunithm_append_2_locked-pressed.png;1080/select_chunithm_append_2_locked.png
+chunithm_append_3,en=Collaboration Chapter 4,"en=Come, bring the heat!
+
+With the 4th chapter of the CHUNITHM
+collaboration, 4 new songs burst onto
+the scene to take center stage!
+
+In this endless pursuit of trials, ready your soul.;ja=4回目となるCHUNITHMコラボでは、
+4つの楽曲が新たにステージへ！
+
+さあ、祭典へ。
+果てない試練を魂で超えて行け。
+;ko=뜨거운 열기를, 모두와 함께!
+
+CHUNITHM 콜라보레이션 Chapter 4!
+4개의 신곡이 무대의 시선을 독차지합니다!
+
+끝없는 도전이 기다립니다.
+영혼을 단단히 붙잡으세요.;zh-Hans=来吧，鼓动起来！
+
+CHUNITHM联动第四章，现已推出：
+四首新曲骤然登上舞台，一跃成为全部视线的焦点！
+
+探求的灵魂啊，上前来，接受那无尽的试炼吧！;zh-Hant=來吧，鼓動起來！
+
+CHUNITHM聯動第四章，現已推出：
+四首新曲突然登上舞台，一躍成為全部視線的焦點！
+
+探求的靈魂啊，上前來，接受那無盡的試煉吧！",collab,,,,-1,,chunithm,1080/divider_chunithm_append_3-pressed.png;1080/divider_chunithm_append_3.png;1080/overlay_chunithm_append_3.png;1080/select_chunithm_append_3-pressed.png;1080/select_chunithm_append_3.png;1080/select_chunithm_append_3_locked-pressed.png;1080/select_chunithm_append_3_locked.png
+groovecoaster,en=Groove Coaster,"en=Six stunning new songs await you in
+Arcaea's collaboration with Groove Coaster!
+
+Follow Hikari and Seine along
+a new path under the starry skies!;ja=グルーヴコースターとArcaeaの
+コラボレーションにて、
+6つの新曲が君を待つ！
+
+セイネとヒカリと共に、
+星降る夜空へと繰り出そう！;ko=여섯곡의 멋진 신곡이 Arcaea와
+Groove Coaster의 콜라보레이션으로!!
+
+별이 빛나는 하늘 아래, 히카리와 세니에를 따라
+새로운 여정을 떠나봅시다!;zh-Hans=六首美妙的新歌曲正在Arcaea与音乐游戏
+《节奏过山车（Groove Coaster）》
+的合作歌曲包中等待着你！
+
+跟随光与晴音踏上
+那唯美星空之下的崭新小径！;zh-Hant=六首美妙的新樂曲
+正在Arcaea與音樂遊戲
+《節奏過山車（Groove Coaster）》
+的合作樂曲包中等待著你！
+
+跟隨光與晴音踏上
+那唯美星空之下的嶄新小徑！",collab,True,,,22,,,1080/divider_groovecoaster_append_1-pressed.png;1080/divider_groovecoaster_append_1.png;1080/overlay_groovecoaster_append_1.png;1080/select_groovecoaster_append_1-pressed.png;1080/select_groovecoaster_append_1.png;1080/select_groovecoaster_append_1_locked-pressed.png;1080/select_groovecoaster_append_1_locked.png;1080_select_groovecoaster.png
+groovecoaster_append_1,en=Groove Coaster Chapter 2,"en=5 - 4 - 3 - 2 - 1
+The groove never ends!
+
+Roar ahead with 3 more songs from
+Groove Coaster in this Append!
+
+A blastoff awaits you. Get ready to ride on!;ja=音楽は止まない、
+グルーヴだって止まらない！
+
+グルーヴコースターより、
+追加の3曲、Pack Appendで登場！
+
+準備はOK？さあ、グルーヴを乗りこなせ！;ko=5 - 4 - 3 - 2 - 1
+그루브는 끝나지 않는다!
+
+Groove Coaster로부터 날아온
+3개의 악곡을 이 Append로 즐겨보세요!
+
+발사 준비는 끝났습니다. 높이 날아가봅시다!;zh-Hans=5 - 4 - 3 - 2 - 1
+节奏永不停歇！
+
+轰隆隆——引擎的怒吼向你发出邀请：
+跟随着此Append中的三首新曲，一路向前！
+
+准备好驰骋吧，去迎接那汹涌澎湃的音律轰击！;zh-Hant=5 - 4 - 3 - 2 - 1
+節奏永不停歇！
+
+轟隆隆——引擎的怒吼向你發出邀請：
+跟隨著此Append中的三首新曲，一路向前！
+
+準備好馳騁吧，去迎接那洶湧澎湃的音律轟擊！",collab,,,,-1,,groovecoaster,1080/divider_groovecoaster_append_1-pressed.png;1080/divider_groovecoaster_append_1.png;1080/overlay_groovecoaster_append_1.png;1080/select_groovecoaster_append_1-pressed.png;1080/select_groovecoaster_append_1.png;1080/select_groovecoaster_append_1_locked-pressed.png;1080/select_groovecoaster_append_1_locked.png
+tonesphere,en=Tone Sphere,"en=Experience a collision of worlds in Arcaea's
+collaboration with sta's mobile rhythm game
+Tone Sphere.
+
+Let Trin take you and Tairitsu on a journey
+through five iconic songs!;ja=Arcaeaとsta氏の音楽ゲーム
+「Tone Sphere」とのコラボレーションで、
+ぶつかり合う2つの世界を体験しよう。
+
+トリンに導かれ、対立と一緒に5つの名曲を巡る
+旅へと出発しよう！;ko=sta의 모바일 리듬게임 Tone Sphere와
+Arcaea의 콜라보레이션으로
+세계의 충돌을 경험하세요.
+
+트린이 타이리츠와 당신을 함께 이끌고
+상징적인 5곡의 음악속으로 여행을 시작합니다!;zh-Hans=经历一场空间碰撞，
+在Arcaea的世界中体验Sta制作的移动端节奏游戏
+《音调领域》（Tone Sphere）。
+
+在托凛的带领下，与对立一起
+在五首象征性的歌曲中旅行！;zh-Hant=經歷一場空間碰撞，
+在Arcaea的世界中體驗Sta製作的移動端節奏遊戲
+《音調領域》（Tone Sphere）。
+
+在托凛的帶領下，與對立一起
+在五首象征性的歌曲中旅行！",collab,True,,,18,,,1080_select_tonesphere.png
+lanota,en=Lanota,"en=The relentless flow of time intertwines the worlds
+of Arcaea and emotional music game 'Lanota'.
+
+Travel with Hikari and Lanota's 'Fisica'
+through powerful songs from Lanota as well as
+the all-new collaboration song 'Quon'!;ja=無情なる時の流れが、Arcaeaの世界と
+情緒的音楽ゲーム【Lanota】を絡み合わせる──。
+
+ヒカリやLanotaのフィシカと共に、
+新たなコラボレーション楽曲【Quon】の他、
+Lanotaからの個性豊かな楽曲を巡りましょう。;ko=끊임없이 흘러가는 시간의 흐름으로
+Arcaea와 감성뮤직게임 'Lanota'의 세상이 이어집니다.
+
+라노타에서 찾아온 피시카와 히카리가
+함께 선보이는 파워풀한 노래들과
+새로운 콜라보 음악 'Quon'을 즐겨주세요.;zh-Hans=永不停歇的时间使得 Arcaea 的世界与
+情感丰富的音乐游戏《Lanota》纠缠在了一起。
+
+与光和来自调律诗篇的菲希卡
+在《Lanota》的乐曲中旅行，
+尽在全新的合作曲《Quon》！;zh-Hant=永不停歇的時間使得 Arcaea 的世界與
+情感豐富的音樂遊戲《Lanota》糾纏在了一起。
+
+與光和來自拉諾塔的菲希卡
+在《Lanota》的樂曲中旅行，
+盡在全新的合作曲《Quon》！",collab,True,,,9,,,1080/divider_lanota_append_1-pressed.png;1080/divider_lanota_append_1.png;1080/overlay_lanota_append_1.png;1080/select_lanota_append_1-pressed.png;1080/select_lanota_append_1.png;1080/select_lanota_append_1_locked-pressed.png;1080/select_lanota_append_1_locked.png;1080_select_lanota.png
+lanota_append_1,en=Collaboration Chapter 2,"en=Deeper into the silent world, echoes of old
+machines reverberate...
+
+In this Pack Append for the Lanota Collaboration
+find 3 new songs that breathe life and sound
+into the world, and with them fly into the sky!;ja=それは深く、静寂の世界にて、
+旧き機械、その残響がこだまする。
+
+LanotaのコラボパックにPack Appendが登場。
+活力と音を宿す、そんな三曲が新たに追加。
+さあ、空へと旅立とう！;ko=소리 없는 세상 속 더 깊은 곳에서 낡은
+기계들의 메어리가 울린다...
+
+Lanota 콜라보 Pack Append를 통해 세상
+속에 소리가 살아 숨 쉬도록 하는 3개의
+신곡을 만나보고 음악과 함께 비행하세요!;zh-Hans=在那寂静世界的深处，
+回荡着古老机械的残响……
+
+在Lanota联动的Pack Append中，
+享受这三首为世界带来活力音符的全新歌曲。
+现在，在空中展翅翱翔吧！;zh-Hant=在那寂靜世界的深處，
+迴盪著古老機械的殘響……
+
+在Lanota聯動的Pack Append中，
+享受這三首為世界帶來活力音符的全新歌曲。
+現在，在空中展翅翱翔吧！",collab,,,,-1,,lanota,1080/divider_lanota_append_1-pressed.png;1080/divider_lanota_append_1.png;1080/overlay_lanota_append_1.png;1080/select_lanota_append_1-pressed.png;1080/select_lanota_append_1.png;1080/select_lanota_append_1_locked-pressed.png;1080/select_lanota_append_1_locked.png
+dynamix,en=Dynamix,"en=Travel through incredible songs
+from the popular Mobile Rhythm Game
+'Dynamix' together with their character:
+Sapphire.
+
+Experience an energetic new sound
+not yet found in Arcaea!;ja='Dynamix'の素晴らしい楽曲の海を
+ゲームの垣根を超えてはるばるやってきた
+マスコットのサファイアと共に冒険しよう。
+
+Arcaeaにはなかった、エネルギーに溢れる
+新しいサウンドを体感せよ！;ko=지금껏 없었던 놀라운 음악을 체험하세요.
+인기있는 모바일 리듬게임 'Dynamix'의
+'Sapphire'가 여러분을 만나러 찾아왔습니다.
+
+ 지금껏 없었던 에너지 넘치는 사운드를
+Arcaea에서 즐기실 수 있습니다!;zh-Hans=与来自著名音乐手游Dynamix 
+的萨菲亚一起欣赏精彩而又动人的乐曲，
+揭开沉睡在Arcaea世界中的全新乐章！;zh-Hant=與人氣音樂手遊 Dynamix 
+的薩菲亞一起徜徉于這些動人心弦的曲目，
+揭開沉睡在秘術之地裡的全新樂章！",collab,True,,,3,,,1080_select_dynamix.png
+virtualsingers,en=Virtual Singers,"en=Behind the captivating glow, voices reach out
+into reality...
+
+5 celebrated songs step onto the virtual stage!
+
+Hand in hand with the digital world:
+Let dreams take form.;ja=カガヤキの向こう、心を震わすコエ。
+――隔たりを超えて、現実となる！
+
+いま開演、バーチャルの舞台より5曲が登場！
+
+つながろう、電子の世界へと。
+描いたユメを形に変えて。;ko=빛 너머에서 마음을 사로잡는 목소리가...
+""가상""에서 ""현실""로.
+
+버추얼 무대에 울려퍼지는 다섯 개의 명곡!
+
+전자의 세계에서 손에 손을 잡고.
+꿈을 현실로 이루어냅시다.;zh-Hans=摄人心魄的光芒背后，
+歌声向现实世界蔓延开来……
+
+五首经典歌曲，
+即将在这虚拟的舞台上开演！
+
+与虚拟世界携手同行，让梦想，幻化成形！;zh-Hant=攝人心魄的光芒背後，
+歌聲向現實世界蔓延開來……
+
+五首經典歌曲，
+即將在這虛擬的舞台上開演！
+
+與虛擬世界攜手同行，讓夢想，幻化成形！",variety,True,,,-1,1877040000,,1080_select_virtualsingers.png
+nextstage,en=Arcaea Next Stage,"en=Worlds turn in a grand crossing...
+
+12 artists are brought together to bring 6 original
+songs in this commemorative collection!
+
+Stride toward the farthest heights alongside
+Hikari & Tairitsu (Debut)!;ja=繋がり、交わり、そしてまだ見ぬ舞台へと──。
+
+アーティスト6組12名が結集、
+イベント記念の合作6曲を収録！
+
+『光&対立 (Debut)』と共に、
+遥かなる高み、新たなるステージへ！;ko=웅장한 소리와 함께, 세계가 맞물립니다.
+
+이 기념 Pack으로
+12명의 아티스트가 자아내는 6개의 악곡을 경험해보세요!
+
+히카리 & 타이리츠 (Debut)와 함께
+더 높은 경지를 향해보세요!;zh-Hans=世界在壮阔的交汇中倾转……
+
+纪念此段独特回忆，
+12位艺术家齐聚一堂
+为该曲包献上6首原创歌曲。
+
+与光 & 对立(Debut)共同迈向最遥远的巅峰！;zh-Hant=世界在壯闊的交匯中傾轉…
+
+紀念此段獨特回憶，
+12位藝術家齊聚一堂
+為該曲包獻上6首原創歌曲。
+
+與光 & 對立 (Debut)共同邁向最遙遠的巔峰！",variety,True,,,92,,,1080_select_nextstage.png
+undertale,en=UNDERTALE,"en=A long time ago, a human fell into the ruins...
+
+5 iconic songs from UNDERTALE bring
+memories flooding back.
+
+Fight, or show mercy, but always remember:
+never lose determination!;ja=むかしむかし、とあるいせきに落ちた、
+ニンゲンとモンスターの物語。
+
+タマシイと共鳴するような、
+5つの楽曲がUNDERTALEより登場！
+
+たたかえ、こうどうせよ、みなぎるケツイをその胸に。;ko=오래 전, 한 인간이 폐허로 떨어졌다.
+
+UNDERTALE에서 건너온 5개의 악곡이,
+기억을 파도처럼 몰고 옵니다.
+
+맞서 싸우거나, 자비를 보이세요.
+넘치는 결의를, 잊지 마세요.;zh-Hans=很久很久以前，一个人类掉入了地下的遗迹⋯
+
+五首经典的UNDERTALE曲目将带你踏上回忆之旅。
+
+战斗，或是仁慈，均由你来决定，但请记住：
+永远不要丧失决心！;zh-Hant=很久很久以前，一個人類掉入了地下的遺跡⋯
+
+五首經典的UNDERTALE曲目將帶你踏上回憶之旅。
+
+戰鬥，或是仁慈，均由你來決定，但請記住：
+永遠不要喪失決心！",variety,True,,,-1,1804550400,,1080/divider_undertale_append_1-pressed.png;1080/divider_undertale_append_1.png;1080/overlay_undertale_append_1.png;1080/select_undertale_append_1-pressed.png;1080/select_undertale_append_1.png;1080/select_undertale_append_1_locked-pressed.png;1080/select_undertale_append_1_locked.png;1080_select_undertale.png
+undertale_append_1,en=UNDERTALE Pack Append,"en=Hope: for a future of Humans and Monsters.
+
+Retrace your steps in the Underground with
+3 new songs from UNDERTALE.
+
+Feel the pounding of each and every one
+of those hearts!;ja=きぼうをいだいて。　ニンゲンと
+モンスターの　みらいのために。
+
+UNDERTALEより、地底の世界の
+冒険を彩った3曲が登場。
+
+胸は高鳴り、今皆のこころがひとつになる。;ko=희망...
+인간과 괴물이 평화롭게 지내는
+새롭고 밝은 미래의 시작입니다.
+
+UNDERTALE에서 건너온 3개의 악곡으로,
+지하 세계에서 겪었던 여정을 되돌아보세요.
+
+모든 이들의 심장이 박동하는 소리가 들려옵니다!;zh-Hans=我希望：
+那个人类与怪物共存的未来。
+
+重温地下世界的足迹，聆听来自
+UNDERTALE的三首全新歌曲。
+
+感受每一颗跳动的心！;zh-Hant=我希望：
+那個人類與怪物共存的未來。
+
+重溫地下世界的足跡，聆聽來自
+UNDERTALE的三首全新歌曲。
+
+感受每一顆跳動的心！",variety,,,,-1,1809043200,undertale,1080/divider_undertale_append_1-pressed.png;1080/divider_undertale_append_1.png;1080/overlay_undertale_append_1.png;1080/select_undertale_append_1-pressed.png;1080/select_undertale_append_1.png;1080/select_undertale_append_1_locked-pressed.png;1080/select_undertale_append_1_locked.png

@@ -1,0 +1,183 @@
+{
+  "olderEntryCount": 7329,
+  "newerEntryCount": 7320,
+  "addedCount": 5,
+  "removedCount": 14,
+  "commonCount": 7315,
+  "changedContentCount": 44,
+  "addedSample": [
+    "assets/img/course/banner/online_banner_2026_09.png",
+    "assets/img/world/k/world-deco.png",
+    "assets/img/world/k/world-infinity-swirl.png",
+    "assets/img/world/k/world-infinity.png",
+    "play-services-games-v2.properties"
+  ],
+  "removedSample": [
+    "META-INF/CERT.RSA",
+    "META-INF/CERT.SF",
+    "META-INF/MANIFEST.MF",
+    "play-services-drive.properties",
+    "play-services-games.properties",
+    "res/color-v21/abc_btn_colored_borderless_text_material.xml",
+    "res/color/abc_btn_colored_text_material.xml",
+    "res/color/abc_tint_btn_checkable.xml",
+    "res/color/abc_tint_default.xml",
+    "res/color/abc_tint_edittext.xml",
+    "res/color/abc_tint_seek_thumb.xml",
+    "res/color/abc_tint_spinner.xml",
+    "res/color/abc_tint_switch_track.xml",
+    "res/u01.xml"
+  ],
+  "changedSample": [
+    "AndroidManifest.xml",
+    "assets/Fonts/L2-Light.ttf",
+    "assets/Fonts/L2-Regular.ttf",
+    "assets/Fonts/L2-Semibold.ttf",
+    "assets/Fonts/NanumBarunGothic-Bold.otf",
+    "assets/Fonts/NanumBarunGothic-Light.otf",
+    "assets/Fonts/NanumBarunGothic-Regular.otf",
+    "assets/Fonts/NotoSansCJKsc-Bold.otf",
+    "assets/Fonts/NotoSansCJKsc-Light.otf",
+    "assets/Fonts/NotoSansCJKsc-Regular.otf",
+    "assets/Fonts/NotoSansCJKtc-Bold.otf",
+    "assets/Fonts/NotoSansCJKtc-Light.otf",
+    "assets/Fonts/NotoSansCJKtc-Regular.otf",
+    "assets/dexopt/baseline.prof",
+    "assets/dexopt/baseline.profm",
+    "assets/img/multiplayer/stickers/alice_en.png",
+    "assets/img/multiplayer/stickers/alice_jp.png",
+    "assets/img/multiplayer/stickers/alice_kr.png",
+    "assets/img/multiplayer/stickers/alice_sc_tc.png",
+    "assets/img/multiplayer/stickers/kou2_en.png",
+    "assets/img/multiplayer/stickers/kou2_jp.png",
+    "assets/img/multiplayer/stickers/kou2_kr.png",
+    "assets/img/multiplayer/stickers/kou2_sc_tc.png",
+    "assets/tl/ja.mo",
+    "assets/tl/ko.mo",
+    "assets/tl/zh-Hans.mo",
+    "assets/tl/zh-Hant.mo",
+    "billing.properties",
+    "classes.dex",
+    "classes2.dex",
+    "lib/arm64-v8a/libcocos2dcpp.so",
+    "lib/arm64-v8a/libfmodProvider.so",
+    "lib/armeabi-v7a/libcocos2dcpp.so",
+    "lib/armeabi-v7a/libfmodProvider.so",
+    "play-services-basement.properties",
+    "res/S8.xml",
+    "res/a0.xml",
+    "res/e1",
+    "res/gx.xml",
+    "res/hP1.xml",
+    "res/mC.binarypb",
+    "res/u0.xml",
+    "res/vq.xml",
+    "resources.arsc"
+  ],
+  "metadataPathComparison": {
+    "assets/songs/songlist": {
+      "olderPresent": true,
+      "newerPresent": true,
+      "olderSha256": "d8d01d0a32e2c9f03223d063539d47fba1375e8c77deba5794a5b83039f369de",
+      "newerSha256": "d8d01d0a32e2c9f03223d063539d47fba1375e8c77deba5794a5b83039f369de",
+      "sameContent": true
+    },
+    "assets/songs/packlist": {
+      "olderPresent": true,
+      "newerPresent": true,
+      "olderSha256": "ed92cda927a36a17b79d8422e81fe863451b667e5626e7e8c1bf50ce65c6ce20",
+      "newerSha256": "ed92cda927a36a17b79d8422e81fe863451b667e5626e7e8c1bf50ce65c6ce20",
+      "sameContent": true
+    },
+    "assets/songs/unlocks": {
+      "olderPresent": true,
+      "newerPresent": true,
+      "olderSha256": "db8847cfeb313d89dc010c3eedf1d56f3814c61cf8ab4d257ac87da6c077b773",
+      "newerSha256": "db8847cfeb313d89dc010c3eedf1d56f3814c61cf8ab4d257ac87da6c077b773",
+      "sameContent": true
+    },
+    "assets/char/characters.json": {
+      "olderPresent": true,
+      "newerPresent": true,
+      "olderSha256": "a8177fe6ef08f4e91828733ae4b3657b66f6d2d4c445b8260b319b07e3e118ff",
+      "newerSha256": "a8177fe6ef08f4e91828733ae4b3657b66f6d2d4c445b8260b319b07e3e118ff",
+      "sameContent": true
+    },
+    "assets/app-data/story/paths": {
+      "olderPresent": true,
+      "newerPresent": true,
+      "olderSha256": "aa0ffc75369f9eaaee738310e494da7940266f58887e3cc12e20374ac56a773f",
+      "newerSha256": "aa0ffc75369f9eaaee738310e494da7940266f58887e3cc12e20374ac56a773f",
+      "sameContent": true
+    },
+    "assets/app-data/story2/ordering": {
+      "olderPresent": true,
+      "newerPresent": true,
+      "olderSha256": "72276ce2bb531e4e9214d6e1bb64b67b47e8a985df5b1691657fcae13b71e7d1",
+      "newerSha256": "72276ce2bb531e4e9214d6e1bb64b67b47e8a985df5b1691657fcae13b71e7d1",
+      "sameContent": true
+    },
+    "AndroidManifest.xml": {
+      "olderPresent": true,
+      "newerPresent": true,
+      "olderSha256": "721c45665630af837a2646c21e0af2f60168688d3e5a7e0cdaaebf1a6dd2a16b",
+      "newerSha256": "35492a85377ce3773f042d9b6ca1ce1dd6e2906a77e7e6b2afdbe2287a9f70b6",
+      "sameContent": false
+    },
+    "resources.arsc": {
+      "olderPresent": true,
+      "newerPresent": true,
+      "olderSha256": "1e80a6bf8e6fa36debba4b97b80ebc8281afd9d688a4dabd580b4adb2777c766",
+      "newerSha256": "2b6964d5b1d3a13448ee37407906bc190edbd6faa97cc0036cc7b98b6c67cbae",
+      "sameContent": false
+    }
+  },
+  "olderGroups": {
+    "songs": {
+      "fileCount": 2075,
+      "totalBytes": 662980396
+    },
+    "songJackets": {
+      "fileCount": 1208,
+      "totalBytes": 230331475
+    },
+    "songCharts": {
+      "fileCount": 102,
+      "totalBytes": 1569039
+    },
+    "songAudio": {
+      "fileCount": 562,
+      "totalBytes": 371415535
+    },
+    "images": {
+      "fileCount": 5758,
+      "totalBytes": 1216903876
+    }
+  },
+  "newerGroups": {
+    "songs": {
+      "fileCount": 2075,
+      "totalBytes": 662980396
+    },
+    "songJackets": {
+      "fileCount": 1208,
+      "totalBytes": 230331475
+    },
+    "songCharts": {
+      "fileCount": 102,
+      "totalBytes": 1569039
+    },
+    "songAudio": {
+      "fileCount": 562,
+      "totalBytes": 371415535
+    },
+    "images": {
+      "fileCount": 5762,
+      "totalBytes": 1216950624
+    }
+  },
+  "songDirectoryCounts": {
+    "older": 549,
+    "newer": 549
+  }
+}

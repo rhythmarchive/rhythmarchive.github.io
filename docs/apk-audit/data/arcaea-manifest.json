@@ -1,0 +1,2167 @@
+{
+  "manifest": {
+    "tag": "manifest",
+    "line": 2,
+    "path": "manifest",
+    "attributes": {
+      "versionCode": 1209752,
+      "versionName": "6.16.8c",
+      "installLocation": 0,
+      "compileSdkVersion": 36,
+      "compileSdkVersionCodename": "16",
+      "package": "moe.low.arc",
+      "platformBuildVersionCode": 36,
+      "platformBuildVersionName": 16
+    }
+  },
+  "application": {
+    "tag": "application",
+    "line": 57,
+    "path": "manifest/application",
+    "attributes": {
+      "label": "@0x7f0f0046",
+      "icon": "@0x7f0d0000",
+      "allowBackup": false,
+      "extractNativeLibs": true,
+      "resizeableActivity": false,
+      "appComponentFactory": "androidx.core.app.CoreComponentFactory",
+      "allowNativeHeapPointerTagging": false
+    }
+  },
+  "usesSdk": {
+    "tag": "uses-sdk",
+    "line": 8,
+    "path": "manifest/uses-sdk",
+    "attributes": {
+      "minSdkVersion": 24,
+      "targetSdkVersion": 36
+    }
+  },
+  "permissions": [
+    {
+      "tag": "uses-permission",
+      "line": 17,
+      "path": "manifest/uses-permission",
+      "attributes": {
+        "name": "android.permission.BLUETOOTH",
+        "required": false
+      }
+    },
+    {
+      "tag": "uses-permission",
+      "line": 20,
+      "path": "manifest/uses-permission",
+      "attributes": {
+        "name": "android.permission.BLUETOOTH_CONNECT"
+      }
+    },
+    {
+      "tag": "uses-permission",
+      "line": 21,
+      "path": "manifest/uses-permission",
+      "attributes": {
+        "name": "com.android.vending.CHECK_LICENSE"
+      }
+    },
+    {
+      "tag": "uses-permission",
+      "line": 22,
+      "path": "manifest/uses-permission",
+      "attributes": {
+        "name": "android.permission.WAKE_LOCK"
+      }
+    },
+    {
+      "tag": "uses-permission",
+      "line": 23,
+      "path": "manifest/uses-permission",
+      "attributes": {
+        "name": "android.permission.INTERNET"
+      }
+    },
+    {
+      "tag": "uses-permission",
+      "line": 24,
+      "path": "manifest/uses-permission",
+      "attributes": {
+        "name": "android.permission.ACCESS_WIFI_STATE"
+      }
+    },
+    {
+      "tag": "uses-permission",
+      "line": 25,
+      "path": "manifest/uses-permission",
+      "attributes": {
+        "name": "android.permission.ACCESS_NETWORK_STATE"
+      }
+    },
+    {
+      "tag": "uses-permission",
+      "line": 26,
+      "path": "manifest/uses-permission",
+      "attributes": {
+        "name": "com.android.vending.BILLING"
+      }
+    },
+    {
+      "tag": "uses-permission",
+      "line": 27,
+      "path": "manifest/uses-permission",
+      "attributes": {
+        "name": "android.permission.VIBRATE"
+      }
+    },
+    {
+      "tag": "uses-permission",
+      "line": 28,
+      "path": "manifest/uses-permission",
+      "attributes": {
+        "name": "android.permission.RECEIVE_BOOT_COMPLETED"
+      }
+    },
+    {
+      "tag": "uses-permission",
+      "line": 29,
+      "path": "manifest/uses-permission",
+      "attributes": {
+        "name": "android.permission.FOREGROUND_SERVICE"
+      }
+    },
+    {
+      "tag": "uses-permission",
+      "line": 43,
+      "path": "manifest/uses-permission",
+      "attributes": {
+        "name": "android.permission.USE_BIOMETRIC"
+      }
+    },
+    {
+      "tag": "uses-permission",
+      "line": 44,
+      "path": "manifest/uses-permission",
+      "attributes": {
+        "name": "android.permission.USE_FINGERPRINT"
+      }
+    },
+    {
+      "tag": "uses-permission",
+      "line": 45,
+      "path": "manifest/uses-permission",
+      "attributes": {
+        "name": "android.permission.POST_NOTIFICATIONS"
+      }
+    },
+    {
+      "tag": "uses-permission",
+      "line": 46,
+      "path": "manifest/uses-permission",
+      "attributes": {
+        "name": "com.google.android.c2dm.permission.RECEIVE"
+      }
+    },
+    {
+      "tag": "uses-permission",
+      "line": 47,
+      "path": "manifest/uses-permission",
+      "attributes": {
+        "name": "com.google.android.gms.permission.AD_ID"
+      }
+    },
+    {
+      "tag": "uses-permission",
+      "line": 48,
+      "path": "manifest/uses-permission",
+      "attributes": {
+        "name": "android.permission.ACCESS_ADSERVICES_ATTRIBUTION"
+      }
+    },
+    {
+      "tag": "uses-permission",
+      "line": 49,
+      "path": "manifest/uses-permission",
+      "attributes": {
+        "name": "android.permission.ACCESS_ADSERVICES_AD_ID"
+      }
+    },
+    {
+      "tag": "uses-permission",
+      "line": 50,
+      "path": "manifest/uses-permission",
+      "attributes": {
+        "name": "com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE"
+      }
+    },
+    {
+      "tag": "uses-permission",
+      "line": 56,
+      "path": "manifest/uses-permission",
+      "attributes": {
+        "name": "moe.low.arc.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+      }
+    }
+  ],
+  "components": [
+    {
+      "tag": "activity",
+      "line": 88,
+      "path": "manifest/application/activity",
+      "attributes": {
+        "theme": "@0x7f100005",
+        "label": "@0x7f0f0046",
+        "name": "low.moe.AppActivity",
+        "exported": true,
+        "screenOrientation": 6,
+        "configChanges": "0x000005a0",
+        "immersive": true
+      }
+    },
+    {
+      "tag": "activity",
+      "line": 116,
+      "path": "manifest/application/activity",
+      "attributes": {
+        "label": "@0x7f0f0046",
+        "name": "com.facebook.FacebookActivity",
+        "configChanges": "0x000005b0"
+      }
+    },
+    {
+      "tag": "activity",
+      "line": 120,
+      "path": "manifest/application/activity",
+      "attributes": {
+        "name": "com.facebook.CustomTabActivity",
+        "exported": true
+      }
+    },
+    {
+      "tag": "service",
+      "line": 133,
+      "path": "manifest/application/service",
+      "attributes": {
+        "name": "low.moe.PushNotificationHandler",
+        "exported": false
+      }
+    },
+    {
+      "tag": "provider",
+      "line": 148,
+      "path": "manifest/application/provider",
+      "attributes": {
+        "name": "androidx.core.content.FileProvider",
+        "exported": false,
+        "authorities": "moe.low.arc.provider",
+        "grantUriPermissions": true
+      }
+    },
+    {
+      "tag": "activity",
+      "line": 158,
+      "path": "manifest/application/activity",
+      "attributes": {
+        "theme": "@0x01030010",
+        "name": "com.android.billingclient.api.ProxyBillingActivity",
+        "exported": false,
+        "configChanges": "0x000005b0"
+      }
+    },
+    {
+      "tag": "provider",
+      "line": 171,
+      "path": "manifest/application/provider",
+      "attributes": {
+        "name": "com.google.android.gms.games.provider.PlayGamesInitProvider",
+        "exported": false,
+        "authorities": "moe.low.arc.playgamesinitprovider",
+        "initOrder": 99
+      }
+    },
+    {
+      "tag": "activity",
+      "line": 177,
+      "path": "manifest/application/activity",
+      "attributes": {
+        "theme": "@0x7f10010b",
+        "name": "com.google.android.gms.games.internal.v2.resolution.GamesResolutionActivity",
+        "exported": false
+      }
+    },
+    {
+      "tag": "activity",
+      "line": 181,
+      "path": "manifest/application/activity",
+      "attributes": {
+        "theme": "@0x7f10010b",
+        "name": "com.google.android.gms.games.internal.v2.appshortcuts.PlayGamesAppShortcutsActivity",
+        "exported": true
+      }
+    },
+    {
+      "tag": "service",
+      "line": 190,
+      "path": "manifest/application/service",
+      "attributes": {
+        "name": "androidx.credentials.playservices.CredentialProviderMetadataHolder",
+        "enabled": true,
+        "exported": false
+      }
+    },
+    {
+      "tag": "activity",
+      "line": 199,
+      "path": "manifest/application/activity",
+      "attributes": {
+        "theme": "@0x7f10010c",
+        "name": "androidx.credentials.playservices.HiddenActivity",
+        "enabled": true,
+        "exported": false,
+        "configChanges": "0x000005a0",
+        "fitsSystemWindows": true
+      }
+    },
+    {
+      "tag": "activity",
+      "line": 207,
+      "path": "manifest/application/activity",
+      "attributes": {
+        "theme": "@0x7f10010c",
+        "name": "androidx.credentials.playservices.IdentityCredentialApiHiddenActivity",
+        "enabled": true,
+        "exported": false,
+        "configChanges": "0x000005a0",
+        "fitsSystemWindows": true
+      }
+    },
+    {
+      "tag": "activity",
+      "line": 220,
+      "path": "manifest/application/activity",
+      "attributes": {
+        "theme": "@0x01030010",
+        "name": "com.android.billingclient.api.ProxyBillingActivityV2",
+        "exported": false,
+        "configChanges": "0x000005b0"
+      }
+    },
+    {
+      "tag": "receiver",
+      "line": 226,
+      "path": "manifest/application/receiver",
+      "attributes": {
+        "name": "com.google.android.gms.analytics.AnalyticsReceiver",
+        "enabled": true,
+        "exported": false
+      }
+    },
+    {
+      "tag": "service",
+      "line": 232,
+      "path": "manifest/application/service",
+      "attributes": {
+        "name": "com.google.android.gms.analytics.AnalyticsService",
+        "enabled": true,
+        "exported": false
+      }
+    },
+    {
+      "tag": "service",
+      "line": 236,
+      "path": "manifest/application/service",
+      "attributes": {
+        "name": "com.google.android.gms.analytics.AnalyticsJobService",
+        "permission": "android.permission.BIND_JOB_SERVICE",
+        "enabled": true,
+        "exported": false
+      }
+    },
+    {
+      "tag": "activity",
+      "line": 242,
+      "path": "manifest/application/activity",
+      "attributes": {
+        "theme": "@0x01030010",
+        "name": "com.google.android.gms.auth.api.signin.internal.SignInHubActivity",
+        "exported": false,
+        "excludeFromRecents": true
+      }
+    },
+    {
+      "tag": "service",
+      "line": 251,
+      "path": "manifest/application/service",
+      "attributes": {
+        "name": "com.google.android.gms.auth.api.signin.RevocationBoundService",
+        "permission": "com.google.android.gms.auth.api.signin.permission.REVOCATION_NOTIFICATION",
+        "exported": true,
+        "visibleToInstantApps": true
+      }
+    },
+    {
+      "tag": "service",
+      "line": 256,
+      "path": "manifest/application/service",
+      "attributes": {
+        "name": "com.google.firebase.components.ComponentDiscoveryService",
+        "exported": false,
+        "directBootAware": true
+      }
+    },
+    {
+      "tag": "receiver",
+      "line": 298,
+      "path": "manifest/application/receiver",
+      "attributes": {
+        "name": "com.google.firebase.iid.FirebaseInstanceIdReceiver",
+        "permission": "com.google.android.c2dm.permission.SEND",
+        "exported": true
+      }
+    },
+    {
+      "tag": "service",
+      "line": 314,
+      "path": "manifest/application/service",
+      "attributes": {
+        "name": "com.google.firebase.messaging.FirebaseMessagingService",
+        "exported": false,
+        "directBootAware": true
+      }
+    },
+    {
+      "tag": "service",
+      "line": 322,
+      "path": "manifest/application/service",
+      "attributes": {
+        "name": "com.google.firebase.sessions.SessionLifecycleService",
+        "enabled": true,
+        "exported": false
+      }
+    },
+    {
+      "tag": "provider",
+      "line": 327,
+      "path": "manifest/application/provider",
+      "attributes": {
+        "name": "com.google.firebase.provider.FirebaseInitProvider",
+        "exported": false,
+        "authorities": "moe.low.arc.firebaseinitprovider",
+        "initOrder": 100,
+        "directBootAware": true
+      }
+    },
+    {
+      "tag": "service",
+      "line": 334,
+      "path": "manifest/application/service",
+      "attributes": {
+        "name": "com.google.android.datatransport.runtime.backends.TransportBackendDiscovery",
+        "exported": false
+      }
+    },
+    {
+      "tag": "service",
+      "line": 341,
+      "path": "manifest/application/service",
+      "attributes": {
+        "name": "com.google.android.datatransport.runtime.scheduling.jobscheduling.JobInfoSchedulerService",
+        "permission": "android.permission.BIND_JOB_SERVICE",
+        "exported": false
+      }
+    },
+    {
+      "tag": "receiver",
+      "line": 347,
+      "path": "manifest/application/receiver",
+      "attributes": {
+        "name": "com.google.android.datatransport.runtime.scheduling.jobscheduling.AlarmManagerSchedulerBroadcastReceiver",
+        "exported": false
+      }
+    },
+    {
+      "tag": "receiver",
+      "line": 350,
+      "path": "manifest/application/receiver",
+      "attributes": {
+        "name": "com.google.android.gms.measurement.AppMeasurementReceiver",
+        "enabled": true,
+        "exported": false
+      }
+    },
+    {
+      "tag": "service",
+      "line": 356,
+      "path": "manifest/application/service",
+      "attributes": {
+        "name": "com.google.android.gms.measurement.AppMeasurementService",
+        "enabled": true,
+        "exported": false
+      }
+    },
+    {
+      "tag": "service",
+      "line": 360,
+      "path": "manifest/application/service",
+      "attributes": {
+        "name": "com.google.android.gms.measurement.AppMeasurementJobService",
+        "permission": "android.permission.BIND_JOB_SERVICE",
+        "enabled": true,
+        "exported": false
+      }
+    },
+    {
+      "tag": "activity",
+      "line": 366,
+      "path": "manifest/application/activity",
+      "attributes": {
+        "theme": "@0x01030010",
+        "name": "com.google.android.gms.common.api.GoogleApiActivity",
+        "exported": false
+      }
+    },
+    {
+      "tag": "activity",
+      "line": 374,
+      "path": "manifest/application/activity",
+      "attributes": {
+        "theme": "@0x7f10010d",
+        "name": "com.google.android.play.core.common.PlayCoreDialogWrapperActivity",
+        "exported": false,
+        "stateNotNeeded": true
+      }
+    },
+    {
+      "tag": "provider",
+      "line": 380,
+      "path": "manifest/application/provider",
+      "attributes": {
+        "name": "androidx.startup.InitializationProvider",
+        "exported": false,
+        "authorities": "moe.low.arc.androidx-startup"
+      }
+    },
+    {
+      "tag": "receiver",
+      "line": 389,
+      "path": "manifest/application/receiver",
+      "attributes": {
+        "name": "androidx.profileinstaller.ProfileInstallReceiver",
+        "permission": "android.permission.DUMP",
+        "enabled": true,
+        "exported": true,
+        "directBootAware": false
+      }
+    }
+  ],
+  "nodes": [
+    {
+      "tag": "manifest",
+      "line": 2,
+      "path": "manifest",
+      "attributes": {
+        "versionCode": 1209752,
+        "versionName": "6.16.8c",
+        "installLocation": 0,
+        "compileSdkVersion": 36,
+        "compileSdkVersionCodename": "16",
+        "package": "moe.low.arc",
+        "platformBuildVersionCode": 36,
+        "platformBuildVersionName": 16
+      }
+    },
+    {
+      "tag": "uses-sdk",
+      "line": 8,
+      "path": "manifest/uses-sdk",
+      "attributes": {
+        "minSdkVersion": 24,
+        "targetSdkVersion": 36
+      }
+    },
+    {
+      "tag": "uses-feature",
+      "line": 12,
+      "path": "manifest/uses-feature",
+      "attributes": {
+        "glEsVersion": "0x00020000"
+      }
+    },
+    {
+      "tag": "uses-feature",
+      "line": 13,
+      "path": "manifest/uses-feature",
+      "attributes": {
+        "name": "android.hardware.bluetooth",
+        "required": false
+      }
+    },
+    {
+      "tag": "uses-permission",
+      "line": 17,
+      "path": "manifest/uses-permission",
+      "attributes": {
+        "name": "android.permission.BLUETOOTH",
+        "required": false
+      }
+    },
+    {
+      "tag": "uses-permission",
+      "line": 20,
+      "path": "manifest/uses-permission",
+      "attributes": {
+        "name": "android.permission.BLUETOOTH_CONNECT"
+      }
+    },
+    {
+      "tag": "uses-permission",
+      "line": 21,
+      "path": "manifest/uses-permission",
+      "attributes": {
+        "name": "com.android.vending.CHECK_LICENSE"
+      }
+    },
+    {
+      "tag": "uses-permission",
+      "line": 22,
+      "path": "manifest/uses-permission",
+      "attributes": {
+        "name": "android.permission.WAKE_LOCK"
+      }
+    },
+    {
+      "tag": "uses-permission",
+      "line": 23,
+      "path": "manifest/uses-permission",
+      "attributes": {
+        "name": "android.permission.INTERNET"
+      }
+    },
+    {
+      "tag": "uses-permission",
+      "line": 24,
+      "path": "manifest/uses-permission",
+      "attributes": {
+        "name": "android.permission.ACCESS_WIFI_STATE"
+      }
+    },
+    {
+      "tag": "uses-permission",
+      "line": 25,
+      "path": "manifest/uses-permission",
+      "attributes": {
+        "name": "android.permission.ACCESS_NETWORK_STATE"
+      }
+    },
+    {
+      "tag": "uses-permission",
+      "line": 26,
+      "path": "manifest/uses-permission",
+      "attributes": {
+        "name": "com.android.vending.BILLING"
+      }
+    },
+    {
+      "tag": "uses-permission",
+      "line": 27,
+      "path": "manifest/uses-permission",
+      "attributes": {
+        "name": "android.permission.VIBRATE"
+      }
+    },
+    {
+      "tag": "uses-permission",
+      "line": 28,
+      "path": "manifest/uses-permission",
+      "attributes": {
+        "name": "android.permission.RECEIVE_BOOT_COMPLETED"
+      }
+    },
+    {
+      "tag": "uses-permission",
+      "line": 29,
+      "path": "manifest/uses-permission",
+      "attributes": {
+        "name": "android.permission.FOREGROUND_SERVICE"
+      }
+    },
+    {
+      "tag": "queries",
+      "line": 31,
+      "path": "manifest/queries",
+      "attributes": {}
+    },
+    {
+      "tag": "package",
+      "line": 32,
+      "path": "manifest/queries/package",
+      "attributes": {
+        "name": "com.google.android.gms"
+      }
+    },
+    {
+      "tag": "package",
+      "line": 33,
+      "path": "manifest/queries/package",
+      "attributes": {
+        "name": "com.android.vending"
+      }
+    },
+    {
+      "tag": "intent",
+      "line": 35,
+      "path": "manifest/queries/intent",
+      "attributes": {}
+    },
+    {
+      "tag": "action",
+      "line": 36,
+      "path": "manifest/queries/intent/action",
+      "attributes": {
+        "name": "com.android.vending.billing.InAppBillingService.BIND"
+      }
+    },
+    {
+      "tag": "intent",
+      "line": 38,
+      "path": "manifest/queries/intent",
+      "attributes": {}
+    },
+    {
+      "tag": "action",
+      "line": 39,
+      "path": "manifest/queries/intent/action",
+      "attributes": {
+        "name": "com.google.android.apps.play.billingtestcompanion.BillingOverrideService.BIND"
+      }
+    },
+    {
+      "tag": "uses-permission",
+      "line": 43,
+      "path": "manifest/uses-permission",
+      "attributes": {
+        "name": "android.permission.USE_BIOMETRIC"
+      }
+    },
+    {
+      "tag": "uses-permission",
+      "line": 44,
+      "path": "manifest/uses-permission",
+      "attributes": {
+        "name": "android.permission.USE_FINGERPRINT"
+      }
+    },
+    {
+      "tag": "uses-permission",
+      "line": 45,
+      "path": "manifest/uses-permission",
+      "attributes": {
+        "name": "android.permission.POST_NOTIFICATIONS"
+      }
+    },
+    {
+      "tag": "uses-permission",
+      "line": 46,
+      "path": "manifest/uses-permission",
+      "attributes": {
+        "name": "com.google.android.c2dm.permission.RECEIVE"
+      }
+    },
+    {
+      "tag": "uses-permission",
+      "line": 47,
+      "path": "manifest/uses-permission",
+      "attributes": {
+        "name": "com.google.android.gms.permission.AD_ID"
+      }
+    },
+    {
+      "tag": "uses-permission",
+      "line": 48,
+      "path": "manifest/uses-permission",
+      "attributes": {
+        "name": "android.permission.ACCESS_ADSERVICES_ATTRIBUTION"
+      }
+    },
+    {
+      "tag": "uses-permission",
+      "line": 49,
+      "path": "manifest/uses-permission",
+      "attributes": {
+        "name": "android.permission.ACCESS_ADSERVICES_AD_ID"
+      }
+    },
+    {
+      "tag": "uses-permission",
+      "line": 50,
+      "path": "manifest/uses-permission",
+      "attributes": {
+        "name": "com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE"
+      }
+    },
+    {
+      "tag": "permission",
+      "line": 52,
+      "path": "manifest/permission",
+      "attributes": {
+        "name": "moe.low.arc.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION",
+        "protectionLevel": "0x00000002"
+      }
+    },
+    {
+      "tag": "uses-permission",
+      "line": 56,
+      "path": "manifest/uses-permission",
+      "attributes": {
+        "name": "moe.low.arc.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+      }
+    },
+    {
+      "tag": "application",
+      "line": 57,
+      "path": "manifest/application",
+      "attributes": {
+        "label": "@0x7f0f0046",
+        "icon": "@0x7f0d0000",
+        "allowBackup": false,
+        "extractNativeLibs": true,
+        "resizeableActivity": false,
+        "appComponentFactory": "androidx.core.app.CoreComponentFactory",
+        "allowNativeHeapPointerTagging": false
+      }
+    },
+    {
+      "tag": "uses-library",
+      "line": 65,
+      "path": "manifest/application/uses-library",
+      "attributes": {
+        "name": "org.apache.http.legacy",
+        "required": false
+      }
+    },
+    {
+      "tag": "meta-data",
+      "line": 69,
+      "path": "manifest/application/meta-data",
+      "attributes": {
+        "name": "android.app.lib_name",
+        "value": "cocos2dcpp"
+      }
+    },
+    {
+      "tag": "meta-data",
+      "line": 72,
+      "path": "manifest/application/meta-data",
+      "attributes": {
+        "name": "com.sec.android.support.multiwindow",
+        "value": false
+      }
+    },
+    {
+      "tag": "meta-data",
+      "line": 75,
+      "path": "manifest/application/meta-data",
+      "attributes": {
+        "name": "com.samsung.android.sdk.multiwindow.multiinstance.enable",
+        "value": false
+      }
+    },
+    {
+      "tag": "meta-data",
+      "line": 78,
+      "path": "manifest/application/meta-data",
+      "attributes": {
+        "name": "com.samsung.android.sdk.multiwindow.penwindow.enable",
+        "value": false
+      }
+    },
+    {
+      "tag": "meta-data",
+      "line": 81,
+      "path": "manifest/application/meta-data",
+      "attributes": {
+        "name": "android.max_aspect",
+        "value": "typed(0x04,0x400ccccd)"
+      }
+    },
+    {
+      "tag": "meta-data",
+      "line": 84,
+      "path": "manifest/application/meta-data",
+      "attributes": {
+        "name": "android:maxAspectRatio",
+        "value": "typed(0x04,0x400ccccd)"
+      }
+    },
+    {
+      "tag": "activity",
+      "line": 88,
+      "path": "manifest/application/activity",
+      "attributes": {
+        "theme": "@0x7f100005",
+        "label": "@0x7f0f0046",
+        "name": "low.moe.AppActivity",
+        "exported": true,
+        "screenOrientation": 6,
+        "configChanges": "0x000005a0",
+        "immersive": true
+      }
+    },
+    {
+      "tag": "property",
+      "line": 96,
+      "path": "manifest/application/activity/property",
+      "attributes": {
+        "name": "android.window.PROPERTY_COMPAT_ALLOW_RESTRICTED_RESIZABILITY",
+        "value": true
+      }
+    },
+    {
+      "tag": "intent-filter",
+      "line": 100,
+      "path": "manifest/application/activity/intent-filter",
+      "attributes": {}
+    },
+    {
+      "tag": "action",
+      "line": 101,
+      "path": "manifest/application/activity/intent-filter/action",
+      "attributes": {
+        "name": "android.intent.action.MAIN"
+      }
+    },
+    {
+      "tag": "category",
+      "line": 103,
+      "path": "manifest/application/activity/intent-filter/category",
+      "attributes": {
+        "name": "android.intent.category.LAUNCHER"
+      }
+    },
+    {
+      "tag": "intent-filter",
+      "line": 105,
+      "path": "manifest/application/activity/intent-filter",
+      "attributes": {
+        "autoVerify": true
+      }
+    },
+    {
+      "tag": "action",
+      "line": 106,
+      "path": "manifest/application/activity/intent-filter/action",
+      "attributes": {
+        "name": "android.intent.action.VIEW"
+      }
+    },
+    {
+      "tag": "category",
+      "line": 108,
+      "path": "manifest/application/activity/intent-filter/category",
+      "attributes": {
+        "name": "android.intent.category.DEFAULT"
+      }
+    },
+    {
+      "tag": "category",
+      "line": 109,
+      "path": "manifest/application/activity/intent-filter/category",
+      "attributes": {
+        "name": "android.intent.category.BROWSABLE"
+      }
+    },
+    {
+      "tag": "data",
+      "line": 111,
+      "path": "manifest/application/activity/intent-filter/data",
+      "attributes": {
+        "scheme": "http"
+      }
+    },
+    {
+      "tag": "data",
+      "line": 112,
+      "path": "manifest/application/activity/intent-filter/data",
+      "attributes": {
+        "scheme": "https"
+      }
+    },
+    {
+      "tag": "data",
+      "line": 113,
+      "path": "manifest/application/activity/intent-filter/data",
+      "attributes": {
+        "host": "link.arcaea.app"
+      }
+    },
+    {
+      "tag": "activity",
+      "line": 116,
+      "path": "manifest/application/activity",
+      "attributes": {
+        "label": "@0x7f0f0046",
+        "name": "com.facebook.FacebookActivity",
+        "configChanges": "0x000005b0"
+      }
+    },
+    {
+      "tag": "activity",
+      "line": 120,
+      "path": "manifest/application/activity",
+      "attributes": {
+        "name": "com.facebook.CustomTabActivity",
+        "exported": true
+      }
+    },
+    {
+      "tag": "intent-filter",
+      "line": 123,
+      "path": "manifest/application/activity/intent-filter",
+      "attributes": {}
+    },
+    {
+      "tag": "action",
+      "line": 124,
+      "path": "manifest/application/activity/intent-filter/action",
+      "attributes": {
+        "name": "android.intent.action.VIEW"
+      }
+    },
+    {
+      "tag": "category",
+      "line": 126,
+      "path": "manifest/application/activity/intent-filter/category",
+      "attributes": {
+        "name": "android.intent.category.DEFAULT"
+      }
+    },
+    {
+      "tag": "category",
+      "line": 127,
+      "path": "manifest/application/activity/intent-filter/category",
+      "attributes": {
+        "name": "android.intent.category.BROWSABLE"
+      }
+    },
+    {
+      "tag": "data",
+      "line": 129,
+      "path": "manifest/application/activity/intent-filter/data",
+      "attributes": {
+        "scheme": "@0x7f0f0066"
+      }
+    },
+    {
+      "tag": "service",
+      "line": 133,
+      "path": "manifest/application/service",
+      "attributes": {
+        "name": "low.moe.PushNotificationHandler",
+        "exported": false
+      }
+    },
+    {
+      "tag": "intent-filter",
+      "line": 136,
+      "path": "manifest/application/service/intent-filter",
+      "attributes": {}
+    },
+    {
+      "tag": "action",
+      "line": 137,
+      "path": "manifest/application/service/intent-filter/action",
+      "attributes": {
+        "name": "com.google.firebase.MESSAGING_EVENT"
+      }
+    },
+    {
+      "tag": "meta-data",
+      "line": 141,
+      "path": "manifest/application/meta-data",
+      "attributes": {
+        "name": "com.google.android.gms.version",
+        "value": "@0x7f0a0004"
+      }
+    },
+    {
+      "tag": "meta-data",
+      "line": 144,
+      "path": "manifest/application/meta-data",
+      "attributes": {
+        "name": "com.google.android.gms.games.APP_ID",
+        "value": "@0x7f0f0076"
+      }
+    },
+    {
+      "tag": "provider",
+      "line": 148,
+      "path": "manifest/application/provider",
+      "attributes": {
+        "name": "androidx.core.content.FileProvider",
+        "exported": false,
+        "authorities": "moe.low.arc.provider",
+        "grantUriPermissions": true
+      }
+    },
+    {
+      "tag": "meta-data",
+      "line": 153,
+      "path": "manifest/application/provider/meta-data",
+      "attributes": {
+        "name": "android.support.FILE_PROVIDER_PATHS",
+        "resource": "@0x7f120001"
+      }
+    },
+    {
+      "tag": "activity",
+      "line": 158,
+      "path": "manifest/application/activity",
+      "attributes": {
+        "theme": "@0x01030010",
+        "name": "com.android.billingclient.api.ProxyBillingActivity",
+        "exported": false,
+        "configChanges": "0x000005b0"
+      }
+    },
+    {
+      "tag": "meta-data",
+      "line": 164,
+      "path": "manifest/application/meta-data",
+      "attributes": {
+        "name": "com.facebook.sdk.ApplicationId",
+        "value": "@0x7f0f0064"
+      }
+    },
+    {
+      "tag": "meta-data",
+      "line": 167,
+      "path": "manifest/application/meta-data",
+      "attributes": {
+        "name": "com.facebook.sdk.ClientToken",
+        "value": "@0x7f0f0065"
+      }
+    },
+    {
+      "tag": "provider",
+      "line": 171,
+      "path": "manifest/application/provider",
+      "attributes": {
+        "name": "com.google.android.gms.games.provider.PlayGamesInitProvider",
+        "exported": false,
+        "authorities": "moe.low.arc.playgamesinitprovider",
+        "initOrder": 99
+      }
+    },
+    {
+      "tag": "activity",
+      "line": 177,
+      "path": "manifest/application/activity",
+      "attributes": {
+        "theme": "@0x7f10010b",
+        "name": "com.google.android.gms.games.internal.v2.resolution.GamesResolutionActivity",
+        "exported": false
+      }
+    },
+    {
+      "tag": "activity",
+      "line": 181,
+      "path": "manifest/application/activity",
+      "attributes": {
+        "theme": "@0x7f10010b",
+        "name": "com.google.android.gms.games.internal.v2.appshortcuts.PlayGamesAppShortcutsActivity",
+        "exported": true
+      }
+    },
+    {
+      "tag": "meta-data",
+      "line": 186,
+      "path": "manifest/application/meta-data",
+      "attributes": {
+        "name": "com.google.android.gms.games.version",
+        "value": "@0x7f0f0079"
+      }
+    },
+    {
+      "tag": "service",
+      "line": 190,
+      "path": "manifest/application/service",
+      "attributes": {
+        "name": "androidx.credentials.playservices.CredentialProviderMetadataHolder",
+        "enabled": true,
+        "exported": false
+      }
+    },
+    {
+      "tag": "meta-data",
+      "line": 194,
+      "path": "manifest/application/service/meta-data",
+      "attributes": {
+        "name": "androidx.credentials.CREDENTIAL_PROVIDER_KEY",
+        "value": "androidx.credentials.playservices.CredentialProviderPlayServicesImpl"
+      }
+    },
+    {
+      "tag": "activity",
+      "line": 199,
+      "path": "manifest/application/activity",
+      "attributes": {
+        "theme": "@0x7f10010c",
+        "name": "androidx.credentials.playservices.HiddenActivity",
+        "enabled": true,
+        "exported": false,
+        "configChanges": "0x000005a0",
+        "fitsSystemWindows": true
+      }
+    },
+    {
+      "tag": "activity",
+      "line": 207,
+      "path": "manifest/application/activity",
+      "attributes": {
+        "theme": "@0x7f10010c",
+        "name": "androidx.credentials.playservices.IdentityCredentialApiHiddenActivity",
+        "enabled": true,
+        "exported": false,
+        "configChanges": "0x000005a0",
+        "fitsSystemWindows": true
+      }
+    },
+    {
+      "tag": "meta-data",
+      "line": 216,
+      "path": "manifest/application/meta-data",
+      "attributes": {
+        "name": "com.google.android.play.billingclient.version",
+        "value": "9.1.0"
+      }
+    },
+    {
+      "tag": "activity",
+      "line": 220,
+      "path": "manifest/application/activity",
+      "attributes": {
+        "theme": "@0x01030010",
+        "name": "com.android.billingclient.api.ProxyBillingActivityV2",
+        "exported": false,
+        "configChanges": "0x000005b0"
+      }
+    },
+    {
+      "tag": "receiver",
+      "line": 226,
+      "path": "manifest/application/receiver",
+      "attributes": {
+        "name": "com.google.android.gms.analytics.AnalyticsReceiver",
+        "enabled": true,
+        "exported": false
+      }
+    },
+    {
+      "tag": "service",
+      "line": 232,
+      "path": "manifest/application/service",
+      "attributes": {
+        "name": "com.google.android.gms.analytics.AnalyticsService",
+        "enabled": true,
+        "exported": false
+      }
+    },
+    {
+      "tag": "service",
+      "line": 236,
+      "path": "manifest/application/service",
+      "attributes": {
+        "name": "com.google.android.gms.analytics.AnalyticsJobService",
+        "permission": "android.permission.BIND_JOB_SERVICE",
+        "enabled": true,
+        "exported": false
+      }
+    },
+    {
+      "tag": "activity",
+      "line": 242,
+      "path": "manifest/application/activity",
+      "attributes": {
+        "theme": "@0x01030010",
+        "name": "com.google.android.gms.auth.api.signin.internal.SignInHubActivity",
+        "exported": false,
+        "excludeFromRecents": true
+      }
+    },
+    {
+      "tag": "service",
+      "line": 251,
+      "path": "manifest/application/service",
+      "attributes": {
+        "name": "com.google.android.gms.auth.api.signin.RevocationBoundService",
+        "permission": "com.google.android.gms.auth.api.signin.permission.REVOCATION_NOTIFICATION",
+        "exported": true,
+        "visibleToInstantApps": true
+      }
+    },
+    {
+      "tag": "service",
+      "line": 256,
+      "path": "manifest/application/service",
+      "attributes": {
+        "name": "com.google.firebase.components.ComponentDiscoveryService",
+        "exported": false,
+        "directBootAware": true
+      }
+    },
+    {
+      "tag": "meta-data",
+      "line": 260,
+      "path": "manifest/application/service/meta-data",
+      "attributes": {
+        "name": "com.google.firebase.components:com.google.firebase.crashlytics.ndk.CrashlyticsNdkRegistrar",
+        "value": "com.google.firebase.components.ComponentRegistrar"
+      }
+    },
+    {
+      "tag": "meta-data",
+      "line": 263,
+      "path": "manifest/application/service/meta-data",
+      "attributes": {
+        "name": "com.google.firebase.components:com.google.firebase.crashlytics.FirebaseCrashlyticsKtxRegistrar",
+        "value": "com.google.firebase.components.ComponentRegistrar"
+      }
+    },
+    {
+      "tag": "meta-data",
+      "line": 266,
+      "path": "manifest/application/service/meta-data",
+      "attributes": {
+        "name": "com.google.firebase.components:com.google.firebase.crashlytics.CrashlyticsRegistrar",
+        "value": "com.google.firebase.components.ComponentRegistrar"
+      }
+    },
+    {
+      "tag": "meta-data",
+      "line": 269,
+      "path": "manifest/application/service/meta-data",
+      "attributes": {
+        "name": "com.google.firebase.components:com.google.firebase.messaging.FirebaseMessagingKtxRegistrar",
+        "value": "com.google.firebase.components.ComponentRegistrar"
+      }
+    },
+    {
+      "tag": "meta-data",
+      "line": 272,
+      "path": "manifest/application/service/meta-data",
+      "attributes": {
+        "name": "com.google.firebase.components:com.google.firebase.messaging.FirebaseMessagingRegistrar",
+        "value": "com.google.firebase.components.ComponentRegistrar"
+      }
+    },
+    {
+      "tag": "meta-data",
+      "line": 275,
+      "path": "manifest/application/service/meta-data",
+      "attributes": {
+        "name": "com.google.firebase.components:com.google.firebase.analytics.connector.internal.AnalyticsConnectorRegistrar",
+        "value": "com.google.firebase.components.ComponentRegistrar"
+      }
+    },
+    {
+      "tag": "meta-data",
+      "line": 278,
+      "path": "manifest/application/service/meta-data",
+      "attributes": {
+        "name": "com.google.firebase.components:com.google.firebase.sessions.FirebaseSessionsRegistrar",
+        "value": "com.google.firebase.components.ComponentRegistrar"
+      }
+    },
+    {
+      "tag": "meta-data",
+      "line": 281,
+      "path": "manifest/application/service/meta-data",
+      "attributes": {
+        "name": "com.google.firebase.components:com.google.firebase.installations.FirebaseInstallationsKtxRegistrar",
+        "value": "com.google.firebase.components.ComponentRegistrar"
+      }
+    },
+    {
+      "tag": "meta-data",
+      "line": 284,
+      "path": "manifest/application/service/meta-data",
+      "attributes": {
+        "name": "com.google.firebase.components:com.google.firebase.installations.FirebaseInstallationsRegistrar",
+        "value": "com.google.firebase.components.ComponentRegistrar"
+      }
+    },
+    {
+      "tag": "meta-data",
+      "line": 287,
+      "path": "manifest/application/service/meta-data",
+      "attributes": {
+        "name": "com.google.firebase.components:com.google.firebase.ktx.FirebaseCommonLegacyRegistrar",
+        "value": "com.google.firebase.components.ComponentRegistrar"
+      }
+    },
+    {
+      "tag": "meta-data",
+      "line": 290,
+      "path": "manifest/application/service/meta-data",
+      "attributes": {
+        "name": "com.google.firebase.components:com.google.firebase.FirebaseCommonKtxRegistrar",
+        "value": "com.google.firebase.components.ComponentRegistrar"
+      }
+    },
+    {
+      "tag": "meta-data",
+      "line": 293,
+      "path": "manifest/application/service/meta-data",
+      "attributes": {
+        "name": "com.google.firebase.components:com.google.firebase.datatransport.TransportRegistrar",
+        "value": "com.google.firebase.components.ComponentRegistrar"
+      }
+    },
+    {
+      "tag": "receiver",
+      "line": 298,
+      "path": "manifest/application/receiver",
+      "attributes": {
+        "name": "com.google.firebase.iid.FirebaseInstanceIdReceiver",
+        "permission": "com.google.android.c2dm.permission.SEND",
+        "exported": true
+      }
+    },
+    {
+      "tag": "intent-filter",
+      "line": 302,
+      "path": "manifest/application/receiver/intent-filter",
+      "attributes": {}
+    },
+    {
+      "tag": "action",
+      "line": 303,
+      "path": "manifest/application/receiver/intent-filter/action",
+      "attributes": {
+        "name": "com.google.android.c2dm.intent.RECEIVE"
+      }
+    },
+    {
+      "tag": "meta-data",
+      "line": 306,
+      "path": "manifest/application/receiver/meta-data",
+      "attributes": {
+        "name": "com.google.android.gms.cloudmessaging.FINISHED_AFTER_HANDLED",
+        "value": true
+      }
+    },
+    {
+      "tag": "service",
+      "line": 314,
+      "path": "manifest/application/service",
+      "attributes": {
+        "name": "com.google.firebase.messaging.FirebaseMessagingService",
+        "exported": false,
+        "directBootAware": true
+      }
+    },
+    {
+      "tag": "intent-filter",
+      "line": 318,
+      "path": "manifest/application/service/intent-filter",
+      "attributes": {
+        "priority": -500
+      }
+    },
+    {
+      "tag": "action",
+      "line": 319,
+      "path": "manifest/application/service/intent-filter/action",
+      "attributes": {
+        "name": "com.google.firebase.MESSAGING_EVENT"
+      }
+    },
+    {
+      "tag": "service",
+      "line": 322,
+      "path": "manifest/application/service",
+      "attributes": {
+        "name": "com.google.firebase.sessions.SessionLifecycleService",
+        "enabled": true,
+        "exported": false
+      }
+    },
+    {
+      "tag": "provider",
+      "line": 327,
+      "path": "manifest/application/provider",
+      "attributes": {
+        "name": "com.google.firebase.provider.FirebaseInitProvider",
+        "exported": false,
+        "authorities": "moe.low.arc.firebaseinitprovider",
+        "initOrder": 100,
+        "directBootAware": true
+      }
+    },
+    {
+      "tag": "service",
+      "line": 334,
+      "path": "manifest/application/service",
+      "attributes": {
+        "name": "com.google.android.datatransport.runtime.backends.TransportBackendDiscovery",
+        "exported": false
+      }
+    },
+    {
+      "tag": "meta-data",
+      "line": 337,
+      "path": "manifest/application/service/meta-data",
+      "attributes": {
+        "name": "backend:com.google.android.datatransport.cct.CctBackendFactory",
+        "value": "cct"
+      }
+    },
+    {
+      "tag": "service",
+      "line": 341,
+      "path": "manifest/application/service",
+      "attributes": {
+        "name": "com.google.android.datatransport.runtime.scheduling.jobscheduling.JobInfoSchedulerService",
+        "permission": "android.permission.BIND_JOB_SERVICE",
+        "exported": false
+      }
+    },
+    {
+      "tag": "receiver",
+      "line": 347,
+      "path": "manifest/application/receiver",
+      "attributes": {
+        "name": "com.google.android.datatransport.runtime.scheduling.jobscheduling.AlarmManagerSchedulerBroadcastReceiver",
+        "exported": false
+      }
+    },
+    {
+      "tag": "receiver",
+      "line": 350,
+      "path": "manifest/application/receiver",
+      "attributes": {
+        "name": "com.google.android.gms.measurement.AppMeasurementReceiver",
+        "enabled": true,
+        "exported": false
+      }
+    },
+    {
+      "tag": "service",
+      "line": 356,
+      "path": "manifest/application/service",
+      "attributes": {
+        "name": "com.google.android.gms.measurement.AppMeasurementService",
+        "enabled": true,
+        "exported": false
+      }
+    },
+    {
+      "tag": "service",
+      "line": 360,
+      "path": "manifest/application/service",
+      "attributes": {
+        "name": "com.google.android.gms.measurement.AppMeasurementJobService",
+        "permission": "android.permission.BIND_JOB_SERVICE",
+        "enabled": true,
+        "exported": false
+      }
+    },
+    {
+      "tag": "activity",
+      "line": 366,
+      "path": "manifest/application/activity",
+      "attributes": {
+        "theme": "@0x01030010",
+        "name": "com.google.android.gms.common.api.GoogleApiActivity",
+        "exported": false
+      }
+    },
+    {
+      "tag": "uses-library",
+      "line": 371,
+      "path": "manifest/application/uses-library",
+      "attributes": {
+        "name": "android.ext.adservices",
+        "required": false
+      }
+    },
+    {
+      "tag": "activity",
+      "line": 374,
+      "path": "manifest/application/activity",
+      "attributes": {
+        "theme": "@0x7f10010d",
+        "name": "com.google.android.play.core.common.PlayCoreDialogWrapperActivity",
+        "exported": false,
+        "stateNotNeeded": true
+      }
+    },
+    {
+      "tag": "provider",
+      "line": 380,
+      "path": "manifest/application/provider",
+      "attributes": {
+        "name": "androidx.startup.InitializationProvider",
+        "exported": false,
+        "authorities": "moe.low.arc.androidx-startup"
+      }
+    },
+    {
+      "tag": "meta-data",
+      "line": 384,
+      "path": "manifest/application/provider/meta-data",
+      "attributes": {
+        "name": "androidx.profileinstaller.ProfileInstallerInitializer",
+        "value": "androidx.startup"
+      }
+    },
+    {
+      "tag": "receiver",
+      "line": 389,
+      "path": "manifest/application/receiver",
+      "attributes": {
+        "name": "androidx.profileinstaller.ProfileInstallReceiver",
+        "permission": "android.permission.DUMP",
+        "enabled": true,
+        "exported": true,
+        "directBootAware": false
+      }
+    },
+    {
+      "tag": "intent-filter",
+      "line": 395,
+      "path": "manifest/application/receiver/intent-filter",
+      "attributes": {}
+    },
+    {
+      "tag": "action",
+      "line": 396,
+      "path": "manifest/application/receiver/intent-filter/action",
+      "attributes": {
+        "name": "androidx.profileinstaller.action.INSTALL_PROFILE"
+      }
+    },
+    {
+      "tag": "intent-filter",
+      "line": 398,
+      "path": "manifest/application/receiver/intent-filter",
+      "attributes": {}
+    },
+    {
+      "tag": "action",
+      "line": 399,
+      "path": "manifest/application/receiver/intent-filter/action",
+      "attributes": {
+        "name": "androidx.profileinstaller.action.SKIP_FILE"
+      }
+    },
+    {
+      "tag": "intent-filter",
+      "line": 401,
+      "path": "manifest/application/receiver/intent-filter",
+      "attributes": {}
+    },
+    {
+      "tag": "action",
+      "line": 402,
+      "path": "manifest/application/receiver/intent-filter/action",
+      "attributes": {
+        "name": "androidx.profileinstaller.action.SAVE_PROFILE"
+      }
+    },
+    {
+      "tag": "intent-filter",
+      "line": 404,
+      "path": "manifest/application/receiver/intent-filter",
+      "attributes": {}
+    },
+    {
+      "tag": "action",
+      "line": 405,
+      "path": "manifest/application/receiver/intent-filter/action",
+      "attributes": {
+        "name": "androidx.profileinstaller.action.BENCHMARK_OPERATION"
+      }
+    }
+  ],
+  "resourceMapIds": [
+    "0x01010000",
+    "0x01010001",
+    "0x01010002",
+    "0x01010003",
+    "0x01010006",
+    "0x01010009",
+    "0x0101000e",
+    "0x01010010",
+    "0x01010016",
+    "0x01010017",
+    "0x01010018",
+    "0x0101001a",
+    "0x0101001b",
+    "0x0101001c",
+    "0x0101001e",
+    "0x0101001f",
+    "0x01010024",
+    "0x01010025",
+    "0x01010027",
+    "0x01010028",
+    "0x010100dd",
+    "0x0101020c",
+    "0x0101021b",
+    "0x0101021c",
+    "0x01010270",
+    "0x01010280",
+    "0x01010281",
+    "0x0101028e",
+    "0x010102b7",
+    "0x010102c0",
+    "0x010104ea",
+    "0x010104ee",
+    "0x010104f6",
+    "0x01010505",
+    "0x01010531",
+    "0x01010572",
+    "0x01010573",
+    "0x0101057a",
+    "0x01010612"
+  ],
+  "stringPoolCount": 185,
+  "apkPath": "D:\\Files\\曲绘\\Arcaea\\APK\\arcaea_6.16.8c.apk",
+  "resEntries": [
+    "res/-8.xml",
+    "res/-B.png",
+    "res/-N.png",
+    "res/-p.png",
+    "res/0M.xml",
+    "res/0c.9.png",
+    "res/0w.xml",
+    "res/0x.9.png",
+    "res/1C.9.png",
+    "res/1I.9.png",
+    "res/1J.9.png",
+    "res/1e.9.png",
+    "res/1k.xml",
+    "res/27.xml",
+    "res/2K.9.png",
+    "res/2P.png",
+    "res/2d.png",
+    "res/2f.xml",
+    "res/2j.xml",
+    "res/33.9.png",
+    "res/3A.xml",
+    "res/3u.9.png",
+    "res/42.9.png",
+    "res/46.xml",
+    "res/47.xml",
+    "res/49.png",
+    "res/4B.xml",
+    "res/4F.xml",
+    "res/4_.xml",
+    "res/4k.png",
+    "res/4u.xml",
+    "res/4z.xml",
+    "res/5D.9.png",
+    "res/5J.9.png",
+    "res/5T.xml",
+    "res/5U.png",
+    "res/5c.png",
+    "res/5z.xml",
+    "res/62.9.png",
+    "res/65.9.png",
+    "res/6Q.xml",
+    "res/6t.png",
+    "res/79.9.png",
+    "res/7C.9.png",
+    "res/7G.xml",
+    "res/7H.xml",
+    "res/7I.9.png",
+    "res/7N.xml",
+    "res/7R.png",
+    "res/7_.9.png",
+    "res/7i.png",
+    "res/7o.9.png",
+    "res/80.xml",
+    "res/8h.9.png",
+    "res/8h.png",
+    "res/9N.9.png",
+    "res/9P.xml",
+    "res/9T.xml",
+    "res/9T1.xml",
+    "res/9T2.xml",
+    "res/9V.xml",
+    "res/9X.9.png",
+    "res/9Z.png",
+    "res/9m.xml",
+    "res/9n.9.png",
+    "res/9w.png",
+    "res/9z.png",
+    "res/9z.xml",
+    "res/A1.xml",
+    "res/A2.xml",
+    "res/A4.xml",
+    "res/Af.9.png",
+    "res/BG.9.png",
+    "res/BJ.xml",
+    "res/BJ1.xml",
+    "res/BL.9.png",
+    "res/BM.png",
+    "res/BQ.9.png",
+    "res/BW.xml",
+    "res/Bd.xml",
+    "res/Be.xml",
+    "res/Bl.xml",
+    "res/Bz.xml",
+    "res/CK.9.png",
+    "res/C_.9.png",
+    "res/Ce.xml",
+    "res/Cg.xml",
+    "res/D5.xml",
+    "res/DL.9.png",
+    "res/DV.xml",
+    "res/DZ.xml",
+    "res/D_.9.png",
+    "res/Dd.png",
+    "res/E5.png",
+    "res/EA.9.png",
+    "res/EP.png",
+    "res/EQ.xml",
+    "res/EZ.xml",
+    "res/Eg.xml",
+    "res/Eh.png",
+    "res/Em.png",
+    "res/F8.xml",
+    "res/FS.png",
+    "res/FT.xml",
+    "res/FW.png",
+    "res/Ff.png",
+    "res/Fu.xml",
+    "res/G2.9.png",
+    "res/GC.xml",
+    "res/GD.xml",
+    "res/GF.xml",
+    "res/GK.xml",
+    "res/GR.xml",
+    "res/Gf.png",
+    "res/Gt.9.png",
+    "res/Gt.xml",
+    "res/H-.png",
+    "res/Hd.xml",
+    "res/I3.9.png",
+    "res/IN.xml",
+    "res/IX.9.png",
+    "res/In.xml",
+    "res/JJ.9.png",
+    "res/Jl.xml",
+    "res/K-.xml",
+    "res/K5.xml",
+    "res/KH.9.png",
+    "res/KM.png",
+    "res/K_.9.png",
+    "res/Ke.xml",
+    "res/L_.xml",
+    "res/Lf.png",
+    "res/Lf.xml",
+    "res/Li.9.png",
+    "res/Lr.xml",
+    "res/M7.xml",
+    "res/MF.9.png",
+    "res/MO.xml",
+    "res/MQ.png",
+    "res/Ma.9.png",
+    "res/Mp.xml",
+    "res/N3.xml",
+    "res/NA.9.png",
+    "res/NF.xml",
+    "res/NG.png",
+    "res/NM.xml",
+    "res/NZ.9.png",
+    "res/Nk.9.png",
+    "res/No.9.png",
+    "res/Nu.xml",
+    "res/Ol.xml",
+    "res/PL.png",
+    "res/Pa.9.png",
+    "res/Pb.png",
+    "res/Pb.xml",
+    "res/Pg.9.png",
+    "res/QJ.9.png",
+    "res/QZ.png",
+    "res/QZ.xml",
+    "res/Qd.9.png",
+    "res/Qd.xml",
+    "res/Qt.xml",
+    "res/RD.xml",
+    "res/RH.xml",
+    "res/RJ.png",
+    "res/RV.png",
+    "res/Rt.xml",
+    "res/Rx.xml",
+    "res/S8.xml",
+    "res/SV.9.png",
+    "res/Sc.xml",
+    "res/Sq.png",
+    "res/Su.9.png",
+    "res/T5.xml",
+    "res/TK.xml",
+    "res/Th.png",
+    "res/Tj.9.png",
+    "res/Tn.xml",
+    "res/U-.9.png",
+    "res/U8.xml",
+    "res/UE.9.png",
+    "res/UR.png",
+    "res/UX.xml",
+    "res/V1.xml",
+    "res/V7.xml",
+    "res/VM.xml",
+    "res/VN.xml",
+    "res/VT.xml",
+    "res/W4.9.png",
+    "res/WU.xml",
+    "res/Wh.png",
+    "res/Wr.png",
+    "res/Ws.xml",
+    "res/Wz.png",
+    "res/X3.9.png",
+    "res/X4.9.png",
+    "res/XK.xml",
+    "res/XW.xml",
+    "res/XY.xml",
+    "res/Xk.xml",
+    "res/Xx.xml",
+    "res/Y7.9.png",
+    "res/YG.9.png",
+    "res/YW.xml",
+    "res/Yt.9.png",
+    "res/Yw.9.png",
+    "res/Z8.png",
+    "res/ZI.png",
+    "res/ZL.9.png",
+    "res/ZL.xml",
+    "res/ZN.9.png",
+    "res/ZN.xml",
+    "res/Zg.xml",
+    "res/_G.xml",
+    "res/_U.png",
+    "res/_c.png",
+    "res/_o.xml",
+    "res/_p.png",
+    "res/_q.png",
+    "res/_y.xml",
+    "res/a0.xml",
+    "res/aG.xml",
+    "res/aM.xml",
+    "res/aU.9.png",
+    "res/aW.xml",
+    "res/ak.xml",
+    "res/ar.png",
+    "res/as.png",
+    "res/bL.xml",
+    "res/bX.9.png",
+    "res/bX.xml",
+    "res/bb.xml",
+    "res/bt.xml",
+    "res/c5.xml",
+    "res/c6.xml",
+    "res/cL.xml",
+    "res/cV.xml",
+    "res/cm.xml",
+    "res/color-v23/abc_btn_colored_borderless_text_material.xml",
+    "res/color-v23/abc_btn_colored_text_material.xml",
+    "res/color-v23/abc_color_highlight_material.xml",
+    "res/color-v23/abc_tint_btn_checkable.xml",
+    "res/color-v23/abc_tint_default.xml",
+    "res/color-v23/abc_tint_edittext.xml",
+    "res/color-v23/abc_tint_seek_thumb.xml",
+    "res/color-v23/abc_tint_spinner.xml",
+    "res/color-v23/abc_tint_switch_track.xml",
+    "res/color-v26/biometric_error_color.xml",
+    "res/color/abc_background_cache_hint_selector_material_dark.xml",
+    "res/color/abc_background_cache_hint_selector_material_light.xml",
+    "res/color/abc_hint_foreground_material_dark.xml",
+    "res/color/abc_hint_foreground_material_light.xml",
+    "res/color/abc_primary_text_disable_only_material_dark.xml",
+    "res/color/abc_primary_text_disable_only_material_light.xml",
+    "res/color/abc_primary_text_material_dark.xml",
+    "res/color/abc_primary_text_material_light.xml",
+    "res/color/abc_search_url_text.xml",
+    "res/color/abc_secondary_text_material_dark.xml",
+    "res/color/abc_secondary_text_material_light.xml",
+    "res/color/common_google_signin_btn_text_dark.xml",
+    "res/color/common_google_signin_btn_text_light.xml",
+    "res/color/common_google_signin_btn_tint.xml",
+    "res/color/switch_thumb_material_dark.xml",
+    "res/color/switch_thumb_material_light.xml",
+    "res/cr.xml",
+    "res/d3.png",
+    "res/d5.9.png",
+    "res/dB.9.png",
+    "res/dO.xml",
+    "res/dW.png",
+    "res/dY.png",
+    "res/df.xml",
+    "res/e1",
+    "res/eA.xml",
+    "res/eR.png",
+    "res/eT.9.png",
+    "res/ej.9.png",
+    "res/ev.9.png",
+    "res/f9.png",
+    "res/fM.9.png",
+    "res/g-.png",
+    "res/gE.png",
+    "res/gK.9.png",
+    "res/gR.xml",
+    "res/gZ.9.png",
+    "res/gj.9.png",
+    "res/gt.9.png",
+    "res/gx.xml",
+    "res/h4.xml",
+    "res/h7.9.png",
+    "res/hP.9.png",
+    "res/hP.xml",
+    "res/hP1.xml",
+    "res/hZ.9.png",
+    "res/hh.9.png",
+    "res/hq.xml",
+    "res/hw.xml",
+    "res/i6.9.png",
+    "res/iO.png",
+    "res/iQ.png",
+    "res/iQ.xml",
+    "res/iR.9.png",
+    "res/iW.png",
+    "res/io.9.png",
+    "res/j3.xml",
+    "res/j4.png",
+    "res/jS.9.png",
+    "res/jS1.9.png",
+    "res/jW.png",
+    "res/je.9.png",
+    "res/k8.xml",
+    "res/kJ.9.png",
+    "res/k_.xml",
+    "res/kj.xml",
+    "res/kn.xml",
+    "res/kp.png",
+    "res/lN.xml",
+    "res/lP.9.png",
+    "res/lR.xml",
+    "res/ly.png",
+    "res/m0.png",
+    "res/mC.binarypb",
+    "res/mm.9.png",
+    "res/nC.9.png",
+    "res/nI.9.png",
+    "res/nP.xml",
+    "res/nT.xml",
+    "res/nf.png",
+    "res/nz.xml",
+    "res/o-.png",
+    "res/o9.9.png",
+    "res/oO.9.png",
+    "res/oP.xml",
+    "res/o_.9.png",
+    "res/o_.png",
+    "res/op.9.png",
+    "res/p7.xml",
+    "res/pI.xml",
+    "res/pU.xml",
+    "res/pY.png",
+    "res/pb.xml",
+    "res/pk.png",
+    "res/ps.9.png",
+    "res/pu.png",
+    "res/py.9.png",
+    "res/q6.xml",
+    "res/qA.xml",
+    "res/qD.9.png",
+    "res/qF.xml",
+    "res/qp.png",
+    "res/qx.xml",
+    "res/qz.xml",
+    "res/rW.xml",
+    "res/rY.xml",
+    "res/rj.9.png",
+    "res/rx.xml",
+    "res/rz.xml",
+    "res/s0.png",
+    "res/s3.9.png",
+    "res/s4.png",
+    "res/sA.9.png",
+    "res/sA.xml",
+    "res/sg.9.png",
+    "res/sn.xml",
+    "res/t8.xml",
+    "res/tG.png",
+    "res/tL.xml",
+    "res/tS.png",
+    "res/tU.9.png",
+    "res/tZ.9.png",
+    "res/te.png",
+    "res/tr.9.png",
+    "res/u0.xml",
+    "res/u3.png",
+    "res/uJ.xml",
+    "res/uL.9.png",
+    "res/uj.9.png",
+    "res/us.9.png",
+    "res/ut.9.png",
+    "res/uu.9.png",
+    "res/v4.9.png",
+    "res/vG.xml",
+    "res/vJ.xml",
+    "res/vL.9.png",
+    "res/vZ.xml",
+    "res/vo.png",
+    "res/vq.xml",
+    "res/vz.9.png",
+    "res/w2.9.png",
+    "res/wL.9.png",
+    "res/wN.9.png",
+    "res/w_.png",
+    "res/x2.png",
+    "res/x3.9.png",
+    "res/x4.xml",
+    "res/x7.png",
+    "res/xH.png",
+    "res/xN.xml",
+    "res/xR.9.png",
+    "res/xa.9.png",
+    "res/xe.xml",
+    "res/xj.xml",
+    "res/y-.xml",
+    "res/y4.xml",
+    "res/y6.xml",
+    "res/yH.9.png",
+    "res/yU.png",
+    "res/yV.xml",
+    "res/yY.9.png",
+    "res/yg.9.png",
+    "res/yn.png",
+    "res/z-.9.png",
+    "res/z9.9.png",
+    "res/zE.png",
+    "res/zV.9.png",
+    "res/zq.xml",
+    "res/zq1.xml",
+    "res/zr.png",
+    "res/zw.9.png",
+    "res/zz.xml"
+  ],
+  "libEntries": [
+    "lib/arm64-v8a/libcocos2dcpp.so",
+    "lib/arm64-v8a/libcrashlytics-common.so",
+    "lib/arm64-v8a/libcrashlytics-handler.so",
+    "lib/arm64-v8a/libcrashlytics-trampoline.so",
+    "lib/arm64-v8a/libcrashlytics.so",
+    "lib/arm64-v8a/libdatastore_shared_counter.so",
+    "lib/arm64-v8a/libfmod.so",
+    "lib/arm64-v8a/libfmodProvider.so",
+    "lib/armeabi-v7a/libcocos2dcpp.so",
+    "lib/armeabi-v7a/libcrashlytics-common.so",
+    "lib/armeabi-v7a/libcrashlytics-handler.so",
+    "lib/armeabi-v7a/libcrashlytics-trampoline.so",
+    "lib/armeabi-v7a/libcrashlytics.so",
+    "lib/armeabi-v7a/libdatastore_shared_counter.so",
+    "lib/armeabi-v7a/libfmod.so",
+    "lib/armeabi-v7a/libfmodProvider.so"
+  ]
+}

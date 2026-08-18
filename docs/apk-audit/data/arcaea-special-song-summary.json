@@ -1,0 +1,18 @@
+{
+  "rowCount": 99,
+  "caseCounts": {
+    "difficulty-specific-jacket": 57,
+    "difficulty-specific-title": 8,
+    "difficulty-specific-audio": 8,
+    "difficulty-specific-artist": 6,
+    "difficulty-specific-bpm": 4,
+    "unusual-difficulty-composition": 1,
+    "difficulty-specific-jacket-night": 3,
+    "last-family": 8,
+    "difficulty-title-family": 1,
+    "rating-zero-slot": 3
+  },
+  "songsWithDifficultyTitleOverride": 8,
+  "songsWithDifficultyAudioOverride": 8,
+  "songsWithDifficultyJacketOverride": 50
+}

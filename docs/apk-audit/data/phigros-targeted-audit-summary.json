@@ -1,0 +1,74 @@
+{
+  "generatedAt": "2026-08-18T16:31:13+00:00",
+  "apkSha256": "b9654316e52bf2d410fa2ecb3f0df41246afdc3dc8133456deaff07ecbcf28bf",
+  "trackCount": 319,
+  "folderIndexCounts": {
+    "": 1,
+    "0": 312,
+    "1": 1,
+    "2": 1,
+    "3": 1,
+    "4": 1,
+    "5": 1,
+    "6": 1
+  },
+  "identityCandidateDuplicateCount": 0,
+  "difficultyPresence": {
+    "AT": 46,
+    "EZ": 319,
+    "HD": 318,
+    "IN": 318,
+    "Legacy": 4
+  },
+  "chartStatusCounts": {
+    "AT:absent": 273,
+    "AT:structurally-nonempty": 46,
+    "EZ:structurally-nonempty": 319,
+    "HD:absent": 1,
+    "HD:structurally-nonempty": 318,
+    "IN:absent": 1,
+    "IN:structurally-nonempty": 318,
+    "Legacy:absent": 315,
+    "Legacy:structurally-nonempty": 4
+  },
+  "displayLevel": {
+    "status": "partial-unresolved",
+    "candidateSource": [
+      "IL2CPP LevelInfo.level and LevelInfo.difficulty fields",
+      "IL2CPP SongListItem.SetRating and SetRatingWithScore methods"
+    ],
+    "resolvedValues": 0,
+    "interpretation": "The game model/UI has level-related members, but no serialized numeric Display Level values were recovered for the 319 track records.",
+    "sourceSearch": [
+      "Chart_EZ/HD/IN/AT/Legacy TextAsset JSON",
+      "IL2CPP metadata type/field/method names containing Song/Track/Level/Difficulty/Chart",
+      "Addressables catalog and Assets/Tracks keys",
+      "serialized MonoBehaviour index and parse-error summary"
+    ]
+  },
+  "chapterRelation": {
+    "status": "structure-found-instance-relation-unresolved",
+    "availableEvidence": [
+      "IL2CPP Chapter.chapterCode/songInfo/unlockInfo",
+      "IL2CPP ChapterSongInfo.title/subTitle/banner/songs",
+      "IL2CPP ChapterSongItem.songsId/unlockType/secretType",
+      "IL2CPP ChapterInfo.chapterCode/songInfo/coverAssetCode",
+      "Assets/Tracks/#ChapterCover/* and ChapterSelector scene keys"
+    ],
+    "missingEvidence": "no serialized Chapter/ChapterSongInfo/ChapterSongItem instance values or track foreign-key record"
+  },
+  "constant": {
+    "status": "not-found",
+    "source": "not present in audited chart JSON schema or recovered high-level metadata"
+  },
+  "identity": {
+    "bestCurrentCandidate": "full Assets/Tracks/<title>.<artist>.<index>/ path",
+    "confidence": "medium",
+    "crossVersionStatus": "unavailable-locally"
+  },
+  "specialTrackObservations": {
+    "randomTrackFamily": "Assets/Tracks/Random.SobremSilentroom.0..6 exists and is not a normal unique global id pattern",
+    "legacyChartCount": 4,
+    "errorChartKeys": 3
+  }
+}

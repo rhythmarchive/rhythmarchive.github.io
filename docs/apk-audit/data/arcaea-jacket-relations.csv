@@ -1,0 +1,545 @@
+songId,assetDirectoryKey,title,artist,packId,side,songVersion,jacketOverrideDifficulties,defaultJacketFiles,numericJacketFiles,jacketVariantSuffixes,allJacketFiles,chartFiles,audioFiles
+sayonarahatsukoi,sayonarahatsukoi,en=Sayonara Hatsukoi,REDSHiFT,base,0,1.0,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,0.aff;1.aff;2.aff;4.aff,base.ogg
+lostcivilization,lostcivilization,en=Lost Civilization,Laur vs CK,base,1,1.0,BYD,base.jpg;base_256.jpg,1080_3.jpg;1080_3_256.jpg,3;base,1080_3.jpg;1080_3_256.jpg;base.jpg;base_256.jpg,0.aff;1.aff;2.aff,base.ogg
+goodtek,dl_goodtek,en=GOODTEK (Arcaea Edit),EBIMAYO,base,0,1.0,BYD,1080_base.jpg;1080_base_256.jpg,1080_3.jpg;1080_3_256.jpg,3;base,1080_3.jpg;1080_3_256.jpg;1080_base.jpg;1080_base_256.jpg,,preview.ogg
+viyella,dl_viyella,en=cry of viyella,Laur,core,1,1.0,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+rise,rise,en=Rise,Combatplayer,base,0,1.0,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,0.aff;1.aff;2.aff,base.ogg
+lucifer,dl_lucifer,en=Lucifer,chitose,base,1,1.0,,base.jpg;base_256.jpg,,base,base.jpg;base_256.jpg,,preview.ogg
+fairytale,fairytale,en=Fairytale,chitose,base,0,1.0,BYD,1080_base.jpg;1080_base_256.jpg,1080_3.jpg;1080_3_256.jpg,3;base,1080_3.jpg;1080_3_256.jpg;1080_base.jpg;1080_base_256.jpg,0.aff;1.aff;2.aff,base.ogg
+hearditsaid,dl_hearditsaid,en=I've heard it said,Combatplayer,core,0,1.0,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+babaroque,dl_babaroque,en=Babaroque,cYsmix,base,0,1.0,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+memoryfactory,dl_memoryfactory,en=memoryfactory.lzh,Frums,core,0,1.0,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+snowwhite,snowwhite,en=Snow White,Puru,base,0,1.0,,base.jpg;base_256.jpg,,base,base.jpg;base_256.jpg,0.aff;1.aff;2.aff,base.ogg
+relentless,dl_relentless,en=Relentless,Akira Complex,core,1,1.0,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+shadesoflight,shadesoflight,en=Shades of Light in a Transcendent Realm,ak+q,base,0,1.0,BYD,1080_base.jpg;1080_base_256.jpg,1080_3.jpg;1080_3_256.jpg,3;base,1080_3.jpg;1080_3_256.jpg;1080_base.jpg;1080_base_256.jpg,0.aff;1.aff;2.aff,base.ogg;preview.ogg
+vexaria,vexaria,en=Vexaria,ak+q,base,0,1.0,BYD,1080_base.jpg;1080_base_256.jpg,1080_3.jpg;1080_3_256.jpg,3;base,1080_3.jpg;1080_3_256.jpg;1080_base.jpg;1080_base_256.jpg,0.aff;1.aff;2.aff,base.ogg
+essenceoftwilight,dl_essenceoftwilight,en=Essence of Twilight,ak+q,core,1,1.0,,base.jpg;base_256.jpg,,base,base.jpg;base_256.jpg,,preview.ogg
+qualia,dl_qualia,en=qualia -ideaesthesia-,nitro,base,1,1.0,BYD,base.jpg;base_256.jpg,1080_3.jpg;1080_3_256.jpg,3;base,1080_3.jpg;1080_3_256.jpg;base.jpg;base_256.jpg,,preview.ogg
+pragmatism,dl_pragmatism,en=PRAGMATISM,Laur,core,0,1.0,BYD,1080_base.jpg;1080_base_256.jpg,1080_3.jpg;1080_3_256.jpg,3;base,1080_3.jpg;1080_3_256.jpg;1080_base.jpg;1080_base_256.jpg,,3.ogg;3_preview.ogg;preview.ogg
+sheriruth,dl_sheriruth,en=Sheriruth,Team Grimoire,core,1,1.0,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+lumia,dl_lumia,en=Lumia,sky_delta,core,0,1.0,BYD,1080_base.jpg;1080_base_256.jpg,1080_3.jpg;1080_3_256.jpg,3;base,1080_3.jpg;1080_3_256.jpg;1080_base.jpg;1080_base_256.jpg,,preview.ogg
+dement,dement,en=Dement ~after legend~,Cosmograph,base,1,1.0,BYD,1080_base.jpg;1080_base_256.jpg,1080_3.jpg;1080_3_256.jpg,3;base,1080_3.jpg;1080_3_256.jpg;1080_base.jpg;1080_base_256.jpg,0.aff;1.aff;2.aff,base.ogg
+dandelion,dandelion,en=Dandelion,Farhan,base,0,1.0,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,0.aff;1.aff;2.aff,base.ogg
+anokumene,dl_anokumene,en=Anökumene;ko=Anokumene;zh-Hans=Anokumene;zh-Hant=Anokumene,Jun Kuroda,base,1,1.0,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+infinityheaven,infinityheaven,en=Infinity Heaven,HyuN,base,0,1.0,BYD,1080_base.jpg;1080_base_256.jpg,1080_3.jpg;1080_3_256.jpg,3;base,1080_3.jpg;1080_3_256.jpg;1080_base.jpg;1080_base_256.jpg,0.aff;1.aff;2.aff,base.ogg
+partyvinyl,dl_partyvinyl,en=Party Vinyl,モリモリあつし,shiawase,0,1.0,BYD,1080_base.jpg;1080_base_256.jpg,1080_3.jpg;1080_3_256.jpg,3;base,1080_3.jpg;1080_3_256.jpg;1080_base.jpg;1080_base_256.jpg,,preview.ogg
+flashback,dl_flashback,en=Flashback,ARForest,shiawase,0,1.0,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+flyburg,dl_flyburg,en=Flyburg and Endroll;ja=フライブルクとエンドロウル,アリスシャッハと魔法の楽団,shiawase,0,1.0,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+nirvluce,dl_nirvluce,en=Nirv lucE,しーけー,shiawase,0,1.0,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+paradise,dl_paradise,en=Paradise,Sound Souler,shiawase,0,1.0,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+brandnewworld,brandnewworld,en=Brand new world,U-ske,base,0,1.0,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,0.aff;1.aff;2.aff,base.ogg
+dataerror,dl_dataerror,en=DataErr0r,Cosmograph,single,1,1.1,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+crosssoul,dl_crosssoul,en=CROSS†SOUL,HyuN feat. Syepias,single,1,1.1,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+yourvoiceso,dl_yourvoiceso,en=Your voice so... feat. Such,PSYQUI,single,0,1.1,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+chronostasis,chronostasis,en=Chronostasis,黒皇帝,base,1,1.1,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,0.aff;1.aff;2.aff,base.ogg
+kanagawa,dl_kanagawa,en=Kanagawa Cyber Culvert;ja=神奈川電脳暗渠,南ゆに,base,0,1.1,BYD,1080_base.jpg;1080_base_256.jpg,1080_3.jpg;1080_3_256.jpg,3;base,1080_3.jpg;1080_3_256.jpg;1080_base.jpg;1080_base_256.jpg,,preview.ogg
+moonlightofsandcastle,dl_moonlightofsandcastle,en=Moonlight of Sand Castle,旅人E,dynamix,0,1.1,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+reconstruction,dl_reconstruction,en=REconstruction,Ryazan,dynamix,0,1.1,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+evoltex,dl_evoltex,en=Evoltex (poppi'n mix),Arch vs n3pu,dynamix,0,1.1,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+oracle,dl_oracle,en=Oracle,TQ☆,dynamix,1,1.1,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+aterlbus,dl_aterlbus,en=αterlβus;zh-Hans=aterlbus;zh-Hant=aterlbus,Aoi,dynamix,1,1.1,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+clotho,clotho,en=Clotho and the stargazer;ja=クロートーと星の観測者,しーけー,base,0,1.1,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,0.aff;1.aff;2.aff;4.aff,base.ogg
+impurebird,dl_impurebird,en=Impure Bird;ja=不浄な白い鳥,MIssionary,single,0,1.1,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+ignotus,dl_ignotus,en=Ignotus,ak+q,base,1,1.1,BYD,1080_base.jpg;1080_base_256.jpg,1080_3.jpg;1080_3_256.jpg,3;base,1080_3.jpg;1080_3_256.jpg;1080_base.jpg;1080_base_256.jpg,,3.ogg;3_preview.ogg;preview.ogg
+lethaeus,dl_lethaeus,en=Lethaeus,Silentroom,mirai,1,1.1,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+romancewars,dl_romancewars,en=Romance Wars;ja=vsキミ戦争,U-ske (feat. lueur),mirai,0,1.1,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+blossoms,dl_blossoms,en=Blossoms,T2Kazuya,mirai,0,1.1,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+moonheart,dl_moonheart,en=Moonheart,翡乃イスカ,mirai,0,1.1,BYD,1080_base.jpg;1080_base_256.jpg,1080_3.jpg;1080_3_256.jpg,3;base,1080_3.jpg;1080_3_256.jpg;1080_base.jpg;1080_base_256.jpg,,preview.ogg
+genesis,dl_genesis,en=Genesis,Iris,mirai,1,1.1,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+harutopia,dl_harutopia,en=Harutopia ~Utopia of Spring~;ja=ハルトピア ~Utopia of Spring~,A-zu-ra,base,0,1.1,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+auxesia,dl_auxesia,en=Auxesia,ginkiha,single,0,1.1,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+rabbitintheblackroom,dl_rabbitintheblackroom,en=Rabbit In The Black Room,Rabbit House,base,1,1.1,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+modelista,dl_modelista,en=Modelista,HiTECH NINJA,single,0,1.1,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+soundwitch,dl_soundwitch,en=SOUNDWiTCH,HATE,yugamu,1,1.5,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+trappola,dl_trappola,en=trappola bewitching;ja=妖艶魔女 -trappola bewitching-,gmtn.,yugamu,1,1.5,BYD,1080_base.jpg;1080_base_256.jpg,1080_3.jpg;1080_3_256.jpg,3;base,1080_3.jpg;1080_3_256.jpg;1080_base.jpg;1080_base_256.jpg,,preview.ogg
+iconoclast,dl_iconoclast,en=Iconoclast,Yamajet,yugamu,1,1.5,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+conflict,dl_conflict,en=conflict,siromaru + cranky,yugamu,1,1.5,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+axiumcrisis,dl_axiumcrisis,en=Axium Crisis,ak+q,yugamu,1,1.5,BYD,1080_base.jpg;1080_base_256.jpg,1080_3.jpg;1080_3_256.jpg,3;base,1080_3.jpg;1080_3_256.jpg;1080_base.jpg;1080_base_256.jpg,,3.ogg;3_preview.ogg;preview.ogg
+grievouslady,dl_grievouslady,en=Grievous Lady,Team Grimoire vs Laur,yugamu,1,1.5,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+dreaminattraction,dl_dreaminattraction,en=Dreamin' Attraction!!,翡乃イスカ,base,0,1.5,,base.jpg;base_256.jpg,,base,base.jpg;base_256.jpg,,preview.ogg
+redandblue,dl_redandblue,en=Red and Blue,Silentroom,base,1,1.5,BYD,1080_base.jpg;1080_base_256.jpg,1080_3.jpg;1080_3_256.jpg,3;base,1080_3.jpg;1080_3_256.jpg;1080_base.jpg;1080_base_256.jpg,,3.ogg;3_preview.ogg;preview.ogg
+onelastdrive,onelastdrive,en=One Last Drive,REDSHiFT,base,0,1.5,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,0.aff;1.aff;2.aff,base.ogg
+surrender,dl_surrender,en=Surrender,void,single,0,1.5,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+yozakurafubuki,dl_yozakurafubuki,en=Yosakura Fubuki;ja=夜桜吹雪,A.SAKA,single,0,1.5,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+cyanine,dl_cyanine,en=cyanine,jioyi,lanota,1,1.5,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+dreamgoeson,dl_dreamgoeson,en=Dream goes on,Tiny Minim,lanota,0,1.5,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+journey,dl_journey,en=Journey,ARForest,lanota,0,1.5,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+specta,dl_specta,en=Specta,Junk,lanota,0,1.5,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+quon,dl_quon,en=Quon,Feryquitous,lanota,0,1.5,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+syro,dl_syro,en=Syro,Mitomoro,base,0,1.5,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+reinvent,reinvent,en=Reinvent,Sound Souler,base,0,1.5,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,0.aff;1.aff;2.aff,base.ogg
+silentrush,dl_silentrush,en=Silent Rush,Soleily,nijuusei,1,1.6,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+singularity,dl_singularity,en=Singularity,ETIA.,nijuusei,1,1.6,BYD,1080_base.jpg;1080_base_256.jpg,1080_3.jpg;1080_3_256.jpg,3;base,1080_3.jpg;1080_3_256.jpg;1080_base.jpg;1080_base_256.jpg,,3.ogg;3_preview.ogg;preview.ogg
+memoryforest,dl_memoryforest,en=Memory Forest,ETIA.,nijuusei,0,1.6,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+strongholds,dl_strongholds,en=Strongholds,Yooh,nijuusei,1,1.6,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+nexttoyou,dl_nexttoyou,en=next to you,uma feat. 橘花音,nijuusei,0,1.6,BYD,1080_base.jpg;1080_base_256.jpg,1080_3.jpg;1080_3_256.jpg,3;base,1080_3.jpg;1080_3_256.jpg;1080_base.jpg;1080_base_256.jpg,,preview.ogg
+metallicpunisher,dl_metallicpunisher,en=Metallic Punisher,INNOCENT NOIZE,single,1,1.5,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+blaster,dl_blaster,en=Blaster,Massive New Krew,base,1,1.5,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+guardina,dl_guardina,en=γuarδina;kr=guardina;zh-Hans=guardina;zh-Hant=guardina,Aoi,single,0,1.6,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+carminescythe,dl_carminescythe,en=carmine:scythe,かゆき,single,1,1.6,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+bethere,dl_bethere,en=Be There,PSYQUI,single,0,1.6,BYD,1080_base.jpg;1080_base_256.jpg,1080_3.jpg;1080_3_256.jpg,3;base,1080_3.jpg;1080_3_256.jpg;1080_base.jpg;1080_base_256.jpg,,preview.ogg
+cyberneciacatharsis,dl_cyberneciacatharsis,en=Cybernecia Catharsis,Tanchiky,base,1,1.6,BYD,1080_base.jpg;1080_base_256.jpg,1080_3.jpg;1080_3_256.jpg,3;base,1080_3.jpg;1080_3_256.jpg;1080_base.jpg;1080_base_256.jpg,,preview.ogg
+callmyname,dl_callmyname,en=Call My Name feat. Yukacco,Mameyudoufu,single,0,1.6,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+inkarusi,inkarusi,en=inkar-usi,DIA,base,0,1.6,BYD,1080_base.jpg;1080_base_256.jpg,1080_3.jpg;1080_3_256.jpg,3;base,1080_3.jpg;1080_3_256.jpg;1080_base.jpg;1080_base_256.jpg,0.aff;1.aff;2.aff,base.ogg
+mazenine,dl_mazenine,en=Maze No.9;ja=九番目の迷路,アリスシャッハと魔法の楽団,rei,0,1.7,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+themessage,dl_themessage,en=The Message,Jun Kuroda,rei,0,1.7,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+sulfur,dl_sulfur,en=Sulfur,ぺのれり,rei,0,1.7,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+halcyon,dl_halcyon,en=Halcyon,xi,rei,0,1.7,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+etherstrike,dl_etherstrike,en=Ether Strike,Akira Complex,rei,0,1.7,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+fractureray,dl_fractureray,en=Fracture Ray,Sakuzyo,rei,0,1.7,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+suomi,dl_suomi,en=Suomi,Aire,base,0,1.7,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+bookmaker,dl_bookmaker,en=Bookmaker (2D Version),Kobaryo,base,1,1.7,BYD,1080_base.jpg;1080_base_256.jpg,1080_3.jpg;1080_3_256.jpg,3;base,1080_3.jpg;1080_3_256.jpg;1080_base.jpg;1080_base_256.jpg,,preview.ogg
+darakunosono,dl_darakunosono,en=Illegal Paradise;ja=堕楽の園,gmtn. (witch's slave),base,1,1.7,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+dropdead,dl_dropdead,en=dropdead,Frums,single,1,1.7,BYD,1080_base.jpg;1080_base_256.jpg,1080_3.jpg;1080_3_256.jpg,3;base,1080_3.jpg;1080_3_256.jpg;1080_base.jpg;1080_base_256.jpg,,3.ogg;3_preview.ogg;preview.ogg
+fallensquare,dl_fallensquare,en=Fallensquare,Silentroom,single,1,1.7,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+nhelv,dl_nhelv,en=Nhelv,Silentroom,base,1,1.7,BYD,1080_base.jpg;1080_base_256.jpg,1080_3.jpg;1080_3_256.jpg,3;base,1080_3.jpg;1080_3_256.jpg;1080_base.jpg;1080_base_256.jpg,,preview.ogg
+espebranch,dl_espebranch,en=LunarOrbit -believe in the Espebranch road-;ja=白道、多希望羊と信じありく。,Apo11o program ft. 大瀬良あい,base,1,1.7,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+purgatorium,purgatorium,en=Purgatorium,お月さま交響曲,base,1,1.7,BYD,1080_base.jpg;1080_base_256.jpg,1080_3.jpg;1080_3_256.jpg,3;base,1080_3.jpg;1080_3_256.jpg;1080_base.jpg;1080_base_256.jpg,0.aff;1.aff;2.aff,base.ogg
+hikari,dl_hikari,en=Hikari;ja=光,THB,tonesphere,1,1.8,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+stager,dl_stager,en=STAGER (ALL STAGE CLEAR),Ras,tonesphere,0,1.8,PST;PRS,base.jpg;base_256.jpg,0.jpg;0_256.jpg;1.jpg;1_256.jpg,0;1;base,0.jpg;0_256.jpg;1.jpg;1_256.jpg;base.jpg;base_256.jpg,,preview.ogg
+hallofmirrors,dl_hallofmirrors,en=Hall of Mirrors,Sta,tonesphere,1,1.8,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+linearaccelerator,dl_linearaccelerator,en=Linear Accelerator,THE SHAFT,tonesphere,0,1.8,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+tiferet,dl_tiferet,en=Tiferet,xi + Sta,tonesphere,1,1.8,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+alexandrite,dl_alexandrite,en=Alexandrite,WAiKURO,single,1,1.7,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+rugie,dl_rugie,en=Rugie,Feryquitous feat.Sennzai,base,1,1.8,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+astraltale,dl_astraltale,en=Astral tale,Noah,single,1,1.8,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+phantasia,dl_phantasia,en=Phantasia,Yunosuke,single,0,1.8,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+empireofwinter,dl_empireofwinter,en=Empire of Winter,Street,single,0,1.8,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+merlin,dl_merlin,en=MERLIN,REDALiCE,groovecoaster,0,1.9,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+dxfullmetal,dl_dxfullmetal,en=DX Choseinou Full Metal Shojo;ja=DX超性能フルメタル少女,IOSYS TRAX (uno with.ちよこ),groovecoaster,0,1.9,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+omakeno,dl_omakeno,en=OMAKENO Stroke,t+pazolite,groovecoaster,1,1.9,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+scarletlance,dl_scarletlance,en=Scarlet Lance,MASAKI (ZUNTATA),groovecoaster,0,1.9,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+ouroboros,dl_ouroboros,en=ouroboros -twin stroke of the end-,Cranky VS MASAKI,groovecoaster,1,1.9,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+libertas,dl_libertas,en=Libertas,Zekk,single,0,1.9,BYD,1080_base.jpg;1080_base_256.jpg,1080_3.jpg;1080_3_256.jpg,3;base,1080_3.jpg;1080_3_256.jpg;1080_base.jpg;1080_base_256.jpg,,preview.ogg
+solitarydream,dl_solitarydream,en=Solitary Dream;ja=虚空の夢,ak+q feat. Sennzai,core,0,1.9,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+antithese,dl_antithese,en=Antithese,Blacklolita,zettai,1,2.0,BYD,1080_base.jpg;1080_base_256.jpg,1080_3.jpg;1080_3_256.jpg,3;base,1080_3.jpg;1080_3_256.jpg;1080_base.jpg;1080_base_256.jpg,,preview.ogg
+corruption,dl_corruption,en=Corruption,3R2,zettai,1,2.0,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+blackterritory,dl_blackterritory,en=Black Territory,DJ Myosuke,zettai,1,2.0,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+viciousheroism,dl_viciousheroism,en=Vicious Heroism,Kobaryo,zettai,1,2.0,BYD,1080_base.jpg;1080_base_256.jpg,1080_3.jpg;1080_3_256.jpg,3;base,1080_3.jpg;1080_3_256.jpg;1080_base.jpg;1080_base_256.jpg,,3.ogg;3_preview.ogg;preview.ogg
+cyaegha,dl_cyaegha,en=Cyaegha,USAO,zettai,1,2.0,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+revixy,dl_revixy,en=ReviXy,ikaruga_nex,base,1,2.0,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+grimheart,grimheart,en=Grimheart,Puru,base,0,2.0,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,0.aff;1.aff;2.aff,base.ogg;preview.ogg
+vector,dl_vector,en=VECTOЯ,WHITEFISTS,base,1,2.0,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+supernova,dl_supernova,en=SUPERNOVA,BACO,base,1,2.0,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+dottodot,dl_dottodot,en=Dot to Dot feat. shully,Mameyudoufu,single,0,2.0,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+garakuta,dl_garakuta,en=Garakuta Doll Play,t+pazolite,chunithm,1,2.1,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+ikazuchi,dl_ikazuchi,en=Ikazuchi;ja=怒槌,光吉猛修,chunithm,1,2.1,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+worldvanquisher,dl_worldvanquisher,en=World Vanquisher,void (Mournfinale),chunithm,0,2.1,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+dreadnought,dl_dreadnought,en=Dreadnought,Mastermind (xi + nora2r),single,1,2.2,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+particlearts,,,,,,,,,,,,,
+vindication,dl_vindication,en=Vindication,Laur,prelude,0,2.2,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+heavensdoor,dl_heavensdoor,en=Heavensdoor,LeaF,prelude,1,2.2,BYD,1080_base.jpg;1080_base_256.jpg,1080_3.jpg;1080_3_256.jpg,3;base,1080_3.jpg;1080_3_256.jpg;1080_base.jpg;1080_base_256.jpg,,preview.ogg
+ringedgenesis,dl_ringedgenesis,en=Ringed Genesis,Edelritter,prelude,0,2.2,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+chelsea,dl_chelsea,en=Chelsea,7mai,omatsuri,0,2.3,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+aiueoon,dl_aiueoon,en=AI[UE]OON,MYUKKE.,omatsuri,0,2.3,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+melodyoflove,dl_melodyoflove,en=A Wandering Melody of Love;ja=迷える音色は恋の唄,からとPαnchii少年 feat.はるの,omatsuri,0,2.3,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+tiemedowngently,dl_tiemedowngently,en=Tie me down gently,溝口ゆうま feat. 大瀬良あい,omatsuri,1,2.3,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+valhallazero,dl_valhallazero,en=Valhalla:0,Juggernaut.,omatsuri,1,2.3,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+mirzam,dl_mirzam,en=Mirzam,Aoi vs. siqlo,single,1,2.3,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+diode,dl_diode,en=Diode,Kolaa,base,0,2.4,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+freefall,dl_freefall,en=FREEF4LL,YUKIYANAGI,base,1,2.4,BYD,1080_base.jpg;1080_base_256.jpg,1080_3.jpg;1080_3_256.jpg,3;base,1080_3.jpg;1080_3_256.jpg;1080_base.jpg;1080_base_256.jpg,,preview.ogg
+gloryroad,dl_gloryroad,en=GLORY：ROAD,uma vs. モリモリあつし,shiawase,0,2.4,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+monochromeprincess,dl_monochromeprincess,en=Monochrome Princess,polysha,base,1,2.4,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+heavenlycaress,dl_heavenlycaress,en=Heavenly caress,Noah,single,0,2.4,BYD,1080_base.jpg;1080_base_256.jpg,1080_3.jpg;1080_3_256.jpg,3;base,1080_3.jpg;1080_3_256.jpg;1080_base.jpg;1080_base_256.jpg,,preview.ogg
+senkyou,senkyou,en=Senkyou,MYTK,base,0,2.4,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,0.aff;1.aff;2.aff,base.ogg
+filament,dl_filament,en=Filament,Puru,single,0,2.4,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+avantraze,dl_avantraze,en=Avant Raze,Sampling Masters MEGA,single,1,2.4,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+battlenoone,dl_battlenoone,en=BATTLE NO.1,TANO*C Sound Team,single,1,2.4,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+laqryma,dl_laqryma,en=La'qryma of the Wasteland,DJ Noriken,single,1,2.5,BYD,1080_base.jpg;1080_base_256.jpg,1080_3.jpg;1080_3_256.jpg,3;base,1080_3.jpg;1080_3_256.jpg;1080_base.jpg;1080_base_256.jpg,,preview.ogg
+einherjar,dl_einherjar,en=Einherjar Joker,DJ Genki vs Gram,single,1,2.5,BYD,1080_base.jpg;1080_base_256.jpg,1080_3.jpg;1080_3_256.jpg,3;base,1080_3.jpg;1080_3_256.jpg;1080_base.jpg;1080_base_256.jpg,,preview.ogg
+izana,dl_izana,en=IZANA,t+pazolite vs P*Light,single,0,2.5,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+saikyostronger,dl_saikyostronger,en=SAIKYO STRONGER;ja=最強STRONGER,REDALiCE vs USAO,single,1,2.5,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+worldexecuteme,worldexecuteme,en=world.execute(me);,Mili,base,0,2.5,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,0.aff;1.aff;2.aff,base.ogg
+blrink,dl_blrink,en=BLRINK,Sta,prelude,1,2.5,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+oblivia,oblivia,en=Oblivia,Saiph,base,0,2.6,BYD,1080_base.jpg;1080_base_256.jpg,1080_3.jpg;1080_3_256.jpg,3;base,1080_3.jpg;1080_3_256.jpg;1080_base.jpg;1080_base_256.jpg,0.aff;1.aff;2.aff,base.ogg
+amygdata,dl_amygdata,en=amygdata,nitro,single,1,2.6,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+corpssansorganes,dl_corpssansorganes,en=corps-sans-organes,cybermiso,mirai,1,2.6,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+equilibrium,dl_equilibrium,en=Equilibrium,Maozon,vs,0,3.0,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+antagonism,dl_antagonism,en=Antagonism,Yooh vs. siromaru,vs,1,3.0,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+lostdesire,dl_lostdesire,en=Lost Desire,Powerless feat. Sennzai,vs,1,3.0,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+dantalion,dl_dantalion,en=Dantalion,Team Grimoire,vs,1,3.0,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+ifi,dl_ifi,en=#1f1e33,かめりあ(EDP),vs,1,3.0,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+tempestissimo,dl_tempestissimo,en=Tempestissimo,t+pazolite,vs,1,3.0,BYD,1080_base.jpg;1080_base_256.jpg,1080_3.jpg;1080_3_256.jpg,3;base,1080_3.jpg;1080_3_256.jpg;1080_base.jpg;1080_base_256.jpg,,preview.ogg
+arcahv,arcahv,en=Arcahv,Feryquitous,vs,0,3.0,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,0.aff;1.aff;2.aff,base.ogg
+altale,dl_altale,en=Altale,Sakuzyo,single,0,3.0,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+givemeanightmare,dl_givemeanightmare,en=Give Me a Nightmare,アリスシャッハと魔法の楽団,extend,1,3.0,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+blacklotus,dl_blacklotus,en=Black Lotus,wa.,extend,1,3.0,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+gekka,dl_gekka,en=Gekka (Short Version),Nhato,extend,0,3.0,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+vividtheory,dl_vividtheory,en=Vivid Theory,ak+q,extend,0,3.0,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+onefr,dl_onefr,en=1F√,WHITEFISTS,extend,0,3.0,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+scarletcage,dl_scarletcage,en=Scarlet Cage,Daisuke Kurosawa,single,1,3.0,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+faintlight,dl_faintlight,en=Faint Light (Arcaea Edit),Taishi,extend,0,3.0,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+feelssoright,dl_feelssoright,en=Feels So Right feat. Renko,Mysteka,single,0,3.0,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+teriqma,dl_teriqma,en=Teriqma,owl＊tree,single,1,3.0,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+mahoroba,dl_mahoroba,en=MAHOROBA,Zekk,single,0,3.0,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+badtek,dl_badtek,en=BADTEK,EBIMAYO,single,1,3.1,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+maliciousmischance,dl_maliciousmischance,en=Malicious Mischance,s-don,single,1,3.1,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+gothiveofra,dl_gothiveofra,en=Got hive of Ra,E.G.G.,groovecoaster,0,3.2,,base.jpg;base_256.jpg,,base,base.jpg;base_256.jpg,,preview.ogg
+buchigireberserker,dl_buchigireberserker,en=BUCHiGiRE Berserker,REDALiCE vs MASAKI,single,1,3.2,,base.jpg;base_256.jpg,,base,base.jpg;base_256.jpg,,preview.ogg
+galaxyfriends,dl_galaxyfriends,en=Galaxy Friends,Kobaryo,single,1,3.2,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+crossover,dl_crossover,en=CROSS†OVER,HyuN feat. LyuU,extend,1,3.2,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+xeraphinite,dl_xeraphinite,en=Xeraphinite,BlackY,single,0,3.2,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+lapis,dl_lapis,en=Lapis,SHIKI,extend,0,3.2,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+xanatos,dl_xanatos,en=Xanatos,Tatsh,single,1,3.2,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+purpleverse,dl_purpleverse,en=Purple Verse,Hommarju,extend,1,3.3,BYD,1080_base.jpg;1080_base_256.jpg,1080_3.jpg;1080_3_256.jpg,3;base,1080_3.jpg;1080_3_256.jpg;1080_base.jpg;1080_base_256.jpg,,preview.ogg
+alicealamode,dl_alicealamode,en=Alice à la mode;ko=Alice a la mode,Masanori Akita,alice,0,3.3,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+eccentrictale,dl_eccentrictale,en=Eccentric Tale,Yamajet,alice,1,3.3,BYD,1080_base.jpg;1080_base_256.jpg,1080_3.jpg;1080_3_256.jpg,3;base,1080_3.jpg;1080_3_256.jpg;1080_base.jpg;1080_base_256.jpg,,preview.ogg
+alicessuitcase,dl_alicessuitcase,en=Alice's Suitcase,Endorfin.,alice,0,3.3,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+jump,dl_jump,en=Jump,Rasmus Faber,alice,0,3.3,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+felis,dl_felis,en=Felis,M2U,alice,0,3.3,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+besideyou,dl_besideyou,en=Beside You,江口孝宏,alice_append_1,0,3.3,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+heartjackin,dl_heartjackin,en=Heart Jackin',Yu_Asahina,alice_append_1,0,3.3,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+toaliceliddell,dl_toaliceliddell,en=To: Alice Liddell;ja=アリス・リデルに捧ぐ,モリモリあつし,alice_append_1,1,3.3,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+lazyaddiction,dl_lazyaddiction,en=Lazy Addiction,sky_delta,ongeki,0,3.4,,base.jpg;base_256.jpg,,base,base.jpg;base_256.jpg,,preview.ogg
+dazzlehop,dl_dazzlehop,en=Dazzle hop,Sampling Masters MEGA,ongeki,1,3.4,,base.jpg;base_256.jpg,,base,base.jpg;base_256.jpg,,preview.ogg
+viyellastears,dl_viyellastears,en=Viyella's Tears,Laur,ongeki,1,3.4,,base.jpg;base_256.jpg,,base,base.jpg;base_256.jpg,,preview.ogg
+omegafour,dl_omegafour,en=ω4;zh-Hans=w4;zh-Hant=w4,穴山大輔 VS 光吉猛修 VS Kai,ongeki,0,3.4,,base.jpg;base_256.jpg,,base,base.jpg;base_256.jpg,,preview.ogg
+aprilshowers,dl_aprilshowers,en=April showers;ja=四月の雨,cubesato,maimai,0,3.4,,base.jpg;base_256.jpg,,base,base.jpg;base_256.jpg,,preview.ogg
+seventhsense,dl_seventhsense,en=7thSense,削除,maimai,1,3.4,,base.jpg;base_256.jpg,,base,base.jpg;base_256.jpg,,preview.ogg
+oshamascramble,dl_oshamascramble,en=Oshama Scramble!,t+pazolite,maimai,0,3.4,,base.jpg;base_256.jpg,,base,base.jpg;base_256.jpg,,preview.ogg
+amazingmightyyyy,dl_amazingmightyyyy,en=AMAZING MIGHTYYYY!!!!,WAiKURO,maimai,1,3.4,,base.jpg;base_256.jpg,,base,base.jpg;base_256.jpg,,preview.ogg
+climax,dl_climax,en=Climax,USAO,chunithm_append_1,1,3.5,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+lastcelebration,dl_lastcelebration,en=Last Celebration,Laur vs CK,chunithm_append_1,1,3.5,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+gou,dl_gou,en=Misdeed -la bonté de Dieu et l'origine du mal-;ja=業 -善なる神とこの世の悪について-;ko_dialog=Misdeed -la bonte de Dieu et l'origine du mal-,光吉猛修 VS 穴山大輔,chunithm_append_1,0,3.5,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+glow,dl_glow,en=Glow,SPACELECTRO,extend,1,3.5,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+attraqtia,dl_attraqtia,en=AttraqtiA,かめりあ,single,0,3.5,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+enchantedlove,dl_enchantedlove,en=enchanted love,linear ring,extend,0,3.5,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+take,dl_take,en=Bamboo;ja=竹,立秋 feat.ちょこ,extend,0,3.5,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+gimmedablood,dl_gimmedablood,en=GIMME DA BLOOD,C-Show,single,1,3.5,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+bassline,dl_bassline,en=Can I Friend You on Bassbook? Lol;ja=ベースラインやってる？ｗ,かめりあ feat. ななひら,single,0,3.5,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+lifeispiano,dl_lifeispiano,en=Life is PIANO,Junk,extend,0,3.5,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+paperwitch,dl_paperwitch,en=Paper Witch,Yu-dachi,observer,0,3.6,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+crystalgravity,dl_crystalgravity,en=Crystal Gravity,Tanchiky vs. siromaru,observer,1,3.6,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+farawaylight,dl_farawaylight,en=Far Away Light,technoplanet feat. はるの & 黒沢ダイスケ,observer,0,3.6,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+loschen,dl_loschen,en=Löschen;ko_dialog=Loschen,BlackY feat. Risa Yuzuki,observer,1,3.6,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+aegleseeker,dl_aegleseeker,en=Aegleseeker,Silentroom vs Frums,observer,0,3.6,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+coastalhighway,dl_coastalhighway,en=Coastal Highway,Glitch Droids,observer_append_1,0,3.6,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+odysseia,dl_odysseia,en=ΟΔΥΣΣΕΙΑ,Sober Bear,observer_append_1,1,3.6,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+overwhelm,dl_overwhelm,en=Overwhelm,xi,observer_append_1,0,3.6,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+vandalism,dl_vandalism,en=Vandalism,Ashrount,extend,1,3.6,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+turbocharger,dl_turbocharger,en=Turbocharger,A/I,extend,0,3.6,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+theultimacy,dl_theultimacy,en=THE ULTIMACY,aran vs Massive New Krew,single,1,3.6,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+rekkaresonance,dl_rekkaresonance,en=REKKA RESONANCE;ja=烈華RESONANCE,REDALiCE vs Kobaryo,single,0,3.6,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+kyogenkigo,dl_kyogenkigo,en=False Embellishment;ja=狂言綺語,影虎。 & ikaruga_nex,extend,1,3.7,BYD,1080_base.jpg;1080_base_256.jpg,1080_3.jpg;1080_3_256.jpg,3;base,1080_3.jpg;1080_3_256.jpg;1080_base.jpg;1080_base_256.jpg,,preview.ogg
+hivemind,dl_hivemind,en=HIVEMIND,かたぎり,extend,1,3.7,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+seclusion,dl_seclusion,en=Seclusion,Laur feat. Sennzai,observer,1,3.7,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+smallcloud,dl_smallcloud,en=Small Cloud Sugar Candy,テヅカ x Aoi feat.桃雛なの,observer_append_2,0,3.7,BYD,1080_base.jpg;1080_base_256.jpg,1080_3.jpg;1080_3_256.jpg,3;base,1080_3.jpg;1080_3_256.jpg;1080_base.jpg;1080_base_256.jpg,,preview.ogg
+alterale,dl_alterale,en=AlterAle,Arik Kau Delay (アラ＆かゆき＆でり）,observer_append_2,0,3.7,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+divinelight,dl_divinelight,en=Divine Light of Myriad;ja=光速神授説 - Divine Light of Myriad -,yoho,observer_append_2,0,3.7,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+mazymetroplex,dl_mazymetroplex,en=Mazy Metroplex,aran,wacca,0,3.8,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+quonwacca,dl_quonwacca,en=Quon,DJ Noriken,wacca,1,3.8,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+withu,dl_withu,en=with U,t+pazolite & Massive New Krew feat. リリィ(CV:青木志貴),wacca,0,3.8,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+genocider,dl_genocider,en=GENOCIDER,DJ Myosuke,wacca,1,3.8,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+letyoudivermx,dl_letyoudivermx,en=Let you DIVE! (nitro rmx),nitro (lowiro),wacca,0,3.8,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+sheriruthrmx,dl_sheriruthrmx,en=Sheriruth (Laur Remix),Laur,single,1,3.8,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+eveninginscarlet,dl_eveninginscarlet,en=Evening in Scarlet;ja=緋纏いの宵,Freezer feat.妃苺,single,1,3.8,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+bluecomet,dl_bluecomet,en=blue comet,ああああ,extend,0,3.8,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+energysynergymatrix,dl_energysynergymatrix,en=ENERGY SYNERGY MATRIX,Tanchiky,extend,1,3.8,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+gengaozo,dl_gengaozo,en=G e n g a o z o,-45,extend,1,3.8,,base.jpg;base_256.jpg,,base,base.jpg;base_256.jpg,,preview.ogg
+goldenslaughterer,dl_goldenslaughterer,en=goldenslaughterer,zts,single,1,3.8,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+lastendconductor,dl_lastendconductor,en=lastendconductor,zts,single,1,3.8,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+redolentshape,dl_redolentshape,en=Redolent Shape,Sanaas,single,1,3.8,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+cosmica,dl_cosmica,en=Cosmica,Nhato,nijuusei_append_1,1,3.9,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+ascent,dl_ascent,en=Ascent,TANUKI,nijuusei_append_1,0,3.9,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+livefastdieyoung,dl_livefastdieyoung,en=Live Fast Die Young,anubasu-anubasu,nijuusei_append_1,0,3.9,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+summerfireworks,dl_summerfireworks,en=Summer Fireworks of Love;ja=彩る夏の恋花火,karatoPαnchii feat.はるの,single,0,3.9,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+firstsnow,dl_firstsnow,en=First Snow,黒魔,dividedheart,0,3.10,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+bluerose,dl_bluerose,en=Blue Rose,Cosmograph,dividedheart,0,3.10,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+blockedlibrary,dl_blockedlibrary,en=Blocked Library,影虎。,dividedheart,1,3.10,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+neokosmo,dl_neokosmo,en=nέο κόsmo;ko=neo kosmo;zh-Hans=neo kosmo;zh-Hant=neo kosmo,ak+q × Street,dividedheart,1,3.10,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+lightningscrew,dl_lightningscrew,en=Lightning Screw,HiTECH NINJA,dividedheart,0,3.10,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+lightsofmuse,dl_lightsofmuse,en=Lights of Muse,Ayatsugu_Otowa,musedash,0,3.11,,base.jpg;base_256.jpg,,base,base.jpg;base_256.jpg,,preview.ogg
+finalstep,dl_finalstep,en=Final Step!,Lime,musedash,1,3.11,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+akinokagerou,dl_akinokagerou,en=Haze of Autumn;ja=秋の陽炎,karatoPαnchii feat.はるの,musedash,0,3.11,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+medusa,dl_medusa,en=Medusa,HiTECH NINJA,musedash,1,3.11,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+init,dl_init,en=init(),kamome sano,single,1,3.11,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+internetoverdose,dl_internetoverdose,en=INTERNET OVERDOSE,Aiobahn feat. KOTOKO,single,0,3.12,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+sakurafubuki,sakurafubuki,en=Sakura Fubuki,Street,base,0,3.12,,base.jpg;base_256.jpg,,base,base.jpg;base_256.jpg,0.aff;1.aff;2.aff,base.ogg
+nulctrl,dl_nulctrl,en=NULCTRL,Silentroom,base,1,3.12,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+macromod,dl_macromod,en=Macrocosmic Modulation,JAKAZiD,single,0,3.12,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+neowings,dl_neowings,en=NEO WINGS,SOUND HOLIC feat. Nana Takahashi,single,1,3.12,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+kissinglucifer,dl_kissinglucifer,en=Kissing Lucifer,ETIA.,single,1,3.12,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+avril,dl_avril,en=Ävril -Flicka i krans-;ko_dialog=Avril -Flicka i krans-,Rigël Theatre,base,0,3.12,PST;PRS,1080_base.jpg;1080_base_256.jpg,1080_0.jpg;1080_0_256.jpg;1080_1.jpg;1080_1_256.jpg,0;1;base,1080_0.jpg;1080_0_256.jpg;1080_1.jpg;1080_1_256.jpg;1080_base.jpg;1080_base_256.jpg,,preview.ogg
+aurgelmir,dl_aurgelmir,en=Aurgelmir,溝口ゆうま feat. 大瀬良あい,single,1,3.12,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+headbonkache,dl_headbonkache,en=Head BONK ache,saaa ft. MC iwata Bros.,single,1,3.12,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+ddd,dl_ddd,en=DDD,はがね,base,0,3.12,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+prism,dl_prism,en=Prism,bermei.inazawa ft. Chata,lanota_append_1,0,3.12,PST;PRS,1080_base.jpg;1080_base_256.jpg,1080_0.jpg;1080_0_256.jpg;1080_1.jpg;1080_1_256.jpg,0;1;base,1080_0.jpg;1080_0_256.jpg;1080_1.jpg;1080_1_256.jpg;1080_base.jpg;1080_base_256.jpg,,preview.ogg
+protoflicker,dl_protoflicker,en=Protoflicker,Silentroom,lanota_append_1,1,3.12,PST;PRS,1080_base.jpg;1080_base_256.jpg,1080_0.jpg;1080_0_256.jpg;1080_1.jpg;1080_1_256.jpg,0;1;base,1080_0.jpg;1080_0_256.jpg;1080_1.jpg;1080_1_256.jpg;1080_base.jpg;1080_base_256.jpg,,preview.ogg
+stasis,dl_stasis,en=Stasis,Maozon,lanota_append_1,0,3.12,PST;PRS,1080_base.jpg;1080_base_256.jpg,1080_0.jpg;1080_0_256.jpg;1080_1.jpg;1080_1_256.jpg,0;1;base,1080_0.jpg;1080_0_256.jpg;1080_1.jpg;1080_1_256.jpg;1080_base.jpg;1080_base_256.jpg,,preview.ogg
+picopicotranslation,dl_picopicotranslation,en=PICO-Pico-Translation!;ja=ピコPico*とらんすれーしょんっ！,"t+pazolite,ななひら,Cranky,Pico*",single,1,3.12,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+nekonote,dl_nekonote,en=Dancin' on a Cat's Paw;ja=ネコノテ・カリタガール,Ino(chronoize),base,0,3.12,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+mu,dl_mu,en=μ,Frums,single,0,3.12,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+sanskia,dl_sanskia,en=san skia,ユアミトス,base,0,3.12,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+altair,dl_altair,en=Altair (feat. *spiLa*),kamome sano & you,base,0,4.0,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+mukishitsu,dl_mukishitsu,en=Redraw the Colorless World;ja=無機質世界に彩を,MisomyL,base,0,4.0,,base.jpg;base_256.jpg,,base,base.jpg;base_256.jpg,,preview.ogg
+trapcrow,dl_trapcrow,en=Trap Crow,Puru,base,1,4.0,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+pupa,dl_pupa,en=PUPA,モリモリあつし,single,1,4.0,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+defection,dl_defection,en=Defection,TeddyLoid feat. DELTA,finale,0,4.0,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+infinitestrife,dl_infinitestrife,"en=Infinite Strife,",BlackYooh vs. siromaru,finale,1,4.0,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,glass.wav;preview.ogg;voice.wav
+worldender,dl_worldender,en=World Ender;ja=魔王,sasakure.UK × TJ.hangneil,finale,0,4.0,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+pentiment,dl_pentiment,en=Pentiment,Nothing But Requiem with Museo,finale,1,4.0,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+arcanaeden,dl_arcanaeden,en=Arcana Eden,Team Grimoire vs Sakuzyo vs Laur,finale,1,4.0,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,kick.wav;preview.ogg
+testify,dl_testify,en=Testify,void (Mournfinale) feat. 星熊南巫,finale,2,4.0,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+lovelessdress,dl_lovelessdress,en=Loveless Dress,かねこちはる,epilogue,2,4.0,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+last,dl_last,en=Last,onoken,epilogue,2,4.0,BYD,1080_base.jpg;1080_base_256.jpg,1080_3.jpg;1080_3_256.jpg,3;base,1080_3.jpg;1080_3_256.jpg;1080_base.jpg;1080_base_256.jpg,,3.ogg;3_preview.ogg;preview.ogg
+lasteternity,dl_lasteternity,en=Last | Eternity,onoken,epilogue,2,4.0,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+callimakarma,dl_callimakarma,en=Callima Karma,t+pazolite vs Feryquitous,epilogue,2,4.0,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+kokoro,dl_kokoro,en=Heart;ja=心,削除 (Violin : Katali),ongeki_append_1,0,4.1,,base.jpg;base_256.jpg,,base,base.jpg;base_256.jpg,,preview.ogg
+aidrew,dl_aidrew,en=Ai Drew,Feryquitous,ongeki_append_1,1,4.1,,base.jpg;base_256.jpg,,base,base.jpg;base_256.jpg,,preview.ogg
+fluffyflash,dl_fluffyflash,en=FLUFFY FLASH,Kobaryo,ongeki_append_1,0,4.1,,base.jpg;base_256.jpg,,base,base.jpg;base_256.jpg,,preview.ogg
+goodbyemerry,dl_goodbyemerry,"en=Good bye, Merry-Go-Round.",Yooh,ongeki_append_1,1,4.1,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+lamia,dl_lamia,en=LAMIA,BlackY,ongeki_append_1,1,4.1,,base.jpg;base_256.jpg,,base,base.jpg;base_256.jpg,,preview.ogg
+freemyself,dl_freemyself,en=Free Myself,lapix feat. mami,single,0,4.1,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+cocorocosmetic,dl_cocorocosmetic,en=cocoro*cosmetic,KOTONOHOUSE,single,0,4.1,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+capella,dl_capella,en=Capella,ARForest,single,0,4.1,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+dialnote,dialnote,en=Dialnote;ja=だいあるのーと,七草くりむ,base,0,4.1,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,0.aff;1.aff;2.aff,base.ogg
+tsukinimurakumo,dl_tsukinimurakumo,"en=Tsuki ni Murakumo, Hana ni Kaze;ja=月に叢雲華に風",幽閉サテライト,extend_2,1,4.2,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+mantis,dl_mantis,en=MANTIS (Arcaea Ultra-Bloodrush VIP),Akira Complex feat. kiraku,extend_2,1,4.2,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+worldfragments,dl_worldfragments,en=World Fragments III(radio edit),xi,extend_2,0,4.2,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+astrawalkthrough,dl_astrawalkthrough,en=Astra walkthrough,paraoka,extend_2,1,4.2,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+chronicle,dl_chronicle,en=Chronicle,Lime,extend_2,0,4.2,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+nullapophenia,dl_nullapophenia,en=NULL APOPHENIA,N²,single,1,4.2,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+crimsonthrone,dl_crimsonthrone,en=Crimson Throne,Dimier√Lisb,single,1,4.3,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+manicjeer,dl_manicjeer,en=Manic Jeer,ルゼ,single,1,4.3,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+hiirogekka,dl_hiirogekka,"en=Hiiro Gekka, Kyoushou no Zetsu (nayuta 2017 ver.);ja=緋色月下、狂咲ノ絶 (nayuta 2017 ver.)",nayuta x 黒鳥(EastNewSound),single,1,4.3,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+letsrock,dl_letsrock,en=Let's Rock (Arcaea mix),ikaruga_nex vs FALCHiON,extend_2,1,4.3,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+cycles,dl_cycles,en=CYCLES,Masayoshi Minoshima feat. 綾倉盟,maimai_append_1,0,4.3,,base.jpg;base_256.jpg,,base,base.jpg;base_256.jpg,,preview.ogg
+maxrage,dl_maxrage,en=MAXRAGE,EBIMAYO,maimai_append_1,1,4.3,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+infinity,dl_infinity,en=[X],Blacklolita,maimai_append_1,1,4.3,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+temptation,dl_temptation,en=TEmPTaTiON,かねこちはる,maimai_append_1,0,4.3,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+primitivelights,dl_primitivelights,en=PRIMITIVE LIGHTS,TAG,single,0,4.3,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+cosmopop,dl_cosmopop,en=Cosmo Pop Funclub;ja=コスモポップファンクラブ,ナユタン星人,chunithm_append_2,0,4.4,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+impact,dl_impact,en=IMPACT,USAO feat. 光吉猛修,chunithm_append_2,0,4.4,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+genesischunithm,dl_genesischunithm,en=Genesis,Morrigan feat.Lily,chunithm_append_2,1,4.4,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+trrricksters,dl_trrricksters,en=Trrricksters!!,s-don vs. 翡乃イスカ,chunithm_append_2,1,4.4,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+spidersthread,dl_spidersthread,en=Spider's Thread;ja=蜘蛛の糸,きくお×cosMo＠暴走P feat.影縫英,chunithm_append_2,1,4.4,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+lostemotion,dl_lostemotion,en=Lost Emotion feat. nomico,Masayoshi Minoshima(ALR),extend_2,0,4.4,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+gimmick,dl_gimmick,en=GIMMICK,Ms.Sill,extend_2,1,4.4,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+thesurvivor,dl_thesurvivor,en=The Survivor (Game Edit),Taishi,single,1,4.4,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+newyorkbackraise,dl_newyorkbackraise,en=New York Back Raise,saaa + kei_iwata + stuv + わかどり,single,1,4.4,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+galacticlove,dl_galacticlove,en=Galactic Love,La prière,single,0,4.4,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+lawlesspoint,dl_lawlesspoint,en=Lawless Point;ja=無法地点,La prière,extend_2,1,4.4,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+lostintheabyss,dl_lostintheabyss,en=Lost in the Abyss,FELT,single,1,4.4,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+hybris,dl_hybris,en=Hybris (The one who shattered);ja=ヒュブリスの頂に聳えるのは,qfeileadh feat.のあ,extend_2,1,4.4,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+tothemilkyway,dl_tothemilkyway,en=To the Milky Way,黒魔,single,0,4.4,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+internetyamero,dl_internetyamero,en=INTERNET YAMERO,Aiobahn feat. KOTOKO,single,1,4.5,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+bulletwaiting,dl_bulletwaiting,en=Bullet Waiting for Me (James Landino remix),Nikki Simmons,cytusii,0,4.5,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+devillicsphere,dl_devillicsphere,en=Devillic Sphere,3R2,cytusii,1,4.5,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+lucidtraveler,dl_lucidtraveler,en=Lucid Traveler,Akira Complex vs 3R2,cytusii,1,4.5,FTR,1080_base.jpg;1080_base_256.jpg,1080_2.jpg;1080_2_256.jpg,2;base,1080_2.jpg;1080_2_256.jpg;1080_base.jpg;1080_base_256.jpg,,preview.ogg
+chaos,dl_chaos,en=CHAOS,Æsir,cytusii,1,4.5,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+usedtobe,dl_usedtobe,en=Used to be,KIVΛ,cytusii,0,4.5,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+ultimatetaste,dl_ultimatetaste,en=Ultimate taste,ぱらどっと,extend_2,0,4.6,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+syuten,dl_syuten,en=syūten;ko_dialog=syuten,"Apo11o""COLLAPSAR""program ft. 大瀬良あい",cytusii_append_1,0,4.6,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+drg,dl_drg,en=DRG,onoken,cytusii_append_1,0,4.6,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+nnglooms,dl_nnglooms,en=99 Glooms,Sta,cytusii_append_1,1,4.6,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+ii,dl_ii,en= ͟͝͞Ⅱ́̕ ;ko=II;zh-Hans=II;zh-Hant=II,Cytus,cytusii_append_1,1,4.6,PST;PRS,1080_base.jpg;1080_base_256.jpg,1080_0.jpg;1080_0_256.jpg;1080_1.jpg;1080_1_256.jpg,0;1;base,1080_0.jpg;1080_0_256.jpg;1080_1.jpg;1080_1_256.jpg;1080_base.jpg;1080_base_256.jpg,,preview.ogg
+magnolia,dl_magnolia,en=Magnolia,M2U Vocal by Guriri,cytusii_append_1,0,4.6,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+sacrifice,dl_sacrifice,en=SACRIFICE feat. ayame,Masayoshi Minoshima(ALR),single,1,4.7,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+rgb,dl_rgb,en=RGB,MEMODEMO X AQUASINE,extend_2,0,4.7,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+waitfordawn,dl_waitfordawn,en=WAIT FOR DAWN,U-ske feat. 棗いつき,eden,0,4.7,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+ravenspride,dl_ravenspride,en=Raven's Pride;ja=レイヴンズ・プライド,みーに feat. はらもりよしな,eden,1,4.7,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+riseoftheworld,dl_riseoftheworld,en=Rise of the World,cosMo＠暴走P,eden,0,4.7,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+unknownlevels,dl_unknownlevels,en=UNKNOWN LEVELS,Yuta Imai,eden,1,4.7,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+abstrusedilemma,dl_abstrusedilemma,en=Abstruse Dilemma,Ashrount vs. 打打だいず,eden,0,4.7,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+matenrou,dl_matenrou,en=Kanjou no Matenrou ～Arr.Demetori;ja=感情の摩天楼 ～Arr.Demetori,Demetori,extend_2,1,4.7,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+tothefurthestdream,dl_tothefurthestdream,en=To the Furthest Dream;ja=彼方の夢へと,ii/night feat. 綺良雪,single,2,4.7,PST;PRS,1080_base.jpg;1080_base_256.jpg,1080_0.jpg;1080_0_256.jpg;1080_1.jpg;1080_1_256.jpg,0;1;base,1080_0.jpg;1080_0_256.jpg;1080_1.jpg;1080_1_256.jpg;1080_base.jpg;1080_base_256.jpg,,preview.ogg
+remindthesouls,remindthesouls,en=Remind the Souls (Short Version),Nhato,base,0,5.0,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,0.aff;1.aff;2.aff,base.ogg
+dynitikos,dl_dynitikos,en=Dynitikós;ko_dialog=Dynitikos,Prower,extend_2,1,5.0,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+amekagura,dl_amekagura,en=Amekagura;ja=雨神楽,荒谷サトル,extend_2,0,5.0,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+bbkkbkk,dl_bbkkbkk,en=B.B.K.K.B.K.K.,nora2r,single,1,5.0,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+primevaltexture,dl_primevaltexture,en=Primeval Texture,くるぶっこちゃん,eden_append_1,0,5.0,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+technicolour,dl_technicolour,en=Technicolour,Maozon,eden_append_1,0,5.0,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+logos,dl_logos,en=Logos,polysha feat. 高城みよ,eden_append_1,1,5.0,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+egoeimi,dl_egoeimi,en=Ego Eimi,BlackY feat. Risa Yuzuki,eden_append_1,1,5.0,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+arghena,dl_arghena,en=Arghena,Feryquitous vs Laur,eden_append_1,1,5.0,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+fantasy,dl_fantasy,en=FANTA5Y,Moon Jelly & YUKIYANAGI,extend_2,0,5.1,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+transientspace,dl_transientspace,en=Transient Space,"sleepless, Gardens, aspect",eden_append_2,1,5.1,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+namelesspassion,dl_namelesspassion,en=Nameless Passion,天束 feat.Sennzai,eden_append_2,1,5.1,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+teravolt,dl_teravolt,en=TeraVolt,Katali,eden_append_2,1,5.1,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+stratoliner,dl_stratoliner,en=Stratoliner,C-Show,wacca_append_1,1,5.2,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+ouverture,dl_ouverture,en=Ouvertüre;ko_dialog=Ouverture,USAO & DJ Genki feat. ルーン(CV:河瀬茉希),wacca_append_1,1,5.2,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+xtreme,dl_xtreme,en=XTREME,USAO,wacca_append_1,1,5.2,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+edenwacca,dl_edenwacca,en=eden,"""漆黒""の堕天使《Gram》†Versus†""聖刻""の熾天使《Gram》",wacca_append_1,1,5.2,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+metamysteria,dl_metamysteria,en=Meta-Mysteria,DJ Noriken,wacca_append_1,0,5.2,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+aloneandlorn,dl_aloneandlorn,en=Alone & Lorn;ja=アローンアンドローン,Ponchi♪ feat.はぁち,extend_2,0,5.2,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+wishuponasnow,dl_wishuponasnow,en=Wish Upon a Snow,打打だいず,single,0,5.2,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+overdrive,dl_overdrive,en=Kanbu de Tomatte Sugu Tokeru;ja=患部で止まってすぐ溶ける　〜 狂気の優曇華院,ARM＋夕野ヨシミ (IOSYS) feat. miko,single,0,5.2,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+felys,dl_felys,en=felys final remix,onoken,extend_2,1,5.2,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+onandon,dl_onandon,en=On And On!! feat. Jenga,ETIA.,extend_2,0,5.2,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+lightmyway,dl_lightmyway,en=LIVHT MY WΔY,かめりあ feat. STΔRLIVHT,single,1,5.2,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+hotarubinoyuki,dl_hotarubinoyuki,en=Hotarubi no Yuki;ja=蛍火の雪,Endorfin.,omatsuri,0,5.2,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+theformula,theformula,en=The Formula,Junk,base,0,5.3,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,0.aff;1.aff;2.aff,base.ogg
+lunarossa,dl_lunarossa,en=Luna Rossa,r0y,single,1,5.3,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+jingle,jingle,en=Jingle,DJ Noriken,base,0,5.4,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,0.aff;1.aff;2.aff;4.aff,base.ogg
+innocence,dl_innocence,en=Innocence,Powerless feat. Sennzai,single,0,5.4,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+ionostream,dl_ionostream,en=IONOSTREAM,Tatsh,single,1,5.4,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+alephzero,dl_alephzero,en=Aleph-0,LeaF,extend_2,1,5.4,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+masqueradelegion,dl_masqueradelegion,en=Masquerade Legion,Srav3R & DJ Noriken,single,1,5.4,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+kyorenromance,dl_kyorenromance,en=KYOREN ROMANCE;ja=狂恋ROMANCE,REDALiCE vs DJ Myosuke feat. DELUTAYA,single,1,5.4,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+qovat,dl_qovat,en=Qovat,owl＊tree,single,1,5.4,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+hellohell,dl_hellohell,en=HELLOHELL,暁Records,extend_3,1,5.5,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+ichirin,dl_ichirin,en=〇、;ko_dialog=、,Kolaa & 熊子,extend_3,0,5.5,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+awakeninruins,dl_awakeninruins,en=Awaken In Ruins,Supa7onyz,extend_3,1,5.5,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+morningloom,dl_morningloom,en=MORNINGLOOM,saaa,extend_3,0,5.5,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+lethalvoltage,dl_lethalvoltage,en=Lethal Voltage,siqlo,extend_3,1,5.5,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+mirinae,dl_mirinae,en=MIRINAE,TAK × Zekk,single,0,5.5,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+ultradiaxon,dl_ultradiaxon,en=ultradiaxon-N3,nitro (lowiro),single,1,5.5,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+leaveallbehind,dl_leaveallbehind,en=Leave All Behind,rider,extend_3,1,5.6,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+distortedfate,dl_distortedfate,en=Distorted Fate,Sakuzyo,single,1,5.6,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+floatingworld,dl_floatingworld,en=Floating World,baker feat. botan,single,0,5.6,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+chromafill,dl_chromafill,en=Chromafill,ていぬ,single,0,5.6,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+desive,dl_desive,en=Désive;ko_dialog=Desive,MisomyL,single,0,5.6,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+epicurus,epicurus,en=Hidden Rainbows of Epicurus;ja=エピクロスの虹はもう見えない,SYNC.ART'S feat.Misato,base,0,5.7,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,0.aff;1.aff;2.aff;4.aff,base.ogg
+tasogare,dl_tasogare,en=Twilight Concerto;ja=黄昏の協奏曲,Scarlette,single,1,5.7,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+oldschoolsalvage,dl_oldschoolsalvage,en=Old School Salvage,DJ SHARPNEL,extend_3,1,5.7,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+beautifuldreamer,dl_beautifuldreamer,en=Beautiful Dreamer,M-Project,single,0,5.7,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+backtobasics,dl_backtobasics,en=Back to Basics,m1dy,single,1,5.7,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+stargateextreme,dl_stargateextreme,en=STARGATE EXTREME,KARUT,single,1,5.8,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+signof,dl_signof,"en=Sign of ""10.5km""",渡部恭久,groovecoaster_append_1,0,5.8,,base.jpg;base_256.jpg,,base,base.jpg;base_256.jpg,,preview.ogg
+temptationgc,dl_temptationgc,en=10pt8ion,Lite Show Magic,groovecoaster_append_1,1,5.8,,base.jpg;base_256.jpg,,base,base.jpg;base_256.jpg,,preview.ogg
+blackmind,dl_blackmind,en=Black MInD,COSIO,groovecoaster_append_1,1,5.8,,base.jpg;base_256.jpg,,base,base.jpg;base_256.jpg,,preview.ogg
+hypervision,dl_hypervision,en=HYPER VISION,VOLTA,single,1,5.8,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+distortionhuman,dl_distortionhuman,en=Distortion Human;ja=ディストーション・ニンゲン,DJ Myosuke & KAJI,extend_3,1,5.9,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+shrink,dl_shrink,en=shrink,Shohei Tsuchiya(ZUNTATA),single,0,5.9,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+invain,dl_invain,en=In Vain,ryhki,nihil,1,5.9,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+hypnotize,dl_hypnotize,en=Hypnotize,rejection,nihil,1,5.9,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+ashenboundary,dl_ashenboundary,en=Ashen 6oundary,YUKIYANAGI,nihil,1,5.9,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+judgement,dl_judgement,en=Judgement,Tatsunoshin,nihil,1,5.9,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+alterego,dl_alterego,en=ALTER EGO,Yuta Imai vs Qlarabelle,nihil,1,5.9,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+epitaxy,dl_epitaxy,en=epitaxy,Camellia,extend_3,0,5.10,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+waltzforlorelei,dl_waltzforlorelei,en=Waltz for Lorelei,Sobrem & 庭師,rotaeno,0,5.10,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+dualdoom,dl_dualdoom,en=Dual Doom Deathmatch,Kobaryo vs HyuN,rotaeno,1,5.10,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+invertedworld,dl_invertedworld,en=Inverted World,ARForest,rotaeno,0,5.10,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+mvurbd,dl_mvurbd,en=MVURBD,ETIA.,rotaeno,1,5.10,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+vulcanus,dl_vulcanus,en=Vulcānus;ko_dialog=Vulcanus,Team Grimoire vs Aoi,rotaeno,0,5.10,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+rainofconflict,dl_rainofconflict,en=Rain of Conflict in a Radiant Abyss,ak+q,single,1,5.10,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+saintorsinner,dl_saintorsinner,en=Saint or Sinner,crayvxn,prelude,1,5.10,BYD,1080_base.jpg;1080_base_256.jpg,1080_3.jpg;1080_3_256.jpg,3;base,1080_3.jpg;1080_3_256.jpg;1080_base.jpg;1080_base_256.jpg,,preview.ogg
+hailstone,dl_hailstone,en=Hailstone,Kazki Misora,extend_3,0,5.10,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+furetemitai,dl_furetemitai,en=FURETE-MITAI;ja=フレテミタイ,みきとP,extend_3,0,5.10,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+gensounosatellite,dl_gensounosatellite,en=Gensou no Satellite;ja=幻想のサテライト,豚乙女,single,1,5.10,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+prayer,dl_prayer,en=Prayer;ja=プレヤ,qfeileadh&レゾナンスもえこ,extend_3,0,5.10,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+crimsonquartz,dl_crimsonquartz,en=Crimson Quartz,DiGiTAL WiNG with 空音,single,1,5.10,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+thirdsun,dl_thirdsun,en=Third Sun,Ash Astral,single,1,5.10,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+spiritdauntless,dl_spiritdauntless,en=Spirit of the Dauntless,KO3 & Relect,single,1,5.10,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+diesirae,dl_diesirae,en=Dies irae,お月さま交響曲,single,1,5.10,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+astralexe,dl_astralexe,en=astral.exe,Synzak & Laxeno57,extend_3,0,6.0,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+liftoff,dl_liftoff,en=LiftOff,MAYA AKAI,ongeki_append_2,1,6.0,,base.jpg;base_256.jpg,,base,base.jpg;base_256.jpg,,preview.ogg
+superambulance,dl_superambulance,en=SUPER AMBULANCE,AJURIKA,ongeki_append_2,0,6.0,,base.jpg;base_256.jpg,,base,base.jpg;base_256.jpg,,preview.ogg
+dontfightmusic,dl_dontfightmusic,en=Don't Fight The Music,黒魔,ongeki_append_2,1,6.0,,base.jpg;base_256.jpg,,base,base.jpg;base_256.jpg,,preview.ogg
+andrevivemelody,dl_andrevivemelody,en=And Revive The Melody,黒魔,ongeki_append_2,1,6.0,,base.jpg;base_256.jpg,,base,base.jpg;base_256.jpg,,preview.ogg
+swansong,dl_swansong,en=Swan Song,void (Mournfinale),lephon,3,6.0,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+renegade,dl_renegade,en=Renegade,sky_delta,lephon,3,6.0,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+raysofremnant,dl_raysofremnant,en=Rays of Remnant,May × Felysrator,lephon,3,6.0,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+breachoffaith,dl_breachoffaith,en=Breach of Faith,Supire feat.eili,lephon,3,6.0,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+lamentrain,dl_lamentrain,en=Lament Rain,Ashrount vs. 打打だいず,lephon,3,6.0,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,lament_rain_beep.wav;lament_rain_special.wav;preview.ogg
+designant,dl_designant,en=Designant.,Designant,lephon,3,6.0,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+astralquant,dl_astralquant,en=Astral Quantization,Dj Grimoire,lephon,3,6.0,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+ignition,dl_ignition,en=Ignition,パソコン音楽クラブ,chunithm_append_3,0,6.1,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+blazingair,dl_blazingair,en=BlazinG AIR,kanone,chunithm_append_3,0,6.1,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+eightem,dl_eightem,en=8-EM,Sampling Masters AYA,chunithm_append_3,1,6.1,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+daat,dl_daat,en=DA'AT -The First Seeker of Souls-,水野健治 VS 大国奏音,chunithm_append_3,1,6.1,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+breakbreak,dl_breakbreak,en=BREaK! BREaK! BREaK!,HiTECH NINJA vs Cranky,maimai_append_2,1,6.2,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+straightintolights,dl_straightintolights,en=Straight into the lights,Cosmograph,maimai_append_2,1,6.2,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+virtus,dl_virtus,en=ViRTUS,Hiro,maimai_append_2,0,6.2,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+yomibitoshirazu,dl_yomibitoshirazu,en=yomibito_shirazu;ja=ヨミビトシラズ,Limonène (サノカモメ+月島春果),maimai_append_2,0,6.2,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+aethercrest,dl_aethercrest,en=Aether Crest: Astral,void (Mournfinale) × 水野健治,chunithm_append_3,0,6.2,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+heartache,dl_heartache,en=Heartache;ja=心の痛み,Toby Fox,undertale,0,6.3,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+deathbyglamour,dl_deathbyglamour,en=Death By Glamour;ja=華麗なる死闘,Toby Fox,undertale,0,6.3,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+yourbestnightmare,dl_yourbestnightmare,en=Your Best Nightmare;ja=最高の悪夢,Toby Fox,undertale,1,6.3,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+lastgoodbye,dl_lastgoodbye,en=Last Goodbye;ja=これでホントにサヨナラ,Toby Fox,undertale,0,6.3,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+megalovania,dl_megalovania,en=MEGALOVANIA,Toby Fox,undertale,1,6.3,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+megalovaniarmx,dl_megalovaniarmx,en=MEGALOVANIA (Camellia Remix),Camellia,single,1,6.3,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+placebobattler,dl_placebobattler,en=Placebo♥Battler;ja=プラシイボ♥バトラー,OSTER project,single,0,6.3,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+blackmirror,dl_blackmirror,en=Black Mirror on the Wall,暁Records,extend_3,1,6.3,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+shinchoku,dl_shinchoku,en=Shinchoku Doudesuka?;ja=進捗どうですか?,sumijun feat. ななひら,single,0,6.3,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+trpno,dl_trpno,en=TRPNO,Nauts,extend_3,0,6.3,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+tau,dl_tau,en=τ (tau),Wooden,extend_3,0,6.4,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+dullblade,dl_dullblade,en=Dull Blade,stuv,single,1,6.4,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+wontbackdown,dl_wontbackdown,en=Won't Back Down,Pure 100% / KASA,extend_3,1,6.5,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+dontdie,dl_dontdie,en=Don't Die,Paul Bazooka,single,1,6.5,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+ladymadestar,dl_ladymadestar,en=Ladymade Star,ESTi,djmax,0,6.5,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+endmoonlight,dl_endmoonlight,en=End of The Moonlight,Forte Escape,djmax,1,6.5,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+uad,dl_uad,en=U.A.D,HAYAKO,djmax,0,6.5,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+oblivion,dl_oblivion,en=OBLIVION,ESTi,djmax,1,6.5,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+nightmare,dl_nightmare,en=Nightmare,M2U,djmax,1,6.5,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+tictactoe,dl_tictactoe,en=Tic! Tac! Toe!,TAK x Corbin,single,0,6.5,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+satisfaction,satisfaction,en=SATISFACTION,P*Light & DJ Noriken feat. KMNZ,base,1,6.6,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,0.aff;1.aff;2.aff;4.aff,base.ogg
+someday,dl_someday,en=Someday,NieN,extend_3,0,6.6,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+miles,dl_miles,en=Miles,Electronic Boutique,single,0,6.6,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+iwantyou,dl_iwantyou,en=I want You,Lin-G,djmax_append_1,0,6.6,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+syriana,dl_syriana,en=Syriana,BEXTER,djmax_append_1,1,6.6,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+liar,dl_liar,en=Liar,zts,djmax_append_1,1,6.6,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+blythe,dl_blythe,en=BlythE,M2U,djmax_append_1,1,6.6,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+wereallgonnadie,dl_wereallgonnadie,en=We're All Gonna Die,Paul Bazooka,djmax_append_1,1,6.6,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+dematerialized,dematerialized,en=Dematerialized,In Love With A Ghost,base,1,6.7,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,0.aff;1.aff;2.aff;4.aff,base.ogg
+seethelights,dl_seethelights,en=See the Lights!,polysha feat. しろさきあや,anima,0,6.7,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+scarletlunar,dl_scarletlunar,en=Scarlet Lunar Empress;ja=朱月ノ姫,technoplanet feat. 夕月ティア,anima,0,6.7,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+dualdependency,dl_dualdependency,en=Dual Dependency,seatrus,anima,0,6.7,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+lilly,dl_lilly,en=Lilly,Juggernaut.,anima,0,6.7,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+extradimensional,dl_extradimensional,en=Extradimensional Cosmic Phenomenon;ja=多次元宇宙融合論,TAKIO feat. つぐ,anima,1,6.7,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+disintegration,dl_disintegration,en=disintegration,ひゅ〜ぶ,extend_3,0,6.8,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+factorder,dl_factorder,en=Factorder,瀬名 feat. 梨雛,anima_append_1,1,6.8,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+incompleteone,dl_incompleteone,en=incomplete the one,Halv feat.Kuroa*,anima_append_1,1,6.8,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+chaosblast,dl_chaosblast,en=CHAOSBLAST,QURELESS + 柚子花,anima_append_1,1,6.8,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+welcomequeen,dl_welcomequeen,"en=Welcome, Queen of Fiction.",打打だいず,anima_append_1,1,6.8,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+altergate,dl_altergate,en=AlterGate,MisoilePunch♪ ~タケノコ添え~,anima_append_1,1,6.8,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+acheron,dl_acheron,en=Acheron,KARUT,single,1,6.8,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+eternitybreak,dl_eternitybreak,en=Eternity Break,Puru,single,1,6.8,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+rostpagegene,dl_rostpagegene,en=ROST PAGE GENE,MYUKKE.,extend_3,0,6.9,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+violaillyria,dl_violaillyria,en=Viola Illyria,Kolaa,eclipse,0,6.9,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+vainspire,dl_vainspire,en=Vainspire,satella,eclipse,1,6.9,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+nowayback,dl_nowayback,en=No Way Back,Nhato,eclipse,0,6.9,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+andorxor,dl_andorxor,en=ANDORXOR,Sobrem,eclipse,1,6.9,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+undyingmacula,dl_undyingmacula,en=Undying Macula,Ashrount,eclipse,1,6.9,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+awakening,dl_awakening,en=Wake in Hour;ja=始マリノ詩,有村京悟 feat.July,extend_4,0,6.10,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+mod,dl_mod,en=mod,kalsoer,extend_4,0,6.10,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+particle,dl_particle,en=Particle,Lime / Kankitsu,extend_4,1,6.10,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+paradoxpalette,dl_paradoxpalette,en=Paradox Palette,Aethoro,extend_4,0,6.10,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+xxium,dl_xxium,en=Xxium and Purple haze,D.watt,extend_4,1,6.10,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+angelsboundary,dl_angelsboundary,en=Angel's Boundary,MEMODEMO,single,0,6.10,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+xterfusion,dl_xterfusion,en=Xterfusion,REDALiCE × t+pazolite,single,1,6.10,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+infinitedim,dl_infinitedim,en=INFINITE DIMENSION,DJ Noriken × P*Light,nextstage,0,6.10,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+incarnator,dl_incarnator,en=INCARNATOR₀₀;ko_dialog=INCARNATOR00;zh-Hans_dialog=INCARNATOR00;zh-Hant_dialog=INCARNATOR00,Silentroom × N²,nextstage,1,6.10,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+zephyrlast,dl_zephyrlast,en=zephyrlasting,s-don × nitro (lowiro),nextstage,1,6.10,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+marenyx,dl_marenyx,en=MARENYX,BlackY × Aoi,nextstage,1,6.10,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+codeoblivion,dl_codeoblivion,en=Code: Oblivion,Kobaryo × Gram,nextstage,1,6.10,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+azalea,dl_azalea,en=ΛZΛLEΛ,ak+q × onoken,nextstage,0,6.10,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+tabootears,dl_tabootears,en=taboo tears you up 2017,REDALiCE,extend_4,1,6.11,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+grandspell,dl_grandspell,en=Grandspell,Hylen,single,1,6.11,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+undefined,dl_undefined,en=undefined,planless & 乃花こより,extend_4,1,6.11,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+mask,dl_mask,en=~_+,AQUASINE ~ MEMODEMO + METAROOM,extend_4,0,6.11,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+paranoidarc,dl_paranoidarc,en=Paranoid Arc,t+pazolite,single,1,6.11,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+subsphere,dl_subsphere,en=Subsphere in Eclosion;ja=羽化する亜球体,窓辺リカ,single,0,6.11,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+theraft,dl_theraft,en=The 'Raft' taught me: your heart will always find a way.;ja=［筏］は云う。幾ら漂流すれど不撓の心さえ有れば軈て行到ると。,庭師,single,1,6.11,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+omajinai,dl_omajinai,en=OMAJINAI;ja=おまじない,Tsubusare BOZZ × Madoka*,extend_4,0,6.12,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+chaintonite,dl_chaintonite,en=CHAIN2NITE,asuzora feat. cyber milk ちゃん,megarex,1,6.12,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+onestepcloser,dl_onestepcloser,en=One Step Closer,Mameyudoufu × 藍月なくる,megarex,0,6.12,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+mylifeismine,dl_mylifeismine,en=My life is mine alone!,Mylta feat. ねんね,megarex,0,6.12,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+meltyrhapsody,dl_meltyrhapsody,en=Melty Rhapsody;ja=メルティーラプソディー,lapix feat. PANXI,megarex,0,6.12,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+signal,dl_signal,en=Signal,rejection feat. Such,megarex,1,6.12,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+caramelpop,caramelpop,en=Gimme Caramel Popcorn!;ja=キャラメルポップコーンたべたいよ〜,ヤミナベレコーズ feat. 繭糸,base,0,6.12,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,0.aff;1.aff;2.aff;4.aff,base.ogg
+shinoukyoseki,dl_shinoukyoseki,en=The Forgotten Forest Haven;ja=森奥虚跡,ShiBa,extend_4,0,6.12,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+unknownnum,dl_unknownnum,en=+1(UNKNOWN)-NUMBER,MEMODEMO × AQUASINE ^ (hackerling),single,1,6.12,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+thirdavenue,dl_thirdavenue,en=3rd Avenue,Sound Souler,extend_4,1,6.13,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+vallista,dl_vallista,en=Vallista,Sakuzyo,extend_4,0,6.13,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+goodrage,dl_goodrage,en=GOODRAGE,EBIMAYO,single,0,6.13,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+cryogenic,dl_cryogenic,en=Cryogenic,Camellia ft. Petra Gurin,single,1,6.13,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+desertrealm,dl_desertrealm,en=Desertrealm,"Masahiro ""Godspeed"" Aoki",single,1,6.13,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+spiderdance,dl_spiderdance,en=Spider Dance;ja=スパイダーダンス,Toby Fox,undertale_append_1,0,6.14,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+spearofjustice,dl_spearofjustice,en=Spear of Justice;ja=正義の槍,Toby Fox,undertale_append_1,0,6.14,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+asgore,dl_asgore,en=ASGORE;ja=アズゴア,Toby Fox,undertale_append_1,0,6.14,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+mirrorrmx,dl_mirrorrmx,en=MIRROR - kamome sano remix,kamome sano,extend_4,0,6.14,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+riotsystem,dl_riotsystem,en=Riot in the System,Laur & Massive New Krew feat. 社築,extend_4,1,6.14,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+cosmogyral,dl_cosmogyral,en=Cosmogyral,Darren + Altermis,extend_4,0,6.14,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+flexidefine,dl_flexidefine,en=flexidefine,Lamanya,extend_4,1,6.14,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+altersist,dl_altersist,en=Altersist,void (Mournfinale),single,0,6.14,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+csqn,dl_csqn,en=c.s.q.n.,Aoi,single,1,6.14,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+sucromania,dl_sucromania,en=Sucromania;ja=ザラメノキワミ,STEAKA,single,1,6.15,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+lavie,dl_lavie,en=Lavie;ja=ラヴィ,すりぃ,virtualsingers,1,6.15,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+kamippoi,dl_kamippoi,en=God-ish;ja=神っぽいな,ピノキオピー,virtualsingers,1,6.15,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+override,dl_override,en=Override;ja=オーバーライド,吉田夜世,virtualsingers,0,6.15,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+telepathy,dl_telepathy,en=Telepathy;ja=テレパシ,DECO*27,virtualsingers,0,6.15,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+aishite,dl_aishite,"en=Love me, Love me, Love me;ja=愛して愛して愛して",きくお,virtualsingers,1,6.15,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+synthesis,dl_synthesis,en=Synthesis.,tn-shi,single,1,6.16,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+acidgod,dl_acidgod,en=Acid God,Yuta Imai,single,1,6.16,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg
+chronologia,dl_chronologia,en=chronologia,lowiro Sound Team (ak+q x nitro),single,0,6.16,,1080_base.jpg;1080_base_256.jpg,,base,1080_base.jpg;1080_base_256.jpg,,preview.ogg

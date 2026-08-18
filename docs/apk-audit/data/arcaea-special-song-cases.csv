@@ -1,0 +1,100 @@
+songId,relatedSongId,songIdx,title,artist,caseType,difficulty,displayLevel,rawRating,rawRatingPlus,evidence,externalReference,confidence
+lostcivilization,,1,en=Lost Civilization,Laur vs CK,difficulty-specific-jacket,BYD,9+,9,True,assets/songs/songlist:jacketOverride=true; assets/songs/lostcivilization/difficulties,,Confirmed
+goodtek,,2,en=GOODTEK (Arcaea Edit),EBIMAYO,difficulty-specific-jacket,BYD,9+,9,True,assets/songs/songlist:jacketOverride=true; assets/songs/goodtek/difficulties,,Confirmed
+fairytale,,6,en=Fairytale,chitose,difficulty-specific-jacket,BYD,9,9,,assets/songs/songlist:jacketOverride=true; assets/songs/fairytale/difficulties,,Confirmed
+shadesoflight,,12,en=Shades of Light in a Transcendent Realm,ak+q,difficulty-specific-jacket,BYD,9,9,,assets/songs/songlist:jacketOverride=true; assets/songs/shadesoflight/difficulties,,Confirmed
+vexaria,,13,en=Vexaria,ak+q,difficulty-specific-jacket,BYD,9,9,,assets/songs/songlist:jacketOverride=true; assets/songs/vexaria/difficulties,,Confirmed
+qualia,,15,en=qualia -ideaesthesia-,nitro,difficulty-specific-jacket,BYD,9+,9,True,assets/songs/songlist:jacketOverride=true; assets/songs/qualia/difficulties,,Confirmed
+pragmatism,,16,en=PRAGMATISM,Laur,difficulty-specific-title,BYD,11,11,,assets/songs/songlist:title_localized; assets/songs/pragmatism/difficulties,,Confirmed
+pragmatism,,16,en=PRAGMATISM,Laur,difficulty-specific-audio,BYD,11,11,,assets/songs/songlist:audioOverride=true; assets/songs/pragmatism/difficulties,,Confirmed
+pragmatism,,16,en=PRAGMATISM,Laur,difficulty-specific-jacket,BYD,11,11,,assets/songs/songlist:jacketOverride=true; assets/songs/pragmatism/difficulties,,Confirmed
+lumia,,18,en=Lumia,sky_delta,difficulty-specific-jacket,BYD,9,9,,assets/songs/songlist:jacketOverride=true; assets/songs/lumia/difficulties,,Confirmed
+dement,,19,en=Dement ~after legend~,Cosmograph,difficulty-specific-jacket,BYD,9+,9,True,assets/songs/songlist:jacketOverride=true; assets/songs/dement/difficulties,,Confirmed
+infinityheaven,,22,en=Infinity Heaven,HyuN,difficulty-specific-jacket,BYD,9,9,,assets/songs/songlist:jacketOverride=true; assets/songs/infinityheaven/difficulties,,Confirmed
+partyvinyl,,23,en=Party Vinyl,モリモリあつし,difficulty-specific-jacket,BYD,10,10,,assets/songs/songlist:jacketOverride=true; assets/songs/partyvinyl/difficulties,,Confirmed
+kanagawa,,33,en=Kanagawa Cyber Culvert;ja=神奈川電脳暗渠,南ゆに,difficulty-specific-jacket,BYD,9+,9,True,assets/songs/songlist:jacketOverride=true; assets/songs/kanagawa/difficulties,,Confirmed
+ignotus,,41,en=Ignotus,ak+q,difficulty-specific-title,BYD,9+,9,True,assets/songs/songlist:title_localized; assets/songs/ignotus/difficulties,,Confirmed
+ignotus,,41,en=Ignotus,ak+q,difficulty-specific-audio,BYD,9+,9,True,assets/songs/songlist:audioOverride=true; assets/songs/ignotus/difficulties,,Confirmed
+ignotus,,41,en=Ignotus,ak+q,difficulty-specific-jacket,BYD,9+,9,True,assets/songs/songlist:jacketOverride=true; assets/songs/ignotus/difficulties,,Confirmed
+ignotus,,41,en=Ignotus,ak+q,difficulty-specific-artist,BYD,9+,9,True,assets/songs/songlist:artist; assets/songs/ignotus/difficulties,,Confirmed
+moonheart,,45,en=Moonheart,翡乃イスカ,difficulty-specific-jacket,BYD,9+,9,True,assets/songs/songlist:jacketOverride=true; assets/songs/moonheart/difficulties,,Confirmed
+trappola,,52,en=trappola bewitching;ja=妖艶魔女 -trappola bewitching-,gmtn.,difficulty-specific-jacket,BYD,10,10,,assets/songs/songlist:jacketOverride=true; assets/songs/trappola/difficulties,,Confirmed
+axiumcrisis,,55,en=Axium Crisis,ak+q,difficulty-specific-title,BYD,11,11,,assets/songs/songlist:title_localized; assets/songs/axiumcrisis/difficulties,,Confirmed
+axiumcrisis,,55,en=Axium Crisis,ak+q,difficulty-specific-audio,BYD,11,11,,assets/songs/songlist:audioOverride=true; assets/songs/axiumcrisis/difficulties,,Confirmed
+axiumcrisis,,55,en=Axium Crisis,ak+q,difficulty-specific-jacket,BYD,11,11,,assets/songs/songlist:jacketOverride=true; assets/songs/axiumcrisis/difficulties,,Confirmed
+axiumcrisis,,55,en=Axium Crisis,ak+q,difficulty-specific-bpm,BYD,11,11,,assets/songs/songlist:bpm/bpm_base; assets/songs/axiumcrisis/difficulties,,Confirmed
+axiumcrisis,,55,en=Axium Crisis,ak+q,difficulty-specific-artist,BYD,11,11,,assets/songs/songlist:artist; assets/songs/axiumcrisis/difficulties,,Confirmed
+redandblue,,58,en=Red and Blue,Silentroom,difficulty-specific-title,BYD,10,10,,assets/songs/songlist:title_localized; assets/songs/redandblue/difficulties,,Confirmed
+redandblue,,58,en=Red and Blue,Silentroom,difficulty-specific-audio,BYD,10,10,,assets/songs/songlist:audioOverride=true; assets/songs/redandblue/difficulties,,Confirmed
+redandblue,,58,en=Red and Blue,Silentroom,difficulty-specific-jacket,BYD,10,10,,assets/songs/songlist:jacketOverride=true; assets/songs/redandblue/difficulties,,Confirmed
+redandblue,,58,en=Red and Blue,Silentroom,difficulty-specific-bpm,BYD,10,10,,assets/songs/songlist:bpm/bpm_base; assets/songs/redandblue/difficulties,,Confirmed
+redandblue,,58,en=Red and Blue,Silentroom,difficulty-specific-artist,BYD,10,10,,assets/songs/songlist:artist; assets/songs/redandblue/difficulties,,Confirmed
+singularity,,70,en=Singularity,ETIA.,difficulty-specific-title,BYD,10,10,,assets/songs/songlist:title_localized; assets/songs/singularity/difficulties,,Confirmed
+singularity,,70,en=Singularity,ETIA.,difficulty-specific-audio,BYD,10,10,,assets/songs/songlist:audioOverride=true; assets/songs/singularity/difficulties,,Confirmed
+singularity,,70,en=Singularity,ETIA.,difficulty-specific-jacket,BYD,10,10,,assets/songs/songlist:jacketOverride=true; assets/songs/singularity/difficulties,,Confirmed
+singularity,,70,en=Singularity,ETIA.,difficulty-specific-artist,BYD,10,10,,assets/songs/songlist:artist; assets/songs/singularity/difficulties,,Confirmed
+nexttoyou,,73,en=next to you,uma feat. 橘花音,difficulty-specific-jacket,BYD,9,9,,assets/songs/songlist:jacketOverride=true; assets/songs/nexttoyou/difficulties,,Confirmed
+bethere,,78,en=Be There,PSYQUI,difficulty-specific-jacket,BYD,10,10,,assets/songs/songlist:jacketOverride=true; assets/songs/bethere/difficulties,,Confirmed
+cyberneciacatharsis,,79,en=Cybernecia Catharsis,Tanchiky,difficulty-specific-jacket,BYD,9+,9,True,assets/songs/songlist:jacketOverride=true; assets/songs/cyberneciacatharsis/difficulties,,Confirmed
+inkarusi,,81,en=inkar-usi,DIA,difficulty-specific-jacket,BYD,9,9,,assets/songs/songlist:jacketOverride=true; assets/songs/inkarusi/difficulties,,Confirmed
+bookmaker,,89,en=Bookmaker (2D Version),Kobaryo,difficulty-specific-jacket,BYD,10,10,,assets/songs/songlist:jacketOverride=true; assets/songs/bookmaker/difficulties,,Confirmed
+dropdead,,91,en=dropdead,Frums,difficulty-specific-title,BYD,10,10,,assets/songs/songlist:title_localized; assets/songs/dropdead/difficulties,,Confirmed
+dropdead,,91,en=dropdead,Frums,difficulty-specific-audio,BYD,10,10,,assets/songs/songlist:audioOverride=true; assets/songs/dropdead/difficulties,,Confirmed
+dropdead,,91,en=dropdead,Frums,difficulty-specific-jacket,BYD,10,10,,assets/songs/songlist:jacketOverride=true; assets/songs/dropdead/difficulties,,Confirmed
+dropdead,,91,en=dropdead,Frums,difficulty-specific-bpm,BYD,10,10,,assets/songs/songlist:bpm/bpm_base; assets/songs/dropdead/difficulties,,Confirmed
+dropdead,,91,en=dropdead,Frums,difficulty-specific-artist,BYD,10,10,,assets/songs/songlist:artist; assets/songs/dropdead/difficulties,,Confirmed
+nhelv,,93,en=Nhelv,Silentroom,difficulty-specific-jacket,BYD,10+,10,True,assets/songs/songlist:jacketOverride=true; assets/songs/nhelv/difficulties,,Confirmed
+purgatorium,,95,en=Purgatorium,お月さま交響曲,difficulty-specific-jacket,BYD,9,9,,assets/songs/songlist:jacketOverride=true; assets/songs/purgatorium/difficulties,,Confirmed
+stager,,97,en=STAGER (ALL STAGE CLEAR),Ras,difficulty-specific-jacket,PST,3,3,,assets/songs/songlist:jacketOverride=true; assets/songs/stager/difficulties,,Confirmed
+stager,,97,en=STAGER (ALL STAGE CLEAR),Ras,difficulty-specific-jacket,PRS,6,6,,assets/songs/songlist:jacketOverride=true; assets/songs/stager/difficulties,,Confirmed
+libertas,,111,en=Libertas,Zekk,difficulty-specific-jacket,BYD,10,10,,assets/songs/songlist:jacketOverride=true; assets/songs/libertas/difficulties,,Confirmed
+antithese,,113,en=Antithese,Blacklolita,difficulty-specific-jacket,BYD,9,9,,assets/songs/songlist:jacketOverride=true; assets/songs/antithese/difficulties,,Confirmed
+viciousheroism,,116,en=Vicious Heroism,Kobaryo,difficulty-specific-title,BYD,11,11,,assets/songs/songlist:title_localized; assets/songs/viciousheroism/difficulties,,Confirmed
+viciousheroism,,116,en=Vicious Heroism,Kobaryo,difficulty-specific-audio,BYD,11,11,,assets/songs/songlist:audioOverride=true; assets/songs/viciousheroism/difficulties,,Confirmed
+viciousheroism,,116,en=Vicious Heroism,Kobaryo,difficulty-specific-jacket,BYD,11,11,,assets/songs/songlist:jacketOverride=true; assets/songs/viciousheroism/difficulties,,Confirmed
+viciousheroism,,116,en=Vicious Heroism,Kobaryo,difficulty-specific-bpm,BYD,11,11,,assets/songs/songlist:bpm/bpm_base; assets/songs/viciousheroism/difficulties,,Confirmed
+viciousheroism,,116,en=Vicious Heroism,Kobaryo,difficulty-specific-artist,BYD,11,11,,assets/songs/songlist:artist; assets/songs/viciousheroism/difficulties,,Confirmed
+particlearts,,127,,,unusual-difficulty-composition,,,,,assets/songs/songlist:ratingClass composition=(); difficultyCount=0,,Medium
+heavensdoor,,129,en=Heavensdoor,LeaF,difficulty-specific-jacket,BYD,10+,10,True,assets/songs/songlist:jacketOverride=true; assets/songs/heavensdoor/difficulties,,Confirmed
+melodyoflove,,133,en=A Wandering Melody of Love;ja=迷える音色は恋の唄,からとPαnchii少年 feat.はるの,difficulty-specific-jacket-night,PST,3,3,,assets/songs/songlist:jacket_night; assets/songs/melodyoflove/difficulties,,High
+melodyoflove,,133,en=A Wandering Melody of Love;ja=迷える音色は恋の唄,からとPαnchii少年 feat.はるの,difficulty-specific-jacket-night,PRS,7,7,,assets/songs/songlist:jacket_night; assets/songs/melodyoflove/difficulties,,High
+melodyoflove,,133,en=A Wandering Melody of Love;ja=迷える音色は恋の唄,からとPαnchii少年 feat.はるの,difficulty-specific-jacket-night,FTR,9,9,,assets/songs/songlist:jacket_night; assets/songs/melodyoflove/difficulties,,High
+freefall,,138,en=FREEF4LL,YUKIYANAGI,difficulty-specific-jacket,BYD,9+,9,True,assets/songs/songlist:jacketOverride=true; assets/songs/freefall/difficulties,,Confirmed
+heavenlycaress,,141,en=Heavenly caress,Noah,difficulty-specific-jacket,BYD,10+,10,True,assets/songs/songlist:jacketOverride=true; assets/songs/heavenlycaress/difficulties,,Confirmed
+laqryma,,146,en=La'qryma of the Wasteland,DJ Noriken,difficulty-specific-jacket,BYD,10,10,,assets/songs/songlist:jacketOverride=true; assets/songs/laqryma/difficulties,,Confirmed
+einherjar,,147,en=Einherjar Joker,DJ Genki vs Gram,difficulty-specific-jacket,BYD,10+,10,True,assets/songs/songlist:jacketOverride=true; assets/songs/einherjar/difficulties,,Confirmed
+oblivia,,152,en=Oblivia,Saiph,difficulty-specific-jacket,BYD,9+,9,True,assets/songs/songlist:jacketOverride=true; assets/songs/oblivia/difficulties,,Confirmed
+tempestissimo,,160,en=Tempestissimo,t+pazolite,difficulty-specific-jacket,BYD,11,11,,assets/songs/songlist:jacketOverride=true; assets/songs/tempestissimo/difficulties,,Confirmed
+purpleverse,,182,en=Purple Verse,Hommarju,difficulty-specific-jacket,BYD,10,10,,assets/songs/songlist:jacketOverride=true; assets/songs/purpleverse/difficulties,,Confirmed
+eccentrictale,,184,en=Eccentric Tale,Yamajet,difficulty-specific-jacket,BYD,9+,9,True,assets/songs/songlist:jacketOverride=true; assets/songs/eccentrictale/difficulties,,Confirmed
+kyogenkigo,,221,en=False Embellishment;ja=狂言綺語,影虎。 & ikaruga_nex,difficulty-specific-jacket,BYD,9+,9,True,assets/songs/songlist:jacketOverride=true; assets/songs/kyogenkigo/difficulties,,Confirmed
+smallcloud,,224,en=Small Cloud Sugar Candy,テヅカ x Aoi feat.桃雛なの,difficulty-specific-jacket,BYD,10,10,,assets/songs/songlist:jacketOverride=true; assets/songs/smallcloud/difficulties,,Confirmed
+avril,,260,en=Ävril -Flicka i krans-;ko_dialog=Avril -Flicka i krans-,Rigël Theatre,difficulty-specific-jacket,PST,3,3,,assets/songs/songlist:jacketOverride=true; assets/songs/avril/difficulties,,Confirmed
+avril,,260,en=Ävril -Flicka i krans-;ko_dialog=Avril -Flicka i krans-,Rigël Theatre,difficulty-specific-jacket,PRS,6,6,,assets/songs/songlist:jacketOverride=true; assets/songs/avril/difficulties,,Confirmed
+prism,,264,en=Prism,bermei.inazawa ft. Chata,difficulty-specific-jacket,PST,2,2,,assets/songs/songlist:jacketOverride=true; assets/songs/prism/difficulties,,Confirmed
+prism,,264,en=Prism,bermei.inazawa ft. Chata,difficulty-specific-jacket,PRS,5,5,,assets/songs/songlist:jacketOverride=true; assets/songs/prism/difficulties,,Confirmed
+protoflicker,,265,en=Protoflicker,Silentroom,difficulty-specific-jacket,PST,3,3,,assets/songs/songlist:jacketOverride=true; assets/songs/protoflicker/difficulties,,Confirmed
+protoflicker,,265,en=Protoflicker,Silentroom,difficulty-specific-jacket,PRS,7,7,,assets/songs/songlist:jacketOverride=true; assets/songs/protoflicker/difficulties,,Confirmed
+stasis,,266,en=Stasis,Maozon,difficulty-specific-jacket,PST,4,4,,assets/songs/songlist:jacketOverride=true; assets/songs/stasis/difficulties,,Confirmed
+stasis,,266,en=Stasis,Maozon,difficulty-specific-jacket,PRS,7,7,,assets/songs/songlist:jacketOverride=true; assets/songs/stasis/difficulties,,Confirmed
+last,lasteternity,282,en=Last,onoken,last-family,PST,4,4,,assets/songs/songlist:songlist id=last;same set/purchase/bg; assets/songs/last/difficulties,https://arcaea.fandom.com/wiki/Last,High
+last,lasteternity,282,en=Last,onoken,last-family,PRS,7,7,,assets/songs/songlist:songlist id=last;same set/purchase/bg; assets/songs/last/difficulties,https://arcaea.fandom.com/wiki/Last,High
+last,lasteternity,282,en=Last,onoken,last-family,FTR,9,9,,assets/songs/songlist:songlist id=last;same set/purchase/bg; assets/songs/last/difficulties,https://arcaea.fandom.com/wiki/Last,High
+last,lasteternity,282,en=Last,onoken,difficulty-specific-title,BYD,9,9,,assets/songs/songlist:title_localized; assets/songs/last/difficulties,,Confirmed
+last,lasteternity,282,en=Last,onoken,difficulty-specific-audio,BYD,9,9,,assets/songs/songlist:audioOverride=true; assets/songs/last/difficulties,,Confirmed
+last,lasteternity,282,en=Last,onoken,difficulty-specific-jacket,BYD,9,9,,assets/songs/songlist:jacketOverride=true; assets/songs/last/difficulties,,Confirmed
+last,lasteternity,282,en=Last,onoken,difficulty-title-family,BYD,9,9,,assets/songs/songlist:title_localized contains |; assets/songs/last/difficulties,https://arcaea.fandom.com/wiki/Last,High
+last,lasteternity,282,en=Last,onoken,last-family,BYD,9,9,,assets/songs/songlist:songlist id=last;same set/purchase/bg; assets/songs/last/difficulties,https://arcaea.fandom.com/wiki/Last,High
+lasteternity,last,283,en=Last | Eternity,onoken,rating-zero-slot,PST,,0,,assets/songs/songlist:rating=0;hidden_until=always;empty chartDesigner; assets/songs/lasteternity/difficulties,,Confirmed
+lasteternity,last,283,en=Last | Eternity,onoken,last-family,PST,,0,,assets/songs/songlist:songlist id=lasteternity;same set/purchase/bg; assets/songs/lasteternity/difficulties,https://arcaea.fandom.com/wiki/Last,High
+lasteternity,last,283,en=Last | Eternity,onoken,rating-zero-slot,PRS,,0,,assets/songs/songlist:rating=0;hidden_until=always;empty chartDesigner; assets/songs/lasteternity/difficulties,,Confirmed
+lasteternity,last,283,en=Last | Eternity,onoken,last-family,PRS,,0,,assets/songs/songlist:songlist id=lasteternity;same set/purchase/bg; assets/songs/lasteternity/difficulties,https://arcaea.fandom.com/wiki/Last,High
+lasteternity,last,283,en=Last | Eternity,onoken,rating-zero-slot,FTR,,0,,assets/songs/songlist:rating=0;hidden_until=always;empty chartDesigner; assets/songs/lasteternity/difficulties,,Confirmed
+lasteternity,last,283,en=Last | Eternity,onoken,last-family,FTR,,0,,assets/songs/songlist:songlist id=lasteternity;same set/purchase/bg; assets/songs/lasteternity/difficulties,https://arcaea.fandom.com/wiki/Last,High
+lasteternity,last,283,en=Last | Eternity,onoken,last-family,BYD,9+,9,True,assets/songs/songlist:songlist id=lasteternity;same set/purchase/bg; assets/songs/lasteternity/difficulties,https://arcaea.fandom.com/wiki/Last,High
+lucidtraveler,,326,en=Lucid Traveler,Akira Complex vs 3R2,difficulty-specific-jacket,FTR,10,10,,assets/songs/songlist:jacketOverride=true; assets/songs/lucidtraveler/difficulties,,Confirmed
+ii,,333,en= ͟͝͞Ⅱ́̕ ;ko=II;zh-Hans=II;zh-Hant=II,Cytus,difficulty-specific-jacket,PST,5,5,,assets/songs/songlist:jacketOverride=true; assets/songs/ii/difficulties,,Confirmed
+ii,,333,en= ͟͝͞Ⅱ́̕ ;ko=II;zh-Hans=II;zh-Hant=II,Cytus,difficulty-specific-jacket,PRS,8+,8,True,assets/songs/songlist:jacketOverride=true; assets/songs/ii/difficulties,,Confirmed
+tothefurthestdream,,343,en=To the Furthest Dream;ja=彼方の夢へと,ii/night feat. 綺良雪,difficulty-specific-jacket,PST,4,4,,assets/songs/songlist:jacketOverride=true; assets/songs/tothefurthestdream/difficulties,,Confirmed
+tothefurthestdream,,343,en=To the Furthest Dream;ja=彼方の夢へと,ii/night feat. 綺良雪,difficulty-specific-jacket,PRS,8,8,,assets/songs/songlist:jacketOverride=true; assets/songs/tothefurthestdream/difficulties,,Confirmed
+saintorsinner,,414,en=Saint or Sinner,crayvxn,difficulty-specific-jacket,BYD,10,10,,assets/songs/songlist:jacketOverride=true; assets/songs/saintorsinner/difficulties,,Confirmed

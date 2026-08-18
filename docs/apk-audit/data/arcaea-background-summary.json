@@ -1,0 +1,8 @@
+{
+  "backgroundAssetCount": 293,
+  "songBackgroundReferenceRows": 1029,
+  "resolvedSongBackgroundReferenceRows": 1029,
+  "referencedAssetCount": 148,
+  "unreferencedAssetCount": 145,
+  "mappingRule": "songlist bg/bg_inverse values are matched to the basename stem under assets/img/bg/; suffix semantics remain role candidates unless supported by path or code"
+}

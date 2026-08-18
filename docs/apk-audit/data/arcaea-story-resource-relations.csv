@@ -1,0 +1,58 @@
+assetPath,resourceRole,storyPath,act,chapter,entry,storyType,locale,order,nodeKey,pathId,pathTitle,relatedSongId,storyData,confidence,evidence
+assets/app-data/story/cg/0-3.jpg,story-cg,main,0,0,3,nvl,,2,0-3,0,Arcaea,shadesoflight,,Confirmed,assets/app-data/story/main/entries_0 -> app-data/story/cg/0-3.jpg; assets/app-data/story2/ordering
+assets/app-data/story/cg/1-1.jpg,story-cg,main,0,1,1,nvl,,0,1-1,1,Eternal Core,lumia,,Confirmed,assets/app-data/story/main/entries_1 -> app-data/story/cg/1-1.jpg; assets/app-data/story2/ordering
+assets/app-data/story/cg/1-8.jpg,story-cg,main,0,1,8,nvl,,4,1-8,3,Luminous Sky,fractureray,,Confirmed,assets/app-data/story/main/entries_1 -> app-data/story/cg/1-8.jpg; assets/app-data/story2/ordering
+assets/app-data/story/cg/1-ZR.jpg,story-cg,main,,1,6,nvl,,,1-6,,,etherstrike,,Confirmed,assets/app-data/story/main/entries_1 -> app-data/story/cg/1-ZR.jpg; assets/app-data/story2/ordering
+assets/app-data/story/cg/10-5.jpg,story-cg,side,2,10,5,nvl,,4,10-5,16,Binary Enfold,memoryforest,,Confirmed,assets/app-data/story/side/entries_10 -> app-data/story/cg/10-5.jpg; assets/app-data/story2/ordering
+assets/app-data/story/cg/11-2.jpg,story-cg,side,1,11,2,nvl,,1,11-2,13,Colorful Dream,rugie,,Confirmed,assets/app-data/story/side/entries_11 -> app-data/story/cg/11-2.jpg; assets/app-data/story2/ordering
+assets/app-data/story/cg/11-8-1.jpg,story-cg,side,3,11,8,nvl,,4,11-8,25,Colorful Dream,desive,,Confirmed,assets/app-data/story/side/entries_11 -> app-data/story/cg/11-8-1.jpg; assets/app-data/story2/ordering
+assets/app-data/story/cg/11-8-2.jpg,story-cg-unreferenced-by-entry-field,,,,,,,,,,,,,Unresolved,assets/app-data/story/cg/11-8-2.jpg
+assets/app-data/story/cg/12-6-1.jpg,story-cg,side,3,12,6,nvl,,2,12-6,26,Unseeing Eyes,hypervision,,Confirmed,assets/app-data/story/side/entries_12 -> app-data/story/cg/12-6-1.jpg; assets/app-data/story2/ordering
+assets/app-data/story/cg/12-6-2.jpg,story-cg-unreferenced-by-entry-field,,,,,,,,,,,,,Unresolved,assets/app-data/story/cg/12-6-2.jpg
+assets/app-data/story/cg/12-X.jpg,story-cg,side,,12,7,nvl,,,12-7,,,_hiddenUntilRead,,Confirmed,assets/app-data/story/side/entries_12 -> app-data/story/cg/12-X.jpg; assets/app-data/story2/ordering
+assets/app-data/story/cg/15-4.jpg,story-cg,side,3,15,4,nvl,,3,15-4,22,Lasting Eden,riseoftheworld,,Confirmed,assets/app-data/story/side/entries_15 -> app-data/story/cg/15-4.jpg; assets/app-data/story2/ordering
+assets/app-data/story/cg/16-7-1.jpg,story-cg,side,3,16,7,nvl,,6,16-7,23,Severed Eden,arghena,,Confirmed,assets/app-data/story/side/entries_16 -> app-data/story/cg/16-7-1.jpg; assets/app-data/story2/ordering
+assets/app-data/story/cg/16-7-2.jpg,story-cg-unreferenced-by-entry-field,,,,,,,,,,,,,Unresolved,assets/app-data/story/cg/16-7-2.jpg
+assets/app-data/story/cg/16-8.jpg,story-cg,side,3,16,8,nvl,,7,16-8,23,Severed Eden,abstrusedilemma,,Confirmed,assets/app-data/story/side/entries_16 -> app-data/story/cg/16-8.jpg; assets/app-data/story2/ordering
+assets/app-data/story/cg/17-6-1.jpg,story-cg,side,3,17,6,nvl,,5,17-6,24,Sunset Radiance,hotarubinoyuki,,Confirmed,assets/app-data/story/side/entries_17 -> app-data/story/cg/17-6-1.jpg; assets/app-data/story2/ordering
+assets/app-data/story/cg/17-6-2.jpg,story-cg-unreferenced-by-entry-field,,,,,,,,,,,,,Unresolved,assets/app-data/story/cg/17-6-2.jpg
+assets/app-data/story/cg/18-1.jpg,story-cg,side,3,18,1,nvl,,0,18-1,27,Absolute Nihil,_readPreviousEntry,,Confirmed,assets/app-data/story/side/entries_18 -> app-data/story/cg/18-1.jpg; assets/app-data/story2/ordering
+assets/app-data/story/cg/18-2.jpg,story-cg,side,3,18,2,nvl,,1,18-2,27,Absolute Nihil,_readPreviousEntry,,Confirmed,assets/app-data/story/side/entries_18 -> app-data/story/cg/18-2.jpg; assets/app-data/story2/ordering
+assets/app-data/story/cg/18-6.jpg,story-cg,side,3,18,6,nvl,,5,18-6,27,Absolute Nihil,mvurbd,,Confirmed,assets/app-data/story/side/entries_18 -> app-data/story/cg/18-6.jpg; assets/app-data/story2/ordering
+assets/app-data/story/cg/18-7.jpg,story-cg,side,3,18,7,nvl,,6,18-7,27,Absolute Nihil,invertedworld,,Confirmed,assets/app-data/story/side/entries_18 -> app-data/story/cg/18-7.jpg; assets/app-data/story2/ordering
+assets/app-data/story/cg/18-8.jpg,story-cg,side,,18,8,nvl,,,18-8,,,vulcanus,,Confirmed,assets/app-data/story/side/entries_18 -> app-data/story/cg/18-8.jpg; assets/app-data/story2/ordering
+assets/app-data/story/cg/2-1.jpg,story-cg,main,0,2,1,nvl,,3,2-1,1,Eternal Core,viyella,,Confirmed,assets/app-data/story/main/entries_2 -> app-data/story/cg/2-1.jpg; assets/app-data/story2/ordering
+assets/app-data/story/cg/2-8.jpg,story-cg,main,0,2,8,nvl,,4,2-8,2,Vicious Labyrinth,grievouslady,,Confirmed,assets/app-data/story/main/entries_2 -> app-data/story/cg/2-8.jpg; assets/app-data/story2/ordering
+assets/app-data/story/cg/2-D.jpg,story-cg,main,,2,6,nvl,,,2-6,,,axiumcrisis,,Confirmed,assets/app-data/story/main/entries_2 -> app-data/story/cg/2-D.jpg; assets/app-data/story2/ordering
+assets/app-data/story/cg/20-1.jpg,story-cg,main,4,20,1,nvl,,0,20-1,29,Lucent Historia,_readPreviousEntry,,Confirmed,assets/app-data/story/main/entries_20 -> app-data/story/cg/20-1.jpg; assets/app-data/story2/ordering
+assets/app-data/story/cg/20-4.jpg,story-cg,main,4,20,4,nvl,,3,20-4,29,Lucent Historia,raysofremnant,,Confirmed,assets/app-data/story/main/entries_20 -> app-data/story/cg/20-4.jpg; assets/app-data/story2/ordering
+assets/app-data/story/cg/20-6.jpg,story-cg,main,4,20,6,nvl,,5,20-6,29,Lucent Historia,lamentrain,,Confirmed,assets/app-data/story/main/entries_20 -> app-data/story/cg/20-6.jpg; assets/app-data/story2/ordering
+assets/app-data/story/cg/21-2.jpg,story-cg,side,4,21,2,nvl,,1,21-2,30,Extant Anima,scarletlunar,,Confirmed,assets/app-data/story/side/entries_21 -> app-data/story/cg/21-2.jpg; assets/app-data/story2/ordering
+assets/app-data/story/cg/21-3.jpg,story-cg,side,4,21,3,nvl,,2,21-3,30,Extant Anima,dualdependency,,Confirmed,assets/app-data/story/side/entries_21 -> app-data/story/cg/21-3.jpg; assets/app-data/story2/ordering
+assets/app-data/story/cg/21-5-1.jpg,story-cg,side,4,21,5,nvl,,4,21-5,30,Extant Anima,extradimensional,,Confirmed,assets/app-data/story/side/entries_21 -> app-data/story/cg/21-5-1.jpg; assets/app-data/story2/ordering
+assets/app-data/story/cg/21-5-2.jpg,story-cg-unreferenced-by-entry-field,,,,,,,,,,,,,Unresolved,assets/app-data/story/cg/21-5-2.jpg
+assets/app-data/story/cg/22-1.jpg,story-cg,side,4,22,5,nvl,,0,22-5,31,Chapter Experientia,altergate,,Confirmed,assets/app-data/story/side/entries_22 -> app-data/story/cg/22-1.jpg; assets/app-data/story2/ordering
+assets/app-data/story/cg/22-2-1.jpg,story-cg,side,4,22,4,nvl,,1,22-4,31,Chapter Experientia,welcomequeen,,Confirmed,assets/app-data/story/side/entries_22 -> app-data/story/cg/22-2-1.jpg; assets/app-data/story2/ordering
+assets/app-data/story/cg/22-2-2.jpg,story-cg-unreferenced-by-entry-field,,,,,,,,,,,,,Unresolved,assets/app-data/story/cg/22-2-2.jpg
+assets/app-data/story/cg/22-4.jpg,story-cg,side,4,22,2,nvl,,3,22-2,31,Chapter Experientia,incompleteone,,Confirmed,assets/app-data/story/side/entries_22 -> app-data/story/cg/22-4.jpg; assets/app-data/story2/ordering
+assets/app-data/story/cg/22-5.jpg,story-cg,side,4,22,1,nvl,,4,22-1,31,Chapter Experientia,factorder,,Confirmed,assets/app-data/story/side/entries_22 -> app-data/story/cg/22-5.jpg; assets/app-data/story2/ordering
+assets/app-data/story/cg/23-2.jpg,story-cg,main,4,23,2,nvl,,1,23-2,32,Liminal Eclipse,_readPreviousEntry,,Confirmed,assets/app-data/story/main/entries_23 -> app-data/story/cg/23-2.jpg; assets/app-data/story2/ordering
+assets/app-data/story/cg/23-7.jpg,story-cg,main,4,23,7,nvl,,6,23-7,32,Liminal Eclipse,undyingmacula,,Confirmed,assets/app-data/story/main/entries_23 -> app-data/story/cg/23-7.jpg; assets/app-data/story2/ordering
+assets/app-data/story/cg/23-8.jpg,story-cg,main,4,23,8,nvl,,7,23-8,32,Liminal Eclipse,undyingmacula,,Confirmed,assets/app-data/story/main/entries_23 -> app-data/story/cg/23-8.jpg; assets/app-data/story2/ordering
+assets/app-data/story/cg/3-1.jpg,story-cg,side,0,3,1,nvl,,0,3-1,4,Absolute Reason,antithese,,Confirmed,assets/app-data/story/side/entries_3 -> app-data/story/cg/3-1.jpg; assets/app-data/story2/ordering
+assets/app-data/story/cg/4-1.jpg,story-cg,side,0,4,1,nvl,,0,4-1,6,Crimson Solace,paradise,,Confirmed,assets/app-data/story/side/entries_4 -> app-data/story/cg/4-1.jpg; assets/app-data/story2/ordering
+assets/app-data/story/cg/4-7.jpg,story-cg,side,0,4,7,nvl,,6,4-7,6,Crimson Solace,diode,,Confirmed,assets/app-data/story/side/entries_4 -> app-data/story/cg/4-7.jpg; assets/app-data/story2/ordering
+assets/app-data/story/cg/5-1.jpg,story-cg,side,0,5,1,nvl,,0,5-1,7,Ambivalent Vision,genesis,,Confirmed,assets/app-data/story/side/entries_5 -> app-data/story/cg/5-1.jpg; assets/app-data/story2/ordering
+assets/app-data/story/cg/5-6.jpg,story-cg,side,0,5,6,nvl,,5,5-6,7,Ambivalent Vision,lethaeus,,Confirmed,assets/app-data/story/side/entries_5 -> app-data/story/cg/5-6.jpg; assets/app-data/story2/ordering
+assets/app-data/story/cg/7-6.jpg,story-cg,side,1,7,6,nvl,,5,7-6,10,Ephemeral Page,felis,,Confirmed,assets/app-data/story/side/entries_7 -> app-data/story/cg/7-6.jpg; assets/app-data/story2/ordering
+assets/app-data/story/cg/9-5.jpg,story-cg,side,2,9,5,nvl,,4,9-5,15,Esoteric Order,aegleseeker,,Confirmed,assets/app-data/story/side/entries_9 -> app-data/story/cg/9-5.jpg; assets/app-data/story2/ordering
+assets/app-data/story/cg/99-6.jpg,story-cg,side,,99,6,nvl,,,99-6,,,lightningscrew,,Confirmed,assets/app-data/story/side/entries_99 -> app-data/story/cg/99-6.jpg; assets/app-data/story2/ordering
+assets/app-data/story/cg/E-1_epilogue.jpg,story-cg-unreferenced-by-entry-field,,,,,,,,,,,,,Unresolved,assets/app-data/story/cg/E-1_epilogue.jpg
+assets/app-data/story/cg/E-2_epilogue.jpg,story-cg-unreferenced-by-entry-field,,,,,,,,,,,,,Unresolved,assets/app-data/story/cg/E-2_epilogue.jpg
+assets/app-data/story/cg/E-4_epilogue.jpg,story-cg-unreferenced-by-entry-field,,,,,,,,,,,,,Unresolved,assets/app-data/story/cg/E-4_epilogue.jpg
+assets/app-data/story/cg/F-2.jpg,story-cg,main,,102,2,nvl,,,102-2,,,,,Confirmed,assets/app-data/story/main/entries_102 -> app-data/story/cg/F-2.jpg; assets/app-data/story2/ordering
+assets/app-data/story/cg/F-5.jpg,story-cg,main,,102,5,nvl,,,102-5,,,,,Confirmed,assets/app-data/story/main/entries_102 -> app-data/story/cg/F-5.jpg; assets/app-data/story2/ordering
+assets/app-data/story/cg/F-7-1.jpg,story-cg-unreferenced-by-entry-field,,,,,,,,,,,,,Unresolved,assets/app-data/story/cg/F-7-1.jpg
+assets/app-data/story/cg/F-7-2.jpg,story-cg-unreferenced-by-entry-field,,,,,,,,,,,,,Unresolved,assets/app-data/story/cg/F-7-2.jpg
+assets/app-data/story/cg/F-7.jpg,story-cg-unreferenced-by-entry-field,,,,,,,,,,,,,Unresolved,assets/app-data/story/cg/F-7.jpg
+assets/app-data/story/cg/V-10.jpg,story-cg,main,,101,5,nvl,,,101-5,,,dantalion,,Confirmed,assets/app-data/story/main/entries_101 -> app-data/story/cg/V-10.jpg; assets/app-data/story2/ordering

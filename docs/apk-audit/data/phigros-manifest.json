@@ -1,0 +1,668 @@
+{
+  "manifest": {
+    "tag": "manifest",
+    "line": 2,
+    "path": "manifest",
+    "attributes": {
+      "versionCode": 153,
+      "versionName": "3.19.5",
+      "installLocation": 2,
+      "compileSdkVersion": 30,
+      "compileSdkVersionCodename": "11",
+      "package": "com.PigeonGames.Phigros",
+      "platformBuildVersionCode": 30,
+      "platformBuildVersionName": 11
+    }
+  },
+  "application": {
+    "tag": "application",
+    "line": 33,
+    "path": "manifest/application",
+    "attributes": {
+      "label": "@0x7f0a000b",
+      "icon": "@0x7f090000",
+      "extractNativeLibs": true,
+      "networkSecurityConfig": "@0x7f0d0000",
+      "roundIcon": "@0x7f090001",
+      "appComponentFactory": "androidx.core.app.CoreComponentFactory"
+    }
+  },
+  "usesSdk": {
+    "tag": "uses-sdk",
+    "line": 8,
+    "path": "manifest/uses-sdk",
+    "attributes": {
+      "minSdkVersion": 26,
+      "targetSdkVersion": 30
+    }
+  },
+  "permissions": [
+    {
+      "tag": "uses-permission",
+      "line": 19,
+      "path": "manifest/uses-permission",
+      "attributes": {
+        "name": "android.permission.INTERNET"
+      }
+    },
+    {
+      "tag": "uses-permission",
+      "line": 20,
+      "path": "manifest/uses-permission",
+      "attributes": {
+        "name": "android.permission.ACCESS_NETWORK_STATE"
+      }
+    }
+  ],
+  "components": [
+    {
+      "tag": "activity",
+      "line": 62,
+      "path": "manifest/application/activity",
+      "attributes": {
+        "theme": "@0x7f0b000b",
+        "name": "com.unity3d.player.UnityPlayerActivity",
+        "exported": true,
+        "launchMode": 2,
+        "screenOrientation": 11,
+        "configChanges": "0x40003fff",
+        "hardwareAccelerated": false,
+        "resizeableActivity": false
+      }
+    },
+    {
+      "tag": "activity",
+      "line": 84,
+      "path": "manifest/application/activity",
+      "attributes": {
+        "theme": "@0x01030011",
+        "name": "com.taptap.sdk.TapTapActivity",
+        "exported": false,
+        "configChanges": "0x000005b0"
+      }
+    },
+    {
+      "tag": "activity",
+      "line": 89,
+      "path": "manifest/application/activity",
+      "attributes": {
+        "theme": "@0x01030010",
+        "name": "com.voxelbusters.nativeplugins.features.gameservices.serviceprovider.google.GooglePlayGameUIActivity"
+      }
+    },
+    {
+      "tag": "activity",
+      "line": 92,
+      "path": "manifest/application/activity",
+      "attributes": {
+        "theme": "@0x01030010",
+        "name": "com.google.android.gms.common.api.GoogleApiActivity",
+        "exported": false
+      }
+    },
+    {
+      "tag": "provider",
+      "line": 104,
+      "path": "manifest/application/provider",
+      "attributes": {
+        "name": "com.tds.common.provider.CurrentConfigProvider",
+        "exported": false,
+        "authorities": "com.PigeonGames.Phigros.tap_config.provider"
+      }
+    },
+    {
+      "tag": "activity",
+      "line": 109,
+      "path": "manifest/application/activity",
+      "attributes": {
+        "theme": "@0x01030011",
+        "name": "com.taptap.sdk.ui.TapTapActivity",
+        "exported": false,
+        "launchMode": 2,
+        "screenOrientation": 3,
+        "configChanges": "0x000005b0"
+      }
+    },
+    {
+      "tag": "activity",
+      "line": 116,
+      "path": "manifest/application/activity",
+      "attributes": {
+        "theme": "@0x01030011",
+        "name": "com.taptap.sdk.TapLoginHelperActivity",
+        "exported": false,
+        "screenOrientation": 3,
+        "configChanges": "0x000005b0"
+      }
+    },
+    {
+      "tag": "provider",
+      "line": 123,
+      "path": "manifest/application/provider",
+      "attributes": {
+        "name": "com.taptap.sdk.internal.user.CurrentUserProvider",
+        "exported": false,
+        "authorities": "com.PigeonGames.Phigros.tap_user.provider"
+      }
+    }
+  ],
+  "nodes": [
+    {
+      "tag": "manifest",
+      "line": 2,
+      "path": "manifest",
+      "attributes": {
+        "versionCode": 153,
+        "versionName": "3.19.5",
+        "installLocation": 2,
+        "compileSdkVersion": 30,
+        "compileSdkVersionCodename": "11",
+        "package": "com.PigeonGames.Phigros",
+        "platformBuildVersionCode": 30,
+        "platformBuildVersionName": 11
+      }
+    },
+    {
+      "tag": "uses-sdk",
+      "line": 8,
+      "path": "manifest/uses-sdk",
+      "attributes": {
+        "minSdkVersion": 26,
+        "targetSdkVersion": 30
+      }
+    },
+    {
+      "tag": "supports-screens",
+      "line": 12,
+      "path": "manifest/supports-screens",
+      "attributes": {
+        "anyDensity": true,
+        "smallScreens": true,
+        "normalScreens": true,
+        "largeScreens": true,
+        "xlargeScreens": true
+      }
+    },
+    {
+      "tag": "uses-permission",
+      "line": 19,
+      "path": "manifest/uses-permission",
+      "attributes": {
+        "name": "android.permission.INTERNET"
+      }
+    },
+    {
+      "tag": "uses-permission",
+      "line": 20,
+      "path": "manifest/uses-permission",
+      "attributes": {
+        "name": "android.permission.ACCESS_NETWORK_STATE"
+      }
+    },
+    {
+      "tag": "uses-feature",
+      "line": 22,
+      "path": "manifest/uses-feature",
+      "attributes": {
+        "glEsVersion": "0x00020000"
+      }
+    },
+    {
+      "tag": "uses-feature",
+      "line": 23,
+      "path": "manifest/uses-feature",
+      "attributes": {
+        "name": "android.hardware.touchscreen",
+        "required": false
+      }
+    },
+    {
+      "tag": "uses-feature",
+      "line": 26,
+      "path": "manifest/uses-feature",
+      "attributes": {
+        "name": "android.hardware.touchscreen.multitouch",
+        "required": false
+      }
+    },
+    {
+      "tag": "uses-feature",
+      "line": 29,
+      "path": "manifest/uses-feature",
+      "attributes": {
+        "name": "android.hardware.touchscreen.multitouch.distinct",
+        "required": false
+      }
+    },
+    {
+      "tag": "application",
+      "line": 33,
+      "path": "manifest/application",
+      "attributes": {
+        "label": "@0x7f0a000b",
+        "icon": "@0x7f090000",
+        "extractNativeLibs": true,
+        "networkSecurityConfig": "@0x7f0d0000",
+        "roundIcon": "@0x7f090001",
+        "appComponentFactory": "androidx.core.app.CoreComponentFactory"
+      }
+    },
+    {
+      "tag": "meta-data",
+      "line": 40,
+      "path": "manifest/application/meta-data",
+      "attributes": {
+        "name": "com.google.android.gms.games.APP_ID",
+        "value": "358918849784"
+      }
+    },
+    {
+      "tag": "meta-data",
+      "line": 43,
+      "path": "manifest/application/meta-data",
+      "attributes": {
+        "name": "unity.splash-mode",
+        "value": 0
+      }
+    },
+    {
+      "tag": "meta-data",
+      "line": 46,
+      "path": "manifest/application/meta-data",
+      "attributes": {
+        "name": "unity.splash-enable",
+        "value": true
+      }
+    },
+    {
+      "tag": "meta-data",
+      "line": 49,
+      "path": "manifest/application/meta-data",
+      "attributes": {
+        "name": "unity.launch-fullscreen",
+        "value": true
+      }
+    },
+    {
+      "tag": "meta-data",
+      "line": 52,
+      "path": "manifest/application/meta-data",
+      "attributes": {
+        "name": "unity.render-outside-safearea",
+        "value": true
+      }
+    },
+    {
+      "tag": "meta-data",
+      "line": 55,
+      "path": "manifest/application/meta-data",
+      "attributes": {
+        "name": "notch.config",
+        "value": "portrait|landscape"
+      }
+    },
+    {
+      "tag": "meta-data",
+      "line": 58,
+      "path": "manifest/application/meta-data",
+      "attributes": {
+        "name": "unity.auto-report-fully-drawn",
+        "value": true
+      }
+    },
+    {
+      "tag": "activity",
+      "line": 62,
+      "path": "manifest/application/activity",
+      "attributes": {
+        "theme": "@0x7f0b000b",
+        "name": "com.unity3d.player.UnityPlayerActivity",
+        "exported": true,
+        "launchMode": 2,
+        "screenOrientation": 11,
+        "configChanges": "0x40003fff",
+        "hardwareAccelerated": false,
+        "resizeableActivity": false
+      }
+    },
+    {
+      "tag": "intent-filter",
+      "line": 71,
+      "path": "manifest/application/activity/intent-filter",
+      "attributes": {}
+    },
+    {
+      "tag": "category",
+      "line": 72,
+      "path": "manifest/application/activity/intent-filter/category",
+      "attributes": {
+        "name": "android.intent.category.LAUNCHER"
+      }
+    },
+    {
+      "tag": "action",
+      "line": 74,
+      "path": "manifest/application/activity/intent-filter/action",
+      "attributes": {
+        "name": "android.intent.action.MAIN"
+      }
+    },
+    {
+      "tag": "meta-data",
+      "line": 77,
+      "path": "manifest/application/activity/meta-data",
+      "attributes": {
+        "name": "unityplayer.UnityActivity",
+        "value": true
+      }
+    },
+    {
+      "tag": "meta-data",
+      "line": 80,
+      "path": "manifest/application/activity/meta-data",
+      "attributes": {
+        "name": "notch_support",
+        "value": true
+      }
+    },
+    {
+      "tag": "activity",
+      "line": 84,
+      "path": "manifest/application/activity",
+      "attributes": {
+        "theme": "@0x01030011",
+        "name": "com.taptap.sdk.TapTapActivity",
+        "exported": false,
+        "configChanges": "0x000005b0"
+      }
+    },
+    {
+      "tag": "activity",
+      "line": 89,
+      "path": "manifest/application/activity",
+      "attributes": {
+        "theme": "@0x01030010",
+        "name": "com.voxelbusters.nativeplugins.features.gameservices.serviceprovider.google.GooglePlayGameUIActivity"
+      }
+    },
+    {
+      "tag": "activity",
+      "line": 92,
+      "path": "manifest/application/activity",
+      "attributes": {
+        "theme": "@0x01030010",
+        "name": "com.google.android.gms.common.api.GoogleApiActivity",
+        "exported": false
+      }
+    },
+    {
+      "tag": "meta-data",
+      "line": 97,
+      "path": "manifest/application/meta-data",
+      "attributes": {
+        "name": "com.google.android.gms.version",
+        "value": "@0x7f070001"
+      }
+    },
+    {
+      "tag": "meta-data",
+      "line": 100,
+      "path": "manifest/application/meta-data",
+      "attributes": {
+        "name": "com.tapsdk.antiaddiction.loader",
+        "value": true
+      }
+    },
+    {
+      "tag": "provider",
+      "line": 104,
+      "path": "manifest/application/provider",
+      "attributes": {
+        "name": "com.tds.common.provider.CurrentConfigProvider",
+        "exported": false,
+        "authorities": "com.PigeonGames.Phigros.tap_config.provider"
+      }
+    },
+    {
+      "tag": "activity",
+      "line": 109,
+      "path": "manifest/application/activity",
+      "attributes": {
+        "theme": "@0x01030011",
+        "name": "com.taptap.sdk.ui.TapTapActivity",
+        "exported": false,
+        "launchMode": 2,
+        "screenOrientation": 3,
+        "configChanges": "0x000005b0"
+      }
+    },
+    {
+      "tag": "activity",
+      "line": 116,
+      "path": "manifest/application/activity",
+      "attributes": {
+        "theme": "@0x01030011",
+        "name": "com.taptap.sdk.TapLoginHelperActivity",
+        "exported": false,
+        "screenOrientation": 3,
+        "configChanges": "0x000005b0"
+      }
+    },
+    {
+      "tag": "provider",
+      "line": 123,
+      "path": "manifest/application/provider",
+      "attributes": {
+        "name": "com.taptap.sdk.internal.user.CurrentUserProvider",
+        "exported": false,
+        "authorities": "com.PigeonGames.Phigros.tap_user.provider"
+      }
+    }
+  ],
+  "resourceMapIds": [
+    "0x01010000",
+    "0x01010001",
+    "0x01010002",
+    "0x01010003",
+    "0x01010010",
+    "0x01010018",
+    "0x0101001d",
+    "0x0101001e",
+    "0x0101001f",
+    "0x01010024",
+    "0x0101020c",
+    "0x0101021b",
+    "0x0101021c",
+    "0x0101026c",
+    "0x01010270",
+    "0x01010281",
+    "0x01010284",
+    "0x01010285",
+    "0x01010286",
+    "0x0101028e",
+    "0x010102b7",
+    "0x010102bf",
+    "0x010102d3",
+    "0x010104ea",
+    "0x010104f6",
+    "0x01010527",
+    "0x0101052c",
+    "0x01010572",
+    "0x01010573",
+    "0x0101057a"
+  ],
+  "stringPoolCount": 81,
+  "apkPath": "D:\\Files\\曲绘\\Phigros\\APK\\Phigros_3.19.5.apk",
+  "resEntries": [
+    "res/-8.xml",
+    "res/-n.xml",
+    "res/-p.png",
+    "res/0K.xml",
+    "res/1C.9.png",
+    "res/1_.xml",
+    "res/1h.xml",
+    "res/1l.xml",
+    "res/2K.9.png",
+    "res/3N.xml",
+    "res/3N1.xml",
+    "res/47.xml",
+    "res/5J.9.png",
+    "res/5c.png",
+    "res/6H.xml",
+    "res/6m.xml",
+    "res/79.9.png",
+    "res/7R.png",
+    "res/84.png",
+    "res/88.xml",
+    "res/8G.xml",
+    "res/9m.xml",
+    "res/A9.png",
+    "res/AE.xml",
+    "res/Ab.png",
+    "res/Ab.xml",
+    "res/Af.9.png",
+    "res/BQ.9.png",
+    "res/Bl.xml",
+    "res/Bz.xml",
+    "res/C_.9.png",
+    "res/Cq.png",
+    "res/Dd.png",
+    "res/De.png",
+    "res/Dx.xml",
+    "res/EQ.xml",
+    "res/Eh.png",
+    "res/FN.png",
+    "res/GJ.png",
+    "res/GU.xml",
+    "res/Gb.xml",
+    "res/Gi.png",
+    "res/H-.png",
+    "res/I3.9.png",
+    "res/Iv.xml",
+    "res/Iw.png",
+    "res/JS.xml",
+    "res/K-.xml",
+    "res/K0.png",
+    "res/KS.png",
+    "res/Ks.xml",
+    "res/Lr.xml",
+    "res/MP.xml",
+    "res/Ma.9.png",
+    "res/Od.xml",
+    "res/Pb.xml",
+    "res/Pe.xml",
+    "res/Pp.xml",
+    "res/Pv.xml",
+    "res/Qd.9.png",
+    "res/RU.xml",
+    "res/Rr.xml",
+    "res/Rt.xml",
+    "res/S6.xml",
+    "res/S8.xml",
+    "res/SN.xml",
+    "res/Sh.xml",
+    "res/T5.xml",
+    "res/TE.xml",
+    "res/TK.xml",
+    "res/Td.xml",
+    "res/U-.9.png",
+    "res/Ut.png",
+    "res/Va.xml",
+    "res/W5.png",
+    "res/W_.png",
+    "res/Wj.xml",
+    "res/Ws.xml",
+    "res/Wt.xml",
+    "res/X-.xml",
+    "res/Xf.xml",
+    "res/YA.png",
+    "res/YO.png",
+    "res/ZI.png",
+    "res/ZL.9.png",
+    "res/ZO.xml",
+    "res/ZP.xml",
+    "res/_T.xml",
+    "res/_p.png",
+    "res/_v.png",
+    "res/a0.xml",
+    "res/as.xml",
+    "res/b2.png",
+    "res/c6.xml",
+    "res/cV.xml",
+    "res/color/common_google_signin_btn_text_dark.xml",
+    "res/color/common_google_signin_btn_text_light.xml",
+    "res/color/common_google_signin_btn_tint.xml",
+    "res/dB.9.png",
+    "res/df.xml",
+    "res/dh.xml",
+    "res/dq.xml",
+    "res/ev.xml",
+    "res/f6.png",
+    "res/f9.png",
+    "res/fY.xml",
+    "res/g-.xml",
+    "res/g1.xml",
+    "res/gK.9.png",
+    "res/hP.9.png",
+    "res/ha.xml",
+    "res/i1.xml",
+    "res/iQ.png",
+    "res/iQ.xml",
+    "res/iW.png",
+    "res/j0.xml",
+    "res/jV.png",
+    "res/je.9.png",
+    "res/kU.xml",
+    "res/l4.png",
+    "res/lR.xml",
+    "res/ls.xml",
+    "res/m-.xml",
+    "res/m1.xml",
+    "res/m7.png",
+    "res/mG.png",
+    "res/nC.9.png",
+    "res/nY.png",
+    "res/nz.xml",
+    "res/oO.9.png",
+    "res/o_.9.png",
+    "res/od.png",
+    "res/oj.png",
+    "res/p7.xml",
+    "res/pI.xml",
+    "res/pY.png",
+    "res/qN.xml",
+    "res/rM.xml",
+    "res/s4.png",
+    "res/sA.9.png",
+    "res/tN.xml",
+    "res/tr.9.png",
+    "res/uV.png",
+    "res/us.9.png",
+    "res/vL.9.png",
+    "res/vo.png",
+    "res/w2.9.png",
+    "res/wC.png",
+    "res/wN.9.png",
+    "res/wW.xml",
+    "res/xN.xml",
+    "res/xa.9.png",
+    "res/y6.xml",
+    "res/y61.xml",
+    "res/yD.png",
+    "res/yr.xml",
+    "res/z-.9.png",
+    "res/zw.9.png"
+  ],
+  "libEntries": [
+    "lib/arm64-v8a/libil2cpp.so",
+    "lib/arm64-v8a/libmain.so",
+    "lib/arm64-v8a/libnativeaudioe7.so",
+    "lib/arm64-v8a/libtapsdkcore.so",
+    "lib/arm64-v8a/libunity.so",
+    "lib/armeabi-v7a/libil2cpp.so",
+    "lib/armeabi-v7a/libmain.so",
+    "lib/armeabi-v7a/libnativeaudioe7.so",
+    "lib/armeabi-v7a/libtapsdkcore.so",
+    "lib/armeabi-v7a/libunity.so"
+  ]
+}

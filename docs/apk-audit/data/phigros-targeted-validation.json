@@ -1,0 +1,19 @@
+{
+  "ok": true,
+  "apkSha256": "b9654316e52bf2d410fa2ecb3f0df41246afdc3dc8133456deaff07ecbcf28bf",
+  "trackRows": 319,
+  "identityRows": 319,
+  "focusedTypeRows": 14,
+  "chartStatusCounts": {
+    "AT:absent": 273,
+    "AT:structurally-nonempty": 46,
+    "EZ:structurally-nonempty": 319,
+    "HD:absent": 1,
+    "HD:structurally-nonempty": 318,
+    "IN:absent": 1,
+    "IN:structurally-nonempty": 318,
+    "Legacy:absent": 315,
+    "Legacy:structurally-nonempty": 4
+  },
+  "errors": []
+}

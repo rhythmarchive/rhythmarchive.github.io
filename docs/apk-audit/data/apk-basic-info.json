@@ -1,0 +1,35 @@
+{
+  "analysisDate": "2026-08-18",
+  "tools": {
+    "Python": "3.13.2",
+    "UnityPy": "1.25.0",
+    "Pillow": "12.1.1",
+    "Node": "24.15.0",
+    "npm": "11.12.1"
+  },
+  "arcaeaPrimary": {
+    "path": "D:\\Files\\曲绘\\Arcaea\\APK\\arcaea_6.16.8c.apk",
+    "fileSizeBytes": 1867085903,
+    "modificationTime": "2026-08-18 16:35:39 +08:00",
+    "sha256": "C2B58DCAD54203645057A859524789F59CFD5CA13613B610D04AD087B58AAC90",
+    "entryCount": 7320,
+    "uncompressedEntryBytes": 1910651029,
+    "compressedEntryBytes": 1865928462
+  },
+  "arcaeaComparison": {
+    "path": "D:\\Files\\曲绘\\Arcaea\\APK\\arcaea_6.16.0c.apk",
+    "fileSizeBytes": 1867859532,
+    "modificationTime": "2026-07-31 09:18:47 +08:00",
+    "sha256": "4A1FB6011369C7289C4C6CD33B5F3FEC47CBEF4C86A0BA0B9F3A7A6896D74512",
+    "entryCount": 7329
+  },
+  "phigrosPrimary": {
+    "path": "D:\\Files\\曲绘\\Phigros\\APK\\Phigros_3.19.5.apk",
+    "fileSizeBytes": 2652431993,
+    "modificationTime": "2026-07-30 19:52:34 +08:00",
+    "sha256": "B9654316E52BF2D410FA2ECB3F0DF41246AFDC3DC8133456DEAFF07ECBCF28BF",
+    "entryCount": 3163,
+    "uncompressedEntryBytes": 2960988415,
+    "compressedEntryBytes": 2651846427
+  }
+}

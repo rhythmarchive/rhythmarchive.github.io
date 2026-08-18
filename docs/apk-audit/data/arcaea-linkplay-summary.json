@@ -1,0 +1,36 @@
+{
+  "stickerCount": 99,
+  "characterPreviewCount": 148,
+  "localeSuffixCounts": {
+    "en": 21,
+    "jp": 21,
+    "kr": 21,
+    "sc_tc": 9,
+    "sc": 12,
+    "tc": 12,
+    "unsuffixed": 3
+  },
+  "rawLocaleSuffixCounts": {
+    "en": 21,
+    "jp": 21,
+    "kr": 21,
+    "sc_tc": 9,
+    "sc": 12,
+    "tc": 12,
+    "unsuffixed": 3
+  },
+  "normalizedLocaleCounts": {
+    "en": 21,
+    "ja": 21,
+    "ko": 21,
+    "sc_tc": 9,
+    "sc": 12,
+    "tc": 12,
+    "unsuffixed": 3
+  },
+  "localeNormalization": {
+    "jp": "ja",
+    "kr": "ko",
+    "other": "unchanged"
+  }
+}

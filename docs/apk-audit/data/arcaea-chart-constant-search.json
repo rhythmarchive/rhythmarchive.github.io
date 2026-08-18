@@ -1,0 +1,1230 @@
+{
+  "terms": [
+    "constant",
+    "chart_constant",
+    "chartconstant",
+    "ratingvalue",
+    "difficultyvalue",
+    "potential",
+    "ratingplus",
+    "ratingclass",
+    "hidden_until",
+    "audiooverride",
+    "jacketoverride",
+    "legacy11",
+    "plusfingers"
+  ],
+  "structuredFileCount": 201,
+  "binaryFileCount": 18,
+  "structuredMatches": [
+    {
+      "path": "assets/app-data/story/main/vn",
+      "term": "constant",
+      "offset": 285126,
+      "context": "unpracticed, she truly won t give in.\\n\\nGlass shields her back in a slapdash, patchwork pattern, constantly shifting to stop Tairitsu s\\nroundabout spears from ever hitting their marks. Hikari s eyes are sharper than that glass, ever\\nvigilant to pin the dark g"
+    },
+    {
+      "path": "assets/app-data/story/main/vn",
+      "term": "constant",
+      "offset": 306133,
+      "context": "aims for feet in an attempt to pin the enemy in place.|It is madness: frenetic madness, chaotic yet constant.\\nTheir movements soon become nearly even, steady and regular.\\n\\nEvade, and fire, always.\\n\\nWithin this overwhelming row of beauty and violence,\\nthey once a"
+    },
+    {
+      "path": "assets/app-data/story/main/vn",
+      "term": "potential",
+      "offset": 216809,
+      "context": "Quite the opposite, it seems. If anything, that alone is reason enough\\nto join hands with this new potential ally. A \\\"good\\\" person... is not exactly how she'd readily\\ndescribe herself, after all.|However, while she thinks this, Tairitsu s mood turns. \\\"What makes"
+    },
+    {
+      "path": "assets/app-data/story/main/vn",
+      "term": "potential",
+      "offset": 941099,
+      "context": "'t where here is.\\nWhile Arcaea may be a cruel and strange place, I believe it is a world with more potential than this woman's.\\n\\nAnd potential is the seed of hope its blossom, the future. //|// My name seems to be Maya. I don't believe in God, // she wrote.\\n\\n// "
+    },
+    {
+      "path": "assets/app-data/story/main/vn",
+      "term": "potential",
+      "offset": 941135,
+      "context": "be a cruel and strange place, I believe it is a world with more potential than this woman's.\\n\\nAnd potential is the seed of hope its blossom, the future. //|// My name seems to be Maya. I don't believe in God, // she wrote.\\n\\n// For the one who might find this: I'l"
+    },
+    {
+      "path": "assets/app-data/story/side/vn",
+      "term": "constant",
+      "offset": 1280131,
+      "context": "omeone!\\\" and \\\"Anyone?\\\" through quiet alleys and past vacuous caverns, her returning \\nvoice is a constant confirmation. A creeping, and then pounding sensation that her fate is the fate of so \\nmany others in this place:\\n\\nLife, alone.\\n\\nAnd even she, even this l"
+    },
+    {
+      "path": "assets/app-data/story/side/vn",
+      "term": "potential",
+      "offset": 54903,
+      "context": "d who she is. Even that she is alone, and that she doesn't know her name,\\ntells her much about the potential truth.\\n\\nAnd, over time, she finds more reason for one theory in particular.|She was born with conviction and curiosity. The world of white presents questions"
+    },
+    {
+      "path": "assets/app-data/story/side/vn",
+      "term": "potential",
+      "offset": 73352,
+      "context": " she had quickly deemed frivolous,\\nbut the frivolity revealed something important to her about the potential of mankind.\\nStill... for now... that wasn t very important.\\n\\nMore than theories on \\\"how\\\", theories of \\\"why\\\" compelled her onward. This had been anothe"
+    },
+    {
+      "path": "assets/app-data/story/side/vn",
+      "term": "potential",
+      "offset": 73842,
+      "context": "st after she d witnessed about two hundred of the memories.|\\\"It didn t have anything new for a potential reconstruction,\\\" she whispers, beckoning a shard from\\na nearby, sparse stream of glass, \\\"but I suppose it s good that it had some sort of value.\\\"\\n\\nShe "
+    },
+    {
+      "path": "assets/app-data/story/side/vn",
+      "term": "potential",
+      "offset": 1955909,
+      "context": "ok around up there. She wouldn't tell me why but I, \\\"as a Floating Islander\\\", seemed like I could potentially \\nhelp. Hoppe withdrew a ticket from her things and fiddled with it in her hands. \\\"Actually, I have this... but...\\\" \\nshe muttered. It was a ticket to go u"
+    },
+    {
+      "path": "assets/app-data/story/side/vn",
+      "term": "potential",
+      "offset": 2165817,
+      "context": "ve \\nvery efficiently created a proper empire within the far reaches. Any other Communes are merely potential \\ncolonies, too stupid to understand sophistication and power even when it strikes them across the face \\nwith a palm full of Heat.\\n\\nNonoka has always though"
+    },
+    {
+      "path": "assets/app-data/story/vn/zettai_en.vns",
+      "term": "potential",
+      "offset": 4017,
+      "context": "\"\\\"But it ll surely be a delight in time, for those who can afford a spot on it. And think of the potential, Lavinia.\\\"\" hide \"black.png\" fade(1,linear) play \"woosh.ogg\" 0.7 say \"She exhales. It s been another fruitless trip. Her hand closes on fine, smoothed wo"
+    },
+    {
+      "path": "assets/songs/packlist",
+      "term": "constant",
+      "offset": 37508,
+      "context": "      \"en\": \"Ephemeral Page\"       },       \"description_localized\": {         \"en\": \"Reality seems constantly within reach,\\nyet it can never truly be grasped...\\n\\nDiscover truths and falsehoods alike\\nas you travel with Alice and Tenniel,\\nexperiencing five brand-n"
+    },
+    {
+      "path": "assets/songs/songlist",
+      "term": "ratingplus",
+      "offset": 3934,
+      "context": ",                     \"jacketOverride\": true,                     \"rating\": 9,                     \"ratingPlus\": true,                     \"date\": 1620691201,                     \"version\": \"3.6\"                 }             ]         },         {             \"idx\": 2,"
+    },
+    {
+      "path": "assets/songs/songlist",
+      "term": "ratingplus",
+      "offset": 5968,
+      "context": ",                     \"jacketOverride\": true,                     \"rating\": 9,                     \"ratingPlus\": true,                     \"date\": 1590537603,                     \"version\": \"3.0\"                 }             ]         },         {             \"idx\": 3,"
+    },
+    {
+      "path": "assets/songs/songlist",
+      "term": "ratingplus",
+      "offset": 7744,
+      "context": "               \"jacketDesigner\": \"Khronetic\",                     \"rating\": 8,                     \"ratingPlus\": true                 }             ]         },         {             \"idx\": 4,             \"id\": \"rise\",             \"title_localized\": {                 \"e"
+    },
+    {
+      "path": "assets/songs/songlist",
+      "term": "ratingplus",
+      "offset": 9358,
+      "context": "o\",                     \"jacketDesigner\": \"\",                     \"rating\": 7,                     \"ratingPlus\": true                 }             ]         },         {             \"idx\": 5,             \"id\": \"lucifer\",             \"title_localized\": {                "
+    },
+    {
+      "path": "assets/songs/songlist",
+      "term": "ratingplus",
+      "offset": 18029,
+      "context": "                   \"jacketDesigner\": \"Frums\",                     \"rating\": 8,                     \"ratingPlus\": true                 }             ]         },         {             \"idx\": 10,             \"id\": \"snowwhite\",             \"title_localized\": {             "
+    },
+    {
+      "path": "assets/songs/songlist",
+      "term": "ratingplus",
+      "offset": 19885,
+      "context": "o\",                     \"jacketDesigner\": \"\",                     \"rating\": 9,                     \"ratingPlus\": true,                     \"bg\": \"nijuusei2_light\",                     \"bg_inverse\": \"nijuusei2_conflict\",                     \"date\": 1745452800,           "
+    },
+    {
+      "path": "assets/songs/songlist",
+      "term": "ratingplus",
+      "offset": 30149,
+      "context": ",                     \"rating\": 9,                     \"jacketOverride\": true,                     \"ratingPlus\": true,                     \"date\": 1639008001,                     \"version\": \"3.10\",                     \"hidden_until\": \"difficulty\"                 }      "
+    },
+    {
+      "path": "assets/songs/songlist",
+      "term": "ratingplus",
+      "offset": 38175,
+      "context": "r\",                     \"jacketDesigner\": \"\",                     \"rating\": 7,                     \"ratingPlus\": true                 },                 {                     \"ratingClass\": 3,                     \"chartDesigner\": \"Nitro ~ABYSS~\",                     \"ja"
+    },
+    {
+      "path": "assets/songs/songlist",
+      "term": "ratingplus",
+      "offset": 38462,
+      "context": ",                     \"jacketOverride\": true,                     \"rating\": 9,                     \"ratingPlus\": true,                     \"date\": 1597968001,                     \"version\": \"3.1\"                 }             ]         },         {             \"idx\": 20"
+    },
+    {
+      "path": "assets/songs/songlist",
+      "term": "ratingplus",
+      "offset": 42342,
+      "context": "               \"jacketDesigner\": \"Khronetic\",                     \"rating\": 9,                     \"ratingPlus\": true,                     \"bg\": \"single2_conflict\",                     \"bg_inverse\": \"single2_light\",                     \"date\": 1745452801,               "
+    },
+    {
+      "path": "assets/songs/songlist",
+      "term": "ratingplus",
+      "offset": 44412,
+      "context": "               \"jacketDesigner\": \"Tagtraume\",                     \"rating\": 7,                     \"ratingPlus\": true                 },                 {                     \"ratingClass\": 3,                     \"chartDesigner\": \"Nitr \",                     \"jacketDe"
+    },
+    {
+      "path": "assets/songs/songlist",
+      "term": "ratingplus",
+      "offset": 46344,
+      "context": "               \"jacketDesigner\": \" \",                     \"rating\": 7,                     \"ratingPlus\": true                 },                 {                     \"ratingClass\": 2,                     \"chartDesigner\": \"Party Toaster\",                     \"ja"
+    },
+    {
+      "path": "assets/songs/songlist",
+      "term": "ratingclass",
+      "offset": 1058,
+      "context": "             \"version\": \"1.0\",             \"difficulties\": [                 {                     \"ratingClass\": 0,                     \"chartDesigner\": \"Nitro\",                     \"jacketDesigner\": \"\",                     \"rating\": 1                 },                "
+    },
+    {
+      "path": "assets/songs/songlist",
+      "term": "ratingclass",
+      "offset": 1253,
+      "context": "ner\": \"\",                     \"rating\": 1                 },                 {                     \"ratingClass\": 1,                     \"chartDesigner\": \"Nitro\",                     \"jacketDesigner\": \"\",                     \"rating\": 4                 },                "
+    },
+    {
+      "path": "assets/songs/songlist",
+      "term": "ratingclass",
+      "offset": 1448,
+      "context": "ner\": \"\",                     \"rating\": 4                 },                 {                     \"ratingClass\": 2,                     \"chartDesigner\": \"Toaster\",                     \"jacketDesigner\": \"\",                     \"rating\": 7                 },              "
+    },
+    {
+      "path": "assets/songs/songlist",
+      "term": "ratingclass",
+      "offset": 1645,
+      "context": "ner\": \"\",                     \"rating\": 7                 },                 {                     \"ratingClass\": 4,                     \"chartDesigner\": \"Luxance + Exschwasion\",                     \"jacketDesigner\": \"\",                     \"rating\": 8,                  "
+    },
+    {
+      "path": "assets/songs/songlist",
+      "term": "ratingclass",
+      "offset": 3100,
+      "context": "             \"version\": \"1.0\",             \"difficulties\": [                 {                     \"ratingClass\": 0,                     \"chartDesigner\": \"Toaster\",                     \"jacketDesigner\": \"\",                     \"rating\": 4                 },              "
+    },
+    {
+      "path": "assets/songs/songlist",
+      "term": "ratingclass",
+      "offset": 3297,
+      "context": "ner\": \"\",                     \"rating\": 4                 },                 {                     \"ratingClass\": 1,                     \"chartDesigner\": \"Toaster\",                     \"jacketDesigner\": \"\",                     \"rating\": 7                 },              "
+    },
+    {
+      "path": "assets/songs/songlist",
+      "term": "ratingclass",
+      "offset": 3494,
+      "context": "ner\": \"\",                     \"rating\": 7                 },                 {                     \"ratingClass\": 2,                     \"chartDesigner\": \"Toaster\",                     \"jacketDesigner\": \"\",                     \"rating\": 9                 },              "
+    },
+    {
+      "path": "assets/songs/songlist",
+      "term": "ratingclass",
+      "offset": 3691,
+      "context": "ner\": \"\",                     \"rating\": 9                 },                 {                     \"ratingClass\": 3,                     \"chartDesigner\": \"Nitro affected by Nitro\",                     \"jacketDesigner\": \"  + yoshimo\",                     \"jacke"
+    },
+    {
+      "path": "assets/songs/songlist",
+      "term": "ratingclass",
+      "offset": 5140,
+      "context": "             \"version\": \"1.0\",             \"difficulties\": [                 {                     \"ratingClass\": 0,                     \"chartDesigner\": \"Nitro\",                     \"jacketDesigner\": \"Koyama Mai\",                     \"rating\": 4                 },      "
+    },
+    {
+      "path": "assets/songs/songlist",
+      "term": "ratingclass",
+      "offset": 5345,
+      "context": "ama Mai\",                     \"rating\": 4                 },                 {                     \"ratingClass\": 1,                     \"chartDesigner\": \"Nitro\",                     \"jacketDesigner\": \"Koyama Mai\",                     \"rating\": 6                 },      "
+    },
+    {
+      "path": "assets/songs/songlist",
+      "term": "ratingclass",
+      "offset": 5550,
+      "context": "ama Mai\",                     \"rating\": 6                 },                 {                     \"ratingClass\": 2,                     \"chartDesigner\": \"Nitro\",                     \"jacketDesigner\": \"Koyama Mai\",                     \"rating\": 9                 },      "
+    },
+    {
+      "path": "assets/songs/songlist",
+      "term": "ratingclass",
+      "offset": 5755,
+      "context": "ama Mai\",                     \"rating\": 9                 },                 {                     \"ratingClass\": 3,                     \"chartDesigner\": \"GOODTOAST\",                     \"jacketDesigner\": \"出前\",                     \"jacketOverride\": true,             "
+    },
+    {
+      "path": "assets/songs/songlist",
+      "term": "hidden_until",
+      "offset": 20104,
+      "context": "                     \"date\": 1745452800,                     \"version\": \"6.4\",                     \"hidden_until\": \"difficulty\"                 }             ]         },         {             \"idx\": 11,             \"id\": \"relentless\",             \"title_localized\": {    "
+    },
+    {
+      "path": "assets/songs/songlist",
+      "term": "hidden_until",
+      "offset": 30268,
+      "context": "                    \"date\": 1639008001,                     \"version\": \"3.10\",                     \"hidden_until\": \"difficulty\"                 }             ]         },         {             \"idx\": 16,             \"id\": \"pragmatism\",             \"title_localized\": {    "
+    },
+    {
+      "path": "assets/songs/songlist",
+      "term": "hidden_until",
+      "offset": 32641,
+      "context": "                    \"date\": 1639008004,                     \"version\": \"3.10\",                     \"hidden_until\": \"difficulty\"                 }             ]         },         {             \"idx\": 17,             \"id\": \"sheriruth\",             \"title_localized\": {     "
+    },
+    {
+      "path": "assets/songs/songlist",
+      "term": "hidden_until",
+      "offset": 42557,
+      "context": "                     \"date\": 1745452801,                     \"version\": \"6.4\",                     \"hidden_until\": \"difficulty\"                 }             ]         },         {             \"idx\": 22,             \"id\": \"infinityheaven\",             \"title_localized\": {"
+    },
+    {
+      "path": "assets/songs/songlist",
+      "term": "hidden_until",
+      "offset": 107968,
+      "context": "                    \"date\": 1773014406,                     \"version\": \"6.13\",                     \"hidden_until\": \"difficulty\"                 }             ]         },         {             \"idx\": 56,             \"id\": \"grievouslady\",             \"title_localized\": {  "
+    },
+    {
+      "path": "assets/songs/songlist",
+      "term": "hidden_until",
+      "offset": 180055,
+      "context": "                     \"date\": 1745452804,                     \"version\": \"6.4\",                     \"hidden_until\": \"difficulty\"                 }             ]         },         {             \"idx\": 94,             \"id\": \"espebranch\",             \"title_localized\": {    "
+    },
+    {
+      "path": "assets/songs/songlist",
+      "term": "hidden_until",
+      "offset": 219693,
+      "context": "                    \"date\": 1639008002,                     \"version\": \"3.10\",                     \"hidden_until\": \"difficulty\"                 }             ]         },         {             \"idx\": 114,             \"id\": \"corruption\",             \"title_localized\": {   "
+    },
+    {
+      "path": "assets/songs/songlist",
+      "term": "hidden_until",
+      "offset": 226119,
+      "context": "                     \"date\": 1706140806,                     \"version\": \"5.3\",                     \"hidden_until\": \"difficulty\"                 }             ]         },         {             \"idx\": 117,             \"id\": \"cyaegha\",             \"title_localized\": {      "
+    },
+    {
+      "path": "assets/songs/songlist",
+      "term": "hidden_until",
+      "offset": 248718,
+      "context": "                    \"date\": 1639008003,                     \"version\": \"3.10\",                     \"hidden_until\": \"difficulty\"                 }             ]         },         {             \"idx\": 130,             \"id\": \"ringedgenesis\",             \"title_localized\": {"
+    },
+    {
+      "path": "assets/songs/songlist",
+      "term": "hidden_until",
+      "offset": 284290,
+      "context": "                     \"date\": 1706140805,                     \"version\": \"5.3\",                     \"hidden_until\": \"difficulty\"                 }             ]         },         {             \"idx\": 148,             \"id\": \"izana\",             \"title_localized\": {        "
+    },
+    {
+      "path": "assets/songs/songlist",
+      "term": "hidden_until",
+      "offset": 308161,
+      "context": "                 \"legacy11\": true,                     \"jacketOverride\": true,                     \"hidden_until_unlocked\": true,                     \"hidden_until\": \"difficulty\"                 }             ]         },         {             \"idx\": 161,             \"id\""
+    },
+    {
+      "path": "assets/songs/songlist",
+      "term": "hidden_until",
+      "offset": 308212,
+      "context": "    \"jacketOverride\": true,                     \"hidden_until_unlocked\": true,                     \"hidden_until\": \"difficulty\"                 }             ]         },         {             \"idx\": 161,             \"id\": \"arcahv\",             \"title_localized\": {       "
+    },
+    {
+      "path": "assets/songs/songlist",
+      "term": "audiooverride",
+      "offset": 32256,
+      "context": "                      \"en\": \"PRAGMATISM -RESURRECTION-\"                     },                     \"audioOverride\": true,                     \"chartDesigner\": \"THE LAST DREAM\",                     \"jacketDesigner\": \" \",                     \"jacketOverride\": true,  "
+    },
+    {
+      "path": "assets/songs/songlist",
+      "term": "audiooverride",
+      "offset": 81331,
+      "context": "urn\"                     },                     \"artist\": \"Arcaea Sound Team\",                     \"audioOverride\": true,                     \"chartDesigner\": \"Toaster   石樂\",                     \"jacketDesigner\": \"Khronetic\",                     \"jacketOverride\": true"
+    },
+    {
+      "path": "assets/songs/songlist",
+      "term": "audiooverride",
+      "offset": 107574,
+      "context": "iro)\",                     \"bpm\": \"170?\",                     \"bpm_base\": 180,                     \"audioOverride\": true,                     \"chartDesigner\": \"Monolith - Diverged\",                     \"jacketDesigner\": \" \",                     \"jacketOverride\":"
+    },
+    {
+      "path": "assets/songs/songlist",
+      "term": "audiooverride",
+      "offset": 113951,
+      "context": "Team)\",                     \"bpm\": \"160\",                     \"bpm_base\": 160,                     \"audioOverride\": true,                     \"chartDesigner\": \"moonquay \\\"retrograde\\\"\\nBLUE=LEFT RIGHT=RED\",                     \"jacketDesigner\": \"yusi.\",                    "
+    },
+    {
+      "path": "assets/songs/songlist",
+      "term": "audiooverride",
+      "offset": 135589,
+      "context": "          },                     \"artist\": \"Arcaea Sound Team against. ETIA.\",                     \"audioOverride\": true,                     \"chartDesigner\": \"Exschwasion against. 絶滅\",                     \"jacketDesigner\": \"yusi.\",                     \"jacketOverride\""
+    },
+    {
+      "path": "assets/songs/songlist",
+      "term": "audiooverride",
+      "offset": 175782,
+      "context": ": \"fn\",                     \"bpm\": \"500\",                     \"bpm_base\": 500,                     \"audioOverride\": true,                     \"chartDesigner\": \"絶滅 over 夜浪.\",                     \"jacketDesigner\": \"Hanamori Hiro + yusi.\",                     \"jacketO"
+    },
+    {
+      "path": "assets/songs/songlist",
+      "term": "audiooverride",
+      "offset": 225725,
+      "context": "baryo\",                     \"bpm\": \"271\",                     \"bpm_base\": 271,                     \"audioOverride\": true,                     \"chartDesigner\": \"[FUTiLE] Defiance\",                     \"jacketDesigner\": \"陽葉 \",                     \"jacketOverride\": t"
+    },
+    {
+      "path": "assets/songs/songlist",
+      "term": "audiooverride",
+      "offset": 546204,
+      "context": "lized\": {                         \"en\": \"Last | Moment\"                     },                     \"audioOverride\": true,                     \"chartDesigner\": \"Arcaea\",                     \"jacketDesigner\": \" \",                     \"jacketOverride\": true,          "
+    },
+    {
+      "path": "assets/songs/songlist",
+      "term": "jacketoverride",
+      "offset": 3857,
+      "context": "ted by Nitro\",                     \"jacketDesigner\": \"  + yoshimo\",                     \"jacketOverride\": true,                     \"rating\": 9,                     \"ratingPlus\": true,                     \"date\": 1620691201,                     \"version\": \"3.6\"  "
+    },
+    {
+      "path": "assets/songs/songlist",
+      "term": "jacketoverride",
+      "offset": 5891,
+      "context": " \"chartDesigner\": \"GOODTOAST\",                     \"jacketDesigner\": \"出前\",                     \"jacketOverride\": true,                     \"rating\": 9,                     \"ratingPlus\": true,                     \"date\": 1590537603,                     \"version\": \"3.0\"  "
+    },
+    {
+      "path": "assets/songs/songlist",
+      "term": "jacketoverride",
+      "offset": 12802,
+      "context": "er\": \"Nitro in Wonderland\",                     \"jacketDesigner\": \"Khronetic\",                     \"jacketOverride\": true,                     \"rating\": 9,                     \"date\": 1590537601,                     \"version\": \"3.0\"                 }             ]         }"
+    },
+    {
+      "path": "assets/songs/songlist",
+      "term": "jacketoverride",
+      "offset": 24008,
+      "context": " \"chartDesigner\": \"N TRO\",                     \"jacketDesigner\": \"RiceGnat\",                     \"jacketOverride\": true,                     \"rating\": 9,                     \"date\": 1678320000,                     \"version\": \"4.3\"                 }             ]         }"
+    },
+    {
+      "path": "assets/songs/songlist",
+      "term": "jacketoverride",
+      "offset": 26061,
+      "context": "\"chartDesigner\": \"石樂\",                     \"jacketDesigner\": \"Koyama Mai\",                     \"jacketOverride\": true,                     \"rating\": 9,                     \"date\": 1590537600,                     \"version\": \"3.0\"                 }             ]         }"
+    },
+    {
+      "path": "assets/songs/songlist",
+      "term": "jacketoverride",
+      "offset": 30105,
+      "context": " \"jacketDesigner\": \"khronetic -synesthesia-\",                     \"rating\": 9,                     \"jacketOverride\": true,                     \"ratingPlus\": true,                     \"date\": 1639008001,                     \"version\": \"3.10\",                     \"hidden_unti"
+    },
+    {
+      "path": "assets/songs/songlist",
+      "term": "jacketoverride",
+      "offset": 32405,
+      "context": "esigner\": \"THE LAST DREAM\",                     \"jacketDesigner\": \" \",                     \"jacketOverride\": true,                     \"bg\": \"pragmatism3\",                     \"rating\": 11,                     \"legacy11\": true,                     \"date\": 1639008004"
+    },
+    {
+      "path": "assets/songs/songlist",
+      "term": "jacketoverride",
+      "offset": 36384,
+      "context": "    \"chartDesigner\": \"Toaster.\",                     \"jacketDesigner\": \"mins\",                     \"jacketOverride\": true,                     \"rating\": 9,                     \"date\": 1604880000,                     \"version\": \"3.2\"                 }             ]         }"
+    },
+    {
+      "path": "assets/songs/songlist",
+      "term": "jacketoverride",
+      "offset": 38385,
+      "context": "   \"chartDesigner\": \"Nitro ~ABYSS~\",                     \"jacketDesigner\": \"\",                     \"jacketOverride\": true,                     \"rating\": 9,                     \"ratingPlus\": true,                     \"date\": 1597968001,                     \"version\": \"3.1\"  "
+    },
+    {
+      "path": "assets/songs/songlist",
+      "term": "jacketoverride",
+      "offset": 44625,
+      "context": "\"chartDesigner\": \"Nitr \",                     \"jacketDesigner\": \"Tagtraume\",                     \"jacketOverride\": true,                     \"rating\": 9,                     \"date\": 1590537602,                     \"version\": \"3.0\"                 }             ]         }"
+    },
+    {
+      "path": "assets/songs/songlist",
+      "term": "jacketoverride",
+      "offset": 46779,
+      "context": "gner\": \"Party Exschwasion\",                     \"jacketDesigner\": \" \",                     \"jacketOverride\": true,                     \"rating\": 10,                     \"date\": 1671667202,                     \"version\": \"4.1\"                 }             ]         "
+    },
+    {
+      "path": "assets/songs/songlist",
+      "term": "jacketoverride",
+      "offset": 65130,
+      "context": "   \"jacketDesigner\": \"白鳥怜 + Khronetic\",                     \"rating\": 9,                     \"jacketOverride\": true,                     \"ratingPlus\": true,                     \"date\": 1639008000,                     \"version\": \"3.10\"                 }             ]  "
+    },
+    {
+      "path": "assets/songs/songlist",
+      "term": "legacy11",
+      "offset": 32524,
+      "context": "ue,                     \"bg\": \"pragmatism3\",                     \"rating\": 11,                     \"legacy11\": true,                     \"date\": 1639008004,                     \"version\": \"3.10\",                     \"hidden_until\": \"difficulty\"                 }      "
+    },
+    {
+      "path": "assets/songs/songlist",
+      "term": "legacy11",
+      "offset": 107851,
+      "context": "e,                     \"bg\": \"axiumcrisis3\",                     \"rating\": 11,                     \"legacy11\": true,                     \"date\": 1773014406,                     \"version\": \"6.13\",                     \"hidden_until\": \"difficulty\"                 }      "
+    },
+    {
+      "path": "assets/songs/songlist",
+      "term": "legacy11",
+      "offset": 109900,
+      "context": "              \"jacketDesigner\": \" \",                     \"rating\": 11,                     \"legacy11\": true,                     \"plusFingers\": true                 }             ]         },         {             \"idx\": 57,             \"id\": \"dreaminattractio"
+    },
+    {
+      "path": "assets/songs/songlist",
+      "term": "legacy11",
+      "offset": 167261,
+      "context": "              \"jacketDesigner\": \" \",                     \"rating\": 11,                     \"legacy11\": true,                     \"plusFingers\": true                 }             ]         },         {             \"idx\": 88,             \"id\": \"suomi\",         "
+    },
+    {
+      "path": "assets/songs/songlist",
+      "term": "legacy11",
+      "offset": 226003,
+      "context": "                    \"bg\": \"viciousheroism3\",                     \"rating\": 11,                     \"legacy11\": true,                     \"date\": 1706140806,                     \"version\": \"5.3\",                     \"hidden_until\": \"difficulty\"                 }       "
+    },
+    {
+      "path": "assets/songs/songlist",
+      "term": "legacy11",
+      "offset": 288037,
+      "context": "                    \"jacketDesigner\": \"KEI\",                     \"rating\": 11,                     \"legacy11\": true                 }             ]         },         {             \"idx\": 150,             \"id\": \"worldexecuteme\",             \"title_localized\": {       "
+    },
+    {
+      "path": "assets/songs/songlist",
+      "term": "legacy11",
+      "offset": 306032,
+      "context": "           \"jacketDesigner\": \"望月 \",                     \"rating\": 11,                     \"legacy11\": false                 }             ]         },         {             \"idx\": 160,             \"id\": \"tempestissimo\",             \"title_localized\": {       "
+    },
+    {
+      "path": "assets/songs/songlist",
+      "term": "legacy11",
+      "offset": 308079,
+      "context": "              \"jacketDesigner\": \" \",                     \"rating\": 11,                     \"legacy11\": true,                     \"jacketOverride\": true,                     \"hidden_until_unlocked\": true,                     \"hidden_until\": \"difficulty\"        "
+    },
+    {
+      "path": "assets/songs/songlist",
+      "term": "legacy11",
+      "offset": 409430,
+      "context": "              \"jacketDesigner\": \" \",                     \"rating\": 11,                     \"legacy11\": true                 }             ]         },         {             \"idx\": 214,             \"id\": \"coastalhighway\",             \"title_localized\": {       "
+    },
+    {
+      "path": "assets/songs/songlist",
+      "term": "legacy11",
+      "offset": 534055,
+      "context": "           \"chartDesigner\": \"Imaginary Sky\",                     \"rating\": 11,                     \"legacy11\": true,                     \"world_unlock\": false,                     \"hidden_until\": \"none\"                 }             ],             \"additional_files\": "
+    },
+    {
+      "path": "assets/songs/songlist",
+      "term": "legacy11",
+      "offset": 536501,
+      "context": "          \"chartDesigner\": \"Paradox Blight\",                     \"rating\": 11,                     \"legacy11\": true,                     \"world_unlock\": false,                     \"hidden_until\": \"none\"                 }             ],             \"additional_files\": "
+    },
+    {
+      "path": "assets/songs/songlist",
+      "term": "legacy11",
+      "offset": 539013,
+      "context": "        \"chartDesigner\": \"Eye of the Storm\",                     \"rating\": 11,                     \"legacy11\": true,                     \"world_unlock\": false,                     \"hidden_until\": \"none\"                 }             ],             \"additional_files\": "
+    },
+    {
+      "path": "assets/songs/songlist",
+      "term": "plusfingers",
+      "offset": 57599,
+      "context": "             \"jacketDesigner\": \"Photonskyto\",                     \"rating\": 9,                     \"plusFingers\": true                 }             ]         },         {             \"idx\": 30,             \"id\": \"crosssoul\",             \"title_localized\": {             "
+    },
+    {
+      "path": "assets/songs/songlist",
+      "term": "plusfingers",
+      "offset": 109647,
+      "context": "               \"jacketDesigner\": \" \",                     \"rating\": 9,                     \"plusFingers\": true                 },                 {                     \"ratingClass\": 2,                     \"chartDesigner\": \"迷路深層\",                     \"jac"
+    },
+    {
+      "path": "assets/songs/songlist",
+      "term": "plusfingers",
+      "offset": 109938,
+      "context": " \",                     \"rating\": 11,                     \"legacy11\": true,                     \"plusFingers\": true                 }             ]         },         {             \"idx\": 57,             \"id\": \"dreaminattraction\",             \"title_localized\": {     "
+    },
+    {
+      "path": "assets/songs/songlist",
+      "term": "plusfingers",
+      "offset": 165552,
+      "context": "              \"jacketDesigner\": \" \",                     \"rating\": 10,                     \"plusFingers\": true                 }             ]         },         {             \"idx\": 87,             \"id\": \"fractureray\",             \"title_localized\": {           "
+    },
+    {
+      "path": "assets/songs/songlist",
+      "term": "plusfingers",
+      "offset": 167008,
+      "context": "               \"jacketDesigner\": \" \",                     \"rating\": 9,                     \"plusFingers\": true                 },                 {                     \"ratingClass\": 2,                     \"chartDesigner\": \"Paradox Zero\",                     \"jac"
+    },
+    {
+      "path": "assets/songs/songlist",
+      "term": "plusfingers",
+      "offset": 167299,
+      "context": " \",                     \"rating\": 11,                     \"legacy11\": true,                     \"plusFingers\": true                 }             ]         },         {             \"idx\": 88,             \"id\": \"suomi\",             \"title_localized\": {                 "
+    },
+    {
+      "path": "assets/songs/unlocks",
+      "term": "ratingplus",
+      "offset": 74570,
+      "context": "    {               \"type\": 6,               \"count\": 1,               \"rating\": 10,               \"ratingPlus\": true,               \"grade\": 0             },             {               \"type\": 6,               \"count\": 10,               \"rating\": 10,               \"gr"
+    },
+    {
+      "path": "assets/songs/unlocks",
+      "term": "ratingplus",
+      "offset": 92113,
+      "context": "    {               \"type\": 6,               \"count\": 1,               \"rating\": 10,               \"ratingPlus\": true,               \"grade\": 0             },             {               \"type\": 6,               \"count\": 10,               \"rating\": 10,               \"gr"
+    },
+    {
+      "path": "assets/songs/unlocks",
+      "term": "ratingplus",
+      "offset": 108860,
+      "context": "    {               \"type\": 6,               \"count\": 1,               \"rating\": 10,               \"ratingPlus\": true,               \"grade\": 0             },             {               \"type\": 6,               \"count\": 10,               \"rating\": 10,               \"gr"
+    },
+    {
+      "path": "assets/songs/unlocks",
+      "term": "ratingplus",
+      "offset": 130383,
+      "context": "    {               \"type\": 6,               \"count\": 1,               \"rating\": 10,               \"ratingPlus\": true,               \"grade\": 0             },             {               \"type\": 6,               \"count\": 10,               \"rating\": 10,               \"gr"
+    },
+    {
+      "path": "assets/songs/unlocks",
+      "term": "ratingclass",
+      "offset": 66,
+      "context": "{   \"unlocks\": [     {       \"songId\": \"lostcivilization\",       \"ratingClass\": 1,       \"conditions\": [         {           \"type\": 1,           \"song_id\": \"snowwhite\",           \"song_difficulty\": 1,           \"grade\": 0         },    "
+    },
+    {
+      "path": "assets/songs/unlocks",
+      "term": "ratingclass",
+      "offset": 362,
+      "context": "0,           \"credit\": 80         }       ]     },     {       \"songId\": \"lostcivilization\",       \"ratingClass\": 2,       \"conditions\": [         {           \"type\": 1,           \"song_id\": \"snowwhite\",           \"song_difficulty\": 2,           \"grade\": 0         },    "
+    },
+    {
+      "path": "assets/songs/unlocks",
+      "term": "ratingclass",
+      "offset": 647,
+      "context": "   \"type\": 0,           \"credit\": 280         }       ]     },     {       \"songId\": \"rise\",       \"ratingClass\": 1,       \"conditions\": [         {           \"type\": 0,           \"credit\": 20         }       ]     },     {       \"songId\": \"rise\",       \"ratingClass\": 2,"
+    },
+    {
+      "path": "assets/songs/unlocks",
+      "term": "ratingclass",
+      "offset": 802,
+      "context": "    \"type\": 0,           \"credit\": 20         }       ]     },     {       \"songId\": \"rise\",       \"ratingClass\": 2,       \"conditions\": [         {           \"type\": 0,           \"credit\": 160         }       ]     },     {       \"songId\": \"snowwhite\",       \"ratingClas"
+    },
+    {
+      "path": "assets/songs/unlocks",
+      "term": "ratingclass",
+      "offset": 963,
+      "context": "ype\": 0,           \"credit\": 160         }       ]     },     {       \"songId\": \"snowwhite\",       \"ratingClass\": 1,       \"conditions\": [         {           \"type\": 1,           \"song_id\": \"rise\",           \"song_difficulty\": 1,           \"grade\": 0         },         "
+    },
+    {
+      "path": "assets/songs/unlocks",
+      "term": "ratingclass",
+      "offset": 1247,
+      "context": "type\": 0,           \"credit\": 40         }       ]     },     {       \"songId\": \"snowwhite\",       \"ratingClass\": 2,       \"conditions\": [         {           \"type\": 1,           \"song_id\": \"rise\",           \"song_difficulty\": 2,           \"grade\": 0         },         "
+    },
+    {
+      "path": "assets/songs/unlocks",
+      "term": "ratingclass",
+      "offset": 1532,
+      "context": "ype\": 0,           \"credit\": 200         }       ]     },     {       \"songId\": \"dandelion\",       \"ratingClass\": 1,       \"conditions\": [         {           \"type\": 0,           \"credit\": 40         }       ]     },     {       \"songId\": \"dandelion\",       \"ratingClass"
+    },
+    {
+      "path": "assets/songs/unlocks",
+      "term": "ratingclass",
+      "offset": 1692,
+      "context": "type\": 0,           \"credit\": 40         }       ]     },     {       \"songId\": \"dandelion\",       \"ratingClass\": 2,       \"conditions\": [         {           \"type\": 0,           \"credit\": 200         }       ]     },     {       \"songId\": \"onelastdrive\",       \"ratingC"
+    },
+    {
+      "path": "assets/songs/unlocks",
+      "term": "ratingclass",
+      "offset": 1856,
+      "context": "\": 0,           \"credit\": 200         }       ]     },     {       \"songId\": \"onelastdrive\",       \"ratingClass\": 1,       \"conditions\": [         {           \"type\": 0,           \"credit\": 40         }       ]     },     {       \"songId\": \"onelastdrive\",       \"ratingCl"
+    },
+    {
+      "path": "assets/songs/unlocks",
+      "term": "ratingclass",
+      "offset": 2019,
+      "context": "e\": 0,           \"credit\": 40         }       ]     },     {       \"songId\": \"onelastdrive\",       \"ratingClass\": 2,       \"conditions\": [         {           \"type\": 0,           \"credit\": 200         }       ]     },     {       \"songId\": \"infinityheaven\",       \"ratin"
+    },
+    {
+      "path": "assets/songs/unlocks",
+      "term": "ratingclass",
+      "offset": 2185,
+      "context": " 0,           \"credit\": 200         }       ]     },     {       \"songId\": \"infinityheaven\",       \"ratingClass\": 1,       \"conditions\": [         {           \"type\": 0,           \"credit\": 40         }       ]     },     {       \"songId\": \"infinityheaven\",       \"rating"
+    },
+    {
+      "path": "assets/songs/unlocks",
+      "term": "ratingclass",
+      "offset": 2350,
+      "context": ": 0,           \"credit\": 40         }       ]     },     {       \"songId\": \"infinityheaven\",       \"ratingClass\": 2,       \"conditions\": [         {           \"type\": 0,           \"credit\": 160         }       ]     },     {       \"songId\": \"partyvinyl\",       \"ratingCla"
+    },
+    {
+      "path": "assets/startup/missions.json",
+      "term": "potential",
+      "offset": 3316,
+      "context": "\"type\": \"local_clear\"}     ],     \"reward_bundles\": [\"fragment100\"]   },   {     \"id\": \"mission_4_2_potential350\",     \"tier\": 4,     \"requirements\": [       {\"value\": 350, \"type\": \"potential\"}     ],     \"reward_bundles\": [\"stamina2\"]   },   {     \"id\": \"mission_4_3_t"
+    },
+    {
+      "path": "assets/startup/missions.json",
+      "term": "potential",
+      "offset": 3398,
+      "context": "id\": \"mission_4_2_potential350\",     \"tier\": 4,     \"requirements\": [       {\"value\": 350, \"type\": \"potential\"}     ],     \"reward_bundles\": [\"stamina2\"]   },   {     \"id\": \"mission_4_3_twomaps\",     \"tier\": 4,     \"requirements\": [       {\"id\": \"mission_4_3_twomaps\", "
+    },
+    {
+      "path": "assets/startup/missions.json",
+      "term": "potential",
+      "offset": 4173,
+      "context": "quirements\": [       {\"id\": \"mission_3_end\", \"type\": \"clear_mission_id\"},       {\"id\": \"mission_4_2_potential350\", \"type\": \"clear_mission_id\"},       {\"id\": \"mission_4_4_worldsongunlock\", \"type\": \"clear_mission_id\"},       {\"id\": \"mission_4_5_prologuefinish\", \"type\": \""
+    }
+  ],
+  "binaryMatches": [
+    {
+      "path": "classes.dex",
+      "term": "constant",
+      "offset": 5485831,
+      "context": "teListDrawableCompat $AnimatedStateListDrawableCompat.java 4AnimatedStateListDrawableCompat_android_constantSize .AnimatedStateListDrawableCompat_android_dither 9AnimatedStateListDrawableCompat_android_enterFadeDuration 8AnimatedStateListDrawableCompat_android_exitFad"
+    },
+    {
+      "path": "classes.dex",
+      "term": "constant",
+      "offset": 5523473,
+      "context": "CONSENT_ALWAYS_FIRE CONSENT_REQUIRED CONST 4CONST requires an even number of arguments, found %s CONSTANT CONSTELLATION_BEIDOU CONSTELLATION_GALILEO CONSTELLATION_GLONASS CONSTELLATION_GPS CONSTELLATION_IRNSS CONSTELLATION_QZSS CONSTELLATION_SBAS CONSTELLAT"
+    },
+    {
+      "path": "classes.dex",
+      "term": "constant",
+      "offset": 5540522,
+      "context": " CompatJobEngine CompatWorkEnqueuer CompatWorkItem CompatWrapped CompilationStatus CompileTimeConstant.java CompletableDeferred$default $Completed executing operations from  Completer BCompleter object has been garbage collected, future will fail soon Complex"
+    },
+    {
+      "path": "classes.dex",
+      "term": "constant",
+      "offset": 5592865,
+      "context": "NT_TAG FINGERPRINT_KEY FINISHED FINITE_RECURRING FIRST FIRSTSTRONG_LTR FIRSTSTRONG_RTL FIRST_CONSTANT_INT &FIRST_PARTY_CLIENT_MISSING_1P_LISTENER &FIRST_PARTY_CLIENT_MISSING_3P_LISTENER FITNESS FIXED32 FIXED32_LIST FIXED32_LIST_PACKED FIXED32_MULTIPLE_MASK"
+    },
+    {
+      "path": "classes.dex",
+      "term": "constant",
+      "offset": 5619832,
+      "context": " null Handler.kt Handler28Impl HandlerCompat HandlerCompat.java HandlerExecutor \"HapticFeedbackConstantsCompat.java HapticFeedbackFlags HapticFeedbackType 1Has a new type of ByteString been created? Found  HasAccountOptions  HasAuthenticationResultsDelegate H"
+    },
+    {
+      "path": "classes.dex",
+      "term": "constant",
+      "offset": 5642388,
+      "context": " LABEL_REQUIRED LABEL_REQUIRED_VALUE LABToColor LABToXYZ LANGUAGE LARGE LAST LAST_CODE LAST_CONSTANT_INT LAST_INDEX LAST_MODIFIED LAUNCH_BILLING_FLOW LAUNCH_BILLING_FLOW_EXCEPTION LAUNCH_BILLING_FLOW_TIMEOUT \"LAUNCH_EXTERNAL_LINK_NOT_SUPPORTED (LAUNCH_EXT"
+    },
+    {
+      "path": "classes.dex",
+      "term": "constant",
+      "offset": 5661396,
+      "context": "/ColorDrawable; -Landroid/graphics/drawable/Drawable$Callback; 2Landroid/graphics/drawable/Drawable$ConstantState; $Landroid/graphics/drawable/Drawable; DLandroid/graphics/drawable/DrawableContainer$DrawableContainerState; -Landroid/graphics/drawable/DrawableContainer"
+    },
+    {
+      "path": "classes.dex",
+      "term": "constant",
+      "offset": 5669977,
+      "context": "port/v4/os/ResultReceiver; Landroid/system/ErrnoException; Landroid/system/Os; Landroid/system/OsConstants; Landroid/system/StructStat;  Landroid/telecom/TelecomManager; 'Landroid/telephony/SubscriptionManager; $Landroid/telephony/TelephonyManager; $Landroid/telep"
+    },
+    {
+      "path": "classes.dex",
+      "term": "constant",
+      "offset": 5674483,
+      "context": "terIcon; #Landroid/view/ScaleGestureDetector; Landroid/view/SearchEvent; #Landroid/view/SoundEffectConstants; Landroid/view/SubMenu; Landroid/view/TouchDelegate; Landroid/view/VelocityTracker; )Landroid/view/View$AccessibilityDelegate; \"Landroid/view/View$BaseSave"
+    },
+    {
+      "path": "classes.dex",
+      "term": "constant",
+      "offset": 5742060,
+      "context": "ontent/UnusedAppRestrictionsBackportServiceConnection; 6Landroidx/core/content/UnusedAppRestrictionsConstants; BLandroidx/core/content/UriMatcherCompat$$ExternalSyntheticLambda0; (Landroidx/core/content/UriMatcherCompat; -Landroidx/core/content/pm/ActivityInfoCompat; "
+    },
+    {
+      "path": "classes.dex",
+      "term": "constant",
+      "offset": 5769168,
+      "context": "/view/GestureDetectorCompat; \"Landroidx/core/view/GravityCompat; FLandroidx/core/view/HapticFeedbackConstantsCompat$HapticFeedbackFlags; ELandroidx/core/view/HapticFeedbackConstantsCompat$HapticFeedbackType; 2Landroidx/core/view/HapticFeedbackConstantsCompat; &Landroi"
+    },
+    {
+      "path": "classes.dex",
+      "term": "constant",
+      "offset": 5769240,
+      "context": "idx/core/view/HapticFeedbackConstantsCompat$HapticFeedbackFlags; ELandroidx/core/view/HapticFeedbackConstantsCompat$HapticFeedbackType; 2Landroidx/core/view/HapticFeedbackConstantsCompat; &Landroidx/core/view/InputDeviceCompat; 1Landroidx/core/view/KeyEventDispatcher$"
+    },
+    {
+      "path": "classes2.dex",
+      "term": "constant",
+      "offset": 5406426,
+      "context": "AndroidLogger Angle.java AnimatedStateListDrawableCompat 4AnimatedStateListDrawableCompat_android_constantSize .AnimatedStateListDrawableCompat_android_dither 9AnimatedStateListDrawableCompat_android_enterFadeDuration 8AnimatedStateListDrawableCompat_android_exitFad"
+    },
+    {
+      "path": "classes2.dex",
+      "term": "constant",
+      "offset": 5462624,
+      "context": "hod.java ComparisonChain.java Comparisons.kt CompatibilityLevel CompatibleWith.java CompileTimeConstant.java CompilerMessageKey.java CompilerMessageKeyBottom.java Complement ComplementRanges ComplementRangesByLowerBound CompletableDeferred CompletableDefer"
+    },
+    {
+      "path": "classes2.dex",
+      "term": "constant",
+      "offset": 5467166,
+      "context": "onsent generated from Tcf Consent query parameters to Bow ConsentStatus ConsentType Console.kt ConstantFunction Constants.java Constants.kt 1Constructor passed allowedContentTypes was null ! ConstructorInvokable Consts.java ConsumingQueueIterator.java Conta"
+    },
+    {
+      "path": "classes2.dex",
+      "term": "constant",
+      "offset": 5467184,
+      "context": "rom Tcf Consent query parameters to Bow ConsentStatus ConsentType Console.kt ConstantFunction Constants.java Constants.kt 1Constructor passed allowedContentTypes was null ! ConstructorInvokable Consts.java ConsumingQueueIterator.java Container Container pr"
+    },
+    {
+      "path": "classes2.dex",
+      "term": "constant",
+      "offset": 5467200,
+      "context": " query parameters to Bow ConsentStatus ConsentType Console.kt ConstantFunction Constants.java Constants.kt 1Constructor passed allowedContentTypes was null ! ConstructorInvokable Consts.java ConsumingQueueIterator.java Container Container preview url:  Con"
+    },
+    {
+      "path": "classes2.dex",
+      "term": "constant",
+      "offset": 5537188,
+      "context": "Functional interface constructor does not support reflection FunctionalEquivalence.java Functions.constant( Functions.forMap( Functions.forPredicate( Functions.forSupplier( Functions.identity() Functions.java Functions.kt Functions.toStringFunction() Funnel "
+    },
+    {
+      "path": "classes2.dex",
+      "term": "constant",
+      "offset": 5543160,
+      "context": "id_tileMode GradientColor_android_type Graph.java GraphBuilder.java GraphConnections.java GraphConstants.java Graphs.java Gravity GravityQuad Grouping.kt GroupingJVM.kt Guard GuardSatisfied.java GuardedBy.java GuardedByBottom.java GuardedByUnknown.java "
+    },
+    {
+      "path": "classes2.dex",
+      "term": "constant",
+      "offset": 5547386,
+      "context": "ne list Header list Header name Header parameter array Header value is null Header.java HeaderConstants.java HeaderElement.java HeaderElementIterator.java HeaderGroup.java HeaderIterator.java HeaderValueFormatter.java HeaderValueParser.java 8Headers were o"
+    },
+    {
+      "path": "classes2.dex",
+      "term": "constant",
+      "offset": 5569797,
+      "context": "tterOrDigit JavaLittleEndianBytes JavaLowerCase JavaUpperCase JavaVersion Jdk14Logger.java 'JdkConstants should not be instantiated JdkConstants.java JdkFutureAdapters.java JdkIdn.java JdkMatcher JdkPattern.java JdkPatternCompiler JniNativeApi.java Job J"
+    },
+    {
+      "path": "classes2.dex",
+      "term": "constant",
+      "offset": 5569838,
+      "context": "owerCase JavaUpperCase JavaVersion Jdk14Logger.java 'JdkConstants should not be instantiated JdkConstants.java JdkFutureAdapters.java JdkIdn.java JdkMatcher JdkPattern.java JdkPatternCompiler JniNativeApi.java Job Job  Job is still new or active:  Job wa"
+    },
+    {
+      "path": "classes2.dex",
+      "term": "constant",
+      "offset": 5647955,
+      "context": "ase/FunctionalEquivalence; $Lcom/google/common/base/Functions$1; 3Lcom/google/common/base/Functions$ConstantFunction; 4Lcom/google/common/base/Functions$ForMapWithDefault; 6Lcom/google/common/base/Functions$FunctionComposition; :Lcom/google/common/base/Functions$Funct"
+    },
+    {
+      "path": "classes2.dex",
+      "term": "constant",
+      "offset": 5725433,
+      "context": "/graph/GraphConnections; *Lcom/google/common/graph/GraphConnections< 1Lcom/google/common/graph/GraphConstants$Presence; (Lcom/google/common/graph/GraphConstants; /Lcom/google/common/graph/Graphs$NodeVisitState; 4Lcom/google/common/graph/Graphs$TransposedGraph$1$1; 2Lc"
+    },
+    {
+      "path": "classes2.dex",
+      "term": "potential",
+      "offset": 5403862,
+      "context": "ctivityCount Actor.kt %Ad unit id must be a non-empty string =AdMob ad impression logged from app. Potentially duplicative. AdaptedFunctionReference.java Adapters.java BAdaptive icons cannot be used in notifications. Ignoring icon id:  AddRejectingList AddRejectin"
+    },
+    {
+      "path": "classes2.dex",
+      "term": "potential",
+      "offset": 5490335,
+      "context": " Detail message must not be empty Detainted.java &Detected application was in foreground Detected potential deadlock *Determining Crashlytics installation ID... Deterministic.java  Development platform is: Flutter DevelopmentPlatform  DevelopmentPlatformProvider.ja"
+    },
+    {
+      "path": "classes2.dex",
+      "term": "potential",
+      "offset": 5761811,
+      "context": "ent/CycleDetectingLockFactory$Policy; XLcom/google/common/util/concurrent/CycleDetectingLockFactory$PotentialDeadlockException; RLcom/google/common/util/concurrent/CycleDetectingLockFactory$WithExplicitOrdering; RLcom/google/common/util/concurrent/CycleDetectingLockFac"
+    },
+    {
+      "path": "classes2.dex",
+      "term": "potential",
+      "offset": 6129706,
+      "context": "sible bracketless IPv6 literal: %s PostOrderIterator PostOrderNode PostconditionAnnotation.java PotentialDeadlockException PowerOfTwoStriped PowerSaveMode initiated. PowerSaveMode terminated. PowerSet Pragma PreOrderIterator Precondition Failed Precondition"
+    },
+    {
+      "path": "classes2.dex",
+      "term": "potential",
+      "offset": 6539600,
+      "context": " 'achievement_arcaea_pm_tutorial_advanced $achievement_arcaea_pm_tutorial_basic !achievement_arcaea_potential_1100  achievement_arcaea_potential_200  achievement_arcaea_potential_500  achievement_arcaea_potential_800 #achievement_arcaea_world_event_play 'achievement_ar"
+    },
+    {
+      "path": "classes2.dex",
+      "term": "potential",
+      "offset": 6539635,
+      "context": "vanced $achievement_arcaea_pm_tutorial_basic !achievement_arcaea_potential_1100  achievement_arcaea_potential_200  achievement_arcaea_potential_500  achievement_arcaea_potential_800 #achievement_arcaea_world_event_play 'achievement_arcaea_world_partner_unlock achievem"
+    },
+    {
+      "path": "classes2.dex",
+      "term": "potential",
+      "offset": 6539669,
+      "context": "rial_basic !achievement_arcaea_potential_1100  achievement_arcaea_potential_200  achievement_arcaea_potential_500  achievement_arcaea_potential_800 #achievement_arcaea_world_event_play 'achievement_arcaea_world_partner_unlock achievement_arcaea_world_play $achievement"
+    },
+    {
+      "path": "classes2.dex",
+      "term": "potential",
+      "offset": 6539703,
+      "context": "ential_1100  achievement_arcaea_potential_200  achievement_arcaea_potential_500  achievement_arcaea_potential_800 #achievement_arcaea_world_event_play 'achievement_arcaea_world_partner_unlock achievement_arcaea_world_play $achievement_arcaea_world_song_unlock achieve"
+    },
+    {
+      "path": "classes2.dex",
+      "term": "potential",
+      "offset": 6700836,
+      "context": "pletionException$kotlinx_coroutines_core handleOnPause handleOnResume handlePaddingSymbol handlePotentialDeadlock handleProxiedNotificationData handlePurchase handleReference handleRequest handleResponse handleRevalidationFailure handleSessionUpdate handleS"
+    },
+    {
+      "path": "lib/arm64-v8a/libcocos2dcpp.so",
+      "term": "constant",
+      "offset": 332409,
+      "context": "inf _ZNSt6__ndk16localeC1Ev _ZNSt6__ndk17collateIcE2idE tanf _ZNSt6__ndk111regex_errorC1ENS_15regex_constants10error_typeE _ZTINSt6__ndk111regex_errorE _ZNSt6__ndk111regex_errorD1Ev _ZNKSt6__ndk16locale4nameEv _ZNSt6__ndk120__get_collation_nameEPKc _ZNSt6__ndk115__get"
+    },
+    {
+      "path": "lib/arm64-v8a/libcocos2dcpp.so",
+      "term": "constant",
+      "offset": 422706,
+      "context": "move_state ERR_remove_thread_state ERR_set_error_data ERR_unload_strings err_cleanup err_clear_last_constant_time err_delete_thread_state err_free_strings_int err_shelve_state err_unshelve_state openssl_strerror_r err_load_crypto_strings_int ERR_print_errors ERR_print"
+    },
+    {
+      "path": "lib/arm64-v8a/libcocos2dcpp.so",
+      "term": "constant",
+      "offset": 542833,
+      "context": "k113random_deviceD2Ev _ZNKSt6__ndk113random_device7entropyEv _ZNSt6__ndk111regex_errorC2ENS_15regex_constants10error_typeE _ZTVNSt6__ndk111regex_errorE _ZNSt6__ndk111regex_errorD2Ev _ZNSt6__ndk111regex_errorD0Ev _ZNKSt6__ndk123__match_any_but_newlineIwE6__execERNS_7__"
+    },
+    {
+      "path": "lib/arm64-v8a/libcocos2dcpp.so",
+      "term": "constant",
+      "offset": 5169026,
+      "context": "ELLIA-192-CMAC CAMELLIA-256-CMAC id-tc26 id-tc26-gost-3410-2012-512-paramSetTest id-tc26-gost-28147-constants INN secureShellClient secureShellServer sendOwner Send Proxied Owner PKINIT Client Auth hkdf kx-rsa ARIA-128-OFB ARIA-256-CFB1 aria-256-cfb1 c3 id-dsa-with-sh"
+    },
+    {
+      "path": "lib/arm64-v8a/libcocos2dcpp.so",
+      "term": "constant",
+      "offset": 5212924,
+      "context": "SAES-OAEP brainpoolP224r1 brainpoolP320r1 brainpoolP512r1 dh-cofactor-kdf ct_precert_poison id-tc26-constants Ctrl/provision WAP Access ARIA-256-CFB SHA512-256 id-dsa-with-sha3-224 SM4-ECB oscca uacurve6 DSTU curve 7 GOST R 34.10-2012 (256 bit) ParamSet C OCSP_CRLID O"
+    },
+    {
+      "path": "lib/arm64-v8a/libcocos2dcpp.so",
+      "term": "constant",
+      "offset": 5234281,
+      "context": "om index  stats SET NULL temporary trigger may not have qualified name Cannot add a column with non-constant default current_date bind or column index out of range r+e fail ()F video_audio.ogg )Ljava/lang/String; assets/ PageViewReader ImageView y plistFile /Users/low"
+    },
+    {
+      "path": "lib/arm64-v8a/libcocos2dcpp.so",
+      "term": "constant",
+      "offset": 5267598,
+      "context": "eliveryMethod seeAlso mgf1 jurisdictionST camellia-192-ctr md_gost12_512 id-tc26-gost-3410-2012-512-constants OGRN Send Proxied Router ARIA-128-ECB aria-128-cfb8 SHA3-224 dsa_with_SHA3-384 aria-192-ccm aria-256-gcm ffdhe3072 SM2 OCSP_RESPID issuerNameHash value.good o"
+    },
+    {
+      "path": "lib/arm64-v8a/libcocos2dcpp.so",
+      "term": "constant",
+      "offset": 5364181,
+      "context": "gost auth-rsa auth-psk aria-256-cbc aria-256-cfb8 sha3-256 hmac-sha3-256 id-tc26-gost-3410-2012-256-constants hmacWithDstu34311 uacurve3 id-tc26-cipher-gostr3412-2015-magma id-tc26-wrap-gostr3412-2015-magma OBJ_add_sigid d2i_ocsp_nonce status expired     This Update:"
+    },
+    {
+      "path": "lib/arm64-v8a/libcocos2dcpp.so",
+      "term": "constant",
+      "offset": 5408254,
+      "context": "9-CryptoPro-A-ParamSet AES-192-CBC-HMAC-SHA1 CT Precertificate SCTs CAMELLIA-128-GCM id-tc26-cipher-constants Send Router AuthECDSA auth-ecdsa aria-192-ecb dnsName id-hmacWithSHA3-384 sm4-cfb dstu4145le uacurve9 OCSP_REQUEST OCSP_request_sign crypto/ocsp/ocsp_lib.c ma"
+    },
+    {
+      "path": "lib/arm64-v8a/libcocos2dcpp.so",
+      "term": "constant",
+      "offset": 5421619,
+      "context": "ParamSet postOfficeBox id-aes128-wrap-pad aes-256-ccm brainpoolP192r1 camellia-128-ccm id-tc26-sign-constants chacha20-poly1305 kx-srp ARIA-256-ECB id-ecdsa-with-sha3-384 id-rsassa-pkcs1-v1_5-with-sha3-512 id-tc26-gost-3410-2012-256-paramSetA DSTU curve 6 OBJ_create O"
+    },
+    {
+      "path": "lib/arm64-v8a/libcocos2dcpp.so",
+      "term": "constant",
+      "offset": 5484393,
+      "context": "n out of database schema is locked: %s p1 rowid functions second argument to likelihood() must be a constant between 0.0 and 1.0 too many columns in result set multiple references to recursive table: %s DELETE FROM %Q.%s WHERE name=%Q AND type='index' synchronous isis"
+    },
+    {
+      "path": "lib/arm64-v8a/libcocos2dcpp.so",
+      "term": "constant",
+      "offset": 5526573,
+      "context": "lePass-stdDH-sha512kdf-scheme id-tc26-algorithms GOST R 34.11-2012 with 512 bit hash id-tc26-digest-constants grasshopper-ecb tlsfeature aria-128-ecb ARIA-192-CFB aria-256-cfb dsa_with_SHA3-224 ARIA-256-GCM cmcCA DSTU curve 5 sm2 crypto/objects/obj_lib.c OCSP_CERTID c"
+    },
+    {
+      "path": "lib/arm64-v8a/libcocos2dcpp.so",
+      "term": "potential",
+      "offset": 5186361,
+      "context": "F unwind, reg2 too big libunwind: malformed DW_CFA_val_offset_sf DWARF unwind, reg too big arcaea_potential_200 arcaea_fail_grade_aa introContent updateAlterEgoLayerTimer frameSelected antithese \" not used bgm/title_reunion_full.ogg 2_mp_readyscreen.wav beyond_traver"
+    },
+    {
+      "path": "lib/arm64-v8a/libcocos2dcpp.so",
+      "term": "potential",
+      "offset": 5202189,
+      "context": "verview/major/middle.png  each digit  Play a song that is above your Potential center_button_pressable layouts/finale/minor/side-shards-01-IS-right.png damage_top showTutorial additional b6b0bc PLAY img/rating_off.png img/end_mid_f.png [ "
+    },
+    {
+      "path": "lib/arm64-v8a/libcocos2dcpp.so",
+      "term": "potential",
+      "offset": 5228532,
+      "context": "ew  [enable_if: std::nullptr_t objc_object std::bad_alloc std::bad_typeid getEncodedP x22 d3 arcaea_potential_800 Clone() is not implemented yet. ko moonheart %@d NameValuePairs: type mismatch for ' bgm/axiom_loop.ogg bgm/course_success_full.ogg res_fr.ogg story_transi"
+    },
+    {
+      "path": "lib/arm64-v8a/libcocos2dcpp.so",
+      "term": "potential",
+      "offset": 5231021,
+      "context": "ransitionToBreachedMap Use a Partner with a STEP stat over 50 to progress in World Mode mission_4_2_potential350 oneline_node layouts/mainmenu/MissionMenu.csb cardInProgress missionRewardNode leftEdgeBracket create rightEdge create bottom_bg_light Continue Matching img"
+    },
+    {
+      "path": "lib/arm64-v8a/libcocos2dcpp.so",
+      "term": "potential",
+      "offset": 5347792,
+      "context": "edPitch pcf CHARS FIGURE_WIDTH RAW_SUBSCRIPT_SIZE raster5 smooth EndAxis EndComposites IsFixedV KPY Potential overflow in png_zalloc() unexpected end of LZ stream duplicate sRGB information ignored gamma value does not match sRGB too many profiles cHRM White Y Invalid "
+    },
+    {
+      "path": "lib/arm64-v8a/libcocos2dcpp.so",
+      "term": "potential",
+      "offset": 5382165,
+      "context": "1/preview-btn-right.png On the right-hand side, swap between Partners that have variant forms. Name Potential [PROFILE]Visibility Main Story Chronicles models/tap_l.obj img/note_tomato.png img/note_dark.png 1234567890+ scenery_chap1 scenery_chap4 fin_v on_sc_type layou"
+    },
+    {
+      "path": "lib/arm64-v8a/libcocos2dcpp.so",
+      "term": "potential",
+      "offset": 5414838,
+      "context": "o touch traces. touch_hold_var img/1080/skills/djmax/bar-5x.png UNKNOW1 LEVEL2 Clear #1f1e33 Obtain Potential %@ or above song_difficulty show autoplay_legacy play_system Cannot open File  timing( access mkdir out of memory MJ collide: %s Halt Compare ReopenIdx SeekGE "
+    },
+    {
+      "path": "lib/arm64-v8a/libcocos2dcpp.so",
+      "term": "potential",
+      "offset": 5426349,
+      "context": " This event map is currently not available! img/1080/step_tile_current_speedrestrict.png Reach 3.50 Potential mission_1_end mission_4_5_prologuefinish tier characterSongNode create img/multiplayer/character-bracket.png layouts/multiplayer/card-justplayed-markerlight.pn"
+    },
+    {
+      "path": "lib/arm64-v8a/libcocos2dcpp.so",
+      "term": "potential",
+      "offset": 5452164,
+      "context": "lier-byd.png img/world/bg_glow.png overviewButtonContainer Overview img/world/ Unlocked by reaching Potential 9.00 u_icon.png char/-1_mp.png skill_mithra frags_yume skill_lily Earn +%@ Fragments for achieving %2@ grade or above Earn up to 20 Fragments based on number o"
+    },
+    {
+      "path": "lib/arm64-v8a/libcocos2dcpp.so",
+      "term": "potential",
+      "offset": 5454986,
+      "context": "s layouts/1080/songselect/song_score_tab.png layouts/1080/songselect/difficulty_selector_1.png Show Potential Show Partner skill before song start Run game at >60 FPS Uses more battery _preview.ogg _dialog partner jacketDesigner section Failed to complete purchase. [Er"
+    },
+    {
+      "path": "lib/arm64-v8a/libcocos2dcpp.so",
+      "term": "potential",
+      "offset": 5480071,
+      "context": " start and clear a song Quit  Clear a song with 0 LOSTs above   Potential symbol_bg challenge_ settings_button initialLoop 8c8693 ignorealllocalization layouts/results/Reward.csb FIRST CLEAR friend_scrollview Quit arghena img/hp_bar_"
+    },
+    {
+      "path": "lib/arm64-v8a/libcocos2dcpp.so",
+      "term": "potential",
+      "offset": 5528007,
+      "context": " malformed DW_CFA_val_expression DWARF unwind, reg too big sp x3 x9 x23 arcaea_hard_clear_5 arcaea_potential_500 information_text_bold en imageArrow hypervision %1 more than \"%2\" eff7f9 0b1011 endview_challenge_complete.wav endview_tutorial_show.wav diary_clear.wav it"
+    },
+    {
+      "path": "lib/arm64-v8a/libcocos2dcpp.so",
+      "term": "ratingplus",
+      "offset": 5204780,
+      "context": "tooth.png Adjust display speed of Story text Tap the button once on every 3rd Beat Yes LEVEL ??? FR ratingPlus Not enough %@ %@/%2@ songs unlocked lovelessdress img/bg_byd_light.jpg img/bg_glow_lephon.png remoteDownloadPresent: timeTheInsightAnimation removeDim fixUpRea"
+    },
+    {
+      "path": "lib/arm64-v8a/libcocos2dcpp.so",
+      "term": "ratingclass",
+      "offset": 5596084,
+      "context": "layouts/songselect/songfilter-sort-icon-inactiveTwo.png Top img/songselect/random_banner.png hi_res ratingClass limitedSaleEndTime img/jacket_locked_lock.png caution_text Tap to obtain %@ Tap to switch to a different song pack. img/1080/arghena/72_charaTitle_hanS.png Wor"
+    },
+    {
+      "path": "lib/arm64-v8a/libcocos2dcpp.so",
+      "term": "hidden_until",
+      "offset": 5482174,
+      "context": "080/diffswap/etr-left.png Difficulty leftbutton img/1080/append-purchase.png songListLayerScrollBar hidden_until unlockconditions Favorites name_localized %@ after: warning_message packNumberLabel highspeedSeen img/1080/alterego-button.png mp_connect_first_time_tutorial E"
+    },
+    {
+      "path": "lib/arm64-v8a/libcocos2dcpp.so",
+      "term": "audiooverride",
+      "offset": 5570267,
+      "context": " Late/Early Player Potential shown when enabled Receive a notification when stamina is full deleted audioOverride mainstory eden_append_2 single_bottom_2 Map img/songselect/folder-jump-up-pressed.png multiplayer_overlay_create You no longer have enough Fragments to use thi"
+    },
+    {
+      "path": "lib/arm64-v8a/libcocos2dcpp.so",
+      "term": "jacketoverride",
+      "offset": 5532062,
+      "context": "con-inactive-pressed.png updateSongFilter Standard / High file:///android_asset/audio/calibrate.ogg jacketOverride ak+q sidestory single_requirement_warning This song is available to obtain until 9 March 2027. Once obtained, the song can continue to be accessed after 9 Mar"
+    },
+    {
+      "path": "lib/arm64-v8a/libcocos2dcpp.so",
+      "term": "legacy11",
+      "offset": 5583888,
+      "context": "80/jacket_locked_generic.jpg chunithm_append_3 img/songselect/random_banner-cn.png artist_localized legacy11 anniversary_ticket_5_icon Tap to obtain with Memory Archive Ticket Select a Song useOriginalPackImage_eden img/multiplayer/online-btn-world-3-pressed.png total"
+    },
+    {
+      "path": "lib/armeabi-v7a/libcocos2dcpp.so",
+      "term": "constant",
+      "offset": 259015,
+      "context": "inf tanf _ZNSt6__ndk16localeC1Ev _ZNSt6__ndk17collateIcE2idE _ZNSt6__ndk111regex_errorC1ENS_15regex_constants10error_typeE _ZTINSt6__ndk111regex_errorE _ZNSt6__ndk111regex_errorD1Ev _ZNKSt6__ndk16locale4nameEv _ZNSt6__ndk120__get_collation_nameEPKc _ZNSt6__ndk115__get"
+    },
+    {
+      "path": "lib/armeabi-v7a/libcocos2dcpp.so",
+      "term": "constant",
+      "offset": 349433,
+      "context": "move_state ERR_remove_thread_state ERR_set_error_data ERR_unload_strings err_cleanup err_clear_last_constant_time err_delete_thread_state err_free_strings_int err_shelve_state err_unshelve_state openssl_strerror_r err_load_crypto_strings_int ERR_print_errors ERR_print"
+    },
+    {
+      "path": "lib/armeabi-v7a/libcocos2dcpp.so",
+      "term": "constant",
+      "offset": 469981,
+      "context": "k113random_deviceD2Ev _ZNKSt6__ndk113random_device7entropyEv _ZNSt6__ndk111regex_errorC2ENS_15regex_constants10error_typeE _ZTVNSt6__ndk111regex_errorE _ZNSt6__ndk111regex_errorD2Ev _ZNSt6__ndk111regex_errorD0Ev _ZNKSt6__ndk123__match_any_but_newlineIwE6__execERNS_7__"
+    },
+    {
+      "path": "lib/armeabi-v7a/libcocos2dcpp.so",
+      "term": "constant",
+      "offset": 3776648,
+      "context": "ELLIA-192-CMAC CAMELLIA-256-CMAC id-tc26 id-tc26-gost-3410-2012-512-paramSetTest id-tc26-gost-28147-constants INN secureShellClient secureShellServer sendOwner Send Proxied Owner PKINIT Client Auth hkdf kx-rsa ARIA-128-OFB ARIA-256-CFB1 aria-256-cfb1 c3 id-dsa-with-sh"
+    },
+    {
+      "path": "lib/armeabi-v7a/libcocos2dcpp.so",
+      "term": "constant",
+      "offset": 3819593,
+      "context": "SAES-OAEP brainpoolP224r1 brainpoolP320r1 brainpoolP512r1 dh-cofactor-kdf ct_precert_poison id-tc26-constants Ctrl/provision WAP Access ARIA-256-CFB SHA512-256 id-dsa-with-sha3-224 SM4-ECB oscca uacurve6 DSTU curve 7 GOST R 34.10-2012 (256 bit) ParamSet C OCSP_CRLID O"
+    },
+    {
+      "path": "lib/armeabi-v7a/libcocos2dcpp.so",
+      "term": "constant",
+      "offset": 3840868,
+      "context": "ing from index  SET NULL temporary trigger may not have qualified name Cannot add a column with non-constant default current_date bind or column index out of range fail ()F video_audio.ogg )Ljava/lang/String; assets/ CPU variant PageViewReader ImageView y plistFile /U"
+    },
+    {
+      "path": "lib/armeabi-v7a/libcocos2dcpp.so",
+      "term": "constant",
+      "offset": 3873507,
+      "context": "eliveryMethod seeAlso mgf1 jurisdictionST camellia-192-ctr md_gost12_512 id-tc26-gost-3410-2012-512-constants OGRN Send Proxied Router ARIA-128-ECB aria-128-cfb8 SHA3-224 dsa_with_SHA3-384 aria-192-ccm aria-256-gcm ffdhe3072 SM2 OCSP_RESPID issuerNameHash value.good o"
+    },
+    {
+      "path": "lib/armeabi-v7a/libcocos2dcpp.so",
+      "term": "constant",
+      "offset": 3968440,
+      "context": "gost auth-rsa auth-psk aria-256-cbc aria-256-cfb8 sha3-256 hmac-sha3-256 id-tc26-gost-3410-2012-256-constants hmacWithDstu34311 uacurve3 id-tc26-cipher-gostr3412-2015-magma id-tc26-wrap-gostr3412-2015-magma OBJ_add_sigid d2i_ocsp_nonce status expired     This Update:"
+    },
+    {
+      "path": "lib/armeabi-v7a/libcocos2dcpp.so",
+      "term": "constant",
+      "offset": 4012043,
+      "context": "9-CryptoPro-A-ParamSet AES-192-CBC-HMAC-SHA1 CT Precertificate SCTs CAMELLIA-128-GCM id-tc26-cipher-constants Send Router AuthECDSA auth-ecdsa aria-192-ecb dnsName id-hmacWithSHA3-384 sm4-cfb dstu4145le uacurve9 OCSP_REQUEST OCSP_request_sign crypto/ocsp/ocsp_lib.c ma"
+    },
+    {
+      "path": "lib/armeabi-v7a/libcocos2dcpp.so",
+      "term": "constant",
+      "offset": 4025210,
+      "context": "ParamSet postOfficeBox id-aes128-wrap-pad aes-256-ccm brainpoolP192r1 camellia-128-ccm id-tc26-sign-constants chacha20-poly1305 kx-srp ARIA-256-ECB id-ecdsa-with-sha3-384 id-rsassa-pkcs1-v1_5-with-sha3-512 id-tc26-gost-3410-2012-256-paramSetA DSTU curve 6 OBJ_create O"
+    },
+    {
+      "path": "lib/armeabi-v7a/libcocos2dcpp.so",
+      "term": "constant",
+      "offset": 4086972,
+      "context": "n out of database schema is locked: %s p1 rowid functions second argument to likelihood() must be a constant between 0.0 and 1.0 too many columns in result set multiple references to recursive table: %s DELETE FROM %Q.%s WHERE name=%Q AND type='index' synchronous isis"
+    },
+    {
+      "path": "lib/armeabi-v7a/libcocos2dcpp.so",
+      "term": "constant",
+      "offset": 4128205,
+      "context": "lePass-stdDH-sha512kdf-scheme id-tc26-algorithms GOST R 34.11-2012 with 512 bit hash id-tc26-digest-constants grasshopper-ecb tlsfeature aria-128-ecb ARIA-192-CFB aria-256-cfb dsa_with_SHA3-224 ARIA-256-GCM cmcCA DSTU curve 5 sm2 crypto/objects/obj_lib.c OCSP_CERTID c"
+    },
+    {
+      "path": "lib/armeabi-v7a/libcocos2dcpp.so",
+      "term": "potential",
+      "offset": 3793405,
+      "context": "ltype( >= typeid ( {...} mL ne operator>>= operator<=> long char32_t Dw objcproto s6 s12 s18 arcaea_potential_200 arcaea_fail_grade_aa introContent updateAlterEgoLayerTimer frameSelected antithese / \" not used bgm/title_reunion_full.ogg 2_mp_readyscreen.wav audio/ beyo"
+    },
+    {
+      "path": "lib/armeabi-v7a/libcocos2dcpp.so",
+      "term": "potential",
+      "offset": 3809304,
+      "context": "verview/major/middle.png  each digit  Play a song that is above your Potential center_button_pressable layouts/finale/minor/side-shards-01-IS-right.png damage_top showTutorial additional b6b0bc -fullnolocalize PLAY img/rating_off.png "
+    },
+    {
+      "path": "lib/armeabi-v7a/libcocos2dcpp.so",
+      "term": "potential",
+      "offset": 3834976,
+      "context": "le_if: std::nullptr_t objc_object std::bad_alloc std::bad_typeid getFloatRegister s24 s25 d3 arcaea_potential_800 Clone() is not implemented yet. ko moonheart lephon Arcaea %@d 2_online NameValuePairs: type mismatch for ' bgm/axiom_loop.ogg bgm/course_success_full.ogg "
+    },
+    {
+      "path": "lib/armeabi-v7a/libcocos2dcpp.so",
+      "term": "potential",
+      "offset": 3837584,
+      "context": "ransitionToBreachedMap Use a Partner with a STEP stat over 50 to progress in World Mode mission_4_2_potential350 oneline_node layouts/mainmenu/MissionMenu.csb cardInProgress missionRewardNode leftEdgeBracket create rightEdge create bottom_bg_light Continue Matching img"
+    },
+    {
+      "path": "lib/armeabi-v7a/libcocos2dcpp.so",
+      "term": "potential",
+      "offset": 3986317,
+      "context": "w-btn-right.png On the right-hand side, swap between Partners that have variant forms. Name option4 Potential [PROFILE]Visibility Main Story Chronicles models/tap_l.obj img/note_tomato.png img/note_dark.png 1234567890+ scenery_chap1 scenery_chap4 fin_v on_sc_type layou"
+    },
+    {
+      "path": "lib/armeabi-v7a/libcocos2dcpp.so",
+      "term": "potential",
+      "offset": 4018683,
+      "context": "o touch traces. touch_hold_var img/1080/skills/djmax/bar-5x.png UNKNOW1 LEVEL2 Clear #1f1e33 Obtain Potential %@ or above song_difficulty show autoplay_legacy play_system Cannot open File  timing( access mkdir out of memory MJ collide: %s Halt Compare ReopenIdx SeekGE "
+    },
+    {
+      "path": "lib/armeabi-v7a/libcocos2dcpp.so",
+      "term": "potential",
+      "offset": 4030043,
+      "context": "s event map is currently not available! %@X img/1080/step_tile_current_speedrestrict.png Reach 3.50 Potential mission_1_end mission_4_5_prologuefinish tier characterSongNode create img/multiplayer/character-bracket.png layouts/multiplayer/card-justplayed-markerlight.pn"
+    },
+    {
+      "path": "lib/armeabi-v7a/libcocos2dcpp.so",
+      "term": "potential",
+      "offset": 4055425,
+      "context": "lier-byd.png img/world/bg_glow.png overviewButtonContainer Overview img/world/ Unlocked by reaching Potential 9.00 u_icon.png char/-1_mp.png skill_mithra frags_yume skill_lily Earn +%@ Fragments for achieving %2@ grade or above Earn up to 20 Fragments based on number o"
+    },
+    {
+      "path": "lib/armeabi-v7a/libcocos2dcpp.so",
+      "term": "potential",
+      "offset": 4058316,
+      "context": "s layouts/1080/songselect/song_score_tab.png layouts/1080/songselect/difficulty_selector_1.png Show Potential Show Partner skill before song start Run game at >60 FPS Uses more battery _preview.ogg _dialog jacketDesigner section Failed to complete purchase. [Error: 117"
+    },
+    {
+      "path": "lib/armeabi-v7a/libcocos2dcpp.so",
+      "term": "potential",
+      "offset": 4082594,
+      "context": " start and clear a song Quit  Clear a song with 0 LOSTs above   Potential symbol_bg challenge_ settings_button initialLoop 8c8693 ignorealllocalization layouts/results/Reward.csb FIRST CLEAR -?- friend_scrollview player2 player3 Quit"
+    },
+    {
+      "path": "lib/armeabi-v7a/libcocos2dcpp.so",
+      "term": "potential",
+      "offset": 4129573,
+      "context": "led to release mutex && nullptr \"< Tt operator<<= ::operator  Dv enum sp arcaea_hard_clear_5 arcaea_potential_500 information_text_bold Node_2 en imageArrow hypervision %1 more than \"%2\" yugamu eff7f9 0b1011 endview_challenge_complete.wav endview_tutorial_show.wav diar"
+    },
+    {
+      "path": "lib/armeabi-v7a/libcocos2dcpp.so",
+      "term": "potential",
+      "offset": 4142421,
+      "context": "dress no proxy cert policy language defined l four vector terminating ~ reinterpret_cast s28 arcaea_potential_1100 C++ BufferedTransformation: this object can't be reinitialized showMainContent proceedButtonBacking bottom_text_bold invain Match \"%@\" dantalion_challeng"
+    },
+    {
+      "path": "lib/armeabi-v7a/libcocos2dcpp.so",
+      "term": "ratingplus",
+      "offset": 3811981,
+      "context": "djust display speed of Story text Tap the button once on every 3rd Beat Yes Beyond LEVEL ??? random ratingPlus 128 Not enough %@ %@/%2@ songs unlocked lovelessdress img/bg_byd_light.jpg img/bg_glow_lephon.png remoteDownloadPresent: timeTheInsightAnimation removeDim fixU"
+    },
+    {
+      "path": "lib/armeabi-v7a/libcocos2dcpp.so",
+      "term": "ratingclass",
+      "offset": 4196498,
+      "context": "ongselect/songfilter-sort-icon-inactiveTwo.png Top tap_text img/songselect/random_banner.png hi_res ratingClass limitedSaleEndTime img/jacket_locked_lock.png caution_text Tap to obtain %@ Tap to switch to a different song pack. img/1080/arghena/72_charaTitle_hanS.png Wor"
+    },
+    {
+      "path": "lib/armeabi-v7a/libcocos2dcpp.so",
+      "term": "hidden_until",
+      "offset": 4084739,
+      "context": "080/diffswap/etr-left.png Difficulty leftbutton img/1080/append-purchase.png songListLayerScrollBar hidden_until unlockconditions Favorites name_localized %@ after: warning_message packNumberLabel highspeedSeen img/1080/alterego-button.png mp_connect_first_time_tutorial E"
+    },
+    {
+      "path": "lib/armeabi-v7a/libcocos2dcpp.so",
+      "term": "audiooverride",
+      "offset": 4171227,
+      "context": "Early Player Potential shown when enabled Receive a notification when stamina is full [PRS] deleted audioOverride mainstory eden_append_2 single_bottom_2 Map img/songselect/folder-jump-up-pressed.png multiplayer_overlay_create You no longer have enough Fragments to use thi"
+    },
+    {
+      "path": "lib/armeabi-v7a/libcocos2dcpp.so",
+      "term": "jacketoverride",
+      "offset": 4133726,
+      "context": "ive-pressed.png updateSongFilter Standard / High file:///android_asset/audio/calibrate.ogg musicEnd jacketOverride Nitro sidestory single_requirement_warning This song is available to obtain until 9 March 2027. Once obtained, the song can continue to be accessed after 9 Ma"
+    },
+    {
+      "path": "lib/armeabi-v7a/libcocos2dcpp.so",
+      "term": "legacy11",
+      "offset": 4184404,
+      "context": "80/jacket_locked_generic.jpg chunithm_append_3 img/songselect/random_banner-cn.png artist_localized legacy11 anniversary_ticket_5_icon Tap to obtain with Memory Archive Ticket Select a Song useOriginalPackImage_eden img/multiplayer/online-btn-world-3-pressed.png total"
+    }
+  ],
+  "termHitCounts": {
+    "constant": 137,
+    "potential": 51,
+    "ratingplus": 385,
+    "ratingclass": 2241,
+    "hidden_until": 85,
+    "audiooverride": 10,
+    "jacketoverride": 60,
+    "legacy11": 24,
+    "plusfingers": 6
+  },
+  "conclusion": "Chart Constant was not found as a reliable song/difficulty field in the audited songlist/unlocks/structured records or readable AFF metadata. rating/ratingPlus are retained as raw Display Level inputs. Native/DEX string hits, if any, are not sufficient to assign a chart constant without a decoded runtime data path.",
+  "confidence": "High for audited structured data; Unresolved for opaque runtime/remote data"
+}

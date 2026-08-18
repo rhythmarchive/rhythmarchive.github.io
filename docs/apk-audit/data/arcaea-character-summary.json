@@ -1,0 +1,18 @@
+{
+  "characterMetadataCount": 98,
+  "characterImageAssetCount": 420,
+  "roleCounts": {
+    "linkplay-character-preview": 148,
+    "character-avatar-icon": 129,
+    "character-main-art": 96,
+    "character-variant-art": 9,
+    "character-variant-art-uncap-candidate": 27,
+    "character-skill-art": 2,
+    "character-mask-or-auxiliary-art": 1,
+    "unresolved-character-art": 5,
+    "character-art-other": 3
+  },
+  "unmatchedPathCount": 5,
+  "uncapCandidateCount": 27,
+  "mappingRule": "numeric character id in path is joined to characters.json; suffixes are preserved as variantRaw; only icon/mp/main-art roles are path-confirmed"
+}

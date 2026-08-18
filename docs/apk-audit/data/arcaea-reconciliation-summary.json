@@ -1,0 +1,374 @@
+{
+  "schema": "arcaea-catalog-reconciliation.v1",
+  "inputs": {
+    "catalogPath": "catalog\\index.json",
+    "catalogSha256": "a5733ec270d4871fb1de5102e6576a91785594fc721c90d0238ea9a6e2301dc4",
+    "catalogGeneratedAt": "2026-08-14T13:57:23.100Z",
+    "catalogFileSizeBytes": 22377443,
+    "apkPath": "D:\\Files\\曲绘\\Arcaea\\APK\\arcaea_6.16.8c.apk",
+    "apkSha256": "c2b58dcad54203645057a859524789f59cfd5ca13613b610d04ad087b58aac90",
+    "apkFileSizeBytes": 1867085903,
+    "apkModificationTime": "2026-08-18 16:35:39 +08:00",
+    "packageName": "moe.low.arc",
+    "versionName": "6.16.8c",
+    "versionCode": 1209752,
+    "apkEntryCount": 7320,
+    "legacyRoot": "E:\\曲绘"
+  },
+  "catalog": {
+    "resourceCount": 603,
+    "variantCount": 603,
+    "originalRenditionCount": 603,
+    "upscaledRenditionCount": 603,
+    "thumbnailRenditionCount": 1809,
+    "variantKindCounts": {
+      "default": 543,
+      "difficulty": 57,
+      "unknown": 3
+    }
+  },
+  "apk": {
+    "normalSongCount": 543,
+    "songlistRecordCount": 544,
+    "physicalArtworkRows": 1208,
+    "semanticSlotCount": 604,
+    "currentSongSemanticArtworkCount": 602,
+    "nonSongSemanticSlotCount": 2,
+    "semanticArtworkRoleCounts": {
+      "default": 543,
+      "difficulty-specific": 57,
+      "night/special": 2
+    },
+    "difficultyRecordSlots": 1799,
+    "playableChartRecords": 1796
+  },
+  "matching": {
+    "pixelThreshold": 2.0,
+    "methodOrder": [
+      "direct/provenance",
+      "exact-image-sha256",
+      "structured-idx-or-title-candidate",
+      "decoded-pixel-or-normalized-rgb-candidate"
+    ],
+    "titleFallbackOnlyCandidate": true
+  },
+  "specialCases": {
+    "total": 99,
+    "caseTypeCounts": {
+      "difficulty-specific-artist": 6,
+      "difficulty-specific-audio": 8,
+      "difficulty-specific-bpm": 4,
+      "difficulty-specific-jacket": 57,
+      "difficulty-specific-jacket-night": 3,
+      "difficulty-specific-title": 8,
+      "difficulty-title-family": 1,
+      "last-family": 8,
+      "rating-zero-slot": 3,
+      "unusual-difficulty-composition": 1
+    }
+  },
+  "lastCaseRows": [
+    {
+      "resourceId": "01a00091-6756-77ef-9575-a77bc7178f61",
+      "songId": "lasteternity",
+      "artworkRole": "default",
+      "difficulty": "",
+      "matchStatus": "confirmed",
+      "semanticStatus": "current-default-artwork",
+      "sourceFilenames": "Last Eternity_onoken_4.0_epilogue_IDX 283_BPM 175_SIDE 2_epilogue_lasteternity.jpg;Last Eternity_onoken_4.0_epilogue_IDX 283_BPM 175_SIDE 2_epilogue_lasteternity.jpg_opt.jpg"
+    },
+    {
+      "resourceId": "01a00091-6860-7a73-948a-da6197bfa2ea",
+      "songId": "last",
+      "artworkRole": "difficulty-specific",
+      "difficulty": "BYD",
+      "matchStatus": "confirmed",
+      "semanticStatus": "current-difficulty-artwork",
+      "sourceFilenames": "Last_onoken_4.0_epilogue_IDX 282_BPM 175_SIDE 2_epilogue_last_3.jpg;Last_onoken_4.0_epilogue_IDX 282_BPM 175_SIDE 2_epilogue_last_3.jpg_opt.jpg"
+    },
+    {
+      "resourceId": "01a00091-6963-7ca0-bdf0-45365376f41d",
+      "songId": "last",
+      "artworkRole": "default",
+      "difficulty": "",
+      "matchStatus": "confirmed",
+      "semanticStatus": "current-default-artwork",
+      "sourceFilenames": "Last_onoken_4.0_epilogue_IDX 282_BPM 175_SIDE 2_epilogue_last_base.jpg;Last_onoken_4.0_epilogue_IDX 282_BPM 175_SIDE 2_epilogue_last_base.jpg_opt.jpg"
+    }
+  ],
+  "catalogToApk": {
+    "resourceCount": 603,
+    "matchStatusCounts": {
+      "confirmed": 596,
+      "high": 1,
+      "medium": 1,
+      "unmatched": 5
+    },
+    "mediumCandidateCount": 1,
+    "semanticStatusCounts": {
+      "april-fools-special-song-artwork": 5,
+      "current-default-artwork": 529,
+      "current-difficulty-artwork": 57,
+      "current-special-artwork": 2,
+      "legacy-duplicate-candidate": 7,
+      "unresolved": 3
+    },
+    "historicalOrUnresolvedCount": 8,
+    "resourceRowsClosed": true,
+    "currentArtworkMatchStatusCounts": {
+      "confirmed": 596,
+      "high": 1,
+      "medium": 1,
+      "unmatched": 5
+    }
+  },
+  "apkToCatalog": {
+    "allSemanticSlotCount": 604,
+    "currentSongSemanticSlotCount": 602,
+    "currentSongSlotCoverageCounts": {
+      "covered": 581,
+      "missing-from-catalog": 14,
+      "multiple-catalog-matches": 7
+    },
+    "coverageRowsClosed": true,
+    "missingCurrentSlots": [
+      {
+        "songId": "acidgod",
+        "songIdx": "543",
+        "artworkRole": "default",
+        "difficultyClass": "",
+        "primaryPath": "assets/songs/dl_acidgod/1080_base.jpg"
+      },
+      {
+        "songId": "aishite",
+        "songIdx": "541",
+        "artworkRole": "default",
+        "difficultyClass": "",
+        "primaryPath": "assets/songs/dl_aishite/1080_base.jpg"
+      },
+      {
+        "songId": "altersist",
+        "songIdx": "534",
+        "artworkRole": "default",
+        "difficultyClass": "",
+        "primaryPath": "assets/songs/dl_altersist/1080_base.jpg"
+      },
+      {
+        "songId": "chronologia",
+        "songIdx": "545",
+        "artworkRole": "default",
+        "difficultyClass": "",
+        "primaryPath": "assets/songs/dl_chronologia/1080_base.jpg"
+      },
+      {
+        "songId": "cosmogyral",
+        "songIdx": "532",
+        "artworkRole": "default",
+        "difficultyClass": "",
+        "primaryPath": "assets/songs/dl_cosmogyral/1080_base.jpg"
+      },
+      {
+        "songId": "csqn",
+        "songIdx": "535",
+        "artworkRole": "default",
+        "difficultyClass": "",
+        "primaryPath": "assets/songs/dl_csqn/1080_base.jpg"
+      },
+      {
+        "songId": "flexidefine",
+        "songIdx": "533",
+        "artworkRole": "default",
+        "difficultyClass": "",
+        "primaryPath": "assets/songs/dl_flexidefine/1080_base.jpg"
+      },
+      {
+        "songId": "kamippoi",
+        "songIdx": "538",
+        "artworkRole": "default",
+        "difficultyClass": "",
+        "primaryPath": "assets/songs/dl_kamippoi/1080_base.jpg"
+      },
+      {
+        "songId": "lavie",
+        "songIdx": "537",
+        "artworkRole": "default",
+        "difficultyClass": "",
+        "primaryPath": "assets/songs/dl_lavie/1080_base.jpg"
+      },
+      {
+        "songId": "override",
+        "songIdx": "539",
+        "artworkRole": "default",
+        "difficultyClass": "",
+        "primaryPath": "assets/songs/dl_override/1080_base.jpg"
+      },
+      {
+        "songId": "sucromania",
+        "songIdx": "536",
+        "artworkRole": "default",
+        "difficultyClass": "",
+        "primaryPath": "assets/songs/dl_sucromania/1080_base.jpg"
+      },
+      {
+        "songId": "synthesis",
+        "songIdx": "542",
+        "artworkRole": "default",
+        "difficultyClass": "",
+        "primaryPath": "assets/songs/dl_synthesis/1080_base.jpg"
+      },
+      {
+        "songId": "telepathy",
+        "songIdx": "540",
+        "artworkRole": "default",
+        "difficultyClass": "",
+        "primaryPath": "assets/songs/dl_telepathy/1080_base.jpg"
+      },
+      {
+        "songId": "undyingmacula",
+        "songIdx": "491",
+        "artworkRole": "default",
+        "difficultyClass": "",
+        "primaryPath": "assets/songs/dl_undyingmacula/1080_base.jpg"
+      }
+    ],
+    "multipleCurrentSlots": [
+      {
+        "songId": "asgore",
+        "songIdx": "529",
+        "artworkRole": "default",
+        "difficultyClass": "",
+        "catalogResourceIds": "01a00092-70de-7625-b782-96f51385999f;01a00092-7159-7bbd-947f-a6f3e808fa03"
+      },
+      {
+        "songId": "dropdead",
+        "songIdx": "91",
+        "artworkRole": "difficulty-specific",
+        "difficultyClass": "BYD",
+        "catalogResourceIds": "01a00090-f075-7a65-a6fe-9f633474150a;01a00091-c36d-7f63-a127-3f90aa03b939"
+      },
+      {
+        "songId": "ignotus",
+        "songIdx": "41",
+        "artworkRole": "difficulty-specific",
+        "difficultyClass": "BYD",
+        "catalogResourceIds": "01a00091-433a-7ed1-bfd0-6f97978d63d6;01a00091-4433-7261-acb2-de11ccfd2560"
+      },
+      {
+        "songId": "redandblue",
+        "songIdx": "58",
+        "artworkRole": "difficulty-specific",
+        "difficultyClass": "BYD",
+        "catalogResourceIds": "01a00091-e80b-72fc-bc58-c85e11af3f54;01a00091-e8f5-7d9b-90a1-952e1cb72dee"
+      },
+      {
+        "songId": "singularity",
+        "songIdx": "70",
+        "artworkRole": "difficulty-specific",
+        "difficultyClass": "BYD",
+        "catalogResourceIds": "01a00092-0bec-756a-a925-b2a00ece2b36;01a00092-0cf2-70b6-80ec-d1906cbf2388"
+      },
+      {
+        "songId": "spearofjustice",
+        "songIdx": "528",
+        "artworkRole": "default",
+        "difficultyClass": "",
+        "catalogResourceIds": "01a00090-68b3-7ebe-810c-b448a3ed8900;01a00090-6930-7a89-9152-0a4945385143"
+      },
+      {
+        "songId": "spiderdance",
+        "songIdx": "527",
+        "artworkRole": "default",
+        "difficultyClass": "",
+        "catalogResourceIds": "01a00092-79c3-705b-9800-fbcd03699e36;01a00092-7a41-7f43-9096-fce409e69d45"
+      }
+    ]
+  },
+  "duplicates": {
+    "candidateRowCount": 5,
+    "exactDuplicateGroupCount": 5,
+    "pixelEquivalentGroupCount": 0,
+    "visualDuplicateGroupCount": 0
+  },
+  "upscaled": {
+    "resourceCount": 603,
+    "validSourceRenditionCount": 603,
+    "anomalyCount": 0
+  },
+  "externalReferences": {
+    "accessedDate": "2026-08-18",
+    "sourceOfTruth": "APK paths/content and local audit data; external pages are cross-checks only",
+    "references": [
+      {
+        "title": "ArcaeaChartRender",
+        "url": "https://github.com/Arcaea-Infinity/ArcaeaChartRender",
+        "purpose": "cross-check that songlist rating/ratingPlus are supplied separately from renderer constant"
+      },
+      {
+        "title": "Arcaea Wiki: Last",
+        "url": "https://arcaea.fandom.com/wiki/Last",
+        "purpose": "cross-check Last family display levels, chart constants and conditional Beyond presentation"
+      },
+      {
+        "title": "Arcaea Wiki: Songs data",
+        "url": "https://arcaea.fandom.com/wiki/Songs_data",
+        "purpose": "cross-check that chart constant is a distinct field from display level and side"
+      },
+      {
+        "title": "Arcaea Wiki*: Last",
+        "url": "https://arcwiki.mcd.blue/index.php?title=Last",
+        "purpose": "cross-check two BYD variants / audio-family interpretation"
+      },
+      {
+        "title": "Arcaea Wiki: Song Backgrounds",
+        "url": "https://arcaea.fandom.com/wiki/Song_Backgrounds",
+        "purpose": "cross-check Light/Conflict/Achromic/Lephon background labels"
+      },
+      {
+        "title": "Arcaea Wiki*: Pack order",
+        "url": "https://arcwiki.mcd.blue/index.php?title=Pack_order",
+        "purpose": "cross-check pack ordering context"
+      }
+    ]
+  },
+  "aprilFools": {
+    "baselineYears": [
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025,
+      2026
+    ],
+    "registryRowCount": 9,
+    "catalogResourceRowCount": 13,
+    "reclassifiedResourceIds": [
+      "01a00090-2f0f-7253-bd02-6dcebacbbcfd",
+      "01a00091-3b61-7d33-8328-b7e9c1b7c0c4",
+      "01a00091-7a91-731b-9da6-fbf860dd0d6e",
+      "01a00091-a029-70c2-9056-e14b9301e602",
+      "01a00092-45af-767f-8d89-bce8c0ee9978"
+    ],
+    "specialResourceIds": [
+      "01a00090-2f0f-7253-bd02-6dcebacbbcfd",
+      "01a00090-f075-7a65-a6fe-9f633474150a",
+      "01a00091-3b61-7d33-8328-b7e9c1b7c0c4",
+      "01a00091-433a-7ed1-bfd0-6f97978d63d6",
+      "01a00091-4433-7261-acb2-de11ccfd2560",
+      "01a00091-7a91-731b-9da6-fbf860dd0d6e",
+      "01a00091-a029-70c2-9056-e14b9301e602",
+      "01a00091-c36d-7f63-a127-3f90aa03b939",
+      "01a00091-e80b-72fc-bc58-c85e11af3f54",
+      "01a00091-e8f5-7d9b-90a1-952e1cb72dee",
+      "01a00092-0bec-756a-a925-b2a00ece2b36",
+      "01a00092-0cf2-70b6-80ec-d1906cbf2388",
+      "01a00092-45af-767f-8d89-bce8c0ee9978"
+    ],
+    "excludedFakeEntry": "Ignotus Afterburn 2",
+    "externalSemanticBaseline": "https://arcaea.fandom.com/wiki/Category:April_Fools",
+    "accessedDate": "2026-08-19",
+    "sourceOfTruth": "APK/local Catalog evidence; external baseline supplies player-facing April Fools semantics only"
+  }
+}

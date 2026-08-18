@@ -1,0 +1,14 @@
+{
+  "storyEntryCount": 186,
+  "storyCgCount": 57,
+  "storyCgReferencedByEntryField": 45,
+  "storyCgUnreferencedByEntryField": 12,
+  "vnScriptCount": 55,
+  "vnReferenceCount": 6270,
+  "vnResolvedReferenceCount": 6010,
+  "storyTextFiles": [
+    "assets/app-data/story/main/vn",
+    "assets/app-data/story/side/vn"
+  ],
+  "orderingSource": "assets/app-data/story2/ordering"
+}

@@ -1,0 +1,4 @@
+semanticRole,type,fileCount,totalSizeBytes,samplePaths
+Arcaea unclassified structured/text asset,Text-like,37,9108,billing.properties;client_analytics.proto;core-common.properties;firebase-analytics.properties;firebase-annotations.properties;firebase-encoders-proto.properties;firebase-encoders.properties;firebase-iid-interop.properties;firebase-measurement-connector.properties;googleid.properties
+unresolved Arcaea asset,Binary,8,31662,DebugProbesKt.bin;kotlin/annotation/annotation.kotlin_builtins;kotlin/collections/collections.kotlin_builtins;kotlin/coroutines/coroutines.kotlin_builtins;kotlin/internal/internal.kotlin_builtins;kotlin/kotlin.kotlin_builtins;kotlin/ranges/ranges.kotlin_builtins;kotlin/reflect/reflect.kotlin_builtins
+Arcaea unclassified image,PNG,1,69,assets/white.png

@@ -1,0 +1,31 @@
+{
+  "ok": true,
+  "generatedAt": "2026-08-18T17:31:38.844653+00:00",
+  "arcaea": {
+    "catalogJacketResources": 603,
+    "reconciliationRows": 603,
+    "semanticStatusCounts": {
+      "april-fools-special-song-artwork": 5,
+      "current-default-artwork": 529,
+      "current-difficulty-artwork": 57,
+      "current-special-artwork": 2,
+      "legacy-duplicate-candidate": 7,
+      "unresolved": 3
+    },
+    "matchStatusCounts": {
+      "confirmed": 596,
+      "high": 1,
+      "medium": 1,
+      "unmatched": 5
+    },
+    "aprilFoolsRegistryRows": 9,
+    "aprilFoolsArtworkRows": 13
+  },
+  "phigros": {
+    "trackMetadataRows": 319,
+    "displayLevelStatus": "partial-unresolved",
+    "chapterRelationStatus": "structure-found-instance-relation-unresolved",
+    "constantStatus": "not-found"
+  },
+  "errors": []
+}

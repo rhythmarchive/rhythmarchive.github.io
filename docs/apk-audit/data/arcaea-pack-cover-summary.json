@@ -1,0 +1,16 @@
+{
+  "packMetadataCount": 61,
+  "packAssetCount": 195,
+  "matchedAssetCount": 125,
+  "matchedPackIdCount": 61,
+  "directCoverRowCount": 44,
+  "directCoverPackIdCount": 41,
+  "packUiRowCount": 81,
+  "unmatchedPackAssetCount": 70,
+  "roleCounts": {
+    "pack-cover": 44,
+    "pack-ui": 81,
+    "unmatched-pack-ui": 70
+  },
+  "orderRule": "packOrder is the array order in assets/songs/packlist; no separate order key was found"
+}

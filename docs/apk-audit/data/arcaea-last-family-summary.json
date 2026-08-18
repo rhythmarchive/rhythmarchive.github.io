@@ -1,0 +1,19 @@
+{
+  "rows": 8,
+  "songIds": [
+    "last",
+    "last",
+    "last",
+    "last",
+    "lasteternity",
+    "lasteternity",
+    "lasteternity",
+    "lasteternity"
+  ],
+  "difficultyRecordSlots": 8,
+  "playableMetadataRecords": 5,
+  "inactivePlaceholderRecords": 3,
+  "localChartBodies": 0,
+  "relation": "Last | Moment is a difficulty-level title/audio/jacket override under songlist id last class BYD; Last | Eternity is a separate songlist id with its own BYD and three correlated inactive PST/PRS/FTR records",
+  "confidence": "High"
+}

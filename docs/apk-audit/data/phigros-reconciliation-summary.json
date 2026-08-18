@@ -1,0 +1,88 @@
+{
+  "generatedAt": "2026-08-19",
+  "inputs": {
+    "catalogPath": "E:\\rhythm-assets-gallery-v2\\catalog\\index.json",
+    "catalogSha256": "a5733ec270d4871fb1de5102e6576a91785594fc721c90d0238ea9a6e2301dc4",
+    "apkPath": "D:\\Files\\曲绘\\Phigros\\APK\\Phigros_3.19.5.apk",
+    "apkSha256": "b9654316e52bf2d410fa2ecb3f0df41246afdc3dc8133456deaff07ecbcf28bf",
+    "apkSizeBytes": 2652431993,
+    "apkEntryCount": 3163,
+    "legacyRoot": "E:\\曲绘\\Phigros",
+    "extractedRoot": "E:\\rhythm-assets-gallery-v2\\.runtime\\apk-audit\\extracted\\phigros"
+  },
+  "catalog": {
+    "phigrosResourceCount": 501,
+    "resourceTypeCounts": {
+      "character-avatar": 107,
+      "jacket": 320,
+      "pack-cover": 41,
+      "phigros-april-fools": 33
+    },
+    "reconciliationResourceCount": 353,
+    "reconciliationResourceTypeCounts": {
+      "jacket": 320,
+      "phigros-april-fools": 33
+    },
+    "sourceFileExistsCount": 501,
+    "sourceShaVerifiedCount": 501
+  },
+  "apk": {
+    "trackCount": 319,
+    "primaryIllustrationCount": 313,
+    "noPrimaryIllustrationCount": 6,
+    "noPrimaryIllustrationClassification": {
+      "random-family-no-primary": 6
+    },
+    "chartStructuralPresence": {
+      "EZ": 319,
+      "HD": 318,
+      "IN": 318,
+      "AT": 46,
+      "Legacy": 4
+    },
+    "errorChartCount": 3,
+    "legacyChartTrackCount": 4
+  },
+  "catalogToApk": {
+    "matchStatusCounts": {
+      "confirmed": 25,
+      "high": 289,
+      "unmatched": 39
+    },
+    "semanticStatusCounts": {
+      "april-fools-artwork": 33,
+      "current-track-artwork": 313,
+      "historical-artwork": 7
+    },
+    "rowsClosed": true
+  },
+  "apkToCatalog": {
+    "primaryIllustrationSlotCount": 313,
+    "coverageStatusCounts": {
+      "covered": 312,
+      "multiple-catalog-matches": 1
+    },
+    "rowsClosed": true
+  },
+  "duplicates": {
+    "candidateRowCount": 2,
+    "typeCounts": {
+      "exact-object-duplicate": 2
+    }
+  },
+  "displayMetadataReview": {
+    "rowCount": 320,
+    "comparisonCounts": {
+      "different-but-likely-corrected": 17,
+      "exact": 130,
+      "normalized-equivalent": 166,
+      "unresolved": 7
+    }
+  },
+  "projection": {
+    "trackRowCount": 319,
+    "displayLevel": "unresolved-null",
+    "chapter": "unresolved-null",
+    "sourceIdentityCandidateOnly": true
+  }
+}
