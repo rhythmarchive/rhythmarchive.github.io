@@ -152,6 +152,8 @@ test("site brand marks keep the accent rhythm line inside the mark", () => {
   const styles = fs.readFileSync(path.join(siteRoot, "src", "styles", "global.css"), "utf8");
   assert.match(brandMark, /viewBox="0 0 40 32"/u);
   assert.match(favicon, /viewBox="0 0 32 32"/u);
+  assert.match(brandMark, /<path d="M3 1h31l5 5v20l-5 5H3l-2-2V3Z"/u);
+  assert.match(favicon, /<path d="M3 1h25l3 4v22l-3 4H3l-2-2V3Z"/u);
   assert.match(brandMark, /<path d="M7 25\.5h5/u);
   assert.match(favicon, /<path d="M7 25h4/u);
   assert.match(styles, /\.brand-mark img \{ width: 40px; height: 32px; \}/u);
