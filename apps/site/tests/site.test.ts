@@ -154,7 +154,7 @@ test("game icons use real assets with a non-breaking fallback", () => {
   assert.match(source, /game-icon-fallback/u);
   assert.match(source, /onerror=/u);
   assert.match(styles, /\.game-entry-image > \.game-icon \{ position: absolute; inset: 0;/u);
-  assert.match(styles, /\.game-entry-image \.game-icon-image \{ inset: 0; width: 100%; height: 100%;/u);
+  assert.match(styles, /\.game-entry-image \.game-icon-image \{ inset: 0; width: 100%; height: 100%;[^}]*background: var\(--surface-muted\);/u);
   assert.equal(fs.existsSync(path.join(siteRoot, "public", "game-icons", "arcaea.png")), true);
   assert.equal(fs.existsSync(path.join(siteRoot, "public", "game-icons", "phigros.png")), true);
 });
@@ -174,6 +174,8 @@ test("Arcaea icon does not retain the adaptive green edge", async () => {
     }
   }
   assert.equal(greenEdgePixels, 0);
+  const bottomCenterOffset = ((icon.info.height - 1) * icon.info.width + Math.floor(icon.info.width / 2)) * icon.info.channels;
+  assert.ok((icon.data[bottomCenterOffset + 3] ?? 0) >= 200, "Arcaea icon should not retain a transparent drop-shadow strip at the bottom");
 });
 
 test("search quick links are explicit, count-gated, and game-scoped", () => {
