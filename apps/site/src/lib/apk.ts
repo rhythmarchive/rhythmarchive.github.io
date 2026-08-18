@@ -1,42 +1,81 @@
-import fs from "node:fs";
-import path from "node:path";
-import type { GameId } from "./game-config";
-import { objectUrl } from "./url";
+import { ROS_BASE_URL } from "./site-config";
 
-export type ApkDownloadRecord = {
-  game: GameId;
+export type PublicArcaeaApkEntry = {
   version: string;
-  filename: string;
-  bytes: number;
-  objectKey: string;
-  updatedAt: string;
+  versionCode: number | null;
+  fileName: string;
+  fileSize: number;
+  sha256: string;
+  url: string;
+  publishedAt: string;
 };
 
-export type PublicApkDownload = Omit<ApkDownloadRecord, "objectKey"> & { url: string };
+export type PublicArcaeaApkManifest = {
+  schemaVersion: 1;
+  game: "arcaea";
+  generatedAt: string;
+  latest: PublicArcaeaApkEntry;
+  previous: PublicArcaeaApkEntry | null;
+};
 
-export function parseApkManifest(value: unknown): ApkDownloadRecord[] {
-  if (!Array.isArray(value)) return [];
-  return value.flatMap((item) => {
-    if (!item || typeof item !== "object") return [];
-    const record = item as Record<string, unknown>;
-    if (record.game !== "arcaea" && record.game !== "phigros") return [];
-    if (![record.version, record.filename, record.objectKey, record.updatedAt].every((field) => typeof field === "string" && field.length > 0)) return [];
-    if (typeof record.bytes !== "number" || !Number.isSafeInteger(record.bytes) || record.bytes < 0) return [];
-    if (!/^((objects|assets)\/[0-9a-f]{64}\/[a-z0-9]+)$/iu.test(record.objectKey as string)) return [];
-    return [{ game: record.game, version: record.version as string, filename: record.filename as string, bytes: record.bytes, objectKey: record.objectKey as string, updatedAt: record.updatedAt as string }];
-  });
+const VERSION_PATTERN = /^(\d+\.\d+\.\d+)([a-z]?)$/iu;
+const SHA256_PATTERN = /^[0-9a-f]{64}$/iu;
+
+function canonicalVersion(value: string): string | undefined {
+  const match = value.trim().match(VERSION_PATTERN);
+  if (!match) return undefined;
+  return `${match[1]!.split(".").map((part) => String(Number.parseInt(part, 10))).join(".")}${match[2]!.toLowerCase()}`;
 }
 
-export function readApkManifest(workspaceRoot: string): ApkDownloadRecord[] {
-  const manifestPath = path.join(workspaceRoot, "apps", "site", "data", "apk-downloads.json");
-  if (!fs.existsSync(manifestPath)) return [];
+function validEntry(value: unknown, publicBaseUrl: string): PublicArcaeaApkEntry | null {
+  if (!value || typeof value !== "object") return null;
+  const record = value as Record<string, unknown>;
+  const version = typeof record.version === "string" ? canonicalVersion(record.version) : undefined;
+  const fileSize = record.fileSize;
+  const fileName = `Arcaea_${version ?? ""}.apk`;
+  const sha256 = typeof record.sha256 === "string" ? record.sha256.toLowerCase() : "";
+  const url = typeof record.url === "string" ? record.url : "";
+  const publishedAt = typeof record.publishedAt === "string" ? record.publishedAt : "";
+  const versionCode = record.versionCode === null ? null : typeof record.versionCode === "number" && Number.isSafeInteger(record.versionCode) && record.versionCode >= 0 ? record.versionCode : undefined;
+  if (!version || record.fileName !== fileName || typeof fileSize !== "number" || !Number.isSafeInteger(fileSize) || fileSize <= 0 || !SHA256_PATTERN.test(sha256) || !publishedAt || versionCode === undefined) return null;
+  let parsedUrl: URL;
   try {
-    return parseApkManifest(JSON.parse(fs.readFileSync(manifestPath, "utf8")));
+    parsedUrl = new URL(url);
   } catch {
-    return [];
+    return null;
   }
+  let expectedOrigin: string;
+  try {
+    const expected = new URL(publicBaseUrl);
+    if (expected.protocol !== "https:" || expected.username || expected.password || expected.pathname !== "/" || expected.search || expected.hash) return null;
+    expectedOrigin = expected.origin;
+  } catch {
+    return null;
+  }
+  if (parsedUrl.origin !== expectedOrigin || parsedUrl.protocol !== "https:" || parsedUrl.username || parsedUrl.password || parsedUrl.search || parsedUrl.hash) return null;
+  if (parsedUrl.pathname !== `/apk/arcaea/releases/${version}/${fileName}`) return null;
+  return { version, versionCode, fileName, fileSize, sha256, url, publishedAt };
 }
 
-export function publicApkDownloads(records: ApkDownloadRecord[], rosBaseUrl: string): PublicApkDownload[] {
-  return records.map(({ objectKey, ...record }) => ({ ...record, url: objectUrl(objectKey, rosBaseUrl) }));
+export function parsePublicArcaeaApkManifest(value: unknown, options: { publicBaseUrl?: string } = {}): PublicArcaeaApkManifest | null {
+  if (!value || typeof value !== "object") return null;
+  const record = value as Record<string, unknown>;
+  if (record.schemaVersion !== 1 || record.game !== "arcaea" || typeof record.generatedAt !== "string") return null;
+  const publicBaseUrl = options.publicBaseUrl ?? ROS_BASE_URL;
+  const latest = validEntry(record.latest, publicBaseUrl);
+  const previous = record.previous === null ? null : validEntry(record.previous, publicBaseUrl);
+  if (!latest || (record.previous !== null && !previous)) return null;
+  return { schemaVersion: 1, game: "arcaea", generatedAt: record.generatedAt, latest, previous };
+}
+
+export function formatPublicApkBytes(value: number): string {
+  if (value < 1024) return `${value} B`;
+  const units = ["KB", "MB", "GB"];
+  let size = value;
+  let unit = -1;
+  do {
+    size /= 1024;
+    unit += 1;
+  } while (size >= 1024 && unit < units.length - 1);
+  return `${size.toFixed(size >= 100 ? 0 : size >= 10 ? 1 : 2)} ${units[unit]}`;
 }

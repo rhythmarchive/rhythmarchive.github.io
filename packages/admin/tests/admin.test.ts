@@ -199,3 +199,61 @@ test("Admin reports the missing APK pair in user-facing language", async () => {
     await rm(root, { recursive: true, force: true });
   }
 });
+
+test("Arcaea manual trigger never runs without the server-side GitHub token", async () => {
+  const previousToken = process.env.GITHUB_ACTIONS_TRIGGER_TOKEN;
+  delete process.env.GITHUB_ACTIONS_TRIGGER_TOKEN;
+  const root = await mkdtemp(path.join(tmpdir(), "rhythm-admin-apk-trigger-test-"));
+  const config = normalizeAdminConfig({ workspaceRuntimePath: path.join(root, "runtime") });
+  const server = createAdminServer({ config, configPath: path.join(root, "admin-config.json") });
+  await new Promise<void>((resolve) => server.listen(0, "127.0.0.1", () => resolve()));
+  const address = server.address();
+  assert.ok(address && typeof address !== "string");
+  try {
+    const result = await jsonRequest(`http://127.0.0.1:${address.port}`, "/api/admin/apk/arcaea/check", { method: "POST", body: "{}" });
+    assert.equal(result.status, 503);
+    assert.equal(result.body.error.code, "GITHUB_TRIGGER_NOT_CONFIGURED");
+    assert.doesNotMatch(JSON.stringify(result.body), /token|authorization|secret/iu);
+  } finally {
+    if (previousToken === undefined) delete process.env.GITHUB_ACTIONS_TRIGGER_TOKEN;
+    else process.env.GITHUB_ACTIONS_TRIGGER_TOKEN = previousToken;
+    await new Promise<void>((resolve) => server.close(() => resolve()));
+    await rm(root, { recursive: true, force: true });
+  }
+});
+
+test("Arcaea manual trigger dispatches the fixed workflow and debounces repeats", async () => {
+  const previousToken = process.env.GITHUB_ACTIONS_TRIGGER_TOKEN;
+  const previousFetch = globalThis.fetch;
+  let calls = 0;
+  process.env.GITHUB_ACTIONS_TRIGGER_TOKEN = "test-trigger-token";
+  globalThis.fetch = async (input, init) => {
+    if (String(input).startsWith("http://127.0.0.1")) return previousFetch(input, init);
+    calls += 1;
+    assert.equal(String(input), "https://api.github.com/repos/rhythmarchive/rhythmarchive.github.io/actions/workflows/arcaea-apk-update.yml/dispatches");
+    assert.equal(JSON.parse(String(init?.body)).ref, "main");
+    assert.equal(JSON.parse(String(init?.body)).inputs.mode, "publish");
+    return new Response(null, { status: 204 });
+  };
+  const root = await mkdtemp(path.join(tmpdir(), "rhythm-admin-apk-dispatch-test-"));
+  const config = normalizeAdminConfig({ workspaceRuntimePath: path.join(root, "runtime") });
+  const server = createAdminServer({ config, configPath: path.join(root, "admin-config.json") });
+  await new Promise<void>((resolve) => server.listen(0, "127.0.0.1", () => resolve()));
+  const address = server.address();
+  assert.ok(address && typeof address !== "string");
+  try {
+    const first = await jsonRequest(`http://127.0.0.1:${address.port}`, "/api/admin/apk/arcaea/check", { method: "POST", body: "{}" });
+    assert.equal(first.status, 202);
+    assert.deepEqual(first.body, { status: "started" });
+    const repeated = await jsonRequest(`http://127.0.0.1:${address.port}`, "/api/admin/apk/arcaea/check", { method: "POST", body: "{}" });
+    assert.equal(repeated.status, 429);
+    assert.equal(repeated.body.error.code, "GITHUB_TRIGGER_THROTTLED");
+    assert.equal(calls, 1);
+  } finally {
+    globalThis.fetch = previousFetch;
+    if (previousToken === undefined) delete process.env.GITHUB_ACTIONS_TRIGGER_TOKEN;
+    else process.env.GITHUB_ACTIONS_TRIGGER_TOKEN = previousToken;
+    await new Promise<void>((resolve) => server.close(() => resolve()));
+    await rm(root, { recursive: true, force: true });
+  }
+});

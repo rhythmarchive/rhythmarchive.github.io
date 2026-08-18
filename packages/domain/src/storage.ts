@@ -3,6 +3,7 @@ import {
   DeleteObjectCommand,
   GetObjectCommand,
   HeadObjectCommand,
+  ListObjectsV2Command,
   PutObjectCommand,
   S3Client,
   type GetObjectCommandOutput,
@@ -42,6 +43,7 @@ export type StorageHead = {
   sizeBytes: number;
   contentType?: string;
   cacheControl?: string;
+  contentDisposition?: string;
   etag?: string;
 };
 
@@ -58,10 +60,11 @@ export type StorageVerification = {
 export type StorageClient = {
   readonly status: RosStorageStatus;
   readonly publicBaseUrl: string;
-  putObject(input: { objectKey: string; body: StorageObjectBody; sizeBytes?: number; contentType?: string; cacheControl?: string }): Promise<void>;
+  putObject(input: { objectKey: string; body: StorageObjectBody; sizeBytes?: number; contentType?: string; cacheControl?: string; contentDisposition?: string }): Promise<void>;
   headObject(objectKey: string): Promise<StorageHead>;
   getObject(objectKey: string): Promise<GetObjectCommandOutput>;
   deleteObject(objectKey: string): Promise<void>;
+  listObjects(prefix: string): Promise<string[]>;
   objectExists(objectKey: string): Promise<boolean>;
   verifyObject(objectKey: string, expected: { sizeBytes: number; sha256?: string }): Promise<StorageVerification>;
 };
@@ -110,7 +113,7 @@ export function publicObjectUrl(objectKey: string, publicBaseUrl = loadRosStorag
 }
 
 export class StorageError extends Error {
-  readonly code: "NOT_CONFIGURED" | "PUT_FAILED" | "HEAD_FAILED" | "GET_FAILED" | "DELETE_FAILED" | "VERIFY_FAILED";
+  readonly code: "NOT_CONFIGURED" | "PUT_FAILED" | "HEAD_FAILED" | "GET_FAILED" | "DELETE_FAILED" | "LIST_FAILED" | "VERIFY_FAILED";
   readonly notFound: boolean;
 
   constructor(code: StorageError["code"], message: string, options: { notFound?: boolean } = {}) {
@@ -137,14 +140,14 @@ async function sha256Body(body: unknown): Promise<string | undefined> {
   if (body === undefined || body === null) return undefined;
   if (body instanceof Uint8Array) return createHash("sha256").update(body).digest("hex");
   if (typeof body === "string") return createHash("sha256").update(body).digest("hex");
-  if (typeof body === "object" && "transformToByteArray" in body && typeof body.transformToByteArray === "function") {
-    const bytes = await body.transformToByteArray();
-    return createHash("sha256").update(bytes).digest("hex");
-  }
   if (typeof body === "object" && Symbol.asyncIterator in body) {
     const hash = createHash("sha256");
     for await (const chunk of body as AsyncIterable<Uint8Array | string>) hash.update(typeof chunk === "string" ? chunk : chunk);
     return hash.digest("hex");
+  }
+  if (typeof body === "object" && "transformToByteArray" in body && typeof body.transformToByteArray === "function") {
+    const bytes = await body.transformToByteArray();
+    return createHash("sha256").update(bytes).digest("hex");
   }
   return undefined;
 }
@@ -174,7 +177,7 @@ export class S3StorageClient implements StorageClient {
     return this.client;
   }
 
-  async putObject(input: { objectKey: string; body: StorageObjectBody; sizeBytes?: number; contentType?: string; cacheControl?: string }): Promise<void> {
+  async putObject(input: { objectKey: string; body: StorageObjectBody; sizeBytes?: number; contentType?: string; cacheControl?: string; contentDisposition?: string }): Promise<void> {
     try {
       await this.requireClient().send(new PutObjectCommand({
         Bucket: this.config.bucket,
@@ -182,6 +185,7 @@ export class S3StorageClient implements StorageClient {
         Body: input.body,
         ...(input.sizeBytes !== undefined ? { ContentLength: input.sizeBytes } : {}),
         ...(input.contentType ? { ContentType: input.contentType } : {}),
+        ...(input.contentDisposition ? { ContentDisposition: input.contentDisposition } : {}),
         CacheControl: input.cacheControl ?? IMMUTABLE_OBJECT_CACHE_CONTROL,
       }));
     } catch (error) {
@@ -198,6 +202,7 @@ export class S3StorageClient implements StorageClient {
         sizeBytes: result.ContentLength ?? 0,
         ...(result.ContentType ? { contentType: result.ContentType } : {}),
         ...(result.CacheControl ? { cacheControl: result.CacheControl } : {}),
+        ...(result.ContentDisposition ? { contentDisposition: result.ContentDisposition } : {}),
         ...(result.ETag ? { etag: result.ETag } : {}),
       };
     } catch (error) {
@@ -221,6 +226,26 @@ export class S3StorageClient implements StorageClient {
     } catch (error) {
       if (error instanceof StorageError) throw error;
       throw operationError("DELETE_FAILED", error);
+    }
+  }
+
+  async listObjects(prefix: string): Promise<string[]> {
+    const keys: string[] = [];
+    let continuationToken: string | undefined;
+    try {
+      do {
+        const result = await this.requireClient().send(new ListObjectsV2Command({
+          Bucket: this.config.bucket,
+          Prefix: prefix,
+          ...(continuationToken ? { ContinuationToken: continuationToken } : {}),
+        }));
+        for (const item of result.Contents ?? []) if (item.Key) keys.push(item.Key);
+        continuationToken = result.IsTruncated ? result.NextContinuationToken : undefined;
+      } while (continuationToken);
+      return keys;
+    } catch (error) {
+      if (error instanceof StorageError) throw error;
+      throw operationError("LIST_FAILED", error);
     }
   }
 
@@ -263,7 +288,7 @@ export class S3StorageClient implements StorageClient {
 export class MemoryStorageClient implements StorageClient {
   readonly status: RosStorageStatus = "READY";
   readonly publicBaseUrl: string;
-  readonly objects = new Map<string, { body: Uint8Array; sizeBytes: number; contentType?: string; cacheControl: string }>();
+  readonly objects = new Map<string, { body: Uint8Array; sizeBytes: number; contentType?: string; cacheControl: string; contentDisposition?: string }>();
   failOnPutNumber?: number;
   private putCount = 0;
 
@@ -271,7 +296,7 @@ export class MemoryStorageClient implements StorageClient {
     this.publicBaseUrl = publicBaseUrl;
   }
 
-  async putObject(input: { objectKey: string; body: StorageObjectBody; sizeBytes?: number; contentType?: string; cacheControl?: string }): Promise<void> {
+  async putObject(input: { objectKey: string; body: StorageObjectBody; sizeBytes?: number; contentType?: string; cacheControl?: string; contentDisposition?: string }): Promise<void> {
     this.putCount += 1;
     if (this.failOnPutNumber !== undefined && this.putCount === this.failOnPutNumber) throw new StorageError("PUT_FAILED", "ROS put failed.");
     const body = await bodyToBytes(input.body);
@@ -280,13 +305,14 @@ export class MemoryStorageClient implements StorageClient {
       sizeBytes: input.sizeBytes ?? body.byteLength,
       ...(input.contentType ? { contentType: input.contentType } : {}),
       cacheControl: input.cacheControl ?? IMMUTABLE_OBJECT_CACHE_CONTROL,
+      ...(input.contentDisposition ? { contentDisposition: input.contentDisposition } : {}),
     });
   }
 
   async headObject(objectKey: string): Promise<StorageHead> {
     const object = this.objects.get(objectKey);
     if (!object) throw new StorageError("HEAD_FAILED", "ROS head failed.", { notFound: true });
-    return { objectKey, sizeBytes: object.sizeBytes, ...(object.contentType ? { contentType: object.contentType } : {}), cacheControl: object.cacheControl };
+    return { objectKey, sizeBytes: object.sizeBytes, ...(object.contentType ? { contentType: object.contentType } : {}), cacheControl: object.cacheControl, ...(object.contentDisposition ? { contentDisposition: object.contentDisposition } : {}) };
   }
 
   async getObject(objectKey: string): Promise<GetObjectCommandOutput> {
@@ -297,6 +323,10 @@ export class MemoryStorageClient implements StorageClient {
 
   async deleteObject(objectKey: string): Promise<void> {
     this.objects.delete(objectKey);
+  }
+
+  async listObjects(prefix: string): Promise<string[]> {
+    return [...this.objects.keys()].filter((objectKey) => objectKey.startsWith(prefix));
   }
 
   async objectExists(objectKey: string): Promise<boolean> {

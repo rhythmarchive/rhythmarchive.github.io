@@ -1,15 +1,13 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import fs from "node:fs";
-import path from "node:path";
 import { projectCatalog, selectPreviewRendition } from "../src/lib/catalog-projection.js";
-import { parseApkManifest, publicApkDownloads } from "../src/lib/apk.js";
+import { formatPublicApkBytes, parsePublicArcaeaApkManifest } from "../src/lib/apk.js";
 import { uniqueZipFilename } from "../src/lib/batch.js";
 import { displayVariantLabel } from "../src/lib/game-config.js";
 import { GISCUS_CONFIG, GITHUB_DISCUSSIONS_URL } from "../src/lib/site-config.js";
 import { rankSearchEntries } from "../src/lib/search.js";
 import { createUrlHelpers } from "../src/lib/url.js";
-import { findWorkspaceRoot, loadFormalCatalog } from "../src/lib/site-data.js";
+import { loadFormalCatalog } from "../src/lib/site-data.js";
 import type { PublicSearchEntry } from "../src/lib/types.js";
 
 const catalog = loadFormalCatalog();
@@ -106,11 +104,21 @@ test("ZIP duplicate naming uses human-safe numbered suffixes", () => {
   assert.deepEqual(names, ["name.jpg", "name (2).jpg", "name (3).jpg", "name (2) (2).jpg", "bad_name.jpg"]);
 });
 
-test("optional APK manifest is absent-safe and emits only public ROS URLs", () => {
-  const root = findWorkspaceRoot();
-  assert.deepEqual(parseApkManifest(undefined), []);
-  const records = parseApkManifest([{ game: "arcaea", version: "1.0", filename: "arcaea.apk", bytes: 12, objectKey: `objects/${"a".repeat(64)}/bin`, updatedAt: "2026-08-15T00:00:00Z" }]);
-  assert.equal(records.length, 1);
-  assert.equal(publicApkDownloads(records, rosBaseUrl)[0]?.url, `${rosBaseUrl}/objects/${"a".repeat(64)}/bin`);
-  assert.equal(fs.existsSync(path.join(root, "apps", "site", "data", "apk-downloads.json")), false);
+test("homepage APK parser accepts latest/previous and rejects source URLs or malformed entries", () => {
+  const entry = (version: string) => ({
+    version,
+    versionCode: null,
+    fileName: `Arcaea_${version}.apk`,
+    fileSize: 1234,
+    sha256: "a".repeat(64),
+    url: `${rosBaseUrl}/apk/arcaea/releases/${version}/Arcaea_${version}.apk`,
+    publishedAt: "2026-08-15T00:00:00Z",
+  });
+  assert.equal(parsePublicArcaeaApkManifest(undefined), null);
+  const parsed = parsePublicArcaeaApkManifest({ schemaVersion: 1, game: "arcaea", generatedAt: "2026-08-15T00:00:00Z", latest: entry("6.17.1"), previous: entry("6.17.0") });
+  assert.equal(parsed?.latest.version, "6.17.1");
+  assert.equal(parsed?.previous?.version, "6.17.0");
+  assert.equal(parsePublicArcaeaApkManifest({ schemaVersion: 1, game: "arcaea", generatedAt: "now", latest: { ...entry("6.17.1"), url: "https://arcaea-static.lowiro-cdn.net/arcaea.apk" }, previous: null }), null);
+  assert.equal(parsePublicArcaeaApkManifest({ schemaVersion: 1, game: "arcaea", generatedAt: "now", latest: { ...entry("6.17.1"), url: "https://evil.example/apk/arcaea/releases/6.17.1/Arcaea_6.17.1.apk" }, previous: null }), null);
+  assert.equal(formatPublicApkBytes(1234), "1.21 KB");
 });

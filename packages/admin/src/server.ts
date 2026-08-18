@@ -10,7 +10,10 @@ import {
   buildArcaeaSourceInventory,
   createVersionWorkspace,
   createWorkspaceFromExtractorResult,
+  loadRosStorageConfig,
+  parseArcaeaApkManifest,
   ResourceType,
+  type ArcaeaApkManifest,
   rosStorageStatus,
   type ExtractorApk,
   ExtractorResult,
@@ -49,6 +52,9 @@ import {
 const PROJECT_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..", "..", "..");
 const PUBLIC_ROOT = path.join(PROJECT_ROOT, "packages", "admin", "public");
 const MAX_BODY_BYTES = 1024 * 1024;
+const GITHUB_ACTIONS_REPOSITORY = "rhythmarchive/rhythmarchive.github.io";
+const GITHUB_ACTIONS_WORKFLOW = "arcaea-apk-update.yml";
+const ARCAEA_TRIGGER_DEBOUNCE_MS = 5 * 60 * 1000;
 
 type AdminRuntime = {
   config: AdminConfig;
@@ -145,6 +151,45 @@ function sendError(response: ServerResponse, error: unknown): void {
 
 function publicAdminState(config: AdminConfig): { config: AdminConfig; ros: ReturnType<typeof rosStorageStatus> } {
   return { config, ros: rosStorageStatus() };
+}
+
+async function readPublicArcaeaApkStatus(): Promise<{ latest: ArcaeaApkManifest["latest"] | null; previous: ArcaeaApkManifest["previous"] | null; generatedAt: string | null }> {
+  const publicBaseUrl = loadRosStorageConfig().publicBaseUrl;
+  const publicUrl = `${publicBaseUrl.replace(/\/+$/u, "")}/apk/arcaea/latest.json`;
+  let response: Response;
+  try {
+    response = await fetch(publicUrl, { headers: { Accept: "application/json" }, redirect: "follow" });
+  } catch {
+    throw new AdminOperationError("APK_STATUS_UNAVAILABLE", "暂时无法读取 Arcaea APK 状态。", 502);
+  }
+  if (response.status === 404) return { latest: null, previous: null, generatedAt: null };
+  if (!response.ok) throw new AdminOperationError("APK_STATUS_UNAVAILABLE", "暂时无法读取 Arcaea APK 状态。", 502);
+  const parsed = parseArcaeaApkManifest(await response.json().catch(() => undefined), { publicBaseUrl });
+  if (!parsed) throw new AdminOperationError("APK_STATUS_INVALID", "Arcaea APK 公开状态暂时不可用。", 502);
+  return { latest: parsed.latest, previous: parsed.previous, generatedAt: parsed.generatedAt };
+}
+
+async function triggerArcaeaApkWorkflow(): Promise<void> {
+  const token = process.env.GITHUB_ACTIONS_TRIGGER_TOKEN?.trim();
+  if (!token) throw new AdminOperationError("GITHUB_TRIGGER_NOT_CONFIGURED", "还没有配置 GitHub Actions 触发凭据。", 503);
+  const endpoint = `https://api.github.com/repos/${GITHUB_ACTIONS_REPOSITORY}/actions/workflows/${GITHUB_ACTIONS_WORKFLOW}/dispatches`;
+  let response: Response;
+  try {
+    response = await fetch(endpoint, {
+      method: "POST",
+      headers: {
+        Accept: "application/vnd.github+json",
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+        "User-Agent": "rhythm-archive-admin",
+        "X-GitHub-Api-Version": "2022-11-28",
+      },
+      body: JSON.stringify({ ref: "main", inputs: { mode: "publish" } }),
+    });
+  } catch {
+    throw new AdminOperationError("GITHUB_TRIGGER_FAILED", "暂时无法提交 GitHub Actions 检查任务。", 502);
+  }
+  if (!response.ok) throw new AdminOperationError("GITHUB_TRIGGER_FAILED", "GitHub Actions 检查任务提交失败。", 502);
 }
 
 async function readJsonBody(request: IncomingMessage): Promise<Record<string, unknown>> {
@@ -422,9 +467,18 @@ async function serveStatic(pathname: string, response: ServerResponse): Promise<
   }
 }
 
-async function handleApi(runtime: AdminRuntime, request: IncomingMessage, response: ServerResponse, url: URL): Promise<void> {
+async function handleApi(runtime: AdminRuntime, request: IncomingMessage, response: ServerResponse, url: URL, triggerArcaeaWorkflow: () => Promise<void>): Promise<void> {
   if (request.method === "GET" && url.pathname === "/api/health") {
     sendJson(response, 200, { ok: true, localOnly: true });
+    return;
+  }
+  if (request.method === "GET" && url.pathname === "/api/admin/apk/arcaea/status") {
+    sendJson(response, 200, await readPublicArcaeaApkStatus());
+    return;
+  }
+  if (request.method === "POST" && url.pathname === "/api/admin/apk/arcaea/check") {
+    await triggerArcaeaWorkflow();
+    sendJson(response, 202, { status: "started" });
     return;
   }
   if (request.method === "GET" && url.pathname === "/api/bootstrap") {
@@ -629,6 +683,21 @@ async function handleApi(runtime: AdminRuntime, request: IncomingMessage, respon
 }
 
 export function createAdminServer(runtime: AdminRuntime): Server {
+  let arcaeaTriggerInFlight: Promise<void> | undefined;
+  let arcaeaLastTriggeredAt = 0;
+  const guardedArcaeaTrigger = async (): Promise<void> => {
+    if (arcaeaTriggerInFlight) throw new AdminOperationError("GITHUB_TRIGGER_IN_FLIGHT", "Arcaea APK 检查任务正在提交，请稍后再试。", 409);
+    const elapsed = Date.now() - arcaeaLastTriggeredAt;
+    if (arcaeaLastTriggeredAt > 0 && elapsed < ARCAEA_TRIGGER_DEBOUNCE_MS) throw new AdminOperationError("GITHUB_TRIGGER_THROTTLED", "Arcaea APK 检查任务刚刚已提交，请稍后再试。", 429);
+    const pending = triggerArcaeaApkWorkflow();
+    arcaeaTriggerInFlight = pending;
+    try {
+      await pending;
+      arcaeaLastTriggeredAt = Date.now();
+    } finally {
+      if (arcaeaTriggerInFlight === pending) arcaeaTriggerInFlight = undefined;
+    }
+  };
   const server = createServer((request, response) => {
     const address = server.address();
     const port = address && typeof address !== "string" ? address.port : 0;
@@ -636,7 +705,7 @@ export function createAdminServer(runtime: AdminRuntime): Server {
       try {
         checkLocalRequest(request, port);
         const url = new URL(request.url ?? "/", `http://127.0.0.1:${port || 80}`);
-        if (url.pathname.startsWith("/api/")) await handleApi(runtime, request, response, url);
+        if (url.pathname.startsWith("/api/")) await handleApi(runtime, request, response, url, guardedArcaeaTrigger);
         else if (request.method === "GET") await serveStatic(url.pathname, response);
         else sendJson(response, 405, { error: { code: "METHOD_NOT_ALLOWED", message: "不支持这个请求方法。" } });
       } catch (error) {

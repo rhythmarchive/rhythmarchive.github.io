@@ -176,6 +176,12 @@ h3 { font-size: 15px; line-height: 1.35; }
 
 .panel { padding: 20px; }
 .panel + .panel { margin-top: 14px; }
+.admin-apk-panel { margin-top: 20px; }
+.admin-apk-panel .section-head { margin-top: 0; }
+.apk-status-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.apk-status-grid > div { min-width: 0; padding: 13px; border-radius: 9px; background: var(--surface-muted); }
+.apk-status-grid strong { display: block; margin-top: 5px; font-size: 20px; font-variant-numeric: tabular-nums; }
+.apk-status-grid .stat-note { display: block; overflow-wrap: anywhere; }
 .form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 15px; }
 .form-field { display: grid; gap: 6px; }
 .form-field.full { grid-column: 1 / -1; }
@@ -265,7 +271,7 @@ summary { cursor: pointer; color: var(--ink-soft); font-size: 12px; font-weight:
   #page { padding: 24px 20px 48px; }
   .workspace-picker span { display: none; }
   .workspace-picker select { min-width: 135px; max-width: 180px; }
-  .dashboard-grid, .publish-summary { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .dashboard-grid, .publish-summary, .apk-status-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .candidate-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (max-width: 560px) {
@@ -275,7 +281,7 @@ summary { cursor: pointer; color: var(--ink-soft); font-size: 12px; font-weight:
   h1 { font-size: 24px; }
   .page-head { display: grid; }
   .head-actions { justify-content: flex-start; }
-  .dashboard-grid, .publish-summary, .form-grid, .candidate-grid { grid-template-columns: 1fr; }
+  .dashboard-grid, .publish-summary, .apk-status-grid, .form-grid, .candidate-grid { grid-template-columns: 1fr; }
   .workspace-row, .upscale-row { align-items: flex-start; display: grid; grid-template-columns: 1fr; }
   .workspace-counts { justify-content: flex-start; }
   .upscale-actions { justify-content: flex-start; }

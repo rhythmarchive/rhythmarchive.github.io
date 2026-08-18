@@ -10,6 +10,7 @@
     publish: null,
     publishExecution: null,
     legacy: null,
+    arcaeaApk: null,
   };
 
   const pageNames = { dashboard: "Dashboard", new: "新建更新", review: "更新审核", upscale: "AI 超分", publish: "发布", legacy: "首次迁移", settings: "设置" };
@@ -116,9 +117,35 @@
         <div class="stat-card"><span class="stat-label">需要超分</span><strong class="stat-value">${upscale}</strong><span class="stat-note">等待外部 AI 输出</span></div>
         <div class="stat-card"><span class="stat-label">阻塞</span><strong class="stat-value">${blocked}</strong><span class="stat-note">需要手动处理</span></div>
       </div>
+      ${renderArcaeaApkPanel()}
       <div class="section-head"><h2>最近工作区</h2><span class="muted">${workspaces.length} 个工作区</span></div>
       ${workspaces.length ? `<div class="workspace-list">${workspaces.map(renderWorkspaceRow).join("")}</div>` : '<div class="empty-state"><strong>还没有版本工作区</strong><span>选择旧版和新版 APK，开始一次本地更新。</span><div class="form-actions" style="justify-content:center"><button class="button button-primary" data-page="new">新建更新</button></div></div>'}
     `;
+  }
+
+  function renderArcaeaApkPanel() {
+    const status = state.arcaeaApk;
+    if (!status) return '<section class="panel admin-apk-panel"><div class="section-head"><div><h2>Arcaea APK</h2><span class="muted">正在读取公开状态…</span></div></div></section>';
+    if (status.error) return `<section class="panel admin-apk-panel"><div class="section-head"><div><h2>Arcaea APK</h2><span class="muted">${escapeHtml(status.error)}</span></div></div></section>`;
+    const latest = status.latest;
+    const previous = status.previous;
+    return `<section class="panel admin-apk-panel">
+      <div class="section-head"><div><h2>Arcaea APK</h2><span class="muted">公开状态来自 ROS latest.json</span></div><button class="button button-primary button-small" data-action="trigger-arcaea-apk">立即检查更新</button></div>
+      <div class="apk-status-grid">
+        <div><span class="stat-label">当前最新版</span><strong>${latest ? escapeHtml(latest.version) : "—"}</strong><span class="stat-note">${latest ? `${formatBytes(latest.fileSize)} · ${formatDate(latest.publishedAt)}` : "尚未发布"}</span></div>
+        <div><span class="stat-label">上一版本</span><strong>${previous ? escapeHtml(previous.version) : "—"}</strong><span class="stat-note">${previous ? formatDate(previous.publishedAt) : "第一次发布时为空"}</span></div>
+        <div><span class="stat-label">最后一次公开生成</span><strong>${status.generatedAt ? formatDate(status.generatedAt) : "—"}</strong><span class="stat-note">手动触发后请稍后刷新</span></div>
+      </div>
+    </section>`;
+  }
+
+  async function loadArcaeaApkStatus() {
+    try {
+      state.arcaeaApk = await api("/api/admin/apk/arcaea/status");
+    } catch (error) {
+      state.arcaeaApk = { error: error.message || "暂时无法读取 Arcaea APK 状态。" };
+    }
+    if (state.page === "dashboard") renderPage();
   }
 
   function renderWorkspaceRow(item) {
@@ -371,6 +398,16 @@
     if (action === "execute-publish") { const result = await api(`/api/workspaces/${encodeURIComponent(state.currentWorkspaceId)}/publish`, { method: "POST", body: "{}" }); state.publishExecution = result; renderPage(); notify("完成", `上传 ${result.uploadedObjectKeys.length} 个，跳过 ${result.skippedObjectKeys.length} 个。`, "ok"); return; }
     if (action === "rescan-legacy") { state.legacy = await api("/api/legacy/migration/rescan", { method: "POST", body: "{}" }); renderPage(); notify("扫描完成", "源目录未修改。", "ok"); return; }
     if (action === "show-legacy-issues") { document.querySelector("#legacy-issues")?.setAttribute("open", ""); return; }
+    if (action === "trigger-arcaea-apk") {
+      button.disabled = true;
+      try {
+        await api("/api/admin/apk/arcaea/check", { method: "POST", body: "{}" });
+        notify("已提交检查任务", "GitHub Actions 将执行完整 publish 检查，请稍后刷新。", "ok");
+      } finally {
+        button.disabled = false;
+      }
+      return;
+    }
   }
 
   async function handleSubmit(form) {
@@ -416,6 +453,7 @@
       state.bootstrap = await api("/api/bootstrap");
       if (!state.bootstrap.workspaces.some((item) => item.id === state.currentWorkspaceId)) state.currentWorkspaceId = state.bootstrap.workspaces[0]?.id || "";
       renderShell(); renderPage();
+      loadArcaeaApkStatus().catch(() => undefined);
     } catch (error) { page().innerHTML = `<div class="empty-state"><strong>Admin 无法连接后端</strong><span>${escapeHtml(error.message)}</span></div>`; showError(error); }
   }
   init();

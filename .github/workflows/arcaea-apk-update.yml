@@ -1,0 +1,50 @@
+name: Arcaea APK update
+
+on:
+  schedule:
+    - cron: "15 1,7,13,19 * * *"
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "Updater mode"
+        required: true
+        default: publish
+        type: choice
+        options:
+          - publish
+          - check-only
+
+permissions:
+  contents: read
+
+concurrency:
+  group: arcaea-apk-update
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    env:
+      ROS_ACCESS_KEY: ${{ secrets.ROS_ACCESS_KEY }}
+      ROS_SECRET_KEY: ${{ secrets.ROS_SECRET_KEY }}
+      ROS_ENDPOINT: ${{ secrets.ROS_ENDPOINT }}
+      ROS_BUCKET: ${{ secrets.ROS_BUCKET }}
+      ROS_PUBLIC_BASE_URL: ${{ secrets.ROS_PUBLIC_BASE_URL }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Run Arcaea APK updater
+        run: npm run arcaea:apk:check -- --mode "${{ inputs.mode || 'publish' }}"

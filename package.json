@@ -24,11 +24,12 @@
     "legacy:dry-run": "tsx tools/legacy-dry-run.ts",
     "legacy:migrate": "node --env-file-if-exists=.env --import tsx tools/legacy-migrate.ts",
     "legacy:check": "node --env-file-if-exists=.env --import tsx tools/legacy-consistency.ts",
-    "ros:verify": "node --env-file-if-exists=.env --import tsx tools/ros-verify.ts"
+    "ros:verify": "node --env-file-if-exists=.env --import tsx tools/ros-verify.ts",
+    "arcaea:apk:check": "node --env-file-if-exists=.env --import tsx tools/arcaea-apk-update.ts"
   },
   "dependencies": {
-    "@aws-sdk/client-s3": "^3.1110.0",
     "@astrojs/check": "^0.9.4",
+    "@aws-sdk/client-s3": "^3.1110.0",
     "astro": "^6.3.1",
     "fflate": "^0.8.2",
     "sharp": "^0.34.5",
@@ -36,6 +37,7 @@
   },
   "devDependencies": {
     "@types/node": "^24.0.0",
+    "playwright": "^1.58.2",
     "tsx": "^4.21.0",
     "typescript": "^5.9.0"
   }

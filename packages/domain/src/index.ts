@@ -14,6 +14,7 @@ export * from "./thumbnails.js";
 export * from "./canary.js";
 export * from "./arcaea-current.js";
 export * from "./arcaea-update.js";
+export * from "./arcaea-apk.js";
 export * from "./review.js";
 export * from "./extractors.js";
 export * from "./real-esrgan.js";
