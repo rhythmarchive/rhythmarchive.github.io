@@ -148,9 +148,13 @@ test("homepage uses an information-first intro and a stable social image", () =>
 
 test("game icons use real assets with a non-breaking fallback", () => {
   const source = fs.readFileSync(path.join(siteRoot, "src", "components", "GameIcon.astro"), "utf8");
+  const styles = fs.readFileSync(path.join(siteRoot, "src", "styles", "global.css"), "utf8");
   assert.match(source, /game-icons\/\$\{name\}\.png/u);
+  assert.match(source, /width="192" height="192"/u);
   assert.match(source, /game-icon-fallback/u);
   assert.match(source, /onerror=/u);
+  assert.match(styles, /\.game-entry-image > \.game-icon \{ position: absolute; inset: 0;/u);
+  assert.match(styles, /\.game-entry-image \.game-icon-image \{ inset: 0; width: 100%; height: 100%;/u);
   assert.equal(fs.existsSync(path.join(siteRoot, "public", "game-icons", "arcaea.png")), true);
   assert.equal(fs.existsSync(path.join(siteRoot, "public", "game-icons", "phigros.png")), true);
 });

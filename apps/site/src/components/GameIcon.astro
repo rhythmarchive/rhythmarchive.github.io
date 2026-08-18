@@ -14,7 +14,7 @@ const urls = createUrlHelpers({ basePath: BASE_PATH, origin: SITE_ORIGIN, rosBas
 ---
 
 <span class={`game-icon game-icon-${game}`} aria-hidden="true">
-  <img class="game-icon-image" src={urls.sitePath(`/game-icons/${name}.png`)} alt="" width="112" height="112" loading="lazy" decoding="async" onerror="this.style.display = 'none'" />
+  <img class="game-icon-image" src={urls.sitePath(`/game-icons/${name}.png`)} alt="" width="192" height="192" loading="lazy" decoding="async" onerror="this.style.display = 'none'" />
   <span class="game-icon-fallback" aria-hidden="true">
     <span class="game-icon-mark">{label}</span>
     <span class="game-icon-name">{name}</span>

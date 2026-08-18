@@ -145,6 +145,8 @@ img { display: block; max-width: 100%; }
 .game-icon-wave { position: absolute; left: 18px; bottom: 25px; width: 29px; height: 8px; border-top: 2px solid var(--cyan); border-bottom: 1px solid rgba(255, 255, 255, 0.7); transform: skewX(-26deg); }
 .game-icon-phigros { background: #4c91e8; }
 .game-icon-phigros .game-icon-mark { font-size: 3.5rem; }
+.game-entry-image > .game-icon { position: absolute; inset: 0; width: auto; height: auto; min-height: 0; transform: none; clip-path: none; box-shadow: none; }
+.game-entry-image .game-icon-image { inset: 0; width: 100%; height: 100%; border-radius: 0; object-fit: cover; }
 
 .home-category-groups { display: grid; gap: 2.3rem; }
 .home-category-group { border-top: 1px solid var(--line); padding-top: 15px; }
