@@ -35,7 +35,7 @@ async function initializeSearch(root: HTMLElement): Promise<void> {
       root.closest(".search-page")?.classList.remove("has-search-query");
       root.previousElementSibling?.classList.remove("is-results");
       results.replaceChildren();
-      status.textContent = "输入关键词开始搜索";
+      status.textContent = "输入关键词搜索资源";
       return;
     }
     root.closest(".search-page")?.classList.add("has-search-query");

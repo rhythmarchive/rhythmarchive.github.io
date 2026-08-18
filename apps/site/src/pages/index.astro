@@ -21,18 +21,16 @@ const arcaeaApkManifestUrl = `${ROS_BASE_URL}/apk/arcaea/latest.json`;
     <div class="home-intro-copy">
       <span class="archive-kicker">Rhythm Archive</span>
       <h1>Arcaea / Phigros <em>图片资源</em></h1>
-      <p>Arcaea、Phigros 曲绘、角色立绘、剧情 CG 与其他图片资源。</p>
+      <p>曲绘、角色立绘、剧情 CG 与其他游戏图片资源。</p>
     </div>
     <div class="home-search-block">
       <SearchBox />
-      <span>试试搜索曲名、曲师或资源名称</span>
     </div>
   </section>
 
   <section class="page-container home-games" aria-labelledby="games-heading">
     <div class="section-heading">
-      <div><h2 id="games-heading">从游戏开始</h2></div>
-      <span class="section-heading-note">按游戏浏览全部资源</span>
+      <div><h2 id="games-heading">游戏</h2></div>
     </div>
     <div class="game-entry-grid">
       {games.map((game) => {
@@ -54,8 +52,7 @@ const arcaeaApkManifestUrl = `${ROS_BASE_URL}/apk/arcaea/latest.json`;
 
   <section class="page-container home-categories" aria-labelledby="categories-heading">
     <div class="section-heading">
-      <div><h2 id="categories-heading">主要资源分类</h2></div>
-      <span class="section-heading-note">每个游戏各自整理</span>
+      <div><h2 id="categories-heading">资源分类</h2></div>
     </div>
     <div class="home-category-groups">
       {games.map((game) => (
@@ -79,8 +76,8 @@ const arcaeaApkManifestUrl = `${ROS_BASE_URL}/apk/arcaea/latest.json`;
   </section>
 
   <section class="page-container home-apk" aria-labelledby="apk-heading" data-arcaea-apk-card data-manifest-url={arcaeaApkManifestUrl}>
-    <div class="section-heading"><div><span class="section-kicker">Download</span><h2 id="apk-heading">Arcaea APK</h2></div><span class="section-heading-note">GitHub Release · 官方 CDN</span></div>
-    <div class="apk-card-state" data-arcaea-apk-state><span>正在读取最新版本…</span></div>
+    <div class="section-heading"><div><h2 id="apk-heading">Arcaea APK</h2></div></div>
+    <div class="apk-card-state" data-arcaea-apk-state><span>正在获取版本信息…</span></div>
   </section>
   <script src="../scripts/apk-card.ts"></script>
 </BaseLayout>

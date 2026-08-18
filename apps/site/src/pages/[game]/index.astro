@@ -23,7 +23,7 @@ const description = `浏览并下载 ${game.displayName} 的曲绘、角色立�
 
 <BaseLayout title={`${game.displayName} 图片资源 | Rhythm Archive`} description={description} canonicalPath={`/${game.slug}/`} ogImage={firstImage} bodyClass={`game-page theme-${game.slug}`}>
   <section class="page-container game-hero">
-    <div><span class="archive-kicker">资源库</span><h1>{game.displayName}</h1><p>{formatCount(game.count)} 项公开图片资源</p></div>
+    <div><h1>{game.displayName}</h1><p>{formatCount(game.count)} 项资源</p></div>
     <div class="game-hero-rail" aria-hidden="true"><span></span><span></span><span></span></div>
   </section>
   <nav class="page-container category-nav" aria-label={`${game.displayName} 分类`}>

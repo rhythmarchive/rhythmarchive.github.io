@@ -3,7 +3,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import Giscus from "../../components/Giscus.astro";
 import { BILIBILI_URL, GITHUB_FEEDBACK_CATEGORY_URL } from "../../lib/site-config";
 
-const description = "遇到资源错误、下载问题或有其他建议，可以在这里告诉我。";
+const description = "发现资源错误、下载问题，或者有其他建议，都可以在这里反馈。";
 ---
 
 <BaseLayout title="意见反馈 | Rhythm Archive" description={description} canonicalPath="/feedback/" bodyClass="feedback-page">
@@ -12,8 +12,8 @@ const description = "遇到资源错误、下载问题或有其他建议，可�
     <h1>意见反馈</h1>
     <p>{description}</p>
     <div class="feedback-links">
-      <a class="button button-secondary" href={GITHUB_FEEDBACK_CATEGORY_URL} target="_blank" rel="noopener noreferrer">提交独立反馈</a>
-      <a class="button button-secondary" href={BILIBILI_URL} target="_blank" rel="noopener noreferrer">B站联系我</a>
+      <a class="button button-secondary" href={GITHUB_FEEDBACK_CATEGORY_URL} target="_blank" rel="noopener noreferrer">GitHub 反馈</a>
+      <a class="button button-secondary" href={BILIBILI_URL} target="_blank" rel="noopener noreferrer">B站联系</a>
     </div>
   </section>
   <section class="page-container feedback-body" aria-label="反馈区">

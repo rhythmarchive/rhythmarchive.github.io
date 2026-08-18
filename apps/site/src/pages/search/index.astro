@@ -22,19 +22,17 @@ const browseGroups = data.games.map((game) => ({
   <section class="page-container search-page-head" data-search-head>
     <div class="search-head-copy">
       <span class="archive-kicker">Rhythm Archive</span>
-      <h1>找一张熟悉的图</h1>
-      <p>试试搜索曲名、曲师或资源名称。</p>
+      <h1>搜索资源</h1>
     </div>
     <SearchBox initialQuery={query} />
     <div class="search-quick-links" data-search-landing>
-      <span>快速进入</span>
+      <span>快捷入口</span>
       {quickLinks.map((entry) => <a href={urls.sitePath(entry.href)}>{entry.label}<small>{formatCount(entry.count)}</small></a>)}
     </div>
   </section>
   <section class="page-container search-landing-browse" data-search-landing>
     <div class="search-landing-browse-heading">
-      <h2>也可以从分类开始</h2>
-      <p>不记得完整曲名时，先按游戏和资源类型浏览。</p>
+      <h2>按分类浏览</h2>
     </div>
     <div class="search-browse-groups">
       {browseGroups.map((game) => (
@@ -50,7 +48,7 @@ const browseGroups = data.games.map((game) => ({
     </div>
   </section>
   <section class="page-container search-results" data-search-page data-search-query={query}>
-    <div class="search-results-heading"><span data-search-status aria-live="polite">输入关键词开始搜索</span></div>
+    <div class="search-results-heading"><span data-search-status aria-live="polite">输入关键词搜索资源</span></div>
     <div class="resource-grid" data-search-results></div>
   </section>
   <script src="../../scripts/search-page.ts"></script>
