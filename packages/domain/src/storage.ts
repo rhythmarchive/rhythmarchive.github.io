@@ -9,6 +9,7 @@ import {
   type GetObjectCommandOutput,
   type PutObjectCommandInput,
 } from "@aws-sdk/client-s3";
+import { Upload } from "@aws-sdk/lib-storage";
 
 export const DEFAULT_ROS_ENDPOINT = "https://cn-nb1.rains3.com";
 export const DEFAULT_ROS_BUCKET = "rhythm-assets";
@@ -38,12 +39,33 @@ export type PublicRosStorageStatus = {
 
 export type StorageObjectBody = NonNullable<PutObjectCommandInput["Body"]>;
 
+export type StorageObjectInput = {
+  objectKey: string;
+  body: StorageObjectBody;
+  sizeBytes?: number;
+  contentType?: string;
+  cacheControl?: string;
+  contentDisposition?: string;
+};
+
+export type StorageUploadProgress = {
+  loadedBytes: number;
+  totalBytes: number;
+};
+
+export type LargeStorageObjectInput = StorageObjectInput & {
+  sizeBytes: number;
+  metadata: Record<string, string>;
+  onProgress?: (progress: StorageUploadProgress) => void;
+};
+
 export type StorageHead = {
   objectKey: string;
   sizeBytes: number;
   contentType?: string;
   cacheControl?: string;
   contentDisposition?: string;
+  metadata?: Record<string, string>;
   etag?: string;
 };
 
@@ -60,7 +82,8 @@ export type StorageVerification = {
 export type StorageClient = {
   readonly status: RosStorageStatus;
   readonly publicBaseUrl: string;
-  putObject(input: { objectKey: string; body: StorageObjectBody; sizeBytes?: number; contentType?: string; cacheControl?: string; contentDisposition?: string }): Promise<void>;
+  putObject(input: StorageObjectInput): Promise<void>;
+  putLargeObject(input: LargeStorageObjectInput): Promise<void>;
   headObject(objectKey: string): Promise<StorageHead>;
   getObject(objectKey: string): Promise<GetObjectCommandOutput>;
   deleteObject(objectKey: string): Promise<void>;
@@ -158,17 +181,17 @@ export class S3StorageClient implements StorageClient {
   private readonly config: RosStorageConfig;
   private readonly client?: S3Client;
 
-  constructor(config: RosStorageConfig = loadRosStorageConfig()) {
+  constructor(config: RosStorageConfig = loadRosStorageConfig(), client?: S3Client) {
     this.config = config;
     this.publicBaseUrl = config.publicBaseUrl;
     this.status = rosStorageStatus(config).configured ? "READY" : "NOT_CONFIGURED";
     if (this.status === "READY") {
-      this.client = new S3Client({
-        endpoint: config.endpoint,
-        region: config.region,
-        forcePathStyle: config.forcePathStyle,
-        credentials: { accessKeyId: config.accessKey!, secretAccessKey: config.secretKey! },
-      });
+      this.client = client ?? new S3Client({
+          endpoint: config.endpoint,
+          region: config.region,
+          forcePathStyle: config.forcePathStyle,
+          credentials: { accessKeyId: config.accessKey!, secretAccessKey: config.secretKey! },
+        });
     }
   }
 
@@ -177,7 +200,7 @@ export class S3StorageClient implements StorageClient {
     return this.client;
   }
 
-  async putObject(input: { objectKey: string; body: StorageObjectBody; sizeBytes?: number; contentType?: string; cacheControl?: string; contentDisposition?: string }): Promise<void> {
+  async putObject(input: StorageObjectInput): Promise<void> {
     try {
       await this.requireClient().send(new PutObjectCommand({
         Bucket: this.config.bucket,
@@ -194,6 +217,39 @@ export class S3StorageClient implements StorageClient {
     }
   }
 
+  async putLargeObject(input: LargeStorageObjectInput): Promise<void> {
+    try {
+      const upload = new Upload({
+        client: this.requireClient(),
+        params: {
+          Bucket: this.config.bucket,
+          Key: input.objectKey,
+          Body: input.body,
+          ContentLength: input.sizeBytes,
+          ...(input.contentType ? { ContentType: input.contentType } : {}),
+          ...(input.contentDisposition ? { ContentDisposition: input.contentDisposition } : {}),
+          CacheControl: input.cacheControl ?? IMMUTABLE_OBJECT_CACHE_CONTROL,
+          Metadata: input.metadata,
+        },
+        partSize: 64 * 1024 * 1024,
+        queueSize: 3,
+        leavePartsOnError: false,
+      });
+      if (input.onProgress) {
+        upload.on("httpUploadProgress", (progress) => {
+          input.onProgress!({
+            loadedBytes: progress.loaded ?? 0,
+            totalBytes: progress.total ?? input.sizeBytes,
+          });
+        });
+      }
+      await upload.done();
+    } catch (error) {
+      if (error instanceof StorageError) throw error;
+      throw operationError("PUT_FAILED", error);
+    }
+  }
+
   async headObject(objectKey: string): Promise<StorageHead> {
     try {
       const result = await this.requireClient().send(new HeadObjectCommand({ Bucket: this.config.bucket, Key: objectKey }));
@@ -203,6 +259,7 @@ export class S3StorageClient implements StorageClient {
         ...(result.ContentType ? { contentType: result.ContentType } : {}),
         ...(result.CacheControl ? { cacheControl: result.CacheControl } : {}),
         ...(result.ContentDisposition ? { contentDisposition: result.ContentDisposition } : {}),
+        ...(result.Metadata ? { metadata: result.Metadata } : {}),
         ...(result.ETag ? { etag: result.ETag } : {}),
       };
     } catch (error) {
@@ -288,7 +345,7 @@ export class S3StorageClient implements StorageClient {
 export class MemoryStorageClient implements StorageClient {
   readonly status: RosStorageStatus = "READY";
   readonly publicBaseUrl: string;
-  readonly objects = new Map<string, { body: Uint8Array; sizeBytes: number; contentType?: string; cacheControl: string; contentDisposition?: string }>();
+  readonly objects = new Map<string, { body: Uint8Array; sizeBytes: number; contentType?: string; cacheControl: string; contentDisposition?: string; metadata?: Record<string, string> }>();
   failOnPutNumber?: number;
   private putCount = 0;
 
@@ -296,7 +353,15 @@ export class MemoryStorageClient implements StorageClient {
     this.publicBaseUrl = publicBaseUrl;
   }
 
-  async putObject(input: { objectKey: string; body: StorageObjectBody; sizeBytes?: number; contentType?: string; cacheControl?: string; contentDisposition?: string }): Promise<void> {
+  async putObject(input: StorageObjectInput): Promise<void> {
+    await this.storeObject(input);
+  }
+
+  async putLargeObject(input: LargeStorageObjectInput): Promise<void> {
+    await this.storeObject(input, input.metadata, input.onProgress);
+  }
+
+  private async storeObject(input: StorageObjectInput, metadata?: Record<string, string>, onProgress?: (progress: StorageUploadProgress) => void): Promise<void> {
     this.putCount += 1;
     if (this.failOnPutNumber !== undefined && this.putCount === this.failOnPutNumber) throw new StorageError("PUT_FAILED", "ROS put failed.");
     const body = await bodyToBytes(input.body);
@@ -306,13 +371,15 @@ export class MemoryStorageClient implements StorageClient {
       ...(input.contentType ? { contentType: input.contentType } : {}),
       cacheControl: input.cacheControl ?? IMMUTABLE_OBJECT_CACHE_CONTROL,
       ...(input.contentDisposition ? { contentDisposition: input.contentDisposition } : {}),
+      ...(metadata ? { metadata: { ...metadata } } : {}),
     });
+    onProgress?.({ loadedBytes: body.byteLength, totalBytes: input.sizeBytes ?? body.byteLength });
   }
 
   async headObject(objectKey: string): Promise<StorageHead> {
     const object = this.objects.get(objectKey);
     if (!object) throw new StorageError("HEAD_FAILED", "ROS head failed.", { notFound: true });
-    return { objectKey, sizeBytes: object.sizeBytes, ...(object.contentType ? { contentType: object.contentType } : {}), cacheControl: object.cacheControl, ...(object.contentDisposition ? { contentDisposition: object.contentDisposition } : {}) };
+    return { objectKey, sizeBytes: object.sizeBytes, ...(object.contentType ? { contentType: object.contentType } : {}), cacheControl: object.cacheControl, ...(object.contentDisposition ? { contentDisposition: object.contentDisposition } : {}), ...(object.metadata ? { metadata: { ...object.metadata } } : {}) };
   }
 
   async getObject(objectKey: string): Promise<GetObjectCommandOutput> {

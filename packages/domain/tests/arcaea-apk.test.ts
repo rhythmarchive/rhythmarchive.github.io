@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { createHash } from "node:crypto";
 import { mkdir, mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
@@ -62,10 +63,29 @@ async function putManifest(storage: MemoryStorageClient, latest: string, previou
 
 class RecordingStorage extends MemoryStorageClient {
   readonly putKeys: string[] = [];
+  readonly putLargeKeys: string[] = [];
+  readonly largeInputs: Array<Parameters<StorageClient["putLargeObject"]>[0]> = [];
   readonly deleteKeys: string[] = [];
+  readonly getKeys: string[] = [];
+  readonly events: string[] = [];
   override async putObject(input: Parameters<StorageClient["putObject"]>[0]): Promise<void> {
     this.putKeys.push(input.objectKey);
+    this.events.push(`put:${input.objectKey}`);
     await super.putObject(input);
+  }
+  override async putLargeObject(input: Parameters<StorageClient["putLargeObject"]>[0]): Promise<void> {
+    this.putLargeKeys.push(input.objectKey);
+    this.largeInputs.push(input);
+    this.events.push(`put-large:${input.objectKey}`);
+    await super.putLargeObject(input);
+  }
+  override async headObject(objectKey: string) {
+    this.events.push(`head:${objectKey}`);
+    return super.headObject(objectKey);
+  }
+  override async getObject(objectKey: string) {
+    this.getKeys.push(objectKey);
+    return super.getObject(objectKey);
   }
   override async deleteObject(objectKey: string): Promise<void> {
     this.deleteKeys.push(objectKey);
@@ -161,11 +181,103 @@ test("new version validates before upload and updates latest.json last", async (
   const result = await runFixture({ storage, version: "6.17.1" });
   assert.equal(result.result.status, "published");
   assert.equal(result.result.uploaded, true);
-  assert.deepEqual(storage.putKeys, [arcaeaReleaseObjectKey("6.17.1"), ARCAEA_APK_LATEST_KEY]);
+  const objectKey = arcaeaReleaseObjectKey("6.17.1");
+  assert.deepEqual(storage.putLargeKeys, [objectKey]);
+  assert.deepEqual(storage.putKeys, [ARCAEA_APK_LATEST_KEY]);
+  const largeInput = storage.largeInputs[0]!;
+  assert.equal(largeInput.sizeBytes, result.bytes.byteLength);
+  assert.equal(largeInput.contentType, "application/vnd.android.package-archive");
+  assert.equal(largeInput.cacheControl, "public, max-age=31536000, immutable");
+  assert.equal(largeInput.contentDisposition, `attachment; filename="Arcaea_6.17.1.apk"`);
+  assert.equal(largeInput.metadata.sha256, createHash("sha256").update(result.bytes).digest("hex"));
+  const latestPutIndex = storage.events.lastIndexOf(`put:${ARCAEA_APK_LATEST_KEY}`);
+  const binaryVerifyHeadIndex = storage.events.lastIndexOf(`head:${objectKey}`);
+  assert.ok(binaryVerifyHeadIndex >= 0 && binaryVerifyHeadIndex < latestPutIndex);
   const latest = parseArcaeaApkManifest(JSON.parse(Buffer.from(storage.objects.get(ARCAEA_APK_LATEST_KEY)!.body).toString("utf8")));
   assert.equal(latest?.latest.version, "6.17.1");
   assert.equal(latest?.previous, null);
   assert.equal(latest?.latest.fileSize, result.bytes.byteLength);
+  const head = await storage.headObject(objectKey);
+  assert.equal(head.metadata?.sha256, largeInput.metadata.sha256);
+  await rm(result.root, { recursive: true, force: true });
+});
+
+test("uploaded APK verification never GETs the APK body", async () => {
+  const storage = new RecordingStorage(PUBLIC_BASE_URL);
+  const result = await runFixture({ storage, version: "6.17.1" });
+  assert.equal(storage.getKeys.includes(arcaeaReleaseObjectKey("6.17.1")), false);
+  await rm(result.root, { recursive: true, force: true });
+});
+
+test("verified existing remote APK is reused without official download or APK GET", async () => {
+  const storage = new RecordingStorage(PUBLIC_BASE_URL);
+  const objectKey = arcaeaReleaseObjectKey("6.17.1");
+  const bytes = apkFixture();
+  const sha256 = createHash("sha256").update(bytes).digest("hex");
+  await putManifest(storage, "6.17.0", null);
+  await storage.putLargeObject({
+    objectKey,
+    body: bytes,
+    sizeBytes: bytes.byteLength,
+    contentType: "application/vnd.android.package-archive",
+    cacheControl: "public, max-age=31536000, immutable",
+    contentDisposition: `attachment; filename="Arcaea_6.17.1.apk"`,
+    metadata: { sha256 },
+  });
+  storage.putLargeKeys.length = 0;
+  storage.largeInputs.length = 0;
+  storage.getKeys.length = 0;
+  let downloadCount = 0;
+  const result = await runFixture({
+    storage,
+    version: "6.17.1",
+    download: async () => {
+      downloadCount += 1;
+      throw new Error("official download should not be called for a verified remote APK");
+    },
+  });
+  assert.equal(result.result.reusedRemote, true);
+  assert.equal(result.result.uploaded, false);
+  assert.equal(downloadCount, 0);
+  assert.deepEqual(storage.putLargeKeys, []);
+  assert.equal(storage.getKeys.includes(objectKey), false);
+  await rm(result.root, { recursive: true, force: true });
+});
+
+test("remote APK without SHA metadata is overwritten after a fresh official download without ROS GET", async () => {
+  const storage = new RecordingStorage(PUBLIC_BASE_URL);
+  const objectKey = arcaeaReleaseObjectKey("6.17.1");
+  const bytes = apkFixture();
+  await putManifest(storage, "6.17.0", null);
+  await storage.putObject({
+    objectKey,
+    body: bytes,
+    sizeBytes: bytes.byteLength,
+    contentType: "application/vnd.android.package-archive",
+    cacheControl: "public, max-age=31536000, immutable",
+    contentDisposition: `attachment; filename="Arcaea_6.17.1.apk"`,
+  });
+  storage.putKeys.length = 0;
+  storage.putLargeKeys.length = 0;
+  storage.largeInputs.length = 0;
+  storage.getKeys.length = 0;
+  let downloadCount = 0;
+  const result = await runFixture({
+    storage,
+    version: "6.17.1",
+    download: async (found, directory) => {
+      downloadCount += 1;
+      const filePath = path.join(directory, canonicalArcaeaApkFilename(found.version));
+      await writeFile(filePath, bytes);
+      return filePath;
+    },
+  });
+  assert.equal(result.result.reusedRemote, false);
+  assert.equal(result.result.uploaded, true);
+  assert.equal(downloadCount, 1);
+  assert.deepEqual(storage.putLargeKeys, [objectKey]);
+  assert.equal(storage.getKeys.includes(objectKey), false);
+  assert.equal((await storage.headObject(objectKey)).metadata?.sha256, createHash("sha256").update(bytes).digest("hex"));
   await rm(result.root, { recursive: true, force: true });
 });
 

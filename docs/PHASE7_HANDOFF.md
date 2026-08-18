@@ -110,3 +110,7 @@ npm run site:build
 4. 手动运行一次 `mode=check-only`，记录 GitHub-hosted runner 实测结果。
 5. 针对 `https://rhythmarchive.github.io` 做 latest.json 和一个 APK URL 的 CORS targeted check。
 6. 用户批准后再第一次运行 `mode=publish`，并确认 ROS latest/previous。
+
+## Production Hotfix
+
+1.8 GiB APK 暴露了单次 PUT 和上传后整包 GET 验证的生产瓶颈。APK 现在使用 AWS SDK `Upload` multipart upload，固定写入 `sha256` Object metadata；上传后只做 ROS HEAD metadata/size/Content-Type 验证和 public HEAD，不再回读整包。已有 size 合法且 SHA metadata 有效的 remote APK 直接复用；无 metadata 的旧对象不从 ROS 下载，而是重新下载官方 APK、验证后覆盖。上传进度按约 128 MiB/5% 节流输出，并保留失败 multipart 清理。

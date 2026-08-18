@@ -12,6 +12,7 @@ import {
   publicObjectUrl,
   StorageError,
   type StorageClient,
+  type StorageHead,
   type StorageObjectBody,
 } from "./storage.js";
 
@@ -26,6 +27,7 @@ export const ARCAEA_LATEST_CACHE_CONTROL = "public, max-age=300";
 
 const ARCAEA_VERSION_PATTERN = /^(\d+\.\d+\.\d+)([a-z]?)$/iu;
 const SHA256_PATTERN = /^[0-9a-f]{64}$/iu;
+const ARCAEA_APK_UPLOAD_LOG_INTERVAL_BYTES = 128 * 1024 * 1024;
 
 export type ArcaeaDiscovery = {
   version: string;
@@ -60,6 +62,8 @@ export type ArcaeaApkValidation = {
   zipEntryCount: number;
   hasAndroidManifest: true;
 };
+
+type ArcaeaApkBinaryMetadata = Pick<ArcaeaApkValidation, "fileSize" | "sha256">;
 
 export type ArcaeaUpdateResult = {
   status: "checked" | "no-update" | "published" | "blocked-version-regression";
@@ -415,7 +419,7 @@ function createManifestEntry(input: { version: string; fileSize: number; sha256:
   };
 }
 
-function createArcaeaApkManifest(input: { discovery: ArcaeaDiscovery; validation: ArcaeaApkValidation; previous: ArcaeaApkManifest | null; publicBaseUrl: string; now: string }): ArcaeaApkManifest {
+function createArcaeaApkManifest(input: { discovery: ArcaeaDiscovery; validation: ArcaeaApkBinaryMetadata; previous: ArcaeaApkManifest | null; publicBaseUrl: string; now: string }): ArcaeaApkManifest {
   return {
     schemaVersion: 1,
     game: "arcaea",
@@ -425,15 +429,23 @@ function createArcaeaApkManifest(input: { discovery: ArcaeaDiscovery; validation
   };
 }
 
-async function stageRemoteObject(storage: StorageClient, objectKey: string, version: string, directory: string, options: { minimumSizeBytes?: number; maximumSizeBytes?: number }): Promise<{ validation: ArcaeaApkValidation; reusedRemote: true }> {
-  const destination = path.join(directory, canonicalArcaeaApkFilename(version));
-  const output = await storage.getObject(objectKey);
-  if (!output.Body) throw new Error("Existing ROS Arcaea APK has no body.");
-  await pipeline(readableFromBody(output.Body), createWriteStream(destination, { flags: "w" }));
-  const validation = await validateArcaeaApk(destination, { expectedVersion: version, ...options });
-  const head = await storage.headObject(objectKey);
-  if (head.sizeBytes !== validation.fileSize) throw new Error("Existing ROS Arcaea APK size does not match its public object.");
-  return { validation, reusedRemote: true };
+function metadataValue(metadata: StorageHead["metadata"], key: string): string | undefined {
+  const expectedKey = key.toLowerCase();
+  const entry = Object.entries(metadata ?? {}).find(([metadataKey]) => metadataKey.toLowerCase() === expectedKey);
+  return entry?.[1];
+}
+
+async function readReusableRemoteArcaeaApk(storage: StorageClient, objectKey: string, options: { minimumSizeBytes: number; maximumSizeBytes: number }): Promise<ArcaeaApkBinaryMetadata | undefined> {
+  let head: StorageHead;
+  try {
+    head = await storage.headObject(objectKey);
+  } catch (error) {
+    if (error instanceof StorageError && error.notFound) return undefined;
+    throw error;
+  }
+  const sha256 = metadataValue(head.metadata, "sha256");
+  if (!Number.isSafeInteger(head.sizeBytes) || head.sizeBytes < options.minimumSizeBytes || head.sizeBytes > options.maximumSizeBytes || !sha256 || !SHA256_PATTERN.test(sha256)) return undefined;
+  return { fileSize: head.sizeBytes, sha256: sha256.toLowerCase() };
 }
 
 async function publicValidateArcaeaApk(url: string, expectedSize: number, fetchImpl: FetchLike): Promise<void> {
@@ -446,9 +458,36 @@ async function publicValidateArcaeaApk(url: string, expectedSize: number, fetchI
   if (!contentLength || Number.parseInt(contentLength, 10) !== expectedSize) throw new Error("Public ROS APK Content-Length does not match the verified APK.");
 }
 
-async function verifyStoredObject(storage: StorageClient, objectKey: string, validation: ArcaeaApkValidation): Promise<void> {
-  const verified = await storage.verifyObject(objectKey, { sizeBytes: validation.fileSize, sha256: validation.sha256 });
-  if (!verified.verified) throw new Error("Existing ROS Arcaea APK does not match the verified local APK.");
+async function verifyStoredObject(storage: StorageClient, objectKey: string, validation: ArcaeaApkBinaryMetadata): Promise<void> {
+  let head: StorageHead;
+  try {
+    head = await storage.headObject(objectKey);
+  } catch (error) {
+    if (error instanceof StorageError && error.notFound) throw new Error("Existing ROS Arcaea APK does not match the verified local APK.");
+    throw error;
+  }
+  const remoteSha256 = metadataValue(head.metadata, "sha256");
+  if (head.sizeBytes !== validation.fileSize || remoteSha256?.toLowerCase() !== validation.sha256.toLowerCase() || head.contentType !== ARCAEA_APK_CONTENT_TYPE) {
+    throw new Error("Existing ROS Arcaea APK does not match the verified local APK.");
+  }
+}
+
+function formatMiB(bytes: number): string {
+  return (bytes / 1024 / 1024).toFixed(1);
+}
+
+function createArcaeaUploadProgressLogger(log: (message: string) => void, expectedSizeBytes: number): (progress: { loadedBytes: number; totalBytes: number }) => void {
+  let lastLoggedBytes = 0;
+  let lastLoggedPercent = -1;
+  return ({ loadedBytes, totalBytes }) => {
+    const total = totalBytes > 0 ? totalBytes : expectedSizeBytes;
+    const loaded = Math.min(Math.max(loadedBytes, 0), total);
+    const percent = total > 0 ? Math.min(100, Math.floor((loaded / total) * 100)) : 0;
+    if (loaded < total && loaded - lastLoggedBytes < ARCAEA_APK_UPLOAD_LOG_INTERVAL_BYTES && percent < lastLoggedPercent + 5) return;
+    lastLoggedBytes = loaded;
+    lastLoggedPercent = percent;
+    log(`[arcaea-apk] Uploading APK to ROS: ${formatMiB(loaded)} / ${formatMiB(total)} MiB (${percent}%)`);
+  };
 }
 
 function isCanonicalArcaeaReleaseObjectKey(objectKey: string): boolean {
@@ -534,42 +573,49 @@ export async function runArcaeaApkUpdate(options: {
   let uploaded = false;
   let reusedRemote = false;
   try {
-    let validation: ArcaeaApkValidation | undefined;
+    let validation: ArcaeaApkBinaryMetadata | undefined;
     try {
-      if (await storage.objectExists(objectKey)) {
-        const remote = await stageRemoteObject(storage, objectKey, normalizedDiscovery.version, runDirectory, { minimumSizeBytes, maximumSizeBytes });
-        validation = remote.validation;
+      validation = await readReusableRemoteArcaeaApk(storage, objectKey, { minimumSizeBytes, maximumSizeBytes });
+      if (validation) {
         reusedRemote = true;
-        log(`[arcaea-apk] Reusing and validating existing ROS object ${objectKey}.`);
+        log("[arcaea-apk] Reusing existing verified ROS APK.");
       }
     } catch (error) {
       throw new Error(`Existing ROS Arcaea APK cannot be safely reused: ${error instanceof Error ? error.message : String(error)}`);
     }
     if (!validation) {
+      log("[arcaea-apk] Downloading official APK...");
       const filePath = await (options.download ?? ((discovery, directory) => downloadOfficialArcaeaApk(discovery, directory, fetchImpl)))(normalizedDiscovery, runDirectory);
-      validation = await validateArcaeaApk(filePath, { expectedVersion: normalizedDiscovery.version, minimumSizeBytes, maximumSizeBytes });
-      log(`[arcaea-apk] Verified ${(validation.fileSize / 1024 / 1024).toFixed(1)} MiB APK; SHA-256 ${validation.sha256}.`);
-      if (await storage.objectExists(objectKey)) {
-        const remote = await stageRemoteObject(storage, objectKey, normalizedDiscovery.version, runDirectory, { minimumSizeBytes, maximumSizeBytes });
-        validation = remote.validation;
-        reusedRemote = true;
-      } else {
-        await storage.putObject({
-          objectKey,
-          body: createReadStream(validation.filePath) as unknown as StorageObjectBody,
-          sizeBytes: validation.fileSize,
-          contentType: ARCAEA_APK_CONTENT_TYPE,
-          cacheControl: IMMUTABLE_OBJECT_CACHE_CONTROL,
-          contentDisposition: `attachment; filename="${canonicalArcaeaApkFilename(normalizedDiscovery.version)}"`,
-        });
-        uploaded = true;
-      }
+      const downloaded = await stat(filePath);
+      log(`[arcaea-apk] Download complete: ${formatMiB(downloaded.size)} MiB.`);
+      log("[arcaea-apk] Validating APK...");
+      const localValidation = await validateArcaeaApk(filePath, { expectedVersion: normalizedDiscovery.version, minimumSizeBytes, maximumSizeBytes });
+      validation = localValidation;
+      log(`[arcaea-apk] Verified ${formatMiB(validation.fileSize)} MiB APK; SHA-256 ${validation.sha256}.`);
+      log("[arcaea-apk] Uploading APK to ROS...");
+      await storage.putLargeObject({
+        objectKey,
+        body: createReadStream(localValidation.filePath) as unknown as StorageObjectBody,
+        sizeBytes: localValidation.fileSize,
+        contentType: ARCAEA_APK_CONTENT_TYPE,
+        cacheControl: IMMUTABLE_OBJECT_CACHE_CONTROL,
+        contentDisposition: `attachment; filename="${canonicalArcaeaApkFilename(normalizedDiscovery.version)}"`,
+        metadata: { sha256: localValidation.sha256 },
+        onProgress: createArcaeaUploadProgressLogger(log, localValidation.fileSize),
+      });
+      uploaded = true;
+      log(`[arcaea-apk] ROS APK upload complete: ${formatMiB(localValidation.fileSize)} MiB.`);
     }
+    if (!validation) throw new Error("Arcaea APK metadata is unavailable after upload or reuse.");
+    log("[arcaea-apk] Verifying ROS object metadata...");
     await verifyStoredObject(storage, objectKey, validation);
+    log("[arcaea-apk] ROS object verification complete.");
     const publicUrl = publicObjectUrl(objectKey, storage.publicBaseUrl || DEFAULT_ROS_PUBLIC_BASE_URL);
+    log("[arcaea-apk] Verifying public APK URL...");
     await (options.publicValidate ?? ((url, size) => publicValidateArcaeaApk(url, size, fetchImpl)))(publicUrl, validation.fileSize);
     const now = (options.now ?? (() => new Date()))().toISOString();
     const manifest = createArcaeaApkManifest({ discovery: normalizedDiscovery, validation, previous: previousManifest, publicBaseUrl: storage.publicBaseUrl, now });
+    log("[arcaea-apk] Publishing latest.json...");
     await storage.putObject({ objectKey: ARCAEA_APK_LATEST_KEY, body: JSON.stringify(manifest, null, 2), contentType: "application/json; charset=utf-8", cacheControl: ARCAEA_LATEST_CACHE_CONTROL });
     const reloaded = await readArcaeaApkManifest(storage);
     if (!reloaded || reloaded.latest.version !== manifest.latest.version || reloaded.latest.sha256 !== manifest.latest.sha256 || reloaded.latest.fileSize !== manifest.latest.fileSize) throw new Error("ROS latest.json verification failed after publish.");
