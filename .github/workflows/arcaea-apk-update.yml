@@ -44,7 +44,7 @@ jobs:
         run: npm ci
 
       - name: Install Playwright Chromium
-        run: npx playwright install --with-deps chromium
+        run: npx playwright install chromium
 
       - name: Run Arcaea APK updater
         run: npm run arcaea:apk:check -- --mode "${{ inputs.mode || 'publish' }}"
