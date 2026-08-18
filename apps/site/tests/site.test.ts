@@ -154,7 +154,7 @@ test("game icons use real assets with a non-breaking fallback", () => {
   assert.match(source, /game-icon-fallback/u);
   assert.match(source, /onerror=/u);
   assert.match(styles, /\.game-entry-image > \.game-icon \{ position: absolute; inset: 0;/u);
-  assert.match(styles, /\.game-entry-image \.game-icon-image \{ left: -4%; top: -4%; right: auto; bottom: auto; width: 108%; height: 108%; max-width: none;[^}]*background: var\(--surface-muted\);/u);
+  assert.match(styles, /\.game-entry-image \.game-icon-image \{ inset: 0; width: 100%; height: 100%;[^}]*background: var\(--surface-muted\);/u);
   assert.equal(fs.existsSync(path.join(siteRoot, "public", "game-icons", "arcaea.png")), true);
   assert.equal(fs.existsSync(path.join(siteRoot, "public", "game-icons", "phigros.png")), true);
 });
