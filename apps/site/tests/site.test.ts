@@ -104,21 +104,28 @@ test("ZIP duplicate naming uses human-safe numbered suffixes", () => {
   assert.deepEqual(names, ["name.jpg", "name (2).jpg", "name (3).jpg", "name (2) (2).jpg", "bad_name.jpg"]);
 });
 
-test("homepage APK parser accepts latest/previous and rejects source URLs or malformed entries", () => {
+test("homepage APK parser accepts GitHub/official downloads and rejects unsafe URLs", () => {
   const entry = (version: string) => ({
     version,
     versionCode: null,
     fileName: `Arcaea_${version}.apk`,
     fileSize: 1234,
     sha256: "a".repeat(64),
-    url: `${rosBaseUrl}/apk/arcaea/releases/${version}/Arcaea_${version}.apk`,
     publishedAt: "2026-08-15T00:00:00Z",
+    downloads: {
+      github: `https://github.com/rhythmarchive/rhythmarchive.github.io/releases/download/arcaea-apk-${version}/Arcaea_${version}.apk`,
+      official: `https://arcaea-static.lowiro-cdn.net/download?filename=arcaea_${version}.apk`,
+    },
   });
   assert.equal(parsePublicArcaeaApkManifest(undefined), null);
-  const parsed = parsePublicArcaeaApkManifest({ schemaVersion: 1, game: "arcaea", generatedAt: "2026-08-15T00:00:00Z", latest: entry("6.17.1"), previous: entry("6.17.0") });
+  const parsed = parsePublicArcaeaApkManifest({ schemaVersion: 2, game: "arcaea", generatedAt: "2026-08-15T00:00:00Z", latest: entry("6.17.1"), previous: { ...entry("6.17.0"), downloads: { ...entry("6.17.0").downloads, official: null } } });
   assert.equal(parsed?.latest.version, "6.17.1");
   assert.equal(parsed?.previous?.version, "6.17.0");
-  assert.equal(parsePublicArcaeaApkManifest({ schemaVersion: 1, game: "arcaea", generatedAt: "now", latest: { ...entry("6.17.1"), url: "https://arcaea-static.lowiro-cdn.net/arcaea.apk" }, previous: null }), null);
-  assert.equal(parsePublicArcaeaApkManifest({ schemaVersion: 1, game: "arcaea", generatedAt: "now", latest: { ...entry("6.17.1"), url: "https://evil.example/apk/arcaea/releases/6.17.1/Arcaea_6.17.1.apk" }, previous: null }), null);
+  assert.equal(parsed?.previous?.downloads.official, null);
+  const missingPreviousOfficial = { schemaVersion: 2, game: "arcaea", generatedAt: "now", latest: entry("6.17.1"), previous: { ...entry("6.17.0"), downloads: { github: entry("6.17.0").downloads.github } } };
+  assert.equal(parsePublicArcaeaApkManifest(missingPreviousOfficial)?.previous?.downloads.official, null);
+  assert.equal(parsePublicArcaeaApkManifest({ schemaVersion: 1, game: "arcaea", generatedAt: "now", latest: entry("6.17.1"), previous: null }), null);
+  assert.equal(parsePublicArcaeaApkManifest({ schemaVersion: 2, game: "arcaea", generatedAt: "now", latest: { ...entry("6.17.1"), downloads: { ...entry("6.17.1").downloads, github: "https://evil.example/releases/download/arcaea-apk-6.17.1/Arcaea_6.17.1.apk" } }, previous: null }), null);
+  assert.equal(parsePublicArcaeaApkManifest({ schemaVersion: 2, game: "arcaea", generatedAt: "now", latest: { ...entry("6.17.1"), downloads: { ...entry("6.17.1").downloads, official: "http://arcaea-static.lowiro-cdn.net/arcaea.apk" } }, previous: null }), null);
   assert.equal(formatPublicApkBytes(1234), "1.21 KB");
 });

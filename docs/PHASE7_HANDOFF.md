@@ -26,24 +26,24 @@ npm run arcaea:apk:check -- --check-only
 ## Safety and publish contract
 
 - source APK 只能是 HTTPS 且 host 精确为 `arcaea-static.lowiro-cdn.net`；下载 redirect 会重新校验 host。
-- manifest 中的 APK URL 只能是配置的 ROS HTTPS public origin，且路径必须精确对应 `apk/arcaea/releases/<version>/Arcaea_<version>.apk`；不会接受任意 HTTPS host。
+- manifest v2 中的 GitHub 下载 URL 只能是 `https://github.com/rhythmarchive/rhythmarchive.github.io/releases/download/arcaea-apk-<version>/Arcaea_<version>.apk`；official 下载 URL 只能是 HTTPS 且 host 精确为 `arcaea-static.lowiro-cdn.net`；不会接受任意 redirect origin。
 - 不接受 workflow input、Admin query 或 API body 注入 APK URL。
 - 版本只接受当前 Arcaea 格式（数字段加可选单字母后缀），内部文件名固定为 `Arcaea_<version>.apk`。
 - 页面版本和 filename 数字段必须一致；官网当前页面展示 `6.16.2`、filename 为 `6.16.2c` 时，仅保留这个窄兼容分支并采用精确 filename 版本；其他不一致直接停止。
 - 正式上传前检查文件存在、非空、1 MiB–2 GiB 合理范围、ZIP central directory、`AndroidManifest.xml`、SHA-256 和 `.part` 缺失；没有引入 Android SDK 或完整 APK analyzer。
-- versioned APK：`apk/arcaea/releases/<version>/Arcaea_<version>.apk`，设置 Android MIME、immutable cache 和 attachment disposition。
+- APK binary：GitHub Release tag `arcaea-apk-<version>`，asset 固定为 `Arcaea_<version>.apk`；APK 不进入 Git repository 或 ROS。
 - public source of truth：`apk/arcaea/latest.json`，设置 `application/json; charset=utf-8` 和 `public, max-age=300`。
-- publish 顺序是下载 → 验证 → SHA-256 → ROS object 检查/上传 → ROS 验证和 public HEAD/Content-Length → latest.json PUT → latest.json GET 验证 → 删除旧 previous。
-- 无更新为 0 APK download、0 ROS PUT、0 manifest PUT、0 delete。
-- 当前 `latest = B, previous = A` 发布 C 后变为 `latest = C, previous = B`，manifest 验证后列出并删除所有未被 latest/previous 引用的 canonical release APK。cleanup 失败只产生 warning，不回滚 C/B；后续有新版发布时会再次尝试。无更新仍保持 0 delete。
-- latest.json PUT 失败时保留已上传 C；下一次会对 C 做 staging、ZIP、Manifest、SHA 和 size 校验后复用，不重新下载 lowiro。
+- publish 顺序是下载 → 本地验证和 SHA-256 → GitHub Release/asset 创建或复用 → Release asset metadata 验证 → latest.json PUT → latest.json GET 验证 → 删除 third-oldest managed GitHub Release。
+- 无更新为 0 APK download、0 GitHub Release 操作、0 ROS manifest PUT、0 delete。
+- 当前 `latest = B, previous = A` 发布 C 后变为 `latest = C, previous = B`，manifest 验证后只删除 tag 为 `arcaea-apk-<version>` 且 title 符合 updater 约定的 A Release；普通项目 Release 不会删除。cleanup 失败只产生 warning，不回滚 C/B；后续有新版发布时会再次尝试。
+- latest.json PUT 失败时保留已创建或复用的 C Release asset；下一次会重新完成本地验证并复用匹配的 canonical asset，不会重复上传。
 - bootstrap 时 `previous = null`。异常版本回退只 warning/停止，不自动 rollback。
 
 ## latest.json schema
 
 ```json
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "game": "arcaea",
   "generatedAt": "2026-08-17T01:15:00.000Z",
   "latest": {
@@ -52,14 +52,17 @@ npm run arcaea:apk:check -- --check-only
     "fileName": "Arcaea_6.17.1.apk",
     "fileSize": 123456789,
     "sha256": "…",
-    "url": "https://rhythm-assets.cn-nb1.rains3.com/apk/arcaea/releases/6.17.1/Arcaea_6.17.1.apk",
+    "downloads": {
+      "github": "https://github.com/rhythmarchive/rhythmarchive.github.io/releases/download/arcaea-apk-6.17.1/Arcaea_6.17.1.apk",
+      "official": "https://arcaea-static.lowiro-cdn.net/download?filename=arcaea_6.17.1.apk"
+    },
     "publishedAt": "2026-08-17T01:15:00.000Z"
   },
   "previous": null
 }
 ```
 
-manifest 不包含 lowiro 临时 URL、credentials、GitHub token、runner path 或 workflow id。
+manifest 只保留经过 host 校验的 official URL 和 versioned GitHub asset URL；不包含 credentials、GitHub token、runner path 或 workflow id。
 
 ## Admin and public site
 
@@ -67,9 +70,9 @@ manifest 不包含 lowiro 临时 URL、credentials、GitHub token、runner path 
 - `POST /api/admin/apk/arcaea/check` 仅在现有 Admin 本机访问边界内可调用，服务器使用 `GITHUB_ACTIONS_TRIGGER_TOKEN` 调 GitHub REST `workflow_dispatch`，固定 ref `main` 和 `mode=publish`，立即返回 `{ "status": "started" }`。
 - Admin 进程对成功 dispatch 做轻量 5 分钟 debounce，并拒绝同一时刻的提交中请求；GitHub concurrency 仍负责跨 runner 的串行等待。
 - 浏览器不会得到 GitHub token，也不会直接访问 lowiro。
-- GitHub fine-grained token 最小需要目标仓库 Actions Read and write；不需要 Contents write、Administration 或 Organization access。
+- workflow 使用 GitHub Actions 自动提供的 `GITHUB_TOKEN`，权限仅为 `contents: write`；不需要用户创建 PAT、Administration 或 Organization access。
 - Actions 复用现有 ROS client 环境名：`ROS_ACCESS_KEY`、`ROS_SECRET_KEY`、`ROS_ENDPOINT`、`ROS_BUCKET`、`ROS_PUBLIC_BASE_URL`。这些值只能配置为 GitHub Repository/Environment Secrets。
-- 首页只新增 APK card；浏览器 GET `https://rhythm-assets.cn-nb1.rains3.com/apk/arcaea/latest.json`，manifest 成功后直接渲染 latest/previous。下载按钮是直接 `<a href>`，不使用 JS Blob/arrayBuffer。
+- 首页只新增 APK card；浏览器 GET `https://rhythm-assets.cn-nb1.rains3.com/apk/arcaea/latest.json`，manifest 成功后直接渲染 latest/previous 的 GitHub 下载和 official 下载。下载按钮是直接 `<a href>`，不使用 JS Blob/arrayBuffer。
 - manifest/CORS/ROS 暂时不可用时只显示“暂时无法获取 APK 下载信息”和官网链接，不影响首页其他内容。
 
 ## Validation status
@@ -81,9 +84,9 @@ manifest 不包含 lowiro 临时 URL、credentials、GitHub token、runner path 
 - APK 验证失败：latest 不变。
 - A/B → C：发布 C/B 后删除 A。
 - cleanup 失败：C/B 保留，返回 warning。
-- 后续有新版时会重新扫描 release namespace，重试之前遗留的 orphan APK；无更新不会触发删除。
+- 后续有新版时只按 previous manifest 推导并重试需要删除的 managed GitHub Release；旧 ROS APK orphan 不由 updater 扫描或删除。
 - manifest PUT 失败：下一次复用已有 C。
-- manifest 与首页 parser 拒绝任意非 ROS public origin 的 APK URL。
+- manifest 与首页 parser 拒绝非目标 GitHub repository、非 `arcaea-apk-` tag、非官方 CDN host 的 APK URL。
 - workflow schedule/concurrency 和首页 latest/previous parser 有轻量测试。
 - 本机 `npm run arcaea:apk:check -- --check-only` 已真实访问 lowiro，发现 `6.16.2c`，host 为 `arcaea-static.lowiro-cdn.net`；没有下载 APK。
 
@@ -108,9 +111,9 @@ npm run site:build
 2. 在 Admin 服务器配置 `GITHUB_ACTIONS_TRIGGER_TOKEN`。
 3. commit/push 本地改动。
 4. 手动运行一次 `mode=check-only`，记录 GitHub-hosted runner 实测结果。
-5. 针对 `https://rhythmarchive.github.io` 做 latest.json 和一个 APK URL 的 CORS targeted check。
+5. 针对 `https://rhythmarchive.github.io` 做 latest.json、GitHub asset URL 和 official URL 的 targeted check。
 6. 用户批准后再第一次运行 `mode=publish`，并确认 ROS latest/previous。
 
 ## Production Hotfix
 
-1.8 GiB APK 暴露了单次 PUT 和上传后整包 GET 验证的生产瓶颈。APK 现在使用 AWS SDK `Upload` multipart upload，固定写入 `sha256` Object metadata；上传后只做 ROS HEAD metadata/size/Content-Type 验证和 public HEAD，不再回读整包。已有 size 合法且 SHA metadata 有效的 remote APK 直接复用；无 metadata 的旧对象不从 ROS 下载，而是重新下载官方 APK、验证后覆盖。上传进度按约 128 MiB/5% 节流输出，并保留失败 multipart 清理。
+1.8 GiB APK 在 GitHub-hosted runner → Rainyun ROS 的大文件上传吞吐不可接受，因此 APK binary storage 已改为 GitHub Releases：GitHub Actions 从 lowiro 下载并本地验证后，创建或复用唯一的 `arcaea-apk-<version>` Release 和 `Arcaea_<version>.apk` asset；ROS 只保存小型 `apk/arcaea/latest.json`。manifest 使用 schema v2，同时提供 versioned GitHub 下载和经 host 校验的 official 下载。Release asset 通过 filename/size 及可用的 SHA-256 digest 幂等复用，单文件 `>= 2 GiB` 时阻断 GitHub mirror publish。此前失败的 Phase 7 ROS APK objects 不自动删除，待 GitHub Release 正式验收后人工清理；workflow 会记录创建/复用、上传、验证和发布阶段日志。

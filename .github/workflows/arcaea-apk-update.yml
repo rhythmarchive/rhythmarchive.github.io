@@ -15,7 +15,7 @@ on:
           - check-only
 
 permissions:
-  contents: read
+  contents: write
 
 concurrency:
   group: arcaea-apk-update
@@ -24,7 +24,9 @@ concurrency:
 jobs:
   update:
     runs-on: ubuntu-latest
+    timeout-minutes: 90
     env:
+      GITHUB_TOKEN: ${{ github.token }}
       ROS_ACCESS_KEY: ${{ secrets.ROS_ACCESS_KEY }}
       ROS_SECRET_KEY: ${{ secrets.ROS_SECRET_KEY }}
       ROS_ENDPOINT: ${{ secrets.ROS_ENDPOINT }}

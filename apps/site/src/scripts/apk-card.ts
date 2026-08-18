@@ -36,12 +36,11 @@ function renderManifest(cardElement: HTMLElement, stateElement: HTMLElement, lat
   version.textContent = `最新版本 ${latest.version}`;
   const metadata = document.createElement("span");
   metadata.textContent = `${formatPublicApkBytes(latest.fileSize)} · ${formatDate(latest.publishedAt)}`;
-  const download = document.createElement("a");
-  download.className = "button apk-download-button";
-  download.href = latest.url;
-  download.setAttribute("download", latest.fileName);
-  download.textContent = "下载 APK";
-  latestBox.append(version, metadata, download);
+  const actions = document.createElement("div");
+  actions.className = "apk-download-actions";
+  actions.append(createDownloadLink(latest.downloads.github, latest.fileName, "button apk-download-button", "GitHub 下载"));
+  if (latest.downloads.official) actions.append(createDownloadLink(latest.downloads.official, latest.fileName, "button apk-official-button", "官方下载"));
+  latestBox.append(version, metadata, actions);
 
   const digest = document.createElement("div");
   digest.className = "apk-digest";
@@ -70,13 +69,22 @@ function renderManifest(cardElement: HTMLElement, stateElement: HTMLElement, lat
     previousRow.className = "apk-previous-row";
     const previousLabel = document.createElement("span");
     previousLabel.textContent = `上一版本 ${previous.version}`;
-    const previousLink = document.createElement("a");
-    previousLink.href = previous.url;
-    previousLink.setAttribute("download", previous.fileName);
-    previousLink.textContent = "下载上一版本";
-    previousRow.append(previousLabel, previousLink);
+    const previousActions = document.createElement("span");
+    previousActions.className = "apk-previous-actions";
+    previousActions.append(createDownloadLink(previous.downloads.github, previous.fileName, "", "GitHub 下载"));
+    if (previous.downloads.official) previousActions.append(" · ", createDownloadLink(previous.downloads.official, previous.fileName, "", "官方下载"));
+    previousRow.append(previousLabel, previousActions);
     stateElement.append(previousRow);
   }
+}
+
+function createDownloadLink(href: string, fileName: string, className: string, label: string): HTMLAnchorElement {
+  const link = document.createElement("a");
+  if (className) link.className = className;
+  link.href = href;
+  link.setAttribute("download", fileName);
+  link.textContent = label;
+  return link;
 }
 
 function formatDate(value: string): string {

@@ -7,27 +7,30 @@ import { pipeline } from "node:stream/promises";
 import { ReadableStream } from "node:stream/web";
 import { chromium } from "playwright";
 import {
-  DEFAULT_ROS_PUBLIC_BASE_URL,
-  IMMUTABLE_OBJECT_CACHE_CONTROL,
-  publicObjectUrl,
   StorageError,
   type StorageClient,
-  type StorageHead,
-  type StorageObjectBody,
 } from "./storage.js";
+import {
+  ARCAEA_GITHUB_REPOSITORY,
+  MANAGED_ARCAEA_RELEASE_TAG_PREFIX,
+  createGhGitHubReleaseClient,
+  type GitHubRelease,
+  type GitHubReleaseAsset,
+  type GitHubReleaseClient,
+} from "./github-release.js";
 
 export const ARCAEA_SOURCE_PAGE = "https://arcaea.lowiro.com/zh";
 export const ARCAEA_OFFICIAL_CDN_HOST = "arcaea-static.lowiro-cdn.net";
 export const ARCAEA_APK_CONTENT_TYPE = "application/vnd.android.package-archive";
 export const ARCAEA_APK_LATEST_KEY = "apk/arcaea/latest.json";
-export const ARCAEA_APK_RELEASE_PREFIX = "apk/arcaea/releases";
 export const ARCAEA_APK_MIN_SIZE_BYTES = 1024 * 1024;
 export const ARCAEA_APK_MAX_SIZE_BYTES = 2 * 1024 * 1024 * 1024;
 export const ARCAEA_LATEST_CACHE_CONTROL = "public, max-age=300";
+export const ARCAEA_APK_GITHUB_REPOSITORY = ARCAEA_GITHUB_REPOSITORY;
+export const ARCAEA_GITHUB_RELEASE_TAG_PREFIX = MANAGED_ARCAEA_RELEASE_TAG_PREFIX;
 
 const ARCAEA_VERSION_PATTERN = /^(\d+\.\d+\.\d+)([a-z]?)$/iu;
 const SHA256_PATTERN = /^[0-9a-f]{64}$/iu;
-const ARCAEA_APK_UPLOAD_LOG_INTERVAL_BYTES = 128 * 1024 * 1024;
 
 export type ArcaeaDiscovery = {
   version: string;
@@ -43,12 +46,15 @@ export type ArcaeaApkManifestEntry = {
   fileName: string;
   fileSize: number;
   sha256: string;
-  url: string;
+  downloads: {
+    github: string;
+    official: string | null;
+  };
   publishedAt: string;
 };
 
 export type ArcaeaApkManifest = {
-  schemaVersion: 1;
+  schemaVersion: 2;
   game: "arcaea";
   generatedAt: string;
   latest: ArcaeaApkManifestEntry;
@@ -66,13 +72,15 @@ export type ArcaeaApkValidation = {
 type ArcaeaApkBinaryMetadata = Pick<ArcaeaApkValidation, "fileSize" | "sha256">;
 
 export type ArcaeaUpdateResult = {
-  status: "checked" | "no-update" | "published" | "blocked-version-regression";
+  status: "checked" | "no-update" | "published" | "blocked-version-regression" | "blocked-mirror-size";
   discovered: ArcaeaDiscovery;
   previousManifest: ArcaeaApkManifest | null;
   manifest?: ArcaeaApkManifest;
-  objectKey?: string;
+  releaseTag?: string;
+  githubAssetUrl?: string;
   uploaded: boolean;
   reusedRemote: boolean;
+  reusedReleaseAsset?: boolean;
   cleanupWarning?: string;
 };
 
@@ -133,12 +141,6 @@ export function canonicalArcaeaApkFilename(version: string): string {
   const canonical = canonicalArcaeaVersion(version);
   if (!canonical) throw new Error(`Invalid Arcaea version: ${version}`);
   return `Arcaea_${canonical}.apk`;
-}
-
-export function arcaeaReleaseObjectKey(version: string): string {
-  const canonical = canonicalArcaeaVersion(version);
-  if (!canonical) throw new Error(`Invalid Arcaea version: ${version}`);
-  return `${ARCAEA_APK_RELEASE_PREFIX}/${canonical}/${canonicalArcaeaApkFilename(canonical)}`;
 }
 
 export function assertOfficialArcaeaApkUrl(value: string): URL {
@@ -334,67 +336,76 @@ export async function validateArcaeaApk(filePath: string, options: { expectedVer
   };
 }
 
-function publicOrigin(value: string): string {
-  const url = new URL(value);
-  if (url.protocol !== "https:" || url.username || url.password || url.pathname !== "/" || url.search || url.hash) throw new Error("Arcaea ROS public base URL must be an HTTPS origin.");
-  return url.origin;
+function formatMiB(bytes: number): string {
+  return (bytes / 1024 / 1024).toFixed(1);
 }
 
-export function assertArcaeaPublicApkUrl(value: string, publicBaseUrl = DEFAULT_ROS_PUBLIC_BASE_URL): URL {
+export function arcaeaGithubReleaseTag(version: string): string {
+  const canonical = canonicalArcaeaVersion(version);
+  if (!canonical) throw new Error(`Invalid Arcaea version: ${version}`);
+  return `${ARCAEA_GITHUB_RELEASE_TAG_PREFIX}${canonical}`;
+}
+
+export function arcaeaGithubAssetUrl(version: string): string {
+  const canonical = canonicalArcaeaVersion(version);
+  if (!canonical) throw new Error(`Invalid Arcaea version: ${version}`);
+  return `https://github.com/${ARCAEA_APK_GITHUB_REPOSITORY}/releases/download/${arcaeaGithubReleaseTag(canonical)}/${encodeURIComponent(canonicalArcaeaApkFilename(canonical))}`;
+}
+
+export function assertArcaeaGithubApkUrl(value: string, version: string): URL {
   let url: URL;
   try {
     url = new URL(value);
-    if (url.origin !== publicOrigin(publicBaseUrl) || url.protocol !== "https:" || url.username || url.password || url.search || url.hash) throw new Error("unexpected public origin");
+    const expected = new URL(arcaeaGithubAssetUrl(version));
+    if (url.origin !== expected.origin || url.protocol !== "https:" || url.username || url.password || url.port || url.search || url.hash || url.pathname !== expected.pathname) throw new Error("unexpected GitHub asset URL");
   } catch {
-    throw new Error("Arcaea APK URL is outside the configured ROS public origin.");
+    throw new Error("Arcaea GitHub APK URL is outside the managed repository release path.");
   }
   return url;
 }
 
-function validManifestEntry(value: unknown, publicBaseUrl: string): ArcaeaApkManifestEntry | null {
+function validManifestEntry(value: unknown, allowMissingOfficial = false): ArcaeaApkManifestEntry | null {
   if (!value || typeof value !== "object") return null;
   const record = value as Record<string, unknown>;
+  if ("url" in record) return null;
   const version = typeof record.version === "string" ? canonicalArcaeaVersion(record.version) : undefined;
   const expectedFilename = version ? canonicalArcaeaApkFilename(version) : "";
   const fileName = record.fileName;
   const fileSize = record.fileSize;
   const sha256 = typeof record.sha256 === "string" ? record.sha256.toLowerCase() : "";
-  const url = typeof record.url === "string" ? record.url : "";
   const publishedAt = typeof record.publishedAt === "string" ? record.publishedAt : "";
   const versionCode = record.versionCode === null ? null : typeof record.versionCode === "number" && Number.isSafeInteger(record.versionCode) && record.versionCode >= 0 ? record.versionCode : undefined;
-  if (!version || fileName !== expectedFilename || typeof fileSize !== "number" || !Number.isSafeInteger(fileSize) || fileSize <= 0 || !SHA256_PATTERN.test(sha256) || !publishedAt || versionCode === undefined) return null;
+  const downloads = record.downloads;
+  if (!downloads || typeof downloads !== "object") return null;
+  const downloadRecord = downloads as Record<string, unknown>;
+  const github = typeof downloadRecord.github === "string" ? downloadRecord.github : "";
+  const official = downloadRecord.official === undefined && allowMissingOfficial ? null : downloadRecord.official === null ? null : typeof downloadRecord.official === "string" ? downloadRecord.official : undefined;
+  if (!version || fileName !== expectedFilename || typeof fileSize !== "number" || !Number.isSafeInteger(fileSize) || fileSize <= 0 || !SHA256_PATTERN.test(sha256) || !publishedAt || versionCode === undefined || !github || official === undefined) return null;
   try {
-    const parsedUrl = assertArcaeaPublicApkUrl(url, publicBaseUrl);
-    const expectedPath = `/${arcaeaReleaseObjectKey(version)}`;
-    if (parsedUrl.pathname !== expectedPath) return null;
+    assertArcaeaGithubApkUrl(github, version);
+    if (official !== null) assertOfficialArcaeaApkUrl(official);
   } catch {
     return null;
   }
-  return { version, versionCode, fileName, fileSize, sha256, url, publishedAt };
+  return { version, versionCode, fileName, fileSize, sha256, downloads: { github, official }, publishedAt };
 }
 
-export function parseArcaeaApkManifest(value: unknown, options: { publicBaseUrl?: string } = {}): ArcaeaApkManifest | null {
+export function parseArcaeaApkManifest(value: unknown, _options: { publicBaseUrl?: string } = {}): ArcaeaApkManifest | null {
   if (!value || typeof value !== "object") return null;
   const record = value as Record<string, unknown>;
-  if (record.schemaVersion !== 1 || record.game !== "arcaea" || typeof record.generatedAt !== "string" || !record.latest) return null;
-  const publicBaseUrl = options.publicBaseUrl ?? DEFAULT_ROS_PUBLIC_BASE_URL;
-  try {
-    publicOrigin(publicBaseUrl);
-  } catch {
-    return null;
-  }
-  const latest = validManifestEntry(record.latest, publicBaseUrl);
+  if (record.schemaVersion !== 2 || record.game !== "arcaea" || typeof record.generatedAt !== "string" || !record.latest) return null;
+  const latest = validManifestEntry(record.latest);
   if (!latest) return null;
-  const previous = record.previous === null ? null : validManifestEntry(record.previous, publicBaseUrl);
+  const previous = record.previous === null ? null : validManifestEntry(record.previous, true);
   if (record.previous !== null && !previous) return null;
   if (previous && compareArcaeaVersion(previous.version, latest.version) >= 0) return null;
-  return { schemaVersion: 1, game: "arcaea", generatedAt: record.generatedAt, latest, previous };
+  return { schemaVersion: 2, game: "arcaea", generatedAt: record.generatedAt, latest, previous };
 }
 
 export async function readArcaeaApkManifest(storage: StorageClient): Promise<ArcaeaApkManifest | null> {
   try {
     const output = await storage.getObject(ARCAEA_APK_LATEST_KEY);
-    const parsed = parseArcaeaApkManifest(JSON.parse(await bodyToText(output.Body)), { publicBaseUrl: storage.publicBaseUrl });
+    const parsed = parseArcaeaApkManifest(JSON.parse(await bodyToText(output.Body)));
     if (!parsed) throw new Error("ROS latest.json has an invalid Arcaea APK schema.");
     return parsed;
   } catch (error) {
@@ -404,126 +415,95 @@ export async function readArcaeaApkManifest(storage: StorageClient): Promise<Arc
   }
 }
 
-function createManifestEntry(input: { version: string; fileSize: number; sha256: string; publicBaseUrl: string; publishedAt: string }): ArcaeaApkManifestEntry {
-  const fileName = canonicalArcaeaApkFilename(input.version);
-  const url = publicObjectUrl(arcaeaReleaseObjectKey(input.version), input.publicBaseUrl);
-  assertArcaeaPublicApkUrl(url, input.publicBaseUrl);
+function createManifestEntry(input: { version: string; fileSize: number; sha256: string; githubUrl: string; officialUrl: string; publishedAt: string }): ArcaeaApkManifestEntry {
+  const canonical = canonicalArcaeaVersion(input.version);
+  if (!canonical) throw new Error(`Invalid Arcaea version: ${input.version}`);
+  const fileName = canonicalArcaeaApkFilename(canonical);
+  const github = assertArcaeaGithubApkUrl(input.githubUrl, canonical).toString();
+  const official = assertOfficialArcaeaApkUrl(input.officialUrl).toString();
   return {
-    version: canonicalArcaeaVersion(input.version)!,
+    version: canonical,
     versionCode: null,
     fileName,
     fileSize: input.fileSize,
     sha256: input.sha256.toLowerCase(),
-    url,
+    downloads: { github, official },
     publishedAt: input.publishedAt,
   };
 }
 
-function createArcaeaApkManifest(input: { discovery: ArcaeaDiscovery; validation: ArcaeaApkBinaryMetadata; previous: ArcaeaApkManifest | null; publicBaseUrl: string; now: string }): ArcaeaApkManifest {
+function createArcaeaApkManifest(input: { discovery: ArcaeaDiscovery; validation: ArcaeaApkBinaryMetadata; previous: ArcaeaApkManifest | null; githubUrl: string; now: string }): ArcaeaApkManifest {
   return {
-    schemaVersion: 1,
+    schemaVersion: 2,
     game: "arcaea",
     generatedAt: input.now,
-    latest: createManifestEntry({ version: input.discovery.version, fileSize: input.validation.fileSize, sha256: input.validation.sha256, publicBaseUrl: input.publicBaseUrl, publishedAt: input.now }),
+    latest: createManifestEntry({ version: input.discovery.version, fileSize: input.validation.fileSize, sha256: input.validation.sha256, githubUrl: input.githubUrl, officialUrl: input.discovery.sourceUrl, publishedAt: input.now }),
     previous: input.previous?.latest ?? null,
   };
 }
 
-function metadataValue(metadata: StorageHead["metadata"], key: string): string | undefined {
-  const expectedKey = key.toLowerCase();
-  const entry = Object.entries(metadata ?? {}).find(([metadataKey]) => metadataKey.toLowerCase() === expectedKey);
-  return entry?.[1];
+function releaseAssetDigestMatches(asset: GitHubReleaseAsset, expectedSha256: string): boolean {
+  if (asset.digest === undefined || asset.digest === null) return true;
+  const digest = asset.digest.toLowerCase().replace(/^sha256:/u, "");
+  return SHA256_PATTERN.test(digest) && digest === expectedSha256.toLowerCase();
 }
 
-async function readReusableRemoteArcaeaApk(storage: StorageClient, objectKey: string, options: { minimumSizeBytes: number; maximumSizeBytes: number }): Promise<ArcaeaApkBinaryMetadata | undefined> {
-  let head: StorageHead;
-  try {
-    head = await storage.headObject(objectKey);
-  } catch (error) {
-    if (error instanceof StorageError && error.notFound) return undefined;
-    throw error;
+function managedArcaeaRelease(release: GitHubRelease, version: string): boolean {
+  return release.tagName === arcaeaGithubReleaseTag(version) && release.name === `Arcaea APK ${canonicalArcaeaVersion(version)}`;
+}
+
+function verifiedGithubAssetUrl(asset: GitHubReleaseAsset, version: string): string {
+  const fallback = arcaeaGithubAssetUrl(version);
+  if (!asset.browserDownloadUrl) return fallback;
+  return assertArcaeaGithubApkUrl(asset.browserDownloadUrl, version).toString();
+}
+
+async function ensureGithubReleaseAsset(input: { client: GitHubReleaseClient; version: string; validation: ArcaeaApkBinaryMetadata; filePath: string; log: (message: string) => void }): Promise<{ uploaded: boolean; reused: boolean; assetUrl: string }> {
+  const tagName = arcaeaGithubReleaseTag(input.version);
+  const title = `Arcaea APK ${canonicalArcaeaVersion(input.version)}`;
+  const fileName = canonicalArcaeaApkFilename(input.version);
+  let release = await input.client.getRelease(tagName);
+  if (!release) {
+    release = await input.client.createRelease({ tagName, title });
   }
-  const sha256 = metadataValue(head.metadata, "sha256");
-  if (!Number.isSafeInteger(head.sizeBytes) || head.sizeBytes < options.minimumSizeBytes || head.sizeBytes > options.maximumSizeBytes || !sha256 || !SHA256_PATTERN.test(sha256)) return undefined;
-  return { fileSize: head.sizeBytes, sha256: sha256.toLowerCase() };
-}
-
-async function publicValidateArcaeaApk(url: string, expectedSize: number, fetchImpl: FetchLike): Promise<void> {
-  const expected = new URL(url);
-  const response = await fetchImpl(expected, { method: "HEAD", redirect: "follow" });
-  if (!response.ok) throw new Error(`Public ROS APK validation failed: ${response.status} ${response.statusText}`);
-  const finalUrl = new URL(response.url || expected.toString());
-  if (finalUrl.origin !== expected.origin || finalUrl.pathname !== expected.pathname) throw new Error("Public ROS APK validation followed an unexpected redirect.");
-  const contentLength = response.headers.get("content-length");
-  if (!contentLength || Number.parseInt(contentLength, 10) !== expectedSize) throw new Error("Public ROS APK Content-Length does not match the verified APK.");
-}
-
-async function verifyStoredObject(storage: StorageClient, objectKey: string, validation: ArcaeaApkBinaryMetadata): Promise<void> {
-  let head: StorageHead;
-  try {
-    head = await storage.headObject(objectKey);
-  } catch (error) {
-    if (error instanceof StorageError && error.notFound) throw new Error("Existing ROS Arcaea APK does not match the verified local APK.");
-    throw error;
+  if (!managedArcaeaRelease(release, input.version)) throw new Error("Existing GitHub Release is not managed by the Arcaea updater.");
+  let asset = release.assets.find((candidate) => candidate.name === fileName);
+  if (asset && asset.size === input.validation.fileSize && releaseAssetDigestMatches(asset, input.validation.sha256)) {
+    input.log("[arcaea-apk] Reusing existing verified GitHub Release asset.");
+    input.log("[arcaea-apk] GitHub Release asset verified.");
+    return { uploaded: false, reused: true, assetUrl: verifiedGithubAssetUrl(asset, input.version) };
   }
-  const remoteSha256 = metadataValue(head.metadata, "sha256");
-  if (head.sizeBytes !== validation.fileSize || remoteSha256?.toLowerCase() !== validation.sha256.toLowerCase() || head.contentType !== ARCAEA_APK_CONTENT_TYPE) {
-    throw new Error("Existing ROS Arcaea APK does not match the verified local APK.");
-  }
+  if (asset) await input.client.deleteAsset({ releaseId: release.id, assetId: asset.id });
+  input.log("[arcaea-apk] Uploading APK to GitHub Release...");
+  await input.client.uploadAsset({ tagName, filePath: input.filePath, fileName });
+  release = await input.client.getRelease(tagName);
+  if (!release || !managedArcaeaRelease(release, input.version)) throw new Error("GitHub Release could not be verified after APK upload.");
+  asset = release.assets.find((candidate) => candidate.name === fileName);
+  if (!asset || asset.size !== input.validation.fileSize || !releaseAssetDigestMatches(asset, input.validation.sha256)) throw new Error("GitHub Release asset metadata does not match the verified APK.");
+  input.log("[arcaea-apk] GitHub Release asset verified.");
+  return { uploaded: true, reused: false, assetUrl: verifiedGithubAssetUrl(asset, input.version) };
 }
 
-function formatMiB(bytes: number): string {
-  return (bytes / 1024 / 1024).toFixed(1);
-}
-
-function createArcaeaUploadProgressLogger(log: (message: string) => void, expectedSizeBytes: number): (progress: { loadedBytes: number; totalBytes: number }) => void {
-  let lastLoggedBytes = 0;
-  let lastLoggedPercent = -1;
-  return ({ loadedBytes, totalBytes }) => {
-    const total = totalBytes > 0 ? totalBytes : expectedSizeBytes;
-    const loaded = Math.min(Math.max(loadedBytes, 0), total);
-    const percent = total > 0 ? Math.min(100, Math.floor((loaded / total) * 100)) : 0;
-    if (loaded < total && loaded - lastLoggedBytes < ARCAEA_APK_UPLOAD_LOG_INTERVAL_BYTES && percent < lastLoggedPercent + 5) return;
-    lastLoggedBytes = loaded;
-    lastLoggedPercent = percent;
-    log(`[arcaea-apk] Uploading APK to ROS: ${formatMiB(loaded)} / ${formatMiB(total)} MiB (${percent}%)`);
-  };
-}
-
-function isCanonicalArcaeaReleaseObjectKey(objectKey: string): boolean {
-  const prefix = `${ARCAEA_APK_RELEASE_PREFIX}/`;
-  if (!objectKey.startsWith(prefix)) return false;
-  const segments = objectKey.slice(prefix.length).split("/");
-  if (segments.length !== 2) return false;
-  const version = canonicalArcaeaVersion(segments[0]!);
-  return Boolean(version && objectKey === arcaeaReleaseObjectKey(version));
-}
-
-async function cleanupUnreferencedArcaeaApks(storage: StorageClient, manifest: ArcaeaApkManifest, log: (message: string) => void): Promise<string | undefined> {
-  const keep = new Set([
-    arcaeaReleaseObjectKey(manifest.latest.version),
-    ...(manifest.previous ? [arcaeaReleaseObjectKey(manifest.previous.version)] : []),
-  ]);
-  let keys: string[];
+async function deleteThirdOldestManagedRelease(input: { client: GitHubReleaseClient; previous: ArcaeaApkManifest | null; log: (message: string) => void }): Promise<string | undefined> {
+  const obsolete = input.previous?.previous;
+  if (!obsolete) return undefined;
+  const tagName = arcaeaGithubReleaseTag(obsolete.version);
   try {
-    keys = await storage.listObjects(`${ARCAEA_APK_RELEASE_PREFIX}/`);
+    const release = await input.client.getRelease(tagName);
+    if (!release) return undefined;
+    if (!managedArcaeaRelease(release, obsolete.version) || !release.tagName.startsWith(MANAGED_ARCAEA_RELEASE_TAG_PREFIX)) {
+      const warning = `cleanup warning: refusing to delete unmanaged GitHub Release ${tagName}`;
+      input.log(`[arcaea-apk] ${warning}.`);
+      return warning;
+    }
+    await input.client.deleteRelease({ releaseId: release.id, tagName });
+    input.log(`[arcaea-apk] Deleted old managed GitHub Release ${tagName}.`);
+    return undefined;
   } catch {
-    const warning = "cleanup warning: could not list unreferenced Arcaea APK objects";
-    log(`[arcaea-apk] ${warning}.`);
+    const warning = `cleanup warning: could not delete managed GitHub Release ${tagName}`;
+    input.log(`[arcaea-apk] ${warning}.`);
     return warning;
   }
-  const warnings: string[] = [];
-  for (const objectKey of keys) {
-    if (!isCanonicalArcaeaReleaseObjectKey(objectKey) || keep.has(objectKey)) continue;
-    try {
-      await storage.deleteObject(objectKey);
-    } catch {
-      const warning = `could not delete ${objectKey}`;
-      warnings.push(warning);
-      log(`[arcaea-apk] cleanup warning: ${warning}.`);
-    }
-  }
-  return warnings.length > 0 ? `cleanup warning: ${warnings.join("; ")}` : undefined;
 }
 
 export async function runArcaeaApkUpdate(options: {
@@ -533,7 +513,8 @@ export async function runArcaeaApkUpdate(options: {
   discover?: () => Promise<ArcaeaDiscovery>;
   download?: (discovery: ArcaeaDiscovery, directory: string) => Promise<string>;
   fetchImpl?: FetchLike;
-  publicValidate?: (url: string, expectedSize: number) => Promise<void>;
+  releaseClient?: GitHubReleaseClient;
+  validate?: (filePath: string, options?: { expectedVersion?: string; minimumSizeBytes?: number; maximumSizeBytes?: number }) => Promise<ArcaeaApkValidation>;
   now?: () => Date;
   minimumSizeBytes?: number;
   maximumSizeBytes?: number;
@@ -567,61 +548,37 @@ export async function runArcaeaApkUpdate(options: {
   const root = path.resolve(options.stagingDirectory ?? path.join(process.cwd(), ".runtime", "arcaea-apk-update"));
   await mkdir(root, { recursive: true });
   const runDirectory = await mkdtemp(path.join(root, "run-"));
-  const objectKey = arcaeaReleaseObjectKey(normalizedDiscovery.version);
   const minimumSizeBytes = options.minimumSizeBytes ?? ARCAEA_APK_MIN_SIZE_BYTES;
   const maximumSizeBytes = options.maximumSizeBytes ?? ARCAEA_APK_MAX_SIZE_BYTES;
   let uploaded = false;
-  let reusedRemote = false;
+  let reusedReleaseAsset = false;
   try {
-    let validation: ArcaeaApkBinaryMetadata | undefined;
-    try {
-      validation = await readReusableRemoteArcaeaApk(storage, objectKey, { minimumSizeBytes, maximumSizeBytes });
-      if (validation) {
-        reusedRemote = true;
-        log("[arcaea-apk] Reusing existing verified ROS APK.");
-      }
-    } catch (error) {
-      throw new Error(`Existing ROS Arcaea APK cannot be safely reused: ${error instanceof Error ? error.message : String(error)}`);
+    log("[arcaea-apk] Downloading official APK...");
+    const filePath = await (options.download ?? ((discovery, directory) => downloadOfficialArcaeaApk(discovery, directory, fetchImpl)))(normalizedDiscovery, runDirectory);
+    const downloaded = await stat(filePath);
+    log(`[arcaea-apk] Download complete: ${formatMiB(downloaded.size)} MiB.`);
+    log("[arcaea-apk] Validating APK...");
+    const validation = await (options.validate ?? validateArcaeaApk)(filePath, { expectedVersion: normalizedDiscovery.version, minimumSizeBytes, maximumSizeBytes });
+    log(`[arcaea-apk] Verified ${formatMiB(validation.fileSize)} MiB APK; SHA-256 ${validation.sha256}.`);
+    if (validation.fileSize >= ARCAEA_APK_MAX_SIZE_BYTES) {
+      log("[arcaea-apk] Arcaea APK exceeds GitHub Release asset size limit.");
+      return { status: "blocked-mirror-size", discovered: normalizedDiscovery, previousManifest, uploaded: false, reusedRemote: false };
     }
-    if (!validation) {
-      log("[arcaea-apk] Downloading official APK...");
-      const filePath = await (options.download ?? ((discovery, directory) => downloadOfficialArcaeaApk(discovery, directory, fetchImpl)))(normalizedDiscovery, runDirectory);
-      const downloaded = await stat(filePath);
-      log(`[arcaea-apk] Download complete: ${formatMiB(downloaded.size)} MiB.`);
-      log("[arcaea-apk] Validating APK...");
-      const localValidation = await validateArcaeaApk(filePath, { expectedVersion: normalizedDiscovery.version, minimumSizeBytes, maximumSizeBytes });
-      validation = localValidation;
-      log(`[arcaea-apk] Verified ${formatMiB(validation.fileSize)} MiB APK; SHA-256 ${validation.sha256}.`);
-      log("[arcaea-apk] Uploading APK to ROS...");
-      await storage.putLargeObject({
-        objectKey,
-        body: createReadStream(localValidation.filePath) as unknown as StorageObjectBody,
-        sizeBytes: localValidation.fileSize,
-        contentType: ARCAEA_APK_CONTENT_TYPE,
-        cacheControl: IMMUTABLE_OBJECT_CACHE_CONTROL,
-        contentDisposition: `attachment; filename="${canonicalArcaeaApkFilename(normalizedDiscovery.version)}"`,
-        metadata: { sha256: localValidation.sha256 },
-        onProgress: createArcaeaUploadProgressLogger(log, localValidation.fileSize),
-      });
-      uploaded = true;
-      log(`[arcaea-apk] ROS APK upload complete: ${formatMiB(localValidation.fileSize)} MiB.`);
-    }
-    if (!validation) throw new Error("Arcaea APK metadata is unavailable after upload or reuse.");
-    log("[arcaea-apk] Verifying ROS object metadata...");
-    await verifyStoredObject(storage, objectKey, validation);
-    log("[arcaea-apk] ROS object verification complete.");
-    const publicUrl = publicObjectUrl(objectKey, storage.publicBaseUrl || DEFAULT_ROS_PUBLIC_BASE_URL);
-    log("[arcaea-apk] Verifying public APK URL...");
-    await (options.publicValidate ?? ((url, size) => publicValidateArcaeaApk(url, size, fetchImpl)))(publicUrl, validation.fileSize);
+
+    const releaseClient = options.releaseClient ?? createGhGitHubReleaseClient(ARCAEA_APK_GITHUB_REPOSITORY);
+    log("[arcaea-apk] Creating/Reusing GitHub Release...");
+    const release = await ensureGithubReleaseAsset({ client: releaseClient, version: normalizedDiscovery.version, validation, filePath: validation.filePath, log });
+    uploaded = release.uploaded;
+    reusedReleaseAsset = release.reused;
     const now = (options.now ?? (() => new Date()))().toISOString();
-    const manifest = createArcaeaApkManifest({ discovery: normalizedDiscovery, validation, previous: previousManifest, publicBaseUrl: storage.publicBaseUrl, now });
+    const manifest = createArcaeaApkManifest({ discovery: normalizedDiscovery, validation, previous: previousManifest, githubUrl: release.assetUrl, now });
     log("[arcaea-apk] Publishing latest.json...");
     await storage.putObject({ objectKey: ARCAEA_APK_LATEST_KEY, body: JSON.stringify(manifest, null, 2), contentType: "application/json; charset=utf-8", cacheControl: ARCAEA_LATEST_CACHE_CONTROL });
     const reloaded = await readArcaeaApkManifest(storage);
-    if (!reloaded || reloaded.latest.version !== manifest.latest.version || reloaded.latest.sha256 !== manifest.latest.sha256 || reloaded.latest.fileSize !== manifest.latest.fileSize) throw new Error("ROS latest.json verification failed after publish.");
-    const cleanupWarning = await cleanupUnreferencedArcaeaApks(storage, manifest, log);
+    if (!reloaded || reloaded.latest.version !== manifest.latest.version || reloaded.latest.sha256 !== manifest.latest.sha256 || reloaded.latest.fileSize !== manifest.latest.fileSize || reloaded.latest.downloads.github !== manifest.latest.downloads.github || reloaded.latest.downloads.official !== manifest.latest.downloads.official) throw new Error("ROS latest.json verification failed after publish.");
+    const cleanupWarning = await deleteThirdOldestManagedRelease({ client: releaseClient, previous: previousManifest, log });
     log(`[arcaea-apk] Published ${manifest.latest.version}; previous ${manifest.previous?.version ?? "none"}.`);
-    return { status: "published", discovered: normalizedDiscovery, previousManifest, manifest, objectKey, uploaded, reusedRemote, ...(cleanupWarning ? { cleanupWarning } : {}) };
+    return { status: "published", discovered: normalizedDiscovery, previousManifest, manifest, releaseTag: arcaeaGithubReleaseTag(normalizedDiscovery.version), githubAssetUrl: manifest.latest.downloads.github, uploaded, reusedRemote: reusedReleaseAsset, reusedReleaseAsset, ...(cleanupWarning ? { cleanupWarning } : {}) };
   } finally {
     await rm(runDirectory, { recursive: true, force: true });
   }

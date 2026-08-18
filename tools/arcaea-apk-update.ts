@@ -50,6 +50,9 @@ async function main(): Promise<void> {
   } else if (result.status === "blocked-version-regression") {
     console.log("[arcaea-apk] stopped without publishing because the official version is older than the public version.");
     process.exitCode = 2;
+  } else if (result.status === "blocked-mirror-size") {
+    console.log("[arcaea-apk] stopped without GitHub mirror publish because the APK is at least 2 GiB.");
+    process.exitCode = 2;
   } else if (result.status === "no-update") {
     console.log("[arcaea-apk] no update; 0 APK download, 0 ROS write, 0 delete.");
   } else if (result.cleanupWarning) {
