@@ -1,0 +1,134 @@
+{
+  "schemaVersion": 1,
+  "game": "arcaea",
+  "entries": [
+    {
+      "year": 2018,
+      "specialTitle": "Ignotus Afterburn",
+      "baseSongId": "ignotus",
+      "relationType": "permanent-byd-related",
+      "specialType": "april-fools",
+      "currentRepresentation": "permanent-byd",
+      "standaloneSonglistRecord": false,
+      "seasonalResourceId": "01a00091-4433-7261-acb2-de11ccfd2560",
+      "seasonalCurrentApkPresence": false,
+      "permanentByd": {
+        "songId": "ignotus",
+        "difficultyClass": "BYD",
+        "resourceId": "01a00091-433a-7ed1-bfd0-6f97978d63d6",
+        "currentApkPresence": true
+      }
+    },
+    {
+      "year": 2019,
+      "specialTitle": "Red and Blue and Green",
+      "baseSongId": "redandblue",
+      "relationType": "permanent-byd-related",
+      "specialType": "april-fools",
+      "currentRepresentation": "permanent-byd",
+      "standaloneSonglistRecord": false,
+      "seasonalResourceId": "01a00091-e8f5-7d9b-90a1-952e1cb72dee",
+      "seasonalCurrentApkPresence": false,
+      "permanentByd": {
+        "songId": "redandblue",
+        "difficultyClass": "BYD",
+        "resourceId": "01a00091-e80b-72fc-bc58-c85e11af3f54",
+        "currentApkPresence": true
+      }
+    },
+    {
+      "year": 2020,
+      "specialTitle": "Singularity VVVIP",
+      "baseSongId": "singularity",
+      "relationType": "permanent-byd-related",
+      "specialType": "april-fools",
+      "currentRepresentation": "permanent-byd",
+      "standaloneSonglistRecord": false,
+      "seasonalResourceId": "01a00092-0cf2-70b6-80ec-d1906cbf2388",
+      "seasonalCurrentApkPresence": false,
+      "permanentByd": {
+        "songId": "singularity",
+        "difficultyClass": "BYD",
+        "resourceId": "01a00092-0bec-756a-a925-b2a00ece2b36",
+        "currentApkPresence": true
+      }
+    },
+    {
+      "year": 2021,
+      "specialTitle": "overdead.",
+      "baseSongId": "dropdead",
+      "relationType": "permanent-byd-related",
+      "specialType": "april-fools",
+      "currentRepresentation": "permanent-byd",
+      "standaloneSonglistRecord": false,
+      "seasonalResourceId": "01a00091-c36d-7f63-a127-3f90aa03b939",
+      "seasonalCurrentApkPresence": false,
+      "permanentByd": {
+        "songId": "dropdead",
+        "difficultyClass": "BYD",
+        "resourceId": "01a00090-f075-7a65-a6fe-9f633474150a",
+        "currentApkPresence": true
+      }
+    },
+    {
+      "year": 2022,
+      "specialTitle": "Mistempered Malignance",
+      "baseSongId": "maliciousmischance",
+      "relationType": "remix-of",
+      "specialType": "april-fools",
+      "currentRepresentation": "seasonal-only",
+      "standaloneSonglistRecord": false,
+      "seasonalResourceId": "01a00091-a029-70c2-9056-e14b9301e602",
+      "seasonalCurrentApkPresence": false,
+      "permanentByd": null
+    },
+    {
+      "year": 2023,
+      "specialTitle": "0xe0e1ccull",
+      "baseSongId": "ifi",
+      "relationType": "remix-of",
+      "specialType": "april-fools",
+      "currentRepresentation": "seasonal-only",
+      "standaloneSonglistRecord": false,
+      "seasonalResourceId": "01a00090-2f0f-7253-bd02-6dcebacbbcfd",
+      "seasonalCurrentApkPresence": false,
+      "permanentByd": null
+    },
+    {
+      "year": 2024,
+      "specialTitle": "HIVEMIND INTERLINKED",
+      "baseSongId": "hivemind",
+      "relationType": "mashup-of",
+      "specialType": "april-fools",
+      "currentRepresentation": "seasonal-only",
+      "standaloneSonglistRecord": false,
+      "seasonalResourceId": "01a00091-3b61-7d33-8328-b7e9c1b7c0c4",
+      "seasonalCurrentApkPresence": false,
+      "permanentByd": null
+    },
+    {
+      "year": 2025,
+      "specialTitle": "Live Faster Die Younger",
+      "baseSongId": "livefastdieyoung",
+      "relationType": "remix-of",
+      "specialType": "april-fools",
+      "currentRepresentation": "seasonal-only",
+      "standaloneSonglistRecord": false,
+      "seasonalResourceId": "01a00091-7a91-731b-9da6-fbf860dd0d6e",
+      "seasonalCurrentApkPresence": false,
+      "permanentByd": null
+    },
+    {
+      "year": 2026,
+      "specialTitle": "UNUSED LEVELS",
+      "baseSongId": "unknownlevels",
+      "relationType": "remix-of",
+      "specialType": "april-fools",
+      "currentRepresentation": "seasonal-only",
+      "standaloneSonglistRecord": false,
+      "seasonalResourceId": "01a00092-45af-767f-8d89-bce8c0ee9978",
+      "seasonalCurrentApkPresence": false,
+      "permanentByd": null
+    }
+  ]
+}

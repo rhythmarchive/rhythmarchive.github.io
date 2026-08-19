@@ -1,37 +1,52 @@
 ---
 import BaseLayout from "../../../layouts/BaseLayout.astro";
+import BrowseGallery from "../../../components/BrowseGallery.astro";
 import Gallery from "../../../components/Gallery.astro";
 import type { GameId, ResourceTypeId } from "../../../lib/game-config";
 import { formatCount } from "../../../lib/format";
 import { BASE_PATH, ROS_BASE_URL } from "../../../lib/site-config";
-import { getSiteData } from "../../../lib/site-data";
+import { getBrowseGalleryBuild, getSiteData } from "../../../lib/site-data";
 import { createUrlHelpers } from "../../../lib/url";
 
 const urls = createUrlHelpers({ basePath: BASE_PATH, origin: "https://rhythmarchive.github.io", rosBaseUrl: ROS_BASE_URL });
 
 export function getStaticPaths() {
   const siteData = getSiteData();
-  return siteData.games.flatMap((game) => game.categories.map((category) => ({ params: { game: game.slug, category: category.slug }, props: { game, category, resources: siteData.galleries[`${game.slug}/${category.slug}`] ?? [] } })));
+  const browseBuild = getBrowseGalleryBuild();
+  return siteData.games.flatMap((game) => game.categories.map((category) => ({
+    params: { game: game.slug, category: category.slug },
+    props: {
+      game,
+      category,
+      resources: siteData.galleries[`${game.slug}/${category.slug}`] ?? [],
+      browseData: category.slug === "jacket" ? (game.slug === "arcaea" ? browseBuild.arcaea : browseBuild.phigros) : undefined,
+    },
+  })));
 }
 
-const { game, category, resources } = Astro.props;
+const { game, category, resources, browseData } = Astro.props;
 const gameId = game.slug as GameId;
 const categoryId = category.slug as ResourceTypeId;
 const difficultyOptions = [...new Set(resources.flatMap((resource) => resource.variants.flatMap((variant) => variant.difficulty ? [variant.difficulty] : [])))].sort();
-const firstImage = resources.find((resource) => resource.preview.large)?.preview.large?.url;
+const firstImage = browseData?.items.find((item) => item.preview.large)?.preview.large?.url ?? resources.find((resource) => resource.preview.large)?.preview.large?.url;
+const categoryCount = browseData?.items.length ?? category.count;
 const description = `浏览并下载 ${game.displayName} ${category.label} 图片资源。`;
 ---
 
 <BaseLayout title={`${game.displayName} ${category.label}图片 | Rhythm Archive`} description={description} canonicalPath={`/${game.slug}/${category.slug}/`} ogImage={firstImage} bodyClass="gallery-page">
   <section class="page-container category-hero">
-    <div><span class="archive-kicker">{game.displayName}</span><h1>{category.label}</h1><p>{formatCount(category.count)} 项资源</p></div>
+    <div><span class="archive-kicker">{game.displayName}</span><h1>{category.label}</h1><p>{formatCount(categoryCount)} 项资源</p></div>
     <a class="text-link" href={urls.sitePath(`/${game.slug}/`)}>返回 {game.displayName}</a>
   </section>
   <nav class="page-container category-nav" aria-label={`${game.displayName} 分类`}>
     <a href={urls.sitePath(`/${game.slug}/`)}>全部 <span>{formatCount(game.count)}</span></a>
-    {game.categories.map((item) => <a class:list={{ "is-active": item.slug === category.slug }} href={urls.sitePath(`/${game.slug}/${item.slug}/`)}>{item.label} <span>{formatCount(item.count)}</span></a>)}
+    {game.categories.map((item) => <a class:list={{ "is-active": item.slug === category.slug }} href={urls.sitePath(`/${game.slug}/${item.slug}/`)}>{item.label} <span>{formatCount(item.slug === "jacket" && browseData ? categoryCount : item.count)}</span></a>)}
   </nav>
   <div class="page-container">
-    <Gallery resources={resources.slice(0, 48)} total={resources.length} game={gameId} category={categoryId} categoryLabel={category.label} galleryUrl={urls.sitePath(`/data/galleries/${game.slug}/${category.slug}.json`)} difficultyOptions={difficultyOptions} hasUpscale={resources.some((resource) => Boolean(resource.upscaled))} />
+    {browseData ? (
+      <BrowseGallery data={browseData} categoryLabel={category.label} galleryUrl={urls.sitePath(`/data/browse/${game.slug}/jacket.json`)} />
+    ) : (
+      <Gallery resources={resources.slice(0, 48)} total={resources.length} game={gameId} category={categoryId} categoryLabel={category.label} galleryUrl={urls.sitePath(`/data/galleries/${game.slug}/${category.slug}.json`)} difficultyOptions={difficultyOptions} hasUpscale={resources.some((resource) => Boolean(resource.upscaled))} />
+    )}
   </div>
 </BaseLayout>

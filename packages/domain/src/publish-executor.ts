@@ -18,7 +18,8 @@ import { objectIdFromSha256 } from "./identity.js";
 import { effectiveCandidateMetadata, effectiveCandidateResourceType, effectiveCandidateTitle, effectiveCandidateVariantKey, isUpscaleEligible } from "./review.js";
 import { checkWorkspaceRawIntegrity, sha256File } from "./workspace.js";
 import { validateCandidate, validateCatalog, validatePublishPlan, validatePublishPlanConsistency, validateReleaseManifestConsistency } from "./validation.js";
-import { DEFAULT_CATALOG_PATH, DEFAULT_CATALOG_RELEASES_PATH, writeCatalogAndReleaseAtomic } from "./catalog.js";
+import { DEFAULT_CATALOG_PATH, DEFAULT_CATALOG_RELEASES_PATH, writeCatalogAndReleaseAndBrowseAtomic, writeCatalogAndReleaseAtomic } from "./catalog.js";
+import type { BrowseProjectionBuildResult } from "./browse.js";
 import { StorageError, type StorageClient, IMMUTABLE_OBJECT_CACHE_CONTROL } from "./storage.js";
 import { readPreviewPlan, readPublishFileMap, type PreviewArtifact } from "./publish.js";
 
@@ -41,6 +42,9 @@ export type PublishExecutorOptions = {
   storage: StorageClient;
   catalogPath?: string;
   releasesDirectory?: string;
+  browseProjection?: BrowseProjectionBuildResult;
+  buildBrowseProjection?: (candidateCatalog: CatalogType, generatedAt: string) => BrowseProjectionBuildResult | Promise<BrowseProjectionBuildResult>;
+  browseDirectory?: string;
   now?: Date | string;
   onProgress?: (progress: PublishProgress) => void;
 };
@@ -53,6 +57,8 @@ export type PublishExecutionResult = {
   skippedObjectKeys: string[];
   catalogPath?: string;
   releaseManifestPath?: string;
+  browseProjection?: BrowseProjectionBuildResult;
+  browsePaths?: string[];
 };
 
 export class PublishExecutionError extends Error {
@@ -491,12 +497,30 @@ export async function executePublishPlan(options: PublishExecutorOptions): Promi
   const now = timestamp(options.now);
   const nextCatalog = buildCatalog({ catalog: options.catalog, manifest: options.manifest, batch: options.batch, candidates: active, plan: options.plan, previewArtifacts, now });
   const publishedManifest = ReleaseManifest.parse({ ...options.manifest, status: "published", notes: [...options.manifest.notes, "Published after ROS object upload and HEAD verification."] });
+  let browseProjection = options.browseProjection;
+  if (options.buildBrowseProjection) {
+    try {
+      browseProjection = await options.buildBrowseProjection(nextCatalog, now);
+    } catch {
+      throw new PublishExecutionError("VALIDATION_FAILED", "Browse Projection could not be generated for the candidate Catalog.");
+    }
+  }
   const catalogPath = options.catalogPath ?? DEFAULT_CATALOG_PATH;
   const releaseDirectory = options.releasesDirectory ?? DEFAULT_CATALOG_RELEASES_PATH;
   const releaseManifestPath = path.join(releaseDirectory, `${publishedManifest.id}.json`);
-  report({ stage: "catalog", completed: 0, total: 1, message: "提交 Catalog 和 ReleaseManifest" });
+  report({ stage: "catalog", completed: 0, total: 1, message: browseProjection ? "提交 Catalog、ReleaseManifest 和 Browse Projection" : "提交 Catalog 和 ReleaseManifest" });
+  let browsePaths: string[] | undefined;
   try {
-    await writeCatalogAndReleaseAtomic(nextCatalog, publishedManifest, { catalogPath, releasesDirectory: releaseDirectory });
+    if (browseProjection) {
+      const commit = await writeCatalogAndReleaseAndBrowseAtomic(nextCatalog, publishedManifest, browseProjection, {
+        catalogPath,
+        releasesDirectory: releaseDirectory,
+        ...(options.browseDirectory ? { browseDirectory: options.browseDirectory } : {}),
+      });
+      browsePaths = commit.browsePaths;
+    } else {
+      await writeCatalogAndReleaseAtomic(nextCatalog, publishedManifest, { catalogPath, releasesDirectory: releaseDirectory });
+    }
   } catch { throw new PublishExecutionError("CATALOG_WRITE_FAILED", "Catalog and ReleaseManifest could not be committed."); }
   report({ stage: "catalog", completed: 1, total: 1, message: "更新 Catalog" });
   report({ stage: "complete", completed: 1, total: 1, message: "完成" });
@@ -508,5 +532,7 @@ export async function executePublishPlan(options: PublishExecutorOptions): Promi
     skippedObjectKeys,
     catalogPath,
     releaseManifestPath,
+    ...(browseProjection ? { browseProjection } : {}),
+    ...(browsePaths ? { browsePaths } : {}),
   };
 }

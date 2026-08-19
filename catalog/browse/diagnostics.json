@@ -1,0 +1,95 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-08-19T00:00:00.000Z",
+  "arcaea": {
+    "ok": true,
+    "catalogResourceCount": 603,
+    "referencedResourceCount": 603,
+    "unreferencedResourceIds": [],
+    "danglingResourceIds": [],
+    "warnings": [],
+    "counts": {
+      "regularSongs": 543,
+      "currentArtworkSlots": 602,
+      "currentArtworkResourceReferences": 588,
+      "missingCurrentArtwork": 14,
+      "specialRecords": 9,
+      "archiveExtras": 3,
+      "unresolvedExtras": 3
+    },
+    "missingCurrentArtwork": [
+      {
+        "songId": "acidgod",
+        "sourcePath": "assets/songs/dl_acidgod/1080_base.jpg"
+      },
+      {
+        "songId": "aishite",
+        "sourcePath": "assets/songs/dl_aishite/1080_base.jpg"
+      },
+      {
+        "songId": "altersist",
+        "sourcePath": "assets/songs/dl_altersist/1080_base.jpg"
+      },
+      {
+        "songId": "chronologia",
+        "sourcePath": "assets/songs/dl_chronologia/1080_base.jpg"
+      },
+      {
+        "songId": "cosmogyral",
+        "sourcePath": "assets/songs/dl_cosmogyral/1080_base.jpg"
+      },
+      {
+        "songId": "csqn",
+        "sourcePath": "assets/songs/dl_csqn/1080_base.jpg"
+      },
+      {
+        "songId": "flexidefine",
+        "sourcePath": "assets/songs/dl_flexidefine/1080_base.jpg"
+      },
+      {
+        "songId": "kamippoi",
+        "sourcePath": "assets/songs/dl_kamippoi/1080_base.jpg"
+      },
+      {
+        "songId": "lavie",
+        "sourcePath": "assets/songs/dl_lavie/1080_base.jpg"
+      },
+      {
+        "songId": "override",
+        "sourcePath": "assets/songs/dl_override/1080_base.jpg"
+      },
+      {
+        "songId": "sucromania",
+        "sourcePath": "assets/songs/dl_sucromania/1080_base.jpg"
+      },
+      {
+        "songId": "synthesis",
+        "sourcePath": "assets/songs/dl_synthesis/1080_base.jpg"
+      },
+      {
+        "songId": "telepathy",
+        "sourcePath": "assets/songs/dl_telepathy/1080_base.jpg"
+      },
+      {
+        "songId": "undyingmacula",
+        "sourcePath": "assets/songs/dl_undyingmacula/1080_base.jpg"
+      }
+    ]
+  },
+  "phigros": {
+    "ok": true,
+    "catalogResourceCount": 353,
+    "referencedResourceCount": 353,
+    "unreferencedResourceIds": [],
+    "danglingResourceIds": [],
+    "warnings": [],
+    "counts": {
+      "sourceTrackRecords": 319,
+      "currentTrackArtworkEntries": 313,
+      "specialRecords": 33,
+      "archiveExtras": 7,
+      "sourceOnlyTracks": 6
+    },
+    "missingCurrentArtwork": []
+  }
+}

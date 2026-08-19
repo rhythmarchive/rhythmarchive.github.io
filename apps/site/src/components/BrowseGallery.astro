@@ -1,0 +1,110 @@
+---
+import BrowseCard from "./BrowseCard.astro";
+import type { BrowseGalleryData } from "../lib/browse-gallery";
+import { formatCount } from "../lib/format";
+import { BASE_PATH } from "../lib/site-config";
+
+interface Props {
+  data: BrowseGalleryData;
+  categoryLabel: string;
+  galleryUrl: string;
+}
+
+const { data, categoryLabel, galleryUrl } = Astro.props;
+const initialItems = data.items.slice(0, 48);
+const hasUpscale = data.items.some((item) => item.hasUpscaled);
+---
+
+<section class="gallery-shell browse-gallery-shell" data-browse-gallery-root data-gallery-url={galleryUrl} data-base-path={BASE_PATH} data-game={data.game} data-category="jacket" data-total={data.items.length}>
+  <div class="gallery-toolbar browse-gallery-toolbar">
+    <div class="gallery-toolbar-copy">
+      <span class="section-kicker">{categoryLabel}</span>
+      <p data-gallery-count>{formatCount(data.items.length)} 项资源</p>
+    </div>
+    <label class="browse-search">
+      <span class="sr-only">搜索曲名或曲师</span>
+      <input type="search" data-browse-search placeholder="搜索曲名或曲师" autocomplete="off" />
+    </label>
+    <div class="gallery-toolbar-actions">
+      <button class="filter-toggle" type="button" data-filter-toggle aria-expanded="false">筛选</button>
+      <button class="text-link" type="button" data-gallery-reset>清除筛选</button>
+    </div>
+  </div>
+
+  <div class="filter-panel browse-filter-panel" data-filter-panel hidden>
+    <label class="filter-control">
+      <span>排序</span>
+      <select data-browse-sort aria-label="排序">
+        {data.game === "arcaea" ? (
+          <>
+            <option value="default">游戏顺序</option>
+            <option value="title-asc">曲名 A-Z</option>
+            <option value="title-desc">曲名 Z-A</option>
+            <option value="artist-asc">曲师 A-Z</option>
+            <option value="version-desc">版本从新到旧</option>
+            <option value="version-asc">版本从旧到新</option>
+          </>
+        ) : (
+          <>
+            <option value="default">默认</option>
+            <option value="title-asc">曲名 A-Z</option>
+            <option value="title-desc">曲名 Z-A</option>
+            <option value="artist-asc">曲师 A-Z</option>
+          </>
+        )}
+      </select>
+    </label>
+
+    {data.game === "arcaea" ? (
+      <>
+        <label class="filter-control">
+          <span>曲包</span>
+          <select data-browse-filter="pack" multiple size="4" aria-label="曲包"></select>
+        </label>
+        <label class="filter-control">
+          <span>难度</span>
+          <select data-browse-filter="chart" multiple size="4" aria-label="难度"></select>
+        </label>
+        <label class="filter-control">
+          <span>等级</span>
+          <select data-browse-filter="level" multiple size="4" aria-label="等级"></select>
+        </label>
+        <label class="filter-control">
+          <span>加入版本</span>
+          <select data-browse-filter="version" multiple size="4" aria-label="加入版本"></select>
+        </label>
+        {hasUpscale ? <label class="filter-check"><input type="checkbox" data-filter-ai /> <span>仅看含超分版</span></label> : null}
+      </>
+    ) : (
+      <label class="filter-control">
+        <span>难度</span>
+        <select data-browse-filter="chart" multiple size="4" aria-label="难度"></select>
+      </label>
+    )}
+  </div>
+
+  <div class="gallery-grid" data-gallery-grid>
+    {initialItems.map((item, index) => <BrowseCard item={item} selectable eager={index < 6} />)}
+  </div>
+  <div class="gallery-empty" data-browse-empty hidden>
+    <p>没有找到符合条件的资源</p>
+    <button class="button button-secondary" type="button" data-browse-empty-reset>清除筛选</button>
+  </div>
+
+  <div class="gallery-more">
+    <button class="button button-secondary" type="button" data-load-more hidden={initialItems.length >= data.items.length}>加载更多</button>
+  </div>
+
+  <div class="batch-bar" data-batch-bar hidden>
+    <div>
+      <strong data-batch-count>已选择 0 项</strong>
+      <span data-batch-status aria-live="polite"></span>
+    </div>
+    <div class="batch-actions">
+      <button class="button button-secondary" type="button" data-batch-download="original">下载原图</button>
+      <button class="button button-primary" type="button" data-batch-download="upscaled">优先超分版</button>
+    </div>
+  </div>
+</section>
+
+<script src="../scripts/browse-gallery.ts"></script>

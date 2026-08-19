@@ -4,6 +4,7 @@ import path from "node:path";
 import { Catalog, ReleaseManifest, type Catalog as CatalogType, type ReleaseManifest as ReleaseManifestType } from "./schema.js";
 import { createUuidV7 } from "./identity.js";
 import { validateCatalog, validateReleaseManifestConsistency } from "./validation.js";
+import { browseProjectionJsonFiles, validateBrowseProjectionSet, type BrowseProjectionBuildResult } from "./browse.js";
 
 export const DEFAULT_CATALOG_PATH = path.resolve("catalog", "index.json");
 export const DEFAULT_CATALOG_RELEASES_PATH = path.resolve("catalog", "releases");
@@ -153,6 +154,88 @@ export async function writeCatalogAndReleaseAtomic(
 ): Promise<CatalogReleaseCommitResult> {
   const result = await writeCatalogAndReleasesAtomic(catalog, [manifest], options);
   return { catalogPath: result.catalogPath, releaseManifestPath: result.releaseManifestPaths[0]! };
+}
+
+export type CatalogReleaseBrowseCommitResult = {
+  catalogPath: string;
+  releaseManifestPath: string;
+  browsePaths: string[];
+};
+
+/**
+ * Stage Catalog, its ReleaseManifest, and a Browse Projection together. The
+ * Browse manifest is checked against the candidate Catalog before any target
+ * is moved, and rollback restores every previous target if a later rename
+ * fails. This is the Phase 6 publication boundary; callers may still choose
+ * the Catalog-only writer for older workflows.
+ */
+export async function writeCatalogAndReleaseAndBrowseAtomic(
+  catalog: CatalogType,
+  manifest: ReleaseManifestType,
+  browse: BrowseProjectionBuildResult,
+  options: { catalogPath?: string; releasesDirectory?: string; browseDirectory?: string } = {},
+): Promise<CatalogReleaseBrowseCommitResult> {
+  const catalogValidation = validateCatalog(catalog);
+  if (!catalogValidation.success) throw new Error("Catalog cannot be written because validation failed.");
+  const manifestValidation = validateReleaseManifestConsistency(manifest, catalogValidation.data);
+  if (!manifestValidation.success) throw new Error("ReleaseManifest cannot be written because it does not match the Catalog.");
+  const browseValidation = validateBrowseProjectionSet(browse, catalogValidation.data);
+  if (!browseValidation.success) throw new Error(`Browse Projection cannot be written: ${browseValidation.issues.join("; ")}`);
+
+  const catalogPath = options.catalogPath ?? DEFAULT_CATALOG_PATH;
+  const releaseManifestPath = path.join(options.releasesDirectory ?? DEFAULT_CATALOG_RELEASES_PATH, `${manifest.id}.json`);
+  const browseDirectory = options.browseDirectory ?? path.resolve("catalog", "browse");
+  const browseFiles = browseProjectionJsonFiles(browse).map(({ filename, value }) => ({
+    targetPath: path.join(browseDirectory, filename),
+    value,
+  }));
+  const targets = [catalogPath, releaseManifestPath, ...browseFiles.map((file) => file.targetPath)].map((targetPath) => path.resolve(targetPath));
+  if (new Set(targets).size !== targets.length) throw new Error("Catalog, ReleaseManifest, and Browse targets must be distinct.");
+
+  const token = `${process.pid}-${randomUUID()}`;
+  const files = [
+    { targetPath: catalogPath, value: catalogValidation.data },
+    { targetPath: releaseManifestPath, value: ReleaseManifest.parse(manifestValidation.data) },
+    ...browseFiles,
+  ].map((file) => ({
+    ...file,
+    temporaryPath: `${file.targetPath}.partial-${token}`,
+    backupPath: `${file.targetPath}.backup-${token}`,
+    backedUp: false,
+    committed: false,
+  }));
+
+  await mkdir(path.dirname(catalogPath), { recursive: true });
+  await mkdir(path.dirname(releaseManifestPath), { recursive: true });
+  await mkdir(browseDirectory, { recursive: true });
+
+  try {
+    for (const file of files) await writeFile(file.temporaryPath, `${JSON.stringify(file.value, null, 2)}\n`, "utf8");
+    for (const file of files) file.backedUp = await moveIfPresent(file.targetPath, file.backupPath);
+    for (const file of files) {
+      await rename(file.temporaryPath, file.targetPath);
+      file.committed = true;
+    }
+  } catch (error) {
+    const rollbackErrors: unknown[] = [];
+    for (const file of [...files].reverse()) {
+      if (file.committed) {
+        try { await rm(file.targetPath, { force: true }); } catch (rollbackError) { rollbackErrors.push(rollbackError); }
+      }
+      if (file.backedUp) {
+        try { await rename(file.backupPath, file.targetPath); } catch (rollbackError) { rollbackErrors.push(rollbackError); }
+      }
+    }
+    for (const file of files) {
+      try { await rm(file.temporaryPath, { force: true }); } catch (rollbackError) { rollbackErrors.push(rollbackError); }
+      try { await rm(file.backupPath, { force: true }); } catch (rollbackError) { rollbackErrors.push(rollbackError); }
+    }
+    if (rollbackErrors.length > 0) throw new AggregateError([error, ...rollbackErrors], "Catalog and Browse commit failed and rollback was incomplete.");
+    throw error;
+  }
+
+  for (const file of files) await rm(file.backupPath, { force: true }).catch(() => undefined);
+  return { catalogPath, releaseManifestPath, browsePaths: browseFiles.map((file) => file.targetPath) };
 }
 
 export function catalogObjectById(catalog: CatalogType, objectId: string) {

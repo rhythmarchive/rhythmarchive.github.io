@@ -203,6 +203,15 @@ img { display: block; max-width: 100%; }
 .filter-control, .filter-check { display: inline-flex; align-items: center; gap: 8px; color: var(--text-muted); font-size: 0.78rem; }
 .filter-control select { min-width: 96px; padding: 5px 8px; border: 1px solid var(--line); border-radius: 4px; background: var(--surface-muted); color: var(--text); }
 .filter-check input { accent-color: var(--accent); }
+.browse-gallery-toolbar { flex-wrap: wrap; }
+.browse-search { flex: 1 1 220px; min-width: min(220px, 100%); }
+.browse-search input { width: 100%; min-height: 34px; padding: 7px 10px; border: 1px solid var(--line); border-radius: 4px 8px 4px 8px; background: var(--surface-muted); color: var(--text); font-size: 0.78rem; }
+.browse-filter-panel { align-items: stretch; flex-wrap: wrap; }
+.browse-filter-panel .filter-control { align-items: flex-start; flex-direction: column; gap: 5px; }
+.browse-filter-panel .filter-control select[multiple] { min-width: 122px; min-height: 78px; padding: 4px; }
+.browse-filter-panel .filter-control select[multiple] option { padding: 2px 4px; }
+.gallery-empty { display: grid; justify-items: center; gap: 10px; padding: 48px 16px; border: 1px dashed var(--line-strong); border-radius: var(--radius-sm); color: var(--text-muted); text-align: center; }
+.gallery-empty p { margin: 0; }
 .resource-grid, .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(188px, 1fr)); gap: 14px; }
 .resource-card { position: relative; min-width: 0; border: 1px solid var(--line); border-radius: 5px 11px 5px 11px; background: var(--surface); box-shadow: 0 3px 12px rgba(33, 73, 119, 0.035); transition: transform 170ms ease, border-color 170ms ease, box-shadow 170ms ease; }
 .resource-card:hover, .resource-card.is-selected { transform: translateY(-2px); border-color: color-mix(in srgb, var(--accent) 62%, var(--line)); box-shadow: var(--shadow-hover); }
@@ -377,6 +386,9 @@ body.detail-lightbox-open { overflow: hidden; }
   .batch-actions { margin-top: 9px; }
   .batch-actions .button { flex: 1; padding-inline: 8px; }
   .filter-panel { flex-wrap: wrap; }
+  .browse-search { order: 3; flex-basis: 100%; }
+  .browse-filter-panel .filter-control { flex: 1 1 135px; }
+  .browse-filter-panel .filter-control select[multiple] { width: 100%; }
   .search-page-head { padding-top: 3.5rem; }
   .search-page.has-search-query .search-page-head { padding-top: 2rem; }
   .search-landing-browse-heading { display: block; }
