@@ -9,10 +9,11 @@ import { uniqueZipFilename } from "../src/lib/batch.js";
 import { displayVariantLabel } from "../src/lib/game-config.js";
 import { rankRelatedResources } from "../src/lib/related.js";
 import { buildSearchQuickLinks } from "../src/lib/search-quick-links.js";
+import { getCategoryBrowseConfig } from "../src/lib/category-browse.js";
 import { GISCUS_CONFIG, GITHUB_DISCUSSIONS_URL } from "../src/lib/site-config.js";
 import { rankSearchEntries } from "../src/lib/search.js";
 import { createUrlHelpers } from "../src/lib/url.js";
-import { loadFormalCatalog } from "../src/lib/site-data.js";
+import { getSiteData, loadCategoryBrowseProjections, loadFormalCatalog } from "../src/lib/site-data.js";
 import type { PublicResource, PublicSearchEntry } from "../src/lib/types.js";
 
 const catalog = loadFormalCatalog();
@@ -144,6 +145,27 @@ test("homepage uses an information-first intro and a stable social image", () =>
   assert.match(source, /\/og\/home\.png/u);
   assert.equal(fs.existsSync(path.join(siteRoot, "public", "og", "home.png")), true);
   assert.doesNotMatch(source, /data\.resources\.find\(/u);
+});
+
+test("category semantic browse data keeps player-facing names and conservative unresolved labels", () => {
+  const semantic = loadCategoryBrowseProjections();
+  const siteData = getSiteData();
+  const portraits = siteData.galleries["arcaea/character-portrait"] ?? [];
+  const namedPortraits = portraits.filter((resource) => resource.displayTitle !== "未归类角色立绘");
+  assert.equal(namedPortraits.length, 135);
+  assert.equal(portraits.length, 139);
+  assert.ok(namedPortraits.some((resource) => resource.displayTitle === "光"));
+  assert.ok(portraits.every((resource) => !/^\d+_(?:angry|cut|twisted)/u.test(resource.displayTitle)));
+
+  const story = siteData.galleries["arcaea/story-cg"] ?? [];
+  const knownCg = story.find((resource) => resource.searchTerms?.includes("0-3"));
+  assert.equal(knownCg?.displayTitle, "Arcaea");
+  assert.match(knownCg?.subtitle ?? "", /Main Story/u);
+  assert.ok((knownCg?.searchTerms ?? []).includes("Shades of Light in a Transcendent Realm"));
+  assert.equal(semantic.arcaea.resources.filter((resource) => resource.resourceType === "story-cg").length, 57);
+  assert.equal((siteData.galleries["arcaea/story-texture"] ?? []).length, 296);
+  const phigrosKinds = getCategoryBrowseConfig("phigros", "pack-cover", siteData.galleries["phigros/pack-cover"] ?? []).facets[0]?.options.map((option) => option.label) ?? [];
+  assert.ok(phigrosKinds.includes("主线") && phigrosKinds.includes("支线") && phigrosKinds.includes("单曲") && phigrosKinds.includes("其他曲包"));
 });
 
 test("site brand marks keep the accent rhythm line inside the mark", () => {

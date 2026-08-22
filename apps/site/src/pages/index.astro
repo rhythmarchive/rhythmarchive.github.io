@@ -35,7 +35,7 @@ const arcaeaApkManifestUrl = `${ROS_BASE_URL}/apk/arcaea/latest.json`;
     <div class="game-entry-grid">
       {games.map((game) => {
         return (
-          <a class={`game-entry-card game-${game.slug}`} href={urls.sitePath(`/${game.slug}/`)}>
+          <a class={`game-entry-card game-${game.slug}`} href={urls.sitePath(`/${game.slug}/jacket/`)}>
             <div class="game-entry-image">
               <GameIcon game={game.slug} />
             </div>

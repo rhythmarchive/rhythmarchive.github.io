@@ -1,15 +1,17 @@
 import fs from "node:fs";
 import path from "node:path";
-import { ArcaeaBrowseProjection, BrowseDiagnostics, BrowseManifest, PhigrosBrowseProjection, validateBrowseProjectionSet, validateBrowsePublicData, type ArcaeaBrowseProjectionType, type PhigrosBrowseProjectionType } from "../../../../packages/domain/src/browse.js";
+import { ArcaeaBrowseProjection, ArcaeaCategoryBrowseProjection, BrowseDiagnostics, BrowseManifest, PhigrosBrowseProjection, PhigrosCategoryBrowseProjection, validateBrowseProjectionSet, validateBrowsePublicData, validateCategoryBrowseProjection, type ArcaeaBrowseProjectionType, type PhigrosBrowseProjectionType } from "../../../../packages/domain/src/browse.js";
 import { validateCatalog } from "../../../../packages/domain/src/validation.js";
 import type { Catalog } from "../../../../packages/domain/src/schema.js";
 import { buildBrowseGalleryData } from "./browse-gallery";
+import { applyCategoryBrowseSemantics, type CategoryBrowseProjections } from "./category-browse";
 import { projectCatalog } from "./catalog-projection";
 import { ROS_BASE_URL } from "./site-config";
 import type { PublicSiteData } from "./types";
 
 let cachedSiteData: PublicSiteData | undefined;
 let cachedBrowseProjections: FormalBrowseProjections | undefined;
+let cachedCategoryBrowseProjections: CategoryBrowseProjections | undefined;
 let cachedBrowseGalleryBuild: ReturnType<typeof buildBrowseGalleryData> | undefined;
 
 export type FormalBrowseProjections = {
@@ -28,9 +30,27 @@ export function loadFormalCatalog(): Catalog {
   return validation.data;
 }
 
-export function getSiteData(): PublicSiteData {
-  cachedSiteData ??= projectCatalog(loadFormalCatalog(), ROS_BASE_URL);
+export function getSiteData(rosBaseUrl = ROS_BASE_URL): PublicSiteData {
+  if (!cachedSiteData) {
+    const catalog = loadFormalCatalog();
+    cachedSiteData = applyCategoryBrowseSemantics(projectCatalog(catalog, rosBaseUrl), loadCategoryBrowseProjections());
+  }
   return cachedSiteData;
+}
+
+export function loadCategoryBrowseProjections(): CategoryBrowseProjections {
+  if (cachedCategoryBrowseProjections) return cachedCategoryBrowseProjections;
+  const catalog = loadFormalCatalog();
+  const arcaea = parseCategoryBrowseFile("arcaea-semantics.json", ArcaeaCategoryBrowseProjection);
+  const phigros = parseCategoryBrowseFile("phigros-semantics.json", PhigrosCategoryBrowseProjection);
+  const arcaeaValidation = validateCategoryBrowseProjection(arcaea, catalog);
+  if (!arcaeaValidation.success) throw new Error(`Arcaea semantic Browse failed runtime validation: ${arcaeaValidation.issues.slice(0, 5).join("; ")}`);
+  const phigrosValidation = validateCategoryBrowseProjection(phigros, catalog);
+  if (!phigrosValidation.success) throw new Error(`Phigros semantic Browse failed runtime validation: ${phigrosValidation.issues.slice(0, 5).join("; ")}`);
+  const publicDataIssues = validateBrowsePublicData({ arcaea, phigros });
+  if (publicDataIssues.length > 0) throw new Error(`Semantic Browse contains local or sensitive data: ${publicDataIssues.slice(0, 5).join("; ")}`);
+  cachedCategoryBrowseProjections = { arcaea, phigros };
+  return cachedCategoryBrowseProjections;
 }
 
 export function loadFormalBrowseProjections(): FormalBrowseProjections {
@@ -73,6 +93,10 @@ function findWorkspaceFile(...parts: string[]): string {
 }
 
 function parseFormalBrowseFile<T>(filename: string, schema: { parse: (value: unknown) => T }): T {
+  return schema.parse(JSON.parse(fs.readFileSync(findWorkspaceFile("catalog", "browse", filename), "utf8")) as unknown);
+}
+
+function parseCategoryBrowseFile<T>(filename: string, schema: { parse: (value: unknown) => T }): T {
   return schema.parse(JSON.parse(fs.readFileSync(findWorkspaceFile("catalog", "browse", filename), "utf8")) as unknown);
 }
 

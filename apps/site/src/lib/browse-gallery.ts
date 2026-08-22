@@ -44,6 +44,8 @@ export type BrowseGalleryItem = BrowseResolvedResource & {
   game: BrowseGame;
   recordKind: BrowseRecordKind;
   displayTitle: string;
+  subtitle?: string;
+  badges?: string[];
   artist?: string;
   searchTerms: string[];
   titleAliases: string[];

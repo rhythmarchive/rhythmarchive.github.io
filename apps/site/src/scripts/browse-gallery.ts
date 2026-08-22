@@ -15,7 +15,7 @@ import {
   parseBrowseUrlState,
   serializeBrowseUrlState,
 } from "../lib/browse-gallery";
-import { cardMediaRatio } from "../lib/media-config";
+import { cardMediaFit, cardMediaRatio } from "../lib/media-config";
 import type { PublicDownload } from "../lib/types";
 
 const root = document.querySelector<HTMLElement>("[data-browse-gallery-root]");
@@ -26,17 +26,15 @@ async function initializeBrowseGallery(root: HTMLElement): Promise<void> {
   const loadMore = root.querySelector<HTMLButtonElement>("[data-load-more]");
   const count = root.querySelector<HTMLElement>("[data-gallery-count]");
   const empty = root.querySelector<HTMLElement>("[data-browse-empty]");
-  const filterPanel = root.querySelector<HTMLElement>("[data-filter-panel]");
-  const filterToggle = root.querySelector<HTMLButtonElement>("[data-filter-toggle]");
   const search = root.querySelector<HTMLInputElement>("[data-browse-search]");
   const sort = root.querySelector<HTMLSelectElement>("[data-browse-sort]");
   const ai = root.querySelector<HTMLInputElement>("[data-filter-ai]");
   const reset = root.querySelector<HTMLButtonElement>("[data-gallery-reset]");
   const emptyReset = root.querySelector<HTMLButtonElement>("[data-browse-empty-reset]");
+  const activeChips = root.querySelector<HTMLElement>("[data-browse-active-chips]");
   if (!grid || !loadMore || !count || !search || !sort) return;
 
   const game: BrowseGame = root.dataset.game === "phigros" ? "phigros" : "arcaea";
-  let data: BrowseGalleryData;
   let items: BrowseGalleryItem[] = [];
   let state: BrowseUrlState = defaultBrowseUrlState(game);
   let visibleCount = BROWSE_PAGE_SIZE;
@@ -45,11 +43,11 @@ async function initializeBrowseGallery(root: HTMLElement): Promise<void> {
   try {
     const response = await fetch(root.dataset.galleryUrl ?? "", { credentials: "omit" });
     if (!response.ok) throw new Error("browse gallery data failed with " + response.status);
-    data = await response.json() as BrowseGalleryData;
+    const data = await response.json() as BrowseGalleryData;
     if (data.schemaVersion !== 1 || data.game !== game || data.category !== "jacket" || !Array.isArray(data.items)) throw new Error("browse gallery data has an invalid shape");
     items = data.items;
     populateFacetOptions(data, root);
-    state = parseBrowseUrlState(game, window.location.search, items);
+    state = readState(game, items);
     applyStateToControls(state);
     render();
   } catch (error) {
@@ -58,15 +56,32 @@ async function initializeBrowseGallery(root: HTMLElement): Promise<void> {
     return;
   }
 
-  filterToggle?.addEventListener("click", () => {
-    const open = filterPanel?.hasAttribute("hidden") ?? true;
-    if (filterPanel) filterPanel.hidden = !open;
-    filterToggle.setAttribute("aria-expanded", String(open));
-  });
   search.addEventListener("input", () => commitState("replace"));
   sort.addEventListener("change", () => commitState("push"));
-  for (const select of root.querySelectorAll<HTMLSelectElement>("[data-browse-filter]")) select.addEventListener("change", () => commitState("push"));
+  root.querySelectorAll<HTMLInputElement>("[data-browse-filter-check]").forEach((input) => input.addEventListener("change", () => commitState("push")));
+  root.querySelectorAll<HTMLButtonElement>("[data-browse-filter-toggle]").forEach((button) => button.addEventListener("click", () => {
+    button.setAttribute("aria-pressed", String(button.getAttribute("aria-pressed") !== "true"));
+    commitState("push");
+  }));
   ai?.addEventListener("change", () => commitState("push"));
+  root.querySelectorAll<HTMLInputElement>("[data-browse-option-search]").forEach((input) => input.addEventListener("input", () => filterPopoverOptions(input)));
+  activeChips?.addEventListener("click", (event) => {
+    const target = event.target;
+    if (!(target instanceof Element)) return;
+    const button = target.closest<HTMLButtonElement>("[data-remove-filter]");
+    if (!button) return;
+    const name = button.dataset.removeFilter;
+    const value = button.dataset.removeValue;
+    if (!name) return;
+    if (name === "ai") {
+      if (ai) ai.checked = false;
+    } else if (name === "chart") {
+      root.querySelector<HTMLButtonElement>(`[data-browse-filter-toggle="${name}"][data-value="${CSS.escape(value ?? "")}"]`)?.setAttribute("aria-pressed", "false");
+    } else {
+      root.querySelector<HTMLInputElement>(`[data-browse-filter-check="${name}"][value="${CSS.escape(value ?? "")}"]`)!.checked = false;
+    }
+    commitState("push");
+  });
   reset?.addEventListener("click", (event) => {
     event.preventDefault();
     resetState();
@@ -77,7 +92,7 @@ async function initializeBrowseGallery(root: HTMLElement): Promise<void> {
     render();
   });
   window.addEventListener("popstate", () => {
-    state = parseBrowseUrlState(game, window.location.search, items);
+    state = readState(game, items);
     applyStateToControls(state);
     visibleCount = BROWSE_PAGE_SIZE;
     render();
@@ -96,8 +111,11 @@ async function initializeBrowseGallery(root: HTMLElement): Promise<void> {
     render();
   });
 
-  for (const button of root.querySelectorAll<HTMLButtonElement>("[data-batch-download]")) {
-    button.addEventListener("click", () => void downloadBatch(button.dataset.batchDownload === "upscaled"));
+  for (const button of root.querySelectorAll<HTMLButtonElement>("[data-batch-download]")) button.addEventListener("click", () => void downloadBatch(button.dataset.batchDownload === "upscaled"));
+
+  function readState(gameId: BrowseGame, browseItems: BrowseGalleryItem[]): BrowseUrlState {
+    const parsed = parseBrowseUrlState(gameId, window.location.search, browseItems);
+    return gameId === "phigros" ? { ...parsed, chart: [] } : parsed;
   }
 
   function currentStateFromControls(): BrowseUrlState {
@@ -113,12 +131,7 @@ async function initializeBrowseGallery(root: HTMLElement): Promise<void> {
         ai: ai?.checked ?? false,
       };
     }
-    return {
-      game,
-      q: search!.value,
-      sort: sort!.value as Extract<BrowseUrlState, { game: "phigros" }>["sort"],
-      chart: selectedValues(root, "chart") as Extract<BrowseUrlState, { game: "phigros" }>["chart"],
-    };
+    return { game, q: search!.value, sort: sort!.value as Extract<BrowseUrlState, { game: "phigros" }>["sort"], chart: [] };
   }
 
   function commitState(historyMode: "push" | "replace"): void {
@@ -126,8 +139,7 @@ async function initializeBrowseGallery(root: HTMLElement): Promise<void> {
     const url = new URL(window.location.href);
     const serialized = serializeBrowseUrlState(state).toString();
     url.search = serialized ? "?" + serialized : "";
-    if (historyMode === "push") window.history.pushState(null, "", url);
-    else window.history.replaceState(null, "", url);
+    if (historyMode === "push") window.history.pushState(null, "", url); else window.history.replaceState(null, "", url);
     visibleCount = BROWSE_PAGE_SIZE;
     render();
   }
@@ -152,6 +164,7 @@ async function initializeBrowseGallery(root: HTMLElement): Promise<void> {
       setSelectedValues(root, "version", nextState.version);
       if (ai) ai.checked = nextState.ai;
     }
+    updatePopoverSummaries(root);
   }
 
   function render(): void {
@@ -161,6 +174,7 @@ async function initializeBrowseGallery(root: HTMLElement): Promise<void> {
     count!.textContent = filtered.length.toLocaleString("zh-CN") + " 项资源";
     loadMore!.hidden = visible.length >= filtered.length;
     if (empty) empty.hidden = filtered.length !== 0;
+    updateActiveFilters(root, state);
     updateBatchBar();
   }
 
@@ -195,7 +209,6 @@ async function initializeBrowseGallery(root: HTMLElement): Promise<void> {
       if (status) status.textContent = "一次选择的文件较多，请减少后再下载。";
       return;
     }
-
     const entries: Record<string, Uint8Array> = {};
     const usedNames = new Set<string>();
     let completed = 0;
@@ -222,36 +235,96 @@ async function initializeBrowseGallery(root: HTMLElement): Promise<void> {
 
 function populateFacetOptions(data: BrowseGalleryData, root: HTMLElement): void {
   const options = getBrowseFacetOptions(data);
-  const setOptions = (name: string, values: string[]) => {
-    const select = root.querySelector<HTMLSelectElement>("[data-browse-filter=\"" + name + "\"]");
-    if (!select) return;
-    select.replaceChildren(...values.map((value) => {
-      const option = document.createElement("option");
-      option.value = value;
-      option.textContent = value;
-      return option;
+  const setToggles = (name: string, values: string[]) => {
+    const container = root.querySelector<HTMLElement>(`[data-browse-toggle-options="${name}"]`);
+    if (!container) return;
+    container.replaceChildren(...values.map((value) => {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "filter-toggle-chip";
+      button.dataset.browseFilterToggle = name;
+      button.dataset.value = value;
+      button.setAttribute("aria-pressed", "false");
+      button.textContent = value;
+      return button;
     }));
   };
-  if (data.game === "arcaea") {
-    const arcaeaOptions = options as Extract<BrowseFacetOptions, { packs: string[] }>;
-    setOptions("pack", arcaeaOptions.packs);
-    setOptions("chart", arcaeaOptions.charts);
-    setOptions("level", arcaeaOptions.levels);
-    setOptions("version", arcaeaOptions.versions);
-  } else {
-    setOptions("chart", (options as Extract<BrowseFacetOptions, { charts: string[] }>).charts);
-  }
+  const setCheckboxes = (name: string, values: string[]) => {
+    const container = root.querySelector<HTMLElement>(`[data-browse-options="${name}"]`);
+    if (!container) return;
+    container.replaceChildren(...values.map((value) => {
+      const label = document.createElement("label");
+      label.className = "filter-option";
+      label.dataset.filterText = value.toLocaleLowerCase("zh-CN");
+      const input = document.createElement("input");
+      input.type = "checkbox";
+      input.dataset.browseFilterCheck = name;
+      input.value = value;
+      const text = document.createElement("span");
+      text.textContent = value;
+      label.append(input, text);
+      return label;
+    }));
+  };
+  if (data.game !== "arcaea") return;
+  const arcaeaOptions = options as Extract<BrowseFacetOptions, { packs: string[] }>;
+  setToggles("chart", arcaeaOptions.charts);
+  setCheckboxes("pack", arcaeaOptions.packs);
+  setCheckboxes("level", arcaeaOptions.levels);
+  setCheckboxes("version", arcaeaOptions.versions);
 }
 
 function selectedValues(root: HTMLElement, name: string): string[] {
-  return [...(root.querySelector<HTMLSelectElement>("[data-browse-filter=\"" + name + "\"]")?.selectedOptions ?? [])].map((option) => option.value);
+  const checked = [...root.querySelectorAll<HTMLInputElement>(`[data-browse-filter-check="${name}"]:checked`)].map((input) => input.value);
+  const toggled = [...root.querySelectorAll<HTMLButtonElement>(`[data-browse-filter-toggle="${name}"][aria-pressed="true"]`)].map((button) => button.dataset.value ?? "");
+  return [...checked, ...toggled].filter(Boolean);
 }
 
 function setSelectedValues(root: HTMLElement, name: string, values: string[]): void {
   const selected = new Set(values);
-  const select = root.querySelector<HTMLSelectElement>("[data-browse-filter=\"" + name + "\"]");
-  if (!select) return;
-  for (const option of select.options) option.selected = selected.has(option.value);
+  root.querySelectorAll<HTMLInputElement>(`[data-browse-filter-check="${name}"]`).forEach((input) => { input.checked = selected.has(input.value); });
+  root.querySelectorAll<HTMLButtonElement>(`[data-browse-filter-toggle="${name}"]`).forEach((button) => { button.setAttribute("aria-pressed", String(selected.has(button.dataset.value ?? ""))); });
+}
+
+function updatePopoverSummaries(root: HTMLElement): void {
+  for (const summary of root.querySelectorAll<HTMLElement>("[data-browse-summary]")) {
+    const name = summary.dataset.browseSummary ?? "";
+    const values = selectedValues(root, name);
+    const label = name === "pack" ? "曲包" : name === "level" ? "等级" : "版本";
+    summary.textContent = values.length === 0 ? label : values.length === 1 ? values[0]! : `${label} ${values.length}`;
+  }
+}
+
+function updateActiveFilters(root: HTMLElement, state: BrowseUrlState): void {
+  const row = root.querySelector<HTMLElement>("[data-browse-active]");
+  const chips = root.querySelector<HTMLElement>("[data-browse-active-chips]");
+  if (!row || !chips) return;
+  const entries: Array<{ name: string; value: string; label: string }> = [];
+  if (state.q) entries.push({ name: "q", value: state.q, label: `搜索：${state.q}` });
+  if (state.game === "arcaea") {
+    for (const value of state.pack) entries.push({ name: "pack", value, label: value });
+    for (const value of state.chart) entries.push({ name: "chart", value, label: value });
+    for (const value of state.level) entries.push({ name: "level", value, label: value });
+    for (const value of state.version) entries.push({ name: "version", value, label: value });
+    if (state.ai) entries.push({ name: "ai", value: "1", label: "含超分版" });
+  }
+  chips.replaceChildren(...entries.map((entry) => {
+    const chip = document.createElement("button");
+    chip.type = "button";
+    chip.className = "active-filter-chip";
+    chip.dataset.removeFilter = entry.name;
+    chip.dataset.removeValue = entry.value;
+    chip.textContent = entry.name === "q" ? entry.label : `${entry.label} ×`;
+    return chip;
+  }));
+  row.hidden = entries.length === 0;
+  updatePopoverSummaries(root);
+}
+
+function filterPopoverOptions(input: HTMLInputElement): void {
+  const name = input.dataset.browseOptionSearch ?? "";
+  const query = input.value.toLocaleLowerCase("zh-CN");
+  document.querySelectorAll<HTMLElement>(`[data-browse-options="${name}"] .filter-option`).forEach((option) => { option.hidden = Boolean(query) && !(option.dataset.filterText ?? "").includes(query); });
 }
 
 function createCard(item: BrowseGalleryItem, index: number, isSelected: boolean): HTMLElement {
@@ -263,6 +336,7 @@ function createCard(item: BrowseGalleryItem, index: number, isSelected: boolean)
   article.dataset.game = item.game;
   article.dataset.resourceType = item.resourceType;
   article.dataset.mediaRatio = cardMediaRatio(item.game, item.resourceType);
+  article.dataset.mediaFit = cardMediaFit(item.resourceType);
 
   const select = document.createElement("button");
   select.className = "resource-select";
@@ -303,7 +377,6 @@ function createCard(item: BrowseGalleryItem, index: number, isSelected: boolean)
     badge.textContent = "含超分版";
     media.append(badge);
   }
-
   const body = document.createElement("div");
   body.className = "resource-card-body";
   const title = document.createElement("h3");
@@ -314,7 +387,13 @@ function createCard(item: BrowseGalleryItem, index: number, isSelected: boolean)
     artist.textContent = item.artist;
     body.append(artist);
   }
-  const metadata = [item.badge, item.selectedArtworkDifficulty, item.game === "arcaea" ? item.pack : undefined].filter((value): value is string => Boolean(value));
+  if (item.subtitle) {
+    const subtitle = document.createElement("p");
+    subtitle.className = "resource-card-subtitle";
+    subtitle.textContent = item.subtitle;
+    body.append(subtitle);
+  }
+  const metadata = [ ...(item.badges ?? []), item.badge, item.selectedArtworkDifficulty, item.game === "arcaea" ? item.pack : undefined ].filter((value): value is string => Boolean(value));
   for (const value of metadata) {
     const label = document.createElement("span");
     label.className = "resource-card-variant";

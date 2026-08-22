@@ -1,12 +1,11 @@
 import { mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { buildBrowseGalleryData } from "../src/lib/browse-gallery.js";
-import { projectCatalog } from "../src/lib/catalog-projection.js";
-import { findWorkspaceRoot, loadFormalBrowseProjections, loadFormalCatalog } from "../src/lib/site-data.js";
+import { findWorkspaceRoot, getSiteData, loadFormalBrowseProjections } from "../src/lib/site-data.js";
 
 const root = findWorkspaceRoot();
 const rosBaseUrl = process.env.PUBLIC_ROS_BASE_URL?.trim() || "https://rhythm-assets.cn-nb1.rains3.com";
-const data = projectCatalog(loadFormalCatalog(), rosBaseUrl);
+const data = getSiteData(rosBaseUrl);
 const browseBuild = buildBrowseGalleryData(data, loadFormalBrowseProjections());
 const generatedSourceDir = path.join(root, "apps", "site", "src", "generated");
 const publicDataDir = path.join(root, "apps", "site", "public", "data");

@@ -213,6 +213,35 @@ export const PhigrosResourceSemantic = ResourceSemanticBase.omit({ difficultyCla
   bucket: z.enum(["current", "archiveExtra", "special"]),
 });
 
+/**
+ * Small, public browse annotations for non-jacket galleries.
+ * These annotations decorate Catalog Resources; they never replace Resource identity.
+ */
+export const CategoryBrowseResource = z.object({
+  resourceId: UUIDV7,
+  resourceType: z.string().min(1),
+  displayTitle: z.string().min(1).optional(),
+  subtitle: z.string().min(1).optional(),
+  badges: z.array(z.string().min(1)).default([]),
+  searchTerms: SearchTerms.default([]),
+  sortOrder: z.number().int().nonnegative().optional(),
+  facets: z.record(z.string(), z.array(z.string().min(1))).default({}),
+});
+
+export const CategoryBrowseProjection = z.object({
+  schemaVersion: z.literal(BROWSE_SCHEMA_VERSION),
+  game: z.enum(["arcaea", "phigros"]),
+  generatedAt: ISO_DATE,
+  source: z.object({
+    snapshot: z.string().min(1),
+    sha256: SHA256,
+  }),
+  resources: z.array(CategoryBrowseResource),
+});
+
+export const ArcaeaCategoryBrowseProjection = CategoryBrowseProjection.extend({ game: z.literal("arcaea") });
+export const PhigrosCategoryBrowseProjection = CategoryBrowseProjection.extend({ game: z.literal("phigros") });
+
 const ArcaeaSourceArtwork = z.object({
   role: z.enum(["default", "difficulty", "night/special"]),
   difficultyClass: ArcaeaDifficultyClass.optional(),
@@ -355,6 +384,10 @@ export type ArcaeaBrowseProjectionType = z.infer<typeof ArcaeaBrowseProjection>;
 export type PhigrosTrackRecordType = z.infer<typeof PhigrosTrackRecord>;
 export type PhigrosSpecialRecordType = z.infer<typeof PhigrosSpecialRecord>;
 export type PhigrosBrowseProjectionType = z.infer<typeof PhigrosBrowseProjection>;
+export type CategoryBrowseResourceType = z.infer<typeof CategoryBrowseResource>;
+export type CategoryBrowseProjectionType = z.infer<typeof CategoryBrowseProjection>;
+export type ArcaeaCategoryBrowseProjectionType = z.infer<typeof ArcaeaCategoryBrowseProjection>;
+export type PhigrosCategoryBrowseProjectionType = z.infer<typeof PhigrosCategoryBrowseProjection>;
 export type ArcaeaSourceMetadataType = z.infer<typeof ArcaeaSourceMetadata>;
 export type PhigrosSourceMetadataType = z.infer<typeof PhigrosSourceMetadata>;
 export type ArcaeaCurationType = z.infer<typeof ArcaeaCuration>;
@@ -380,6 +413,10 @@ export type BrowseProjectionBuildInput = {
 
 export type BrowseValidationResult =
   | { success: true; data: BrowseProjectionBuildResult }
+  | { success: false; issues: string[] };
+
+export type CategoryBrowseValidationResult =
+  | { success: true; data: CategoryBrowseProjectionType }
   | { success: false; issues: string[] };
 
 function uniqueSorted(values: string[]): string[] {
@@ -417,6 +454,29 @@ function browsePublicDataIssues(value: unknown, currentPath = "$"): string[] {
 
 export function validateBrowsePublicData(value: unknown): string[] {
   return browsePublicDataIssues(value);
+}
+
+export function validateCategoryBrowseProjection(value: unknown, catalog: Catalog): CategoryBrowseValidationResult {
+  const parsed = CategoryBrowseProjection.safeParse(value);
+  if (!parsed.success) {
+    return { success: false, issues: parsed.error.issues.map((issue) => `${issue.path.join(".")}: ${issue.message}`) };
+  }
+  const issues: string[] = [];
+  const seen = new Set<string>();
+  for (const annotation of parsed.data.resources) {
+    if (seen.has(annotation.resourceId)) issues.push(`${parsed.data.game}: duplicate semantic Resource ${annotation.resourceId}`);
+    seen.add(annotation.resourceId);
+    const resource = catalog.resources.find((candidate) => candidate.id === annotation.resourceId);
+    if (!resource) {
+      issues.push(`${parsed.data.game}: dangling semantic Resource ${annotation.resourceId}`);
+      continue;
+    }
+    if (resource.game !== parsed.data.game) issues.push(`${parsed.data.game}: semantic Resource ${annotation.resourceId} belongs to ${resource.game}`);
+    if (resource.resourceType !== annotation.resourceType) issues.push(`${parsed.data.game}: semantic Resource ${annotation.resourceId} says ${annotation.resourceType}, Catalog says ${resource.resourceType}`);
+    if (resource.lifecycle.status !== "published") issues.push(`${parsed.data.game}: semantic Resource ${annotation.resourceId} is not published`);
+  }
+  issues.push(...validateBrowsePublicData(parsed.data));
+  return issues.length > 0 ? { success: false, issues } : { success: true, data: parsed.data };
 }
 
 function sha256Text(value: string): string {

@@ -1,0 +1,733 @@
+{
+  "schemaVersion": 1,
+  "game": "phigros",
+  "generatedAt": "2026-08-14T13:57:23.100Z",
+  "source": {
+    "snapshot": "Phigros APK 3.19.5",
+    "sha256": "794e2d1df8d020532f4a25c9ea56946b6bb5d68b4ba72999fb97c7e847305d04"
+  },
+  "resources": [
+    {
+      "resourceId": "01a00092-8a0c-7189-a969-e59ebf5dda9d",
+      "resourceType": "pack-cover",
+      "displayTitle": "闫东炜",
+      "subtitle": "曲包封面",
+      "badges": [],
+      "searchTerms": [
+        "闫东炜",
+        "闫东炜"
+      ],
+      "sortOrder": 3000,
+      "facets": {
+        "kind": [
+          "其他曲包"
+        ]
+      }
+    },
+    {
+      "resourceId": "01a00092-8a76-7e1f-b8d4-cbe0f3025cb6",
+      "resourceType": "pack-cover",
+      "displayTitle": "全部曲目",
+      "subtitle": "曲目集合封面",
+      "badges": [],
+      "searchTerms": [
+        "AllSong",
+        "All Song",
+        "全部曲目"
+      ],
+      "sortOrder": 2100,
+      "facets": {
+        "kind": [
+          "全部曲目"
+        ]
+      }
+    },
+    {
+      "resourceId": "01a00092-8ade-7144-8359-757bf8523201",
+      "resourceType": "pack-cover",
+      "displayTitle": "Camellia",
+      "subtitle": "曲包封面",
+      "badges": [],
+      "searchTerms": [
+        "Camellia",
+        "Camellia"
+      ],
+      "sortOrder": 3002,
+      "facets": {
+        "kind": [
+          "其他曲包"
+        ]
+      }
+    },
+    {
+      "resourceId": "01a00092-8b50-794b-ae1c-525771cc0897",
+      "resourceType": "pack-cover",
+      "displayTitle": "Chronostasis",
+      "subtitle": "曲包封面",
+      "badges": [],
+      "searchTerms": [
+        "Chronostasis",
+        "Chronostasis"
+      ],
+      "sortOrder": 3003,
+      "facets": {
+        "kind": [
+          "其他曲包"
+        ]
+      }
+    },
+    {
+      "resourceId": "01a00092-8c2d-76c5-9e6a-c8f8cb78849c",
+      "resourceType": "pack-cover",
+      "displayTitle": "CHUNITHM",
+      "subtitle": "曲包封面",
+      "badges": [],
+      "searchTerms": [
+        "CHUNITHM",
+        "CHUNITHM"
+      ],
+      "sortOrder": 3004,
+      "facets": {
+        "kind": [
+          "其他曲包"
+        ]
+      }
+    },
+    {
+      "resourceId": "01a00092-8c99-76f7-a8e6-22b0e9045bcd",
+      "resourceType": "pack-cover",
+      "displayTitle": "Cytus2",
+      "subtitle": "曲包封面",
+      "badges": [],
+      "searchTerms": [
+        "Cytus2",
+        "Cytus2"
+      ],
+      "sortOrder": 3005,
+      "facets": {
+        "kind": [
+          "其他曲包"
+        ]
+      }
+    },
+    {
+      "resourceId": "01a00092-8cf9-744a-8470-32742c4cef07",
+      "resourceType": "pack-cover",
+      "displayTitle": "EGTS",
+      "subtitle": "曲包封面",
+      "badges": [],
+      "searchTerms": [
+        "EGTS",
+        "EGTS"
+      ],
+      "sortOrder": 3006,
+      "facets": {
+        "kind": [
+          "其他曲包"
+        ]
+      }
+    },
+    {
+      "resourceId": "01a00092-8d68-7129-aaa3-3fede3b33127",
+      "resourceType": "pack-cover",
+      "displayTitle": "Good",
+      "subtitle": "曲包封面",
+      "badges": [],
+      "searchTerms": [
+        "Good",
+        "Good"
+      ],
+      "sortOrder": 3007,
+      "facets": {
+        "kind": [
+          "其他曲包"
+        ]
+      }
+    },
+    {
+      "resourceId": "01a00092-8db9-7a77-8a5a-6d6059a4da43",
+      "resourceType": "pack-cover",
+      "displayTitle": "HyuN",
+      "subtitle": "曲包封面",
+      "badges": [],
+      "searchTerms": [
+        "HyuN",
+        "HyuN"
+      ],
+      "sortOrder": 3008,
+      "facets": {
+        "kind": [
+          "其他曲包"
+        ]
+      }
+    },
+    {
+      "resourceId": "01a00092-8e30-77be-9191-e02e005b632e",
+      "resourceType": "pack-cover",
+      "displayTitle": "ImmaculeeSekai",
+      "subtitle": "曲包封面",
+      "badges": [],
+      "searchTerms": [
+        "ImmaculeeSekai",
+        "ImmaculeeSekai"
+      ],
+      "sortOrder": 3009,
+      "facets": {
+        "kind": [
+          "其他曲包"
+        ]
+      }
+    },
+    {
+      "resourceId": "01a00092-8ea8-7908-aba8-c5090e10c13e",
+      "resourceType": "pack-cover",
+      "displayTitle": "JMT",
+      "subtitle": "曲包封面",
+      "badges": [],
+      "searchTerms": [
+        "JMT",
+        "JMT"
+      ],
+      "sortOrder": 3010,
+      "facets": {
+        "kind": [
+          "其他曲包"
+        ]
+      }
+    },
+    {
+      "resourceId": "01a00092-8f18-7c4f-92ab-ec88f42400ae",
+      "resourceType": "pack-cover",
+      "displayTitle": "KALPA",
+      "subtitle": "曲包封面",
+      "badges": [],
+      "searchTerms": [
+        "KALPA",
+        "KALPA"
+      ],
+      "sortOrder": 3011,
+      "facets": {
+        "kind": [
+          "其他曲包"
+        ]
+      }
+    },
+    {
+      "resourceId": "01a00092-8f8c-7074-b56e-8e39e72ecbbd",
+      "resourceType": "pack-cover",
+      "displayTitle": "Lanota",
+      "subtitle": "曲包封面",
+      "badges": [],
+      "searchTerms": [
+        "Lanota",
+        "Lanota"
+      ],
+      "sortOrder": 3012,
+      "facets": {
+        "kind": [
+          "其他曲包"
+        ]
+      }
+    },
+    {
+      "resourceId": "01a00092-8ffe-72aa-9602-2d69b3ce6f38",
+      "resourceType": "pack-cover",
+      "displayTitle": "Liminality",
+      "subtitle": "曲包封面",
+      "badges": [],
+      "searchTerms": [
+        "Liminality",
+        "Liminality"
+      ],
+      "sortOrder": 3013,
+      "facets": {
+        "kind": [
+          "其他曲包"
+        ]
+      }
+    },
+    {
+      "resourceId": "01a00092-9070-70cb-923c-063cf31d6ced",
+      "resourceType": "pack-cover",
+      "displayTitle": "Maimai",
+      "subtitle": "曲包封面",
+      "badges": [],
+      "searchTerms": [
+        "Maimai",
+        "Maimai"
+      ],
+      "sortOrder": 3014,
+      "facets": {
+        "kind": [
+          "其他曲包"
+        ]
+      }
+    },
+    {
+      "resourceId": "01a00092-90e0-7075-ae22-2e0ccba98169",
+      "resourceType": "pack-cover",
+      "displayTitle": "主线 · 第4章",
+      "subtitle": "主线章节封面",
+      "badges": [],
+      "searchTerms": [
+        "MainStory4",
+        "Main Story 4",
+        "主线 第4章"
+      ],
+      "sortOrder": 40,
+      "facets": {
+        "kind": [
+          "主线"
+        ]
+      }
+    },
+    {
+      "resourceId": "01a00092-9149-782e-9fac-9e5838b3c3eb",
+      "resourceType": "pack-cover",
+      "displayTitle": "主线 · 第5章",
+      "subtitle": "主线章节封面",
+      "badges": [],
+      "searchTerms": [
+        "MainStory5",
+        "Main Story 5",
+        "主线 第5章"
+      ],
+      "sortOrder": 50,
+      "facets": {
+        "kind": [
+          "主线"
+        ]
+      }
+    },
+    {
+      "resourceId": "01a00092-91c2-7a6e-92a3-415f5b3256ac",
+      "resourceType": "pack-cover",
+      "displayTitle": "主线 · 第5章",
+      "subtitle": "主线章节封面",
+      "badges": [
+        "封面变体"
+      ],
+      "searchTerms": [
+        "MainStory5Locked",
+        "Main Story 5",
+        "主线 第5章"
+      ],
+      "sortOrder": 51,
+      "facets": {
+        "kind": [
+          "主线"
+        ]
+      }
+    },
+    {
+      "resourceId": "01a00092-921e-70a9-bd45-125f72b51831",
+      "resourceType": "pack-cover",
+      "displayTitle": "主线 · 第6章",
+      "subtitle": "主线章节封面",
+      "badges": [],
+      "searchTerms": [
+        "MainStory6",
+        "Main Story 6",
+        "主线 第6章"
+      ],
+      "sortOrder": 60,
+      "facets": {
+        "kind": [
+          "主线"
+        ]
+      }
+    },
+    {
+      "resourceId": "01a00092-9295-7a16-b7e7-035afad413c0",
+      "resourceType": "pack-cover",
+      "displayTitle": "主线 · 第6章",
+      "subtitle": "主线章节封面",
+      "badges": [
+        "封面变体"
+      ],
+      "searchTerms": [
+        "MainStory6Locked",
+        "Main Story 6",
+        "主线 第6章"
+      ],
+      "sortOrder": 61,
+      "facets": {
+        "kind": [
+          "主线"
+        ]
+      }
+    },
+    {
+      "resourceId": "01a00092-9308-7590-9324-ce4ab55301b8",
+      "resourceType": "pack-cover",
+      "displayTitle": "主线 · 第7章",
+      "subtitle": "主线章节封面",
+      "badges": [],
+      "searchTerms": [
+        "MainStory7",
+        "Main Story 7",
+        "主线 第7章"
+      ],
+      "sortOrder": 70,
+      "facets": {
+        "kind": [
+          "主线"
+        ]
+      }
+    },
+    {
+      "resourceId": "01a00092-9376-725d-8db8-22d62a75f398",
+      "resourceType": "pack-cover",
+      "displayTitle": "主线 · 第7章",
+      "subtitle": "主线章节封面",
+      "badges": [
+        "封面变体"
+      ],
+      "searchTerms": [
+        "MainStory7Locked",
+        "Main Story 7",
+        "主线 第7章"
+      ],
+      "sortOrder": 71,
+      "facets": {
+        "kind": [
+          "主线"
+        ]
+      }
+    },
+    {
+      "resourceId": "01a00092-93f6-74af-b9a4-53a62cbf7d34",
+      "resourceType": "pack-cover",
+      "displayTitle": "主线 · 第8章",
+      "subtitle": "主线章节封面",
+      "badges": [
+        "封面变体"
+      ],
+      "searchTerms": [
+        "MainStory8_1S",
+        "Main Story 8",
+        "主线 第8章"
+      ],
+      "sortOrder": 81,
+      "facets": {
+        "kind": [
+          "主线"
+        ]
+      }
+    },
+    {
+      "resourceId": "01a00092-9468-794c-ac67-f2c865fba1f4",
+      "resourceType": "pack-cover",
+      "displayTitle": "主线 · 第8章",
+      "subtitle": "主线章节封面",
+      "badges": [
+        "封面变体"
+      ],
+      "searchTerms": [
+        "MainStory8_2S",
+        "Main Story 8",
+        "主线 第8章"
+      ],
+      "sortOrder": 81,
+      "facets": {
+        "kind": [
+          "主线"
+        ]
+      }
+    },
+    {
+      "resourceId": "01a00092-94cb-71de-a4ad-085efb9bf5c6",
+      "resourceType": "pack-cover",
+      "displayTitle": "MainStoryLegacy",
+      "subtitle": "曲包封面",
+      "badges": [],
+      "searchTerms": [
+        "MainStoryLegacy",
+        "MainStoryLegacy"
+      ],
+      "sortOrder": 3024,
+      "facets": {
+        "kind": [
+          "其他曲包"
+        ]
+      }
+    },
+    {
+      "resourceId": "01a00092-9521-7195-b69f-f597c3619d2e",
+      "resourceType": "pack-cover",
+      "displayTitle": "MUSEDASH",
+      "subtitle": "曲包封面",
+      "badges": [],
+      "searchTerms": [
+        "MUSEDASH",
+        "MUSEDASH"
+      ],
+      "sortOrder": 3025,
+      "facets": {
+        "kind": [
+          "其他曲包"
+        ]
+      }
+    },
+    {
+      "resourceId": "01a00092-957b-7b39-b389-bf913c868dfd",
+      "resourceType": "pack-cover",
+      "displayTitle": "Ongeki",
+      "subtitle": "曲包封面",
+      "badges": [],
+      "searchTerms": [
+        "Ongeki",
+        "Ongeki"
+      ],
+      "sortOrder": 3026,
+      "facets": {
+        "kind": [
+          "其他曲包"
+        ]
+      }
+    },
+    {
+      "resourceId": "01a00092-95f5-72f6-8901-a6929280a994",
+      "resourceType": "pack-cover",
+      "displayTitle": "OverRapid",
+      "subtitle": "曲包封面",
+      "badges": [],
+      "searchTerms": [
+        "OverRapid",
+        "OverRapid"
+      ],
+      "sortOrder": 3027,
+      "facets": {
+        "kind": [
+          "其他曲包"
+        ]
+      }
+    },
+    {
+      "resourceId": "01a00092-9650-795e-9286-fd87889246c7",
+      "resourceType": "pack-cover",
+      "displayTitle": "ParadigmReboot",
+      "subtitle": "曲包封面",
+      "badges": [],
+      "searchTerms": [
+        "ParadigmReboot",
+        "ParadigmReboot"
+      ],
+      "sortOrder": 3028,
+      "facets": {
+        "kind": [
+          "其他曲包"
+        ]
+      }
+    },
+    {
+      "resourceId": "01a00092-96c2-7d38-ba4e-9111050d700f",
+      "resourceType": "pack-cover",
+      "displayTitle": "RhythmMaster",
+      "subtitle": "曲包封面",
+      "badges": [],
+      "searchTerms": [
+        "RhythmMaster",
+        "RhythmMaster"
+      ],
+      "sortOrder": 3029,
+      "facets": {
+        "kind": [
+          "其他曲包"
+        ]
+      }
+    },
+    {
+      "resourceId": "01a00092-9734-7d42-a139-b5bd8953bfc6",
+      "resourceType": "pack-cover",
+      "displayTitle": "Rotaeno",
+      "subtitle": "曲包封面",
+      "badges": [],
+      "searchTerms": [
+        "Rotaeno",
+        "Rotaeno"
+      ],
+      "sortOrder": 3030,
+      "facets": {
+        "kind": [
+          "其他曲包"
+        ]
+      }
+    },
+    {
+      "resourceId": "01a00092-9795-7f49-93d7-cdfe829c1146",
+      "resourceType": "pack-cover",
+      "displayTitle": "RST",
+      "subtitle": "曲包封面",
+      "badges": [],
+      "searchTerms": [
+        "RST",
+        "RST"
+      ],
+      "sortOrder": 3031,
+      "facets": {
+        "kind": [
+          "其他曲包"
+        ]
+      }
+    },
+    {
+      "resourceId": "01a00092-9818-76f0-b1dd-7ad4fa09d9d0",
+      "resourceType": "pack-cover",
+      "displayTitle": "SHINOBISLASH",
+      "subtitle": "曲包封面",
+      "badges": [],
+      "searchTerms": [
+        "SHINOBISLASH",
+        "SHINOBISLASH"
+      ],
+      "sortOrder": 3032,
+      "facets": {
+        "kind": [
+          "其他曲包"
+        ]
+      }
+    },
+    {
+      "resourceId": "01a00092-9882-7eb4-b984-32e47545bf30",
+      "resourceType": "pack-cover",
+      "displayTitle": "支线 · 第1章",
+      "subtitle": "支线章节封面",
+      "badges": [],
+      "searchTerms": [
+        "SideStory1",
+        "Side Story 1",
+        "支线 第1章"
+      ],
+      "sortOrder": 1010,
+      "facets": {
+        "kind": [
+          "支线"
+        ]
+      }
+    },
+    {
+      "resourceId": "01a00092-98f8-78b6-a980-a6cc12b704f8",
+      "resourceType": "pack-cover",
+      "displayTitle": "支线 · 第2章",
+      "subtitle": "支线章节封面",
+      "badges": [],
+      "searchTerms": [
+        "SideStory2",
+        "Side Story 2",
+        "支线 第2章"
+      ],
+      "sortOrder": 1020,
+      "facets": {
+        "kind": [
+          "支线"
+        ]
+      }
+    },
+    {
+      "resourceId": "01a00092-9960-7c0d-a6d2-a6ec4c9544ce",
+      "resourceType": "pack-cover",
+      "displayTitle": "支线 · 第3章",
+      "subtitle": "支线章节封面",
+      "badges": [],
+      "searchTerms": [
+        "SideStory3",
+        "Side Story 3",
+        "支线 第3章"
+      ],
+      "sortOrder": 1030,
+      "facets": {
+        "kind": [
+          "支线"
+        ]
+      }
+    },
+    {
+      "resourceId": "01a00092-99c9-77e7-8aec-7e2add564c54",
+      "resourceType": "pack-cover",
+      "displayTitle": "支线 · 第4章",
+      "subtitle": "支线章节封面",
+      "badges": [],
+      "searchTerms": [
+        "SideStory4",
+        "Side Story 4",
+        "支线 第4章"
+      ],
+      "sortOrder": 1040,
+      "facets": {
+        "kind": [
+          "支线"
+        ]
+      }
+    },
+    {
+      "resourceId": "01a00092-9a32-7fa9-b9ef-73ea13903918",
+      "resourceType": "pack-cover",
+      "displayTitle": "单曲",
+      "subtitle": "单曲封面",
+      "badges": [],
+      "searchTerms": [
+        "Single",
+        "Single",
+        "单曲"
+      ],
+      "sortOrder": 2000,
+      "facets": {
+        "kind": [
+          "单曲"
+        ]
+      }
+    },
+    {
+      "resourceId": "01a00092-9a9b-751c-a6ca-17ce6ed147fd",
+      "resourceType": "pack-cover",
+      "displayTitle": "TAKUMI3",
+      "subtitle": "曲包封面",
+      "badges": [],
+      "searchTerms": [
+        "TAKUMI3",
+        "TAKUMI3"
+      ],
+      "sortOrder": 3038,
+      "facets": {
+        "kind": [
+          "其他曲包"
+        ]
+      }
+    },
+    {
+      "resourceId": "01a00092-9b01-7e97-942f-4597fe94d384",
+      "resourceType": "pack-cover",
+      "displayTitle": "TEA12",
+      "subtitle": "曲包封面",
+      "badges": [],
+      "searchTerms": [
+        "TEA12",
+        "TEA12"
+      ],
+      "sortOrder": 3039,
+      "facets": {
+        "kind": [
+          "其他曲包"
+        ]
+      }
+    },
+    {
+      "resourceId": "01a00092-9b61-7c26-a3cf-1c352f6c097c",
+      "resourceType": "pack-cover",
+      "displayTitle": "WAVEAT",
+      "subtitle": "曲包封面",
+      "badges": [],
+      "searchTerms": [
+        "WAVEAT",
+        "WAVEAT"
+      ],
+      "sortOrder": 3040,
+      "facets": {
+        "kind": [
+          "其他曲包"
+        ]
+      }
+    }
+  ]
+}

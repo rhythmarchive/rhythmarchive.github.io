@@ -21,66 +21,70 @@ const hasUpscale = data.items.some((item) => item.hasUpscaled);
       <span class="section-kicker">{categoryLabel}</span>
       <p data-gallery-count>{formatCount(data.items.length)} 项资源</p>
     </div>
-    <label class="browse-search">
-      <span class="sr-only">搜索曲名或曲师</span>
-      <input type="search" data-browse-search placeholder="搜索曲名或曲师" autocomplete="off" />
-    </label>
-    <div class="gallery-toolbar-actions">
-      <button class="filter-toggle" type="button" data-filter-toggle aria-expanded="false">筛选</button>
-      <button class="text-link" type="button" data-gallery-reset>清除筛选</button>
+    <div class="gallery-toolbar-controls">
+      <label class="gallery-search">
+        <span class="sr-only">搜索曲名或曲师</span>
+        <input type="search" data-browse-search placeholder="搜索曲名或曲师" autocomplete="off" />
+      </label>
+      <label class="sort-control">
+        <span>排序</span>
+        <select data-browse-sort aria-label="排序">
+          {data.game === "arcaea" ? (
+            <>
+              <option value="default">游戏顺序</option>
+              <option value="title-asc">曲名 A-Z</option>
+              <option value="title-desc">曲名 Z-A</option>
+              <option value="artist-asc">曲师 A-Z</option>
+              <option value="version-desc">版本从新到旧</option>
+              <option value="version-asc">版本从旧到新</option>
+            </>
+          ) : (
+            <>
+              <option value="default">默认排序</option>
+              <option value="title-asc">曲名 A-Z</option>
+              <option value="title-desc">曲名 Z-A</option>
+              <option value="artist-asc">曲师 A-Z</option>
+            </>
+          )}
+        </select>
+      </label>
     </div>
   </div>
 
-  <div class="filter-panel browse-filter-panel" data-filter-panel hidden>
-    <label class="filter-control">
-      <span>排序</span>
-      <select data-browse-sort aria-label="排序">
-        {data.game === "arcaea" ? (
-          <>
-            <option value="default">游戏顺序</option>
-            <option value="title-asc">曲名 A-Z</option>
-            <option value="title-desc">曲名 Z-A</option>
-            <option value="artist-asc">曲师 A-Z</option>
-            <option value="version-desc">版本从新到旧</option>
-            <option value="version-asc">版本从旧到新</option>
-          </>
-        ) : (
-          <>
-            <option value="default">默认</option>
-            <option value="title-asc">曲名 A-Z</option>
-            <option value="title-desc">曲名 Z-A</option>
-            <option value="artist-asc">曲师 A-Z</option>
-          </>
-        )}
-      </select>
-    </label>
+  {data.game === "arcaea" ? (
+    <div class="browse-filter-row">
+      <div class="filter-toggle-group" aria-label="难度">
+        <span class="filter-group-label">难度</span>
+        <div class="filter-toggles" data-browse-toggle-options="chart"></div>
+      </div>
+      <details class="filter-popover">
+        <summary data-browse-summary="pack">曲包</summary>
+        <div class="filter-popover-body">
+          <input class="popover-search" type="search" data-browse-option-search="pack" placeholder="搜索曲包" autocomplete="off" />
+          <div class="filter-options" data-browse-options="pack"></div>
+        </div>
+      </details>
+      <details class="filter-popover">
+        <summary data-browse-summary="level">等级</summary>
+        <div class="filter-popover-body">
+          <div class="filter-options compact-options" data-browse-options="level"></div>
+        </div>
+      </details>
+      <details class="filter-popover more-filters-popover">
+        <summary>更多筛选</summary>
+        <div class="filter-popover-body">
+          <input class="popover-search" type="search" data-browse-option-search="version" placeholder="搜索版本" autocomplete="off" />
+          <div class="filter-options" data-browse-options="version"></div>
+          {hasUpscale ? <label class="filter-check popover-check"><input type="checkbox" data-filter-ai /> <span>含超分版</span></label> : null}
+        </div>
+      </details>
+    </div>
+  ) : null}
 
-    {data.game === "arcaea" ? (
-      <>
-        <label class="filter-control">
-          <span>曲包</span>
-          <select data-browse-filter="pack" multiple size="4" aria-label="曲包"></select>
-        </label>
-        <label class="filter-control">
-          <span>难度</span>
-          <select data-browse-filter="chart" multiple size="4" aria-label="难度"></select>
-        </label>
-        <label class="filter-control">
-          <span>等级</span>
-          <select data-browse-filter="level" multiple size="4" aria-label="等级"></select>
-        </label>
-        <label class="filter-control">
-          <span>加入版本</span>
-          <select data-browse-filter="version" multiple size="4" aria-label="加入版本"></select>
-        </label>
-        {hasUpscale ? <label class="filter-check"><input type="checkbox" data-filter-ai /> <span>仅看含超分版</span></label> : null}
-      </>
-    ) : (
-      <label class="filter-control">
-        <span>难度</span>
-        <select data-browse-filter="chart" multiple size="4" aria-label="难度"></select>
-      </label>
-    )}
+  <div class="active-filter-row" data-browse-active hidden>
+    <span class="active-filter-label">当前筛选</span>
+    <div class="active-filter-chips" data-browse-active-chips></div>
+    <button class="text-link" type="button" data-gallery-reset>清除全部</button>
   </div>
 
   <div class="gallery-grid" data-gallery-grid>
@@ -88,7 +92,7 @@ const hasUpscale = data.items.some((item) => item.hasUpscaled);
   </div>
   <div class="gallery-empty" data-browse-empty hidden>
     <p>没有找到符合条件的资源</p>
-    <button class="button button-secondary" type="button" data-browse-empty-reset>清除筛选</button>
+    <button class="button button-secondary" type="button" data-browse-empty-reset>清除全部</button>
   </div>
 
   <div class="gallery-more">

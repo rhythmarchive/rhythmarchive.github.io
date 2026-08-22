@@ -1,6 +1,7 @@
 import { zipSync } from "fflate";
 import { DOWNLOAD_CONCURRENCY, MAX_BATCH_BYTES, MAX_BATCH_FILES, uniqueZipFilename } from "../lib/batch";
-import { cardMediaRatio } from "../lib/media-config";
+import { cardMediaFit, cardMediaRatio } from "../lib/media-config";
+import { normalizeSearchText } from "../lib/search";
 import type { PublicDownload, PublicResource } from "../lib/types";
 
 const PAGE_SIZE = 48;
@@ -12,11 +13,12 @@ async function initializeGallery(root: HTMLElement): Promise<void> {
   const grid = root.querySelector<HTMLElement>("[data-gallery-grid]");
   const loadMore = root.querySelector<HTMLButtonElement>("[data-load-more]");
   const count = root.querySelector<HTMLElement>("[data-gallery-count]");
-  const filterPanel = root.querySelector<HTMLElement>("[data-filter-panel]");
-  const filterToggle = root.querySelector<HTMLButtonElement>("[data-filter-toggle]");
-  const difficulty = root.querySelector<HTMLSelectElement>("[data-filter-difficulty]");
-  const ai = root.querySelector<HTMLInputElement>("[data-filter-ai]");
-  const reset = root.querySelector<HTMLElement>("[data-gallery-reset]");
+  const search = root.querySelector<HTMLInputElement>("[data-gallery-search]");
+  const sort = root.querySelector<HTMLSelectElement>("[data-gallery-sort]");
+  const facets = [...root.querySelectorAll<HTMLSelectElement>("[data-gallery-facet]")];
+  const reset = root.querySelector<HTMLButtonElement>("[data-gallery-reset]");
+  const active = root.querySelector<HTMLElement>("[data-gallery-active]");
+  const activeChips = root.querySelector<HTMLElement>("[data-gallery-active-chips]");
   if (!grid || !loadMore || !count) return;
 
   let resources: PublicResource[] = [];
@@ -28,8 +30,9 @@ async function initializeGallery(root: HTMLElement): Promise<void> {
     if (!response.ok) throw new Error(`gallery data failed with ${response.status}`);
     resources = await response.json() as PublicResource[];
     const params = new URLSearchParams(window.location.search);
-    if (difficulty) difficulty.value = params.get("difficulty") ?? "";
-    if (ai) ai.checked = params.get("ai") === "1";
+    if (search) search.value = params.get("q") ?? "";
+    if (sort) sort.value = params.get("sort") ?? sort.options[0]?.value ?? "default";
+    for (const facet of facets) facet.value = params.get(`facet-${facet.dataset.galleryFacet ?? ""}`) ?? "";
     render();
   } catch (error) {
     console.error("Gallery data failed", error);
@@ -37,17 +40,14 @@ async function initializeGallery(root: HTMLElement): Promise<void> {
     return;
   }
 
-  filterToggle?.addEventListener("click", () => {
-    const open = filterPanel?.hasAttribute("hidden") ?? true;
-    if (filterPanel) filterPanel.hidden = !open;
-    filterToggle.setAttribute("aria-expanded", String(open));
-  });
-  difficulty?.addEventListener("change", applyFilter);
-  ai?.addEventListener("change", applyFilter);
+  search?.addEventListener("input", applyFilter);
+  sort?.addEventListener("change", applyFilter);
+  facets.forEach((facet) => facet.addEventListener("change", applyFilter));
   reset?.addEventListener("click", (event) => {
     event.preventDefault();
-    if (difficulty) difficulty.value = "";
-    if (ai) ai.checked = false;
+    if (search) search.value = "";
+    if (sort) sort.value = sort.options[0]?.value ?? "default";
+    for (const facet of facets) facet.value = "";
     applyFilter();
   });
   loadMore.addEventListener("click", () => {
@@ -67,6 +67,7 @@ async function initializeGallery(root: HTMLElement): Promise<void> {
     root.classList.toggle("has-selection", selected.size > 0);
     updateBatchBar();
     button.setAttribute("aria-pressed", String(selected.has(id)));
+    button.setAttribute("aria-label", `${selected.has(id) ? "取消选择" : "选择"} ${button.closest<HTMLElement>("[data-resource-card]")?.querySelector("h3")?.textContent ?? "资源"}`);
     button.closest<HTMLElement>("[data-resource-card]")?.classList.toggle("is-selected", selected.has(id));
   });
 
@@ -75,20 +76,33 @@ async function initializeGallery(root: HTMLElement): Promise<void> {
   }
 
   function currentResources(): PublicResource[] {
-    const selectedDifficulty = difficulty?.value ?? "";
-    const onlyAi = ai?.checked ?? false;
-    return resources.filter((resource) => {
-      const hasDifficulty = selectedDifficulty === "" || resource.variants.some((variant) => variant.difficulty === selectedDifficulty);
-      const hasAi = !onlyAi || Boolean(resource.upscaled);
-      return hasDifficulty && hasAi;
+    const query = normalizeSearchText(search?.value ?? "");
+    const sortValue = sort?.value ?? "default";
+    const filtered = resources.filter((resource) => {
+      const text = [resource.displayTitle, resource.artist, resource.subtitle, ...(resource.badges ?? []), ...(resource.searchTerms ?? []), ...Object.values(resource.facets ?? {}).flat(), ...Object.values(resource.metadata).map(String)].filter(Boolean).join(" ");
+      if (query && !normalizeSearchText(text).includes(query)) return false;
+      return facets.every((facet) => {
+        const value = facet.value;
+        return !value || (resource.facets?.[facet.dataset.galleryFacet ?? ""] ?? []).includes(value);
+      });
+    });
+    if (sortValue === "default") return filtered;
+    return [...filtered].sort((left, right) => {
+      if (sortValue === "artist-asc") return normalizeSearchText(left.artist ?? "").localeCompare(normalizeSearchText(right.artist ?? ""), "zh-CN") || normalizeSearchText(left.displayTitle).localeCompare(normalizeSearchText(right.displayTitle), "zh-CN");
+      const compared = normalizeSearchText(left.displayTitle).localeCompare(normalizeSearchText(right.displayTitle), "zh-CN");
+      return sortValue === "title-desc" ? -compared : compared;
     });
   }
 
   function applyFilter(): void {
     visibleCount = PAGE_SIZE;
     const url = new URL(window.location.href);
-    if (difficulty?.value) url.searchParams.set("difficulty", difficulty.value); else url.searchParams.delete("difficulty");
-    if (ai?.checked) url.searchParams.set("ai", "1"); else url.searchParams.delete("ai");
+    if (search?.value) url.searchParams.set("q", search.value); else url.searchParams.delete("q");
+    if (sort?.value && sort.value !== sort.options[0]?.value) url.searchParams.set("sort", sort.value); else url.searchParams.delete("sort");
+    for (const facet of facets) {
+      const key = `facet-${facet.dataset.galleryFacet ?? ""}`;
+      if (facet.value) url.searchParams.set(key, facet.value); else url.searchParams.delete(key);
+    }
     window.history.replaceState({}, "", url);
     render();
   }
@@ -97,9 +111,27 @@ async function initializeGallery(root: HTMLElement): Promise<void> {
     const filtered = currentResources();
     const visible = filtered.slice(0, visibleCount);
     grid!.replaceChildren(...visible.map((resource, index) => createCard(resource, index, selected.has(resource.resourceId))));
-    count!.textContent = `显示 ${visible.length.toLocaleString("zh-CN")} / ${filtered.length.toLocaleString("zh-CN")}`;
+    count!.textContent = `${filtered.length.toLocaleString("zh-CN")} 项资源`;
     loadMore!.hidden = visible.length >= filtered.length;
+    updateActiveFilters();
     updateBatchBar();
+  }
+
+  function updateActiveFilters(): void {
+    if (!active || !activeChips) return;
+    const labels: string[] = [];
+    if (search?.value) labels.push(`搜索：${search.value}`);
+    for (const facet of facets) {
+      if (!facet.value) continue;
+      labels.push(facet.options[facet.selectedIndex]?.textContent ?? facet.value);
+    }
+    activeChips.replaceChildren(...labels.map((label) => {
+      const chip = document.createElement("span");
+      chip.className = "active-filter-chip";
+      chip.textContent = label;
+      return chip;
+    }));
+    active.hidden = labels.length === 0;
   }
 
   function updateBatchBar(): void {
@@ -128,7 +160,6 @@ async function initializeGallery(root: HTMLElement): Promise<void> {
       if (status) status.textContent = "一次选择的文件较多，请减少后再下载。";
       return;
     }
-
     const entries: Record<string, Uint8Array> = {};
     const usedNames = new Set<string>();
     let completed = 0;
@@ -162,16 +193,15 @@ function createCard(resource: PublicResource, index: number, isSelected: boolean
   article.dataset.game = resource.game;
   article.dataset.resourceType = resource.resourceType;
   article.dataset.mediaRatio = cardMediaRatio(resource.game, resource.resourceType);
-  if (resource.resourceId) {
-    const select = document.createElement("button");
-    select.className = "resource-select";
-    select.type = "button";
-    select.dataset.selectResource = resource.resourceId;
-    select.setAttribute("aria-pressed", String(isSelected));
-    select.setAttribute("aria-label", `${isSelected ? "取消选择" : "选择"} ${resource.displayTitle}`);
-    select.innerHTML = "<span aria-hidden=\"true\">✓</span>";
-    article.append(select);
-  }
+  article.dataset.mediaFit = cardMediaFit(resource.resourceType);
+  const select = document.createElement("button");
+  select.className = "resource-select";
+  select.type = "button";
+  select.dataset.selectResource = resource.resourceId;
+  select.setAttribute("aria-pressed", String(isSelected));
+  select.setAttribute("aria-label", `${isSelected ? "取消选择" : "选择"} ${resource.displayTitle}`);
+  select.innerHTML = "<span aria-hidden=\"true\">✓</span>";
+  article.append(select);
 
   const anchor = document.createElement("a");
   anchor.className = "resource-card-link";
@@ -213,7 +243,19 @@ function createCard(resource: PublicResource, index: number, isSelected: boolean
     artist.textContent = resource.artist;
     body.append(artist);
   }
-  const variant = resource.variants.find((item) => item.label !== "默认");
+  if (resource.subtitle) {
+    const subtitle = document.createElement("p");
+    subtitle.className = "resource-card-subtitle";
+    subtitle.textContent = resource.subtitle;
+    body.append(subtitle);
+  }
+  for (const badge of resource.badges ?? []) {
+    const label = document.createElement("span");
+    label.className = "resource-card-variant";
+    label.textContent = badge;
+    body.append(label);
+  }
+  const variant = resource.badges?.length ? undefined : resource.variants.find((item) => item.label !== "默认");
   if (variant) {
     const label = document.createElement("span");
     label.className = "resource-card-variant";

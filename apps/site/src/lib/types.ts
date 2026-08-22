@@ -37,6 +37,11 @@ export type PublicResource = {
   category: string;
   categoryLabel: string;
   displayTitle: string;
+  subtitle?: string;
+  badges?: string[];
+  searchTerms?: string[];
+  sortOrder?: number;
+  facets?: Record<string, string[]>;
   artist?: string;
   metadata: Record<string, string | number | boolean>;
   variants: PublicVariant[];

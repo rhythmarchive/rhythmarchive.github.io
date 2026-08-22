@@ -1,6 +1,7 @@
 ---
 import ResourceCard from "./ResourceCard.astro";
 import { GAME_CONFIG, type GameId } from "../lib/game-config";
+import type { CategoryBrowseConfig } from "../lib/category-browse";
 import type { PublicResource } from "../lib/types";
 import { BASE_PATH } from "../lib/site-config";
 import { formatCount } from "../lib/format";
@@ -12,42 +13,54 @@ interface Props {
   category: string;
   categoryLabel: string;
   galleryUrl: string;
-  difficultyOptions?: string[];
-  hasUpscale?: boolean;
+  config: CategoryBrowseConfig;
 }
 
-const { resources, total, game, category, categoryLabel, galleryUrl, difficultyOptions = [], hasUpscale = false } = Astro.props;
-const hasDifficulty = difficultyOptions.length > 0;
+const { resources, total, game, category, categoryLabel, galleryUrl, config } = Astro.props;
+const hasFacets = config.facets.some((facet) => facet.options.length > 0);
 ---
 
 <section class="gallery-shell" data-gallery-root data-gallery-url={galleryUrl} data-base-path={BASE_PATH} data-game={game} data-category={category} data-total={total}>
   <div class="gallery-toolbar">
     <div class="gallery-toolbar-copy">
       <span class="section-kicker">{category === "all" ? GAME_CONFIG[game].displayName : categoryLabel}</span>
-      <p data-gallery-count>显示 {formatCount(Math.min(resources.length, total))} / {formatCount(total)}</p>
+      <p data-gallery-count>{formatCount(total)} 项资源</p>
     </div>
-    <div class="gallery-toolbar-actions">
-      {(hasDifficulty || hasUpscale) ? <button class="filter-toggle" type="button" data-filter-toggle aria-expanded="false">筛选</button> : null}
-      <button class="text-link" type="button" data-gallery-reset>清除筛选</button>
-    </div>
-  </div>
-
-  {(hasDifficulty || hasUpscale) ? (
-    <div class="filter-panel" data-filter-panel hidden>
-      {hasDifficulty ? (
-        <label class="filter-control">
-          <span>难度</span>
-          <select data-filter-difficulty>
-            <option value="">全部</option>
-            {difficultyOptions.map((difficulty) => <option value={difficulty}>{difficulty}</option>)}
+    <div class="gallery-toolbar-controls">
+      <label class="gallery-search">
+        <span class="sr-only">{config.searchPlaceholder}</span>
+        <input type="search" data-gallery-search placeholder={config.searchPlaceholder} autocomplete="off" />
+      </label>
+      {config.sortOptions.length > 1 ? (
+        <label class="sort-control">
+          <span>排序</span>
+          <select data-gallery-sort aria-label="排序">
+            {config.sortOptions.map((option) => <option value={option.value}>{option.label}</option>)}
           </select>
         </label>
       ) : null}
-      {hasUpscale ? (
-        <label class="filter-check"><input type="checkbox" data-filter-ai /> <span>仅看含超分版</span></label>
-      ) : null}
+    </div>
+  </div>
+
+  {hasFacets ? (
+    <div class="gallery-filter-row" data-gallery-filter-row>
+      {config.facets.map((facet) => (
+        <label class="filter-control">
+          <span>{facet.label}</span>
+          <select data-gallery-facet={facet.key} aria-label={facet.label}>
+            <option value="">全部</option>
+            {facet.options.map((option) => <option value={option.value}>{option.label}</option>)}
+          </select>
+        </label>
+      ))}
     </div>
   ) : null}
+
+  <div class="active-filter-row" data-gallery-active hidden>
+    <span class="active-filter-label">当前筛选</span>
+    <div class="active-filter-chips" data-gallery-active-chips></div>
+    <button class="text-link" type="button" data-gallery-reset>清除全部</button>
+  </div>
 
   <div class="gallery-grid" data-gallery-grid>
     {resources.map((resource, index) => <ResourceCard resource={resource} index={index} selectable eager={index < 6} />)}
