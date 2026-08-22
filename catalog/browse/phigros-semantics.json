@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
   "game": "phigros",
-  "generatedAt": "2026-08-14T13:57:23.100Z",
+  "generatedAt": "2026-08-22T11:21:34.604Z",
   "source": {
     "snapshot": "Phigros APK 3.19.5",
-    "sha256": "794e2d1df8d020532f4a25c9ea56946b6bb5d68b4ba72999fb97c7e847305d04"
+    "sha256": "22f54582396879b70d8ac0e625201e678babef2f0ee27aee607b0beb6d277d55"
   },
   "resources": [
     {
@@ -12,6 +12,7 @@
       "resourceType": "pack-cover",
       "displayTitle": "闫东炜",
       "subtitle": "曲包封面",
+      "metadata": {},
       "badges": [],
       "searchTerms": [
         "闫东炜",
@@ -29,6 +30,7 @@
       "resourceType": "pack-cover",
       "displayTitle": "全部曲目",
       "subtitle": "曲目集合封面",
+      "metadata": {},
       "badges": [],
       "searchTerms": [
         "AllSong",
@@ -47,6 +49,7 @@
       "resourceType": "pack-cover",
       "displayTitle": "Camellia",
       "subtitle": "曲包封面",
+      "metadata": {},
       "badges": [],
       "searchTerms": [
         "Camellia",
@@ -64,6 +67,7 @@
       "resourceType": "pack-cover",
       "displayTitle": "Chronostasis",
       "subtitle": "曲包封面",
+      "metadata": {},
       "badges": [],
       "searchTerms": [
         "Chronostasis",
@@ -81,6 +85,7 @@
       "resourceType": "pack-cover",
       "displayTitle": "CHUNITHM",
       "subtitle": "曲包封面",
+      "metadata": {},
       "badges": [],
       "searchTerms": [
         "CHUNITHM",
@@ -98,6 +103,7 @@
       "resourceType": "pack-cover",
       "displayTitle": "Cytus2",
       "subtitle": "曲包封面",
+      "metadata": {},
       "badges": [],
       "searchTerms": [
         "Cytus2",
@@ -115,6 +121,7 @@
       "resourceType": "pack-cover",
       "displayTitle": "EGTS",
       "subtitle": "曲包封面",
+      "metadata": {},
       "badges": [],
       "searchTerms": [
         "EGTS",
@@ -132,6 +139,7 @@
       "resourceType": "pack-cover",
       "displayTitle": "Good",
       "subtitle": "曲包封面",
+      "metadata": {},
       "badges": [],
       "searchTerms": [
         "Good",
@@ -149,6 +157,7 @@
       "resourceType": "pack-cover",
       "displayTitle": "HyuN",
       "subtitle": "曲包封面",
+      "metadata": {},
       "badges": [],
       "searchTerms": [
         "HyuN",
@@ -166,6 +175,7 @@
       "resourceType": "pack-cover",
       "displayTitle": "ImmaculeeSekai",
       "subtitle": "曲包封面",
+      "metadata": {},
       "badges": [],
       "searchTerms": [
         "ImmaculeeSekai",
@@ -183,6 +193,7 @@
       "resourceType": "pack-cover",
       "displayTitle": "JMT",
       "subtitle": "曲包封面",
+      "metadata": {},
       "badges": [],
       "searchTerms": [
         "JMT",
@@ -200,6 +211,7 @@
       "resourceType": "pack-cover",
       "displayTitle": "KALPA",
       "subtitle": "曲包封面",
+      "metadata": {},
       "badges": [],
       "searchTerms": [
         "KALPA",
@@ -217,6 +229,7 @@
       "resourceType": "pack-cover",
       "displayTitle": "Lanota",
       "subtitle": "曲包封面",
+      "metadata": {},
       "badges": [],
       "searchTerms": [
         "Lanota",
@@ -234,6 +247,7 @@
       "resourceType": "pack-cover",
       "displayTitle": "Liminality",
       "subtitle": "曲包封面",
+      "metadata": {},
       "badges": [],
       "searchTerms": [
         "Liminality",
@@ -251,6 +265,7 @@
       "resourceType": "pack-cover",
       "displayTitle": "Maimai",
       "subtitle": "曲包封面",
+      "metadata": {},
       "badges": [],
       "searchTerms": [
         "Maimai",
@@ -268,6 +283,7 @@
       "resourceType": "pack-cover",
       "displayTitle": "主线 · 第4章",
       "subtitle": "主线章节封面",
+      "metadata": {},
       "badges": [],
       "searchTerms": [
         "MainStory4",
@@ -286,6 +302,7 @@
       "resourceType": "pack-cover",
       "displayTitle": "主线 · 第5章",
       "subtitle": "主线章节封面",
+      "metadata": {},
       "badges": [],
       "searchTerms": [
         "MainStory5",
@@ -304,6 +321,7 @@
       "resourceType": "pack-cover",
       "displayTitle": "主线 · 第5章",
       "subtitle": "主线章节封面",
+      "metadata": {},
       "badges": [
         "封面变体"
       ],
@@ -324,6 +342,7 @@
       "resourceType": "pack-cover",
       "displayTitle": "主线 · 第6章",
       "subtitle": "主线章节封面",
+      "metadata": {},
       "badges": [],
       "searchTerms": [
         "MainStory6",
@@ -342,6 +361,7 @@
       "resourceType": "pack-cover",
       "displayTitle": "主线 · 第6章",
       "subtitle": "主线章节封面",
+      "metadata": {},
       "badges": [
         "封面变体"
       ],
@@ -362,6 +382,7 @@
       "resourceType": "pack-cover",
       "displayTitle": "主线 · 第7章",
       "subtitle": "主线章节封面",
+      "metadata": {},
       "badges": [],
       "searchTerms": [
         "MainStory7",
@@ -380,6 +401,7 @@
       "resourceType": "pack-cover",
       "displayTitle": "主线 · 第7章",
       "subtitle": "主线章节封面",
+      "metadata": {},
       "badges": [
         "封面变体"
       ],
@@ -400,6 +422,7 @@
       "resourceType": "pack-cover",
       "displayTitle": "主线 · 第8章",
       "subtitle": "主线章节封面",
+      "metadata": {},
       "badges": [
         "封面变体"
       ],
@@ -420,6 +443,7 @@
       "resourceType": "pack-cover",
       "displayTitle": "主线 · 第8章",
       "subtitle": "主线章节封面",
+      "metadata": {},
       "badges": [
         "封面变体"
       ],
@@ -440,6 +464,7 @@
       "resourceType": "pack-cover",
       "displayTitle": "MainStoryLegacy",
       "subtitle": "曲包封面",
+      "metadata": {},
       "badges": [],
       "searchTerms": [
         "MainStoryLegacy",
@@ -457,6 +482,7 @@
       "resourceType": "pack-cover",
       "displayTitle": "MUSEDASH",
       "subtitle": "曲包封面",
+      "metadata": {},
       "badges": [],
       "searchTerms": [
         "MUSEDASH",
@@ -474,6 +500,7 @@
       "resourceType": "pack-cover",
       "displayTitle": "Ongeki",
       "subtitle": "曲包封面",
+      "metadata": {},
       "badges": [],
       "searchTerms": [
         "Ongeki",
@@ -491,6 +518,7 @@
       "resourceType": "pack-cover",
       "displayTitle": "OverRapid",
       "subtitle": "曲包封面",
+      "metadata": {},
       "badges": [],
       "searchTerms": [
         "OverRapid",
@@ -508,6 +536,7 @@
       "resourceType": "pack-cover",
       "displayTitle": "ParadigmReboot",
       "subtitle": "曲包封面",
+      "metadata": {},
       "badges": [],
       "searchTerms": [
         "ParadigmReboot",
@@ -525,6 +554,7 @@
       "resourceType": "pack-cover",
       "displayTitle": "RhythmMaster",
       "subtitle": "曲包封面",
+      "metadata": {},
       "badges": [],
       "searchTerms": [
         "RhythmMaster",
@@ -542,6 +572,7 @@
       "resourceType": "pack-cover",
       "displayTitle": "Rotaeno",
       "subtitle": "曲包封面",
+      "metadata": {},
       "badges": [],
       "searchTerms": [
         "Rotaeno",
@@ -559,6 +590,7 @@
       "resourceType": "pack-cover",
       "displayTitle": "RST",
       "subtitle": "曲包封面",
+      "metadata": {},
       "badges": [],
       "searchTerms": [
         "RST",
@@ -576,6 +608,7 @@
       "resourceType": "pack-cover",
       "displayTitle": "SHINOBISLASH",
       "subtitle": "曲包封面",
+      "metadata": {},
       "badges": [],
       "searchTerms": [
         "SHINOBISLASH",
@@ -593,6 +626,7 @@
       "resourceType": "pack-cover",
       "displayTitle": "支线 · 第1章",
       "subtitle": "支线章节封面",
+      "metadata": {},
       "badges": [],
       "searchTerms": [
         "SideStory1",
@@ -611,6 +645,7 @@
       "resourceType": "pack-cover",
       "displayTitle": "支线 · 第2章",
       "subtitle": "支线章节封面",
+      "metadata": {},
       "badges": [],
       "searchTerms": [
         "SideStory2",
@@ -629,6 +664,7 @@
       "resourceType": "pack-cover",
       "displayTitle": "支线 · 第3章",
       "subtitle": "支线章节封面",
+      "metadata": {},
       "badges": [],
       "searchTerms": [
         "SideStory3",
@@ -647,6 +683,7 @@
       "resourceType": "pack-cover",
       "displayTitle": "支线 · 第4章",
       "subtitle": "支线章节封面",
+      "metadata": {},
       "badges": [],
       "searchTerms": [
         "SideStory4",
@@ -665,6 +702,7 @@
       "resourceType": "pack-cover",
       "displayTitle": "单曲",
       "subtitle": "单曲封面",
+      "metadata": {},
       "badges": [],
       "searchTerms": [
         "Single",
@@ -683,6 +721,7 @@
       "resourceType": "pack-cover",
       "displayTitle": "TAKUMI3",
       "subtitle": "曲包封面",
+      "metadata": {},
       "badges": [],
       "searchTerms": [
         "TAKUMI3",
@@ -700,6 +739,7 @@
       "resourceType": "pack-cover",
       "displayTitle": "TEA12",
       "subtitle": "曲包封面",
+      "metadata": {},
       "badges": [],
       "searchTerms": [
         "TEA12",
@@ -717,6 +757,7 @@
       "resourceType": "pack-cover",
       "displayTitle": "WAVEAT",
       "subtitle": "曲包封面",
+      "metadata": {},
       "badges": [],
       "searchTerms": [
         "WAVEAT",

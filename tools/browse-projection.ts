@@ -139,7 +139,7 @@ type ArcaeaPreviewSong = {
   sideRaw?: number;
   bpm?: string;
   idx?: number;
-  charts?: Array<{ difficultyClass: string; displayLevel: string }>;
+  charts?: Array<{ difficultyClass: string; displayLevel: string; title?: string; artist?: string }>;
   artworks?: ArcaeaPreviewArtwork[];
   relatedSongRecords?: Array<{ songId: string; relation: string; evidence: string }>;
   specialRelation?: string;
@@ -172,12 +172,25 @@ async function bootstrapArcaea(auditDirectory: string, catalog: CatalogType): Pr
   const preview = await json<{ songs: ArcaeaPreviewSong[] }>(path.join(auditDirectory, "arcaea-song-browse-projection.preview.json"));
   const currentArtworkRows = await csv(path.join(auditDirectory, "arcaea-apk-current-artworks.csv"));
   const reconciliationRows = await csv(path.join(auditDirectory, "arcaea-jacket-reconciliation.csv"));
+  const difficultyRows = await csv(path.join(auditDirectory, "arcaea-difficulty-records.csv"));
+  const packRows = await csv(path.join(auditDirectory, "arcaea-pack-records.csv"));
   const manifest = await json<unknown>(path.join(auditDirectory, "arcaea-manifest.json"));
   const summary = await json<{ inputs?: { apkSha256?: string }; apk?: { versionName?: string } }>(path.join(auditDirectory, "arcaea-reconciliation-summary.json"));
   const sourceSha256 = nonEmpty(currentArtworkRows[0]?.apkSha256) ?? nonEmpty(summary.inputs?.apkSha256);
   if (!sourceSha256) throw new Error("Arcaea bootstrap data has no APK SHA-256.");
   const version = apkVersion(manifest) !== "unknown" ? apkVersion(manifest) : summary.apk?.versionName ?? "unknown";
   const catalogJacketIdsBySha256 = uniqueCatalogJacketIdsBySha256(catalog);
+  const titleOverrides = new Map<string, string>();
+  for (const row of difficultyRows) {
+    const songId = nonEmpty(row.songId);
+    const difficultyClass = arcaeaDifficulty(nonEmpty(row.difficultyLabel));
+    const title = parseLocalizedValues(row.titleOverride).find((value) => nonEmpty(value));
+    if (songId && difficultyClass && title) titleOverrides.set(`${songId}:${difficultyClass}`, title);
+  }
+  const packById = new Map(packRows.flatMap((row) => {
+    const packId = nonEmpty(row.packId);
+    return packId ? [[packId, row] as const] : [];
+  }));
   const songIds = new Set(preview.songs.map((song) => song.songId));
   const primarySlots = new Map<string, CsvRow>();
   for (const row of currentArtworkRows) {
@@ -215,20 +228,32 @@ async function bootstrapArcaea(auditDirectory: string, catalog: CatalogType): Pr
     });
     const titleAliases = [...parseLocalizedValues(JSON.stringify(song.titleLocalized)), ...flattenStringMap(song.searchTitle)];
     const artistAliases = flattenStringMap(song.searchArtist);
+    const packId = nonEmpty(song.pack?.packId) ?? "unknown";
+    const packDisplayName = arcaeaPackDisplayName(packId, parsePackName(song.pack?.localizedNames), packById);
     return {
       songId: song.songId,
       displayTitle: song.title,
       titleAliases: uniqueStrings(titleAliases),
       artist: song.artist,
       artistAliases: uniqueStrings(artistAliases),
-      packId: nonEmpty(song.pack?.packId) ?? "unknown",
-      packDisplayName: parsePackName(song.pack?.localizedNames),
+      packId,
+      packDisplayName,
       version: song.version === undefined ? null : String(song.version),
       date: song.date ?? null,
       sideRaw: song.sideRaw ?? null,
       bpm: nonEmpty(song.bpm) ?? null,
       orderHint: song.idx ?? 0,
-      charts: (song.charts ?? []).map((chart) => ({ difficultyClass: arcaeaDifficulty(chart.difficultyClass)!, displayLevel: chart.displayLevel })),
+      charts: (song.charts ?? []).map((chart) => {
+        const difficultyClass = arcaeaDifficulty(chart.difficultyClass)!;
+        const title = nonEmpty(chart.title) ?? titleOverrides.get(`${song.songId}:${difficultyClass}`);
+        const artist = nonEmpty(chart.artist);
+        return {
+          difficultyClass,
+          displayLevel: chart.displayLevel,
+          ...(title ? { title } : {}),
+          ...(artist ? { artist } : {}),
+        };
+      }),
       artworks,
       relatedSongs: (song.relatedSongRecords ?? []).map((relation) => ({ songId: relation.songId, relationType: relation.relation, ...(nonEmpty(relation.evidence) ? { note: relation.evidence } : {}) })),
       ...(song.specialRelation ? { specialRelation: song.specialRelation } : {}),
@@ -253,6 +278,17 @@ async function bootstrapArcaea(auditDirectory: string, catalog: CatalogType): Pr
     };
   });
   return ArcaeaSourceMetadata.parse({ schemaVersion: 1, game: "arcaea", sourceVersion: version, sourceSha256: sourceSha256.toLowerCase(), songs, resourceSemantics });
+}
+
+function arcaeaPackDisplayName(packId: string, sourceName: string | null, packById: Map<string, CsvRow>): string | null {
+  const name = sourceName ?? parsePackName(packById.get(packId)?.nameLocalized);
+  if (!name) return null;
+  const chapter = name.match(/^Collaboration Chapter (\d+)$/iu);
+  if (!chapter) return name;
+  const pack = packById.get(packId);
+  const parentId = nonEmpty(pack?.packParent) ?? packId.replace(/_append_\d+$/iu, "");
+  const parentName = parsePackName(packById.get(parentId)?.nameLocalized);
+  return parentName ? `${parentName} · ${name}` : name;
 }
 
 type PhigrosPreviewTrack = {
@@ -303,7 +339,7 @@ async function bootstrapPhigros(auditDirectory: string): Promise<PhigrosSourceMe
       sourceTrackPath,
       ...(nonEmpty(track.displayTitle) ? { displayTitle: track.displayTitle } : {}),
       sourceTitle,
-      displayArtist: nonEmpty(track.artist ?? undefined) ?? null,
+      displayArtist: nonEmpty(track.artist ?? undefined) ?? nonEmpty(track.sourceArtist ?? undefined) ?? null,
       sourceArtist: nonEmpty(track.sourceArtist ?? undefined) ?? null,
       indexRaw: nonEmpty(track.indexRaw ?? undefined) ?? null,
       artworkResourceId: nonEmpty(track.artwork?.resourceId) ?? null,

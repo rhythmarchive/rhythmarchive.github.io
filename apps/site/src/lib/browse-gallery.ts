@@ -202,9 +202,9 @@ function buildArcaeaItems(
       recordKind: "song",
       displayTitle: song.displayTitle,
       artist: song.artist,
-      searchTerms: searchTerms([...song.searchTerms, ...song.titleAliases, ...song.artistAliases, song.displayTitle, song.artist, song.pack.displayName]),
-      titleAliases: searchTerms(song.titleAliases),
-      artistAliases: searchTerms(song.artistAliases),
+      searchTerms: searchTerms([...song.searchTerms, ...song.titleAliases, ...song.artistAliases, ...song.charts.flatMap((chart) => [chart.title, chart.artist]), song.displayTitle, song.artist, song.pack.displayName]),
+      titleAliases: searchTerms([...song.titleAliases, ...song.charts.map((chart) => chart.title)]),
+      artistAliases: searchTerms([...song.artistAliases, ...song.charts.map((chart) => chart.artist)]),
       charts: song.charts,
       artworks,
       artworkRole: selectedArtwork.role,
@@ -436,9 +436,14 @@ export function selectBrowseArtwork(item: BrowseGalleryItem, selectedDifficultie
 
 export function displayBrowseItem(item: BrowseGalleryItem, selectedDifficulties: string[]): BrowseGalleryItem {
   const artwork = selectBrowseArtwork(item, selectedDifficulties);
+  const selectedChart = item.game === "arcaea" && artwork.difficultyClass
+    ? item.charts.find((chart): chart is BrowseArcaeaChart => isArcaeaChart(chart) && chart.difficultyClass === artwork.difficultyClass)
+    : undefined;
   return {
     ...item,
     ...artwork,
+    ...(selectedChart?.title ? { displayTitle: selectedChart.title } : {}),
+    ...(selectedChart?.artist ? { artist: selectedChart.artist } : {}),
     artworkRole: artwork.role,
     ...(artwork.difficultyClass ? { selectedArtworkDifficulty: artwork.difficultyClass } : {}),
   };

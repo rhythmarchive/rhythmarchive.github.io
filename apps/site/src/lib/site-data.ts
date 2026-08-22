@@ -33,9 +33,92 @@ export function loadFormalCatalog(): Catalog {
 export function getSiteData(rosBaseUrl = ROS_BASE_URL): PublicSiteData {
   if (!cachedSiteData) {
     const catalog = loadFormalCatalog();
-    cachedSiteData = applyCategoryBrowseSemantics(projectCatalog(catalog, rosBaseUrl), loadCategoryBrowseProjections());
+    const projected = enrichFormalBrowseMetadata(projectCatalog(catalog, rosBaseUrl), loadFormalBrowseProjections());
+    cachedSiteData = applyCategoryBrowseSemantics(projected, loadCategoryBrowseProjections());
   }
   return cachedSiteData;
+}
+function enrichFormalBrowseMetadata(siteData: PublicSiteData, browse: FormalBrowseProjections): PublicSiteData {
+  type MetadataValue = string | number | boolean;
+  const valuesByResource = new Map<string, Map<string, Set<MetadataValue>>>();
+  const add = (resourceId: string | null | undefined, key: string, value: MetadataValue | null | undefined): void => {
+    if (!resourceId || value === null || value === undefined || (typeof value === "string" && value.trim().length === 0)) return;
+    const byKey = valuesByResource.get(resourceId) ?? new Map<string, Set<MetadataValue>>();
+    const values = byKey.get(key) ?? new Set<MetadataValue>();
+    values.add(value);
+    byKey.set(key, values);
+    valuesByResource.set(resourceId, byKey);
+  };
+
+  for (const song of browse.arcaea.songs) {
+    for (const artwork of song.artworks) {
+      if (!artwork.resourceId) continue;
+      add(artwork.resourceId, "sourceTitle", song.displayTitle);
+      add(artwork.resourceId, "artist", song.artist);
+      add(artwork.resourceId, "songId", song.songId);
+      add(artwork.resourceId, "pack", song.pack.displayName);
+      add(artwork.resourceId, "version", song.version);
+      add(artwork.resourceId, "bpm", song.bpm);
+      add(artwork.resourceId, "side", song.sideRaw);
+      const chart = artwork.difficultyClass ? song.charts.find((candidate) => candidate.difficultyClass === artwork.difficultyClass) : undefined;
+      add(artwork.resourceId, "difficulty", chart?.difficultyClass);
+      add(artwork.resourceId, "difficultyTitle", chart?.title);
+      add(artwork.resourceId, "difficultyArtist", chart?.artist);
+    }
+  }
+  for (const special of browse.arcaea.specials) {
+    for (const artwork of special.artworks) {
+      if (!artwork.resourceId) continue;
+      add(artwork.resourceId, "sourceTitle", special.specialTitle);
+      add(artwork.resourceId, "specialYear", special.year);
+    }
+  }
+  for (const track of browse.phigros.tracks) {
+    add(track.artwork?.resourceId, "sourceTitle", track.displayTitle);
+    add(track.artwork?.resourceId, "artist", track.displayArtist);
+  }
+
+  const unique = (byKey: Map<string, Set<MetadataValue>> | undefined, key: string): MetadataValue | undefined => {
+    const values = byKey?.get(key);
+    return values?.size === 1 ? [...values][0] : undefined;
+  };
+  const resources = siteData.resources.map((resource) => {
+    const byKey = valuesByResource.get(resource.resourceId);
+    const metadata = { ...resource.metadata };
+    for (const key of ["artist", "pack", "version", "bpm", "side", "songId", "difficulty", "difficultyTitle", "difficultyArtist", "specialYear"]) {
+      const value = unique(byKey, key);
+      if (value !== undefined) metadata[key] = value;
+    }
+    const sourceTitle = unique(byKey, "sourceTitle");
+    const artist = unique(byKey, "artist");
+    return {
+      ...resource,
+      ...(resource.resourceType === "jacket" && typeof sourceTitle === "string" ? { displayTitle: sourceTitle } : {}),
+      ...(typeof artist === "string" ? { artist } : {}),
+      metadata,
+    };
+  });
+  const resourcesById = new Map(resources.map((resource) => [resource.resourceId, resource]));
+  const galleries = Object.fromEntries(Object.entries(siteData.galleries).map(([key, items]) => [key, items.map((item) => resourcesById.get(item.resourceId) ?? item)]));
+  const previousSearch = new Map(siteData.searchIndex.map((entry) => [entry.resourceId, entry]));
+  const searchIndex = resources.map((resource) => {
+    const previous = previousSearch.get(resource.resourceId);
+    const keywords = new Set(previous?.keywords ?? []);
+    keywords.add(resource.displayTitle);
+    if (resource.artist) keywords.add(resource.artist);
+    for (const value of Object.values(resource.metadata)) keywords.add(String(value));
+    return {
+      resourceId: resource.resourceId,
+      route: resource.route,
+      title: resource.displayTitle,
+      game: resource.game,
+      category: resource.category,
+      categoryLabel: resource.categoryLabel,
+      ...(resource.artist ? { artist: resource.artist } : {}),
+      keywords: [...keywords].filter((value) => value.trim().length > 0).sort((left, right) => left.localeCompare(right, "zh-CN")),
+    };
+  });
+  return { ...siteData, resources, searchIndex, galleries };
 }
 
 export function loadCategoryBrowseProjections(): CategoryBrowseProjections {

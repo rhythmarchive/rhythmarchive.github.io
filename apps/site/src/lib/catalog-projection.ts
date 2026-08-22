@@ -15,14 +15,25 @@ const PUBLIC_METADATA_KEYS = new Set([
   "bpm",
   "characterName",
   "characterEnglishName",
+  "characterChineseName",
+  "characterJapaneseName",
+  "characterKoreanName",
   "characterVariant",
+  "difficulty",
+  "difficultyTitle",
+  "difficultyArtist",
   "storyPathTitle",
   "storyType",
   "storyAct",
+  "storyChapter",
+  "storyEntry",
   "relatedSongTitle",
   "relatedSongId",
   "songId",
+  "specialYear",
 ]);
+
+const PUBLIC_HIDDEN_RESOURCE_TYPES = new Set<ResourceTypeId>(["story-texture", "startup"]);
 
 const PREVIEW_TYPES = {
   small: "thumbnail-320",
@@ -38,10 +49,11 @@ export function projectCatalog(catalog: Catalog, rosBaseUrl: string): PublicSite
   const objectsById = new Map(catalog.objects.map((object) => [object.id, object]));
   const variantsByResource = groupBy(catalog.variants, (variant) => variant.resourceId);
   const renditionsByVariant = groupBy(catalog.renditions, (rendition) => rendition.variantId);
+  const phigrosAprilFoolsYear = inferPhigrosAprilFoolsYear(catalog);
 
   const resources = catalog.resources
-    .filter((resource) => resource.lifecycle.status === "published")
-    .map((resource) => projectResource(resource, variantsByResource.get(resource.id) ?? [], renditionsByVariant, objectsById, rosBaseUrl))
+    .filter((resource) => resource.lifecycle.status === "published" && !PUBLIC_HIDDEN_RESOURCE_TYPES.has(resource.resourceType))
+    .map((resource) => projectResource(resource, variantsByResource.get(resource.id) ?? [], renditionsByVariant, objectsById, rosBaseUrl, phigrosAprilFoolsYear))
     .sort(compareResources);
 
   const games = (Object.keys(GAME_CONFIG) as GameId[]).map((game) => {
@@ -70,7 +82,7 @@ export function projectCatalog(catalog: Catalog, rosBaseUrl: string): PublicSite
   return { generatedAt: catalog.generatedAt, resources, games, searchIndex, galleries };
 }
 
-function projectResource(resource: Resource, variants: Variant[], renditionsByVariant: Map<string, Rendition[]>, objectsById: Map<string, AssetObject>, rosBaseUrl: string): PublicResource {
+function projectResource(resource: Resource, variants: Variant[], renditionsByVariant: Map<string, Rendition[]>, objectsById: Map<string, AssetObject>, rosBaseUrl: string, phigrosAprilFoolsYear?: number): PublicResource {
   const projectedVariants = variants
     .map((variant) => projectVariant(variant, renditionsByVariant.get(variant.id) ?? [], objectsById, rosBaseUrl))
     .sort((a, b) => a.label.localeCompare(b.label, "en") || a.variantId.localeCompare(b.variantId));
@@ -78,7 +90,7 @@ function projectResource(resource: Resource, variants: Variant[], renditionsByVa
   const original = active?.original;
   const upscaled = active?.upscaled;
   const display = normalizePublicDisplay(resource, original?.downloadFilename);
-  const metadata = { ...pickPublicMetadata(resource), ...filterPublicMetadata(display.metadata) };
+  const metadata = { ...pickPublicMetadata(resource), ...filterPublicMetadata(display.metadata), ...derivedPublicMetadata(resource, phigrosAprilFoolsYear) };
   const artist = display.artist ?? (typeof metadata.artist === "string" ? metadata.artist : undefined);
 
   return {
@@ -87,7 +99,7 @@ function projectResource(resource: Resource, variants: Variant[], renditionsByVa
     game: resource.game,
     resourceType: resource.resourceType,
     category: resource.resourceType,
-    categoryLabel: categoryLabel(resource.resourceType),
+    categoryLabel: publicCategoryLabel(resource.resourceType, metadata),
     displayTitle: display.title || original?.downloadFilename || "未命名资源",
     ...(artist ? { artist } : {}),
     metadata,
@@ -130,7 +142,7 @@ function projectPreview(renditions: Rendition[], size: keyof typeof PREVIEW_TYPE
 function projectDownload(rendition: Rendition, objectsById: Map<string, AssetObject>, rosBaseUrl: string): PublicDownload | undefined {
   const object = objectsById.get(rendition.objectId);
   if (!object) return undefined;
-  return { url: objectUrl(object.objectKey, rosBaseUrl), downloadFilename: rendition.downloadFilename, mime: object.mime, sizeBytes: object.sizeBytes };
+  return { url: objectUrl(object.objectKey, rosBaseUrl), downloadFilename: rendition.downloadFilename, mime: object.mime, sizeBytes: object.sizeBytes, width: object.width, height: object.height };
 }
 
 function pickPublicMetadata(resource: Resource): Record<string, string | number | boolean> {
@@ -144,6 +156,32 @@ function filterPublicMetadata(input: Record<string, unknown>): Record<string, st
     if (typeof value === "string" || typeof value === "number" || typeof value === "boolean") output[key] = value;
   }
   return output;
+}
+
+function derivedPublicMetadata(resource: Resource, phigrosAprilFoolsYear?: number): Record<string, string | number | boolean> {
+  if (resource.resourceType !== "phigros-april-fools") return {};
+  const candidates = [resource.title, ...resource.provenance.map((entry) => entry.sourceFilename)].filter((value): value is string => Boolean(value));
+  const match = candidates
+    .map((value) => value.match(/\b(?:AprilFools?|Logo)[^0-9]{0,12}(20\d{2})/iu))
+    .find((value): value is RegExpMatchArray => Boolean(value));
+  const year = match ? Number(match[1]) : phigrosAprilFoolsYear;
+  return year ? { specialYear: year } : {};
+}
+
+function inferPhigrosAprilFoolsYear(catalog: Catalog): number | undefined {
+  for (const resource of catalog.resources) {
+    if (resource.game !== "phigros" || resource.resourceType !== "phigros-april-fools") continue;
+    const candidates = [resource.title, ...resource.provenance.map((entry) => entry.sourceFilename)].filter((value): value is string => Boolean(value));
+    const match = candidates
+      .map((value) => value.match(/\b(?:AprilFools?|Logo)[^0-9]{0,12}(20\d{2})/iu))
+      .find((value): value is RegExpMatchArray => Boolean(value));
+    if (match) return Number(match[1]);
+  }
+  return undefined;
+}
+function publicCategoryLabel(resourceType: ResourceTypeId, metadata: Record<string, string | number | boolean>): string {
+  if (resourceType === "phigros-april-fools" && typeof metadata.specialYear === "number") return "April Fools " + metadata.specialYear;
+  return categoryLabel(resourceType);
 }
 
 function toSearchEntry(resource: PublicResource, sourceResource?: Resource): PublicSearchEntry {
@@ -170,7 +208,7 @@ function buildCategories(game: GameId, resources: PublicResource[]): PublicCateg
   for (const resource of resources) counts.set(resource.resourceType, (counts.get(resource.resourceType) ?? 0) + 1);
   const known = GAME_CONFIG[game].categoryOrder.filter((category) => counts.has(category));
   const unknown = [...counts.keys()].filter((category) => !known.includes(category)).sort();
-  return [...known, ...unknown].map((slug) => ({ slug, label: categoryLabel(slug), count: counts.get(slug) ?? 0 }));
+  return [...known, ...unknown].map((slug) => ({ slug, label: resources.find((resource) => resource.category === slug)?.categoryLabel ?? categoryLabel(slug), count: counts.get(slug) ?? 0 }));
 }
 
 function compareResources(a: PublicResource, b: PublicResource): number {

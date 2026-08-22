@@ -18,6 +18,8 @@ export type PublicDownload = {
   downloadFilename: string;
   mime: string;
   sizeBytes: number;
+  width?: number;
+  height?: number;
 };
 
 export type PublicVariant = {

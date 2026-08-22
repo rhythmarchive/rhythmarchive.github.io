@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "game": "phigros",
-  "generatedAt": "2026-08-22T11:23:41.401Z",
+  "generatedAt": "2026-08-22T16:38:47.674Z",
   "source": {
     "version": "3.19.5",
     "sha256": "b9654316e52bf2d410fa2ecb3f0df41246afdc3dc8133456deaff07ecbcf28bf"
@@ -12,7 +12,7 @@
       "sourceTrackPath": "Assets/Tracks/000AinSophAur.Yumeji.0/",
       "displayTitle": "000 -Ain Soph Aur-",
       "sourceTitle": "000AinSophAur",
-      "displayArtist": null,
+      "displayArtist": "Yumeji",
       "sourceArtist": "Yumeji",
       "indexRaw": "0",
       "artwork": {
@@ -92,7 +92,7 @@
       "sourceTrackPath": "Assets/Tracks/996.李化禹.0/",
       "displayTitle": "996",
       "sourceTitle": "996",
-      "displayArtist": null,
+      "displayArtist": "李化禹",
       "sourceArtist": "李化禹",
       "indexRaw": "0",
       "artwork": {
@@ -131,7 +131,7 @@
       "sourceTrackPath": "Assets/Tracks/AbsoluTedisoRdeR.AcuteDisarray.0/",
       "displayTitle": "AbsoluTe disoRdeR",
       "sourceTitle": "AbsoluTedisoRdeR",
-      "displayArtist": null,
+      "displayArtist": "AcuteDisarray",
       "sourceArtist": "AcuteDisarray",
       "indexRaw": "0",
       "artwork": {
@@ -217,7 +217,7 @@
       "sourceTrackPath": "Assets/Tracks/Adastraperaspera.RabbitHouse.0/",
       "displayTitle": "Ad astra per aspera",
       "sourceTitle": "Adastraperaspera",
-      "displayArtist": null,
+      "displayArtist": "RabbitHouse",
       "sourceArtist": "RabbitHouse",
       "indexRaw": "0",
       "artwork": {
@@ -257,7 +257,7 @@
       "sourceTrackPath": "Assets/Tracks/AfterDawn.S9ryne.0/",
       "displayTitle": "After Dawn",
       "sourceTitle": "AfterDawn",
-      "displayArtist": null,
+      "displayArtist": "S9ryne",
       "sourceArtist": "S9ryne",
       "indexRaw": "0",
       "artwork": {
@@ -337,7 +337,7 @@
       "sourceTrackPath": "Assets/Tracks/Ajourneytothemoonlight.Yesod.0/",
       "displayTitle": "A journey to the moonlight",
       "sourceTitle": "Ajourneytothemoonlight",
-      "displayArtist": null,
+      "displayArtist": "Yesod",
       "sourceArtist": "Yesod",
       "indexRaw": "0",
       "artwork": {
@@ -416,7 +416,7 @@
       "sourceTrackPath": "Assets/Tracks/Aleph0.LeaF.0/",
       "displayTitle": "Aleph-0",
       "sourceTitle": "Aleph0",
-      "displayArtist": null,
+      "displayArtist": "LeaF",
       "sourceArtist": "LeaF",
       "indexRaw": "0",
       "artwork": {
@@ -461,7 +461,7 @@
       "sourceTrackPath": "Assets/Tracks/Aliceinaxxxxxxxx.Nagiha.0/",
       "displayTitle": "Alice in a xxxxxxxx",
       "sourceTitle": "Aliceinaxxxxxxxx",
-      "displayArtist": null,
+      "displayArtist": "Nagiha",
       "sourceArtist": "Nagiha",
       "indexRaw": "0",
       "artwork": {
@@ -501,7 +501,7 @@
       "sourceTrackPath": "Assets/Tracks/AnotherMe.DAAN.0/",
       "displayTitle": "Another Me KALPA",
       "sourceTitle": "AnotherMe",
-      "displayArtist": null,
+      "displayArtist": "DAAN",
       "sourceArtist": "DAAN",
       "indexRaw": "0",
       "artwork": {
@@ -541,7 +541,7 @@
       "sourceTrackPath": "Assets/Tracks/AnotherMe.NeutralMoon.0/",
       "displayTitle": "Another Me",
       "sourceTitle": "AnotherMe",
-      "displayArtist": null,
+      "displayArtist": "NeutralMoon",
       "sourceArtist": "NeutralMoon",
       "indexRaw": "0",
       "artwork": {
@@ -581,7 +581,7 @@
       "sourceTrackPath": "Assets/Tracks/AnotherRound.JustinDai.0/",
       "displayTitle": "Another Round",
       "sourceTitle": "AnotherRound",
-      "displayArtist": null,
+      "displayArtist": "JustinDai",
       "sourceArtist": "JustinDai",
       "indexRaw": "0",
       "artwork": {
@@ -621,7 +621,7 @@
       "sourceTrackPath": "Assets/Tracks/Antithese.Blacklolita.0/",
       "displayTitle": "Antithese",
       "sourceTitle": "Antithese",
-      "displayArtist": null,
+      "displayArtist": "Blacklolita",
       "sourceArtist": "Blacklolita",
       "indexRaw": "0",
       "artwork": {
@@ -665,7 +665,7 @@
       "sourceTrackPath": "Assets/Tracks/Aphasia.闫东炜.0/",
       "displayTitle": "Aphasia",
       "sourceTitle": "Aphasia",
-      "displayArtist": null,
+      "displayArtist": "闫东炜",
       "sourceArtist": "闫东炜",
       "indexRaw": "0",
       "artwork": {
@@ -704,7 +704,7 @@
       "sourceTrackPath": "Assets/Tracks/AphroditesChildshortver.RUQOA.0/",
       "displayTitle": "Aphrodite's Child(short ver.)-RUQOA（3.18NEW）",
       "sourceTitle": "AphroditesChildshortver",
-      "displayArtist": null,
+      "displayArtist": "RUQOA",
       "sourceArtist": "RUQOA",
       "indexRaw": "0",
       "artwork": {
@@ -744,7 +744,7 @@
       "sourceTrackPath": "Assets/Tracks/Apocalypse.アリスシャッハと魔法の楽団.0/",
       "displayTitle": "Apocalypse",
       "sourceTitle": "Apocalypse",
-      "displayArtist": null,
+      "displayArtist": "アリスシャッハと魔法の楽団",
       "sourceArtist": "アリスシャッハと魔法の楽団",
       "indexRaw": "0",
       "artwork": {
@@ -783,7 +783,7 @@
       "sourceTrackPath": "Assets/Tracks/Apocalyptic.ZClaxxSumaiLight.0/",
       "displayTitle": "Apocalyptic",
       "sourceTitle": "Apocalyptic",
-      "displayArtist": null,
+      "displayArtist": "ZClaxxSumaiLight",
       "sourceArtist": "ZClaxxSumaiLight",
       "indexRaw": "0",
       "artwork": {
@@ -861,7 +861,7 @@
       "sourceTrackPath": "Assets/Tracks/Ark.kanoryo.0/",
       "displayTitle": "Ark",
       "sourceTitle": "Ark",
-      "displayArtist": null,
+      "displayArtist": "kanoryo",
       "sourceArtist": "kanoryo",
       "indexRaw": "0",
       "artwork": {
@@ -905,7 +905,7 @@
       "sourceTrackPath": "Assets/Tracks/Arkhei.SeraAmagi.0/",
       "displayTitle": "-Arkhei-",
       "sourceTitle": "Arkhei",
-      "displayArtist": null,
+      "displayArtist": "SeraAmagi",
       "sourceArtist": "SeraAmagi",
       "indexRaw": "0",
       "artwork": {
@@ -945,7 +945,7 @@
       "sourceTrackPath": "Assets/Tracks/ArtificialExistence.JunKuroda.0/",
       "displayTitle": "Artificial Existence",
       "sourceTitle": "ArtificialExistence",
-      "displayArtist": null,
+      "displayArtist": "JunKuroda",
       "sourceArtist": "JunKuroda",
       "indexRaw": "0",
       "artwork": {
@@ -985,7 +985,7 @@
       "sourceTrackPath": "Assets/Tracks/ATHAZA.LeaF.0/",
       "displayTitle": "ATHAZA",
       "sourceTitle": "ATHAZA",
-      "displayArtist": null,
+      "displayArtist": "LeaF",
       "sourceArtist": "LeaF",
       "indexRaw": "0",
       "artwork": {
@@ -1029,7 +1029,7 @@
       "sourceTrackPath": "Assets/Tracks/atruthseekerCommunicationwithUtopiawillbelost.kuro.0/",
       "displayTitle": "a truth seeker -Communication with Utopia will be lost-",
       "sourceTitle": "atruthseekerCommunicationwithUtopiawillbelost",
-      "displayArtist": null,
+      "displayArtist": "kuro",
       "sourceArtist": "kuro",
       "indexRaw": "0",
       "artwork": {
@@ -1069,7 +1069,7 @@
       "sourceTrackPath": "Assets/Tracks/AvataarReincarnationofKalpa.ScarletteakaCrYmson.0/",
       "displayTitle": "Avataar ~Reincarnation of Kalpa~",
       "sourceTitle": "AvataarReincarnationofKalpa",
-      "displayArtist": null,
+      "displayArtist": "ScarletteakaCrYmson",
       "sourceArtist": "ScarletteakaCrYmson",
       "indexRaw": "0",
       "artwork": {
@@ -1114,7 +1114,7 @@
       "sourceTrackPath": "Assets/Tracks/Aventyr.GrandThawRigelTheatre.0/",
       "displayTitle": "Äventyr",
       "sourceTitle": "Aventyr",
-      "displayArtist": null,
+      "displayArtist": "GrandThawRigelTheatre",
       "sourceArtist": "GrandThawRigelTheatre",
       "indexRaw": "0",
       "artwork": {
@@ -1200,7 +1200,7 @@
       "sourceTrackPath": "Assets/Tracks/BelieveLightfeat果丸哒呦.ScalerMestie果丸哒呦.0/",
       "displayTitle": "Believe Light (feat. 果丸哒呦)",
       "sourceTitle": "BelieveLightfeat果丸哒呦",
-      "displayArtist": null,
+      "displayArtist": "ScalerMestie果丸哒呦",
       "sourceArtist": "ScalerMestie果丸哒呦",
       "indexRaw": "0",
       "artwork": {
@@ -1240,7 +1240,7 @@
       "sourceTrackPath": "Assets/Tracks/BetterGraphicAnimation.ルゼ.0/",
       "displayTitle": "Better Graphic Animation",
       "sourceTitle": "BetterGraphicAnimation",
-      "displayArtist": null,
+      "displayArtist": "ルゼ",
       "sourceArtist": "ルゼ",
       "indexRaw": "0",
       "artwork": {
@@ -1280,7 +1280,7 @@
       "sourceTrackPath": "Assets/Tracks/Bitterblossom.imvi.0/",
       "displayTitle": "Bitterblossom",
       "sourceTitle": "Bitterblossom",
-      "displayArtist": null,
+      "displayArtist": "imvi",
       "sourceArtist": "imvi",
       "indexRaw": "0",
       "artwork": {
@@ -1319,7 +1319,7 @@
       "sourceTrackPath": "Assets/Tracks/Bloom.targ麻团qwq.0/",
       "displayTitle": "Bloom",
       "sourceTitle": "Bloom",
-      "displayArtist": null,
+      "displayArtist": "targ麻团qwq",
       "sourceArtist": "targ麻团qwq",
       "indexRaw": "0",
       "artwork": {
@@ -1358,7 +1358,7 @@
       "sourceTrackPath": "Assets/Tracks/BonusTime.MegaloPaleWhite.0/",
       "displayTitle": "Bonus Time",
       "sourceTitle": "BonusTime",
-      "displayArtist": null,
+      "displayArtist": "MegaloPaleWhite",
       "sourceArtist": "MegaloPaleWhite",
       "indexRaw": "0",
       "artwork": {
@@ -1398,7 +1398,7 @@
       "sourceTrackPath": "Assets/Tracks/Bougainvillea.Jade.0/",
       "displayTitle": "Bougainvillea",
       "sourceTitle": "Bougainvillea",
-      "displayArtist": null,
+      "displayArtist": "Jade",
       "sourceArtist": "Jade",
       "indexRaw": "0",
       "artwork": {
@@ -1437,7 +1437,7 @@
       "sourceTrackPath": "Assets/Tracks/BoundedQuietude.FiniteLimitvsSiLiS.0/",
       "displayTitle": "Bounded Quietude",
       "sourceTitle": "BoundedQuietude",
-      "displayArtist": null,
+      "displayArtist": "FiniteLimitvsSiLiS",
       "sourceArtist": "FiniteLimitvsSiLiS",
       "indexRaw": "0",
       "artwork": {
@@ -1477,7 +1477,7 @@
       "sourceTrackPath": "Assets/Tracks/BRAINHACKER.SOMON.0/",
       "displayTitle": "BRAIN HACKER",
       "sourceTitle": "BRAINHACKER",
-      "displayArtist": null,
+      "displayArtist": "SOMON",
       "sourceArtist": "SOMON",
       "indexRaw": "0",
       "artwork": {
@@ -1517,7 +1517,7 @@
       "sourceTrackPath": "Assets/Tracks/BraveNotes.TurquoiseDRIVENota.0/",
       "displayTitle": "Brave Notes",
       "sourceTitle": "BraveNotes",
-      "displayArtist": null,
+      "displayArtist": "TurquoiseDRIVENota",
       "sourceArtist": "TurquoiseDRIVENota",
       "indexRaw": "0",
       "artwork": {
@@ -1557,7 +1557,7 @@
       "sourceTrackPath": "Assets/Tracks/BreakOver.Kforest.0/",
       "displayTitle": "Break Over",
       "sourceTitle": "BreakOver",
-      "displayArtist": null,
+      "displayArtist": "Kforest",
       "sourceArtist": "Kforest",
       "indexRaw": "0",
       "artwork": {
@@ -1602,7 +1602,7 @@
       "sourceTrackPath": "Assets/Tracks/BreakThroughTheBarrier.lixound.0/",
       "displayTitle": "Break Through The Barrier",
       "sourceTitle": "BreakThroughTheBarrier",
-      "displayArtist": null,
+      "displayArtist": "lixound",
       "sourceArtist": "lixound",
       "indexRaw": "0",
       "artwork": {
@@ -1647,7 +1647,7 @@
       "sourceTrackPath": "Assets/Tracks/BrokenSky.JungoMAX3feat刘佳宜Snow幻影刃shadow.0/",
       "displayTitle": "Broken Sky",
       "sourceTitle": "BrokenSky",
-      "displayArtist": null,
+      "displayArtist": "JungoMAX3feat刘佳宜Snow幻影刃shadow",
       "sourceArtist": "JungoMAX3feat刘佳宜Snow幻影刃shadow",
       "indexRaw": "0",
       "artwork": {
@@ -1687,7 +1687,7 @@
       "sourceTrackPath": "Assets/Tracks/Burn.NceS.0/",
       "displayTitle": "Burn",
       "sourceTitle": "Burn",
-      "displayArtist": null,
+      "displayArtist": "NceS",
       "sourceArtist": "NceS",
       "indexRaw": "0",
       "artwork": {
@@ -1726,7 +1726,7 @@
       "sourceTrackPath": "Assets/Tracks/bye.DingerBox.0/",
       "displayTitle": "bye",
       "sourceTitle": "bye",
-      "displayArtist": null,
+      "displayArtist": "DingerBox",
       "sourceArtist": "DingerBox",
       "indexRaw": "0",
       "artwork": {
@@ -1765,7 +1765,7 @@
       "sourceTrackPath": "Assets/Tracks/Cereris.SunsetRayNceS.0/",
       "displayTitle": "Cereris",
       "sourceTitle": "Cereris",
-      "displayArtist": null,
+      "displayArtist": "SunsetRayNceS",
       "sourceArtist": "SunsetRayNceS",
       "indexRaw": "0",
       "artwork": {
@@ -1804,7 +1804,7 @@
       "sourceTrackPath": "Assets/Tracks/CervelleConnexion.SCTL.0/",
       "displayTitle": "Cervelle Connexion",
       "sourceTitle": "CervelleConnexion",
-      "displayArtist": null,
+      "displayArtist": "SCTL",
       "sourceArtist": "SCTL",
       "indexRaw": "0",
       "artwork": {
@@ -1844,7 +1844,7 @@
       "sourceTrackPath": "Assets/Tracks/Chronologika.Hundotte.0/",
       "displayTitle": "Chronologika",
       "sourceTitle": "Chronologika",
-      "displayArtist": null,
+      "displayArtist": "Hundotte",
       "sourceArtist": "Hundotte",
       "indexRaw": "0",
       "artwork": {
@@ -1883,7 +1883,7 @@
       "sourceTrackPath": "Assets/Tracks/Chronomia.Lime.0/",
       "displayTitle": "Chronomia",
       "sourceTitle": "Chronomia",
-      "displayArtist": null,
+      "displayArtist": "Lime",
       "sourceArtist": "Lime",
       "indexRaw": "0",
       "artwork": {
@@ -1963,7 +1963,7 @@
       "sourceTrackPath": "Assets/Tracks/Chronostasis.黒皇帝.0/",
       "displayTitle": "Chronostasis",
       "sourceTitle": "Chronostasis",
-      "displayArtist": null,
+      "displayArtist": "黒皇帝",
       "sourceArtist": "黒皇帝",
       "indexRaw": "0",
       "artwork": {
@@ -2002,7 +2002,7 @@
       "sourceTrackPath": "Assets/Tracks/Cipher20.TetrajectoryfeatCtymax.0/",
       "displayTitle": "Cipher _ 2&__0",
       "sourceTitle": "Cipher20",
-      "displayArtist": null,
+      "displayArtist": "TetrajectoryfeatCtymax",
       "sourceArtist": "TetrajectoryfeatCtymax",
       "indexRaw": "0",
       "artwork": {
@@ -2042,7 +2042,7 @@
       "sourceTrackPath": "Assets/Tracks/ClassMemories.AntistarfeatCtymax.0/",
       "displayTitle": "Class Memories",
       "sourceTitle": "ClassMemories",
-      "displayArtist": null,
+      "displayArtist": "AntistarfeatCtymax",
       "sourceArtist": "AntistarfeatCtymax",
       "indexRaw": "0",
       "artwork": {
@@ -2121,7 +2121,7 @@
       "sourceTrackPath": "Assets/Tracks/ClockParadox.WyvernP.0/",
       "displayTitle": "Clock Paradox",
       "sourceTitle": "ClockParadox",
-      "displayArtist": null,
+      "displayArtist": "WyvernP",
       "sourceArtist": "WyvernP",
       "indexRaw": "0",
       "artwork": {
@@ -2161,7 +2161,7 @@
       "sourceTrackPath": "Assets/Tracks/ColorfulDays.P4koofeatつゆり花鈴.0/",
       "displayTitle": "Colorful Days♪",
       "sourceTitle": "ColorfulDays",
-      "displayArtist": null,
+      "displayArtist": "P4koofeatつゆり花鈴",
       "sourceArtist": "P4koofeatつゆり花鈴",
       "indexRaw": "0",
       "artwork": {
@@ -2201,7 +2201,7 @@
       "sourceTrackPath": "Assets/Tracks/CometFeat符白牙.CNHKSS.0/",
       "displayTitle": "Comet",
       "sourceTitle": "CometFeat符白牙",
-      "displayArtist": null,
+      "displayArtist": "CNHKSS",
       "sourceArtist": "CNHKSS",
       "indexRaw": "0",
       "artwork": {
@@ -2241,7 +2241,7 @@
       "sourceTrackPath": "Assets/Tracks/ComputeItWithSomeDevilishAlcoholicSteampunkEngines.かめりあ.0/",
       "displayTitle": "Compute It With Some Devilish Alcoholic Steampunk Engines",
       "sourceTitle": "ComputeItWithSomeDevilishAlcoholicSteampunkEngines",
-      "displayArtist": null,
+      "displayArtist": "かめりあ",
       "sourceArtist": "かめりあ",
       "indexRaw": "0",
       "artwork": {
@@ -2281,7 +2281,7 @@
       "sourceTrackPath": "Assets/Tracks/Concvssion.Halv.0/",
       "displayTitle": "Concvssion",
       "sourceTitle": "Concvssion",
-      "displayArtist": null,
+      "displayArtist": "Halv",
       "sourceArtist": "Halv",
       "indexRaw": "0",
       "artwork": {
@@ -2320,7 +2320,7 @@
       "sourceTrackPath": "Assets/Tracks/CraveWave.LandRoot.0/",
       "displayTitle": "Crave Wave",
       "sourceTitle": "CraveWave",
-      "displayArtist": null,
+      "displayArtist": "LandRoot",
       "sourceArtist": "LandRoot",
       "indexRaw": "0",
       "artwork": {
@@ -2360,7 +2360,7 @@
       "sourceTrackPath": "Assets/Tracks/Credits.Frums.0/",
       "displayTitle": "Credits",
       "sourceTitle": "Credits",
-      "displayArtist": null,
+      "displayArtist": "Frums",
       "sourceArtist": "Frums",
       "indexRaw": "0",
       "artwork": {
@@ -2404,7 +2404,7 @@
       "sourceTrackPath": "Assets/Tracks/Cristalisia.onoken.0/",
       "displayTitle": "Cristalisia-onoken",
       "sourceTitle": "Cristalisia",
-      "displayArtist": null,
+      "displayArtist": "onoken",
       "sourceArtist": "onoken",
       "indexRaw": "0",
       "artwork": {
@@ -2444,7 +2444,7 @@
       "sourceTrackPath": "Assets/Tracks/CROSSSOUL.HyuNfeatSyepias.0/",
       "displayTitle": "CROSS†SOUL",
       "sourceTitle": "CROSSSOUL",
-      "displayArtist": null,
+      "displayArtist": "HyuNfeatSyepias",
       "sourceArtist": "HyuNfeatSyepias",
       "indexRaw": "0",
       "artwork": {
@@ -2484,7 +2484,7 @@
       "sourceTrackPath": "Assets/Tracks/CrushBETA.shadow_bling.0/",
       "displayTitle": "Crush BETA",
       "sourceTitle": "CrushBETA",
-      "displayArtist": null,
+      "displayArtist": "shadow_bling",
       "sourceArtist": "shadow_bling",
       "indexRaw": "0",
       "artwork": {
@@ -2524,7 +2524,7 @@
       "sourceTrackPath": "Assets/Tracks/cryout.JuE.0/",
       "displayTitle": "cryout",
       "sourceTitle": "cryout",
-      "displayArtist": null,
+      "displayArtist": "JuE",
       "sourceArtist": "JuE",
       "indexRaw": "0",
       "artwork": {
@@ -2563,7 +2563,7 @@
       "sourceTrackPath": "Assets/Tracks/csqn.Aoi.0/",
       "displayTitle": "c.s.q.n.",
       "sourceTitle": "csqn",
-      "displayArtist": null,
+      "displayArtist": "Aoi",
       "sourceArtist": "Aoi",
       "indexRaw": "0",
       "artwork": {
@@ -2603,7 +2603,7 @@
       "sourceTrackPath": "Assets/Tracks/Cthugha.USAO.0/",
       "displayTitle": "Cthugha",
       "sourceTitle": "Cthugha",
-      "displayArtist": null,
+      "displayArtist": "USAO",
       "sourceArtist": "USAO",
       "indexRaw": "0",
       "artwork": {
@@ -2647,7 +2647,7 @@
       "sourceTrackPath": "Assets/Tracks/Cuvism.Fl00tvsHalv.0/",
       "displayTitle": "Cuvism³",
       "sourceTitle": "Cuvism",
-      "displayArtist": null,
+      "displayArtist": "Fl00tvsHalv",
       "sourceArtist": "Fl00tvsHalv",
       "indexRaw": "0",
       "artwork": {
@@ -2692,7 +2692,7 @@
       "sourceTrackPath": "Assets/Tracks/DancewithSilence.かめりあ.0/",
       "displayTitle": "Dance with Silence",
       "sourceTitle": "DancewithSilence",
-      "displayArtist": null,
+      "displayArtist": "かめりあ",
       "sourceArtist": "かめりあ",
       "indexRaw": "0",
       "artwork": {
@@ -2732,7 +2732,7 @@
       "sourceTrackPath": "Assets/Tracks/Dash.小红Akane李祥辉.0/",
       "displayTitle": "Dash",
       "sourceTitle": "Dash",
-      "displayArtist": null,
+      "displayArtist": "小红Akane李祥辉",
       "sourceArtist": "小红Akane李祥辉",
       "indexRaw": "0",
       "artwork": {
@@ -2771,7 +2771,7 @@
       "sourceTrackPath": "Assets/Tracks/DataErr0r.Cosmograph.0/",
       "displayTitle": "DataErr0r",
       "sourceTitle": "DataErr0r",
-      "displayArtist": null,
+      "displayArtist": "Cosmograph",
       "sourceArtist": "Cosmograph",
       "indexRaw": "0",
       "artwork": {
@@ -2810,7 +2810,7 @@
       "sourceTrackPath": "Assets/Tracks/dBdoll.YUESTEVENuen.0/",
       "displayTitle": "dB doll",
       "sourceTitle": "dBdoll",
-      "displayArtist": null,
+      "displayArtist": "YUESTEVENuen",
       "sourceArtist": "YUESTEVENuen",
       "indexRaw": "0",
       "artwork": {
@@ -2855,7 +2855,7 @@
       "sourceTrackPath": "Assets/Tracks/DeadSoul.SoundSouler.0/",
       "displayTitle": "Dead Soul",
       "sourceTitle": "DeadSoul",
-      "displayArtist": null,
+      "displayArtist": "SoundSouler",
       "sourceArtist": "SoundSouler",
       "indexRaw": "0",
       "artwork": {
@@ -2895,7 +2895,7 @@
       "sourceTrackPath": "Assets/Tracks/Demiurge.Rabpit.0/",
       "displayTitle": "Demiurge",
       "sourceTitle": "Demiurge",
-      "displayArtist": null,
+      "displayArtist": "Rabpit",
       "sourceArtist": "Rabpit",
       "indexRaw": "0",
       "artwork": {
@@ -2934,7 +2934,7 @@
       "sourceTrackPath": "Assets/Tracks/Demonkin.ForgedReigns.0/",
       "displayTitle": "Demonkin",
       "sourceTitle": "Demonkin",
-      "displayArtist": null,
+      "displayArtist": "ForgedReigns",
       "sourceArtist": "ForgedReigns",
       "indexRaw": "0",
       "artwork": {
@@ -2973,7 +2973,7 @@
       "sourceTrackPath": "Assets/Tracks/DerRichter.Ωμεγα.0/",
       "displayTitle": "Der Richter",
       "sourceTitle": "DerRichter",
-      "displayArtist": null,
+      "displayArtist": "Ωμεγα",
       "sourceArtist": "Ωμεγα",
       "indexRaw": "0",
       "artwork": {
@@ -3063,7 +3063,7 @@
       "sourceTrackPath": "Assets/Tracks/DESTRUCTION321.Normal1zervsBrokenNerdz.0/",
       "displayTitle": "DESTRUCTION 3,2,1",
       "sourceTitle": "DESTRUCTION321",
-      "displayArtist": null,
+      "displayArtist": "Normal1zervsBrokenNerdz",
       "sourceArtist": "Normal1zervsBrokenNerdz",
       "indexRaw": "0",
       "artwork": {
@@ -3108,7 +3108,7 @@
       "sourceTrackPath": "Assets/Tracks/DevIAtiOnshortver.polysha.0/",
       "displayTitle": "DevIAtiOn (short ver.)",
       "sourceTitle": "DevIAtiOnshortver",
-      "displayArtist": null,
+      "displayArtist": "polysha",
       "sourceArtist": "polysha",
       "indexRaw": "0",
       "artwork": {
@@ -3148,7 +3148,7 @@
       "sourceTrackPath": "Assets/Tracks/Devotion.Connexio.0/",
       "displayTitle": "Devotion",
       "sourceTitle": "Devotion",
-      "displayArtist": null,
+      "displayArtist": "Connexio",
       "sourceArtist": "Connexio",
       "indexRaw": "0",
       "artwork": {
@@ -3187,7 +3187,7 @@
       "sourceTrackPath": "Assets/Tracks/DiamondDust.MasahiroGodspeedAoki.0/",
       "displayTitle": "Diamond Dust",
       "sourceTitle": "DiamondDust",
-      "displayArtist": null,
+      "displayArtist": "MasahiroGodspeedAoki",
       "sourceArtist": "MasahiroGodspeedAoki",
       "indexRaw": "0",
       "artwork": {
@@ -3232,7 +3232,7 @@
       "sourceTrackPath": "Assets/Tracks/DiamondEyes.SYNTHETIC.0/",
       "displayTitle": "Diamond Eyes",
       "sourceTitle": "DiamondEyes",
-      "displayArtist": null,
+      "displayArtist": "SYNTHETIC",
       "sourceArtist": "SYNTHETIC",
       "indexRaw": "0",
       "artwork": {
@@ -3272,7 +3272,7 @@
       "sourceTrackPath": "Assets/Tracks/Disorder.HyuNfeatYURI.0/",
       "displayTitle": "Disorder",
       "sourceTitle": "Disorder",
-      "displayArtist": null,
+      "displayArtist": "HyuNfeatYURI",
       "sourceArtist": "HyuNfeatYURI",
       "indexRaw": "0",
       "artwork": {
@@ -3311,7 +3311,7 @@
       "sourceTrackPath": "Assets/Tracks/DistortedFate.Sakuzyo.0/",
       "displayTitle": "Distorted Fate",
       "sourceTitle": "DistortedFate",
-      "displayArtist": null,
+      "displayArtist": "Sakuzyo",
       "sourceArtist": "Sakuzyo",
       "indexRaw": "0",
       "artwork": {
@@ -3356,7 +3356,7 @@
       "sourceTrackPath": "Assets/Tracks/Dlyrotz.Likey.0/",
       "displayTitle": "Dlyrotz",
       "sourceTitle": "Dlyrotz",
-      "displayArtist": null,
+      "displayArtist": "Likey",
       "sourceArtist": "Likey",
       "indexRaw": "0",
       "artwork": {
@@ -3395,7 +3395,7 @@
       "sourceTrackPath": "Assets/Tracks/DontNeverAround.HAMA.0/",
       "displayTitle": "Don't Never Around",
       "sourceTitle": "DontNeverAround",
-      "displayArtist": null,
+      "displayArtist": "HAMA",
       "sourceArtist": "HAMA",
       "indexRaw": "0",
       "artwork": {
@@ -3435,7 +3435,7 @@
       "sourceTrackPath": "Assets/Tracks/Doppelganger.LeaF.0/",
       "displayTitle": "Doppelganger",
       "sourceTitle": "Doppelganger",
-      "displayArtist": null,
+      "displayArtist": "LeaF",
       "sourceArtist": "LeaF",
       "indexRaw": "0",
       "artwork": {
@@ -3474,7 +3474,7 @@
       "sourceTrackPath": "Assets/Tracks/Dreamland.z1onkyrrin.0/",
       "displayTitle": "Dreamland",
       "sourceTitle": "Dreamland",
-      "displayArtist": null,
+      "displayArtist": "z1onkyrrin",
       "sourceArtist": "z1onkyrrin",
       "indexRaw": "0",
       "artwork": {
@@ -3513,7 +3513,7 @@
       "sourceTrackPath": "Assets/Tracks/DropIt.Asuka.0/",
       "displayTitle": "Drop It",
       "sourceTitle": "DropIt",
-      "displayArtist": null,
+      "displayArtist": "Asuka",
       "sourceArtist": "Asuka",
       "indexRaw": "0",
       "artwork": {
@@ -3553,7 +3553,7 @@
       "sourceTrackPath": "Assets/Tracks/ElCondorPasaPhigrosEdit.PlasticFruits.0/",
       "displayTitle": "El Condor Pasa (Phigros Edit)",
       "sourceTitle": "ElCondorPasaPhigrosEdit",
-      "displayArtist": null,
+      "displayArtist": "PlasticFruits",
       "sourceArtist": "PlasticFruits",
       "indexRaw": "0",
       "artwork": {
@@ -3593,7 +3593,7 @@
       "sourceTrackPath": "Assets/Tracks/Electron.ElousFZ.0/",
       "displayTitle": "Electron",
       "sourceTitle": "Electron",
-      "displayArtist": null,
+      "displayArtist": "ElousFZ",
       "sourceArtist": "ElousFZ",
       "indexRaw": "0",
       "artwork": {
@@ -3632,7 +3632,7 @@
       "sourceTrackPath": "Assets/Tracks/Eltaw.Fl00t.0/",
       "displayTitle": "Eltaw",
       "sourceTitle": "Eltaw",
-      "displayArtist": null,
+      "displayArtist": "Fl00t",
       "sourceArtist": "Fl00t",
       "indexRaw": "0",
       "artwork": {
@@ -3671,7 +3671,7 @@
       "sourceTrackPath": "Assets/Tracks/Elúltimobaile.Θ.0/",
       "displayTitle": "El último baile",
       "sourceTitle": "Elúltimobaile",
-      "displayArtist": null,
+      "displayArtist": "Θ",
       "sourceArtist": "Θ",
       "indexRaw": "0",
       "artwork": {
@@ -3711,7 +3711,7 @@
       "sourceTrackPath": "Assets/Tracks/EndMe.ZxNXasDelaina.0/",
       "displayTitle": "End Me",
       "sourceTitle": "EndMe",
-      "displayArtist": null,
+      "displayArtist": "ZxNXasDelaina",
       "sourceArtist": "ZxNXasDelaina",
       "indexRaw": "0",
       "artwork": {
@@ -3751,7 +3751,7 @@
       "sourceTrackPath": "Assets/Tracks/ENERGYSYNERGYMATRIX.Tanchiky.0/",
       "displayTitle": "ENERGY SYNERGY MATRIX",
       "sourceTitle": "ENERGYSYNERGYMATRIX",
-      "displayArtist": null,
+      "displayArtist": "Tanchiky",
       "sourceArtist": "Tanchiky",
       "indexRaw": "0",
       "artwork": {
@@ -3796,7 +3796,7 @@
       "sourceTrackPath": "Assets/Tracks/energytrixxx.KAH.0/",
       "displayTitle": "energy trixxx",
       "sourceTitle": "energytrixxx",
-      "displayArtist": null,
+      "displayArtist": "KAH",
       "sourceArtist": "KAH",
       "indexRaw": "0",
       "artwork": {
@@ -3836,7 +3836,7 @@
       "sourceTrackPath": "Assets/Tracks/EnginexStartmelodymix.CrossingSound.0/",
       "displayTitle": "Engine x Start!! (melody mix)",
       "sourceTitle": "EnginexStartmelodymix",
-      "displayArtist": null,
+      "displayArtist": "CrossingSound",
       "sourceArtist": "CrossingSound",
       "indexRaw": "0",
       "artwork": {
@@ -3876,7 +3876,7 @@
       "sourceTrackPath": "Assets/Tracks/ERABYECONNEC10N.かめりあ.0/",
       "displayTitle": "+ERABY+E CONNEC+10N",
       "sourceTitle": "ERABYECONNEC10N",
-      "displayArtist": null,
+      "displayArtist": "かめりあ",
       "sourceArtist": "かめりあ",
       "indexRaw": "0",
       "artwork": {
@@ -3921,7 +3921,7 @@
       "sourceTrackPath": "Assets/Tracks/EradicationCatastrophe.NceS.0/",
       "displayTitle": "Eradication Catastrophe",
       "sourceTitle": "EradicationCatastrophe",
-      "displayArtist": null,
+      "displayArtist": "NceS",
       "sourceArtist": "NceS",
       "indexRaw": "0",
       "artwork": {
@@ -3961,7 +3961,7 @@
       "sourceTrackPath": "Assets/Tracks/EternalSnow.AbyssIdols.0/",
       "displayTitle": "Eternal Snow",
       "sourceTitle": "EternalSnow",
-      "displayArtist": null,
+      "displayArtist": "AbyssIdols",
       "sourceArtist": "AbyssIdols",
       "indexRaw": "0",
       "artwork": {
@@ -4001,7 +4001,7 @@
       "sourceTrackPath": "Assets/Tracks/Feast远东之宴.茶鸣拾贰律.0/",
       "displayTitle": "Feast远东之宴",
       "sourceTitle": "Feast远东之宴",
-      "displayArtist": null,
+      "displayArtist": "茶鸣拾贰律",
       "sourceArtist": "茶鸣拾贰律",
       "indexRaw": "0",
       "artwork": {
@@ -4040,7 +4040,7 @@
       "sourceTrackPath": "Assets/Tracks/FinalStep.Lime.0/",
       "displayTitle": "Final Step!",
       "sourceTitle": "FinalStep",
-      "displayArtist": null,
+      "displayArtist": "Lime",
       "sourceArtist": "Lime",
       "indexRaw": "0",
       "artwork": {
@@ -4080,7 +4080,7 @@
       "sourceTrackPath": "Assets/Tracks/FindMe.Kforest.0/",
       "displayTitle": "Find_Me",
       "sourceTitle": "FindMe",
-      "displayArtist": null,
+      "displayArtist": "Kforest",
       "sourceArtist": "Kforest",
       "indexRaw": "0",
       "artwork": {
@@ -4120,7 +4120,7 @@
       "sourceTrackPath": "Assets/Tracks/FixationsTowardtheStars.Foodbot.0/",
       "displayTitle": "Fixations Toward the Stars",
       "sourceTitle": "FixationsTowardtheStars",
-      "displayArtist": null,
+      "displayArtist": "Foodbot",
       "sourceArtist": "Foodbot",
       "indexRaw": "0",
       "artwork": {
@@ -4160,7 +4160,7 @@
       "sourceTrackPath": "Assets/Tracks/FlutterEcho.Cansol.0/",
       "displayTitle": "Flutter Echo",
       "sourceTitle": "FlutterEcho",
-      "displayArtist": null,
+      "displayArtist": "Cansol",
       "sourceArtist": "Cansol",
       "indexRaw": "0",
       "artwork": {
@@ -4200,7 +4200,7 @@
       "sourceTrackPath": "Assets/Tracks/FracturedAngel.DJRaisei.0/",
       "displayTitle": "Fractured Angel",
       "sourceTitle": "FracturedAngel",
-      "displayArtist": null,
+      "displayArtist": "DJRaisei",
       "sourceArtist": "DJRaisei",
       "indexRaw": "0",
       "artwork": {
@@ -4240,7 +4240,7 @@
       "sourceTrackPath": "Assets/Tracks/FreakyUndulationsNobleKnightsofTune.JehezukielKURORAK.0/",
       "displayTitle": "Freaky Undulations ~Noble Knights of Tune~",
       "sourceTitle": "FreakyUndulationsNobleKnightsofTune",
-      "displayArtist": null,
+      "displayArtist": "JehezukielKURORAK",
       "sourceArtist": "JehezukielKURORAK",
       "indexRaw": "0",
       "artwork": {
@@ -4280,7 +4280,7 @@
       "sourceTrackPath": "Assets/Tracks/FrozenHeart.A39沙包P.0/",
       "displayTitle": "Frozen Heart",
       "sourceTitle": "FrozenHeart",
-      "displayArtist": null,
+      "displayArtist": "A39沙包P",
       "sourceArtist": "A39沙包P",
       "indexRaw": "0",
       "artwork": {
@@ -4320,7 +4320,7 @@
       "sourceTrackPath": "Assets/Tracks/FULiAUTOBUSTER.MYUKKE.0/",
       "displayTitle": "FULi AUTO BUSTER",
       "sourceTitle": "FULiAUTOBUSTER",
-      "displayArtist": null,
+      "displayArtist": "MYUKKE",
       "sourceArtist": "MYUKKE",
       "indexRaw": "0",
       "artwork": {
@@ -4360,7 +4360,7 @@
       "sourceTrackPath": "Assets/Tracks/FULiAUTOSHOOTER.MYUKKE.0/",
       "displayTitle": "FULi AUTO SHOOTER",
       "sourceTitle": "FULiAUTOSHOOTER",
-      "displayArtist": null,
+      "displayArtist": "MYUKKE",
       "sourceArtist": "MYUKKE",
       "indexRaw": "0",
       "artwork": {
@@ -4400,7 +4400,7 @@
       "sourceTrackPath": "Assets/Tracks/FutureMind.RayNauticaRekuMochizuki.0/",
       "displayTitle": "Future Mind",
       "sourceTitle": "FutureMind",
-      "displayArtist": null,
+      "displayArtist": "RayNauticaRekuMochizuki",
       "sourceArtist": "RayNauticaRekuMochizuki",
       "indexRaw": "0",
       "artwork": {
@@ -4440,7 +4440,7 @@
       "sourceTrackPath": "Assets/Tracks/GetBack.CAP3.0/",
       "displayTitle": "Get Back",
       "sourceTitle": "GetBack",
-      "displayArtist": null,
+      "displayArtist": "CAP3",
       "sourceArtist": "CAP3",
       "indexRaw": "0",
       "artwork": {
@@ -4480,7 +4480,7 @@
       "sourceTrackPath": "Assets/Tracks/GetReady.iF.0/",
       "displayTitle": "Get Ready!!",
       "sourceTitle": "GetReady",
-      "displayArtist": null,
+      "displayArtist": "iF",
       "sourceArtist": "iF",
       "indexRaw": "0",
       "artwork": {
@@ -4520,7 +4520,7 @@
       "sourceTrackPath": "Assets/Tracks/Glaciaxion.SunsetRay.0/",
       "displayTitle": "Glaciaxion",
       "sourceTitle": "Glaciaxion",
-      "displayArtist": null,
+      "displayArtist": "SunsetRay",
       "sourceArtist": "SunsetRay",
       "indexRaw": "0",
       "artwork": {
@@ -4559,7 +4559,7 @@
       "sourceTrackPath": "Assets/Tracks/GOODBOUNCE.EBIMAYO.0/",
       "displayTitle": "GOODBOUNCE",
       "sourceTitle": "GOODBOUNCE",
-      "displayArtist": null,
+      "displayArtist": "EBIMAYO",
       "sourceArtist": "EBIMAYO",
       "indexRaw": "0",
       "artwork": {
@@ -4598,7 +4598,7 @@
       "sourceTrackPath": "Assets/Tracks/GOODFORTUNE.EBIMAYO.0/",
       "displayTitle": "GOODFORTUNE",
       "sourceTitle": "GOODFORTUNE",
-      "displayArtist": null,
+      "displayArtist": "EBIMAYO",
       "sourceArtist": "EBIMAYO",
       "indexRaw": "0",
       "artwork": {
@@ -4637,7 +4637,7 @@
       "sourceTrackPath": "Assets/Tracks/GOODRAGE.EBIMAYO.0/",
       "displayTitle": "GOODRAGE",
       "sourceTitle": "GOODRAGE",
-      "displayArtist": null,
+      "displayArtist": "EBIMAYO",
       "sourceArtist": "EBIMAYO",
       "indexRaw": "0",
       "artwork": {
@@ -4676,7 +4676,7 @@
       "sourceTrackPath": "Assets/Tracks/GOODTEK.EBIMAYO.0/",
       "displayTitle": "GOODTEK",
       "sourceTitle": "GOODTEK",
-      "displayArtist": null,
+      "displayArtist": "EBIMAYO",
       "sourceArtist": "EBIMAYO",
       "indexRaw": "0",
       "artwork": {
@@ -4715,7 +4715,7 @@
       "sourceTrackPath": "Assets/Tracks/GOODWORLD.EBIMAYO.0/",
       "displayTitle": "GOODWORLD",
       "sourceTitle": "GOODWORLD",
-      "displayArtist": null,
+      "displayArtist": "EBIMAYO",
       "sourceArtist": "EBIMAYO",
       "indexRaw": "0",
       "artwork": {
@@ -4754,7 +4754,7 @@
       "sourceTrackPath": "Assets/Tracks/Grimheart.Puru.0/",
       "displayTitle": "Grimheart",
       "sourceTitle": "Grimheart",
-      "displayArtist": null,
+      "displayArtist": "Puru",
       "sourceArtist": "Puru",
       "indexRaw": "0",
       "artwork": {
@@ -4834,7 +4834,7 @@
       "sourceTrackPath": "Assets/Tracks/GVNGlitterVomitusandNeon.SaltySaltUnfold33.0/",
       "displayTitle": "G.V.N. (Glitter, Vomitus and Neon)",
       "sourceTitle": "GVNGlitterVomitusandNeon",
-      "displayArtist": null,
+      "displayArtist": "SaltySaltUnfold33",
       "sourceArtist": "SaltySaltUnfold33",
       "indexRaw": "0",
       "artwork": {
@@ -4874,7 +4874,7 @@
       "sourceTrackPath": "Assets/Tracks/HardcoreKwaya.EnFr.0/",
       "displayTitle": "Hardcore Kwaya",
       "sourceTitle": "HardcoreKwaya",
-      "displayArtist": null,
+      "displayArtist": "EnFr",
       "sourceArtist": "EnFr",
       "indexRaw": "0",
       "artwork": {
@@ -4914,7 +4914,7 @@
       "sourceTrackPath": "Assets/Tracks/HAZARD.Limpid.0/",
       "displayTitle": "HAZARD",
       "sourceTitle": "HAZARD",
-      "displayArtist": null,
+      "displayArtist": "Limpid",
       "sourceArtist": "Limpid",
       "indexRaw": "0",
       "artwork": {
@@ -4953,7 +4953,7 @@
       "sourceTrackPath": "Assets/Tracks/Helios.NOABotaNya.0/",
       "displayTitle": "Helios",
       "sourceTitle": "Helios",
-      "displayArtist": null,
+      "displayArtist": "NOABotaNya",
       "sourceArtist": "NOABotaNya",
       "indexRaw": "0",
       "artwork": {
@@ -4992,7 +4992,7 @@
       "sourceTrackPath": "Assets/Tracks/HorizonBlue.NothingButRequiemfeatAikapinChiyoko.0/",
       "displayTitle": "Horizon Blue",
       "sourceTitle": "HorizonBlue",
-      "displayArtist": null,
+      "displayArtist": "NothingButRequiemfeatAikapinChiyoko",
       "sourceArtist": "NothingButRequiemfeatAikapinChiyoko",
       "indexRaw": "0",
       "artwork": {
@@ -5032,7 +5032,7 @@
       "sourceTrackPath": "Assets/Tracks/HumaN.SOTUI.0/",
       "displayTitle": "HumaN",
       "sourceTitle": "HumaN",
-      "displayArtist": null,
+      "displayArtist": "SOTUI",
       "sourceArtist": "SOTUI",
       "indexRaw": "0",
       "artwork": {
@@ -5071,7 +5071,7 @@
       "sourceTrackPath": "Assets/Tracks/Hydra.JamesLandinoXAkiraComplex.0/",
       "displayTitle": "Hydra-James Landino X Akira Complex",
       "sourceTitle": "Hydra",
-      "displayArtist": null,
+      "displayArtist": "JamesLandinoXAkiraComplex",
       "sourceArtist": "JamesLandinoXAkiraComplex",
       "indexRaw": "0",
       "artwork": {
@@ -5116,7 +5116,7 @@
       "sourceTrackPath": "Assets/Tracks/Igallta.SeURa.0/",
       "displayTitle": "Igallta",
       "sourceTitle": "Igallta",
-      "displayArtist": null,
+      "displayArtist": "SeURa",
       "sourceArtist": "SeURa",
       "indexRaw": "0",
       "artwork": {
@@ -5160,7 +5160,7 @@
       "sourceTrackPath": "Assets/Tracks/iLArtifact.Link0.0/",
       "displayTitle": "iL-Artifact",
       "sourceTitle": "iLArtifact",
-      "displayArtist": null,
+      "displayArtist": "Link0",
       "sourceArtist": "Link0",
       "indexRaw": "0",
       "artwork": {
@@ -5200,7 +5200,7 @@
       "sourceTrackPath": "Assets/Tracks/IMustSayNo.TangJuan.0/",
       "displayTitle": "I Must Say No",
       "sourceTitle": "IMustSayNo",
-      "displayArtist": null,
+      "displayArtist": "TangJuan",
       "sourceArtist": "TangJuan",
       "indexRaw": "0",
       "artwork": {
@@ -5279,7 +5279,7 @@
       "sourceTrackPath": "Assets/Tracks/IndelibleScar.Noah.0/",
       "displayTitle": "Indelible Scar",
       "sourceTitle": "IndelibleScar",
-      "displayArtist": null,
+      "displayArtist": "Noah",
       "sourceArtist": "Noah",
       "indexRaw": "0",
       "artwork": {
@@ -5324,7 +5324,7 @@
       "sourceTrackPath": "Assets/Tracks/inferior.姜米條.0/",
       "displayTitle": "inferior",
       "sourceTitle": "inferior",
-      "displayArtist": null,
+      "displayArtist": "姜米條",
       "sourceArtist": "姜米條",
       "indexRaw": "0",
       "artwork": {
@@ -5363,7 +5363,7 @@
       "sourceTrackPath": "Assets/Tracks/INFiNiTEENERZYOverdoze.RekuMochizuki.0/",
       "displayTitle": "INFiNiTE ENERZY -Overdoze-",
       "sourceTitle": "INFiNiTEENERZYOverdoze",
-      "displayArtist": null,
+      "displayArtist": "RekuMochizuki",
       "sourceArtist": "RekuMochizuki",
       "indexRaw": "0",
       "artwork": {
@@ -5408,7 +5408,7 @@
       "sourceTrackPath": "Assets/Tracks/InfinityHeaven.HyuN.0/",
       "displayTitle": "Infinity Heaven",
       "sourceTitle": "InfinityHeaven",
-      "displayArtist": null,
+      "displayArtist": "HyuN",
       "sourceArtist": "HyuN",
       "indexRaw": "0",
       "artwork": {
@@ -5448,7 +5448,7 @@
       "sourceTrackPath": "Assets/Tracks/Initialize.iF.0/",
       "displayTitle": "Initialize",
       "sourceTitle": "Initialize",
-      "displayArtist": null,
+      "displayArtist": "iF",
       "sourceArtist": "iF",
       "indexRaw": "0",
       "artwork": {
@@ -5516,7 +5516,7 @@
       "sourceTrackPath": "Assets/Tracks/InvertedWorld.ARForest.0/",
       "displayTitle": "Inverted World",
       "sourceTitle": "InvertedWorld",
-      "displayArtist": null,
+      "displayArtist": "ARForest",
       "sourceArtist": "ARForest",
       "indexRaw": "0",
       "artwork": {
@@ -5556,7 +5556,7 @@
       "sourceTrackPath": "Assets/Tracks/JourneywithYou.Iris.0/",
       "displayTitle": "Journey with You",
       "sourceTitle": "JourneywithYou",
-      "displayArtist": null,
+      "displayArtist": "Iris",
       "sourceArtist": "Iris",
       "indexRaw": "0",
       "artwork": {
@@ -5596,7 +5596,7 @@
       "sourceTrackPath": "Assets/Tracks/JunXionBetweenLifeAndDeathVIPMix.1N6Fs.0/",
       "displayTitle": "JunXion Between Life And Death(VIP Mix)",
       "sourceTitle": "JunXionBetweenLifeAndDeathVIPMix",
-      "displayArtist": null,
+      "displayArtist": "1N6Fs",
       "sourceArtist": "1N6Fs",
       "indexRaw": "0",
       "artwork": {
@@ -5636,7 +5636,7 @@
       "sourceTrackPath": "Assets/Tracks/Kerberos.Zris.0/",
       "displayTitle": "Kerberos",
       "sourceTitle": "Kerberos",
-      "displayArtist": null,
+      "displayArtist": "Zris",
       "sourceArtist": "Zris",
       "indexRaw": "0",
       "artwork": {
@@ -5675,7 +5675,7 @@
       "sourceTrackPath": "Assets/Tracks/Khalid.Dolphin.0/",
       "displayTitle": "Khalid",
       "sourceTitle": "Khalid",
-      "displayArtist": null,
+      "displayArtist": "Dolphin",
       "sourceArtist": "Dolphin",
       "indexRaw": "0",
       "artwork": {
@@ -5714,7 +5714,7 @@
       "sourceTrackPath": "Assets/Tracks/KhronostasisKatharsis.Halv.0/",
       "displayTitle": "Khronostasis Katharsis",
       "sourceTitle": "KhronostasisKatharsis",
-      "displayArtist": null,
+      "displayArtist": "Halv",
       "sourceArtist": "Halv",
       "indexRaw": "0",
       "artwork": {
@@ -5754,7 +5754,7 @@
       "sourceTrackPath": "Assets/Tracks/KirakiraNoelStory.RekuMochizuki.0/",
       "displayTitle": "Kirakira Noel Story!!",
       "sourceTitle": "KirakiraNoelStory",
-      "displayArtist": null,
+      "displayArtist": "RekuMochizuki",
       "sourceArtist": "RekuMochizuki",
       "indexRaw": "0",
       "artwork": {
@@ -5794,7 +5794,7 @@
       "sourceTrackPath": "Assets/Tracks/KIZUNAResolution.TAG.0/",
       "displayTitle": "KIZUNA Resolution",
       "sourceTitle": "KIZUNAResolution",
-      "displayArtist": null,
+      "displayArtist": "TAG",
       "sourceArtist": "TAG",
       "indexRaw": "0",
       "artwork": {
@@ -5834,7 +5834,7 @@
       "sourceTrackPath": "Assets/Tracks/KMoeVIP.ZxNX.0/",
       "displayTitle": "K.Moe (VIP)",
       "sourceTitle": "KMoeVIP",
-      "displayArtist": null,
+      "displayArtist": "ZxNX",
       "sourceArtist": "ZxNX",
       "indexRaw": "0",
       "artwork": {
@@ -5874,7 +5874,7 @@
       "sourceTrackPath": "Assets/Tracks/Komplexe.雄之助featSennzai.0/",
       "displayTitle": "Komplexe",
       "sourceTitle": "Komplexe",
-      "displayArtist": null,
+      "displayArtist": "雄之助featSennzai",
       "sourceArtist": "雄之助featSennzai",
       "indexRaw": "0",
       "artwork": {
@@ -5913,7 +5913,7 @@
       "sourceTrackPath": "Assets/Tracks/LabyrinthinKowloonWalledWorld.かめりあ.0/",
       "displayTitle": "Labyrinth in Kowloon_ Walled World",
       "sourceTitle": "LabyrinthinKowloonWalledWorld",
-      "displayArtist": null,
+      "displayArtist": "かめりあ",
       "sourceArtist": "かめりあ",
       "indexRaw": "0",
       "artwork": {
@@ -5953,7 +5953,7 @@
       "sourceTrackPath": "Assets/Tracks/LeaveAllBehind.rider.0/",
       "displayTitle": "Leave All Behind",
       "sourceTitle": "LeaveAllBehind",
-      "displayArtist": null,
+      "displayArtist": "rider",
       "sourceArtist": "rider",
       "indexRaw": "0",
       "artwork": {
@@ -5993,7 +5993,7 @@
       "sourceTrackPath": "Assets/Tracks/Letempsperdu.Daison.0/",
       "displayTitle": "Le temps perdu",
       "sourceTitle": "Letempsperdu",
-      "displayArtist": null,
+      "displayArtist": "Daison",
       "sourceArtist": "Daison",
       "indexRaw": "0",
       "artwork": {
@@ -6033,7 +6033,7 @@
       "sourceTrackPath": "Assets/Tracks/lifeflashesbeforeweebeyes.BilliumMoto.0/",
       "displayTitle": "life flashes before weeb eyes",
       "sourceTitle": "lifeflashesbeforeweebeyes",
-      "displayArtist": null,
+      "displayArtist": "BilliumMoto",
       "sourceArtist": "BilliumMoto",
       "indexRaw": "0",
       "artwork": {
@@ -6113,7 +6113,7 @@
       "sourceTrackPath": "Assets/Tracks/Luminescence.米虾Fomiki初云CLoudie.0/",
       "displayTitle": "Luminescence",
       "sourceTitle": "Luminescence",
-      "displayArtist": null,
+      "displayArtist": "米虾Fomiki初云CLoudie",
       "sourceArtist": "米虾Fomiki初云CLoudie",
       "indexRaw": "0",
       "artwork": {
@@ -6152,7 +6152,7 @@
       "sourceTrackPath": "Assets/Tracks/Luminescent.Daison.0/",
       "displayTitle": "Luminescent",
       "sourceTitle": "Luminescent",
-      "displayArtist": null,
+      "displayArtist": "Daison",
       "sourceArtist": "Daison",
       "indexRaw": "0",
       "artwork": {
@@ -6191,7 +6191,7 @@
       "sourceTrackPath": "Assets/Tracks/LuminousEntitiesLostHeart.NormalMfeatUsagiDenki.0/",
       "displayTitle": "Luminous Entities Lost Heart",
       "sourceTitle": "LuminousEntitiesLostHeart",
-      "displayArtist": null,
+      "displayArtist": "NormalMfeatUsagiDenki",
       "sourceArtist": "NormalMfeatUsagiDenki",
       "indexRaw": "0",
       "artwork": {
@@ -6231,7 +6231,7 @@
       "sourceTrackPath": "Assets/Tracks/Lyrith迷宮リリス.ユメミド.0/",
       "displayTitle": "Lyrith -迷宮リリス-",
       "sourceTitle": "Lyrith迷宮リリス",
-      "displayArtist": null,
+      "displayArtist": "ユメミド",
       "sourceArtist": "ユメミド",
       "indexRaw": "0",
       "artwork": {
@@ -6281,7 +6281,7 @@
       "sourceTrackPath": "Assets/Tracks/MagentaPotion.EmoCo.0/",
       "displayTitle": "Magenta Potion",
       "sourceTitle": "MagentaPotion",
-      "displayArtist": null,
+      "displayArtist": "EmoCo",
       "sourceArtist": "EmoCo",
       "indexRaw": "0",
       "artwork": {
@@ -6321,7 +6321,7 @@
       "sourceTrackPath": "Assets/Tracks/ManifoldHypothesis.cybermisofeattigerlily.0/",
       "displayTitle": "Manifold Hypothesis",
       "sourceTitle": "ManifoldHypothesis",
-      "displayArtist": null,
+      "displayArtist": "cybermisofeattigerlily",
       "sourceArtist": "cybermisofeattigerlily",
       "indexRaw": "0",
       "artwork": {
@@ -6361,7 +6361,7 @@
       "sourceTrackPath": "Assets/Tracks/MARENOL.LeaF.0/",
       "displayTitle": "MARENOL",
       "sourceTitle": "MARENOL",
-      "displayArtist": null,
+      "displayArtist": "LeaF",
       "sourceArtist": "LeaF",
       "indexRaw": "0",
       "artwork": {
@@ -6400,7 +6400,7 @@
       "sourceTrackPath": "Assets/Tracks/mechanted.rareguy.0/",
       "displayTitle": "mechanted",
       "sourceTitle": "mechanted",
-      "displayArtist": null,
+      "displayArtist": "rareguy",
       "sourceArtist": "rareguy",
       "indexRaw": "0",
       "artwork": {
@@ -6439,7 +6439,7 @@
       "sourceTrackPath": "Assets/Tracks/microwav.dandeless.0/",
       "displayTitle": "micro.wav",
       "sourceTitle": "microwav",
-      "displayArtist": null,
+      "displayArtist": "dandeless",
       "sourceArtist": "dandeless",
       "indexRaw": "0",
       "artwork": {
@@ -6479,7 +6479,7 @@
       "sourceTrackPath": "Assets/Tracks/MiracleForestVIPMix.Rinthlive.0/",
       "displayTitle": "Miracle Forest (VIP Mix)",
       "sourceTitle": "MiracleForestVIPMix",
-      "displayArtist": null,
+      "displayArtist": "Rinthlive",
       "sourceArtist": "Rinthlive",
       "indexRaw": "0",
       "artwork": {
@@ -6519,7 +6519,7 @@
       "sourceTrackPath": "Assets/Tracks/MOBILYS.Dachs.0/",
       "displayTitle": "MOBILYS",
       "sourceTitle": "MOBILYS",
-      "displayArtist": null,
+      "displayArtist": "Dachs",
       "sourceArtist": "Dachs",
       "indexRaw": "0",
       "artwork": {
@@ -6558,7 +6558,7 @@
       "sourceTrackPath": "Assets/Tracks/modulus.PTB10.0/",
       "displayTitle": "modulus",
       "sourceTitle": "modulus",
-      "displayArtist": null,
+      "displayArtist": "PTB10",
       "sourceArtist": "PTB10",
       "indexRaw": "0",
       "artwork": {
@@ -6597,7 +6597,7 @@
       "sourceTrackPath": "Assets/Tracks/NextTime.SaMZIng.0/",
       "displayTitle": "Next Time",
       "sourceTitle": "NextTime",
-      "displayArtist": null,
+      "displayArtist": "SaMZIng",
       "sourceArtist": "SaMZIng",
       "indexRaw": "0",
       "artwork": {
@@ -6637,7 +6637,7 @@
       "sourceTrackPath": "Assets/Tracks/Nhelv.Silentroom.0/",
       "displayTitle": "Nhelv",
       "sourceTitle": "Nhelv",
-      "displayArtist": null,
+      "displayArtist": "Silentroom",
       "sourceArtist": "Silentroom",
       "indexRaw": "0",
       "artwork": {
@@ -6676,7 +6676,7 @@
       "sourceTrackPath": "Assets/Tracks/NickofTime.P4koo.0/",
       "displayTitle": "Nick of Time",
       "sourceTitle": "NickofTime",
-      "displayArtist": null,
+      "displayArtist": "P4koo",
       "sourceArtist": "P4koo",
       "indexRaw": "0",
       "artwork": {
@@ -6716,7 +6716,7 @@
       "sourceTrackPath": "Assets/Tracks/NightTheater.わかどり.0/",
       "displayTitle": "NightTheater",
       "sourceTitle": "NightTheater",
-      "displayArtist": null,
+      "displayArtist": "わかどり",
       "sourceArtist": "わかどり",
       "indexRaw": "0",
       "artwork": {
@@ -6755,7 +6755,7 @@
       "sourceTrackPath": "Assets/Tracks/NonMelodicRagezMUGEdit.Normal1zer.0/",
       "displayTitle": "Non-Melodic Ragez(MUG Edit)",
       "sourceTitle": "NonMelodicRagezMUGEdit",
-      "displayArtist": null,
+      "displayArtist": "Normal1zer",
       "sourceArtist": "Normal1zer",
       "indexRaw": "0",
       "artwork": {
@@ -6795,7 +6795,7 @@
       "sourceTrackPath": "Assets/Tracks/NOONEYESMAN.MYUKKE.0/",
       "displayTitle": "NO ONE YES MAN",
       "sourceTitle": "NOONEYESMAN",
-      "displayArtist": null,
+      "displayArtist": "MYUKKE",
       "sourceArtist": "MYUKKE",
       "indexRaw": "0",
       "artwork": {
@@ -6835,7 +6835,7 @@
       "sourceTrackPath": "Assets/Tracks/NowIsTheTimeDoIt.RoyMikelate.0/",
       "displayTitle": "Now Is The Time, Do It",
       "sourceTitle": "NowIsTheTimeDoIt",
-      "displayArtist": null,
+      "displayArtist": "RoyMikelate",
       "sourceArtist": "RoyMikelate",
       "indexRaw": "0",
       "artwork": {
@@ -6875,7 +6875,7 @@
       "sourceTrackPath": "Assets/Tracks/NOx.Juggernaut.0/",
       "displayTitle": "NO x",
       "sourceTitle": "NOx",
-      "displayArtist": null,
+      "displayArtist": "Juggernaut",
       "sourceArtist": "Juggernaut",
       "indexRaw": "0",
       "artwork": {
@@ -6915,7 +6915,7 @@
       "sourceTrackPath": "Assets/Tracks/NYA.FLuoRiTe姜米條.0/",
       "displayTitle": "NYA!!!(Phigros ver.)",
       "sourceTitle": "NYA",
-      "displayArtist": null,
+      "displayArtist": "FLuoRiTe姜米條",
       "sourceArtist": "FLuoRiTe姜米條",
       "indexRaw": "0",
       "artwork": {
@@ -6955,7 +6955,7 @@
       "sourceTrackPath": "Assets/Tracks/OnAndOn.ETIAfeatJenga.0/",
       "displayTitle": "On And On!!",
       "sourceTitle": "OnAndOn",
-      "displayArtist": null,
+      "displayArtist": "ETIAfeatJenga",
       "sourceArtist": "ETIAfeatJenga",
       "indexRaw": "0",
       "artwork": {
@@ -6995,7 +6995,7 @@
       "sourceTrackPath": "Assets/Tracks/opia.rN.0/",
       "displayTitle": "opia",
       "sourceTitle": "opia",
-      "displayArtist": null,
+      "displayArtist": "rN",
       "sourceArtist": "rN",
       "indexRaw": "0",
       "artwork": {
@@ -7034,7 +7034,7 @@
       "sourceTrackPath": "Assets/Tracks/Originally.SNKSMizku.0/",
       "displayTitle": "Originally",
       "sourceTitle": "Originally",
-      "displayArtist": null,
+      "displayArtist": "SNKSMizku",
       "sourceArtist": "SNKSMizku",
       "indexRaw": "0",
       "artwork": {
@@ -7073,7 +7073,7 @@
       "sourceTrackPath": "Assets/Tracks/Orthodox.tokiwa.0/",
       "displayTitle": "Orthodox",
       "sourceTitle": "Orthodox",
-      "displayArtist": null,
+      "displayArtist": "tokiwa",
       "sourceArtist": "tokiwa",
       "indexRaw": "0",
       "artwork": {
@@ -7112,7 +7112,7 @@
       "sourceTrackPath": "Assets/Tracks/Palescreen.WyvernPfeatMadol.0/",
       "displayTitle": "Palescreen",
       "sourceTitle": "Palescreen",
-      "displayArtist": null,
+      "displayArtist": "WyvernPfeatMadol",
       "sourceArtist": "WyvernPfeatMadol",
       "indexRaw": "0",
       "artwork": {
@@ -7151,7 +7151,7 @@
       "sourceTrackPath": "Assets/Tracks/PANICPARADISE.DJSHIONY.0/",
       "displayTitle": "PANIC PARADISE",
       "sourceTitle": "PANICPARADISE",
-      "displayArtist": null,
+      "displayArtist": "DJSHIONY",
       "sourceArtist": "DJSHIONY",
       "indexRaw": "0",
       "artwork": {
@@ -7196,7 +7196,7 @@
       "sourceTrackPath": "Assets/Tracks/ParallelRetrogressionGameVer.Tetrajectory.0/",
       "displayTitle": "Parallel Retrogression (Game Ver.)",
       "sourceTitle": "ParallelRetrogressionGameVer",
-      "displayArtist": null,
+      "displayArtist": "Tetrajectory",
       "sourceArtist": "Tetrajectory",
       "indexRaw": "0",
       "artwork": {
@@ -7236,7 +7236,7 @@
       "sourceTrackPath": "Assets/Tracks/parsey.siqlo.0/",
       "displayTitle": "ρarsey",
       "sourceTitle": "parsey",
-      "displayArtist": null,
+      "displayArtist": "siqlo",
       "sourceArtist": "siqlo",
       "indexRaw": "0",
       "artwork": {
@@ -7276,7 +7276,7 @@
       "sourceTrackPath": "Assets/Tracks/PixelRebelz.Normal1zer.0/",
       "displayTitle": "Pixel Rebelz",
       "sourceTitle": "PixelRebelz",
-      "displayArtist": null,
+      "displayArtist": "Normal1zer",
       "sourceArtist": "Normal1zer",
       "indexRaw": "0",
       "artwork": {
@@ -7316,7 +7316,7 @@
       "sourceTrackPath": "Assets/Tracks/PoisonANDORAffection.LeaF.0/",
       "displayTitle": "Poison AND÷OR Affection",
       "sourceTitle": "PoisonANDORAffection",
-      "displayArtist": null,
+      "displayArtist": "LeaF",
       "sourceArtist": "LeaF",
       "indexRaw": "0",
       "artwork": {
@@ -7356,7 +7356,7 @@
       "sourceTrackPath": "Assets/Tracks/Pontdessouvenirs.VeetaCrushvsitsufeatitsu.0/",
       "displayTitle": "Pont des souvenirs",
       "sourceTitle": "Pontdessouvenirs",
-      "displayArtist": null,
+      "displayArtist": "VeetaCrushvsitsufeatitsu",
       "sourceArtist": "VeetaCrushvsitsufeatitsu",
       "indexRaw": "0",
       "artwork": {
@@ -7396,7 +7396,7 @@
       "sourceTrackPath": "Assets/Tracks/Poseidon.1112vsStar.0/",
       "displayTitle": "Ποσειδών",
       "sourceTitle": "Poseidon",
-      "displayArtist": null,
+      "displayArtist": "1112vsStar",
       "sourceArtist": "1112vsStar",
       "indexRaw": "0",
       "artwork": {
@@ -7441,7 +7441,7 @@
       "sourceTrackPath": "Assets/Tracks/PRAGMATISMRESURRECTION.Laur.0/",
       "displayTitle": "PRAGMATISM -RESURRECTION-",
       "sourceTitle": "PRAGMATISMRESURRECTION",
-      "displayArtist": null,
+      "displayArtist": "Laur",
       "sourceArtist": "Laur",
       "indexRaw": "0",
       "artwork": {
@@ -7486,7 +7486,7 @@
       "sourceTrackPath": "Assets/Tracks/PRAW.Bluewind.0/",
       "displayTitle": "[PRAW]",
       "sourceTitle": "PRAW",
-      "displayArtist": null,
+      "displayArtist": "Bluewind",
       "sourceArtist": "Bluewind",
       "indexRaw": "0",
       "artwork": {
@@ -7526,7 +7526,7 @@
       "sourceTrackPath": "Assets/Tracks/Protoflicker.Silentroom.0/",
       "displayTitle": "Protoflicker",
       "sourceTitle": "Protoflicker",
-      "displayArtist": null,
+      "displayArtist": "Silentroom",
       "sourceArtist": "Silentroom",
       "indexRaw": "0",
       "artwork": {
@@ -7565,7 +7565,7 @@
       "sourceTrackPath": "Assets/Tracks/QuantumHyperspace.D_AAN.0/",
       "displayTitle": "Quantum Hyperspace",
       "sourceTitle": "QuantumHyperspace",
-      "displayArtist": null,
+      "displayArtist": "D_AAN",
       "sourceArtist": "D_AAN",
       "indexRaw": "0",
       "artwork": {
@@ -7605,7 +7605,7 @@
       "sourceTrackPath": "Assets/Tracks/QZKagoRequiem.tpazolite.0/",
       "displayTitle": "QZKago Requiem",
       "sourceTitle": "QZKagoRequiem",
-      "displayArtist": null,
+      "displayArtist": "tpazolite",
       "sourceArtist": "tpazolite",
       "indexRaw": "0",
       "artwork": {
@@ -7650,7 +7650,7 @@
       "sourceTrackPath": "Assets/Tracks/Radiance.Nhato.0/",
       "displayTitle": "Radiance",
       "sourceTitle": "Radiance",
-      "displayArtist": null,
+      "displayArtist": "Nhato",
       "sourceArtist": "Nhato",
       "indexRaw": "0",
       "artwork": {
@@ -7694,7 +7694,7 @@
       "sourceTrackPath": "Assets/Tracks/RainyHeart.BelieverInYou阿卡姆巫师.0/",
       "displayTitle": "Rainy Heart",
       "sourceTitle": "RainyHeart",
-      "displayArtist": null,
+      "displayArtist": "BelieverInYou阿卡姆巫师",
       "sourceArtist": "BelieverInYou阿卡姆巫师",
       "indexRaw": "0",
       "artwork": {
@@ -7734,7 +7734,7 @@
       "sourceTrackPath": "Assets/Tracks/RainySeason.AbyssIdols.0/",
       "displayTitle": "Rainy Season",
       "sourceTitle": "RainySeason",
-      "displayArtist": null,
+      "displayArtist": "AbyssIdols",
       "sourceArtist": "AbyssIdols",
       "indexRaw": "0",
       "artwork": {
@@ -7774,7 +7774,7 @@
       "sourceTrackPath": "Assets/Tracks/Ramification.rareguyReina.0/",
       "displayTitle": "Ramification",
       "sourceTitle": "Ramification",
-      "displayArtist": null,
+      "displayArtist": "rareguyReina",
       "sourceArtist": "rareguyReina",
       "indexRaw": "0",
       "artwork": {
@@ -7813,7 +7813,7 @@
       "sourceTrackPath": "Assets/Tracks/Random.SobremSilentroom.0/",
       "displayTitle": "Random",
       "sourceTitle": "Random",
-      "displayArtist": null,
+      "displayArtist": "SobremSilentroom",
       "sourceArtist": "SobremSilentroom",
       "indexRaw": "0",
       "artwork": {
@@ -7859,7 +7859,7 @@
       "sourceTrackPath": "Assets/Tracks/Re_NascencePsystyleVer.Rinth_live.0/",
       "displayTitle": "Re_Nascence (Psystyle Ver.)",
       "sourceTitle": "Re_NascencePsystyleVer",
-      "displayArtist": null,
+      "displayArtist": "Rinth_live",
       "sourceArtist": "Rinth_live",
       "indexRaw": "0",
       "artwork": {
@@ -7899,7 +7899,7 @@
       "sourceTrackPath": "Assets/Tracks/Realms.HinkikAHimitsu.0/",
       "displayTitle": "Realms",
       "sourceTitle": "Realms",
-      "displayArtist": null,
+      "displayArtist": "HinkikAHimitsu",
       "sourceArtist": "HinkikAHimitsu",
       "indexRaw": "0",
       "artwork": {
@@ -7938,7 +7938,7 @@
       "sourceTrackPath": "Assets/Tracks/Rebirth.ああああ.0/",
       "displayTitle": "Re：Birth",
       "sourceTitle": "Rebirth",
-      "displayArtist": null,
+      "displayArtist": "ああああ",
       "sourceArtist": "ああああ",
       "indexRaw": "0",
       "artwork": {
@@ -7978,7 +7978,7 @@
       "sourceTrackPath": "Assets/Tracks/ReEndofaDream.umavsモリモリあつし.0/",
       "displayTitle": "Re：End of a Dream",
       "sourceTitle": "ReEndofaDream",
-      "displayArtist": null,
+      "displayArtist": "umavsモリモリあつし",
       "sourceArtist": "umavsモリモリあつし",
       "indexRaw": "0",
       "artwork": {
@@ -8023,7 +8023,7 @@
       "sourceTrackPath": "Assets/Tracks/Reimei.影虎.0/",
       "displayTitle": "Reimei",
       "sourceTitle": "Reimei",
-      "displayArtist": null,
+      "displayArtist": "影虎",
       "sourceArtist": "影虎",
       "indexRaw": "0",
       "artwork": {
@@ -8062,7 +8062,7 @@
       "sourceTrackPath": "Assets/Tracks/Resolver.Gomadare.0/",
       "displayTitle": "Resolver",
       "sourceTitle": "Resolver",
-      "displayArtist": null,
+      "displayArtist": "Gomadare",
       "sourceArtist": "Gomadare",
       "indexRaw": "0",
       "artwork": {
@@ -8101,7 +8101,7 @@
       "sourceTrackPath": "Assets/Tracks/RESSiSTANCE.ぐるたみん.0/",
       "displayTitle": "RESSiSTANCE",
       "sourceTitle": "RESSiSTANCE",
-      "displayArtist": null,
+      "displayArtist": "ぐるたみん",
       "sourceArtist": "ぐるたみん",
       "indexRaw": "0",
       "artwork": {
@@ -8140,7 +8140,7 @@
       "sourceTrackPath": "Assets/Tracks/Retribution.nmyKryexe.0/",
       "displayTitle": "Retribution",
       "sourceTitle": "Retribution",
-      "displayArtist": null,
+      "displayArtist": "nmyKryexe",
       "sourceArtist": "nmyKryexe",
       "indexRaw": "0",
       "artwork": {
@@ -8179,7 +8179,7 @@
       "sourceTrackPath": "Assets/Tracks/RetributionCycleofRedemption.ArdolfvsDaily天利.0/",
       "displayTitle": "Retribution ~ Cycle of Redemption ~",
       "sourceTitle": "RetributionCycleofRedemption",
-      "displayArtist": null,
+      "displayArtist": "ArdolfvsDaily天利",
       "sourceArtist": "ArdolfvsDaily天利",
       "indexRaw": "0",
       "artwork": {
@@ -8219,7 +8219,7 @@
       "sourceTrackPath": "Assets/Tracks/RIPPER.Friedwav.0/",
       "displayTitle": "RIPPER",
       "sourceTitle": "RIPPER",
-      "displayArtist": null,
+      "displayArtist": "Friedwav",
       "sourceArtist": "Friedwav",
       "indexRaw": "0",
       "artwork": {
@@ -8258,7 +8258,7 @@
       "sourceTrackPath": "Assets/Tracks/Rrharil.TeamGrimoire.0/",
       "displayTitle": "Rrhar'il",
       "sourceTitle": "Rrharil",
-      "displayArtist": null,
+      "displayArtist": "TeamGrimoire",
       "sourceArtist": "TeamGrimoire",
       "indexRaw": "0",
       "artwork": {
@@ -8303,7 +8303,7 @@
       "sourceTrackPath": "Assets/Tracks/RubbishSorting.CtymaxvsNceS.0/",
       "displayTitle": "Rubbish Sorting",
       "sourceTitle": "RubbishSorting",
-      "displayArtist": null,
+      "displayArtist": "CtymaxvsNceS",
       "sourceArtist": "CtymaxvsNceS",
       "indexRaw": "0",
       "artwork": {
@@ -8343,7 +8343,7 @@
       "sourceTrackPath": "Assets/Tracks/SATELLITE.かめりあ.0/",
       "displayTitle": "S.A.T.E.L.L.I.T.E.",
       "sourceTitle": "SATELLITE",
-      "displayArtist": null,
+      "displayArtist": "かめりあ",
       "sourceArtist": "かめりあ",
       "indexRaw": "0",
       "artwork": {
@@ -8388,7 +8388,7 @@
       "sourceTrackPath": "Assets/Tracks/Schadenfreude.ZxNX.0/",
       "displayTitle": "Schadenfreude",
       "sourceTitle": "Schadenfreude",
-      "displayArtist": null,
+      "displayArtist": "ZxNX",
       "sourceArtist": "ZxNX",
       "indexRaw": "0",
       "artwork": {
@@ -8427,7 +8427,7 @@
       "sourceTrackPath": "Assets/Tracks/SecretIllumination.Yooh.0/",
       "displayTitle": "Secret Illumination",
       "sourceTitle": "SecretIllumination",
-      "displayArtist": null,
+      "displayArtist": "Yooh",
       "sourceArtist": "Yooh",
       "indexRaw": "0",
       "artwork": {
@@ -8467,7 +8467,7 @@
       "sourceTrackPath": "Assets/Tracks/Sein.朔Apo11oprogramvsお月さま交響曲ftkuroa荒巻.0/",
       "displayTitle": "Sein",
       "sourceTitle": "Sein",
-      "displayArtist": null,
+      "displayArtist": "朔Apo11oprogramvsお月さま交響曲ftkuroa荒巻",
       "sourceArtist": "朔Apo11oprogramvsお月さま交響曲ftkuroa荒巻",
       "indexRaw": "0",
       "artwork": {
@@ -8506,7 +8506,7 @@
       "sourceTrackPath": "Assets/Tracks/Shadow.SumaiLightvs姜米條.0/",
       "displayTitle": "Shadow",
       "sourceTitle": "Shadow",
-      "displayArtist": null,
+      "displayArtist": "SumaiLightvs姜米條",
       "sourceArtist": "SumaiLightvs姜米條",
       "indexRaw": "0",
       "artwork": {
@@ -8550,7 +8550,7 @@
       "sourceTrackPath": "Assets/Tracks/Shelter.MeatyRabbitNceS.0/",
       "displayTitle": "Shelter",
       "sourceTitle": "Shelter",
-      "displayArtist": null,
+      "displayArtist": "MeatyRabbitNceS",
       "sourceArtist": "MeatyRabbitNceS",
       "indexRaw": "0",
       "artwork": {
@@ -8589,7 +8589,7 @@
       "sourceTrackPath": "Assets/Tracks/ShineAfter.ADeanJocularACE.0/",
       "displayTitle": "Shine After",
       "sourceTitle": "ShineAfter",
-      "displayArtist": null,
+      "displayArtist": "ADeanJocularACE",
       "sourceArtist": "ADeanJocularACE",
       "indexRaw": "0",
       "artwork": {
@@ -8629,7 +8629,7 @@
       "sourceTrackPath": "Assets/Tracks/SIGMA.Kryexe.0/",
       "displayTitle": "SIGMA",
       "sourceTitle": "SIGMA",
-      "displayArtist": null,
+      "displayArtist": "Kryexe",
       "sourceArtist": "Kryexe",
       "indexRaw": "0",
       "artwork": {
@@ -8668,7 +8668,7 @@
       "sourceTrackPath": "Assets/Tracks/SilenceisGoldenSpeechisGolden.NIWASHI.0/",
       "displayTitle": "Silence is Golden, Speech is Golden",
       "sourceTitle": "SilenceisGoldenSpeechisGolden",
-      "displayArtist": null,
+      "displayArtist": "NIWASHI",
       "sourceArtist": "NIWASHI",
       "indexRaw": "0",
       "artwork": {
@@ -8708,7 +8708,7 @@
       "sourceTrackPath": "Assets/Tracks/slips.rintarosoma.0/",
       "displayTitle": "sølips",
       "sourceTitle": "slips",
-      "displayArtist": null,
+      "displayArtist": "rintarosoma",
       "sourceArtist": "rintarosoma",
       "indexRaw": "0",
       "artwork": {
@@ -8793,7 +8793,7 @@
       "sourceTrackPath": "Assets/Tracks/SnowDesert.WyvernP.0/",
       "displayTitle": "Snow Desert",
       "sourceTitle": "SnowDesert",
-      "displayArtist": null,
+      "displayArtist": "WyvernP",
       "sourceArtist": "WyvernP",
       "indexRaw": "0",
       "artwork": {
@@ -8833,7 +8833,7 @@
       "sourceTrackPath": "Assets/Tracks/SolaggyfeatUzumaki.ShrimpCatsはぁち後藤涼輔.0/",
       "displayTitle": "So laggy! (feat. Uzumaki)",
       "sourceTitle": "SolaggyfeatUzumaki",
-      "displayArtist": null,
+      "displayArtist": "ShrimpCatsはぁち後藤涼輔",
       "sourceArtist": "ShrimpCatsはぁち後藤涼輔",
       "indexRaw": "0",
       "artwork": {
@@ -8873,7 +8873,7 @@
       "sourceTrackPath": "Assets/Tracks/SparkleNewLife.rider.0/",
       "displayTitle": "Sparkle New Life",
       "sourceTitle": "SparkleNewLife",
-      "displayArtist": null,
+      "displayArtist": "rider",
       "sourceArtist": "rider",
       "indexRaw": "0",
       "artwork": {
@@ -8913,7 +8913,7 @@
       "sourceTrackPath": "Assets/Tracks/Spasmodic.姜米條颶風元力上人.0/",
       "displayTitle": "Spasmodic",
       "sourceTitle": "Spasmodic",
-      "displayArtist": null,
+      "displayArtist": "姜米條颶風元力上人",
       "sourceArtist": "姜米條颶風元力上人",
       "indexRaw": "0",
       "artwork": {
@@ -8957,7 +8957,7 @@
       "sourceTrackPath": "Assets/Tracks/SpeedUp.DarTokki.0/",
       "displayTitle": "Speed Up!",
       "sourceTitle": "SpeedUp",
-      "displayArtist": null,
+      "displayArtist": "DarTokki",
       "sourceArtist": "DarTokki",
       "indexRaw": "0",
       "artwork": {
@@ -8997,7 +8997,7 @@
       "sourceTrackPath": "Assets/Tracks/Spotlight.Ardolf.0/",
       "displayTitle": "Spotlight",
       "sourceTitle": "Spotlight",
-      "displayArtist": null,
+      "displayArtist": "Ardolf",
       "sourceArtist": "Ardolf",
       "indexRaw": "0",
       "artwork": {
@@ -9036,7 +9036,7 @@
       "sourceTrackPath": "Assets/Tracks/Starduster.Quree.0/",
       "displayTitle": "Starduster",
       "sourceTitle": "Starduster",
-      "displayArtist": null,
+      "displayArtist": "Quree",
       "sourceArtist": "Quree",
       "indexRaw": "0",
       "artwork": {
@@ -9075,7 +9075,7 @@
       "sourceTrackPath": "Assets/Tracks/StardustRAY.kanonevsBlackY.0/",
       "displayTitle": "Stardust_RAY",
       "sourceTitle": "StardustRAY",
-      "displayArtist": null,
+      "displayArtist": "kanonevsBlackY",
       "sourceArtist": "kanonevsBlackY",
       "indexRaw": "0",
       "artwork": {
@@ -9120,7 +9120,7 @@
       "sourceTrackPath": "Assets/Tracks/Stasis.Maozon.0/",
       "displayTitle": "Stasis",
       "sourceTitle": "Stasis",
-      "displayArtist": null,
+      "displayArtist": "Maozon",
       "sourceArtist": "Maozon",
       "indexRaw": "0",
       "artwork": {
@@ -9164,7 +9164,7 @@
       "sourceTrackPath": "Assets/Tracks/SultanRage.MonstDeath.0/",
       "displayTitle": "Sultan Rage",
       "sourceTitle": "SultanRage",
-      "displayArtist": null,
+      "displayArtist": "MonstDeath",
       "sourceArtist": "MonstDeath",
       "indexRaw": "0",
       "artwork": {
@@ -9204,7 +9204,7 @@
       "sourceTrackPath": "Assets/Tracks/SURREALISM.Itsuki.0/",
       "displayTitle": "-SURREALISM-",
       "sourceTitle": "SURREALISM",
-      "displayArtist": null,
+      "displayArtist": "Itsuki",
       "sourceArtist": "Itsuki",
       "indexRaw": "0",
       "artwork": {
@@ -9244,7 +9244,7 @@
       "sourceTrackPath": "Assets/Tracks/SwingSkipDrop.ミハイル.0/",
       "displayTitle": "Swing Skip Drop",
       "sourceTitle": "SwingSkipDrop",
-      "displayArtist": null,
+      "displayArtist": "ミハイル",
       "sourceArtist": "ミハイル",
       "indexRaw": "0",
       "artwork": {
@@ -9284,7 +9284,7 @@
       "sourceTrackPath": "Assets/Tracks/TECHNOPOLIS2085.PRASTIKDANCEFLOOR.0/",
       "displayTitle": "TECHNOPOLIS 2085",
       "sourceTitle": "TECHNOPOLIS2085",
-      "displayArtist": null,
+      "displayArtist": "PRASTIKDANCEFLOOR",
       "sourceArtist": "PRASTIKDANCEFLOOR",
       "indexRaw": "0",
       "artwork": {
@@ -9329,7 +9329,7 @@
       "sourceTrackPath": "Assets/Tracks/TemporalShifting.LureRabbitVC.0/",
       "displayTitle": "Temporal Shifting",
       "sourceTitle": "TemporalShifting",
-      "displayArtist": null,
+      "displayArtist": "LureRabbitVC",
       "sourceArtist": "LureRabbitVC",
       "indexRaw": "0",
       "artwork": {
@@ -9369,7 +9369,7 @@
       "sourceTrackPath": "Assets/Tracks/TheChariotREVIIVAL.Attoclef.0/",
       "displayTitle": "The Chariot ~REVIIVAL~",
       "sourceTitle": "TheChariotREVIIVAL",
-      "displayArtist": null,
+      "displayArtist": "Attoclef",
       "sourceArtist": "Attoclef",
       "indexRaw": "0",
       "artwork": {
@@ -9409,7 +9409,7 @@
       "sourceTrackPath": "Assets/Tracks/TheMountainEater.PaulBazooka.0/",
       "displayTitle": "The Mountain Eater from MUSYNC",
       "sourceTitle": "TheMountainEater",
-      "displayArtist": null,
+      "displayArtist": "PaulBazooka",
       "sourceArtist": "PaulBazooka",
       "indexRaw": "0",
       "artwork": {
@@ -9449,7 +9449,7 @@
       "sourceTrackPath": "Assets/Tracks/TheWholeRest.KIVΛ.0/",
       "displayTitle": "The Whole Rest-KIVΛ",
       "sourceTitle": "TheWholeRest",
-      "displayArtist": null,
+      "displayArtist": "KIVΛ",
       "sourceArtist": "KIVΛ",
       "indexRaw": "0",
       "artwork": {
@@ -9489,7 +9489,7 @@
       "sourceTrackPath": "Assets/Tracks/Thrashforce.KAHvsE0ri4.0/",
       "displayTitle": "Thrash force",
       "sourceTitle": "Thrashforce",
-      "displayArtist": null,
+      "displayArtist": "KAHvsE0ri4",
       "sourceArtist": "KAHvsE0ri4",
       "indexRaw": "0",
       "artwork": {
@@ -9529,7 +9529,7 @@
       "sourceTrackPath": "Assets/Tracks/TimetoNightSkyfeatLeeYuJin.HyuNKLYDIX.0/",
       "displayTitle": "Time to Night Sky (feat. Lee Yu Jin)",
       "sourceTitle": "TimetoNightSkyfeatLeeYuJin",
-      "displayArtist": null,
+      "displayArtist": "HyuNKLYDIX",
       "sourceArtist": "HyuNKLYDIX",
       "indexRaw": "0",
       "artwork": {
@@ -9569,7 +9569,7 @@
       "sourceTrackPath": "Assets/Tracks/Trane.MALVA.0/",
       "displayTitle": "Träne",
       "sourceTitle": "Trane",
-      "displayArtist": null,
+      "displayArtist": "MALVA",
       "sourceArtist": "MALVA",
       "indexRaw": "0",
       "artwork": {
@@ -9609,7 +9609,7 @@
       "sourceTrackPath": "Assets/Tracks/TriumphRegret.typeMARS.0/",
       "displayTitle": "Triumph & Regret",
       "sourceTitle": "TriumphRegret",
-      "displayArtist": null,
+      "displayArtist": "typeMARS",
       "sourceArtist": "typeMARS",
       "indexRaw": "0",
       "artwork": {
@@ -9649,7 +9649,7 @@
       "sourceTrackPath": "Assets/Tracks/Trojan.litmus.0/",
       "displayTitle": "Trojan",
       "sourceTitle": "Trojan",
-      "displayArtist": null,
+      "displayArtist": "litmus",
       "sourceArtist": "litmus",
       "indexRaw": "0",
       "artwork": {
@@ -9688,7 +9688,7 @@
       "sourceTrackPath": "Assets/Tracks/UnorthodoxThoughts.Joulez.0/",
       "displayTitle": "Unorthodox Thoughts",
       "sourceTitle": "UnorthodoxThoughts",
-      "displayArtist": null,
+      "displayArtist": "Joulez",
       "sourceArtist": "Joulez",
       "indexRaw": "0",
       "artwork": {
@@ -9728,7 +9728,7 @@
       "sourceTrackPath": "Assets/Tracks/Upshift.Iriss-Frantzz.0/",
       "displayTitle": "Upshift",
       "sourceTitle": "Upshift",
-      "displayArtist": null,
+      "displayArtist": "Iriss-Frantzz",
       "sourceArtist": "Iriss-Frantzz",
       "indexRaw": "0",
       "artwork": {
@@ -9767,7 +9767,7 @@
       "sourceTrackPath": "Assets/Tracks/valorstarcross.LundyvsWyvren.0/",
       "displayTitle": "valorstarcross",
       "sourceTitle": "valorstarcross",
-      "displayArtist": null,
+      "displayArtist": "LundyvsWyvren",
       "sourceArtist": "LundyvsWyvren",
       "indexRaw": "0",
       "artwork": {
@@ -9846,7 +9846,7 @@
       "sourceTrackPath": "Assets/Tracks/volcanic.DETROakaルゼ.0/",
       "displayTitle": "volcanic",
       "sourceTitle": "volcanic",
-      "displayArtist": null,
+      "displayArtist": "DETROakaルゼ",
       "sourceArtist": "DETROakaルゼ",
       "indexRaw": "0",
       "artwork": {
@@ -9890,7 +9890,7 @@
       "sourceTrackPath": "Assets/Tracks/WATER.A39沙包P.0/",
       "displayTitle": "WATER",
       "sourceTitle": "WATER",
-      "displayArtist": null,
+      "displayArtist": "A39沙包P",
       "sourceArtist": "A39沙包P",
       "indexRaw": "0",
       "artwork": {
@@ -9929,7 +9929,7 @@
       "sourceTrackPath": "Assets/Tracks/Wavetapper.Frums.0/",
       "displayTitle": "Wavetapper",
       "sourceTitle": "Wavetapper",
-      "displayArtist": null,
+      "displayArtist": "Frums",
       "sourceArtist": "Frums",
       "indexRaw": "0",
       "artwork": {
@@ -9968,7 +9968,7 @@
       "sourceTrackPath": "Assets/Tracks/Wintercube.CtymaxfeatNceS.0/",
       "displayTitle": "Winter ↑cube↓",
       "sourceTitle": "Wintercube",
-      "displayArtist": null,
+      "displayArtist": "CtymaxfeatNceS",
       "sourceArtist": "CtymaxfeatNceS",
       "indexRaw": "0",
       "artwork": {
@@ -10008,7 +10008,7 @@
       "sourceTrackPath": "Assets/Tracks/WithYou.Cashew.0/",
       "displayTitle": "With You",
       "sourceTitle": "WithYou",
-      "displayArtist": null,
+      "displayArtist": "Cashew",
       "sourceArtist": "Cashew",
       "indexRaw": "0",
       "artwork": {
@@ -10048,7 +10048,7 @@
       "sourceTrackPath": "Assets/Tracks/Xenolith.Tatsh.0/",
       "displayTitle": "Xenolith",
       "sourceTitle": "Xenolith",
-      "displayArtist": null,
+      "displayArtist": "Tatsh",
       "sourceArtist": "Tatsh",
       "indexRaw": "0",
       "artwork": {
@@ -10166,7 +10166,7 @@
       "sourceTrackPath": "Assets/Tracks/XING.ginkiha.0/",
       "displayTitle": "XING",
       "sourceTitle": "XING",
-      "displayArtist": null,
+      "displayArtist": "ginkiha",
       "sourceArtist": "ginkiha",
       "indexRaw": "0",
       "artwork": {
@@ -10205,7 +10205,7 @@
       "sourceTrackPath": "Assets/Tracks/YouaretheMiserable.tpazolite.0/",
       "displayTitle": "You are the Miserable",
       "sourceTitle": "YouaretheMiserable",
-      "displayArtist": null,
+      "displayArtist": "tpazolite",
       "sourceArtist": "tpazolite",
       "indexRaw": "0",
       "artwork": {
@@ -10250,7 +10250,7 @@
       "sourceTrackPath": "Assets/Tracks/アンビバレンス.すりぃ相沢.0/",
       "displayTitle": "アンビバレンス",
       "sourceTitle": "アンビバレンス",
-      "displayArtist": null,
+      "displayArtist": "すりぃ相沢",
       "sourceArtist": "すりぃ相沢",
       "indexRaw": "0",
       "artwork": {
@@ -10289,7 +10289,7 @@
       "sourceTrackPath": "Assets/Tracks/いざ参ります.Uskefeat棗いつき.0/",
       "displayTitle": "いざ、参ります",
       "sourceTitle": "いざ参ります",
-      "displayArtist": null,
+      "displayArtist": "Uskefeat棗いつき",
       "sourceArtist": "Uskefeat棗いつき",
       "indexRaw": "0",
       "artwork": {
@@ -10329,7 +10329,7 @@
       "sourceTrackPath": "Assets/Tracks/インフェルノシティ.Ponchifeatはぁち.0/",
       "displayTitle": "インフェルノシティ",
       "sourceTitle": "インフェルノシティ",
-      "displayArtist": null,
+      "displayArtist": "Ponchifeatはぁち",
       "sourceArtist": "Ponchifeatはぁち",
       "indexRaw": "0",
       "artwork": {
@@ -10368,7 +10368,7 @@
       "sourceTrackPath": "Assets/Tracks/インマイマインド.レシオP.0/",
       "displayTitle": "インマイマインド",
       "sourceTitle": "インマイマインド",
-      "displayArtist": null,
+      "displayArtist": "レシオP",
       "sourceArtist": "レシオP",
       "indexRaw": "0",
       "artwork": {
@@ -10407,7 +10407,7 @@
       "sourceTrackPath": "Assets/Tracks/ジングルベルJingleBell.A39沙包P.0/",
       "displayTitle": "ジングルベル(Jingle Bell)",
       "sourceTitle": "ジングルベルJingleBell",
-      "displayArtist": null,
+      "displayArtist": "A39沙包P",
       "sourceArtist": "A39沙包P",
       "indexRaw": "0",
       "artwork": {
@@ -10447,7 +10447,7 @@
       "sourceTrackPath": "Assets/Tracks/ストレイソウルアラウンド.みーに.0/",
       "displayTitle": "ストレイソウル・アラウンド",
       "sourceTitle": "ストレイソウルアラウンド",
-      "displayArtist": null,
+      "displayArtist": "みーに",
       "sourceArtist": "みーに",
       "indexRaw": "0",
       "artwork": {
@@ -10487,7 +10487,7 @@
       "sourceTrackPath": "Assets/Tracks/ニライカナイNiraicA_naiMix.roopfromSTR.0/",
       "displayTitle": "ニライカナイ (NiraicA_nai Mix)",
       "sourceTitle": "ニライカナイNiraicA_naiMix",
-      "displayArtist": null,
+      "displayArtist": "roopfromSTR",
       "sourceArtist": "roopfromSTR",
       "indexRaw": "0",
       "artwork": {
@@ -10527,7 +10527,7 @@
       "sourceTrackPath": "Assets/Tracks/ぱぴぷぴぷぴぱ.ころねぽちWith立秋.0/",
       "displayTitle": "ぱぴぷぴぷぴぱ",
       "sourceTitle": "ぱぴぷぴぷぴぱ",
-      "displayArtist": null,
+      "displayArtist": "ころねぽちWith立秋",
       "sourceArtist": "ころねぽちWith立秋",
       "indexRaw": "0",
       "artwork": {
@@ -10566,7 +10566,7 @@
       "sourceTrackPath": "Assets/Tracks/もぺもぺ.LeaF.0/",
       "displayTitle": "もぺもぺ",
       "sourceTitle": "もぺもぺ",
-      "displayArtist": null,
+      "displayArtist": "LeaF",
       "sourceArtist": "LeaF",
       "indexRaw": "0",
       "artwork": {
@@ -10610,7 +10610,7 @@
       "sourceTrackPath": "Assets/Tracks/万吨匿名信.闫东炜.0/",
       "displayTitle": "万吨匿名信",
       "sourceTitle": "万吨匿名信",
-      "displayArtist": null,
+      "displayArtist": "闫东炜",
       "sourceArtist": "闫东炜",
       "indexRaw": "0",
       "artwork": {
@@ -10730,7 +10730,7 @@
       "sourceTrackPath": "Assets/Tracks/云女孩.符白牙SiYFics.0/",
       "displayTitle": "云女孩",
       "sourceTitle": "云女孩",
-      "displayArtist": null,
+      "displayArtist": "符白牙SiYFics",
       "sourceArtist": "符白牙SiYFics",
       "indexRaw": "0",
       "artwork": {
@@ -10769,7 +10769,7 @@
       "sourceTrackPath": "Assets/Tracks/今天不是明天.PIKASONICfeat兰音Reine.0/",
       "displayTitle": "今天不是明天",
       "sourceTitle": "今天不是明天",
-      "displayArtist": null,
+      "displayArtist": "PIKASONICfeat兰音Reine",
       "sourceArtist": "PIKASONICfeat兰音Reine",
       "indexRaw": "0",
       "artwork": {
@@ -10808,7 +10808,7 @@
       "sourceTrackPath": "Assets/Tracks/光.姜米條.0/",
       "displayTitle": "光",
       "sourceTitle": "光",
-      "displayArtist": null,
+      "displayArtist": "姜米條",
       "sourceArtist": "姜米條",
       "indexRaw": "0",
       "artwork": {
@@ -10886,7 +10886,7 @@
       "sourceTrackPath": "Assets/Tracks/千紫万紅.r0yvsWABI.0/",
       "displayTitle": "千紫万紅",
       "sourceTitle": "千紫万紅",
-      "displayArtist": null,
+      "displayArtist": "r0yvsWABI",
       "sourceArtist": "r0yvsWABI",
       "indexRaw": "0",
       "artwork": {
@@ -10925,7 +10925,7 @@
       "sourceTrackPath": "Assets/Tracks/双重间谍DoubleAgent.WAVAV.0/",
       "displayTitle": "双重间谍 (Double Agent)",
       "sourceTitle": "双重间谍DoubleAgent",
-      "displayArtist": null,
+      "displayArtist": "WAVAV",
       "sourceArtist": "WAVAV",
       "indexRaw": "0",
       "artwork": {
@@ -10965,7 +10965,7 @@
       "sourceTrackPath": "Assets/Tracks/君往何处QuoVadis.M2U.0/",
       "displayTitle": "君往何处 (Quo Vadis)",
       "sourceTitle": "君往何处QuoVadis",
-      "displayArtist": null,
+      "displayArtist": "M2U",
       "sourceArtist": "M2U",
       "indexRaw": "0",
       "artwork": {
@@ -11044,7 +11044,7 @@
       "sourceTrackPath": "Assets/Tracks/大和撫子WildDances.adapatorvsDRIVE.0/",
       "displayTitle": "大和撫子 -Wild Dances-",
       "sourceTitle": "大和撫子WildDances",
-      "displayArtist": null,
+      "displayArtist": "adapatorvsDRIVE",
       "sourceArtist": "adapatorvsDRIVE",
       "indexRaw": "0",
       "artwork": {
@@ -11084,7 +11084,7 @@
       "sourceTrackPath": "Assets/Tracks/宇宙残骸少女CosmicDustyGirl.辻原一郎.0/",
       "displayTitle": "宇宙残骸少女 (Cosmic Dusty Girl)",
       "sourceTitle": "宇宙残骸少女CosmicDustyGirl",
-      "displayArtist": null,
+      "displayArtist": "辻原一郎",
       "sourceArtist": "辻原一郎",
       "indexRaw": "0",
       "artwork": {
@@ -11124,7 +11124,7 @@
       "sourceTrackPath": "Assets/Tracks/尊師TheGuru.rider.0/",
       "displayTitle": "尊師 ～The Guru～",
       "sourceTitle": "尊師TheGuru",
-      "displayArtist": null,
+      "displayArtist": "rider",
       "sourceArtist": "rider",
       "indexRaw": "0",
       "artwork": {
@@ -11164,7 +11164,7 @@
       "sourceTrackPath": "Assets/Tracks/幻影鬼魅PLEASE.R300K.0/",
       "displayTitle": "幻影鬼魅 (PLEASE)",
       "sourceTitle": "幻影鬼魅PLEASE",
-      "displayArtist": null,
+      "displayArtist": "R300K",
       "sourceArtist": "R300K",
       "indexRaw": "0",
       "artwork": {
@@ -11209,7 +11209,7 @@
       "sourceTrackPath": "Assets/Tracks/幽世桔梗.Capchiifeatまるもこ.0/",
       "displayTitle": "幽世桔梗",
       "sourceTitle": "幽世桔梗",
-      "displayArtist": null,
+      "displayArtist": "Capchiifeatまるもこ",
       "sourceArtist": "Capchiifeatまるもこ",
       "indexRaw": "0",
       "artwork": {
@@ -11248,7 +11248,7 @@
       "sourceTrackPath": "Assets/Tracks/开心病.闫东炜.0/",
       "displayTitle": "开心病",
       "sourceTitle": "开心病",
-      "displayArtist": null,
+      "displayArtist": "闫东炜",
       "sourceArtist": "闫东炜",
       "indexRaw": "0",
       "artwork": {
@@ -11367,7 +11367,7 @@
       "sourceTrackPath": "Assets/Tracks/心の記憶.A39沙包P.0/",
       "displayTitle": "心の記憶",
       "sourceTitle": "心の記憶",
-      "displayArtist": null,
+      "displayArtist": "A39沙包P",
       "sourceArtist": "A39沙包P",
       "indexRaw": "0",
       "artwork": {
@@ -11406,7 +11406,7 @@
       "sourceTrackPath": "Assets/Tracks/心之所向.姜米條.0/",
       "displayTitle": "心之所向",
       "sourceTitle": "心之所向",
-      "displayArtist": null,
+      "displayArtist": "姜米條",
       "sourceArtist": "姜米條",
       "indexRaw": "0",
       "artwork": {
@@ -11445,7 +11445,7 @@
       "sourceTrackPath": "Assets/Tracks/明鏡烈火.MUEvsRekuMochizuki.0/",
       "displayTitle": "明鏡烈火",
       "sourceTitle": "明鏡烈火",
-      "displayArtist": null,
+      "displayArtist": "MUEvsRekuMochizuki",
       "sourceArtist": "MUEvsRekuMochizuki",
       "indexRaw": "0",
       "artwork": {
@@ -11524,7 +11524,7 @@
       "sourceTrackPath": "Assets/Tracks/暗夜苏醒REANIMATE.Warak.0/",
       "displayTitle": "暗夜苏醒 (REANIMATE)",
       "sourceTitle": "暗夜苏醒REANIMATE",
-      "displayArtist": null,
+      "displayArtist": "Warak",
       "sourceArtist": "Warak",
       "indexRaw": "0",
       "artwork": {
@@ -11564,7 +11564,7 @@
       "sourceTrackPath": "Assets/Tracks/月下缭乱.月見静華vsLUNARiUM.0/",
       "displayTitle": "月下缭乱",
       "sourceTitle": "月下缭乱",
-      "displayArtist": null,
+      "displayArtist": "月見静華vsLUNARiUM",
       "sourceArtist": "月見静華vsLUNARiUM",
       "indexRaw": "0",
       "artwork": {
@@ -11603,7 +11603,7 @@
       "sourceTrackPath": "Assets/Tracks/月詠に鳴る.Feryquitousfeat藍月なくる.0/",
       "displayTitle": "月詠に鳴る",
       "sourceTitle": "月詠に鳴る",
-      "displayArtist": null,
+      "displayArtist": "Feryquitousfeat藍月なくる",
       "sourceArtist": "Feryquitousfeat藍月なくる",
       "indexRaw": "0",
       "artwork": {
@@ -11647,7 +11647,7 @@
       "sourceTrackPath": "Assets/Tracks/望影の方舟Six.SeURa.0/",
       "displayTitle": "望影の方舟Six",
       "sourceTitle": "望影の方舟Six",
-      "displayArtist": null,
+      "displayArtist": "SeURa",
       "sourceArtist": "SeURa",
       "indexRaw": "0",
       "artwork": {
@@ -11701,7 +11701,7 @@
       "sourceTrackPath": "Assets/Tracks/桜樹街道.kozatosnow.0/",
       "displayTitle": "桜樹街道",
       "sourceTitle": "桜樹街道",
-      "displayArtist": null,
+      "displayArtist": "kozatosnow",
       "sourceArtist": "kozatosnow",
       "indexRaw": "0",
       "artwork": {
@@ -11740,7 +11740,7 @@
       "sourceTrackPath": "Assets/Tracks/混乱Confusion.OnlyMyBlackScore.0/",
       "displayTitle": "混乱-Confusion",
       "sourceTitle": "混乱Confusion",
-      "displayArtist": null,
+      "displayArtist": "OnlyMyBlackScore",
       "sourceArtist": "OnlyMyBlackScore",
       "indexRaw": "0",
       "artwork": {
@@ -11780,7 +11780,7 @@
       "sourceTrackPath": "Assets/Tracks/游园地.椒盐菠萝.0/",
       "displayTitle": "游园地",
       "sourceTitle": "游园地",
-      "displayArtist": null,
+      "displayArtist": "椒盐菠萝",
       "sourceArtist": "椒盐菠萝",
       "indexRaw": "0",
       "artwork": {
@@ -11819,7 +11819,7 @@
       "sourceTrackPath": "Assets/Tracks/狂喜蘭舞.LeaF.0/",
       "displayTitle": "狂喜蘭舞",
       "sourceTitle": "狂喜蘭舞",
-      "displayArtist": null,
+      "displayArtist": "LeaF",
       "sourceArtist": "LeaF",
       "indexRaw": "0",
       "artwork": {
@@ -11909,7 +11909,7 @@
       "sourceTrackPath": "Assets/Tracks/瓷岁.茶鸣拾贰律.0/",
       "displayTitle": "瓷岁",
       "sourceTitle": "瓷岁",
-      "displayArtist": null,
+      "displayArtist": "茶鸣拾贰律",
       "sourceArtist": "茶鸣拾贰律",
       "indexRaw": "0",
       "artwork": {
@@ -11948,7 +11948,7 @@
       "sourceTrackPath": "Assets/Tracks/白と黒のバケモノ.テヅカ.0/",
       "displayTitle": "白と黒のバケモノ",
       "sourceTitle": "白と黒のバケモノ",
-      "displayArtist": null,
+      "displayArtist": "テヅカ",
       "sourceArtist": "テヅカ",
       "indexRaw": "0",
       "artwork": {
@@ -12028,7 +12028,7 @@
       "sourceTrackPath": "Assets/Tracks/盏茗.茶鸣拾贰律.0/",
       "displayTitle": "盏茗",
       "sourceTitle": "盏茗",
-      "displayArtist": null,
+      "displayArtist": "茶鸣拾贰律",
       "sourceArtist": "茶鸣拾贰律",
       "indexRaw": "0",
       "artwork": {
@@ -12067,7 +12067,7 @@
       "sourceTrackPath": "Assets/Tracks/祈-我ら神祖と共に歩む者なり-.光吉猛修VS穴山大輔VSKaiVS水野健治VS大国奏音.0/",
       "displayTitle": "祈 -我ら神祖と共に歩む者なり-",
       "sourceTitle": "祈-我ら神祖と共に歩む者なり-",
-      "displayArtist": null,
+      "displayArtist": "光吉猛修VS穴山大輔VSKaiVS水野健治VS大国奏音",
       "sourceArtist": "光吉猛修VS穴山大輔VSKaiVS水野健治VS大国奏音",
       "indexRaw": "0",
       "artwork": {
@@ -12112,7 +12112,7 @@
       "sourceTrackPath": "Assets/Tracks/神話.PicaM2U.0/",
       "displayTitle": "神話",
       "sourceTitle": "神話",
-      "displayArtist": null,
+      "displayArtist": "PicaM2U",
       "sourceArtist": "PicaM2U",
       "indexRaw": "0",
       "artwork": {
@@ -12151,7 +12151,7 @@
       "sourceTrackPath": "Assets/Tracks/聖夜讃歌.A39沙包P.0/",
       "displayTitle": "聖夜讃歌",
       "sourceTitle": "聖夜讃歌",
-      "displayArtist": null,
+      "displayArtist": "A39沙包P",
       "sourceArtist": "A39沙包P",
       "indexRaw": "0",
       "artwork": {
@@ -12190,7 +12190,7 @@
       "sourceTrackPath": "Assets/Tracks/華灯爱.闫东炜.0/",
       "displayTitle": "華灯爱",
       "sourceTitle": "華灯爱",
-      "displayArtist": null,
+      "displayArtist": "闫东炜",
       "sourceArtist": "闫东炜",
       "indexRaw": "0",
       "artwork": {
@@ -12229,7 +12229,7 @@
       "sourceTrackPath": "Assets/Tracks/萤火虫の怨.闫东炜.0/",
       "displayTitle": "萤火虫の怨",
       "sourceTitle": "萤火虫の怨",
-      "displayArtist": null,
+      "displayArtist": "闫东炜",
       "sourceArtist": "闫东炜",
       "indexRaw": "0",
       "artwork": {
@@ -12268,7 +12268,7 @@
       "sourceTrackPath": "Assets/Tracks/蝎虎天体Lacertid.CreamvsDaily天利.0/",
       "displayTitle": "蝎虎天体 -Lacertid-",
       "sourceTitle": "蝎虎天体Lacertid",
-      "displayArtist": null,
+      "displayArtist": "CreamvsDaily天利",
       "sourceArtist": "CreamvsDaily天利",
       "indexRaw": "0",
       "artwork": {
@@ -12308,7 +12308,7 @@
       "sourceTrackPath": "Assets/Tracks/贝多芬祝福BeethovenBlessing.Nauts.0/",
       "displayTitle": "贝多芬祝福 (Beethoven Blessing)",
       "sourceTitle": "贝多芬祝福BeethovenBlessing",
-      "displayArtist": null,
+      "displayArtist": "Nauts",
       "sourceArtist": "Nauts",
       "indexRaw": "0",
       "artwork": {
@@ -12348,7 +12348,7 @@
       "sourceTrackPath": "Assets/Tracks/重生.姜米條.0/",
       "displayTitle": "重生",
       "sourceTitle": "重生",
-      "displayArtist": null,
+      "displayArtist": "姜米條",
       "sourceArtist": "姜米條",
       "indexRaw": "0",
       "artwork": {
@@ -12387,7 +12387,7 @@
       "sourceTrackPath": "Assets/Tracks/雪降りメリクリ.A39.0/",
       "displayTitle": "雪降り、メリクリ",
       "sourceTitle": "雪降りメリクリ",
-      "displayArtist": null,
+      "displayArtist": "A39",
       "sourceArtist": "A39",
       "indexRaw": "0",
       "artwork": {
@@ -12427,7 +12427,7 @@
       "sourceTrackPath": "Assets/Tracks/雪降り雪が降っている.AiSSw夜輪ft結月ゆかり.0/",
       "displayTitle": "雪降り ~雪が降っている~",
       "sourceTitle": "雪降り雪が降っている",
-      "displayArtist": null,
+      "displayArtist": "AiSSw夜輪ft結月ゆかり",
       "sourceArtist": "AiSSw夜輪ft結月ゆかり",
       "indexRaw": "0",
       "artwork": {
@@ -12472,7 +12472,7 @@
       "sourceTrackPath": "Assets/Tracks/零號車輛.seatrus.0/",
       "displayTitle": "零號車輛",
       "sourceTitle": "零號車輛",
-      "displayArtist": null,
+      "displayArtist": "seatrus",
       "sourceArtist": "seatrus",
       "indexRaw": "0",
       "artwork": {
@@ -12511,7 +12511,7 @@
       "sourceTrackPath": "Assets/Tracks/青丘.BLACK0.0/",
       "displayTitle": "青丘",
       "sourceTitle": "青丘",
-      "displayArtist": null,
+      "displayArtist": "BLACK0",
       "sourceArtist": "BLACK0",
       "indexRaw": "0",
       "artwork": {
@@ -12550,7 +12550,7 @@
       "sourceTrackPath": "Assets/Tracks/青芽.茶鸣拾贰律.0/",
       "displayTitle": "青芽",
       "sourceTitle": "青芽",
-      "displayArtist": null,
+      "displayArtist": "茶鸣拾贰律",
       "sourceArtist": "茶鸣拾贰律",
       "indexRaw": "0",
       "artwork": {
@@ -12589,7 +12589,7 @@
       "sourceTrackPath": "Assets/Tracks/风屿.闫东炜.0/",
       "displayTitle": "风屿",
       "sourceTitle": "风屿",
-      "displayArtist": null,
+      "displayArtist": "闫东炜",
       "sourceArtist": "闫东炜",
       "indexRaw": "0",
       "artwork": {
@@ -12633,7 +12633,7 @@
       "sourceTrackPath": "Assets/Tracks/黄金之城GOLDTOWN.Memme.0/",
       "displayTitle": "黄金之城 (GOLD TOWN)",
       "sourceTitle": "黄金之城GOLDTOWN",
-      "displayArtist": null,
+      "displayArtist": "Memme",
       "sourceArtist": "Memme",
       "indexRaw": "0",
       "artwork": {
@@ -13185,7 +13185,7 @@
       "sourceTrackPath": "Assets/Tracks/Random.SobremSilentroom.1/",
       "displayTitle": "Random",
       "sourceTitle": "Random",
-      "displayArtist": null,
+      "displayArtist": "SobremSilentroom",
       "sourceArtist": "SobremSilentroom",
       "indexRaw": "1",
       "artwork": null,
@@ -13227,7 +13227,7 @@
       "sourceTrackPath": "Assets/Tracks/Random.SobremSilentroom.2/",
       "displayTitle": "Random",
       "sourceTitle": "Random",
-      "displayArtist": null,
+      "displayArtist": "SobremSilentroom",
       "sourceArtist": "SobremSilentroom",
       "indexRaw": "2",
       "artwork": null,
@@ -13269,7 +13269,7 @@
       "sourceTrackPath": "Assets/Tracks/Random.SobremSilentroom.3/",
       "displayTitle": "Random",
       "sourceTitle": "Random",
-      "displayArtist": null,
+      "displayArtist": "SobremSilentroom",
       "sourceArtist": "SobremSilentroom",
       "indexRaw": "3",
       "artwork": null,
@@ -13311,7 +13311,7 @@
       "sourceTrackPath": "Assets/Tracks/Random.SobremSilentroom.4/",
       "displayTitle": "Random",
       "sourceTitle": "Random",
-      "displayArtist": null,
+      "displayArtist": "SobremSilentroom",
       "sourceArtist": "SobremSilentroom",
       "indexRaw": "4",
       "artwork": null,
@@ -13353,7 +13353,7 @@
       "sourceTrackPath": "Assets/Tracks/Random.SobremSilentroom.5/",
       "displayTitle": "Random",
       "sourceTitle": "Random",
-      "displayArtist": null,
+      "displayArtist": "SobremSilentroom",
       "sourceArtist": "SobremSilentroom",
       "indexRaw": "5",
       "artwork": null,
@@ -13395,7 +13395,7 @@
       "sourceTrackPath": "Assets/Tracks/Random.SobremSilentroom.6/",
       "displayTitle": "Random",
       "sourceTitle": "Random",
-      "displayArtist": null,
+      "displayArtist": "SobremSilentroom",
       "sourceArtist": "SobremSilentroom",
       "indexRaw": "6",
       "artwork": null,

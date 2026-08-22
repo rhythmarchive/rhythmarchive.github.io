@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "game": "arcaea",
-  "generatedAt": "2026-08-22T11:23:41.401Z",
+  "generatedAt": "2026-08-22T16:38:47.674Z",
   "source": {
     "version": "6.16.8c",
     "sha256": "c2b58dcad54203645057a859524789f59cfd5ca13613b610d04ad087b58aac90"
@@ -58,6 +58,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "arcaea",
         "base",
         "redshift",
         "sayonara hatsukoi",
@@ -130,6 +131,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "arcaea",
         "base",
         "laur vs ck",
         "lost civilization",
@@ -202,6 +204,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "arcaea",
         "base",
         "ebimayo",
         "goodtek",
@@ -261,6 +264,7 @@
       "searchTerms": [
         "core",
         "cry of viyella",
+        "eternal core",
         "laur",
         "viyella",
         "라우르",
@@ -316,6 +320,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "arcaea",
         "base",
         "combatplayer",
         "rise",
@@ -372,6 +377,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "arcaea",
         "base",
         "chitose",
         "lucifer",
@@ -440,6 +446,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "arcaea",
         "base",
         "chitose",
         "fairytale",
@@ -500,6 +507,7 @@
       "searchTerms": [
         "combatplayer",
         "core",
+        "eternal core",
         "hearditsaid",
         "i've heard it said",
         "아이브 허드 잇 셋",
@@ -557,6 +565,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "arcaea",
         "babaroque",
         "base",
         "cysmix",
@@ -614,6 +623,7 @@
       "relatedSongs": [],
       "searchTerms": [
         "core",
+        "eternal core",
         "frums",
         "memoryfactory",
         "memoryfactory.lzh",
@@ -675,6 +685,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "arcaea",
         "base",
         "puru",
         "snow white",
@@ -735,6 +746,7 @@
       "searchTerms": [
         "akira complex",
         "core",
+        "eternal core",
         "relentless",
         "릴렌트리스",
         "아키라 컴플렉스",
@@ -804,6 +816,7 @@
       "relatedSongs": [],
       "searchTerms": [
         "ak+q",
+        "arcaea",
         "base",
         "shades of light in a transcendent realm",
         "shadesoflight",
@@ -877,6 +890,7 @@
       "relatedSongs": [],
       "searchTerms": [
         "ak+q",
+        "arcaea",
         "base",
         "vexaria",
         "벡사리아",
@@ -939,6 +953,7 @@
         "core",
         "essence of twilight",
         "essenceoftwilight",
+        "eternal core",
         "에센스 오브 트와일라잇",
         "에이케이 플러스 큐",
         "엣센스 오브 트와일라잇",
@@ -1007,6 +1022,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "arcaea",
         "base",
         "nitro",
         "qualia",
@@ -1046,7 +1062,8 @@
       "charts": [
         {
           "difficultyClass": "BYD",
-          "displayLevel": "11"
+          "displayLevel": "11",
+          "title": "PRAGMATISM -RESURRECTION-"
         },
         {
           "difficultyClass": "FTR",
@@ -1081,8 +1098,10 @@
       "relatedSongs": [],
       "searchTerms": [
         "core",
+        "eternal core",
         "laur",
         "pragmatism",
+        "pragmatism -resurrection-",
         "라우르",
         "프라그마티즘",
         "프래그마티즘",
@@ -1146,6 +1165,7 @@
       "relatedSongs": [],
       "searchTerms": [
         "core",
+        "eternal core",
         "sheriruth",
         "team grimoire",
         "셰루스",
@@ -1221,6 +1241,7 @@
       "relatedSongs": [],
       "searchTerms": [
         "core",
+        "eternal core",
         "lumia",
         "sky_delta",
         "루미아",
@@ -1288,6 +1309,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "arcaea",
         "base",
         "cosmograph",
         "dement",
@@ -1346,6 +1368,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "arcaea",
         "base",
         "dandelion",
         "farhan",
@@ -1413,6 +1436,7 @@
       "searchTerms": [
         "anokumene",
         "anökumene",
+        "arcaea",
         "base",
         "jun kuroda",
         "아네쿠메네",
@@ -1486,6 +1510,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "arcaea",
         "base",
         "hyun",
         "infinity heaven",
@@ -1561,6 +1586,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "crimson solace",
         "morimori atsushi",
         "party vinyl",
         "partyvinyl",
@@ -1621,6 +1647,7 @@
       "relatedSongs": [],
       "searchTerms": [
         "arforest",
+        "crimson solace",
         "flashback",
         "shiawase",
         "에이알 포레스트",
@@ -1683,6 +1710,7 @@
       "searchTerms": [
         "alice schach and the magic orchestra",
         "arisushahha to mahou no gakudan",
+        "crimson solace",
         "flyburg",
         "flyburg and endroll",
         "shiawase",
@@ -1745,6 +1773,7 @@
       "relatedSongs": [],
       "searchTerms": [
         "ck",
+        "crimson solace",
         "nirv luce",
         "nirvluce",
         "shiawase",
@@ -1802,6 +1831,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "crimson solace",
         "paradise",
         "shiawase",
         "sound souler",
@@ -1860,6 +1890,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "arcaea",
         "base",
         "brand new world",
         "brandnewworld",
@@ -2102,6 +2133,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "arcaea",
         "base",
         "chronostasis",
         "kurokotei",
@@ -2177,6 +2209,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "arcaea",
         "base",
         "kanagawa",
         "kanagawa cyber culvert",
@@ -2547,6 +2580,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "arcaea",
         "base",
         "ck",
         "clotho",
@@ -2656,7 +2690,8 @@
       "charts": [
         {
           "difficultyClass": "BYD",
-          "displayLevel": "9+"
+          "displayLevel": "9+",
+          "title": "Ignotus Afterburn"
         },
         {
           "difficultyClass": "FTR",
@@ -2691,8 +2726,10 @@
       "relatedSongs": [],
       "searchTerms": [
         "ak+q",
+        "arcaea",
         "base",
         "ignotus",
+        "ignotus afterburn",
         "에이케이 큐",
         "이그노터스",
         "이그노투스",
@@ -2752,6 +2789,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "ambivalent vision",
         "lethaeus",
         "mirai",
         "silentroom",
@@ -2813,6 +2851,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "ambivalent vision",
         "mirai",
         "romance wars",
         "romancewars",
@@ -2876,6 +2915,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "ambivalent vision",
         "blossoms",
         "mirai",
         "t2kazuya",
@@ -2946,6 +2986,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "ambivalent vision",
         "hino isuka",
         "mirai",
         "moonheart",
@@ -3003,6 +3044,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "ambivalent vision",
         "genesis",
         "iris",
         "mirai",
@@ -3061,6 +3103,7 @@
       "relatedSongs": [],
       "searchTerms": [
         "a-zu-ra",
+        "arcaea",
         "base",
         "harutopia",
         "harutopia ~utopia of spring~",
@@ -3188,6 +3231,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "arcaea",
         "base",
         "rabbit house",
         "rabbit in the black room",
@@ -3303,6 +3347,7 @@
       "searchTerms": [
         "hate",
         "soundwitch",
+        "vicious labyrinth",
         "yugamu",
         "사운드위치",
         "헤이트",
@@ -3377,6 +3422,7 @@
         "gmtn.",
         "trappola",
         "trappola bewitching",
+        "vicious labyrinth",
         "yugamu",
         "가무츤",
         "요엔마죠 토랏포라 비윗칭구",
@@ -3440,6 +3486,7 @@
       "relatedSongs": [],
       "searchTerms": [
         "iconoclast",
+        "vicious labyrinth",
         "yamajet",
         "yugamu",
         "아이코노클라스트",
@@ -3502,6 +3549,7 @@
       "searchTerms": [
         "conflict",
         "siromaru + cranky",
+        "vicious labyrinth",
         "yugamu",
         "시로마루",
         "컨플릭트",
@@ -3538,7 +3586,8 @@
       "charts": [
         {
           "difficultyClass": "BYD",
-          "displayLevel": "11"
+          "displayLevel": "11",
+          "title": "Axium Divergence"
         },
         {
           "difficultyClass": "FTR",
@@ -3574,7 +3623,9 @@
       "searchTerms": [
         "ak+q",
         "axium crisis",
+        "axium divergence",
         "axiumcrisis",
+        "vicious labyrinth",
         "yugamu",
         "악시움 크라이시스",
         "액시움 크라이시스",
@@ -3638,6 +3689,7 @@
         "grievous lady",
         "grievouslady",
         "team grimoire vs laur",
+        "vicious labyrinth",
         "yugamu",
         "그리버스 레이디",
         "라우르",
@@ -3697,6 +3749,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "arcaea",
         "base",
         "dreamin' attraction!!",
         "dreaminattraction",
@@ -3734,7 +3787,8 @@
       "charts": [
         {
           "difficultyClass": "BYD",
-          "displayLevel": "10"
+          "displayLevel": "10",
+          "title": "Red and Blue and Green"
         },
         {
           "difficultyClass": "FTR",
@@ -3768,8 +3822,10 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "arcaea",
         "base",
         "red and blue",
+        "red and blue and green",
         "redandblue",
         "silentroom",
         "레드 앤 블루",
@@ -3827,6 +3883,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "arcaea",
         "base",
         "one last drive",
         "onelastdrive",
@@ -4291,6 +4348,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "arcaea",
         "base",
         "mitomoro",
         "syro",
@@ -4347,6 +4405,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "arcaea",
         "base",
         "reinvent",
         "sound souler",
@@ -4405,6 +4464,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "binary enfold",
         "nijuusei",
         "silent rush",
         "silentrush",
@@ -4442,7 +4502,8 @@
       "charts": [
         {
           "difficultyClass": "BYD",
-          "displayLevel": "10"
+          "displayLevel": "10",
+          "title": "Singularity VVVIP"
         },
         {
           "difficultyClass": "FTR",
@@ -4476,9 +4537,11 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "binary enfold",
         "etia.",
         "nijuusei",
         "singularity",
+        "singularity vvvip",
         "싱귤래리티",
         "에치아",
         "えちあ",
@@ -4532,6 +4595,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "binary enfold",
         "etia.",
         "memory forest",
         "memoryforest",
@@ -4590,6 +4654,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "binary enfold",
         "nijuusei",
         "strongholds",
         "yooh",
@@ -4664,6 +4729,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "binary enfold",
         "next to you",
         "nexttoyou",
         "nijuusei",
@@ -4784,6 +4850,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "arcaea",
         "base",
         "blaster",
         "massive new krew",
@@ -5042,6 +5109,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "arcaea",
         "base",
         "cybernecia catharsis",
         "cyberneciacatharsis",
@@ -5171,6 +5239,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "arcaea",
         "base",
         "dia",
         "inkar-usi",
@@ -5236,6 +5305,7 @@
       "searchTerms": [
         "alice schach and the magic orchestra",
         "arisushahha to mahou no gakudan",
+        "luminous sky",
         "maze no.9",
         "mazenine",
         "rei",
@@ -5299,6 +5369,7 @@
       "relatedSongs": [],
       "searchTerms": [
         "jun kuroda",
+        "luminous sky",
         "rei",
         "the message",
         "themessage",
@@ -5356,6 +5427,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "luminous sky",
         "penoreri",
         "rei",
         "sulfur",
@@ -5413,6 +5485,7 @@
       "relatedSongs": [],
       "searchTerms": [
         "halcyon",
+        "luminous sky",
         "rei",
         "xi",
         "사이",
@@ -5471,6 +5544,7 @@
         "akira complex",
         "ether strike",
         "etherstrike",
+        "luminous sky",
         "rei",
         "아키라 컴플렉스",
         "에테르 스트라이크",
@@ -5527,6 +5601,7 @@
       "searchTerms": [
         "fracture ray",
         "fractureray",
+        "luminous sky",
         "rei",
         "sakuzyo",
         "사쿠죠",
@@ -5587,6 +5662,7 @@
       "relatedSongs": [],
       "searchTerms": [
         "aire",
+        "arcaea",
         "base",
         "suomi",
         "수오미",
@@ -5655,6 +5731,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "arcaea",
         "base",
         "bookmaker",
         "bookmaker (2d version)",
@@ -5720,6 +5797,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "arcaea",
         "base",
         "darakunosono",
         "gmtn. (witch's slave)",
@@ -5764,7 +5842,8 @@
       "charts": [
         {
           "difficultyClass": "BYD",
-          "displayLevel": "10"
+          "displayLevel": "10",
+          "title": "overdead."
         },
         {
           "difficultyClass": "FTR",
@@ -5800,6 +5879,7 @@
       "searchTerms": [
         "dropdead",
         "frums",
+        "overdead.",
         "single",
         "드랍데드",
         "드롭데드",
@@ -5924,6 +6004,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "arcaea",
         "base",
         "nhelv",
         "silentroom",
@@ -5987,6 +6068,7 @@
       "relatedSongs": [],
       "searchTerms": [
         "apo11o program ft. 大瀬良あい",
+        "arcaea",
         "base",
         "espebranch",
         "lunarorbit -believe in the espebranch road-",
@@ -6063,6 +6145,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "arcaea",
         "base",
         "otsukisamakoukyoukyoku",
         "purgatorium",
@@ -6124,6 +6207,7 @@
       "searchTerms": [
         "hikari",
         "thb",
+        "tone sphere",
         "tonesphere",
         "티에이치비",
         "히카리",
@@ -6198,6 +6282,7 @@
         "ras",
         "stager",
         "stager (all stage clear)",
+        "tone sphere",
         "tonesphere",
         "라스",
         "스테이저 올 스테이지 클리어",
@@ -6256,6 +6341,7 @@
         "hall of mirrors",
         "hallofmirrors",
         "sta",
+        "tone sphere",
         "tonesphere",
         "스타",
         "홀 오브 미러스",
@@ -6316,6 +6402,7 @@
         "linear accelerator",
         "linearaccelerator",
         "the shaft",
+        "tone sphere",
         "tonesphere",
         "더 섀프트",
         "더 셰프트",
@@ -6375,6 +6462,7 @@
       "relatedSongs": [],
       "searchTerms": [
         "tiferet",
+        "tone sphere",
         "tonesphere",
         "xi + sta",
         "사이",
@@ -6492,6 +6580,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "arcaea",
         "base",
         "feryquitous feat.sennzai",
         "rugie",
@@ -6733,6 +6822,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "groove coaster",
         "groovecoaster",
         "merlin",
         "redalice",
@@ -6801,6 +6891,7 @@
         "dx 초성능 풀 메탈 소녀",
         "dxfullmetal",
         "dx超性能フルメタル少女",
+        "groove coaster",
         "groovecoaster",
         "iosys trax (uno with.ちよこ)",
         "디엑스 초성능 풀 메탈 소녀",
@@ -6863,6 +6954,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "groove coaster",
         "groovecoaster",
         "omakeno",
         "omakeno stroke",
@@ -6920,6 +7012,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "groove coaster",
         "groovecoaster",
         "masaki (zuntata)",
         "scarlet lance",
@@ -6980,6 +7073,7 @@
       "relatedSongs": [],
       "searchTerms": [
         "cranky vs masaki",
+        "groove coaster",
         "groovecoaster",
         "ouroboros",
         "ouroboros -twin stroke of the end-",
@@ -7123,6 +7217,7 @@
       "searchTerms": [
         "ak+q feat. sennzai",
         "core",
+        "eternal core",
         "solitary dream",
         "solitarydream",
         "공허의 꿈",
@@ -7197,6 +7292,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "absolute reason",
         "antithese",
         "blacklolita",
         "zettai",
@@ -7256,6 +7352,7 @@
       "relatedSongs": [],
       "searchTerms": [
         "3r2",
+        "absolute reason",
         "corruption",
         "zettai",
         "스리 알 투",
@@ -7316,6 +7413,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "absolute reason",
         "black territory",
         "blackterritory",
         "dj myosuke",
@@ -7358,7 +7456,8 @@
       "charts": [
         {
           "difficultyClass": "BYD",
-          "displayLevel": "11"
+          "displayLevel": "11",
+          "title": "Vicious [ANTi] Heroism"
         },
         {
           "difficultyClass": "FTR",
@@ -7392,7 +7491,9 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "absolute reason",
         "kobaryo",
+        "vicious [anti] heroism",
         "vicious heroism",
         "viciousheroism",
         "zettai",
@@ -7453,6 +7554,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "absolute reason",
         "cyaegha",
         "usao",
         "zettai",
@@ -7512,6 +7614,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "arcaea",
         "base",
         "ikaruga_nex",
         "revixy",
@@ -7570,6 +7673,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "arcaea",
         "base",
         "grimheart",
         "puru",
@@ -7629,6 +7733,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "arcaea",
         "base",
         "vector",
         "vectoя",
@@ -7690,6 +7795,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "arcaea",
         "baco",
         "base",
         "supernova",
@@ -8059,6 +8165,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "adverse prelude",
         "laur",
         "prelude",
         "vindication",
@@ -8128,6 +8235,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "adverse prelude",
         "heavensdoor",
         "leaf",
         "prelude",
@@ -8185,6 +8293,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "adverse prelude",
         "edelritter",
         "prelude",
         "ringed genesis",
@@ -8245,6 +8354,7 @@
         "7mai",
         "chelsea",
         "omatsuri",
+        "sunset radiance",
         "나나마이",
         "첼시",
         "ちぇるしー",
@@ -8302,6 +8412,7 @@
         "aiueoon",
         "myukke.",
         "omatsuri",
+        "sunset radiance",
         "뮤케",
         "아이우에온",
         "あいうえおーん",
@@ -8381,6 +8492,7 @@
         "melodyoflove",
         "omatsuri",
         "panchii shounen",
+        "sunset radiance",
         "마요에루 이로와 코이노우타",
         "망설이는 음색은 사랑의 노래",
         "어 원더링 멜로디 오브 러브",
@@ -8452,6 +8564,7 @@
         "mizonokuchi yuuma",
         "omatsuri",
         "oosera ai",
+        "sunset radiance",
         "tie me down gently",
         "tiemedowngently",
         "미조노쿠치 유우마",
@@ -8514,6 +8627,7 @@
       "searchTerms": [
         "juggernaut.",
         "omatsuri",
+        "sunset radiance",
         "valhalla:0",
         "valhallazero",
         "발할라 제로",
@@ -8632,6 +8746,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "arcaea",
         "base",
         "diode",
         "kolaa",
@@ -8702,6 +8817,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "arcaea",
         "base",
         "freef4ll",
         "freefall",
@@ -8762,6 +8878,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "crimson solace",
         "glory:road",
         "gloryroad",
         "morimori atsushi",
@@ -8822,6 +8939,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "arcaea",
         "base",
         "monochrome princess",
         "monochromeprincess",
@@ -8953,6 +9071,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "arcaea",
         "base",
         "mytk",
         "senkyou",
@@ -9463,6 +9582,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "arcaea",
         "base",
         "mili",
         "world.execute(me);",
@@ -9520,6 +9640,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "adverse prelude",
         "blrink",
         "prelude",
         "sta",
@@ -9589,6 +9710,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "arcaea",
         "base",
         "oblivia",
         "saiph",
@@ -9707,6 +9829,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "ambivalent vision",
         "corps-sans-organes",
         "corpssansorganes",
         "cybermiso",
@@ -9765,6 +9888,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "black fate",
         "equilibrium",
         "maozon",
         "vs",
@@ -9824,6 +9948,7 @@
       "relatedSongs": [],
       "searchTerms": [
         "antagonism",
+        "black fate",
         "vs",
         "yooh vs. siromaru",
         "시로마루",
@@ -9883,6 +10008,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "black fate",
         "lost desire",
         "lostdesire",
         "powerless feat. sennzai",
@@ -9944,6 +10070,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "black fate",
         "dantalion",
         "team grimoire",
         "vs",
@@ -10002,6 +10129,7 @@
       "relatedSongs": [],
       "searchTerms": [
         "#1f1e33",
+        "black fate",
         "camellia",
         "ifi",
         "kameria",
@@ -10069,6 +10197,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "black fate",
         "t+pazolite",
         "tempestissimo",
         "vs",
@@ -10128,6 +10257,7 @@
       "relatedSongs": [],
       "searchTerms": [
         "arcahv",
+        "black fate",
         "feryquitous",
         "vs",
         "아카브",
@@ -10252,6 +10382,7 @@
         "alice schach and the magic orchestra",
         "arisushahha to mahou no gakudan",
         "extend",
+        "extend archive 1",
         "give me a nightmare",
         "givemeanightmare",
         "기브 미 어 나이트메어",
@@ -10313,6 +10444,7 @@
         "black lotus",
         "blacklotus",
         "extend",
+        "extend archive 1",
         "wa.",
         "블랙 로터스",
         "와",
@@ -10369,6 +10501,7 @@
       "relatedSongs": [],
       "searchTerms": [
         "extend",
+        "extend archive 1",
         "gekka",
         "gekka (short version)",
         "nhato",
@@ -10430,6 +10563,7 @@
       "searchTerms": [
         "ak+q",
         "extend",
+        "extend archive 1",
         "vivid theory",
         "vividtheory",
         "비비드 시어리",
@@ -10490,6 +10624,7 @@
       "searchTerms": [
         "1f√",
         "extend",
+        "extend archive 1",
         "onefr",
         "whitefists",
         "이프 루트",
@@ -10605,6 +10740,7 @@
       "relatedSongs": [],
       "searchTerms": [
         "extend",
+        "extend archive 1",
         "faint light (arcaea edit)",
         "faintlight",
         "taishi",
@@ -10961,6 +11097,7 @@
         "e.g.g.",
         "got hive of ra",
         "gothiveofra",
+        "groove coaster",
         "groovecoaster",
         "갓 하이브 오브 라",
         "에그",
@@ -11143,6 +11280,7 @@
         "cross†over",
         "crossover",
         "extend",
+        "extend archive 1",
         "hyun feat. lyuu",
         "류",
         "크로스오버",
@@ -11261,6 +11399,7 @@
       "relatedSongs": [],
       "searchTerms": [
         "extend",
+        "extend archive 1",
         "lapis",
         "shiki",
         "라피스",
@@ -11389,6 +11528,7 @@
       "relatedSongs": [],
       "searchTerms": [
         "extend",
+        "extend archive 1",
         "hommarju",
         "purple verse",
         "purpleverse",
@@ -11453,6 +11593,7 @@
         "alice a la mode",
         "alice à la mode",
         "alicealamode",
+        "ephemeral page",
         "masanori akita",
         "마사노리 아키타",
         "앨리스 아 라 모드",
@@ -11524,6 +11665,7 @@
         "alice",
         "eccentric tale",
         "eccentrictale",
+        "ephemeral page",
         "yamajet",
         "야마제트",
         "야마젯",
@@ -11586,6 +11728,7 @@
         "alice's suitcase",
         "alicessuitcase",
         "endorfin.",
+        "ephemeral page",
         "앨리스 수트케이스",
         "앨리스즈 수트케이스",
         "엔도르핀",
@@ -11644,6 +11787,7 @@
       "relatedSongs": [],
       "searchTerms": [
         "alice",
+        "ephemeral page",
         "jump",
         "rasmus faber",
         "라스마스 페이버",
@@ -11702,6 +11846,7 @@
       "relatedSongs": [],
       "searchTerms": [
         "alice",
+        "ephemeral page",
         "felis",
         "m2u",
         "엠투유",
@@ -11763,6 +11908,7 @@
         "beside you",
         "besideyou",
         "takahiro eguchi",
+        "the journey onwards",
         "비사이드 유",
         "타카히로 에구치",
         "えぐちたかひろ",
@@ -11823,6 +11969,7 @@
         "alice_append_1",
         "heart jackin'",
         "heartjackin",
+        "the journey onwards",
         "yu_asahina",
         "유 아사히나",
         "하트 잭킨",
@@ -11884,6 +12031,7 @@
       "searchTerms": [
         "alice_append_1",
         "morimori atsushi",
+        "the journey onwards",
         "to: alice liddell",
         "toaliceliddell",
         "모리모리 아츠시",
@@ -11945,6 +12093,7 @@
       "searchTerms": [
         "lazy addiction",
         "lazyaddiction",
+        "o.n.g.e.k.i.",
         "ongeki",
         "sky_delta",
         "레이지 애딕션",
@@ -12005,6 +12154,7 @@
       "searchTerms": [
         "dazzle hop",
         "dazzlehop",
+        "o.n.g.e.k.i.",
         "ongeki",
         "sampling masters mega",
         "대즐 합",
@@ -12066,6 +12216,7 @@
       "relatedSongs": [],
       "searchTerms": [
         "laur",
+        "o.n.g.e.k.i.",
         "ongeki",
         "viyella's tears",
         "viyellastears",
@@ -12132,6 +12283,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "o.n.g.e.k.i.",
         "omega four",
         "omega4",
         "omegafour",
@@ -12408,7 +12560,7 @@
       ],
       "pack": {
         "packId": "chunithm_append_1",
-        "displayName": "Collaboration Chapter 2"
+        "displayName": "CHUNITHM · Collaboration Chapter 2"
       },
       "version": "3.5",
       "date": 1611187200,
@@ -12440,6 +12592,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "chunithm · collaboration chapter 2",
         "chunithm_append_1",
         "climax",
         "usao",
@@ -12466,7 +12619,7 @@
       ],
       "pack": {
         "packId": "chunithm_append_1",
-        "displayName": "Collaboration Chapter 2"
+        "displayName": "CHUNITHM · Collaboration Chapter 2"
       },
       "version": "3.5",
       "date": 1611187201,
@@ -12498,6 +12651,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "chunithm · collaboration chapter 2",
         "chunithm_append_1",
         "last celebration",
         "lastcelebration",
@@ -12533,7 +12687,7 @@
       ],
       "pack": {
         "packId": "chunithm_append_1",
-        "displayName": "Collaboration Chapter 2"
+        "displayName": "CHUNITHM · Collaboration Chapter 2"
       },
       "version": "3.5",
       "date": 1611187202,
@@ -12566,6 +12720,7 @@
       "relatedSongs": [],
       "searchTerms": [
         "anayama daisuke",
+        "chunithm · collaboration chapter 2",
         "chunithm_append_1",
         "gou",
         "misdeed -la bonte de dieu et l'origine du mal-",
@@ -12632,6 +12787,7 @@
       "relatedSongs": [],
       "searchTerms": [
         "extend",
+        "extend archive 1",
         "glow",
         "spacelectro",
         "글로우",
@@ -12750,6 +12906,7 @@
         "enchanted love",
         "enchantedlove",
         "extend",
+        "extend archive 1",
         "linear ring",
         "리니어 링",
         "인챈티드 러브",
@@ -12817,6 +12974,7 @@
         "bamboo",
         "choco",
         "extend",
+        "extend archive 1",
         "rish",
         "rissyuu",
         "take",
@@ -13011,6 +13169,7 @@
       "relatedSongs": [],
       "searchTerms": [
         "extend",
+        "extend archive 1",
         "junk",
         "life is piano",
         "lifeispiano",
@@ -13068,6 +13227,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "esoteric order",
         "observer",
         "paper witch",
         "paperwitch",
@@ -13130,6 +13290,7 @@
       "searchTerms": [
         "crystal gravity",
         "crystalgravity",
+        "esoteric order",
         "observer",
         "tanchiky vs. siromaru",
         "시로마루",
@@ -13195,6 +13356,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "esoteric order",
         "far away light",
         "farawaylight",
         "haruno",
@@ -13269,6 +13431,7 @@
       "relatedSongs": [],
       "searchTerms": [
         "blacky feat. risa yuzuki",
+        "esoteric order",
         "loschen",
         "löschen",
         "observer",
@@ -13335,6 +13498,7 @@
       "relatedSongs": [],
       "searchTerms": [
         "aegleseeker",
+        "esoteric order",
         "observer",
         "silentroom vs frums",
         "사일런트 룸",
@@ -13398,6 +13562,7 @@
         "coastalhighway",
         "glitch droids",
         "observer_append_1",
+        "pale tapestry",
         "글리치 드로이드",
         "글리치 드로이즈",
         "코스탈 하이웨이",
@@ -13456,6 +13621,7 @@
       "searchTerms": [
         "observer_append_1",
         "odysseia",
+        "pale tapestry",
         "sober bear",
         "οδυσσεια",
         "소버 베어",
@@ -13515,6 +13681,7 @@
       "searchTerms": [
         "observer_append_1",
         "overwhelm",
+        "pale tapestry",
         "xi",
         "사이",
         "오버웰름",
@@ -13576,6 +13743,7 @@
       "searchTerms": [
         "ashrount",
         "extend",
+        "extend archive 1",
         "vandalism",
         "반달리즘",
         "애쉬라운트",
@@ -13637,6 +13805,7 @@
       "searchTerms": [
         "a/i",
         "extend",
+        "extend archive 1",
         "turbocharger",
         "에이아이",
         "터보차저",
@@ -13845,6 +14014,7 @@
       "relatedSongs": [],
       "searchTerms": [
         "extend",
+        "extend archive 1",
         "false embellishment",
         "kagetora",
         "kyogenkigo",
@@ -13909,6 +14079,7 @@
       "relatedSongs": [],
       "searchTerms": [
         "extend",
+        "extend archive 1",
         "hivemind",
         "katagiri",
         "카타기리",
@@ -13968,6 +14139,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "esoteric order",
         "laur feat. sennzai",
         "observer",
         "seclusion",
@@ -14044,6 +14216,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "light of salvation",
         "momohina nano",
         "observer_append_2",
         "small cloud sugar candy",
@@ -14116,6 +14289,7 @@
         "arik kau delay (アラ&かゆき&でり)",
         "deli",
         "kayuki",
+        "light of salvation",
         "observer_append_2",
         "데리",
         "아라",
@@ -14176,6 +14350,7 @@
       "searchTerms": [
         "divine light of myriad",
         "divinelight",
+        "light of salvation",
         "observer_append_2",
         "yoho",
         "광속신수설",
@@ -14701,6 +14876,7 @@
         "blue comet",
         "bluecomet",
         "extend",
+        "extend archive 1",
         "블루 코멧",
         "아아아아",
         "ああああ",
@@ -14762,6 +14938,7 @@
         "energy synergy matrix",
         "energysynergymatrix",
         "extend",
+        "extend archive 1",
         "tanchiky",
         "에너지 시너지 매트릭스",
         "타친키",
@@ -14821,6 +14998,7 @@
       "searchTerms": [
         "-45",
         "extend",
+        "extend archive 1",
         "g e n g a o z o",
         "gengaozo",
         "겐가오조",
@@ -15062,6 +15240,7 @@
         "cosmica",
         "nhato",
         "nijuusei_append_1",
+        "shared time",
         "나하토",
         "코스미카",
         "코즈미카",
@@ -15119,6 +15298,7 @@
       "searchTerms": [
         "ascent",
         "nijuusei_append_1",
+        "shared time",
         "tanuki",
         "어센트",
         "타누키",
@@ -15177,6 +15357,7 @@
         "live fast die young",
         "livefastdieyoung",
         "nijuusei_append_1",
+        "shared time",
         "리브 패스트 다이 영",
         "아누바스 아누바스",
         "あぬばすあぬばす",
@@ -15321,6 +15502,7 @@
       "relatedSongs": [],
       "searchTerms": [
         "chroma",
+        "divided heart",
         "dividedheart",
         "first snow",
         "firstsnow",
@@ -15383,6 +15565,7 @@
         "blue rose",
         "bluerose",
         "cosmograph",
+        "divided heart",
         "dividedheart",
         "블루 로즈",
         "코스모그래프",
@@ -15441,6 +15624,7 @@
       "searchTerms": [
         "blocked library",
         "blockedlibrary",
+        "divided heart",
         "dividedheart",
         "kagetora",
         "블락드 라이브러리",
@@ -15504,6 +15688,7 @@
       "relatedSongs": [],
       "searchTerms": [
         "ak+q × street",
+        "divided heart",
         "dividedheart",
         "neo kosmo",
         "neokosmo",
@@ -15565,6 +15750,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "divided heart",
         "dividedheart",
         "hitech ninja",
         "lightning screw",
@@ -15626,6 +15812,7 @@
         "ayatsugu_otowa",
         "lights of muse",
         "lightsofmuse",
+        "muse dash",
         "musedash",
         "라이츠 오브 뮤즈",
         "라이트 오브 뮤즈",
@@ -15684,6 +15871,7 @@
         "final step!",
         "finalstep",
         "lime",
+        "muse dash",
         "musedash",
         "라임",
         "파이널 스텝",
@@ -15754,6 +15942,7 @@
         "haruno",
         "haze of autumn",
         "karatopαnchii feat.はるの",
+        "muse dash",
         "musedash",
         "가을의 아지랑이",
         "아키노 카게로우",
@@ -15821,6 +16010,7 @@
       "searchTerms": [
         "hitech ninja",
         "medusa",
+        "muse dash",
         "musedash",
         "메두사",
         "하니테크 닌자",
@@ -15994,6 +16184,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "arcaea",
         "base",
         "sakura fubuki",
         "sakurafubuki",
@@ -16052,6 +16243,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "arcaea",
         "base",
         "nulctrl",
         "silentroom",
@@ -16309,6 +16501,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "arcaea",
         "avril",
         "avril -flicka i krans-",
         "ävril -flicka i krans-",
@@ -16502,6 +16695,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "arcaea",
         "base",
         "ddd",
         "hagane",
@@ -16529,7 +16723,7 @@
       ],
       "pack": {
         "packId": "lanota_append_1",
-        "displayName": "Collaboration Chapter 2"
+        "displayName": "Lanota · Collaboration Chapter 2"
       },
       "version": "3.12",
       "date": 1651104000,
@@ -16578,6 +16772,7 @@
       "relatedSongs": [],
       "searchTerms": [
         "bermei.inazawa ft. chata",
+        "lanota · collaboration chapter 2",
         "lanota_append_1",
         "prism",
         "베르메이 이나자와",
@@ -16604,7 +16799,7 @@
       ],
       "pack": {
         "packId": "lanota_append_1",
-        "displayName": "Collaboration Chapter 2"
+        "displayName": "Lanota · Collaboration Chapter 2"
       },
       "version": "3.12",
       "date": 1651104001,
@@ -16652,6 +16847,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "lanota · collaboration chapter 2",
         "lanota_append_1",
         "protoflicker",
         "silentroom",
@@ -16676,7 +16872,7 @@
       ],
       "pack": {
         "packId": "lanota_append_1",
-        "displayName": "Collaboration Chapter 2"
+        "displayName": "Lanota · Collaboration Chapter 2"
       },
       "version": "3.12",
       "date": 1651104002,
@@ -16724,6 +16920,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "lanota · collaboration chapter 2",
         "lanota_append_1",
         "maozon",
         "stasis",
@@ -16853,6 +17050,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "arcaea",
         "base",
         "dancin' on a cat's paw",
         "ino(chronoize)",
@@ -16971,6 +17169,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "arcaea",
         "base",
         "san skia",
         "sanskia",
@@ -17036,6 +17235,7 @@
       "searchTerms": [
         "altair",
         "altair (feat. *spila*)",
+        "arcaea",
         "base",
         "kamome sano & you",
         "스피라",
@@ -17099,6 +17299,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "arcaea",
         "base",
         "misomyl",
         "mukishitsu",
@@ -17160,6 +17361,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "arcaea",
         "base",
         "puru",
         "trap crow",
@@ -17277,6 +17479,7 @@
       "relatedSongs": [],
       "searchTerms": [
         "defection",
+        "final verdict",
         "finale",
         "teddyloid feat. delta",
         "델타",
@@ -17342,6 +17545,7 @@
       "relatedSongs": [],
       "searchTerms": [
         "blackyooh vs. siromaru",
+        "final verdict",
         "finale",
         "infinite strife,",
         "infinitestrife",
@@ -17410,6 +17614,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "final verdict",
         "finale",
         "sasakure.uk × tj.hangneil",
         "world ender",
@@ -17478,6 +17683,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "final verdict",
         "finale",
         "nothing but requiem with museo",
         "pentiment",
@@ -17547,6 +17753,7 @@
       "searchTerms": [
         "arcana eden",
         "arcanaeden",
+        "final verdict",
         "finale",
         "team grimoire vs sakuzyo vs laur",
         "라우르",
@@ -17615,6 +17822,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "final verdict",
         "finale",
         "hoshikuma minami",
         "testify",
@@ -17679,6 +17887,7 @@
         "kaneko chiharu",
         "loveless dress",
         "lovelessdress",
+        "silent answer",
         "러브리스 드레스",
         "카네코치하루",
         "かねこちはる",
@@ -17711,7 +17920,8 @@
       "charts": [
         {
           "difficultyClass": "BYD",
-          "displayLevel": "9"
+          "displayLevel": "9",
+          "title": "Last | Moment"
         },
         {
           "difficultyClass": "FTR",
@@ -17754,7 +17964,9 @@
       "searchTerms": [
         "epilogue",
         "last",
+        "last | moment",
         "onoken",
+        "silent answer",
         "라스트",
         "오노켄",
         "おのけん",
@@ -17812,6 +18024,7 @@
         "last | eternity",
         "lasteternity",
         "onoken",
+        "silent answer",
         "라스트 이터니티",
         "오노켄",
         "おのけん",
@@ -17873,6 +18086,7 @@
         "callima karma",
         "callimakarma",
         "epilogue",
+        "silent answer",
         "t+pazolite vs feryquitous",
         "칼리마 카르마",
         "토파졸라이트",
@@ -17906,7 +18120,7 @@
       ],
       "pack": {
         "packId": "ongeki_append_1",
-        "displayName": "Collaboration Chapter 2"
+        "displayName": "O.N.G.E.K.I. · Collaboration Chapter 2"
       },
       "version": "4.1",
       "date": 1664409600,
@@ -17940,6 +18154,7 @@
       "searchTerms": [
         "heart",
         "kokoro",
+        "o.n.g.e.k.i. · collaboration chapter 2",
         "ongeki_append_1",
         "sakuzyo",
         "마음",
@@ -17972,7 +18187,7 @@
       ],
       "pack": {
         "packId": "ongeki_append_1",
-        "displayName": "Collaboration Chapter 2"
+        "displayName": "O.N.G.E.K.I. · Collaboration Chapter 2"
       },
       "version": "4.1",
       "date": 1664409601,
@@ -18007,6 +18222,7 @@
         "ai drew",
         "aidrew",
         "feryquitous",
+        "o.n.g.e.k.i. · collaboration chapter 2",
         "ongeki_append_1",
         "아이 드루",
         "아이 드류",
@@ -18033,7 +18249,7 @@
       ],
       "pack": {
         "packId": "ongeki_append_1",
-        "displayName": "Collaboration Chapter 2"
+        "displayName": "O.N.G.E.K.I. · Collaboration Chapter 2"
       },
       "version": "4.1",
       "date": 1664409602,
@@ -18068,6 +18284,7 @@
         "fluffy flash",
         "fluffyflash",
         "kobaryo",
+        "o.n.g.e.k.i. · collaboration chapter 2",
         "ongeki_append_1",
         "코바료",
         "플러피 플래쉬",
@@ -18094,7 +18311,7 @@
       ],
       "pack": {
         "packId": "ongeki_append_1",
-        "displayName": "Collaboration Chapter 2"
+        "displayName": "O.N.G.E.K.I. · Collaboration Chapter 2"
       },
       "version": "4.1",
       "date": 1664409603,
@@ -18128,6 +18345,7 @@
       "searchTerms": [
         "good bye, merry-go-round.",
         "goodbyemerry",
+        "o.n.g.e.k.i. · collaboration chapter 2",
         "ongeki_append_1",
         "yooh",
         "굿바이 메리 고 라운드",
@@ -18155,7 +18373,7 @@
       ],
       "pack": {
         "packId": "ongeki_append_1",
-        "displayName": "Collaboration Chapter 2"
+        "displayName": "O.N.G.E.K.I. · Collaboration Chapter 2"
       },
       "version": "4.1",
       "date": 1664409604,
@@ -18189,6 +18407,7 @@
       "searchTerms": [
         "blacky",
         "lamia",
+        "o.n.g.e.k.i. · collaboration chapter 2",
         "ongeki_append_1",
         "라미아",
         "블래키",
@@ -18421,6 +18640,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "arcaea",
         "base",
         "dialnote",
         "nanakusa crim",
@@ -18485,6 +18705,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "extend archive 2",
         "extend_2",
         "tsuki ni murakumo, hana ni kaze",
         "tsukinimurakumo",
@@ -18551,6 +18772,7 @@
       "relatedSongs": [],
       "searchTerms": [
         "akira complex feat. kiraku",
+        "extend archive 2",
         "extend_2",
         "mantis",
         "mantis (arcaea ultra-bloodrush vip)",
@@ -18611,6 +18833,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "extend archive 2",
         "extend_2",
         "world fragments iii(radio edit)",
         "worldfragments",
@@ -18671,6 +18894,7 @@
       "searchTerms": [
         "astra walkthrough",
         "astrawalkthrough",
+        "extend archive 2",
         "extend_2",
         "paraoka",
         "아스트라 워크스루",
@@ -18727,6 +18951,7 @@
       "relatedSongs": [],
       "searchTerms": [
         "chronicle",
+        "extend archive 2",
         "extend_2",
         "lime",
         "라임",
@@ -19034,6 +19259,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "extend archive 2",
         "extend_2",
         "ikaruga_nex vs falchion",
         "let's rock (arcaea mix)",
@@ -19067,7 +19293,7 @@
       ],
       "pack": {
         "packId": "maimai_append_1",
-        "displayName": "Collaboration Chapter 2"
+        "displayName": "maimai · Collaboration Chapter 2"
       },
       "version": "4.3",
       "date": 1677715204,
@@ -19101,6 +19327,7 @@
       "searchTerms": [
         "ayakura mei",
         "cycles",
+        "maimai · collaboration chapter 2",
         "maimai_append_1",
         "masayoshi minoshima feat. 綾倉盟",
         "마사요시 미노시마",
@@ -19130,7 +19357,7 @@
       ],
       "pack": {
         "packId": "maimai_append_1",
-        "displayName": "Collaboration Chapter 2"
+        "displayName": "maimai · Collaboration Chapter 2"
       },
       "version": "4.3",
       "date": 1677715205,
@@ -19163,6 +19390,7 @@
       "relatedSongs": [],
       "searchTerms": [
         "ebimayo",
+        "maimai · collaboration chapter 2",
         "maimai_append_1",
         "maxrage",
         "맥스레이지",
@@ -19188,7 +19416,7 @@
       ],
       "pack": {
         "packId": "maimai_append_1",
-        "displayName": "Collaboration Chapter 2"
+        "displayName": "maimai · Collaboration Chapter 2"
       },
       "version": "4.3",
       "date": 1677715206,
@@ -19223,6 +19451,7 @@
         "[x]",
         "blacklolita",
         "infinity",
+        "maimai · collaboration chapter 2",
         "maimai_append_1",
         "블랙로리타",
         "블랙롤리타",
@@ -19246,7 +19475,7 @@
       ],
       "pack": {
         "packId": "maimai_append_1",
-        "displayName": "Collaboration Chapter 2"
+        "displayName": "maimai · Collaboration Chapter 2"
       },
       "version": "4.3",
       "date": 1677715207,
@@ -19279,6 +19508,7 @@
       "relatedSongs": [],
       "searchTerms": [
         "kaneko chiharu",
+        "maimai · collaboration chapter 2",
         "maimai_append_1",
         "temptation",
         "카네코치하루",
@@ -19364,7 +19594,7 @@
       ],
       "pack": {
         "packId": "chunithm_append_2",
-        "displayName": "Collaboration Chapter 3"
+        "displayName": "CHUNITHM · Collaboration Chapter 3"
       },
       "version": "4.4",
       "date": 1679529600,
@@ -19396,6 +19626,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "chunithm · collaboration chapter 3",
         "chunithm_append_2",
         "cosmo pop funclub",
         "cosmopop",
@@ -19427,7 +19658,7 @@
       ],
       "pack": {
         "packId": "chunithm_append_2",
-        "displayName": "Collaboration Chapter 3"
+        "displayName": "CHUNITHM · Collaboration Chapter 3"
       },
       "version": "4.4",
       "date": 1679529601,
@@ -19463,6 +19694,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "chunithm · collaboration chapter 3",
         "chunithm_append_2",
         "impact",
         "takenobu mitsuyoshi",
@@ -19493,7 +19725,7 @@
       ],
       "pack": {
         "packId": "chunithm_append_2",
-        "displayName": "Collaboration Chapter 3"
+        "displayName": "CHUNITHM · Collaboration Chapter 3"
       },
       "version": "4.4",
       "date": 1679529602,
@@ -19525,6 +19757,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "chunithm · collaboration chapter 3",
         "chunithm_append_2",
         "genesis",
         "genesischunithm",
@@ -19557,7 +19790,7 @@
       ],
       "pack": {
         "packId": "chunithm_append_2",
-        "displayName": "Collaboration Chapter 3"
+        "displayName": "CHUNITHM · Collaboration Chapter 3"
       },
       "version": "4.4",
       "date": 1679529603,
@@ -19589,6 +19822,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "chunithm · collaboration chapter 3",
         "chunithm_append_2",
         "hino isuka",
         "s-don vs. 翡乃イスカ",
@@ -19632,7 +19866,7 @@
       ],
       "pack": {
         "packId": "chunithm_append_2",
-        "displayName": "Collaboration Chapter 3"
+        "displayName": "CHUNITHM · Collaboration Chapter 3"
       },
       "version": "4.4",
       "date": 1679529604,
@@ -19665,6 +19899,7 @@
       "relatedSongs": [],
       "searchTerms": [
         "bousou",
+        "chunithm · collaboration chapter 3",
         "chunithm_append_2",
         "kagenui hana",
         "kikuo",
@@ -19737,6 +19972,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "extend archive 2",
         "extend_2",
         "lost emotion feat. nomico",
         "lostemotion",
@@ -19796,6 +20032,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "extend archive 2",
         "extend_2",
         "gimmick",
         "ms.sill",
@@ -20038,6 +20275,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "extend archive 2",
         "extend_2",
         "la priere",
         "la prière",
@@ -20160,6 +20398,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "extend archive 2",
         "extend_2",
         "hybris",
         "hybris (the one who shattered)",
@@ -20354,6 +20593,7 @@
       "searchTerms": [
         "bullet waiting for me (james landino remix)",
         "bulletwaiting",
+        "cytus ii",
         "cytusii",
         "nikki simmons",
         "니키 시몬스",
@@ -20412,6 +20652,7 @@
       "relatedSongs": [],
       "searchTerms": [
         "3r2",
+        "cytus ii",
         "cytusii",
         "devillic sphere",
         "devillicsphere",
@@ -20485,6 +20726,7 @@
       "relatedSongs": [],
       "searchTerms": [
         "akira complex vs 3r2",
+        "cytus ii",
         "cytusii",
         "lucid traveler",
         "lucidtraveler",
@@ -20556,6 +20798,7 @@
         "aesir",
         "æsir",
         "chaos",
+        "cytus ii",
         "cytusii",
         "애시르",
         "에시르",
@@ -20619,6 +20862,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "cytus ii",
         "cytusii",
         "kiva",
         "kivλ",
@@ -20681,6 +20925,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "extend archive 2",
         "extend_2",
         "paradot",
         "paradotto",
@@ -20712,7 +20957,7 @@
       ],
       "pack": {
         "packId": "cytusii_append_1",
-        "displayName": "Collaboration Chapter 2"
+        "displayName": "CYTUS II · Collaboration Chapter 2"
       },
       "version": "4.6",
       "date": 1689724801,
@@ -20746,6 +20991,7 @@
       "searchTerms": [
         "apo11o\"collapsar\"program ft. 大瀬良あい",
         "apollo collapsar program",
+        "cytus ii · collaboration chapter 2",
         "cytusii_append_1",
         "oosera ai",
         "syuten",
@@ -20773,7 +21019,7 @@
       ],
       "pack": {
         "packId": "cytusii_append_1",
-        "displayName": "Collaboration Chapter 2"
+        "displayName": "CYTUS II · Collaboration Chapter 2"
       },
       "version": "4.6",
       "date": 1689724802,
@@ -20805,6 +21051,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "cytus ii · collaboration chapter 2",
         "cytusii_append_1",
         "drg",
         "onoken",
@@ -20832,7 +21079,7 @@
       ],
       "pack": {
         "packId": "cytusii_append_1",
-        "displayName": "Collaboration Chapter 2"
+        "displayName": "CYTUS II · Collaboration Chapter 2"
       },
       "version": "4.6",
       "date": 1689724803,
@@ -20865,6 +21112,7 @@
       "relatedSongs": [],
       "searchTerms": [
         "99 glooms",
+        "cytus ii · collaboration chapter 2",
         "cytusii_append_1",
         "ninetynine glooms",
         "nnglooms",
@@ -20895,7 +21143,7 @@
       ],
       "pack": {
         "packId": "cytusii_append_1",
-        "displayName": "Collaboration Chapter 2"
+        "displayName": "CYTUS II · Collaboration Chapter 2"
       },
       "version": "4.6",
       "date": 1689724804,
@@ -20944,6 +21192,7 @@
       "relatedSongs": [],
       "searchTerms": [
         "cytus",
+        "cytus ii · collaboration chapter 2",
         "cytusii_append_1",
         "ii",
         "͟͝͞ií̕",
@@ -20971,7 +21220,7 @@
       ],
       "pack": {
         "packId": "cytusii_append_1",
-        "displayName": "Collaboration Chapter 2"
+        "displayName": "CYTUS II · Collaboration Chapter 2"
       },
       "version": "4.6",
       "date": 1689724805,
@@ -21003,6 +21252,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "cytus ii · collaboration chapter 2",
         "cytusii_append_1",
         "m2u vocal by guriri",
         "magnolia",
@@ -21122,6 +21372,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "extend archive 2",
         "extend_2",
         "memodemo x aquasine",
         "rgb",
@@ -21186,6 +21437,7 @@
       "relatedSongs": [],
       "searchTerms": [
         "eden",
+        "lasting eden",
         "natsume itsuki",
         "u-ske feat. 棗いつき",
         "wait for dawn",
@@ -21252,6 +21504,7 @@
       "searchTerms": [
         "eden",
         "haramori yoshina",
+        "lasting eden",
         "mini",
         "raven's pride",
         "ravenspride",
@@ -21318,6 +21571,7 @@
         "bousou",
         "cosmo@暴走p",
         "eden",
+        "lasting eden",
         "rise of the world",
         "riseoftheworld",
         "라이즈 오브 더 월드",
@@ -21381,6 +21635,7 @@
       "relatedSongs": [],
       "searchTerms": [
         "eden",
+        "lasting eden",
         "unknown levels",
         "unknownlevels",
         "yuta imai",
@@ -21453,6 +21708,7 @@
         "dadadaizu",
         "dddice",
         "eden",
+        "lasting eden",
         "다다다이즈",
         "애쉬라운트",
         "애쉬런트",
@@ -21515,6 +21771,7 @@
       "relatedSongs": [],
       "searchTerms": [
         "demetori",
+        "extend archive 2",
         "extend_2",
         "kanjou no matenrou",
         "kanjou no matenrou ~arr.demetori",
@@ -21659,6 +21916,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "arcaea",
         "base",
         "nhato",
         "remind the souls (short version)",
@@ -21722,6 +21980,7 @@
       "searchTerms": [
         "dynitikos",
         "dynitikós",
+        "extend archive 2",
         "extend_2",
         "prower",
         "디니티코스",
@@ -21784,6 +22043,7 @@
       "relatedSongs": [],
       "searchTerms": [
         "amekagura",
+        "extend archive 2",
         "extend_2",
         "satoru aratani",
         "아라타니 사토루",
@@ -21909,6 +22169,7 @@
       "searchTerms": [
         "eden_append_1",
         "kurubukkochan",
+        "lasting eden chapter 2",
         "primeval texture",
         "primevaltexture",
         "쿠루보코짱",
@@ -21971,6 +22232,7 @@
       "relatedSongs": [],
       "searchTerms": [
         "eden_append_1",
+        "lasting eden chapter 2",
         "maozon",
         "technicolour",
         "마오존",
@@ -22030,6 +22292,7 @@
       "relatedSongs": [],
       "searchTerms": [
         "eden_append_1",
+        "lasting eden chapter 2",
         "logos",
         "miyo takashiro",
         "polysha feat. 高城みよ",
@@ -22096,6 +22359,7 @@
         "eden_append_1",
         "ego eimi",
         "egoeimi",
+        "lasting eden chapter 2",
         "리사 유즈키",
         "블래키",
         "블랙키",
@@ -22160,6 +22424,7 @@
         "arghena",
         "eden_append_1",
         "feryquitous vs laur",
+        "lasting eden chapter 2",
         "라우르",
         "아게나",
         "아르게나",
@@ -22220,6 +22485,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "extend archive 2",
         "extend_2",
         "fanta5y",
         "fantasy",
@@ -22287,6 +22553,7 @@
       "relatedSongs": [],
       "searchTerms": [
         "eden_append_2",
+        "shifting veil",
         "sleepless, gardens, aspect",
         "transient space",
         "transientspace",
@@ -22357,6 +22624,7 @@
         "eden_append_2",
         "nameless passion",
         "namelesspassion",
+        "shifting veil",
         "네임리스 패션",
         "센자이",
         "아마츠카",
@@ -22415,6 +22683,7 @@
       "searchTerms": [
         "eden_append_2",
         "katali",
+        "shifting veil",
         "teravolt",
         "카타리",
         "테라볼트",
@@ -22437,7 +22706,7 @@
       ],
       "pack": {
         "packId": "wacca_append_1",
-        "displayName": "Collaboration Chapter 2"
+        "displayName": "WACCA · Collaboration Chapter 2"
       },
       "version": "5.2",
       "date": 1701302400,
@@ -22471,6 +22740,7 @@
       "searchTerms": [
         "c-show",
         "stratoliner",
+        "wacca · collaboration chapter 2",
         "wacca_append_1",
         "스트라토라이너",
         "시쇼",
@@ -22502,7 +22772,7 @@
       ],
       "pack": {
         "packId": "wacca_append_1",
-        "displayName": "Collaboration Chapter 2"
+        "displayName": "WACCA · Collaboration Chapter 2"
       },
       "version": "5.2",
       "date": 1701302401,
@@ -22539,6 +22809,7 @@
         "ouverture",
         "ouvertüre",
         "usao & dj genki feat. ルーン(cv:河瀬茉希)",
+        "wacca · collaboration chapter 2",
         "wacca_append_1",
         "디제이 겐키",
         "룬",
@@ -22568,7 +22839,7 @@
       ],
       "pack": {
         "packId": "wacca_append_1",
-        "displayName": "Collaboration Chapter 2"
+        "displayName": "WACCA · Collaboration Chapter 2"
       },
       "version": "5.2",
       "date": 1701302402,
@@ -22601,6 +22872,7 @@
       "relatedSongs": [],
       "searchTerms": [
         "usao",
+        "wacca · collaboration chapter 2",
         "wacca_append_1",
         "xtreme",
         "엑스트림",
@@ -22633,7 +22905,7 @@
       ],
       "pack": {
         "packId": "wacca_append_1",
-        "displayName": "Collaboration Chapter 2"
+        "displayName": "WACCA · Collaboration Chapter 2"
       },
       "version": "5.2",
       "date": 1701302403,
@@ -22670,6 +22942,7 @@
         "edenwacca",
         "seikoku no shitenshi",
         "shikkoku no datenshi",
+        "wacca · collaboration chapter 2",
         "wacca_append_1",
         "성각의 치천사 그람",
         "성각의 치천사 그램",
@@ -22699,7 +22972,7 @@
       ],
       "pack": {
         "packId": "wacca_append_1",
-        "displayName": "Collaboration Chapter 2"
+        "displayName": "WACCA · Collaboration Chapter 2"
       },
       "version": "5.2",
       "date": 1701302404,
@@ -22734,6 +23007,7 @@
         "dj noriken",
         "meta-mysteria",
         "metamysteria",
+        "wacca · collaboration chapter 2",
         "wacca_append_1",
         "디제이 노리켄",
         "메타 미스테리아",
@@ -22795,6 +23069,7 @@
       "searchTerms": [
         "alone & lorn",
         "aloneandlorn",
+        "extend archive 2",
         "extend_2",
         "haachi",
         "haxchi",
@@ -22994,6 +23269,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "extend archive 2",
         "extend_2",
         "felys",
         "felys final remix",
@@ -23054,6 +23330,7 @@
       "relatedSongs": [],
       "searchTerms": [
         "etia.",
+        "extend archive 2",
         "extend_2",
         "on and on!! feat. jenga",
         "onandon",
@@ -23190,6 +23467,7 @@
         "hotarubi no yuki",
         "hotarubinoyuki",
         "omatsuri",
+        "sunset radiance",
         "반딧불의 눈",
         "엔도르핀",
         "엔돌핀",
@@ -23246,6 +23524,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "arcaea",
         "base",
         "junk",
         "the formula",
@@ -23367,6 +23646,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "arcaea",
         "base",
         "dj noriken",
         "jingle",
@@ -23556,6 +23836,7 @@
       "searchTerms": [
         "aleph-0",
         "alephzero",
+        "extend archive 2",
         "extend_2",
         "leaf",
         "리프",
@@ -23817,6 +24098,7 @@
       "relatedSongs": [],
       "searchTerms": [
         "akatsuki records",
+        "extend archive 3",
         "extend_3",
         "hellohell",
         "아카츠키 레코드",
@@ -23878,6 +24160,7 @@
       "searchTerms": [
         "、",
         "〇、",
+        "extend archive 3",
         "extend_3",
         "ichirin",
         "kolaa & 熊子",
@@ -23940,6 +24223,7 @@
       "searchTerms": [
         "awaken in ruins",
         "awakeninruins",
+        "extend archive 3",
         "extend_3",
         "supa7onyz",
         "수파 토니즈",
@@ -24002,6 +24286,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "extend archive 3",
         "extend_3",
         "morningloom",
         "saaa",
@@ -24059,6 +24344,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "extend archive 3",
         "extend_3",
         "lethal voltage",
         "lethalvoltage",
@@ -24253,6 +24539,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "extend archive 3",
         "extend_3",
         "leave all behind",
         "leaveallbehind",
@@ -24564,6 +24851,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "arcaea",
         "base",
         "epicurus",
         "hidden rainbows of epicurus",
@@ -24698,6 +24986,7 @@
       "relatedSongs": [],
       "searchTerms": [
         "dj sharpnel",
+        "extend archive 3",
         "extend_3",
         "old school salvage",
         "oldschoolsalvage",
@@ -24937,6 +25226,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "groove coaster chapter 2",
         "groovecoaster_append_1",
         "sign of \"10.5km\"",
         "signof",
@@ -25001,6 +25291,7 @@
       "relatedSongs": [],
       "searchTerms": [
         "10pt8ion",
+        "groove coaster chapter 2",
         "groovecoaster_append_1",
         "lite show magic",
         "temptation",
@@ -25061,6 +25352,7 @@
         "black mind",
         "blackmind",
         "cosio",
+        "groove coaster chapter 2",
         "groovecoaster_append_1",
         "블랙 마인드",
         "코시오",
@@ -25181,6 +25473,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "absolute nihil",
         "alter ego",
         "alterego",
         "nihil",
@@ -25249,6 +25542,7 @@
         "distortion human",
         "distortionhuman",
         "dj myosuke & kaji",
+        "extend archive 3",
         "extend_3",
         "디스토션 휴먼",
         "디제이 묘스케",
@@ -25373,6 +25667,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "absolute nihil",
         "in vain",
         "invain",
         "nihil",
@@ -25435,6 +25730,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "absolute nihil",
         "hypnotize",
         "nihil",
         "rejection",
@@ -25492,6 +25788,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "absolute nihil",
         "ashen 6oundary",
         "ashen boundary",
         "ashenboundary",
@@ -25551,6 +25848,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "absolute nihil",
         "judgement",
         "nihil",
         "tatsunoshin",
@@ -25614,6 +25912,7 @@
       "searchTerms": [
         "camellia",
         "epitaxy",
+        "extend archive 3",
         "extend_3",
         "에피택시",
         "카멜리아",
@@ -26062,6 +26361,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "adverse prelude",
         "crayvxn",
         "prelude",
         "saint or sinner",
@@ -26119,6 +26419,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "extend archive 3",
         "extend_3",
         "hailstone",
         "kazki misora",
@@ -26181,6 +26482,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "extend archive 3",
         "extend_3",
         "furete-mitai",
         "furetemitai",
@@ -26315,6 +26617,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "extend archive 3",
         "extend_3",
         "prayer",
         "pureya",
@@ -26640,6 +26943,7 @@
       "searchTerms": [
         "astral.exe",
         "astralexe",
+        "extend archive 3",
         "extend_3",
         "synzak & laxeno57",
         "라제노 오칠",
@@ -26669,7 +26973,7 @@
       ],
       "pack": {
         "packId": "ongeki_append_2",
-        "displayName": "Collaboration Chapter 3"
+        "displayName": "O.N.G.E.K.I. · Collaboration Chapter 3"
       },
       "version": "6.0",
       "date": 1732147201,
@@ -26707,6 +27011,7 @@
       "searchTerms": [
         "liftoff",
         "maya akai",
+        "o.n.g.e.k.i. · collaboration chapter 3",
         "ongeki_append_2",
         "리프트오프",
         "마야 아카이",
@@ -26731,7 +27036,7 @@
       ],
       "pack": {
         "packId": "ongeki_append_2",
-        "displayName": "Collaboration Chapter 3"
+        "displayName": "O.N.G.E.K.I. · Collaboration Chapter 3"
       },
       "version": "6.0",
       "date": 1732147202,
@@ -26764,6 +27069,7 @@
       "relatedSongs": [],
       "searchTerms": [
         "ajurika",
+        "o.n.g.e.k.i. · collaboration chapter 3",
         "ongeki_append_2",
         "super ambulance",
         "superambulance",
@@ -26794,7 +27100,7 @@
       ],
       "pack": {
         "packId": "ongeki_append_2",
-        "displayName": "Collaboration Chapter 3"
+        "displayName": "O.N.G.E.K.I. · Collaboration Chapter 3"
       },
       "version": "6.0",
       "date": 1732147203,
@@ -26834,6 +27140,7 @@
         "don't fight the music",
         "dontfightmusic",
         "kuroma",
+        "o.n.g.e.k.i. · collaboration chapter 3",
         "ongeki_append_2",
         "돈 파이트 더 뮤직",
         "돈 파잇 더 뮤직",
@@ -26862,7 +27169,7 @@
       ],
       "pack": {
         "packId": "ongeki_append_2",
-        "displayName": "Collaboration Chapter 3"
+        "displayName": "O.N.G.E.K.I. · Collaboration Chapter 3"
       },
       "version": "6.0",
       "date": 1732147204,
@@ -26898,6 +27205,7 @@
         "andrevivemelody",
         "chroma",
         "kuroma",
+        "o.n.g.e.k.i. · collaboration chapter 3",
         "ongeki_append_2",
         "앤 리바이브 더 멜로디",
         "쿠로마",
@@ -26956,6 +27264,7 @@
       "relatedSongs": [],
       "searchTerms": [
         "lephon",
+        "lucent historia",
         "swan song",
         "swansong",
         "void (mournfinale)",
@@ -27018,6 +27327,7 @@
       "relatedSongs": [],
       "searchTerms": [
         "lephon",
+        "lucent historia",
         "renegade",
         "sky_delta",
         "레니게이드",
@@ -27080,6 +27390,7 @@
       "relatedSongs": [],
       "searchTerms": [
         "lephon",
+        "lucent historia",
         "may × felysrator",
         "rays of remnant",
         "raysofremnant",
@@ -27147,6 +27458,7 @@
         "breach of faith",
         "breachoffaith",
         "lephon",
+        "lucent historia",
         "supire feat.eili",
         "브리치 오브 페이스",
         "스파이어",
@@ -27218,6 +27530,7 @@
         "lament rain",
         "lamentrain",
         "lephon",
+        "lucent historia",
         "다다다이즈",
         "라멘트 레인",
         "애쉬라운트",
@@ -27281,6 +27594,7 @@
         "designant",
         "designant.",
         "lephon",
+        "lucent historia",
         "데지그넌트",
         "でじぐなんと"
       ]
@@ -27339,6 +27653,7 @@
         "astralquant",
         "dj grimoire",
         "lephon",
+        "lucent historia",
         "디제이 그리모어",
         "아스트랄 퀀티제이션",
         "あすとらるくおんたいぜーしょん",
@@ -27366,7 +27681,7 @@
       ],
       "pack": {
         "packId": "chunithm_append_3",
-        "displayName": "Collaboration Chapter 4"
+        "displayName": "CHUNITHM · Collaboration Chapter 4"
       },
       "version": "6.1",
       "date": 1734566400,
@@ -27398,6 +27713,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "chunithm · collaboration chapter 4",
         "chunithm_append_3",
         "ignition",
         "pasocom music club",
@@ -27425,7 +27741,7 @@
       ],
       "pack": {
         "packId": "chunithm_append_3",
-        "displayName": "Collaboration Chapter 4"
+        "displayName": "CHUNITHM · Collaboration Chapter 4"
       },
       "version": "6.1",
       "date": 1734566401,
@@ -27463,6 +27779,7 @@
       "searchTerms": [
         "blazing air",
         "blazingair",
+        "chunithm · collaboration chapter 4",
         "chunithm_append_3",
         "kanone",
         "블레이징 에어",
@@ -27486,7 +27803,7 @@
       ],
       "pack": {
         "packId": "chunithm_append_3",
-        "displayName": "Collaboration Chapter 4"
+        "displayName": "CHUNITHM · Collaboration Chapter 4"
       },
       "version": "6.1",
       "date": 1734566402,
@@ -27523,6 +27840,7 @@
       "relatedSongs": [],
       "searchTerms": [
         "8-em",
+        "chunithm · collaboration chapter 4",
         "chunithm_append_3",
         "eightem",
         "sampling masters aya",
@@ -27551,7 +27869,7 @@
       ],
       "pack": {
         "packId": "chunithm_append_3",
-        "displayName": "Collaboration Chapter 4"
+        "displayName": "CHUNITHM · Collaboration Chapter 4"
       },
       "version": "6.1",
       "date": 1734566402,
@@ -27583,6 +27901,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "chunithm · collaboration chapter 4",
         "chunithm_append_3",
         "da'at -the first seeker of souls-",
         "daat",
@@ -27614,7 +27933,7 @@
       ],
       "pack": {
         "packId": "maimai_append_2",
-        "displayName": "Collaboration Chapter 3"
+        "displayName": "maimai · Collaboration Chapter 3"
       },
       "version": "6.2",
       "date": 1737417600,
@@ -27653,6 +27972,7 @@
         "break! break! break!",
         "breakbreak",
         "hitech ninja vs cranky",
+        "maimai · collaboration chapter 3",
         "maimai_append_2",
         "브레이크 브레이크 브레이크",
         "크랭키",
@@ -27677,7 +27997,7 @@
       ],
       "pack": {
         "packId": "maimai_append_2",
-        "displayName": "Collaboration Chapter 3"
+        "displayName": "maimai · Collaboration Chapter 3"
       },
       "version": "6.2",
       "date": 1737417601,
@@ -27714,6 +28034,7 @@
       "relatedSongs": [],
       "searchTerms": [
         "cosmograph",
+        "maimai · collaboration chapter 3",
         "maimai_append_2",
         "straight into the lights",
         "straightintolights",
@@ -27739,7 +28060,7 @@
       ],
       "pack": {
         "packId": "maimai_append_2",
-        "displayName": "Collaboration Chapter 3"
+        "displayName": "maimai · Collaboration Chapter 3"
       },
       "version": "6.2",
       "date": 1737417602,
@@ -27776,6 +28097,7 @@
       "relatedSongs": [],
       "searchTerms": [
         "hiro",
+        "maimai · collaboration chapter 3",
         "maimai_append_2",
         "virtus",
         "버투스",
@@ -27811,7 +28133,7 @@
       ],
       "pack": {
         "packId": "maimai_append_2",
-        "displayName": "Collaboration Chapter 3"
+        "displayName": "maimai · Collaboration Chapter 3"
       },
       "version": "6.2",
       "date": 1737417602,
@@ -27846,6 +28168,7 @@
         "kamome sano",
         "limonene",
         "limonène (サノカモメ+月島春果)",
+        "maimai · collaboration chapter 3",
         "maimai_append_2",
         "sano kamome",
         "tsukishima haruka",
@@ -27883,7 +28206,7 @@
       ],
       "pack": {
         "packId": "chunithm_append_3",
-        "displayName": "Collaboration Chapter 4"
+        "displayName": "CHUNITHM · Collaboration Chapter 4"
       },
       "version": "6.2",
       "date": 1740700800,
@@ -27921,6 +28244,7 @@
       "searchTerms": [
         "aether crest: astral",
         "aethercrest",
+        "chunithm · collaboration chapter 4",
         "chunithm_append_3",
         "mizuno kenji",
         "void (mournfinale) × 水野健治",
@@ -28426,6 +28750,7 @@
         "akatsuki records",
         "black mirror on the wall",
         "blackmirror",
+        "extend archive 3",
         "extend_3",
         "블랙 미러 온 더 월",
         "아카츠키 레코드",
@@ -28554,6 +28879,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "extend archive 3",
         "extend_3",
         "nauts",
         "trpno",
@@ -28612,6 +28938,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "extend archive 3",
         "extend_3",
         "tau",
         "wooden",
@@ -28729,6 +29056,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "extend archive 3",
         "extend_3",
         "pure 100% / kasa",
         "won't back down",
@@ -29227,6 +29555,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "arcaea",
         "base",
         "p*light & dj noriken feat. kmnz",
         "satisfaction",
@@ -29289,6 +29618,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "extend archive 3",
         "extend_3",
         "nien",
         "someday",
@@ -29378,7 +29708,7 @@
       ],
       "pack": {
         "packId": "djmax_append_1",
-        "displayName": "Collaboration Chapter 2"
+        "displayName": "DJMAX · Collaboration Chapter 2"
       },
       "version": "6.6",
       "date": 1750896003,
@@ -29414,6 +29744,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "djmax · collaboration chapter 2",
         "djmax_append_1",
         "i want you",
         "iwantyou",
@@ -29441,7 +29772,7 @@
       ],
       "pack": {
         "packId": "djmax_append_1",
-        "displayName": "Collaboration Chapter 2"
+        "displayName": "DJMAX · Collaboration Chapter 2"
       },
       "version": "6.6",
       "date": 1750896004,
@@ -29474,6 +29805,7 @@
       "relatedSongs": [],
       "searchTerms": [
         "bexter",
+        "djmax · collaboration chapter 2",
         "djmax_append_1",
         "syriana",
         "벡스터",
@@ -29499,7 +29831,7 @@
       ],
       "pack": {
         "packId": "djmax_append_1",
-        "displayName": "Collaboration Chapter 2"
+        "displayName": "DJMAX · Collaboration Chapter 2"
       },
       "version": "6.6",
       "date": 1750896005,
@@ -29531,6 +29863,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "djmax · collaboration chapter 2",
         "djmax_append_1",
         "liar",
         "zts",
@@ -29557,7 +29890,7 @@
       ],
       "pack": {
         "packId": "djmax_append_1",
-        "displayName": "Collaboration Chapter 2"
+        "displayName": "DJMAX · Collaboration Chapter 2"
       },
       "version": "6.6",
       "date": 1750896006,
@@ -29594,6 +29927,7 @@
       "relatedSongs": [],
       "searchTerms": [
         "blythe",
+        "djmax · collaboration chapter 2",
         "djmax_append_1",
         "m2u",
         "블라이스",
@@ -29618,7 +29952,7 @@
       ],
       "pack": {
         "packId": "djmax_append_1",
-        "displayName": "Collaboration Chapter 2"
+        "displayName": "DJMAX · Collaboration Chapter 2"
       },
       "version": "6.6",
       "date": 1750896007,
@@ -29654,6 +29988,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "djmax · collaboration chapter 2",
         "djmax_append_1",
         "paul bazooka",
         "we're all gonna die",
@@ -29717,6 +30052,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "arcaea",
         "base",
         "dematerialized",
         "in love with a ghost",
@@ -29781,6 +30117,7 @@
       "relatedSongs": [],
       "searchTerms": [
         "anima",
+        "extant anima",
         "polysha feat. しろさきあや",
         "see the lights!",
         "seethelights",
@@ -29848,6 +30185,7 @@
       "searchTerms": [
         "akatsuki no hime",
         "anima",
+        "extant anima",
         "scarlet lunar empress",
         "scarletlunar",
         "technoplanet feat. 夕月ティア",
@@ -29917,6 +30255,7 @@
         "anima",
         "dual dependency",
         "dualdependency",
+        "extant anima",
         "seatrus",
         "듀얼 디펜던시",
         "시트러스",
@@ -29978,6 +30317,7 @@
       "relatedSongs": [],
       "searchTerms": [
         "anima",
+        "extant anima",
         "juggernaut.",
         "lilly",
         "릴리",
@@ -30046,6 +30386,7 @@
       "relatedSongs": [],
       "searchTerms": [
         "anima",
+        "extant anima",
         "extradimensional",
         "extradimensional cosmic phenomenon",
         "tajigen uchuu yuugouron",
@@ -30115,6 +30456,7 @@
       "relatedSongs": [],
       "searchTerms": [
         "disintegration",
+        "extend archive 3",
         "extend_3",
         "fuve",
         "hyubu",
@@ -30182,6 +30524,7 @@
       "relatedSongs": [],
       "searchTerms": [
         "anima_append_1",
+        "chapter experientia",
         "factorder",
         "rihina",
         "sena",
@@ -30249,6 +30592,7 @@
       "relatedSongs": [],
       "searchTerms": [
         "anima_append_1",
+        "chapter experientia",
         "halv feat.kuroa*",
         "incomplete the one",
         "incompleteone",
@@ -30319,6 +30663,7 @@
       "searchTerms": [
         "anima_append_1",
         "chaosblast",
+        "chapter experientia",
         "qureless + 柚子花",
         "yuzuha",
         "유즈하",
@@ -30386,6 +30731,7 @@
       "relatedSongs": [],
       "searchTerms": [
         "anima_append_1",
+        "chapter experientia",
         "dadadaizu",
         "dddice",
         "welcome, queen of fiction.",
@@ -30448,6 +30794,7 @@
       "searchTerms": [
         "altergate",
         "anima_append_1",
+        "chapter experientia",
         "misoilepunch♪ ~タケノコ添え~",
         "takenokozoe",
         "미소일펀치 타케노코조에",
@@ -30624,6 +30971,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "extend archive 3",
         "extend_3",
         "myukke.",
         "rost page gene",
@@ -30684,6 +31032,7 @@
       "searchTerms": [
         "eclipse",
         "kolaa",
+        "liminal eclipse",
         "viola illyria",
         "violaillyria",
         "비올라 이률리아",
@@ -30744,6 +31093,7 @@
       "relatedSongs": [],
       "searchTerms": [
         "eclipse",
+        "liminal eclipse",
         "satella",
         "vainspire",
         "베인스파이어",
@@ -30804,6 +31154,7 @@
       "relatedSongs": [],
       "searchTerms": [
         "eclipse",
+        "liminal eclipse",
         "nhato",
         "no way back",
         "nowayback",
@@ -30868,6 +31219,7 @@
       "searchTerms": [
         "andorxor",
         "eclipse",
+        "liminal eclipse",
         "sobrem",
         "소브렘",
         "앤도서",
@@ -30932,6 +31284,7 @@
       "searchTerms": [
         "ashrount",
         "eclipse",
+        "liminal eclipse",
         "undying macula",
         "undyingmacula",
         "애쉬라운트",
@@ -31003,6 +31356,7 @@
         "extend_4",
         "hajimari no uta",
         "wake in hour",
+        "world extend 4",
         "시작의 노래",
         "아리무라 쿄고",
         "어웨이크닝",
@@ -31064,6 +31418,7 @@
         "extend_4",
         "kalsoer",
         "mod",
+        "world extend 4",
         "모드",
         "칼소아",
         "칼소어",
@@ -31127,6 +31482,7 @@
         "extend_4",
         "lime / kankitsu",
         "particle",
+        "world extend 4",
         "라임",
         "칸키츠",
         "파티클",
@@ -31191,6 +31547,7 @@
         "extend_4",
         "paradox palette",
         "paradoxpalette",
+        "world extend 4",
         "애토로",
         "에터로",
         "패러독스 팔레트",
@@ -31251,6 +31608,7 @@
       "searchTerms": [
         "d.watt",
         "extend_4",
+        "world extend 4",
         "xxium",
         "xxium and purple haze",
         "디 와트",
@@ -31436,6 +31794,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "arcaea next stage",
         "dj noriken × p*light",
         "infinite dimension",
         "infinitedim",
@@ -31504,6 +31863,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "arcaea next stage",
         "incarnator",
         "incarnator origin",
         "incarnator00",
@@ -31572,6 +31932,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "arcaea next stage",
         "nextstage",
         "s-don × nitro (lowiro)",
         "zephyrlast",
@@ -31640,6 +32001,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "arcaea next stage",
         "blacky × aoi",
         "marenyx",
         "nextstage",
@@ -31706,6 +32068,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "arcaea next stage",
         "code: oblivion",
         "codeoblivion",
         "kobaryo × gram",
@@ -31774,6 +32137,7 @@
       "relatedSongs": [],
       "searchTerms": [
         "ak+q × onoken",
+        "arcaea next stage",
         "azalea",
         "nextstage",
         "λzλleλ",
@@ -31841,6 +32205,7 @@
         "redalice",
         "taboo tears you up 2017",
         "tabootears",
+        "world extend 4",
         "레드앨리스",
         "타부 테어즈 유 업",
         "터부 테어즈 유 업",
@@ -31958,6 +32323,7 @@
         "nohana koyori",
         "planless & 乃花こより",
         "undefined",
+        "world extend 4",
         "노하나 코요리",
         "언디파인드",
         "플랜리스",
@@ -32022,6 +32388,7 @@
         "aquasine ~ memodemo + metaroom",
         "extend_4",
         "mask",
+        "world extend 4",
         "마스크",
         "메모데모",
         "메타룸",
@@ -32288,6 +32655,7 @@
         "extend_4",
         "omajinai",
         "tsubusare bozz × madoka*",
+        "world extend 4",
         "마도카",
         "스부사레 봇즈",
         "오마지나이",
@@ -32687,6 +33055,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "arcaea",
         "base",
         "caramelpop",
         "gimme caramel popcorn!",
@@ -32763,6 +33132,7 @@
         "shinnoukyoseki",
         "shinoukyoseki",
         "the forgotten forest haven",
+        "world extend 4",
         "더 포가튼 포레스트 헤이븐",
         "삼오허적",
         "시바",
@@ -32898,6 +33268,7 @@
         "extend_4",
         "sound souler",
         "thirdavenue",
+        "world extend 4",
         "사운드 소울러",
         "서드 에비뉴",
         "さーどあゔぇにゅー",
@@ -32956,6 +33327,7 @@
         "extend_4",
         "sakuzyo",
         "vallista",
+        "world extend 4",
         "발리스타",
         "사쿠죠",
         "ゔぁりすた",
@@ -33201,6 +33573,7 @@
         "spiderdance",
         "supaida dansu",
         "toby fox",
+        "undertale pack append",
         "undertale_append_1",
         "스파이더 댄스",
         "토비 폭스",
@@ -33266,6 +33639,7 @@
         "spear of justice",
         "spearofjustice",
         "toby fox",
+        "undertale pack append",
         "undertale_append_1",
         "스피어 오브 저스티스",
         "정의의 창",
@@ -33331,6 +33705,7 @@
         "asgore",
         "azugoa",
         "toby fox",
+        "undertale pack append",
         "undertale_append_1",
         "아스고르",
         "아스고어",
@@ -33390,6 +33765,7 @@
         "kamome sano",
         "mirror - kamome sano remix",
         "mirrorrmx",
+        "world extend 4",
         "미러 카모메 사노 리믹스",
         "카모메 사노",
         "かもめさの",
@@ -33456,6 +33832,7 @@
         "laur & massive new krew feat. 社築",
         "riot in the system",
         "riotsystem",
+        "world extend 4",
         "yashiro kizuku",
         "라우르",
         "라이엇 인 더 시스템",
@@ -33525,6 +33902,7 @@
         "cosmogyral",
         "darren + altermis",
         "extend_4",
+        "world extend 4",
         "다렌",
         "대런",
         "알터미스",
@@ -33585,6 +33963,7 @@
         "extend_4",
         "flexidefine",
         "lamanya",
+        "world extend 4",
         "라마냐",
         "플렉시디파인",
         "ふれきしでぃふぁいん",
@@ -33833,6 +34212,7 @@
         "ravi",
         "surii",
         "threee",
+        "virtual singers",
         "virtualsingers",
         "라비",
         "스리이",
@@ -33902,6 +34282,7 @@
         "kamippoina",
         "pinocchiop",
         "pinokiopi",
+        "virtual singers",
         "virtualsingers",
         "가디시",
         "신 같네",
@@ -33968,6 +34349,7 @@
       "searchTerms": [
         "obaraido",
         "override",
+        "virtual singers",
         "virtualsingers",
         "yoshida yasei",
         "오버라이드",
@@ -34031,6 +34413,7 @@
         "deco*27",
         "telepathy",
         "terepashi",
+        "virtual singers",
         "virtualsingers",
         "데코니나",
         "텔레파시",
@@ -34097,6 +34480,7 @@
         "aishiteaishiteaishite",
         "kikuo",
         "love me, love me, love me",
+        "virtual singers",
         "virtualsingers",
         "러브 미 러브 미 러브 미",
         "사랑해줘 사랑해줘 사랑해줘",

@@ -145,11 +145,13 @@ test("Browse pagination starts at 48 and reset state is empty without changing s
   assert.deepEqual(defaultBrowseUrlState("arcaea"), arcaeaState());
   const item = makeArcaeaItem({
     artworks: [makeArtwork("default-resource", "default"), makeArtwork("byd-resource", "difficulty", "BYD")],
-    charts: [{ difficultyClass: "BYD", displayLevel: "10" }],
+    charts: [{ difficultyClass: "BYD", displayLevel: "10", title: "BYD Title", artist: "BYD Artist" }],
   });
   const displayed = displayBrowseItem(item, ["BYD"]);
   assert.equal(displayed.resourceId, "byd-resource");
   assert.equal(displayed.route, "/r/byd-resource/");
+  assert.equal(displayed.displayTitle, "BYD Title");
+  assert.equal(displayed.artist, "BYD Artist");
   assert.notEqual(displayed.resourceId, item.artworks.find((artwork) => artwork.role === "default")?.resourceId);
 });
 
@@ -164,10 +166,10 @@ test("Phigros projection keeps current, special, archive, and source-only bounda
   assert.equal(formalBrowse.phigros.items.some((item) => item.displayTitle === "INTRODUCTION"), true);
 });
 
-test("Phigros searches source title/source artist without inventing display artist", () => {
+test("Phigros falls back to a reliable source artist while preserving source search terms", () => {
   const noDisplayArtist = formalBrowse.phigros.items.find((item) => item.sourceTitle === "000AinSophAur");
   assert.ok(noDisplayArtist);
-  assert.equal(noDisplayArtist.artist, undefined);
+  assert.equal(noDisplayArtist.artist, "Yumeji");
   assert.equal(noDisplayArtist.sourceArtist, "Yumeji");
   assert.equal(filterBrowseItems(formalBrowse.phigros.items, phigrosStateFor({ q: "000AinSophAur" })).some((item) => item.key === noDisplayArtist.key), true);
   assert.equal(filterBrowseItems(formalBrowse.phigros.items, phigrosStateFor({ q: "Yumeji" })).some((item) => item.key === noDisplayArtist.key), true);

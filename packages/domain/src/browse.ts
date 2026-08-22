@@ -27,6 +27,8 @@ const SearchTerms = z.array(z.string().min(1));
 const ArcaeaChart = z.object({
   difficultyClass: ArcaeaDifficultyClass,
   displayLevel: z.string().min(1),
+  title: z.string().min(1).optional(),
+  artist: z.string().min(1).optional(),
 });
 
 const ArcaeaArtwork = z.object({
@@ -222,6 +224,7 @@ export const CategoryBrowseResource = z.object({
   resourceType: z.string().min(1),
   displayTitle: z.string().min(1).optional(),
   subtitle: z.string().min(1).optional(),
+  metadata: z.record(z.string(), z.union([z.string(), z.number(), z.boolean()])).default({}),
   badges: z.array(z.string().min(1)).default([]),
   searchTerms: SearchTerms.default([]),
   sortOrder: z.number().int().nonnegative().optional(),
@@ -673,7 +676,16 @@ function buildArcaeaProjection(input: {
         artworks,
         relatedSongs: [...sourceSong.relatedSongs].sort((a, b) => a.songId.localeCompare(b.songId, "en") || a.relationType.localeCompare(b.relationType, "en")),
         ...(sourceSong.specialRelation ? { specialRelation: sourceSong.specialRelation } : {}),
-        searchTerms: searchTerms([sourceSong.displayTitle, ...titleAliases, sourceSong.artist, ...artistAliases, sourceSong.songId, sourceSong.packId]),
+        searchTerms: searchTerms([
+          sourceSong.displayTitle,
+          ...titleAliases,
+          sourceSong.artist,
+          ...artistAliases,
+          ...sourceSong.charts.flatMap((chart) => [chart.title, chart.artist]),
+          sourceSong.songId,
+          sourceSong.packId,
+          sourceSong.packDisplayName,
+        ]),
       });
     });
   const specials = buildArcaeaSpecials(input.curation);
@@ -766,7 +778,7 @@ function buildPhigrosProjection(input: { catalog: Catalog; source: PhigrosSource
     const resource = resourceId ? input.catalog.resources.find((candidate) => candidate.id === resourceId) : undefined;
     const curatedResource = resource?.resourceType === "jacket" ? resource : undefined;
     const displayTitle = curatedResource?.title ?? prior?.displayTitle ?? sourceTrack.displayTitle ?? sourceTrack.sourceTitle;
-    const displayArtist = curatedResourceArtist(curatedResource) ?? prior?.displayArtist ?? (sourceTrack.displayArtist !== undefined ? sourceTrack.displayArtist : null);
+    const displayArtist = curatedResourceArtist(curatedResource) ?? firstNonEmpty(prior?.displayArtist, sourceTrack.displayArtist, sourceTrack.sourceArtist);
     const artwork = resourceId ? {
       resourceId,
       confidence: sourceTrack.artworkConfidence ?? prior?.artwork?.confidence ?? "unknown",
@@ -1083,4 +1095,7 @@ export async function writeBrowseProjectionAtomic(result: BrowseProjectionBuildR
   }
   for (const file of temporary) await rm(file.backup, { force: true }).catch(() => undefined);
   return temporary.map((file) => file.target);
+}
+function firstNonEmpty(...values: Array<string | null | undefined>): string | null {
+  return values.find((value) => typeof value === "string" && value.trim().length > 0)?.trim() ?? null;
 }

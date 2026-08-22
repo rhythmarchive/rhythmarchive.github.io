@@ -11,9 +11,11 @@ import {
 import type { Catalog, Resource } from "../packages/domain/src/schema.js";
 
 type CsvRow = Record<string, string | undefined>;
+type SemanticPrimitive = string | number | boolean;
 type SemanticPatch = {
   displayTitle?: string;
   subtitle?: string;
+  metadata?: Record<string, SemanticPrimitive>;
   badges?: string[];
   searchTerms?: string[];
   sortOrder?: number;
@@ -24,6 +26,7 @@ type SemanticDraft = {
   resourceType: string;
   displayTitle?: string;
   subtitle?: string;
+  metadata: Map<string, SemanticPrimitive>;
   badges: Set<string>;
   searchTerms: Set<string>;
   sortOrder?: number;
@@ -155,9 +158,28 @@ function cleanIdentifier(value: string): string {
     .trim();
 }
 
+type CharacterNames = { zhHans?: string; ja?: string; en?: string; ko?: string };
+
+function characterNames(characterName: string | undefined, searchStrings: string[]): CharacterNames {
+  const candidates = unique(searchStrings);
+  const hanOnly = candidates.filter((value) => /[\u3400-\u4dbf\u4e00-\u9fff]/u.test(value) && !/[\u3040-\u30ff\uac00-\ud7af]/u.test(value));
+  const firstHan = hanOnly[0];
+  const firstHanIndex = firstHan ? candidates.indexOf(firstHan) : -1;
+  const zhHans = firstHanIndex === 0 && hanOnly.length > 1 ? hanOnly[1] : firstHan;
+  const ja = candidates.find((value) => /[\u3040-\u30ff]/u.test(value)) ?? firstHan;
+  const ko = candidates.find((value) => /[\uac00-\ud7af]/u.test(value));
+  return {
+    ...(zhHans ? { zhHans } : {}),
+    ...(ja ? { ja } : {}),
+    ...(characterName ? { en: characterName } : {}),
+    ...(ko ? { ko } : {}),
+  };
+}
+
 function localizedCharacterName(characterName: string | undefined, searchStrings: string[]): string | undefined {
   const candidates = unique([...searchStrings, ...(characterName ? [characterName] : [])]);
-  return candidates.find((value) => /[\u3400-\u4dbf\u4e00-\u9fff\u3040-\u30ff\uac00-\ud7af]/u.test(value)) ?? candidates[0];
+  const names = characterNames(characterName, searchStrings);
+  return names.zhHans ?? names.ja ?? names.ko ?? names.en ?? candidates[0];
 }
 
 function storyTypeLabel(value: string | undefined): string {
@@ -237,9 +259,11 @@ function addDraft(drafts: Map<string, SemanticDraft>, resource: Resource | undef
     badges: new Set<string>(),
     searchTerms: new Set<string>(),
     facets: new Map<string, Set<string>>(),
+    metadata: new Map<string, SemanticPrimitive>(),
   };
   if (patch.displayTitle && !current.displayTitle) current.displayTitle = patch.displayTitle;
   if (patch.subtitle && !current.subtitle) current.subtitle = patch.subtitle;
+  for (const [key, value] of Object.entries(patch.metadata ?? {})) if (!current.metadata.has(key)) current.metadata.set(key, value);
   for (const badge of patch.badges ?? []) current.badges.add(badge);
   for (const term of patch.searchTerms ?? []) if (term.trim()) current.searchTerms.add(term.trim());
   for (const [key, values] of Object.entries(patch.facets ?? {})) {
@@ -251,24 +275,62 @@ function addDraft(drafts: Map<string, SemanticDraft>, resource: Resource | undef
   drafts.set(resource.id, current);
 }
 
-function characterMaps(rows: CsvRow[]): { byId: Map<string, { title?: string; aliases: string[] }>; mapped: Map<string, boolean> } {
-  const byId = new Map<string, { title?: string; aliases: string[] }>();
+function characterMaps(rows: CsvRow[]): { byId: Map<string, { title?: string; aliases: string[]; names: CharacterNames }>; byName: Map<string, { title?: string; aliases: string[]; names: CharacterNames }>; mapped: Map<string, boolean> } {
+  const byId = new Map<string, { title?: string; aliases: string[]; names: CharacterNames }>();
+  const byName = new Map<string, { title?: string; aliases: string[]; names: CharacterNames }>();
   for (const row of rows) {
     const characterId = nonEmpty(row.characterId);
     if (!characterId) continue;
-    const aliases = unique([nonEmpty(row.characterName) ?? "", ...parseJsonStrings(row.searchStrings)]);
-    const title = localizedCharacterName(nonEmpty(row.characterName), parseJsonStrings(row.searchStrings));
-    if (!byId.has(characterId) || (!byId.get(characterId)!.title && title)) byId.set(characterId, { ...(title ? { title } : {}), aliases });
+    const searchStrings = parseJsonStrings(row.searchStrings);
+    const aliases = unique([nonEmpty(row.characterName) ?? "", ...searchStrings]);
+    const names = characterNames(nonEmpty(row.characterName), searchStrings);
+    const title = localizedCharacterName(nonEmpty(row.characterName), searchStrings);
+    if (!byId.has(characterId) || (!byId.get(characterId)!.title && title)) byId.set(characterId, { ...(title ? { title } : {}), aliases, names });
     else {
       const current = byId.get(characterId)!;
       current.aliases = unique([...current.aliases, ...aliases]);
+      current.names = { ...current.names, ...names };
       if (!current.title && title) current.title = title;
     }
+    const current = byId.get(characterId)!;
+    for (const alias of aliases) {
+      const key = normalizeSearch(alias);
+      if (key && !byName.has(key)) byName.set(key, current);
+    }
   }
-  return { byId, mapped: new Map() };
+  return { byId, byName, mapped: new Map() };
 }
 
-function buildArcaeaSemantics(catalog: Catalog, arcaeaBrowse: ReturnType<typeof ArcaeaBrowseProjection.parse>, index: Map<string, Resource[]>, characterRows: CsvRow[], storyRows: CsvRow[], storyReferenceRows: CsvRow[], backgroundRows: CsvRow[], packRows: CsvRow[], linkplayRows: CsvRow[]): { projection: CategoryBrowseProjectionType; metrics: Record<string, number> } {
+function characterForAssetPath(byName: Map<string, { title?: string; aliases: string[]; names: CharacterNames }>, assetPath: string): { title?: string; aliases: string[]; names: CharacterNames } | undefined {
+  const filename = normalizePath(assetPath).split("/").pop() ?? "";
+  const stem = cleanIdentifier(filename);
+  return [...byName.entries()]
+    .sort((left, right) => right[0].length - left[0].length)
+    .find(([key]) => stem === cleanIdentifier(key) || stem.startsWith(`${cleanIdentifier(key)} `))?.[1];
+}
+
+function inferPackId(assetPath: string): string | undefined {
+  const filename = normalizePath(assetPath).split("/").pop() ?? "";
+  return filename.match(/(?:divider|select|overlay|small)_([a-z0-9]+(?:_append_\d+)?)/iu)?.[1];
+}
+
+function localizedPackName(value: string | undefined): string | undefined {
+  const map = parseLocalizedMap(value);
+  return map.get("en") ?? parseLocalizedValues(value)[0];
+}
+
+function displayPackName(packId: string | undefined, sourceName: string | undefined, packById: Map<string, CsvRow>): string {
+  const name = sourceName ?? localizedPackName(packId ? packById.get(packId)?.nameLocalized : undefined);
+  if (!name) return packId ? `曲包界面素材 · ${cleanIdentifier(packId)}` : "曲包界面素材";
+  const chapter = name.match(/^Collaboration Chapter (\d+)$/iu);
+  if (!chapter) return name;
+  const pack = packId ? packById.get(packId) : undefined;
+  const parentId = nonEmpty(pack?.packParent) ?? packId?.replace(/_append_\d+$/iu, "");
+  const parentName = localizedPackName(parentId ? packById.get(parentId)?.nameLocalized : undefined);
+  return parentName ? `${parentName} · ${name}` : name;
+}
+
+function buildArcaeaSemantics(catalog: Catalog, arcaeaBrowse: ReturnType<typeof ArcaeaBrowseProjection.parse>, index: Map<string, Resource[]>, characterRows: CsvRow[], storyRows: CsvRow[], storyReferenceRows: CsvRow[], backgroundRows: CsvRow[], packRows: CsvRow[], packRecordRows: CsvRow[], linkplayRows: CsvRow[]): { projection: CategoryBrowseProjectionType; metrics: Record<string, number> } {
   const drafts = new Map<string, SemanticDraft>();
   const characters = characterMaps(characterRows);
   const songById = new Map(arcaeaBrowse.songs.map((song) => [song.songId, song]));
@@ -280,15 +342,26 @@ function buildArcaeaSemantics(catalog: Catalog, arcaeaBrowse: ReturnType<typeof 
   characterRows.forEach((row, rowIndex) => {
     const resource = findResource(index, "arcaea", row.assetPath ?? "");
     if (!resource || !["character-portrait", "character-avatar", "linkplay-preview"].includes(resource.resourceType)) return;
-    const character = characters.byId.get(nonEmpty(row.characterId) ?? "");
+    const character = characters.byId.get(nonEmpty(row.characterId) ?? "") ?? characterForAssetPath(characters.byName, row.assetPath ?? "");
     const isNamed = Boolean(character?.title);
-    const title = character?.title ?? (resource.resourceType === "linkplay-preview" ? "LinkPlay 预览" : resource.resourceType === "character-avatar" ? "未归类头像" : "未归类角色立绘");
+    const fallbackIdentifier = cleanIdentifier(resource.title ?? resource.provenance[0]?.sourceFilename ?? "");
+    const fallbackTitle = resource.resourceType === "linkplay-preview" ? "LinkPlay 通用预览" : resource.resourceType === "character-avatar" ? `头像 · ${fallbackIdentifier || "角色资源"}` : `角色立绘 · ${fallbackIdentifier || "角色资源"}`;
+    const title = character?.title ?? fallbackTitle;
+    const names = character?.names;
     const variant = nonEmpty(row.variant);
     const variantRaw = nonEmpty(row.variantRaw);
+    const variantLabel = variantRaw ?? variant;
     const isBase = !variant || ["base", "main", "icon"].includes(normalizeSearch(variant));
     addDraft(drafts, resource, {
       displayTitle: title,
-      ...(isNamed ? (isBase ? {} : { subtitle: "变体" }) : { subtitle: "待确认", badges: ["未归类"] }),
+      ...(isNamed ? (isBase ? {} : { subtitle: "变体" }) : { subtitle: "角色名称未在 characters.json 中找到", badges: ["待确认"] }),
+      metadata: {
+        ...(names?.zhHans ? { characterName: names.zhHans, characterChineseName: names.zhHans } : {}),
+        ...(names?.ja ? { characterJapaneseName: names.ja } : {}),
+        ...(names?.en ? { characterEnglishName: names.en } : {}),
+        ...(names?.ko ? { characterKoreanName: names.ko } : {}),
+        ...(variantLabel ? { characterVariant: variantLabel } : {}),
+      },
       searchTerms: [...(character?.aliases ?? []), ...(variantRaw ? [variantRaw] : []), ...(variant ? [variant] : [])],
       sortOrder: (Number(nonEmpty(row.characterId)) >= 0 ? Number(nonEmpty(row.characterId)) : 9999) * 1000 + (isBase ? 0 : 1) * 100 + rowIndex,
       facets: character?.title ? { character: [character.title] } : {},
@@ -328,7 +401,16 @@ function buildArcaeaSemantics(catalog: Catalog, arcaeaBrowse: ReturnType<typeof 
     addDraft(drafts, resource, {
       displayTitle,
       subtitle,
-      badges: [ ...(relatedSongTitle ? [`关联：${relatedSongTitle}`] : []), ...(unresolved ? ["未归类"] : []) ],
+      badges: [ ...(relatedSongTitle ? [`关联：${relatedSongTitle}`] : []), ...(unresolved ? ["待确认"] : []) ],
+      metadata: {
+        ...(pathTitle ? { storyPathTitle: pathTitle } : {}),
+        storyType: typeLabel,
+        ...(nonEmpty(row.act) ? { storyAct: nonEmpty(row.act)! } : {}),
+        ...(nonEmpty(row.chapter) ? { storyChapter: nonEmpty(row.chapter)! } : {}),
+        ...(nonEmpty(row.entry) ? { storyEntry: nonEmpty(row.entry)! } : {}),
+        ...(nonEmpty(row.relatedSongId) ? { relatedSongId: nonEmpty(row.relatedSongId)! } : {}),
+        ...(relatedSongTitle ? { relatedSongTitle } : {}),
+      },
       searchTerms: [pathTitle ?? "", typeLabel, locator ?? "", nonEmpty(row.nodeKey) ?? "", nonEmpty(row.relatedSongId) ?? "", relatedSongTitle ?? "", nonEmpty(row.storyType) ?? ""],
       sortOrder: storySortOrder(row, rowIndex),
       facets: {
@@ -363,6 +445,7 @@ function buildArcaeaSemantics(catalog: Catalog, arcaeaBrowse: ReturnType<typeof 
   });
 
   const packByResource = new Map<string, { resource: Resource; rows: CsvRow[] }>();
+  const packById = new Map(packRecordRows.flatMap((row) => nonEmpty(row.packId) ? [[nonEmpty(row.packId)!, row] as const] : []));
   packRows.forEach((row, rowIndex) => {
     const resource = findResource(index, "arcaea", row.assetPath ?? "");
     if (!resource || resource.resourceType !== "pack-cover") return;
@@ -371,16 +454,17 @@ function buildArcaeaSemantics(catalog: Catalog, arcaeaBrowse: ReturnType<typeof 
     packByResource.set(resource.id, current);
   });
   [...packByResource.values()].forEach(({ resource, rows }) => {
-    const names = unique(rows.flatMap((row) => parseLocalizedValues(row.nameLocalized)));
-    const title = names[0] ?? "未归类曲包";
     const first = rows[0]!;
+    const packId = nonEmpty(first.packId) ?? rows.map((row) => inferPackId(row.assetPath ?? "")).find(Boolean);
+    const names = unique(rows.flatMap((row) => parseLocalizedValues(row.nameLocalized)));
+    const title = displayPackName(packId, localizedPackName(first.nameLocalized), packById);
     const order = integer(first.packOrder) ?? 999999;
     const uiOnly = rows.every((row) => nonEmpty(row.coverRole) !== "pack-cover");
     addDraft(drafts, resource, {
       displayTitle: title,
       subtitle: uiOnly ? "曲包界面素材" : "曲包封面",
       badges: uiOnly ? ["界面素材"] : [],
-      searchTerms: [title, ...names, nonEmpty(first.packId) ?? "", ...rows.flatMap((row) => parseLocalizedValues(row.nameLocalized))],
+      searchTerms: [title, ...names, packId ?? "", ...rows.flatMap((row) => [...parseLocalizedValues(row.nameLocalized), nonEmpty(row.assetPath) ?? ""])],
       sortOrder: order * 100 + rows.length,
       facets: { pack: [title] },
     });
@@ -411,11 +495,13 @@ function buildArcaeaSemantics(catalog: Catalog, arcaeaBrowse: ReturnType<typeof 
   fallbackResources.forEach((resource, index) => {
     if (drafts.has(resource.id)) return;
     const raw = resource.title ?? resource.provenance[0]?.sourceFilename ?? "";
-    const displayTitle = resource.resourceType === "story-texture" ? "剧情贴图" : resource.resourceType === "character-avatar" ? "未归类头像" : "未归类角色立绘";
+    const character = characterForAssetPath(characters.byName, raw);
+    const fallbackIdentifier = cleanIdentifier(raw);
+    const displayTitle = character?.title ?? (resource.resourceType === "story-texture" ? `剧情素材 · ${fallbackIdentifier || "技术资源"}` : resource.resourceType === "character-avatar" ? `头像 · ${fallbackIdentifier || "角色资源"}` : `角色立绘 · ${fallbackIdentifier || "角色资源"}`);
     addDraft(drafts, resource, {
       displayTitle,
-      subtitle: resource.resourceType === "story-texture" ? "未归类剧情资源" : "待确认",
-      badges: ["未归类"],
+      subtitle: resource.resourceType === "story-texture" ? "VN/过场技术素材" : "角色名称未在 characters.json 中找到",
+      badges: ["待确认"],
       searchTerms: [raw],
       sortOrder: 2_500_000_000 + index,
     });
@@ -427,6 +513,7 @@ function buildArcaeaSemantics(catalog: Catalog, arcaeaBrowse: ReturnType<typeof 
     ...(draft.displayTitle ? { displayTitle: draft.displayTitle } : {}),
     ...(draft.subtitle ? { subtitle: draft.subtitle } : {}),
     badges: [...draft.badges],
+    metadata: Object.fromEntries(draft.metadata),
     searchTerms: [...draft.searchTerms],
     ...(draft.sortOrder !== undefined ? { sortOrder: draft.sortOrder } : {}),
     facets: Object.fromEntries([...draft.facets.entries()].map(([key, values]) => [key, [...values]])),
@@ -480,10 +567,11 @@ async function main(): Promise<void> {
   const storyReferenceRows = await trackedCsv(auditDirectory, "arcaea-story-vn-references.csv");
   const backgroundRows = await trackedCsv(auditDirectory, "arcaea-background-relations.csv");
   const packRows = await trackedCsv(auditDirectory, "arcaea-pack-cover-relations.csv");
+  const packRecordRows = await trackedCsv(auditDirectory, "arcaea-pack-records.csv");
   const linkplayRows = await trackedCsv(auditDirectory, "arcaea-linkplay-relations.csv");
   const phigrosChapterRows = await trackedCsv(auditDirectory, "phigros-chapter-cover-records.csv");
   const index = createPathIndex(catalog);
-  const arcaea = buildArcaeaSemantics(catalog, arcaeaBrowse, index, characterRows, storyRows, storyReferenceRows, backgroundRows, packRows, linkplayRows);
+  const arcaea = buildArcaeaSemantics(catalog, arcaeaBrowse, index, characterRows, storyRows, storyReferenceRows, backgroundRows, packRows, packRecordRows, linkplayRows);
   const phigros = buildPhigrosSemantics(catalog, phigrosChapterRows, `Phigros APK ${apkVersion(phigrosManifest)}`, sourceDigest());
   await mkdir(outputDirectory, { recursive: true });
   await writeFile(path.join(outputDirectory, "arcaea-semantics.json"), `${JSON.stringify(arcaea.projection, null, 2)}\n`, "utf8");

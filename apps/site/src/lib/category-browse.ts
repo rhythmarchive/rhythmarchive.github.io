@@ -47,6 +47,7 @@ export function applyCategoryBrowseSemantics(siteData: PublicSiteData, projectio
       ...(semantic.searchTerms.length > 0 ? { searchTerms: semantic.searchTerms } : {}),
       ...(semantic.sortOrder !== undefined ? { sortOrder: semantic.sortOrder } : {}),
       ...(Object.keys(semantic.facets).length > 0 ? { facets: semantic.facets } : {}),
+      metadata: { ...resource.metadata, ...semantic.metadata },
     };
   });
   const resourcesById = new Map(resources.map((resource) => [resource.resourceId, resource]));
@@ -122,6 +123,7 @@ function toSemanticSearchEntry(resource: PublicResource, previous?: PublicSearch
   for (const value of resource.searchTerms ?? []) keywords.add(value);
   if (resource.subtitle) keywords.add(resource.subtitle);
   for (const badge of resource.badges ?? []) keywords.add(badge);
+  for (const value of Object.values(resource.metadata)) keywords.add(String(value));
   for (const values of Object.values(resource.facets ?? {})) for (const value of values) keywords.add(value);
   return {
     resourceId: resource.resourceId,
