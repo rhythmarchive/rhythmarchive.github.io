@@ -11,6 +11,7 @@ import {
   loadCatalogFile,
   writeBrowseProjectionAtomic,
   type ArcaeaSourceMetadataType,
+  type Catalog as CatalogType,
   type PhigrosSourceMetadataType,
 } from "../packages/domain/src/index.js";
 
@@ -155,7 +156,19 @@ function arcaeaDifficulty(value: string | undefined): "PST" | "PRS" | "FTR" | "B
   return value === "PST" || value === "PRS" || value === "FTR" || value === "BYD" || value === "ETR" ? value : undefined;
 }
 
-async function bootstrapArcaea(auditDirectory: string): Promise<ArcaeaSourceMetadataType> {
+function uniqueCatalogJacketIdsBySha256(catalog: CatalogType): Map<string, string> {
+  const idsByHash = new Map<string, Set<string>>();
+  for (const resource of catalog.resources) {
+    if (resource.game !== "arcaea" || resource.resourceType !== "jacket") continue;
+    for (const provenance of resource.provenance) {
+      const hash = provenance.sourceSha256.toLowerCase();
+      idsByHash.set(hash, new Set([...(idsByHash.get(hash) ?? []), resource.id]));
+    }
+  }
+  return new Map([...idsByHash.entries()].flatMap(([hash, ids]) => ids.size === 1 ? [[hash, [...ids][0]!] as const] : []));
+}
+
+async function bootstrapArcaea(auditDirectory: string, catalog: CatalogType): Promise<ArcaeaSourceMetadataType> {
   const preview = await json<{ songs: ArcaeaPreviewSong[] }>(path.join(auditDirectory, "arcaea-song-browse-projection.preview.json"));
   const currentArtworkRows = await csv(path.join(auditDirectory, "arcaea-apk-current-artworks.csv"));
   const reconciliationRows = await csv(path.join(auditDirectory, "arcaea-jacket-reconciliation.csv"));
@@ -164,6 +177,7 @@ async function bootstrapArcaea(auditDirectory: string): Promise<ArcaeaSourceMeta
   const sourceSha256 = nonEmpty(currentArtworkRows[0]?.apkSha256) ?? nonEmpty(summary.inputs?.apkSha256);
   if (!sourceSha256) throw new Error("Arcaea bootstrap data has no APK SHA-256.");
   const version = apkVersion(manifest) !== "unknown" ? apkVersion(manifest) : summary.apk?.versionName ?? "unknown";
+  const catalogJacketIdsBySha256 = uniqueCatalogJacketIdsBySha256(catalog);
   const songIds = new Set(preview.songs.map((song) => song.songId));
   const primarySlots = new Map<string, CsvRow>();
   for (const row of currentArtworkRows) {
@@ -187,7 +201,9 @@ async function bootstrapArcaea(auditDirectory: string): Promise<ArcaeaSourceMeta
       const role = arcaeaRole(nonEmpty(row.artworkRoleCandidate))!;
       const difficultyClass = arcaeaDifficulty(nonEmpty(row.difficultyClassCandidate));
       const previewArtwork = previewArtworks.find((artwork) => arcaeaRole(artwork.role) === role && arcaeaDifficulty(nonEmpty(artwork.difficulty)) === difficultyClass);
-      const resourceId = nonEmpty(previewArtwork?.resourceId) ?? null;
+      const resourceId = nonEmpty(previewArtwork?.resourceId)
+        ?? catalogJacketIdsBySha256.get(nonEmpty(row.fileSha256)?.toLowerCase() ?? "")
+        ?? null;
       return {
         role,
         ...(difficultyClass ? { difficultyClass } : {}),
@@ -362,7 +378,7 @@ async function main(): Promise<void> {
     if (options.arcaeaSource || options.phigrosSource) throw new Error("--bootstrap-audit cannot be combined with --arcaea-source or --phigros-source.");
     // Explicit one-time migration path. Production updates should pass
     // extractor/reviewer output with --arcaea-source and --phigros-source.
-    arcaea = await bootstrapArcaea(path.resolve(options.auditDirectory));
+    arcaea = await bootstrapArcaea(path.resolve(options.auditDirectory), catalog);
     phigros = await bootstrapPhigros(path.resolve(options.auditDirectory));
   } else if (options.arcaeaSource && options.phigrosSource) {
     arcaea = ArcaeaSourceMetadata.parse(await json<unknown>(path.resolve(options.arcaeaSource)));

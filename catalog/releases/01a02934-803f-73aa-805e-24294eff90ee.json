@@ -1,0 +1,879 @@
+{
+  "releaseSchemaVersion": "1.0",
+  "id": "01a02934-803f-73aa-805e-24294eff90ee",
+  "updateBatchId": "01a02934-803f-7360-98af-829f4fbd7f66",
+  "game": "arcaea",
+  "baseVersion": "legacy",
+  "targetVersion": "6.16.0",
+  "createdAt": "2026-08-22T11:21:34.604Z",
+  "status": "published",
+  "changes": [
+    {
+      "changeType": "added-resource",
+      "resourceId": "01a02934-6a53-72b5-b2ca-5b05eaaa09fd",
+      "detail": "add Resource from validated Legacy MigrationPlan"
+    },
+    {
+      "changeType": "added-variant",
+      "resourceId": "01a02934-6a53-72b5-b2ca-5b05eaaa09fd",
+      "variantId": "01a02934-6a53-7d73-b43e-4b75a268a235",
+      "detail": "add Variant from validated Legacy MigrationPlan"
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "01a02934-6a53-72b5-b2ca-5b05eaaa09fd",
+      "variantId": "01a02934-6a53-7d73-b43e-4b75a268a235",
+      "renditionId": "01a02934-6a54-7a65-b8e8-37b6b0db150b",
+      "objectId": "sha256:157acc6f4ecd84710ca329b15112ae927fb39619efea1e81f99991465bc53ee3",
+      "detail": "add original Rendition"
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "01a02934-6a53-72b5-b2ca-5b05eaaa09fd",
+      "variantId": "01a02934-6a53-7d73-b43e-4b75a268a235",
+      "renditionId": "01a02934-6a56-7826-b414-4431e43a5e66",
+      "objectId": "sha256:8c53a798916bffa10eb944b118b5ad535e5afc1ba2209a08cb015f4827c8c926",
+      "detail": "add upscaled Rendition"
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "01a02934-6a53-72b5-b2ca-5b05eaaa09fd",
+      "variantId": "01a02934-6a53-7d73-b43e-4b75a268a235",
+      "renditionId": "01a02934-6be3-7465-975b-d381d937dccb",
+      "objectId": "sha256:fff9f89b984720d85ce3f5c88e5bd70e802a040dd18f54821682feaecff3bd27",
+      "detail": "add thumbnail-320 preview"
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "01a02934-6a53-72b5-b2ca-5b05eaaa09fd",
+      "variantId": "01a02934-6a53-7d73-b43e-4b75a268a235",
+      "renditionId": "01a02934-6be6-75bc-a00c-557aff2524fd",
+      "objectId": "sha256:7d083d9e0a17e961257dfbfbff6794860c2de54647f9e5cc171f44804dea80ed",
+      "detail": "add thumbnail-640 preview"
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "01a02934-6a53-72b5-b2ca-5b05eaaa09fd",
+      "variantId": "01a02934-6a53-7d73-b43e-4b75a268a235",
+      "renditionId": "01a02934-6beb-796e-b1ff-d40db2acc721",
+      "objectId": "sha256:e447406729eb3bf9f19441b67feca482e9c6ea7401bc1b4de9d58b6c34d2f129",
+      "detail": "add thumbnail-1280 preview"
+    },
+    {
+      "changeType": "added-resource",
+      "resourceId": "01a02934-6bf4-77a8-ae87-e231024e0698",
+      "detail": "add Resource from validated Legacy MigrationPlan"
+    },
+    {
+      "changeType": "added-variant",
+      "resourceId": "01a02934-6bf4-77a8-ae87-e231024e0698",
+      "variantId": "01a02934-6bf4-7415-8be7-c9e0f7d0e5fb",
+      "detail": "add Variant from validated Legacy MigrationPlan"
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "01a02934-6bf4-77a8-ae87-e231024e0698",
+      "variantId": "01a02934-6bf4-7415-8be7-c9e0f7d0e5fb",
+      "renditionId": "01a02934-6bf5-7992-b81f-18f87bcd85c5",
+      "objectId": "sha256:4f78b1f7e100b6b18082683084e50813d6dfe5cc01c18f0797820dadf6887653",
+      "detail": "add original Rendition"
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "01a02934-6bf4-77a8-ae87-e231024e0698",
+      "variantId": "01a02934-6bf4-7415-8be7-c9e0f7d0e5fb",
+      "renditionId": "01a02934-6bf5-74be-b497-a840906ad06a",
+      "objectId": "sha256:c1835d832cd08f967008820b302d4f3e7c4bd9bd2ad398783ee7742c5d31c793",
+      "detail": "add upscaled Rendition"
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "01a02934-6bf4-77a8-ae87-e231024e0698",
+      "variantId": "01a02934-6bf4-7415-8be7-c9e0f7d0e5fb",
+      "renditionId": "01a02934-6d5d-7f6f-aaef-84f92ca68f84",
+      "objectId": "sha256:a7d059b243b506e9dd4e69246a3f9b1eb773f46a49304237d6ee20688ad46358",
+      "detail": "add thumbnail-320 preview"
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "01a02934-6bf4-77a8-ae87-e231024e0698",
+      "variantId": "01a02934-6bf4-7415-8be7-c9e0f7d0e5fb",
+      "renditionId": "01a02934-6d5f-7236-9da0-01edc19e7cbc",
+      "objectId": "sha256:218a099603e39d24dd310481761bbb5cb5ae0082ee359b8bc0df549b4792ade0",
+      "detail": "add thumbnail-640 preview"
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "01a02934-6bf4-77a8-ae87-e231024e0698",
+      "variantId": "01a02934-6bf4-7415-8be7-c9e0f7d0e5fb",
+      "renditionId": "01a02934-6d60-77bb-93bc-a2461aae0644",
+      "objectId": "sha256:d4efdac4c221207c8b45f8c26b6cc2f10246ae5dadb2c8d8faf217a032bcd6c2",
+      "detail": "add thumbnail-1280 preview"
+    },
+    {
+      "changeType": "added-resource",
+      "resourceId": "01a02934-6d79-7a4b-b9ba-6c811994bb5b",
+      "detail": "add Resource from validated Legacy MigrationPlan"
+    },
+    {
+      "changeType": "added-variant",
+      "resourceId": "01a02934-6d79-7a4b-b9ba-6c811994bb5b",
+      "variantId": "01a02934-6d7a-7598-ba2f-96da79ddac61",
+      "detail": "add Variant from validated Legacy MigrationPlan"
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "01a02934-6d79-7a4b-b9ba-6c811994bb5b",
+      "variantId": "01a02934-6d7a-7598-ba2f-96da79ddac61",
+      "renditionId": "01a02934-6d7b-7eed-a8d8-a8e64e2568db",
+      "objectId": "sha256:fa80a68c1fef5324ed701d1390ba4b965533237ef14ae5ea6c9e9d051199fd11",
+      "detail": "add original Rendition"
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "01a02934-6d79-7a4b-b9ba-6c811994bb5b",
+      "variantId": "01a02934-6d7a-7598-ba2f-96da79ddac61",
+      "renditionId": "01a02934-6d7c-7647-8768-ca39ddd63efb",
+      "objectId": "sha256:22ca2fd82b31b573dd663fbea4dfc6f41867b5b0907bc91d718a352d541365d5",
+      "detail": "add upscaled Rendition"
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "01a02934-6d79-7a4b-b9ba-6c811994bb5b",
+      "variantId": "01a02934-6d7a-7598-ba2f-96da79ddac61",
+      "renditionId": "01a02934-6f9f-7c0b-a51b-a24222766535",
+      "objectId": "sha256:aa24ba68fb07cd25ed11431fa6a9cf83f77e16253eaf680975e89a5b8594038c",
+      "detail": "add thumbnail-320 preview"
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "01a02934-6d79-7a4b-b9ba-6c811994bb5b",
+      "variantId": "01a02934-6d7a-7598-ba2f-96da79ddac61",
+      "renditionId": "01a02934-6fa1-7cd1-a7a3-54439b820146",
+      "objectId": "sha256:50d1ddefaab919e0ca7cb9cd4e800b3d9e6a843d96561fda36e4fa4bdbaa3408",
+      "detail": "add thumbnail-640 preview"
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "01a02934-6d79-7a4b-b9ba-6c811994bb5b",
+      "variantId": "01a02934-6d7a-7598-ba2f-96da79ddac61",
+      "renditionId": "01a02934-6fa3-7496-9ad6-d83eb1cfbb7c",
+      "objectId": "sha256:87e47075eb138a3a3f33d663ec0163cc1dbedbc6a9f090df47515e01df97d55e",
+      "detail": "add thumbnail-1280 preview"
+    },
+    {
+      "changeType": "added-resource",
+      "resourceId": "01a02934-6faf-7f6b-8ed3-913175292ac4",
+      "detail": "add Resource from validated Legacy MigrationPlan"
+    },
+    {
+      "changeType": "added-variant",
+      "resourceId": "01a02934-6faf-7f6b-8ed3-913175292ac4",
+      "variantId": "01a02934-6faf-761f-ad34-4332c7c0c320",
+      "detail": "add Variant from validated Legacy MigrationPlan"
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "01a02934-6faf-7f6b-8ed3-913175292ac4",
+      "variantId": "01a02934-6faf-761f-ad34-4332c7c0c320",
+      "renditionId": "01a02934-6fb0-7a90-9f41-29d1215f8fc6",
+      "objectId": "sha256:bffcf3627a1f5f2b9e4d4db8b42fbfe1e1f43a15fe0c8657e265d6d188959580",
+      "detail": "add original Rendition"
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "01a02934-6faf-7f6b-8ed3-913175292ac4",
+      "variantId": "01a02934-6faf-761f-ad34-4332c7c0c320",
+      "renditionId": "01a02934-6fb0-7977-9675-8395f68fd3cd",
+      "objectId": "sha256:6e87f3277c1e96c7f0a5321903ba162706d6a398752fc6b0c2413b817f43a033",
+      "detail": "add upscaled Rendition"
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "01a02934-6faf-7f6b-8ed3-913175292ac4",
+      "variantId": "01a02934-6faf-761f-ad34-4332c7c0c320",
+      "renditionId": "01a02934-716b-7c0d-b51a-a78678997440",
+      "objectId": "sha256:1c83679d762065ae19abfe550cb6eaf4199dfecfb9e6a809e5cff7c46460f98a",
+      "detail": "add thumbnail-320 preview"
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "01a02934-6faf-7f6b-8ed3-913175292ac4",
+      "variantId": "01a02934-6faf-761f-ad34-4332c7c0c320",
+      "renditionId": "01a02934-716c-7c52-9b61-9e8105cef8a4",
+      "objectId": "sha256:8681a747e8ffe71fcacbe528059e9ad610904f67e652f7c541c801e722f9a4b5",
+      "detail": "add thumbnail-640 preview"
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "01a02934-6faf-7f6b-8ed3-913175292ac4",
+      "variantId": "01a02934-6faf-761f-ad34-4332c7c0c320",
+      "renditionId": "01a02934-716e-7880-823e-9e7daf0cfca2",
+      "objectId": "sha256:421395e18efd562a91327f57b9c193ce1272a1ce20f09f57cedb8e3c848aae02",
+      "detail": "add thumbnail-1280 preview"
+    },
+    {
+      "changeType": "added-resource",
+      "resourceId": "01a02934-7170-74a0-af6d-ca97a2a18b59",
+      "detail": "add Resource from validated Legacy MigrationPlan"
+    },
+    {
+      "changeType": "added-variant",
+      "resourceId": "01a02934-7170-74a0-af6d-ca97a2a18b59",
+      "variantId": "01a02934-7171-7416-a69a-676da99198cd",
+      "detail": "add Variant from validated Legacy MigrationPlan"
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "01a02934-7170-74a0-af6d-ca97a2a18b59",
+      "variantId": "01a02934-7171-7416-a69a-676da99198cd",
+      "renditionId": "01a02934-7171-7e57-9755-a2c688464750",
+      "objectId": "sha256:5f3a5f8e25a82f11d6a12b039d3d6bd671758b711cb52e34cf11365a5c249dcc",
+      "detail": "add original Rendition"
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "01a02934-7170-74a0-af6d-ca97a2a18b59",
+      "variantId": "01a02934-7171-7416-a69a-676da99198cd",
+      "renditionId": "01a02934-7171-7c42-bc9d-ee27203b9a12",
+      "objectId": "sha256:f3b9c20a5dd75eea6288d7f129737a950c5597d869f9f4e78400a23bd6422d87",
+      "detail": "add upscaled Rendition"
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "01a02934-7170-74a0-af6d-ca97a2a18b59",
+      "variantId": "01a02934-7171-7416-a69a-676da99198cd",
+      "renditionId": "01a02934-7275-74eb-9839-e743dc826ed6",
+      "objectId": "sha256:5c2047ab95ee9b3ca6e880bee2a86227828a40f84662fd052e59dcdee5c0fb1f",
+      "detail": "add thumbnail-320 preview"
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "01a02934-7170-74a0-af6d-ca97a2a18b59",
+      "variantId": "01a02934-7171-7416-a69a-676da99198cd",
+      "renditionId": "01a02934-7277-7983-8c9f-24ea93655f15",
+      "objectId": "sha256:db881eef8ab9efcb55cbcecc39484f248598e068c6d6a4e4d63cacbaf5a63f9e",
+      "detail": "add thumbnail-640 preview"
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "01a02934-7170-74a0-af6d-ca97a2a18b59",
+      "variantId": "01a02934-7171-7416-a69a-676da99198cd",
+      "renditionId": "01a02934-7279-7e39-871a-a56cfd570ebc",
+      "objectId": "sha256:a446cbe66b0fc32ff9a21f09bb7ed5b970ee2ba31b4364338fe7bc948bff955e",
+      "detail": "add thumbnail-1280 preview"
+    },
+    {
+      "changeType": "added-resource",
+      "resourceId": "01a02934-7283-78f5-8fff-52af26cd4e5f",
+      "detail": "add Resource from validated Legacy MigrationPlan"
+    },
+    {
+      "changeType": "added-variant",
+      "resourceId": "01a02934-7283-78f5-8fff-52af26cd4e5f",
+      "variantId": "01a02934-7284-7558-8748-b46518b297bd",
+      "detail": "add Variant from validated Legacy MigrationPlan"
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "01a02934-7283-78f5-8fff-52af26cd4e5f",
+      "variantId": "01a02934-7284-7558-8748-b46518b297bd",
+      "renditionId": "01a02934-7284-77ba-8a8f-8af5bda2e73d",
+      "objectId": "sha256:6bee3e4079263a1e7d720038034e5feb8e5d90ff36f9a2a753650f72561ef17b",
+      "detail": "add original Rendition"
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "01a02934-7283-78f5-8fff-52af26cd4e5f",
+      "variantId": "01a02934-7284-7558-8748-b46518b297bd",
+      "renditionId": "01a02934-7285-7984-b489-627918a14954",
+      "objectId": "sha256:8b0d344b7fa66d5ef019af6d0a58658358663c8b10d637b958ee043754ae332d",
+      "detail": "add upscaled Rendition"
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "01a02934-7283-78f5-8fff-52af26cd4e5f",
+      "variantId": "01a02934-7284-7558-8748-b46518b297bd",
+      "renditionId": "01a02934-7414-70a3-9115-8017f28e111b",
+      "objectId": "sha256:e8df78611fe53f920dc798e5ff8f6bb8a47e0849c95a587639228a2adc9202da",
+      "detail": "add thumbnail-320 preview"
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "01a02934-7283-78f5-8fff-52af26cd4e5f",
+      "variantId": "01a02934-7284-7558-8748-b46518b297bd",
+      "renditionId": "01a02934-7417-73b0-9ca0-86ca59234176",
+      "objectId": "sha256:d114a69e8a465b0e2baff6f7a6620bf6e1f880c206bd33cbf11565582c4dc36c",
+      "detail": "add thumbnail-640 preview"
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "01a02934-7283-78f5-8fff-52af26cd4e5f",
+      "variantId": "01a02934-7284-7558-8748-b46518b297bd",
+      "renditionId": "01a02934-7419-7409-ac44-ed7e2a1a94b9",
+      "objectId": "sha256:9e39f57eaa470b8d1eddddc288bb05d3b32542b87f0920130a12ec5e2c1cbd2d",
+      "detail": "add thumbnail-1280 preview"
+    },
+    {
+      "changeType": "added-resource",
+      "resourceId": "01a02934-7425-783c-b11b-e4f8fe4cf9be",
+      "detail": "add Resource from validated Legacy MigrationPlan"
+    },
+    {
+      "changeType": "added-variant",
+      "resourceId": "01a02934-7425-783c-b11b-e4f8fe4cf9be",
+      "variantId": "01a02934-7425-7a33-b624-325ae874f036",
+      "detail": "add Variant from validated Legacy MigrationPlan"
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "01a02934-7425-783c-b11b-e4f8fe4cf9be",
+      "variantId": "01a02934-7425-7a33-b624-325ae874f036",
+      "renditionId": "01a02934-7425-7f69-9c8b-5124d052194e",
+      "objectId": "sha256:683b2fed000aea65b323b927ae80637f76fcb614ad75b7fdf7b6f476dbc45210",
+      "detail": "add original Rendition"
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "01a02934-7425-783c-b11b-e4f8fe4cf9be",
+      "variantId": "01a02934-7425-7a33-b624-325ae874f036",
+      "renditionId": "01a02934-7426-7774-ae94-976c1568d049",
+      "objectId": "sha256:b07ebed5f94f8a11298da0a0d75ac7067a3d887880cab3aeef9ff1627c922abf",
+      "detail": "add upscaled Rendition"
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "01a02934-7425-783c-b11b-e4f8fe4cf9be",
+      "variantId": "01a02934-7425-7a33-b624-325ae874f036",
+      "renditionId": "01a02934-75c1-7bf8-b09b-fbd2ca5e6462",
+      "objectId": "sha256:00c39f8232769eb28591967f42bfb7fb745cf313ac8e281185d9f907045f63a2",
+      "detail": "add thumbnail-320 preview"
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "01a02934-7425-783c-b11b-e4f8fe4cf9be",
+      "variantId": "01a02934-7425-7a33-b624-325ae874f036",
+      "renditionId": "01a02934-75c2-7b09-99e0-1bdd8117d4d1",
+      "objectId": "sha256:0dae8f2d29c26b08013f68830c01b3002a28fab9f4e2cb29a7ff86e92a953f0b",
+      "detail": "add thumbnail-640 preview"
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "01a02934-7425-783c-b11b-e4f8fe4cf9be",
+      "variantId": "01a02934-7425-7a33-b624-325ae874f036",
+      "renditionId": "01a02934-75c4-798f-94a9-0313e06d463a",
+      "objectId": "sha256:afef2c63a7431a707ae458dc20b9f13b4f5c40694d66c584330463642c0abf8e",
+      "detail": "add thumbnail-1280 preview"
+    },
+    {
+      "changeType": "added-resource",
+      "resourceId": "01a02934-75d7-7461-b5b8-c3f2578031fe",
+      "detail": "add Resource from validated Legacy MigrationPlan"
+    },
+    {
+      "changeType": "added-variant",
+      "resourceId": "01a02934-75d7-7461-b5b8-c3f2578031fe",
+      "variantId": "01a02934-75d7-7e2f-b2c6-a608a833a276",
+      "detail": "add Variant from validated Legacy MigrationPlan"
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "01a02934-75d7-7461-b5b8-c3f2578031fe",
+      "variantId": "01a02934-75d7-7e2f-b2c6-a608a833a276",
+      "renditionId": "01a02934-75d8-73fd-8dbc-685fad785ab4",
+      "objectId": "sha256:f12f3b694a133d0e3ca9d23401a70da2c9282b904bb5a42007b8eb8dccd7c194",
+      "detail": "add original Rendition"
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "01a02934-75d7-7461-b5b8-c3f2578031fe",
+      "variantId": "01a02934-75d7-7e2f-b2c6-a608a833a276",
+      "renditionId": "01a02934-75d8-7ba2-9362-0de1ebf7c390",
+      "objectId": "sha256:b2a44b4eae95f23f41b0f33021aee39a57b5ff5b7acf732f46c4cddbd6b47d8b",
+      "detail": "add upscaled Rendition"
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "01a02934-75d7-7461-b5b8-c3f2578031fe",
+      "variantId": "01a02934-75d7-7e2f-b2c6-a608a833a276",
+      "renditionId": "01a02934-77d2-7e03-bc7d-462483dab97b",
+      "objectId": "sha256:4defbb88c337d90c76cede30a9664d43a5c763adadd1ceaafb613b822fccb411",
+      "detail": "add thumbnail-320 preview"
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "01a02934-75d7-7461-b5b8-c3f2578031fe",
+      "variantId": "01a02934-75d7-7e2f-b2c6-a608a833a276",
+      "renditionId": "01a02934-77d5-7613-bd36-fa9739b15f11",
+      "objectId": "sha256:f1ef3b00bfbceb6fe30271be12d244443bd11ff9c54f64853562bd4571eb19bf",
+      "detail": "add thumbnail-640 preview"
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "01a02934-75d7-7461-b5b8-c3f2578031fe",
+      "variantId": "01a02934-75d7-7e2f-b2c6-a608a833a276",
+      "renditionId": "01a02934-77d7-7c98-84ab-7717bf484a18",
+      "objectId": "sha256:e53cbe450a8168be025a5ff2bf7a04f6b35fe9c56417fc168de75e71edc89a1e",
+      "detail": "add thumbnail-1280 preview"
+    },
+    {
+      "changeType": "added-resource",
+      "resourceId": "01a02934-77e9-7c4f-9014-2eeb9e8234ae",
+      "detail": "add Resource from validated Legacy MigrationPlan"
+    },
+    {
+      "changeType": "added-variant",
+      "resourceId": "01a02934-77e9-7c4f-9014-2eeb9e8234ae",
+      "variantId": "01a02934-77e9-7b5a-b874-278cd174cf51",
+      "detail": "add Variant from validated Legacy MigrationPlan"
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "01a02934-77e9-7c4f-9014-2eeb9e8234ae",
+      "variantId": "01a02934-77e9-7b5a-b874-278cd174cf51",
+      "renditionId": "01a02934-77e9-7c9d-9907-14a33c0a32f0",
+      "objectId": "sha256:e743b67c0432e5bc80dd810e8f4df539877503e69416e49693bb0c27d161a5ce",
+      "detail": "add original Rendition"
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "01a02934-77e9-7c4f-9014-2eeb9e8234ae",
+      "variantId": "01a02934-77e9-7b5a-b874-278cd174cf51",
+      "renditionId": "01a02934-77e9-7511-96d4-9252515ce35f",
+      "objectId": "sha256:66a98e0f8f97f10fb983576d1bf3749ec2152386e76e50cac1bab5853fbf9044",
+      "detail": "add upscaled Rendition"
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "01a02934-77e9-7c4f-9014-2eeb9e8234ae",
+      "variantId": "01a02934-77e9-7b5a-b874-278cd174cf51",
+      "renditionId": "01a02934-79e3-7138-9d99-762593094c07",
+      "objectId": "sha256:d48031b26aeb64970cc3a8ebd09dc8adeed69d3e07c9c441fbafb475d4a7227d",
+      "detail": "add thumbnail-320 preview"
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "01a02934-77e9-7c4f-9014-2eeb9e8234ae",
+      "variantId": "01a02934-77e9-7b5a-b874-278cd174cf51",
+      "renditionId": "01a02934-79e5-7568-a17f-3b6faed548ce",
+      "objectId": "sha256:68258afa4b9861612e130358dfc3ac50c6911c73695c5fabf2a23ddf1d1a0aeb",
+      "detail": "add thumbnail-640 preview"
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "01a02934-77e9-7c4f-9014-2eeb9e8234ae",
+      "variantId": "01a02934-77e9-7b5a-b874-278cd174cf51",
+      "renditionId": "01a02934-79e6-75cb-a1e7-35a50ee1edcb",
+      "objectId": "sha256:dadc55301842c398cd8b22875ca20e310bc01b134bf2add9dfb98df4b28eec8f",
+      "detail": "add thumbnail-1280 preview"
+    },
+    {
+      "changeType": "added-resource",
+      "resourceId": "01a02934-79ef-77d6-896f-2fec725ecec2",
+      "detail": "add Resource from validated Legacy MigrationPlan"
+    },
+    {
+      "changeType": "added-variant",
+      "resourceId": "01a02934-79ef-77d6-896f-2fec725ecec2",
+      "variantId": "01a02934-79ef-7376-99c4-d3a715e867e2",
+      "detail": "add Variant from validated Legacy MigrationPlan"
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "01a02934-79ef-77d6-896f-2fec725ecec2",
+      "variantId": "01a02934-79ef-7376-99c4-d3a715e867e2",
+      "renditionId": "01a02934-79f0-72ca-9a77-54b2f55d955d",
+      "objectId": "sha256:4bc47267c47d25fb1e155335efc84961a4acdaa7125449fd1f8dad8de78636bb",
+      "detail": "add original Rendition"
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "01a02934-79ef-77d6-896f-2fec725ecec2",
+      "variantId": "01a02934-79ef-7376-99c4-d3a715e867e2",
+      "renditionId": "01a02934-79f0-7e11-88bd-46ac5f5bd4a5",
+      "objectId": "sha256:f3c312bca8f0505497d22480073c1962488ee3158a8784e1177aba619860ca8b",
+      "detail": "add upscaled Rendition"
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "01a02934-79ef-77d6-896f-2fec725ecec2",
+      "variantId": "01a02934-79ef-7376-99c4-d3a715e867e2",
+      "renditionId": "01a02934-7b58-7ee3-801f-85a2e91bf4a4",
+      "objectId": "sha256:8f6d4ffa4eb1ae138670009a7d4519f020181d87961eb29b1d5fc6d4fa3a94b8",
+      "detail": "add thumbnail-320 preview"
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "01a02934-79ef-77d6-896f-2fec725ecec2",
+      "variantId": "01a02934-79ef-7376-99c4-d3a715e867e2",
+      "renditionId": "01a02934-7b5b-7501-b4eb-15d23c65d2d2",
+      "objectId": "sha256:c1c408285777041ae102d1e82df31949488d62e7785080b5e339ec02fde20a50",
+      "detail": "add thumbnail-640 preview"
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "01a02934-79ef-77d6-896f-2fec725ecec2",
+      "variantId": "01a02934-79ef-7376-99c4-d3a715e867e2",
+      "renditionId": "01a02934-7b5c-7e07-ba34-123165284643",
+      "objectId": "sha256:2150ce97587847d4796a0d0b842eea6a4a714c8a9862c06f40033a0b57151d30",
+      "detail": "add thumbnail-1280 preview"
+    },
+    {
+      "changeType": "added-resource",
+      "resourceId": "01a02934-7b6a-73be-bbcb-077c2f64560e",
+      "detail": "add Resource from validated Legacy MigrationPlan"
+    },
+    {
+      "changeType": "added-variant",
+      "resourceId": "01a02934-7b6a-73be-bbcb-077c2f64560e",
+      "variantId": "01a02934-7b6b-74c7-a85c-cd492eccad3b",
+      "detail": "add Variant from validated Legacy MigrationPlan"
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "01a02934-7b6a-73be-bbcb-077c2f64560e",
+      "variantId": "01a02934-7b6b-74c7-a85c-cd492eccad3b",
+      "renditionId": "01a02934-7b6b-7a01-b8a7-6aff3310b3cf",
+      "objectId": "sha256:a50ee7844cc7d981fd9a4819df411ca451d6ebcf74d2287e86432928dea4c988",
+      "detail": "add original Rendition"
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "01a02934-7b6a-73be-bbcb-077c2f64560e",
+      "variantId": "01a02934-7b6b-74c7-a85c-cd492eccad3b",
+      "renditionId": "01a02934-7b6c-7ea4-be08-4c8eba10bae1",
+      "objectId": "sha256:9a78544b6b1432922e4cffbf7371fa9e3b7fa6cff6e957b960e94c5f29d1af46",
+      "detail": "add upscaled Rendition"
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "01a02934-7b6a-73be-bbcb-077c2f64560e",
+      "variantId": "01a02934-7b6b-74c7-a85c-cd492eccad3b",
+      "renditionId": "01a02934-7d1b-7313-93ac-23f9ae00c208",
+      "objectId": "sha256:3c99dbed653ce245211864b04010029779b7487c183f7d9ee861d2b8d357e112",
+      "detail": "add thumbnail-320 preview"
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "01a02934-7b6a-73be-bbcb-077c2f64560e",
+      "variantId": "01a02934-7b6b-74c7-a85c-cd492eccad3b",
+      "renditionId": "01a02934-7d1e-73ba-8d30-b88facf9b60a",
+      "objectId": "sha256:f05c079ff08ad95f6dd3f0f460fb9643bd4e82640e8d8a15316d4131dcd90ea8",
+      "detail": "add thumbnail-640 preview"
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "01a02934-7b6a-73be-bbcb-077c2f64560e",
+      "variantId": "01a02934-7b6b-74c7-a85c-cd492eccad3b",
+      "renditionId": "01a02934-7d20-7897-ace0-4fd4b525ee7f",
+      "objectId": "sha256:9da62f875b1e2f72870c2a61ceffeb43d0137f56dbd18fe676b97d498c3f29fc",
+      "detail": "add thumbnail-1280 preview"
+    },
+    {
+      "changeType": "added-resource",
+      "resourceId": "01a02934-7d2e-783e-b30e-105535274e1f",
+      "detail": "add Resource from validated Legacy MigrationPlan"
+    },
+    {
+      "changeType": "added-variant",
+      "resourceId": "01a02934-7d2e-783e-b30e-105535274e1f",
+      "variantId": "01a02934-7d2e-743d-8cb5-a818a33de09b",
+      "detail": "add Variant from validated Legacy MigrationPlan"
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "01a02934-7d2e-783e-b30e-105535274e1f",
+      "variantId": "01a02934-7d2e-743d-8cb5-a818a33de09b",
+      "renditionId": "01a02934-7d2f-796d-bed0-72f2f93c2f3a",
+      "objectId": "sha256:735513dde12e5241ec26cd378175bb31919abd83349644e78430601748a9ed6a",
+      "detail": "add original Rendition"
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "01a02934-7d2e-783e-b30e-105535274e1f",
+      "variantId": "01a02934-7d2e-743d-8cb5-a818a33de09b",
+      "renditionId": "01a02934-7d2f-7768-a834-59a8c296d060",
+      "objectId": "sha256:c871bfee12bd6ed134e96ee53d245337729fc018a5b2151a1c3b233dad2847f8",
+      "detail": "add upscaled Rendition"
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "01a02934-7d2e-783e-b30e-105535274e1f",
+      "variantId": "01a02934-7d2e-743d-8cb5-a818a33de09b",
+      "renditionId": "01a02934-7ee1-7dbd-8494-835c005d0a86",
+      "objectId": "sha256:cbe60353d7326e12639f14887b2efb0aba6268ca7323f15b15f591c2b0f5c663",
+      "detail": "add thumbnail-320 preview"
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "01a02934-7d2e-783e-b30e-105535274e1f",
+      "variantId": "01a02934-7d2e-743d-8cb5-a818a33de09b",
+      "renditionId": "01a02934-7ee3-766e-bece-682f7a4308bf",
+      "objectId": "sha256:704256d4e461397aa19644d0862f78ce94f40a69e3a9c887afd952b37b6899ec",
+      "detail": "add thumbnail-640 preview"
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "01a02934-7d2e-783e-b30e-105535274e1f",
+      "variantId": "01a02934-7d2e-743d-8cb5-a818a33de09b",
+      "renditionId": "01a02934-7ee5-719d-a687-c2c4750e018d",
+      "objectId": "sha256:6b633596f681d5023836e560bd3619e66a03d0edd9c394ed3d5b9e52df8ead73",
+      "detail": "add thumbnail-1280 preview"
+    },
+    {
+      "changeType": "added-resource",
+      "resourceId": "01a02934-7eec-7c1d-a00c-0daa7cb6aefb",
+      "detail": "add Resource from validated Legacy MigrationPlan"
+    },
+    {
+      "changeType": "added-variant",
+      "resourceId": "01a02934-7eec-7c1d-a00c-0daa7cb6aefb",
+      "variantId": "01a02934-7eec-7ec1-8734-8c9b69c8c0ef",
+      "detail": "add Variant from validated Legacy MigrationPlan"
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "01a02934-7eec-7c1d-a00c-0daa7cb6aefb",
+      "variantId": "01a02934-7eec-7ec1-8734-8c9b69c8c0ef",
+      "renditionId": "01a02934-7eec-77f6-a807-15f60166489f",
+      "objectId": "sha256:9793f3470aaf52020dd525c7a6f1bee370a02f1ba17af03a70f24ebb15283ace",
+      "detail": "add original Rendition"
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "01a02934-7eec-7c1d-a00c-0daa7cb6aefb",
+      "variantId": "01a02934-7eec-7ec1-8734-8c9b69c8c0ef",
+      "renditionId": "01a02934-7eed-7598-9a0c-302095d742e0",
+      "objectId": "sha256:a56b812d98caed527a3468242f283292fe1e95e30b999d7483bb64e6440a06d7",
+      "detail": "add upscaled Rendition"
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "01a02934-7eec-7c1d-a00c-0daa7cb6aefb",
+      "variantId": "01a02934-7eec-7ec1-8734-8c9b69c8c0ef",
+      "renditionId": "01a02934-803c-704c-822b-10cfae7b0563",
+      "objectId": "sha256:1bd1e581ce9c6ef3651dc3ed8aa6c112d6b81f4c20b5e9e4288354c5195af303",
+      "detail": "add thumbnail-320 preview"
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "01a02934-7eec-7c1d-a00c-0daa7cb6aefb",
+      "variantId": "01a02934-7eec-7ec1-8734-8c9b69c8c0ef",
+      "renditionId": "01a02934-803d-7f9c-bd02-578f878aee4e",
+      "objectId": "sha256:110514850baf49b92888a4eb1f7c2a2c346c61078f94c1689773dacd06ae7a1f",
+      "detail": "add thumbnail-640 preview"
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "01a02934-7eec-7c1d-a00c-0daa7cb6aefb",
+      "variantId": "01a02934-7eec-7ec1-8734-8c9b69c8c0ef",
+      "renditionId": "01a02934-803e-7a28-9f3e-e32f0fd0c520",
+      "objectId": "sha256:1a8c09e175e81fe6ebbbfd18801df38a57f5a2817b8e43f0dd340b529bd59f7d",
+      "detail": "add thumbnail-1280 preview"
+    }
+  ],
+  "affectedResourceIds": [
+    "01a02934-6a53-72b5-b2ca-5b05eaaa09fd",
+    "01a02934-6bf4-77a8-ae87-e231024e0698",
+    "01a02934-6d79-7a4b-b9ba-6c811994bb5b",
+    "01a02934-6faf-7f6b-8ed3-913175292ac4",
+    "01a02934-7170-74a0-af6d-ca97a2a18b59",
+    "01a02934-7283-78f5-8fff-52af26cd4e5f",
+    "01a02934-7425-783c-b11b-e4f8fe4cf9be",
+    "01a02934-75d7-7461-b5b8-c3f2578031fe",
+    "01a02934-77e9-7c4f-9014-2eeb9e8234ae",
+    "01a02934-79ef-77d6-896f-2fec725ecec2",
+    "01a02934-7b6a-73be-bbcb-077c2f64560e",
+    "01a02934-7d2e-783e-b30e-105535274e1f",
+    "01a02934-7eec-7c1d-a00c-0daa7cb6aefb"
+  ],
+  "publishedRenditions": [
+    {
+      "resourceId": "01a02934-6a53-72b5-b2ca-5b05eaaa09fd",
+      "variantId": "01a02934-6a53-7d73-b43e-4b75a268a235",
+      "renditionId": "01a02934-6a54-7a65-b8e8-37b6b0db150b",
+      "objectId": "sha256:157acc6f4ecd84710ca329b15112ae927fb39619efea1e81f99991465bc53ee3",
+      "downloadFilename": "愛して愛して愛して_きくお_6.15_virtualsingers_IDX 541_BPM 230_SIDE 1_virtualsingers_conflict_1080_base.jpg"
+    },
+    {
+      "resourceId": "01a02934-6a53-72b5-b2ca-5b05eaaa09fd",
+      "variantId": "01a02934-6a53-7d73-b43e-4b75a268a235",
+      "renditionId": "01a02934-6a56-7826-b414-4431e43a5e66",
+      "objectId": "sha256:8c53a798916bffa10eb944b118b5ad535e5afc1ba2209a08cb015f4827c8c926",
+      "downloadFilename": "愛して愛して愛して_きくお_6.15_virtualsingers_IDX 541_BPM 230_SIDE 1_virtualsingers_conflict_1080_base.jpg"
+    },
+    {
+      "resourceId": "01a02934-6bf4-77a8-ae87-e231024e0698",
+      "variantId": "01a02934-6bf4-7415-8be7-c9e0f7d0e5fb",
+      "renditionId": "01a02934-6bf5-7992-b81f-18f87bcd85c5",
+      "objectId": "sha256:4f78b1f7e100b6b18082683084e50813d6dfe5cc01c18f0797820dadf6887653",
+      "downloadFilename": "神っぽいな_ピノキオピー_6.15_virtualsingers_IDX 538_BPM 103-142_SIDE 1_virtualsingers_conflict_1080_base.jpg"
+    },
+    {
+      "resourceId": "01a02934-6bf4-77a8-ae87-e231024e0698",
+      "variantId": "01a02934-6bf4-7415-8be7-c9e0f7d0e5fb",
+      "renditionId": "01a02934-6bf5-74be-b497-a840906ad06a",
+      "objectId": "sha256:c1835d832cd08f967008820b302d4f3e7c4bd9bd2ad398783ee7742c5d31c793",
+      "downloadFilename": "神っぽいな_ピノキオピー_6.15_virtualsingers_IDX 538_BPM 103-142_SIDE 1_virtualsingers_conflict_1080_base.jpg"
+    },
+    {
+      "resourceId": "01a02934-6d79-7a4b-b9ba-6c811994bb5b",
+      "variantId": "01a02934-6d7a-7598-ba2f-96da79ddac61",
+      "renditionId": "01a02934-6d7b-7eed-a8d8-a8e64e2568db",
+      "objectId": "sha256:fa80a68c1fef5324ed701d1390ba4b965533237ef14ae5ea6c9e9d051199fd11",
+      "downloadFilename": "Acid God_Yuta Imai_6.16_single_IDX 543_BPM 160_SIDE 1_chuni-ikazuchi_1080_base.jpg"
+    },
+    {
+      "resourceId": "01a02934-6d79-7a4b-b9ba-6c811994bb5b",
+      "variantId": "01a02934-6d7a-7598-ba2f-96da79ddac61",
+      "renditionId": "01a02934-6d7c-7647-8768-ca39ddd63efb",
+      "objectId": "sha256:22ca2fd82b31b573dd663fbea4dfc6f41867b5b0907bc91d718a352d541365d5",
+      "downloadFilename": "Acid God_Yuta Imai_6.16_single_IDX 543_BPM 160_SIDE 1_chuni-ikazuchi_1080_base.jpg"
+    },
+    {
+      "resourceId": "01a02934-6faf-7f6b-8ed3-913175292ac4",
+      "variantId": "01a02934-6faf-761f-ad34-4332c7c0c320",
+      "renditionId": "01a02934-6fb0-7a90-9f41-29d1215f8fc6",
+      "objectId": "sha256:bffcf3627a1f5f2b9e4d4db8b42fbfe1e1f43a15fe0c8657e265d6d188959580",
+      "downloadFilename": "Altersist_void (Mournfinale)_6.14_single_IDX 534_BPM 138_SIDE 0_eden_light_1080_base.jpg"
+    },
+    {
+      "resourceId": "01a02934-6faf-7f6b-8ed3-913175292ac4",
+      "variantId": "01a02934-6faf-761f-ad34-4332c7c0c320",
+      "renditionId": "01a02934-6fb0-7977-9675-8395f68fd3cd",
+      "objectId": "sha256:6e87f3277c1e96c7f0a5321903ba162706d6a398752fc6b0c2413b817f43a033",
+      "downloadFilename": "Altersist_void (Mournfinale)_6.14_single_IDX 534_BPM 138_SIDE 0_eden_light_1080_base.jpg"
+    },
+    {
+      "resourceId": "01a02934-7170-74a0-af6d-ca97a2a18b59",
+      "variantId": "01a02934-7171-7416-a69a-676da99198cd",
+      "renditionId": "01a02934-7171-7e57-9755-a2c688464750",
+      "objectId": "sha256:5f3a5f8e25a82f11d6a12b039d3d6bd671758b711cb52e34cf11365a5c249dcc",
+      "downloadFilename": "c.s.q.n._Aoi_6.14_single_IDX 535_BPM 174_SIDE 1_single2_conflict_1080_base.jpg"
+    },
+    {
+      "resourceId": "01a02934-7170-74a0-af6d-ca97a2a18b59",
+      "variantId": "01a02934-7171-7416-a69a-676da99198cd",
+      "renditionId": "01a02934-7171-7c42-bc9d-ee27203b9a12",
+      "objectId": "sha256:f3b9c20a5dd75eea6288d7f129737a950c5597d869f9f4e78400a23bd6422d87",
+      "downloadFilename": "c.s.q.n._Aoi_6.14_single_IDX 535_BPM 174_SIDE 1_single2_conflict_1080_base.jpg"
+    },
+    {
+      "resourceId": "01a02934-7283-78f5-8fff-52af26cd4e5f",
+      "variantId": "01a02934-7284-7558-8748-b46518b297bd",
+      "renditionId": "01a02934-7284-77ba-8a8f-8af5bda2e73d",
+      "objectId": "sha256:6bee3e4079263a1e7d720038034e5feb8e5d90ff36f9a2a753650f72561ef17b",
+      "downloadFilename": "chronologia_lowiro Sound Team (ak+q x nitro)_6.16_single_IDX 545_BPM 180_SIDE 0_eden_light_1080_base.jpg"
+    },
+    {
+      "resourceId": "01a02934-7283-78f5-8fff-52af26cd4e5f",
+      "variantId": "01a02934-7284-7558-8748-b46518b297bd",
+      "renditionId": "01a02934-7285-7984-b489-627918a14954",
+      "objectId": "sha256:8b0d344b7fa66d5ef019af6d0a58658358663c8b10d637b958ee043754ae332d",
+      "downloadFilename": "chronologia_lowiro Sound Team (ak+q x nitro)_6.16_single_IDX 545_BPM 180_SIDE 0_eden_light_1080_base.jpg"
+    },
+    {
+      "resourceId": "01a02934-7425-783c-b11b-e4f8fe4cf9be",
+      "variantId": "01a02934-7425-7a33-b624-325ae874f036",
+      "renditionId": "01a02934-7425-7f69-9c8b-5124d052194e",
+      "objectId": "sha256:683b2fed000aea65b323b927ae80637f76fcb614ad75b7fdf7b6f476dbc45210",
+      "downloadFilename": "Cosmogyral_Darren + Altermis_6.14_extend_4_IDX 532_BPM 180_SIDE 0_nijuusei2_light_1080_base.jpg"
+    },
+    {
+      "resourceId": "01a02934-7425-783c-b11b-e4f8fe4cf9be",
+      "variantId": "01a02934-7425-7a33-b624-325ae874f036",
+      "renditionId": "01a02934-7426-7774-ae94-976c1568d049",
+      "objectId": "sha256:b07ebed5f94f8a11298da0a0d75ac7067a3d887880cab3aeef9ff1627c922abf",
+      "downloadFilename": "Cosmogyral_Darren + Altermis_6.14_extend_4_IDX 532_BPM 180_SIDE 0_nijuusei2_light_1080_base.jpg"
+    },
+    {
+      "resourceId": "01a02934-75d7-7461-b5b8-c3f2578031fe",
+      "variantId": "01a02934-75d7-7e2f-b2c6-a608a833a276",
+      "renditionId": "01a02934-75d8-73fd-8dbc-685fad785ab4",
+      "objectId": "sha256:f12f3b694a133d0e3ca9d23401a70da2c9282b904bb5a42007b8eb8dccd7c194",
+      "downloadFilename": "flexidefine_Lamanya_6.14_extend_4_IDX 533_BPM 197_SIDE 1_prelude_conflict_1080_base.jpg"
+    },
+    {
+      "resourceId": "01a02934-75d7-7461-b5b8-c3f2578031fe",
+      "variantId": "01a02934-75d7-7e2f-b2c6-a608a833a276",
+      "renditionId": "01a02934-75d8-7ba2-9362-0de1ebf7c390",
+      "objectId": "sha256:b2a44b4eae95f23f41b0f33021aee39a57b5ff5b7acf732f46c4cddbd6b47d8b",
+      "downloadFilename": "flexidefine_Lamanya_6.14_extend_4_IDX 533_BPM 197_SIDE 1_prelude_conflict_1080_base.jpg"
+    },
+    {
+      "resourceId": "01a02934-77e9-7c4f-9014-2eeb9e8234ae",
+      "variantId": "01a02934-77e9-7b5a-b874-278cd174cf51",
+      "renditionId": "01a02934-77e9-7c9d-9907-14a33c0a32f0",
+      "objectId": "sha256:e743b67c0432e5bc80dd810e8f4df539877503e69416e49693bb0c27d161a5ce",
+      "downloadFilename": "Synthesis._tn-shi_6.16_single_IDX 542_BPM 180_SIDE 1_single2_conflict_1080_base.jpg"
+    },
+    {
+      "resourceId": "01a02934-77e9-7c4f-9014-2eeb9e8234ae",
+      "variantId": "01a02934-77e9-7b5a-b874-278cd174cf51",
+      "renditionId": "01a02934-77e9-7511-96d4-9252515ce35f",
+      "objectId": "sha256:66a98e0f8f97f10fb983576d1bf3749ec2152386e76e50cac1bab5853fbf9044",
+      "downloadFilename": "Synthesis._tn-shi_6.16_single_IDX 542_BPM 180_SIDE 1_single2_conflict_1080_base.jpg"
+    },
+    {
+      "resourceId": "01a02934-79ef-77d6-896f-2fec725ecec2",
+      "variantId": "01a02934-79ef-7376-99c4-d3a715e867e2",
+      "renditionId": "01a02934-79f0-72ca-9a77-54b2f55d955d",
+      "objectId": "sha256:4bc47267c47d25fb1e155335efc84961a4acdaa7125449fd1f8dad8de78636bb",
+      "downloadFilename": "オーバーライド_吉田夜世_6.15_virtualsingers_IDX 539_BPM 204_SIDE 0_virtualsingers_light_1080_base.jpg"
+    },
+    {
+      "resourceId": "01a02934-79ef-77d6-896f-2fec725ecec2",
+      "variantId": "01a02934-79ef-7376-99c4-d3a715e867e2",
+      "renditionId": "01a02934-79f0-7e11-88bd-46ac5f5bd4a5",
+      "objectId": "sha256:f3c312bca8f0505497d22480073c1962488ee3158a8784e1177aba619860ca8b",
+      "downloadFilename": "オーバーライド_吉田夜世_6.15_virtualsingers_IDX 539_BPM 204_SIDE 0_virtualsingers_light_1080_base.jpg"
+    },
+    {
+      "resourceId": "01a02934-7b6a-73be-bbcb-077c2f64560e",
+      "variantId": "01a02934-7b6b-74c7-a85c-cd492eccad3b",
+      "renditionId": "01a02934-7b6b-7a01-b8a7-6aff3310b3cf",
+      "objectId": "sha256:a50ee7844cc7d981fd9a4819df411ca451d6ebcf74d2287e86432928dea4c988",
+      "downloadFilename": "ザラメノキワミ_STEAKA_6.15_single_IDX 536_BPM 148_SIDE 1_hime_conflict_1080_base.jpg"
+    },
+    {
+      "resourceId": "01a02934-7b6a-73be-bbcb-077c2f64560e",
+      "variantId": "01a02934-7b6b-74c7-a85c-cd492eccad3b",
+      "renditionId": "01a02934-7b6c-7ea4-be08-4c8eba10bae1",
+      "objectId": "sha256:9a78544b6b1432922e4cffbf7371fa9e3b7fa6cff6e957b960e94c5f29d1af46",
+      "downloadFilename": "ザラメノキワミ_STEAKA_6.15_single_IDX 536_BPM 148_SIDE 1_hime_conflict_1080_base.jpg"
+    },
+    {
+      "resourceId": "01a02934-7d2e-783e-b30e-105535274e1f",
+      "variantId": "01a02934-7d2e-743d-8cb5-a818a33de09b",
+      "renditionId": "01a02934-7d2f-796d-bed0-72f2f93c2f3a",
+      "objectId": "sha256:735513dde12e5241ec26cd378175bb31919abd83349644e78430601748a9ed6a",
+      "downloadFilename": "テレパシ_DECO27_6.15_virtualsingers_IDX 540_BPM 205_SIDE 0_virtualsingers_light_1080_base.jpg"
+    },
+    {
+      "resourceId": "01a02934-7d2e-783e-b30e-105535274e1f",
+      "variantId": "01a02934-7d2e-743d-8cb5-a818a33de09b",
+      "renditionId": "01a02934-7d2f-7768-a834-59a8c296d060",
+      "objectId": "sha256:c871bfee12bd6ed134e96ee53d245337729fc018a5b2151a1c3b233dad2847f8",
+      "downloadFilename": "テレパシ_DECO27_6.15_virtualsingers_IDX 540_BPM 205_SIDE 0_virtualsingers_light_1080_base.jpg"
+    },
+    {
+      "resourceId": "01a02934-7eec-7c1d-a00c-0daa7cb6aefb",
+      "variantId": "01a02934-7eec-7ec1-8734-8c9b69c8c0ef",
+      "renditionId": "01a02934-7eec-77f6-a807-15f60166489f",
+      "objectId": "sha256:9793f3470aaf52020dd525c7a6f1bee370a02f1ba17af03a70f24ebb15283ace",
+      "downloadFilename": "ラヴィ_すりぃ_6.15_virtualsingers_IDX 537_BPM 183_SIDE 1_virtualsingers_conflict_1080_base.jpg"
+    },
+    {
+      "resourceId": "01a02934-7eec-7c1d-a00c-0daa7cb6aefb",
+      "variantId": "01a02934-7eec-7ec1-8734-8c9b69c8c0ef",
+      "renditionId": "01a02934-7eed-7598-9a0c-302095d742e0",
+      "objectId": "sha256:a56b812d98caed527a3468242f283292fe1e95e30b999d7483bb64e6440a06d7",
+      "downloadFilename": "ラヴィ_すりぃ_6.15_virtualsingers_IDX 537_BPM 183_SIDE 1_virtualsingers_conflict_1080_base.jpg"
+    }
+  ],
+  "removedFromCurrentSource": [],
+  "notes": [
+    "Full Legacy Migration generated from a validated MigrationPlan.",
+    "Preview thumbnails are one set per Resource/Variant and are not download renditions."
+  ]
+}

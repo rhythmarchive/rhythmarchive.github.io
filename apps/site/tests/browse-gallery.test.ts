@@ -24,12 +24,12 @@ import { getBrowseGalleryBuild } from "../src/lib/site-data";
 
 const formalBrowse = getBrowseGalleryBuild();
 
-test("Arcaea regular Songs are one card each and 14 null artwork records stay diagnostic-only", () => {
+test("Arcaea regular Songs are one card each and the unresolved artwork stays diagnostic-only", () => {
   const songs = formalBrowse.arcaea.items.filter((item) => item.recordKind === "song");
-  assert.equal(songs.length, 529);
+  assert.equal(songs.length, 542);
   assert.equal(new Set(songs.map((item) => item.songId)).size, songs.length);
   assert.equal(songs.filter((item) => item.songId === "ignotus").length, 1);
-  assert.equal(formalBrowse.diagnostics.arcaea.skipped.length, 14);
+  assert.equal(formalBrowse.diagnostics.arcaea.skipped.length, 1);
   assert.ok(formalBrowse.diagnostics.arcaea.skipped.every((item) => item.recordKind === "song" && item.reason === "no-resolved-artwork-resource"));
   assert.ok(!formalBrowse.arcaea.items.some((item) => item.songId === "undyingmacula"));
 });
@@ -82,7 +82,7 @@ test("Arcaea rating-plus and component version comparisons are semantic", () => 
 
 test("Arcaea specials, extras, aliases, and same-title families remain discoverable", () => {
   const arcaeaKinds = countKinds(formalBrowse.arcaea.items);
-  assert.deepEqual(arcaeaKinds, { song: 529, special: 9, "archive-extra": 3, "unresolved-extra": 3 });
+  assert.deepEqual(arcaeaKinds, { song: 542, special: 9, "archive-extra": 3, "unresolved-extra": 3 });
   const special = formalBrowse.arcaea.items.find((item) => item.displayTitle === "Ignotus Afterburn");
   assert.ok(special);
   assert.equal(filterBrowseItems(formalBrowse.arcaea.items, arcaeaState({ q: "Ignotus Afterburn" })).some((item) => item.key === special.key), true);

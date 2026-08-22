@@ -490,7 +490,7 @@ export type FirstMigrationScanOptions = {
 };
 
 function isCuratedArcaeaLegacyPath(relativePath: string): boolean {
-  return /^Arcaea\/(?:曲绘|曲绘（AI超分后）)\//u.test(relativePath);
+  return /^Arcaea(?:（至\d+(?:\.\d+)*）)?\/(?:曲绘|曲绘（AI超分后）)\//u.test(relativePath);
 }
 
 function isFirstMigrationLegacyPath(item: ScannedFile): boolean {
@@ -508,7 +508,7 @@ export async function scanFirstMigrationPlan(options: FirstMigrationScanOptions 
   const extractorRoot = path.resolve(options.legacyExtractorRoot ?? path.resolve("..", "rhythm-assets-gallery"));
   let currentSnapshot: Awaited<ReturnType<typeof extractArcaeaCurrentAssets>>;
   const notes: string[] = [
-    "Arcaea jacket source: legacy-curated (E:\\曲绘\\Arcaea\\曲绘 and its curated AI pair folder).",
+    "Arcaea jacket source: legacy-curated (E:\\曲绘\\Arcaea\\曲绘 plus versioned Arcaea（至...） overlay folders and their curated AI pair folders).",
     "Arcaea non-jacket source: current-apk; historical Arcaea non-jacket files are excluded from this plan.",
     "Phigros source: legacy.",
     "Arcaea difficulty suffixes are inferred only for jacket resources; _256 remains unresolved.",

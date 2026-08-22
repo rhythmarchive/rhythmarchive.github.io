@@ -45,7 +45,7 @@ test("preview selection never falls back to original or upscaled", () => {
 test("every catalog Resource shares one preview set across original and optional upscale", () => {
   const projection = projectCatalog(catalog, rosBaseUrl);
   const upscaled = projection.resources.filter((resource) => resource.upscaled);
-  assert.equal(upscaled.length, 603);
+  assert.equal(upscaled.length, 616);
   assert.ok(upscaled.every((resource) => resource.game === "arcaea" && resource.resourceType === "jacket"));
   assert.ok(upscaled.every((resource) => resource.variants.every((variant) => Boolean(variant.preview.small) && Boolean(variant.preview.medium) && Boolean(variant.preview.large))));
 });

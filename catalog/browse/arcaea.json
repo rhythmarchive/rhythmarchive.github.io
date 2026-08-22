@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "game": "arcaea",
-  "generatedAt": "2026-08-19T00:00:00.000Z",
+  "generatedAt": "2026-08-22T11:23:41.401Z",
   "source": {
     "version": "6.16.8c",
     "sha256": "c2b58dcad54203645057a859524789f59cfd5ca13613b610d04ad087b58aac90"
@@ -33514,9 +33514,9 @@
       "artworks": [
         {
           "role": "default",
-          "resourceId": null,
+          "resourceId": "01a02934-7425-783c-b11b-e4f8fe4cf9be",
           "currentApkPresence": true,
-          "matchStatus": "missing",
+          "matchStatus": "confirmed",
           "sourcePath": "assets/songs/dl_cosmogyral/1080_base.jpg"
         }
       ],
@@ -33574,9 +33574,9 @@
       "artworks": [
         {
           "role": "default",
-          "resourceId": null,
+          "resourceId": "01a02934-75d7-7461-b5b8-c3f2578031fe",
           "currentApkPresence": true,
-          "matchStatus": "missing",
+          "matchStatus": "confirmed",
           "sourcePath": "assets/songs/dl_flexidefine/1080_base.jpg"
         }
       ],
@@ -33634,9 +33634,9 @@
       "artworks": [
         {
           "role": "default",
-          "resourceId": null,
+          "resourceId": "01a02934-6faf-7f6b-8ed3-913175292ac4",
           "currentApkPresence": true,
-          "matchStatus": "missing",
+          "matchStatus": "confirmed",
           "sourcePath": "assets/songs/dl_altersist/1080_base.jpg"
         }
       ],
@@ -33694,9 +33694,9 @@
       "artworks": [
         {
           "role": "default",
-          "resourceId": null,
+          "resourceId": "01a02934-7170-74a0-af6d-ca97a2a18b59",
           "currentApkPresence": true,
-          "matchStatus": "missing",
+          "matchStatus": "confirmed",
           "sourcePath": "assets/songs/dl_csqn/1080_base.jpg"
         }
       ],
@@ -33757,9 +33757,9 @@
       "artworks": [
         {
           "role": "default",
-          "resourceId": null,
+          "resourceId": "01a02934-7b6a-73be-bbcb-077c2f64560e",
           "currentApkPresence": true,
-          "matchStatus": "missing",
+          "matchStatus": "confirmed",
           "sourcePath": "assets/songs/dl_sucromania/1080_base.jpg"
         }
       ],
@@ -33821,9 +33821,9 @@
       "artworks": [
         {
           "role": "default",
-          "resourceId": null,
+          "resourceId": "01a02934-7eec-7c1d-a00c-0daa7cb6aefb",
           "currentApkPresence": true,
-          "matchStatus": "missing",
+          "matchStatus": "confirmed",
           "sourcePath": "assets/songs/dl_lavie/1080_base.jpg"
         }
       ],
@@ -33889,9 +33889,9 @@
       "artworks": [
         {
           "role": "default",
-          "resourceId": null,
+          "resourceId": "01a02934-6bf4-77a8-ae87-e231024e0698",
           "currentApkPresence": true,
-          "matchStatus": "missing",
+          "matchStatus": "confirmed",
           "sourcePath": "assets/songs/dl_kamippoi/1080_base.jpg"
         }
       ],
@@ -33958,9 +33958,9 @@
       "artworks": [
         {
           "role": "default",
-          "resourceId": null,
+          "resourceId": "01a02934-79ef-77d6-896f-2fec725ecec2",
           "currentApkPresence": true,
-          "matchStatus": "missing",
+          "matchStatus": "confirmed",
           "sourcePath": "assets/songs/dl_override/1080_base.jpg"
         }
       ],
@@ -34020,9 +34020,9 @@
       "artworks": [
         {
           "role": "default",
-          "resourceId": null,
+          "resourceId": "01a02934-7d2e-783e-b30e-105535274e1f",
           "currentApkPresence": true,
-          "matchStatus": "missing",
+          "matchStatus": "confirmed",
           "sourcePath": "assets/songs/dl_telepathy/1080_base.jpg"
         }
       ],
@@ -34085,9 +34085,9 @@
       "artworks": [
         {
           "role": "default",
-          "resourceId": null,
+          "resourceId": "01a02934-6a53-72b5-b2ca-5b05eaaa09fd",
           "currentApkPresence": true,
-          "matchStatus": "missing",
+          "matchStatus": "confirmed",
           "sourcePath": "assets/songs/dl_aishite/1080_base.jpg"
         }
       ],
@@ -34151,9 +34151,9 @@
       "artworks": [
         {
           "role": "default",
-          "resourceId": null,
+          "resourceId": "01a02934-77e9-7c4f-9014-2eeb9e8234ae",
           "currentApkPresence": true,
-          "matchStatus": "missing",
+          "matchStatus": "confirmed",
           "sourcePath": "assets/songs/dl_synthesis/1080_base.jpg"
         }
       ],
@@ -34214,9 +34214,9 @@
       "artworks": [
         {
           "role": "default",
-          "resourceId": null,
+          "resourceId": "01a02934-6d79-7a4b-b9ba-6c811994bb5b",
           "currentApkPresence": true,
-          "matchStatus": "missing",
+          "matchStatus": "confirmed",
           "sourcePath": "assets/songs/dl_acidgod/1080_base.jpg"
         }
       ],
@@ -34281,9 +34281,9 @@
       "artworks": [
         {
           "role": "default",
-          "resourceId": null,
+          "resourceId": "01a02934-7283-78f5-8fff-52af26cd4e5f",
           "currentApkPresence": true,
-          "matchStatus": "missing",
+          "matchStatus": "confirmed",
           "sourcePath": "assets/songs/dl_chronologia/1080_base.jpg"
         }
       ],
@@ -34595,8 +34595,8 @@
   "recordCounts": {
     "regularSongs": 543,
     "currentArtworkSlots": 602,
-    "currentArtworkResourceReferences": 588,
-    "missingCurrentArtwork": 14,
+    "currentArtworkResourceReferences": 601,
+    "missingCurrentArtwork": 1,
     "specialRecords": 9,
     "archiveExtras": 3,
     "unresolvedExtras": 3
