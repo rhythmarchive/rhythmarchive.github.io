@@ -14,6 +14,9 @@ export const BROWSE_SCHEMA_NAME = "rhythm-browse-projection" as const;
 const UUIDV7 = z.string().regex(/^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i, "must be an RFC 9562 UUIDv7");
 const SHA256 = z.string().regex(/^[0-9a-f]{64}$/i, "must be a SHA-256 hex digest");
 const ISO_DATE = z.string().refine((value) => !Number.isNaN(Date.parse(value)), "must be an ISO-like timestamp");
+const ISO_DAY = z.string()
+  .regex(/^\d{4}-\d{2}-\d{2}$/u, "must be an ISO calendar date")
+  .refine((value) => !Number.isNaN(Date.parse(value + "T00:00:00Z")), "must be a valid ISO calendar date");
 const PORTABLE_RELATIVE_PATH = z.string().min(1).refine((value) => {
   if (value.includes("\0")) return false;
   if (/^[a-zA-Z]:[\\/]/.test(value) || /^\\\\/.test(value) || value.startsWith("/") || value.startsWith("\\")) return false;
@@ -79,6 +82,8 @@ export const ArcaeaSpecialRecord = z.object({
   specialId: z.string().min(1),
   specialType: z.literal("april-fools"),
   year: z.number().int().min(2018),
+  version: z.string().min(1),
+  releaseDate: ISO_DAY,
   specialTitle: z.string().min(1),
   baseSongId: z.string().min(1),
   relationType: z.string().min(1),
@@ -311,6 +316,8 @@ export const PhigrosSourceMetadata = z.object({
 
 const ArcaeaCurationEntry = z.object({
   year: z.number().int().min(2018),
+  version: z.string().min(1),
+  releaseDate: ISO_DAY,
   specialTitle: z.string().min(1),
   baseSongId: z.string().min(1),
   relationType: z.string().min(1),
@@ -546,13 +553,15 @@ function buildArcaeaSpecials(curation: ArcaeaCurationType): ArcaeaSpecialRecordT
       specialId: `arcaea:april-fools:${entry.year}`,
       specialType: entry.specialType,
       year: entry.year,
+      version: entry.version,
+      releaseDate: entry.releaseDate,
       specialTitle: entry.specialTitle,
       baseSongId: entry.baseSongId,
       relationType: entry.relationType,
       currentRepresentation: entry.currentRepresentation,
       standaloneSonglistRecord: entry.standaloneSonglistRecord,
       artworks: arcaeaSpecialArtworks(entry),
-      searchTerms: searchTerms([entry.specialTitle, entry.baseSongId, String(entry.year)]),
+      searchTerms: searchTerms([entry.specialTitle, entry.baseSongId, String(entry.year), entry.version, entry.releaseDate]),
     }));
 }
 

@@ -12,6 +12,7 @@ const PUBLIC_METADATA_KEYS = new Set([
   "packDisplayName",
   "side",
   "version",
+  "releaseDate",
   "bpm",
   "characterName",
   "characterEnglishName",

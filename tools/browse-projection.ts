@@ -10,6 +10,7 @@ import {
   catalogSha256FromValue,
   loadCatalogFile,
   writeBrowseProjectionAtomic,
+  type ArcaeaCurationType,
   type ArcaeaSourceMetadataType,
   type Catalog as CatalogType,
   type PhigrosSourceMetadataType,
@@ -401,6 +402,28 @@ async function optionalJsonFile<T>(filePath: string): Promise<T | undefined> {
   }
 }
 
+function migratePreviousArcaea(value: unknown, curation: ArcaeaCurationType): unknown {
+  if (!value || typeof value !== "object") return value;
+  const record = value as Record<string, unknown>;
+  if (!Array.isArray(record.specials)) return value;
+  const byYear = new Map(curation.entries.map((entry) => [entry.year, entry]));
+  return {
+    ...record,
+    specials: record.specials.map((special) => {
+      if (!special || typeof special !== "object") return special;
+      const previous = special as Record<string, unknown>;
+      const year = typeof previous.year === "number" ? previous.year : undefined;
+      const entry = year === undefined ? undefined : byYear.get(year);
+      if (!entry) return special;
+      return {
+        ...previous,
+        ...(typeof previous.version === "string" ? {} : { version: entry.version }),
+        ...(typeof previous.releaseDate === "string" ? {} : { releaseDate: entry.releaseDate }),
+      };
+    }),
+  };
+}
+
 async function main(): Promise<void> {
   const options = optionsFromArgs(process.argv.slice(2));
   const catalogPath = path.resolve(options.catalog);
@@ -431,7 +454,7 @@ async function main(): Promise<void> {
     phigros,
     arcaeaCuration: curation,
     generatedAt: options.generatedAt,
-    ...(previousArcaea && previousPhigros ? { previous: { arcaea: ArcaeaBrowseProjection.parse(previousArcaea), phigros: PhigrosBrowseProjection.parse(previousPhigros) } } : {}),
+    ...(previousArcaea && previousPhigros ? { previous: { arcaea: ArcaeaBrowseProjection.parse(migratePreviousArcaea(previousArcaea, curation)), phigros: PhigrosBrowseProjection.parse(previousPhigros) } } : {}),
   });
   const files = await writeBrowseProjectionAtomic(result, outputDirectory, catalog);
   console.log(JSON.stringify({

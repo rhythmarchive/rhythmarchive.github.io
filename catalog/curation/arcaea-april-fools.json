@@ -4,6 +4,8 @@
   "entries": [
     {
       "year": 2018,
+      "version": "1.6.1",
+      "releaseDate": "2018-04-01",
       "specialTitle": "Ignotus Afterburn",
       "baseSongId": "ignotus",
       "relationType": "permanent-byd-related",
@@ -21,6 +23,8 @@
     },
     {
       "year": 2019,
+      "version": "2.0.2",
+      "releaseDate": "2019-04-01",
       "specialTitle": "Red and Blue and Green",
       "baseSongId": "redandblue",
       "relationType": "permanent-byd-related",
@@ -38,6 +42,8 @@
     },
     {
       "year": 2020,
+      "version": "2.6.1",
+      "releaseDate": "2020-04-01",
       "specialTitle": "Singularity VVVIP",
       "baseSongId": "singularity",
       "relationType": "permanent-byd-related",
@@ -55,6 +61,8 @@
     },
     {
       "year": 2021,
+      "version": "3.5.3",
+      "releaseDate": "2021-04-01",
       "specialTitle": "overdead.",
       "baseSongId": "dropdead",
       "relationType": "permanent-byd-related",
@@ -72,6 +80,8 @@
     },
     {
       "year": 2022,
+      "version": "3.12.6",
+      "releaseDate": "2022-04-01",
       "specialTitle": "Mistempered Malignance",
       "baseSongId": "maliciousmischance",
       "relationType": "remix-of",
@@ -84,6 +94,8 @@
     },
     {
       "year": 2023,
+      "version": "4.4.2",
+      "releaseDate": "2023-04-01",
       "specialTitle": "0xe0e1ccull",
       "baseSongId": "ifi",
       "relationType": "remix-of",
@@ -96,6 +108,8 @@
     },
     {
       "year": 2024,
+      "version": "5.5.6",
+      "releaseDate": "2024-04-01",
       "specialTitle": "HIVEMIND INTERLINKED",
       "baseSongId": "hivemind",
       "relationType": "mashup-of",
@@ -108,6 +122,8 @@
     },
     {
       "year": 2025,
+      "version": "6.3.3",
+      "releaseDate": "2025-04-01",
       "specialTitle": "Live Faster Die Younger",
       "baseSongId": "livefastdieyoung",
       "relationType": "remix-of",
@@ -120,6 +136,8 @@
     },
     {
       "year": 2026,
+      "version": "6.13.10",
+      "releaseDate": "2026-04-01",
       "specialTitle": "UNUSED LEVELS",
       "baseSongId": "unknownlevels",
       "relationType": "remix-of",

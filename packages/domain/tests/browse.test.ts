@@ -208,6 +208,8 @@ function fixtureData(): { catalog: ReturnType<typeof createEmptyCatalog>; arcaea
     game: "arcaea",
     entries: [{
       year: 2018,
+      version: "1.6.1",
+      releaseDate: "2018-04-01",
       specialTitle: "Ignotus Afterburn",
       baseSongId: "last",
       relationType: "seasonal-error-track",
@@ -243,6 +245,8 @@ test("Browse Projection schemas preserve game semantics and Resource boundaries"
 
   const special = result.arcaea.specials[0]!;
   assert.equal(special.currentRepresentation, "permanent-byd");
+  assert.equal(special.version, "1.6.1");
+  assert.equal(special.releaseDate, "2018-04-01");
   assert.equal(special.artworks.some((artwork) => artwork.role === "seasonal" && artwork.currentApkPresence === false), true);
   assert.equal(special.artworks.some((artwork) => artwork.role === "permanent-byd" && artwork.difficultyClass === "BYD"), true);
   assert.equal(result.arcaea.archiveExtras.some((extra) => extra.reason === "legacy-duplicate-candidate"), true);

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "game": "arcaea",
-  "generatedAt": "2026-08-22T16:38:47.674Z",
+  "generatedAt": "2026-08-23T09:32:16.038Z",
   "source": {
     "version": "6.16.8c",
     "sha256": "c2b58dcad54203645057a859524789f59cfd5ca13613b610d04ad087b58aac90"
@@ -34693,6 +34693,8 @@
       "specialId": "arcaea:april-fools:2018",
       "specialType": "april-fools",
       "year": 2018,
+      "version": "1.6.1",
+      "releaseDate": "2018-04-01",
       "specialTitle": "Ignotus Afterburn",
       "baseSongId": "ignotus",
       "relationType": "permanent-byd-related",
@@ -34712,7 +34714,9 @@
         }
       ],
       "searchTerms": [
+        "1.6.1",
         "2018",
+        "2018-04-01",
         "ignotus",
         "ignotus afterburn"
       ]
@@ -34721,6 +34725,8 @@
       "specialId": "arcaea:april-fools:2019",
       "specialType": "april-fools",
       "year": 2019,
+      "version": "2.0.2",
+      "releaseDate": "2019-04-01",
       "specialTitle": "Red and Blue and Green",
       "baseSongId": "redandblue",
       "relationType": "permanent-byd-related",
@@ -34740,7 +34746,9 @@
         }
       ],
       "searchTerms": [
+        "2.0.2",
         "2019",
+        "2019-04-01",
         "red and blue and green",
         "redandblue"
       ]
@@ -34749,6 +34757,8 @@
       "specialId": "arcaea:april-fools:2020",
       "specialType": "april-fools",
       "year": 2020,
+      "version": "2.6.1",
+      "releaseDate": "2020-04-01",
       "specialTitle": "Singularity VVVIP",
       "baseSongId": "singularity",
       "relationType": "permanent-byd-related",
@@ -34768,7 +34778,9 @@
         }
       ],
       "searchTerms": [
+        "2.6.1",
         "2020",
+        "2020-04-01",
         "singularity",
         "singularity vvvip"
       ]
@@ -34777,6 +34789,8 @@
       "specialId": "arcaea:april-fools:2021",
       "specialType": "april-fools",
       "year": 2021,
+      "version": "3.5.3",
+      "releaseDate": "2021-04-01",
       "specialTitle": "overdead.",
       "baseSongId": "dropdead",
       "relationType": "permanent-byd-related",
@@ -34797,6 +34811,8 @@
       ],
       "searchTerms": [
         "2021",
+        "2021-04-01",
+        "3.5.3",
         "dropdead",
         "overdead."
       ]
@@ -34805,6 +34821,8 @@
       "specialId": "arcaea:april-fools:2022",
       "specialType": "april-fools",
       "year": 2022,
+      "version": "3.12.6",
+      "releaseDate": "2022-04-01",
       "specialTitle": "Mistempered Malignance",
       "baseSongId": "maliciousmischance",
       "relationType": "remix-of",
@@ -34819,6 +34837,8 @@
       ],
       "searchTerms": [
         "2022",
+        "2022-04-01",
+        "3.12.6",
         "maliciousmischance",
         "mistempered malignance"
       ]
@@ -34827,6 +34847,8 @@
       "specialId": "arcaea:april-fools:2023",
       "specialType": "april-fools",
       "year": 2023,
+      "version": "4.4.2",
+      "releaseDate": "2023-04-01",
       "specialTitle": "0xe0e1ccull",
       "baseSongId": "ifi",
       "relationType": "remix-of",
@@ -34842,6 +34864,8 @@
       "searchTerms": [
         "0xe0e1ccull",
         "2023",
+        "2023-04-01",
+        "4.4.2",
         "ifi"
       ]
     },
@@ -34849,6 +34873,8 @@
       "specialId": "arcaea:april-fools:2024",
       "specialType": "april-fools",
       "year": 2024,
+      "version": "5.5.6",
+      "releaseDate": "2024-04-01",
       "specialTitle": "HIVEMIND INTERLINKED",
       "baseSongId": "hivemind",
       "relationType": "mashup-of",
@@ -34863,6 +34889,8 @@
       ],
       "searchTerms": [
         "2024",
+        "2024-04-01",
+        "5.5.6",
         "hivemind",
         "hivemind interlinked"
       ]
@@ -34871,6 +34899,8 @@
       "specialId": "arcaea:april-fools:2025",
       "specialType": "april-fools",
       "year": 2025,
+      "version": "6.3.3",
+      "releaseDate": "2025-04-01",
       "specialTitle": "Live Faster Die Younger",
       "baseSongId": "livefastdieyoung",
       "relationType": "remix-of",
@@ -34885,6 +34915,8 @@
       ],
       "searchTerms": [
         "2025",
+        "2025-04-01",
+        "6.3.3",
         "live faster die younger",
         "livefastdieyoung"
       ]
@@ -34893,6 +34925,8 @@
       "specialId": "arcaea:april-fools:2026",
       "specialType": "april-fools",
       "year": 2026,
+      "version": "6.13.10",
+      "releaseDate": "2026-04-01",
       "specialTitle": "UNUSED LEVELS",
       "baseSongId": "unknownlevels",
       "relationType": "remix-of",
@@ -34907,6 +34941,8 @@
       ],
       "searchTerms": [
         "2026",
+        "2026-04-01",
+        "6.13.10",
         "unknownlevels",
         "unused levels"
       ]

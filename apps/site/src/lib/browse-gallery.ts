@@ -19,7 +19,7 @@ export type PhigrosDifficulty = (typeof PHIGROS_DIFFICULTIES)[number];
 
 export type BrowseGame = "arcaea" | "phigros";
 export type BrowseRecordKind = "song" | "track" | "special" | "archive-extra" | "unresolved-extra";
-export type BrowseBadge = "愚人节" | "归档" | "其他";
+export type BrowseBadge = string;
 export type BrowseArcaeaChart = ArcaeaSongRecordType["charts"][number];
 export type BrowsePhigrosChart = PhigrosTrackRecordType["charts"][number];
 export type BrowseChart = BrowseArcaeaChart | BrowsePhigrosChart;
@@ -58,6 +58,7 @@ export type BrowseGalleryItem = BrowseResolvedResource & {
   songId?: string;
   pack?: string | null;
   version?: string | null;
+  releaseDate?: string;
   date?: number | null;
   orderHint?: number;
   sourceIdentityCandidate?: string;
@@ -244,9 +245,10 @@ function buildArcaeaItems(
       artworkRole: selectedArtwork.role,
       ...(selectedArtwork.difficultyClass ? { selectedArtworkDifficulty: selectedArtwork.difficultyClass } : {}),
       pack: null,
-      version: null,
+      version: special.version,
+      releaseDate: special.releaseDate,
       specialYear: special.year,
-      badge: "愚人节",
+      badge: "愚人节 " + special.year,
       sortIndex: regularCount + index,
     });
   }
@@ -408,7 +410,7 @@ export function getBrowseFacetOptions(data: BrowseGalleryData): BrowseFacetOptio
     const packs = unique(data.items.flatMap((item) => item.recordKind === "song" && item.pack ? [item.pack] : []), compareText);
     const charts = ARCAEA_DIFFICULTIES.filter((difficulty) => data.items.some((item) => item.recordKind === "song" && item.charts.some((chart) => isArcaeaChart(chart) && chart.difficultyClass === difficulty)));
     const levels = unique(data.items.flatMap((item) => item.recordKind === "song" ? item.charts.filter(isArcaeaChart).map((chart) => chart.displayLevel) : []), compareDisplayLevels);
-    const versions = unique(data.items.flatMap((item) => item.recordKind === "song" && item.version ? [item.version] : []), (a, b) => compareVersionStrings(b, a));
+    const versions = unique(data.items.flatMap((item) => item.game === "arcaea" && item.version ? [item.version] : []), (a, b) => compareVersionStrings(b, a));
     return { packs, charts, levels, versions };
   }
 

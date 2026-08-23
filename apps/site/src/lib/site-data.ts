@@ -71,6 +71,8 @@ function enrichFormalBrowseMetadata(siteData: PublicSiteData, browse: FormalBrow
       if (!artwork.resourceId) continue;
       add(artwork.resourceId, "sourceTitle", special.specialTitle);
       add(artwork.resourceId, "specialYear", special.year);
+      add(artwork.resourceId, "specialVersion", special.version);
+      add(artwork.resourceId, "specialReleaseDate", special.releaseDate);
     }
   }
   for (const track of browse.phigros.tracks) {
@@ -89,6 +91,10 @@ function enrichFormalBrowseMetadata(siteData: PublicSiteData, browse: FormalBrow
       const value = unique(byKey, key);
       if (value !== undefined) metadata[key] = value;
     }
+    const specialVersion = unique(byKey, "specialVersion");
+    if (specialVersion !== undefined) metadata.version = specialVersion;
+    const specialReleaseDate = unique(byKey, "specialReleaseDate");
+    if (specialReleaseDate !== undefined) metadata.releaseDate = specialReleaseDate;
     const sourceTitle = unique(byKey, "sourceTitle");
     const difficulty = unique(byKey, "difficulty");
     const difficultyTitle = unique(byKey, "difficultyTitle");

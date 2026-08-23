@@ -78,6 +78,8 @@ test("Arcaea rating-plus and component version comparisons are semantic", () => 
   assert.ok(compareVersionStrings("6.10", "6.9") > 0);
   assert.ok(compareVersionStrings("5.10", "5.9") > 0);
   assert.ok(compareVersionStrings("6.10", "6.1") > 0);
+  assert.ok(compareVersionStrings("3.12.6", "3.5.3") > 0);
+  assert.ok(compareVersionStrings("6.13.10", "6.3.3") > 0);
 });
 
 test("Arcaea specials, extras, aliases, and same-title families remain discoverable", () => {
@@ -85,7 +87,31 @@ test("Arcaea specials, extras, aliases, and same-title families remain discovera
   assert.deepEqual(arcaeaKinds, { song: 542, special: 9, "archive-extra": 3, "unresolved-extra": 3 });
   const special = formalBrowse.arcaea.items.find((item) => item.displayTitle === "Ignotus Afterburn");
   assert.ok(special);
+  assert.equal(special.version, "1.6.1");
+  assert.equal(special.releaseDate, "2018-04-01");
+  assert.equal(special.badge, "愚人节 2018");
   assert.equal(filterBrowseItems(formalBrowse.arcaea.items, arcaeaState({ q: "Ignotus Afterburn" })).some((item) => item.key === special.key), true);
+
+  const specialTitles = [
+    "Ignotus Afterburn",
+    "Red and Blue and Green",
+    "Singularity VVVIP",
+    "overdead.",
+    "Mistempered Malignance",
+    "0xe0e1ccull",
+    "HIVEMIND INTERLINKED",
+    "Live Faster Die Younger",
+    "UNUSED LEVELS",
+  ];
+  const specials = formalBrowse.arcaea.items.filter((item) => specialTitles.includes(item.displayTitle));
+  assert.equal(specials.length, specialTitles.length);
+  const descending = filterBrowseItems(formalBrowse.arcaea.items, arcaeaState({ sort: "version-desc" }));
+  const ascending = filterBrowseItems(formalBrowse.arcaea.items, arcaeaState({ sort: "version-asc" }));
+  const descendingPositions = specialTitles.map((title) => descending.findIndex((item) => item.displayTitle === title));
+  const ascendingPositions = specialTitles.map((title) => ascending.findIndex((item) => item.displayTitle === title));
+  assert.ok(descendingPositions.every((position, index) => index === 0 || position < descendingPositions[index - 1]!));
+  assert.ok(ascendingPositions.every((position, index) => index === 0 || position > ascendingPositions[index - 1]!));
+  assert.notEqual(descending[0]?.recordKind, "special");
 
   const family = [
     makeArcaeaItem({ key: "song:last", displayTitle: "Last", resourceId: "last" }),
