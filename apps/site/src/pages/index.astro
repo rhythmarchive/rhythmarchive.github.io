@@ -4,12 +4,11 @@ import GameIcon from "../components/GameIcon.astro";
 import SearchBox from "../components/SearchBox.astro";
 import { formatCount } from "../lib/format";
 import { BASE_PATH, ROS_BASE_URL, SITE_ORIGIN } from "../lib/site-config";
-import { getSiteData } from "../lib/site-data";
+import { getPublicNavigationGames } from "../lib/site-data";
 import { createUrlHelpers } from "../lib/url";
 
-const data = getSiteData();
 const urls = createUrlHelpers({ basePath: BASE_PATH, origin: SITE_ORIGIN, rosBaseUrl: ROS_BASE_URL });
-const games = data.games;
+const games = getPublicNavigationGames();
 const homeOgImage = urls.absoluteUrl("/og/home.png");
 const description = "浏览并下载 Arcaea、Phigros 的曲绘、角色立绘、剧情 CG 与其他游戏图片资源。";
 const arcaeaApkManifestUrl = `${ROS_BASE_URL}/apk/arcaea/latest.json`;

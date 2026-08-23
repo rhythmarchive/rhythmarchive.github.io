@@ -4,15 +4,15 @@ import SearchBox from "../../components/SearchBox.astro";
 import { formatCount } from "../../lib/format";
 import { BASE_PATH, ROS_BASE_URL, SITE_ORIGIN } from "../../lib/site-config";
 import { buildSearchQuickLinks } from "../../lib/search-quick-links";
-import { getSiteData } from "../../lib/site-data";
+import { getPublicNavigationGames } from "../../lib/site-data";
 import { createUrlHelpers } from "../../lib/url";
 
 const query = Astro.url.searchParams.get("q") ?? "";
 const description = "搜索 Arcaea 与 Phigros 的曲绘、角色立绘、剧情 CG 和其他图片资源。";
-const data = getSiteData();
 const urls = createUrlHelpers({ basePath: BASE_PATH, origin: SITE_ORIGIN, rosBaseUrl: ROS_BASE_URL });
-const quickLinks = buildSearchQuickLinks(data);
-const browseGroups = data.games.map((game) => ({
+const games = getPublicNavigationGames();
+const quickLinks = buildSearchQuickLinks({ games });
+const browseGroups = games.map((game) => ({
   ...game,
   categories: game.categories.filter((category) => category.count > 0),
 })).filter((game) => game.categories.length > 0);

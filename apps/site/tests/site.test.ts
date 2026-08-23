@@ -13,7 +13,7 @@ import { getCategoryBrowseConfig } from "../src/lib/category-browse.js";
 import { GISCUS_CONFIG, GITHUB_DISCUSSIONS_URL } from "../src/lib/site-config.js";
 import { rankSearchEntries } from "../src/lib/search.js";
 import { createUrlHelpers } from "../src/lib/url.js";
-import { getSiteData, loadCategoryBrowseProjections, loadFormalCatalog } from "../src/lib/site-data.js";
+import { getPublicNavigationGames, getSiteData, loadCategoryBrowseProjections, loadFormalCatalog } from "../src/lib/site-data.js";
 import type { PublicResource, PublicSearchEntry } from "../src/lib/types.js";
 
 const catalog = loadFormalCatalog();
@@ -151,6 +151,14 @@ test("homepage uses an information-first intro and a stable social image", () =>
 test("category semantic browse data keeps player-facing names and conservative unresolved labels", () => {
   const semantic = loadCategoryBrowseProjections();
   const siteData = getSiteData();
+  const pragmatismOrdinary = siteData.resources.find((resource) => resource.metadata.songId === "pragmatism" && !resource.metadata.difficulty);
+  const pragmatismByd = siteData.resources.find((resource) => resource.metadata.songId === "pragmatism" && resource.metadata.difficulty === "BYD");
+  const singularityByd = siteData.resources.find((resource) => resource.metadata.songId === "singularity" && resource.metadata.difficulty === "BYD");
+  const ignotusByd = siteData.resources.find((resource) => resource.metadata.songId === "ignotus" && resource.metadata.difficulty === "BYD");
+  assert.equal(pragmatismOrdinary?.displayTitle, "PRAGMATISM");
+  assert.equal(pragmatismByd?.displayTitle, "PRAGMATISM -RESURRECTION-");
+  assert.equal(singularityByd?.displayTitle, "Singularity VVVIP");
+  assert.equal(ignotusByd?.displayTitle, "Ignotus Afterburn");
   const portraits = siteData.galleries["arcaea/character-portrait"] ?? [];
   const namedPortraits = portraits.filter((resource) => resource.displayTitle !== "未归类角色立绘");
   assert.equal(namedPortraits.length, 139);
@@ -168,6 +176,12 @@ test("category semantic browse data keeps player-facing names and conservative u
   assert.equal((siteData.galleries["arcaea/startup"] ?? []).length, 0);
   const phigrosKinds = getCategoryBrowseConfig("phigros", "pack-cover", siteData.galleries["phigros/pack-cover"] ?? []).facets[0]?.options.map((option) => option.label) ?? [];
   assert.ok(phigrosKinds.includes("主线") && phigrosKinds.includes("支线") && phigrosKinds.includes("单曲") && phigrosKinds.includes("其他曲包"));
+});
+
+test("homepage navigation uses the generated jacket browse counts", () => {
+  const games = getPublicNavigationGames();
+  assert.equal(games.find((game) => game.slug === "arcaea")?.categories.find((category) => category.slug === "jacket")?.count, 557);
+  assert.equal(games.find((game) => game.slug === "phigros")?.categories.find((category) => category.slug === "jacket")?.count, 353);
 });
 
 test("site brand marks keep the accent rhythm line inside the mark", () => {

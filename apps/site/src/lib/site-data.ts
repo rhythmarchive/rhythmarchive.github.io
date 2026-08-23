@@ -7,7 +7,7 @@ import { buildBrowseGalleryData } from "./browse-gallery";
 import { applyCategoryBrowseSemantics, type CategoryBrowseProjections } from "./category-browse";
 import { projectCatalog } from "./catalog-projection";
 import { ROS_BASE_URL } from "./site-config";
-import type { PublicSiteData } from "./types";
+import type { PublicGameIndex, PublicSiteData } from "./types";
 
 let cachedSiteData: PublicSiteData | undefined;
 let cachedBrowseProjections: FormalBrowseProjections | undefined;
@@ -90,10 +90,17 @@ function enrichFormalBrowseMetadata(siteData: PublicSiteData, browse: FormalBrow
       if (value !== undefined) metadata[key] = value;
     }
     const sourceTitle = unique(byKey, "sourceTitle");
+    const difficulty = unique(byKey, "difficulty");
+    const difficultyTitle = unique(byKey, "difficultyTitle");
+    const displayTitle = resource.resourceType === "jacket"
+      && typeof difficulty === "string"
+      && typeof difficultyTitle === "string"
+      ? difficultyTitle
+      : sourceTitle;
     const artist = unique(byKey, "artist");
     return {
       ...resource,
-      ...(resource.resourceType === "jacket" && typeof sourceTitle === "string" ? { displayTitle: sourceTitle } : {}),
+      ...(resource.resourceType === "jacket" && typeof displayTitle === "string" ? { displayTitle } : {}),
       ...(typeof artist === "string" ? { artist } : {}),
       metadata,
     };
@@ -158,6 +165,26 @@ export function loadFormalBrowseProjections(): FormalBrowseProjections {
 export function getBrowseGalleryBuild(): ReturnType<typeof buildBrowseGalleryData> {
   cachedBrowseGalleryBuild ??= buildBrowseGalleryData(getSiteData(), loadFormalBrowseProjections());
   return cachedBrowseGalleryBuild;
+}
+
+export function getPublicNavigationGames(): PublicGameIndex[] {
+  const siteData = getSiteData();
+  const browseBuild = getBrowseGalleryBuild();
+  const jacketCounts = {
+    arcaea: browseBuild.arcaea.items.length,
+    phigros: browseBuild.phigros.items.length,
+  } as const;
+
+  return siteData.games.map((game) => {
+    const categories = game.categories.map((category) => category.slug === "jacket"
+      ? { ...category, count: jacketCounts[game.slug] }
+      : category);
+    return {
+      ...game,
+      categories,
+      featuredCategories: game.featuredCategories.map((category) => categories.find((candidate) => candidate.slug === category.slug) ?? category),
+    };
+  });
 }
 
 export function findWorkspaceRoot(): string {
