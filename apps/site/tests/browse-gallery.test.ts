@@ -9,6 +9,7 @@ import {
   defaultBrowseUrlState,
   displayBrowseItem,
   filterBrowseItems,
+  groupBrowseFacetOptions,
   getBrowseFacetOptions,
   parseBrowseUrlState,
   searchRank,
@@ -21,6 +22,7 @@ import {
   type PhigrosBrowseUrlState,
 } from "../src/lib/browse-gallery";
 import { getBrowseGalleryBuild } from "../src/lib/site-data";
+import { formatArcaeaAddedVersion } from "../src/lib/public-display";
 
 const formalBrowse = getBrowseGalleryBuild();
 
@@ -150,6 +152,10 @@ test("Arcaea facets use projection metadata and level/version ordering", () => {
   assert.ok(!options.packs.includes("single"));
   assert.deepEqual(options.levels.slice(0, 6), ["1", "2", "3", "4", "5", "6"]);
   assert.ok(options.versions.indexOf("6.10") < options.versions.indexOf("6.9"));
+  assert.deepEqual(groupBrowseFacetOptions(["6.13.10", "6.13", "3.12.6", "3.12"], formatArcaeaAddedVersion), [
+    { label: "6.13", values: ["6.13.10", "6.13"] },
+    { label: "3.12", values: ["3.12.6", "3.12"] },
+  ]);
 });
 
 test("Browse URL state round-trips multi-select facets with stable encoding", () => {

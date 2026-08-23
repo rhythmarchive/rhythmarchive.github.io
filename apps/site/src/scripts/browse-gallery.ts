@@ -11,11 +11,13 @@ import {
   defaultBrowseUrlState,
   displayBrowseItem,
   filterBrowseItems,
+  groupBrowseFacetOptions,
   getBrowseFacetOptions,
   parseBrowseUrlState,
   serializeBrowseUrlState,
 } from "../lib/browse-gallery";
 import { cardMediaFit, cardMediaRatio } from "../lib/media-config";
+import { formatArcaeaAddedVersion } from "../lib/public-display";
 import type { PublicDownload } from "../lib/types";
 
 const root = document.querySelector<HTMLElement>("[data-browse-gallery-root]");
@@ -78,7 +80,11 @@ async function initializeBrowseGallery(root: HTMLElement): Promise<void> {
     } else if (name === "chart") {
       root.querySelector<HTMLButtonElement>(`[data-browse-filter-toggle="${name}"][data-value="${CSS.escape(value ?? "")}"]`)?.setAttribute("aria-pressed", "false");
     } else {
-      root.querySelector<HTMLInputElement>(`[data-browse-filter-check="${name}"][value="${CSS.escape(value ?? "")}"]`)!.checked = false;
+      const input = [...root.querySelectorAll<HTMLInputElement>(`[data-browse-filter-check="${name}"]`)].find((candidate) => checkboxValues(candidate).includes(value ?? ""));
+      if (input) {
+        input.checked = false;
+        input.indeterminate = false;
+      }
     }
     commitState("push");
   });
@@ -249,19 +255,20 @@ function populateFacetOptions(data: BrowseGalleryData, root: HTMLElement): void 
       return button;
     }));
   };
-  const setCheckboxes = (name: string, values: string[]) => {
+  const setCheckboxes = (name: string, values: string[], formatValue?: (value: string) => string) => {
     const container = root.querySelector<HTMLElement>(`[data-browse-options="${name}"]`);
     if (!container) return;
-    container.replaceChildren(...values.map((value) => {
+    container.replaceChildren(...groupBrowseFacetOptions(values, formatValue).map(({ label: displayValue, values: internalValues }) => {
       const label = document.createElement("label");
       label.className = "filter-option";
-      label.dataset.filterText = value.toLocaleLowerCase("zh-CN");
+      label.dataset.filterText = displayValue.toLocaleLowerCase("zh-CN");
       const input = document.createElement("input");
       input.type = "checkbox";
       input.dataset.browseFilterCheck = name;
-      input.value = value;
+      input.value = internalValues[0] ?? displayValue;
+      input.dataset.browseFilterValues = internalValues.join(",");
       const text = document.createElement("span");
-      text.textContent = value;
+      text.textContent = displayValue;
       label.append(input, text);
       return label;
     }));
@@ -271,25 +278,35 @@ function populateFacetOptions(data: BrowseGalleryData, root: HTMLElement): void 
   setToggles("chart", arcaeaOptions.charts);
   setCheckboxes("pack", arcaeaOptions.packs);
   setCheckboxes("level", arcaeaOptions.levels);
-  setCheckboxes("version", arcaeaOptions.versions);
+  setCheckboxes("version", arcaeaOptions.versions, formatArcaeaAddedVersion);
 }
 
 function selectedValues(root: HTMLElement, name: string): string[] {
-  const checked = [...root.querySelectorAll<HTMLInputElement>(`[data-browse-filter-check="${name}"]:checked`)].map((input) => input.value);
+  const checked = [...root.querySelectorAll<HTMLInputElement>(`[data-browse-filter-check="${name}"]:checked`)].flatMap((input) => checkboxValues(input));
   const toggled = [...root.querySelectorAll<HTMLButtonElement>(`[data-browse-filter-toggle="${name}"][aria-pressed="true"]`)].map((button) => button.dataset.value ?? "");
   return [...checked, ...toggled].filter(Boolean);
 }
 
 function setSelectedValues(root: HTMLElement, name: string, values: string[]): void {
   const selected = new Set(values);
-  root.querySelectorAll<HTMLInputElement>(`[data-browse-filter-check="${name}"]`).forEach((input) => { input.checked = selected.has(input.value); });
+  root.querySelectorAll<HTMLInputElement>(`[data-browse-filter-check="${name}"]`).forEach((input) => {
+    const optionValues = checkboxValues(input);
+    const selectedCount = optionValues.filter((value) => selected.has(value)).length;
+    input.checked = selectedCount > 0;
+    input.indeterminate = selectedCount > 0 && selectedCount < optionValues.length;
+  });
   root.querySelectorAll<HTMLButtonElement>(`[data-browse-filter-toggle="${name}"]`).forEach((button) => { button.setAttribute("aria-pressed", String(selected.has(button.dataset.value ?? ""))); });
+}
+
+function checkboxValues(input: HTMLInputElement): string[] {
+  return (input.dataset.browseFilterValues ?? input.value).split(",").filter(Boolean);
 }
 
 function updatePopoverSummaries(root: HTMLElement): void {
   for (const summary of root.querySelectorAll<HTMLElement>("[data-browse-summary]")) {
     const name = summary.dataset.browseSummary ?? "";
-    const values = selectedValues(root, name);
+    const rawValues = selectedValues(root, name);
+    const values = name === "version" ? [...new Set(rawValues.map(formatArcaeaAddedVersion))] : rawValues;
     const label = name === "pack" ? "曲包" : name === "level" ? "等级" : "版本";
     summary.textContent = values.length === 0 ? label : values.length === 1 ? values[0]! : `${label} ${values.length}`;
   }
@@ -305,7 +322,9 @@ function updateActiveFilters(root: HTMLElement, state: BrowseUrlState): void {
     for (const value of state.pack) entries.push({ name: "pack", value, label: value });
     for (const value of state.chart) entries.push({ name: "chart", value, label: value });
     for (const value of state.level) entries.push({ name: "level", value, label: value });
-    for (const value of state.version) entries.push({ name: "version", value, label: value });
+    const versionEntries = new Map<string, string>();
+    for (const value of state.version) versionEntries.set(formatArcaeaAddedVersion(value), value);
+    for (const [label, value] of versionEntries) entries.push({ name: "version", value, label });
     if (state.ai) entries.push({ name: "ai", value: "1", label: "含超分版" });
   }
   chips.replaceChildren(...entries.map((entry) => {

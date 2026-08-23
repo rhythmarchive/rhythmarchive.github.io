@@ -129,6 +129,17 @@ export type ArcaeaFacetOptions = {
   versions: string[];
 };
 
+export type BrowseFacetOption = { label: string; values: string[] };
+
+export function groupBrowseFacetOptions(values: string[], formatValue: (value: string) => string = (value) => value): BrowseFacetOption[] {
+  const grouped = new Map<string, string[]>();
+  for (const value of values) {
+    const label = formatValue(value);
+    grouped.set(label, [...(grouped.get(label) ?? []), value]);
+  }
+  return [...grouped].map(([label, groupedValues]) => ({ label, values: groupedValues }));
+}
+
 export type PhigrosFacetOptions = {
   charts: PhigrosDifficulty[];
 };
