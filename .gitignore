@@ -3,6 +3,11 @@ node_modules/
 .npm-cache/
 .pnpm-store/
 
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
 # Local runtime/workspace data and generated processing outputs
 .runtime/
 apk/
