@@ -5,6 +5,7 @@ node_modules/
 
 # Local runtime/workspace data and generated processing outputs
 .runtime/
+apk/
 docs/apk-audit.zip
 dist/
 build/
