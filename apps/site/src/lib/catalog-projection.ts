@@ -1,6 +1,6 @@
 import type { AssetObject, Catalog, Rendition, Resource, Variant } from "../../../../packages/domain/src/schema.js";
 import { categoryLabel, categoryOrderIndex, displayVariantLabel, GAME_CONFIG, type GameId, type ResourceTypeId } from "./game-config";
-import { normalizePublicDisplay } from "./public-display";
+import { formatArcaeaAddedVersion, normalizePublicDisplay } from "./public-display";
 import { normalizeSearchText } from "./search";
 import type { PublicAsset, PublicCategory, PublicDownload, PublicGameIndex, PublicPreview, PublicResource, PublicSearchEntry, PublicSiteData, PublicVariant } from "./types";
 import { objectUrl } from "./url";
@@ -91,7 +91,7 @@ function projectResource(resource: Resource, variants: Variant[], renditionsByVa
   const original = active?.original;
   const upscaled = active?.upscaled;
   const display = normalizePublicDisplay(resource, original?.downloadFilename);
-  const metadata = { ...pickPublicMetadata(resource), ...filterPublicMetadata(display.metadata), ...derivedPublicMetadata(resource, phigrosAprilFoolsYear) };
+  const metadata = formatPublicMetadata(resource.game, { ...pickPublicMetadata(resource), ...filterPublicMetadata(display.metadata), ...derivedPublicMetadata(resource, phigrosAprilFoolsYear) });
   const artist = display.artist ?? (typeof metadata.artist === "string" ? metadata.artist : undefined);
 
   return {
@@ -109,6 +109,11 @@ function projectResource(resource: Resource, variants: Variant[], renditionsByVa
     ...(original ? { original, downloadFilename: original.downloadFilename, mime: original.mime, sizeBytes: original.sizeBytes } : {}),
     ...(upscaled ? { upscaled } : {}),
   };
+}
+
+function formatPublicMetadata(game: GameId, metadata: Record<string, string | number | boolean>): Record<string, string | number | boolean> {
+  if (game !== "arcaea" || typeof metadata.version !== "string") return metadata;
+  return { ...metadata, version: formatArcaeaAddedVersion(metadata.version) };
 }
 
 function projectVariant(variant: Variant, renditions: Rendition[], objectsById: Map<string, AssetObject>, rosBaseUrl: string): PublicVariant {

@@ -14,11 +14,18 @@ import { GISCUS_CONFIG, GITHUB_DISCUSSIONS_URL } from "../src/lib/site-config.js
 import { rankSearchEntries } from "../src/lib/search.js";
 import { createUrlHelpers } from "../src/lib/url.js";
 import { getPublicNavigationGames, getSiteData, loadCategoryBrowseProjections, loadFormalCatalog } from "../src/lib/site-data.js";
+import { formatArcaeaAddedVersion } from "../src/lib/public-display.js";
 import type { PublicResource, PublicSearchEntry } from "../src/lib/types.js";
 
 const catalog = loadFormalCatalog();
 const rosBaseUrl = "https://rhythm-assets.cn-nb1.rains3.com";
 const siteRoot = path.resolve(process.cwd(), "apps", "site");
+
+test("Arcaea added-version labels keep only major and minor components", () => {
+  assert.equal(formatArcaeaAddedVersion("6.13.10"), "6.13");
+  assert.equal(formatArcaeaAddedVersion("3.5.3"), "3.5");
+  assert.equal(formatArcaeaAddedVersion("6.13"), "6.13");
+});
 
 test("public projection excludes local paths, credentials, and internal provenance", () => {
   const projection = projectCatalog(catalog, rosBaseUrl);

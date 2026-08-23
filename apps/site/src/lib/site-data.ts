@@ -6,6 +6,7 @@ import type { Catalog } from "../../../../packages/domain/src/schema.js";
 import { buildBrowseGalleryData } from "./browse-gallery";
 import { applyCategoryBrowseSemantics, type CategoryBrowseProjections } from "./category-browse";
 import { projectCatalog } from "./catalog-projection";
+import { formatArcaeaAddedVersion } from "./public-display";
 import { ROS_BASE_URL } from "./site-config";
 import type { PublicGameIndex, PublicSiteData } from "./types";
 
@@ -95,6 +96,7 @@ function enrichFormalBrowseMetadata(siteData: PublicSiteData, browse: FormalBrow
     if (specialVersion !== undefined) metadata.version = specialVersion;
     const specialReleaseDate = unique(byKey, "specialReleaseDate");
     if (specialReleaseDate !== undefined) metadata.releaseDate = specialReleaseDate;
+    if (resource.game === "arcaea" && typeof metadata.version === "string") metadata.version = formatArcaeaAddedVersion(metadata.version);
     const sourceTitle = unique(byKey, "sourceTitle");
     const difficulty = unique(byKey, "difficulty");
     const difficultyTitle = unique(byKey, "difficultyTitle");

@@ -9,6 +9,15 @@ export type PublicDisplayMetadata = {
   parsedFilename: boolean;
 };
 
+/**
+ * Keeps Arcaea's user-facing added-version label concise while leaving the
+ * source/projection version available for sorting and historical data.
+ */
+export function formatArcaeaAddedVersion(value: string): string {
+  const trimmed = value.trim();
+  return /^\d+\.\d+/u.exec(trimmed)?.[0] ?? trimmed;
+}
+
 type PublicDisplayResource = Pick<Resource, "game" | "resourceType" | "title" | "aliases" | "metadata" | "provenance">;
 
 /**
