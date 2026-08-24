@@ -124,6 +124,19 @@ export const GAME_CONFIG: Record<GameId, GameConfig> = {
       description: "说明",
     },
   },
+  infalsus: {
+    slug: "infalsus",
+    displayName: "In Falsus",
+    categoryOrder: ["jacket"],
+    featuredCategories: ["jacket"],
+    filters: { difficulty: false, upscale: false },
+    metadataLabels: {
+      artist: "曲师",
+      jacketIllustrator: "曲绘画师",
+      songId: "歌曲 ID",
+      gameVersion: "游戏版本",
+    },
+  },
 };
 
 export function categoryLabel(resourceType: ResourceTypeId): string {

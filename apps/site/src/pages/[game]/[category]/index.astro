@@ -14,7 +14,7 @@ const urls = createUrlHelpers({ basePath: BASE_PATH, origin: "https://rhythmarch
 export function getStaticPaths() {
   const siteData = getSiteData();
   const browseBuild = getBrowseGalleryBuild();
-  const browseByGame = { arcaea: browseBuild.arcaea, phigros: browseBuild.phigros, rizline: browseBuild.rizline } as const;
+  const browseByGame = { arcaea: browseBuild.arcaea, phigros: browseBuild.phigros, rizline: browseBuild.rizline, infalsus: browseBuild.infalsus } as const;
   return siteData.games.flatMap((game) => game.categories.map((category) => ({
     params: { game: game.slug, category: category.slug },
     props: {

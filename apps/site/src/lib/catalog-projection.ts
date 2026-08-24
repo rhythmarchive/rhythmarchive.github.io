@@ -35,6 +35,7 @@ const PUBLIC_METADATA_KEYS = new Set([
   "musicArtist",
   "illustrator",
   "trackSeries",
+  "jacketIllustrator",
   "seriesName",
   "disc",
   "character",

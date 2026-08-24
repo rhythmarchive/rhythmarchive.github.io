@@ -2,6 +2,7 @@ import type {
   ArcaeaCategoryBrowseProjectionType,
   PhigrosCategoryBrowseProjectionType,
   RizlineCategoryBrowseProjectionType,
+  InfalsusCategoryBrowseProjectionType,
 } from "../../../../packages/domain/src/browse.js";
 import { categoryLabel, gameCategoryLabel, type GameId, type ResourceTypeId } from "./game-config";
 import { galleryKey } from "./catalog-projection";
@@ -31,12 +32,14 @@ export type CategoryBrowseProjections = {
   arcaea: ArcaeaCategoryBrowseProjectionType;
   phigros: PhigrosCategoryBrowseProjectionType;
   rizline: RizlineCategoryBrowseProjectionType;
+  infalsus: InfalsusCategoryBrowseProjectionType;
 };
 
 export function applyCategoryBrowseSemantics(siteData: PublicSiteData, projections: CategoryBrowseProjections): PublicSiteData {
   const semanticById = new Map([
     ...projections.arcaea.resources.map((resource) => [resource.resourceId, resource] as const),
     ...projections.phigros.resources.map((resource) => [resource.resourceId, resource] as const),
+    ...projections.infalsus.resources.map((resource) => [resource.resourceId, resource] as const),
     ...projections.rizline.resources.map((resource) => [resource.resourceId, resource] as const),
   ]);
   const resources = siteData.resources.map((resource) => {

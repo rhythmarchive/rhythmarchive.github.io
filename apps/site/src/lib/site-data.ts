@@ -1,6 +1,8 @@
 import fs from "node:fs";
 import path from "node:path";
 import { ArcaeaBrowseProjection, ArcaeaCategoryBrowseProjection, BrowseDiagnostics, BrowseManifest, PhigrosBrowseProjection, PhigrosCategoryBrowseProjection, RizlineBrowseProjection, RizlineCategoryBrowseProjection, validateBrowseProjectionSet, validateBrowsePublicData, validateCategoryBrowseProjection, validateRizlineBrowseProjection, type ArcaeaBrowseProjectionType, type PhigrosBrowseProjectionType, type RizlineBrowseProjectionType } from "../../../../packages/domain/src/browse.js";
+import { InfalsusCategoryBrowseProjection } from "../../../../packages/domain/src/browse.js";
+import type { CategoryBrowseProjectionType } from "../../../../packages/domain/src/browse.js";
 import { validateCatalog } from "../../../../packages/domain/src/validation.js";
 import type { Catalog } from "../../../../packages/domain/src/schema.js";
 import { buildBrowseGalleryData } from "./browse-gallery";
@@ -18,6 +20,7 @@ let cachedBrowseGalleryBuild: ReturnType<typeof buildBrowseGalleryData> | undefi
 
 export type FormalBrowseProjections = {
   arcaea: ArcaeaBrowseProjectionType;
+  infalsus: CategoryBrowseProjectionType;
   phigros: PhigrosBrowseProjectionType;
   rizline: RizlineBrowseProjectionType;
 };
@@ -153,17 +156,22 @@ export function loadCategoryBrowseProjections(): CategoryBrowseProjections {
   if (cachedCategoryBrowseProjections) return cachedCategoryBrowseProjections;
   const catalog = loadFormalCatalog();
   const arcaea = parseCategoryBrowseFile("arcaea-semantics.json", ArcaeaCategoryBrowseProjection);
+  const infalsus = parseCategoryBrowseFile("infalsus-semantics.json", InfalsusCategoryBrowseProjection);
   const phigros = parseCategoryBrowseFile("phigros-semantics.json", PhigrosCategoryBrowseProjection);
   const rizline = parseCategoryBrowseFile("rizline-semantics.json", RizlineCategoryBrowseProjection);
   const arcaeaValidation = validateCategoryBrowseProjection(arcaea, catalog);
   if (!arcaeaValidation.success) throw new Error(`Arcaea semantic Browse failed runtime validation: ${arcaeaValidation.issues.slice(0, 5).join("; ")}`);
   const phigrosValidation = validateCategoryBrowseProjection(phigros, catalog);
   if (!phigrosValidation.success) throw new Error(`Phigros semantic Browse failed runtime validation: ${phigrosValidation.issues.slice(0, 5).join("; ")}`);
+  const infalsusValidation = validateCategoryBrowseProjection(infalsus, catalog);
+  if (!infalsusValidation.success) throw new Error("In Falsus semantic Browse failed runtime validation: " + infalsusValidation.issues.slice(0, 5).join("; "));
   const rizlineValidation = validateCategoryBrowseProjection(rizline, catalog);
+  const infalsusPublicDataIssues = validateBrowsePublicData(infalsus);
+  if (infalsusPublicDataIssues.length > 0) throw new Error(`In Falsus semantic Browse contains local or sensitive data: ${infalsusPublicDataIssues.slice(0, 5).join("; ")}`);
   if (!rizlineValidation.success) throw new Error("Rizline semantic Browse failed runtime validation: " + rizlineValidation.issues.slice(0, 5).join("; "));
-  const publicDataIssues = validateBrowsePublicData({ arcaea, phigros, rizline });
+  const publicDataIssues = validateBrowsePublicData({ arcaea, phigros, rizline, infalsus });
   if (publicDataIssues.length > 0) throw new Error(`Semantic Browse contains local or sensitive data: ${publicDataIssues.slice(0, 5).join("; ")}`);
-  cachedCategoryBrowseProjections = { arcaea, phigros, rizline };
+  cachedCategoryBrowseProjections = { arcaea, phigros, rizline, infalsus };
   return cachedCategoryBrowseProjections;
 }
 
@@ -172,12 +180,15 @@ export function loadFormalBrowseProjections(): FormalBrowseProjections {
 
   const catalog = loadFormalCatalog();
   const result = {
+    infalsus: parseFormalBrowseFile("infalsus.json", InfalsusCategoryBrowseProjection),
     arcaea: parseFormalBrowseFile("arcaea.json", ArcaeaBrowseProjection),
     phigros: parseFormalBrowseFile("phigros.json", PhigrosBrowseProjection),
     rizline: parseFormalBrowseFile("rizline.json", RizlineBrowseProjection),
     manifest: parseFormalBrowseFile("manifest.json", BrowseManifest),
     diagnostics: parseFormalBrowseFile("diagnostics.json", BrowseDiagnostics),
   };
+  const infalsusValidation = validateCategoryBrowseProjection(result.infalsus, catalog);
+  if (!infalsusValidation.success) throw new Error("In Falsus Browse Projection failed runtime validation: " + infalsusValidation.issues.slice(0, 5).join("; "));
   const validation = validateBrowseProjectionSet({ arcaea: result.arcaea, phigros: result.phigros, manifest: result.manifest, diagnostics: result.diagnostics }, catalog);
   if (!validation.success) throw new Error(`Formal Browse Projection failed runtime validation: ${validation.issues.slice(0, 5).join("; ")}`);
   const rizlineValidation = validateRizlineBrowseProjection(result.rizline, catalog);
@@ -185,7 +196,7 @@ export function loadFormalBrowseProjections(): FormalBrowseProjections {
   const publicDataIssues = validateBrowsePublicData(result);
   if (publicDataIssues.length > 0) throw new Error(`Formal Browse Projection contains local or sensitive data: ${publicDataIssues.slice(0, 5).join("; ")}`);
 
-  cachedBrowseProjections = { arcaea: result.arcaea, phigros: result.phigros, rizline: result.rizline };
+  cachedBrowseProjections = { arcaea: result.arcaea, phigros: result.phigros, rizline: result.rizline, infalsus: result.infalsus };
   return cachedBrowseProjections;
 }
 

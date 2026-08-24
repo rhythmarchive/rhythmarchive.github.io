@@ -36,7 +36,7 @@ async function initializeBrowseGallery(root: HTMLElement): Promise<void> {
   const activeChips = root.querySelector<HTMLElement>("[data-browse-active-chips]");
   if (!grid || !loadMore || !count || !search || !sort) return;
 
-  const game: BrowseGame = root.dataset.game === "rizline" ? "rizline" : root.dataset.game === "phigros" ? "phigros" : "arcaea";
+  const game: BrowseGame = root.dataset.game === "infalsus" ? "infalsus" : root.dataset.game === "rizline" ? "rizline" : root.dataset.game === "phigros" ? "phigros" : "arcaea";
   let items: BrowseGalleryItem[] = [];
   let state: BrowseUrlState = defaultBrowseUrlState(game);
   let visibleCount = BROWSE_PAGE_SIZE;
@@ -138,6 +138,7 @@ async function initializeBrowseGallery(root: HTMLElement): Promise<void> {
       };
     }
     if (game === "phigros") return { game, q: search!.value, sort: sort!.value as Extract<BrowseUrlState, { game: "phigros" }>["sort"], chart: [] };
+    if (game === "infalsus") return { game, q: search!.value, sort: sort!.value as Extract<BrowseUrlState, { game: "infalsus" }>["sort"], chart: [] };
     return {
       game,
       q: search!.value,
