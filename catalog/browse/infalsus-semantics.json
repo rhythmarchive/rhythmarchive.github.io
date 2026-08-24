@@ -1,0 +1,131 @@
+{
+  "schemaVersion": 1,
+  "game": "infalsus",
+  "generatedAt": "2026-08-24T16:34:59.757Z",
+  "source": {
+    "snapshot": "infalsus-demo:91bb7e195cd5fe38c5d70234da6c418a02eb55196f91f6c89e4305a006f597c3",
+    "sha256": "91bb7e195cd5fe38c5d70234da6c418a02eb55196f91f6c89e4305a006f597c3"
+  },
+  "resources": [
+    {
+      "resourceId": "ea21e77d-4d0b-729f-8756-c42c58e5280c",
+      "resourceType": "jacket",
+      "displayTitle": "à la mode",
+      "metadata": {
+        "songId": "2",
+        "artist": "aran",
+        "jacketIllustrator": "RYANE",
+        "gameVersion": "In Falsus Demo"
+      },
+      "badges": [],
+      "searchTerms": [
+        "à la mode",
+        "aran",
+        "2",
+        "alamode"
+      ],
+      "sortOrder": 0,
+      "facets": {}
+    },
+    {
+      "resourceId": "93cefd1c-62d9-7d86-96ed-64ff584817fa",
+      "resourceType": "jacket",
+      "displayTitle": "Cryogenic",
+      "metadata": {
+        "songId": "11",
+        "artist": "Camellia ft. Petra Gurin",
+        "jacketIllustrator": "アオノアオ + Vormis.",
+        "gameVersion": "In Falsus Demo"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Cryogenic",
+        "Camellia ft. Petra Gurin",
+        "11",
+        "cryogenic"
+      ],
+      "sortOrder": 1,
+      "facets": {}
+    },
+    {
+      "resourceId": "b2fbe5b8-3e9c-799d-9233-2db7ebade3a6",
+      "resourceType": "jacket",
+      "displayTitle": "Hyaloüyne",
+      "metadata": {
+        "songId": "23",
+        "artist": "ak+q",
+        "jacketIllustrator": "アオノアオ",
+        "gameVersion": "In Falsus Demo"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Hyaloüyne",
+        "ak+q",
+        "23",
+        "hyalouyne"
+      ],
+      "sortOrder": 2,
+      "facets": {}
+    },
+    {
+      "resourceId": "73a35c57-da9d-7556-95db-2324e8888149",
+      "resourceType": "jacket",
+      "displayTitle": "Ghost Ray",
+      "metadata": {
+        "songId": "64",
+        "artist": "Qlarabelle & crayvxn",
+        "jacketIllustrator": "Ghost Ray",
+        "gameVersion": "In Falsus Demo"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Ghost Ray",
+        "Qlarabelle & crayvxn",
+        "64",
+        "ghostray"
+      ],
+      "sortOrder": 3,
+      "facets": {}
+    },
+    {
+      "resourceId": "ef71432b-507a-7af0-9ad6-2be8e7179861",
+      "resourceType": "jacket",
+      "displayTitle": "Deep Into The Vibe",
+      "metadata": {
+        "songId": "67",
+        "artist": "rejection",
+        "jacketIllustrator": "Poyoshi",
+        "gameVersion": "In Falsus Demo"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Deep Into The Vibe",
+        "rejection",
+        "67",
+        "deepintothevibe"
+      ],
+      "sortOrder": 4,
+      "facets": {}
+    },
+    {
+      "resourceId": "3cdc679c-df85-7591-9c10-c12f3e32e08f",
+      "resourceType": "jacket",
+      "displayTitle": "Ordirehv",
+      "metadata": {
+        "songId": "69",
+        "artist": "Feryquitous",
+        "jacketIllustrator": "Vormis.",
+        "gameVersion": "In Falsus Demo"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Ordirehv",
+        "Feryquitous",
+        "69",
+        "ordirehv"
+      ],
+      "sortOrder": 5,
+      "facets": {}
+    }
+  ]
+}

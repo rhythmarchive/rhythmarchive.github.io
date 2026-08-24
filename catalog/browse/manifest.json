@@ -36,19 +36,30 @@
         "songs": 141,
         "artworks": 144
       }
+    },
+    "infalsus": {
+      "sourceVersion": "In Falsus Demo",
+      "sourceSha256": "91bb7e195cd5fe38c5d70234da6c418a02eb55196f91f6c89e4305a006f597c3",
+      "fileSha256": "d0977f9e57bcc945a67734a5666ac9106e0f93ebda23df0196c0188110243f50",
+      "recordCounts": {
+        "songs": 6,
+        "artworks": 6
+      }
     }
   },
   "catalog": {
     "catalogId": "019fefd6-9c49-7ca0-a760-adc76811a511",
-    "catalogSha256": "66aad99969df74d68a7b367c444f30a51aee72f069faf8ffe34f74dd5b71f879",
-    "catalogGeneratedAt": "2026-08-24T12:42:04.372Z"
+    "catalogSha256": "db78e4f15fc6e9d5bb0ab6397fec0513e2896c8ec3ebdc5f1877fb15f0ab7e81",
+    "catalogGeneratedAt": "2026-08-24T16:34:59.757Z"
   },
   "files": {
     "arcaea": "arcaea.json",
     "phigros": "phigros.json",
-    "manifest": "manifest.json",
-    "diagnostics": "diagnostics.json",
     "rizline": "rizline.json",
-    "rizlineSemantics": "rizline-semantics.json"
+    "rizlineSemantics": "rizline-semantics.json",
+    "infalsus": "infalsus.json",
+    "infalsusSemantics": "infalsus-semantics.json",
+    "manifest": "manifest.json",
+    "diagnostics": "diagnostics.json"
   }
 }

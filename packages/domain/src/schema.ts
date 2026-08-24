@@ -35,7 +35,7 @@ const LEGACY_PUBLISH_PLAN_SCHEMA_VERSION = z.literal(PUBLISH_PLAN_SCHEMA_VERSION
 const JsonPrimitive = z.union([z.string(), z.number().finite(), z.boolean(), z.null()]);
 const JsonValue: z.ZodType<unknown> = z.lazy(() => z.union([JsonPrimitive, z.array(JsonValue), z.record(z.string(), JsonValue)]));
 
-export const Game = z.enum(["arcaea", "phigros", "rizline"]);
+export const Game = z.enum(["arcaea", "phigros", "rizline", "infalsus"]);
 export const LegacyGame = z.enum(["arcaea", "phigros"]);
 export const ResourceType = z.enum([
   "jacket",
@@ -56,7 +56,7 @@ export const ResourceType = z.enum([
   "phigros-april-fools",
   "other",
 ]);
-export const SourceType = z.enum(["legacy", "arcaea_apk", "phigros_apk", "rizline_remote", "manual"]);
+export const SourceType = z.enum(["legacy", "arcaea_apk", "phigros_apk", "rizline_remote", "infalsus_demo", "manual"]);
 export const Confidence = z.enum(["high", "medium", "low", "unknown"]);
 export const Difficulty = z.enum(["PST", "PRS", "FTR", "BYD", "ETR"]);
 export const VariantKind = z.enum(["default", "difficulty", "event", "source-path", "manual", "unknown"]);

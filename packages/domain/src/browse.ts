@@ -275,7 +275,7 @@ export const CategoryBrowseResource = z.object({
 
 export const CategoryBrowseProjection = z.object({
   schemaVersion: z.literal(BROWSE_SCHEMA_VERSION),
-  game: z.enum(["arcaea", "phigros", "rizline"]),
+  game: z.enum(["arcaea", "phigros", "rizline", "infalsus"]),
   generatedAt: ISO_DATE,
   source: z.object({
     snapshot: z.string().min(1),
@@ -287,6 +287,7 @@ export const CategoryBrowseProjection = z.object({
 export const ArcaeaCategoryBrowseProjection = CategoryBrowseProjection.extend({ game: z.literal("arcaea") });
 export const PhigrosCategoryBrowseProjection = CategoryBrowseProjection.extend({ game: z.literal("phigros") });
 export const RizlineCategoryBrowseProjection = CategoryBrowseProjection.extend({ game: z.literal("rizline") });
+export const InfalsusCategoryBrowseProjection = CategoryBrowseProjection.extend({ game: z.literal("infalsus") });
 
 const ArcaeaSourceArtwork = z.object({
   role: z.enum(["default", "difficulty", "night/special"]),
@@ -392,6 +393,7 @@ export const BrowseManifest = z.object({
     arcaea: ManifestGame,
     phigros: ManifestGame,
     rizline: ManifestGame.optional(),
+    infalsus: ManifestGame.optional(),
   }),
   catalog: z.object({
     catalogId: UUIDV7,
@@ -403,6 +405,8 @@ export const BrowseManifest = z.object({
     phigros: z.literal("phigros.json"),
     rizline: z.literal("rizline.json").optional(),
     rizlineSemantics: z.literal("rizline-semantics.json").optional(),
+    infalsus: z.literal("infalsus.json").optional(),
+    infalsusSemantics: z.literal("infalsus-semantics.json").optional(),
     manifest: z.literal("manifest.json"),
     diagnostics: z.literal("diagnostics.json"),
   }),
@@ -442,6 +446,7 @@ export type CategoryBrowseProjectionType = z.infer<typeof CategoryBrowseProjecti
 export type ArcaeaCategoryBrowseProjectionType = z.infer<typeof ArcaeaCategoryBrowseProjection>;
 export type PhigrosCategoryBrowseProjectionType = z.infer<typeof PhigrosCategoryBrowseProjection>;
 export type RizlineCategoryBrowseProjectionType = z.infer<typeof RizlineCategoryBrowseProjection>;
+export type InfalsusCategoryBrowseProjectionType = z.infer<typeof InfalsusCategoryBrowseProjection>;
 export type ArcaeaSourceMetadataType = z.infer<typeof ArcaeaSourceMetadata>;
 export type PhigrosSourceMetadataType = z.infer<typeof PhigrosSourceMetadata>;
 export type ArcaeaCurationType = z.infer<typeof ArcaeaCuration>;

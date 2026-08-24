@@ -1,0 +1,99 @@
+{
+  "releaseSchemaVersion": "1.0",
+  "id": "60b3f222-61d8-77c1-a7e2-bf2d4e4e103f",
+  "updateBatchId": "dac792af-88f9-76f2-b150-3f8cdae29b2d",
+  "game": "infalsus",
+  "baseVersion": "previous-catalog",
+  "targetVersion": "In Falsus Demo",
+  "createdAt": "2026-08-24T16:35:01.142Z",
+  "status": "published",
+  "changes": [
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "ea21e77d-4d0b-729f-8756-c42c58e5280c",
+      "detail": "In Falsus SongData metadata changed"
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "93cefd1c-62d9-7d86-96ed-64ff584817fa",
+      "detail": "In Falsus SongData metadata changed"
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "b2fbe5b8-3e9c-799d-9233-2db7ebade3a6",
+      "detail": "In Falsus SongData metadata changed"
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "73a35c57-da9d-7556-95db-2324e8888149",
+      "detail": "In Falsus SongData metadata changed"
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "ef71432b-507a-7af0-9ad6-2be8e7179861",
+      "detail": "In Falsus SongData metadata changed"
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "3cdc679c-df85-7591-9c10-c12f3e32e08f",
+      "detail": "In Falsus SongData metadata changed"
+    }
+  ],
+  "affectedResourceIds": [
+    "ea21e77d-4d0b-729f-8756-c42c58e5280c",
+    "93cefd1c-62d9-7d86-96ed-64ff584817fa",
+    "b2fbe5b8-3e9c-799d-9233-2db7ebade3a6",
+    "73a35c57-da9d-7556-95db-2324e8888149",
+    "ef71432b-507a-7af0-9ad6-2be8e7179861",
+    "3cdc679c-df85-7591-9c10-c12f3e32e08f"
+  ],
+  "publishedRenditions": [
+    {
+      "resourceId": "ea21e77d-4d0b-729f-8756-c42c58e5280c",
+      "variantId": "d7c0979b-e548-7236-9b13-2a72d89bb7d2",
+      "renditionId": "f787e046-4538-73d5-abb6-a05e2d4b9f82",
+      "objectId": "sha256:0233251a036699315bf0f79a900025204f4bc7bf784ef2ca71af08aedee43e5e",
+      "downloadFilename": "infalsus-2-alamode.png"
+    },
+    {
+      "resourceId": "93cefd1c-62d9-7d86-96ed-64ff584817fa",
+      "variantId": "7aaa0b26-c666-7237-ad76-04fb5ec368da",
+      "renditionId": "77a9e2c8-73d4-7086-af67-735563461078",
+      "objectId": "sha256:dddfd76ecf3c3f0390d539f56009729d2281ba7b61fd54abf6794d1348934b79",
+      "downloadFilename": "infalsus-11-cryogenic.png"
+    },
+    {
+      "resourceId": "b2fbe5b8-3e9c-799d-9233-2db7ebade3a6",
+      "variantId": "f2e7c7f3-406c-70fe-8eb6-8b912e83c44b",
+      "renditionId": "728e66fb-c0fa-7cb5-8c57-b7415c9a2a6d",
+      "objectId": "sha256:a028b90d46055a61cd626ac2a128caeb8ba7836b0b9df9c8f8b24a5ff878f5b1",
+      "downloadFilename": "infalsus-23-hyalouyne.png"
+    },
+    {
+      "resourceId": "73a35c57-da9d-7556-95db-2324e8888149",
+      "variantId": "b5ce2493-fccb-7a3b-a536-82862aa10b62",
+      "renditionId": "4deba18c-a4fc-7316-bd3d-fbfef929e27d",
+      "objectId": "sha256:3a490283ca2fe740662f38a8fb8e1e914be1b51935b906cf10526635fb80702f",
+      "downloadFilename": "infalsus-64-ghostray.png"
+    },
+    {
+      "resourceId": "ef71432b-507a-7af0-9ad6-2be8e7179861",
+      "variantId": "9ca6e998-259e-7133-bbc7-900a95a4a221",
+      "renditionId": "6f0c399d-e9ff-71a0-96ee-be82c710d2b5",
+      "objectId": "sha256:f2246ccb91e0adabf0322c8d0a43203f48bfba0edc27d43ddf5b9226c15747c5",
+      "downloadFilename": "infalsus-67-deepintothevibe.png"
+    },
+    {
+      "resourceId": "3cdc679c-df85-7591-9c10-c12f3e32e08f",
+      "variantId": "86aaf295-0d29-7a21-8fd2-74f784de71a9",
+      "renditionId": "97c5f09a-f9a8-7236-a2dd-3e859f09bbaa",
+      "objectId": "sha256:55d6f2509a79a2231e9bb519b1868616ed9d8f83ecdd38f188e893784852bb80",
+      "downloadFilename": "infalsus-69-ordirehv.png"
+    }
+  ],
+  "removedFromCurrentSource": [],
+  "notes": [
+    "Canonical artwork is the extracted 2048x2048 Texture2D PNG; 512x512 source variants remain extractor provenance only.",
+    "New or changed songs require semantic-manifest review before a future import is accepted."
+  ]
+}
