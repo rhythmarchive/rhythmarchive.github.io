@@ -20,6 +20,8 @@ import {
   type BrowseGalleryItem,
   type BrowseResolvedResource,
   type PhigrosBrowseUrlState,
+  type RizlineBrowseUrlState,
+  type RizlineFacetOptions,
 } from "../src/lib/browse-gallery";
 import { getBrowseGalleryBuild } from "../src/lib/site-data";
 import { formatArcaeaAddedVersion } from "../src/lib/public-display";
@@ -237,12 +239,23 @@ test("Rizline Browse groups one card per Song and preserves all artwork variants
   assert.ok(songs.some((item) => item.artworks.length > 1));
   assert.ok(songs.some((item) => item.artworks.some((artwork) => artwork.variantKey === "cn")));
   assert.equal(formalBrowse.diagnostics.rizline.skipped.length, 0);
-  assert.deepEqual(defaultBrowseUrlState("rizline"), { game: "rizline", q: "", sort: "default", chart: [] });
+  assert.deepEqual(defaultBrowseUrlState("rizline"), { game: "rizline", q: "", sort: "default", disc: [], series: [], chart: [] });
   const first = songs[0]!;
   const state = parseBrowseUrlState("rizline", "q=" + encodeURIComponent(first.displayTitle) + "&sort=title-desc", songs);
   assert.equal(state.game, "rizline");
   assert.equal(filterBrowseItems(songs, state).length, 1);
-  assert.equal(getBrowseFacetOptions(formalBrowse.rizline).charts.length, 0);
+  const facetOptions = getBrowseFacetOptions(formalBrowse.rizline) as RizlineFacetOptions;
+  assert.deepEqual(facetOptions.discs, ["Disc 1", "Disc 2", "Disc O", "EX - Single", "EX - T.S."]);
+  assert.equal(facetOptions.trackSeries.length, 19);
+  const discState: RizlineBrowseUrlState = { game: "rizline", q: "", sort: "default", disc: ["Disc 1"], series: [], chart: [] };
+  assert.ok(filterBrowseItems(songs, discState).every((item) => item.disc === "Disc 1"));
+  const targetSeries = facetOptions.trackSeries.find((value) => value.includes("T.S. #1"))!;
+  const seriesState: RizlineBrowseUrlState = { game: "rizline", q: "", sort: "default", disc: [], series: [targetSeries], chart: [] };
+  assert.ok(filterBrowseItems(songs, seriesState).length > 0);
+  assert.ok(filterBrowseItems(songs, seriesState).every((item) => item.trackSeries?.includes(targetSeries)));
+  const serialized = serializeBrowseUrlState(seriesState).toString();
+  assert.match(serialized, /series=/u);
+  assert.deepEqual(parseBrowseUrlState("rizline", serialized, songs), seriesState);
 });
 
 test("jacket Gallery has its own browse path and no longer filters by Resource Variant difficulty", () => {

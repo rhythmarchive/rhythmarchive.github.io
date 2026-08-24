@@ -68,6 +68,8 @@ export type BrowseGalleryItem = BrowseResolvedResource & {
   sourceIdentityCandidate?: string;
   sourceTitle?: string;
   sourceArtist?: string | null;
+  disc?: string | null;
+  trackSeries?: string[];
   specialKind?: string;
   specialYear?: number;
   sortIndex: number;
@@ -131,6 +133,8 @@ export type RizlineBrowseUrlState = {
   game: "rizline";
   q: string;
   sort: RizlineBrowseSort;
+  disc: string[];
+  series: string[];
   chart: [];
 };
 
@@ -160,6 +164,8 @@ export type PhigrosFacetOptions = {
 
 export type RizlineFacetOptions = {
   charts: [];
+  discs: string[];
+  trackSeries: string[];
 };
 
 export type BrowseFacetOptions = ArcaeaFacetOptions | PhigrosFacetOptions | RizlineFacetOptions;
@@ -451,6 +457,8 @@ function buildRizlineItems(
     const seriesNames = song.trackSeries.map((series) => series.name);
     items.push({
       ...selectedArtwork,
+      ...(song.disc ? { disc: song.disc } : {}),
+      ...(seriesNames.length > 0 ? { trackSeries: seriesNames } : {}),
       key: "rizline-song:" + song.songId,
       game: "rizline",
       recordKind: "song",
@@ -510,7 +518,9 @@ export function getBrowseFacetOptions(data: BrowseGalleryData): BrowseFacetOptio
     const charts = PHIGROS_DIFFICULTIES.filter((difficulty) => data.items.some((item) => item.recordKind === "track" && item.charts.some((chart) => isPhigrosChart(chart) && chart.structurallyPresent && !chart.errorVariant && chart.difficultyClass === difficulty)));
     return { charts };
   }
-  return { charts: [] };
+  const discs = unique(data.items.flatMap((item) => item.recordKind === "song" && item.disc ? [item.disc] : []), compareText);
+  const trackSeries = unique(data.items.flatMap((item) => item.recordKind === "song" ? (item.trackSeries ?? []) : []), compareText);
+  return { charts: [], discs, trackSeries };
 }
 
 export function selectBrowseArtwork(item: BrowseGalleryItem, selectedDifficulties: string[]): BrowseArtwork {
@@ -562,6 +572,9 @@ export function filterBrowseItems(items: BrowseGalleryItem[], state: BrowseUrlSt
       if (state.ai && !displayBrowseItem(item, state.chart).hasUpscaled) return false;
     } else if (state.game === "phigros") {
       if (!matchesPhigrosCharts(item, state.chart)) return false;
+    } else {
+      if (state.disc.length > 0 && !state.disc.includes(item.disc ?? "")) return false;
+      if (state.series.length > 0 && !(item.trackSeries ?? []).some((value) => state.series.includes(value))) return false;
     }
     return true;
   });
@@ -686,7 +699,7 @@ export function compareDisplayLevels(left: string, right: string): number {
 export function defaultBrowseUrlState(game: BrowseGame): BrowseUrlState {
   if (game === "arcaea") return { game, q: "", sort: "default", pack: [], chart: [], level: [], version: [], ai: false };
   if (game === "phigros") return { game, q: "", sort: "default", chart: [] };
-  return { game, q: "", sort: "default", chart: [] };
+  return { game, q: "", sort: "default", disc: [], series: [], chart: [] };
 }
 
 export function parseBrowseUrlState(game: BrowseGame, input: URLSearchParams | string, items: BrowseGalleryItem[] = []): BrowseUrlState {
@@ -715,7 +728,15 @@ export function parseBrowseUrlState(game: BrowseGame, input: URLSearchParams | s
     return { game, q, sort, chart: readFacetValues(params, "chart", (options as PhigrosFacetOptions).charts) as PhigrosDifficulty[] };
   }
   const sort: RizlineBrowseSort = isRizlineSort(sortValue) ? sortValue : "default";
-  return { game, q, sort, chart: [] };
+  const rizlineOptions = options as RizlineFacetOptions;
+  return {
+    game,
+    q,
+    sort,
+    disc: readFacetValues(params, "disc", rizlineOptions.discs),
+    series: readFacetValues(params, "series", rizlineOptions.trackSeries),
+    chart: [],
+  };
 }
 
 export function serializeBrowseUrlState(state: BrowseUrlState): URLSearchParams {
@@ -735,6 +756,11 @@ export function serializeBrowseUrlState(state: BrowseUrlState): URLSearchParams 
   } else if (state.game === "phigros") {
     const charts = stableValues(state.chart, (left, right) => PHIGROS_DIFFICULTIES.indexOf(left as PhigrosDifficulty) - PHIGROS_DIFFICULTIES.indexOf(right as PhigrosDifficulty));
     if (charts.length > 0) params.set("chart", charts.join(","));
+  } else {
+    const discs = stableValues(state.disc, compareText);
+    const series = stableValues(state.series, compareText);
+    if (discs.length > 0) params.set("disc", discs.join(","));
+    if (series.length > 0) params.set("series", series.join(","));
   }
   return params;
 }

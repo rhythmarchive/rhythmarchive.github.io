@@ -137,7 +137,15 @@ async function initializeBrowseGallery(root: HTMLElement): Promise<void> {
         ai: ai?.checked ?? false,
       };
     }
-    return { game, q: search!.value, sort: sort!.value as Extract<BrowseUrlState, { game: "phigros" }>["sort"], chart: [] };
+    if (game === "phigros") return { game, q: search!.value, sort: sort!.value as Extract<BrowseUrlState, { game: "phigros" }>["sort"], chart: [] };
+    return {
+      game,
+      q: search!.value,
+      sort: sort!.value as Extract<BrowseUrlState, { game: "rizline" }>["sort"],
+      disc: selectedValues(root, "disc"),
+      series: selectedValues(root, "series"),
+      chart: [],
+    };
   }
 
   function commitState(historyMode: "push" | "replace"): void {
@@ -169,6 +177,9 @@ async function initializeBrowseGallery(root: HTMLElement): Promise<void> {
       setSelectedValues(root, "level", nextState.level);
       setSelectedValues(root, "version", nextState.version);
       if (ai) ai.checked = nextState.ai;
+    } else if (nextState.game === "rizline") {
+      setSelectedValues(root, "disc", nextState.disc);
+      setSelectedValues(root, "series", nextState.series);
     }
     updatePopoverSummaries(root);
   }
@@ -273,12 +284,19 @@ function populateFacetOptions(data: BrowseGalleryData, root: HTMLElement): void 
       return label;
     }));
   };
-  if (data.game !== "arcaea") return;
-  const arcaeaOptions = options as Extract<BrowseFacetOptions, { packs: string[] }>;
-  setToggles("chart", arcaeaOptions.charts);
-  setCheckboxes("pack", arcaeaOptions.packs);
-  setCheckboxes("level", arcaeaOptions.levels);
-  setCheckboxes("version", arcaeaOptions.versions, formatArcaeaAddedVersion);
+  if (data.game === "arcaea") {
+    const arcaeaOptions = options as Extract<BrowseFacetOptions, { packs: string[] }>;
+    setToggles("chart", arcaeaOptions.charts);
+    setCheckboxes("pack", arcaeaOptions.packs);
+    setCheckboxes("level", arcaeaOptions.levels);
+    setCheckboxes("version", arcaeaOptions.versions, formatArcaeaAddedVersion);
+    return;
+  }
+  if (data.game === "rizline") {
+    const rizlineOptions = options as Extract<BrowseFacetOptions, { discs: string[] }>;
+    setCheckboxes("disc", rizlineOptions.discs);
+    setCheckboxes("series", rizlineOptions.trackSeries);
+  }
 }
 
 function selectedValues(root: HTMLElement, name: string): string[] {
@@ -307,7 +325,7 @@ function updatePopoverSummaries(root: HTMLElement): void {
     const name = summary.dataset.browseSummary ?? "";
     const rawValues = selectedValues(root, name);
     const values = name === "version" ? [...new Set(rawValues.map(formatArcaeaAddedVersion))] : rawValues;
-    const label = name === "pack" ? "曲包" : name === "level" ? "等级" : "版本";
+    const label = name === "pack" ? "曲包" : name === "level" ? "等级" : name === "disc" ? "Disc" : name === "series" ? "精选集" : "版本";
     summary.textContent = values.length === 0 ? label : values.length === 1 ? values[0]! : `${label} ${values.length}`;
   }
 }
@@ -326,6 +344,9 @@ function updateActiveFilters(root: HTMLElement, state: BrowseUrlState): void {
     for (const value of state.version) versionEntries.set(formatArcaeaAddedVersion(value), value);
     for (const [label, value] of versionEntries) entries.push({ name: "version", value, label });
     if (state.ai) entries.push({ name: "ai", value: "1", label: "含超分版" });
+  } else if (state.game === "rizline") {
+    for (const value of state.disc) entries.push({ name: "disc", value, label: value });
+    for (const value of state.series) entries.push({ name: "series", value, label: value });
   }
   chips.replaceChildren(...entries.map((entry) => {
     const chip = document.createElement("button");

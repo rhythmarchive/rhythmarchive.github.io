@@ -82,6 +82,25 @@ const searchPlaceholder = data.game === "rizline" ? "搜索曲名、曲师或画
     </div>
   ) : null}
 
+  {data.game === "rizline" ? (
+    <div class="browse-filter-row">
+      <details class="filter-popover">
+        <summary data-browse-summary="disc">Disc</summary>
+        <div class="filter-popover-body">
+          <input class="popover-search" type="search" data-browse-option-search="disc" placeholder="搜索 Disc" autocomplete="off" />
+          <div class="filter-options" data-browse-options="disc"></div>
+        </div>
+      </details>
+      <details class="filter-popover">
+        <summary data-browse-summary="series">精选集</summary>
+        <div class="filter-popover-body">
+          <input class="popover-search" type="search" data-browse-option-search="series" placeholder="搜索精选集" autocomplete="off" />
+          <div class="filter-options" data-browse-options="series"></div>
+        </div>
+      </details>
+    </div>
+  ) : null}
+
   <div class="active-filter-row" data-browse-active hidden>
     <span class="active-filter-label">当前筛选</span>
     <div class="active-filter-chips" data-browse-active-chips></div>

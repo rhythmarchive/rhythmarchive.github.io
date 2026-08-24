@@ -6,7 +6,7 @@ import sharp from "sharp";
 import { projectCatalog, selectPreviewRendition } from "../src/lib/catalog-projection.js";
 import { formatPublicApkBytes, parsePublicArcaeaApkManifest } from "../src/lib/apk.js";
 import { uniqueZipFilename } from "../src/lib/batch.js";
-import { displayVariantLabel } from "../src/lib/game-config.js";
+import { displayVariantLabel, GAME_CONFIG } from "../src/lib/game-config.js";
 import { rankRelatedResources } from "../src/lib/related.js";
 import { buildSearchQuickLinks } from "../src/lib/search-quick-links.js";
 import { getCategoryBrowseConfig } from "../src/lib/category-browse.js";
@@ -25,6 +25,11 @@ test("Arcaea added-version labels keep only major and minor components", () => {
   assert.equal(formatArcaeaAddedVersion("6.13.10"), "6.13");
   assert.equal(formatArcaeaAddedVersion("3.5.3"), "3.5");
   assert.equal(formatArcaeaAddedVersion("6.13"), "6.13");
+});
+
+test("Rizline jacket detail hides technical song and current-version fields", () => {
+  assert.equal(GAME_CONFIG.rizline.metadataLabels.songId, undefined);
+  assert.equal(GAME_CONFIG.rizline.metadataLabels.gameVersion, undefined);
 });
 
 test("public projection excludes local paths, credentials, and internal provenance", () => {
@@ -272,7 +277,7 @@ test("search quick links are explicit, count-gated, and game-scoped", () => {
   assert.ok(quickLinks.some((entry) => entry.label === "Arcaea 曲绘" && entry.href === "/arcaea/jacket/"));
   assert.ok(quickLinks.some((entry) => entry.label === "Phigros 曲绘" && entry.href === "/phigros/jacket/"));
   assert.ok(quickLinks.some((entry) => entry.label === "Rizline 曲绘" && entry.href === "/rizline/jacket/"));
-  assert.ok(quickLinks.some((entry) => entry.label === "Rizline 专辑海报" && entry.href === "/rizline/track-series/"));
+  assert.ok(quickLinks.some((entry) => entry.label === "Rizline 精选集" && entry.href === "/rizline/track-series/"));
   assert.ok(quickLinks.some((entry) => entry.label === "Rizline Rizcard" && entry.href === "/rizline/rizcard/"));
   assert.ok(quickLinks.some((entry) => entry.label === "Rizline 角色头像" && entry.href === "/rizline/character-avatar/"));
   assert.ok(quickLinks.every((entry) => entry.label !== "曲绘"));
