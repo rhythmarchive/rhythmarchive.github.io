@@ -61,6 +61,8 @@ class BundleRequirement:
     bundle_size: int | None
     crc: int | None
     internal_id: str | None
+    provider: str | None = None
+    server_filename: str | None = None
 
     def to_dict(self) -> dict[str, Any]:
         return asdict(self)
@@ -78,10 +80,12 @@ class LogicalAsset:
     bundle: BundleRequirement | None
     publication_candidate: str
     family_status: str
+    object_internal_ids: tuple[str, ...] = ()
 
     def to_dict(self) -> dict[str, Any]:
         result = asdict(self)
         result["asset_entry_indexes"] = list(self.asset_entry_indexes)
+        result["object_internal_ids"] = list(self.object_internal_ids)
         return result
 
 

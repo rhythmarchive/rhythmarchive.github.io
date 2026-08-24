@@ -25,6 +25,7 @@ class ParsedImage:
     metadata: ResolvedObject
     image: Any | None
     decode_error: str | None = None
+    is_primary: bool = False
 
 
 @dataclass
@@ -34,6 +35,8 @@ class ParsedBundle:
     images: list[ParsedImage] = field(default_factory=list)
     gameobjects: list[dict[str, Any]] = field(default_factory=list)
     sprite_atlases: list[dict[str, Any]] = field(default_factory=list)
+    container_keys: list[str] = field(default_factory=list)
+    primary_path_ids: list[int] = field(default_factory=list)
     parse_failures: list[dict[str, Any]] = field(default_factory=list)
 
 
@@ -221,12 +224,18 @@ def _image_metadata(obj: Any, data: Any, object_map: dict[int, Any]) -> tuple[Re
         image = getattr(data, "image", None)
     except Exception:
         image = None
+    # UnityPy may trim transparent Sprite borders while m_Rect keeps the
+    # untrimmed logical canvas. Frontend dimensions must describe the bitmap
+    # actually written; the original canvas remains in sprite_rect.
+    decoded_width = _safe_int(getattr(image, "width", None)) if image is not None else None
+    decoded_height = _safe_int(getattr(image, "height", None)) if image is not None else None
+
     metadata = ResolvedObject(
         resolved_object_type=object_type,
         object_name=str(object_name) if object_name is not None else None,
         object_path_id=path_id,
-        width=width,
-        height=height,
+        width=decoded_width or width,
+        height=decoded_height or height,
         texture_format=format_name,
         has_alpha=_alpha_value(format_name, optional_alpha),
         mipmap_count=mipmap_count,
@@ -244,14 +253,26 @@ def _image_metadata(obj: Any, data: Any, object_map: dict[int, Any]) -> tuple[Re
 class UnityBundleParser:
     """Load one already-resolved Unity bundle and expose static objects."""
 
-    def parse(self, bundle_path: Path) -> ParsedBundle:
+    def parse(self, bundle_path: Path, object_internal_ids: tuple[str, ...] = ()) -> ParsedBundle:
         if UnityPy is None:
             raise RuntimeError("UnityPy is required for bundle parsing")
         environment = UnityPy.load(str(bundle_path))
         objects = list(getattr(environment, "objects", []))
+        container = getattr(environment, "container", {})
+        primary_path_ids = {
+            _safe_int(getattr(container[key], "path_id", None))
+            for key in object_internal_ids
+            if key in container
+        }
+        primary_path_ids.discard(None)
         counts = Counter(str(getattr(getattr(obj, "type", None), "name", "")) for obj in objects)
         object_map = {_safe_int(getattr(obj, "path_id", None)): obj for obj in objects if _safe_int(getattr(obj, "path_id", None)) is not None}
-        result = ParsedBundle(unity_version=_unity_version(environment), object_counts=dict(counts))
+        result = ParsedBundle(
+            unity_version=_unity_version(environment),
+            object_counts=dict(counts),
+            container_keys=list(container),
+            primary_path_ids=sorted(primary_path_ids),
+        )
 
         for obj in objects:
             object_type = str(getattr(getattr(obj, "type", None), "name", ""))
@@ -266,7 +287,7 @@ class UnityBundleParser:
                 try:
                     metadata, image = _image_metadata(obj, data, object_map)
                     decode_error = None if image is not None else "image property unavailable"
-                    result.images.append(ParsedImage(metadata=metadata, image=image, decode_error=decode_error))
+                    result.images.append(ParsedImage(metadata=metadata, image=image, decode_error=decode_error, is_primary=path_id in primary_path_ids))
                 except Exception as exc:
                     result.parse_failures.append({"object_type": object_type, "object_path_id": path_id, "stage": "read_image_object", "error": f"{type(exc).__name__}: {exc}"})
             elif object_type == "SpriteAtlas":
@@ -282,11 +303,18 @@ class UnityBundleParser:
         return result
 
 
-def choose_export_image(parsed: ParsedBundle) -> ParsedImage | None:
+def choose_export_image(
+    parsed: ParsedBundle,
+    *,
+    require_primary: bool = False,
+) -> ParsedImage | None:
     """Prefer a Sprite sibling and never emit both Sprite and Texture2D."""
 
-    candidates = [item for item in parsed.images if item.image is not None]
-    candidates.sort(key=lambda item: (item.metadata.resolved_object_type != "Sprite", item.metadata.object_path_id or 0))
+    candidates = [
+        item for item in parsed.images
+        if item.image is not None and (item.is_primary or not require_primary)
+    ]
+    candidates.sort(key=lambda item: (not item.is_primary, item.metadata.resolved_object_type != "Sprite", item.metadata.object_path_id or 0))
     return candidates[0] if candidates else None
 
 

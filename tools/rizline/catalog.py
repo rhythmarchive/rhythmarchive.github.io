@@ -17,6 +17,7 @@ from collections import Counter
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Iterable
+from urllib.parse import urlparse
 
 from .model import BundleRequirement, GameVersion, LogicalAsset
 
@@ -98,6 +99,9 @@ class CatalogSnapshot:
 class CatalogResolution:
     asset: LogicalAsset
     asset_entries: tuple[CatalogEntry, ...]
+    bundle_candidates: tuple[BundleRequirement, ...] = ()
+    primary_bundle_status: str = "UNRESOLVED"
+    container_candidates: tuple[BundleRequirement, ...] = ()
 
 
 def _read_i32(data: bytes, offset: int) -> int:
@@ -241,13 +245,21 @@ def _optional_int(value: Any) -> int | None:
 
 def bundle_requirement(entry: CatalogEntry, dependency_key: str | None) -> BundleRequirement:
     value = _extra_value(entry) or {}
+    internal_id = entry.internal_id
+    server_filename = None
+    if internal_id:
+        server_filename = Path(urlparse(internal_id).path).name or None
+    if not server_filename and entry.primary_key and entry.primary_key.endswith(".bundle"):
+        server_filename = entry.primary_key
     return BundleRequirement(
         dependency_key=dependency_key,
         bundle_name=str(value.get("m_BundleName")) if value.get("m_BundleName") else None,
         bundle_hash=str(value.get("m_Hash")) if value.get("m_Hash") else None,
         bundle_size=_optional_int(value.get("m_BundleSize")),
         crc=_optional_int(value.get("m_Crc")),
-        internal_id=entry.internal_id,
+        internal_id=internal_id,
+        provider=entry.provider,
+        server_filename=server_filename,
     )
 
 
@@ -290,16 +302,65 @@ def _entries_for_key(snapshot: CatalogSnapshot, logical_key: str) -> tuple[Catal
     return tuple(entry for entry in snapshot.entries if logical_key in entry.keys)
 
 
-def _dependency_entry(snapshot: CatalogSnapshot, entry: CatalogEntry) -> tuple[str | None, CatalogEntry | None]:
+def _dependency_entries(snapshot: CatalogSnapshot, entry: CatalogEntry) -> tuple[str | None, tuple[CatalogEntry, ...]]:
     dependency_key = None
     if 0 <= entry.dependency_key_index < len(snapshot.key_names):
         dependency_key = snapshot.key_names[entry.dependency_key_index]
     if not dependency_key:
-        return None, None
-    matches = [candidate for candidate in snapshot.entries if dependency_key in candidate.keys]
+        return None, ()
+    matches = [
+        candidate
+        for candidate in snapshot.entries
+        if dependency_key in candidate.keys
+        and (
+            "AssetBundleProvider" in (candidate.provider or "")
+            or "AssetBundle" in (candidate.resource_type_name or "")
+        )
+    ]
     if not matches:
-        matches = [candidate for candidate in snapshot.entries if candidate.primary_key == dependency_key]
-    return dependency_key, matches[0] if matches else None
+        matches = [
+            candidate
+            for candidate in snapshot.entries
+            if candidate.primary_key == dependency_key
+            and (
+                "AssetBundleProvider" in (candidate.provider or "")
+                or "AssetBundle" in (candidate.resource_type_name or "")
+            )
+        ]
+    return dependency_key, tuple(matches)
+
+
+def _select_primary_dependency(
+    dependency_key: str | None,
+    candidates: tuple[CatalogEntry, ...],
+) -> tuple[CatalogEntry | None, str]:
+    """Select only a catalog-proven primary bundle.
+
+    A dependency key ending in ``.bundle`` directly names the primary bundle.
+    Integer dependency keys instead describe a dependency set. For those we
+    accept a single leaf entry whose only memberships are its own filename and
+    the dependency-set key. Ambiguous sets are left unresolved so the remote
+    workflow can verify Unity container membership instead of guessing.
+    """
+
+    if not dependency_key or not candidates:
+        return None, "UNRESOLVED"
+    exact = [candidate for candidate in candidates if candidate.primary_key == dependency_key]
+    if len(exact) == 1:
+        return exact[0], "CATALOG_EXACT"
+    leaves = [
+        candidate
+        for candidate in candidates
+        if set(candidate.keys).issubset({candidate.primary_key, dependency_key})
+    ]
+    if len(leaves) == 1:
+        return leaves[0], "CATALOG_LEAF"
+    return None, "AMBIGUOUS_DEPENDENCY_SET"
+
+
+def bundle_candidates_for_entry(snapshot: CatalogSnapshot, entry: CatalogEntry) -> tuple[BundleRequirement, ...]:
+    dependency_key, candidates = _dependency_entries(snapshot, entry)
+    return tuple(bundle_requirement(candidate, dependency_key) for candidate in candidates)
 
 
 def resolve_logical_key(snapshot: CatalogSnapshot, logical_key: str) -> CatalogResolution | None:
@@ -309,8 +370,19 @@ def resolve_logical_key(snapshot: CatalogSnapshot, logical_key: str) -> CatalogR
 
     family, semantic_id, variant, language = parse_logical_key(logical_key)
     declared_types = tuple(dict.fromkeys(entry.resource_type_name for entry in entries if entry.resource_type_name))
-    dependency_key, dependency_entry = _dependency_entry(snapshot, entries[0])
+    dependency_key, dependency_entries = _dependency_entries(snapshot, entries[0])
+    dependency_entry, primary_status = _select_primary_dependency(dependency_key, dependency_entries)
     requirement = bundle_requirement(dependency_entry, dependency_key) if dependency_entry else None
+    bundle_candidates = tuple(bundle_requirement(candidate, dependency_key) for candidate in dependency_entries)
+    if dependency_entry is not None:
+        container_candidate_entries = (dependency_entry,)
+    else:
+        container_candidate_entries = tuple(
+            candidate
+            for candidate in dependency_entries
+            if set(candidate.keys).issubset({candidate.primary_key, dependency_key})
+        )
+    container_candidates = tuple(bundle_requirement(candidate, dependency_key) for candidate in container_candidate_entries)
     asset = LogicalAsset(
         logical_key=logical_key,
         asset_family=family,
@@ -322,8 +394,17 @@ def resolve_logical_key(snapshot: CatalogSnapshot, logical_key: str) -> CatalogR
         bundle=requirement,
         publication_candidate=PUBLICATION_CANDIDATES.get(family, "LOW"),
         family_status=SUPPORTED_FAMILIES.get(family, "UNSUPPORTED"),
+        object_internal_ids=tuple(
+            dict.fromkeys(entry.internal_id for entry in entries if entry.internal_id)
+        ),
     )
-    return CatalogResolution(asset=asset, asset_entries=entries)
+    return CatalogResolution(
+        asset=asset,
+        asset_entries=entries,
+        bundle_candidates=bundle_candidates,
+        container_candidates=container_candidates,
+        primary_bundle_status=primary_status,
+    )
 
 
 def iter_logical_keys(snapshot: CatalogSnapshot, families: Iterable[str] | None = None) -> list[str]:
