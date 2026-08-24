@@ -13,6 +13,7 @@ import {
   loadRosStorageConfig,
   parseArcaeaApkManifest,
   ResourceType,
+  type Resource,
   type ArcaeaApkManifest,
   rosStorageStatus,
   type ExtractorApk,
@@ -633,7 +634,7 @@ async function handleApi(runtime: AdminRuntime, request: IncomingMessage, respon
       return;
     }
     if (operation === "override") {
-      const override: { title?: string; artist?: string; filename?: string; category?: "jacket" | "pack-cover" | "story-cg" | "story-texture" | "character-portrait" | "character-avatar" | "linkplay-preview" | "background" | "sticker" | "world-mode" | "startup" | "phigros-april-fools" | "other" } = {};
+      const override: { title?: string; artist?: string; filename?: string; category?: Resource["resourceType"] } = {};
       const title = optionalString(body.title);
       const artist = optionalString(body.artist);
       const filename = optionalString(body.filename);

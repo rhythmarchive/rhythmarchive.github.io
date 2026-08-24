@@ -202,6 +202,43 @@ export const PhigrosBrowseProjection = z.object({
   }),
 });
 
+const RizlineArtwork = z.object({
+  artworkId: z.string().min(1),
+  resourceId: UUIDV7,
+  variantId: UUIDV7,
+  variantKey: z.string().min(1),
+  preferred: z.boolean(),
+});
+
+export const RizlineSongRecord = z.object({
+  songId: z.string().min(1),
+  displayTitle: z.string().min(1),
+  musicArtist: z.string().min(1).nullable(),
+  illustrator: z.string().min(1).nullable(),
+  disc: z.string().min(1).nullable(),
+  trackSeries: z.array(z.object({
+    id: z.string().min(1),
+    name: z.string().min(1),
+  })),
+  artworks: z.array(RizlineArtwork).min(1),
+  searchTerms: SearchTerms,
+});
+
+export const RizlineBrowseProjection = z.object({
+  schemaVersion: z.literal(BROWSE_SCHEMA_VERSION),
+  game: z.literal("rizline"),
+  generatedAt: ISO_DATE,
+  source: z.object({
+    version: z.string().min(1),
+    sha256: SHA256,
+  }),
+  songs: z.array(RizlineSongRecord),
+  recordCounts: z.object({
+    songs: z.number().int().nonnegative(),
+    artworks: z.number().int().nonnegative(),
+  }),
+});
+
 const ResourceSemanticBase = z.object({
   resourceId: UUIDV7,
   reason: z.string().min(1),
@@ -238,7 +275,7 @@ export const CategoryBrowseResource = z.object({
 
 export const CategoryBrowseProjection = z.object({
   schemaVersion: z.literal(BROWSE_SCHEMA_VERSION),
-  game: z.enum(["arcaea", "phigros"]),
+  game: z.enum(["arcaea", "phigros", "rizline"]),
   generatedAt: ISO_DATE,
   source: z.object({
     snapshot: z.string().min(1),
@@ -249,6 +286,7 @@ export const CategoryBrowseProjection = z.object({
 
 export const ArcaeaCategoryBrowseProjection = CategoryBrowseProjection.extend({ game: z.literal("arcaea") });
 export const PhigrosCategoryBrowseProjection = CategoryBrowseProjection.extend({ game: z.literal("phigros") });
+export const RizlineCategoryBrowseProjection = CategoryBrowseProjection.extend({ game: z.literal("rizline") });
 
 const ArcaeaSourceArtwork = z.object({
   role: z.enum(["default", "difficulty", "night/special"]),
@@ -353,6 +391,7 @@ export const BrowseManifest = z.object({
   games: z.object({
     arcaea: ManifestGame,
     phigros: ManifestGame,
+    rizline: ManifestGame.optional(),
   }),
   catalog: z.object({
     catalogId: UUIDV7,
@@ -362,6 +401,8 @@ export const BrowseManifest = z.object({
   files: z.object({
     arcaea: z.literal("arcaea.json"),
     phigros: z.literal("phigros.json"),
+    rizline: z.literal("rizline.json").optional(),
+    rizlineSemantics: z.literal("rizline-semantics.json").optional(),
     manifest: z.literal("manifest.json"),
     diagnostics: z.literal("diagnostics.json"),
   }),
@@ -394,10 +435,13 @@ export type ArcaeaBrowseProjectionType = z.infer<typeof ArcaeaBrowseProjection>;
 export type PhigrosTrackRecordType = z.infer<typeof PhigrosTrackRecord>;
 export type PhigrosSpecialRecordType = z.infer<typeof PhigrosSpecialRecord>;
 export type PhigrosBrowseProjectionType = z.infer<typeof PhigrosBrowseProjection>;
+export type RizlineSongRecordType = z.infer<typeof RizlineSongRecord>;
+export type RizlineBrowseProjectionType = z.infer<typeof RizlineBrowseProjection>;
 export type CategoryBrowseResourceType = z.infer<typeof CategoryBrowseResource>;
 export type CategoryBrowseProjectionType = z.infer<typeof CategoryBrowseProjection>;
 export type ArcaeaCategoryBrowseProjectionType = z.infer<typeof ArcaeaCategoryBrowseProjection>;
 export type PhigrosCategoryBrowseProjectionType = z.infer<typeof PhigrosCategoryBrowseProjection>;
+export type RizlineCategoryBrowseProjectionType = z.infer<typeof RizlineCategoryBrowseProjection>;
 export type ArcaeaSourceMetadataType = z.infer<typeof ArcaeaSourceMetadata>;
 export type PhigrosSourceMetadataType = z.infer<typeof PhigrosSourceMetadata>;
 export type ArcaeaCurationType = z.infer<typeof ArcaeaCuration>;
@@ -466,6 +510,45 @@ export function validateBrowsePublicData(value: unknown): string[] {
   return browsePublicDataIssues(value);
 }
 
+export type RizlineBrowseValidationResult =
+  | { success: true; data: RizlineBrowseProjectionType }
+  | { success: false; issues: string[] };
+
+export function validateRizlineBrowseProjection(value: unknown, catalog: Catalog): RizlineBrowseValidationResult {
+  const parsed = RizlineBrowseProjection.safeParse(value);
+  if (!parsed.success) {
+    return { success: false, issues: parsed.error.issues.map((issue) => issue.path.join(".") + ": " + issue.message) };
+  }
+  const issues: string[] = [];
+  const resources = new Map(catalog.resources.map((resource) => [resource.id, resource]));
+  const variants = new Map(catalog.variants.map((variant) => [variant.id, variant]));
+  const artworkIds = new Set<string>();
+  let artworkCount = 0;
+  for (const song of parsed.data.songs) {
+    for (const artwork of song.artworks) {
+      artworkCount += 1;
+      if (artworkIds.has(artwork.artworkId)) issues.push("rizline: duplicate artwork " + artwork.artworkId);
+      artworkIds.add(artwork.artworkId);
+      const resource = resources.get(artwork.resourceId);
+      const variant = variants.get(artwork.variantId);
+      if (!resource) {
+        issues.push("rizline: dangling Resource " + artwork.resourceId);
+        continue;
+      }
+      if (resource.game !== "rizline" || resource.resourceType !== "jacket" || resource.lifecycle.status !== "published") {
+        issues.push("rizline: artwork Resource " + artwork.resourceId + " is not a published jacket");
+      }
+      if (!variant || variant.resourceId !== resource.id || variant.variantKey !== artwork.variantKey) {
+        issues.push("rizline: artwork " + artwork.artworkId + " has an invalid Variant reference");
+      }
+    }
+  }
+  if (parsed.data.recordCounts.songs !== parsed.data.songs.length) issues.push("rizline: song count does not match recordCounts");
+  if (parsed.data.recordCounts.artworks !== artworkCount) issues.push("rizline: artwork count does not match recordCounts");
+  issues.push(...validateBrowsePublicData(parsed.data));
+  return issues.length > 0 ? { success: false, issues } : { success: true, data: parsed.data };
+}
+
 export function validateCategoryBrowseProjection(value: unknown, catalog: Catalog): CategoryBrowseValidationResult {
   const parsed = CategoryBrowseProjection.safeParse(value);
   if (!parsed.success) {
@@ -499,6 +582,10 @@ export function catalogSha256FromValue(catalog: Catalog): string {
 
 function sha256Json(value: unknown): string {
   return sha256Text(stableJson(value));
+}
+
+export function browseProjectionSha256(value: unknown): string {
+  return sha256Json(value);
 }
 
 function resourceMap(catalog: Catalog, game: "arcaea" | "phigros", resourceTypes: string[]): Map<string, (typeof catalog.resources)[number]> {

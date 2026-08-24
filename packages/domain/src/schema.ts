@@ -35,9 +35,14 @@ const LEGACY_PUBLISH_PLAN_SCHEMA_VERSION = z.literal(PUBLISH_PLAN_SCHEMA_VERSION
 const JsonPrimitive = z.union([z.string(), z.number().finite(), z.boolean(), z.null()]);
 const JsonValue: z.ZodType<unknown> = z.lazy(() => z.union([JsonPrimitive, z.array(JsonValue), z.record(z.string(), JsonValue)]));
 
-export const Game = z.enum(["arcaea", "phigros"]);
+export const Game = z.enum(["arcaea", "phigros", "rizline"]);
+export const LegacyGame = z.enum(["arcaea", "phigros"]);
 export const ResourceType = z.enum([
   "jacket",
+  "special-art",
+  "rizcard-layout",
+  "track-series",
+  "rizcard",
   "pack-cover",
   "background",
   "character-portrait",
@@ -51,7 +56,7 @@ export const ResourceType = z.enum([
   "phigros-april-fools",
   "other",
 ]);
-export const SourceType = z.enum(["legacy", "arcaea_apk", "phigros_apk", "manual"]);
+export const SourceType = z.enum(["legacy", "arcaea_apk", "phigros_apk", "rizline_remote", "manual"]);
 export const Confidence = z.enum(["high", "medium", "low", "unknown"]);
 export const Difficulty = z.enum(["PST", "PRS", "FTR", "BYD", "ETR"]);
 export const VariantKind = z.enum(["default", "difficulty", "event", "source-path", "manual", "unknown"]);
@@ -98,7 +103,7 @@ export const ExternalIdentity = z.object({
   namespace: z.string().min(1),
   key: z.string().min(1),
   value: z.string().min(1),
-  source: z.enum(["apk-metadata", "filename", "legacy-index", "phigros-key", "story-metadata", "manual", "unknown"]),
+  source: z.enum(["apk-metadata", "filename", "legacy-index", "phigros-key", "story-metadata", "manual", "remote-canonical", "unknown"]),
   confidence: Confidence,
 });
 
@@ -162,6 +167,8 @@ export const Variant = z.object({
   variantKey: z.string().min(1).refine((value) => !/[\\/]/.test(value), "must not be a path"),
   kind: VariantKind,
   semanticStatus: VariantSemanticStatus,
+  /** Explicit default selection for galleries whose labels are not enough. */
+  preferred: z.boolean().optional(),
   difficulty: Difficulty.optional(),
   eventKey: z.string().min(1).optional(),
   markers: z.object({
@@ -267,7 +274,7 @@ export const UpdateBatch = z.object({
   schemaVersion: LEGACY_WORKSPACE_SCHEMA_VERSION,
   workspaceSchemaVersion: z.literal(WORKSPACE_SCHEMA_VERSION).default(WORKSPACE_SCHEMA_VERSION),
   id: UUIDV7,
-  game: Game,
+  game: LegacyGame,
   targetVersion: z.string().min(1),
   baseVersion: z.string().min(1),
   baseApk: LocalApkProvenance,
@@ -476,7 +483,7 @@ export const CandidateManifest = z.object({
   workspaceSchemaVersion: z.literal(WORKSPACE_SCHEMA_VERSION).default(WORKSPACE_SCHEMA_VERSION),
   id: UUIDV7,
   sourceType: SourceType,
-  game: Game,
+  game: LegacyGame,
   sourceSnapshot: z.string().min(1),
   createdAt: ISO_DATE,
   extractorVersion: z.string().min(1).optional(),

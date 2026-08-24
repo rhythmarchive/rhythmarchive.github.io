@@ -220,7 +220,7 @@ function catalogRecord(resource: Resource, variant: Variant, rendition: Renditio
     sourceRelativePath: provenance?.sourceRelativePath,
     contentHash: imageContentHash ?? object?.sha256,
     metadataFingerprint: metadataFingerprint({ title: resource.title, metadata: resource.metadata, resourceType: resource.resourceType, variantKey: variant.variantKey }),
-    game: resource.game,
+    game: resource.game === "arcaea" || resource.game === "phigros" ? resource.game : (() => { throw new Error("Rizline is not an APK diff source"); })(),
     resourceType: resource.resourceType,
     variantKey: variant.variantKey,
     resourceId: resource.id,

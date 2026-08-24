@@ -1,4 +1,4 @@
-import { randomBytes } from "node:crypto";
+import { createHash, randomBytes } from "node:crypto";
 import { Rendition, type Candidate, type Rendition as RenditionType } from "./schema.js";
 
 export function createUuidV7(now = Date.now()): string {
@@ -12,6 +12,19 @@ export function createUuidV7(now = Date.now()): string {
   bytes[8] = ((bytes[8] ?? 0) & 0x3f) | 0x80;
   const hex = bytes.toString("hex");
   return `${hex.slice(0, 8)}-${hex.slice(8, 12)}-${hex.slice(12, 16)}-${hex.slice(16, 20)}-${hex.slice(20)}`;
+}
+
+/**
+ * Map a business identity to a stable UUIDv7-shaped Resource/Variant/Rendition ID.
+ * The digest is deterministic; the UUID version/variant bits remain standards-compliant.
+ */
+export function createDeterministicUuidV7(seed: string): string {
+  if (!seed.trim()) throw new Error("deterministic UUID seed must not be empty");
+  const bytes = createHash("sha256").update("rhythm-archive:" + seed, "utf8").digest().subarray(0, 16);
+  bytes[6] = ((bytes[6] ?? 0) & 0x0f) | 0x70;
+  bytes[8] = ((bytes[8] ?? 0) & 0x3f) | 0x80;
+  const hex = bytes.toString("hex");
+  return hex.slice(0, 8) + "-" + hex.slice(8, 12) + "-" + hex.slice(12, 16) + "-" + hex.slice(16, 20) + "-" + hex.slice(20);
 }
 
 export function normalizeFilenameStem(filename: string): string {

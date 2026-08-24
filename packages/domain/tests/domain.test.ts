@@ -5,7 +5,11 @@ import path from "node:path";
 import test from "node:test";
 import {
   Candidate,
+  Game,
+  ResourceType,
+  SourceType,
   convertOptimizationPngToJpeg,
+  createDeterministicUuidV7,
   createUuidV7,
   ensureWorkspaceLayout,
   immutableObjectKey,
@@ -37,6 +41,19 @@ const fixtureRoot = path.resolve("fixtures", "phase2a");
 async function fixture<T>(name: string): Promise<T> {
   return JSON.parse(await readFile(path.join(fixtureRoot, name), "utf8")) as T;
 }
+
+test("Rizline domain contracts accept the third game and stable identity mapping", () => {
+  assert.equal(Game.parse("rizline"), "rizline");
+  assert.equal(ResourceType.parse("special-art"), "special-art");
+  assert.equal(ResourceType.parse("rizcard-layout"), "rizcard-layout");
+  assert.equal(ResourceType.parse("track-series"), "track-series");
+  assert.equal(ResourceType.parse("rizcard"), "rizcard");
+  assert.equal(SourceType.parse("rizline_remote"), "rizline_remote");
+  const first = createDeterministicUuidV7("rizline:song:419kB.ariiol.0");
+  assert.equal(first, createDeterministicUuidV7("rizline:song:419kB.ariiol.0"));
+  assert.match(first, /^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/iu);
+  assert.notEqual(first, createDeterministicUuidV7("rizline:song:another"));
+});
 
 test("all primary schemas accept the valid JSON fixtures", async () => {
   assert.equal(validateResource(await fixture("valid-resource.json")).success, true);
