@@ -139,6 +139,7 @@ img { display: block; max-width: 100%; }
 .game-icon { position: relative; display: grid; place-items: center; width: 112px; height: 112px; color: #fff; background: var(--accent); clip-path: polygon(0 9%, 88% 0, 100% 78%, 17% 100%); transform: rotate(-3deg); box-shadow: 8px 8px 0 color-mix(in srgb, var(--cyan) 72%, transparent); }
 .game-icon::before { content: ""; position: absolute; inset: 9px; z-index: 2; border: 1px solid rgba(255, 255, 255, 0.62); clip-path: polygon(0 9%, 88% 0, 100% 78%, 17% 100%); pointer-events: none; }
 .game-icon-image { position: absolute; inset: 9px; z-index: 1; width: calc(100% - 18px); height: calc(100% - 18px); border-radius: 16%; object-fit: cover; }
+.game-icon-infalsus .game-icon-image { object-fit: contain; }
 .game-icon-fallback { position: absolute; inset: 0; z-index: 0; display: grid; place-items: center; pointer-events: none; }
 .game-icon-mark { position: relative; z-index: 1; font-family: var(--display-font); font-size: 3.9rem; font-weight: 800; line-height: 1; letter-spacing: -0.14em; }
 .game-icon-name { position: absolute; right: 17px; bottom: 17px; z-index: 1; font-size: 0.54rem; font-weight: 800; letter-spacing: 0.09em; text-transform: uppercase; }
