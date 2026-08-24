@@ -8,6 +8,7 @@ interface Props {
 }
 
 const { variant, active = true } = Astro.props;
+const originals = variant.originals ?? (variant.original ? [variant.original] : []);
 ---
 
 <div class="download-panel" data-download-panel data-download-variant={variant.variantId} hidden={!active}>
@@ -16,11 +17,11 @@ const { variant, active = true } = Astro.props;
     <span data-download-status aria-live="polite"></span>
   </div>
   <div class="download-actions">
-    {variant.original ? (
-      <button class="download-button" type="button" data-download-kind="original" data-download-url={variant.original.url} data-download-filename={variant.original.downloadFilename}>
-        <span>原图</span><small>{formatBytes(variant.original.sizeBytes)}</small>
+    {originals.map((original, index) => (
+      <button class="download-button" type="button" data-download-kind="original" data-download-url={original.url} data-download-filename={original.downloadFilename}>
+        <span>{originals.length > 1 ? "原图 " + (index + 1) : "原图"}</span><small>{formatBytes(original.sizeBytes)}</small>
       </button>
-    ) : null}
+    ))}
     {variant.upscaled ? (
       <button class="download-button" type="button" data-download-kind="upscaled" data-download-url={variant.upscaled.url} data-download-filename={variant.upscaled.downloadFilename}>
         <span>超分版 <em class="download-recommend">推荐</em></span><small>{formatBytes(variant.upscaled.sizeBytes)}</small>

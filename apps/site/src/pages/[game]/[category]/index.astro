@@ -14,13 +14,14 @@ const urls = createUrlHelpers({ basePath: BASE_PATH, origin: "https://rhythmarch
 export function getStaticPaths() {
   const siteData = getSiteData();
   const browseBuild = getBrowseGalleryBuild();
+  const browseByGame = { arcaea: browseBuild.arcaea, phigros: browseBuild.phigros, rizline: browseBuild.rizline } as const;
   return siteData.games.flatMap((game) => game.categories.map((category) => ({
     params: { game: game.slug, category: category.slug },
     props: {
       game,
       category,
       resources: siteData.galleries[`${game.slug}/${category.slug}`] ?? [],
-      browseData: category.slug === "jacket" ? (game.slug === "arcaea" ? browseBuild.arcaea : browseBuild.phigros) : undefined,
+      browseData: category.slug === "jacket" ? browseByGame[game.slug] : undefined,
     },
   })));
 }

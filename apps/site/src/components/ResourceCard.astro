@@ -18,7 +18,7 @@ const srcset = [resource.preview.small ? `${resource.preview.small.url} 320w` : 
 const variantLabel = resource.variants.find((variant) => variant.label !== "默认")?.label;
 ---
 
-<article class="resource-card" data-resource-card data-resource-id={resource.resourceId} data-game={resource.game} data-resource-type={resource.resourceType} data-media-ratio={cardMediaRatio(resource.game, resource.resourceType)} data-media-fit={cardMediaFit(resource.resourceType)}>
+<article class="resource-card" data-resource-card data-resource-id={resource.resourceId} data-game={resource.game} data-resource-type={resource.resourceType} data-media-ratio={cardMediaRatio(resource.game, resource.resourceType)} data-media-fit={cardMediaFit(resource.game, resource.resourceType)}>
   {selectable ? (
     <button class="resource-select" type="button" data-select-resource={resource.resourceId} aria-pressed="false" aria-label={`选择 ${resource.displayTitle}`}>
       <span aria-hidden="true">✓</span>

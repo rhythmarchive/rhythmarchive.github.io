@@ -17,6 +17,10 @@ export type GameConfig = {
 
 export const CATEGORY_LABELS: Record<ResourceTypeId, string> = {
   jacket: "曲绘",
+  "special-art": "特殊插画",
+  "track-series": "Track Series",
+  "rizcard-layout": "Rizcard Layout",
+  "rizcard": "Rizcard",
   "character-portrait": "角色立绘",
   "character-avatar": "头像",
   "story-cg": "剧情 CG",
@@ -92,10 +96,45 @@ export const GAME_CONFIG: Record<GameId, GameConfig> = {
       specialYear: "资源年份",
     },
   },
+  rizline: {
+    slug: "rizline",
+    displayName: "Rizline",
+    categoryOrder: ["jacket", "special-art", "track-series", "rizcard-layout", "character-avatar", "rizcard"],
+    featuredCategories: ["jacket", "special-art", "track-series", "rizcard-layout", "character-avatar"],
+    filters: { difficulty: false, upscale: false },
+    metadataLabels: {
+      artist: "曲师",
+      musicArtist: "曲师",
+      illustrator: "画师",
+      trackSeries: "Track Series",
+      seriesName: "系列名称",
+      disc: "Disc",
+      character: "角色",
+      characterName: "角色",
+      layout: "Layout",
+      layoutId: "Layout ID",
+      songId: "歌曲 ID",
+      gameVersion: "游戏版本",
+      relatedSong: "关联歌曲",
+      relatedSongs: "关联歌曲",
+      collaborationPartner: "合作方",
+      event: "活动",
+      collaboration: "合作",
+      hasOfficialStaticRender: "官方静态图",
+      isRuntimeComposite: "运行时组合",
+      componentRelations: "组成关系",
+      description: "说明",
+    },
+  },
 };
 
 export function categoryLabel(resourceType: ResourceTypeId): string {
   return CATEGORY_LABELS[resourceType] ?? "其他";
+}
+
+export function gameCategoryLabel(game: GameId, resourceType: ResourceTypeId): string {
+  if (game === "rizline" && resourceType === "character-avatar") return "角色素材";
+  return categoryLabel(resourceType);
 }
 
 export function categoryOrderIndex(game: GameId, resourceType: ResourceTypeId): number {
@@ -106,6 +145,16 @@ export function categoryOrderIndex(game: GameId, resourceType: ResourceTypeId): 
 export function displayVariantLabel(variant: { variantKey: string; difficulty?: string | undefined; semanticStatus: string }): string {
   if (variant.difficulty) return variant.difficulty;
   if (variant.semanticStatus === "unresolved" || variant.variantKey.includes("256")) return "其他版本";
-  if (variant.variantKey === "default") return "默认";
+  const labels: Record<string, string> = {
+    default: "默认",
+    normal: "Normal",
+    hires: "HiRes",
+    poster: "Poster",
+    banner: "Banner",
+    cn: "中文版",
+    "artwork-2": "变体 2",
+  };
+  const label = labels[variant.variantKey];
+  if (label) return label;
   return "其他版本";
 }

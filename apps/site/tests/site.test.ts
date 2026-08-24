@@ -33,7 +33,7 @@ test("public projection excludes local paths, credentials, and internal provenan
   assert.doesNotMatch(serialized, /[A-Z]:\\/iu);
   assert.doesNotMatch(serialized, /ROS_(?:ACCESS|SECRET)_KEY/iu);
   assert.doesNotMatch(serialized, /(?:provenance|sourceRelativePath|sourceSha256|objectId|objectKey|catalogSchemaVersion)/iu);
-  const hiddenCount = catalog.resources.filter((resource) => resource.resourceType === "startup" || resource.resourceType === "story-texture").length;
+  const hiddenCount = catalog.resources.filter((resource) => resource.lifecycle.status !== "published" || resource.resourceType === "startup" || resource.resourceType === "story-texture").length;
   assert.equal(projection.resources.length, catalog.resources.length - hiddenCount);
 });
 
@@ -148,7 +148,8 @@ test("homepage APK parser accepts GitHub/official downloads and rejects unsafe U
 test("homepage uses an information-first intro and a stable social image", () => {
   const source = fs.readFileSync(path.join(siteRoot, "src", "pages", "index.astro"), "utf8");
   assert.doesNotMatch(source, /找到下一张|想保存的曲绘/u);
-  assert.match(source, /Arcaea \/ Phigros/u);
+  assert.match(source, /Arcaea · Phigros · Rizline/u);
+  assert.match(source, /Rhythm Archive.*图片资源/u);
   assert.match(source, /ogImage=\{homeOgImage\}/u);
   assert.match(source, /\/og\/home\.png/u);
   assert.equal(fs.existsSync(path.join(siteRoot, "public", "og", "home.png")), true);
@@ -189,6 +190,30 @@ test("homepage navigation uses the generated jacket browse counts", () => {
   const games = getPublicNavigationGames();
   assert.equal(games.find((game) => game.slug === "arcaea")?.categories.find((category) => category.slug === "jacket")?.count, 557);
   assert.equal(games.find((game) => game.slug === "phigros")?.categories.find((category) => category.slug === "jacket")?.count, 353);
+  const rizline = games.find((game) => game.slug === "rizline");
+  assert.equal(rizline?.categories.find((category) => category.slug === "jacket")?.count, 141);
+  assert.deepEqual(rizline?.featuredCategories.map((category) => category.slug), ["jacket", "special-art", "track-series", "rizcard-layout", "character-avatar"]);
+});
+
+test("Rizline Catalog and public projections preserve approved boundaries", () => {
+  const rizlineResources = catalog.resources.filter((resource) => resource.game === "rizline");
+  const published = rizlineResources.filter((resource) => resource.lifecycle.status === "published");
+  assert.equal(rizlineResources.length, 336);
+  assert.equal(published.filter((resource) => resource.resourceType === "jacket").length, 141);
+  assert.equal(published.filter((resource) => resource.resourceType === "special-art").length, 6);
+  assert.equal(published.filter((resource) => resource.resourceType === "track-series").length, 19);
+  assert.equal(published.filter((resource) => resource.resourceType === "rizcard-layout").length, 44);
+  assert.equal(published.filter((resource) => resource.resourceType === "character-avatar").length, 8);
+  assert.equal(published.filter((resource) => resource.resourceType === "rizcard").length, 29);
+  assert.equal(rizlineResources.filter((resource) => resource.resourceType === "rizcard" && resource.lifecycle.status === "draft").length, 65);
+  assert.equal(catalog.variants.filter((variant) => rizlineResources.some((resource) => resource.id === variant.resourceId)).length, 328);
+  assert.equal(catalog.renditions.filter((rendition) => rizlineResources.some((resource) => catalog.variants.find((variant) => variant.id === rendition.variantId)?.resourceId === resource.id)).length, 1420);
+  const siteData = getSiteData();
+  const publicRizline = siteData.resources.filter((resource) => resource.game === "rizline");
+  assert.equal(publicRizline.length, 247);
+  assert.equal(publicRizline.filter((resource) => resource.resourceType === "rizcard" && resource.variants.length === 0).length, 29);
+  assert.ok(publicRizline.filter((resource) => resource.resourceType === "rizcard").every((resource) => !resource.original));
+  assert.ok(publicRizline.filter((resource) => resource.resourceType === "rizcard-layout").every((resource) => resource.metadata.layoutId));
 });
 
 test("site brand marks keep the accent rhythm line inside the mark", () => {
@@ -215,6 +240,8 @@ test("game icons use real assets with a non-breaking fallback", () => {
   assert.match(styles, /\.game-entry-image \.game-icon-image \{ inset: 0; width: 100%; height: 100%;[^}]*background: var\(--surface-muted\);/u);
   assert.equal(fs.existsSync(path.join(siteRoot, "public", "game-icons", "arcaea.png")), true);
   assert.equal(fs.existsSync(path.join(siteRoot, "public", "game-icons", "phigros.png")), true);
+  assert.equal(fs.existsSync(path.join(siteRoot, "public", "game-icons", "rizline.png")), true);
+  assert.match(source, /rizline/u);
 });
 
 test("Arcaea icon does not retain the adaptive green edge", async () => {
@@ -242,6 +269,8 @@ test("search quick links are explicit, count-gated, and game-scoped", () => {
   assert.ok(quickLinks.every((entry) => entry.count > 0));
   assert.ok(quickLinks.some((entry) => entry.label === "Arcaea 曲绘" && entry.href === "/arcaea/jacket/"));
   assert.ok(quickLinks.some((entry) => entry.label === "Phigros 曲绘" && entry.href === "/phigros/jacket/"));
+  assert.ok(quickLinks.some((entry) => entry.label === "Rizline 曲绘" && entry.href === "/rizline/jacket/"));
+  assert.ok(quickLinks.some((entry) => entry.label === "Rizline Track Series" && entry.href === "/rizline/track-series/"));
   assert.ok(quickLinks.every((entry) => entry.label !== "曲绘"));
 });
 

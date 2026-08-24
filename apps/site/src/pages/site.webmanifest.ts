@@ -6,7 +6,7 @@ export function GET(): Response {
   const manifest = {
     name: "Rhythm Archive",
     short_name: "Rhythm Archive",
-    description: "Arcaea 与 Phigros 图片资源下载站",
+    description: "Arcaea、Phigros、Rizline 图片资源下载站",
     start_url: urls.sitePath("/"),
     scope: urls.sitePath("/"),
     display: "standalone",

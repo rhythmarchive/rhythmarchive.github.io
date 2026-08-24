@@ -193,7 +193,7 @@ function createCard(resource: PublicResource, index: number, isSelected: boolean
   article.dataset.game = resource.game;
   article.dataset.resourceType = resource.resourceType;
   article.dataset.mediaRatio = cardMediaRatio(resource.game, resource.resourceType);
-  article.dataset.mediaFit = cardMediaFit(resource.resourceType);
+  article.dataset.mediaFit = cardMediaFit(resource.game, resource.resourceType);
   const select = document.createElement("button");
   select.className = "resource-select";
   select.type = "button";

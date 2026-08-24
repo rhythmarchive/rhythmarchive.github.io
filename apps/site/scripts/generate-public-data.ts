@@ -1,6 +1,7 @@
 import { mkdir, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { buildBrowseGalleryData } from "../src/lib/browse-gallery.js";
+import { GAME_CONFIG } from "../src/lib/game-config.js";
 import { findWorkspaceRoot, getSiteData, loadFormalBrowseProjections } from "../src/lib/site-data.js";
 
 const root = findWorkspaceRoot();
@@ -30,13 +31,14 @@ for (const [key, resources] of Object.entries(data.galleries)) {
   await writeJson(path.join(galleryDir, game, `${category}.json`), resources);
 }
 
-for (const [game, browseData] of Object.entries({ arcaea: browseBuild.arcaea, phigros: browseBuild.phigros })) {
+for (const game of Object.keys(GAME_CONFIG) as Array<keyof typeof GAME_CONFIG>) {
+  const browseData = browseBuild[game];
   await mkdir(path.join(browseGalleryDir, game), { recursive: true });
   await writeJson(path.join(browseGalleryDir, game, "jacket.json"), browseData);
 }
 
 console.log(`Public data generated: ${data.resources.length} resources, ${data.searchIndex.length} search entries.`);
-console.log(`Browse galleries generated: Arcaea ${browseBuild.arcaea.items.length} items, Phigros ${browseBuild.phigros.items.length} items.`);
+console.log("Browse galleries generated: " + Object.entries(browseBuild.diagnostics).map(([game, diagnostics]) => game + " " + (diagnostics.projectionRecords - diagnostics.skipped.length) + " items").join(", ") + ".");
 for (const [game, diagnostics] of Object.entries(browseBuild.diagnostics)) {
   if (diagnostics.skipped.length > 0) {
     console.log(`Browse records skipped (${game}): ${diagnostics.skipped.length} (${diagnostics.skipped.map((record) => `${record.identity}: ${record.reason}`).join(", ")}).`);

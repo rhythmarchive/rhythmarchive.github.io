@@ -1,12 +1,13 @@
 import fs from "node:fs";
 import path from "node:path";
-import { ArcaeaBrowseProjection, ArcaeaCategoryBrowseProjection, BrowseDiagnostics, BrowseManifest, PhigrosBrowseProjection, PhigrosCategoryBrowseProjection, validateBrowseProjectionSet, validateBrowsePublicData, validateCategoryBrowseProjection, type ArcaeaBrowseProjectionType, type PhigrosBrowseProjectionType } from "../../../../packages/domain/src/browse.js";
+import { ArcaeaBrowseProjection, ArcaeaCategoryBrowseProjection, BrowseDiagnostics, BrowseManifest, PhigrosBrowseProjection, PhigrosCategoryBrowseProjection, RizlineBrowseProjection, RizlineCategoryBrowseProjection, validateBrowseProjectionSet, validateBrowsePublicData, validateCategoryBrowseProjection, validateRizlineBrowseProjection, type ArcaeaBrowseProjectionType, type PhigrosBrowseProjectionType, type RizlineBrowseProjectionType } from "../../../../packages/domain/src/browse.js";
 import { validateCatalog } from "../../../../packages/domain/src/validation.js";
 import type { Catalog } from "../../../../packages/domain/src/schema.js";
 import { buildBrowseGalleryData } from "./browse-gallery";
 import { applyCategoryBrowseSemantics, type CategoryBrowseProjections } from "./category-browse";
 import { projectCatalog } from "./catalog-projection";
 import { formatArcaeaAddedVersion } from "./public-display";
+import { GAME_CONFIG, type GameId } from "./game-config";
 import { ROS_BASE_URL } from "./site-config";
 import type { PublicGameIndex, PublicSiteData } from "./types";
 
@@ -18,6 +19,7 @@ let cachedBrowseGalleryBuild: ReturnType<typeof buildBrowseGalleryData> | undefi
 export type FormalBrowseProjections = {
   arcaea: ArcaeaBrowseProjectionType;
   phigros: PhigrosBrowseProjectionType;
+  rizline: RizlineBrowseProjectionType;
 };
 
 export function loadFormalCatalog(): Catalog {
@@ -80,6 +82,17 @@ function enrichFormalBrowseMetadata(siteData: PublicSiteData, browse: FormalBrow
     add(track.artwork?.resourceId, "sourceTitle", track.displayTitle);
     add(track.artwork?.resourceId, "artist", track.displayArtist);
   }
+  for (const song of browse.rizline.songs) {
+    for (const artwork of song.artworks) {
+      add(artwork.resourceId, "sourceTitle", song.displayTitle);
+      add(artwork.resourceId, "artist", song.musicArtist);
+      add(artwork.resourceId, "musicArtist", song.musicArtist);
+      add(artwork.resourceId, "songId", song.songId);
+      add(artwork.resourceId, "illustrator", song.illustrator);
+      add(artwork.resourceId, "disc", song.disc);
+      add(artwork.resourceId, "trackSeries", song.trackSeries.map((series) => series.name).join(" · "));
+    }
+  }
 
   const unique = (byKey: Map<string, Set<MetadataValue>> | undefined, key: string): MetadataValue | undefined => {
     const values = byKey?.get(key);
@@ -141,13 +154,16 @@ export function loadCategoryBrowseProjections(): CategoryBrowseProjections {
   const catalog = loadFormalCatalog();
   const arcaea = parseCategoryBrowseFile("arcaea-semantics.json", ArcaeaCategoryBrowseProjection);
   const phigros = parseCategoryBrowseFile("phigros-semantics.json", PhigrosCategoryBrowseProjection);
+  const rizline = parseCategoryBrowseFile("rizline-semantics.json", RizlineCategoryBrowseProjection);
   const arcaeaValidation = validateCategoryBrowseProjection(arcaea, catalog);
   if (!arcaeaValidation.success) throw new Error(`Arcaea semantic Browse failed runtime validation: ${arcaeaValidation.issues.slice(0, 5).join("; ")}`);
   const phigrosValidation = validateCategoryBrowseProjection(phigros, catalog);
   if (!phigrosValidation.success) throw new Error(`Phigros semantic Browse failed runtime validation: ${phigrosValidation.issues.slice(0, 5).join("; ")}`);
-  const publicDataIssues = validateBrowsePublicData({ arcaea, phigros });
+  const rizlineValidation = validateCategoryBrowseProjection(rizline, catalog);
+  if (!rizlineValidation.success) throw new Error("Rizline semantic Browse failed runtime validation: " + rizlineValidation.issues.slice(0, 5).join("; "));
+  const publicDataIssues = validateBrowsePublicData({ arcaea, phigros, rizline });
   if (publicDataIssues.length > 0) throw new Error(`Semantic Browse contains local or sensitive data: ${publicDataIssues.slice(0, 5).join("; ")}`);
-  cachedCategoryBrowseProjections = { arcaea, phigros };
+  cachedCategoryBrowseProjections = { arcaea, phigros, rizline };
   return cachedCategoryBrowseProjections;
 }
 
@@ -158,15 +174,18 @@ export function loadFormalBrowseProjections(): FormalBrowseProjections {
   const result = {
     arcaea: parseFormalBrowseFile("arcaea.json", ArcaeaBrowseProjection),
     phigros: parseFormalBrowseFile("phigros.json", PhigrosBrowseProjection),
+    rizline: parseFormalBrowseFile("rizline.json", RizlineBrowseProjection),
     manifest: parseFormalBrowseFile("manifest.json", BrowseManifest),
     diagnostics: parseFormalBrowseFile("diagnostics.json", BrowseDiagnostics),
   };
-  const validation = validateBrowseProjectionSet(result, catalog);
+  const validation = validateBrowseProjectionSet({ arcaea: result.arcaea, phigros: result.phigros, manifest: result.manifest, diagnostics: result.diagnostics }, catalog);
   if (!validation.success) throw new Error(`Formal Browse Projection failed runtime validation: ${validation.issues.slice(0, 5).join("; ")}`);
+  const rizlineValidation = validateRizlineBrowseProjection(result.rizline, catalog);
+  if (!rizlineValidation.success) throw new Error("Rizline Browse Projection failed runtime validation: " + rizlineValidation.issues.slice(0, 5).join("; "));
   const publicDataIssues = validateBrowsePublicData(result);
   if (publicDataIssues.length > 0) throw new Error(`Formal Browse Projection contains local or sensitive data: ${publicDataIssues.slice(0, 5).join("; ")}`);
 
-  cachedBrowseProjections = { arcaea: result.arcaea, phigros: result.phigros };
+  cachedBrowseProjections = { arcaea: result.arcaea, phigros: result.phigros, rizline: result.rizline };
   return cachedBrowseProjections;
 }
 
@@ -178,10 +197,9 @@ export function getBrowseGalleryBuild(): ReturnType<typeof buildBrowseGalleryDat
 export function getPublicNavigationGames(): PublicGameIndex[] {
   const siteData = getSiteData();
   const browseBuild = getBrowseGalleryBuild();
-  const jacketCounts = {
-    arcaea: browseBuild.arcaea.items.length,
-    phigros: browseBuild.phigros.items.length,
-  } as const;
+  const jacketCounts = Object.fromEntries(
+    (Object.keys(GAME_CONFIG) as GameId[]).map((game) => [game, browseBuild[game].items.length]),
+  ) as Record<GameId, number>;
 
   return siteData.games.map((game) => {
     const categories = game.categories.map((category) => category.slug === "jacket"

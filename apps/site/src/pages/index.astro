@@ -10,17 +10,17 @@ import { createUrlHelpers } from "../lib/url";
 const urls = createUrlHelpers({ basePath: BASE_PATH, origin: SITE_ORIGIN, rosBaseUrl: ROS_BASE_URL });
 const games = getPublicNavigationGames();
 const homeOgImage = urls.absoluteUrl("/og/home.png");
-const description = "浏览并下载 Arcaea、Phigros 的曲绘、角色立绘、剧情 CG 与其他游戏图片资源。";
+const description = "浏览并下载 Arcaea、Phigros、Rizline 的曲绘与游戏图片资源。";
 const arcaeaApkManifestUrl = `${ROS_BASE_URL}/apk/arcaea/latest.json`;
 ---
 
-<BaseLayout title="Rhythm Archive | Arcaea / Phigros 图片资源下载站" description={description} canonicalPath="/" ogImage={homeOgImage} bodyClass="home-page">
+<BaseLayout title="Rhythm Archive | 节奏游戏图片资源" description={description} canonicalPath="/" ogImage={homeOgImage} bodyClass="home-page">
   <div data-site-base data-site-base-value={BASE_PATH}></div>
   <section class="home-intro page-container">
     <div class="home-intro-copy">
       <span class="archive-kicker">Rhythm Archive</span>
-      <h1>Arcaea / Phigros <em>图片资源</em></h1>
-      <p>曲绘、角色立绘、剧情 CG 与其他游戏图片资源。</p>
+      <h1>Rhythm Archive <em>图片资源</em></h1>
+      <p>Arcaea · Phigros · Rizline 的曲绘与游戏图片资源。</p>
     </div>
     <div class="home-search-block">
       <SearchBox />
@@ -40,7 +40,7 @@ const arcaeaApkManifestUrl = `${ROS_BASE_URL}/apk/arcaea/latest.json`;
             </div>
             <div class="game-entry-copy">
               <div><h3>{game.displayName}</h3><span>{formatCount(game.count)} 项资源</span></div>
-              <p>{game.slug === "arcaea" ? "曲绘 · 角色立绘 · 剧情 CG" : "曲绘 · 头像 · 曲包封面"}</p>
+              <p>{game.featuredCategories.slice(0, 3).map((category) => category.label).join(" · ")}</p>
             </div>
             <span class="arrow-link" aria-hidden="true">↗</span>
           </a>

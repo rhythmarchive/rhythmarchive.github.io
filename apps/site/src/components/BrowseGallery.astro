@@ -13,6 +13,7 @@ interface Props {
 const { data, categoryLabel, galleryUrl } = Astro.props;
 const initialItems = data.items.slice(0, 48);
 const hasUpscale = data.items.some((item) => item.hasUpscaled);
+const searchPlaceholder = data.game === "rizline" ? "搜索曲名、曲师或画师" : "搜索曲名或曲师";
 ---
 
 <section class="gallery-shell browse-gallery-shell" data-browse-gallery-root data-gallery-url={galleryUrl} data-base-path={BASE_PATH} data-game={data.game} data-category="jacket" data-total={data.items.length}>
@@ -23,8 +24,8 @@ const hasUpscale = data.items.some((item) => item.hasUpscaled);
     </div>
     <div class="gallery-toolbar-controls">
       <label class="gallery-search">
-        <span class="sr-only">搜索曲名或曲师</span>
-        <input type="search" data-browse-search placeholder="搜索曲名或曲师" autocomplete="off" />
+        <span class="sr-only">{searchPlaceholder}</span>
+        <input type="search" data-browse-search placeholder={searchPlaceholder} autocomplete="off" />
       </label>
       <label class="sort-control">
         <span>排序</span>

@@ -1,5 +1,5 @@
 import type { AssetObject, Catalog, Rendition, Resource, Variant } from "../../../../packages/domain/src/schema.js";
-import { categoryLabel, categoryOrderIndex, displayVariantLabel, GAME_CONFIG, type GameId, type ResourceTypeId } from "./game-config";
+import { categoryOrderIndex, displayVariantLabel, gameCategoryLabel, GAME_CONFIG, type GameId, type ResourceTypeId } from "./game-config";
 import { formatArcaeaAddedVersion, normalizePublicDisplay } from "./public-display";
 import { normalizeSearchText } from "./search";
 import type { PublicAsset, PublicCategory, PublicDownload, PublicGameIndex, PublicPreview, PublicResource, PublicSearchEntry, PublicSiteData, PublicVariant } from "./types";
@@ -32,6 +32,27 @@ const PUBLIC_METADATA_KEYS = new Set([
   "relatedSongId",
   "songId",
   "specialYear",
+  "musicArtist",
+  "illustrator",
+  "trackSeries",
+  "seriesName",
+  "disc",
+  "character",
+  "characterName",
+  "layout",
+  "layoutId",
+  "songId",
+  "gameVersion",
+  "relatedSong",
+  "relatedSongs",
+  "collaborationPartner",
+  "event",
+  "collaboration",
+  "hasOfficialStaticRender",
+  "isRuntimeComposite",
+  "componentRelations",
+  "description",
+  "rizcardId",
 ]);
 
 const PUBLIC_HIDDEN_RESOURCE_TYPES = new Set<ResourceTypeId>(["story-texture", "startup"]);
@@ -86,8 +107,8 @@ export function projectCatalog(catalog: Catalog, rosBaseUrl: string): PublicSite
 function projectResource(resource: Resource, variants: Variant[], renditionsByVariant: Map<string, Rendition[]>, objectsById: Map<string, AssetObject>, rosBaseUrl: string, phigrosAprilFoolsYear?: number): PublicResource {
   const projectedVariants = variants
     .map((variant) => projectVariant(variant, renditionsByVariant.get(variant.id) ?? [], objectsById, rosBaseUrl))
-    .sort((a, b) => a.label.localeCompare(b.label, "en") || a.variantId.localeCompare(b.variantId));
-  const active = projectedVariants[0];
+    .sort((a, b) => Number(Boolean(b.preferred)) - Number(Boolean(a.preferred)) || a.label.localeCompare(b.label, "en") || a.variantId.localeCompare(b.variantId));
+  const active = projectedVariants.find((variant) => variant.preferred) ?? projectedVariants[0];
   const original = active?.original;
   const upscaled = active?.upscaled;
   const display = normalizePublicDisplay(resource, original?.downloadFilename);
@@ -100,7 +121,7 @@ function projectResource(resource: Resource, variants: Variant[], renditionsByVa
     game: resource.game,
     resourceType: resource.resourceType,
     category: resource.resourceType,
-    categoryLabel: publicCategoryLabel(resource.resourceType, metadata),
+    categoryLabel: publicCategoryLabel(resource.game, resource.resourceType, metadata),
     displayTitle: display.title || original?.downloadFilename || "未命名资源",
     ...(artist ? { artist } : {}),
     metadata,
@@ -122,16 +143,22 @@ function projectVariant(variant: Variant, renditions: Rendition[], objectsById: 
     medium: projectPreview(renditions, "medium", objectsById, rosBaseUrl),
     large: projectPreview(renditions, "large", objectsById, rosBaseUrl),
   } satisfies PublicPreview;
-  const originalRendition = renditions.find((rendition) => rendition.renditionType === "original" && rendition.publishable);
+  const originalRenditions = renditions.filter((rendition) => rendition.renditionType === "original" && rendition.publishable);
+  const originals = originalRenditions
+    .map((rendition) => projectDownload(rendition, objectsById, rosBaseUrl))
+    .filter((download): download is PublicDownload => Boolean(download));
   const upscaledRendition = renditions.find((rendition) => rendition.renditionType === "upscaled" && rendition.publishable);
-  const original = originalRendition ? projectDownload(originalRendition, objectsById, rosBaseUrl) : undefined;
+  const original = originals[0];
   const upscaled = upscaledRendition ? projectDownload(upscaledRendition, objectsById, rosBaseUrl) : undefined;
   const publicVariant: PublicVariant = {
     variantId: variant.id,
     label: displayVariantLabel(variant),
     preview,
+    ...(variant.variantKey ? { variantKey: variant.variantKey } : {}),
+    ...(variant.preferred ? { preferred: true } : {}),
     ...(variant.difficulty ? { difficulty: variant.difficulty } : {}),
     ...(original ? { original } : {}),
+    ...(originals.length > 0 ? { originals } : {}),
     ...(upscaled ? { upscaled } : {}),
   };
   return publicVariant;
@@ -185,16 +212,17 @@ function inferPhigrosAprilFoolsYear(catalog: Catalog): number | undefined {
   }
   return undefined;
 }
-function publicCategoryLabel(resourceType: ResourceTypeId, metadata: Record<string, string | number | boolean>): string {
+function publicCategoryLabel(game: GameId, resourceType: ResourceTypeId, metadata: Record<string, string | number | boolean>): string {
   if (resourceType === "phigros-april-fools" && typeof metadata.specialYear === "number") return "April Fools " + metadata.specialYear;
-  return categoryLabel(resourceType);
+  return gameCategoryLabel(game, resourceType);
 }
 
 function toSearchEntry(resource: PublicResource, sourceResource?: Resource): PublicSearchEntry {
   const keywordSet = new Set<string>();
   for (const value of Object.values(resource.metadata)) keywordSet.add(String(value));
   for (const variant of resource.variants) keywordSet.add(variant.label);
-  for (const value of [sourceResource?.title, ...(sourceResource?.aliases ?? []).map((alias) => alias.value), ...(sourceResource?.provenance ?? []).map((entry) => entry.sourceFilename)]) {
+  const provenanceKeywords: Array<string | undefined> = sourceResource?.game === "rizline" ? [] : (sourceResource?.provenance ?? []).map((entry) => entry.sourceFilename);
+  for (const value of [sourceResource?.title, ...(sourceResource?.aliases ?? []).map((alias) => alias.value), ...provenanceKeywords]) {
     if (value) keywordSet.add(value);
   }
   return {
@@ -214,7 +242,7 @@ function buildCategories(game: GameId, resources: PublicResource[]): PublicCateg
   for (const resource of resources) counts.set(resource.resourceType, (counts.get(resource.resourceType) ?? 0) + 1);
   const known = GAME_CONFIG[game].categoryOrder.filter((category) => counts.has(category));
   const unknown = [...counts.keys()].filter((category) => !known.includes(category)).sort();
-  return [...known, ...unknown].map((slug) => ({ slug, label: resources.find((resource) => resource.category === slug)?.categoryLabel ?? categoryLabel(slug), count: counts.get(slug) ?? 0 }));
+  return [...known, ...unknown].map((slug) => ({ slug, label: resources.find((resource) => resource.category === slug)?.categoryLabel ?? gameCategoryLabel(game, slug), count: counts.get(slug) ?? 0 }));
 }
 
 function compareResources(a: PublicResource, b: PublicResource): number {

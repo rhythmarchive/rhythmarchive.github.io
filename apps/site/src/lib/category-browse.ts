@@ -1,8 +1,9 @@
 import type {
   ArcaeaCategoryBrowseProjectionType,
   PhigrosCategoryBrowseProjectionType,
+  RizlineCategoryBrowseProjectionType,
 } from "../../../../packages/domain/src/browse.js";
-import { categoryLabel, type GameId, type ResourceTypeId } from "./game-config";
+import { categoryLabel, gameCategoryLabel, type GameId, type ResourceTypeId } from "./game-config";
 import { galleryKey } from "./catalog-projection";
 import { normalizeSearchText } from "./search";
 import type { PublicResource, PublicSearchEntry, PublicSiteData } from "./types";
@@ -29,12 +30,14 @@ export type CategoryBrowseConfig = {
 export type CategoryBrowseProjections = {
   arcaea: ArcaeaCategoryBrowseProjectionType;
   phigros: PhigrosCategoryBrowseProjectionType;
+  rizline: RizlineCategoryBrowseProjectionType;
 };
 
 export function applyCategoryBrowseSemantics(siteData: PublicSiteData, projections: CategoryBrowseProjections): PublicSiteData {
   const semanticById = new Map([
     ...projections.arcaea.resources.map((resource) => [resource.resourceId, resource] as const),
     ...projections.phigros.resources.map((resource) => [resource.resourceId, resource] as const),
+    ...projections.rizline.resources.map((resource) => [resource.resourceId, resource] as const),
   ]);
   const resources = siteData.resources.map((resource) => {
     const semantic = semanticById.get(resource.resourceId);
@@ -83,11 +86,19 @@ export function getCategoryBrowseConfig(game: GameId, category: string, resource
       "linkplay-preview": "搜索角色名",
       sticker: "搜索角色名或 Sticker",
     } as Record<string, string>)[category] ?? "搜索资源"
-    : ({
-      "character-avatar": "搜索头像名称",
-      "pack-cover": "搜索曲包或分类",
-      "phigros-april-fools": "搜索特殊资源",
-    } as Record<string, string>)[category] ?? "搜索资源";
+    : game === "phigros"
+      ? ({
+        "character-avatar": "搜索头像名称",
+        "pack-cover": "搜索曲包或分类",
+        "phigros-april-fools": "搜索特殊资源",
+      } as Record<string, string>)[category] ?? "搜索资源"
+      : ({
+        "special-art": "搜索特殊插画",
+        "track-series": "搜索系列名称、歌曲或合作方",
+        "rizcard-layout": "搜索 Layout 名称或 ID",
+        "character-avatar": "搜索角色名",
+        "rizcard": "搜索 Rizcard 组成关系",
+      } as Record<string, string>)[category] ?? "搜索资源";
   const facetKeys = facetDefinitions(game, category);
   return {
     searchPlaceholder: placeholder,
@@ -137,6 +148,6 @@ function toSemanticSearchEntry(resource: PublicResource, previous?: PublicSearch
   };
 }
 
-export function resourceCategoryLabel(resourceType: ResourceTypeId): string {
-  return categoryLabel(resourceType);
+export function resourceCategoryLabel(resourceType: ResourceTypeId, game?: GameId): string {
+  return game ? gameCategoryLabel(game, resourceType) : categoryLabel(resourceType);
 }

@@ -36,7 +36,7 @@ async function initializeBrowseGallery(root: HTMLElement): Promise<void> {
   const activeChips = root.querySelector<HTMLElement>("[data-browse-active-chips]");
   if (!grid || !loadMore || !count || !search || !sort) return;
 
-  const game: BrowseGame = root.dataset.game === "phigros" ? "phigros" : "arcaea";
+  const game: BrowseGame = root.dataset.game === "rizline" ? "rizline" : root.dataset.game === "phigros" ? "phigros" : "arcaea";
   let items: BrowseGalleryItem[] = [];
   let state: BrowseUrlState = defaultBrowseUrlState(game);
   let visibleCount = BROWSE_PAGE_SIZE;
@@ -355,7 +355,7 @@ function createCard(item: BrowseGalleryItem, index: number, isSelected: boolean)
   article.dataset.game = item.game;
   article.dataset.resourceType = item.resourceType;
   article.dataset.mediaRatio = cardMediaRatio(item.game, item.resourceType);
-  article.dataset.mediaFit = cardMediaFit(item.resourceType);
+  article.dataset.mediaFit = cardMediaFit(item.game, item.resourceType);
 
   const select = document.createElement("button");
   select.className = "resource-select";

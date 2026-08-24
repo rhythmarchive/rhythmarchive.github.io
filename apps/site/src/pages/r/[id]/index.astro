@@ -20,7 +20,8 @@ export function getStaticPaths() {
 
 interface Props { resource: PublicResource; }
 const { resource } = Astro.props;
-const firstVariant = resource.variants[0];
+const firstVariant = resource.variants.find((variant) => variant.preferred) ?? resource.variants[0];
+const activeVariantIndex = Math.max(0, firstVariant ? resource.variants.findIndex((variant) => variant.variantId === firstVariant.variantId) : 0);
 const related = rankRelatedResources(resource, data.resources);
 const metadata = Object.entries(resource.metadata).filter(([key]) => key !== "artist" && GAME_CONFIG[resource.game].metadataLabels[key]);
 const preview = firstVariant?.preview.large?.url ?? firstVariant?.preview.medium?.url ?? firstVariant?.preview.small?.url;
@@ -55,11 +56,11 @@ const description = `${resource.displayTitle}${resource.artist ? ` · ${resource
       <div class="detail-visual">
         {resource.variants.length > 1 ? (
           <div class="variant-tabs" role="tablist" aria-label="资源版本">
-            {resource.variants.map((variant, index) => <button class:list={{ "is-active": index === 0 }} type="button" data-variant-select={variant.variantId} role="tab" aria-selected={index === 0 ? "true" : "false"}>{variant.label}</button>)}
+            {resource.variants.map((variant, index) => <button class:list={{ "is-active": index === activeVariantIndex }} type="button" data-variant-select={variant.variantId} role="tab" aria-selected={index === activeVariantIndex ? "true" : "false"}>{variant.label}</button>)}
           </div>
         ) : null}
         <div class="variant-panels">
-          {resource.variants.map((variant, index) => <VariantPanel variant={variant} active={index === 0} alt={resource.displayTitle} />)}
+          {resource.variants.map((variant, index) => <VariantPanel variant={variant} active={index === activeVariantIndex} alt={resource.displayTitle} />)}
         </div>
       </div>
       <aside class="detail-info">
@@ -73,7 +74,7 @@ const description = `${resource.displayTitle}${resource.artist ? ` · ${resource
           {technicalMetadata.map(([key, value]) => <div><dt>{key}</dt><dd>{value}</dd></div>)}
         </dl>
         <div class="detail-downloads">
-          {resource.variants.map((variant, index) => <DownloadActions variant={variant} active={index === 0} />)}
+          {resource.variants.map((variant, index) => <DownloadActions variant={variant} active={index === activeVariantIndex} />)}
         </div>
       </aside>
     </div>

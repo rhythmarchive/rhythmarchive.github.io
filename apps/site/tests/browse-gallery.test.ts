@@ -227,11 +227,31 @@ test("Phigros special and archive records stay separate even with repeated title
   assert.equal(formalBrowse.phigros.items.filter((item) => item.recordKind === "archive-extra").length, 7);
 });
 
+test("Rizline Browse groups one card per Song and preserves all artwork variants", () => {
+  const songs = formalBrowse.rizline.items.filter((item) => item.recordKind === "song");
+  assert.equal(songs.length, 141);
+  assert.equal(new Set(songs.map((item) => item.songId)).size, 141);
+  assert.equal(songs.reduce((sum, item) => sum + item.artworks.length, 0), 144);
+  assert.ok(songs.every((item) => item.game === "rizline"));
+  assert.ok(songs.every((item) => item.game !== "phigros"));
+  assert.ok(songs.some((item) => item.artworks.length > 1));
+  assert.ok(songs.some((item) => item.artworks.some((artwork) => artwork.variantKey === "cn")));
+  assert.equal(formalBrowse.diagnostics.rizline.skipped.length, 0);
+  assert.deepEqual(defaultBrowseUrlState("rizline"), { game: "rizline", q: "", sort: "default", chart: [] });
+  const first = songs[0]!;
+  const state = parseBrowseUrlState("rizline", "q=" + encodeURIComponent(first.displayTitle) + "&sort=title-desc", songs);
+  assert.equal(state.game, "rizline");
+  assert.equal(filterBrowseItems(songs, state).length, 1);
+  assert.equal(getBrowseFacetOptions(formalBrowse.rizline).charts.length, 0);
+});
+
 test("jacket Gallery has its own browse path and no longer filters by Resource Variant difficulty", () => {
   const page = fs.readFileSync(path.join(process.cwd(), "apps", "site", "src", "pages", "[game]", "[category]", "index.astro"), "utf8");
   const browseScript = fs.readFileSync(path.join(process.cwd(), "apps", "site", "src", "scripts", "browse-gallery.ts"), "utf8");
   assert.match(page, /BrowseGallery/u);
   assert.match(page, /data\/browse\/\$\{game\.slug\}\/jacket\.json/u);
+  assert.match(page, /browseByGame\[game\.slug\]/u);
+  assert.doesNotMatch(page, /game\.slug === "arcaea" \? browseBuild\.arcaea : browseBuild\.phigros/u);
   assert.doesNotMatch(browseScript, /variant\.difficulty/u);
 });
 

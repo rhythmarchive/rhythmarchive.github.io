@@ -27,7 +27,10 @@ export type PublicVariant = {
   label: string;
   difficulty?: string;
   preview: PublicPreview;
+  variantKey?: string;
+  preferred?: boolean;
   original?: PublicDownload;
+  originals?: PublicDownload[];
   upscaled?: PublicDownload;
 };
 
