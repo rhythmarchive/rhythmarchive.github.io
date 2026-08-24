@@ -406,12 +406,6 @@ function createCard(item: BrowseGalleryItem, index: number, isSelected: boolean)
     artist.textContent = item.artist;
     body.append(artist);
   }
-  if (item.subtitle) {
-    const subtitle = document.createElement("p");
-    subtitle.className = "resource-card-subtitle";
-    subtitle.textContent = item.subtitle;
-    body.append(subtitle);
-  }
   const metadata = [ ...(item.badges ?? []), item.badge, item.selectedArtworkDifficulty, item.game === "arcaea" ? item.pack : undefined ].filter((value): value is string => Boolean(value));
   for (const value of metadata) {
     const label = document.createElement("span");

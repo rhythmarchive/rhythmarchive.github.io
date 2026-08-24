@@ -42,7 +42,6 @@ const metadata = [...(item.badges ?? []), item.badge, item.selectedArtworkDiffic
     <div class="resource-card-body">
       <h3>{item.displayTitle}</h3>
       {item.artist ? <p>{item.artist}</p> : null}
-      {item.subtitle ? <p class="resource-card-subtitle">{item.subtitle}</p> : null}
       {metadata.map((value) => <span class="resource-card-variant">{value}</span>)}
     </div>
   </a>
