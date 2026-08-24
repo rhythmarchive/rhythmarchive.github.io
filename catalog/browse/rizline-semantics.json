@@ -1,0 +1,5926 @@
+{
+  "schemaVersion": 1,
+  "game": "rizline",
+  "generatedAt": "2026-08-24T12:42:04.372Z",
+  "source": {
+    "snapshot": "rizline.publish.v1:2.7.0",
+    "sha256": "d62d559f6d6bbdbc8d7a85d17b386341ab6eca738cffa64ab16f6f8efa78c66e"
+  },
+  "resources": [
+    {
+      "resourceId": "b9545ddb-6739-76e6-bc0d-c637a739f60e",
+      "resourceType": "jacket",
+      "displayTitle": "419kB",
+      "subtitle": "ariiol",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "419kB.ariiol.0",
+        "musicArtist": "ariiol",
+        "illustrator": "ariiol",
+        "disc": "EX - T.S.",
+        "trackSeries": "T.S. #9 — Cosmic Radio 2024",
+        "collaborationPartner": "Cosmic Radio 2024"
+      },
+      "badges": [],
+      "searchTerms": [
+        "419kB",
+        "2.7.0",
+        "419kB.ariiol.0",
+        "ariiol",
+        "ariiol",
+        "EX - T.S.",
+        "T.S. #9 — Cosmic Radio 2024",
+        "Cosmic Radio 2024"
+      ],
+      "sortOrder": 0,
+      "facets": {}
+    },
+    {
+      "resourceId": "7fbaf09d-4b8d-7a8e-8519-1b7ba6a1ea14",
+      "resourceType": "jacket",
+      "displayTitle": "8BLUE",
+      "subtitle": "ariiol & PIKASONIC",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "8BLUE.ariiolPIKASONIC.0",
+        "musicArtist": "ariiol & PIKASONIC",
+        "illustrator": "ろんxかとろふ",
+        "disc": "EX - Single"
+      },
+      "badges": [],
+      "searchTerms": [
+        "8BLUE",
+        "2.7.0",
+        "8BLUE.ariiolPIKASONIC.0",
+        "ariiol & PIKASONIC",
+        "ろんxかとろふ",
+        "EX - Single"
+      ],
+      "sortOrder": 1,
+      "facets": {}
+    },
+    {
+      "resourceId": "e74bc84e-ee86-7cb2-a22f-cb5e6b07d037",
+      "resourceType": "jacket",
+      "displayTitle": "Abatement",
+      "subtitle": "SNKS & Mizku",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "Abatement.SNKSMizku.0",
+        "musicArtist": "SNKS & Mizku",
+        "illustrator": "Rallxkurara",
+        "disc": "Disc 2"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Abatement",
+        "2.7.0",
+        "Abatement.SNKSMizku.0",
+        "SNKS & Mizku",
+        "Rallxkurara",
+        "Disc 2"
+      ],
+      "sortOrder": 2,
+      "facets": {}
+    },
+    {
+      "resourceId": "43a189c0-91c7-76d7-9715-2b8cffd6772c",
+      "resourceType": "jacket",
+      "displayTitle": "Abgrund",
+      "subtitle": "ElousΛ.-FZ",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "Abgrund.ElousFZ.0",
+        "musicArtist": "ElousΛ.-FZ",
+        "illustrator": "山山奇",
+        "disc": "Disc 1"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Abgrund",
+        "2.7.0",
+        "Abgrund.ElousFZ.0",
+        "ElousΛ.-FZ",
+        "山山奇",
+        "Disc 1"
+      ],
+      "sortOrder": 3,
+      "facets": {}
+    },
+    {
+      "resourceId": "692c5a7c-9a6b-7ff7-8de3-ca769a512199",
+      "resourceType": "jacket",
+      "displayTitle": "Abiogenesis",
+      "subtitle": "Juggernaut.",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "Abiogenesis.Juggernaut.0",
+        "musicArtist": "Juggernaut.",
+        "illustrator": "山山奇",
+        "disc": "EX - T.S.",
+        "trackSeries": "T.S. #1 — Juggernaut.",
+        "collaborationPartner": "Juggernaut collaboration"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Abiogenesis",
+        "2.7.0",
+        "Abiogenesis.Juggernaut.0",
+        "Juggernaut.",
+        "山山奇",
+        "EX - T.S.",
+        "T.S. #1 — Juggernaut.",
+        "Juggernaut collaboration"
+      ],
+      "sortOrder": 4,
+      "facets": {}
+    },
+    {
+      "resourceId": "5ce52014-6465-7a86-9982-0ee0f6a76d7a",
+      "resourceType": "jacket",
+      "displayTitle": "Absolution Pulse",
+      "subtitle": "nm-y",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "AbsolutionPulse.nmy.0",
+        "musicArtist": "nm-y",
+        "illustrator": "山山奇",
+        "disc": "Disc 2"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Absolution Pulse",
+        "2.7.0",
+        "AbsolutionPulse.nmy.0",
+        "nm-y",
+        "山山奇",
+        "Disc 2"
+      ],
+      "sortOrder": 5,
+      "facets": {}
+    },
+    {
+      "resourceId": "e745e21a-b946-7632-abb2-90eb889243e9",
+      "resourceType": "jacket",
+      "displayTitle": "Afterdark",
+      "subtitle": "Sta",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "Afterdark.Sta.0",
+        "musicArtist": "Sta",
+        "illustrator": "拖延",
+        "disc": "EX - T.S.",
+        "trackSeries": "T.S. #4 — Tone Sphere",
+        "collaborationPartner": "Tone Sphere"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Afterdark",
+        "2.7.0",
+        "Afterdark.Sta.0",
+        "Sta",
+        "拖延",
+        "EX - T.S.",
+        "T.S. #4 — Tone Sphere",
+        "Tone Sphere"
+      ],
+      "sortOrder": 6,
+      "facets": {}
+    },
+    {
+      "resourceId": "57e3a55a-741f-75e9-8ea7-29fd29a523f7",
+      "resourceType": "jacket",
+      "displayTitle": "Alexandrite",
+      "subtitle": "onoken",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "Alexandrite.onoken.0",
+        "musicArtist": "onoken",
+        "illustrator": "©2024 Rayark Inc. CYTUS II®",
+        "disc": "EX - T.S.",
+        "trackSeries": "T.S. #6 — Cytus II × Muse Dash",
+        "collaborationPartner": "Cytus II / Muse Dash"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Alexandrite",
+        "2.7.0",
+        "Alexandrite.onoken.0",
+        "onoken",
+        "©2024 Rayark Inc. CYTUS II®",
+        "EX - T.S.",
+        "T.S. #6 — Cytus II × Muse Dash",
+        "Cytus II / Muse Dash"
+      ],
+      "sortOrder": 7,
+      "facets": {}
+    },
+    {
+      "resourceId": "b78cc5ec-7125-7a08-8dcf-f2ae22347440",
+      "resourceType": "jacket",
+      "displayTitle": "Alfheim's faith",
+      "subtitle": "影虎。",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "Alfheimsfaith.影虎.0",
+        "musicArtist": "影虎。",
+        "illustrator": "霜月",
+        "disc": "EX - T.S.",
+        "trackSeries": "T.S. #8 — Rotaeno",
+        "collaborationPartner": "Rotaeno"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Alfheim's faith",
+        "2.7.0",
+        "Alfheimsfaith.影虎.0",
+        "影虎。",
+        "霜月",
+        "EX - T.S.",
+        "T.S. #8 — Rotaeno",
+        "Rotaeno"
+      ],
+      "sortOrder": 8,
+      "facets": {}
+    },
+    {
+      "resourceId": "2d1daf07-0a4d-7fc0-a69e-9367e6e89e0d",
+      "resourceType": "jacket",
+      "displayTitle": "Antikythera",
+      "subtitle": "technoplanet",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "Antikythera.technoplanet.0",
+        "musicArtist": "technoplanet",
+        "illustrator": "©2025 Rayark Inc. DEEMO II®",
+        "disc": "EX - T.S.",
+        "trackSeries": "T.S. #11 — DEEMO II",
+        "collaborationPartner": "DEEMO II"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Antikythera",
+        "2.7.0",
+        "Antikythera.technoplanet.0",
+        "technoplanet",
+        "©2025 Rayark Inc. DEEMO II®",
+        "EX - T.S.",
+        "T.S. #11 — DEEMO II",
+        "DEEMO II"
+      ],
+      "sortOrder": 9,
+      "facets": {}
+    },
+    {
+      "resourceId": "ba938eb6-92c0-73f3-9ede-8da184126436",
+      "resourceType": "jacket",
+      "displayTitle": "Antler",
+      "subtitle": "Juggernaut.",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "Antler.Juggernaut.0",
+        "musicArtist": "Juggernaut.",
+        "illustrator": "山山奇",
+        "disc": "EX - T.S.",
+        "trackSeries": "T.S. #1 — Juggernaut.",
+        "collaborationPartner": "Juggernaut collaboration"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Antler",
+        "2.7.0",
+        "Antler.Juggernaut.0",
+        "Juggernaut.",
+        "山山奇",
+        "EX - T.S.",
+        "T.S. #1 — Juggernaut.",
+        "Juggernaut collaboration"
+      ],
+      "sortOrder": 10,
+      "facets": {}
+    },
+    {
+      "resourceId": "a6dcefd4-6ba3-7483-a439-44b0145d2fc8",
+      "resourceType": "jacket",
+      "displayTitle": "Arcade ViruZ",
+      "subtitle": "Aspid Cat",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "ArcadeViruZ.AspidCat.0",
+        "musicArtist": "Aspid Cat",
+        "illustrator": "山山奇",
+        "disc": "Disc 1"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Arcade ViruZ",
+        "2.7.0",
+        "ArcadeViruZ.AspidCat.0",
+        "Aspid Cat",
+        "山山奇",
+        "Disc 1"
+      ],
+      "sortOrder": 11,
+      "facets": {}
+    },
+    {
+      "resourceId": "a6d39f1e-0f3a-74d2-80ef-bc1227f7b64c",
+      "resourceType": "jacket",
+      "displayTitle": "Authentic (Game ver.)",
+      "subtitle": "Rukadesu & nowhere.to_go",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "AuthenticGamever.Rukadesunowheretogo.0",
+        "musicArtist": "Rukadesu & nowhere.to_go",
+        "illustrator": "山山奇",
+        "disc": "Disc 1"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Authentic (Game ver.)",
+        "2.7.0",
+        "AuthenticGamever.Rukadesunowheretogo.0",
+        "Rukadesu & nowhere.to_go",
+        "山山奇",
+        "Disc 1"
+      ],
+      "sortOrder": 12,
+      "facets": {}
+    },
+    {
+      "resourceId": "532d22b7-2f3a-7558-9abe-f8077388e3ef",
+      "resourceType": "jacket",
+      "displayTitle": "Avataar ~Reincarnation of Kalpa~",
+      "subtitle": "Scarlette a.k.a. CrYmson",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "AvataarReincarnationofKalpa.ScarletteakaCrYmson.0",
+        "musicArtist": "Scarlette a.k.a. CrYmson",
+        "illustrator": "© QueseraGames Co., Ltd.",
+        "disc": "EX - T.S.",
+        "trackSeries": "T.S. #7 — KALPA",
+        "collaborationPartner": "KALPA"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Avataar ~Reincarnation of Kalpa~",
+        "2.7.0",
+        "AvataarReincarnationofKalpa.ScarletteakaCrYmson.0",
+        "Scarlette a.k.a. CrYmson",
+        "© QueseraGames Co., Ltd.",
+        "EX - T.S.",
+        "T.S. #7 — KALPA",
+        "KALPA"
+      ],
+      "sortOrder": 13,
+      "facets": {}
+    },
+    {
+      "resourceId": "4e63a92f-99d4-7781-b82b-f515a26563b8",
+      "resourceType": "jacket",
+      "displayTitle": "BRAVE：ROAD",
+      "subtitle": "uma vs. モリモリあつし",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "BRAVEROAD.umavsMorimoriAtsushi.0",
+        "musicArtist": "uma vs. モリモリあつし",
+        "illustrator": "山山奇 feat. V17AMax",
+        "disc": "Disc 1"
+      },
+      "badges": [],
+      "searchTerms": [
+        "BRAVE：ROAD",
+        "2.7.0",
+        "BRAVEROAD.umavsMorimoriAtsushi.0",
+        "uma vs. モリモリあつし",
+        "山山奇 feat. V17AMax",
+        "Disc 1"
+      ],
+      "sortOrder": 14,
+      "facets": {}
+    },
+    {
+      "resourceId": "9806455f-247a-77ee-9f4a-1c8e99242cf1",
+      "resourceType": "jacket",
+      "displayTitle": "竹",
+      "subtitle": "立秋",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "Bamboo.rissyuu.0",
+        "musicArtist": "立秋",
+        "illustrator": "石王マサト",
+        "disc": "Disc O"
+      },
+      "badges": [],
+      "searchTerms": [
+        "竹",
+        "2.7.0",
+        "Bamboo.rissyuu.0",
+        "立秋",
+        "石王マサト",
+        "Disc O"
+      ],
+      "sortOrder": 15,
+      "facets": {}
+    },
+    {
+      "resourceId": "3dbe9576-97d8-775c-bd66-d46436f1dd50",
+      "resourceType": "jacket",
+      "displayTitle": "Bring Me Back",
+      "subtitle": "Zekk",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "BringMeBack.Zekk.0",
+        "musicArtist": "Zekk",
+        "illustrator": "山山奇",
+        "disc": "EX - T.S.",
+        "trackSeries": "T.S. #2 — DIVERSE SYSTEM",
+        "collaborationPartner": "DIVERSE SYSTEM"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Bring Me Back",
+        "2.7.0",
+        "BringMeBack.Zekk.0",
+        "Zekk",
+        "山山奇",
+        "EX - T.S.",
+        "T.S. #2 — DIVERSE SYSTEM",
+        "DIVERSE SYSTEM"
+      ],
+      "sortOrder": 16,
+      "facets": {}
+    },
+    {
+      "resourceId": "0756d2e5-377a-774b-bb33-dc53e64e9883",
+      "resourceType": "jacket",
+      "displayTitle": "Bursty Lollipop",
+      "subtitle": "Tanchiky",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "BurstyLollipop.Tanchiky.0",
+        "musicArtist": "Tanchiky",
+        "illustrator": "yoshimo & からめる",
+        "disc": "EX - T.S.",
+        "trackSeries": "T.S. #14 — Tanchiky",
+        "collaborationPartner": "Tanchiky"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Bursty Lollipop",
+        "2.7.0",
+        "BurstyLollipop.Tanchiky.0",
+        "Tanchiky",
+        "yoshimo & からめる",
+        "EX - T.S.",
+        "T.S. #14 — Tanchiky",
+        "Tanchiky"
+      ],
+      "sortOrder": 17,
+      "facets": {}
+    },
+    {
+      "resourceId": "13e2d727-2346-7194-aa08-7c7eca0a7cde",
+      "resourceType": "jacket",
+      "displayTitle": "CANDYLAND",
+      "subtitle": "Seo",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "CANDYLAND.Seo.0",
+        "musicArtist": "Seo",
+        "illustrator": "破晓buff-夜刃•Ex",
+        "disc": "Disc 1"
+      },
+      "badges": [],
+      "searchTerms": [
+        "CANDYLAND",
+        "2.7.0",
+        "CANDYLAND.Seo.0",
+        "Seo",
+        "破晓buff-夜刃•Ex",
+        "Disc 1"
+      ],
+      "sortOrder": 18,
+      "facets": {}
+    },
+    {
+      "resourceId": "9708d35d-bfbe-7873-b12d-3a865594ef9f",
+      "resourceType": "jacket",
+      "displayTitle": "Change the Game feat. 松永依織",
+      "subtitle": "REDALiCE & USAO",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "ChangetheGamefeat松永依織.REDALiCEUSAO.0",
+        "musicArtist": "REDALiCE & USAO",
+        "illustrator": "HARDCORE TANO*C",
+        "disc": "EX - T.S.",
+        "trackSeries": "T.S. #10 — HARDCORE TANO*C",
+        "collaborationPartner": "HARDCORE TANO*C"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Change the Game feat. 松永依織",
+        "2.7.0",
+        "ChangetheGamefeat松永依織.REDALiCEUSAO.0",
+        "REDALiCE & USAO",
+        "HARDCORE TANO*C",
+        "EX - T.S.",
+        "T.S. #10 — HARDCORE TANO*C",
+        "HARDCORE TANO*C"
+      ],
+      "sortOrder": 19,
+      "facets": {}
+    },
+    {
+      "resourceId": "648d15e7-ca37-79a6-b2df-bf00c8fd0e2d",
+      "resourceType": "jacket",
+      "displayTitle": "Clock Paradox",
+      "subtitle": "WyvernP",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "ClockParadox.WyvernP.0",
+        "musicArtist": "WyvernP",
+        "illustrator": "山山奇",
+        "disc": "Disc 1"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Clock Paradox",
+        "2.7.0",
+        "ClockParadox.WyvernP.0",
+        "WyvernP",
+        "山山奇",
+        "Disc 1"
+      ],
+      "sortOrder": 20,
+      "facets": {}
+    },
+    {
+      "resourceId": "e90669ca-2664-7a39-89e6-c60bccad7565",
+      "resourceType": "jacket",
+      "displayTitle": "Clouds clear and...",
+      "subtitle": "Qutabire",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "Cloudsclearand.Qutabire.0",
+        "musicArtist": "Qutabire",
+        "illustrator": "©2025 Rayark Inc. DEEMO II®",
+        "disc": "EX - T.S.",
+        "trackSeries": "T.S. #11 — DEEMO II",
+        "collaborationPartner": "DEEMO II"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Clouds clear and...",
+        "2.7.0",
+        "Cloudsclearand.Qutabire.0",
+        "Qutabire",
+        "©2025 Rayark Inc. DEEMO II®",
+        "EX - T.S.",
+        "T.S. #11 — DEEMO II",
+        "DEEMO II"
+      ],
+      "sortOrder": 21,
+      "facets": {}
+    },
+    {
+      "resourceId": "83a95d86-51d3-7630-b9cd-1b26fa37c540",
+      "resourceType": "jacket",
+      "displayTitle": "Colorful Flavor",
+      "subtitle": "Cansol",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "ColorfulFlavor.Cansol.0",
+        "musicArtist": "Cansol",
+        "illustrator": "山山奇",
+        "disc": "EX - Single"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Colorful Flavor",
+        "2.7.0",
+        "ColorfulFlavor.Cansol.0",
+        "Cansol",
+        "山山奇",
+        "EX - Single"
+      ],
+      "sortOrder": 22,
+      "facets": {}
+    },
+    {
+      "resourceId": "ad24e28f-62ca-7610-9e42-7fc4bd0baf3f",
+      "resourceType": "jacket",
+      "displayTitle": "Comet Coaster",
+      "subtitle": "DJ Noriken & aran",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "CometCoaster.DJNorikenaran.0",
+        "musicArtist": "DJ Noriken & aran",
+        "illustrator": "©peropero",
+        "disc": "EX - T.S.",
+        "trackSeries": "T.S. #6 — Cytus II × Muse Dash",
+        "collaborationPartner": "Cytus II / Muse Dash"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Comet Coaster",
+        "2.7.0",
+        "CometCoaster.DJNorikenaran.0",
+        "DJ Noriken & aran",
+        "©peropero",
+        "EX - T.S.",
+        "T.S. #6 — Cytus II × Muse Dash",
+        "Cytus II / Muse Dash"
+      ],
+      "sortOrder": 23,
+      "facets": {}
+    },
+    {
+      "resourceId": "4deb664c-66bb-79d4-ac0b-1430037af5f7",
+      "resourceType": "jacket",
+      "displayTitle": "Contact",
+      "subtitle": "Neutral Moon & MK",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "Contact.NeutralMoonMK.0",
+        "musicArtist": "Neutral Moon & MK",
+        "illustrator": "山山奇",
+        "disc": "Disc 1"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Contact",
+        "2.7.0",
+        "Contact.NeutralMoonMK.0",
+        "Neutral Moon & MK",
+        "山山奇",
+        "Disc 1"
+      ],
+      "sortOrder": 24,
+      "facets": {}
+    },
+    {
+      "resourceId": "9b509fe6-46da-7f8c-91b9-9f4f8fd4ddb7",
+      "resourceType": "jacket",
+      "displayTitle": "Contortion",
+      "subtitle": "PTB10",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "Contortion.PTB10.0",
+        "musicArtist": "PTB10",
+        "illustrator": "破晓buff-夜刃•Ex",
+        "disc": "EX - Single"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Contortion",
+        "2.7.0",
+        "Contortion.PTB10.0",
+        "PTB10",
+        "破晓buff-夜刃•Ex",
+        "EX - Single"
+      ],
+      "sortOrder": 25,
+      "facets": {}
+    },
+    {
+      "resourceId": "a7e7fe3a-e78e-70e3-94e1-e9cd1f19018e",
+      "resourceType": "jacket",
+      "displayTitle": "Conway's Child",
+      "subtitle": "Sta",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "ConwaysChild.Sta.0",
+        "musicArtist": "Sta",
+        "illustrator": "山山奇",
+        "disc": "EX - T.S.",
+        "trackSeries": "T.S. #4 — Tone Sphere",
+        "collaborationPartner": "Tone Sphere"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Conway's Child",
+        "2.7.0",
+        "ConwaysChild.Sta.0",
+        "Sta",
+        "山山奇",
+        "EX - T.S.",
+        "T.S. #4 — Tone Sphere",
+        "Tone Sphere"
+      ],
+      "sortOrder": 26,
+      "facets": {}
+    },
+    {
+      "resourceId": "ab39e091-f375-7f7d-891a-98e66a1038a0",
+      "resourceType": "jacket",
+      "displayTitle": "Cosmos Capsule",
+      "subtitle": "AsTroy & Bakami",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "CosmosCapsule.AsTroyBakami.0",
+        "musicArtist": "AsTroy & Bakami",
+        "illustrator": "山山奇",
+        "disc": "Disc 2"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Cosmos Capsule",
+        "2.7.0",
+        "CosmosCapsule.AsTroyBakami.0",
+        "AsTroy & Bakami",
+        "山山奇",
+        "Disc 2"
+      ],
+      "sortOrder": 27,
+      "facets": {}
+    },
+    {
+      "resourceId": "ba49c60a-431a-70c1-98ec-40bf4e0b6593",
+      "resourceType": "jacket",
+      "displayTitle": "Crazy Audiophile",
+      "subtitle": "Supa7onyz",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "CrazyAudiophile.Supa7onyz.0",
+        "musicArtist": "Supa7onyz",
+        "illustrator": "山山奇",
+        "disc": "EX - T.S.",
+        "trackSeries": "T.S. #9 — Cosmic Radio 2024",
+        "collaborationPartner": "Cosmic Radio 2024"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Crazy Audiophile",
+        "2.7.0",
+        "CrazyAudiophile.Supa7onyz.0",
+        "Supa7onyz",
+        "山山奇",
+        "EX - T.S.",
+        "T.S. #9 — Cosmic Radio 2024",
+        "Cosmic Radio 2024"
+      ],
+      "sortOrder": 28,
+      "facets": {}
+    },
+    {
+      "resourceId": "b9d77875-adab-7c19-9688-0d727821100b",
+      "resourceType": "jacket",
+      "displayTitle": "Crimsonate",
+      "subtitle": "BlackY feat. Risa Yuzuki",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "Crimsonate.BlackYfeatRisaYuzuki.0",
+        "musicArtist": "BlackY feat. Risa Yuzuki",
+        "illustrator": "山山奇",
+        "disc": "EX - T.S.",
+        "trackSeries": "T.S. #5 — BlackY",
+        "collaborationPartner": "BlackY"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Crimsonate",
+        "2.7.0",
+        "Crimsonate.BlackYfeatRisaYuzuki.0",
+        "BlackY feat. Risa Yuzuki",
+        "山山奇",
+        "EX - T.S.",
+        "T.S. #5 — BlackY",
+        "BlackY"
+      ],
+      "sortOrder": 29,
+      "facets": {}
+    },
+    {
+      "resourceId": "4c85884a-b05a-79e2-95c6-7a944662f6f2",
+      "resourceType": "jacket",
+      "displayTitle": "Crush Alcohol",
+      "subtitle": "shadow_bling",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "CrushAlcohol.shadow_bling.0",
+        "musicArtist": "shadow_bling",
+        "illustrator": "山山奇",
+        "disc": "EX - Single"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Crush Alcohol",
+        "2.7.0",
+        "CrushAlcohol.shadow_bling.0",
+        "shadow_bling",
+        "山山奇",
+        "EX - Single"
+      ],
+      "sortOrder": 30,
+      "facets": {}
+    },
+    {
+      "resourceId": "1e2016c0-93b1-7835-9038-2049e609ea84",
+      "resourceType": "jacket",
+      "displayTitle": "D-Birth",
+      "subtitle": "Sakuzyo (Violin: Katali)",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "DBirth.Sakuzyo.0",
+        "musicArtist": "Sakuzyo (Violin: Katali)",
+        "illustrator": "山山奇",
+        "disc": "EX - T.S.",
+        "trackSeries": "T.S. #2 — DIVERSE SYSTEM",
+        "collaborationPartner": "DIVERSE SYSTEM"
+      },
+      "badges": [],
+      "searchTerms": [
+        "D-Birth",
+        "2.7.0",
+        "DBirth.Sakuzyo.0",
+        "Sakuzyo (Violin: Katali)",
+        "山山奇",
+        "EX - T.S.",
+        "T.S. #2 — DIVERSE SYSTEM",
+        "DIVERSE SYSTEM"
+      ],
+      "sortOrder": 31,
+      "facets": {}
+    },
+    {
+      "resourceId": "7092f242-b932-7d76-8fe2-0dcad9fe9f06",
+      "resourceType": "jacket",
+      "displayTitle": "DOMINATOR",
+      "subtitle": "NOMA",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "DOMINATOR.NOMA.0",
+        "musicArtist": "NOMA",
+        "illustrator": "©peropero",
+        "disc": "EX - T.S.",
+        "trackSeries": "T.S. #6 — Cytus II × Muse Dash",
+        "collaborationPartner": "Cytus II / Muse Dash"
+      },
+      "badges": [],
+      "searchTerms": [
+        "DOMINATOR",
+        "2.7.0",
+        "DOMINATOR.NOMA.0",
+        "NOMA",
+        "©peropero",
+        "EX - T.S.",
+        "T.S. #6 — Cytus II × Muse Dash",
+        "Cytus II / Muse Dash"
+      ],
+      "sortOrder": 32,
+      "facets": {}
+    },
+    {
+      "resourceId": "72bd4f55-50fa-7339-903c-200590c1bb95",
+      "resourceType": "jacket",
+      "displayTitle": "Destr0yer",
+      "subtitle": "Sakuzyo feat. Nikki Simmons",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "Destr0yer.Sakuzyo.0",
+        "musicArtist": "Sakuzyo feat. Nikki Simmons",
+        "illustrator": "yoshimo & Radiosity",
+        "disc": "Disc 2"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Destr0yer",
+        "2.7.0",
+        "Destr0yer.Sakuzyo.0",
+        "Sakuzyo feat. Nikki Simmons",
+        "yoshimo & Radiosity",
+        "Disc 2"
+      ],
+      "sortOrder": 33,
+      "facets": {}
+    },
+    {
+      "resourceId": "8e8f7e8d-3db4-72a1-9a38-09cef8506496",
+      "resourceType": "jacket",
+      "displayTitle": "Dice 20",
+      "subtitle": "Daily天利",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "Dice20.Daily.0",
+        "musicArtist": "Daily天利",
+        "illustrator": "美工刀",
+        "disc": "Disc 1"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Dice 20",
+        "2.7.0",
+        "Dice20.Daily.0",
+        "Daily天利",
+        "美工刀",
+        "Disc 1"
+      ],
+      "sortOrder": 34,
+      "facets": {}
+    },
+    {
+      "resourceId": "8ee82072-0b5b-7a4c-af6a-bd66232f5cc5",
+      "resourceType": "jacket",
+      "displayTitle": "Dot-Line (feat. ななひら)",
+      "subtitle": "A-39 / 沙包P / ななひら",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "DotLinefeatななひら.A39沙包Pななひら.0",
+        "musicArtist": "A-39 / 沙包P / ななひら",
+        "illustrator": "山山奇",
+        "disc": "Disc O"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Dot-Line (feat. ななひら)",
+        "2.7.0",
+        "DotLinefeatななひら.A39沙包Pななひら.0",
+        "A-39 / 沙包P / ななひら",
+        "山山奇",
+        "Disc O"
+      ],
+      "sortOrder": 35,
+      "facets": {}
+    },
+    {
+      "resourceId": "27953a64-cdad-723f-ab15-34e099079923",
+      "resourceType": "jacket",
+      "displayTitle": "DropDown",
+      "subtitle": "Cosmograph",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "DropDown.Cosmograph.0",
+        "musicArtist": "Cosmograph",
+        "illustrator": "汉堡",
+        "disc": "Disc 1"
+      },
+      "badges": [],
+      "searchTerms": [
+        "DropDown",
+        "2.7.0",
+        "DropDown.Cosmograph.0",
+        "Cosmograph",
+        "汉堡",
+        "Disc 1"
+      ],
+      "sortOrder": 36,
+      "facets": {}
+    },
+    {
+      "resourceId": "dacc20bb-4a1d-73b1-9c9d-5cce6772072b",
+      "resourceType": "jacket",
+      "displayTitle": "Echo over you...",
+      "subtitle": "Apo11o program",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "Echooveryou.Apo11oprogram.0",
+        "musicArtist": "Apo11o program",
+        "illustrator": "©2025 Rayark Inc. DEEMO II®",
+        "disc": "EX - T.S.",
+        "trackSeries": "T.S. #11 — DEEMO II",
+        "collaborationPartner": "DEEMO II"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Echo over you...",
+        "2.7.0",
+        "Echooveryou.Apo11oprogram.0",
+        "Apo11o program",
+        "©2025 Rayark Inc. DEEMO II®",
+        "EX - T.S.",
+        "T.S. #11 — DEEMO II",
+        "DEEMO II"
+      ],
+      "sortOrder": 37,
+      "facets": {}
+    },
+    {
+      "resourceId": "1d93792c-64cf-73a9-98c4-4c6c9746e7c3",
+      "resourceType": "jacket",
+      "displayTitle": "Electric Comet",
+      "subtitle": "Meram1n",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "ElectricComet.Meram1n.0",
+        "musicArtist": "Meram1n",
+        "illustrator": "© QueseraGames Co., Ltd.",
+        "disc": "EX - T.S.",
+        "trackSeries": "T.S. #7 — KALPA",
+        "collaborationPartner": "KALPA"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Electric Comet",
+        "2.7.0",
+        "ElectricComet.Meram1n.0",
+        "Meram1n",
+        "© QueseraGames Co., Ltd.",
+        "EX - T.S.",
+        "T.S. #7 — KALPA",
+        "KALPA"
+      ],
+      "sortOrder": 38,
+      "facets": {}
+    },
+    {
+      "resourceId": "e0898001-1c07-73a3-b12f-c360b1d8cd13",
+      "resourceType": "jacket",
+      "displayTitle": "Empire",
+      "subtitle": "4_16",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "Empire.416.0",
+        "musicArtist": "4_16",
+        "illustrator": "不目寒",
+        "disc": "Disc 1"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Empire",
+        "2.7.0",
+        "Empire.416.0",
+        "4_16",
+        "不目寒",
+        "Disc 1"
+      ],
+      "sortOrder": 39,
+      "facets": {}
+    },
+    {
+      "resourceId": "4d380868-311c-7e2d-894e-f090243452bd",
+      "resourceType": "jacket",
+      "displayTitle": "Encrux",
+      "subtitle": "Sobrem",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "Encrux.Sobrem.0",
+        "musicArtist": "Sobrem",
+        "illustrator": "山山奇",
+        "disc": "EX - T.S.",
+        "trackSeries": "T.S. #3 — Sobrem",
+        "collaborationPartner": "Sobrem"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Encrux",
+        "2.7.0",
+        "Encrux.Sobrem.0",
+        "Sobrem",
+        "山山奇",
+        "EX - T.S.",
+        "T.S. #3 — Sobrem",
+        "Sobrem"
+      ],
+      "sortOrder": 40,
+      "facets": {}
+    },
+    {
+      "resourceId": "65b85716-c10c-7ef5-9677-ebaecdfb3620",
+      "resourceType": "jacket",
+      "displayTitle": "Enneaquest",
+      "subtitle": "SEPHID",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "Enneaquest.SEPHID.0",
+        "musicArtist": "SEPHID",
+        "illustrator": "山山奇",
+        "disc": "EX - Single"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Enneaquest",
+        "2.7.0",
+        "Enneaquest.SEPHID.0",
+        "SEPHID",
+        "山山奇",
+        "EX - Single"
+      ],
+      "sortOrder": 41,
+      "facets": {}
+    },
+    {
+      "resourceId": "644c5dae-a625-7edb-8712-1a8301252959",
+      "resourceType": "jacket",
+      "displayTitle": "Eschatology",
+      "subtitle": "Tatsh & Scarlette",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "Eschatology.TatshScarlette.0",
+        "musicArtist": "Tatsh & Scarlette",
+        "illustrator": "© QueseraGames Co., Ltd.",
+        "disc": "EX - T.S.",
+        "trackSeries": "T.S. #7 — KALPA",
+        "collaborationPartner": "KALPA"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Eschatology",
+        "2.7.0",
+        "Eschatology.TatshScarlette.0",
+        "Tatsh & Scarlette",
+        "© QueseraGames Co., Ltd.",
+        "EX - T.S.",
+        "T.S. #7 — KALPA",
+        "KALPA"
+      ],
+      "sortOrder": 42,
+      "facets": {}
+    },
+    {
+      "resourceId": "088bce4c-f153-73b3-a9a0-a6380dd10ce0",
+      "resourceType": "jacket",
+      "displayTitle": "FORTALiCE",
+      "subtitle": "ZxNX",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "FORTALiCE.ZxNX.0",
+        "musicArtist": "ZxNX",
+        "illustrator": "Karen & Vvn",
+        "disc": "Disc 1"
+      },
+      "badges": [],
+      "searchTerms": [
+        "FORTALiCE",
+        "2.7.0",
+        "FORTALiCE.ZxNX.0",
+        "ZxNX",
+        "Karen & Vvn",
+        "Disc 1"
+      ],
+      "sortOrder": 43,
+      "facets": {}
+    },
+    {
+      "resourceId": "7221713c-3dda-7680-ab4a-10b576e2772b",
+      "resourceType": "jacket",
+      "displayTitle": "F℟IEND",
+      "subtitle": "D_AAN",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "FRIEND.DAAN.0",
+        "musicArtist": "D_AAN",
+        "illustrator": "山山奇",
+        "disc": "Disc 1"
+      },
+      "badges": [],
+      "searchTerms": [
+        "F℟IEND",
+        "2.7.0",
+        "FRIEND.DAAN.0",
+        "D_AAN",
+        "山山奇",
+        "Disc 1"
+      ],
+      "sortOrder": 44,
+      "facets": {}
+    },
+    {
+      "resourceId": "1bdc6ddb-f3d7-75fe-b39f-0acb276775a1",
+      "resourceType": "jacket",
+      "displayTitle": "Fade Away",
+      "subtitle": "DeBisco",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "FadeAway.DeBisco.0",
+        "musicArtist": "DeBisco",
+        "illustrator": "鲸弑",
+        "disc": "Disc 2"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Fade Away",
+        "2.7.0",
+        "FadeAway.DeBisco.0",
+        "DeBisco",
+        "鲸弑",
+        "Disc 2"
+      ],
+      "sortOrder": 45,
+      "facets": {}
+    },
+    {
+      "resourceId": "61f8cd1f-9e3f-762f-aec7-729dbdc53de9",
+      "resourceType": "jacket",
+      "displayTitle": "Fairy's Crown",
+      "subtitle": "Powerless",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "FairysCrown.Powerless.0",
+        "musicArtist": "Powerless",
+        "illustrator": "©2025 Rayark Inc. DEEMO II®",
+        "disc": "EX - T.S.",
+        "trackSeries": "T.S. #11 — DEEMO II",
+        "collaborationPartner": "DEEMO II"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Fairy's Crown",
+        "2.7.0",
+        "FairysCrown.Powerless.0",
+        "Powerless",
+        "©2025 Rayark Inc. DEEMO II®",
+        "EX - T.S.",
+        "T.S. #11 — DEEMO II",
+        "DEEMO II"
+      ],
+      "sortOrder": 46,
+      "facets": {}
+    },
+    {
+      "resourceId": "bf1c8921-87d2-7b64-86cb-bfc48afe59d7",
+      "resourceType": "jacket",
+      "displayTitle": "Frozen Heart",
+      "subtitle": "A-39 / 沙包P",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "FrozenHeart.A39沙包P.0",
+        "musicArtist": "A-39 / 沙包P",
+        "illustrator": "山山奇",
+        "disc": "EX - Single"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Frozen Heart",
+        "2.7.0",
+        "FrozenHeart.A39沙包P.0",
+        "A-39 / 沙包P",
+        "山山奇",
+        "EX - Single"
+      ],
+      "sortOrder": 47,
+      "facets": {}
+    },
+    {
+      "resourceId": "fb47e5bc-5f50-7e79-9140-f515d656fb66",
+      "resourceType": "jacket",
+      "displayTitle": "Future Downloader",
+      "subtitle": "Kobaryo",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "FutureDownloader.Kobaryo.0",
+        "musicArtist": "Kobaryo",
+        "illustrator": "HARDCORE TANO*C",
+        "disc": "EX - T.S.",
+        "trackSeries": "T.S. #10 — HARDCORE TANO*C",
+        "collaborationPartner": "HARDCORE TANO*C"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Future Downloader",
+        "2.7.0",
+        "FutureDownloader.Kobaryo.0",
+        "Kobaryo",
+        "HARDCORE TANO*C",
+        "EX - T.S.",
+        "T.S. #10 — HARDCORE TANO*C",
+        "HARDCORE TANO*C"
+      ],
+      "sortOrder": 48,
+      "facets": {}
+    },
+    {
+      "resourceId": "174aeecf-8c9a-7e99-aae5-03660e471a3a",
+      "resourceType": "jacket",
+      "displayTitle": "GREAT GREAT",
+      "subtitle": "Zris",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "GREATGREAT.Zris.0",
+        "musicArtist": "Zris",
+        "illustrator": "猫鼬烩饭",
+        "disc": "EX - Single"
+      },
+      "badges": [],
+      "searchTerms": [
+        "GREAT GREAT",
+        "2.7.0",
+        "GREATGREAT.Zris.0",
+        "Zris",
+        "猫鼬烩饭",
+        "EX - Single"
+      ],
+      "sortOrder": 49,
+      "facets": {}
+    },
+    {
+      "resourceId": "5231396a-d0e5-72fc-9473-57357f126cfd",
+      "resourceType": "jacket",
+      "displayTitle": "Giselle",
+      "subtitle": "Sobrem a.k.a. Widowmaker",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "Giselle.Sobrem.0",
+        "musicArtist": "Sobrem a.k.a. Widowmaker",
+        "illustrator": "青鸟",
+        "disc": "EX - T.S.",
+        "trackSeries": "T.S. #3 — Sobrem",
+        "collaborationPartner": "Sobrem"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Giselle",
+        "2.7.0",
+        "Giselle.Sobrem.0",
+        "Sobrem a.k.a. Widowmaker",
+        "青鸟",
+        "EX - T.S.",
+        "T.S. #3 — Sobrem",
+        "Sobrem"
+      ],
+      "sortOrder": 50,
+      "facets": {}
+    },
+    {
+      "resourceId": "af30c49c-cdf1-78e3-8ff4-6313fb28a93e",
+      "resourceType": "jacket",
+      "displayTitle": "Gleam feat. ふわまろ",
+      "subtitle": "U-ske",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "Gleam.Uske.0",
+        "musicArtist": "U-ske",
+        "illustrator": "きゃらあい",
+        "disc": "Disc 1"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Gleam feat. ふわまろ",
+        "2.7.0",
+        "Gleam.Uske.0",
+        "U-ske",
+        "きゃらあい",
+        "Disc 1"
+      ],
+      "sortOrder": 51,
+      "facets": {}
+    },
+    {
+      "resourceId": "e6910a9a-7ae2-7f1b-b179-7fe70863a4a8",
+      "resourceType": "jacket",
+      "displayTitle": "Graves -Ancient Memories-",
+      "subtitle": "Juggernaut.",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "GravesAncientMemories.Juggernaut.0",
+        "musicArtist": "Juggernaut.",
+        "illustrator": "©2025 Rayark Inc. DEEMO II®",
+        "disc": "EX - T.S.",
+        "trackSeries": "T.S. #11 — DEEMO II",
+        "collaborationPartner": "DEEMO II"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Graves -Ancient Memories-",
+        "2.7.0",
+        "GravesAncientMemories.Juggernaut.0",
+        "Juggernaut.",
+        "©2025 Rayark Inc. DEEMO II®",
+        "EX - T.S.",
+        "T.S. #11 — DEEMO II",
+        "DEEMO II"
+      ],
+      "sortOrder": 52,
+      "facets": {}
+    },
+    {
+      "resourceId": "502f09d6-577b-77f9-837b-4430d7a3670b",
+      "resourceType": "jacket",
+      "displayTitle": "Greatness Earth",
+      "subtitle": "Axya",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "GreatnessEarth.Axya.0",
+        "musicArtist": "Axya",
+        "illustrator": "鲸弑",
+        "disc": "EX - T.S.",
+        "trackSeries": "T.S. #13 — 天地万象"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Greatness Earth",
+        "2.7.0",
+        "GreatnessEarth.Axya.0",
+        "Axya",
+        "鲸弑",
+        "EX - T.S.",
+        "T.S. #13 — 天地万象"
+      ],
+      "sortOrder": 53,
+      "facets": {}
+    },
+    {
+      "resourceId": "3e4dd70d-f364-75ba-bb58-975e426b3077",
+      "resourceType": "jacket",
+      "displayTitle": "Grimheart",
+      "subtitle": "Puru",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "Grimheart.Puru.0",
+        "musicArtist": "Puru",
+        "illustrator": "山山奇",
+        "disc": "EX - Single"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Grimheart",
+        "2.7.0",
+        "Grimheart.Puru.0",
+        "Puru",
+        "山山奇",
+        "EX - Single"
+      ],
+      "sortOrder": 54,
+      "facets": {}
+    },
+    {
+      "resourceId": "d496973a-7a3d-7f86-8f6e-7cd0fbd3e39d",
+      "resourceType": "jacket",
+      "displayTitle": "Head BONK ache",
+      "subtitle": "saaa ft. MC iwata Bros.",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "HeadBONKache.saaaftMCiwataBros.0",
+        "musicArtist": "saaa ft. MC iwata Bros.",
+        "illustrator": "Jimwaz",
+        "disc": "EX - Single"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Head BONK ache",
+        "2.7.0",
+        "HeadBONKache.saaaftMCiwataBros.0",
+        "saaa ft. MC iwata Bros.",
+        "Jimwaz",
+        "EX - Single"
+      ],
+      "sortOrder": 55,
+      "facets": {}
+    },
+    {
+      "resourceId": "f17adaa8-bdd9-7e10-a776-2f61bec0e7f5",
+      "resourceType": "jacket",
+      "displayTitle": "Houkago OVERDRIVE!!!!! (Game ver.)",
+      "subtitle": "Rukadesu",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "HoukagoOVERDRIVE.Rukadesu.0",
+        "musicArtist": "Rukadesu",
+        "illustrator": "子狼",
+        "disc": "Disc 2"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Houkago OVERDRIVE!!!!! (Game ver.)",
+        "2.7.0",
+        "HoukagoOVERDRIVE.Rukadesu.0",
+        "Rukadesu",
+        "子狼",
+        "Disc 2"
+      ],
+      "sortOrder": 56,
+      "facets": {}
+    },
+    {
+      "resourceId": "2cfc676d-daf8-7829-b3c2-e7ac12d2af94",
+      "resourceType": "jacket",
+      "displayTitle": "Hullbreaker",
+      "subtitle": "Maozon",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "Hullbreaker.Maozon.0",
+        "musicArtist": "Maozon",
+        "illustrator": "汉堡",
+        "disc": "EX - T.S.",
+        "trackSeries": "T.S. #2 — DIVERSE SYSTEM",
+        "collaborationPartner": "DIVERSE SYSTEM"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Hullbreaker",
+        "2.7.0",
+        "Hullbreaker.Maozon.0",
+        "Maozon",
+        "汉堡",
+        "EX - T.S.",
+        "T.S. #2 — DIVERSE SYSTEM",
+        "DIVERSE SYSTEM"
+      ],
+      "sortOrder": 57,
+      "facets": {}
+    },
+    {
+      "resourceId": "407cb452-1654-7962-b621-70443c905090",
+      "resourceType": "jacket",
+      "displayTitle": "Hydra",
+      "subtitle": "James Landino X Akira Complex",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "Hydra.JamesLandinoXAkiraComplex.0",
+        "musicArtist": "James Landino X Akira Complex",
+        "illustrator": "©2024 Rayark Inc. CYTUS II®",
+        "disc": "EX - T.S.",
+        "trackSeries": "T.S. #6 — Cytus II × Muse Dash",
+        "collaborationPartner": "Cytus II / Muse Dash"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Hydra",
+        "2.7.0",
+        "Hydra.JamesLandinoXAkiraComplex.0",
+        "James Landino X Akira Complex",
+        "©2024 Rayark Inc. CYTUS II®",
+        "EX - T.S.",
+        "T.S. #6 — Cytus II × Muse Dash",
+        "Cytus II / Muse Dash"
+      ],
+      "sortOrder": 58,
+      "facets": {}
+    },
+    {
+      "resourceId": "89b0038e-2082-7f39-b7b9-9ea3ee4981d5",
+      "resourceType": "jacket",
+      "displayTitle": "Hyperwave",
+      "subtitle": "LOFTIER",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "Hyperwave.LOFTIER.0",
+        "musicArtist": "LOFTIER",
+        "illustrator": "鲸弑",
+        "disc": "Disc 2"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Hyperwave",
+        "2.7.0",
+        "Hyperwave.LOFTIER.0",
+        "LOFTIER",
+        "鲸弑",
+        "Disc 2"
+      ],
+      "sortOrder": 59,
+      "facets": {}
+    },
+    {
+      "resourceId": "cc3235bb-7485-7899-b302-357ac12846ed",
+      "resourceType": "jacket",
+      "displayTitle": "ILLEGAL LEGACY",
+      "subtitle": "seatrus",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "ILLEGALLEGACY.seatrus.0",
+        "musicArtist": "seatrus",
+        "illustrator": "美工刀",
+        "disc": "Disc 1"
+      },
+      "badges": [],
+      "searchTerms": [
+        "ILLEGAL LEGACY",
+        "2.7.0",
+        "ILLEGALLEGACY.seatrus.0",
+        "seatrus",
+        "美工刀",
+        "Disc 1"
+      ],
+      "sortOrder": 60,
+      "facets": {}
+    },
+    {
+      "resourceId": "ac9cbdda-1015-7d78-a724-cc9a63f3dc23",
+      "resourceType": "jacket",
+      "displayTitle": "Idol",
+      "subtitle": "Vizzen & MonstDeath",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "Idol.VizzenMonstDeath.0",
+        "musicArtist": "Vizzen & MonstDeath",
+        "illustrator": "美工刀",
+        "disc": "Disc 2"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Idol",
+        "2.7.0",
+        "Idol.VizzenMonstDeath.0",
+        "Vizzen & MonstDeath",
+        "美工刀",
+        "Disc 2"
+      ],
+      "sortOrder": 61,
+      "facets": {}
+    },
+    {
+      "resourceId": "0b9f0d54-3d92-798a-abfa-08ffa3ace928",
+      "resourceType": "jacket",
+      "displayTitle": "Inevitability",
+      "subtitle": "kuro",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "Inevitability.kuro.0",
+        "musicArtist": "kuro",
+        "illustrator": "子狼",
+        "disc": "Disc O"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Inevitability",
+        "2.7.0",
+        "Inevitability.kuro.0",
+        "kuro",
+        "子狼",
+        "Disc O"
+      ],
+      "sortOrder": 62,
+      "facets": {}
+    },
+    {
+      "resourceId": "6079fa8d-d64f-7873-b833-4c7d979a2af0",
+      "resourceType": "jacket",
+      "displayTitle": "Intruder",
+      "subtitle": "Riya",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "Intruder.Riya.0",
+        "musicArtist": "Riya",
+        "illustrator": "山山奇",
+        "disc": "Disc 2"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Intruder",
+        "2.7.0",
+        "Intruder.Riya.0",
+        "Riya",
+        "山山奇",
+        "Disc 2"
+      ],
+      "sortOrder": 63,
+      "facets": {}
+    },
+    {
+      "resourceId": "daaba044-73f9-73bc-a174-38bd9bea07b1",
+      "resourceType": "jacket",
+      "displayTitle": "Journey To The Rainbows",
+      "subtitle": "Ardolf",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "JourneyToTheRainbows.Ardolf.0",
+        "musicArtist": "Ardolf",
+        "illustrator": "山山奇",
+        "disc": "Disc 1"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Journey To The Rainbows",
+        "2.7.0",
+        "JourneyToTheRainbows.Ardolf.0",
+        "Ardolf",
+        "山山奇",
+        "Disc 1"
+      ],
+      "sortOrder": 64,
+      "facets": {}
+    },
+    {
+      "resourceId": "8c2d11f7-3a06-73fe-bb3d-46c47e852755",
+      "resourceType": "jacket",
+      "displayTitle": "Kaguya",
+      "subtitle": "BlackY",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "Kaguya.BlackY.0",
+        "musicArtist": "BlackY",
+        "illustrator": "神居冰绘",
+        "disc": "EX - T.S.",
+        "trackSeries": "T.S. #5 — BlackY",
+        "collaborationPartner": "BlackY"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Kaguya",
+        "2.7.0",
+        "Kaguya.BlackY.0",
+        "BlackY",
+        "神居冰绘",
+        "EX - T.S.",
+        "T.S. #5 — BlackY",
+        "BlackY"
+      ],
+      "sortOrder": 65,
+      "facets": {}
+    },
+    {
+      "resourceId": "52f04b43-ca09-7d0c-9e13-7556ab981605",
+      "resourceType": "jacket",
+      "displayTitle": "LAIGN",
+      "subtitle": "Kiu feat. Nikki Simmons",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "LAIGN.KiufeatNikkiSimons.0",
+        "musicArtist": "Kiu feat. Nikki Simmons",
+        "illustrator": "神居冰绘",
+        "disc": "EX - T.S.",
+        "trackSeries": "T.S. #13 — 天地万象"
+      },
+      "badges": [],
+      "searchTerms": [
+        "LAIGN",
+        "2.7.0",
+        "LAIGN.KiufeatNikkiSimons.0",
+        "Kiu feat. Nikki Simmons",
+        "神居冰绘",
+        "EX - T.S.",
+        "T.S. #13 — 天地万象"
+      ],
+      "sortOrder": 66,
+      "facets": {}
+    },
+    {
+      "resourceId": "011e552f-8653-7034-9f68-51981499582a",
+      "resourceType": "jacket",
+      "displayTitle": "LEONIDS",
+      "subtitle": "SaMZIng / Titan Chaos",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "LEONIDS.SaMZIngTitanChaos.0",
+        "musicArtist": "SaMZIng / Titan Chaos",
+        "illustrator": "山山奇",
+        "disc": "Disc 1"
+      },
+      "badges": [],
+      "searchTerms": [
+        "LEONIDS",
+        "2.7.0",
+        "LEONIDS.SaMZIngTitanChaos.0",
+        "SaMZIng / Titan Chaos",
+        "山山奇",
+        "Disc 1"
+      ],
+      "sortOrder": 67,
+      "facets": {}
+    },
+    {
+      "resourceId": "c49466af-3203-7eb4-8e60-f34e45375935",
+      "resourceType": "jacket",
+      "displayTitle": "LINK x LIN#S",
+      "subtitle": "Halv",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "LINKLINS.Halv.0",
+        "musicArtist": "Halv",
+        "illustrator": "山山奇",
+        "disc": "Disc 1"
+      },
+      "badges": [],
+      "searchTerms": [
+        "LINK x LIN#S",
+        "2.7.0",
+        "LINKLINS.Halv.0",
+        "Halv",
+        "山山奇",
+        "Disc 1"
+      ],
+      "sortOrder": 68,
+      "facets": {}
+    },
+    {
+      "resourceId": "521312d6-3ec4-7b7a-9b86-79c65d2d8f09",
+      "resourceType": "jacket",
+      "displayTitle": "Lavender Leaf (feat. Lexi)",
+      "subtitle": "Vau Boy",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "LavenderLeaffeatLexi.VauBoy.0",
+        "musicArtist": "Vau Boy",
+        "illustrator": "山山奇",
+        "disc": "Disc 1"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Lavender Leaf (feat. Lexi)",
+        "2.7.0",
+        "LavenderLeaffeatLexi.VauBoy.0",
+        "Vau Boy",
+        "山山奇",
+        "Disc 1"
+      ],
+      "sortOrder": 69,
+      "facets": {}
+    },
+    {
+      "resourceId": "89abee99-ecb7-755f-aa8d-bdfd00519a4d",
+      "resourceType": "jacket",
+      "displayTitle": "Life is PIANO",
+      "subtitle": "Junk",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "LifeisPIANO.Junk.0",
+        "musicArtist": "Junk",
+        "illustrator": "TOHRU MiTSUHASHi",
+        "disc": "EX - Single"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Life is PIANO",
+        "2.7.0",
+        "LifeisPIANO.Junk.0",
+        "Junk",
+        "TOHRU MiTSUHASHi",
+        "EX - Single"
+      ],
+      "sortOrder": 70,
+      "facets": {}
+    },
+    {
+      "resourceId": "d32a80af-c221-7289-b04e-c515fd33042e",
+      "resourceType": "jacket",
+      "displayTitle": "Lost Future",
+      "subtitle": "Aspid Cat",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "LostFuture.AspidCat.0",
+        "musicArtist": "Aspid Cat",
+        "illustrator": "山山奇",
+        "disc": "Disc 2"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Lost Future",
+        "2.7.0",
+        "LostFuture.AspidCat.0",
+        "Aspid Cat",
+        "山山奇",
+        "Disc 2"
+      ],
+      "sortOrder": 71,
+      "facets": {}
+    },
+    {
+      "resourceId": "6fc47a1f-cd51-7ec1-8947-7a39bd749247",
+      "resourceType": "jacket",
+      "displayTitle": "Midnight Flux",
+      "subtitle": "Project G",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "MidnightFlux.ProjectG.0",
+        "musicArtist": "Project G",
+        "illustrator": "Doodoo",
+        "disc": "Disc 1"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Midnight Flux",
+        "2.7.0",
+        "MidnightFlux.ProjectG.0",
+        "Project G",
+        "Doodoo",
+        "Disc 1"
+      ],
+      "sortOrder": 72,
+      "facets": {}
+    },
+    {
+      "resourceId": "d344e1e5-9887-793e-8a62-40c8a808617c",
+      "resourceType": "jacket",
+      "displayTitle": "MilK",
+      "subtitle": "モリモリあつし",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "MilK.morimoriatsushi.0",
+        "musicArtist": "モリモリあつし",
+        "illustrator": "出前",
+        "disc": "Disc 1"
+      },
+      "badges": [],
+      "searchTerms": [
+        "MilK",
+        "2.7.0",
+        "MilK.morimoriatsushi.0",
+        "モリモリあつし",
+        "出前",
+        "Disc 1"
+      ],
+      "sortOrder": 73,
+      "facets": {}
+    },
+    {
+      "resourceId": "3b37b6d8-0b9a-7f06-85ab-a5fdce1cb077",
+      "resourceType": "jacket",
+      "displayTitle": "NLAMTA",
+      "subtitle": "Tsynphonia",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "NLAMTA.Tsynphonia.0",
+        "musicArtist": "Tsynphonia",
+        "illustrator": "©2025 Rayark Inc. DEEMO II®",
+        "disc": "EX - T.S.",
+        "trackSeries": "T.S. #11 — DEEMO II",
+        "collaborationPartner": "DEEMO II"
+      },
+      "badges": [],
+      "searchTerms": [
+        "NLAMTA",
+        "2.7.0",
+        "NLAMTA.Tsynphonia.0",
+        "Tsynphonia",
+        "©2025 Rayark Inc. DEEMO II®",
+        "EX - T.S.",
+        "T.S. #11 — DEEMO II",
+        "DEEMO II"
+      ],
+      "sortOrder": 74,
+      "facets": {}
+    },
+    {
+      "resourceId": "2e1ecf9c-61fb-73e7-a7af-db97d84cda92",
+      "resourceType": "jacket",
+      "displayTitle": "NO ONE YES MAN",
+      "subtitle": "MYUKKE.",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "NOONEYESMAN.MYUKKE.0",
+        "musicArtist": "MYUKKE.",
+        "illustrator": "青鸟",
+        "disc": "Disc 1"
+      },
+      "badges": [],
+      "searchTerms": [
+        "NO ONE YES MAN",
+        "2.7.0",
+        "NOONEYESMAN.MYUKKE.0",
+        "MYUKKE.",
+        "青鸟",
+        "Disc 1"
+      ],
+      "sortOrder": 75,
+      "facets": {}
+    },
+    {
+      "resourceId": "0330910d-d16a-7941-b2b8-9eb5254b0ee4",
+      "resourceType": "jacket",
+      "displayTitle": "Never Say Goodbye",
+      "subtitle": "黒魔",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "NeverSayGoodbye.黒魔.0",
+        "musicArtist": "黒魔",
+        "illustrator": "山山奇 feat. Jimwaz",
+        "disc": "Disc 2"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Never Say Goodbye",
+        "2.7.0",
+        "NeverSayGoodbye.黒魔.0",
+        "黒魔",
+        "山山奇 feat. Jimwaz",
+        "Disc 2"
+      ],
+      "sortOrder": 76,
+      "facets": {}
+    },
+    {
+      "resourceId": "3b9c7dba-1e15-701b-b43f-309268d6bc13",
+      "resourceType": "jacket",
+      "displayTitle": "NightTheater",
+      "subtitle": "わかどり",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "NightTheater.wakadori.0",
+        "musicArtist": "わかどり",
+        "illustrator": "山山奇",
+        "disc": "EX - Single"
+      },
+      "badges": [],
+      "searchTerms": [
+        "NightTheater",
+        "2.7.0",
+        "NightTheater.wakadori.0",
+        "わかどり",
+        "山山奇",
+        "EX - Single"
+      ],
+      "sortOrder": 77,
+      "facets": {}
+    },
+    {
+      "resourceId": "052c480c-02cc-750b-9a59-b275e33237d8",
+      "resourceType": "jacket",
+      "displayTitle": "No-name Requiem",
+      "subtitle": "打打だいず",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "NonameRequiem.打打だいず.0",
+        "musicArtist": "打打だいず",
+        "illustrator": "榊原またぎ",
+        "disc": "EX - Single"
+      },
+      "badges": [],
+      "searchTerms": [
+        "No-name Requiem",
+        "2.7.0",
+        "NonameRequiem.打打だいず.0",
+        "打打だいず",
+        "榊原またぎ",
+        "EX - Single"
+      ],
+      "sortOrder": 78,
+      "facets": {}
+    },
+    {
+      "resourceId": "329b9ddb-5898-70b5-912a-e344f66ed5c8",
+      "resourceType": "jacket",
+      "displayTitle": "On And On!!",
+      "subtitle": "ETIA.",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "OnAndOn.ETIA.0",
+        "musicArtist": "ETIA.",
+        "illustrator": "山山奇",
+        "disc": "Disc 1"
+      },
+      "badges": [],
+      "searchTerms": [
+        "On And On!!",
+        "2.7.0",
+        "OnAndOn.ETIA.0",
+        "ETIA.",
+        "山山奇",
+        "Disc 1"
+      ],
+      "sortOrder": 79,
+      "facets": {}
+    },
+    {
+      "resourceId": "93f5a022-42ba-7f29-bda7-07b42ea766fe",
+      "resourceType": "jacket",
+      "displayTitle": "Paradial Resonator",
+      "subtitle": "Reku Mochizuki",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "ParadialResonator.RekuMochizuki.0",
+        "musicArtist": "Reku Mochizuki",
+        "illustrator": "2Al4wU4",
+        "disc": "Disc 1",
+        "trackSeries": "Paradigm: Reboot collaboration",
+        "collaborationPartner": "Paradigm: Reboot"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Paradial Resonator",
+        "2.7.0",
+        "ParadialResonator.RekuMochizuki.0",
+        "Reku Mochizuki",
+        "2Al4wU4",
+        "Disc 1",
+        "Paradigm: Reboot collaboration",
+        "Paradigm: Reboot"
+      ],
+      "sortOrder": 80,
+      "facets": {}
+    },
+    {
+      "resourceId": "365f7689-86ef-704e-b6c6-f07c92c41c37",
+      "resourceType": "jacket",
+      "displayTitle": "Pastel Lines",
+      "subtitle": "Reku Mochizuki",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "PastelLines.RekuMochizuki.0",
+        "musicArtist": "Reku Mochizuki",
+        "illustrator": "山山奇",
+        "disc": "Disc 1"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Pastel Lines",
+        "2.7.0",
+        "PastelLines.RekuMochizuki.0",
+        "Reku Mochizuki",
+        "山山奇",
+        "Disc 1"
+      ],
+      "sortOrder": 81,
+      "facets": {}
+    },
+    {
+      "resourceId": "04573b50-93ec-71db-a665-c7ff218e6637",
+      "resourceType": "jacket",
+      "displayTitle": "Pierrot Fixer",
+      "subtitle": "ルゼ",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "PierrotFixer.ルゼ.0",
+        "musicArtist": "ルゼ",
+        "illustrator": "Rutumn",
+        "disc": "EX - T.S.",
+        "trackSeries": "T.S. #15 — ルゼ & LisicA",
+        "collaborationPartner": "ルゼ / LisicA"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Pierrot Fixer",
+        "2.7.0",
+        "PierrotFixer.ルゼ.0",
+        "ルゼ",
+        "Rutumn",
+        "EX - T.S.",
+        "T.S. #15 — ルゼ & LisicA",
+        "ルゼ / LisicA"
+      ],
+      "sortOrder": 82,
+      "facets": {}
+    },
+    {
+      "resourceId": "67eb6506-dfba-76d3-a8da-0851fcc17adc",
+      "resourceType": "jacket",
+      "displayTitle": "너를 그리는 밤하늘의 이야기\n(Planetarium) prod. Scarlette",
+      "subtitle": "kuripurin & Kyue & MYULee",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "PlanetariumprodScarlette.kuripurinKyueMYULee.0",
+        "musicArtist": "kuripurin & Kyue & MYULee",
+        "illustrator": "© QueseraGames Co., Ltd.",
+        "disc": "EX - T.S.",
+        "trackSeries": "T.S. #7 — KALPA",
+        "collaborationPartner": "KALPA"
+      },
+      "badges": [],
+      "searchTerms": [
+        "너를 그리는 밤하늘의 이야기\n(Planetarium) prod. Scarlette",
+        "2.7.0",
+        "PlanetariumprodScarlette.kuripurinKyueMYULee.0",
+        "kuripurin & Kyue & MYULee",
+        "© QueseraGames Co., Ltd.",
+        "EX - T.S.",
+        "T.S. #7 — KALPA",
+        "KALPA"
+      ],
+      "sortOrder": 83,
+      "facets": {}
+    },
+    {
+      "resourceId": "5f9de37d-6d11-771a-9d1b-c7fb1d6495d2",
+      "resourceType": "jacket",
+      "displayTitle": "Polygons",
+      "subtitle": "Riya",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "Polygons.Riya.0",
+        "musicArtist": "Riya",
+        "illustrator": "拖延",
+        "disc": "Disc 1"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Polygons",
+        "2.7.0",
+        "Polygons.Riya.0",
+        "Riya",
+        "拖延",
+        "Disc 1"
+      ],
+      "sortOrder": 84,
+      "facets": {}
+    },
+    {
+      "resourceId": "1bc0f829-c5fc-790d-b6d5-dec89ba1b8c8",
+      "resourceType": "jacket",
+      "displayTitle": "Power Attack",
+      "subtitle": "EBIMAYO",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "PowerAttack.EBIMAYO.0",
+        "musicArtist": "EBIMAYO",
+        "illustrator": "美工刀",
+        "disc": "Disc 1"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Power Attack",
+        "2.7.0",
+        "PowerAttack.EBIMAYO.0",
+        "EBIMAYO",
+        "美工刀",
+        "Disc 1"
+      ],
+      "sortOrder": 85,
+      "facets": {}
+    },
+    {
+      "resourceId": "2040b972-6ffd-7d87-97c0-b2c8fb536b71",
+      "resourceType": "jacket",
+      "displayTitle": "Psychometry",
+      "subtitle": "HyuN",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "Psychometry.HyuN.0",
+        "musicArtist": "HyuN",
+        "illustrator": "© QueseraGames Co., Ltd.",
+        "disc": "EX - T.S.",
+        "trackSeries": "T.S. #7 — KALPA",
+        "collaborationPartner": "KALPA"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Psychometry",
+        "2.7.0",
+        "Psychometry.HyuN.0",
+        "HyuN",
+        "© QueseraGames Co., Ltd.",
+        "EX - T.S.",
+        "T.S. #7 — KALPA",
+        "KALPA"
+      ],
+      "sortOrder": 86,
+      "facets": {}
+    },
+    {
+      "resourceId": "6a4b8165-4256-775d-a9d3-b6c89448b0c3",
+      "resourceType": "jacket",
+      "displayTitle": "Puppet Show",
+      "subtitle": "MeatyRabbit",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "PuppetShow.MeatyRabbit.0",
+        "musicArtist": "MeatyRabbit",
+        "illustrator": "山山奇",
+        "disc": "Disc 1"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Puppet Show",
+        "2.7.0",
+        "PuppetShow.MeatyRabbit.0",
+        "MeatyRabbit",
+        "山山奇",
+        "Disc 1"
+      ],
+      "sortOrder": 87,
+      "facets": {}
+    },
+    {
+      "resourceId": "7eba6d1a-dade-7e28-b8c3-a6c9aa37ca8d",
+      "resourceType": "jacket",
+      "displayTitle": "QUATTUORUX",
+      "subtitle": "打打だいず Vs. Tanchiky Vs. からめる",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "QUATTUORUX.打打だいずVsTanchikyVsからめる.0",
+        "musicArtist": "打打だいず Vs. Tanchiky Vs. からめる",
+        "illustrator": "yoshimo Vs. KiE Vs. からめる",
+        "disc": "EX - T.S.",
+        "trackSeries": "T.S. #14 — Tanchiky",
+        "collaborationPartner": "Tanchiky"
+      },
+      "badges": [],
+      "searchTerms": [
+        "QUATTUORUX",
+        "2.7.0",
+        "QUATTUORUX.打打だいずVsTanchikyVsからめる.0",
+        "打打だいず Vs. Tanchiky Vs. からめる",
+        "yoshimo Vs. KiE Vs. からめる",
+        "EX - T.S.",
+        "T.S. #14 — Tanchiky",
+        "Tanchiky"
+      ],
+      "sortOrder": 88,
+      "facets": {}
+    },
+    {
+      "resourceId": "4231ece2-fb31-709c-9e99-9dcee01383ee",
+      "resourceType": "jacket",
+      "displayTitle": "R.I.P.",
+      "subtitle": "eicateve",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "RIP.eicateve.0",
+        "musicArtist": "eicateve",
+        "illustrator": "hrchem & TOHRU MiTSUHASHi",
+        "disc": "Disc 1"
+      },
+      "badges": [],
+      "searchTerms": [
+        "R.I.P.",
+        "2.7.0",
+        "RIP.eicateve.0",
+        "eicateve",
+        "hrchem & TOHRU MiTSUHASHi",
+        "Disc 1"
+      ],
+      "sortOrder": 89,
+      "facets": {}
+    },
+    {
+      "resourceId": "f36f31c9-4922-7665-a73f-b0b1e8caa210",
+      "resourceType": "jacket",
+      "displayTitle": "Rapture",
+      "subtitle": "Roy Mikelate",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "Rapture.RoyMikelate.0",
+        "musicArtist": "Roy Mikelate",
+        "illustrator": "鲸弑",
+        "disc": "Disc 2"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Rapture",
+        "2.7.0",
+        "Rapture.RoyMikelate.0",
+        "Roy Mikelate",
+        "鲸弑",
+        "Disc 2"
+      ],
+      "sortOrder": 90,
+      "facets": {}
+    },
+    {
+      "resourceId": "c95681e7-a23f-7ae6-b05c-15fcf14e6f0d",
+      "resourceType": "jacket",
+      "displayTitle": "Relieve",
+      "subtitle": "响 & 星幂Elroy & Jan Kortanidze",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "Relieve.响星幂ElroyJanKortanidze.0",
+        "musicArtist": "响 & 星幂Elroy & Jan Kortanidze",
+        "illustrator": "山山奇",
+        "disc": "EX - Single",
+        "trackSeries": "去远方 collaboration",
+        "collaborationPartner": "去远方"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Relieve",
+        "2.7.0",
+        "Relieve.响星幂ElroyJanKortanidze.0",
+        "响 & 星幂Elroy & Jan Kortanidze",
+        "山山奇",
+        "EX - Single",
+        "去远方 collaboration",
+        "去远方"
+      ],
+      "sortOrder": 91,
+      "facets": {}
+    },
+    {
+      "resourceId": "a6f5b4cf-4c4e-7db2-ae48-346ff285d8ba",
+      "resourceType": "jacket",
+      "displayTitle": "Restricted Access",
+      "subtitle": "Knighthood",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "RestrictedAccess.Knighthood.0",
+        "musicArtist": "Knighthood",
+        "illustrator": "苦苦",
+        "disc": "EX - T.S.",
+        "trackSeries": "Paradigm: Reboot collaboration",
+        "collaborationPartner": "Paradigm: Reboot"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Restricted Access",
+        "2.7.0",
+        "RestrictedAccess.Knighthood.0",
+        "Knighthood",
+        "苦苦",
+        "EX - T.S.",
+        "Paradigm: Reboot collaboration",
+        "Paradigm: Reboot"
+      ],
+      "sortOrder": 92,
+      "facets": {}
+    },
+    {
+      "resourceId": "ef5544d1-d364-7f05-abb4-1e35651981b1",
+      "resourceType": "jacket",
+      "displayTitle": "Revenant",
+      "subtitle": "Juggernaut.",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "Revenant.Juggernaut.0",
+        "musicArtist": "Juggernaut.",
+        "illustrator": "ゲソきんぐ",
+        "disc": "EX - T.S.",
+        "trackSeries": "T.S. #1 — Juggernaut.",
+        "collaborationPartner": "Juggernaut collaboration"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Revenant",
+        "2.7.0",
+        "Revenant.Juggernaut.0",
+        "Juggernaut.",
+        "ゲソきんぐ",
+        "EX - T.S.",
+        "T.S. #1 — Juggernaut.",
+        "Juggernaut collaboration"
+      ],
+      "sortOrder": 93,
+      "facets": {}
+    },
+    {
+      "resourceId": "3a1110d2-9ba7-713b-8b95-b7debf64d71c",
+      "resourceType": "jacket",
+      "displayTitle": "Reversed Zenith",
+      "subtitle": "硝酸生菜",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "ReversedZenith.Synzak.0",
+        "musicArtist": "硝酸生菜",
+        "illustrator": "巷子",
+        "disc": "EX - T.S.",
+        "trackSeries": "Paradigm: Reboot collaboration",
+        "collaborationPartner": "Paradigm: Reboot"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Reversed Zenith",
+        "2.7.0",
+        "ReversedZenith.Synzak.0",
+        "硝酸生菜",
+        "巷子",
+        "EX - T.S.",
+        "Paradigm: Reboot collaboration",
+        "Paradigm: Reboot"
+      ],
+      "sortOrder": 94,
+      "facets": {}
+    },
+    {
+      "resourceId": "d17542fe-6e3f-755b-90fa-dcd9561c0318",
+      "resourceType": "jacket",
+      "displayTitle": "Rule The World",
+      "subtitle": "Vau Boy",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "RuleTheWorld.VauBoy.0",
+        "musicArtist": "Vau Boy",
+        "illustrator": "HAKIRE",
+        "disc": "Disc 2"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Rule The World",
+        "2.7.0",
+        "RuleTheWorld.VauBoy.0",
+        "Vau Boy",
+        "HAKIRE",
+        "Disc 2"
+      ],
+      "sortOrder": 95,
+      "facets": {}
+    },
+    {
+      "resourceId": "1b3fb146-f4be-70ac-b9d0-7e07a6170bfa",
+      "resourceType": "jacket",
+      "displayTitle": "Sakura Fubuki",
+      "subtitle": "Street",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "SakuraFubuki.Street.0",
+        "musicArtist": "Street",
+        "illustrator": "山山奇",
+        "disc": "Disc 1"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Sakura Fubuki",
+        "2.7.0",
+        "SakuraFubuki.Street.0",
+        "Street",
+        "山山奇",
+        "Disc 1"
+      ],
+      "sortOrder": 96,
+      "facets": {}
+    },
+    {
+      "resourceId": "50f32214-5e3f-7521-9772-54bc664ab54e",
+      "resourceType": "jacket",
+      "displayTitle": "Shattered",
+      "subtitle": "ARForest",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "Shattered.ARForest.0",
+        "musicArtist": "ARForest",
+        "illustrator": "山山奇",
+        "disc": "Disc 1"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Shattered",
+        "2.7.0",
+        "Shattered.ARForest.0",
+        "ARForest",
+        "山山奇",
+        "Disc 1"
+      ],
+      "sortOrder": 97,
+      "facets": {}
+    },
+    {
+      "resourceId": "e01c2757-8ade-743e-b515-aaa437f17f3e",
+      "resourceType": "jacket",
+      "displayTitle": "Skyscape",
+      "subtitle": "Plum",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "Skyscape.Plum.0",
+        "musicArtist": "Plum",
+        "illustrator": "山山奇",
+        "disc": "Disc 1"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Skyscape",
+        "2.7.0",
+        "Skyscape.Plum.0",
+        "Plum",
+        "山山奇",
+        "Disc 1"
+      ],
+      "sortOrder": 98,
+      "facets": {}
+    },
+    {
+      "resourceId": "eabc4b0d-e1c0-7886-8d18-b2e140839707",
+      "resourceType": "jacket",
+      "displayTitle": "蒼天 (Sta's Key-Kai mix)",
+      "subtitle": "Meine Meinung",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "SoutenStasKeyKaimix.MeineMeinung.0",
+        "musicArtist": "Meine Meinung",
+        "illustrator": "青鸟",
+        "disc": "EX - T.S.",
+        "trackSeries": "T.S. #4 — Tone Sphere",
+        "collaborationPartner": "Tone Sphere"
+      },
+      "badges": [],
+      "searchTerms": [
+        "蒼天 (Sta's Key-Kai mix)",
+        "2.7.0",
+        "SoutenStasKeyKaimix.MeineMeinung.0",
+        "Meine Meinung",
+        "青鸟",
+        "EX - T.S.",
+        "T.S. #4 — Tone Sphere",
+        "Tone Sphere"
+      ],
+      "sortOrder": 99,
+      "facets": {}
+    },
+    {
+      "resourceId": "eaaee2fd-9cae-72bb-9659-56e08c76f606",
+      "resourceType": "jacket",
+      "displayTitle": "Speed Up!",
+      "subtitle": "DarTokki",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "SpeedUp.DarTokki.0",
+        "musicArtist": "DarTokki",
+        "illustrator": "TNiK",
+        "disc": "EX - T.S.",
+        "trackSeries": "T.S. SP — Phigros",
+        "collaborationPartner": "Phigros"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Speed Up!",
+        "2.7.0",
+        "SpeedUp.DarTokki.0",
+        "DarTokki",
+        "TNiK",
+        "EX - T.S.",
+        "T.S. SP — Phigros",
+        "Phigros"
+      ],
+      "sortOrder": 100,
+      "facets": {}
+    },
+    {
+      "resourceId": "022f957b-bf2f-7523-a1a8-830ef5810620",
+      "resourceType": "jacket",
+      "displayTitle": "Spiritworks",
+      "subtitle": "Xomu & ZxNX",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "Spiritworks.XomuZxNX.0",
+        "musicArtist": "Xomu & ZxNX",
+        "illustrator": "破晓Buff-夜刃•Ex",
+        "disc": "EX - T.S.",
+        "trackSeries": "T.S. #16 — 古韻今声 / Diachronic Resonance"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Spiritworks",
+        "2.7.0",
+        "Spiritworks.XomuZxNX.0",
+        "Xomu & ZxNX",
+        "破晓Buff-夜刃•Ex",
+        "EX - T.S.",
+        "T.S. #16 — 古韻今声 / Diachronic Resonance"
+      ],
+      "sortOrder": 101,
+      "facets": {}
+    },
+    {
+      "resourceId": "815a2124-1e73-7fe5-bb50-cb6b2e9f5f97",
+      "resourceType": "jacket",
+      "displayTitle": "Sthenno",
+      "subtitle": "BlackY",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "Sthenno.BlackY.0",
+        "musicArtist": "BlackY",
+        "illustrator": "美工刀",
+        "disc": "EX - T.S.",
+        "trackSeries": "T.S. #5 — BlackY",
+        "collaborationPartner": "BlackY"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Sthenno",
+        "2.7.0",
+        "Sthenno.BlackY.0",
+        "BlackY",
+        "美工刀",
+        "EX - T.S.",
+        "T.S. #5 — BlackY",
+        "BlackY"
+      ],
+      "sortOrder": 102,
+      "facets": {}
+    },
+    {
+      "resourceId": "08aba5c3-29e9-724c-8470-b3389df52fb7",
+      "resourceType": "jacket",
+      "displayTitle": "Super Universe (Knighthood Remix)",
+      "subtitle": "Knighthood",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "SuperUniverseKnighthoodRemix.Knighthood.0",
+        "musicArtist": "Knighthood",
+        "illustrator": "绀屋",
+        "disc": "EX - Single"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Super Universe (Knighthood Remix)",
+        "2.7.0",
+        "SuperUniverseKnighthoodRemix.Knighthood.0",
+        "Knighthood",
+        "绀屋",
+        "EX - Single"
+      ],
+      "sortOrder": 103,
+      "facets": {}
+    },
+    {
+      "resourceId": "8d98955d-cd45-7f61-81d5-29388ab41633",
+      "resourceType": "jacket",
+      "displayTitle": "Swing Sweet Twee Dance feat. ななきなな",
+      "subtitle": "U-ske",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "SwingSweetTweeDance.Uske.0",
+        "musicArtist": "U-ske",
+        "illustrator": "hard",
+        "disc": "Disc 1"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Swing Sweet Twee Dance feat. ななきなな",
+        "2.7.0",
+        "SwingSweetTweeDance.Uske.0",
+        "U-ske",
+        "hard",
+        "Disc 1"
+      ],
+      "sortOrder": 104,
+      "facets": {}
+    },
+    {
+      "resourceId": "f3316987-4ee4-706f-8087-cfc7efae4dd2",
+      "resourceType": "jacket",
+      "displayTitle": "T+ VS SHARK",
+      "subtitle": "t+pazolite",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "TVSSHARK.tpazolite.0",
+        "musicArtist": "t+pazolite",
+        "illustrator": "C.H.S",
+        "disc": "EX - T.S.",
+        "trackSeries": "T.S. #10 — HARDCORE TANO*C",
+        "collaborationPartner": "HARDCORE TANO*C"
+      },
+      "badges": [],
+      "searchTerms": [
+        "T+ VS SHARK",
+        "2.7.0",
+        "TVSSHARK.tpazolite.0",
+        "t+pazolite",
+        "C.H.S",
+        "EX - T.S.",
+        "T.S. #10 — HARDCORE TANO*C",
+        "HARDCORE TANO*C"
+      ],
+      "sortOrder": 105,
+      "facets": {}
+    },
+    {
+      "resourceId": "c3a049a4-91e3-71da-83e0-e0e58578e119",
+      "resourceType": "jacket",
+      "displayTitle": "Tales of Delonix",
+      "subtitle": "Zris",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "TalesofDelonix.Zris.0",
+        "musicArtist": "Zris",
+        "illustrator": "Ano",
+        "disc": "EX - T.S.",
+        "trackSeries": "T.S. #16 — 古韻今声 / Diachronic Resonance"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Tales of Delonix",
+        "2.7.0",
+        "TalesofDelonix.Zris.0",
+        "Zris",
+        "Ano",
+        "EX - T.S.",
+        "T.S. #16 — 古韻今声 / Diachronic Resonance"
+      ],
+      "sortOrder": 106,
+      "facets": {}
+    },
+    {
+      "resourceId": "88f16e76-9e45-75e8-bd08-c5e0660307ef",
+      "resourceType": "jacket",
+      "displayTitle": "Tempest",
+      "subtitle": "Plum",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "Tempest.Plum.0",
+        "musicArtist": "Plum",
+        "illustrator": "绀屋",
+        "disc": "Disc 1"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Tempest",
+        "2.7.0",
+        "Tempest.Plum.0",
+        "Plum",
+        "绀屋",
+        "Disc 1"
+      ],
+      "sortOrder": 107,
+      "facets": {}
+    },
+    {
+      "resourceId": "a9e5a829-a385-7ec0-a422-55f5b3b6847e",
+      "resourceType": "jacket",
+      "displayTitle": "The Last Page",
+      "subtitle": "ARForest",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "TheLastPage.ARForest.0",
+        "musicArtist": "ARForest",
+        "illustrator": "山山奇",
+        "disc": "EX - Single"
+      },
+      "badges": [],
+      "searchTerms": [
+        "The Last Page",
+        "2.7.0",
+        "TheLastPage.ARForest.0",
+        "ARForest",
+        "山山奇",
+        "EX - Single"
+      ],
+      "sortOrder": 108,
+      "facets": {}
+    },
+    {
+      "resourceId": "333f29be-ba59-792e-b7ce-c3d7dd62c8b9",
+      "resourceType": "jacket",
+      "displayTitle": "The Next Arcady",
+      "subtitle": "SEPHID",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "TheNextArcady.SEPHID.0",
+        "musicArtist": "SEPHID",
+        "illustrator": "青鸟",
+        "disc": "Disc 1"
+      },
+      "badges": [],
+      "searchTerms": [
+        "The Next Arcady",
+        "2.7.0",
+        "TheNextArcady.SEPHID.0",
+        "SEPHID",
+        "青鸟",
+        "Disc 1"
+      ],
+      "sortOrder": 109,
+      "facets": {}
+    },
+    {
+      "resourceId": "a3a45b64-38f5-7d27-8147-bc8d1d9502f1",
+      "resourceType": "jacket",
+      "displayTitle": "Turning POINT",
+      "subtitle": "Junk",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "TurningPOINT.Junk.0",
+        "musicArtist": "Junk",
+        "illustrator": "鄂季",
+        "disc": "EX - T.S.",
+        "trackSeries": "Paradigm: Reboot collaboration",
+        "collaborationPartner": "Paradigm: Reboot"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Turning POINT",
+        "2.7.0",
+        "TurningPOINT.Junk.0",
+        "Junk",
+        "鄂季",
+        "EX - T.S.",
+        "Paradigm: Reboot collaboration",
+        "Paradigm: Reboot"
+      ],
+      "sortOrder": 110,
+      "facets": {}
+    },
+    {
+      "resourceId": "568828fd-3369-7f9d-ad10-02a998d4f738",
+      "resourceType": "jacket",
+      "displayTitle": "ULTRA SYNERGY MATRIX",
+      "subtitle": "Tanchiky",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "ULTRASYNERGYMATRIX.Tanchiky.0",
+        "musicArtist": "Tanchiky",
+        "illustrator": "からめる",
+        "disc": "EX - T.S.",
+        "trackSeries": "T.S. #14 — Tanchiky",
+        "collaborationPartner": "Tanchiky"
+      },
+      "badges": [],
+      "searchTerms": [
+        "ULTRA SYNERGY MATRIX",
+        "2.7.0",
+        "ULTRASYNERGYMATRIX.Tanchiky.0",
+        "Tanchiky",
+        "からめる",
+        "EX - T.S.",
+        "T.S. #14 — Tanchiky",
+        "Tanchiky"
+      ],
+      "sortOrder": 111,
+      "facets": {}
+    },
+    {
+      "resourceId": "8c462860-89df-7603-9a07-bf29996093df",
+      "resourceType": "jacket",
+      "displayTitle": "VICIOUS",
+      "subtitle": "MEMODEMO",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "VICIOUS.MEMODEMO.0",
+        "musicArtist": "MEMODEMO",
+        "illustrator": "juliegg",
+        "disc": "EX - T.S.",
+        "trackSeries": "T.S. #9 — Cosmic Radio 2024",
+        "collaborationPartner": "Cosmic Radio 2024"
+      },
+      "badges": [],
+      "searchTerms": [
+        "VICIOUS",
+        "2.7.0",
+        "VICIOUS.MEMODEMO.0",
+        "MEMODEMO",
+        "juliegg",
+        "EX - T.S.",
+        "T.S. #9 — Cosmic Radio 2024",
+        "Cosmic Radio 2024"
+      ],
+      "sortOrder": 112,
+      "facets": {}
+    },
+    {
+      "resourceId": "79f244a8-a44c-7501-9833-76e2cfc96e05",
+      "resourceType": "jacket",
+      "displayTitle": "Vaelumir's Call",
+      "subtitle": "Emissär wûl Elverhøjj (Fahr, Raphiiel, Sylphix)",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "VaelumirsCall.EmissärwûlElverhøjjFahrRaphiielSylphix.0",
+        "musicArtist": "Emissär wûl Elverhøjj (Fahr, Raphiiel, Sylphix)",
+        "illustrator": "BlUhOl",
+        "disc": "EX - T.S.",
+        "trackSeries": "T.S. #13 — 天地万象"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Vaelumir's Call",
+        "2.7.0",
+        "VaelumirsCall.EmissärwûlElverhøjjFahrRaphiielSylphix.0",
+        "Emissär wûl Elverhøjj (Fahr, Raphiiel, Sylphix)",
+        "BlUhOl",
+        "EX - T.S.",
+        "T.S. #13 — 天地万象"
+      ],
+      "sortOrder": 113,
+      "facets": {}
+    },
+    {
+      "resourceId": "ba592ff2-8088-7a5c-90eb-1c7e3b2febb5",
+      "resourceType": "jacket",
+      "displayTitle": "Vicious Mockery",
+      "subtitle": "Kry.exe",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "ViciousMockery.Kryexe.0",
+        "musicArtist": "Kry.exe",
+        "illustrator": "山山奇",
+        "disc": "Disc 1"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Vicious Mockery",
+        "2.7.0",
+        "ViciousMockery.Kryexe.0",
+        "Kry.exe",
+        "山山奇",
+        "Disc 1"
+      ],
+      "sortOrder": 114,
+      "facets": {}
+    },
+    {
+      "resourceId": "c6a5f2c3-ac49-7458-ba69-6f14230c6484",
+      "resourceType": "jacket",
+      "displayTitle": "V!rtuaresort",
+      "subtitle": "seatrus",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "Vrtuaresort.seatrus.0",
+        "musicArtist": "seatrus",
+        "illustrator": "绀屋",
+        "disc": "Disc 1"
+      },
+      "badges": [],
+      "searchTerms": [
+        "V!rtuaresort",
+        "2.7.0",
+        "Vrtuaresort.seatrus.0",
+        "seatrus",
+        "绀屋",
+        "Disc 1"
+      ],
+      "sortOrder": 115,
+      "facets": {}
+    },
+    {
+      "resourceId": "d4322f6b-dd6f-7199-b104-01e54b1322c9",
+      "resourceType": "jacket",
+      "displayTitle": "WATER",
+      "subtitle": "A-39 / 沙包P",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "WATER.A39沙包P.0",
+        "musicArtist": "A-39 / 沙包P",
+        "illustrator": "美工刀 feat. Jimwaz",
+        "disc": "EX - Single"
+      },
+      "badges": [],
+      "searchTerms": [
+        "WATER",
+        "2.7.0",
+        "WATER.A39沙包P.0",
+        "A-39 / 沙包P",
+        "美工刀 feat. Jimwaz",
+        "EX - Single"
+      ],
+      "sortOrder": 116,
+      "facets": {}
+    },
+    {
+      "resourceId": "8062969d-2e06-76a8-b287-fe0d741f184a",
+      "resourceType": "jacket",
+      "displayTitle": "Yellow Shining!! feat. 成田なる",
+      "subtitle": "にーえぬ",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "YellowShiningfeat成田なる.にーえぬ.0",
+        "musicArtist": "にーえぬ",
+        "illustrator": "やさか沙彩",
+        "disc": "Disc 2"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Yellow Shining!! feat. 成田なる",
+        "2.7.0",
+        "YellowShiningfeat成田なる.にーえぬ.0",
+        "にーえぬ",
+        "やさか沙彩",
+        "Disc 2"
+      ],
+      "sortOrder": 117,
+      "facets": {}
+    },
+    {
+      "resourceId": "38321d00-ff33-7c67-a75e-140aa6a7c56f",
+      "resourceType": "jacket",
+      "displayTitle": "ZEUS † 666",
+      "subtitle": "ルゼ",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "ZEUS666.ルゼ.0",
+        "musicArtist": "ルゼ",
+        "illustrator": "A-ZERO Project",
+        "disc": "EX - T.S.",
+        "trackSeries": "T.S. #15 — ルゼ & LisicA",
+        "collaborationPartner": "ルゼ / LisicA"
+      },
+      "badges": [],
+      "searchTerms": [
+        "ZEUS † 666",
+        "2.7.0",
+        "ZEUS666.ルゼ.0",
+        "ルゼ",
+        "A-ZERO Project",
+        "EX - T.S.",
+        "T.S. #15 — ルゼ & LisicA",
+        "ルゼ / LisicA"
+      ],
+      "sortOrder": 118,
+      "facets": {}
+    },
+    {
+      "resourceId": "2ab6f8e7-4566-7d5e-a233-a4b0326d9dd9",
+      "resourceType": "jacket",
+      "displayTitle": "amethyst",
+      "subtitle": "かねこちはる",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "amethyst.かねこちはる.0",
+        "musicArtist": "かねこちはる",
+        "illustrator": "Nich",
+        "disc": "EX - T.S.",
+        "trackSeries": "T.S. #8 — Rotaeno",
+        "collaborationPartner": "Rotaeno"
+      },
+      "badges": [],
+      "searchTerms": [
+        "amethyst",
+        "2.7.0",
+        "amethyst.かねこちはる.0",
+        "かねこちはる",
+        "Nich",
+        "EX - T.S.",
+        "T.S. #8 — Rotaeno",
+        "Rotaeno"
+      ],
+      "sortOrder": 119,
+      "facets": {}
+    },
+    {
+      "resourceId": "5ccc4b9f-dbd4-7225-8c53-543c77fe9025",
+      "resourceType": "jacket",
+      "displayTitle": "crystallized",
+      "subtitle": "Camellia",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "crystallized.Camellia.0",
+        "musicArtist": "Camellia",
+        "illustrator": "Ryo Asakura",
+        "disc": "Disc 2"
+      },
+      "badges": [],
+      "searchTerms": [
+        "crystallized",
+        "2.7.0",
+        "crystallized.Camellia.0",
+        "Camellia",
+        "Ryo Asakura",
+        "Disc 2"
+      ],
+      "sortOrder": 120,
+      "facets": {}
+    },
+    {
+      "resourceId": "a1b1f980-74df-7926-bdd2-6055beb40403",
+      "resourceType": "jacket",
+      "displayTitle": "enchanted love",
+      "subtitle": "linear ring",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "enchantedlove.linearring.0",
+        "musicArtist": "linear ring",
+        "illustrator": "Ek0ru",
+        "disc": "EX - Single"
+      },
+      "badges": [],
+      "searchTerms": [
+        "enchanted love",
+        "2.7.0",
+        "enchantedlove.linearring.0",
+        "linear ring",
+        "Ek0ru",
+        "EX - Single"
+      ],
+      "sortOrder": 121,
+      "facets": {}
+    },
+    {
+      "resourceId": "c9696f51-d6fa-78e5-be5d-ca59e2d2689d",
+      "resourceType": "jacket",
+      "displayTitle": "felys -final remix-",
+      "subtitle": "onoken",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "felysfinalremix.onoken.0",
+        "musicArtist": "onoken",
+        "illustrator": "山山奇",
+        "disc": "Disc 2"
+      },
+      "badges": [],
+      "searchTerms": [
+        "felys -final remix-",
+        "2.7.0",
+        "felysfinalremix.onoken.0",
+        "onoken",
+        "山山奇",
+        "Disc 2"
+      ],
+      "sortOrder": 122,
+      "facets": {}
+    },
+    {
+      "resourceId": "29613122-3824-79c4-ad17-35b329676e89",
+      "resourceType": "jacket",
+      "displayTitle": "macro.wav",
+      "subtitle": "dandeless",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "macrowav.dandeless.0",
+        "musicArtist": "dandeless",
+        "illustrator": "绀屋",
+        "disc": "Disc 1"
+      },
+      "badges": [],
+      "searchTerms": [
+        "macro.wav",
+        "2.7.0",
+        "macrowav.dandeless.0",
+        "dandeless",
+        "绀屋",
+        "Disc 1"
+      ],
+      "sortOrder": 123,
+      "facets": {}
+    },
+    {
+      "resourceId": "75ec29a2-225d-758b-9045-febef71a951b",
+      "resourceType": "jacket",
+      "displayTitle": "sAtElLites",
+      "subtitle": "SIRIUS",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "sAtElLites.SIRIUS.0",
+        "musicArtist": "SIRIUS",
+        "illustrator": "山山奇",
+        "disc": "Disc 2"
+      },
+      "badges": [],
+      "searchTerms": [
+        "sAtElLites",
+        "2.7.0",
+        "sAtElLites.SIRIUS.0",
+        "SIRIUS",
+        "山山奇",
+        "Disc 2"
+      ],
+      "sortOrder": 124,
+      "facets": {}
+    },
+    {
+      "resourceId": "3c242dcf-45c5-7a0a-8ce2-6721bae7a7fb",
+      "resourceType": "jacket",
+      "displayTitle": "slic.hertz",
+      "subtitle": "Sobrem",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "slichertz.Sobrem.0",
+        "musicArtist": "Sobrem",
+        "illustrator": "山山奇",
+        "disc": "EX - T.S.",
+        "trackSeries": "T.S. #3 — Sobrem",
+        "collaborationPartner": "Sobrem"
+      },
+      "badges": [],
+      "searchTerms": [
+        "slic.hertz",
+        "2.7.0",
+        "slichertz.Sobrem.0",
+        "Sobrem",
+        "山山奇",
+        "EX - T.S.",
+        "T.S. #3 — Sobrem",
+        "Sobrem"
+      ],
+      "sortOrder": 125,
+      "facets": {}
+    },
+    {
+      "resourceId": "77ce8996-1669-76d6-8e5a-02edba735742",
+      "resourceType": "jacket",
+      "displayTitle": "あのね",
+      "subtitle": "ナナツカゼ",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "あのね.ナナツカゼ.0",
+        "musicArtist": "ナナツカゼ",
+        "illustrator": "略nd",
+        "disc": "EX - Single"
+      },
+      "badges": [],
+      "searchTerms": [
+        "あのね",
+        "2.7.0",
+        "あのね.ナナツカゼ.0",
+        "ナナツカゼ",
+        "略nd",
+        "EX - Single"
+      ],
+      "sortOrder": 126,
+      "facets": {}
+    },
+    {
+      "resourceId": "6518caa7-e548-75f1-998e-b4b183b28594",
+      "resourceType": "jacket",
+      "displayTitle": "よさり 月蛍澄み昇りて",
+      "subtitle": "かゆき feat. 燈露",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "よさり月蛍澄み昇りて.かゆきfeat燈露.0",
+        "musicArtist": "かゆき feat. 燈露",
+        "illustrator": "榊原またぎ",
+        "disc": "Disc 2"
+      },
+      "badges": [],
+      "searchTerms": [
+        "よさり 月蛍澄み昇りて",
+        "2.7.0",
+        "よさり月蛍澄み昇りて.かゆきfeat燈露.0",
+        "かゆき feat. 燈露",
+        "榊原またぎ",
+        "Disc 2"
+      ],
+      "sortOrder": 127,
+      "facets": {}
+    },
+    {
+      "resourceId": "c16a68cc-a7c3-70ab-a109-2e34bbd95d69",
+      "resourceType": "jacket",
+      "displayTitle": "インフェルノシティ",
+      "subtitle": "Ponchi♪ feat. はぁち",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "インフェルノシティ.Ponchifeatはぁち.0",
+        "musicArtist": "Ponchi♪ feat. はぁち",
+        "illustrator": "LESYEF & 藍瀬 まなみ",
+        "disc": "EX - Single"
+      },
+      "badges": [],
+      "searchTerms": [
+        "インフェルノシティ",
+        "2.7.0",
+        "インフェルノシティ.Ponchifeatはぁち.0",
+        "Ponchi♪ feat. はぁち",
+        "LESYEF & 藍瀬 まなみ",
+        "EX - Single"
+      ],
+      "sortOrder": 128,
+      "facets": {}
+    },
+    {
+      "resourceId": "98b8025b-d587-7bc6-9abe-c5bd3dc3eb7f",
+      "resourceType": "jacket",
+      "displayTitle": "テウメッサ",
+      "subtitle": "LisicA",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "テウメッサ.LisicA.0",
+        "musicArtist": "LisicA",
+        "illustrator": "Orphée",
+        "disc": "EX - T.S.",
+        "trackSeries": "T.S. #15 — ルゼ & LisicA",
+        "collaborationPartner": "ルゼ / LisicA"
+      },
+      "badges": [],
+      "searchTerms": [
+        "テウメッサ",
+        "2.7.0",
+        "テウメッサ.LisicA.0",
+        "LisicA",
+        "Orphée",
+        "EX - T.S.",
+        "T.S. #15 — ルゼ & LisicA",
+        "ルゼ / LisicA"
+      ],
+      "sortOrder": 129,
+      "facets": {}
+    },
+    {
+      "resourceId": "9651372b-eb45-778e-8f8b-f8f6295f644c",
+      "resourceType": "jacket",
+      "displayTitle": "光 (阿卡姆巫师 Remix)",
+      "subtitle": "姜米條 Remixed by 阿卡姆巫师",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "光阿卡姆巫师Remix.姜米條Remixedby阿卡姆巫师.0",
+        "musicArtist": "姜米條 Remixed by 阿卡姆巫师",
+        "illustrator": "青鸟",
+        "disc": "Disc 2"
+      },
+      "badges": [],
+      "searchTerms": [
+        "光 (阿卡姆巫师 Remix)",
+        "2.7.0",
+        "光阿卡姆巫师Remix.姜米條Remixedby阿卡姆巫师.0",
+        "姜米條 Remixed by 阿卡姆巫师",
+        "青鸟",
+        "Disc 2"
+      ],
+      "sortOrder": 130,
+      "facets": {}
+    },
+    {
+      "resourceId": "b5b0e64f-9237-7b47-953c-1bdbd38da461",
+      "resourceType": "jacket",
+      "displayTitle": "地区 Shangri-LA",
+      "subtitle": "Drazically",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "地区ShangriLA.Drazically.0",
+        "musicArtist": "Drazically",
+        "illustrator": "山山奇 feat. Jimwaz",
+        "disc": "EX - T.S.",
+        "trackSeries": "T.S. #16 — 古韻今声 / Diachronic Resonance"
+      },
+      "badges": [],
+      "searchTerms": [
+        "地区 Shangri-LA",
+        "2.7.0",
+        "地区ShangriLA.Drazically.0",
+        "Drazically",
+        "山山奇 feat. Jimwaz",
+        "EX - T.S.",
+        "T.S. #16 — 古韻今声 / Diachronic Resonance"
+      ],
+      "sortOrder": 131,
+      "facets": {}
+    },
+    {
+      "resourceId": "556f7d33-93af-75c9-aabe-b101d04eda5e",
+      "resourceType": "jacket",
+      "displayTitle": "夢厭 con eleganza",
+      "subtitle": "大前司",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "夢厭coneleganza.大前司.0",
+        "musicArtist": "大前司",
+        "illustrator": "KeiuO as GAQLLA",
+        "disc": "EX - Single"
+      },
+      "badges": [],
+      "searchTerms": [
+        "夢厭 con eleganza",
+        "2.7.0",
+        "夢厭coneleganza.大前司.0",
+        "大前司",
+        "KeiuO as GAQLLA",
+        "EX - Single"
+      ],
+      "sortOrder": 132,
+      "facets": {}
+    },
+    {
+      "resourceId": "6539dfa3-a5ba-7983-b734-3fcd02f15df8",
+      "resourceType": "jacket",
+      "displayTitle": "天地開闢",
+      "subtitle": "kuro",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "天地開闢.kuro.0",
+        "musicArtist": "kuro",
+        "illustrator": "CeliA feat. M.y.H.F.",
+        "disc": "EX - T.S.",
+        "trackSeries": "T.S. #12 — kuro",
+        "collaborationPartner": "kuro"
+      },
+      "badges": [],
+      "searchTerms": [
+        "天地開闢",
+        "2.7.0",
+        "天地開闢.kuro.0",
+        "kuro",
+        "CeliA feat. M.y.H.F.",
+        "EX - T.S.",
+        "T.S. #12 — kuro",
+        "kuro"
+      ],
+      "sortOrder": 133,
+      "facets": {}
+    },
+    {
+      "resourceId": "595e3eba-9094-7eab-999b-506420ff504b",
+      "resourceType": "jacket",
+      "displayTitle": "天灵灵地灵灵",
+      "subtitle": "iKz feat.小可学妹",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "天灵灵地灵灵.iKzfeat小可学妹.0",
+        "musicArtist": "iKz feat.小可学妹",
+        "illustrator": "©peropero",
+        "disc": "EX - T.S.",
+        "trackSeries": "T.S. #6 — Cytus II × Muse Dash",
+        "collaborationPartner": "Cytus II / Muse Dash"
+      },
+      "badges": [],
+      "searchTerms": [
+        "天灵灵地灵灵",
+        "2.7.0",
+        "天灵灵地灵灵.iKzfeat小可学妹.0",
+        "iKz feat.小可学妹",
+        "©peropero",
+        "EX - T.S.",
+        "T.S. #6 — Cytus II × Muse Dash",
+        "Cytus II / Muse Dash"
+      ],
+      "sortOrder": 134,
+      "facets": {}
+    },
+    {
+      "resourceId": "7e224923-5f00-7dbf-a38d-085f911d05bb",
+      "resourceType": "jacket",
+      "displayTitle": "森奥虚跡",
+      "subtitle": "ShiBa",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "森奥虚跡.ShiBa.0",
+        "musicArtist": "ShiBa",
+        "illustrator": "Rutumn",
+        "disc": "EX - Single"
+      },
+      "badges": [],
+      "searchTerms": [
+        "森奥虚跡",
+        "2.7.0",
+        "森奥虚跡.ShiBa.0",
+        "ShiBa",
+        "Rutumn",
+        "EX - Single"
+      ],
+      "sortOrder": 135,
+      "facets": {}
+    },
+    {
+      "resourceId": "0aa53eac-2641-7259-8919-4f621076c126",
+      "resourceType": "jacket",
+      "displayTitle": "水槽に沈む街",
+      "subtitle": "kuro",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "水槽に沈む街.kuro.0",
+        "musicArtist": "kuro",
+        "illustrator": "Ezoitachi",
+        "disc": "EX - T.S.",
+        "trackSeries": "T.S. #12 — kuro",
+        "collaborationPartner": "kuro"
+      },
+      "badges": [],
+      "searchTerms": [
+        "水槽に沈む街",
+        "2.7.0",
+        "水槽に沈む街.kuro.0",
+        "kuro",
+        "Ezoitachi",
+        "EX - T.S.",
+        "T.S. #12 — kuro",
+        "kuro"
+      ],
+      "sortOrder": 136,
+      "facets": {}
+    },
+    {
+      "resourceId": "7b457719-2fae-70ee-8d83-e9cce4fc04e2",
+      "resourceType": "jacket",
+      "displayTitle": "溶けてゆく",
+      "subtitle": "A-39",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "溶けてゆく.A39.0",
+        "musicArtist": "A-39",
+        "illustrator": "椒",
+        "disc": "EX - Single"
+      },
+      "badges": [],
+      "searchTerms": [
+        "溶けてゆく",
+        "2.7.0",
+        "溶けてゆく.A39.0",
+        "A-39",
+        "椒",
+        "EX - Single"
+      ],
+      "sortOrder": 137,
+      "facets": {}
+    },
+    {
+      "resourceId": "51313eda-c80d-7095-98b6-6bbf78e83a93",
+      "resourceType": "jacket",
+      "displayTitle": "漂流",
+      "subtitle": "THE SxPLAY & KIVΛ",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "漂流.THESxPLAYKIVΛ.0",
+        "musicArtist": "THE SxPLAY & KIVΛ",
+        "illustrator": "©2024 Rayark Inc. CYTUS II®",
+        "disc": "EX - T.S.",
+        "trackSeries": "T.S. #6 — Cytus II × Muse Dash",
+        "collaborationPartner": "Cytus II / Muse Dash"
+      },
+      "badges": [],
+      "searchTerms": [
+        "漂流",
+        "2.7.0",
+        "漂流.THESxPLAYKIVΛ.0",
+        "THE SxPLAY & KIVΛ",
+        "©2024 Rayark Inc. CYTUS II®",
+        "EX - T.S.",
+        "T.S. #6 — Cytus II × Muse Dash",
+        "Cytus II / Muse Dash"
+      ],
+      "sortOrder": 138,
+      "facets": {}
+    },
+    {
+      "resourceId": "07f6c584-6bf6-7599-bcf9-1fde0f3875d0",
+      "resourceType": "jacket",
+      "displayTitle": "翠杜",
+      "subtitle": "隣の庭は青い(庭師+Aoi)",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "翠杜.隣の庭は青い庭師Aoi.0",
+        "musicArtist": "隣の庭は青い(庭師+Aoi)",
+        "illustrator": "月裏",
+        "disc": "EX - T.S.",
+        "trackSeries": "T.S. #8 — Rotaeno",
+        "collaborationPartner": "Rotaeno"
+      },
+      "badges": [],
+      "searchTerms": [
+        "翠杜",
+        "2.7.0",
+        "翠杜.隣の庭は青い庭師Aoi.0",
+        "隣の庭は青い(庭師+Aoi)",
+        "月裏",
+        "EX - T.S.",
+        "T.S. #8 — Rotaeno",
+        "Rotaeno"
+      ],
+      "sortOrder": 139,
+      "facets": {}
+    },
+    {
+      "resourceId": "1d770a97-05f5-7153-92d0-efc863651f5e",
+      "resourceType": "jacket",
+      "displayTitle": "驟雨の狭間",
+      "subtitle": "Silentroom",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "songId": "驟雨の狭間.Silentroom.0",
+        "musicArtist": "Silentroom",
+        "illustrator": "Shun Yamaguchi",
+        "disc": "EX - Single"
+      },
+      "badges": [],
+      "searchTerms": [
+        "驟雨の狭間",
+        "2.7.0",
+        "驟雨の狭間.Silentroom.0",
+        "Silentroom",
+        "Shun Yamaguchi",
+        "EX - Single"
+      ],
+      "sortOrder": 140,
+      "facets": {}
+    },
+    {
+      "resourceId": "2e3de8be-f28e-7fb5-af01-7afa984f3971",
+      "resourceType": "special-art",
+      "displayTitle": "2nd Anniversary Art",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "specialArtId": "rizline:special-art:2ndAnniversaryArt.0",
+        "illustrator": "群青kurara"
+      },
+      "badges": [],
+      "searchTerms": [
+        "2nd Anniversary Art",
+        "2.7.0",
+        "rizline:special-art:2ndAnniversaryArt.0",
+        "群青kurara"
+      ],
+      "sortOrder": 141,
+      "facets": {}
+    },
+    {
+      "resourceId": "614d9515-a0de-77c0-a7cc-fc692cc71e4d",
+      "resourceType": "special-art",
+      "displayTitle": "Afterdark",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "specialArtId": "rizline:special-art:Afterdark.Sta.0.0",
+        "illustrator": "© Bit192 Labs / Sta Kousin",
+        "relatedSong": "Afterdark",
+        "trackSeries": "T.S. #4 — Tone Sphere"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Afterdark",
+        "2.7.0",
+        "rizline:special-art:Afterdark.Sta.0.0",
+        "© Bit192 Labs / Sta Kousin",
+        "Afterdark",
+        "T.S. #4 — Tone Sphere"
+      ],
+      "sortOrder": 142,
+      "facets": {}
+    },
+    {
+      "resourceId": "874f7279-e072-7ad4-bf08-0c6d86acdc92",
+      "resourceType": "special-art",
+      "displayTitle": "Conway's Child",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "specialArtId": "rizline:special-art:ConwaysChild.Sta.0.0",
+        "illustrator": "© Bit192 Labs / Sta Kousin",
+        "relatedSong": "Conway's Child",
+        "trackSeries": "T.S. #4 — Tone Sphere"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Conway's Child",
+        "2.7.0",
+        "rizline:special-art:ConwaysChild.Sta.0.0",
+        "© Bit192 Labs / Sta Kousin",
+        "Conway's Child",
+        "T.S. #4 — Tone Sphere"
+      ],
+      "sortOrder": 143,
+      "facets": {}
+    },
+    {
+      "resourceId": "dd1d9a52-2d30-737d-ae4d-d045a45fb42b",
+      "resourceType": "special-art",
+      "displayTitle": "MilK",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "specialArtId": "rizline:special-art:MilK.morimoriatsushi.0.0",
+        "illustrator": "山山奇",
+        "relatedSong": "MilK"
+      },
+      "badges": [],
+      "searchTerms": [
+        "MilK",
+        "2.7.0",
+        "rizline:special-art:MilK.morimoriatsushi.0.0",
+        "山山奇",
+        "MilK"
+      ],
+      "sortOrder": 144,
+      "facets": {}
+    },
+    {
+      "resourceId": "d5715dd4-90ac-72f0-81a4-e3b2b2054d50",
+      "resourceType": "special-art",
+      "displayTitle": "Muse Dash",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "specialArtId": "rizline:special-art:MuseDashCollab.0",
+        "illustrator": "©peropero",
+        "trackSeries": "T.S. #6 — Cytus II × Muse Dash",
+        "collaborationPartner": "Muse Dash / Cytus II"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Muse Dash",
+        "2.7.0",
+        "rizline:special-art:MuseDashCollab.0",
+        "©peropero",
+        "T.S. #6 — Cytus II × Muse Dash",
+        "Muse Dash / Cytus II"
+      ],
+      "sortOrder": 145,
+      "facets": {}
+    },
+    {
+      "resourceId": "04bf9fee-7286-7e18-9d9b-99b365c2802b",
+      "resourceType": "special-art",
+      "displayTitle": "Muse Dash",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "specialArtId": "rizline:special-art:MuseDashCollab.0.cn",
+        "illustrator": "©peropero",
+        "trackSeries": "T.S. #6 — Cytus II × Muse Dash",
+        "collaborationPartner": "Muse Dash / Cytus II"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Muse Dash",
+        "2.7.0",
+        "rizline:special-art:MuseDashCollab.0.cn",
+        "©peropero",
+        "T.S. #6 — Cytus II × Muse Dash",
+        "Muse Dash / Cytus II"
+      ],
+      "sortOrder": 146,
+      "facets": {}
+    },
+    {
+      "resourceId": "882dddf5-5018-728d-96ad-e49eeac9fbc1",
+      "resourceType": "rizcard-layout",
+      "displayTitle": "Layout 00002",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "layoutId": "layout.00002",
+        "layout": "Layout 00002"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Layout 00002",
+        "2.7.0",
+        "layout.00002",
+        "Layout 00002"
+      ],
+      "sortOrder": 147,
+      "facets": {}
+    },
+    {
+      "resourceId": "b4a7001b-f076-7987-ab91-1144b53aa51a",
+      "resourceType": "rizcard-layout",
+      "displayTitle": "Layout 00005",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "layoutId": "layout.00005",
+        "layout": "Layout 00005"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Layout 00005",
+        "2.7.0",
+        "layout.00005",
+        "Layout 00005"
+      ],
+      "sortOrder": 148,
+      "facets": {}
+    },
+    {
+      "resourceId": "0d531cc6-59fc-7043-9852-c26789f226bf",
+      "resourceType": "rizcard-layout",
+      "displayTitle": "Layout 00006",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "layoutId": "layout.00006",
+        "layout": "Layout 00006"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Layout 00006",
+        "2.7.0",
+        "layout.00006",
+        "Layout 00006"
+      ],
+      "sortOrder": 149,
+      "facets": {}
+    },
+    {
+      "resourceId": "523ae699-4e52-7ec0-9f20-e92faa88a971",
+      "resourceType": "rizcard-layout",
+      "displayTitle": "Layout 00007",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "layoutId": "layout.00007",
+        "layout": "Layout 00007"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Layout 00007",
+        "2.7.0",
+        "layout.00007",
+        "Layout 00007"
+      ],
+      "sortOrder": 150,
+      "facets": {}
+    },
+    {
+      "resourceId": "732c0f72-e028-7f5d-b50d-c14220f6d64e",
+      "resourceType": "rizcard-layout",
+      "displayTitle": "Layout 00008",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "layoutId": "layout.00008",
+        "layout": "Layout 00008"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Layout 00008",
+        "2.7.0",
+        "layout.00008",
+        "Layout 00008"
+      ],
+      "sortOrder": 151,
+      "facets": {}
+    },
+    {
+      "resourceId": "502b0bfe-773f-70fb-85e4-48928b85b12b",
+      "resourceType": "rizcard-layout",
+      "displayTitle": "Layout 00010",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "layoutId": "layout.00010",
+        "layout": "Layout 00010"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Layout 00010",
+        "2.7.0",
+        "layout.00010",
+        "Layout 00010"
+      ],
+      "sortOrder": 152,
+      "facets": {}
+    },
+    {
+      "resourceId": "74ae3122-3da9-7fe9-99e9-1e53747d5870",
+      "resourceType": "rizcard-layout",
+      "displayTitle": "Layout 00013",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "layoutId": "layout.00013",
+        "layout": "Layout 00013"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Layout 00013",
+        "2.7.0",
+        "layout.00013",
+        "Layout 00013"
+      ],
+      "sortOrder": 153,
+      "facets": {}
+    },
+    {
+      "resourceId": "466a0e8c-8f6b-7dee-98e1-2b8fb74fbeea",
+      "resourceType": "rizcard-layout",
+      "displayTitle": "Layout 00014",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "layoutId": "layout.00014",
+        "layout": "Layout 00014"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Layout 00014",
+        "2.7.0",
+        "layout.00014",
+        "Layout 00014"
+      ],
+      "sortOrder": 154,
+      "facets": {}
+    },
+    {
+      "resourceId": "a5f0b4e8-2ffd-7971-bc6b-7108af26f38c",
+      "resourceType": "rizcard-layout",
+      "displayTitle": "Layout 00021",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "layoutId": "layout.00021",
+        "layout": "Layout 00021"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Layout 00021",
+        "2.7.0",
+        "layout.00021",
+        "Layout 00021"
+      ],
+      "sortOrder": 155,
+      "facets": {}
+    },
+    {
+      "resourceId": "90ba9b19-bb35-7ebe-ab0b-53553f220b29",
+      "resourceType": "rizcard-layout",
+      "displayTitle": "Layout 00022",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "layoutId": "layout.00022",
+        "layout": "Layout 00022"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Layout 00022",
+        "2.7.0",
+        "layout.00022",
+        "Layout 00022"
+      ],
+      "sortOrder": 156,
+      "facets": {}
+    },
+    {
+      "resourceId": "c1466853-253d-7fc0-8140-990b85d9b1ea",
+      "resourceType": "rizcard-layout",
+      "displayTitle": "Layout 00023",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "layoutId": "layout.00023",
+        "layout": "Layout 00023"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Layout 00023",
+        "2.7.0",
+        "layout.00023",
+        "Layout 00023"
+      ],
+      "sortOrder": 157,
+      "facets": {}
+    },
+    {
+      "resourceId": "f8a54b89-78a8-7cd1-8033-370470203346",
+      "resourceType": "rizcard-layout",
+      "displayTitle": "Layout 00024",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "layoutId": "layout.00024",
+        "layout": "Layout 00024"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Layout 00024",
+        "2.7.0",
+        "layout.00024",
+        "Layout 00024"
+      ],
+      "sortOrder": 158,
+      "facets": {}
+    },
+    {
+      "resourceId": "237e7375-76c0-7ee0-8335-06f5ed64cc5c",
+      "resourceType": "rizcard-layout",
+      "displayTitle": "Layout 00030",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "layoutId": "layout.00030",
+        "layout": "Layout 00030"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Layout 00030",
+        "2.7.0",
+        "layout.00030",
+        "Layout 00030"
+      ],
+      "sortOrder": 159,
+      "facets": {}
+    },
+    {
+      "resourceId": "90c55bca-351d-7f85-9a4b-99a98a5d0d92",
+      "resourceType": "rizcard-layout",
+      "displayTitle": "Layout 00032",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "layoutId": "layout.00032",
+        "layout": "Layout 00032"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Layout 00032",
+        "2.7.0",
+        "layout.00032",
+        "Layout 00032"
+      ],
+      "sortOrder": 160,
+      "facets": {}
+    },
+    {
+      "resourceId": "421a7515-cf21-77fd-8a6e-cfd9cb367283",
+      "resourceType": "rizcard-layout",
+      "displayTitle": "Layout 00033",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "layoutId": "layout.00033",
+        "layout": "Layout 00033"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Layout 00033",
+        "2.7.0",
+        "layout.00033",
+        "Layout 00033"
+      ],
+      "sortOrder": 161,
+      "facets": {}
+    },
+    {
+      "resourceId": "4f210589-7457-7733-aec6-e3d8e1cba3b7",
+      "resourceType": "rizcard-layout",
+      "displayTitle": "Layout 00034",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "layoutId": "layout.00034",
+        "layout": "Layout 00034"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Layout 00034",
+        "2.7.0",
+        "layout.00034",
+        "Layout 00034"
+      ],
+      "sortOrder": 162,
+      "facets": {}
+    },
+    {
+      "resourceId": "e2353e6d-c4b1-7328-8901-d02b0c7d63b5",
+      "resourceType": "rizcard-layout",
+      "displayTitle": "Layout 00037",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "layoutId": "layout.00037",
+        "layout": "Layout 00037"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Layout 00037",
+        "2.7.0",
+        "layout.00037",
+        "Layout 00037"
+      ],
+      "sortOrder": 163,
+      "facets": {}
+    },
+    {
+      "resourceId": "db21ce99-7d09-7996-9227-b479780e254f",
+      "resourceType": "rizcard-layout",
+      "displayTitle": "Layout 00038",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "layoutId": "layout.00038",
+        "layout": "Layout 00038"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Layout 00038",
+        "2.7.0",
+        "layout.00038",
+        "Layout 00038"
+      ],
+      "sortOrder": 164,
+      "facets": {}
+    },
+    {
+      "resourceId": "9e2319cf-550d-7799-bed7-3dd9b8a2b5db",
+      "resourceType": "rizcard-layout",
+      "displayTitle": "Layout 00039",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "layoutId": "layout.00039",
+        "layout": "Layout 00039"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Layout 00039",
+        "2.7.0",
+        "layout.00039",
+        "Layout 00039"
+      ],
+      "sortOrder": 165,
+      "facets": {}
+    },
+    {
+      "resourceId": "50268cd5-3af0-7875-833d-4456d13b95e9",
+      "resourceType": "rizcard-layout",
+      "displayTitle": "Layout 00040",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "layoutId": "layout.00040",
+        "layout": "Layout 00040"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Layout 00040",
+        "2.7.0",
+        "layout.00040",
+        "Layout 00040"
+      ],
+      "sortOrder": 166,
+      "facets": {}
+    },
+    {
+      "resourceId": "80adde04-fd7b-780c-a116-84e9f50acbc5",
+      "resourceType": "rizcard-layout",
+      "displayTitle": "Layout 00044",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "layoutId": "layout.00044",
+        "layout": "Layout 00044"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Layout 00044",
+        "2.7.0",
+        "layout.00044",
+        "Layout 00044"
+      ],
+      "sortOrder": 167,
+      "facets": {}
+    },
+    {
+      "resourceId": "2162fb1d-3f10-7bd3-8f8a-bad2534b404b",
+      "resourceType": "rizcard-layout",
+      "displayTitle": "Layout 00045",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "layoutId": "layout.00045",
+        "layout": "Layout 00045"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Layout 00045",
+        "2.7.0",
+        "layout.00045",
+        "Layout 00045"
+      ],
+      "sortOrder": 168,
+      "facets": {}
+    },
+    {
+      "resourceId": "8d3f35f3-8ad2-7521-9a6c-f2e407a3b542",
+      "resourceType": "rizcard-layout",
+      "displayTitle": "Layout 00050",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "layoutId": "layout.00050",
+        "layout": "Layout 00050"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Layout 00050",
+        "2.7.0",
+        "layout.00050",
+        "Layout 00050"
+      ],
+      "sortOrder": 169,
+      "facets": {}
+    },
+    {
+      "resourceId": "1668f333-ec6a-7987-8c7c-0a51059a9bd2",
+      "resourceType": "rizcard-layout",
+      "displayTitle": "Layout 00051",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "layoutId": "layout.00051",
+        "layout": "Layout 00051"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Layout 00051",
+        "2.7.0",
+        "layout.00051",
+        "Layout 00051"
+      ],
+      "sortOrder": 170,
+      "facets": {}
+    },
+    {
+      "resourceId": "ed8bb627-14d1-75f6-8994-8832a0989b29",
+      "resourceType": "rizcard-layout",
+      "displayTitle": "Layout 00053",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "layoutId": "layout.00053",
+        "layout": "Layout 00053"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Layout 00053",
+        "2.7.0",
+        "layout.00053",
+        "Layout 00053"
+      ],
+      "sortOrder": 171,
+      "facets": {}
+    },
+    {
+      "resourceId": "f12627fb-dad7-73ec-8fdd-0a3fcbd29feb",
+      "resourceType": "rizcard-layout",
+      "displayTitle": "Layout 00055",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "layoutId": "layout.00055",
+        "layout": "Layout 00055"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Layout 00055",
+        "2.7.0",
+        "layout.00055",
+        "Layout 00055"
+      ],
+      "sortOrder": 172,
+      "facets": {}
+    },
+    {
+      "resourceId": "a34c5747-359d-7341-9a5c-5a29c64852d4",
+      "resourceType": "rizcard-layout",
+      "displayTitle": "Layout Static0000CN",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "layoutId": "Static0000CN",
+        "layout": "Layout Static0000CN"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Layout Static0000CN",
+        "2.7.0",
+        "Static0000CN",
+        "Layout Static0000CN"
+      ],
+      "sortOrder": 173,
+      "facets": {}
+    },
+    {
+      "resourceId": "aca164da-d8bf-7bbb-b23e-1476a69bbcfd",
+      "resourceType": "rizcard-layout",
+      "displayTitle": "Layout Static0000EN",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "layoutId": "Static0000EN",
+        "layout": "Layout Static0000EN"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Layout Static0000EN",
+        "2.7.0",
+        "Static0000EN",
+        "Layout Static0000EN"
+      ],
+      "sortOrder": 174,
+      "facets": {}
+    },
+    {
+      "resourceId": "451b658e-5e94-7f5a-8afc-406f9d69c766",
+      "resourceType": "rizcard-layout",
+      "displayTitle": "Layout Static0001CN",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "layoutId": "Static0001CN",
+        "layout": "Layout Static0001CN"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Layout Static0001CN",
+        "2.7.0",
+        "Static0001CN",
+        "Layout Static0001CN"
+      ],
+      "sortOrder": 175,
+      "facets": {}
+    },
+    {
+      "resourceId": "c53f9abe-d171-715c-a7b0-44cbfa525e7e",
+      "resourceType": "rizcard-layout",
+      "displayTitle": "Layout Static0001EN",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "layoutId": "Static0001EN",
+        "layout": "Layout Static0001EN"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Layout Static0001EN",
+        "2.7.0",
+        "Static0001EN",
+        "Layout Static0001EN"
+      ],
+      "sortOrder": 176,
+      "facets": {}
+    },
+    {
+      "resourceId": "ff200fa1-38e5-728c-9806-c13b8f65eada",
+      "resourceType": "rizcard-layout",
+      "displayTitle": "Layout Static0002CN",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "layoutId": "Static0002CN",
+        "layout": "Layout Static0002CN"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Layout Static0002CN",
+        "2.7.0",
+        "Static0002CN",
+        "Layout Static0002CN"
+      ],
+      "sortOrder": 177,
+      "facets": {}
+    },
+    {
+      "resourceId": "61f7accb-60e4-7acd-aea5-2f786cb67422",
+      "resourceType": "rizcard-layout",
+      "displayTitle": "Layout Static0002EN",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "layoutId": "Static0002EN",
+        "layout": "Layout Static0002EN"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Layout Static0002EN",
+        "2.7.0",
+        "Static0002EN",
+        "Layout Static0002EN"
+      ],
+      "sortOrder": 178,
+      "facets": {}
+    },
+    {
+      "resourceId": "ab7af6d7-15bb-7e14-a919-c02966baa179",
+      "resourceType": "rizcard-layout",
+      "displayTitle": "Layout Static0003CN",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "layoutId": "Static0003CN",
+        "layout": "Layout Static0003CN"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Layout Static0003CN",
+        "2.7.0",
+        "Static0003CN",
+        "Layout Static0003CN"
+      ],
+      "sortOrder": 179,
+      "facets": {}
+    },
+    {
+      "resourceId": "d78268b7-227c-7549-8984-77753ae04f05",
+      "resourceType": "rizcard-layout",
+      "displayTitle": "Layout Static0003EN",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "layoutId": "Static0003EN",
+        "layout": "Layout Static0003EN"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Layout Static0003EN",
+        "2.7.0",
+        "Static0003EN",
+        "Layout Static0003EN"
+      ],
+      "sortOrder": 180,
+      "facets": {}
+    },
+    {
+      "resourceId": "7917dc18-9570-7207-8363-d2a2102d1055",
+      "resourceType": "rizcard-layout",
+      "displayTitle": "Layout Static0004CN",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "layoutId": "Static0004CN",
+        "layout": "Layout Static0004CN"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Layout Static0004CN",
+        "2.7.0",
+        "Static0004CN",
+        "Layout Static0004CN"
+      ],
+      "sortOrder": 181,
+      "facets": {}
+    },
+    {
+      "resourceId": "5177b964-d2e1-7922-877d-175e5b431ee6",
+      "resourceType": "rizcard-layout",
+      "displayTitle": "Layout Static0004EN",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "layoutId": "Static0004EN",
+        "layout": "Layout Static0004EN"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Layout Static0004EN",
+        "2.7.0",
+        "Static0004EN",
+        "Layout Static0004EN"
+      ],
+      "sortOrder": 182,
+      "facets": {}
+    },
+    {
+      "resourceId": "dfeff2c4-28aa-73a7-898d-3bf364230ea8",
+      "resourceType": "rizcard-layout",
+      "displayTitle": "Layout Static0005CN",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "layoutId": "Static0005CN",
+        "layout": "Layout Static0005CN"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Layout Static0005CN",
+        "2.7.0",
+        "Static0005CN",
+        "Layout Static0005CN"
+      ],
+      "sortOrder": 183,
+      "facets": {}
+    },
+    {
+      "resourceId": "ab51127e-3a7f-71eb-9710-06cd91404c4f",
+      "resourceType": "rizcard-layout",
+      "displayTitle": "Layout Static0005EN",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "layoutId": "Static0005EN",
+        "layout": "Layout Static0005EN"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Layout Static0005EN",
+        "2.7.0",
+        "Static0005EN",
+        "Layout Static0005EN"
+      ],
+      "sortOrder": 184,
+      "facets": {}
+    },
+    {
+      "resourceId": "6ac0aa6b-03b0-7210-b1af-845a56e7811d",
+      "resourceType": "rizcard-layout",
+      "displayTitle": "Layout Static0006CN",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "layoutId": "Static0006CN",
+        "layout": "Layout Static0006CN"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Layout Static0006CN",
+        "2.7.0",
+        "Static0006CN",
+        "Layout Static0006CN"
+      ],
+      "sortOrder": 185,
+      "facets": {}
+    },
+    {
+      "resourceId": "217528c6-d6f2-778d-b8f8-d6aa2ade3a0a",
+      "resourceType": "rizcard-layout",
+      "displayTitle": "Layout Static0006EN",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "layoutId": "Static0006EN",
+        "layout": "Layout Static0006EN"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Layout Static0006EN",
+        "2.7.0",
+        "Static0006EN",
+        "Layout Static0006EN"
+      ],
+      "sortOrder": 186,
+      "facets": {}
+    },
+    {
+      "resourceId": "2a168028-7763-7491-b986-7232fb28ff44",
+      "resourceType": "rizcard-layout",
+      "displayTitle": "Layout Static0007CN",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "layoutId": "Static0007CN",
+        "layout": "Layout Static0007CN"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Layout Static0007CN",
+        "2.7.0",
+        "Static0007CN",
+        "Layout Static0007CN"
+      ],
+      "sortOrder": 187,
+      "facets": {}
+    },
+    {
+      "resourceId": "dc45f1c1-5e44-7109-9d1f-7b12f44205f3",
+      "resourceType": "rizcard-layout",
+      "displayTitle": "Layout Static0007EN",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "layoutId": "Static0007EN",
+        "layout": "Layout Static0007EN"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Layout Static0007EN",
+        "2.7.0",
+        "Static0007EN",
+        "Layout Static0007EN"
+      ],
+      "sortOrder": 188,
+      "facets": {}
+    },
+    {
+      "resourceId": "532d5975-f4e0-76de-ab83-5994e76d91cd",
+      "resourceType": "rizcard-layout",
+      "displayTitle": "Layout Static0008CN",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "layoutId": "Static0008CN",
+        "layout": "Layout Static0008CN"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Layout Static0008CN",
+        "2.7.0",
+        "Static0008CN",
+        "Layout Static0008CN"
+      ],
+      "sortOrder": 189,
+      "facets": {}
+    },
+    {
+      "resourceId": "6b0438e7-20e3-732b-8a8d-26ccac4685db",
+      "resourceType": "rizcard-layout",
+      "displayTitle": "Layout Static0008EN",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "layoutId": "Static0008EN",
+        "layout": "Layout Static0008EN"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Layout Static0008EN",
+        "2.7.0",
+        "Static0008EN",
+        "Layout Static0008EN"
+      ],
+      "sortOrder": 190,
+      "facets": {}
+    },
+    {
+      "resourceId": "203c273e-0817-786a-b9ea-65046c3a623c",
+      "resourceType": "rizcard",
+      "displayTitle": "Bayees",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "rizcardId": "rizcard.bei_li_si_card1",
+        "character": "Bayees",
+        "hasOfficialStaticRender": false,
+        "isRuntimeComposite": true,
+        "componentRelations": "characters: Bayees · songs: Pastel Lines · component: Bayees · component: Pastel Lines",
+        "description": "Rizcard is a runtime-composed game object; only confirmed component relations are shown."
+      },
+      "badges": [],
+      "searchTerms": [
+        "Bayees",
+        "2.7.0",
+        "rizcard.bei_li_si_card1",
+        "Bayees",
+        "false",
+        "true",
+        "characters: Bayees · songs: Pastel Lines · component: Bayees · component: Pastel Lines",
+        "Rizcard is a runtime-composed game object; only confirmed component relations are shown."
+      ],
+      "sortOrder": 191,
+      "facets": {}
+    },
+    {
+      "resourceId": "0f6d3a9e-bb9e-739c-8af0-615c74f6741f",
+      "resourceType": "rizcard",
+      "displayTitle": "Carmen",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "rizcardId": "rizcard.ka_men_card1",
+        "character": "Carmen",
+        "hasOfficialStaticRender": false,
+        "isRuntimeComposite": true,
+        "componentRelations": "characters: Carmen · songs: Pastel Lines · component: Carmen · component: Pastel Lines",
+        "description": "Rizcard is a runtime-composed game object; only confirmed component relations are shown."
+      },
+      "badges": [],
+      "searchTerms": [
+        "Carmen",
+        "2.7.0",
+        "rizcard.ka_men_card1",
+        "Carmen",
+        "false",
+        "true",
+        "characters: Carmen · songs: Pastel Lines · component: Carmen · component: Pastel Lines",
+        "Rizcard is a runtime-composed game object; only confirmed component relations are shown."
+      ],
+      "sortOrder": 192,
+      "facets": {}
+    },
+    {
+      "resourceId": "f1574b35-a64f-7e09-9e5c-609dcfaf96d5",
+      "resourceType": "rizcard",
+      "displayTitle": "Kiwi",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "rizcardId": "rizcard.kiwi_card1",
+        "character": "Kiwi",
+        "hasOfficialStaticRender": false,
+        "isRuntimeComposite": true,
+        "componentRelations": "characters: Kiwi · songs: Pastel Lines · component: Kiwi · component: Pastel Lines",
+        "description": "Rizcard is a runtime-composed game object; only confirmed component relations are shown."
+      },
+      "badges": [],
+      "searchTerms": [
+        "Kiwi",
+        "2.7.0",
+        "rizcard.kiwi_card1",
+        "Kiwi",
+        "false",
+        "true",
+        "characters: Kiwi · songs: Pastel Lines · component: Kiwi · component: Pastel Lines",
+        "Rizcard is a runtime-composed game object; only confirmed component relations are shown."
+      ],
+      "sortOrder": 193,
+      "facets": {}
+    },
+    {
+      "resourceId": "36ed7974-1b17-7873-85ef-90aebd8587e9",
+      "resourceType": "rizcard",
+      "displayTitle": "Moutlush",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "rizcardId": "rizcard.mao_shan_card1",
+        "character": "Moutlush",
+        "hasOfficialStaticRender": false,
+        "isRuntimeComposite": true,
+        "componentRelations": "characters: Moutlush · songs: Pastel Lines · component: Moutlush · component: Pastel Lines",
+        "description": "Rizcard is a runtime-composed game object; only confirmed component relations are shown."
+      },
+      "badges": [],
+      "searchTerms": [
+        "Moutlush",
+        "2.7.0",
+        "rizcard.mao_shan_card1",
+        "Moutlush",
+        "false",
+        "true",
+        "characters: Moutlush · songs: Pastel Lines · component: Moutlush · component: Pastel Lines",
+        "Rizcard is a runtime-composed game object; only confirmed component relations are shown."
+      ],
+      "sortOrder": 194,
+      "facets": {}
+    },
+    {
+      "resourceId": "40f9a30a-17d2-7d36-8b32-ec17bfaea5d0",
+      "resourceType": "rizcard",
+      "displayTitle": "Nami",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "rizcardId": "rizcard.na_mi_card1",
+        "character": "Nami",
+        "hasOfficialStaticRender": false,
+        "isRuntimeComposite": true,
+        "componentRelations": "characters: Nami · songs: Pastel Lines · component: Nami · component: Pastel Lines",
+        "description": "Rizcard is a runtime-composed game object; only confirmed component relations are shown."
+      },
+      "badges": [],
+      "searchTerms": [
+        "Nami",
+        "2.7.0",
+        "rizcard.na_mi_card1",
+        "Nami",
+        "false",
+        "true",
+        "characters: Nami · songs: Pastel Lines · component: Nami · component: Pastel Lines",
+        "Rizcard is a runtime-composed game object; only confirmed component relations are shown."
+      ],
+      "sortOrder": 195,
+      "facets": {}
+    },
+    {
+      "resourceId": "b6a34129-db63-7e82-91dd-3f0bd536c393",
+      "resourceType": "rizcard",
+      "displayTitle": "BeiC",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "rizcardId": "rizcard.player.BeiC.1",
+        "hasOfficialStaticRender": false,
+        "isRuntimeComposite": true,
+        "componentRelations": "songs: BRAVE：ROAD · component: BRAVE：ROAD",
+        "description": "Rizcard is a runtime-composed game object; only confirmed component relations are shown."
+      },
+      "badges": [],
+      "searchTerms": [
+        "BeiC",
+        "2.7.0",
+        "rizcard.player.BeiC.1",
+        "false",
+        "true",
+        "songs: BRAVE：ROAD · component: BRAVE：ROAD",
+        "Rizcard is a runtime-composed game object; only confirmed component relations are shown."
+      ],
+      "sortOrder": 196,
+      "facets": {}
+    },
+    {
+      "resourceId": "e3cf42ec-0006-79a7-9470-36be8fa9ca75",
+      "resourceType": "rizcard",
+      "displayTitle": "Computer_MIKE",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "rizcardId": "rizcard.player.Computer_MIKE.1",
+        "layout": "rizline:layout:00026",
+        "hasOfficialStaticRender": false,
+        "isRuntimeComposite": true,
+        "componentRelations": "layouts: Layout 00026 · songs: D-Birth · component: D-Birth · component: Layout 00026",
+        "description": "Rizcard is a runtime-composed game object; only confirmed component relations are shown."
+      },
+      "badges": [],
+      "searchTerms": [
+        "Computer_MIKE",
+        "2.7.0",
+        "rizcard.player.Computer_MIKE.1",
+        "rizline:layout:00026",
+        "false",
+        "true",
+        "layouts: Layout 00026 · songs: D-Birth · component: D-Birth · component: Layout 00026",
+        "Rizcard is a runtime-composed game object; only confirmed component relations are shown."
+      ],
+      "sortOrder": 197,
+      "facets": {}
+    },
+    {
+      "resourceId": "240e92c6-b33a-7f64-8379-84b558cbccee",
+      "resourceType": "rizcard",
+      "displayTitle": "DynaFoli",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "rizcardId": "rizcard.player.DynaFoli.1",
+        "layout": "rizline:layout:00010",
+        "hasOfficialStaticRender": false,
+        "isRuntimeComposite": true,
+        "componentRelations": "layouts: Layout 00010 · songs: Kaguya · component: Kaguya · component: Layout 00010",
+        "description": "Rizcard is a runtime-composed game object; only confirmed component relations are shown."
+      },
+      "badges": [],
+      "searchTerms": [
+        "DynaFoli",
+        "2.7.0",
+        "rizcard.player.DynaFoli.1",
+        "rizline:layout:00010",
+        "false",
+        "true",
+        "layouts: Layout 00010 · songs: Kaguya · component: Kaguya · component: Layout 00010",
+        "Rizcard is a runtime-composed game object; only confirmed component relations are shown."
+      ],
+      "sortOrder": 198,
+      "facets": {}
+    },
+    {
+      "resourceId": "3d56eb1a-2936-7ea4-862d-db4f64934de8",
+      "resourceType": "rizcard",
+      "displayTitle": "EnderWang",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "rizcardId": "rizcard.player.EnderWang.1",
+        "layout": "rizline:layout:00017",
+        "hasOfficialStaticRender": false,
+        "isRuntimeComposite": true,
+        "componentRelations": "layouts: Layout 00017 · songs: Giselle · component: Giselle · component: Layout 00017",
+        "description": "Rizcard is a runtime-composed game object; only confirmed component relations are shown."
+      },
+      "badges": [],
+      "searchTerms": [
+        "EnderWang",
+        "2.7.0",
+        "rizcard.player.EnderWang.1",
+        "rizline:layout:00017",
+        "false",
+        "true",
+        "layouts: Layout 00017 · songs: Giselle · component: Giselle · component: Layout 00017",
+        "Rizcard is a runtime-composed game object; only confirmed component relations are shown."
+      ],
+      "sortOrder": 199,
+      "facets": {}
+    },
+    {
+      "resourceId": "7a6331ad-efbd-7e94-a435-f0094ad0cd27",
+      "resourceType": "rizcard",
+      "displayTitle": "GalwereRay",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "rizcardId": "rizcard.player.GalwereRay.1",
+        "layout": "rizline:layout:00030",
+        "hasOfficialStaticRender": false,
+        "isRuntimeComposite": true,
+        "componentRelations": "layouts: Layout 00030 · songs: Kaguya · component: Kaguya · component: Layout 00030",
+        "description": "Rizcard is a runtime-composed game object; only confirmed component relations are shown."
+      },
+      "badges": [],
+      "searchTerms": [
+        "GalwereRay",
+        "2.7.0",
+        "rizcard.player.GalwereRay.1",
+        "rizline:layout:00030",
+        "false",
+        "true",
+        "layouts: Layout 00030 · songs: Kaguya · component: Kaguya · component: Layout 00030",
+        "Rizcard is a runtime-composed game object; only confirmed component relations are shown."
+      ],
+      "sortOrder": 200,
+      "facets": {}
+    },
+    {
+      "resourceId": "c9c265c7-44bd-7a07-85e8-c239710507ad",
+      "resourceType": "rizcard",
+      "displayTitle": "JadeVon",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "rizcardId": "rizcard.player.JadeVon.1",
+        "layout": "rizline:layout:00017",
+        "hasOfficialStaticRender": false,
+        "isRuntimeComposite": true,
+        "componentRelations": "layouts: Layout 00017 · songs: F℟IEND · component: F℟IEND · component: Layout 00017",
+        "description": "Rizcard is a runtime-composed game object; only confirmed component relations are shown."
+      },
+      "badges": [],
+      "searchTerms": [
+        "JadeVon",
+        "2.7.0",
+        "rizcard.player.JadeVon.1",
+        "rizline:layout:00017",
+        "false",
+        "true",
+        "layouts: Layout 00017 · songs: F℟IEND · component: F℟IEND · component: Layout 00017",
+        "Rizcard is a runtime-composed game object; only confirmed component relations are shown."
+      ],
+      "sortOrder": 201,
+      "facets": {}
+    },
+    {
+      "resourceId": "47aaa5b7-119d-7631-a8c5-20a0e6c8d154",
+      "resourceType": "rizcard",
+      "displayTitle": "JustUTB",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "rizcardId": "rizcard.player.JustUTB.1",
+        "hasOfficialStaticRender": false,
+        "isRuntimeComposite": true,
+        "componentRelations": "component: Afterdark",
+        "description": "Rizcard is a runtime-composed game object; only confirmed component relations are shown."
+      },
+      "badges": [],
+      "searchTerms": [
+        "JustUTB",
+        "2.7.0",
+        "rizcard.player.JustUTB.1",
+        "false",
+        "true",
+        "component: Afterdark",
+        "Rizcard is a runtime-composed game object; only confirmed component relations are shown."
+      ],
+      "sortOrder": 202,
+      "facets": {}
+    },
+    {
+      "resourceId": "a36debc2-d9f1-7300-a2c7-f224da7ee238",
+      "resourceType": "rizcard",
+      "displayTitle": "JustUTB",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "rizcardId": "rizcard.player.JustUTB.2",
+        "hasOfficialStaticRender": false,
+        "isRuntimeComposite": true,
+        "componentRelations": "songs: slic.hertz · component: slic.hertz",
+        "description": "Rizcard is a runtime-composed game object; only confirmed component relations are shown."
+      },
+      "badges": [],
+      "searchTerms": [
+        "JustUTB",
+        "2.7.0",
+        "rizcard.player.JustUTB.2",
+        "false",
+        "true",
+        "songs: slic.hertz · component: slic.hertz",
+        "Rizcard is a runtime-composed game object; only confirmed component relations are shown."
+      ],
+      "sortOrder": 203,
+      "facets": {}
+    },
+    {
+      "resourceId": "12209d64-d02c-77af-be46-407ca70d5074",
+      "resourceType": "rizcard",
+      "displayTitle": "RGC",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "rizcardId": "rizcard.player.RGC.1",
+        "layout": "rizline:layout:00023",
+        "hasOfficialStaticRender": false,
+        "isRuntimeComposite": true,
+        "componentRelations": "layouts: Layout 00023 · songs: 蒼天 (Sta's Key-Kai mix) · component: 蒼天 (Sta's Key-Kai mix) · component: Layout 00023",
+        "description": "Rizcard is a runtime-composed game object; only confirmed component relations are shown."
+      },
+      "badges": [],
+      "searchTerms": [
+        "RGC",
+        "2.7.0",
+        "rizcard.player.RGC.1",
+        "rizline:layout:00023",
+        "false",
+        "true",
+        "layouts: Layout 00023 · songs: 蒼天 (Sta's Key-Kai mix) · component: 蒼天 (Sta's Key-Kai mix) · component: Layout 00023",
+        "Rizcard is a runtime-composed game object; only confirmed component relations are shown."
+      ],
+      "sortOrder": 204,
+      "facets": {}
+    },
+    {
+      "resourceId": "5aede279-64b7-7465-9b45-5d991d89f85c",
+      "resourceType": "rizcard",
+      "displayTitle": "RepeatPumP",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "rizcardId": "rizcard.player.RepeatPumP.1",
+        "layout": "rizline:layout:00017",
+        "hasOfficialStaticRender": false,
+        "isRuntimeComposite": true,
+        "componentRelations": "layouts: Layout 00017 · songs: Grimheart · component: Grimheart · component: Layout 00017",
+        "description": "Rizcard is a runtime-composed game object; only confirmed component relations are shown."
+      },
+      "badges": [],
+      "searchTerms": [
+        "RepeatPumP",
+        "2.7.0",
+        "rizcard.player.RepeatPumP.1",
+        "rizline:layout:00017",
+        "false",
+        "true",
+        "layouts: Layout 00017 · songs: Grimheart · component: Grimheart · component: Layout 00017",
+        "Rizcard is a runtime-composed game object; only confirmed component relations are shown."
+      ],
+      "sortOrder": 205,
+      "facets": {}
+    },
+    {
+      "resourceId": "b1dfac79-4e45-7384-b2ea-31d4c3188d1d",
+      "resourceType": "rizcard",
+      "displayTitle": "Siriopetal",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "rizcardId": "rizcard.player.Siriopetal.1",
+        "layout": "rizline:layout:00035",
+        "hasOfficialStaticRender": false,
+        "isRuntimeComposite": true,
+        "componentRelations": "layouts: Layout 00035 · songs: Clock Paradox · component: Clock Paradox · component: Layout 00035",
+        "description": "Rizcard is a runtime-composed game object; only confirmed component relations are shown."
+      },
+      "badges": [],
+      "searchTerms": [
+        "Siriopetal",
+        "2.7.0",
+        "rizcard.player.Siriopetal.1",
+        "rizline:layout:00035",
+        "false",
+        "true",
+        "layouts: Layout 00035 · songs: Clock Paradox · component: Clock Paradox · component: Layout 00035",
+        "Rizcard is a runtime-composed game object; only confirmed component relations are shown."
+      ],
+      "sortOrder": 206,
+      "facets": {}
+    },
+    {
+      "resourceId": "1aab0b37-367d-7b88-9d52-5794a5eda864",
+      "resourceType": "rizcard",
+      "displayTitle": "XingC",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "rizcardId": "rizcard.player.XingC.1",
+        "layout": "rizline:layout:00006",
+        "hasOfficialStaticRender": false,
+        "isRuntimeComposite": true,
+        "componentRelations": "layouts: Layout 00006 · songs: Kaguya · component: Kaguya · component: Layout 00006",
+        "description": "Rizcard is a runtime-composed game object; only confirmed component relations are shown."
+      },
+      "badges": [],
+      "searchTerms": [
+        "XingC",
+        "2.7.0",
+        "rizcard.player.XingC.1",
+        "rizline:layout:00006",
+        "false",
+        "true",
+        "layouts: Layout 00006 · songs: Kaguya · component: Kaguya · component: Layout 00006",
+        "Rizcard is a runtime-composed game object; only confirmed component relations are shown."
+      ],
+      "sortOrder": 207,
+      "facets": {}
+    },
+    {
+      "resourceId": "b78f2060-afcc-7b0d-aad0-5c49c562cca5",
+      "resourceType": "rizcard",
+      "displayTitle": "cube2222",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "rizcardId": "rizcard.player.cube2222.1",
+        "layout": "rizline:layout:00034",
+        "hasOfficialStaticRender": false,
+        "isRuntimeComposite": true,
+        "componentRelations": "layouts: Layout 00034 · songs: Grimheart · component: Grimheart · component: Layout 00034",
+        "description": "Rizcard is a runtime-composed game object; only confirmed component relations are shown."
+      },
+      "badges": [],
+      "searchTerms": [
+        "cube2222",
+        "2.7.0",
+        "rizcard.player.cube2222.1",
+        "rizline:layout:00034",
+        "false",
+        "true",
+        "layouts: Layout 00034 · songs: Grimheart · component: Grimheart · component: Layout 00034",
+        "Rizcard is a runtime-composed game object; only confirmed component relations are shown."
+      ],
+      "sortOrder": 208,
+      "facets": {}
+    },
+    {
+      "resourceId": "1912eb3c-823c-728a-a4a3-6b5e2cf6edcf",
+      "resourceType": "rizcard",
+      "displayTitle": "universe",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "rizcardId": "rizcard.player.universe.1",
+        "layout": "rizline:layout:00005",
+        "hasOfficialStaticRender": false,
+        "isRuntimeComposite": true,
+        "componentRelations": "layouts: Layout 00005 · songs: Conway's Child · component: Conway's Child · component: Layout 00005",
+        "description": "Rizcard is a runtime-composed game object; only confirmed component relations are shown."
+      },
+      "badges": [],
+      "searchTerms": [
+        "universe",
+        "2.7.0",
+        "rizcard.player.universe.1",
+        "rizline:layout:00005",
+        "false",
+        "true",
+        "layouts: Layout 00005 · songs: Conway's Child · component: Conway's Child · component: Layout 00005",
+        "Rizcard is a runtime-composed game object; only confirmed component relations are shown."
+      ],
+      "sortOrder": 209,
+      "facets": {}
+    },
+    {
+      "resourceId": "b8627b35-9b28-7716-bef8-00f4f2c8ae64",
+      "resourceType": "rizcard",
+      "displayTitle": "Pling",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "rizcardId": "rizcard.pling_card1",
+        "character": "Pling",
+        "hasOfficialStaticRender": false,
+        "isRuntimeComposite": true,
+        "componentRelations": "characters: Pling · songs: Pastel Lines · component: Pling · component: Pastel Lines",
+        "description": "Rizcard is a runtime-composed game object; only confirmed component relations are shown."
+      },
+      "badges": [],
+      "searchTerms": [
+        "Pling",
+        "2.7.0",
+        "rizcard.pling_card1",
+        "Pling",
+        "false",
+        "true",
+        "characters: Pling · songs: Pastel Lines · component: Pling · component: Pastel Lines",
+        "Rizcard is a runtime-composed game object; only confirmed component relations are shown."
+      ],
+      "sortOrder": 210,
+      "facets": {}
+    },
+    {
+      "resourceId": "461252a5-602d-7de1-ae18-b44b905fba07",
+      "resourceType": "rizcard",
+      "displayTitle": "百九十八",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "rizcardId": "rizcard.staff.198.1",
+        "layout": "rizline:layout:00026",
+        "hasOfficialStaticRender": false,
+        "isRuntimeComposite": true,
+        "componentRelations": "layouts: Layout 00026 · songs: Antler · component: Antler · component: Layout 00026",
+        "description": "Rizcard is a runtime-composed game object; only confirmed component relations are shown."
+      },
+      "badges": [],
+      "searchTerms": [
+        "百九十八",
+        "2.7.0",
+        "rizcard.staff.198.1",
+        "rizline:layout:00026",
+        "false",
+        "true",
+        "layouts: Layout 00026 · songs: Antler · component: Antler · component: Layout 00026",
+        "Rizcard is a runtime-composed game object; only confirmed component relations are shown."
+      ],
+      "sortOrder": 211,
+      "facets": {}
+    },
+    {
+      "resourceId": "a927fc50-0275-7930-8ee9-c80bf4b33963",
+      "resourceType": "rizcard",
+      "displayTitle": "HaraKuma",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "rizcardId": "rizcard.staff.HaraKuma.1",
+        "layout": "rizline:layout:00016",
+        "hasOfficialStaticRender": false,
+        "isRuntimeComposite": true,
+        "componentRelations": "layouts: Layout 00016 · songs: Puppet Show · component: Puppet Show · component: Layout 00016",
+        "description": "Rizcard is a runtime-composed game object; only confirmed component relations are shown."
+      },
+      "badges": [],
+      "searchTerms": [
+        "HaraKuma",
+        "2.7.0",
+        "rizcard.staff.HaraKuma.1",
+        "rizline:layout:00016",
+        "false",
+        "true",
+        "layouts: Layout 00016 · songs: Puppet Show · component: Puppet Show · component: Layout 00016",
+        "Rizcard is a runtime-composed game object; only confirmed component relations are shown."
+      ],
+      "sortOrder": 212,
+      "facets": {}
+    },
+    {
+      "resourceId": "1c22463e-1cfb-7e30-89c8-9a7660fa8787",
+      "resourceType": "rizcard",
+      "displayTitle": "满天星",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "rizcardId": "rizcard.staff.Junesnow.1",
+        "layout": "rizline:layout:00005",
+        "hasOfficialStaticRender": false,
+        "isRuntimeComposite": true,
+        "componentRelations": "layouts: Layout 00005 · songs: D-Birth · component: D-Birth · component: Layout 00005",
+        "description": "Rizcard is a runtime-composed game object; only confirmed component relations are shown."
+      },
+      "badges": [],
+      "searchTerms": [
+        "满天星",
+        "2.7.0",
+        "rizcard.staff.Junesnow.1",
+        "rizline:layout:00005",
+        "false",
+        "true",
+        "layouts: Layout 00005 · songs: D-Birth · component: D-Birth · component: Layout 00005",
+        "Rizcard is a runtime-composed game object; only confirmed component relations are shown."
+      ],
+      "sortOrder": 213,
+      "facets": {}
+    },
+    {
+      "resourceId": "c15ee91d-75b4-77a6-9ba3-9a902149195d",
+      "resourceType": "rizcard",
+      "displayTitle": "NerSAN",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "rizcardId": "rizcard.staff.NerSAN.1",
+        "layout": "rizline:layout:00019",
+        "hasOfficialStaticRender": false,
+        "isRuntimeComposite": true,
+        "componentRelations": "layouts: Layout 00019 · songs: slic.hertz · component: slic.hertz · component: Layout 00019",
+        "description": "Rizcard is a runtime-composed game object; only confirmed component relations are shown."
+      },
+      "badges": [],
+      "searchTerms": [
+        "NerSAN",
+        "2.7.0",
+        "rizcard.staff.NerSAN.1",
+        "rizline:layout:00019",
+        "false",
+        "true",
+        "layouts: Layout 00019 · songs: slic.hertz · component: slic.hertz · component: Layout 00019",
+        "Rizcard is a runtime-composed game object; only confirmed component relations are shown."
+      ],
+      "sortOrder": 214,
+      "facets": {}
+    },
+    {
+      "resourceId": "6a5a90b9-2065-7665-9525-65f604a8b1c6",
+      "resourceType": "rizcard",
+      "displayTitle": "晨",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "rizcardId": "rizcard.staff.ShinE.1",
+        "layout": "rizline:layout:00030",
+        "hasOfficialStaticRender": false,
+        "isRuntimeComposite": true,
+        "componentRelations": "layouts: Layout 00030 · songs: Colorful Flavor · component: Colorful Flavor · component: Layout 00030",
+        "description": "Rizcard is a runtime-composed game object; only confirmed component relations are shown."
+      },
+      "badges": [],
+      "searchTerms": [
+        "晨",
+        "2.7.0",
+        "rizcard.staff.ShinE.1",
+        "rizline:layout:00030",
+        "false",
+        "true",
+        "layouts: Layout 00030 · songs: Colorful Flavor · component: Colorful Flavor · component: Layout 00030",
+        "Rizcard is a runtime-composed game object; only confirmed component relations are shown."
+      ],
+      "sortOrder": 215,
+      "facets": {}
+    },
+    {
+      "resourceId": "e0952f6d-853f-752e-a088-03fd54722235",
+      "resourceType": "rizcard",
+      "displayTitle": "Tonebell",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "rizcardId": "rizcard.tong_ling_card1",
+        "character": "Tonebell",
+        "hasOfficialStaticRender": false,
+        "isRuntimeComposite": true,
+        "componentRelations": "characters: Tonebell · songs: Pastel Lines · component: Tonebell · component: Pastel Lines",
+        "description": "Rizcard is a runtime-composed game object; only confirmed component relations are shown."
+      },
+      "badges": [],
+      "searchTerms": [
+        "Tonebell",
+        "2.7.0",
+        "rizcard.tong_ling_card1",
+        "Tonebell",
+        "false",
+        "true",
+        "characters: Tonebell · songs: Pastel Lines · component: Tonebell · component: Pastel Lines",
+        "Rizcard is a runtime-composed game object; only confirmed component relations are shown."
+      ],
+      "sortOrder": 216,
+      "facets": {}
+    },
+    {
+      "resourceId": "11f8bbed-0def-7b31-a2ba-4a45c7e42206",
+      "resourceType": "rizcard",
+      "displayTitle": "Yoso",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "rizcardId": "rizcard.yong_ge_card1",
+        "character": "Yoso",
+        "hasOfficialStaticRender": false,
+        "isRuntimeComposite": true,
+        "componentRelations": "characters: Yoso · songs: Pastel Lines · component: Yoso · component: Pastel Lines",
+        "description": "Rizcard is a runtime-composed game object; only confirmed component relations are shown."
+      },
+      "badges": [],
+      "searchTerms": [
+        "Yoso",
+        "2.7.0",
+        "rizcard.yong_ge_card1",
+        "Yoso",
+        "false",
+        "true",
+        "characters: Yoso · songs: Pastel Lines · component: Yoso · component: Pastel Lines",
+        "Rizcard is a runtime-composed game object; only confirmed component relations are shown."
+      ],
+      "sortOrder": 217,
+      "facets": {}
+    },
+    {
+      "resourceId": "d7d9ddc8-c79c-7abd-98b9-f68381f952d7",
+      "resourceType": "rizcard",
+      "displayTitle": "Yoso",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "rizcardId": "rizcard.yoso_birthday_2024",
+        "hasOfficialStaticRender": false,
+        "isRuntimeComposite": true,
+        "componentRelations": "songs: Pastel Lines · component: Pastel Lines",
+        "description": "Rizcard is a runtime-composed game object; only confirmed component relations are shown."
+      },
+      "badges": [],
+      "searchTerms": [
+        "Yoso",
+        "2.7.0",
+        "rizcard.yoso_birthday_2024",
+        "false",
+        "true",
+        "songs: Pastel Lines · component: Pastel Lines",
+        "Rizcard is a runtime-composed game object; only confirmed component relations are shown."
+      ],
+      "sortOrder": 218,
+      "facets": {}
+    },
+    {
+      "resourceId": "152956bc-0d8a-7edc-954f-49c65425bac5",
+      "resourceType": "rizcard",
+      "displayTitle": "Yoso",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "rizcardId": "rizcard.yoso_birthday_2024_sp",
+        "hasOfficialStaticRender": false,
+        "isRuntimeComposite": true,
+        "componentRelations": "songs: Pastel Lines · component: Pastel Lines",
+        "description": "Rizcard is a runtime-composed game object; only confirmed component relations are shown."
+      },
+      "badges": [],
+      "searchTerms": [
+        "Yoso",
+        "2.7.0",
+        "rizcard.yoso_birthday_2024_sp",
+        "false",
+        "true",
+        "songs: Pastel Lines · component: Pastel Lines",
+        "Rizcard is a runtime-composed game object; only confirmed component relations are shown."
+      ],
+      "sortOrder": 219,
+      "facets": {}
+    },
+    {
+      "resourceId": "da7e18fe-717f-7433-9664-03918cfed2b2",
+      "resourceType": "track-series",
+      "displayTitle": "T.S. #1 — Juggernaut.",
+      "subtitle": "T.S. #1 — Juggernaut.",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "seriesName": "T.S. #1 — Juggernaut.",
+        "relatedSongs": "Abiogenesis, Revenant, Antler",
+        "collaborationPartner": "Juggernaut collaboration"
+      },
+      "badges": [],
+      "searchTerms": [
+        "T.S. #1 — Juggernaut.",
+        "2.7.0",
+        "T.S. #1 — Juggernaut.",
+        "Abiogenesis, Revenant, Antler",
+        "Juggernaut collaboration"
+      ],
+      "sortOrder": 220,
+      "facets": {}
+    },
+    {
+      "resourceId": "1644f2d2-ffbe-71b4-b33a-87803e11b8cd",
+      "resourceType": "track-series",
+      "displayTitle": "T.S. #2 — DIVERSE SYSTEM",
+      "subtitle": "T.S. #2 — DIVERSE SYSTEM",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "seriesName": "T.S. #2 — DIVERSE SYSTEM",
+        "relatedSongs": "Bring Me Back, Hullbreaker, D-Birth",
+        "collaborationPartner": "DIVERSE SYSTEM"
+      },
+      "badges": [],
+      "searchTerms": [
+        "T.S. #2 — DIVERSE SYSTEM",
+        "2.7.0",
+        "T.S. #2 — DIVERSE SYSTEM",
+        "Bring Me Back, Hullbreaker, D-Birth",
+        "DIVERSE SYSTEM"
+      ],
+      "sortOrder": 221,
+      "facets": {}
+    },
+    {
+      "resourceId": "32f216be-23f7-7565-847e-f0549c942af3",
+      "resourceType": "track-series",
+      "displayTitle": "T.S. #3 — Sobrem",
+      "subtitle": "T.S. #3 — Sobrem",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "seriesName": "T.S. #3 — Sobrem",
+        "relatedSongs": "Encrux, slic.hertz, Giselle",
+        "collaborationPartner": "Sobrem"
+      },
+      "badges": [],
+      "searchTerms": [
+        "T.S. #3 — Sobrem",
+        "2.7.0",
+        "T.S. #3 — Sobrem",
+        "Encrux, slic.hertz, Giselle",
+        "Sobrem"
+      ],
+      "sortOrder": 222,
+      "facets": {}
+    },
+    {
+      "resourceId": "51d0894e-b44d-7a95-b438-7ca331f893b3",
+      "resourceType": "track-series",
+      "displayTitle": "T.S. #4 — Tone Sphere",
+      "subtitle": "T.S. #4 — Tone Sphere",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "seriesName": "T.S. #4 — Tone Sphere",
+        "relatedSongs": "Afterdark, 蒼天 (Sta's Key-Kai mix), Conway's Child",
+        "collaborationPartner": "Tone Sphere"
+      },
+      "badges": [],
+      "searchTerms": [
+        "T.S. #4 — Tone Sphere",
+        "2.7.0",
+        "T.S. #4 — Tone Sphere",
+        "Afterdark, 蒼天 (Sta's Key-Kai mix), Conway's Child",
+        "Tone Sphere"
+      ],
+      "sortOrder": 223,
+      "facets": {}
+    },
+    {
+      "resourceId": "0b70c3bc-64cc-7f42-8f69-ab6e96952651",
+      "resourceType": "track-series",
+      "displayTitle": "T.S. #5 — BlackY",
+      "subtitle": "T.S. #5 — BlackY",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "seriesName": "T.S. #5 — BlackY",
+        "relatedSongs": "Crimsonate, Sthenno, Kaguya",
+        "collaborationPartner": "BlackY"
+      },
+      "badges": [],
+      "searchTerms": [
+        "T.S. #5 — BlackY",
+        "2.7.0",
+        "T.S. #5 — BlackY",
+        "Crimsonate, Sthenno, Kaguya",
+        "BlackY"
+      ],
+      "sortOrder": 224,
+      "facets": {}
+    },
+    {
+      "resourceId": "0f6d57aa-f96d-7a8f-994e-5fd20f92fab1",
+      "resourceType": "track-series",
+      "displayTitle": "T.S. #6 — Cytus II × Muse Dash",
+      "subtitle": "T.S. #6 — Cytus II × Muse Dash",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "seriesName": "T.S. #6 — Cytus II × Muse Dash",
+        "relatedSongs": "Alexandrite, Hydra, 漂流, Comet Coaster, DOMINATOR, 天灵灵地灵灵",
+        "collaborationPartner": "Cytus II / Muse Dash"
+      },
+      "badges": [],
+      "searchTerms": [
+        "T.S. #6 — Cytus II × Muse Dash",
+        "2.7.0",
+        "T.S. #6 — Cytus II × Muse Dash",
+        "Alexandrite, Hydra, 漂流, Comet Coaster, DOMINATOR, 天灵灵地灵灵",
+        "Cytus II / Muse Dash"
+      ],
+      "sortOrder": 225,
+      "facets": {}
+    },
+    {
+      "resourceId": "eb0ad829-cb75-79cb-8275-fee691e8365d",
+      "resourceType": "track-series",
+      "displayTitle": "T.S. #7 — KALPA",
+      "subtitle": "T.S. #7 — KALPA",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "seriesName": "T.S. #7 — KALPA",
+        "relatedSongs": "Psychometry, Electric Comet, Eschatology, 너를 그리는 밤하늘의 이야기\n(Planetarium) prod. Scarlette, Avataar ~Reincarnation of Kalpa~",
+        "collaborationPartner": "KALPA"
+      },
+      "badges": [],
+      "searchTerms": [
+        "T.S. #7 — KALPA",
+        "2.7.0",
+        "T.S. #7 — KALPA",
+        "Psychometry, Electric Comet, Eschatology, 너를 그리는 밤하늘의 이야기\n(Planetarium) prod. Scarlette, Avataar ~Reincarnation of Kalpa~",
+        "KALPA"
+      ],
+      "sortOrder": 226,
+      "facets": {}
+    },
+    {
+      "resourceId": "cee62d33-4c00-751a-9644-f7f2790cd11e",
+      "resourceType": "track-series",
+      "displayTitle": "T.S. #8 — Rotaeno",
+      "subtitle": "T.S. #8 — Rotaeno",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "seriesName": "T.S. #8 — Rotaeno",
+        "relatedSongs": "amethyst, Alfheim's faith, 翠杜",
+        "collaborationPartner": "Rotaeno"
+      },
+      "badges": [],
+      "searchTerms": [
+        "T.S. #8 — Rotaeno",
+        "2.7.0",
+        "T.S. #8 — Rotaeno",
+        "amethyst, Alfheim's faith, 翠杜",
+        "Rotaeno"
+      ],
+      "sortOrder": 227,
+      "facets": {}
+    },
+    {
+      "resourceId": "4bf481d9-bd53-7f84-9dd4-468e3a41845d",
+      "resourceType": "track-series",
+      "displayTitle": "T.S. #9 — Cosmic Radio 2024",
+      "subtitle": "T.S. #9 — Cosmic Radio 2024",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "seriesName": "T.S. #9 — Cosmic Radio 2024",
+        "relatedSongs": "Crazy Audiophile, 419kB, VICIOUS",
+        "collaborationPartner": "Cosmic Radio 2024"
+      },
+      "badges": [],
+      "searchTerms": [
+        "T.S. #9 — Cosmic Radio 2024",
+        "2.7.0",
+        "T.S. #9 — Cosmic Radio 2024",
+        "Crazy Audiophile, 419kB, VICIOUS",
+        "Cosmic Radio 2024"
+      ],
+      "sortOrder": 228,
+      "facets": {}
+    },
+    {
+      "resourceId": "91657963-40b2-7c46-9f66-e6fee220f927",
+      "resourceType": "track-series",
+      "displayTitle": "T.S. #10 — HARDCORE TANO*C",
+      "subtitle": "T.S. #10 — HARDCORE TANO*C",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "seriesName": "T.S. #10 — HARDCORE TANO*C",
+        "relatedSongs": "Change the Game feat. 松永依織, T+ VS SHARK, Future Downloader",
+        "collaborationPartner": "HARDCORE TANO*C"
+      },
+      "badges": [],
+      "searchTerms": [
+        "T.S. #10 — HARDCORE TANO*C",
+        "2.7.0",
+        "T.S. #10 — HARDCORE TANO*C",
+        "Change the Game feat. 松永依織, T+ VS SHARK, Future Downloader",
+        "HARDCORE TANO*C"
+      ],
+      "sortOrder": 229,
+      "facets": {}
+    },
+    {
+      "resourceId": "cab9726f-eb16-7726-8149-93a0fd05de16",
+      "resourceType": "track-series",
+      "displayTitle": "T.S. #11 — DEEMO II",
+      "subtitle": "T.S. #11 — DEEMO II",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "seriesName": "T.S. #11 — DEEMO II",
+        "relatedSongs": "Echo over you..., Fairy's Crown, Graves -Ancient Memories-, Clouds clear and..., NLAMTA, Antikythera",
+        "collaborationPartner": "DEEMO II"
+      },
+      "badges": [],
+      "searchTerms": [
+        "T.S. #11 — DEEMO II",
+        "2.7.0",
+        "T.S. #11 — DEEMO II",
+        "Echo over you..., Fairy's Crown, Graves -Ancient Memories-, Clouds clear and..., NLAMTA, Antikythera",
+        "DEEMO II"
+      ],
+      "sortOrder": 230,
+      "facets": {}
+    },
+    {
+      "resourceId": "bec8a24e-dba6-7f3b-b49a-c769c5921037",
+      "resourceType": "track-series",
+      "displayTitle": "T.S. SP — Phigros",
+      "subtitle": "T.S. SP — Phigros",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "seriesName": "T.S. SP — Phigros",
+        "relatedSongs": "Speed Up!",
+        "collaborationPartner": "Phigros"
+      },
+      "badges": [],
+      "searchTerms": [
+        "T.S. SP — Phigros",
+        "2.7.0",
+        "T.S. SP — Phigros",
+        "Speed Up!",
+        "Phigros"
+      ],
+      "sortOrder": 231,
+      "facets": {}
+    },
+    {
+      "resourceId": "e20837ba-c2f0-7a41-b95d-21600382bd2f",
+      "resourceType": "track-series",
+      "displayTitle": "T.S. #12 — kuro",
+      "subtitle": "T.S. #12 — kuro",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "seriesName": "T.S. #12 — kuro",
+        "relatedSongs": "天地開闢, 水槽に沈む街, Inevitability",
+        "collaborationPartner": "kuro"
+      },
+      "badges": [],
+      "searchTerms": [
+        "T.S. #12 — kuro",
+        "2.7.0",
+        "T.S. #12 — kuro",
+        "天地開闢, 水槽に沈む街, Inevitability",
+        "kuro"
+      ],
+      "sortOrder": 232,
+      "facets": {}
+    },
+    {
+      "resourceId": "11ed954c-804d-78a5-a5db-8b689412b303",
+      "resourceType": "track-series",
+      "displayTitle": "T.S. #13 — 天地万象",
+      "subtitle": "T.S. #13 — 天地万象",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "seriesName": "T.S. #13 — 天地万象",
+        "relatedSongs": "Vaelumir's Call, Greatness Earth, LAIGN"
+      },
+      "badges": [],
+      "searchTerms": [
+        "T.S. #13 — 天地万象",
+        "2.7.0",
+        "T.S. #13 — 天地万象",
+        "Vaelumir's Call, Greatness Earth, LAIGN"
+      ],
+      "sortOrder": 233,
+      "facets": {}
+    },
+    {
+      "resourceId": "0e3b6bc9-cea5-7428-99e1-d05a1db900b3",
+      "resourceType": "track-series",
+      "displayTitle": "T.S. #14 — Tanchiky",
+      "subtitle": "T.S. #14 — Tanchiky",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "seriesName": "T.S. #14 — Tanchiky",
+        "relatedSongs": "Bursty Lollipop, ULTRA SYNERGY MATRIX, QUATTUORUX",
+        "collaborationPartner": "Tanchiky"
+      },
+      "badges": [],
+      "searchTerms": [
+        "T.S. #14 — Tanchiky",
+        "2.7.0",
+        "T.S. #14 — Tanchiky",
+        "Bursty Lollipop, ULTRA SYNERGY MATRIX, QUATTUORUX",
+        "Tanchiky"
+      ],
+      "sortOrder": 234,
+      "facets": {}
+    },
+    {
+      "resourceId": "809265e4-04ba-7093-ba29-aeafa32c6595",
+      "resourceType": "track-series",
+      "displayTitle": "T.S. #15 — ルゼ & LisicA",
+      "subtitle": "T.S. #15 — ルゼ & LisicA",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "seriesName": "T.S. #15 — ルゼ & LisicA",
+        "relatedSongs": "テウメッサ, ZEUS † 666, Pierrot Fixer",
+        "collaborationPartner": "ルゼ / LisicA"
+      },
+      "badges": [],
+      "searchTerms": [
+        "T.S. #15 — ルゼ & LisicA",
+        "2.7.0",
+        "T.S. #15 — ルゼ & LisicA",
+        "テウメッサ, ZEUS † 666, Pierrot Fixer",
+        "ルゼ / LisicA"
+      ],
+      "sortOrder": 235,
+      "facets": {}
+    },
+    {
+      "resourceId": "03f3086f-a8d3-7204-b673-3ddd7a18f32e",
+      "resourceType": "track-series",
+      "displayTitle": "T.S. #16 — 古韻今声 / Diachronic Resonance",
+      "subtitle": "T.S. #16 — 古韻今声 / Diachronic Resonance",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "seriesName": "T.S. #16 — 古韻今声 / Diachronic Resonance",
+        "relatedSongs": "Tales of Delonix, Spiritworks, 地区 Shangri-LA"
+      },
+      "badges": [],
+      "searchTerms": [
+        "T.S. #16 — 古韻今声 / Diachronic Resonance",
+        "2.7.0",
+        "T.S. #16 — 古韻今声 / Diachronic Resonance",
+        "Tales of Delonix, Spiritworks, 地区 Shangri-LA"
+      ],
+      "sortOrder": 236,
+      "facets": {}
+    },
+    {
+      "resourceId": "888a086e-3083-7146-84a9-d8478c9a2996",
+      "resourceType": "track-series",
+      "displayTitle": "Paradigm: Reboot collaboration",
+      "subtitle": "Paradigm: Reboot collaboration",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "seriesName": "Paradigm: Reboot collaboration",
+        "relatedSongs": "Turning POINT, Reversed Zenith, Paradial Resonator, Restricted Access",
+        "collaborationPartner": "Paradigm: Reboot"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Paradigm: Reboot collaboration",
+        "2.7.0",
+        "Paradigm: Reboot collaboration",
+        "Turning POINT, Reversed Zenith, Paradial Resonator, Restricted Access",
+        "Paradigm: Reboot"
+      ],
+      "sortOrder": 237,
+      "facets": {}
+    },
+    {
+      "resourceId": "a19690dd-b3a6-788a-945f-bbd10b31da00",
+      "resourceType": "track-series",
+      "displayTitle": "去远方 collaboration",
+      "subtitle": "去远方 collaboration",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "seriesName": "去远方 collaboration",
+        "relatedSongs": "Relieve",
+        "collaborationPartner": "去远方"
+      },
+      "badges": [],
+      "searchTerms": [
+        "去远方 collaboration",
+        "2.7.0",
+        "去远方 collaboration",
+        "Relieve",
+        "去远方"
+      ],
+      "sortOrder": 238,
+      "facets": {}
+    },
+    {
+      "resourceId": "8a54956b-5ba0-7300-ba7e-35e798e916ce",
+      "resourceType": "character-avatar",
+      "displayTitle": "Bayees",
+      "subtitle": "Bayees",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "characterName": "Bayees"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Bayees",
+        "2.7.0",
+        "Bayees"
+      ],
+      "sortOrder": 239,
+      "facets": {}
+    },
+    {
+      "resourceId": "47365b11-6ea7-71dd-b5f6-297d68083db1",
+      "resourceType": "character-avatar",
+      "displayTitle": "Carmen",
+      "subtitle": "Carmen",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "characterName": "Carmen"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Carmen",
+        "2.7.0",
+        "Carmen"
+      ],
+      "sortOrder": 240,
+      "facets": {}
+    },
+    {
+      "resourceId": "7a5c8f57-55af-7f49-963c-ae734bbc351e",
+      "resourceType": "character-avatar",
+      "displayTitle": "Kiwi",
+      "subtitle": "Kiwi",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "characterName": "Kiwi"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Kiwi",
+        "2.7.0",
+        "Kiwi"
+      ],
+      "sortOrder": 241,
+      "facets": {}
+    },
+    {
+      "resourceId": "ef2e79ee-d9c1-78d6-9be2-652bdf274b6a",
+      "resourceType": "character-avatar",
+      "displayTitle": "Moutlush",
+      "subtitle": "Moutlush",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "characterName": "Moutlush"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Moutlush",
+        "2.7.0",
+        "Moutlush"
+      ],
+      "sortOrder": 242,
+      "facets": {}
+    },
+    {
+      "resourceId": "5c61ad8a-cd63-70f2-b310-cc1c85075617",
+      "resourceType": "character-avatar",
+      "displayTitle": "Nami",
+      "subtitle": "Nami",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "characterName": "Nami"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Nami",
+        "2.7.0",
+        "Nami"
+      ],
+      "sortOrder": 243,
+      "facets": {}
+    },
+    {
+      "resourceId": "33cdb75e-4502-79cb-921e-5624dc2e2a5b",
+      "resourceType": "character-avatar",
+      "displayTitle": "Pling",
+      "subtitle": "Pling",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "characterName": "Pling"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Pling",
+        "2.7.0",
+        "Pling"
+      ],
+      "sortOrder": 244,
+      "facets": {}
+    },
+    {
+      "resourceId": "bf3fbedd-5f52-7dd4-956c-a6f77cf6bdc2",
+      "resourceType": "character-avatar",
+      "displayTitle": "Tonebell",
+      "subtitle": "Tonebell",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "characterName": "Tonebell"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Tonebell",
+        "2.7.0",
+        "Tonebell"
+      ],
+      "sortOrder": 245,
+      "facets": {}
+    },
+    {
+      "resourceId": "f4f333b6-37a9-7eab-8614-377bfe9017a5",
+      "resourceType": "character-avatar",
+      "displayTitle": "Yoso",
+      "subtitle": "Yoso",
+      "metadata": {
+        "gameVersion": "2.7.0",
+        "characterName": "Yoso"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Yoso",
+        "2.7.0",
+        "Yoso"
+      ],
+      "sortOrder": 246,
+      "facets": {}
+    }
+  ]
+}

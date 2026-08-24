@@ -1,0 +1,3788 @@
+{
+  "schemaVersion": 1,
+  "game": "rizline",
+  "generatedAt": "2026-08-24T12:42:04.372Z",
+  "source": {
+    "version": "2.7.0",
+    "sha256": "d62d559f6d6bbdbc8d7a85d17b386341ab6eca738cffa64ab16f6f8efa78c66e"
+  },
+  "songs": [
+    {
+      "songId": "419kB.ariiol.0",
+      "displayTitle": "419kB",
+      "musicArtist": "ariiol",
+      "illustrator": "ariiol",
+      "disc": "EX - T.S.",
+      "trackSeries": [
+        {
+          "id": "rizline:track-series:00009",
+          "name": "T.S. #9 — Cosmic Radio 2024"
+        }
+      ],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:419kB.ariiol.0__hires",
+          "resourceId": "b9545ddb-6739-76e6-bc0d-c637a739f60e",
+          "variantId": "d7dad01b-0c55-76dd-9834-c43370a62756",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "419kB",
+        "419kB.ariiol.0",
+        "ariiol",
+        "EX - T.S.",
+        "T.S. #9 — Cosmic Radio 2024"
+      ]
+    },
+    {
+      "songId": "8BLUE.ariiolPIKASONIC.0",
+      "displayTitle": "8BLUE",
+      "musicArtist": "ariiol & PIKASONIC",
+      "illustrator": "ろんxかとろふ",
+      "disc": "EX - Single",
+      "trackSeries": [],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:8BLUE.ariiolPIKASONIC.0__hires",
+          "resourceId": "7fbaf09d-4b8d-7a8e-8519-1b7ba6a1ea14",
+          "variantId": "68026269-a92b-7bb8-9323-47bd5c0e9d32",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "8BLUE",
+        "8BLUE.ariiolPIKASONIC.0",
+        "ariiol & PIKASONIC",
+        "ろんxかとろふ",
+        "EX - Single"
+      ]
+    },
+    {
+      "songId": "Abatement.SNKSMizku.0",
+      "displayTitle": "Abatement",
+      "musicArtist": "SNKS & Mizku",
+      "illustrator": "Rallxkurara",
+      "disc": "Disc 2",
+      "trackSeries": [],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:Abatement.SNKSMizku.0__hires",
+          "resourceId": "e74bc84e-ee86-7cb2-a22f-cb5e6b07d037",
+          "variantId": "e3fab47f-c0b3-7607-aa84-e5f9f8df9112",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "Abatement",
+        "Abatement.SNKSMizku.0",
+        "SNKS & Mizku",
+        "Rallxkurara",
+        "Disc 2"
+      ]
+    },
+    {
+      "songId": "Abgrund.ElousFZ.0",
+      "displayTitle": "Abgrund",
+      "musicArtist": "ElousΛ.-FZ",
+      "illustrator": "山山奇",
+      "disc": "Disc 1",
+      "trackSeries": [],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:Abgrund.ElousFZ.0__hires",
+          "resourceId": "43a189c0-91c7-76d7-9715-2b8cffd6772c",
+          "variantId": "9e14d719-d9eb-72c0-a136-32b157d74995",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "Abgrund",
+        "Abgrund.ElousFZ.0",
+        "ElousΛ.-FZ",
+        "山山奇",
+        "Disc 1"
+      ]
+    },
+    {
+      "songId": "Abiogenesis.Juggernaut.0",
+      "displayTitle": "Abiogenesis",
+      "musicArtist": "Juggernaut.",
+      "illustrator": "山山奇",
+      "disc": "EX - T.S.",
+      "trackSeries": [
+        {
+          "id": "rizline:track-series:00001",
+          "name": "T.S. #1 — Juggernaut."
+        }
+      ],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:Abiogenesis.Juggernaut.0__hires",
+          "resourceId": "692c5a7c-9a6b-7ff7-8de3-ca769a512199",
+          "variantId": "5a407125-33a7-79ad-8a4e-94084a89df0d",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "Abiogenesis",
+        "Abiogenesis.Juggernaut.0",
+        "Juggernaut.",
+        "山山奇",
+        "EX - T.S.",
+        "T.S. #1 — Juggernaut."
+      ]
+    },
+    {
+      "songId": "AbsolutionPulse.nmy.0",
+      "displayTitle": "Absolution Pulse",
+      "musicArtist": "nm-y",
+      "illustrator": "山山奇",
+      "disc": "Disc 2",
+      "trackSeries": [],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:AbsolutionPulse.nmy.0__hires",
+          "resourceId": "5ce52014-6465-7a86-9982-0ee0f6a76d7a",
+          "variantId": "561502eb-2ffb-76ee-85c1-7a4ba08a04ea",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "Absolution Pulse",
+        "AbsolutionPulse.nmy.0",
+        "nm-y",
+        "山山奇",
+        "Disc 2"
+      ]
+    },
+    {
+      "songId": "Afterdark.Sta.0",
+      "displayTitle": "Afterdark",
+      "musicArtist": "Sta",
+      "illustrator": "拖延",
+      "disc": "EX - T.S.",
+      "trackSeries": [
+        {
+          "id": "rizline:track-series:00004",
+          "name": "T.S. #4 — Tone Sphere"
+        }
+      ],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:Afterdark.Sta.0__hires",
+          "resourceId": "e745e21a-b946-7632-abb2-90eb889243e9",
+          "variantId": "4190073b-5de3-7066-81b1-b7e8f7e4e4a8",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "Afterdark",
+        "Afterdark.Sta.0",
+        "Sta",
+        "拖延",
+        "EX - T.S.",
+        "T.S. #4 — Tone Sphere"
+      ]
+    },
+    {
+      "songId": "Alexandrite.onoken.0",
+      "displayTitle": "Alexandrite",
+      "musicArtist": "onoken",
+      "illustrator": "©2024 Rayark Inc. CYTUS II®",
+      "disc": "EX - T.S.",
+      "trackSeries": [
+        {
+          "id": "rizline:track-series:00006",
+          "name": "T.S. #6 — Cytus II × Muse Dash"
+        }
+      ],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:Alexandrite.onoken.0__hires",
+          "resourceId": "57e3a55a-741f-75e9-8ea7-29fd29a523f7",
+          "variantId": "c0b3d2e4-e840-7501-b8f7-58e3d8f334ae",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "Alexandrite",
+        "Alexandrite.onoken.0",
+        "onoken",
+        "©2024 Rayark Inc. CYTUS II®",
+        "EX - T.S.",
+        "T.S. #6 — Cytus II × Muse Dash"
+      ]
+    },
+    {
+      "songId": "Alfheimsfaith.影虎.0",
+      "displayTitle": "Alfheim's faith",
+      "musicArtist": "影虎。",
+      "illustrator": "霜月",
+      "disc": "EX - T.S.",
+      "trackSeries": [
+        {
+          "id": "rizline:track-series:00008",
+          "name": "T.S. #8 — Rotaeno"
+        }
+      ],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:Alfheimsfaith.影虎.0__hires",
+          "resourceId": "b78cc5ec-7125-7a08-8dcf-f2ae22347440",
+          "variantId": "e28cdf76-6b81-79ce-bc4d-a69c29fbec2d",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "Alfheim's faith",
+        "Alfheimsfaith.影虎.0",
+        "影虎。",
+        "霜月",
+        "EX - T.S.",
+        "T.S. #8 — Rotaeno"
+      ]
+    },
+    {
+      "songId": "Antikythera.technoplanet.0",
+      "displayTitle": "Antikythera",
+      "musicArtist": "technoplanet",
+      "illustrator": "©2025 Rayark Inc. DEEMO II®",
+      "disc": "EX - T.S.",
+      "trackSeries": [
+        {
+          "id": "rizline:track-series:00011",
+          "name": "T.S. #11 — DEEMO II"
+        }
+      ],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:Antikythera.technoplanet.0__hires",
+          "resourceId": "2d1daf07-0a4d-7fc0-a69e-9367e6e89e0d",
+          "variantId": "f385d6ef-d27b-7e61-8c7b-721fedd6cb9b",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "Antikythera",
+        "Antikythera.technoplanet.0",
+        "technoplanet",
+        "©2025 Rayark Inc. DEEMO II®",
+        "EX - T.S.",
+        "T.S. #11 — DEEMO II"
+      ]
+    },
+    {
+      "songId": "Antler.Juggernaut.0",
+      "displayTitle": "Antler",
+      "musicArtist": "Juggernaut.",
+      "illustrator": "山山奇",
+      "disc": "EX - T.S.",
+      "trackSeries": [
+        {
+          "id": "rizline:track-series:00001",
+          "name": "T.S. #1 — Juggernaut."
+        }
+      ],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:Antler.Juggernaut.0__hires",
+          "resourceId": "ba938eb6-92c0-73f3-9ede-8da184126436",
+          "variantId": "fd3ea76b-6f31-7321-b331-7f1c2579ecea",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "Antler",
+        "Antler.Juggernaut.0",
+        "Juggernaut.",
+        "山山奇",
+        "EX - T.S.",
+        "T.S. #1 — Juggernaut."
+      ]
+    },
+    {
+      "songId": "ArcadeViruZ.AspidCat.0",
+      "displayTitle": "Arcade ViruZ",
+      "musicArtist": "Aspid Cat",
+      "illustrator": "山山奇",
+      "disc": "Disc 1",
+      "trackSeries": [],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:ArcadeViruZ.AspidCat.0__hires",
+          "resourceId": "a6dcefd4-6ba3-7483-a439-44b0145d2fc8",
+          "variantId": "5fbe83a6-6918-7f6e-8214-0b909b11c1af",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "Arcade ViruZ",
+        "ArcadeViruZ.AspidCat.0",
+        "Aspid Cat",
+        "山山奇",
+        "Disc 1"
+      ]
+    },
+    {
+      "songId": "AuthenticGamever.Rukadesunowheretogo.0",
+      "displayTitle": "Authentic (Game ver.)",
+      "musicArtist": "Rukadesu & nowhere.to_go",
+      "illustrator": "山山奇",
+      "disc": "Disc 1",
+      "trackSeries": [],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:AuthenticGamever.Rukadesunowheretogo.0__hires",
+          "resourceId": "a6d39f1e-0f3a-74d2-80ef-bc1227f7b64c",
+          "variantId": "4b65ba15-547b-7c40-b44f-b3acfb00860a",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "Authentic (Game ver.)",
+        "AuthenticGamever.Rukadesunowheretogo.0",
+        "Rukadesu & nowhere.to_go",
+        "山山奇",
+        "Disc 1"
+      ]
+    },
+    {
+      "songId": "AvataarReincarnationofKalpa.ScarletteakaCrYmson.0",
+      "displayTitle": "Avataar ~Reincarnation of Kalpa~",
+      "musicArtist": "Scarlette a.k.a. CrYmson",
+      "illustrator": "© QueseraGames Co., Ltd.",
+      "disc": "EX - T.S.",
+      "trackSeries": [
+        {
+          "id": "rizline:track-series:00007",
+          "name": "T.S. #7 — KALPA"
+        }
+      ],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:AvataarReincarnationofKalpa.ScarletteakaCrYmson.0__hires",
+          "resourceId": "532d22b7-2f3a-7558-9abe-f8077388e3ef",
+          "variantId": "eee9a17d-3e99-7867-acd0-dff06d80b329",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "Avataar ~Reincarnation of Kalpa~",
+        "AvataarReincarnationofKalpa.ScarletteakaCrYmson.0",
+        "Scarlette a.k.a. CrYmson",
+        "© QueseraGames Co., Ltd.",
+        "EX - T.S.",
+        "T.S. #7 — KALPA"
+      ]
+    },
+    {
+      "songId": "BRAVEROAD.umavsMorimoriAtsushi.0",
+      "displayTitle": "BRAVE：ROAD",
+      "musicArtist": "uma vs. モリモリあつし",
+      "illustrator": "山山奇 feat. V17AMax",
+      "disc": "Disc 1",
+      "trackSeries": [],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:BRAVEROAD.umavsMorimoriAtsushi.0__hires",
+          "resourceId": "4e63a92f-99d4-7781-b82b-f515a26563b8",
+          "variantId": "3dcb1375-b6f1-768a-8e84-2c700c4c6fb9",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "BRAVE：ROAD",
+        "BRAVEROAD.umavsMorimoriAtsushi.0",
+        "uma vs. モリモリあつし",
+        "山山奇 feat. V17AMax",
+        "Disc 1"
+      ]
+    },
+    {
+      "songId": "Bamboo.rissyuu.0",
+      "displayTitle": "竹",
+      "musicArtist": "立秋",
+      "illustrator": "石王マサト",
+      "disc": "Disc O",
+      "trackSeries": [],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:Bamboo.rissyuu.0__hires",
+          "resourceId": "9806455f-247a-77ee-9f4a-1c8e99242cf1",
+          "variantId": "864eb66f-9d81-7722-809a-1284aa6fb694",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "竹",
+        "Bamboo.rissyuu.0",
+        "立秋",
+        "石王マサト",
+        "Disc O"
+      ]
+    },
+    {
+      "songId": "BringMeBack.Zekk.0",
+      "displayTitle": "Bring Me Back",
+      "musicArtist": "Zekk",
+      "illustrator": "山山奇",
+      "disc": "EX - T.S.",
+      "trackSeries": [
+        {
+          "id": "rizline:track-series:00002",
+          "name": "T.S. #2 — DIVERSE SYSTEM"
+        }
+      ],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:BringMeBack.Zekk.0__hires",
+          "resourceId": "3dbe9576-97d8-775c-bd66-d46436f1dd50",
+          "variantId": "bf2bd05b-d06d-7d5b-a836-290802a7f227",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "Bring Me Back",
+        "BringMeBack.Zekk.0",
+        "Zekk",
+        "山山奇",
+        "EX - T.S.",
+        "T.S. #2 — DIVERSE SYSTEM"
+      ]
+    },
+    {
+      "songId": "BurstyLollipop.Tanchiky.0",
+      "displayTitle": "Bursty Lollipop",
+      "musicArtist": "Tanchiky",
+      "illustrator": "yoshimo & からめる",
+      "disc": "EX - T.S.",
+      "trackSeries": [
+        {
+          "id": "rizline:track-series:00015",
+          "name": "T.S. #14 — Tanchiky"
+        }
+      ],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:BurstyLollipop.Tanchiky.0__hires",
+          "resourceId": "0756d2e5-377a-774b-bb33-dc53e64e9883",
+          "variantId": "e35d300a-bddc-7c1f-96bf-594a1febf020",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "Bursty Lollipop",
+        "BurstyLollipop.Tanchiky.0",
+        "Tanchiky",
+        "yoshimo & からめる",
+        "EX - T.S.",
+        "T.S. #14 — Tanchiky"
+      ]
+    },
+    {
+      "songId": "CANDYLAND.Seo.0",
+      "displayTitle": "CANDYLAND",
+      "musicArtist": "Seo",
+      "illustrator": "破晓buff-夜刃•Ex",
+      "disc": "Disc 1",
+      "trackSeries": [],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:CANDYLAND.Seo.0__hires",
+          "resourceId": "13e2d727-2346-7194-aa08-7c7eca0a7cde",
+          "variantId": "c0c2efac-e7b0-70ba-9b42-ff28216b1f73",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "CANDYLAND",
+        "CANDYLAND.Seo.0",
+        "Seo",
+        "破晓buff-夜刃•Ex",
+        "Disc 1"
+      ]
+    },
+    {
+      "songId": "ChangetheGamefeat松永依織.REDALiCEUSAO.0",
+      "displayTitle": "Change the Game feat. 松永依織",
+      "musicArtist": "REDALiCE & USAO",
+      "illustrator": "HARDCORE TANO*C",
+      "disc": "EX - T.S.",
+      "trackSeries": [
+        {
+          "id": "rizline:track-series:00010",
+          "name": "T.S. #10 — HARDCORE TANO*C"
+        }
+      ],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:ChangetheGamefeat松永依織.REDALiCEUSAO.0__hires",
+          "resourceId": "9708d35d-bfbe-7873-b12d-3a865594ef9f",
+          "variantId": "1d63dba6-50c8-717c-9837-269a3829036f",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "Change the Game feat. 松永依織",
+        "ChangetheGamefeat松永依織.REDALiCEUSAO.0",
+        "REDALiCE & USAO",
+        "HARDCORE TANO*C",
+        "EX - T.S.",
+        "T.S. #10 — HARDCORE TANO*C"
+      ]
+    },
+    {
+      "songId": "ClockParadox.WyvernP.0",
+      "displayTitle": "Clock Paradox",
+      "musicArtist": "WyvernP",
+      "illustrator": "山山奇",
+      "disc": "Disc 1",
+      "trackSeries": [],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:ClockParadox.WyvernP.0__hires",
+          "resourceId": "648d15e7-ca37-79a6-b2df-bf00c8fd0e2d",
+          "variantId": "55a638bc-a7c6-7c2d-8b21-3f6011300df5",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "Clock Paradox",
+        "ClockParadox.WyvernP.0",
+        "WyvernP",
+        "山山奇",
+        "Disc 1"
+      ]
+    },
+    {
+      "songId": "Cloudsclearand.Qutabire.0",
+      "displayTitle": "Clouds clear and...",
+      "musicArtist": "Qutabire",
+      "illustrator": "©2025 Rayark Inc. DEEMO II®",
+      "disc": "EX - T.S.",
+      "trackSeries": [
+        {
+          "id": "rizline:track-series:00011",
+          "name": "T.S. #11 — DEEMO II"
+        }
+      ],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:Cloudsclearand.Qutabire.0__hires",
+          "resourceId": "e90669ca-2664-7a39-89e6-c60bccad7565",
+          "variantId": "f254b70b-b3e3-7c0c-8b69-076cbb4f4f5e",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "Clouds clear and...",
+        "Cloudsclearand.Qutabire.0",
+        "Qutabire",
+        "©2025 Rayark Inc. DEEMO II®",
+        "EX - T.S.",
+        "T.S. #11 — DEEMO II"
+      ]
+    },
+    {
+      "songId": "ColorfulFlavor.Cansol.0",
+      "displayTitle": "Colorful Flavor",
+      "musicArtist": "Cansol",
+      "illustrator": "山山奇",
+      "disc": "EX - Single",
+      "trackSeries": [],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:ColorfulFlavor.Cansol.0__hires",
+          "resourceId": "83a95d86-51d3-7630-b9cd-1b26fa37c540",
+          "variantId": "5f143359-dc36-7094-a90c-c8c4816d6287",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "Colorful Flavor",
+        "ColorfulFlavor.Cansol.0",
+        "Cansol",
+        "山山奇",
+        "EX - Single"
+      ]
+    },
+    {
+      "songId": "CometCoaster.DJNorikenaran.0",
+      "displayTitle": "Comet Coaster",
+      "musicArtist": "DJ Noriken & aran",
+      "illustrator": "©peropero",
+      "disc": "EX - T.S.",
+      "trackSeries": [
+        {
+          "id": "rizline:track-series:00006",
+          "name": "T.S. #6 — Cytus II × Muse Dash"
+        }
+      ],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:CometCoaster.DJNorikenaran.0__hires",
+          "resourceId": "ad24e28f-62ca-7610-9e42-7fc4bd0baf3f",
+          "variantId": "3faa75e3-a1f4-7f94-9615-74db54e2e678",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "Comet Coaster",
+        "CometCoaster.DJNorikenaran.0",
+        "DJ Noriken & aran",
+        "©peropero",
+        "EX - T.S.",
+        "T.S. #6 — Cytus II × Muse Dash"
+      ]
+    },
+    {
+      "songId": "Contact.NeutralMoonMK.0",
+      "displayTitle": "Contact",
+      "musicArtist": "Neutral Moon & MK",
+      "illustrator": "山山奇",
+      "disc": "Disc 1",
+      "trackSeries": [],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:Contact.NeutralMoonMK.0__hires",
+          "resourceId": "4deb664c-66bb-79d4-ac0b-1430037af5f7",
+          "variantId": "88443b59-cd8d-711d-a6ea-f9bd1457bca4",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "Contact",
+        "Contact.NeutralMoonMK.0",
+        "Neutral Moon & MK",
+        "山山奇",
+        "Disc 1"
+      ]
+    },
+    {
+      "songId": "Contortion.PTB10.0",
+      "displayTitle": "Contortion",
+      "musicArtist": "PTB10",
+      "illustrator": "破晓buff-夜刃•Ex",
+      "disc": "EX - Single",
+      "trackSeries": [],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:Contortion.PTB10.0__hires",
+          "resourceId": "9b509fe6-46da-7f8c-91b9-9f4f8fd4ddb7",
+          "variantId": "b3ef30eb-18e0-7f21-aa41-61d863f7023d",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "Contortion",
+        "Contortion.PTB10.0",
+        "PTB10",
+        "破晓buff-夜刃•Ex",
+        "EX - Single"
+      ]
+    },
+    {
+      "songId": "ConwaysChild.Sta.0",
+      "displayTitle": "Conway's Child",
+      "musicArtist": "Sta",
+      "illustrator": "山山奇",
+      "disc": "EX - T.S.",
+      "trackSeries": [
+        {
+          "id": "rizline:track-series:00004",
+          "name": "T.S. #4 — Tone Sphere"
+        }
+      ],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:ConwaysChild.Sta.0__hires",
+          "resourceId": "a7e7fe3a-e78e-70e3-94e1-e9cd1f19018e",
+          "variantId": "309df714-be3b-715b-a4bb-d04c153a7363",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "Conway's Child",
+        "ConwaysChild.Sta.0",
+        "Sta",
+        "山山奇",
+        "EX - T.S.",
+        "T.S. #4 — Tone Sphere"
+      ]
+    },
+    {
+      "songId": "CosmosCapsule.AsTroyBakami.0",
+      "displayTitle": "Cosmos Capsule",
+      "musicArtist": "AsTroy & Bakami",
+      "illustrator": "山山奇",
+      "disc": "Disc 2",
+      "trackSeries": [],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:CosmosCapsule.AsTroyBakami.0__hires",
+          "resourceId": "ab39e091-f375-7f7d-891a-98e66a1038a0",
+          "variantId": "f76a7c46-797a-7694-88a2-be13463fa362",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "Cosmos Capsule",
+        "CosmosCapsule.AsTroyBakami.0",
+        "AsTroy & Bakami",
+        "山山奇",
+        "Disc 2"
+      ]
+    },
+    {
+      "songId": "CrazyAudiophile.Supa7onyz.0",
+      "displayTitle": "Crazy Audiophile",
+      "musicArtist": "Supa7onyz",
+      "illustrator": "山山奇",
+      "disc": "EX - T.S.",
+      "trackSeries": [
+        {
+          "id": "rizline:track-series:00009",
+          "name": "T.S. #9 — Cosmic Radio 2024"
+        }
+      ],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:CrazyAudiophile.Supa7onyz.0__hires",
+          "resourceId": "ba49c60a-431a-70c1-98ec-40bf4e0b6593",
+          "variantId": "c57b08d6-d7be-7976-b354-e027ec8fb2f0",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "Crazy Audiophile",
+        "CrazyAudiophile.Supa7onyz.0",
+        "Supa7onyz",
+        "山山奇",
+        "EX - T.S.",
+        "T.S. #9 — Cosmic Radio 2024"
+      ]
+    },
+    {
+      "songId": "Crimsonate.BlackYfeatRisaYuzuki.0",
+      "displayTitle": "Crimsonate",
+      "musicArtist": "BlackY feat. Risa Yuzuki",
+      "illustrator": "山山奇",
+      "disc": "EX - T.S.",
+      "trackSeries": [
+        {
+          "id": "rizline:track-series:00005",
+          "name": "T.S. #5 — BlackY"
+        }
+      ],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:Crimsonate.BlackYfeatRisaYuzuki.0__hires",
+          "resourceId": "b9d77875-adab-7c19-9688-0d727821100b",
+          "variantId": "2d789d14-6fbc-7e87-907e-5becf6a5ccc0",
+          "variantKey": "default",
+          "preferred": true
+        },
+        {
+          "artworkId": "rizline:illustration:Crimsonate.BlackYfeatRisaYuzuki.0.cn__hires",
+          "resourceId": "b9d77875-adab-7c19-9688-0d727821100b",
+          "variantId": "f75495e8-6719-7f51-8f6e-c7b8f0f18d7b",
+          "variantKey": "cn",
+          "preferred": false
+        }
+      ],
+      "searchTerms": [
+        "Crimsonate",
+        "Crimsonate.BlackYfeatRisaYuzuki.0",
+        "BlackY feat. Risa Yuzuki",
+        "山山奇",
+        "EX - T.S.",
+        "Crimsonate.BlackYfeatRisaYuzuki.0.cn",
+        "T.S. #5 — BlackY"
+      ]
+    },
+    {
+      "songId": "CrushAlcohol.shadow_bling.0",
+      "displayTitle": "Crush Alcohol",
+      "musicArtist": "shadow_bling",
+      "illustrator": "山山奇",
+      "disc": "EX - Single",
+      "trackSeries": [],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:CrushAlcohol.shadow_bling.0__hires",
+          "resourceId": "4c85884a-b05a-79e2-95c6-7a944662f6f2",
+          "variantId": "a5edc63e-9025-756e-b9f2-55ef933faaab",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "Crush Alcohol",
+        "CrushAlcohol.shadow_bling.0",
+        "shadow_bling",
+        "山山奇",
+        "EX - Single"
+      ]
+    },
+    {
+      "songId": "DBirth.Sakuzyo.0",
+      "displayTitle": "D-Birth",
+      "musicArtist": "Sakuzyo (Violin: Katali)",
+      "illustrator": "山山奇",
+      "disc": "EX - T.S.",
+      "trackSeries": [
+        {
+          "id": "rizline:track-series:00002",
+          "name": "T.S. #2 — DIVERSE SYSTEM"
+        }
+      ],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:DBirth.Sakuzyo.0__hires",
+          "resourceId": "1e2016c0-93b1-7835-9038-2049e609ea84",
+          "variantId": "effd9640-2e49-7562-8eb4-f35a5858975e",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "D-Birth",
+        "DBirth.Sakuzyo.0",
+        "Sakuzyo (Violin: Katali)",
+        "山山奇",
+        "EX - T.S.",
+        "T.S. #2 — DIVERSE SYSTEM"
+      ]
+    },
+    {
+      "songId": "DOMINATOR.NOMA.0",
+      "displayTitle": "DOMINATOR",
+      "musicArtist": "NOMA",
+      "illustrator": "©peropero",
+      "disc": "EX - T.S.",
+      "trackSeries": [
+        {
+          "id": "rizline:track-series:00006",
+          "name": "T.S. #6 — Cytus II × Muse Dash"
+        }
+      ],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:DOMINATOR.NOMA.0__hires",
+          "resourceId": "7092f242-b932-7d76-8fe2-0dcad9fe9f06",
+          "variantId": "691d02d2-ba9b-75c3-9aa3-a721ac0ba9e9",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "DOMINATOR",
+        "DOMINATOR.NOMA.0",
+        "NOMA",
+        "©peropero",
+        "EX - T.S.",
+        "T.S. #6 — Cytus II × Muse Dash"
+      ]
+    },
+    {
+      "songId": "Destr0yer.Sakuzyo.0",
+      "displayTitle": "Destr0yer",
+      "musicArtist": "Sakuzyo feat. Nikki Simmons",
+      "illustrator": "yoshimo & Radiosity",
+      "disc": "Disc 2",
+      "trackSeries": [],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:Destr0yer.Sakuzyo.0__hires",
+          "resourceId": "72bd4f55-50fa-7339-903c-200590c1bb95",
+          "variantId": "7eb7e764-4888-7f04-bcbb-011938ed972d",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "Destr0yer",
+        "Destr0yer.Sakuzyo.0",
+        "Sakuzyo feat. Nikki Simmons",
+        "yoshimo & Radiosity",
+        "Disc 2"
+      ]
+    },
+    {
+      "songId": "Dice20.Daily.0",
+      "displayTitle": "Dice 20",
+      "musicArtist": "Daily天利",
+      "illustrator": "美工刀",
+      "disc": "Disc 1",
+      "trackSeries": [],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:Dice20.Daily.0__hires",
+          "resourceId": "8e8f7e8d-3db4-72a1-9a38-09cef8506496",
+          "variantId": "c5065da8-e483-72d8-9204-38de89441f99",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "Dice 20",
+        "Dice20.Daily.0",
+        "Daily天利",
+        "美工刀",
+        "Disc 1"
+      ]
+    },
+    {
+      "songId": "DotLinefeatななひら.A39沙包Pななひら.0",
+      "displayTitle": "Dot-Line (feat. ななひら)",
+      "musicArtist": "A-39 / 沙包P / ななひら",
+      "illustrator": "山山奇",
+      "disc": "Disc O",
+      "trackSeries": [],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:DotLinefeatななひら.A39沙包Pななひら.0__hires",
+          "resourceId": "8ee82072-0b5b-7a4c-af6a-bd66232f5cc5",
+          "variantId": "b17d2828-5237-7e8d-9725-88c025f023d9",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "Dot-Line (feat. ななひら)",
+        "DotLinefeatななひら.A39沙包Pななひら.0",
+        "A-39 / 沙包P / ななひら",
+        "山山奇",
+        "Disc O"
+      ]
+    },
+    {
+      "songId": "DropDown.Cosmograph.0",
+      "displayTitle": "DropDown",
+      "musicArtist": "Cosmograph",
+      "illustrator": "汉堡",
+      "disc": "Disc 1",
+      "trackSeries": [],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:DropDown.Cosmograph.0__hires",
+          "resourceId": "27953a64-cdad-723f-ab15-34e099079923",
+          "variantId": "3aafaedf-d173-72a8-9df2-0ad4510a02eb",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "DropDown",
+        "DropDown.Cosmograph.0",
+        "Cosmograph",
+        "汉堡",
+        "Disc 1"
+      ]
+    },
+    {
+      "songId": "Echooveryou.Apo11oprogram.0",
+      "displayTitle": "Echo over you...",
+      "musicArtist": "Apo11o program",
+      "illustrator": "©2025 Rayark Inc. DEEMO II®",
+      "disc": "EX - T.S.",
+      "trackSeries": [
+        {
+          "id": "rizline:track-series:00011",
+          "name": "T.S. #11 — DEEMO II"
+        }
+      ],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:Echooveryou.Apo11oprogram.0__hires",
+          "resourceId": "dacc20bb-4a1d-73b1-9c9d-5cce6772072b",
+          "variantId": "d6f54acf-756e-7cbe-963e-4698ab797973",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "Echo over you...",
+        "Echooveryou.Apo11oprogram.0",
+        "Apo11o program",
+        "©2025 Rayark Inc. DEEMO II®",
+        "EX - T.S.",
+        "T.S. #11 — DEEMO II"
+      ]
+    },
+    {
+      "songId": "ElectricComet.Meram1n.0",
+      "displayTitle": "Electric Comet",
+      "musicArtist": "Meram1n",
+      "illustrator": "© QueseraGames Co., Ltd.",
+      "disc": "EX - T.S.",
+      "trackSeries": [
+        {
+          "id": "rizline:track-series:00007",
+          "name": "T.S. #7 — KALPA"
+        }
+      ],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:ElectricComet.Meram1n.0__hires",
+          "resourceId": "1d93792c-64cf-73a9-98c4-4c6c9746e7c3",
+          "variantId": "b8a528ec-ad65-793a-a38f-8ab3d6ba0950",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "Electric Comet",
+        "ElectricComet.Meram1n.0",
+        "Meram1n",
+        "© QueseraGames Co., Ltd.",
+        "EX - T.S.",
+        "T.S. #7 — KALPA"
+      ]
+    },
+    {
+      "songId": "Empire.416.0",
+      "displayTitle": "Empire",
+      "musicArtist": "4_16",
+      "illustrator": "不目寒",
+      "disc": "Disc 1",
+      "trackSeries": [],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:Empire.416.0__hires",
+          "resourceId": "e0898001-1c07-73a3-b12f-c360b1d8cd13",
+          "variantId": "c46bad4b-a5fd-774e-a31e-c30bb4be0235",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "Empire",
+        "Empire.416.0",
+        "4_16",
+        "不目寒",
+        "Disc 1"
+      ]
+    },
+    {
+      "songId": "Encrux.Sobrem.0",
+      "displayTitle": "Encrux",
+      "musicArtist": "Sobrem",
+      "illustrator": "山山奇",
+      "disc": "EX - T.S.",
+      "trackSeries": [
+        {
+          "id": "rizline:track-series:00003",
+          "name": "T.S. #3 — Sobrem"
+        }
+      ],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:Encrux.Sobrem.0__hires",
+          "resourceId": "4d380868-311c-7e2d-894e-f090243452bd",
+          "variantId": "26c74b31-77ba-7e3d-a912-13031103d006",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "Encrux",
+        "Encrux.Sobrem.0",
+        "Sobrem",
+        "山山奇",
+        "EX - T.S.",
+        "T.S. #3 — Sobrem"
+      ]
+    },
+    {
+      "songId": "Enneaquest.SEPHID.0",
+      "displayTitle": "Enneaquest",
+      "musicArtist": "SEPHID",
+      "illustrator": "山山奇",
+      "disc": "EX - Single",
+      "trackSeries": [],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:Enneaquest.SEPHID.0__hires",
+          "resourceId": "65b85716-c10c-7ef5-9677-ebaecdfb3620",
+          "variantId": "3425453e-78e5-7c72-affa-0313da1d6a35",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "Enneaquest",
+        "Enneaquest.SEPHID.0",
+        "SEPHID",
+        "山山奇",
+        "EX - Single"
+      ]
+    },
+    {
+      "songId": "Eschatology.TatshScarlette.0",
+      "displayTitle": "Eschatology",
+      "musicArtist": "Tatsh & Scarlette",
+      "illustrator": "© QueseraGames Co., Ltd.",
+      "disc": "EX - T.S.",
+      "trackSeries": [
+        {
+          "id": "rizline:track-series:00007",
+          "name": "T.S. #7 — KALPA"
+        }
+      ],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:Eschatology.TatshScarlette.0__hires",
+          "resourceId": "644c5dae-a625-7edb-8712-1a8301252959",
+          "variantId": "ae4606fa-64af-71cf-8538-ffd323291048",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "Eschatology",
+        "Eschatology.TatshScarlette.0",
+        "Tatsh & Scarlette",
+        "© QueseraGames Co., Ltd.",
+        "EX - T.S.",
+        "T.S. #7 — KALPA"
+      ]
+    },
+    {
+      "songId": "FORTALiCE.ZxNX.0",
+      "displayTitle": "FORTALiCE",
+      "musicArtist": "ZxNX",
+      "illustrator": "Karen & Vvn",
+      "disc": "Disc 1",
+      "trackSeries": [],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:FORTALiCE.ZxNX.0__hires",
+          "resourceId": "088bce4c-f153-73b3-a9a0-a6380dd10ce0",
+          "variantId": "c373a439-9ce5-753a-9288-9178864d908e",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "FORTALiCE",
+        "FORTALiCE.ZxNX.0",
+        "ZxNX",
+        "Karen & Vvn",
+        "Disc 1"
+      ]
+    },
+    {
+      "songId": "FRIEND.DAAN.0",
+      "displayTitle": "F℟IEND",
+      "musicArtist": "D_AAN",
+      "illustrator": "山山奇",
+      "disc": "Disc 1",
+      "trackSeries": [],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:FRIEND.DAAN.0__hires",
+          "resourceId": "7221713c-3dda-7680-ab4a-10b576e2772b",
+          "variantId": "ec76b70f-f47a-7179-a3c8-80f03ab75007",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "F℟IEND",
+        "FRIEND.DAAN.0",
+        "D_AAN",
+        "山山奇",
+        "Disc 1"
+      ]
+    },
+    {
+      "songId": "FadeAway.DeBisco.0",
+      "displayTitle": "Fade Away",
+      "musicArtist": "DeBisco",
+      "illustrator": "鲸弑",
+      "disc": "Disc 2",
+      "trackSeries": [],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:FadeAway.DeBisco.0__hires",
+          "resourceId": "1bdc6ddb-f3d7-75fe-b39f-0acb276775a1",
+          "variantId": "619349be-7798-7134-b2d8-cc5721ba1011",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "Fade Away",
+        "FadeAway.DeBisco.0",
+        "DeBisco",
+        "鲸弑",
+        "Disc 2"
+      ]
+    },
+    {
+      "songId": "FairysCrown.Powerless.0",
+      "displayTitle": "Fairy's Crown",
+      "musicArtist": "Powerless",
+      "illustrator": "©2025 Rayark Inc. DEEMO II®",
+      "disc": "EX - T.S.",
+      "trackSeries": [
+        {
+          "id": "rizline:track-series:00011",
+          "name": "T.S. #11 — DEEMO II"
+        }
+      ],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:FairysCrown.Powerless.0__hires",
+          "resourceId": "61f8cd1f-9e3f-762f-aec7-729dbdc53de9",
+          "variantId": "a1ea7d88-592b-7f10-be80-4c296e817db4",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "Fairy's Crown",
+        "FairysCrown.Powerless.0",
+        "Powerless",
+        "©2025 Rayark Inc. DEEMO II®",
+        "EX - T.S.",
+        "T.S. #11 — DEEMO II"
+      ]
+    },
+    {
+      "songId": "FrozenHeart.A39沙包P.0",
+      "displayTitle": "Frozen Heart",
+      "musicArtist": "A-39 / 沙包P",
+      "illustrator": "山山奇",
+      "disc": "EX - Single",
+      "trackSeries": [],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:FrozenHeart.A39沙包P.0__hires",
+          "resourceId": "bf1c8921-87d2-7b64-86cb-bfc48afe59d7",
+          "variantId": "5f7bb2bb-79ed-70c8-b4a6-fe0317e86520",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "Frozen Heart",
+        "FrozenHeart.A39沙包P.0",
+        "A-39 / 沙包P",
+        "山山奇",
+        "EX - Single"
+      ]
+    },
+    {
+      "songId": "FutureDownloader.Kobaryo.0",
+      "displayTitle": "Future Downloader",
+      "musicArtist": "Kobaryo",
+      "illustrator": "HARDCORE TANO*C",
+      "disc": "EX - T.S.",
+      "trackSeries": [
+        {
+          "id": "rizline:track-series:00010",
+          "name": "T.S. #10 — HARDCORE TANO*C"
+        }
+      ],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:FutureDownloader.Kobaryo.0__hires",
+          "resourceId": "fb47e5bc-5f50-7e79-9140-f515d656fb66",
+          "variantId": "92b6a63f-cc97-7ac7-82b5-13501cad0dc3",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "Future Downloader",
+        "FutureDownloader.Kobaryo.0",
+        "Kobaryo",
+        "HARDCORE TANO*C",
+        "EX - T.S.",
+        "T.S. #10 — HARDCORE TANO*C"
+      ]
+    },
+    {
+      "songId": "GREATGREAT.Zris.0",
+      "displayTitle": "GREAT GREAT",
+      "musicArtist": "Zris",
+      "illustrator": "猫鼬烩饭",
+      "disc": "EX - Single",
+      "trackSeries": [],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:GREATGREAT.Zris.0__hires",
+          "resourceId": "174aeecf-8c9a-7e99-aae5-03660e471a3a",
+          "variantId": "a1bde0ec-ee9d-7f65-9a5b-a2a66bf14af7",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "GREAT GREAT",
+        "GREATGREAT.Zris.0",
+        "Zris",
+        "猫鼬烩饭",
+        "EX - Single"
+      ]
+    },
+    {
+      "songId": "Giselle.Sobrem.0",
+      "displayTitle": "Giselle",
+      "musicArtist": "Sobrem a.k.a. Widowmaker",
+      "illustrator": "青鸟",
+      "disc": "EX - T.S.",
+      "trackSeries": [
+        {
+          "id": "rizline:track-series:00003",
+          "name": "T.S. #3 — Sobrem"
+        }
+      ],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:Giselle.Sobrem.0__hires",
+          "resourceId": "5231396a-d0e5-72fc-9473-57357f126cfd",
+          "variantId": "09b2f5b5-9734-7e49-8fe5-f27059d1a614",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "Giselle",
+        "Giselle.Sobrem.0",
+        "Sobrem a.k.a. Widowmaker",
+        "青鸟",
+        "EX - T.S.",
+        "T.S. #3 — Sobrem"
+      ]
+    },
+    {
+      "songId": "Gleam.Uske.0",
+      "displayTitle": "Gleam feat. ふわまろ",
+      "musicArtist": "U-ske",
+      "illustrator": "きゃらあい",
+      "disc": "Disc 1",
+      "trackSeries": [],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:Gleam.Uske.0__hires",
+          "resourceId": "af30c49c-cdf1-78e3-8ff4-6313fb28a93e",
+          "variantId": "cf915584-a575-7c5d-9109-d8e1d46bf229",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "Gleam feat. ふわまろ",
+        "Gleam.Uske.0",
+        "U-ske",
+        "きゃらあい",
+        "Disc 1"
+      ]
+    },
+    {
+      "songId": "GravesAncientMemories.Juggernaut.0",
+      "displayTitle": "Graves -Ancient Memories-",
+      "musicArtist": "Juggernaut.",
+      "illustrator": "©2025 Rayark Inc. DEEMO II®",
+      "disc": "EX - T.S.",
+      "trackSeries": [
+        {
+          "id": "rizline:track-series:00011",
+          "name": "T.S. #11 — DEEMO II"
+        }
+      ],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:GravesAncientMemories.Juggernaut.0__hires",
+          "resourceId": "e6910a9a-7ae2-7f1b-b179-7fe70863a4a8",
+          "variantId": "d5a9f032-2e43-7cd8-9943-a42a346e1124",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "Graves -Ancient Memories-",
+        "GravesAncientMemories.Juggernaut.0",
+        "Juggernaut.",
+        "©2025 Rayark Inc. DEEMO II®",
+        "EX - T.S.",
+        "T.S. #11 — DEEMO II"
+      ]
+    },
+    {
+      "songId": "GreatnessEarth.Axya.0",
+      "displayTitle": "Greatness Earth",
+      "musicArtist": "Axya",
+      "illustrator": "鲸弑",
+      "disc": "EX - T.S.",
+      "trackSeries": [
+        {
+          "id": "rizline:track-series:00014",
+          "name": "T.S. #13 — 天地万象"
+        }
+      ],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:GreatnessEarth.Axya.0__hires",
+          "resourceId": "502f09d6-577b-77f9-837b-4430d7a3670b",
+          "variantId": "c138a411-bded-7a82-a158-adb5d2c685dc",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "Greatness Earth",
+        "GreatnessEarth.Axya.0",
+        "Axya",
+        "鲸弑",
+        "EX - T.S.",
+        "T.S. #13 — 天地万象"
+      ]
+    },
+    {
+      "songId": "Grimheart.Puru.0",
+      "displayTitle": "Grimheart",
+      "musicArtist": "Puru",
+      "illustrator": "山山奇",
+      "disc": "EX - Single",
+      "trackSeries": [],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:Grimheart.Puru.0__hires",
+          "resourceId": "3e4dd70d-f364-75ba-bb58-975e426b3077",
+          "variantId": "e6884588-b097-7253-b03f-aed81300c370",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "Grimheart",
+        "Grimheart.Puru.0",
+        "Puru",
+        "山山奇",
+        "EX - Single"
+      ]
+    },
+    {
+      "songId": "HeadBONKache.saaaftMCiwataBros.0",
+      "displayTitle": "Head BONK ache",
+      "musicArtist": "saaa ft. MC iwata Bros.",
+      "illustrator": "Jimwaz",
+      "disc": "EX - Single",
+      "trackSeries": [],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:HeadBONKache.saaaftMCiwataBros.0__hires",
+          "resourceId": "d496973a-7a3d-7f86-8f6e-7cd0fbd3e39d",
+          "variantId": "d8000cc4-e626-7ac6-9401-ba9a0ed3f350",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "Head BONK ache",
+        "HeadBONKache.saaaftMCiwataBros.0",
+        "saaa ft. MC iwata Bros.",
+        "Jimwaz",
+        "EX - Single"
+      ]
+    },
+    {
+      "songId": "HoukagoOVERDRIVE.Rukadesu.0",
+      "displayTitle": "Houkago OVERDRIVE!!!!! (Game ver.)",
+      "musicArtist": "Rukadesu",
+      "illustrator": "子狼",
+      "disc": "Disc 2",
+      "trackSeries": [],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:HoukagoOVERDRIVE.Rukadesu.0__hires",
+          "resourceId": "f17adaa8-bdd9-7e10-a776-2f61bec0e7f5",
+          "variantId": "2a5c941b-fdbd-7ff7-b98c-34d22e815e1b",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "Houkago OVERDRIVE!!!!! (Game ver.)",
+        "HoukagoOVERDRIVE.Rukadesu.0",
+        "Rukadesu",
+        "子狼",
+        "Disc 2"
+      ]
+    },
+    {
+      "songId": "Hullbreaker.Maozon.0",
+      "displayTitle": "Hullbreaker",
+      "musicArtist": "Maozon",
+      "illustrator": "汉堡",
+      "disc": "EX - T.S.",
+      "trackSeries": [
+        {
+          "id": "rizline:track-series:00002",
+          "name": "T.S. #2 — DIVERSE SYSTEM"
+        }
+      ],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:Hullbreaker.Maozon.0__hires",
+          "resourceId": "2cfc676d-daf8-7829-b3c2-e7ac12d2af94",
+          "variantId": "f3af3cd8-e59f-715f-bd59-366b9d0d0b00",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "Hullbreaker",
+        "Hullbreaker.Maozon.0",
+        "Maozon",
+        "汉堡",
+        "EX - T.S.",
+        "T.S. #2 — DIVERSE SYSTEM"
+      ]
+    },
+    {
+      "songId": "Hydra.JamesLandinoXAkiraComplex.0",
+      "displayTitle": "Hydra",
+      "musicArtist": "James Landino X Akira Complex",
+      "illustrator": "©2024 Rayark Inc. CYTUS II®",
+      "disc": "EX - T.S.",
+      "trackSeries": [
+        {
+          "id": "rizline:track-series:00006",
+          "name": "T.S. #6 — Cytus II × Muse Dash"
+        }
+      ],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:Hydra.JamesLandinoXAkiraComplex.0__hires",
+          "resourceId": "407cb452-1654-7962-b621-70443c905090",
+          "variantId": "86dffb68-0798-76bc-a896-d527d7d83c4c",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "Hydra",
+        "Hydra.JamesLandinoXAkiraComplex.0",
+        "James Landino X Akira Complex",
+        "©2024 Rayark Inc. CYTUS II®",
+        "EX - T.S.",
+        "T.S. #6 — Cytus II × Muse Dash"
+      ]
+    },
+    {
+      "songId": "Hyperwave.LOFTIER.0",
+      "displayTitle": "Hyperwave",
+      "musicArtist": "LOFTIER",
+      "illustrator": "鲸弑",
+      "disc": "Disc 2",
+      "trackSeries": [],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:Hyperwave.LOFTIER.0__hires",
+          "resourceId": "89b0038e-2082-7f39-b7b9-9ea3ee4981d5",
+          "variantId": "dc9c864b-f1be-74a2-a1c6-1ceb927ac0f0",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "Hyperwave",
+        "Hyperwave.LOFTIER.0",
+        "LOFTIER",
+        "鲸弑",
+        "Disc 2"
+      ]
+    },
+    {
+      "songId": "ILLEGALLEGACY.seatrus.0",
+      "displayTitle": "ILLEGAL LEGACY",
+      "musicArtist": "seatrus",
+      "illustrator": "美工刀",
+      "disc": "Disc 1",
+      "trackSeries": [],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:ILLEGALLEGACY.seatrus.0__hires",
+          "resourceId": "cc3235bb-7485-7899-b302-357ac12846ed",
+          "variantId": "6fa07f6b-8dcd-749c-8372-fa61a4ac5306",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "ILLEGAL LEGACY",
+        "ILLEGALLEGACY.seatrus.0",
+        "seatrus",
+        "美工刀",
+        "Disc 1"
+      ]
+    },
+    {
+      "songId": "Idol.VizzenMonstDeath.0",
+      "displayTitle": "Idol",
+      "musicArtist": "Vizzen & MonstDeath",
+      "illustrator": "美工刀",
+      "disc": "Disc 2",
+      "trackSeries": [],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:Idol.VizzenMonstDeath.0__hires",
+          "resourceId": "ac9cbdda-1015-7d78-a724-cc9a63f3dc23",
+          "variantId": "ea33f5f4-3957-7064-afab-eb5ac03d8916",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "Idol",
+        "Idol.VizzenMonstDeath.0",
+        "Vizzen & MonstDeath",
+        "美工刀",
+        "Disc 2"
+      ]
+    },
+    {
+      "songId": "Inevitability.kuro.0",
+      "displayTitle": "Inevitability",
+      "musicArtist": "kuro",
+      "illustrator": "子狼",
+      "disc": "Disc O",
+      "trackSeries": [],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:Inevitability.kuro.0__hires",
+          "resourceId": "0b9f0d54-3d92-798a-abfa-08ffa3ace928",
+          "variantId": "2ee5bcec-a72f-73a9-ac31-322b66548ab2",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "Inevitability",
+        "Inevitability.kuro.0",
+        "kuro",
+        "子狼",
+        "Disc O"
+      ]
+    },
+    {
+      "songId": "Intruder.Riya.0",
+      "displayTitle": "Intruder",
+      "musicArtist": "Riya",
+      "illustrator": "山山奇",
+      "disc": "Disc 2",
+      "trackSeries": [],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:Intruder.Riya.0__hires",
+          "resourceId": "6079fa8d-d64f-7873-b833-4c7d979a2af0",
+          "variantId": "d2e05120-120f-71ef-b957-55f8768616ee",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "Intruder",
+        "Intruder.Riya.0",
+        "Riya",
+        "山山奇",
+        "Disc 2"
+      ]
+    },
+    {
+      "songId": "JourneyToTheRainbows.Ardolf.0",
+      "displayTitle": "Journey To The Rainbows",
+      "musicArtist": "Ardolf",
+      "illustrator": "山山奇",
+      "disc": "Disc 1",
+      "trackSeries": [],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:JourneyToTheRainbows.Ardolf.0__hires",
+          "resourceId": "daaba044-73f9-73bc-a174-38bd9bea07b1",
+          "variantId": "86088a4d-b263-7e21-9dea-e8d0ba300c2f",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "Journey To The Rainbows",
+        "JourneyToTheRainbows.Ardolf.0",
+        "Ardolf",
+        "山山奇",
+        "Disc 1"
+      ]
+    },
+    {
+      "songId": "Kaguya.BlackY.0",
+      "displayTitle": "Kaguya",
+      "musicArtist": "BlackY",
+      "illustrator": "神居冰绘",
+      "disc": "EX - T.S.",
+      "trackSeries": [
+        {
+          "id": "rizline:track-series:00005",
+          "name": "T.S. #5 — BlackY"
+        }
+      ],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:Kaguya.BlackY.0__hires",
+          "resourceId": "8c2d11f7-3a06-73fe-bb3d-46c47e852755",
+          "variantId": "d385153d-9012-733c-a04a-d205cff7024a",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "Kaguya",
+        "Kaguya.BlackY.0",
+        "BlackY",
+        "神居冰绘",
+        "EX - T.S.",
+        "T.S. #5 — BlackY"
+      ]
+    },
+    {
+      "songId": "LAIGN.KiufeatNikkiSimons.0",
+      "displayTitle": "LAIGN",
+      "musicArtist": "Kiu feat. Nikki Simmons",
+      "illustrator": "神居冰绘",
+      "disc": "EX - T.S.",
+      "trackSeries": [
+        {
+          "id": "rizline:track-series:00014",
+          "name": "T.S. #13 — 天地万象"
+        }
+      ],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:LAIGN.KiufeatNikkiSimons.0__hires",
+          "resourceId": "52f04b43-ca09-7d0c-9e13-7556ab981605",
+          "variantId": "cebad696-a208-7954-9d2b-d34496e0fb87",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "LAIGN",
+        "LAIGN.KiufeatNikkiSimons.0",
+        "Kiu feat. Nikki Simmons",
+        "神居冰绘",
+        "EX - T.S.",
+        "T.S. #13 — 天地万象"
+      ]
+    },
+    {
+      "songId": "LEONIDS.SaMZIngTitanChaos.0",
+      "displayTitle": "LEONIDS",
+      "musicArtist": "SaMZIng / Titan Chaos",
+      "illustrator": "山山奇",
+      "disc": "Disc 1",
+      "trackSeries": [],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:LEONIDS.SaMZIngTitanChaos.0__hires",
+          "resourceId": "011e552f-8653-7034-9f68-51981499582a",
+          "variantId": "533ce503-5733-769c-aedf-17cffadefcef",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "LEONIDS",
+        "LEONIDS.SaMZIngTitanChaos.0",
+        "SaMZIng / Titan Chaos",
+        "山山奇",
+        "Disc 1"
+      ]
+    },
+    {
+      "songId": "LINKLINS.Halv.0",
+      "displayTitle": "LINK x LIN#S",
+      "musicArtist": "Halv",
+      "illustrator": "山山奇",
+      "disc": "Disc 1",
+      "trackSeries": [],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:LINKLINS.Halv.0__hires",
+          "resourceId": "c49466af-3203-7eb4-8e60-f34e45375935",
+          "variantId": "f0a9773e-8af2-78d6-8e98-1cc4a5732205",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "LINK x LIN#S",
+        "LINKLINS.Halv.0",
+        "Halv",
+        "山山奇",
+        "Disc 1"
+      ]
+    },
+    {
+      "songId": "LavenderLeaffeatLexi.VauBoy.0",
+      "displayTitle": "Lavender Leaf (feat. Lexi)",
+      "musicArtist": "Vau Boy",
+      "illustrator": "山山奇",
+      "disc": "Disc 1",
+      "trackSeries": [],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:LavenderLeaffeatLexi.VauBoy.0__hires",
+          "resourceId": "521312d6-3ec4-7b7a-9b86-79c65d2d8f09",
+          "variantId": "16e3d930-b837-7e94-a650-4db524ab4ce5",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "Lavender Leaf (feat. Lexi)",
+        "LavenderLeaffeatLexi.VauBoy.0",
+        "Vau Boy",
+        "山山奇",
+        "Disc 1"
+      ]
+    },
+    {
+      "songId": "LifeisPIANO.Junk.0",
+      "displayTitle": "Life is PIANO",
+      "musicArtist": "Junk",
+      "illustrator": "TOHRU MiTSUHASHi",
+      "disc": "EX - Single",
+      "trackSeries": [],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:LifeisPIANO.Junk.0__hires",
+          "resourceId": "89abee99-ecb7-755f-aa8d-bdfd00519a4d",
+          "variantId": "ef413502-5730-7bc4-b634-dfe12f7191ab",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "Life is PIANO",
+        "LifeisPIANO.Junk.0",
+        "Junk",
+        "TOHRU MiTSUHASHi",
+        "EX - Single"
+      ]
+    },
+    {
+      "songId": "LostFuture.AspidCat.0",
+      "displayTitle": "Lost Future",
+      "musicArtist": "Aspid Cat",
+      "illustrator": "山山奇",
+      "disc": "Disc 2",
+      "trackSeries": [],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:LostFuture.AspidCat.0__hires",
+          "resourceId": "d32a80af-c221-7289-b04e-c515fd33042e",
+          "variantId": "faaddd6d-e95a-7b76-8cd7-01ed81b002a5",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "Lost Future",
+        "LostFuture.AspidCat.0",
+        "Aspid Cat",
+        "山山奇",
+        "Disc 2"
+      ]
+    },
+    {
+      "songId": "MidnightFlux.ProjectG.0",
+      "displayTitle": "Midnight Flux",
+      "musicArtist": "Project G",
+      "illustrator": "Doodoo",
+      "disc": "Disc 1",
+      "trackSeries": [],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:MidnightFlux.ProjectG.0__hires",
+          "resourceId": "6fc47a1f-cd51-7ec1-8947-7a39bd749247",
+          "variantId": "52c73b9f-0444-7b42-9378-6ba4c06e7122",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "Midnight Flux",
+        "MidnightFlux.ProjectG.0",
+        "Project G",
+        "Doodoo",
+        "Disc 1"
+      ]
+    },
+    {
+      "songId": "MilK.morimoriatsushi.0",
+      "displayTitle": "MilK",
+      "musicArtist": "モリモリあつし",
+      "illustrator": "出前",
+      "disc": "Disc 1",
+      "trackSeries": [],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:MilK.morimoriatsushi.0__hires",
+          "resourceId": "d344e1e5-9887-793e-8a62-40c8a808617c",
+          "variantId": "bfd6b212-44a4-7f1a-88d7-6b9aeeb8894a",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "MilK",
+        "MilK.morimoriatsushi.0",
+        "モリモリあつし",
+        "出前",
+        "Disc 1"
+      ]
+    },
+    {
+      "songId": "NLAMTA.Tsynphonia.0",
+      "displayTitle": "NLAMTA",
+      "musicArtist": "Tsynphonia",
+      "illustrator": "©2025 Rayark Inc. DEEMO II®",
+      "disc": "EX - T.S.",
+      "trackSeries": [
+        {
+          "id": "rizline:track-series:00011",
+          "name": "T.S. #11 — DEEMO II"
+        }
+      ],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:NLAMTA.Tsynphonia.0__hires",
+          "resourceId": "3b37b6d8-0b9a-7f06-85ab-a5fdce1cb077",
+          "variantId": "3208aa78-1d40-7901-8755-17f906e7e005",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "NLAMTA",
+        "NLAMTA.Tsynphonia.0",
+        "Tsynphonia",
+        "©2025 Rayark Inc. DEEMO II®",
+        "EX - T.S.",
+        "T.S. #11 — DEEMO II"
+      ]
+    },
+    {
+      "songId": "NOONEYESMAN.MYUKKE.0",
+      "displayTitle": "NO ONE YES MAN",
+      "musicArtist": "MYUKKE.",
+      "illustrator": "青鸟",
+      "disc": "Disc 1",
+      "trackSeries": [],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:NOONEYESMAN.MYUKKE.0__hires",
+          "resourceId": "2e1ecf9c-61fb-73e7-a7af-db97d84cda92",
+          "variantId": "c04534a5-0cf2-7032-a080-33feee2db118",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "NO ONE YES MAN",
+        "NOONEYESMAN.MYUKKE.0",
+        "MYUKKE.",
+        "青鸟",
+        "Disc 1"
+      ]
+    },
+    {
+      "songId": "NeverSayGoodbye.黒魔.0",
+      "displayTitle": "Never Say Goodbye",
+      "musicArtist": "黒魔",
+      "illustrator": "山山奇 feat. Jimwaz",
+      "disc": "Disc 2",
+      "trackSeries": [],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:NeverSayGoodbye.黒魔.0__hires",
+          "resourceId": "0330910d-d16a-7941-b2b8-9eb5254b0ee4",
+          "variantId": "c7ee7a95-5a1a-74ff-915d-465e7881aeb3",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "Never Say Goodbye",
+        "NeverSayGoodbye.黒魔.0",
+        "黒魔",
+        "山山奇 feat. Jimwaz",
+        "Disc 2"
+      ]
+    },
+    {
+      "songId": "NightTheater.wakadori.0",
+      "displayTitle": "NightTheater",
+      "musicArtist": "わかどり",
+      "illustrator": "山山奇",
+      "disc": "EX - Single",
+      "trackSeries": [],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:NightTheater.wakadori.0__hires",
+          "resourceId": "3b9c7dba-1e15-701b-b43f-309268d6bc13",
+          "variantId": "bab656ee-1cfe-766b-92d4-e27743b7d127",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "NightTheater",
+        "NightTheater.wakadori.0",
+        "わかどり",
+        "山山奇",
+        "EX - Single"
+      ]
+    },
+    {
+      "songId": "NonameRequiem.打打だいず.0",
+      "displayTitle": "No-name Requiem",
+      "musicArtist": "打打だいず",
+      "illustrator": "榊原またぎ",
+      "disc": "EX - Single",
+      "trackSeries": [],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:NonameRequiem.打打だいず.0__hires",
+          "resourceId": "052c480c-02cc-750b-9a59-b275e33237d8",
+          "variantId": "8db9435f-3227-735d-bcd7-6fa146391dc7",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "No-name Requiem",
+        "NonameRequiem.打打だいず.0",
+        "打打だいず",
+        "榊原またぎ",
+        "EX - Single"
+      ]
+    },
+    {
+      "songId": "OnAndOn.ETIA.0",
+      "displayTitle": "On And On!!",
+      "musicArtist": "ETIA.",
+      "illustrator": "山山奇",
+      "disc": "Disc 1",
+      "trackSeries": [],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:OnAndOn.ETIA.0__hires",
+          "resourceId": "329b9ddb-5898-70b5-912a-e344f66ed5c8",
+          "variantId": "58b91e97-1bc9-7141-b3f8-1d79f7cc9499",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "On And On!!",
+        "OnAndOn.ETIA.0",
+        "ETIA.",
+        "山山奇",
+        "Disc 1"
+      ]
+    },
+    {
+      "songId": "ParadialResonator.RekuMochizuki.0",
+      "displayTitle": "Paradial Resonator",
+      "musicArtist": "Reku Mochizuki",
+      "illustrator": "2Al4wU4",
+      "disc": "Disc 1",
+      "trackSeries": [
+        {
+          "id": "rizline:track-series:10001",
+          "name": "Paradigm: Reboot collaboration"
+        }
+      ],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:ParadialResonator.RekuMochizuki.0__hires",
+          "resourceId": "93f5a022-42ba-7f29-bda7-07b42ea766fe",
+          "variantId": "476c049b-5af5-767c-a214-db42b3b5e0c8",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "Paradial Resonator",
+        "ParadialResonator.RekuMochizuki.0",
+        "Reku Mochizuki",
+        "2Al4wU4",
+        "Disc 1",
+        "Paradigm: Reboot collaboration"
+      ]
+    },
+    {
+      "songId": "PastelLines.RekuMochizuki.0",
+      "displayTitle": "Pastel Lines",
+      "musicArtist": "Reku Mochizuki",
+      "illustrator": "山山奇",
+      "disc": "Disc 1",
+      "trackSeries": [],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:PastelLines.RekuMochizuki.0__hires",
+          "resourceId": "365f7689-86ef-704e-b6c6-f07c92c41c37",
+          "variantId": "146d6f94-8f1c-7351-be01-ef7f618576c0",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "Pastel Lines",
+        "PastelLines.RekuMochizuki.0",
+        "Reku Mochizuki",
+        "山山奇",
+        "Disc 1"
+      ]
+    },
+    {
+      "songId": "PierrotFixer.ルゼ.0",
+      "displayTitle": "Pierrot Fixer",
+      "musicArtist": "ルゼ",
+      "illustrator": "Rutumn",
+      "disc": "EX - T.S.",
+      "trackSeries": [
+        {
+          "id": "rizline:track-series:00016",
+          "name": "T.S. #15 — ルゼ & LisicA"
+        }
+      ],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:PierrotFixer.ルゼ.0__hires",
+          "resourceId": "04573b50-93ec-71db-a665-c7ff218e6637",
+          "variantId": "9540594c-e831-7e23-ba4f-450bdeac7cde",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "Pierrot Fixer",
+        "PierrotFixer.ルゼ.0",
+        "ルゼ",
+        "Rutumn",
+        "EX - T.S.",
+        "T.S. #15 — ルゼ & LisicA"
+      ]
+    },
+    {
+      "songId": "PlanetariumprodScarlette.kuripurinKyueMYULee.0",
+      "displayTitle": "너를 그리는 밤하늘의 이야기\n(Planetarium) prod. Scarlette",
+      "musicArtist": "kuripurin & Kyue & MYULee",
+      "illustrator": "© QueseraGames Co., Ltd.",
+      "disc": "EX - T.S.",
+      "trackSeries": [
+        {
+          "id": "rizline:track-series:00007",
+          "name": "T.S. #7 — KALPA"
+        }
+      ],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:PlanetariumprodScarlette.kuripurinKyueMYULee.0__hires",
+          "resourceId": "67eb6506-dfba-76d3-a8da-0851fcc17adc",
+          "variantId": "bb1345ca-3ad6-77c1-b529-e986ffea3a69",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "너를 그리는 밤하늘의 이야기\n(Planetarium) prod. Scarlette",
+        "PlanetariumprodScarlette.kuripurinKyueMYULee.0",
+        "kuripurin & Kyue & MYULee",
+        "© QueseraGames Co., Ltd.",
+        "EX - T.S.",
+        "T.S. #7 — KALPA"
+      ]
+    },
+    {
+      "songId": "Polygons.Riya.0",
+      "displayTitle": "Polygons",
+      "musicArtist": "Riya",
+      "illustrator": "拖延",
+      "disc": "Disc 1",
+      "trackSeries": [],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:Polygons.Riya.0__hires",
+          "resourceId": "5f9de37d-6d11-771a-9d1b-c7fb1d6495d2",
+          "variantId": "a76bfcac-fbaf-724b-aa88-8b4acd50d537",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "Polygons",
+        "Polygons.Riya.0",
+        "Riya",
+        "拖延",
+        "Disc 1"
+      ]
+    },
+    {
+      "songId": "PowerAttack.EBIMAYO.0",
+      "displayTitle": "Power Attack",
+      "musicArtist": "EBIMAYO",
+      "illustrator": "美工刀",
+      "disc": "Disc 1",
+      "trackSeries": [],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:PowerAttack.EBIMAYO.0__hires",
+          "resourceId": "1bc0f829-c5fc-790d-b6d5-dec89ba1b8c8",
+          "variantId": "da8910a9-ccef-70f5-8c02-781dfad2f539",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "Power Attack",
+        "PowerAttack.EBIMAYO.0",
+        "EBIMAYO",
+        "美工刀",
+        "Disc 1"
+      ]
+    },
+    {
+      "songId": "Psychometry.HyuN.0",
+      "displayTitle": "Psychometry",
+      "musicArtist": "HyuN",
+      "illustrator": "© QueseraGames Co., Ltd.",
+      "disc": "EX - T.S.",
+      "trackSeries": [
+        {
+          "id": "rizline:track-series:00007",
+          "name": "T.S. #7 — KALPA"
+        }
+      ],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:Psychometry.HyuN.0__hires",
+          "resourceId": "2040b972-6ffd-7d87-97c0-b2c8fb536b71",
+          "variantId": "e4250b4e-ef93-7e06-b897-fa56e8501bf4",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "Psychometry",
+        "Psychometry.HyuN.0",
+        "HyuN",
+        "© QueseraGames Co., Ltd.",
+        "EX - T.S.",
+        "T.S. #7 — KALPA"
+      ]
+    },
+    {
+      "songId": "PuppetShow.MeatyRabbit.0",
+      "displayTitle": "Puppet Show",
+      "musicArtist": "MeatyRabbit",
+      "illustrator": "山山奇",
+      "disc": "Disc 1",
+      "trackSeries": [],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:PuppetShow.MeatyRabbit.0__hires",
+          "resourceId": "6a4b8165-4256-775d-a9d3-b6c89448b0c3",
+          "variantId": "76a3b4f1-d0bc-7673-a7d1-a3ab610c4de8",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "Puppet Show",
+        "PuppetShow.MeatyRabbit.0",
+        "MeatyRabbit",
+        "山山奇",
+        "Disc 1"
+      ]
+    },
+    {
+      "songId": "QUATTUORUX.打打だいずVsTanchikyVsからめる.0",
+      "displayTitle": "QUATTUORUX",
+      "musicArtist": "打打だいず Vs. Tanchiky Vs. からめる",
+      "illustrator": "yoshimo Vs. KiE Vs. からめる",
+      "disc": "EX - T.S.",
+      "trackSeries": [
+        {
+          "id": "rizline:track-series:00015",
+          "name": "T.S. #14 — Tanchiky"
+        }
+      ],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:QUATTUORUX.打打だいずVsTanchikyVsからめる.0__hires",
+          "resourceId": "7eba6d1a-dade-7e28-b8c3-a6c9aa37ca8d",
+          "variantId": "167e36c6-ed31-7d8f-909b-3bac6f817b1b",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "QUATTUORUX",
+        "QUATTUORUX.打打だいずVsTanchikyVsからめる.0",
+        "打打だいず Vs. Tanchiky Vs. からめる",
+        "yoshimo Vs. KiE Vs. からめる",
+        "EX - T.S.",
+        "T.S. #14 — Tanchiky"
+      ]
+    },
+    {
+      "songId": "RIP.eicateve.0",
+      "displayTitle": "R.I.P.",
+      "musicArtist": "eicateve",
+      "illustrator": "hrchem & TOHRU MiTSUHASHi",
+      "disc": "Disc 1",
+      "trackSeries": [],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:RIP.eicateve.0__hires",
+          "resourceId": "4231ece2-fb31-709c-9e99-9dcee01383ee",
+          "variantId": "5e32e047-ee4c-715e-b047-27e1f100816e",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "R.I.P.",
+        "RIP.eicateve.0",
+        "eicateve",
+        "hrchem & TOHRU MiTSUHASHi",
+        "Disc 1"
+      ]
+    },
+    {
+      "songId": "Rapture.RoyMikelate.0",
+      "displayTitle": "Rapture",
+      "musicArtist": "Roy Mikelate",
+      "illustrator": "鲸弑",
+      "disc": "Disc 2",
+      "trackSeries": [],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:Rapture.RoyMikelate.0__hires",
+          "resourceId": "f36f31c9-4922-7665-a73f-b0b1e8caa210",
+          "variantId": "14b35e8f-c570-7148-b910-b2998969ee7e",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "Rapture",
+        "Rapture.RoyMikelate.0",
+        "Roy Mikelate",
+        "鲸弑",
+        "Disc 2"
+      ]
+    },
+    {
+      "songId": "Relieve.响星幂ElroyJanKortanidze.0",
+      "displayTitle": "Relieve",
+      "musicArtist": "响 & 星幂Elroy & Jan Kortanidze",
+      "illustrator": "山山奇",
+      "disc": "EX - Single",
+      "trackSeries": [
+        {
+          "id": "rizline:track-series:10002",
+          "name": "去远方 collaboration"
+        }
+      ],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:Relieve.响星幂ElroyJanKortanidze.0__hires",
+          "resourceId": "c95681e7-a23f-7ae6-b05c-15fcf14e6f0d",
+          "variantId": "05bb7ce1-fe6b-7b76-bb34-ff3923d00b8a",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "Relieve",
+        "Relieve.响星幂ElroyJanKortanidze.0",
+        "响 & 星幂Elroy & Jan Kortanidze",
+        "山山奇",
+        "EX - Single",
+        "去远方 collaboration"
+      ]
+    },
+    {
+      "songId": "RestrictedAccess.Knighthood.0",
+      "displayTitle": "Restricted Access",
+      "musicArtist": "Knighthood",
+      "illustrator": "苦苦",
+      "disc": "EX - T.S.",
+      "trackSeries": [
+        {
+          "id": "rizline:track-series:10001",
+          "name": "Paradigm: Reboot collaboration"
+        }
+      ],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:RestrictedAccess.Knighthood.0__hires",
+          "resourceId": "a6f5b4cf-4c4e-7db2-ae48-346ff285d8ba",
+          "variantId": "e046e0c4-188b-72ba-9923-a340c8c0f330",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "Restricted Access",
+        "RestrictedAccess.Knighthood.0",
+        "Knighthood",
+        "苦苦",
+        "EX - T.S.",
+        "Paradigm: Reboot collaboration"
+      ]
+    },
+    {
+      "songId": "Revenant.Juggernaut.0",
+      "displayTitle": "Revenant",
+      "musicArtist": "Juggernaut.",
+      "illustrator": "ゲソきんぐ",
+      "disc": "EX - T.S.",
+      "trackSeries": [
+        {
+          "id": "rizline:track-series:00001",
+          "name": "T.S. #1 — Juggernaut."
+        }
+      ],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:Revenant.Juggernaut.0__hires",
+          "resourceId": "ef5544d1-d364-7f05-abb4-1e35651981b1",
+          "variantId": "e5888687-6dbc-716e-acac-ddb128f96b66",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "Revenant",
+        "Revenant.Juggernaut.0",
+        "Juggernaut.",
+        "ゲソきんぐ",
+        "EX - T.S.",
+        "T.S. #1 — Juggernaut."
+      ]
+    },
+    {
+      "songId": "ReversedZenith.Synzak.0",
+      "displayTitle": "Reversed Zenith",
+      "musicArtist": "硝酸生菜",
+      "illustrator": "巷子",
+      "disc": "EX - T.S.",
+      "trackSeries": [
+        {
+          "id": "rizline:track-series:10001",
+          "name": "Paradigm: Reboot collaboration"
+        }
+      ],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:ReversedZenith.Synzak.0__hires",
+          "resourceId": "3a1110d2-9ba7-713b-8b95-b7debf64d71c",
+          "variantId": "46f6385e-52ae-7ab7-a042-b3b4f5c65a30",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "Reversed Zenith",
+        "ReversedZenith.Synzak.0",
+        "硝酸生菜",
+        "巷子",
+        "EX - T.S.",
+        "Paradigm: Reboot collaboration"
+      ]
+    },
+    {
+      "songId": "RuleTheWorld.VauBoy.0",
+      "displayTitle": "Rule The World",
+      "musicArtist": "Vau Boy",
+      "illustrator": "HAKIRE",
+      "disc": "Disc 2",
+      "trackSeries": [],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:RuleTheWorld.VauBoy.0__hires",
+          "resourceId": "d17542fe-6e3f-755b-90fa-dcd9561c0318",
+          "variantId": "b037b855-55b0-78ac-ad73-b142e3c53ade",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "Rule The World",
+        "RuleTheWorld.VauBoy.0",
+        "Vau Boy",
+        "HAKIRE",
+        "Disc 2"
+      ]
+    },
+    {
+      "songId": "SakuraFubuki.Street.0",
+      "displayTitle": "Sakura Fubuki",
+      "musicArtist": "Street",
+      "illustrator": "山山奇",
+      "disc": "Disc 1",
+      "trackSeries": [],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:SakuraFubuki.Street.0__hires",
+          "resourceId": "1b3fb146-f4be-70ac-b9d0-7e07a6170bfa",
+          "variantId": "088eb12f-796f-7831-b8e8-4ed42f7d43d3",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "Sakura Fubuki",
+        "SakuraFubuki.Street.0",
+        "Street",
+        "山山奇",
+        "Disc 1"
+      ]
+    },
+    {
+      "songId": "Shattered.ARForest.0",
+      "displayTitle": "Shattered",
+      "musicArtist": "ARForest",
+      "illustrator": "山山奇",
+      "disc": "Disc 1",
+      "trackSeries": [],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:Shattered.ARForest.0__hires",
+          "resourceId": "50f32214-5e3f-7521-9772-54bc664ab54e",
+          "variantId": "4066d33f-2e4e-730e-b8bd-8db1e48b9686",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "Shattered",
+        "Shattered.ARForest.0",
+        "ARForest",
+        "山山奇",
+        "Disc 1"
+      ]
+    },
+    {
+      "songId": "Skyscape.Plum.0",
+      "displayTitle": "Skyscape",
+      "musicArtist": "Plum",
+      "illustrator": "山山奇",
+      "disc": "Disc 1",
+      "trackSeries": [],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:Skyscape.Plum.0__hires",
+          "resourceId": "e01c2757-8ade-743e-b515-aaa437f17f3e",
+          "variantId": "ade52565-fe9b-7fad-b77b-5c274c5a5bb3",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "Skyscape",
+        "Skyscape.Plum.0",
+        "Plum",
+        "山山奇",
+        "Disc 1"
+      ]
+    },
+    {
+      "songId": "SoutenStasKeyKaimix.MeineMeinung.0",
+      "displayTitle": "蒼天 (Sta's Key-Kai mix)",
+      "musicArtist": "Meine Meinung",
+      "illustrator": "青鸟",
+      "disc": "EX - T.S.",
+      "trackSeries": [
+        {
+          "id": "rizline:track-series:00004",
+          "name": "T.S. #4 — Tone Sphere"
+        }
+      ],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:SoutenStasKeyKaimix.MeineMeinung.0__hires",
+          "resourceId": "eabc4b0d-e1c0-7886-8d18-b2e140839707",
+          "variantId": "11ca9a44-a55c-7ff8-a3cd-cf6c0beec5e5",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "蒼天 (Sta's Key-Kai mix)",
+        "SoutenStasKeyKaimix.MeineMeinung.0",
+        "Meine Meinung",
+        "青鸟",
+        "EX - T.S.",
+        "T.S. #4 — Tone Sphere"
+      ]
+    },
+    {
+      "songId": "SpeedUp.DarTokki.0",
+      "displayTitle": "Speed Up!",
+      "musicArtist": "DarTokki",
+      "illustrator": "TNiK",
+      "disc": "EX - T.S.",
+      "trackSeries": [
+        {
+          "id": "rizline:track-series:00012",
+          "name": "T.S. SP — Phigros"
+        }
+      ],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:SpeedUp.DarTokki.0__hires",
+          "resourceId": "eaaee2fd-9cae-72bb-9659-56e08c76f606",
+          "variantId": "43ecab53-8956-7b2f-9dc3-60d6b433ed3e",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "Speed Up!",
+        "SpeedUp.DarTokki.0",
+        "DarTokki",
+        "TNiK",
+        "EX - T.S.",
+        "T.S. SP — Phigros"
+      ]
+    },
+    {
+      "songId": "Spiritworks.XomuZxNX.0",
+      "displayTitle": "Spiritworks",
+      "musicArtist": "Xomu & ZxNX",
+      "illustrator": "破晓Buff-夜刃•Ex",
+      "disc": "EX - T.S.",
+      "trackSeries": [
+        {
+          "id": "rizline:track-series:00017",
+          "name": "T.S. #16 — 古韻今声 / Diachronic Resonance"
+        }
+      ],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:Spiritworks.XomuZxNX.0__hires",
+          "resourceId": "022f957b-bf2f-7523-a1a8-830ef5810620",
+          "variantId": "b1903b19-dba0-7521-9cc2-1314b99db60a",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "Spiritworks",
+        "Spiritworks.XomuZxNX.0",
+        "Xomu & ZxNX",
+        "破晓Buff-夜刃•Ex",
+        "EX - T.S.",
+        "T.S. #16 — 古韻今声 / Diachronic Resonance"
+      ]
+    },
+    {
+      "songId": "Sthenno.BlackY.0",
+      "displayTitle": "Sthenno",
+      "musicArtist": "BlackY",
+      "illustrator": "美工刀",
+      "disc": "EX - T.S.",
+      "trackSeries": [
+        {
+          "id": "rizline:track-series:00005",
+          "name": "T.S. #5 — BlackY"
+        }
+      ],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:Sthenno.BlackY.0__hires",
+          "resourceId": "815a2124-1e73-7fe5-bb50-cb6b2e9f5f97",
+          "variantId": "630bc211-93d1-75f4-a7d1-a419dbfb6b10",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "Sthenno",
+        "Sthenno.BlackY.0",
+        "BlackY",
+        "美工刀",
+        "EX - T.S.",
+        "T.S. #5 — BlackY"
+      ]
+    },
+    {
+      "songId": "SuperUniverseKnighthoodRemix.Knighthood.0",
+      "displayTitle": "Super Universe (Knighthood Remix)",
+      "musicArtist": "Knighthood",
+      "illustrator": "绀屋",
+      "disc": "EX - Single",
+      "trackSeries": [],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:SuperUniverseKnighthoodRemix.Knighthood.0__hires",
+          "resourceId": "08aba5c3-29e9-724c-8470-b3389df52fb7",
+          "variantId": "4644bf57-3d5b-797a-83a7-0d8d7def7a76",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "Super Universe (Knighthood Remix)",
+        "SuperUniverseKnighthoodRemix.Knighthood.0",
+        "Knighthood",
+        "绀屋",
+        "EX - Single"
+      ]
+    },
+    {
+      "songId": "SwingSweetTweeDance.Uske.0",
+      "displayTitle": "Swing Sweet Twee Dance feat. ななきなな",
+      "musicArtist": "U-ske",
+      "illustrator": "hard",
+      "disc": "Disc 1",
+      "trackSeries": [],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:SwingSweetTweeDance.Uske.0__hires",
+          "resourceId": "8d98955d-cd45-7f61-81d5-29388ab41633",
+          "variantId": "d9885e2f-261c-71de-8d0c-0b8920cbc83a",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "Swing Sweet Twee Dance feat. ななきなな",
+        "SwingSweetTweeDance.Uske.0",
+        "U-ske",
+        "hard",
+        "Disc 1"
+      ]
+    },
+    {
+      "songId": "TVSSHARK.tpazolite.0",
+      "displayTitle": "T+ VS SHARK",
+      "musicArtist": "t+pazolite",
+      "illustrator": "C.H.S",
+      "disc": "EX - T.S.",
+      "trackSeries": [
+        {
+          "id": "rizline:track-series:00010",
+          "name": "T.S. #10 — HARDCORE TANO*C"
+        }
+      ],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:TVSSHARK.tpazolite.0__hires",
+          "resourceId": "f3316987-4ee4-706f-8087-cfc7efae4dd2",
+          "variantId": "c7bb7d71-bc32-7aa1-ba8f-af7a19de4cf4",
+          "variantKey": "default",
+          "preferred": true
+        },
+        {
+          "artworkId": "rizline:illustration:TVSSHARK.tpazolite.0.cn__hires",
+          "resourceId": "f3316987-4ee4-706f-8087-cfc7efae4dd2",
+          "variantId": "cecd9b56-890e-76d3-8eae-8ae1e53503e5",
+          "variantKey": "cn",
+          "preferred": false
+        }
+      ],
+      "searchTerms": [
+        "T+ VS SHARK",
+        "TVSSHARK.tpazolite.0",
+        "t+pazolite",
+        "C.H.S",
+        "EX - T.S.",
+        "TVSSHARK.tpazolite.0.cn",
+        "T.S. #10 — HARDCORE TANO*C"
+      ]
+    },
+    {
+      "songId": "TalesofDelonix.Zris.0",
+      "displayTitle": "Tales of Delonix",
+      "musicArtist": "Zris",
+      "illustrator": "Ano",
+      "disc": "EX - T.S.",
+      "trackSeries": [
+        {
+          "id": "rizline:track-series:00017",
+          "name": "T.S. #16 — 古韻今声 / Diachronic Resonance"
+        }
+      ],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:TalesofDelonix.Zris.0__hires",
+          "resourceId": "c3a049a4-91e3-71da-83e0-e0e58578e119",
+          "variantId": "4fffc2a1-d5f3-754b-926f-ef95ddb931b7",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "Tales of Delonix",
+        "TalesofDelonix.Zris.0",
+        "Zris",
+        "Ano",
+        "EX - T.S.",
+        "T.S. #16 — 古韻今声 / Diachronic Resonance"
+      ]
+    },
+    {
+      "songId": "Tempest.Plum.0",
+      "displayTitle": "Tempest",
+      "musicArtist": "Plum",
+      "illustrator": "绀屋",
+      "disc": "Disc 1",
+      "trackSeries": [],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:Tempest.Plum.0__hires",
+          "resourceId": "88f16e76-9e45-75e8-bd08-c5e0660307ef",
+          "variantId": "9d719f01-11b3-7a66-bb43-ab96090d0489",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "Tempest",
+        "Tempest.Plum.0",
+        "Plum",
+        "绀屋",
+        "Disc 1"
+      ]
+    },
+    {
+      "songId": "TheLastPage.ARForest.0",
+      "displayTitle": "The Last Page",
+      "musicArtist": "ARForest",
+      "illustrator": "山山奇",
+      "disc": "EX - Single",
+      "trackSeries": [],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:TheLastPage.ARForest.0__hires",
+          "resourceId": "a9e5a829-a385-7ec0-a422-55f5b3b6847e",
+          "variantId": "80f94726-2cc0-7573-9d1d-43f6ad88f0ea",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "The Last Page",
+        "TheLastPage.ARForest.0",
+        "ARForest",
+        "山山奇",
+        "EX - Single"
+      ]
+    },
+    {
+      "songId": "TheNextArcady.SEPHID.0",
+      "displayTitle": "The Next Arcady",
+      "musicArtist": "SEPHID",
+      "illustrator": "青鸟",
+      "disc": "Disc 1",
+      "trackSeries": [],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:TheNextArcady.SEPHID.0__hires",
+          "resourceId": "333f29be-ba59-792e-b7ce-c3d7dd62c8b9",
+          "variantId": "87a0a60d-8650-702a-b0fc-1795f1855f50",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "The Next Arcady",
+        "TheNextArcady.SEPHID.0",
+        "SEPHID",
+        "青鸟",
+        "Disc 1"
+      ]
+    },
+    {
+      "songId": "TurningPOINT.Junk.0",
+      "displayTitle": "Turning POINT",
+      "musicArtist": "Junk",
+      "illustrator": "鄂季",
+      "disc": "EX - T.S.",
+      "trackSeries": [
+        {
+          "id": "rizline:track-series:10001",
+          "name": "Paradigm: Reboot collaboration"
+        }
+      ],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:TurningPOINT.Junk.0__hires",
+          "resourceId": "a3a45b64-38f5-7d27-8147-bc8d1d9502f1",
+          "variantId": "cc4e0da3-efb9-7eef-8092-e3ac9229f7e0",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "Turning POINT",
+        "TurningPOINT.Junk.0",
+        "Junk",
+        "鄂季",
+        "EX - T.S.",
+        "Paradigm: Reboot collaboration"
+      ]
+    },
+    {
+      "songId": "ULTRASYNERGYMATRIX.Tanchiky.0",
+      "displayTitle": "ULTRA SYNERGY MATRIX",
+      "musicArtist": "Tanchiky",
+      "illustrator": "からめる",
+      "disc": "EX - T.S.",
+      "trackSeries": [
+        {
+          "id": "rizline:track-series:00015",
+          "name": "T.S. #14 — Tanchiky"
+        }
+      ],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:ULTRASYNERGYMATRIX.Tanchiky.0__hires",
+          "resourceId": "568828fd-3369-7f9d-ad10-02a998d4f738",
+          "variantId": "c7a4613b-2b1b-7386-bc49-2fb93cd29375",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "ULTRA SYNERGY MATRIX",
+        "ULTRASYNERGYMATRIX.Tanchiky.0",
+        "Tanchiky",
+        "からめる",
+        "EX - T.S.",
+        "T.S. #14 — Tanchiky"
+      ]
+    },
+    {
+      "songId": "VICIOUS.MEMODEMO.0",
+      "displayTitle": "VICIOUS",
+      "musicArtist": "MEMODEMO",
+      "illustrator": "juliegg",
+      "disc": "EX - T.S.",
+      "trackSeries": [
+        {
+          "id": "rizline:track-series:00009",
+          "name": "T.S. #9 — Cosmic Radio 2024"
+        }
+      ],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:VICIOUS.MEMODEMO.0__hires",
+          "resourceId": "8c462860-89df-7603-9a07-bf29996093df",
+          "variantId": "a63e3860-0792-771c-8a43-521927383068",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "VICIOUS",
+        "VICIOUS.MEMODEMO.0",
+        "MEMODEMO",
+        "juliegg",
+        "EX - T.S.",
+        "T.S. #9 — Cosmic Radio 2024"
+      ]
+    },
+    {
+      "songId": "VaelumirsCall.EmissärwûlElverhøjjFahrRaphiielSylphix.0",
+      "displayTitle": "Vaelumir's Call",
+      "musicArtist": "Emissär wûl Elverhøjj (Fahr, Raphiiel, Sylphix)",
+      "illustrator": "BlUhOl",
+      "disc": "EX - T.S.",
+      "trackSeries": [
+        {
+          "id": "rizline:track-series:00014",
+          "name": "T.S. #13 — 天地万象"
+        }
+      ],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:VaelumirsCall.EmissärwûlElverhøjjFahrRaphiielSylphix.0__hires",
+          "resourceId": "79f244a8-a44c-7501-9833-76e2cfc96e05",
+          "variantId": "7b27d3ac-d5e4-7c45-96f2-86fd9bdd48fb",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "Vaelumir's Call",
+        "VaelumirsCall.EmissärwûlElverhøjjFahrRaphiielSylphix.0",
+        "Emissär wûl Elverhøjj (Fahr, Raphiiel, Sylphix)",
+        "BlUhOl",
+        "EX - T.S.",
+        "T.S. #13 — 天地万象"
+      ]
+    },
+    {
+      "songId": "ViciousMockery.Kryexe.0",
+      "displayTitle": "Vicious Mockery",
+      "musicArtist": "Kry.exe",
+      "illustrator": "山山奇",
+      "disc": "Disc 1",
+      "trackSeries": [],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:ViciousMockery.Kryexe.0__hires",
+          "resourceId": "ba592ff2-8088-7a5c-90eb-1c7e3b2febb5",
+          "variantId": "e5e46bf0-085f-788e-858d-d4617ef534d0",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "Vicious Mockery",
+        "ViciousMockery.Kryexe.0",
+        "Kry.exe",
+        "山山奇",
+        "Disc 1"
+      ]
+    },
+    {
+      "songId": "Vrtuaresort.seatrus.0",
+      "displayTitle": "V!rtuaresort",
+      "musicArtist": "seatrus",
+      "illustrator": "绀屋",
+      "disc": "Disc 1",
+      "trackSeries": [],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:Vrtuaresort.seatrus.0__hires",
+          "resourceId": "c6a5f2c3-ac49-7458-ba69-6f14230c6484",
+          "variantId": "759e110d-2cff-72ad-bf70-7cca6f5eeb78",
+          "variantKey": "default",
+          "preferred": true
+        },
+        {
+          "artworkId": "rizline:illustration:Vrtuaresort.seatrus.0.cn__hires",
+          "resourceId": "c6a5f2c3-ac49-7458-ba69-6f14230c6484",
+          "variantId": "b4ce034d-d8f6-795d-9159-30f4d4b83759",
+          "variantKey": "cn",
+          "preferred": false
+        }
+      ],
+      "searchTerms": [
+        "V!rtuaresort",
+        "Vrtuaresort.seatrus.0",
+        "seatrus",
+        "绀屋",
+        "Disc 1",
+        "Vrtuaresort.seatrus.0.cn"
+      ]
+    },
+    {
+      "songId": "WATER.A39沙包P.0",
+      "displayTitle": "WATER",
+      "musicArtist": "A-39 / 沙包P",
+      "illustrator": "美工刀 feat. Jimwaz",
+      "disc": "EX - Single",
+      "trackSeries": [],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:WATER.A39沙包P.0__hires",
+          "resourceId": "d4322f6b-dd6f-7199-b104-01e54b1322c9",
+          "variantId": "4a98c296-4dce-7ad8-97e4-56a260abe1c0",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "WATER",
+        "WATER.A39沙包P.0",
+        "A-39 / 沙包P",
+        "美工刀 feat. Jimwaz",
+        "EX - Single"
+      ]
+    },
+    {
+      "songId": "YellowShiningfeat成田なる.にーえぬ.0",
+      "displayTitle": "Yellow Shining!! feat. 成田なる",
+      "musicArtist": "にーえぬ",
+      "illustrator": "やさか沙彩",
+      "disc": "Disc 2",
+      "trackSeries": [],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:YellowShiningfeat成田なる.にーえぬ.0__hires",
+          "resourceId": "8062969d-2e06-76a8-b287-fe0d741f184a",
+          "variantId": "9279cca2-9257-71cd-ad55-e090ae8a98a9",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "Yellow Shining!! feat. 成田なる",
+        "YellowShiningfeat成田なる.にーえぬ.0",
+        "にーえぬ",
+        "やさか沙彩",
+        "Disc 2"
+      ]
+    },
+    {
+      "songId": "ZEUS666.ルゼ.0",
+      "displayTitle": "ZEUS † 666",
+      "musicArtist": "ルゼ",
+      "illustrator": "A-ZERO Project",
+      "disc": "EX - T.S.",
+      "trackSeries": [
+        {
+          "id": "rizline:track-series:00016",
+          "name": "T.S. #15 — ルゼ & LisicA"
+        }
+      ],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:ZEUS666.ルゼ.0__hires",
+          "resourceId": "38321d00-ff33-7c67-a75e-140aa6a7c56f",
+          "variantId": "ab80b91c-68d2-72b4-b021-ebbb57a88831",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "ZEUS † 666",
+        "ZEUS666.ルゼ.0",
+        "ルゼ",
+        "A-ZERO Project",
+        "EX - T.S.",
+        "T.S. #15 — ルゼ & LisicA"
+      ]
+    },
+    {
+      "songId": "amethyst.かねこちはる.0",
+      "displayTitle": "amethyst",
+      "musicArtist": "かねこちはる",
+      "illustrator": "Nich",
+      "disc": "EX - T.S.",
+      "trackSeries": [
+        {
+          "id": "rizline:track-series:00008",
+          "name": "T.S. #8 — Rotaeno"
+        }
+      ],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:amethyst.かねこちはる.0__hires",
+          "resourceId": "2ab6f8e7-4566-7d5e-a233-a4b0326d9dd9",
+          "variantId": "18995d3c-9bfd-7207-ac64-6915821543ce",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "amethyst",
+        "amethyst.かねこちはる.0",
+        "かねこちはる",
+        "Nich",
+        "EX - T.S.",
+        "T.S. #8 — Rotaeno"
+      ]
+    },
+    {
+      "songId": "crystallized.Camellia.0",
+      "displayTitle": "crystallized",
+      "musicArtist": "Camellia",
+      "illustrator": "Ryo Asakura",
+      "disc": "Disc 2",
+      "trackSeries": [],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:crystallized.Camellia.0__hires",
+          "resourceId": "5ccc4b9f-dbd4-7225-8c53-543c77fe9025",
+          "variantId": "32d47ec2-2ec9-72dd-a846-8f69fff8ab77",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "crystallized",
+        "crystallized.Camellia.0",
+        "Camellia",
+        "Ryo Asakura",
+        "Disc 2"
+      ]
+    },
+    {
+      "songId": "enchantedlove.linearring.0",
+      "displayTitle": "enchanted love",
+      "musicArtist": "linear ring",
+      "illustrator": "Ek0ru",
+      "disc": "EX - Single",
+      "trackSeries": [],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:enchantedlove.linearring.0__hires",
+          "resourceId": "a1b1f980-74df-7926-bdd2-6055beb40403",
+          "variantId": "3109a491-62db-7b74-99e8-6d98fb9f2e9a",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "enchanted love",
+        "enchantedlove.linearring.0",
+        "linear ring",
+        "Ek0ru",
+        "EX - Single"
+      ]
+    },
+    {
+      "songId": "felysfinalremix.onoken.0",
+      "displayTitle": "felys -final remix-",
+      "musicArtist": "onoken",
+      "illustrator": "山山奇",
+      "disc": "Disc 2",
+      "trackSeries": [],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:felysfinalremix.onoken.0__hires",
+          "resourceId": "c9696f51-d6fa-78e5-be5d-ca59e2d2689d",
+          "variantId": "d79eb722-4a2a-7210-a081-400ceecdf88e",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "felys -final remix-",
+        "felysfinalremix.onoken.0",
+        "onoken",
+        "山山奇",
+        "Disc 2"
+      ]
+    },
+    {
+      "songId": "macrowav.dandeless.0",
+      "displayTitle": "macro.wav",
+      "musicArtist": "dandeless",
+      "illustrator": "绀屋",
+      "disc": "Disc 1",
+      "trackSeries": [],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:macrowav.dandeless.0__hires",
+          "resourceId": "29613122-3824-79c4-ad17-35b329676e89",
+          "variantId": "f780317c-deb7-7843-a097-8296fe912832",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "macro.wav",
+        "macrowav.dandeless.0",
+        "dandeless",
+        "绀屋",
+        "Disc 1"
+      ]
+    },
+    {
+      "songId": "sAtElLites.SIRIUS.0",
+      "displayTitle": "sAtElLites",
+      "musicArtist": "SIRIUS",
+      "illustrator": "山山奇",
+      "disc": "Disc 2",
+      "trackSeries": [],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:sAtElLites.SIRIUS.0__hires",
+          "resourceId": "75ec29a2-225d-758b-9045-febef71a951b",
+          "variantId": "0e0a66ce-ac03-7218-93f6-30ad9522f4f5",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "sAtElLites",
+        "sAtElLites.SIRIUS.0",
+        "SIRIUS",
+        "山山奇",
+        "Disc 2"
+      ]
+    },
+    {
+      "songId": "slichertz.Sobrem.0",
+      "displayTitle": "slic.hertz",
+      "musicArtist": "Sobrem",
+      "illustrator": "山山奇",
+      "disc": "EX - T.S.",
+      "trackSeries": [
+        {
+          "id": "rizline:track-series:00003",
+          "name": "T.S. #3 — Sobrem"
+        }
+      ],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:slichertz.Sobrem.0__hires",
+          "resourceId": "3c242dcf-45c5-7a0a-8ce2-6721bae7a7fb",
+          "variantId": "6523a283-8205-70b7-8b96-d557abf71985",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "slic.hertz",
+        "slichertz.Sobrem.0",
+        "Sobrem",
+        "山山奇",
+        "EX - T.S.",
+        "T.S. #3 — Sobrem"
+      ]
+    },
+    {
+      "songId": "あのね.ナナツカゼ.0",
+      "displayTitle": "あのね",
+      "musicArtist": "ナナツカゼ",
+      "illustrator": "略nd",
+      "disc": "EX - Single",
+      "trackSeries": [],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:あのね.ナナツカゼ.0__hires",
+          "resourceId": "77ce8996-1669-76d6-8e5a-02edba735742",
+          "variantId": "782a460c-d64f-7240-9196-3190f01e9d4d",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "あのね",
+        "あのね.ナナツカゼ.0",
+        "ナナツカゼ",
+        "略nd",
+        "EX - Single"
+      ]
+    },
+    {
+      "songId": "よさり月蛍澄み昇りて.かゆきfeat燈露.0",
+      "displayTitle": "よさり 月蛍澄み昇りて",
+      "musicArtist": "かゆき feat. 燈露",
+      "illustrator": "榊原またぎ",
+      "disc": "Disc 2",
+      "trackSeries": [],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:よさり月蛍澄み昇りて.かゆきfeat燈露.0__hires",
+          "resourceId": "6518caa7-e548-75f1-998e-b4b183b28594",
+          "variantId": "bd3b5e49-aa2e-7deb-8a47-fc77502dcbc1",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "よさり 月蛍澄み昇りて",
+        "よさり月蛍澄み昇りて.かゆきfeat燈露.0",
+        "かゆき feat. 燈露",
+        "榊原またぎ",
+        "Disc 2"
+      ]
+    },
+    {
+      "songId": "インフェルノシティ.Ponchifeatはぁち.0",
+      "displayTitle": "インフェルノシティ",
+      "musicArtist": "Ponchi♪ feat. はぁち",
+      "illustrator": "LESYEF & 藍瀬 まなみ",
+      "disc": "EX - Single",
+      "trackSeries": [],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:インフェルノシティ.Ponchifeatはぁち.0__hires",
+          "resourceId": "c16a68cc-a7c3-70ab-a109-2e34bbd95d69",
+          "variantId": "9ef3ca98-7be9-7dd2-99eb-fee823229511",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "インフェルノシティ",
+        "インフェルノシティ.Ponchifeatはぁち.0",
+        "Ponchi♪ feat. はぁち",
+        "LESYEF & 藍瀬 まなみ",
+        "EX - Single"
+      ]
+    },
+    {
+      "songId": "テウメッサ.LisicA.0",
+      "displayTitle": "テウメッサ",
+      "musicArtist": "LisicA",
+      "illustrator": "Orphée",
+      "disc": "EX - T.S.",
+      "trackSeries": [
+        {
+          "id": "rizline:track-series:00016",
+          "name": "T.S. #15 — ルゼ & LisicA"
+        }
+      ],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:テウメッサ.LisicA.0__hires",
+          "resourceId": "98b8025b-d587-7bc6-9abe-c5bd3dc3eb7f",
+          "variantId": "ff9af3fa-9cd1-7d18-a6d0-9e6527a61f80",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "テウメッサ",
+        "テウメッサ.LisicA.0",
+        "LisicA",
+        "Orphée",
+        "EX - T.S.",
+        "T.S. #15 — ルゼ & LisicA"
+      ]
+    },
+    {
+      "songId": "光阿卡姆巫师Remix.姜米條Remixedby阿卡姆巫师.0",
+      "displayTitle": "光 (阿卡姆巫师 Remix)",
+      "musicArtist": "姜米條 Remixed by 阿卡姆巫师",
+      "illustrator": "青鸟",
+      "disc": "Disc 2",
+      "trackSeries": [],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:光阿卡姆巫师Remix.姜米條Remixedby阿卡姆巫师.0__hires",
+          "resourceId": "9651372b-eb45-778e-8f8b-f8f6295f644c",
+          "variantId": "6df9c3d7-f3f4-7d60-93bb-1a7d6238e2ae",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "光 (阿卡姆巫师 Remix)",
+        "光阿卡姆巫师Remix.姜米條Remixedby阿卡姆巫师.0",
+        "姜米條 Remixed by 阿卡姆巫师",
+        "青鸟",
+        "Disc 2"
+      ]
+    },
+    {
+      "songId": "地区ShangriLA.Drazically.0",
+      "displayTitle": "地区 Shangri-LA",
+      "musicArtist": "Drazically",
+      "illustrator": "山山奇 feat. Jimwaz",
+      "disc": "EX - T.S.",
+      "trackSeries": [
+        {
+          "id": "rizline:track-series:00017",
+          "name": "T.S. #16 — 古韻今声 / Diachronic Resonance"
+        }
+      ],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:地区ShangriLA.Drazically.0__hires",
+          "resourceId": "b5b0e64f-9237-7b47-953c-1bdbd38da461",
+          "variantId": "f703dbfe-08e3-7379-9811-c05ddb07cdda",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "地区 Shangri-LA",
+        "地区ShangriLA.Drazically.0",
+        "Drazically",
+        "山山奇 feat. Jimwaz",
+        "EX - T.S.",
+        "T.S. #16 — 古韻今声 / Diachronic Resonance"
+      ]
+    },
+    {
+      "songId": "夢厭coneleganza.大前司.0",
+      "displayTitle": "夢厭 con eleganza",
+      "musicArtist": "大前司",
+      "illustrator": "KeiuO as GAQLLA",
+      "disc": "EX - Single",
+      "trackSeries": [],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:夢厭coneleganza.大前司.0__hires",
+          "resourceId": "556f7d33-93af-75c9-aabe-b101d04eda5e",
+          "variantId": "788dc96c-bdb0-7a16-801b-d2f8f03711c1",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "夢厭 con eleganza",
+        "夢厭coneleganza.大前司.0",
+        "大前司",
+        "KeiuO as GAQLLA",
+        "EX - Single"
+      ]
+    },
+    {
+      "songId": "天地開闢.kuro.0",
+      "displayTitle": "天地開闢",
+      "musicArtist": "kuro",
+      "illustrator": "CeliA feat. M.y.H.F.",
+      "disc": "EX - T.S.",
+      "trackSeries": [
+        {
+          "id": "rizline:track-series:00013",
+          "name": "T.S. #12 — kuro"
+        }
+      ],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:天地開闢.kuro.0__hires",
+          "resourceId": "6539dfa3-a5ba-7983-b734-3fcd02f15df8",
+          "variantId": "3f4e2f43-1ec5-7d0b-97bc-aff6b1b9271a",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "天地開闢",
+        "天地開闢.kuro.0",
+        "kuro",
+        "CeliA feat. M.y.H.F.",
+        "EX - T.S.",
+        "T.S. #12 — kuro"
+      ]
+    },
+    {
+      "songId": "天灵灵地灵灵.iKzfeat小可学妹.0",
+      "displayTitle": "天灵灵地灵灵",
+      "musicArtist": "iKz feat.小可学妹",
+      "illustrator": "©peropero",
+      "disc": "EX - T.S.",
+      "trackSeries": [
+        {
+          "id": "rizline:track-series:00006",
+          "name": "T.S. #6 — Cytus II × Muse Dash"
+        }
+      ],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:天灵灵地灵灵.iKzfeat小可学妹.0__hires",
+          "resourceId": "595e3eba-9094-7eab-999b-506420ff504b",
+          "variantId": "cd8f6b52-807b-71b1-85a1-404e0feea36c",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "天灵灵地灵灵",
+        "天灵灵地灵灵.iKzfeat小可学妹.0",
+        "iKz feat.小可学妹",
+        "©peropero",
+        "EX - T.S.",
+        "T.S. #6 — Cytus II × Muse Dash"
+      ]
+    },
+    {
+      "songId": "森奥虚跡.ShiBa.0",
+      "displayTitle": "森奥虚跡",
+      "musicArtist": "ShiBa",
+      "illustrator": "Rutumn",
+      "disc": "EX - Single",
+      "trackSeries": [],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:森奥虚跡.ShiBa.0__hires",
+          "resourceId": "7e224923-5f00-7dbf-a38d-085f911d05bb",
+          "variantId": "b68ea03a-ce92-7f98-8346-b0f4ea2d5ffe",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "森奥虚跡",
+        "森奥虚跡.ShiBa.0",
+        "ShiBa",
+        "Rutumn",
+        "EX - Single"
+      ]
+    },
+    {
+      "songId": "水槽に沈む街.kuro.0",
+      "displayTitle": "水槽に沈む街",
+      "musicArtist": "kuro",
+      "illustrator": "Ezoitachi",
+      "disc": "EX - T.S.",
+      "trackSeries": [
+        {
+          "id": "rizline:track-series:00013",
+          "name": "T.S. #12 — kuro"
+        }
+      ],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:水槽に沈む街.kuro.0__hires",
+          "resourceId": "0aa53eac-2641-7259-8919-4f621076c126",
+          "variantId": "3ecd6fe1-ffdb-799d-ae08-87e9bdbd40b8",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "水槽に沈む街",
+        "水槽に沈む街.kuro.0",
+        "kuro",
+        "Ezoitachi",
+        "EX - T.S.",
+        "T.S. #12 — kuro"
+      ]
+    },
+    {
+      "songId": "溶けてゆく.A39.0",
+      "displayTitle": "溶けてゆく",
+      "musicArtist": "A-39",
+      "illustrator": "椒",
+      "disc": "EX - Single",
+      "trackSeries": [],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:溶けてゆく.A39.0__hires",
+          "resourceId": "7b457719-2fae-70ee-8d83-e9cce4fc04e2",
+          "variantId": "7d5f0558-889d-7294-a01c-50572e974f19",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "溶けてゆく",
+        "溶けてゆく.A39.0",
+        "A-39",
+        "椒",
+        "EX - Single"
+      ]
+    },
+    {
+      "songId": "漂流.THESxPLAYKIVΛ.0",
+      "displayTitle": "漂流",
+      "musicArtist": "THE SxPLAY & KIVΛ",
+      "illustrator": "©2024 Rayark Inc. CYTUS II®",
+      "disc": "EX - T.S.",
+      "trackSeries": [
+        {
+          "id": "rizline:track-series:00006",
+          "name": "T.S. #6 — Cytus II × Muse Dash"
+        }
+      ],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:漂流.THESxPLAYKIVΛ.0__hires",
+          "resourceId": "51313eda-c80d-7095-98b6-6bbf78e83a93",
+          "variantId": "2d5fdbab-449e-7c2e-b083-112567e0c2b9",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "漂流",
+        "漂流.THESxPLAYKIVΛ.0",
+        "THE SxPLAY & KIVΛ",
+        "©2024 Rayark Inc. CYTUS II®",
+        "EX - T.S.",
+        "T.S. #6 — Cytus II × Muse Dash"
+      ]
+    },
+    {
+      "songId": "翠杜.隣の庭は青い庭師Aoi.0",
+      "displayTitle": "翠杜",
+      "musicArtist": "隣の庭は青い(庭師+Aoi)",
+      "illustrator": "月裏",
+      "disc": "EX - T.S.",
+      "trackSeries": [
+        {
+          "id": "rizline:track-series:00008",
+          "name": "T.S. #8 — Rotaeno"
+        }
+      ],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:翠杜.隣の庭は青い庭師Aoi.0__hires",
+          "resourceId": "07f6c584-6bf6-7599-bcf9-1fde0f3875d0",
+          "variantId": "12ca5c5e-e62f-719e-b87d-8901675e8f15",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "翠杜",
+        "翠杜.隣の庭は青い庭師Aoi.0",
+        "隣の庭は青い(庭師+Aoi)",
+        "月裏",
+        "EX - T.S.",
+        "T.S. #8 — Rotaeno"
+      ]
+    },
+    {
+      "songId": "驟雨の狭間.Silentroom.0",
+      "displayTitle": "驟雨の狭間",
+      "musicArtist": "Silentroom",
+      "illustrator": "Shun Yamaguchi",
+      "disc": "EX - Single",
+      "trackSeries": [],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:驟雨の狭間.Silentroom.0__hires",
+          "resourceId": "1d770a97-05f5-7153-92d0-efc863651f5e",
+          "variantId": "622bf7ae-edac-7caa-8c74-6a6a103ccf27",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "驟雨の狭間",
+        "驟雨の狭間.Silentroom.0",
+        "Silentroom",
+        "Shun Yamaguchi",
+        "EX - Single"
+      ]
+    }
+  ],
+  "recordCounts": {
+    "songs": 141,
+    "artworks": 144
+  }
+}

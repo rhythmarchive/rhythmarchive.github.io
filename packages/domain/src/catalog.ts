@@ -172,24 +172,32 @@ export type CatalogReleaseBrowseCommitResult = {
 export async function writeCatalogAndReleaseAndBrowseAtomic(
   catalog: CatalogType,
   manifest: ReleaseManifestType,
-  browse: BrowseProjectionBuildResult,
-  options: { catalogPath?: string; releasesDirectory?: string; browseDirectory?: string } = {},
+  browse: BrowseProjectionBuildResult | null,
+  options: {
+    catalogPath?: string;
+    releasesDirectory?: string;
+    browseDirectory?: string;
+    additionalFiles?: Array<{ targetPath: string; value: unknown }>;
+  } = {},
 ): Promise<CatalogReleaseBrowseCommitResult> {
   const catalogValidation = validateCatalog(catalog);
   if (!catalogValidation.success) throw new Error("Catalog cannot be written because validation failed.");
   const manifestValidation = validateReleaseManifestConsistency(manifest, catalogValidation.data);
   if (!manifestValidation.success) throw new Error("ReleaseManifest cannot be written because it does not match the Catalog.");
-  const browseValidation = validateBrowseProjectionSet(browse, catalogValidation.data);
-  if (!browseValidation.success) throw new Error(`Browse Projection cannot be written: ${browseValidation.issues.join("; ")}`);
+  if (browse) {
+    const browseValidation = validateBrowseProjectionSet(browse, catalogValidation.data);
+    if (!browseValidation.success) throw new Error(`Browse Projection cannot be written: ${browseValidation.issues.join("; ")}`);
+  }
 
   const catalogPath = options.catalogPath ?? DEFAULT_CATALOG_PATH;
   const releaseManifestPath = path.join(options.releasesDirectory ?? DEFAULT_CATALOG_RELEASES_PATH, `${manifest.id}.json`);
   const browseDirectory = options.browseDirectory ?? path.resolve("catalog", "browse");
-  const browseFiles = browseProjectionJsonFiles(browse).map(({ filename, value }) => ({
+  const browseFiles = browse ? browseProjectionJsonFiles(browse).map(({ filename, value }) => ({
     targetPath: path.join(browseDirectory, filename),
     value,
-  }));
-  const targets = [catalogPath, releaseManifestPath, ...browseFiles.map((file) => file.targetPath)].map((targetPath) => path.resolve(targetPath));
+  })) : [];
+  const additionalFiles = options.additionalFiles ?? [];
+  const targets = [catalogPath, releaseManifestPath, ...browseFiles.map((file) => file.targetPath), ...additionalFiles.map((file) => file.targetPath)].map((targetPath) => path.resolve(targetPath));
   if (new Set(targets).size !== targets.length) throw new Error("Catalog, ReleaseManifest, and Browse targets must be distinct.");
 
   const token = `${process.pid}-${randomUUID()}`;
@@ -197,6 +205,7 @@ export async function writeCatalogAndReleaseAndBrowseAtomic(
     { targetPath: catalogPath, value: catalogValidation.data },
     { targetPath: releaseManifestPath, value: ReleaseManifest.parse(manifestValidation.data) },
     ...browseFiles,
+    ...additionalFiles,
   ].map((file) => ({
     ...file,
     temporaryPath: `${file.targetPath}.partial-${token}`,
@@ -235,7 +244,11 @@ export async function writeCatalogAndReleaseAndBrowseAtomic(
   }
 
   for (const file of files) await rm(file.backupPath, { force: true }).catch(() => undefined);
-  return { catalogPath, releaseManifestPath, browsePaths: browseFiles.map((file) => file.targetPath) };
+  return {
+    catalogPath,
+    releaseManifestPath,
+    browsePaths: [...browseFiles, ...additionalFiles].map((file) => file.targetPath),
+  };
 }
 
 export function catalogObjectById(catalog: CatalogType, objectId: string) {

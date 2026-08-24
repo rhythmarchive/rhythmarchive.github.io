@@ -27,17 +27,28 @@
         "archiveExtras": 7,
         "sourceOnlyTracks": 6
       }
+    },
+    "rizline": {
+      "sourceVersion": "2.7.0",
+      "sourceSha256": "d62d559f6d6bbdbc8d7a85d17b386341ab6eca738cffa64ab16f6f8efa78c66e",
+      "fileSha256": "32713257e05ead7c6f7f762549e8d8aeb53123f2cb1a7c1958523662cbb454f9",
+      "recordCounts": {
+        "songs": 141,
+        "artworks": 144
+      }
     }
   },
   "catalog": {
     "catalogId": "019fefd6-9c49-7ca0-a760-adc76811a511",
-    "catalogSha256": "b24bf34af95eccfa2625371a8d64bd61fb4a89fe2075f040f241a219efebd297",
-    "catalogGeneratedAt": "2026-08-22T11:21:34.604Z"
+    "catalogSha256": "66aad99969df74d68a7b367c444f30a51aee72f069faf8ffe34f74dd5b71f879",
+    "catalogGeneratedAt": "2026-08-24T12:42:04.372Z"
   },
   "files": {
     "arcaea": "arcaea.json",
     "phigros": "phigros.json",
     "manifest": "manifest.json",
-    "diagnostics": "diagnostics.json"
+    "diagnostics": "diagnostics.json",
+    "rizline": "rizline.json",
+    "rizlineSemantics": "rizline-semantics.json"
   }
 }
