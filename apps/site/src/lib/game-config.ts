@@ -18,8 +18,8 @@ export type GameConfig = {
 export const CATEGORY_LABELS: Record<ResourceTypeId, string> = {
   jacket: "曲绘",
   "special-art": "特殊插画",
-  "track-series": "Track Series",
-  "rizcard-layout": "Rizcard Layout",
+  "track-series": "专辑海报",
+  "rizcard-layout": "Rizcard",
   "rizcard": "Rizcard",
   "character-portrait": "角色立绘",
   "character-avatar": "头像",
@@ -99,14 +99,14 @@ export const GAME_CONFIG: Record<GameId, GameConfig> = {
   rizline: {
     slug: "rizline",
     displayName: "Rizline",
-    categoryOrder: ["jacket", "special-art", "track-series", "rizcard-layout", "character-avatar", "rizcard"],
-    featuredCategories: ["jacket", "special-art", "track-series", "rizcard-layout", "character-avatar"],
+    categoryOrder: ["jacket", "special-art", "track-series", "rizcard", "character-avatar"],
+    featuredCategories: ["jacket", "special-art", "track-series", "rizcard", "character-avatar"],
     filters: { difficulty: false, upscale: false },
     metadataLabels: {
       artist: "曲师",
       musicArtist: "曲师",
       illustrator: "画师",
-      trackSeries: "Track Series",
+      trackSeries: "专辑海报",
       seriesName: "系列名称",
       disc: "Disc",
       character: "角色",
@@ -133,7 +133,7 @@ export function categoryLabel(resourceType: ResourceTypeId): string {
 }
 
 export function gameCategoryLabel(game: GameId, resourceType: ResourceTypeId): string {
-  if (game === "rizline" && resourceType === "character-avatar") return "角色素材";
+  if (game === "rizline" && resourceType === "character-avatar") return "角色头像";
   return categoryLabel(resourceType);
 }
 

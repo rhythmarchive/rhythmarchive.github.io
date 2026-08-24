@@ -94,10 +94,9 @@ export function getCategoryBrowseConfig(game: GameId, category: string, resource
       } as Record<string, string>)[category] ?? "搜索资源"
       : ({
         "special-art": "搜索特殊插画",
-        "track-series": "搜索系列名称、歌曲或合作方",
-        "rizcard-layout": "搜索 Layout 名称或 ID",
+        "track-series": "搜索专辑名称、歌曲或合作方",
+        "rizcard": "搜索 Layout 名称或 ID",
         "character-avatar": "搜索角色名",
-        "rizcard": "搜索 Rizcard 组成关系",
       } as Record<string, string>)[category] ?? "搜索资源";
   const facetKeys = facetDefinitions(game, category);
   return {

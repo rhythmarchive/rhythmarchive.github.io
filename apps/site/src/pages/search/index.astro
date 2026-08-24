@@ -8,7 +8,7 @@ import { getPublicNavigationGames } from "../../lib/site-data";
 import { createUrlHelpers } from "../../lib/url";
 
 const query = Astro.url.searchParams.get("q") ?? "";
-const description = "搜索 Arcaea、Phigros 与 Rizline 的曲绘、角色素材、特殊插画和其他图片资源。";
+const description = "搜索 Arcaea、Phigros 与 Rizline 的曲绘、角色头像、特殊插画和其他图片资源。";
 const urls = createUrlHelpers({ basePath: BASE_PATH, origin: SITE_ORIGIN, rosBaseUrl: ROS_BASE_URL });
 const games = getPublicNavigationGames();
 const quickLinks = buildSearchQuickLinks({ games });

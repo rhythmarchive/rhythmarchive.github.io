@@ -33,7 +33,7 @@ test("public projection excludes local paths, credentials, and internal provenan
   assert.doesNotMatch(serialized, /[A-Z]:\\/iu);
   assert.doesNotMatch(serialized, /ROS_(?:ACCESS|SECRET)_KEY/iu);
   assert.doesNotMatch(serialized, /(?:provenance|sourceRelativePath|sourceSha256|objectId|objectKey|catalogSchemaVersion)/iu);
-  const hiddenCount = catalog.resources.filter((resource) => resource.lifecycle.status !== "published" || resource.resourceType === "startup" || resource.resourceType === "story-texture").length;
+  const hiddenCount = catalog.resources.filter((resource) => resource.lifecycle.status !== "published" || resource.resourceType === "startup" || resource.resourceType === "story-texture" || resource.resourceType === "rizcard").length;
   assert.equal(projection.resources.length, catalog.resources.length - hiddenCount);
 });
 
@@ -192,7 +192,9 @@ test("homepage navigation uses the generated jacket browse counts", () => {
   assert.equal(games.find((game) => game.slug === "phigros")?.categories.find((category) => category.slug === "jacket")?.count, 353);
   const rizline = games.find((game) => game.slug === "rizline");
   assert.equal(rizline?.categories.find((category) => category.slug === "jacket")?.count, 141);
-  assert.deepEqual(rizline?.featuredCategories.map((category) => category.slug), ["jacket", "special-art", "track-series", "rizcard-layout", "character-avatar"]);
+  assert.equal(rizline?.categories.find((category) => category.slug === "rizcard")?.count, 44);
+  assert.equal(rizline?.categories.some((category) => category.slug === "rizcard-layout"), false);
+  assert.deepEqual(rizline?.featuredCategories.map((category) => category.slug), ["jacket", "special-art", "track-series", "rizcard", "character-avatar"]);
 });
 
 test("Rizline Catalog and public projections preserve approved boundaries", () => {
@@ -210,10 +212,10 @@ test("Rizline Catalog and public projections preserve approved boundaries", () =
   assert.equal(catalog.renditions.filter((rendition) => rizlineResources.some((resource) => catalog.variants.find((variant) => variant.id === rendition.variantId)?.resourceId === resource.id)).length, 1420);
   const siteData = getSiteData();
   const publicRizline = siteData.resources.filter((resource) => resource.game === "rizline");
-  assert.equal(publicRizline.length, 247);
-  assert.equal(publicRizline.filter((resource) => resource.resourceType === "rizcard" && resource.variants.length === 0).length, 29);
-  assert.ok(publicRizline.filter((resource) => resource.resourceType === "rizcard").every((resource) => !resource.original));
-  assert.ok(publicRizline.filter((resource) => resource.resourceType === "rizcard-layout").every((resource) => resource.metadata.layoutId));
+  assert.equal(publicRizline.length, 218);
+  assert.equal(publicRizline.filter((resource) => resource.resourceType === "rizcard").length, 0);
+  assert.equal(publicRizline.filter((resource) => resource.resourceType === "rizcard-layout").length, 44);
+  assert.ok(publicRizline.filter((resource) => resource.resourceType === "rizcard-layout").every((resource) => resource.category === "rizcard" && resource.categoryLabel === "Rizcard" && resource.metadata.layoutId));
 });
 
 test("site brand marks keep the accent rhythm line inside the mark", () => {
@@ -270,7 +272,9 @@ test("search quick links are explicit, count-gated, and game-scoped", () => {
   assert.ok(quickLinks.some((entry) => entry.label === "Arcaea 曲绘" && entry.href === "/arcaea/jacket/"));
   assert.ok(quickLinks.some((entry) => entry.label === "Phigros 曲绘" && entry.href === "/phigros/jacket/"));
   assert.ok(quickLinks.some((entry) => entry.label === "Rizline 曲绘" && entry.href === "/rizline/jacket/"));
-  assert.ok(quickLinks.some((entry) => entry.label === "Rizline Track Series" && entry.href === "/rizline/track-series/"));
+  assert.ok(quickLinks.some((entry) => entry.label === "Rizline 专辑海报" && entry.href === "/rizline/track-series/"));
+  assert.ok(quickLinks.some((entry) => entry.label === "Rizline Rizcard" && entry.href === "/rizline/rizcard/"));
+  assert.ok(quickLinks.some((entry) => entry.label === "Rizline 角色头像" && entry.href === "/rizline/character-avatar/"));
   assert.ok(quickLinks.every((entry) => entry.label !== "曲绘"));
 });
 

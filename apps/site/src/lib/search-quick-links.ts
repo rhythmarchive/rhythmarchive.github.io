@@ -21,10 +21,9 @@ const QUICK_LINK_DEFINITIONS: QuickLinkDefinition[] = [
   { game: "phigros", category: "jacket", label: "Phigros 曲绘" },
   { game: "rizline", category: "jacket", label: "Rizline 曲绘" },
   { game: "rizline", category: "special-art", label: "Rizline 特殊插画" },
-  { game: "rizline", category: "track-series", label: "Rizline Track Series" },
-  { game: "rizline", category: "rizcard-layout", label: "Rizline Rizcard Layout" },
-  { game: "rizline", category: "character-avatar", label: "Rizline 角色素材" },
+  { game: "rizline", category: "track-series", label: "Rizline 专辑海报" },
   { game: "rizline", category: "rizcard", label: "Rizline Rizcard" },
+  { game: "rizline", category: "character-avatar", label: "Rizline 角色头像" },
   { game: "arcaea", category: "character-portrait", label: "Arcaea 角色立绘" },
   { game: "arcaea", category: "story-cg", label: "Arcaea 剧情 CG" },
 ];

@@ -55,7 +55,7 @@ const PUBLIC_METADATA_KEYS = new Set([
   "rizcardId",
 ]);
 
-const PUBLIC_HIDDEN_RESOURCE_TYPES = new Set<ResourceTypeId>(["story-texture", "startup"]);
+const PUBLIC_HIDDEN_RESOURCE_TYPES = new Set<ResourceTypeId>(["story-texture", "startup", "rizcard"]);
 
 const PREVIEW_TYPES = {
   small: "thumbnail-320",
@@ -120,7 +120,7 @@ function projectResource(resource: Resource, variants: Variant[], renditionsByVa
     route: `/r/${encodeURIComponent(resource.id)}/`,
     game: resource.game,
     resourceType: resource.resourceType,
-    category: resource.resourceType,
+    category: publicCategorySlug(resource.game, resource.resourceType),
     categoryLabel: publicCategoryLabel(resource.game, resource.resourceType, metadata),
     displayTitle: display.title || original?.downloadFilename || "未命名资源",
     ...(artist ? { artist } : {}),
@@ -217,6 +217,11 @@ function publicCategoryLabel(game: GameId, resourceType: ResourceTypeId, metadat
   return gameCategoryLabel(game, resourceType);
 }
 
+function publicCategorySlug(game: GameId, resourceType: ResourceTypeId): string {
+  if (game === "rizline" && resourceType === "rizcard-layout") return "rizcard";
+  return resourceType;
+}
+
 function toSearchEntry(resource: PublicResource, sourceResource?: Resource): PublicSearchEntry {
   const keywordSet = new Set<string>();
   for (const value of Object.values(resource.metadata)) keywordSet.add(String(value));
@@ -238,11 +243,11 @@ function toSearchEntry(resource: PublicResource, sourceResource?: Resource): Pub
 }
 
 function buildCategories(game: GameId, resources: PublicResource[]): PublicCategory[] {
-  const counts = new Map<ResourceTypeId, number>();
-  for (const resource of resources) counts.set(resource.resourceType, (counts.get(resource.resourceType) ?? 0) + 1);
-  const known = GAME_CONFIG[game].categoryOrder.filter((category) => counts.has(category));
+  const counts = new Map<string, number>();
+  for (const resource of resources) counts.set(resource.category, (counts.get(resource.category) ?? 0) + 1);
+  const known: string[] = GAME_CONFIG[game].categoryOrder.filter((category) => counts.has(category));
   const unknown = [...counts.keys()].filter((category) => !known.includes(category)).sort();
-  return [...known, ...unknown].map((slug) => ({ slug, label: resources.find((resource) => resource.category === slug)?.categoryLabel ?? gameCategoryLabel(game, slug), count: counts.get(slug) ?? 0 }));
+  return [...known, ...unknown].map((slug) => ({ slug, label: resources.find((resource) => resource.category === slug)?.categoryLabel ?? gameCategoryLabel(game, slug as ResourceTypeId), count: counts.get(slug) ?? 0 }));
 }
 
 function compareResources(a: PublicResource, b: PublicResource): number {
