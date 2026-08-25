@@ -153,7 +153,7 @@ test("homepage APK parser accepts GitHub/official downloads and rejects unsafe U
 test("homepage uses an information-first intro and a stable social image", () => {
   const source = fs.readFileSync(path.join(siteRoot, "src", "pages", "index.astro"), "utf8");
   assert.doesNotMatch(source, /找到下一张|想保存的曲绘/u);
-  assert.match(source, /Arcaea · Phigros · Rizline/u);
+  assert.match(source, /games\.map\(\(game\) => game\.displayName\)\.join\(" · "\)/u);
   assert.match(source, /Rhythm Archive.*图片资源/u);
   assert.match(source, /ogImage=\{homeOgImage\}/u);
   assert.match(source, /\/og\/home\.png/u);

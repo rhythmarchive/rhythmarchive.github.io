@@ -9,6 +9,7 @@
   "scripts": {
     "test": "tsx --test packages/domain/tests/*.test.ts packages/admin/tests/*.test.ts apps/site/tests/*.test.ts",
     "admin": "node --env-file-if-exists=.env --import tsx packages/admin/src/server.ts",
+    "rhythmctl": "node --env-file-if-exists=.env --import tsx tools/rhythmctl.ts",
     "typecheck": "tsc --noEmit",
     "site:dev": "tsx apps/site/scripts/generate-public-data.ts && astro dev --root apps/site",
     "site:check": "tsx apps/site/scripts/generate-public-data.ts && astro check --root apps/site",

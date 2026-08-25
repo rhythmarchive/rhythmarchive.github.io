@@ -10,7 +10,8 @@ import { createUrlHelpers } from "../lib/url";
 const urls = createUrlHelpers({ basePath: BASE_PATH, origin: SITE_ORIGIN, rosBaseUrl: ROS_BASE_URL });
 const games = getPublicNavigationGames();
 const homeOgImage = urls.absoluteUrl("/og/home.png");
-const description = "浏览并下载 Arcaea、Phigros、Rizline 的曲绘与游戏图片资源。";
+const gameNames = games.map((game) => game.displayName).join("、");
+const description = `浏览并下载${gameNames}的曲绘与游戏图片资源。`;
 const arcaeaApkManifestUrl = `${ROS_BASE_URL}/apk/arcaea/latest.json`;
 ---
 
@@ -20,7 +21,7 @@ const arcaeaApkManifestUrl = `${ROS_BASE_URL}/apk/arcaea/latest.json`;
     <div class="home-intro-copy">
       <span class="archive-kicker">Rhythm Archive</span>
       <h1>Rhythm Archive <em>图片资源</em></h1>
-      <p>Arcaea · Phigros · Rizline 的曲绘与游戏图片资源。</p>
+      <p>{games.map((game) => game.displayName).join(" · ")} 的曲绘与游戏图片资源。</p>
     </div>
     <div class="home-search-block">
       <SearchBox />
