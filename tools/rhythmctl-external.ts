@@ -6,6 +6,13 @@ import { atomicWriteJson } from "../packages/domain/src/catalog.js";
 import { getGameProfile, type PlatformGameId } from "../packages/domain/src/platform.js";
 import { manifestFromExternalManifest } from "../packages/domain/src/external-manifest.js";
 import { writeUnifiedManifest } from "../packages/domain/src/release.js";
+function tempOnly(repoRoot: string, value: string, label: string): string {
+  const resolved = path.resolve(value);
+  const relative = path.relative(path.resolve(repoRoot, "temp"), resolved);
+  if (relative.startsWith("..") || path.isAbsolute(relative)) throw new Error(label + " must be inside repository temp/");
+  return resolved;
+}
+
 
 const execFileAsync = promisify(execFile);
 
@@ -31,13 +38,12 @@ export async function runExternalAdapter(options: {
   previousManifest?: string;
   python?: string;
 }): Promise<ExternalExtractionResult> {
-  const outputDir = path.resolve(options.outputDir);
-  const tempRelative = path.relative(path.resolve(options.repoRoot, "temp"), outputDir);
-  if (tempRelative.startsWith("..") || path.isAbsolute(tempRelative)) throw new Error("adapter output must be inside repository temp/");
+  const outputDir = tempOnly(options.repoRoot, options.outputDir, "adapter output");
+  const cacheRoot = tempOnly(options.repoRoot, options.cacheRoot ?? path.join(outputDir, "cache"), "cache output");
   await mkdir(outputDir, { recursive: true });
   const python = options.python?.trim() || "python";
   const commandArgs = options.game === "rizline"
-    ? ["-m", "tools.rizline", "extract", "--apk", path.resolve(options.apk ?? ""), "--cache-root", path.resolve(options.cacheRoot ?? path.join(outputDir, "cache")), "--output", outputDir, "--dry-run"]
+    ? ["-m", "tools.rizline", "extract", "--apk", path.resolve(options.apk ?? ""), "--cache-root", cacheRoot, "--output", outputDir, "--dry-run"]
     : ["-m", "tools.infalsus", "prepare-publish", "--game-root", path.resolve(options.gameRoot ?? ""), "--output", outputDir, ...(options.previousManifest ? ["--previous-manifest", path.resolve(options.previousManifest)] : [])];
   const adapterReport = path.join(outputDir, options.game === "rizline" ? "manifest.json" : "manifests/infalsus-semantic-manifest.json");
   const unifiedPath = path.join(outputDir, "unified-manifest.json");

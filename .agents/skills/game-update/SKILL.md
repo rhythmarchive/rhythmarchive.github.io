@@ -1,16 +1,25 @@
-# 已有游戏版本更新
+---
+name: game-update
+description: Use when a published game receives a new APK, installation directory, resource package, or version manifest and should be compared incrementally.
+---
 
-## 触发条件
+# Game update
 
-已有游戏提供新 APK、新安装目录、新资源包或新版本 Manifest。
+## Preflight
 
-## 执行规则
+Load the published GameProfile, current Adapter Registry entry, source snapshot, and previous formal UnifiedAssetManifest. Never start with a full reverse-engineering pass by default.
 
-- 读取既有 Game Profile 和上一正式统一 Manifest；默认增量解析，不从头重新逆向。
-- 只有 marker 大量消失、adapter 解析失败、关键身份映射失效等明确异常才重新 reconnaissance，并把 blocker 写入 state。
-- 候选必须通过 `NEW/CHANGED/REMOVED/UNCHANGED` diff；`REMOVED` 只生成审核项，不删除 Catalog 或远端对象。
-- 复用稳定 source identity、Object hash 和 remote key，避免无意义全量上传。
+## Ordered workflow
 
-## 执行入口
+1. Probe the new source and compare markers, counts, and adapter feasibility with the previous run.
+2. Run extract through the registry, then normalize and validate using the existing selection policy.
+3. Build a Delta against the previous published manifest and retain explicit NEW, CHANGED, REMOVED, and UNCHANGED results.
+4. Generate review, resolve identity and metadata anomalies, approve, and run local release prepare.
 
-`rhythmctl extract`（对已有 adapter）、`normalize`、`diff --previous`、`review`、`check-approval`、`release prepare`。工作状态位于 `temp/rhythmctl/<game>/<version>/state.json`，重新打开任务时先读取它。
+## Reconnaissance fallback
+
+Return to game-reconnaissance only when markers disappear, extraction fails, key mappings break, counts become implausible, or identity stability collapses. Record that reason and blocker in state.
+
+## Gates and completion
+
+REMOVED is review-only and never deletes Catalog or remote objects. Completion means the candidate delta and review gate are valid and stable object identity is preserved; publication remains a separate authorized action.

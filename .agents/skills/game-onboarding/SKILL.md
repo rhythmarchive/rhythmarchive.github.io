@@ -1,21 +1,26 @@
-# 新游戏首次接入
+---
+name: game-onboarding
+description: Use when a reconnaissance-complete candidate should become a deliberately scoped, published game through the shared adapter and release workflow.
+---
 
-## 触发条件
+# Game onboarding
 
-用户要求分析并接入从未上架的游戏，或提供 APK、安装目录、AssetBundle、Addressables 数据并要求建立站点接入。
+## Trigger and boundary
 
-## 边界
+Use after game-reconnaissance has produced a DraftGameProfile. Do not treat discovery as publication, and do not expand Rotaeno or another analysis-only candidate automatically.
 
-- 源文件只读；先 probe，再把所有工作放入 `temp/`。
-- “发现资源”不等于“发布资源”。用 Game Profile 的 `selectionPolicy` 固化收录类别，未选择类别保持在分析报告中但不进入正式 Catalog。
-- In Falsus 的现有 Catalog 状态是历史基线；不要因为本 Skill 自动扩大其正式收录范围。
+## Ordered workflow
 
-## 执行入口
+1. Read the candidate state, probe, analysis report, and onboarding plan under temp.
+2. Confirm lifecycle, display name, source identity, selection policy, included categories, excluded categories, and rationale.
+3. Add a formal GameProfile and Adapter Registry entry only after the decision; keep the unknown candidate separate until then.
+4. Reuse the adapter contract for probe, extract, normalize, validate, and candidate manifest.
+5. Run diff, human-review, approval, local release prepare, Catalog/public projection update, and shared-site validation.
 
-1. `npm run rhythmctl -- games`
-2. `npm run rhythmctl -- probe --game <id> --source <path>`
-3. `npm run rhythmctl -- ingest --game <id> --source <path> --version <version>`
-4. 复用 profile 中列出的 adapter/extractor，输出到 workflow state 对应的 `temp/rhythmctl/<game>/<version>/`。
-5. `normalize` 后运行 `diff`、`review`，确认人工审核包，再由已有 publish dry-run 逻辑准备 ReleaseManifest。
+## Gates and recovery
 
-不要在网站页面中加入新的 per-game 页面；新差异应留在 Profile/Adapter 或清晰的 browse projection extension point。
+A missing scope decision, adapter capability, identity mapping, metadata, or review approval blocks onboarding. The source remains read-only and every artifact stays under temp. Resume from state rather than restarting the probe.
+
+## Completion
+
+Onboarding is complete only when the selected assets are in the unified Catalog/public projection, shared routes and search serve them, tests pass, and the local release gate is satisfied. Unselected categories remain diagnostics or review material.

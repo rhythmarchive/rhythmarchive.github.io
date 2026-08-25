@@ -25,12 +25,22 @@ jobs:
           cache: npm
       - name: Install dependencies
         run: npm ci
+      - name: Git diff check
+        run: git diff --check
+      - name: Typecheck and tests
+        run: npm run test:all
+      - name: Site check
+        run: npm run site:check
       - name: Build public site
         run: npm run site:build
         env:
           PUBLIC_SITE_ORIGIN: https://rhythmarchive.github.io
           PUBLIC_BASE_PATH: /
           PUBLIC_ROS_BASE_URL: https://rhythm-assets.cn-nb1.rains3.com
+      - name: Site smoke
+        run: npm run site:smoke
+      - name: Browse projection check
+        run: npm run browse:check
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:

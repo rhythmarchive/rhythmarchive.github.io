@@ -102,9 +102,11 @@ test("unified manifest and workflow state are resumable on disk", async () => {
   const statePath = path.join(root, "state.json");
   const state = createWorkflowState({ gameId: "arcaea", version: "1.0", sourcePath: source, sourceSnapshot: "probe:test" });
   await saveWorkflowState(state, statePath);
-  const updated = await updateWorkflowState(statePath, { phase: "normalize", completedSteps: ["probe", "ingest"], manifestPath });
+  await updateWorkflowState(statePath, { phase: "ingest" });
+  await updateWorkflowState(statePath, { phase: "extract" });
+  const updated = await updateWorkflowState(statePath, { phase: "normalize", manifestPath });
   assert.equal((await loadWorkflowState(statePath)).phase, "normalize");
-  assert.deepEqual(updated.completedSteps, ["probe", "ingest"]);
+  assert.deepEqual(updated.completedSteps, ["probe", "ingest", "extract", "normalize"]);
 });
 
 test("Rizline and In Falsus adapter manifests normalize into the same boundary", () => {

@@ -1,8 +1,8 @@
 {
-  "name": "rhythm-assets-gallery-v2-phase2b",
+  "name": "rhythm-assets-gallery-v2",
   "private": true,
   "type": "module",
-  "version": "0.2.0-phase2b",
+  "version": "0.2.0",
   "engines": {
     "node": ">=22.12.0"
   },
@@ -17,6 +17,7 @@
     "site:preview": "astro preview --root apps/site",
     "site:smoke": "tsx apps/site/scripts/smoke.ts",
     "test:all": "npm run typecheck && npm test",
+    "ci:check": "npm run test:all && npm run site:check && npm run site:build && npm run site:smoke && npm run browse:check",
     "experiment:upscale": "tsx tools/upscale-experiment.ts",
     "experiment:upscale:phase2b": "tsx tools/phase2b-upscale-experiment.ts",
     "test:phase2b": "tsx --test packages/domain/tests/phase2b.test.ts",

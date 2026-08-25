@@ -1,0 +1,97 @@
+import { z } from "zod";
+import { createDeterministicUuidV7 } from "./identity.js";
+import { Game, ResourceType } from "./schema.js";
+import { releaseIdentityKey, UnifiedAssetManifest, UnifiedManifestFile, type UnifiedAssetManifest as UnifiedAssetManifestType } from "./release.js";
+
+export const ContentAdditionOrigin = z.enum(["source-derived", "manual", "metadata-only", "new-category", "new-variant", "new-rendition"]);
+export type ContentAdditionOrigin = z.infer<typeof ContentAdditionOrigin>;
+
+const ContentFile = UnifiedManifestFile.extend({
+  sourcePath: z.string().min(1).optional(),
+});
+
+export const ContentAdditionEntry = z.object({
+  sourceIdentity: z.string().min(1),
+  assetType: ResourceType,
+  variantKey: z.string().min(1).default("default"),
+  title: z.string().min(1).optional(),
+  artist: z.string().min(1).optional(),
+  aliases: z.array(z.string().min(1)).default([]),
+  file: ContentFile.optional(),
+  sourcePath: z.string().min(1).optional(),
+  metadata: z.record(z.unknown()).default({}),
+  origin: ContentAdditionOrigin,
+  needsReview: z.boolean().default(true),
+  needsRename: z.boolean().default(false),
+  anomalies: z.array(z.string().min(1)).default([]),
+});
+export type ContentAdditionEntry = z.infer<typeof ContentAdditionEntry>;
+
+export const ContentAdditionInput = z.object({
+  kind: z.literal("rhythm-content-addition"),
+  schemaVersion: z.literal("1").default("1"),
+  gameId: Game,
+  version: z.string().min(1),
+  sourceSnapshot: z.string().min(1).optional(),
+  entries: z.array(ContentAdditionEntry).min(1),
+  notes: z.array(z.string().min(1)).default([]),
+});
+export type ContentAdditionInput = z.infer<typeof ContentAdditionInput>;
+
+function contentMetadata(entry: ContentAdditionEntry): Record<string, unknown> {
+  return { ...entry.metadata, contentOrigin: entry.origin };
+}
+
+function mergeMetadata(base: Record<string, unknown>, patch: Record<string, unknown>): Record<string, unknown> {
+  return { ...base, ...patch };
+}
+
+export function buildContentAdditionManifest(inputValue: z.input<typeof ContentAdditionInput>, previous?: UnifiedAssetManifestType, generatedAt = new Date().toISOString()): UnifiedAssetManifestType {
+  const input = ContentAdditionInput.parse(inputValue);
+  if (previous && previous.gameId !== input.gameId) throw new Error(`content addition game mismatch: ${previous.gameId} vs ${input.gameId}`);
+  const previousByIdentity = new Map((previous?.entries ?? []).map((entry) => [entry.identityKey, entry]));
+  const additions = input.entries.map((entryInput) => {
+    const entry = ContentAdditionEntry.parse(entryInput);
+    const identityKey = releaseIdentityKey({ gameId: input.gameId, assetType: entry.assetType, sourceIdentity: entry.sourceIdentity, variantKey: entry.variantKey });
+    const previousEntry = previousByIdentity.get(identityKey);
+    const isMetadataOnly = entry.origin === "metadata-only";
+    const mergedFile = entry.file
+      ? { ...entry.file }
+      : isMetadataOnly
+        ? previousEntry?.file
+        : undefined;
+    const mergedAliases = [...new Set([...(previousEntry?.aliases ?? []), ...entry.aliases].filter(Boolean))];
+    const metadata = mergeMetadata(previousEntry?.metadata ?? {}, contentMetadata(entry));
+    return {
+      assetId: previousEntry?.assetId ?? createDeterministicUuidV7(`asset:${identityKey}`),
+      identityKey,
+      gameId: input.gameId,
+      assetType: entry.assetType,
+      variantKey: entry.variantKey,
+      ...(entry.title ?? previousEntry?.title ? { title: entry.title ?? previousEntry?.title } : {}),
+      ...(entry.artist ?? previousEntry?.artist ? { artist: entry.artist ?? previousEntry?.artist } : {}),
+      aliases: mergedAliases,
+      sourceIdentity: entry.sourceIdentity,
+      ...(entry.sourcePath ? { sourcePath: entry.sourcePath } : previousEntry?.sourcePath ? { sourcePath: previousEntry.sourcePath } : {}),
+      ...(mergedFile ? { file: UnifiedManifestFile.parse(mergedFile) } : {}),
+      ...(previousEntry?.versionAdded ? { versionAdded: previousEntry.versionAdded } : { versionAdded: input.version }),
+      versionChanged: input.version,
+      metadata,
+      needsReview: entry.needsReview || isMetadataOnly || Boolean(previousEntry?.needsReview),
+      needsRename: entry.needsRename || Boolean(previousEntry?.needsRename),
+      anomalies: [...new Set([...(previousEntry?.anomalies ?? []), ...entry.anomalies])],
+    };
+  });
+  const touched = new Set(additions.map((entry) => entry.identityKey));
+  const entries = [...(previous?.entries ?? []).filter((entry) => !touched.has(entry.identityKey)), ...additions];
+  return UnifiedAssetManifest.parse({
+    kind: "rhythm-unified-asset-manifest",
+    schemaVersion: "1",
+    gameId: input.gameId,
+    version: input.version,
+    generatedAt,
+    sourceSnapshot: input.sourceSnapshot ?? `content:${input.gameId}:${input.version}`,
+    entries: entries.sort((left, right) => left.identityKey.localeCompare(right.identityKey)),
+    notes: ["Generated by the content-addition workflow; publication still requires Delta review and release approval.", ...input.notes],
+  });
+}

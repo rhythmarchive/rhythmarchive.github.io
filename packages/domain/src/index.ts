@@ -28,3 +28,5 @@ export * from "./review-package.js";
 export * from "./storage-diff.js";
 export * from "./workflow-state.js";
 export * from "./external-manifest.js";
+export * from "./onboarding.js";
+export * from "./content.js";

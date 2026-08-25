@@ -18,7 +18,16 @@ const PortablePath = z.string().min(1).refine((value) => {
 const Sha256 = z.string().regex(/^[0-9a-f]{64}$/iu, "must be a SHA-256 hex digest");
 
 export const AdapterInputKind = z.enum(["apk", "directory", "assetbundle", "addressables", "remote", "manifest", "legacy-report"]);
+export const AdapterCapability = z.enum(["probe", "extract", "normalize", "validate"]);
+export const AdapterOperationEntrypoints = z.object({
+  probe: z.string().min(1),
+  extract: z.string().min(1),
+  normalize: z.string().min(1),
+  validate: z.string().min(1),
+});
+export type AdapterOperationEntrypoints = z.infer<typeof AdapterOperationEntrypoints>;
 export type AdapterInputKind = z.infer<typeof AdapterInputKind>;
+export type AdapterCapability = z.infer<typeof AdapterCapability>;
 export type PlatformGameId = z.infer<typeof Game>;
 export type PlatformResourceType = z.infer<typeof ResourceType>;
 export type PlatformSourceType = z.infer<typeof SourceType>;
@@ -29,6 +38,13 @@ export const GameProfile = z.object({
   aliases: z.array(z.string().min(1)),
   adapterId: z.string().min(1),
   adapterVersion: z.string().min(1),
+  capabilities: z.array(AdapterCapability).min(1).default(["probe", "extract", "normalize", "validate"]),
+  operationEntrypoints: AdapterOperationEntrypoints.default({
+    probe: "adapter.probe",
+    extract: "adapter-registry.extract",
+    normalize: "adapter-registry.normalize",
+    validate: "adapter-registry.validate",
+  }),
   inputKinds: z.array(AdapterInputKind).min(1),
   defaultSourceType: SourceType,
   supportedAssetTypes: z.array(ResourceType).min(1),
@@ -110,6 +126,8 @@ export type AdapterExtractionPlan = z.infer<typeof AdapterExtractionPlan>;
 
 export type GameAdapter = {
   profile: GameProfile;
+  capabilities: AdapterCapability[];
+  operationEntrypoints: AdapterOperationEntrypoints;
   probe(sourcePath: string): Promise<SourceProbe>;
   planExtraction(probe: SourceProbe): AdapterExtractionPlan;
 };
@@ -296,7 +314,7 @@ export function getGameProfile(gameId: PlatformGameId): GameProfile {
 
 export function getGameAdapter(gameId: PlatformGameId): GameAdapter {
   const profile = getGameProfile(gameId);
-  return { profile, probe: (sourcePath) => probeProfile(profile, sourcePath), planExtraction: (probe) => extractionPlan(profile, probe) };
+  return { profile, capabilities: profile.capabilities, operationEntrypoints: profile.operationEntrypoints, probe: (sourcePath) => probeProfile(profile, sourcePath), planExtraction: (probe) => extractionPlan(profile, probe) };
 }
 
 function externalIdentity(resource: Resource): string {
