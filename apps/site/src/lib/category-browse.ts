@@ -89,6 +89,13 @@ export function getCategoryBrowseConfig(game: GameId, category: string, resource
       "linkplay-preview": "搜索角色名",
       sticker: "搜索角色名或 Sticker",
     } as Record<string, string>)[category] ?? "搜索资源"
+    : game === "rotaeno"
+      ? ({
+        "character-portrait": "搜索驾驶员",
+        "pack-cover": "搜索曲包",
+        background: "搜索活动背景",
+        "special-art": "搜索特殊插画",
+      } as Record<string, string>)[category] ?? "搜索资源"
     : game === "phigros"
       ? ({
         "character-avatar": "搜索头像名称",

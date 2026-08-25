@@ -38,7 +38,7 @@ test("public projection excludes local paths, credentials, and internal provenan
   assert.doesNotMatch(serialized, /[A-Z]:\\/iu);
   assert.doesNotMatch(serialized, /ROS_(?:ACCESS|SECRET)_KEY/iu);
   assert.doesNotMatch(serialized, /(?:provenance|sourceRelativePath|sourceSha256|objectId|objectKey|catalogSchemaVersion)/iu);
-  const hiddenCount = catalog.resources.filter((resource) => resource.lifecycle.status !== "published" || resource.resourceType === "startup" || resource.resourceType === "story-texture" || resource.resourceType === "rizcard").length;
+  const hiddenCount = catalog.resources.filter((resource) => resource.lifecycle.status !== "published" || resource.resourceType === "story-texture" || resource.resourceType === "rizcard" || (resource.resourceType === "startup" && resource.game !== "rotaeno")).length;
   assert.equal(projection.resources.length, catalog.resources.length - hiddenCount);
 });
 
@@ -187,6 +187,7 @@ test("category semantic browse data keeps player-facing names and conservative u
   assert.equal(semantic.arcaea.resources.filter((resource) => resource.resourceType === "story-cg").length, 57);
   assert.equal((siteData.galleries["arcaea/story-texture"] ?? []).length, 0);
   assert.equal((siteData.galleries["arcaea/startup"] ?? []).length, 0);
+  assert.equal((siteData.galleries["rotaeno/startup"] ?? []).length, 10);
   const phigrosKinds = getCategoryBrowseConfig("phigros", "pack-cover", siteData.galleries["phigros/pack-cover"] ?? []).facets[0]?.options.map((option) => option.label) ?? [];
   assert.ok(phigrosKinds.includes("主线") && phigrosKinds.includes("支线") && phigrosKinds.includes("单曲") && phigrosKinds.includes("其他曲包"));
 });

@@ -56,8 +56,13 @@ const PUBLIC_METADATA_KEYS = new Set([
   "rizcardId",
 ]);
 
-const PUBLIC_HIDDEN_RESOURCE_TYPES = new Set<ResourceTypeId>(["story-texture", "startup", "rizcard"]);
+const PUBLIC_HIDDEN_RESOURCE_TYPES = new Set<ResourceTypeId>(["story-texture", "rizcard"]);
 
+
+function isPublicHiddenResource(resource: Resource): boolean {
+  if (resource.resourceType === "startup") return resource.game !== "rotaeno";
+  return PUBLIC_HIDDEN_RESOURCE_TYPES.has(resource.resourceType);
+}
 const PREVIEW_TYPES = {
   small: "thumbnail-320",
   medium: "thumbnail-640",
@@ -75,7 +80,7 @@ export function projectCatalog(catalog: Catalog, rosBaseUrl: string): PublicSite
   const phigrosAprilFoolsYear = inferPhigrosAprilFoolsYear(catalog);
 
   const resources = catalog.resources
-    .filter((resource) => resource.lifecycle.status === "published" && !PUBLIC_HIDDEN_RESOURCE_TYPES.has(resource.resourceType))
+    .filter((resource) => resource.lifecycle.status === "published" && !isPublicHiddenResource(resource))
     .map((resource) => projectResource(resource, variantsByResource.get(resource.id) ?? [], renditionsByVariant, objectsById, rosBaseUrl, phigrosAprilFoolsYear))
     .sort(compareResources);
 

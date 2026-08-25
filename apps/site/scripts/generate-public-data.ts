@@ -32,6 +32,7 @@ for (const [key, resources] of Object.entries(data.galleries)) {
 }
 
 for (const game of Object.keys(GAME_CONFIG) as Array<keyof typeof GAME_CONFIG>) {
+  if (game === "rotaeno") continue;
   const browseData = browseBuild[game];
   await mkdir(path.join(browseGalleryDir, game), { recursive: true });
   await writeJson(path.join(browseGalleryDir, game, "jacket.json"), browseData);

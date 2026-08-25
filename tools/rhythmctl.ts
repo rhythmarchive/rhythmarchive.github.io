@@ -318,10 +318,12 @@ async function commandExtract(args: ParsedArgs): Promise<void> {
     ...(args.values["base-apk"] ? { baseApk: await fileApk(args.values["base-apk"], "base", args.values["base-version"] ?? "base") } : {}),
     ...(args.values["target-apk"] ? { targetApk: await fileApk(args.values["target-apk"], "target", args.values["target-version"] ?? version) } : {}),
     ...(args.values.snapshot ? { sourceSnapshot: args.values.snapshot } : {}),
+    ...(state.sourceSnapshot && !args.values.snapshot ? { sourceSnapshot: state.sourceSnapshot } : {}),
     ...(args.values.workspace ? { workspacePath: tempPath(args.values.workspace, "workspace output") } : {}),
     ...(args.values.apk ? { apk: args.values.apk } : {}),
     ...(args.values.cache ? { cacheRoot: tempPath(args.values.cache, "cache output") } : {}),
     ...(args.values["game-root"] ? { gameRoot: args.values["game-root"] } : {}),
+    ...(args.values.selection ? { selection: tempPath(args.values.selection, "selection input") } : {}),
     ...(args.values.previous ? { previousManifest: args.values.previous } : {}),
   };
   let result;

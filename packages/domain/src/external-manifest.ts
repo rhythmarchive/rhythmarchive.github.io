@@ -25,6 +25,8 @@ function resourceType(family: string | undefined): z.infer<typeof ResourceType> 
   const mapping: Record<string, z.infer<typeof ResourceType>> = {
     illustration: "jacket", altIllustration: "special-art", seriesPoster: "track-series", seriesBanner: "track-series",
     "avatar.npc": "character-avatar", rizcard: "rizcard", layout: "rizcard-layout", banner: "other",
+    jacket: "jacket", "pack-cover": "pack-cover", "character-portrait": "character-portrait",
+    "special-art": "special-art", "story-cg": "story-cg", startup: "startup", background: "background",
   };
   return mapping[family ?? ""] ?? "other";
 }
@@ -73,7 +75,7 @@ export function manifestFromExternalManifest(value: unknown, options: { gameId: 
     }
     const family = text(record, "asset_family");
     const assetType = resourceType(family);
-    const sourceIdentity = text(record, "logical_key") ?? `${options.gameId}:${text(record, "semantic_id") ?? "unknown"}`;
+    const sourceIdentity = text(record, "source_identity") ?? text(record, "logical_key") ?? [options.gameId, text(record, "semantic_id") ?? "unknown"].join(":");
     const variantKey = text(record, "resolved_variant") ?? text(record, "preferred_variant") ?? text(record, "variant") ?? "default";
     const identityKey = releaseIdentityKey({ gameId: options.gameId, assetType, sourceIdentity, variantKey });
     const parseStatus = text(record, "parse_status");
@@ -81,7 +83,7 @@ export function manifestFromExternalManifest(value: unknown, options: { gameId: 
     const exportPath = portable(text(record, "export_path"));
     return UnifiedAssetManifestEntry.parse({
       assetId: createDeterministicUuidV7(`asset:${identityKey}`), identityKey, gameId: options.gameId, assetType, variantKey,
-      ...(text(record, "semantic_id") ? { title: text(record, "semantic_id") } : {}), aliases: [text(record, "logical_key")].filter((item): item is string => Boolean(item)), sourceIdentity,
+      ...(text(record, "title") ?? text(record, "semantic_id") ? { title: text(record, "title") ?? text(record, "semantic_id") } : {}), ...(text(record, "artist") ? { artist: text(record, "artist") } : {}), aliases: [text(record, "logical_key"), ...(Array.isArray(record.aliases) ? record.aliases.filter((item): item is string => typeof item === "string") : [])].filter((item): item is string => Boolean(item)), sourceIdentity,
       ...(exportPath ? { sourcePath: exportPath } : {}), ...(externalFile(record) ? { file: externalFile(record) } : {}),
       metadata: cleanJson(record) as Record<string, unknown>, needsReview: (reviewStatus !== undefined && reviewStatus !== "APPROVED") || (parseStatus !== undefined && parseStatus !== "SUCCESS"),
       anomalies: parseStatus && parseStatus !== "SUCCESS" ? [`adapter parse status: ${parseStatus}`] : [],

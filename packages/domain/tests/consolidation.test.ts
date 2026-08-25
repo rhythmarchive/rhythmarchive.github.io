@@ -114,6 +114,7 @@ test("adapter registry exposes a stable contract independently of CLI game branc
   assert.deepEqual(Object.keys(contract.operations), ["probe", "extract", "normalize", "validate"]);
   assert.equal(contract.operations.extract, "adapter-registry.extract");
   const adapters = listRegisteredAdapters();
-  assert.equal(adapters.length, 4);
+  assert.equal(adapters.length, 5);
+  assert.deepEqual(adapters.flatMap((adapter) => adapter.games), ["arcaea", "phigros", "rizline", "infalsus", "rotaeno"]);
   assert.ok(adapters.every((adapter) => adapter.capabilities.includes("extract")));
 });

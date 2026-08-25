@@ -137,6 +137,25 @@ export const GAME_CONFIG: Record<GameId, GameConfig> = {
       gameVersion: "游戏版本",
     },
   },
+  rotaeno: {
+    slug: "rotaeno",
+    displayName: "Rotaeno",
+    categoryOrder: ["jacket", "pack-cover", "character-portrait", "story-cg", "startup"],
+    featuredCategories: ["jacket", "pack-cover", "character-portrait", "story-cg", "startup"],
+    filters: { difficulty: false, upscale: false },
+    metadataLabels: {
+      artist: "曲师",
+      illustrator: "画师",
+      jacketIllustrator: "曲绘画师",
+      pack: "曲包",
+      packName: "曲包",
+      event: "活动",
+      collaboration: "合作",
+      characterName: "驾驶员",
+      characterVariant: "形态",
+      gameVersion: "游戏版本",
+    },
+  },
 };
 
 export function categoryLabel(resourceType: ResourceTypeId): string {
@@ -144,6 +163,7 @@ export function categoryLabel(resourceType: ResourceTypeId): string {
 }
 
 export function gameCategoryLabel(game: GameId, resourceType: ResourceTypeId): string {
+  if (game === "rotaeno" && resourceType === "character-portrait") return "驾驶员立绘";
   if (game === "rizline" && resourceType === "character-avatar") return "角色头像";
   return categoryLabel(resourceType);
 }

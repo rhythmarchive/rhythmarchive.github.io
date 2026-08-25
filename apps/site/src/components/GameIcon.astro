@@ -8,7 +8,7 @@ interface Props {
 }
 
 const { game } = Astro.props;
-const labels: Record<GameId, string> = { arcaea: "A", phigros: "P", rizline: "R", infalsus: "F" };
+const labels: Record<GameId, string> = { arcaea: "A", phigros: "P", rizline: "R", infalsus: "F", rotaeno: "R" };
 const label = labels[game] ?? "R";
 const name = game;
 const urls = createUrlHelpers({ basePath: BASE_PATH, origin: SITE_ORIGIN, rosBaseUrl: ROS_BASE_URL });

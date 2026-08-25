@@ -26,6 +26,7 @@ export type RegisteredExtractionOptions = {
   workspacePath?: string;
   apk?: string;
   cacheRoot?: string;
+  selection?: string;
   gameRoot?: string;
   previousManifest?: string;
 };
@@ -134,11 +135,36 @@ async function runInFalsus(options: RegisteredExtractionOptions): Promise<Regist
   };
 }
 
+
+async function runRotaeno(options: RegisteredExtractionOptions): Promise<RegisteredExtractionResult> {
+  if (!options.apk) throw new Error("adapter rotaeno-apk requires --apk");
+  if (!options.selection) throw new Error("adapter rotaeno-apk requires --selection");
+  const result = await runExternalAdapter({
+    game: "rotaeno",
+    version: options.version,
+    repoRoot: options.repoRoot,
+    outputDir: options.outputDir,
+    apk: options.apk,
+    selection: options.selection,
+    ...(options.sourceSnapshot ? { sourceSnapshot: options.sourceSnapshot } : {}),
+  });
+  return {
+    status: result.status,
+    game: options.game,
+    adapterId: "rotaeno-apk",
+    outputDir: result.outputDir,
+    adapterReport: result.adapterReport,
+    manifestPath: result.unifiedPath,
+    diagnostics: result.message ? [result.message] : [],
+    ...(result.message ? { message: result.message } : {}),
+  };
+}
 const ADAPTER_HANDLERS: Readonly<Record<string, AdapterHandler>> = Object.freeze({
   "arcaea-apk": (options) => runLegacyReport(options, "arcaea-apk"),
   "phigros-apk": (options) => runLegacyReport(options, "phigros-apk"),
   "rizline-remote": runRizline,
   "infalsus-addressables": runInFalsus,
+  "rotaeno-apk": runRotaeno,
 });
 
 export function listRegisteredAdapters(): Array<{ adapterId: string; games: PlatformGameId[]; capabilities: string[] }> {

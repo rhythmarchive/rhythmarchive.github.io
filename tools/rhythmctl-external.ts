@@ -28,14 +28,16 @@ export type ExternalExtractionResult = {
 };
 
 export async function runExternalAdapter(options: {
-  game: "rizline" | "infalsus";
+  game: "rizline" | "infalsus" | "rotaeno";
   version: string;
   repoRoot: string;
   outputDir: string;
   apk?: string;
   cacheRoot?: string;
+  selection?: string;
   gameRoot?: string;
   previousManifest?: string;
+  sourceSnapshot?: string;
   python?: string;
 }): Promise<ExternalExtractionResult> {
   const outputDir = tempOnly(options.repoRoot, options.outputDir, "adapter output");
@@ -44,14 +46,16 @@ export async function runExternalAdapter(options: {
   const python = options.python?.trim() || "python";
   const commandArgs = options.game === "rizline"
     ? ["-m", "tools.rizline", "extract", "--apk", path.resolve(options.apk ?? ""), "--cache-root", cacheRoot, "--output", outputDir, "--dry-run"]
-    : ["-m", "tools.infalsus", "prepare-publish", "--game-root", path.resolve(options.gameRoot ?? ""), "--output", outputDir, ...(options.previousManifest ? ["--previous-manifest", path.resolve(options.previousManifest)] : [])];
-  const adapterReport = path.join(outputDir, options.game === "rizline" ? "manifest.json" : "manifests/infalsus-semantic-manifest.json");
+    : options.game === "rotaeno"
+      ? ["-m", "tools.rotaeno", "extract-images", "--apk", path.resolve(options.apk ?? ""), "--selection", path.resolve(options.selection ?? ""), "--out", outputDir]
+      : ["-m", "tools.infalsus", "prepare-publish", "--game-root", path.resolve(options.gameRoot ?? ""), "--output", outputDir, ...(options.previousManifest ? ["--previous-manifest", path.resolve(options.previousManifest)] : [])];
+  const adapterReport = path.join(outputDir, options.game === "rizline" ? "manifest.json" : options.game === "rotaeno" ? "rotaeno-image-manifest.json" : "manifests/infalsus-semantic-manifest.json");
   const unifiedPath = path.join(outputDir, "unified-manifest.json");
   try {
     const result = await execFileAsync(python, commandArgs, { cwd: options.repoRoot, maxBuffer: 20 * 1024 * 1024 });
     try {
       const external = JSON.parse(await (await import("node:fs/promises")).readFile(adapterReport, "utf8")) as unknown;
-      const unified = manifestFromExternalManifest(external, { gameId: options.game, version: options.version });
+      const unified = manifestFromExternalManifest(external, { gameId: options.game, version: options.version, ...(options.sourceSnapshot ? { sourceSnapshot: options.sourceSnapshot } : {}) });
       await writeUnifiedManifest(unified, unifiedPath);
     } catch (error) {
       const message = error instanceof Error ? error.message : String(error);

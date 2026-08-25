@@ -193,6 +193,21 @@ const profiles: GameProfile[] = [
     extractorEntrypoints: ["python -m tools.infalsus inspect", "python -m tools.infalsus prepare-publish", "tools/infalsus/extractor.py"],
     selectionPolicy: "available songs only; canonical jacket is publishable and small artwork is a validation/preview source",
   }),
+  GameProfile.parse({
+    gameId: "rotaeno",
+    displayName: "Rotaeno",
+    aliases: ["rotaeno", "旋转音律"],
+    adapterId: "rotaeno-apk",
+    adapterVersion: "1.0",
+    inputKinds: ["apk", "manifest"],
+    defaultSourceType: "rotaeno_apk",
+    supportedAssetTypes: ["jacket", "pack-cover", "character-portrait", "story-cg", "startup", "other"],
+    defaultAssetTypes: ["jacket", "pack-cover", "character-portrait", "story-cg", "startup"],
+    siteStatus: "published",
+    sourceMarkers: ["assets/aa/catalog.json", "assets/aa/settings.json", "assets/XDConfig.json", "assets/bin/Data/data.unity3d"],
+    extractorEntrypoints: ["python -m tools.rotaeno inspect", "python -m tools.rotaeno extract-images", "tools/rotaeno/images.py"],
+    selectionPolicy: "publish only the reviewed non-event image selection; keep event artwork, journey, badges, audio, charts, and non-image candidates in temp",
+  }),
 ];
 
 export const GAME_PROFILES: Readonly<Record<PlatformGameId, GameProfile>> = Object.freeze(Object.fromEntries(profiles.map((profile) => [profile.gameId, profile])) as Record<PlatformGameId, GameProfile>);

@@ -53,7 +53,8 @@ test("game profiles expose a real adapter boundary and read-only probe", async (
 test("GameRecord and AssetRecord project validated catalog information", () => {
   const catalog = createEmptyCatalog("2026-08-25T00:00:00.000Z");
   const games = gameRecordsFromCatalog(catalog);
-  assert.equal(games.length, 4);
+  assert.equal(games.length, 5);
+  assert.deepEqual(games.map((game) => game.gameId), ["arcaea", "phigros", "rizline", "infalsus", "rotaeno"]);
   assert.equal(GameRecord.parse(games[0]).gameId, "arcaea");
   const asset = AssetRecord.parse({ gameId: "arcaea", assetId: "asset-1", assetType: "jacket", title: "Test", aliases: ["test"], sourceIdentity: "arcaea:songId=test", metadata: {} });
   assert.equal(asset.assetType, "jacket");

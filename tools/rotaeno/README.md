@@ -13,10 +13,17 @@ python -m tools.rotaeno diff `
   --old temp\rotaeno_analysis\old\semantic_manifest.json `
   --new temp\rotaeno_analysis\generated_manifest\semantic_manifest.json `
   --out temp\rotaeno_analysis\update_set.json
+python -m tools.rotaeno.selection --manifest temp\rotaeno_analysis\generated_manifest\semantic_manifest.json --bundle-inventory temp\rotaeno_analysis\inventory\business_bundle_paths.txt --song-inventory temp\rotaeno_analysis\inventory\song_inventory.json --pack-inventory temp\rotaeno_analysis\inventory\pack_inventory.json --out temp\rotaeno_analysis\full_public_selection.json
+python -m tools.rotaeno extract-images --apk apk\旋转音律_2.26.1.apk --selection temp\rotaeno_analysis\full_public_selection.json --out temp\rotaeno_analysis\full_public_extract
 ```
+For a formal image batch, use an explicit selection file and keep its output
+under temp/. The adapter preserves the source identity, AssetGUID, logical
+key, bundle hash, decoded PNG hash, and dimensions in the external manifest
+before the shared workflow normalizes it.
 
-The inspector does not contact a catalog or game service and does not extract
-bulk assets. It currently resolves APK identity plus catalog-backed song,
-pack, pilot, event, journey, and image/audio candidate rows. Song title,
-artist, localized names, and pack membership still require the Unity
-`SongDataSO`/`PackDataSO` reader planned for the next milestone.
+The inspector and extractor do not contact a catalog or game service. The
+inspector resolves APK identity plus catalog-backed song, pack, pilot, event,
+journey, and image/audio candidate rows. The formal public selection includes
+jackets, pack covers, decodable character art, story CG, and startup visuals;
+event artwork, journey art, badges, audio, charts, and unresolved candidates
+remain local diagnostics.

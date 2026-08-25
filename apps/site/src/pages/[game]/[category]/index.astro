@@ -21,7 +21,7 @@ export function getStaticPaths() {
       game,
       category,
       resources: siteData.galleries[`${game.slug}/${category.slug}`] ?? [],
-      browseData: category.slug === "jacket" ? browseByGame[game.slug] : undefined,
+      browseData: category.slug === "jacket" && game.slug !== "rotaeno" ? browseByGame[game.slug] : undefined,
     },
   })));
 }

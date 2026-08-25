@@ -209,7 +209,7 @@ export function getPublicNavigationGames(): PublicGameIndex[] {
   const siteData = getSiteData();
   const browseBuild = getBrowseGalleryBuild();
   const jacketCounts = Object.fromEntries(
-    (Object.keys(GAME_CONFIG) as GameId[]).map((game) => [game, browseBuild[game].items.length]),
+    (Object.keys(GAME_CONFIG) as GameId[]).map((game) => [game, game === "rotaeno" ? (siteData.galleries[game + "/jacket"]?.length ?? 0) : browseBuild[game].items.length]),
   ) as Record<GameId, number>;
 
   return siteData.games.map((game) => {
