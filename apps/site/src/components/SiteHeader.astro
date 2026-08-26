@@ -1,17 +1,35 @@
 ---
 import BrandMark from "./BrandMark.astro";
-import { GAME_CONFIG } from "../lib/game-config";
-import { BASE_PATH } from "../lib/site-config";
+import { formatCount } from "../lib/format";
+import { BASE_PATH, ROS_BASE_URL, SITE_ORIGIN } from "../lib/site-config";
+import { getPublicNavigationGames } from "../lib/site-data";
 import { createUrlHelpers } from "../lib/url";
 
-const urls = createUrlHelpers({ basePath: BASE_PATH, origin: "https://rhythmarchive.github.io", rosBaseUrl: "https://rhythm-assets.cn-nb1.rains3.com" });
+const urls = createUrlHelpers({ basePath: BASE_PATH, origin: SITE_ORIGIN, rosBaseUrl: ROS_BASE_URL });
+const games = getPublicNavigationGames();
 ---
 
 <header class="site-header">
   <div class="site-header-inner">
     <BrandMark />
     <nav class="site-nav" aria-label="主要导航">
-      {Object.values(GAME_CONFIG).map((game) => <a href={urls.sitePath("/" + game.slug + "/")}>{game.displayName}</a>)}
+      <details class="nav-game-library">
+        <summary class="nav-library-trigger">游戏库<span class="nav-library-chevron" aria-hidden="true">⌄</span></summary>
+        <div class="nav-library-popover">
+          <div class="nav-library-heading">
+            <strong>游戏库</strong>
+            <a href={urls.sitePath("/games/")}>查看全部游戏</a>
+          </div>
+          <div class="nav-game-list">
+            {games.map((game) => (
+              <a href={urls.sitePath(`/${game.slug}/`)}>
+                <span>{game.displayName}</span>
+                <small>{formatCount(game.count)} 项</small>
+              </a>
+            ))}
+          </div>
+        </div>
+      </details>
       <a class="nav-feedback" href={urls.sitePath("/feedback/")}>反馈</a>
       <a class="nav-search" href={urls.sitePath("/search/")} aria-label="搜索">
         <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.3"/><path d="m16 16 4.5 4.5"/></svg>

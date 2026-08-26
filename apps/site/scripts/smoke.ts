@@ -14,6 +14,7 @@ const htmlFiles = files.filter((file) => file.toLowerCase().endsWith(".html"));
 const required = [
   "index.html",
   "404.html",
+  "games/index.html",
   "arcaea/index.html",
   "phigros/index.html",
   "rizline/index.html",

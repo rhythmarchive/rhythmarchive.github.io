@@ -1,83 +1,63 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import GameIcon from "../components/GameIcon.astro";
+import GameCard from "../components/GameCard.astro";
 import SearchBox from "../components/SearchBox.astro";
+import { buildSearchQuickLinks } from "../lib/search-quick-links";
 import { formatCount } from "../lib/format";
 import { BASE_PATH, ROS_BASE_URL, SITE_ORIGIN } from "../lib/site-config";
-import { getPublicNavigationGames } from "../lib/site-data";
+import { getPublicNavigationGames, getSiteData } from "../lib/site-data";
 import { createUrlHelpers } from "../lib/url";
 
 const urls = createUrlHelpers({ basePath: BASE_PATH, origin: SITE_ORIGIN, rosBaseUrl: ROS_BASE_URL });
+const siteData = getSiteData();
 const games = getPublicNavigationGames();
+const visibleGames = games.slice(0, 9);
+const quickLinks = buildSearchQuickLinks({ games }).slice(0, 6);
+const resourceCount = siteData.resources.length;
 const homeOgImage = urls.absoluteUrl("/og/home.png");
-const gameNames = games.map((game) => game.displayName).join("、");
-const description = `浏览并下载${gameNames}的曲绘与游戏图片资源。`;
+const description = "收录音游曲绘、立绘、CG 等图片资源。";
 const arcaeaApkManifestUrl = `${ROS_BASE_URL}/apk/arcaea/latest.json`;
 ---
 
-<BaseLayout title="Rhythm Archive | 节奏游戏图片资源" description={description} canonicalPath="/" ogImage={homeOgImage} bodyClass="home-page">
+<BaseLayout title="Rhythm Archive | 音游图片下载站" description={description} canonicalPath="/" ogImage={homeOgImage} bodyClass="home-page">
   <div data-site-base data-site-base-value={BASE_PATH}></div>
-  <section class="home-intro page-container">
-    <div class="home-intro-copy">
+
+  <section class="page-container home-hero" aria-labelledby="home-heading">
+    <div class="home-hero-content">
       <span class="archive-kicker">Rhythm Archive</span>
-      <h1>Rhythm Archive <em>图片资源</em></h1>
-      <p>{games.map((game) => game.displayName).join(" · ")} 的曲绘与游戏图片资源。</p>
-    </div>
-    <div class="home-search-block">
-      <SearchBox />
-    </div>
-  </section>
-
-  <section class="page-container home-games" aria-labelledby="games-heading">
-    <div class="section-heading">
-      <div><h2 id="games-heading">游戏</h2></div>
-    </div>
-    <div class="game-entry-grid">
-      {games.map((game) => {
-        return (
-          <a class={`game-entry-card game-${game.slug}`} href={urls.sitePath(`/${game.slug}/jacket/`)}>
-            <div class="game-entry-image">
-              <GameIcon game={game.slug} />
-            </div>
-            <div class="game-entry-copy">
-              <div><h3>{game.displayName}</h3><span>{formatCount(game.count)} 项资源</span></div>
-              <p>{game.featuredCategories.slice(0, 3).map((category) => category.label).join(" · ")}</p>
-            </div>
-            <span class="arrow-link" aria-hidden="true">↗</span>
-          </a>
-        );
-      })}
-    </div>
-  </section>
-
-  <section class="page-container home-categories" aria-labelledby="categories-heading">
-    <div class="section-heading">
-      <div><h2 id="categories-heading">资源分类</h2></div>
-    </div>
-    <div class="home-category-groups">
-      {games.map((game) => (
-        <section class="home-category-group" aria-labelledby={`home-${game.slug}-categories`}>
-          <div class="home-category-group-heading">
-            <h3 id={`home-${game.slug}-categories`}>{game.displayName}</h3>
-            <a href={urls.sitePath(`/${game.slug}/`)}>查看全部 <span aria-hidden="true">↗</span></a>
-          </div>
-          <div class="featured-category-grid">
-            {game.featuredCategories.slice(0, 5).map((category) => (
-              <a class="category-tile" href={urls.sitePath(`/${game.slug}/${category.slug}/`)}>
-                <span class="category-tile-mark" aria-hidden="true"></span>
-                <strong>{category.label}</strong>
-                <span>{formatCount(category.count)} 项</span>
-              </a>
-            ))}
-          </div>
-        </section>
-      ))}
+      <h1 id="home-heading">音游图片下载站</h1>
+      <p>收录音游曲绘、立绘、CG 等图片资源</p>
+      <p class="home-stats" aria-label={`${formatCount(games.length)} 款游戏，${formatCount(resourceCount)} 项资源`}>
+        <strong>{formatCount(games.length)} 款游戏</strong><span aria-hidden="true">·</span><strong>{formatCount(resourceCount)} 项资源</strong>
+      </p>
+      <div class="home-search-block">
+        <SearchBox label="搜索音游图片资源" />
+      </div>
+      {quickLinks.length > 0 && (
+        <div class="home-quick-links" aria-label="快捷入口">
+          <span>快捷入口</span>
+          {quickLinks.map((entry) => <a href={urls.sitePath(entry.href)}>{entry.label}<small>{formatCount(entry.count)}</small></a>)}
+        </div>
+      )}
     </div>
   </section>
 
   <section class="page-container home-apk" aria-labelledby="apk-heading" data-arcaea-apk-card data-manifest-url={arcaeaApkManifestUrl}>
-    <div class="section-heading"><div><h2 id="apk-heading">Arcaea APK</h2></div></div>
+    <div class="section-heading">
+      <div><span class="section-kicker">下载入口</span><h2 id="apk-heading">Arcaea APK</h2></div>
+      <span class="section-heading-note">版本信息来自公开清单</span>
+    </div>
     <div class="apk-card-state" data-arcaea-apk-state><span>正在获取版本信息…</span></div>
   </section>
   <script src="../scripts/apk-card.ts"></script>
+
+  <section class="page-container home-games" aria-labelledby="games-heading">
+    <div class="section-heading">
+      <div><span class="section-kicker">Archive</span><h2 id="games-heading">收录游戏</h2></div>
+      <a class="section-link" href={urls.sitePath("/games/")}>查看全部游戏</a>
+    </div>
+    <div class="game-card-grid">
+      {visibleGames.map((game) => <GameCard game={game} />)}
+    </div>
+  </section>
 </BaseLayout>

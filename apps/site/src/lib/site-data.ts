@@ -10,6 +10,7 @@ import { applyCategoryBrowseSemantics, type CategoryBrowseProjections } from "./
 import { projectCatalog } from "./catalog-projection";
 import { formatArcaeaAddedVersion } from "./public-display";
 import { GAME_CONFIG, type GameId } from "./game-config";
+import { sortPublicGames } from "./game-index";
 import { ROS_BASE_URL } from "./site-config";
 import type { PublicGameIndex, PublicSiteData } from "./types";
 
@@ -212,7 +213,7 @@ export function getPublicNavigationGames(): PublicGameIndex[] {
     (Object.keys(GAME_CONFIG) as GameId[]).map((game) => [game, game === "rotaeno" ? (siteData.galleries[game + "/jacket"]?.length ?? 0) : browseBuild[game].items.length]),
   ) as Record<GameId, number>;
 
-  return siteData.games.map((game) => {
+  const navigationGames = siteData.games.filter((game) => game.count > 0).map((game) => {
     const categories = game.categories.map((category) => category.slug === "jacket"
       ? { ...category, count: jacketCounts[game.slug] }
       : category);
@@ -222,6 +223,7 @@ export function getPublicNavigationGames(): PublicGameIndex[] {
       featuredCategories: game.featuredCategories.map((category) => categories.find((candidate) => candidate.slug === category.slug) ?? category),
     };
   });
+  return sortPublicGames(navigationGames);
 }
 
 export function findWorkspaceRoot(): string {
@@ -246,4 +248,3 @@ function parseFormalBrowseFile<T>(filename: string, schema: { parse: (value: unk
 function parseCategoryBrowseFile<T>(filename: string, schema: { parse: (value: unknown) => T }): T {
   return schema.parse(JSON.parse(fs.readFileSync(findWorkspaceFile("catalog", "browse", filename), "utf8")) as unknown);
 }
-

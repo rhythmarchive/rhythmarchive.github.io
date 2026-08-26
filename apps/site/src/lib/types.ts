@@ -68,6 +68,8 @@ export type PublicGameIndex = {
   slug: GameId;
   displayName: string;
   count: number;
+  contentVersion?: string;
+  lastUpdatedAt?: string;
   categories: PublicCategory[];
   featuredCategories: PublicCategory[];
 };

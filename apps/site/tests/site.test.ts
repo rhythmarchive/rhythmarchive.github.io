@@ -7,6 +7,7 @@ import { projectCatalog, selectPreviewRendition } from "../src/lib/catalog-proje
 import { formatPublicApkBytes, parsePublicArcaeaApkManifest } from "../src/lib/apk.js";
 import { uniqueZipFilename } from "../src/lib/batch.js";
 import { displayVariantLabel, GAME_CONFIG } from "../src/lib/game-config.js";
+import { formatContentVersion, formatGameUpdatedAt, isRecentlyUpdated, sortPublicGames } from "../src/lib/game-index.js";
 import { rankRelatedResources } from "../src/lib/related.js";
 import { buildSearchQuickLinks } from "../src/lib/search-quick-links.js";
 import { getCategoryBrowseConfig } from "../src/lib/category-browse.js";
@@ -150,15 +151,86 @@ test("homepage APK parser accepts GitHub/official downloads and rejects unsafe U
   assert.equal(formatPublicApkBytes(1234), "1.21 KB");
 });
 
-test("homepage uses an information-first intro and a stable social image", () => {
+test("public game index projects activity only from final public resources", () => {
+  const projection = projectCatalog(catalog, rosBaseUrl);
+  const arcaea = projection.games.find((game) => game.slug === "arcaea");
+  const phigros = projection.games.find((game) => game.slug === "phigros");
+  const rizline = projection.games.find((game) => game.slug === "rizline");
+  assert.equal(arcaea?.contentVersion, "6.16.0");
+  assert.equal(arcaea?.lastUpdatedAt, "2026-08-22T11:21:34.604Z");
+  assert.equal(rizline?.contentVersion, "2.7.0");
+  assert.equal(rizline?.lastUpdatedAt, "2026-08-24T12:42:04.372Z");
+  assert.equal(phigros?.contentVersion, undefined);
+  assert.equal(phigros?.lastUpdatedAt, "2026-08-14T13:57:23.100Z");
+  assert.deepEqual(projection.games.map((game) => game.slug), sortPublicGames(projection.games).map((game) => game.slug));
+
+  const mutated = structuredClone(catalog);
+  const draft = structuredClone(mutated.resources[0]);
+  const hidden = structuredClone(mutated.resources[0]);
+  assert.ok(draft && hidden);
+  draft.id = "019f0000-0000-7000-8000-000000000001";
+  draft.lifecycle = { ...draft.lifecycle, status: "draft", updatedAt: "2099-01-01T00:00:00.000Z" };
+  hidden.id = "019f0000-0000-7000-8000-000000000002";
+  hidden.resourceType = "story-texture";
+  hidden.lifecycle = { ...hidden.lifecycle, status: "published", updatedAt: "2099-01-02T00:00:00.000Z" };
+  mutated.resources.push(draft, hidden);
+  const mutatedArcaea = projectCatalog(mutated, rosBaseUrl).games.find((game) => game.slug === "arcaea");
+  assert.deepEqual(mutatedArcaea && { contentVersion: mutatedArcaea.contentVersion, lastUpdatedAt: mutatedArcaea.lastUpdatedAt }, arcaea && { contentVersion: arcaea.contentVersion, lastUpdatedAt: arcaea.lastUpdatedAt });
+});
+
+test("game index formatting and recent labels degrade safely when version or date is missing", () => {
+  assert.equal(formatContentVersion("6.16.0"), "v6.16.0");
+  assert.equal(formatContentVersion("In Falsus Demo"), "In Falsus Demo");
+  assert.equal(formatContentVersion(undefined), "");
+  assert.equal(formatGameUpdatedAt("2026-08-26T00:00:00Z"), "08-26 更新");
+  const now = Date.parse("2026-08-26T00:00:00Z");
+  assert.equal(isRecentlyUpdated("2026-08-20T00:00:00Z", now), true);
+  assert.equal(isRecentlyUpdated("2026-08-17T00:00:00Z", now), false);
+  assert.equal(isRecentlyUpdated(undefined, now), false);
+});
+
+test("homepage uses the search-first entry architecture and a stable social image", () => {
   const source = fs.readFileSync(path.join(siteRoot, "src", "pages", "index.astro"), "utf8");
   assert.doesNotMatch(source, /找到下一张|想保存的曲绘/u);
-  assert.match(source, /games\.map\(\(game\) => game\.displayName\)\.join\(" · "\)/u);
-  assert.match(source, /Rhythm Archive.*图片资源/u);
+  assert.match(source, /<h1 id="home-heading">音游图片下载站<\/h1>/u);
+  assert.match(source, /收录音游曲绘、立绘、CG 等图片资源/u);
+  assert.match(source, /formatCount\(games\.length\)/u);
+  assert.match(source, /formatCount\(resourceCount\)/u);
+  assert.match(source, /data-arcaea-apk-card/u);
+  assert.match(source, /game-card-grid/u);
+  assert.doesNotMatch(source, /home-categories|featuredCategories|games\.map\(\(game\) => game\.displayName\)\.join/u);
+  assert.ok(source.indexOf("home-apk") < source.indexOf("home-games"));
   assert.match(source, /ogImage=\{homeOgImage\}/u);
   assert.match(source, /\/og\/home\.png/u);
   assert.equal(fs.existsSync(path.join(siteRoot, "public", "og", "home.png")), true);
-  assert.doesNotMatch(source, /data\.resources\.find\(/u);
+});
+
+test("games library covers every public game with shared cards and two sort modes", () => {
+  const source = fs.readFileSync(path.join(siteRoot, "src", "pages", "games", "index.astro"), "utf8");
+  const card = fs.readFileSync(path.join(siteRoot, "src", "components", "GameCard.astro"), "utf8");
+  const games = getPublicNavigationGames();
+  assert.ok(games.length > 0);
+  assert.match(source, /getPublicNavigationGames\(\)/u);
+  assert.match(source, /games\.map\(\(game\) => <GameCard game=\{game\} \/>\)/u);
+  assert.match(source, /canonicalPath="\/games\/"/u);
+  assert.match(source, /data-games-sort="updated"/u);
+  assert.match(source, /data-games-sort="name"/u);
+  assert.match(source, /data-games-grid/u);
+  assert.match(card, /data-game-updated-at=\{game\.lastUpdatedAt \?\? ""\}/u);
+  assert.match(card, /formatContentVersion/u);
+  assert.match(card, /formatGameUpdatedAt/u);
+});
+
+test("header keeps a single extensible game-library entry on mobile and desktop", () => {
+  const header = fs.readFileSync(path.join(siteRoot, "src", "components", "SiteHeader.astro"), "utf8");
+  const styles = fs.readFileSync(path.join(siteRoot, "src", "styles", "global.css"), "utf8");
+  assert.match(header, /nav-game-library/u);
+  assert.match(header, /getPublicNavigationGames\(\)/u);
+  assert.match(header, /查看全部游戏/u);
+  assert.doesNotMatch(header, /GAME_CONFIG|Object\.values\(GAME_CONFIG\)/u);
+  assert.match(styles, /\.nav-library-popover/u);
+  assert.match(styles, /\.nav-game-list/u);
+  assert.doesNotMatch(styles, /site-nav > a:not\(\.nav-search\)/u);
 });
 
 test("category semantic browse data keeps player-facing names and conservative unresolved labels", () => {
@@ -239,13 +311,15 @@ test("site brand marks keep the accent rhythm line inside the mark", () => {
 
 test("game icons use real assets with a non-breaking fallback", () => {
   const source = fs.readFileSync(path.join(siteRoot, "src", "components", "GameIcon.astro"), "utf8");
+  const card = fs.readFileSync(path.join(siteRoot, "src", "components", "GameCard.astro"), "utf8");
   const styles = fs.readFileSync(path.join(siteRoot, "src", "styles", "global.css"), "utf8");
   assert.match(source, /game-icons\/\$\{name\}\.png/u);
   assert.match(source, /width="192" height="192"/u);
   assert.match(source, /game-icon-fallback/u);
   assert.match(source, /onerror=/u);
-  assert.match(styles, /\.game-entry-image > \.game-icon \{ position: absolute; inset: 0;/u);
-  assert.match(styles, /\.game-entry-image \.game-icon-image \{ inset: 0; width: 100%; height: 100%;[^}]*background: var\(--surface-muted\);/u);
+  assert.match(card, /<GameIcon game=\{game\.slug\} \/>/u);
+  assert.match(styles, /\.game-card-media > \.game-icon \{ position: absolute; inset: 0;/u);
+  assert.match(styles, /\.game-card-media \.game-icon-image \{ inset: 0; width: 100%; height: 100%;[^}]*background: var\(--surface-muted\);/u);
   assert.equal(fs.existsSync(path.join(siteRoot, "public", "game-icons", "arcaea.png")), true);
   assert.equal(fs.existsSync(path.join(siteRoot, "public", "game-icons", "phigros.png")), true);
   assert.equal(fs.existsSync(path.join(siteRoot, "public", "game-icons", "rizline.png")), true);
@@ -328,4 +402,12 @@ test("ROS preconnect is derived from the configured base URL", () => {
   assert.match(source, /rel="preconnect"/u);
   assert.match(source, /rel="dns-prefetch"/u);
   assert.match(source, /new URL\(ROS_BASE_URL\)\.origin/u);
+});
+
+test("APK card keeps digest and previous version behind secondary disclosure", () => {
+  const source = fs.readFileSync(path.join(siteRoot, "src", "scripts", "apk-card.ts"), "utf8");
+  assert.match(source, /summary\.textContent = "校验信息"/u);
+  assert.match(source, /createPreviousVersion\(previous\)/u);
+  assert.doesNotMatch(source, /sha256\.slice\(/u);
+  assert.doesNotMatch(source, /previousRow\.className/u);
 });

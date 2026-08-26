@@ -2,6 +2,7 @@ import type { AssetObject, Catalog, Rendition, Resource, Variant } from "../../.
 import { categoryOrderIndex, displayVariantLabel, gameCategoryLabel, GAME_CONFIG, type GameId, type ResourceTypeId } from "./game-config";
 import { formatArcaeaAddedVersion, normalizePublicDisplay } from "./public-display";
 import { normalizeSearchText } from "./search";
+import { sortPublicGames } from "./game-index";
 import type { PublicAsset, PublicCategory, PublicDownload, PublicGameIndex, PublicPreview, PublicResource, PublicSearchEntry, PublicSiteData, PublicVariant } from "./types";
 import { objectUrl } from "./url";
 
@@ -63,6 +64,10 @@ function isPublicHiddenResource(resource: Resource): boolean {
   if (resource.resourceType === "startup") return resource.game !== "rotaeno";
   return PUBLIC_HIDDEN_RESOURCE_TYPES.has(resource.resourceType);
 }
+
+function isPublicCatalogResource(resource: Resource): boolean {
+  return resource.lifecycle.status === "published" && !isPublicHiddenResource(resource);
+}
 const PREVIEW_TYPES = {
   small: "thumbnail-320",
   medium: "thumbnail-640",
@@ -78,25 +83,27 @@ export function projectCatalog(catalog: Catalog, rosBaseUrl: string): PublicSite
   const variantsByResource = groupBy(catalog.variants, (variant) => variant.resourceId);
   const renditionsByVariant = groupBy(catalog.renditions, (rendition) => rendition.variantId);
   const phigrosAprilFoolsYear = inferPhigrosAprilFoolsYear(catalog);
+  const publicCatalogResources = catalog.resources.filter(isPublicCatalogResource);
 
-  const resources = catalog.resources
-    .filter((resource) => resource.lifecycle.status === "published" && !isPublicHiddenResource(resource))
+  const resources = publicCatalogResources
     .map((resource) => projectResource(resource, variantsByResource.get(resource.id) ?? [], renditionsByVariant, objectsById, rosBaseUrl, phigrosAprilFoolsYear))
     .sort(compareResources);
 
-  const games = (Object.keys(GAME_CONFIG) as GameId[]).map((game) => {
+  const games = sortPublicGames((Object.keys(GAME_CONFIG) as GameId[]).map((game) => {
     const gameResources = resources.filter((resource) => resource.game === game);
+    const sourceGameResources = publicCatalogResources.filter((resource) => resource.game === game);
     const categories = buildCategories(game, gameResources);
     return {
       slug: game,
       displayName: GAME_CONFIG[game].displayName,
       count: gameResources.length,
+      ...projectGameActivity(sourceGameResources),
       categories,
       featuredCategories: GAME_CONFIG[game].featuredCategories
         .map((slug) => categories.find((category) => category.slug === slug))
         .filter((category): category is PublicCategory => Boolean(category)),
     } satisfies PublicGameIndex;
-  });
+  }));
 
   const galleries: Record<string, PublicResource[]> = {};
   for (const game of games) {
@@ -108,6 +115,32 @@ export function projectCatalog(catalog: Catalog, rosBaseUrl: string): PublicSite
   const sourceResourcesById = new Map(catalog.resources.map((resource) => [resource.id, resource]));
   const searchIndex = resources.map((resource) => toSearchEntry(resource, sourceResourcesById.get(resource.resourceId)));
   return { generatedAt: catalog.generatedAt, resources, games, searchIndex, galleries };
+}
+
+function projectGameActivity(resources: Resource[]): Pick<PublicGameIndex, "contentVersion" | "lastUpdatedAt"> {
+  let latestTimestamp = -1;
+  let lastUpdatedAt: string | undefined;
+  for (const resource of resources) {
+    const timestamp = Date.parse(resource.lifecycle.updatedAt);
+    if (!Number.isFinite(timestamp) || timestamp <= latestTimestamp) continue;
+    latestTimestamp = timestamp;
+    lastUpdatedAt = resource.lifecycle.updatedAt;
+  }
+  if (!lastUpdatedAt || latestTimestamp < 0) return {};
+
+  const versions = new Set<string>();
+  for (const resource of resources) {
+    if (Date.parse(resource.lifecycle.updatedAt) !== latestTimestamp) continue;
+    for (const provenance of resource.provenance) {
+      const version = provenance.gameVersion?.trim();
+      if (version) versions.add(version);
+    }
+  }
+  const [contentVersion] = versions;
+  return {
+    lastUpdatedAt,
+    ...(versions.size === 1 && contentVersion ? { contentVersion } : {}),
+  };
 }
 
 function projectResource(resource: Resource, variants: Variant[], renditionsByVariant: Map<string, Rendition[]>, objectsById: Map<string, AssetObject>, rosBaseUrl: string, phigrosAprilFoolsYear?: number): PublicResource {

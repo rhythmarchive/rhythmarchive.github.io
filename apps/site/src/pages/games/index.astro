@@ -1,0 +1,33 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import GameCard from "../../components/GameCard.astro";
+import { getPublicNavigationGames } from "../../lib/site-data";
+import { BASE_PATH, ROS_BASE_URL, SITE_ORIGIN } from "../../lib/site-config";
+import { createUrlHelpers } from "../../lib/url";
+
+const urls = createUrlHelpers({ basePath: BASE_PATH, origin: SITE_ORIGIN, rosBaseUrl: ROS_BASE_URL });
+const games = getPublicNavigationGames();
+const description = "浏览 Rhythm Archive 收录的全部公开音游图片资源。";
+---
+
+<BaseLayout title="游戏库 | Rhythm Archive" description={description} canonicalPath="/games/" bodyClass="games-page">
+  <section class="page-container games-page-head" aria-labelledby="games-library-heading">
+    <span class="archive-kicker">Rhythm Archive</span>
+    <h1 id="games-library-heading">游戏库</h1>
+    <p>浏览本站收录的全部公开游戏。</p>
+    <div class="games-sort" aria-label="游戏排序">
+      <span>排序</span>
+      <button type="button" data-games-sort="updated" aria-pressed="true">最近更新</button>
+      <button type="button" data-games-sort="name" aria-pressed="false">名称</button>
+    </div>
+  </section>
+
+  <section class="page-container games-library" aria-label="全部公开游戏">
+    <div class="game-card-grid" data-games-grid>
+      {games.map((game) => <GameCard game={game} />)}
+    </div>
+    {games.length === 0 && <p class="games-empty">暂时还没有公开游戏。</p>}
+    <a class="games-back-link" href={urls.sitePath("/")}>返回首页</a>
+  </section>
+  <script src="../../scripts/game-library.ts"></script>
+</BaseLayout>

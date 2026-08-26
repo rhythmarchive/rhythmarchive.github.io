@@ -1,0 +1,40 @@
+---
+import GameIcon from "./GameIcon.astro";
+import { formatContentVersion, formatGameUpdatedAt, isRecentlyUpdated } from "../lib/game-index";
+import { formatCount } from "../lib/format";
+import { BASE_PATH, ROS_BASE_URL, SITE_ORIGIN } from "../lib/site-config";
+import type { PublicGameIndex } from "../lib/types";
+import { createUrlHelpers } from "../lib/url";
+
+interface Props {
+  game: PublicGameIndex;
+}
+
+const { game } = Astro.props;
+const urls = createUrlHelpers({ basePath: BASE_PATH, origin: SITE_ORIGIN, rosBaseUrl: ROS_BASE_URL });
+const updatedLabel = formatGameUpdatedAt(game.lastUpdatedAt);
+const versionLabel = formatContentVersion(game.contentVersion);
+---
+
+<a
+  class:list={["game-card", `game-${game.slug}`]}
+  href={urls.sitePath(`/${game.slug}/`)}
+  data-game-card
+  data-game-name={game.displayName}
+  data-game-updated-at={game.lastUpdatedAt ?? ""}
+>
+  <div class="game-card-media">
+    <GameIcon game={game.slug} />
+  </div>
+  <div class="game-card-body">
+    <div class="game-card-heading">
+      <h3>{game.displayName}</h3>
+      {isRecentlyUpdated(game.lastUpdatedAt) && <span class="game-card-recent">最近更新</span>}
+    </div>
+    <div class="game-card-meta">
+      {versionLabel && <span class="game-card-version">{versionLabel}</span>}
+      {updatedLabel && <time datetime={game.lastUpdatedAt}>{updatedLabel}</time>}
+      <span>{formatCount(game.count)} 项资源</span>
+    </div>
+  </div>
+</a>
