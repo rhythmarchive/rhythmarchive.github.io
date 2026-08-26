@@ -26,12 +26,15 @@ type PublicDisplayResource = Pick<Resource, "game" | "resourceType" | "title" | 
  * schema: title/artist, version, optional pack markers, IDX, BPM, SIDE.
  */
 export function normalizePublicDisplay(resource: PublicDisplayResource, fallbackTitle = "未命名资源"): PublicDisplayMetadata {
-  const rawTitle = firstNonEmpty([
-    resource.title,
-    ...resource.aliases.map((alias) => alias.value),
-    ...resource.provenance.map((entry) => entry.sourceFilename),
-    fallbackTitle,
-  ]) ?? fallbackTitle;
+  const isRotaeno = resource.game === "rotaeno";
+  const rawTitle = firstNonEmpty(isRotaeno
+    ? [resource.title, "Rotaeno \u56fe\u7247\u8d44\u6e90\uff08\u540d\u79f0\u5f85\u6838\u5b9e\uff09"]
+    : [
+        resource.title,
+        ...resource.aliases.map((alias) => alias.value),
+        ...resource.provenance.map((entry) => entry.sourceFilename),
+        fallbackTitle,
+      ]) ?? (isRotaeno ? "Rotaeno \u56fe\u7247\u8d44\u6e90\uff08\u540d\u79f0\u5f85\u6838\u5b9e\uff09" : fallbackTitle);
 
   if (resource.game === "arcaea" && resource.resourceType === "jacket") {
     const parsed = parseArcaeaJacketFilename(rawTitle);

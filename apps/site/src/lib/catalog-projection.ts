@@ -150,7 +150,7 @@ function projectResource(resource: Resource, variants: Variant[], renditionsByVa
   const active = projectedVariants.find((variant) => variant.preferred) ?? projectedVariants[0];
   const original = active?.original;
   const upscaled = active?.upscaled;
-  const display = normalizePublicDisplay(resource, original?.downloadFilename);
+  const display = normalizePublicDisplay(resource, resource.game === "rotaeno" ? "Rotaeno \u56fe\u7247\u8d44\u6e90\uff08\u540d\u79f0\u5f85\u6838\u5b9e\uff09" : original?.downloadFilename);
   const metadata = formatPublicMetadata(resource.game, { ...pickPublicMetadata(resource), ...filterPublicMetadata(display.metadata), ...derivedPublicMetadata(resource, phigrosAprilFoolsYear) });
   const artist = display.artist ?? (typeof metadata.artist === "string" ? metadata.artist : undefined);
 
@@ -161,7 +161,7 @@ function projectResource(resource: Resource, variants: Variant[], renditionsByVa
     resourceType: resource.resourceType,
     category: publicCategorySlug(resource.game, resource.resourceType),
     categoryLabel: publicCategoryLabel(resource.game, resource.resourceType, metadata),
-    displayTitle: display.title || original?.downloadFilename || "未命名资源",
+    displayTitle: display.title || (resource.game === "rotaeno" ? "Rotaeno \u56fe\u7247\u8d44\u6e90\uff08\u540d\u79f0\u5f85\u6838\u5b9e\uff09" : original?.downloadFilename || "\u672a\u547d\u540d\u8d44\u6e90"),
     ...(artist ? { artist } : {}),
     metadata,
     variants: projectedVariants,
@@ -263,10 +263,14 @@ function publicCategorySlug(game: GameId, resourceType: ResourceTypeId): string 
 
 function toSearchEntry(resource: PublicResource, sourceResource?: Resource): PublicSearchEntry {
   const keywordSet = new Set<string>();
-  for (const value of Object.values(resource.metadata)) keywordSet.add(String(value));
+  for (const [key, value] of Object.entries(resource.metadata)) {
+    if (resource.game === "rotaeno" && ["songId", "packId", "relatedSongId"].includes(key)) continue;
+    keywordSet.add(String(value));
+  }
   for (const variant of resource.variants) keywordSet.add(variant.label);
-  const provenanceKeywords: Array<string | undefined> = sourceResource?.game === "rizline" ? [] : (sourceResource?.provenance ?? []).map((entry) => entry.sourceFilename);
-  for (const value of [sourceResource?.title, ...(sourceResource?.aliases ?? []).map((alias) => alias.value), ...provenanceKeywords]) {
+  const provenanceKeywords: Array<string | undefined> = sourceResource?.game === "rizline" || sourceResource?.game === "rotaeno" ? [] : (sourceResource?.provenance ?? []).map((entry) => entry.sourceFilename);
+  const sourceMetadataKeywords = sourceResource?.game === "rotaeno" ? [] : [sourceResource?.title, ...(sourceResource?.aliases ?? []).map((alias) => alias.value)];
+  for (const value of [...sourceMetadataKeywords, ...provenanceKeywords]) {
     if (value) keywordSet.add(value);
   }
   return {

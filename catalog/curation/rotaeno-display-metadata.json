@@ -1,0 +1,2579 @@
+{
+  "schemaVersion": 1,
+  "game": "rotaeno",
+  "source": {
+    "title": "Rotaeno display metadata curation",
+    "retrievedAt": "2026-08-26",
+    "references": [
+      "https://wikiwiki.jp/rotaeno/%E6%A5%BD%E6%9B%B2%E4%B8%80%E8%A6%A7",
+      "https://rotaeno.fandom.com/wiki/Songs",
+      "https://wikiwiki.jp/rotaeno/Clalorific%20Refract"
+    ],
+    "note": "Titles and composers are public display metadata. Source identities, APK paths, object keys, and download filenames remain technical provenance and are not used as Rotaeno display titles."
+  },
+  "songs": {
+    "9876734123": {
+      "title": "9876734123",
+      "artist": "Silentroom",
+      "status": "wiki"
+    },
+    "a-city-in-serenity": {
+      "title": "A City in Serenity",
+      "artist": "Elliot Hsu",
+      "status": "wiki",
+      "sourceLine": 730
+    },
+    "a-clock": {
+      "title": "A Clock",
+      "artist": "kurobe studio",
+      "status": "wiki",
+      "sourceLine": 28
+    },
+    "a-philosophical-wanderer": {
+      "title": "A Philosophical Wanderer",
+      "artist": "テヅカ x Yunosuke",
+      "status": "wiki",
+      "sourceLine": 825
+    },
+    "a-time-for-everything": {
+      "title": "A Time for Everything",
+      "artist": "Iris",
+      "status": "wiki",
+      "sourceLine": 24
+    },
+    "a-turtles-heart": {
+      "title": "A Turtle's Heart",
+      "artist": "Mili",
+      "status": "wiki",
+      "sourceLine": 489
+    },
+    "abstruse-dilemma": {
+      "title": "Abstruse Dilemma",
+      "artist": "Ashrount vs. 打打だいず",
+      "illustrator": "おぐち",
+      "status": "wiki",
+      "sourceLine": 353
+    },
+    "adam": {
+      "title": "ADAM",
+      "artist": "P*Light",
+      "status": "wiki",
+      "sourceLine": 504
+    },
+    "add-venturers": {
+      "title": "add+venturers!",
+      "artist": "otoshi.b",
+      "illustrator": "橱子",
+      "status": "wiki",
+      "sourceLine": 189
+    },
+    "after-rain": {
+      "title": "After Rain",
+      "artist": "HyuN & MIIM",
+      "status": "wiki",
+      "sourceLine": 20
+    },
+    "ai-li-ke2000": {
+      "title": "《爱立刻2000》",
+      "artist": "天秤Dav",
+      "status": "curated"
+    },
+    "akari-koushu": {
+      "title": "灯紅酒緑オーバーナイト",
+      "artist": "天束 × Notrum × P0cket feat. はらもりよしな",
+      "status": "curated"
+    },
+    "aleph-0": {
+      "title": "Aleph-0",
+      "artist": "LeaF",
+      "status": "wiki",
+      "sourceLine": 744
+    },
+    "alfheims-faith": {
+      "title": "Alfheim's Faith",
+      "artist": "影虎。",
+      "illustrator": "霜月",
+      "status": "wiki",
+      "sourceLine": 134
+    },
+    "alice-in-a-xxxxxxxx": {
+      "title": "Alice in a xxxxxxxx",
+      "artist": "Nagiha",
+      "status": "wiki",
+      "sourceLine": 643
+    },
+    "alive": {
+      "title": "Alive",
+      "artist": "eicateve",
+      "status": "wiki",
+      "sourceLine": 124
+    },
+    "all-nighter": {
+      "title": "ALL☆NIGHTER！",
+      "artist": "Turbo ft. Moon Jelly",
+      "illustrator": "Axle",
+      "status": "wiki",
+      "sourceLine": 191
+    },
+    "ameni-inoriwo": {
+      "title": "雨に祈りを",
+      "artist": "onoken feat. 木下珠子",
+      "status": "curated"
+    },
+    "amethyst": {
+      "title": "amethyst",
+      "artist": "かねこちはる",
+      "status": "wiki"
+    },
+    "ando-jrpg": {
+      "title": "Gladius Tenebris",
+      "artist": "Ando",
+      "status": "curated"
+    },
+    "androgynos2": {
+      "title": "Androgynos",
+      "artist": "WAIKURO",
+      "status": "curated"
+    },
+    "android-girl": {
+      "title": "アンドロイドガール",
+      "artist": "DECO*27",
+      "status": "curated"
+    },
+    "angel-dust": {
+      "title": "Angel dust",
+      "artist": "LV.4",
+      "status": "wiki",
+      "sourceLine": 834
+    },
+    "angel-halo": {
+      "title": "天使光輪",
+      "artist": "REDALiCE & cosMo＠暴走P",
+      "status": "curated"
+    },
+    "anokumene": {
+      "title": "Anökumene",
+      "artist": "Jun Kuroda",
+      "status": "curated"
+    },
+    "another-me": {
+      "title": "Another Me(Rotaeno Edit)",
+      "artist": "Neutral Moon",
+      "status": "curated"
+    },
+    "antagonism": {
+      "title": "Antagonism",
+      "artist": "Yooh vs. siromaru",
+      "illustrator": "リウイチ",
+      "status": "wiki",
+      "sourceLine": 352
+    },
+    "anthem": {
+      "title": "Anthem",
+      "artist": "Silaver & SOTUI",
+      "status": "wiki",
+      "sourceLine": 52
+    },
+    "antikythera": {
+      "title": "Antikythera",
+      "artist": "technoplanet",
+      "status": "wiki",
+      "sourceLine": 401
+    },
+    "aoott": {
+      "title": "OIIAIOOOOOIAI",
+      "artist": "Fish Head",
+      "status": "curated"
+    },
+    "aorist-hallucination": {
+      "title": "Aorist Hallucination",
+      "artist": "FallN Leav",
+      "status": "wiki",
+      "sourceLine": 123
+    },
+    "apocalypse": {
+      "title": "Apocalypse",
+      "artist": "Alice schach and the Magic Orchestra",
+      "status": "wiki",
+      "sourceLine": 60
+    },
+    "aqua-stars": {
+      "title": "Aqua Stars",
+      "artist": "Sound Souler",
+      "status": "wiki",
+      "sourceLine": 112
+    },
+    "aqua-theme": {
+      "title": "Aqua Theme",
+      "artist": "HyuN & MIIM",
+      "status": "wiki",
+      "sourceLine": 108
+    },
+    "arbitration": {
+      "title": "Arbitration",
+      "artist": "Jun Kuroda",
+      "illustrator": "黑夏",
+      "status": "wiki",
+      "sourceLine": 135
+    },
+    "aria": {
+      "title": "Aria",
+      "artist": "Nanatsukaze",
+      "status": "wiki",
+      "sourceLine": 475
+    },
+    "atropos-and-the-final": {
+      "title": "アトロポスと最果の探究者",
+      "artist": "しーけー",
+      "status": "curated"
+    },
+    "aurora": {
+      "title": "Aurora",
+      "artist": "Kirara Magic feat. Shion",
+      "status": "wiki",
+      "sourceLine": 41
+    },
+    "autumn-breeze": {
+      "title": "Autumn Breeze",
+      "artist": "MYOYA",
+      "status": "wiki",
+      "sourceLine": 529
+    },
+    "avataar": {
+      "title": "Avataar ~Reincarnation of Kalpa~",
+      "artist": "Scarlette a.k.a. CrYmson",
+      "status": "curated"
+    },
+    "aventyr": {
+      "title": "Äventyr",
+      "artist": "Grand Thaw / Rigël Theatre",
+      "status": "curated"
+    },
+    "awaken-in-ruins": {
+      "title": "Awaken In Ruins",
+      "artist": "Supa7onyz",
+      "status": "wiki",
+      "sourceLine": 55
+    },
+    "awaking-beat": {
+      "title": "Awaking Beat -From the next generation-",
+      "artist": "nmk feat.橘花音",
+      "illustrator": "三更",
+      "status": "curated"
+    },
+    "azure-sky": {
+      "title": "Azure Sky",
+      "artist": "NeLiME",
+      "status": "wiki",
+      "sourceLine": 70
+    },
+    "bassline-yatteru-lol": {
+      "title": "ベースラインやってる？笑",
+      "artist": "かめりあ feat. ななひら",
+      "status": "curated"
+    },
+    "battle-no1": {
+      "title": "BATTLE NO.1",
+      "artist": "TANO*C Sound Team",
+      "status": "curated",
+      "sourceLine": 35
+    },
+    "beat-opera-op1": {
+      "title": "Beat Opera op.1",
+      "artist": "bermei.inazawa",
+      "status": "wiki",
+      "sourceLine": 514
+    },
+    "beat-rise": {
+      "title": "Beat Rise",
+      "artist": "Makou",
+      "status": "wiki",
+      "sourceLine": 206
+    },
+    "beautiful-days": {
+      "title": "Beautiful Days",
+      "artist": "HyuN feat. Ryeorae",
+      "status": "wiki",
+      "sourceLine": 29
+    },
+    "because-of-you": {
+      "title": "Becouse of You",
+      "artist": "Srav3R & USAO",
+      "status": "curated"
+    },
+    "binary": {
+      "title": "βinαrΨ",
+      "artist": "Ring",
+      "status": "curated"
+    },
+    "black-lair": {
+      "title": "Black Lair",
+      "artist": "Sakuzyo feat. void (violin: Katali)",
+      "status": "wiki",
+      "sourceLine": 840
+    },
+    "blackhole": {
+      "title": "Blackhole",
+      "artist": "litmus*",
+      "status": "wiki",
+      "sourceLine": 705
+    },
+    "blastrick": {
+      "title": "Blastrick",
+      "artist": "K4Y5",
+      "status": "wiki",
+      "sourceLine": 49
+    },
+    "blue-ixia": {
+      "title": "Blue ixia",
+      "artist": "effe",
+      "status": "wiki",
+      "sourceLine": 398
+    },
+    "bounce-the-tech": {
+      "title": "BOUNCE THE TECH",
+      "artist": "Sound piercer vs. Iriss",
+      "status": "wiki",
+      "sourceLine": 845
+    },
+    "bouquet-colore": {
+      "title": "Bouquet colore",
+      "artist": "Nego_tiator",
+      "status": "wiki",
+      "sourceLine": 58
+    },
+    "brain-crusher": {
+      "title": "Brain Crusher",
+      "artist": "Yasuha",
+      "status": "wiki",
+      "sourceLine": 602
+    },
+    "brain-power": {
+      "title": "Brain Power",
+      "artist": "NOMA",
+      "status": "wiki",
+      "sourceLine": 745
+    },
+    "brave-my-soul": {
+      "title": "Brave My Soul",
+      "artist": "uma feat. ましろ",
+      "illustrator": "りーふぱい, わっふゑ",
+      "status": "wiki",
+      "sourceLine": 152
+    },
+    "brave-road": {
+      "title": "BRAVE：ROAD",
+      "artist": "uma vs. モリモリあつし",
+      "status": "wiki",
+      "sourceLine": 377
+    },
+    "break-over": {
+      "title": "Break Over",
+      "artist": "K-forest",
+      "status": "wiki",
+      "sourceLine": 281
+    },
+    "break-through-myself": {
+      "title": "Break Through Myself feat. Risa Yuzuki",
+      "artist": "DJ Myosuke & Laur",
+      "status": "curated"
+    },
+    "breaking-dawn": {
+      "title": "Breaking Dawn feat. 棗いつき",
+      "artist": "Getty & Kobaryo",
+      "status": "curated"
+    },
+    "broomstick-adventure": {
+      "title": "Broomstick adventure!",
+      "artist": "しーけー",
+      "status": "wiki",
+      "sourceLine": 844
+    },
+    "burn-it-up": {
+      "title": "恶修女 - 永火熔铸",
+      "artist": "负离子SYNTHETIC feat. 黒澤ノアNOIR",
+      "illustrator": "黑茶",
+      "status": "wiki"
+    },
+    "bystander-knife": {
+      "title": "Bystander Knife",
+      "artist": "Ref.Isep",
+      "status": "wiki",
+      "sourceLine": 607
+    },
+    "call-my-number": {
+      "title": "Call My Number",
+      "artist": "Zexnum",
+      "illustrator": "Issen",
+      "status": "wiki",
+      "sourceLine": 190
+    },
+    "calorific-refract": {
+      "title": "Calorific Refract",
+      "artist": "Tatsh",
+      "illustrator": "符君",
+      "status": "curated"
+    },
+    "cataclysm": {
+      "title": "CATACLYSM",
+      "artist": "U-ske feat. ricono",
+      "status": "wiki",
+      "sourceLine": 867
+    },
+    "centimental": {
+      "title": "Centimental",
+      "artist": "SUJI feat. ITSU",
+      "illustrator": "BTKCyber",
+      "status": "wiki",
+      "sourceLine": 233
+    },
+    "chant-shite": {
+      "title": "Chantして!!!!!",
+      "artist": "名取さな. &西郷・R・いろり（CV.名取さな）& USAGI Production",
+      "status": "curated"
+    },
+    "chariot": {
+      "title": "Chariot",
+      "artist": "USAO",
+      "status": "wiki",
+      "sourceLine": 502
+    },
+    "chronomia": {
+      "title": "Chronomia",
+      "artist": "Lime",
+      "status": "wiki",
+      "sourceLine": 719
+    },
+    "chrysanthemum": {
+      "title": "Chrysanthemum",
+      "artist": "7mai",
+      "status": "wiki",
+      "sourceLine": 48
+    },
+    "chunlian": {
+      "title": "Chunlian",
+      "artist": "utzbo",
+      "status": "wiki",
+      "sourceLine": 96
+    },
+    "clock-paradox": {
+      "title": "Clock Paradox",
+      "artist": "WyvernP",
+      "status": "wiki",
+      "sourceLine": 375
+    },
+    "commotion": {
+      "title": "Commotion",
+      "artist": "SLT",
+      "status": "wiki",
+      "sourceLine": 606
+    },
+    "conflict": {
+      "title": "conflict",
+      "artist": "siromaru＋cranky",
+      "status": "wiki"
+    },
+    "convallaria": {
+      "title": "CONVALLARiA",
+      "artist": "GARNiDELiA",
+      "status": "wiki",
+      "sourceLine": 62
+    },
+    "converge": {
+      "title": "Converge",
+      "artist": "SOTUI x Hundotte",
+      "status": "wiki",
+      "sourceLine": 46
+    },
+    "corps-sans-organes": {
+      "title": "corps-sans-organes",
+      "artist": "cybermiso",
+      "status": "wiki"
+    },
+    "cosmic-railroad": {
+      "title": "CO5M1C R4ILR0AD",
+      "artist": "kanone",
+      "status": "curated"
+    },
+    "cosmic-starter": {
+      "title": "Cosmic Starter",
+      "artist": "TAG feat. HyuN",
+      "illustrator": "炎獵",
+      "status": "wiki",
+      "sourceLine": 154
+    },
+    "cosmic-voyage": {
+      "title": "Cosmic Voyage",
+      "artist": "ItsMeFisher",
+      "illustrator": "椰丝红豆耶",
+      "status": "wiki",
+      "sourceLine": 215
+    },
+    "cosmogyral": {
+      "title": "Cosmogyral",
+      "artist": "Altermis & Darren",
+      "status": "wiki",
+      "sourceLine": 64
+    },
+    "cristalisia": {
+      "title": "Cristalisia",
+      "artist": "onoken",
+      "status": "wiki",
+      "sourceLine": 442
+    },
+    "cross-genocide": {
+      "title": "Cross†Genocide",
+      "artist": "HyuN feat. 蔡花零",
+      "status": "wiki",
+      "sourceLine": 531
+    },
+    "cross-soul": {
+      "title": "Cross†Soul",
+      "artist": "HyuN feat. Syepias",
+      "status": "wiki",
+      "sourceLine": 615
+    },
+    "crossroads-of-the-brave": {
+      "title": "Crossroads of the Brave",
+      "artist": "Miyolophone vs Iris ft. Grace",
+      "status": "wiki",
+      "sourceLine": 421
+    },
+    "csqn": {
+      "title": "c.s.q.n.",
+      "artist": "Aoi",
+      "status": "wiki",
+      "sourceLine": 628
+    },
+    "cthugha": {
+      "title": "Cthugha",
+      "artist": "USAO",
+      "status": "wiki",
+      "sourceLine": 409
+    },
+    "cyanine": {
+      "title": "cyanine",
+      "artist": "jioyi",
+      "status": "wiki"
+    },
+    "cybernetic-vampire": {
+      "title": "Cybernetic Vampire",
+      "artist": "void (Mournfinale)",
+      "status": "wiki",
+      "sourceLine": 367
+    },
+    "cynthia": {
+      "title": "Cynthia",
+      "artist": "nm-y & 7mai",
+      "status": "wiki",
+      "sourceLine": 65
+    },
+    "dance-of-the-tiny-dreamer": {
+      "title": "Dance of the Tiny Dreamer",
+      "artist": "Poh Hock feat. Sojubois",
+      "status": "wiki",
+      "sourceLine": 763
+    },
+    "dawn-nymphaea": {
+      "title": "Dawn Nymphaea",
+      "artist": "花徒めと",
+      "status": "wiki",
+      "sourceLine": 799
+    },
+    "daydream": {
+      "title": "Daydream",
+      "artist": "RiraN",
+      "status": "wiki",
+      "sourceLine": 835
+    },
+    "dear-my-memories": {
+      "title": "Dear my mamories.",
+      "artist": "kuro",
+      "status": "curated"
+    },
+    "destr0yer": {
+      "title": "Destr0yer",
+      "artist": "Sakuzyo feat. Nikki Simmons",
+      "status": "wiki",
+      "sourceLine": 721
+    },
+    "deus-ex-machina": {
+      "title": "Lunàtixxx Gear",
+      "artist": "Laur vs HyuN",
+      "illustrator": "みしゃも",
+      "status": "wiki"
+    },
+    "deus-judicium": {
+      "title": "Deus Judicium",
+      "artist": "黒皇帝 vs MIssionary",
+      "status": "wiki",
+      "sourceLine": 709
+    },
+    "devil-la6ue": {
+      "title": "devil¿la6ue",
+      "artist": "天々まる（prod. U-ske）",
+      "status": "wiki",
+      "sourceLine": 577
+    },
+    "dextroqpella": {
+      "title": "Dextroqpella",
+      "artist": "Sir Eye Respect for MonstDeath",
+      "status": "curated"
+    },
+    "dextroy": {
+      "title": "Dextroy",
+      "artist": "MonstDeath",
+      "status": "wiki",
+      "sourceLine": 749
+    },
+    "disorder": {
+      "title": "Disorder",
+      "artist": "HyuN",
+      "status": "wiki",
+      "sourceLine": 644
+    },
+    "dispersion": {
+      "title": "Dispersion",
+      "artist": "Dxsbond",
+      "illustrator": "BTKCyber",
+      "status": "wiki",
+      "sourceLine": 216
+    },
+    "distant-call": {
+      "title": "distant call",
+      "artist": "nuphory",
+      "status": "wiki",
+      "sourceLine": 775
+    },
+    "distorted-fate": {
+      "title": "Distorted Fate",
+      "artist": "Sakuzyo",
+      "status": "wiki",
+      "sourceLine": 283
+    },
+    "divine-light-of-myriad": {
+      "title": "光速神授説 - Divine Light of Myriad -",
+      "artist": "yoho",
+      "illustrator": "緋原ヨウ",
+      "status": "wiki",
+      "sourceLine": 351
+    },
+    "dont-never-around": {
+      "title": "Don't Never Around",
+      "artist": "HAMA",
+      "status": "wiki",
+      "sourceLine": 269
+    },
+    "dual-breaker-xx": {
+      "title": "DUAL BREAKER XX",
+      "artist": "Srav3R vs Getty",
+      "status": "wiki",
+      "sourceLine": 258
+    },
+    "dual-doom-deathmatch": {
+      "title": "Dual Doom Deathmatch",
+      "artist": "Kobaryo vs HyuN",
+      "status": "wiki",
+      "sourceLine": 310
+    },
+    "echoes-of-the-forest": {
+      "title": "Echoes of the Forest",
+      "artist": "DJ Noriken",
+      "status": "wiki",
+      "sourceLine": 365
+    },
+    "edge-of-bravery": {
+      "title": "Edge of bravery",
+      "artist": "みーに",
+      "status": "wiki",
+      "sourceLine": 545
+    },
+    "ef4123": {
+      "title": "EF4123",
+      "artist": "RedMuffleR",
+      "status": "wiki",
+      "sourceLine": 617
+    },
+    "ego-eimi": {
+      "title": "Ego Eimi",
+      "artist": "BlackY feat. Risa Yuzuki",
+      "illustrator": "Khronetic - At the Horizon",
+      "status": "wiki",
+      "sourceLine": 350
+    },
+    "elyqiria": {
+      "title": "Elyqiria",
+      "artist": "Connexio",
+      "status": "wiki",
+      "sourceLine": 797
+    },
+    "emulisy": {
+      "title": "Emulisy",
+      "artist": "Hidra-Xjeil",
+      "status": "wiki",
+      "sourceLine": 389
+    },
+    "enchanted-love": {
+      "title": "enchanted love",
+      "artist": "linear ring",
+      "status": "wiki",
+      "sourceLine": 864
+    },
+    "energy-synergy-matrix": {
+      "title": "ENERGY SYNERGY MATRIX",
+      "artist": "Tanchiky",
+      "status": "wiki",
+      "sourceLine": 431
+    },
+    "enter-magical-code": {
+      "title": "enter -MAGICAL CODE-",
+      "artist": "Raphiiel",
+      "illustrator": "Issen",
+      "status": "wiki",
+      "sourceLine": 178
+    },
+    "eos": {
+      "title": "EOS",
+      "artist": "ginkiha",
+      "status": "wiki",
+      "sourceLine": 718
+    },
+    "ephemeralization": {
+      "title": "ephemeralization",
+      "artist": "ぴれんどらー",
+      "status": "wiki"
+    },
+    "epitaxy": {
+      "title": "epitaxy",
+      "artist": "Camellia",
+      "status": "wiki"
+    },
+    "eschatology": {
+      "title": "Eschatology",
+      "artist": "Tatsh & Scarlette",
+      "status": "wiki",
+      "sourceLine": 271
+    },
+    "estaminet": {
+      "title": "Estaminet",
+      "artist": "rmk",
+      "status": "wiki",
+      "sourceLine": 616
+    },
+    "eternal-ascent": {
+      "title": "Eternal Ascent",
+      "artist": "Dxsbond",
+      "status": "wiki",
+      "sourceLine": 785
+    },
+    "eternal-calm": {
+      "title": "Eternal calm",
+      "artist": "長沼浩太(パパ頑張りました)",
+      "illustrator": "Nich",
+      "status": "wiki",
+      "sourceLine": 164
+    },
+    "eventide-rush": {
+      "title": "Eventide Rush",
+      "artist": "Inverted Silence",
+      "status": "wiki",
+      "sourceLine": 762
+    },
+    "evocator": {
+      "title": "Ēvocator",
+      "artist": "Evin a'k",
+      "status": "curated"
+    },
+    "excez": {
+      "title": "εxceζ",
+      "artist": "Aoi",
+      "status": "curated"
+    },
+    "extraordinary": {
+      "title": "Extraordinary",
+      "artist": "technoplanet",
+      "status": "wiki",
+      "sourceLine": 810
+    },
+    "fall-in-me": {
+      "title": "Fall in Me",
+      "artist": "memex",
+      "status": "wiki",
+      "sourceLine": 861
+    },
+    "fallin-fallin": {
+      "title": "fallin' fallin' (prod. INFX, Ella Jung, Limpid)",
+      "artist": "kradness",
+      "status": "curated"
+    },
+    "fantasia-sonata-god-dance": {
+      "title": "Fantasia Sonata God Dance",
+      "artist": "PYKAMIA vs. Sakuzyo",
+      "status": "wiki",
+      "sourceLine": 843
+    },
+    "far-side-of-the-moon": {
+      "title": "Far side of the moon",
+      "artist": "Kamii",
+      "status": "wiki",
+      "sourceLine": 477
+    },
+    "fate-of-aria": {
+      "title": "Fate of Aria",
+      "artist": "HyuN feat.花たん",
+      "illustrator": "LINUS",
+      "status": "wiki",
+      "sourceLine": 168
+    },
+    "feast-from-the-east": {
+      "title": "Feast远东之宴",
+      "artist": "茶鸣拾贰律",
+      "status": "curated"
+    },
+    "feeling-blue": {
+      "title": "Feeling Blue",
+      "artist": "RiraN",
+      "status": "wiki",
+      "sourceLine": 708
+    },
+    "fft": {
+      "title": "FFT",
+      "artist": "cybermiso",
+      "status": "wiki",
+      "sourceLine": 515
+    },
+    "fire-of-heart": {
+      "title": "Fire Of Heart",
+      "artist": "果茶",
+      "status": "wiki",
+      "sourceLine": 465
+    },
+    "flashback-flicker": {
+      "title": "Flashback Flicker",
+      "artist": "t+pazolite",
+      "status": "wiki",
+      "sourceLine": 311
+    },
+    "flashdance": {
+      "title": "Flashdance",
+      "artist": "litmus*",
+      "status": "wiki",
+      "sourceLine": 81
+    },
+    "flutter-echo": {
+      "title": "Flutter Echo",
+      "artist": "Cansol",
+      "status": "wiki",
+      "sourceLine": 455
+    },
+    "fly-again": {
+      "title": "Fly Again",
+      "artist": "Fujiyori",
+      "status": "wiki",
+      "sourceLine": 667
+    },
+    "forward-motion": {
+      "title": "Forward Motion",
+      "artist": "Glacier",
+      "illustrator": "鲨鱼鳍和海",
+      "status": "wiki",
+      "sourceLine": 231
+    },
+    "freefall": {
+      "title": "フリーフォール",
+      "artist": "Zekk",
+      "status": "curated"
+    },
+    "freys-philosophy": {
+      "title": "Frey's Philosophy",
+      "artist": "Powerless",
+      "status": "wiki",
+      "sourceLine": 324
+    },
+    "frogs-who-fight-for-freedom": {
+      "title": "Frogs Who Fight for Freedom",
+      "artist": "Jamphibious",
+      "status": "wiki",
+      "sourceLine": 813
+    },
+    "from-zero": {
+      "title": "From Zero",
+      "artist": "Neko Hacker",
+      "status": "wiki",
+      "sourceLine": 846
+    },
+    "full-circle": {
+      "title": "Full Circle",
+      "artist": "VITICZ",
+      "status": "wiki",
+      "sourceLine": 809
+    },
+    "fusion-velocity": {
+      "title": "fusion velocity",
+      "artist": "MetaHumanBoi",
+      "status": "wiki",
+      "sourceLine": 478
+    },
+    "galatic-warzone": {
+      "title": "GALACTIC WARZONE",
+      "artist": "Akira Complex",
+      "status": "curated"
+    },
+    "galaxy-striker": {
+      "title": "Galaxy Striker",
+      "artist": "M2U",
+      "status": "wiki",
+      "sourceLine": 837
+    },
+    "gecko": {
+      "title": "Gecko",
+      "artist": "RedMuffleR",
+      "status": "wiki",
+      "sourceLine": 631
+    },
+    "ginevra": {
+      "title": "Ginevra",
+      "artist": "MYUKKE.",
+      "status": "wiki",
+      "sourceLine": 95
+    },
+    "giselle": {
+      "title": "Giselle",
+      "artist": "Sobrem a.k.a. Widowmaker",
+      "status": "wiki",
+      "sourceLine": 679
+    },
+    "give-me-your-love": {
+      "title": "Give (Me) Your Love",
+      "artist": "JAKAZiD",
+      "status": "wiki",
+      "sourceLine": 863
+    },
+    "go-escape": {
+      "title": "Go Escape",
+      "artist": "mmry",
+      "status": "wiki",
+      "sourceLine": 464
+    },
+    "gokusaishoku-no-yutopia": {
+      "title": "極彩色のユートピア",
+      "artist": "HyuN feat. kradness",
+      "status": "curated"
+    },
+    "grand-i-flora": {
+      "title": "GRAND-i-FLORA",
+      "artist": "DRIVE.",
+      "status": "wiki",
+      "sourceLine": 652
+    },
+    "hark-bloweth": {
+      "title": "Hark! The wyntres wynd bloweth",
+      "artist": "SeyriN",
+      "status": "curated"
+    },
+    "harmonic-evasion-101": {
+      "title": "HARMONIC EVASION 101",
+      "artist": "MEMODEMO × AQUASINE",
+      "status": "wiki",
+      "sourceLine": 86
+    },
+    "heartache": {
+      "title": "Heartache",
+      "artist": "technoplanet",
+      "status": "wiki",
+      "sourceLine": 412
+    },
+    "hearts-station": {
+      "title": "Heart’s Station",
+      "artist": "PSYQUO & Skye Senfort",
+      "illustrator": "好大一条",
+      "status": "wiki",
+      "sourceLine": 244
+    },
+    "heavens-cage": {
+      "title": "Heaven's Cage",
+      "artist": "ETIA.",
+      "illustrator": "三更",
+      "status": "wiki",
+      "sourceLine": 136
+    },
+    "higher": {
+      "title": "HiGHER",
+      "artist": "REDALiCE",
+      "status": "wiki",
+      "sourceLine": 295
+    },
+    "hold-your-fire": {
+      "title": "Hold Your Fire (Radio Edit)",
+      "artist": "Yooh",
+      "status": "curated"
+    },
+    "hoshifuruyoru-to-ichirin-no-hana": {
+      "title": "星降る夜と一輪の花",
+      "artist": "seatrus",
+      "illustrator": "48OKU",
+      "status": "curated"
+    },
+    "hoshizora-toraberu": {
+      "title": "ほしぞらトラベル",
+      "artist": "奏音",
+      "status": "curated"
+    },
+    "how-to-make-otoge-kyoku": {
+      "title": "How To Make 音ゲ～曲！",
+      "artist": "F Rabbeat ft. マスタード",
+      "status": "curated"
+    },
+    "huggy-wuggy": {
+      "title": "huggy wuggy",
+      "artist": "ZxNX",
+      "status": "wiki",
+      "sourceLine": 109
+    },
+    "hushwave-symptoms": {
+      "title": "缄色症候",
+      "artist": "ariiol",
+      "illustrator": "九茶",
+      "status": "wiki"
+    },
+    "hydra": {
+      "title": "Hydra",
+      "artist": "James Landino X Akira Complex",
+      "status": "wiki",
+      "sourceLine": 443
+    },
+    "hyouryu": {
+      "title": "漂流",
+      "artist": "THE SxPLAY & KIVΛ",
+      "status": "curated"
+    },
+    "hyp3rtribe": {
+      "title": "HYP3RTRIBE",
+      "artist": "sky_delta vs KO3 vs Tanchiky",
+      "status": "wiki",
+      "sourceLine": 786
+    },
+    "hypersynthetic": {
+      "title": "HYPERSYNTHETIC",
+      "artist": "Akira Complex",
+      "status": "wiki",
+      "sourceLine": 704
+    },
+    "hyun-jrpg": {
+      "title": "Rotaeno 曲绘（曲目信息待核实）",
+      "status": "needs-human-review"
+    },
+    "i-cant-wait": {
+      "title": "I Can't Wait",
+      "artist": "d0tc0mmie",
+      "status": "wiki",
+      "sourceLine": 42
+    },
+    "ice-festival": {
+      "title": "Ice Festival",
+      "artist": "Nota",
+      "status": "wiki",
+      "sourceLine": 40
+    },
+    "ieo": {
+      "title": "INTERNET OVERDOSE",
+      "artist": "Aiobahn feat. KOTOKO",
+      "status": "curated"
+    },
+    "ieopella": {
+      "title": "IEOpella [2 Player]",
+      "artist": "Sir Eye Respect for Reku Mochizuki",
+      "status": "curated"
+    },
+    "igallta": {
+      "title": "Igallta",
+      "artist": "Se-U-Ra",
+      "status": "wiki",
+      "sourceLine": 285
+    },
+    "ignite": {
+      "title": "IGNITE",
+      "artist": "USAO & Massive New Krew",
+      "status": "wiki",
+      "sourceLine": 341
+    },
+    "imagined-flight": {
+      "title": "Imagined Flight",
+      "artist": "Mili",
+      "status": "wiki",
+      "sourceLine": 493
+    },
+    "in": {
+      "title": "IN",
+      "artist": "Zris feat. Katie",
+      "status": "wiki",
+      "sourceLine": 632
+    },
+    "in-a-diabolic-manner": {
+      "title": "In a Diabolic Manner",
+      "artist": "Nagiha",
+      "status": "wiki",
+      "sourceLine": 66
+    },
+    "incyde": {
+      "title": "Incyde",
+      "artist": "YbeLL",
+      "status": "wiki",
+      "sourceLine": 445
+    },
+    "indelible-yore": {
+      "title": "Indelible Yore",
+      "artist": "Taishi",
+      "status": "wiki",
+      "sourceLine": 400
+    },
+    "indoor-kei-nara-track-maker": {
+      "title": "インドア系ならトラックメイカー",
+      "artist": "Yunomi & nicamoq",
+      "status": "curated"
+    },
+    "infection": {
+      "title": "Infection",
+      "artist": "ARForest",
+      "status": "wiki",
+      "sourceLine": 707
+    },
+    "infinity-heaven": {
+      "title": "Infinity Heaven",
+      "artist": "HyuN",
+      "status": "wiki",
+      "sourceLine": 21
+    },
+    "inn3rflame": {
+      "title": "INN3RFLAME",
+      "artist": "seatrus",
+      "illustrator": "Ether-0",
+      "status": "wiki",
+      "sourceLine": 219
+    },
+    "inner-norm": {
+      "title": "Inner Norm",
+      "artist": "Zris",
+      "status": "wiki",
+      "sourceLine": 364
+    },
+    "innocence-keeper": {
+      "title": "Innocence Keeper",
+      "artist": "Cansol",
+      "illustrator": "橱子",
+      "status": "wiki",
+      "sourceLine": 177
+    },
+    "internet-overdose": {
+      "title": "INTERNET OVERDOSE",
+      "artist": "Aiobahn feat. KOTOKO",
+      "status": "wiki",
+      "sourceLine": 836
+    },
+    "invader": {
+      "title": "Invader",
+      "artist": "SLT",
+      "status": "wiki",
+      "sourceLine": 604
+    },
+    "invisible-frenzy": {
+      "title": "Invisible Frenzy",
+      "artist": "Kobaryo",
+      "status": "wiki",
+      "sourceLine": 260
+    },
+    "irony": {
+      "title": "アイロニ",
+      "artist": "すこっぷ",
+      "status": "curated"
+    },
+    "is-this-real": {
+      "title": "Is This REAL?",
+      "artist": "SOTUI & NIKITA",
+      "status": "wiki",
+      "sourceLine": 38
+    },
+    "ish": {
+      "title": "-ish",
+      "artist": "natsume & alpha",
+      "illustrator": "JIAYU",
+      "status": "wiki",
+      "sourceLine": 228
+    },
+    "iza-mairimasu": {
+      "title": "いざ、参ります",
+      "artist": "U-ske feat. 棗いつき",
+      "status": "curated"
+    },
+    "journey-with-you": {
+      "title": "Journey with You",
+      "artist": "Iris",
+      "status": "wiki",
+      "sourceLine": 32
+    },
+    "junky-night-town-orchestra": {
+      "title": "ジャンキーナイトタウンオーケストラ",
+      "artist": "すりぃ",
+      "status": "curated"
+    },
+    "k-moe-vip": {
+      "title": "K.Moe (VIP)",
+      "artist": "ZxNX",
+      "status": "wiki",
+      "sourceLine": 31
+    },
+    "kai": {
+      "title": "悔_",
+      "artist": "EssBee",
+      "illustrator": "月裏",
+      "status": "curated"
+    },
+    "kakuriyo": {
+      "title": "Kakuriyo",
+      "artist": "polysha",
+      "status": "wiki",
+      "sourceLine": 366
+    },
+    "kami-ppoi-na": {
+      "title": "神っぽいな",
+      "artist": "PinocchioP",
+      "status": "curated"
+    },
+    "kenka": {
+      "title": "Rotaeno 曲绘（曲目信息待核实）",
+      "status": "needs-human-review"
+    },
+    "king": {
+      "title": "KING",
+      "artist": "Kanaria",
+      "status": "curated"
+    },
+    "koki-chant": {
+      "title": "Koki Chant",
+      "artist": "Glacier",
+      "status": "wiki",
+      "sourceLine": 51
+    },
+    "kokoro-odoro": {
+      "title": "Kokoro Odoro",
+      "artist": "Tomggg",
+      "status": "wiki",
+      "sourceLine": 399
+    },
+    "kouen": {
+      "title": "Rotaeno 曲绘（曲目信息待核实）",
+      "status": "needs-human-review"
+    },
+    "laboratory-018": {
+      "title": "Laboratory-018",
+      "artist": "Riya",
+      "status": "wiki",
+      "sourceLine": 84
+    },
+    "lag-train": {
+      "title": "ラグトレイン",
+      "artist": "稲葉曇",
+      "status": "curated"
+    },
+    "last-paradise": {
+      "title": "Last Paradise",
+      "artist": "HyuN feat. Serentium",
+      "status": "wiki",
+      "sourceLine": 27
+    },
+    "let-you-dive": {
+      "title": "Let you DIVE!",
+      "artist": "HARDCORE TANO*C & エリザベス（CV:大西沙織）",
+      "status": "wiki",
+      "sourceLine": 34
+    },
+    "life-flashes-before-weeb-eyes": {
+      "title": "life flashes before weeb eyes",
+      "artist": "BilliumMoto",
+      "status": "wiki",
+      "sourceLine": 666
+    },
+    "life-is-piano": {
+      "title": "Life is PIANO",
+      "artist": "Junk",
+      "status": "wiki",
+      "sourceLine": 640
+    },
+    "light-into-scheelite": {
+      "title": "Light Into Scheelite",
+      "artist": "MYUKKE.",
+      "status": "wiki",
+      "sourceLine": 630
+    },
+    "link-x-lins": {
+      "title": "LINK x LIN#S",
+      "artist": "Halv",
+      "status": "wiki",
+      "sourceLine": 376
+    },
+    "lonely-departure": {
+      "title": "Lonely departure",
+      "artist": "Chroma",
+      "status": "wiki",
+      "sourceLine": 322
+    },
+    "look-at-me-forever": {
+      "title": "look at me forever",
+      "artist": "ルゼ",
+      "status": "wiki",
+      "sourceLine": 774
+    },
+    "looking-for-stella": {
+      "title": "Looking for Stella",
+      "artist": "Junk",
+      "illustrator": "伊恩",
+      "status": "wiki",
+      "sourceLine": 167
+    },
+    "lost-in-farside": {
+      "title": "Lost In Farside",
+      "artist": "Sephid",
+      "status": "wiki",
+      "sourceLine": 653
+    },
+    "lost-puppet": {
+      "title": "Lost Puppet",
+      "artist": "rmk",
+      "status": "wiki",
+      "sourceLine": 25
+    },
+    "love-splash": {
+      "title": "Love Splash",
+      "artist": "INuya",
+      "status": "wiki",
+      "sourceLine": 82
+    },
+    "love-you-i-imagined": {
+      "title": "爱上想象的你",
+      "artist": "KOTONOHOUSE feat.穆小泠",
+      "status": "curated"
+    },
+    "lullaby-for-an-android": {
+      "title": "Lullaby For an Android",
+      "artist": "Sad Keyboard Guy feat. AKA",
+      "status": "wiki",
+      "sourceLine": 37
+    },
+    "lumina": {
+      "title": "Lumina",
+      "artist": "Wisp X & Xomu",
+      "status": "wiki",
+      "sourceLine": 796
+    },
+    "luminosity": {
+      "title": "Luminosity (Don't you worry)",
+      "artist": "DJ Noriken",
+      "status": "curated"
+    },
+    "machine-gun": {
+      "title": "Machine Gun",
+      "artist": "KIRA",
+      "status": "wiki",
+      "sourceLine": 543
+    },
+    "magenta-potion": {
+      "title": "MAGENTA POTION",
+      "artist": "EmoCosine",
+      "illustrator": "NO|SER",
+      "status": "wiki",
+      "sourceLine": 165
+    },
+    "maho-shojo-intai-sengen": {
+      "title": "魔法少女引退宣言（仮）feat.星宮とと",
+      "artist": "Kijibato",
+      "status": "curated"
+    },
+    "maholova": {
+      "title": "Maholova",
+      "artist": "aran",
+      "status": "wiki",
+      "sourceLine": 296
+    },
+    "make-up-your-world": {
+      "title": "Make Up Your World feat. キョンシーのCiちゃん＆らっぷびと",
+      "artist": "t+pazolite & Srav3R",
+      "status": "curated"
+    },
+    "manifold-hypothesis": {
+      "title": "Manifold Hypothesis",
+      "artist": "cybermiso feat. tigerlily",
+      "status": "wiki",
+      "sourceLine": 122
+    },
+    "marble-joker": {
+      "title": "Marble Joker",
+      "artist": "pan",
+      "status": "wiki",
+      "sourceLine": 682
+    },
+    "may": {
+      "title": "May",
+      "artist": "ida",
+      "status": "wiki",
+      "sourceLine": 423
+    },
+    "meiseki-yume-nite": {
+      "title": "明晰夢にて",
+      "artist": "DJ Raisei",
+      "illustrator": "云涅",
+      "status": "curated"
+    },
+    "meltdown": {
+      "title": "Meltdown",
+      "artist": "432pro & l'avenir proche",
+      "status": "wiki",
+      "sourceLine": 654
+    },
+    "memories-of-the-past": {
+      "title": "Memories of the Past feat.メトロミュー",
+      "artist": "Mameyudoufu",
+      "status": "curated"
+    },
+    "memory-of-sunrise": {
+      "title": "Memory Of Sunrise",
+      "artist": "nora2r",
+      "status": "wiki",
+      "sourceLine": 629
+    },
+    "mendokusai-modo": {
+      "title": "めんどくさいモード",
+      "artist": "Ponchi♪",
+      "status": "curated"
+    },
+    "milk": {
+      "title": "MilK",
+      "artist": "モリモリあつし",
+      "status": "wiki",
+      "sourceLine": 831
+    },
+    "mirror": {
+      "title": "Mirror",
+      "artist": "peak divide & Rachel Lake",
+      "status": "wiki",
+      "sourceLine": 63
+    },
+    "mirukiuei-o-tadotte": {
+      "title": "ミルキーウェイを辿って",
+      "artist": "kuro",
+      "illustrator": "葡萄糖注射",
+      "status": "curated"
+    },
+    "mistilteinn": {
+      "title": "Mistilteinn",
+      "artist": "iTIC",
+      "status": "wiki",
+      "sourceLine": 832
+    },
+    "monitoring": {
+      "title": "モニタリング",
+      "artist": "DECO*27",
+      "status": "curated"
+    },
+    "monochrome": {
+      "title": "モノクロ・モノトリアムズ",
+      "artist": "N prod. WhiteSakata",
+      "status": "curated"
+    },
+    "moonlight-fragrance": {
+      "title": "Moonlight Fragrance",
+      "artist": "H△G",
+      "status": "wiki",
+      "sourceLine": 87
+    },
+    "muen": {
+      "title": "夢厭 con eleganza",
+      "artist": "大前司",
+      "status": "curated"
+    },
+    "musaishiki-no-yutopia": {
+      "title": "無彩色のディストピア",
+      "artist": "HyuN feat. ウォルピスカーター",
+      "status": "curated"
+    },
+    "mvurbd": {
+      "title": "MVURBD",
+      "artist": "ETIA.",
+      "status": "wiki",
+      "sourceLine": 696
+    },
+    "my-heaven-magical-mix": {
+      "title": "My Heaven (Magical Mix) feat. kuripurin",
+      "artist": "Scarlette X Juggernaut.",
+      "status": "curated"
+    },
+    "my-story": {
+      "title": "My Story! feat.柚子花",
+      "artist": "KOTONOHOUSE",
+      "status": "curated"
+    },
+    "name-of-oath": {
+      "title": "Name of oath",
+      "artist": "lvoid (Mournfinale) feat. コツキミヤ (Gt. えば)",
+      "status": "wiki",
+      "sourceLine": 865
+    },
+    "nameless-missionary": {
+      "title": "名無しの宣教師",
+      "artist": "MIssionary",
+      "status": "curated"
+    },
+    "nee-nee-nee": {
+      "title": "ねぇねぇねぇ。",
+      "artist": "PinocchioP",
+      "status": "curated"
+    },
+    "night-sky": {
+      "title": "Night Sky",
+      "artist": "Neko Hacker",
+      "status": "wiki",
+      "sourceLine": 862
+    },
+    "nighttheater": {
+      "title": "NightTheater",
+      "artist": "わかどり",
+      "status": "wiki",
+      "sourceLine": 678
+    },
+    "nini": {
+      "title": "二二 -邇々-",
+      "artist": "テヅカ x Qayo",
+      "status": "curated"
+    },
+    "ninja-ish": {
+      "title": "NINJA-ish",
+      "artist": "U-ske feat. ななひら",
+      "illustrator": "林有一兔",
+      "status": "wiki",
+      "sourceLine": 192
+    },
+    "no-one-yes-man": {
+      "title": "NO ONE YES MAN",
+      "artist": "MYUKKE.",
+      "status": "wiki",
+      "sourceLine": 72
+    },
+    "non-breath-oblige": {
+      "title": "ノンブレス・オブリージュ",
+      "artist": "PinocchioP",
+      "status": "curated"
+    },
+    "nulctrl": {
+      "title": "NULCTRL",
+      "artist": "Silentroom",
+      "status": "wiki",
+      "sourceLine": 842
+    },
+    "nyarlathotep": {
+      "title": "Nyarlathotep",
+      "artist": "Hyphen",
+      "status": "wiki",
+      "sourceLine": 386
+    },
+    "nyarlathoteps-dreamland": {
+      "title": "Nyarlathotep's Dreamland",
+      "artist": "Raimukun",
+      "status": "wiki",
+      "sourceLine": 71
+    },
+    "obsidian": {
+      "title": "Obsidian(Short Ver.)",
+      "artist": "UnD3ath",
+      "status": "curated"
+    },
+    "oiiaioooooiai": {
+      "title": "OIIAIOOOOOIAI",
+      "artist": "Fish Head",
+      "status": "curated"
+    },
+    "oldschool-tentacles": {
+      "title": "OLDSCHOOL TENTACLES",
+      "artist": "Raimukun",
+      "illustrator": "醉酒99",
+      "status": "wiki",
+      "sourceLine": 241
+    },
+    "on-and-on": {
+      "title": "On And On!!",
+      "artist": "ETIA. feat. Jenga",
+      "illustrator": "わっふゑ",
+      "status": "wiki",
+      "sourceLine": 155
+    },
+    "one-percent-love": {
+      "title": "1／100のアイ",
+      "artist": "すりぃ",
+      "status": "curated"
+    },
+    "one-way-street": {
+      "title": "One Way Street",
+      "artist": "siqlo",
+      "status": "wiki",
+      "sourceLine": 80
+    },
+    "orison": {
+      "title": "Orison",
+      "artist": "Iris feat. Jacelyn Yeo",
+      "status": "wiki",
+      "sourceLine": 90
+    },
+    "otome-dissection": {
+      "title": "乙女解剖",
+      "artist": "DECO*27",
+      "status": "curated"
+    },
+    "our-message": {
+      "title": "Our Message",
+      "artist": "What’s Your Price",
+      "status": "wiki",
+      "sourceLine": 125
+    },
+    "ouverture": {
+      "title": "Ouvertüre",
+      "artist": "USAO & DJ Genki feat. ルーン(CV:河瀬茉希)",
+      "status": "curated"
+    },
+    "party-before-hibernation": {
+      "title": "Party Before Hibernation",
+      "artist": "黒魔(Chroma)",
+      "status": "wiki",
+      "sourceLine": 94
+    },
+    "phantago": {
+      "title": "Phantago",
+      "artist": "Nagiha",
+      "status": "wiki",
+      "sourceLine": 683
+    },
+    "phantom": {
+      "title": "幻影",
+      "artist": "Pica",
+      "status": "curated"
+    },
+    "piper-hyper-caravan": {
+      "title": "Piper Hyper Caravan",
+      "artist": "Sampling Masters MEGA",
+      "illustrator": "Issen",
+      "status": "wiki",
+      "sourceLine": 246
+    },
+    "prismrose": {
+      "title": "Prismrose",
+      "artist": "qfeileadh feat.レゾナンスもえこ",
+      "status": "wiki",
+      "sourceLine": 849
+    },
+    "provison": {
+      "title": "Provision",
+      "artist": "connexio",
+      "status": "curated"
+    },
+    "psalms": {
+      "title": "Psalms ～魂の還るばしょ～",
+      "artist": "qfeileadh & レゾナンスもえこ",
+      "status": "wiki",
+      "sourceLine": 731
+    },
+    "pupa": {
+      "title": "PUPA",
+      "artist": "モリモリあつし",
+      "status": "wiki",
+      "sourceLine": 826
+    },
+    "pure-ruby": {
+      "title": "Pure Ruby",
+      "artist": "SHIKI",
+      "status": "wiki",
+      "sourceLine": 67
+    },
+    "pure-white-tale-of-serissa": {
+      "title": "Pure White：Tale of Serissa",
+      "artist": "Sosop",
+      "status": "wiki",
+      "sourceLine": 54
+    },
+    "quadruplicity": {
+      "title": "Quadruplicity",
+      "artist": "LucaProject vs NeLiME",
+      "illustrator": "月裏",
+      "status": "wiki",
+      "sourceLine": 181
+    },
+    "quaoar": {
+      "title": "Quaoar",
+      "artist": "かめりあ(Camellia)",
+      "status": "wiki",
+      "sourceLine": 655
+    },
+    "quattuorux": {
+      "title": "QUATTUORUX",
+      "artist": "打打だいず Vs. Tanchiky Vs. からめる",
+      "status": "wiki",
+      "sourceLine": 433
+    },
+    "quon": {
+      "title": "Quon",
+      "artist": "DJ Noriken",
+      "status": "wiki",
+      "sourceLine": 259
+    },
+    "rain": {
+      "title": "Rain",
+      "artist": "くるぶっこちゃん",
+      "status": "wiki",
+      "sourceLine": 387
+    },
+    "rainy-day": {
+      "title": "Rainy Day",
+      "artist": "ag feat. 倉先",
+      "status": "wiki",
+      "sourceLine": 205
+    },
+    "re-birth": {
+      "title": "Re：birth",
+      "artist": "ああああ",
+      "status": "wiki",
+      "sourceLine": 453
+    },
+    "re-end-of-a-dream": {
+      "title": "Re：End of a Dream",
+      "artist": "uma vs. モリモリあつし",
+      "status": "wiki",
+      "sourceLine": 722
+    },
+    "re-prosperitas": {
+      "title": "Re：prosperitás",
+      "artist": "Nagiha",
+      "status": "curated"
+    },
+    "re-waked-from-abyss": {
+      "title": "Re-waked from Abyss",
+      "artist": "HeavenEGHD",
+      "status": "wiki",
+      "sourceLine": 110
+    },
+    "recollection": {
+      "title": "Recollection",
+      "artist": "Kobaryo",
+      "status": "wiki",
+      "sourceLine": 297
+    },
+    "red-bullet": {
+      "title": "Red Bullet feat.はらもりよしな",
+      "artist": "TAKIO",
+      "status": "curated"
+    },
+    "redrave": {
+      "title": "REDRAVE",
+      "artist": "Tatsh & NAOKI feat. Kent Alexander",
+      "status": "wiki",
+      "sourceLine": 850
+    },
+    "revel": {
+      "title": "reveL",
+      "artist": "Yu_Asahina as Orange Vox+ ft.AKA",
+      "status": "wiki",
+      "sourceLine": 73
+    },
+    "reverie": {
+      "title": "Reverie",
+      "artist": "Soba",
+      "status": "wiki",
+      "sourceLine": 23
+    },
+    "revocate": {
+      "title": "REVΘCATE",
+      "artist": "kuro",
+      "status": "curated"
+    },
+    "rip": {
+      "title": "R.I.P.",
+      "artist": "eicateve",
+      "status": "wiki",
+      "sourceLine": 641
+    },
+    "rocket-lanterns": {
+      "title": "Rocket Lanterns",
+      "artist": "Farhan",
+      "status": "wiki",
+      "sourceLine": 85
+    },
+    "rokutyounen": {
+      "title": "六兆年と一夜物語",
+      "artist": "kemu",
+      "status": "curated"
+    },
+    "rrharil": {
+      "title": "Rrhar'il",
+      "artist": "Team Grimoire",
+      "status": "wiki",
+      "sourceLine": 284
+    },
+    "rtrt": {
+      "title": "RTRT",
+      "artist": "Mili",
+      "status": "wiki",
+      "sourceLine": 492
+    },
+    "ruby-linte": {
+      "title": "ЯUBY:LINTe",
+      "artist": "orangentle",
+      "status": "curated"
+    },
+    "rush-e": {
+      "title": "Rush E",
+      "artist": "Sheet Music Boss",
+      "status": "wiki",
+      "sourceLine": 44
+    },
+    "saku-hoshiboshi": {
+      "title": "咲く星々",
+      "artist": "ユアミトス",
+      "illustrator": "Elf",
+      "status": "curated"
+    },
+    "sakura-rain": {
+      "title": "Sakura rain",
+      "artist": "Nanatsukaze",
+      "status": "wiki",
+      "sourceLine": 22
+    },
+    "secret-illumination": {
+      "title": "Secret Illumination",
+      "artist": "Yooh",
+      "status": "wiki",
+      "sourceLine": 121
+    },
+    "secret-illumination-aura-remix": {
+      "title": "Secret Illumination (seatrus's The AURA Remix)",
+      "artist": "Yooh Remixed by seatrus",
+      "status": "curated"
+    },
+    "secret-planet": {
+      "title": "シークレット・プラネット",
+      "artist": "みーに feat. みちとせ",
+      "illustrator": "Elf",
+      "status": "curated"
+    },
+    "sekigae-yatta": {
+      "title": "席替えやったー！",
+      "artist": "立秋 feat. ててんまる",
+      "status": "curated"
+    },
+    "sense": {
+      "title": "Sense",
+      "artist": "BilliumMoto × Silentroom",
+      "illustrator": "mahinii | Character Visual Design 蟹江",
+      "status": "wiki",
+      "sourceLine": 166
+    },
+    "seq-unleash-knockout": {
+      "title": "SEQ_UNLEASH Knockout!",
+      "artist": "Mizukira",
+      "illustrator": "Axle",
+      "status": "wiki",
+      "sourceLine": 245
+    },
+    "serendipity": {
+      "title": "Serendipity",
+      "artist": "Makou",
+      "status": "wiki",
+      "sourceLine": 795
+    },
+    "shattered-sky-after-rain": {
+      "title": "Shattered Sky After Rain",
+      "artist": "Lorph & Elexia",
+      "status": "wiki",
+      "sourceLine": 61
+    },
+    "shijima-ni-ureu": {
+      "title": "静寂に憂う",
+      "artist": "Reku mochizuki feat. せやかて硝酸太郎",
+      "status": "curated"
+    },
+    "shinde-shimatta-kisetsu-no-kakera": {
+      "title": "死んでしまった季節のかけら",
+      "artist": "HyuN feat. トコノコα",
+      "status": "curated"
+    },
+    "shiragiku": {
+      "title": "白菊 -shiragiku-",
+      "artist": "立秋",
+      "status": "wiki",
+      "sourceLine": 43
+    },
+    "shooting-stars": {
+      "title": "Shooting☆Stars",
+      "artist": "DJ Genki",
+      "status": "wiki",
+      "sourceLine": 294
+    },
+    "shuen-kara-inochi-o-sukuu": {
+      "title": "終焉から命を救う",
+      "artist": "Mlssionary",
+      "status": "curated"
+    },
+    "silentphobia": {
+      "title": "Silentphobia",
+      "artist": "t+pazolite VS 削除",
+      "status": "wiki",
+      "sourceLine": 257
+    },
+    "silver-linings": {
+      "title": "Silver Linings",
+      "artist": "Sada 2Futureanthem",
+      "illustrator": "浮里",
+      "status": "wiki",
+      "sourceLine": 243
+    },
+    "silver-town": {
+      "title": "Silver Town",
+      "artist": "Memme",
+      "status": "wiki",
+      "sourceLine": 838
+    },
+    "simulated": {
+      "title": "Simulated feat. 澤村光彩＆Ichika Nito",
+      "artist": "Neko Hacker",
+      "status": "curated"
+    },
+    "sinfonietta-spiral-galaxy": {
+      "title": "渦状銀河のシンフォニエッタ",
+      "artist": "山本真央樹",
+      "status": "curated"
+    },
+    "slide-down": {
+      "title": "Slide Down",
+      "artist": "Saltless",
+      "status": "wiki",
+      "sourceLine": 89
+    },
+    "slide-into-light": {
+      "title": "Slide Into Light",
+      "artist": "ValeraP",
+      "status": "wiki",
+      "sourceLine": 466
+    },
+    "smile-miles": {
+      "title": "Smile-mileS",
+      "artist": "onoken",
+      "status": "wiki",
+      "sourceLine": 88
+    },
+    "snapdragon": {
+      "title": "Snapdragon",
+      "artist": "NeLiME",
+      "illustrator": "炎獵",
+      "status": "wiki",
+      "sourceLine": 150
+    },
+    "snow-magic": {
+      "title": "Snow Magic",
+      "artist": "Nota",
+      "status": "wiki",
+      "sourceLine": 30
+    },
+    "snowblind": {
+      "title": "Snowblind",
+      "artist": "Salty Salt",
+      "status": "wiki",
+      "sourceLine": 760
+    },
+    "snowbound-flight": {
+      "title": "Snowbound Flight",
+      "artist": "Yvonne Teo",
+      "status": "wiki",
+      "sourceLine": 761
+    },
+    "song-for-again": {
+      "title": "又一遍的歌",
+      "artist": "TSAR feat.永雏塔菲",
+      "status": "curated"
+    },
+    "song-for-sprites": {
+      "title": "Song for Sprites",
+      "artist": "Sta",
+      "status": "wiki",
+      "sourceLine": 319
+    },
+    "sonic-surge": {
+      "title": "SONIC SURGE",
+      "artist": "TSAR feat. aran",
+      "status": "wiki",
+      "sourceLine": 338
+    },
+    "space-colony": {
+      "title": "Space Colony",
+      "artist": "Mili",
+      "status": "wiki",
+      "sourceLine": 491
+    },
+    "spinel": {
+      "title": "Spinel",
+      "artist": "ぺのれり(penoreri)",
+      "status": "wiki",
+      "sourceLine": 668
+    },
+    "spooky-dance-party": {
+      "title": "スプーキィダンスパーティ",
+      "artist": "seatrus",
+      "status": "curated"
+    },
+    "stage-5": {
+      "title": "Stage 5",
+      "artist": "LV.4",
+      "status": "wiki",
+      "sourceLine": 747
+    },
+    "star-cape": {
+      "title": "Star Cape",
+      "artist": "打打だいず",
+      "status": "wiki",
+      "sourceLine": 642
+    },
+    "stargazer": {
+      "title": "STARGAZΞR",
+      "artist": "celtix",
+      "status": "curated"
+    },
+    "starlight-traveler": {
+      "title": "Starlight Traveler",
+      "artist": "ああああ + 打打だいず",
+      "illustrator": "好大一条",
+      "status": "wiki",
+      "sourceLine": 176
+    },
+    "starstream-sky-dash": {
+      "title": "Starstream Sky Dash",
+      "artist": "Violet Delta",
+      "illustrator": "ne_pura",
+      "status": "wiki",
+      "sourceLine": 193
+    },
+    "stasis": {
+      "title": "Stasis",
+      "artist": "Maozon",
+      "status": "wiki",
+      "sourceLine": 323
+    },
+    "steadfast": {
+      "title": "Steadfast",
+      "artist": "Gardens",
+      "status": "wiki",
+      "sourceLine": 732
+    },
+    "sterelogue": {
+      "title": "Sterelogue",
+      "artist": "VeetaCrush",
+      "status": "wiki",
+      "sourceLine": 605
+    },
+    "stolen-lips": {
+      "title": "Stolen Lips",
+      "artist": "Osamu Kubota",
+      "status": "wiki",
+      "sourceLine": 800
+    },
+    "straight-into-the-lights": {
+      "title": "Straight into the lights",
+      "artist": "Cosmograph",
+      "status": "wiki",
+      "sourceLine": 517
+    },
+    "strange-bar": {
+      "title": "Strange Bar",
+      "artist": "Laur",
+      "status": "wiki",
+      "sourceLine": 306
+    },
+    "stratoliner": {
+      "title": "Stratoliner",
+      "artist": "C-Show",
+      "status": "wiki",
+      "sourceLine": 501
+    },
+    "stray-soul-around": {
+      "title": "ストレイソウル・アラウンド",
+      "artist": "みーに",
+      "status": "curated"
+    },
+    "suito": {
+      "title": "翠杜",
+      "artist": "隣の庭は青い(庭師+Aoi)",
+      "illustrator": "月裏",
+      "status": "curated"
+    },
+    "suitopella": {
+      "title": "Suitopella",
+      "artist": "Sir Eye Respect for 隣の庭は青い",
+      "status": "curated"
+    },
+    "summer-time-memory": {
+      "title": "Summer Time Memory",
+      "artist": "kanemiko",
+      "status": "wiki",
+      "sourceLine": 202
+    },
+    "super-reactor": {
+      "title": "SUPER REACTOR",
+      "artist": "Kobaryo feat.HiTNEX-X",
+      "status": "wiki",
+      "sourceLine": 505
+    },
+    "sweet-and-astringent-dreams": {
+      "title": "甜涩之梦",
+      "artist": "YUC'e feat.早稲叽",
+      "status": "curated"
+    },
+    "sweet-dreams": {
+      "title": "Sweet Dreams(short ver.)",
+      "artist": "Neko Hacker",
+      "status": "curated"
+    },
+    "swirling-blue": {
+      "title": "Swirling Blue",
+      "artist": "Nagiha",
+      "status": "wiki",
+      "sourceLine": 833
+    },
+    "switch-up": {
+      "title": "Switch Up!",
+      "artist": "Sahqmo",
+      "status": "wiki",
+      "sourceLine": 811
+    },
+    "sword-of-convallaria": {
+      "title": "Sword of Convallaria",
+      "artist": "崎元 仁",
+      "status": "wiki",
+      "sourceLine": 56
+    },
+    "take": {
+      "title": "竹",
+      "artist": "立秋 feat.ちょこ",
+      "status": "curated"
+    },
+    "tenq": {
+      "title": "天Q.",
+      "artist": "天々まる（prod.Ponchi♪）",
+      "status": "curated"
+    },
+    "tenshidearetara": {
+      "title": "天使であれたら",
+      "artist": "白百合リリィ & USAGI Production",
+      "status": "curated"
+    },
+    "the-amazing-race": {
+      "title": "The Amazing Race",
+      "artist": "Sephid",
+      "status": "wiki",
+      "sourceLine": 787
+    },
+    "the-endless-for-traveler": {
+      "title": "The Endless for Traveler",
+      "artist": "Se-U-Ra",
+      "status": "wiki",
+      "sourceLine": 388
+    },
+    "the-formula": {
+      "title": "The Formula",
+      "artist": "Junk",
+      "status": "wiki",
+      "sourceLine": 57
+    },
+    "the-golden-heaven": {
+      "title": "Rotaeno 曲绘（曲目信息待核实）",
+      "status": "needs-human-review"
+    },
+    "the-promised-land": {
+      "title": "The Promised Land",
+      "artist": "Iris feat. LynH",
+      "status": "wiki",
+      "sourceLine": 111
+    },
+    "the-vampire": {
+      "title": "ヴァンパイア",
+      "artist": "DECO*27",
+      "status": "curated"
+    },
+    "tianlingling": {
+      "title": "天灵灵地灵灵",
+      "artist": "iKz feat.小可学妹",
+      "status": "curated"
+    },
+    "time-keeper": {
+      "title": "Time Keeper",
+      "artist": "Noizenecio ft. MC KCD",
+      "status": "wiki",
+      "sourceLine": 783
+    },
+    "today-is-not-tomorrow": {
+      "title": "今天不是明天",
+      "artist": "PIKASONIC feat.兰音Reine",
+      "status": "curated"
+    },
+    "torikororu-suteppu": {
+      "title": "トリコロール・ステップ",
+      "artist": "あおぎり高校 & USAGI Production",
+      "status": "curated"
+    },
+    "toys-nightlife-area": {
+      "title": "Toys' Nightlife Area",
+      "artist": "ShiBa",
+      "illustrator": "余音RinA",
+      "status": "wiki",
+      "sourceLine": 179
+    },
+    "triad-of-dryad": {
+      "title": "Triad of Dryad",
+      "artist": "MYUKKE.",
+      "illustrator": "Ｒyｏ rｉ ☩",
+      "status": "wiki",
+      "sourceLine": 140
+    },
+    "true": {
+      "title": "True",
+      "artist": "Synthion ft. STΔRLIVHT♠♥",
+      "status": "wiki",
+      "sourceLine": 422
+    },
+    "tsuyo-tsuyo-nasuburou-chan": {
+      "title": "つよつよナースブロウちゃん！",
+      "artist": "コバヤシユウヤ(IOSYS)",
+      "status": "curated"
+    },
+    "turning-point": {
+      "title": "Turning POINT",
+      "artist": "Junk",
+      "status": "wiki",
+      "sourceLine": 79
+    },
+    "uchronia": {
+      "title": "Uchronia",
+      "artist": "7mai",
+      "illustrator": "椰丝红豆耶",
+      "status": "wiki",
+      "sourceLine": 180
+    },
+    "ultra-synergy-matrix": {
+      "title": "ULTRA SYNERGY MATRIX",
+      "artist": "Tanchiky",
+      "status": "wiki",
+      "sourceLine": 432
+    },
+    "un1te": {
+      "title": "UN1TE feat.YUC'e",
+      "artist": "Massive New Krew",
+      "status": "curated"
+    },
+    "unshakable": {
+      "title": "Unshakable",
+      "artist": "RiraN",
+      "status": "wiki",
+      "sourceLine": 717
+    },
+    "vector": {
+      "title": "VECTOЯ",
+      "artist": "WHITEFISTS",
+      "status": "curated"
+    },
+    "veil-of-summer": {
+      "title": "Veil of Summer",
+      "artist": "Maozon",
+      "status": "wiki",
+      "sourceLine": 363
+    },
+    "velocity": {
+      "title": "Velocity",
+      "artist": "Soba",
+      "status": "wiki",
+      "sourceLine": 603
+    },
+    "vertexion": {
+      "title": "VERTEXION",
+      "artist": "Kinetix",
+      "status": "wiki",
+      "sourceLine": 92
+    },
+    "vesta": {
+      "title": "Vesta",
+      "artist": "Saiph",
+      "status": "wiki",
+      "sourceLine": 692
+    },
+    "vs-treamer": {
+      "title": "vs.TREAMEЯ",
+      "artist": "AAAAoi(ああああ+Aoi)",
+      "status": "curated"
+    },
+    "vulcanus": {
+      "title": "Vulcānus",
+      "artist": "Team Grimoire vs Aoi",
+      "illustrator": "月裏",
+      "status": "curated"
+    },
+    "wakare-no-jokyoku": {
+      "title": "別れの序曲",
+      "artist": "HyuN feat. Sennzai",
+      "status": "curated"
+    },
+    "wakatterukedo": {
+      "title": "分かってるけど",
+      "artist": "HyuN feat. LyuU",
+      "status": "curated"
+    },
+    "waltz-for-lorelei": {
+      "title": "Waltz for Lorelei",
+      "artist": "Sobrem & 庭師",
+      "status": "wiki",
+      "sourceLine": 76
+    },
+    "water-recreation": {
+      "title": "Water Recreation",
+      "artist": "COR!S",
+      "status": "wiki",
+      "sourceLine": 772
+    },
+    "way-home": {
+      "title": "way home",
+      "artist": "Mono.",
+      "illustrator": "Saclia",
+      "status": "wiki",
+      "sourceLine": 194
+    },
+    "weaver-wanderer": {
+      "title": "Weaver ＆ Wanderer",
+      "artist": "黒魔(Chroma)",
+      "illustrator": "Saclia",
+      "status": "wiki",
+      "sourceLine": 232
+    },
+    "welcome-ssspooky": {
+      "title": "Welcome, SSSpooky!!!",
+      "artist": "Tanchiky & 打打だいず",
+      "status": "wiki",
+      "sourceLine": 829
+    },
+    "whence": {
+      "title": "whence",
+      "artist": "qfeileadh feat. kei_iwata",
+      "status": "wiki"
+    },
+    "wildcard": {
+      "title": "WILDCARD",
+      "artist": "KIRA",
+      "status": "wiki",
+      "sourceLine": 591
+    },
+    "windsurfer": {
+      "title": "Windsurfer",
+      "artist": "roər",
+      "status": "wiki",
+      "sourceLine": 204
+    },
+    "wish-upon-vivid-stars": {
+      "title": "Wish Upon Vivid Stars",
+      "artist": "Reku Mochizuki",
+      "status": "wiki",
+      "sourceLine": 691
+    },
+    "witches-party": {
+      "title": "Witches' Party",
+      "artist": "Kirara Magic feat. Shiroroll",
+      "status": "wiki",
+      "sourceLine": 47
+    },
+    "with-u": {
+      "title": "with U",
+      "artist": "t+pazolite & Massive New Krew feat. リリィ(CV:青木志貴)",
+      "status": "wiki",
+      "sourceLine": 255
+    },
+    "within-the-horizon": {
+      "title": "Within the Horizon",
+      "artist": "Jamphibious",
+      "illustrator": "Ether-0",
+      "status": "wiki",
+      "sourceLine": 242
+    },
+    "world-execute-me": {
+      "title": "world.execute(me)",
+      "artist": "Mili",
+      "status": "wiki",
+      "sourceLine": 490
+    },
+    "xenith": {
+      "title": "Xenith",
+      "artist": "Tatsh",
+      "status": "wiki",
+      "sourceLine": 733
+    },
+    "xinzang-bing": {
+      "title": "심장병",
+      "artist": "HyuN feat. HUBOG",
+      "status": "curated"
+    },
+    "xlix": {
+      "title": "XLIX",
+      "artist": "Daily天利 feat. Sayayayako",
+      "status": "wiki",
+      "sourceLine": 788
+    },
+    "yinmn-blue": {
+      "title": "YInMn Blue",
+      "artist": "siqlo",
+      "status": "wiki",
+      "sourceLine": 694
+    },
+    "you-n-die": {
+      "title": "You ＆ DIE",
+      "artist": "USAO",
+      "status": "curated"
+    },
+    "yubikiri-genman-special": {
+      "title": "YUBIKIRI-GENMAN -special edit-",
+      "artist": "Mili",
+      "status": "curated"
+    },
+    "yukianesa": {
+      "title": "Yukianesa",
+      "artist": "tezuka",
+      "status": "wiki",
+      "sourceLine": 75
+    },
+    "yurusaretakunai-volta-remix": {
+      "title": "許されたくない (VOLTA Remix)",
+      "artist": "memex",
+      "status": "curated"
+    },
+    "yusui": {
+      "title": "遊錘",
+      "artist": "Mylta feat. 菊植",
+      "illustrator": "琉Ryuh",
+      "status": "curated"
+    }
+  },
+  "packs": {
+    "bms-1": "BMS 曲包 1",
+    "bms-3": "BMS 曲包 3",
+    "bms-4": "BMS 曲包 4",
+    "bms-5": "BMS 曲包 5",
+    "bms-6": "BMS 曲包 6",
+    "bms-7": "BMS 曲包 7",
+    "bms-8": "BMS 曲包 8",
+    "bms-9": "BMS 曲包 9",
+    "bms-10": "BMS 曲包 10",
+    "bms-11": "BMS 曲包 11",
+    "bms-12": "BMS 曲包 12",
+    "bms-13": "BMS 曲包 13",
+    "bms-14": "BMS 曲包 14",
+    "collab-arcaea": "Arcaea 联动",
+    "collab-cosmicradio": "Cosmic Radio 2025",
+    "collab-cytus2": "Cytus II 联动",
+    "collab-deemo2": "DEEMO II 联动",
+    "collab-dynamix": "Dynamix 联动",
+    "collab-dynamix_universe": "Dynamix Universe 联动",
+    "collab-kalpa": "KALPA 联动",
+    "collab-kalpa-cosmic-symphony": "KALPA：Cosmic Symphony",
+    "collab-lanota": "Lanota 联动",
+    "collab-livemania": "LiveMania",
+    "collab-maimai": "maimai でらっくす 联动",
+    "collab-mili": "Mili Selection",
+    "collab-musedash": "Muse Dash 联动",
+    "collab-noisz": "NOISZ SL + PK GODHAND 联动",
+    "collab-paradigm": "Paradigm: Reboot 联动",
+    "collab-phigros": "Phigros 联动",
+    "collab-rizline": "Rizline 联动",
+    "collab-tanchiky": "Tanchiky Selection",
+    "collab-tanoc": "HARDCORE TANO*C 联动",
+    "collab-tanoc-2": "HARDCORE TANO*C 联动 II",
+    "collab-wacca": "WACCA 联动",
+    "collab-wacca-ii": "WACCA 联动 II",
+    "ex-ch2": "第二章挑战",
+    "main-ch3": "第三章：泾渭分明之地",
+    "paid-singles": "付费单曲",
+    "pop-1": "单曲精选",
+    "rpg-1": "异世界物语",
+    "season-s0": "Season 0：Rock (Y)our World",
+    "seeker-singles": "星明りの秘蔵",
+    "side-bolt": "轨迹：梦想萌芽的那一天",
+    "side-jolly": "Rotaeno 学园祭",
+    "side-kid": "Rotaeno 学园祭",
+    "side-newlife": "永久の光、新たな命へ",
+    "side-sc1": "第一章：旅的开始",
+    "side-sc2": "第二章：灾难与希望",
+    "side-sc3": "第三章：泾渭分明之地",
+    "side-summer": "盛夏的秘密作战",
+    "vsinger-1": "VSinger 联动 I",
+    "vsinger-2": "VSinger 联动 II",
+    "vsinger-deco27": "DECO*27 联动",
+    "vsinger-pinocchiop": "PinocchioP 联动",
+    "vtuber-1": "VTuber 联动"
+  },
+  "characters": {
+    "acid": "Acid",
+    "arcaea": "Arcaea 联动角色",
+    "buro": "Buro（Muse Dash）",
+    "cytus2_ivy": "Ivy（Cytus II）",
+    "cytus2_neko": "NEKO#ΦωΦ（Cytus II）",
+    "cytus2_vanessa": "Vanessa（Cytus II）",
+    "dynamix_universe_citrineilot": "Citrine & Ilot（Dynamix Universe）",
+    "elizabeth": "Elizabeth（WACCA）",
+    "hoppe": "Hoppe",
+    "ilot": "Ilot",
+    "jolly": "Jolly",
+    "kakari": "Kakari",
+    "kalpa_cosmic_symphony_noah": "Noah（KALPA）",
+    "lulua": "Lulua",
+    "mika": "Mika",
+    "mona": "Mona",
+    "noah": "Noah",
+    "paradigm_bolt_alkaid": "Alkaid（Paradigm: Reboot）",
+    "puno": "Puno",
+    "rumil": "Rumil",
+    "saku": "Saku",
+    "saku4an": "Saku4an（Cytus II）",
+    "salt": "Salt",
+    "slime": "Slime",
+    "tommy": "Tommy",
+    "wacca_elizabeth": "Elizabeth（WACCA）"
+  },
+  "startup": {
+    "sc1 startup": "第一章启动视觉",
+    "261 full": "2.6.1 版本启动视觉",
+    "262 startup": "2.6.2 版本启动视觉",
+    "ch1 startup": "第一章启动视觉",
+    "cytus2 startup": "Cytus II 联动启动视觉",
+    "kai startup": "KAI 联动启动视觉",
+    "maimaistartup": "maimai 联动启动视觉",
+    "sc3 back": "第三章背景视觉",
+    "sc3 backcoverblurred": "第三章背景视觉（模糊版）",
+    "sc3 startup": "第三章启动视觉"
+  },
+  "story": {
+    "cg 3rd anniversary": "三周年纪念 CG",
+    "cg aqua childhood": "Aqua 童年 CG",
+    "cg aqua clear": "Aqua 通关 CG",
+    "cg aqua main visual 2020": "Aqua 主视觉（2020）",
+    "cg aqua new year 2021": "Aqua 新年主视觉（2021）",
+    "cg ch2 clear": "第二章通关 CG",
+    "cg wacca thank you": "WACCA 联动致谢 CG",
+    "cg other 20230705 anniversary 1": "周年纪念 CG 1",
+    "cg other 20230705 anniversary 2": "周年纪念 CG 2",
+    "cg other 20230705 anniversary 3": "周年纪念 CG 3"
+  },
+  "diagnostics": {
+    "songCount": 420,
+    "unresolvedSongIds": [
+      "hyun-jrpg",
+      "kenka",
+      "kouen",
+      "the-golden-heaven"
+    ],
+    "note": "Formal titles, composers, and illustrators are used where the public Rotaeno song pages provide them. Four APK-only song IDs remain explicitly pending human verification and never fall back to source filenames."
+  }
+}

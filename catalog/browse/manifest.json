@@ -49,17 +49,17 @@
   },
   "catalog": {
     "catalogId": "019fefd6-9c49-7ca0-a760-adc76811a511",
-    "catalogSha256": "69fbd0f61c1d61f8e97faf3d4028bc3a7f10c3117672167f60f1524fe2f74b3a",
-    "catalogGeneratedAt": "2026-08-25T15:58:52.351Z"
+    "catalogSha256": "ed7c76d53dd22a4ab1e878f527a329891a204e6f1b81dfa43fa6d08a20c8c53f",
+    "catalogGeneratedAt": "2026-08-26T07:44:27.169Z"
   },
   "files": {
     "arcaea": "arcaea.json",
     "phigros": "phigros.json",
+    "manifest": "manifest.json",
+    "diagnostics": "diagnostics.json",
     "rizline": "rizline.json",
     "rizlineSemantics": "rizline-semantics.json",
     "infalsus": "infalsus.json",
-    "infalsusSemantics": "infalsus-semantics.json",
-    "manifest": "manifest.json",
-    "diagnostics": "diagnostics.json"
+    "infalsusSemantics": "infalsus-semantics.json"
   }
 }

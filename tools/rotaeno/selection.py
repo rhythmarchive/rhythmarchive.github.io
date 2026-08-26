@@ -69,6 +69,54 @@ def _safe_text(value: Any) -> str | None:
     return cleaned
 
 
+def _curation_item(curation: dict[str, Any], collection: str, key: str) -> dict[str, Any]:
+    values = curation.get(collection)
+    if not isinstance(values, dict):
+        return {}
+    item = values.get(key)
+    if isinstance(item, str):
+        return {"title": item, "status": "curated"}
+    return item if isinstance(item, dict) else {}
+
+
+def _display_fields(item: dict[str, Any], fallback_status: str = "needs-human-review") -> dict[str, str]:
+    status = _safe_text(item.get("status")) or fallback_status
+    return {
+        "displayMetadataSource": "rotaeno-curation",
+        "displayMetadataStatus": status,
+    }
+
+
+def _character_curation(curation: dict[str, Any], relative: str) -> dict[str, Any]:
+    values = curation.get("characters")
+    if not isinstance(values, dict):
+        return {}
+    normalized = re.sub(r"[^a-z0-9]+", "", relative.casefold())
+    candidates: list[tuple[int, str, dict[str, Any]]] = []
+    for key, value in values.items():
+        if not isinstance(key, str):
+            continue
+        candidate = {"title": value, "status": "curated"} if isinstance(value, str) else value
+        if not isinstance(candidate, dict):
+            continue
+        token = re.sub(r"[^a-z0-9]+", "", key.casefold())
+        if token and token in normalized:
+            candidates.append((len(token), key, candidate))
+    return max(candidates, default=(0, "", {}))[2]
+
+
+def _curated_or_fallback(
+    item: dict[str, Any],
+    fallback: str,
+    *,
+    disallow: set[str] | None = None,
+) -> str:
+    title = _safe_text(item.get("title"))
+    if title and (not disallow or title.casefold() not in {value.casefold() for value in disallow} or item.get("status")):
+        return title
+    return fallback
+
+
 def _slug(value: str, fallback: str = "asset") -> str:
     result = re.sub(r"[\\/\0]+", "-", value.strip())
     result = re.sub(r"[^\w .()\-\u4e00-\u9fff]+", "-", result, flags=re.UNICODE)
@@ -166,9 +214,13 @@ def build_selection(
     pack_inventory_path: str | Path,
     version: str = "2.26.1",
     channel: str = "mainland_cn",
+    display_metadata_path: str | Path = "catalog/curation/rotaeno-display-metadata.json",
 ) -> dict[str, Any]:
     semantic = _read_json(manifest_path)
     resources = semantic.get("resources", []) if isinstance(semantic, dict) else []
+    display_metadata = _read_json(display_metadata_path)
+    if not isinstance(display_metadata, dict) or display_metadata.get("game") != "rotaeno":
+        raise ValueError("Rotaeno display metadata curation is missing or has the wrong game")
     songs = {str(item.get("id")): item for item in _read_json(song_inventory_path) if isinstance(item, dict) and item.get("id")}
     packs = {str(item.get("id")): item for item in _read_json(pack_inventory_path) if isinstance(item, dict) and item.get("id")}
     inventory = _bundle_inventory(bundle_inventory_path)
@@ -186,14 +238,16 @@ def build_selection(
         asset_guid = _safe_text(row.get("asset_guid"))
         if semantic_type == "song_jacket":
             song = songs.get(stable_id, {})
-            title = _safe_text(song.get("name_original")) or stable_id
-            artist = _safe_text(song.get("artist"))
+            curated = _curation_item(display_metadata, "songs", stable_id)
+            title = _curated_or_fallback(curated, "Rotaeno \u66f2\u7ed8\uff08\u66f2\u76ee\u4fe1\u606f\u5f85\u6838\u5b9e\uff09", disallow={stable_id})
+            artist = _safe_text(curated.get("artist")) or _safe_text(song.get("artist"))
             metadata = {
                 "semanticType": semantic_type,
                 "songId": stable_id,
-                "illustrator": _safe_text(song.get("illustrator")),
+                "illustrator": _safe_text(curated.get("illustrator")) or _safe_text(song.get("illustrator")),
                 "releaseVersion": _safe_text(song.get("release_version")),
                 "sourceLogicalKey": row.get("logical_key"),
+                **_display_fields(curated),
             }
             source_identity = f"song-jacket:{stable_id}:{asset_guid or _stable_suffix(str(row.get('logical_key') or ''))}"
             filename = f"Rotaeno - {title} [{stable_id}].png"
@@ -201,12 +255,17 @@ def build_selection(
         elif semantic_type == "song_pack_banner":
             pack_id = stable_id
             pack = packs.get(pack_id, {})
-            title = _safe_text(pack.get("name_term")) or pack_id
+            curated = _curation_item(display_metadata, "packs", pack_id)
+            local_title = _safe_text(pack.get("name_term"))
+            if local_title and local_title.casefold().startswith(("db/", "loc/")):
+                local_title = None
+            title = _curated_or_fallback(curated, "Rotaeno \u66f2\u5305\u5c01\u9762\uff08\u540d\u79f0\u5f85\u6838\u5b9e\uff09", disallow={pack_id})
             metadata = {
                 "semanticType": semantic_type,
                 "packName": title,
                 "packId": pack_id,
                 "sourceLogicalKey": row.get("logical_key"),
+                **_display_fields(curated),
             }
             source_identity = f"pack-cover:{pack_id}:{asset_guid or _stable_suffix(str(row.get('logical_key') or ''))}"
             filename = f"Rotaeno - Pack - {pack_id} - {asset_guid or _stable_suffix(source_identity)}.png"
@@ -214,10 +273,13 @@ def build_selection(
             artist = None
         else:
             logical = str(row.get("logical_key") or "story-cg")
-            title = _pretty(logical.rsplit("/", 1)[-1], "Rotaeno story CG")
+            raw_name = _pretty(logical.rsplit("/", 1)[-1], "story-cg")
+            curated = _curation_item(display_metadata, "story", raw_name.casefold())
+            title = _curated_or_fallback(curated, "Rotaeno \u5267\u60c5 CG\uff08\u540d\u79f0\u5f85\u6838\u5b9e\uff09")
             metadata = {
                 "semanticType": semantic_type,
                 "sourceLogicalKey": logical,
+                **_display_fields(curated),
             }
             source_identity = f"story-cg:{asset_guid or _stable_suffix(logical)}"
             filename = f"Rotaeno - Story CG - {_slug(title)}.png"
@@ -255,7 +317,8 @@ def build_selection(
     for bundle in character_bundles:
         canonical = _canonical_bundle(bundle)
         relative = _path_relative(canonical, "/_scriptableobjects/collectables/character/")
-        title = _pretty(relative.rsplit("/", 1)[-1], "Rotaeno driver")
+        curated = _character_curation(display_metadata, relative)
+        title = _curated_or_fallback(curated, "Rotaeno \u9a7e\u9a76\u5458\u7acb\u7ed8\uff08\u540d\u79f0\u5f85\u6838\u5b9e\uff09")
         source_identity = f"character:{relative}"
         logical_key = _path_logical_key(canonical, "character")
         entries.append(
@@ -270,6 +333,7 @@ def build_selection(
                     "semanticType": "pilot_full_art",
                     "characterName": title,
                     "sourceBundle": bundle,
+                    **_display_fields(curated),
                 },
                 download_filename=f"Rotaeno - Driver - {_slug(title)}.png",
                 texture_name=_bundle_texture_name(bundle),
@@ -289,7 +353,9 @@ def build_selection(
     for bundle in startup_bundles:
         canonical = _canonical_bundle(bundle)
         relative = _path_relative(canonical, "/_scriptableobjects/collectables/startup/")
-        title = _pretty(relative.rsplit("/", 1)[-1], "Rotaeno startup visual")
+        raw_name = _pretty(relative.rsplit("/", 1)[-1], "startup")
+        curated = _curation_item(display_metadata, "startup", raw_name.casefold())
+        title = _curated_or_fallback(curated, "Rotaeno \u542f\u52a8\u753b\u9762\uff08\u540d\u79f0\u5f85\u6838\u5b9e\uff09")
         source_identity = f"startup:{relative}"
         logical_key = _path_logical_key(canonical, "startup")
         entries.append(
@@ -303,6 +369,7 @@ def build_selection(
                 metadata={
                     "semanticType": "startup_art",
                     "sourceBundle": bundle,
+                    **_display_fields(curated),
                 },
                 download_filename=f"Rotaeno - Startup - {_slug(title)}.png",
                 texture_name=_bundle_texture_name(bundle),
@@ -354,6 +421,7 @@ def main() -> int:
     parser.add_argument("--pack-inventory", required=True)
     parser.add_argument("--version", default="2.26.1")
     parser.add_argument("--channel", default="mainland_cn")
+    parser.add_argument("--display-metadata", default="catalog/curation/rotaeno-display-metadata.json")
     parser.add_argument("--out", required=True)
     args = parser.parse_args()
     result = build_selection(
@@ -363,6 +431,7 @@ def main() -> int:
         pack_inventory_path=args.pack_inventory,
         version=args.version,
         channel=args.channel,
+        display_metadata_path=args.display_metadata,
     )
     output = Path(args.out)
     output.parent.mkdir(parents=True, exist_ok=True)
