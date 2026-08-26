@@ -13,6 +13,15 @@ export type PublicPreview = {
   large: PublicAsset | null;
 };
 
+export type PublicChart = {
+  difficulty: string;
+  level?: string;
+  title?: string;
+  artist?: string;
+  available?: boolean;
+  status?: "available" | "legacy" | "error" | "unavailable";
+};
+
 export type PublicDownload = {
   url: string;
   downloadFilename: string;
@@ -49,6 +58,8 @@ export type PublicResource = {
   facets?: Record<string, string[]>;
   artist?: string;
   metadata: Record<string, string | number | boolean>;
+  charts?: PublicChart[];
+  chartDataStatus?: "available" | "unavailable";
   variants: PublicVariant[];
   preview: PublicPreview;
   original?: PublicDownload;

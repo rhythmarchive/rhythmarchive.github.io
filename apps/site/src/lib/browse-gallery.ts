@@ -8,7 +8,7 @@ import type {
 import type { GameId, ResourceTypeId } from "./game-config";
 import type { CategoryBrowseProjectionType } from "../../../../packages/domain/src/browse.js";
 import { normalizeSearchText } from "./search";
-import type { PublicDownload, PublicPreview, PublicResource, PublicSiteData } from "./types";
+import type { PublicChart, PublicDownload, PublicPreview, PublicResource, PublicSiteData } from "./types";
 
 export const BROWSE_GALLERY_SCHEMA_VERSION = 1 as const;
 export const BROWSE_PAGE_SIZE = 48;
@@ -19,12 +19,16 @@ export type ArcaeaDifficulty = (typeof ARCAEA_DIFFICULTIES)[number];
 export const PHIGROS_DIFFICULTIES = ["EZ", "HD", "IN", "AT"] as const;
 export type PhigrosDifficulty = (typeof PHIGROS_DIFFICULTIES)[number];
 
+export const INFALSUS_DIFFICULTIES = ["MIN", "EVO", "ULT", "FBD"] as const;
+export type InfalsusDifficulty = (typeof INFALSUS_DIFFICULTIES)[number];
+
 export type BrowseGame = "arcaea" | "phigros" | "rizline" | "infalsus";
 export type BrowseRecordKind = "song" | "track" | "special" | "archive-extra" | "unresolved-extra";
 export type BrowseBadge = string;
 export type BrowseArcaeaChart = ArcaeaSongRecordType["charts"][number];
 export type BrowsePhigrosChart = PhigrosTrackRecordType["charts"][number];
-export type BrowseChart = BrowseArcaeaChart | BrowsePhigrosChart;
+export type BrowseInfalsusChart = PublicChart;
+export type BrowseChart = BrowseArcaeaChart | BrowsePhigrosChart | BrowseInfalsusChart;
 
 export type BrowseResolvedResource = {
   resourceId: string;
@@ -59,6 +63,7 @@ export type BrowseGalleryItem = BrowseResolvedResource & {
   artworks: BrowseArtwork[];
   artworkRole?: string;
   selectedArtworkDifficulty?: ArcaeaDifficulty;
+  selectedChartDifficulty?: string;
   badge?: BrowseBadge;
   songId?: string;
   pack?: string | null;
@@ -139,13 +144,13 @@ export type RizlineBrowseUrlState = {
   sort: RizlineBrowseSort;
   disc: string[];
   series: string[];
-  chart: [];
+  chart: string[];
 };
 export type InfalsusBrowseUrlState = {
   game: "infalsus";
   q: string;
   sort: InfalsusBrowseSort;
-  chart: [];
+  chart: InfalsusDifficulty[];
 };
 
 
@@ -174,13 +179,12 @@ export type PhigrosFacetOptions = {
 };
 
 export type RizlineFacetOptions = {
-
-  charts: [];
+  charts: string[];
   discs: string[];
   trackSeries: string[];
 };
 export type InfalsusFacetOptions = {
-  charts: [];
+  charts: InfalsusDifficulty[];
 };
 
 
@@ -530,10 +534,17 @@ function buildInfalsusItems(
       recordKind: "song",
       displayTitle: annotation.displayTitle ?? resource.displayTitle,
       ...(artist ? { artist } : {}),
-      searchTerms: searchTerms([...annotation.searchTerms, annotation.displayTitle, resource.displayTitle, artist, songId]),
+      searchTerms: searchTerms([
+        ...annotation.searchTerms,
+        annotation.displayTitle,
+        resource.displayTitle,
+        artist,
+        songId,
+        ...(resource.charts ?? []).flatMap((chart) => [chart.difficulty, chart.level]),
+      ]),
       titleAliases: searchTerms([annotation.displayTitle, resource.displayTitle]),
       artistAliases: searchTerms([artist]),
-      charts: [],
+      charts: resource.charts ?? [],
       artworks: [artwork],
       artworkRole: artwork.role,
       ...(songId ? { songId } : {}),
@@ -583,10 +594,14 @@ export function getBrowseFacetOptions(data: BrowseGalleryData): BrowseFacetOptio
     const charts = PHIGROS_DIFFICULTIES.filter((difficulty) => data.items.some((item) => item.recordKind === "track" && item.charts.some((chart) => isPhigrosChart(chart) && chart.structurallyPresent && !chart.errorVariant && chart.difficultyClass === difficulty)));
     return { charts };
   }
-  if (data.game === "infalsus") return { charts: [] };
+  if (data.game === "infalsus") {
+    const charts = INFALSUS_DIFFICULTIES.filter((difficulty) => data.items.some((item) => item.recordKind === "song" && item.charts.some((chart) => isPublicChart(chart) && chart.difficulty === difficulty && isFilterablePublicChart(chart))));
+    return { charts };
+  }
   const discs = unique(data.items.flatMap((item) => item.recordKind === "song" && item.disc ? [item.disc] : []), compareText);
   const trackSeries = unique(data.items.flatMap((item) => item.recordKind === "song" ? (item.trackSeries ?? []) : []), compareText);
-  return { charts: [], discs, trackSeries };
+  const charts = unique(data.items.flatMap((item) => item.recordKind === "song" ? item.charts.filter(isPublicChart).filter(isFilterablePublicChart).map((chart) => chart.difficulty) : []), compareText);
+  return { charts, discs, trackSeries };
 }
 
 export function selectBrowseArtwork(item: BrowseGalleryItem, selectedDifficulties: string[]): BrowseArtwork {
@@ -615,6 +630,10 @@ export function displayBrowseItem(item: BrowseGalleryItem, selectedDifficulties:
   const selectedChart = item.game === "arcaea" && artwork.difficultyClass
     ? item.charts.find((chart): chart is BrowseArcaeaChart => isArcaeaChart(chart) && chart.difficultyClass === artwork.difficultyClass)
     : undefined;
+  const selectedChartDifficulty = selectedDifficulties.length === 1
+    && item.charts.some((chart) => isPublicChart(chart) && chart.difficulty === selectedDifficulties[0] && isFilterablePublicChart(chart))
+    ? selectedDifficulties[0]
+    : undefined;
   return {
     ...item,
     ...artwork,
@@ -622,6 +641,7 @@ export function displayBrowseItem(item: BrowseGalleryItem, selectedDifficulties:
     ...(selectedChart?.artist ? { artist: selectedChart.artist } : {}),
     artworkRole: artwork.role,
     ...(artwork.difficultyClass ? { selectedArtworkDifficulty: artwork.difficultyClass } : {}),
+    ...(selectedChartDifficulty ? { selectedChartDifficulty } : {}),
   };
 }
 
@@ -638,9 +658,12 @@ export function filterBrowseItems(items: BrowseGalleryItem[], state: BrowseUrlSt
       if (state.ai && !displayBrowseItem(item, state.chart).hasUpscaled) return false;
     } else if (state.game === "phigros") {
       if (!matchesPhigrosCharts(item, state.chart)) return false;
+    } else if (state.game === "infalsus") {
+      if (!matchesPublicCharts(item, state.chart)) return false;
     } else if (state.game === "rizline") {
       if (state.disc.length > 0 && !state.disc.includes(item.disc ?? "")) return false;
       if (state.series.length > 0 && !(item.trackSeries ?? []).some((value) => state.series.includes(value))) return false;
+      if (!matchesPublicCharts(item, state.chart)) return false;
     }
     return true;
   });
@@ -674,6 +697,16 @@ function matchesPhigrosCharts(item: BrowseGalleryItem, selectedDifficulties: Phi
   if (selectedDifficulties.length === 0) return true;
   if (item.recordKind !== "track") return false;
   return item.charts.some((chart) => isPhigrosChart(chart) && chart.structurallyPresent && !chart.errorVariant && selectedDifficulties.includes(chart.difficultyClass as PhigrosDifficulty));
+}
+
+function matchesPublicCharts(item: BrowseGalleryItem, selectedDifficulties: string[]): boolean {
+  if (selectedDifficulties.length === 0) return true;
+  if (item.recordKind !== "song") return false;
+  return item.charts.some((chart) => isPublicChart(chart) && isFilterablePublicChart(chart) && selectedDifficulties.includes(chart.difficulty));
+}
+
+function isFilterablePublicChart(chart: PublicChart): boolean {
+  return chart.available !== false && chart.status !== "error" && chart.status !== "legacy";
 }
 
 export function compareBrowseItems(left: BrowseGalleryItem, right: BrowseGalleryItem, sort: ArcaeaBrowseSort | PhigrosBrowseSort | RizlineBrowseSort | InfalsusBrowseSort): number {
@@ -796,7 +829,7 @@ export function parseBrowseUrlState(game: BrowseGame, input: URLSearchParams | s
   }
   if (game === "infalsus") {
     const sort: InfalsusBrowseSort = isInfalsusSort(sortValue) ? sortValue : "default";
-    return { game, q, sort, chart: [] };
+    return { game, q, sort, chart: readFacetValues(params, "chart", (options as InfalsusFacetOptions).charts) as InfalsusDifficulty[] };
   }
   const sort: RizlineBrowseSort = isRizlineSort(sortValue) ? sortValue : "default";
   const rizlineOptions = options as RizlineFacetOptions;
@@ -806,7 +839,7 @@ export function parseBrowseUrlState(game: BrowseGame, input: URLSearchParams | s
     sort,
     disc: readFacetValues(params, "disc", rizlineOptions.discs),
     series: readFacetValues(params, "series", rizlineOptions.trackSeries),
-    chart: [],
+    chart: readFacetValues(params, "chart", rizlineOptions.charts),
   };
 }
 
@@ -827,11 +860,16 @@ export function serializeBrowseUrlState(state: BrowseUrlState): URLSearchParams 
   } else if (state.game === "phigros") {
     const charts = stableValues(state.chart, (left, right) => PHIGROS_DIFFICULTIES.indexOf(left as PhigrosDifficulty) - PHIGROS_DIFFICULTIES.indexOf(right as PhigrosDifficulty));
     if (charts.length > 0) params.set("chart", charts.join(","));
+  } else if (state.game === "infalsus") {
+    const charts = stableValues(state.chart, (left, right) => INFALSUS_DIFFICULTIES.indexOf(left as InfalsusDifficulty) - INFALSUS_DIFFICULTIES.indexOf(right as InfalsusDifficulty));
+    if (charts.length > 0) params.set("chart", charts.join(","));
   } else if (state.game === "rizline") {
     const discs = stableValues(state.disc, compareText);
     const series = stableValues(state.series, compareText);
+    const charts = stableValues(state.chart, compareText);
     if (discs.length > 0) params.set("disc", discs.join(","));
     if (series.length > 0) params.set("series", series.join(","));
+    if (charts.length > 0) params.set("chart", charts.join(","));
   }
   return params;
 }
@@ -872,6 +910,10 @@ function isArcaeaChart(chart: BrowseChart): chart is BrowseArcaeaChart {
 
 function isPhigrosChart(chart: BrowseChart): chart is BrowsePhigrosChart {
   return "structurallyPresent" in chart;
+}
+
+function isPublicChart(chart: BrowseChart): chart is BrowseInfalsusChart {
+  return "difficulty" in chart;
 }
 
 function versionParts(value: string): string[] | undefined {

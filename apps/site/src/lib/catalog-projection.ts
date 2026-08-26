@@ -3,7 +3,7 @@ import { categoryOrderIndex, displayVariantLabel, gameCategoryLabel, GAME_CONFIG
 import { formatArcaeaAddedVersion, normalizePublicDisplay } from "./public-display";
 import { normalizeSearchText } from "./search";
 import { sortPublicGames } from "./game-index";
-import type { PublicAsset, PublicCategory, PublicDownload, PublicGameIndex, PublicPreview, PublicResource, PublicSearchEntry, PublicSiteData, PublicVariant } from "./types";
+import type { PublicAsset, PublicCategory, PublicChart, PublicDownload, PublicGameIndex, PublicPreview, PublicResource, PublicSearchEntry, PublicSiteData, PublicVariant } from "./types";
 import { objectUrl } from "./url";
 
 const PUBLIC_METADATA_KEYS = new Set([
@@ -33,6 +33,7 @@ const PUBLIC_METADATA_KEYS = new Set([
   "relatedSongId",
   "songId",
   "specialYear",
+  "specialArtId",
   "musicArtist",
   "illustrator",
   "trackSeries",
@@ -153,6 +154,7 @@ function projectResource(resource: Resource, variants: Variant[], renditionsByVa
   const display = normalizePublicDisplay(resource, resource.game === "rotaeno" ? "Rotaeno \u56fe\u7247\u8d44\u6e90\uff08\u540d\u79f0\u5f85\u6838\u5b9e\uff09" : original?.downloadFilename);
   const metadata = formatPublicMetadata(resource.game, { ...pickPublicMetadata(resource), ...filterPublicMetadata(display.metadata), ...derivedPublicMetadata(resource, phigrosAprilFoolsYear) });
   const artist = display.artist ?? (typeof metadata.artist === "string" ? metadata.artist : undefined);
+  const charts = publicChartsFromMetadata(resource);
 
   return {
     resourceId: resource.id,
@@ -164,11 +166,46 @@ function projectResource(resource: Resource, variants: Variant[], renditionsByVa
     displayTitle: display.title || (resource.game === "rotaeno" ? "Rotaeno \u56fe\u7247\u8d44\u6e90\uff08\u540d\u79f0\u5f85\u6838\u5b9e\uff09" : original?.downloadFilename || "\u672a\u547d\u540d\u8d44\u6e90"),
     ...(artist ? { artist } : {}),
     metadata,
+    ...(resource.resourceType === "jacket" ? { charts, chartDataStatus: charts.length > 0 ? "available" as const : "unavailable" as const } : {}),
     variants: projectedVariants,
     preview: active?.preview ?? emptyPreview(),
     ...(original ? { original, downloadFilename: original.downloadFilename, mime: original.mime, sizeBytes: original.sizeBytes } : {}),
     ...(upscaled ? { upscaled } : {}),
   };
+}
+
+const INFALSUS_CHART_DIFFICULTIES: Record<string, string> = {
+  "1": "MIN",
+  "2": "EVO",
+  "4": "ULT",
+  "8": "FBD",
+};
+
+function publicChartsFromMetadata(resource: Resource): PublicChart[] {
+  if (resource.game !== "infalsus" || resource.resourceType !== "jacket") return [];
+  const rawCharts = resource.metadata.charts;
+  if (!Array.isArray(rawCharts)) return [];
+  return rawCharts
+    .flatMap((candidate) => {
+      if (!candidate || typeof candidate !== "object") return [];
+      const chart = candidate as Record<string, unknown>;
+      const rawDifficulty = typeof chart.difficulty === "number"
+        ? String(chart.difficulty)
+        : typeof chart.difficulty === "string"
+          ? chart.difficulty.trim().toUpperCase()
+          : "";
+      const difficulty = INFALSUS_CHART_DIFFICULTIES[rawDifficulty] ?? (["MIN", "EVO", "ULT", "FBD"].includes(rawDifficulty) ? rawDifficulty : undefined);
+      if (!difficulty) return [];
+      const available = typeof chart.available === "boolean" ? chart.available : true;
+      const rating = typeof chart.rating === "number" || typeof chart.rating === "string" ? String(chart.rating) : undefined;
+      return [{
+        difficulty,
+        ...(rating ? { level: rating } : {}),
+        available,
+        status: available ? "available" as const : "unavailable" as const,
+      } satisfies PublicChart];
+    })
+    .sort((left, right) => (Object.values(INFALSUS_CHART_DIFFICULTIES).indexOf(left.difficulty) - Object.values(INFALSUS_CHART_DIFFICULTIES).indexOf(right.difficulty)) || left.difficulty.localeCompare(right.difficulty));
 }
 
 function formatPublicMetadata(game: GameId, metadata: Record<string, string | number | boolean>): Record<string, string | number | boolean> {
@@ -268,6 +305,12 @@ function toSearchEntry(resource: PublicResource, sourceResource?: Resource): Pub
     keywordSet.add(String(value));
   }
   for (const variant of resource.variants) keywordSet.add(variant.label);
+  for (const chart of resource.charts ?? []) {
+    keywordSet.add(chart.difficulty);
+    if (chart.level) keywordSet.add(chart.level);
+    if (chart.title) keywordSet.add(chart.title);
+    if (chart.artist) keywordSet.add(chart.artist);
+  }
   const provenanceKeywords: Array<string | undefined> = sourceResource?.game === "rizline" || sourceResource?.game === "rotaeno" ? [] : (sourceResource?.provenance ?? []).map((entry) => entry.sourceFilename);
   const sourceMetadataKeywords = sourceResource?.game === "rotaeno" ? [] : [sourceResource?.title, ...(sourceResource?.aliases ?? []).map((alias) => alias.value)];
   for (const value of [...sourceMetadataKeywords, ...provenanceKeywords]) {

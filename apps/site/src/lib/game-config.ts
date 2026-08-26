@@ -55,6 +55,7 @@ export const GAME_CONFIG: Record<GameId, GameConfig> = {
     filters: { difficulty: true, upscale: true },
     metadataLabels: {
       artist: "曲师",
+      songId: "歌曲 ID",
       pack: "曲包",
       packName: "曲包",
       side: "Side (APK)",
@@ -82,7 +83,7 @@ export const GAME_CONFIG: Record<GameId, GameConfig> = {
     displayName: "Phigros",
     categoryOrder: ["jacket", "character-avatar", "pack-cover", "phigros-april-fools", "other"],
     featuredCategories: ["jacket", "pack-cover", "character-avatar", "phigros-april-fools"],
-    filters: { difficulty: false, upscale: false },
+    filters: { difficulty: true, upscale: false },
     metadataLabels: {
       artist: "曲师",
       pack: "曲包",
@@ -106,6 +107,9 @@ export const GAME_CONFIG: Record<GameId, GameConfig> = {
       artist: "曲师",
       musicArtist: "曲师",
       illustrator: "画师",
+      songId: "歌曲 ID",
+      gameVersion: "资源版本",
+      specialArtId: "特殊插画 ID",
       trackSeries: "精选集",
       seriesName: "系列名称",
       disc: "Disc",
@@ -129,7 +133,7 @@ export const GAME_CONFIG: Record<GameId, GameConfig> = {
     displayName: "In Falsus",
     categoryOrder: ["jacket"],
     featuredCategories: ["jacket"],
-    filters: { difficulty: false, upscale: false },
+    filters: { difficulty: true, upscale: false },
     metadataLabels: {
       artist: "曲师",
       jacketIllustrator: "曲绘画师",
@@ -147,6 +151,7 @@ export const GAME_CONFIG: Record<GameId, GameConfig> = {
       artist: "曲师",
       illustrator: "画师",
       jacketIllustrator: "曲绘画师",
+      songId: "歌曲 ID",
       pack: "曲包",
       packName: "曲包",
       event: "活动",

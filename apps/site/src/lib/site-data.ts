@@ -12,7 +12,7 @@ import { formatArcaeaAddedVersion } from "./public-display";
 import { GAME_CONFIG, type GameId } from "./game-config";
 import { sortPublicGames } from "./game-index";
 import { ROS_BASE_URL } from "./site-config";
-import type { PublicGameIndex, PublicSiteData } from "./types";
+import type { PublicChart, PublicGameIndex, PublicSiteData } from "./types";
 
 let cachedSiteData: PublicSiteData | undefined;
 let cachedBrowseProjections: FormalBrowseProjections | undefined;
@@ -48,6 +48,7 @@ export function getSiteData(rosBaseUrl = ROS_BASE_URL): PublicSiteData {
 function enrichFormalBrowseMetadata(siteData: PublicSiteData, browse: FormalBrowseProjections): PublicSiteData {
   type MetadataValue = string | number | boolean;
   const valuesByResource = new Map<string, Map<string, Set<MetadataValue>>>();
+  const chartsByResource = new Map<string, PublicChart[]>();
   const add = (resourceId: string | null | undefined, key: string, value: MetadataValue | null | undefined): void => {
     if (!resourceId || value === null || value === undefined || (typeof value === "string" && value.trim().length === 0)) return;
     const byKey = valuesByResource.get(resourceId) ?? new Map<string, Set<MetadataValue>>();
@@ -56,6 +57,30 @@ function enrichFormalBrowseMetadata(siteData: PublicSiteData, browse: FormalBrow
     byKey.set(key, values);
     valuesByResource.set(resourceId, byKey);
   };
+  const addCharts = (resourceId: string | null | undefined, charts: PublicChart[]): void => {
+    if (!resourceId || charts.length === 0) return;
+    const previous = chartsByResource.get(resourceId) ?? [];
+    const merged = new Map(previous.map((chart) => [chartKey(chart), chart]));
+    for (const chart of charts) merged.set(chartKey(chart), chart);
+    chartsByResource.set(resourceId, [...merged.values()]);
+  };
+
+  const arcaeaCharts = (charts: ArcaeaBrowseProjectionType["songs"][number]["charts"]): PublicChart[] => charts.map((chart) => ({
+    difficulty: chart.difficultyClass,
+    level: chart.displayLevel,
+    ...(chart.title ? { title: chart.title } : {}),
+    ...(chart.artist ? { artist: chart.artist } : {}),
+    available: true,
+    status: "available",
+  }));
+  const phigrosCharts = (charts: PhigrosBrowseProjectionType["tracks"][number]["charts"]): PublicChart[] => charts.map((chart) => {
+    const available = chart.structurallyPresent && !chart.errorVariant;
+    return {
+      difficulty: chart.difficultyClass,
+      available,
+      status: chart.errorVariant ? "error" : chart.difficultyClass === "Legacy" ? "legacy" : available ? "available" : "unavailable",
+    };
+  });
 
   for (const song of browse.arcaea.songs) {
     for (const artwork of song.artworks) {
@@ -71,6 +96,7 @@ function enrichFormalBrowseMetadata(siteData: PublicSiteData, browse: FormalBrow
       add(artwork.resourceId, "difficulty", chart?.difficultyClass);
       add(artwork.resourceId, "difficultyTitle", chart?.title);
       add(artwork.resourceId, "difficultyArtist", chart?.artist);
+      addCharts(artwork.resourceId, arcaeaCharts(song.charts));
     }
   }
   for (const special of browse.arcaea.specials) {
@@ -85,6 +111,7 @@ function enrichFormalBrowseMetadata(siteData: PublicSiteData, browse: FormalBrow
   for (const track of browse.phigros.tracks) {
     add(track.artwork?.resourceId, "sourceTitle", track.displayTitle);
     add(track.artwork?.resourceId, "artist", track.displayArtist);
+    addCharts(track.artwork?.resourceId, phigrosCharts(track.charts));
   }
   for (const song of browse.rizline.songs) {
     for (const artwork of song.artworks) {
@@ -114,6 +141,12 @@ function enrichFormalBrowseMetadata(siteData: PublicSiteData, browse: FormalBrow
     const specialReleaseDate = unique(byKey, "specialReleaseDate");
     if (specialReleaseDate !== undefined) metadata.releaseDate = specialReleaseDate;
     if (resource.game === "arcaea" && typeof metadata.version === "string") metadata.version = formatArcaeaAddedVersion(metadata.version);
+    const charts = chartsByResource.get(resource.resourceId) ?? resource.charts ?? (resource.resourceType === "jacket" ? [] : undefined);
+    const chartFacetValues = [...new Set((charts ?? [])
+      .filter((chart) => chart.available !== false && chart.status !== "error" && chart.status !== "legacy")
+      .map((chart) => chart.difficulty))];
+    const facets = { ...resource.facets };
+    if (chartFacetValues.length > 0) facets.chart = chartFacetValues;
     const sourceTitle = unique(byKey, "sourceTitle");
     const difficulty = unique(byKey, "difficulty");
     const difficultyTitle = unique(byKey, "difficultyTitle");
@@ -127,6 +160,11 @@ function enrichFormalBrowseMetadata(siteData: PublicSiteData, browse: FormalBrow
       ...resource,
       ...(resource.resourceType === "jacket" && typeof displayTitle === "string" ? { displayTitle } : {}),
       ...(typeof artist === "string" ? { artist } : {}),
+      ...(resource.resourceType === "jacket" ? {
+        charts: charts ?? [],
+        chartDataStatus: (charts ?? []).length > 0 ? "available" as const : "unavailable" as const,
+      } : {}),
+      ...(Object.keys(facets).length > 0 ? { facets } : {}),
       metadata,
     };
   });
@@ -139,6 +177,12 @@ function enrichFormalBrowseMetadata(siteData: PublicSiteData, browse: FormalBrow
     keywords.add(resource.displayTitle);
     if (resource.artist) keywords.add(resource.artist);
     for (const value of Object.values(resource.metadata)) keywords.add(String(value));
+    for (const chart of resource.charts ?? []) {
+      keywords.add(chart.difficulty);
+      if (chart.level) keywords.add(chart.level);
+      if (chart.title) keywords.add(chart.title);
+      if (chart.artist) keywords.add(chart.artist);
+    }
     return {
       resourceId: resource.resourceId,
       route: resource.route,
@@ -151,6 +195,10 @@ function enrichFormalBrowseMetadata(siteData: PublicSiteData, browse: FormalBrow
     };
   });
   return { ...siteData, resources, searchIndex, galleries };
+}
+
+function chartKey(chart: PublicChart): string {
+  return [chart.difficulty, chart.level ?? "", chart.title ?? "", chart.artist ?? "", chart.status ?? ""].join("|");
 }
 
 export function loadCategoryBrowseProjections(): CategoryBrowseProjections {

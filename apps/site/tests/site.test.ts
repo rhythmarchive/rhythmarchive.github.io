@@ -28,9 +28,22 @@ test("Arcaea added-version labels keep only major and minor components", () => {
   assert.equal(formatArcaeaAddedVersion("6.13"), "6.13");
 });
 
-test("Rizline jacket detail hides technical song and current-version fields", () => {
-  assert.equal(GAME_CONFIG.rizline.metadataLabels.songId, undefined);
-  assert.equal(GAME_CONFIG.rizline.metadataLabels.gameVersion, undefined);
+test("jacket details expose the unified chart field and user-facing identity metadata", () => {
+  assert.equal(GAME_CONFIG.rizline.metadataLabels.songId, "歌曲 ID");
+  assert.equal(GAME_CONFIG.rizline.metadataLabels.gameVersion, "资源版本");
+  assert.equal(GAME_CONFIG.rizline.metadataLabels.specialArtId, "特殊插画 ID");
+  const siteData = getSiteData();
+  for (const game of ["arcaea", "phigros", "rizline", "infalsus", "rotaeno"] as const) {
+    const jackets = siteData.resources.filter((resource) => resource.game === game && resource.resourceType === "jacket");
+    assert.ok(jackets.length > 0);
+    assert.ok(jackets.every((resource) => Array.isArray(resource.charts)));
+  }
+  const infalsusJacket = siteData.resources.find((resource) => resource.game === "infalsus" && resource.resourceType === "jacket");
+  assert.deepEqual(infalsusJacket?.charts?.map((chart) => [chart.difficulty, chart.level]), [["MIN", "1"], ["EVO", "5"], ["ULT", "9"], ["FBD", "11"]]);
+  const rizlineJacket = siteData.resources.find((resource) => resource.game === "rizline" && resource.resourceType === "jacket");
+  assert.equal(rizlineJacket?.chartDataStatus, "unavailable");
+  assert.equal(typeof rizlineJacket?.metadata.songId, "string");
+  assert.equal(typeof rizlineJacket?.metadata.gameVersion, "string");
 });
 
 test("public projection excludes local paths, credentials, and internal provenance", () => {

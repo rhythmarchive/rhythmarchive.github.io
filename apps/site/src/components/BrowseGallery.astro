@@ -1,6 +1,6 @@
 ---
 import BrowseCard from "./BrowseCard.astro";
-import type { BrowseGalleryData } from "../lib/browse-gallery";
+import { getBrowseFacetOptions, type BrowseGalleryData } from "../lib/browse-gallery";
 import { formatCount } from "../lib/format";
 import { BASE_PATH } from "../lib/site-config";
 
@@ -14,6 +14,7 @@ const { data, categoryLabel, galleryUrl } = Astro.props;
 const initialItems = data.items.slice(0, 48);
 const hasUpscale = data.items.some((item) => item.hasUpscaled);
 const searchPlaceholder = data.game === "rizline" ? "搜索曲名、曲师或画师" : "搜索曲名或曲师";
+const chartOptions = getBrowseFacetOptions(data).charts;
 ---
 
 <section class="gallery-shell browse-gallery-shell" data-browse-gallery-root data-gallery-url={galleryUrl} data-base-path={BASE_PATH} data-game={data.game} data-category="jacket" data-total={data.items.length}>
@@ -79,6 +80,15 @@ const searchPlaceholder = data.game === "rizline" ? "搜索曲名、曲师或画
           {hasUpscale ? <label class="filter-check popover-check"><input type="checkbox" data-filter-ai /> <span>含超分版</span></label> : null}
         </div>
       </details>
+    </div>
+  ) : null}
+
+  {data.game !== "arcaea" && chartOptions.length > 0 ? (
+    <div class="browse-filter-row">
+      <div class="filter-toggle-group" aria-label="谱面难度">
+        <span class="filter-group-label">谱面难度</span>
+        <div class="filter-toggles" data-browse-toggle-options="chart"></div>
+      </div>
     </div>
   ) : null}
 

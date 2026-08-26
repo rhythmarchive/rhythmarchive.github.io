@@ -24,8 +24,19 @@ const firstVariant = resource.variants.find((variant) => variant.preferred) ?? r
 const activeVariantIndex = Math.max(0, firstVariant ? resource.variants.findIndex((variant) => variant.variantId === firstVariant.variantId) : 0);
 const related = rankRelatedResources(resource, data.resources);
 const metadata = Object.entries(resource.metadata).filter(([key]) => key !== "artist" && GAME_CONFIG[resource.game].metadataLabels[key]);
+const facetLabels: Record<string, string> = {
+  path: "剧情路径",
+  chapter: "章节",
+  entry: "剧情 Entry",
+  locale: "语言",
+  kind: "类型",
+};
+const facetMetadata = Object.entries(resource.facets ?? {})
+  .filter(([key, values]) => key !== "chart" && facetLabels[key] && values.length > 0)
+  .map(([key, values]) => [facetLabels[key]!, values.join("、")] as [string, string]);
 const preview = firstVariant?.preview.large?.url ?? firstVariant?.preview.medium?.url ?? firstVariant?.preview.small?.url;
 const difficultyValues = [...new Set(resource.variants.map((variant) => variant.difficulty).filter((value): value is string => Boolean(value)))];
+const charts = resource.charts ?? [];
 const primaryDownload = resource.original ?? firstVariant?.original;
 const primaryPreview = firstVariant?.preview.large ?? firstVariant?.preview.medium ?? firstVariant?.preview.small;
 const dimensions = primaryDownload?.width && primaryDownload.height
@@ -45,6 +56,16 @@ function formatBytes(value: number): string {
   if (value < 1024) return String(value) + " B";
   if (value < 1024 * 1024) return (value / 1024).toFixed(1) + " KB";
   return (value / (1024 * 1024)).toFixed(1) + " MB";
+}
+function formatMetadataValue(value: string | number | boolean): string {
+  if (typeof value === "boolean") return value ? "是" : "否";
+  return String(value);
+}
+function chartStatusLabel(status: NonNullable<PublicResource["charts"]>[number]["status"]): string | undefined {
+  if (status === "legacy") return "历史谱面";
+  if (status === "error") return "异常变体";
+  if (status === "unavailable") return "暂不可用";
+  return undefined;
 }
 const description = `${resource.displayTitle}${resource.artist ? ` · ${resource.artist}` : ""} - ${GAME_CONFIG[resource.game].displayName} 图片资源。`;
 ---
@@ -67,12 +88,34 @@ const description = `${resource.displayTitle}${resource.artist ? ` · ${resource
         <span class="section-kicker">{resource.categoryLabel}</span>
         <h1>{resource.displayTitle}</h1>
         {resource.artist ? <p class="detail-artist">{resource.artist}</p> : null}
+        {resource.subtitle ? <p class="detail-subtitle">{resource.subtitle}</p> : null}
+        {resource.badges && resource.badges.length > 0 ? <div class="detail-badges" aria-label="资源标签">{resource.badges.map((badge) => <span class="detail-badge">{badge}</span>)}</div> : null}
         <dl class="detail-meta">
           <div><dt>游戏</dt><dd>{GAME_CONFIG[resource.game].displayName}</dd></div>
           <div><dt>分类</dt><dd>{resource.categoryLabel}</dd></div>
-          {metadata.map(([key, value]) => <div><dt>{GAME_CONFIG[resource.game].metadataLabels[key]}</dt><dd>{String(value)}</dd></div>)}
+          {metadata.map(([key, value]) => <div><dt>{GAME_CONFIG[resource.game].metadataLabels[key]}</dt><dd>{formatMetadataValue(value)}</dd></div>)}
+          {facetMetadata.map(([label, value]) => <div><dt>{label}</dt><dd>{value}</dd></div>)}
           {technicalMetadata.map(([key, value]) => <div><dt>{key}</dt><dd>{value}</dd></div>)}
         </dl>
+        {resource.resourceType === "jacket" ? (
+          <section class="detail-chart-section" aria-labelledby="detail-chart-heading">
+            <div class="detail-section-heading"><h2 id="detail-chart-heading">谱面难度</h2><span>{charts.length > 0 ? `${charts.length} 个` : "暂无数据"}</span></div>
+            {charts.length > 0 ? (
+              <div class="detail-chart-list">
+                {charts.map((chart) => (
+                  <div class="detail-chart-row">
+                    <div class="detail-chart-main"><strong>{chart.difficulty}</strong>{chart.level ? <span>{chart.level}</span> : null}</div>
+                    <div class="detail-chart-copy">
+                      {chart.title ? <span>{chart.title}</span> : null}
+                      {chart.artist ? <span>{chart.artist}</span> : null}
+                      {chartStatusLabel(chart.status) ? <span class="detail-chart-status">{chartStatusLabel(chart.status)}</span> : null}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ) : <p class="detail-note">当前适配器尚未提供可用的谱面难度数据。</p>}
+          </section>
+        ) : null}
         <div class="detail-downloads">
           {resource.variants.map((variant, index) => <DownloadActions variant={variant} active={index === activeVariantIndex} />)}
         </div>

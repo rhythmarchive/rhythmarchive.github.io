@@ -52,7 +52,7 @@ export function applyCategoryBrowseSemantics(siteData: PublicSiteData, projectio
       ...(semantic.badges.length > 0 ? { badges: semantic.badges } : {}),
       ...(semantic.searchTerms.length > 0 ? { searchTerms: semantic.searchTerms } : {}),
       ...(semantic.sortOrder !== undefined ? { sortOrder: semantic.sortOrder } : {}),
-      ...(Object.keys(semantic.facets).length > 0 ? { facets: semantic.facets } : {}),
+      ...(Object.keys({ ...resource.facets, ...semantic.facets }).length > 0 ? { facets: { ...resource.facets, ...semantic.facets } } : {}),
       metadata: { ...resource.metadata, ...semantic.metadata },
     };
   });
@@ -75,7 +75,14 @@ export function getCategoryBrowseConfig(game: GameId, category: string, resource
     { value: "title-asc", label: "名称 A-Z" },
     { value: "title-desc", label: "名称 Z-A" },
   ];
-  if (category === "jacket") return { searchPlaceholder: "搜索曲名或曲师", sortOptions, facets: [] };
+  if (category === "jacket") {
+    const chartOptions = facetOptions(resources, "chart");
+    return {
+      searchPlaceholder: "搜索曲名或曲师",
+      sortOptions,
+      facets: chartOptions.length > 0 ? [{ key: "chart", label: "谱面难度", options: chartOptions }] : [],
+    };
+  }
   if (category === "all") return { searchPlaceholder: "搜索资源", sortOptions, facets: [] };
 
   const placeholder = game === "arcaea"
@@ -145,6 +152,12 @@ function toSemanticSearchEntry(resource: PublicResource, previous?: PublicSearch
   for (const badge of resource.badges ?? []) keywords.add(badge);
   for (const value of Object.values(resource.metadata)) keywords.add(String(value));
   for (const values of Object.values(resource.facets ?? {})) for (const value of values) keywords.add(value);
+  for (const chart of resource.charts ?? []) {
+    keywords.add(chart.difficulty);
+    if (chart.level) keywords.add(chart.level);
+    if (chart.title) keywords.add(chart.title);
+    if (chart.artist) keywords.add(chart.artist);
+  }
   return {
     resourceId: resource.resourceId,
     route: resource.route,

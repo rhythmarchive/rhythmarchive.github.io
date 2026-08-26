@@ -120,8 +120,7 @@ async function initializeBrowseGallery(root: HTMLElement): Promise<void> {
   for (const button of root.querySelectorAll<HTMLButtonElement>("[data-batch-download]")) button.addEventListener("click", () => void downloadBatch(button.dataset.batchDownload === "upscaled"));
 
   function readState(gameId: BrowseGame, browseItems: BrowseGalleryItem[]): BrowseUrlState {
-    const parsed = parseBrowseUrlState(gameId, window.location.search, browseItems);
-    return gameId === "phigros" ? { ...parsed, chart: [] } : parsed;
+    return parseBrowseUrlState(gameId, window.location.search, browseItems);
   }
 
   function currentStateFromControls(): BrowseUrlState {
@@ -137,15 +136,15 @@ async function initializeBrowseGallery(root: HTMLElement): Promise<void> {
         ai: ai?.checked ?? false,
       };
     }
-    if (game === "phigros") return { game, q: search!.value, sort: sort!.value as Extract<BrowseUrlState, { game: "phigros" }>["sort"], chart: [] };
-    if (game === "infalsus") return { game, q: search!.value, sort: sort!.value as Extract<BrowseUrlState, { game: "infalsus" }>["sort"], chart: [] };
+    if (game === "phigros") return { game, q: search!.value, sort: sort!.value as Extract<BrowseUrlState, { game: "phigros" }>["sort"], chart: selectedValues(root, "chart") as Extract<BrowseUrlState, { game: "phigros" }>["chart"] };
+    if (game === "infalsus") return { game, q: search!.value, sort: sort!.value as Extract<BrowseUrlState, { game: "infalsus" }>["sort"], chart: selectedValues(root, "chart") as Extract<BrowseUrlState, { game: "infalsus" }>["chart"] };
     return {
       game,
       q: search!.value,
       sort: sort!.value as Extract<BrowseUrlState, { game: "rizline" }>["sort"],
       disc: selectedValues(root, "disc"),
       series: selectedValues(root, "series"),
-      chart: [],
+      chart: selectedValues(root, "chart"),
     };
   }
 
@@ -293,6 +292,9 @@ function populateFacetOptions(data: BrowseGalleryData, root: HTMLElement): void 
     setCheckboxes("version", arcaeaOptions.versions, formatArcaeaAddedVersion);
     return;
   }
+  if (data.game === "phigros" || data.game === "infalsus" || data.game === "rizline") {
+    setToggles("chart", options.charts);
+  }
   if (data.game === "rizline") {
     const rizlineOptions = options as Extract<BrowseFacetOptions, { discs: string[] }>;
     setCheckboxes("disc", rizlineOptions.discs);
@@ -346,8 +348,11 @@ function updateActiveFilters(root: HTMLElement, state: BrowseUrlState): void {
     for (const [label, value] of versionEntries) entries.push({ name: "version", value, label });
     if (state.ai) entries.push({ name: "ai", value: "1", label: "含超分版" });
   } else if (state.game === "rizline") {
+    for (const value of state.chart) entries.push({ name: "chart", value, label: value });
     for (const value of state.disc) entries.push({ name: "disc", value, label: value });
     for (const value of state.series) entries.push({ name: "series", value, label: value });
+  } else {
+    for (const value of state.chart) entries.push({ name: "chart", value, label: value });
   }
   chips.replaceChildren(...entries.map((entry) => {
     const chip = document.createElement("button");
@@ -428,7 +433,7 @@ function createCard(item: BrowseGalleryItem, index: number, isSelected: boolean)
     artist.textContent = item.artist;
     body.append(artist);
   }
-  const metadata = [ ...(item.badges ?? []), item.badge, item.selectedArtworkDifficulty, item.game === "arcaea" ? item.pack : undefined ].filter((value): value is string => Boolean(value));
+  const metadata = [ ...(item.badges ?? []), item.badge, item.selectedArtworkDifficulty, item.selectedChartDifficulty, item.game === "arcaea" ? item.pack : undefined ].filter((value): value is string => Boolean(value));
   for (const value of metadata) {
     const label = document.createElement("span");
     label.className = "resource-card-variant";

@@ -19,6 +19,7 @@ import {
   type BrowseArtwork,
   type BrowseGalleryItem,
   type BrowseResolvedResource,
+  type InfalsusBrowseUrlState,
   type PhigrosBrowseUrlState,
   type RizlineBrowseUrlState,
   type RizlineFacetOptions,
@@ -229,6 +230,18 @@ test("Phigros special and archive records stay separate even with repeated title
   assert.equal(formalBrowse.phigros.items.filter((item) => item.recordKind === "archive-extra").length, 7);
 });
 
+test("In Falsus exposes chart difficulties and keeps the filter state shareable", () => {
+  const options = getBrowseFacetOptions(formalBrowse.infalsus);
+  assert.deepEqual(options.charts, ["MIN", "EVO", "ULT", "FBD"]);
+  const ultState: InfalsusBrowseUrlState = { game: "infalsus", q: "", sort: "default", chart: ["ULT"] };
+  const filtered = filterBrowseItems(formalBrowse.infalsus.items, ultState);
+  assert.equal(filtered.length, formalBrowse.infalsus.items.length);
+  assert.ok(filtered.every((item) => item.charts.some((chart) => "difficulty" in chart && chart.difficulty === "ULT")));
+  const serialized = serializeBrowseUrlState(ultState).toString();
+  assert.equal(serialized, "chart=ULT");
+  assert.deepEqual(parseBrowseUrlState("infalsus", serialized, formalBrowse.infalsus.items), ultState);
+});
+
 test("Rizline Browse groups one card per Song and preserves all artwork variants", () => {
   const songs = formalBrowse.rizline.items.filter((item) => item.recordKind === "song");
   assert.equal(songs.length, 141);
@@ -266,6 +279,13 @@ test("jacket Gallery has its own browse path and no longer filters by Resource V
   assert.match(page, /browseByGame\[game\.slug\]/u);
   assert.doesNotMatch(page, /game\.slug === "arcaea" \? browseBuild\.arcaea : browseBuild\.phigros/u);
   assert.doesNotMatch(browseScript, /variant\.difficulty/u);
+});
+
+test("Phigros chart selections are retained by the client state bridge", () => {
+  const browseScript = fs.readFileSync(path.join(process.cwd(), "apps", "site", "src", "scripts", "browse-gallery.ts"), "utf8");
+  assert.doesNotMatch(browseScript, /gameId === "phigros" \? \{\.\.\.parsed, chart: \[\] \}/u);
+  assert.match(browseScript, /game === "phigros"\).*selectedValues\(root, "chart"\)/u);
+  assert.match(browseScript, /data\.game === "phigros" \|\| data\.game === "infalsus" \|\| data\.game === "rizline"/u);
 });
 
 function makeResource(resourceId: string, hasUpscaled = false): BrowseResolvedResource {
