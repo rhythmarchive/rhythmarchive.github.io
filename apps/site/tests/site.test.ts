@@ -249,7 +249,9 @@ test("game icons use real assets with a non-breaking fallback", () => {
   assert.equal(fs.existsSync(path.join(siteRoot, "public", "game-icons", "arcaea.png")), true);
   assert.equal(fs.existsSync(path.join(siteRoot, "public", "game-icons", "phigros.png")), true);
   assert.equal(fs.existsSync(path.join(siteRoot, "public", "game-icons", "rizline.png")), true);
+  assert.equal(fs.existsSync(path.join(siteRoot, "public", "game-icons", "rotaeno.png")), true);
   assert.match(source, /rizline/u);
+  assert.match(source, /rotaeno/u);
 });
 
 test("Arcaea icon does not retain the adaptive green edge", async () => {
