@@ -205,8 +205,8 @@ const profiles: GameProfile[] = [
     defaultAssetTypes: ["jacket", "pack-cover", "character-portrait", "story-cg", "startup"],
     siteStatus: "published",
     sourceMarkers: ["assets/aa/catalog.json", "assets/aa/settings.json", "assets/XDConfig.json", "assets/bin/Data/data.unity3d"],
-    extractorEntrypoints: ["python -m tools.rotaeno inspect", "python -m tools.rotaeno extract-images", "tools/rotaeno/images.py"],
-    selectionPolicy: "publish only the reviewed non-event image selection; keep event artwork, journey, badges, audio, charts, and non-image candidates in temp",
+    extractorEntrypoints: ["python -m tools.rotaeno inspect", "python -m tools.rotaeno extract-images", "python -m tools.rotaeno extract-charts", "tools/rotaeno/images.py", "tools/rotaeno/charts.py"],
+    selectionPolicy: "publish only the reviewed non-event image selection; keep event artwork, journey, badges, encrypted chart bodies, audio, and non-image candidates in temp; chart difficulty metadata may enter the shared Catalog through content-addition",
   }),
 ];
 

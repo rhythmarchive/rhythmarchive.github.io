@@ -23,12 +23,13 @@ import { generateThumbnailSet } from "../packages/domain/src/thumbnails.js";
 import { validateReleaseManifestConsistency } from "../packages/domain/src/validation.js";
 import { UnifiedAssetManifest, type UnifiedAssetManifest as UnifiedAssetManifestType, readReleaseDelta } from "../packages/domain/src/release.js";
 import { isReviewApproved, readReviewPackage, validateReviewPackageForDelta } from "../packages/domain/src/review-package.js";
+import { sanitizeRotaenoCharts } from "./rotaeno/chart-metadata.js";
 
 const ROOT = path.resolve(".");
 const SOURCE_TYPE = "rotaeno_apk" as const;
 const PUBLIC_METADATA_KEYS = new Set([
   "artist", "illustrator", "pack", "packName", "characterName", "characterVariant",
-  "gameVersion", "songId", "event", "collaboration", "collaborationPartner",
+  "gameVersion", "songId", "event", "collaboration", "collaborationPartner", "charts",
 ]);
 
 type Args = {
@@ -118,12 +119,15 @@ function uuid(kind: string, identity: string): string {
   return createDeterministicUuidV7("rotaeno:" + kind + ":" + identity);
 }
 
-function publicMetadata(entry: UnifiedAssetManifestType["entries"][number]): Record<string, string | number | boolean> {
+function publicMetadata(entry: UnifiedAssetManifestType["entries"][number]): Record<string, unknown> {
   const nested = jsonObject(entry.metadata.metadata);
-  const output: Record<string, string | number | boolean> = {};
+  const output: Record<string, unknown> = {};
   for (const key of PUBLIC_METADATA_KEYS) {
     const value = nested[key];
-    if (typeof value === "string" || typeof value === "number" || typeof value === "boolean") output[key] = value;
+    if (key === "charts") {
+      const charts = sanitizeRotaenoCharts(value, "Rotaeno charts for " + entry.sourceIdentity);
+      if (charts) output[key] = charts;
+    } else if (typeof value === "string" || typeof value === "number" || typeof value === "boolean") output[key] = value;
   }
   if (entry.artist) output.artist = entry.artist;
   if (!output.gameVersion && entry.versionAdded) output.gameVersion = entry.versionAdded;

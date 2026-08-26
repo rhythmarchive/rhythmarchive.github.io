@@ -146,7 +146,7 @@ export const GAME_CONFIG: Record<GameId, GameConfig> = {
     displayName: "Rotaeno",
     categoryOrder: ["jacket", "pack-cover", "character-portrait", "story-cg", "startup"],
     featuredCategories: ["jacket", "pack-cover", "character-portrait", "story-cg", "startup"],
-    filters: { difficulty: false, upscale: false },
+    filters: { difficulty: true, upscale: false },
     metadataLabels: {
       artist: "曲师",
       illustrator: "画师",

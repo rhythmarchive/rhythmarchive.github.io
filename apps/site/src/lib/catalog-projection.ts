@@ -181,10 +181,27 @@ const INFALSUS_CHART_DIFFICULTIES: Record<string, string> = {
   "8": "FBD",
 };
 
+const ROTAENO_CHART_DIFFICULTIES = ["I", "II", "III", "IV", "IV_Alpha"] as const;
+
 function publicChartsFromMetadata(resource: Resource): PublicChart[] {
-  if (resource.game !== "infalsus" || resource.resourceType !== "jacket") return [];
+  if (resource.resourceType !== "jacket") return [];
   const rawCharts = resource.metadata.charts;
   if (!Array.isArray(rawCharts)) return [];
+  if (resource.game === "rotaeno") {
+    return rawCharts
+      .flatMap((candidate) => {
+        if (!candidate || typeof candidate !== "object") return [];
+        const chart = candidate as Record<string, unknown>;
+        const difficulty = typeof chart.difficulty === "string" ? chart.difficulty.trim() : "";
+        if (!(ROTAENO_CHART_DIFFICULTIES as readonly string[]).includes(difficulty)) return [];
+        const level = typeof chart.level === "number" || typeof chart.level === "string" ? String(chart.level) : undefined;
+        const artist = typeof chart.artist === "string" && chart.artist.trim() ? chart.artist.trim() : undefined;
+        const available = typeof chart.available === "boolean" ? chart.available : true;
+        return [{ difficulty, ...(level ? { level } : {}), ...(artist ? { artist } : {}), available, status: available ? "available" as const : "unavailable" as const } satisfies PublicChart];
+      })
+      .sort((left, right) => (ROTAENO_CHART_DIFFICULTIES.indexOf(left.difficulty as typeof ROTAENO_CHART_DIFFICULTIES[number]) - ROTAENO_CHART_DIFFICULTIES.indexOf(right.difficulty as typeof ROTAENO_CHART_DIFFICULTIES[number])) || (left.level ?? "").localeCompare(right.level ?? ""));
+  }
+  if (resource.game !== "infalsus") return [];
   return rawCharts
     .flatMap((candidate) => {
       if (!candidate || typeof candidate !== "object") return [];

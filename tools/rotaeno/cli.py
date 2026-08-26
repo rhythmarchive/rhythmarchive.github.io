@@ -10,6 +10,7 @@ from typing import Any
 
 from .apk import inspect_apk
 from .catalog import decode_catalog_bytes
+from .charts import scan_charts
 from .images import extract_images
 from .manifest import build_manifest, diff_manifests
 
@@ -80,6 +81,29 @@ def extract_images_command(args: argparse.Namespace) -> int:
     )
     return 0 if manifest["diagnostics"]["failed"] == 0 else 2
 
+
+def extract_charts_command(args: argparse.Namespace) -> int:
+    manifest = scan_charts(args.apk, args.out)
+    diagnostics = manifest["diagnostics"]
+    print(
+        json.dumps(
+            {
+                "game": manifest["game"],
+                "version": manifest["version"],
+                "source_snapshot": manifest["sourceSnapshot"],
+                "bundles": diagnostics["bundleCount"],
+                "songs": diagnostics["songCount"],
+                "charts": diagnostics["chartCount"],
+                "standalone_charts": diagnostics["standaloneChartCount"],
+                "failed_bundles": len(diagnostics["failures"]),
+                "output": str(Path(args.out).resolve()),
+            },
+            ensure_ascii=False,
+            indent=2,
+        )
+    )
+    return 0 if not diagnostics["failures"] else 2
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(prog="python -m tools.rotaeno")
     subparsers = parser.add_subparsers(dest="command", required=True)
@@ -100,6 +124,11 @@ def build_parser() -> argparse.ArgumentParser:
     extract_parser.add_argument("--selection", required=True, help="JSON selection file")
     extract_parser.add_argument("--out", required=True, help="output directory for extracted images and manifest")
     extract_parser.set_defaults(handler=extract_images_command)
+
+    chart_parser = subparsers.add_parser("extract-charts", help="extract safe chart difficulty metadata from Journey map bundles")
+    chart_parser.add_argument("--apk", required=True, help="path to an APK; it is read only")
+    chart_parser.add_argument("--out", required=True, help="output directory for chart manifest")
+    chart_parser.set_defaults(handler=extract_charts_command)
 
     return parser
 

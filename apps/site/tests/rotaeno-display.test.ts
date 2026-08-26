@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import { projectCatalog } from "../src/lib/catalog-projection.js";
 import { loadFormalCatalog } from "../src/lib/site-data.js";
+import { sanitizeRotaenoCharts } from "../../../tools/rotaeno/chart-metadata.js";
 
 const catalog = loadFormalCatalog();
 const projection = projectCatalog(catalog, "https://rhythm-assets.cn-nb1.rains3.com");
@@ -43,4 +44,18 @@ test("Rotaeno search keeps formal names but excludes internal IDs and source fil
   assert.ok(search);
   assert.equal(search.title, song?.displayTitle);
   assert.ok(!search.keywords.some((keyword) => /(?:Assets\/|Scriptable Objects|\.psd|source-identity)/iu.test(keyword)));
+});
+
+test("Rotaeno chart metadata projects difficulty, v2 rating, and Alpha variants", () => {
+  const song = projectedFor("song-jacket:abstruse-dilemma");
+  assert.deepEqual(song?.charts?.map((chart) => [chart.difficulty, chart.level]), [["I", "3"], ["II", "7"], ["III", "12.3"], ["IV", "14"]]);
+  assert.equal(song?.charts?.[0]?.artist, "AxEradaS");
+  const alpha = projectedFor("song-jacket:alfheims-faith")?.charts?.find((chart) => chart.difficulty === "IV_Alpha");
+  assert.deepEqual(alpha && [alpha.difficulty, alpha.level, alpha.artist], ["IV_Alpha", "13.3", "AXERA"]);
+  assert.equal(projectedFor("song-jacket:a-city-in-serenity")?.chartDataStatus, "unavailable");
+});
+
+test("Rotaeno public chart metadata rejects unsafe keys", () => {
+  assert.deepEqual(sanitizeRotaenoCharts([{ difficulty: "IV", level: 14, available: true, status: "available" }]), [{ difficulty: "IV", level: "14", available: true, status: "available" }]);
+  assert.throws(() => sanitizeRotaenoCharts([{ difficulty: "IV", available: true, status: "available", EncryptedV2ChartString: "must-not-cross" }]), /unsupported keys/);
 });
