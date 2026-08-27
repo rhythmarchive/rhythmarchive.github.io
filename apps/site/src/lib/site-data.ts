@@ -144,7 +144,7 @@ function enrichFormalBrowseMetadata(siteData: PublicSiteData, browse: FormalBrow
     const charts = chartsByResource.get(resource.resourceId) ?? resource.charts ?? (resource.resourceType === "jacket" ? [] : undefined);
     const availableCharts = (charts ?? [])
       .filter((chart) => chart.available !== false && chart.status !== "error" && chart.status !== "legacy");
-    const chartFacetValues = [...new Set(availableCharts.map((chart) => chart.difficulty))];
+    const chartFacetValues = [...new Set([...availableCharts, ...(resource.specialCharts ?? []).filter((chart) => chart.available !== false && chart.status !== "error" && chart.status !== "legacy")].map((chart) => chart.difficulty))];
     const facets = { ...resource.facets };
     if (chartFacetValues.length > 0) facets.chart = chartFacetValues;
     if (resource.game === "rotaeno") {
@@ -168,7 +168,7 @@ function enrichFormalBrowseMetadata(siteData: PublicSiteData, browse: FormalBrow
       ...(typeof artist === "string" ? { artist } : {}),
       ...(resource.resourceType === "jacket" ? {
         charts: charts ?? [],
-        chartDataStatus: (charts ?? []).length > 0 ? "available" as const : "unavailable" as const,
+        chartDataStatus: (charts ?? []).length > 0 || (resource.specialCharts ?? []).length > 0 ? "available" as const : "unavailable" as const,
       } : {}),
       ...(Object.keys(facets).length > 0 ? { facets } : {}),
       metadata,
@@ -183,9 +183,10 @@ function enrichFormalBrowseMetadata(siteData: PublicSiteData, browse: FormalBrow
     keywords.add(resource.displayTitle);
     if (resource.artist) keywords.add(resource.artist);
     for (const value of Object.values(resource.metadata)) keywords.add(String(value));
-    for (const chart of resource.charts ?? []) {
+    for (const chart of [...(resource.charts ?? []), ...(resource.specialCharts ?? [])]) {
       keywords.add(chart.difficulty);
       if (chart.level) keywords.add(chart.level);
+      if (chart.notes !== undefined) keywords.add(String(chart.notes));
       if (chart.constant) keywords.add(chart.constant);
       if (chart.title) keywords.add(chart.title);
       if (chart.artist) keywords.add(chart.artist);
@@ -205,7 +206,7 @@ function enrichFormalBrowseMetadata(siteData: PublicSiteData, browse: FormalBrow
 }
 
 function chartKey(chart: PublicChart): string {
-  return [chart.difficulty, chart.level ?? "", chart.constant ?? "", chart.title ?? "", chart.artist ?? "", chart.source ?? "", chart.status ?? ""].join("|");
+  return [chart.difficulty, chart.level ?? "", chart.notes ?? "", chart.constant ?? "", chart.title ?? "", chart.artist ?? "", chart.source ?? "", chart.status ?? ""].join("|");
 }
 
 export function loadCategoryBrowseProjections(): CategoryBrowseProjections {

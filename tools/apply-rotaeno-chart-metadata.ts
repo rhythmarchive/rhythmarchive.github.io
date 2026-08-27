@@ -5,11 +5,11 @@ import { loadCatalogFile, writeCatalogAndReleaseAtomic } from "../packages/domai
 import { createDeterministicUuidV7 } from "../packages/domain/src/identity.js";
 import { buildReleaseDelta, type ReleaseDelta as ReleaseDeltaType, UnifiedAssetManifest, type UnifiedAssetManifest as UnifiedAssetManifestType } from "../packages/domain/src/release.js";
 import { isReviewApproved, readReviewPackage, validateReviewPackageForDelta, type ReviewPackage } from "../packages/domain/src/review-package.js";
-import { sanitizeRotaenoCharts } from "./rotaeno/chart-metadata.js";
+import { sanitizeRotaenoCharts, sanitizeRotaenoSpecialCharts } from "./rotaeno/chart-metadata.js";
 
 type JsonObject = Record<string, unknown>;
 
-const PUBLIC_METADATA_KEYS = new Set(["charts"]);
+const PUBLIC_METADATA_KEYS = new Set(["charts", "specialCharts", "length", "bpm", "pack", "updateVersion", "updateDate", "metadataStatus", "chartDataSource", "chartDataVersion"]);
 
 function object(value: unknown): JsonObject {
   return value && typeof value === "object" && !Array.isArray(value) ? value as JsonObject : {};
@@ -38,9 +38,16 @@ function publicMetadata(entry: UnifiedAssetManifestType["entries"][number]): Rec
   const nested = object(object(entry.metadata).metadata);
   const metadata: Record<string, unknown> = {};
   for (const key of PUBLIC_METADATA_KEYS) {
-    if (key !== "charts") continue;
-    const charts = sanitizeRotaenoCharts(nested[key], "Rotaeno charts for " + entry.sourceIdentity);
-    if (charts) metadata[key] = charts;
+    const value = nested[key];
+    if (key === "charts") {
+      const charts = sanitizeRotaenoCharts(value, "Rotaeno charts for " + entry.sourceIdentity);
+      if (charts) metadata[key] = charts;
+    } else if (key === "specialCharts") {
+      const specialCharts = sanitizeRotaenoSpecialCharts(value, "Rotaeno special charts for " + entry.sourceIdentity);
+      if (specialCharts) metadata[key] = specialCharts;
+    } else if (typeof value === "string" || typeof value === "number" || typeof value === "boolean") {
+      metadata[key] = value;
+    }
   }
   return metadata;
 }
@@ -101,7 +108,7 @@ function buildRelease(catalog: CatalogType, delta: ReleaseDeltaType, current: Un
     changes.push({
       changeType: "metadata-changed",
       resourceId: resource.id,
-      detail: "Approved Rotaeno chart difficulty metadata; files and object identities preserved.",
+      detail: "Approved Rotaeno song and chart metadata; files and object identities preserved.",
     });
   }
   const releaseId = createDeterministicUuidV7("rotaeno:release:" + current.version);
@@ -120,7 +127,7 @@ function buildRelease(catalog: CatalogType, delta: ReleaseDeltaType, current: Un
     publishedRenditions: [],
     removedFromCurrentSource: [],
     notes: [
-      "Local-only Rotaeno chart metadata correction.",
+      "Local-only Rotaeno song and chart metadata correction.",
       "difficulty and level were read from StandardChartDataSO.levelId/name and v2InnerDifficulty in the APK-local Journey map bundles.",
       "No canonical files, object keys, renditions, aliases, source identities, remote storage, or production publication were changed.",
     ],

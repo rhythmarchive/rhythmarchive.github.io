@@ -16,6 +16,7 @@ export type PublicPreview = {
 export type PublicChart = {
   difficulty: string;
   level?: string;
+  notes?: number;
   constant?: string;
   title?: string;
   artist?: string;
@@ -61,6 +62,7 @@ export type PublicResource = {
   artist?: string;
   metadata: Record<string, string | number | boolean>;
   charts?: PublicChart[];
+  specialCharts?: PublicChart[];
   chartDataStatus?: "available" | "unavailable";
   variants: PublicVariant[];
   preview: PublicPreview;

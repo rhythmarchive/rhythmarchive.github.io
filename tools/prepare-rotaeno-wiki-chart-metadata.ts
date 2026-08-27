@@ -2,10 +2,20 @@ import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { ContentAdditionInput } from "../packages/domain/src/content.js";
 import { UnifiedAssetManifest } from "../packages/domain/src/release.js";
-import { sanitizeRotaenoCharts, type RotaenoPublicChart } from "./rotaeno/chart-metadata.js";
+import { sanitizeRotaenoCharts, sanitizeRotaenoSpecialCharts, type RotaenoPublicChart, type RotaenoPublicSpecialChart } from "./rotaeno/chart-metadata.js";
 
 type JsonObject = Record<string, unknown>;
-type ChartSong = { songId: string; charts: RotaenoPublicChart[] };
+type ChartSong = {
+  songId: string;
+  charts: RotaenoPublicChart[];
+  specialCharts?: RotaenoPublicSpecialChart[];
+  length?: string;
+  bpm?: string;
+  pack?: string;
+  updateVersion?: string;
+  updateDate?: string;
+  metadataStatus?: string;
+};
 type SourceDocument = {
   version: string;
   sourceSnapshot: string;
@@ -13,7 +23,7 @@ type SourceDocument = {
   sourceUrls: string[];
 };
 
-const VERSION = "2.26.1-wiki-chart-metadata-v1";
+const VERSION = "2.26.1-wiki-song-metadata-v2";
 
 function object(value: unknown): JsonObject {
   return value && typeof value === "object" && !Array.isArray(value) ? value as JsonObject : {};
@@ -37,10 +47,26 @@ function parseSource(value: unknown): SourceDocument {
   for (const candidate of input.songs) {
     const song = object(candidate);
     const songId = text(song.songId);
-    const charts = sanitizeRotaenoCharts(song.charts, "Rotaeno Wiki chart metadata song " + (songId ?? "unknown")) ?? [];
-    if (!songId || charts.length === 0) continue;
+    const context = "Rotaeno Wiki song metadata " + (songId ?? "unknown");
+    const charts = sanitizeRotaenoCharts(song.charts, context + " charts") ?? [];
+    const specialCharts = sanitizeRotaenoSpecialCharts(song.specialCharts, context + " specialCharts");
+    if (!songId) continue;
     if (songs.has(songId)) throw new Error("duplicate Rotaeno Wiki song ID: " + songId);
-    songs.set(songId, { songId, charts });
+    const chartSong: ChartSong = { songId, charts };
+    const length = text(song.length);
+    const bpm = text(song.bpm);
+    const pack = text(song.pack);
+    const updateVersion = text(song.updateVersion);
+    const updateDate = text(song.updateDate);
+    const metadataStatus = text(song.metadataStatus);
+    if (specialCharts && specialCharts.length > 0) chartSong.specialCharts = specialCharts;
+    if (length) chartSong.length = length;
+    if (bpm) chartSong.bpm = bpm;
+    if (pack) chartSong.pack = pack;
+    if (updateVersion) chartSong.updateVersion = updateVersion;
+    if (updateDate) chartSong.updateDate = updateDate;
+    if (metadataStatus) chartSong.metadataStatus = metadataStatus;
+    songs.set(songId, chartSong);
   }
   const sources = object(input.sources);
   const sourceUrls = Object.values(sources).flatMap((value) => text(value) ? [text(value)!] : []);
@@ -67,6 +93,13 @@ async function main(): Promise<void> {
         metadata: {
           ...nested,
           charts: song.charts,
+          ...(song.specialCharts ? { specialCharts: song.specialCharts } : {}),
+          ...(song.length ? { length: song.length } : {}),
+          ...(song.bpm ? { bpm: song.bpm } : {}),
+          ...(song.pack ? { pack: song.pack } : {}),
+          ...(song.updateVersion ? { updateVersion: song.updateVersion } : {}),
+          ...(song.updateDate ? { updateDate: song.updateDate } : {}),
+          ...(song.metadataStatus ? { metadataStatus: song.metadataStatus } : {}),
           chartDataSource: "Rotaeno APK + Wiki",
           chartDataVersion: source.sourceSnapshot,
         },
@@ -96,9 +129,10 @@ async function main(): Promise<void> {
     entries,
     notes: [
       "Metadata-only Rotaeno chart correction from the APK-native chart projection plus the Rotaeno Wiki snapshot.",
-      "difficulty is the chart class; level is the Wiki difficulty level; constant is the exact chart constant when the snapshot provides it.",
+      "difficulty is the standard chart class; level is preserved as Wiki display text; constant is the exact chart constant when the snapshot provides it.",
+      "notes, length, BPM, pack, and update version/date are song-page metadata. Missing source fields remain absent and are represented in the curation metadataCoverage.",
       "APK-native chart constants take precedence, followed by per-song Wiki pages and then the Wiki high-level constant table.",
-      "Encrypted chart bodies and note data were not exported. Jacket resources without a matched chart remain unavailable.",
+      "Encrypted chart bodies were not exported. Special-only April Fools charts remain in specialCharts and do not enter the standard difficulty filter.",
       ...source.sourceUrls.map((url) => "Source: " + url),
       "Previous manifest: " + path.relative(process.cwd(), previousPath).replaceAll("\\", "/") + ".",
     ],
@@ -115,6 +149,10 @@ async function main(): Promise<void> {
     sourceSongs: source.songs.size,
     matchedJackets: entries.length,
     chartCount,
+    specialChartCount: entries.reduce((count, entry) => {
+      const specialCharts = object(object(entry.metadata).metadata).specialCharts;
+      return count + (Array.isArray(specialCharts) ? specialCharts.length : 0);
+    }, 0),
     unmatchedSourceSongs: [...source.songs.keys()].filter((songId) => !entries.some((entry) => text(object(object(entry.metadata).metadata).songId) === songId)),
   }, null, 2));
 }

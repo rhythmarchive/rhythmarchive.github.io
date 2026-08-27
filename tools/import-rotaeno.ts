@@ -23,13 +23,14 @@ import { generateThumbnailSet } from "../packages/domain/src/thumbnails.js";
 import { validateReleaseManifestConsistency } from "../packages/domain/src/validation.js";
 import { UnifiedAssetManifest, type UnifiedAssetManifest as UnifiedAssetManifestType, readReleaseDelta } from "../packages/domain/src/release.js";
 import { isReviewApproved, readReviewPackage, validateReviewPackageForDelta } from "../packages/domain/src/review-package.js";
-import { sanitizeRotaenoCharts } from "./rotaeno/chart-metadata.js";
+import { sanitizeRotaenoCharts, sanitizeRotaenoSpecialCharts } from "./rotaeno/chart-metadata.js";
 
 const ROOT = path.resolve(".");
 const SOURCE_TYPE = "rotaeno_apk" as const;
 const PUBLIC_METADATA_KEYS = new Set([
   "artist", "illustrator", "pack", "packName", "characterName", "characterVariant",
-  "gameVersion", "songId", "event", "collaboration", "collaborationPartner", "charts",
+  "gameVersion", "songId", "event", "collaboration", "collaborationPartner",
+  "length", "bpm", "updateVersion", "updateDate", "metadataStatus", "chartDataSource", "chartDataVersion", "charts", "specialCharts",
 ]);
 
 type Args = {
@@ -127,6 +128,9 @@ function publicMetadata(entry: UnifiedAssetManifestType["entries"][number]): Rec
     if (key === "charts") {
       const charts = sanitizeRotaenoCharts(value, "Rotaeno charts for " + entry.sourceIdentity);
       if (charts) output[key] = charts;
+    } else if (key === "specialCharts") {
+      const specialCharts = sanitizeRotaenoSpecialCharts(value, "Rotaeno special charts for " + entry.sourceIdentity);
+      if (specialCharts) output[key] = specialCharts;
     } else if (typeof value === "string" || typeof value === "number" || typeof value === "boolean") output[key] = value;
   }
   if (entry.artist) output.artist = entry.artist;

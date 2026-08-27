@@ -15,6 +15,10 @@ const PUBLIC_METADATA_KEYS = new Set([
   "version",
   "releaseDate",
   "bpm",
+  "length",
+  "updateVersion",
+  "updateDate",
+  "metadataStatus",
   "characterName",
   "characterEnglishName",
   "characterChineseName",
@@ -155,6 +159,7 @@ function projectResource(resource: Resource, variants: Variant[], renditionsByVa
   const metadata = formatPublicMetadata(resource.game, { ...pickPublicMetadata(resource), ...filterPublicMetadata(display.metadata), ...derivedPublicMetadata(resource, phigrosAprilFoolsYear) });
   const artist = display.artist ?? (typeof metadata.artist === "string" ? metadata.artist : undefined);
   const charts = publicChartsFromMetadata(resource);
+  const specialCharts = publicSpecialChartsFromMetadata(resource);
 
   return {
     resourceId: resource.id,
@@ -166,7 +171,11 @@ function projectResource(resource: Resource, variants: Variant[], renditionsByVa
     displayTitle: display.title || (resource.game === "rotaeno" ? "Rotaeno \u56fe\u7247\u8d44\u6e90\uff08\u540d\u79f0\u5f85\u6838\u5b9e\uff09" : original?.downloadFilename || "\u672a\u547d\u540d\u8d44\u6e90"),
     ...(artist ? { artist } : {}),
     metadata,
-    ...(resource.resourceType === "jacket" ? { charts, chartDataStatus: charts.length > 0 ? "available" as const : "unavailable" as const } : {}),
+    ...(resource.resourceType === "jacket" ? {
+      charts,
+      ...(specialCharts.length > 0 ? { specialCharts } : {}),
+      chartDataStatus: charts.length > 0 || specialCharts.length > 0 ? "available" as const : "unavailable" as const,
+    } : {}),
     variants: projectedVariants,
     preview: active?.preview ?? emptyPreview(),
     ...(original ? { original, downloadFilename: original.downloadFilename, mime: original.mime, sizeBytes: original.sizeBytes } : {}),
@@ -196,13 +205,14 @@ function publicChartsFromMetadata(resource: Resource): PublicChart[] {
         const difficulty = typeof chart.difficulty === "string" ? chart.difficulty.trim() : "";
         if (!(ROTAENO_CHART_DIFFICULTIES as readonly string[]).includes(difficulty)) return [];
         const level = typeof chart.level === "number" || typeof chart.level === "string" ? String(chart.level) : undefined;
+        const notes = typeof chart.notes === "number" && Number.isInteger(chart.notes) && chart.notes >= 0 ? chart.notes : undefined;
         const constant = typeof chart.constant === "number" || typeof chart.constant === "string" ? String(chart.constant).trim() || undefined : undefined;
         const artist = typeof chart.artist === "string" && chart.artist.trim() ? chart.artist.trim() : undefined;
         const source = typeof chart.source === "string" && (ROTAENO_CHART_SOURCES as readonly string[]).includes(chart.source.trim())
           ? chart.source.trim() as typeof ROTAENO_CHART_SOURCES[number]
           : undefined;
         const available = typeof chart.available === "boolean" ? chart.available : true;
-        return [{ difficulty, ...(level ? { level } : {}), ...(constant ? { constant } : {}), ...(artist ? { artist } : {}), ...(source ? { source } : {}), available, status: available ? "available" as const : "unavailable" as const } satisfies PublicChart];
+        return [{ difficulty, ...(level ? { level } : {}), ...(notes !== undefined ? { notes } : {}), ...(constant ? { constant } : {}), ...(artist ? { artist } : {}), ...(source ? { source } : {}), available, status: available ? "available" as const : "unavailable" as const } satisfies PublicChart];
       })
       .sort((left, right) => (ROTAENO_CHART_DIFFICULTIES.indexOf(left.difficulty as typeof ROTAENO_CHART_DIFFICULTIES[number]) - ROTAENO_CHART_DIFFICULTIES.indexOf(right.difficulty as typeof ROTAENO_CHART_DIFFICULTIES[number])) || (left.level ?? "").localeCompare(right.level ?? "") || (left.constant ?? "").localeCompare(right.constant ?? ""));
   }
@@ -228,6 +238,29 @@ function publicChartsFromMetadata(resource: Resource): PublicChart[] {
       } satisfies PublicChart];
     })
     .sort((left, right) => (Object.values(INFALSUS_CHART_DIFFICULTIES).indexOf(left.difficulty) - Object.values(INFALSUS_CHART_DIFFICULTIES).indexOf(right.difficulty)) || left.difficulty.localeCompare(right.difficulty));
+}
+
+function publicSpecialChartsFromMetadata(resource: Resource): PublicChart[] {
+  if (resource.resourceType !== "jacket" || resource.game !== "rotaeno") return [];
+  const rawCharts = resource.metadata.specialCharts;
+  if (!Array.isArray(rawCharts)) return [];
+  return rawCharts
+    .flatMap((candidate) => {
+      if (!candidate || typeof candidate !== "object") return [];
+      const chart = candidate as Record<string, unknown>;
+      const difficulty = typeof chart.difficulty === "string" ? chart.difficulty.trim() : "";
+      if (!difficulty) return [];
+      const level = typeof chart.level === "number" || typeof chart.level === "string" ? String(chart.level) : undefined;
+      const notes = typeof chart.notes === "number" && Number.isInteger(chart.notes) && chart.notes >= 0 ? chart.notes : undefined;
+      const constant = typeof chart.constant === "number" || typeof chart.constant === "string" ? String(chart.constant).trim() || undefined : undefined;
+      const artist = typeof chart.artist === "string" && chart.artist.trim() ? chart.artist.trim() : undefined;
+      const source = typeof chart.source === "string" && (ROTAENO_CHART_SOURCES as readonly string[]).includes(chart.source.trim())
+        ? chart.source.trim() as typeof ROTAENO_CHART_SOURCES[number]
+        : undefined;
+      const available = typeof chart.available === "boolean" ? chart.available : true;
+      return [{ difficulty, ...(level ? { level } : {}), ...(notes !== undefined ? { notes } : {}), ...(constant ? { constant } : {}), ...(artist ? { artist } : {}), ...(source ? { source } : {}), available, status: available ? "available" as const : "unavailable" as const } satisfies PublicChart];
+    })
+    .sort((left, right) => left.difficulty.localeCompare(right.difficulty) || (left.level ?? "").localeCompare(right.level ?? "") || (left.constant ?? "").localeCompare(right.constant ?? ""));
 }
 
 function formatPublicMetadata(game: GameId, metadata: Record<string, string | number | boolean>): Record<string, string | number | boolean> {
@@ -327,9 +360,10 @@ function toSearchEntry(resource: PublicResource, sourceResource?: Resource): Pub
     keywordSet.add(String(value));
   }
   for (const variant of resource.variants) keywordSet.add(variant.label);
-  for (const chart of resource.charts ?? []) {
+  for (const chart of [...(resource.charts ?? []), ...(resource.specialCharts ?? [])]) {
     keywordSet.add(chart.difficulty);
     if (chart.level) keywordSet.add(chart.level);
+    if (chart.notes !== undefined) keywordSet.add(String(chart.notes));
     if (chart.constant) keywordSet.add(chart.constant);
     if (chart.title) keywordSet.add(chart.title);
     if (chart.artist) keywordSet.add(chart.artist);

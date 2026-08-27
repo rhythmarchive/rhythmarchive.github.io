@@ -1,8 +1,9 @@
 import assert from "node:assert/strict";
+import fs from "node:fs";
 import test from "node:test";
 import { projectCatalog } from "../src/lib/catalog-projection.js";
 import { loadFormalCatalog } from "../src/lib/site-data.js";
-import { sanitizeRotaenoCharts } from "../../../tools/rotaeno/chart-metadata.js";
+import { sanitizeRotaenoCharts, sanitizeRotaenoSpecialCharts } from "../../../tools/rotaeno/chart-metadata.js";
 
 const catalog = loadFormalCatalog();
 const projection = projectCatalog(catalog, "https://rhythm-assets.cn-nb1.rains3.com");
@@ -14,6 +15,13 @@ function sourceResource(prefix: string) {
 function projectedFor(prefix: string) {
   const resource = sourceResource(prefix);
   return projection.resources.find((item) => item.resourceId === resource?.id);
+}
+
+function readRotaenoCuration() {
+  return JSON.parse(fs.readFileSync("catalog/curation/rotaeno-chart-metadata.json", "utf8")) as {
+    songs: Array<{ songId: string; metadataStatus: string; metadataCoverage: Record<string, string> }>;
+    diagnostics: { unresolvedSongIds: string[] };
+  };
 }
 
 test("Rotaeno resources use formal display metadata across image families", () => {
@@ -59,9 +67,62 @@ test("Rotaeno chart metadata projects difficulty, v2 rating, and Alpha variants"
   ], ["12", "12.0"]);
 });
 
+test("Rotaeno preserves all requested song metadata and nonnumeric levels", () => {
+  const stage = projectedFor("song-jacket:stage-5");
+  assert.deepEqual(stage?.charts?.map((chart) => [chart.difficulty, chart.level, chart.notes, chart.constant]), [
+    ["I", "2", 396, "2.0"],
+    ["II", "5", 579, "5.0"],
+    ["III", "8", 988, "8.6"],
+    ["IV", "13", 1513, "13.1"],
+    ["IV_Alpha", "Lv.4", 1920, "14.0"],
+  ]);
+  assert.deepEqual(
+    [stage?.metadata.length, stage?.metadata.bpm, stage?.metadata.pack, stage?.metadata.updateVersion, stage?.metadata.updateDate, stage?.metadata.metadataStatus],
+    ["2:20", "145", "Ψ：脳波オーバーロード", "ver.2.8.0", "2025/03/27", "complete"],
+  );
+
+  const aleph = projectedFor("song-jacket:aleph-0");
+  const alephAlpha = aleph?.charts?.find((chart) => chart.difficulty === "IV_Alpha");
+  assert.deepEqual(alephAlpha && [alephAlpha.level, alephAlpha.notes, alephAlpha.constant], ["Aleph 0", 1420, "13.9"]);
+
+  const special = projectedFor("song-jacket:aoott");
+  assert.deepEqual(special?.specialCharts?.map((chart) => [chart.difficulty, chart.level, chart.notes]), [["Meow", "Meow", 2397]]);
+  assert.equal(special?.metadata.metadataStatus, "special");
+
+  const partial = projectedFor("song-jacket:adam");
+  assert.equal(partial?.charts?.some((chart) => chart.notes !== undefined), false);
+  assert.deepEqual(
+    [partial?.metadata.length, partial?.metadata.bpm, partial?.metadata.pack, partial?.metadata.updateVersion, partial?.metadata.updateDate, partial?.metadata.metadataStatus],
+    ["1:55", "200", "WACCA コラボⅡ", "ver.2.24.0", "2026/06/25", "partial"],
+  );
+});
+
+test("Rotaeno curation and Catalog share one verified 420-song ID set", () => {
+  const curation = readRotaenoCuration();
+  const curationIds = curation.songs.map((song) => song.songId);
+  const jacketResources = catalog.resources.filter((resource) => resource.game === "rotaeno" && resource.resourceType === "jacket");
+  const jacketIds = jacketResources.flatMap((resource) => {
+    const identity = resource.externalIdentities.find((item) => item.key === "source-identity")?.value;
+    const match = identity?.match(/^song-jacket:([^:]+):/);
+    return match ? [match[1]!] : [];
+  });
+  assert.equal(curationIds.length, 420);
+  assert.equal(new Set(curationIds).size, 420);
+  assert.equal(jacketResources.length, 428);
+  assert.equal(new Set(jacketIds).size, 420);
+  assert.deepEqual([...new Set(jacketIds)].sort(), [...new Set(curationIds)].sort());
+  assert.deepEqual(curation.diagnostics.unresolvedSongIds.sort(), ["hyun-jrpg", "kenka", "kouen", "the-golden-heaven"]);
+  for (const song of curation.songs) {
+    assert.deepEqual(Object.keys(song.metadataCoverage).sort(), ["bpm", "constants", "length", "levels", "notes", "pack", "updateDate", "updateVersion"]);
+    assert.ok(["complete", "partial", "special", "unresolved"].includes(song.metadataStatus));
+  }
+});
+
 test("Rotaeno public chart metadata rejects unsafe keys", () => {
-  assert.deepEqual(sanitizeRotaenoCharts([{ difficulty: "IV", level: 14, constant: 14.3, source: "wiki", available: true, status: "available" }]), [{ difficulty: "IV", level: "14", constant: "14.3", source: "wiki", available: true, status: "available" }]);
+  assert.deepEqual(sanitizeRotaenoCharts([{ difficulty: "IV", level: 14, notes: 1920, constant: 14.3, source: "wiki", available: true, status: "available" }]), [{ difficulty: "IV", level: "14", notes: 1920, constant: "14.3", source: "wiki", available: true, status: "available" }]);
+  assert.deepEqual(sanitizeRotaenoSpecialCharts([{ difficulty: "Meow", level: "Meow", notes: 2397, available: true, status: "available" }]), [{ difficulty: "Meow", level: "Meow", notes: 2397, available: true, status: "available" }]);
   assert.throws(() => sanitizeRotaenoCharts([{ difficulty: "IV", constant: "encrypted", available: true, status: "available" }]), /invalid constant/);
+  assert.throws(() => sanitizeRotaenoCharts([{ difficulty: "IV", notes: 1.5, available: true, status: "available" }]), /invalid notes count/);
   assert.throws(() => sanitizeRotaenoCharts([{ difficulty: "IV", available: true, status: "available", source: "manual" }]), /unsupported source/);
   assert.throws(() => sanitizeRotaenoCharts([{ difficulty: "IV", available: true, status: "available", EncryptedV2ChartString: "must-not-cross" }]), /unsupported keys/);
 });

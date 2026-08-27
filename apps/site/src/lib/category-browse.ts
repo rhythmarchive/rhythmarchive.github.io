@@ -141,7 +141,9 @@ function facetDefinitions(game: GameId, category: string): Array<{ key: string; 
 function facetOptions(resources: PublicResource[], key: string): CategoryBrowseFacetOption[] {
   const values = new Set<string>();
   for (const resource of resources) for (const value of resource.facets?.[key] ?? []) values.add(value);
-  return [...values].sort((left, right) => normalizeSearchText(left).localeCompare(normalizeSearchText(right), "zh-CN")).map((value) => ({ value, label: value }));
+  return [...values]
+    .sort((left, right) => normalizeSearchText(left).localeCompare(normalizeSearchText(right), "zh-CN"))
+    .map((value) => ({ value, label: key === "chart" && resources.every((resource) => resource.game === "rotaeno") && value === "IV_Alpha" ? "Ⅳ-α" : value }));
 }
 
 function sortSemanticResources(resources: PublicResource[]): PublicResource[] {

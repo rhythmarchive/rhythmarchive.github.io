@@ -18,7 +18,6 @@ export function getStaticPaths() {
   return siteData.resources.map((resource) => ({ params: { id: resource.resourceId }, props: { resource } }));
 }
 
-interface Props { resource: PublicResource; }
 const { resource } = Astro.props;
 const firstVariant = resource.variants.find((variant) => variant.preferred) ?? resource.variants[0];
 const activeVariantIndex = Math.max(0, firstVariant ? resource.variants.findIndex((variant) => variant.variantId === firstVariant.variantId) : 0);
@@ -37,6 +36,8 @@ const facetMetadata = Object.entries(resource.facets ?? {})
 const preview = firstVariant?.preview.large?.url ?? firstVariant?.preview.medium?.url ?? firstVariant?.preview.small?.url;
 const difficultyValues = [...new Set(resource.variants.map((variant) => variant.difficulty).filter((value): value is string => Boolean(value)))];
 const charts = resource.charts ?? [];
+const specialCharts = resource.specialCharts ?? [];
+const allCharts = [...charts, ...specialCharts];
 const primaryDownload = resource.original ?? firstVariant?.original;
 const primaryPreview = firstVariant?.preview.large ?? firstVariant?.preview.medium ?? firstVariant?.preview.small;
 const dimensions = primaryDownload?.width && primaryDownload.height
@@ -59,6 +60,10 @@ function formatBytes(value: number): string {
 }
 function formatMetadataValue(value: string | number | boolean): string {
   if (typeof value === "boolean") return value ? "是" : "否";
+  if (value === "complete") return "完整";
+  if (value === "partial") return "部分";
+  if (value === "special") return "特殊谱面";
+  if (value === "unresolved") return "待核实";
   return String(value);
 }
 function chartStatusLabel(status: NonNullable<PublicResource["charts"]>[number]["status"]): string | undefined {
@@ -71,6 +76,9 @@ function chartSourceLabel(source: NonNullable<PublicResource["charts"]>[number][
   if (source === "apk") return "APK 原生";
   if (source === "merged") return "APK + Wiki";
   return "Wiki";
+}
+function chartDifficultyLabel(difficulty: string): string {
+  return resource.game === "rotaeno" && difficulty === "IV_Alpha" ? "Ⅳ-α" : difficulty;
 }
 const description = `${resource.displayTitle}${resource.artist ? ` · ${resource.artist}` : ""} - ${GAME_CONFIG[resource.game].displayName} 图片资源。`;
 ---
@@ -104,12 +112,12 @@ const description = `${resource.displayTitle}${resource.artist ? ` · ${resource
         </dl>
         {resource.resourceType === "jacket" ? (
           <section class="detail-chart-section" aria-labelledby="detail-chart-heading">
-            <div class="detail-section-heading"><h2 id="detail-chart-heading">谱面难度</h2><span>{charts.length > 0 ? `${charts.length} 个` : "暂无数据"}</span></div>
-            {charts.length > 0 ? (
+            <div class="detail-section-heading"><h2 id="detail-chart-heading">谱面难度</h2><span>{allCharts.length > 0 ? `${allCharts.length} 个` : "暂无数据"}</span></div>
+            {allCharts.length > 0 ? (
               <div class="detail-chart-list">
-                {charts.map((chart) => (
+                {allCharts.map((chart) => (
                   <div class="detail-chart-row">
-                    <div class="detail-chart-main"><strong>{chart.difficulty}</strong>{chart.level ? <span>Lv {chart.level}</span> : null}{chart.constant ? <span>定数 {chart.constant}</span> : null}</div>
+                    <div class="detail-chart-main"><strong>{chartDifficultyLabel(chart.difficulty)}</strong>{chart.level ? <span>等级 {chart.level}</span> : null}{chart.notes !== undefined ? <span>Notes {chart.notes}</span> : null}{chart.constant ? <span>定数 {chart.constant}</span> : null}</div>
                     <div class="detail-chart-copy">
                       {chart.title ? <span>{chart.title}</span> : null}
                       {chart.artist ? <span>{chart.artist}</span> : null}

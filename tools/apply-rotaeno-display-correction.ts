@@ -5,7 +5,7 @@ import { loadCatalogFile, writeCatalogAndReleaseAtomic } from "../packages/domai
 import { ReleaseManifest, Resource, type Catalog as CatalogType, type ReleaseManifest as ReleaseManifestType, type Resource as ResourceType } from "../packages/domain/src/schema.js";
 import { buildReleaseDelta, UnifiedAssetManifest, type UnifiedAssetManifest as UnifiedAssetManifestType, type ReleaseDelta as ReleaseDeltaType } from "../packages/domain/src/release.js";
 import { isReviewApproved, readReviewPackage, validateReviewPackageForDelta, type ReviewPackage } from "../packages/domain/src/review-package.js";
-import { sanitizeRotaenoCharts } from "./rotaeno/chart-metadata.js";
+import { sanitizeRotaenoCharts, sanitizeRotaenoSpecialCharts } from "./rotaeno/chart-metadata.js";
 
 type JsonObject = Record<string, unknown>;
 
@@ -24,7 +24,15 @@ const PUBLIC_METADATA_KEYS = new Set([
   "collaborationPartner",
   "displayMetadataSource",
   "displayMetadataStatus",
+  "length",
+  "bpm",
+  "updateVersion",
+  "updateDate",
+  "metadataStatus",
+  "chartDataSource",
+  "chartDataVersion",
   "charts",
+  "specialCharts",
 ]);
 
 function object(value: unknown): JsonObject {
@@ -58,6 +66,9 @@ function publicMetadata(entry: UnifiedAssetManifestType["entries"][number]): Rec
     if (key === "charts") {
       const charts = sanitizeRotaenoCharts(value, "Rotaeno charts for " + entry.sourceIdentity);
       if (charts) metadata[key] = charts;
+    } else if (key === "specialCharts") {
+      const specialCharts = sanitizeRotaenoSpecialCharts(value, "Rotaeno special charts for " + entry.sourceIdentity);
+      if (specialCharts) metadata[key] = specialCharts;
     } else if (typeof value === "string" || typeof value === "number" || typeof value === "boolean") metadata[key] = value;
   }
   if (entry.artist) metadata.artist = entry.artist;
