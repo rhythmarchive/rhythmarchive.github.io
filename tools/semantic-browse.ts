@@ -507,6 +507,45 @@ function buildArcaeaSemantics(catalog: Catalog, arcaeaBrowse: ReturnType<typeof 
     });
   });
 
+  const sourceVersion = arcaeaBrowse.source.version;
+  const updateResources = catalog.resources.filter((resource) => {
+    if (resource.game !== "arcaea" || resource.resourceType === "jacket" || resource.lifecycle.status !== "published") return false;
+    return resource.metadata.gameVersion === sourceVersion;
+  });
+  updateResources.forEach((resource, index) => {
+    if (drafts.has(resource.id)) return;
+    const raw = resource.title ?? resource.provenance[0]?.sourceFilename ?? "Arcaea 资源";
+    const subtitle = resource.resourceType === "pack-cover"
+      ? "曲包封面"
+      : resource.resourceType === "story-cg"
+        ? "剧情 CG"
+        : resource.resourceType === "story-texture"
+          ? "剧情贴图"
+          : resource.resourceType === "background"
+            ? "游玩背景"
+            : resource.resourceType === "startup"
+              ? "启动页面"
+              : resource.resourceType === "character-portrait"
+                ? "角色立绘"
+                : resource.resourceType === "character-avatar"
+                  ? "角色头像"
+                  : resource.resourceType === "linkplay-preview" ? "LinkPlay 预览" : "Arcaea 7.0 资源";
+    const packId = typeof resource.metadata.packId === "string" ? resource.metadata.packId : undefined;
+    const sourcePath = resource.provenance[0]?.sourceRelativePath;
+    addDraft(drafts, resource, {
+      displayTitle: raw,
+      subtitle,
+      badges: [sourceVersion],
+      metadata: {
+        sourceVersion,
+        ...(packId ? { packId } : {}),
+      },
+      searchTerms: [raw, sourcePath ?? "", packId ?? ""],
+      sortOrder: 3_100_000_000 + index,
+      facets: { release: [sourceVersion] },
+    });
+  });
+
   const resources = [...drafts.values()].map((draft) => ({
     resourceId: draft.resourceId,
     resourceType: draft.resourceType,

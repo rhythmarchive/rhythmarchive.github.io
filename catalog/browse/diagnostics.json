@@ -1,17 +1,17 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-27T04:01:03.671Z",
+  "generatedAt": "2026-08-27T16:40:54.315Z",
   "arcaea": {
     "ok": true,
-    "catalogResourceCount": 616,
-    "referencedResourceCount": 616,
+    "catalogResourceCount": 624,
+    "referencedResourceCount": 624,
     "unreferencedResourceIds": [],
     "danglingResourceIds": [],
     "warnings": [],
     "counts": {
-      "regularSongs": 543,
-      "currentArtworkSlots": 602,
-      "currentArtworkResourceReferences": 601,
+      "regularSongs": 551,
+      "currentArtworkSlots": 610,
+      "currentArtworkResourceReferences": 609,
       "missingCurrentArtwork": 1,
       "specialRecords": 9,
       "archiveExtras": 3,

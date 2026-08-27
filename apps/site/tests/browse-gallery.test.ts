@@ -31,7 +31,7 @@ const formalBrowse = getBrowseGalleryBuild();
 
 test("Arcaea regular Songs are one card each and the unresolved artwork stays diagnostic-only", () => {
   const songs = formalBrowse.arcaea.items.filter((item) => item.recordKind === "song");
-  assert.equal(songs.length, 542);
+  assert.equal(songs.length, 550);
   assert.equal(new Set(songs.map((item) => item.songId)).size, songs.length);
   assert.equal(songs.filter((item) => item.songId === "ignotus").length, 1);
   assert.equal(formalBrowse.diagnostics.arcaea.skipped.length, 1);
@@ -89,7 +89,7 @@ test("Arcaea rating-plus and component version comparisons are semantic", () => 
 
 test("Arcaea specials, extras, aliases, and same-title families remain discoverable", () => {
   const arcaeaKinds = countKinds(formalBrowse.arcaea.items);
-  assert.deepEqual(arcaeaKinds, { song: 542, special: 9, "archive-extra": 3, "unresolved-extra": 3 });
+  assert.deepEqual(arcaeaKinds, { song: 550, special: 9, "archive-extra": 3, "unresolved-extra": 3 });
   const special = formalBrowse.arcaea.items.find((item) => item.displayTitle === "Ignotus Afterburn");
   assert.ok(special);
   assert.equal(special.version, "1.6.1");

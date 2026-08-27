@@ -4,6 +4,7 @@ import {
   ArcaeaBrowseProjection,
   ArcaeaCuration,
   ArcaeaSourceMetadata,
+  BrowseManifest,
   PhigrosBrowseProjection,
   PhigrosSourceMetadata,
   buildBrowseProjections,
@@ -447,6 +448,7 @@ async function main(): Promise<void> {
   }
   const previousArcaea = await optionalJsonFile<unknown>(path.join(outputDirectory, "arcaea.json"));
   const previousPhigros = await optionalJsonFile<unknown>(path.join(outputDirectory, "phigros.json"));
+  const previousManifest = await optionalJsonFile<unknown>(path.join(outputDirectory, "manifest.json"));
   const result = buildBrowseProjections({
     catalog,
     catalogSha256,
@@ -456,16 +458,35 @@ async function main(): Promise<void> {
     generatedAt: options.generatedAt,
     ...(previousArcaea && previousPhigros ? { previous: { arcaea: ArcaeaBrowseProjection.parse(migratePreviousArcaea(previousArcaea, curation)), phigros: PhigrosBrowseProjection.parse(previousPhigros) } } : {}),
   });
-  const files = await writeBrowseProjectionAtomic(result, outputDirectory, catalog);
+  const preservedManifest = previousManifest ? BrowseManifest.safeParse(previousManifest) : undefined;
+  const finalResult = {
+    ...result,
+    manifest: BrowseManifest.parse({
+      ...result.manifest,
+      games: {
+        ...result.manifest.games,
+        ...(preservedManifest?.success && preservedManifest.data.games.rizline ? { rizline: preservedManifest.data.games.rizline } : {}),
+        ...(preservedManifest?.success && preservedManifest.data.games.infalsus ? { infalsus: preservedManifest.data.games.infalsus } : {}),
+      },
+      files: {
+        ...result.manifest.files,
+        ...(preservedManifest?.success && preservedManifest.data.files.rizline ? { rizline: preservedManifest.data.files.rizline } : {}),
+        ...(preservedManifest?.success && preservedManifest.data.files.rizlineSemantics ? { rizlineSemantics: preservedManifest.data.files.rizlineSemantics } : {}),
+        ...(preservedManifest?.success && preservedManifest.data.files.infalsus ? { infalsus: preservedManifest.data.files.infalsus } : {}),
+        ...(preservedManifest?.success && preservedManifest.data.files.infalsusSemantics ? { infalsusSemantics: preservedManifest.data.files.infalsusSemantics } : {}),
+      },
+    }),
+  };
+  const files = await writeBrowseProjectionAtomic(finalResult, outputDirectory, catalog);
   console.log(JSON.stringify({
     outputDirectory,
     files,
     schemaVersion: 1,
-    arcaea: result.arcaea.recordCounts,
-    phigros: result.phigros.recordCounts,
+    arcaea: finalResult.arcaea.recordCounts,
+    phigros: finalResult.phigros.recordCounts,
     diagnostics: {
-      arcaea: result.diagnostics.arcaea,
-      phigros: result.diagnostics.phigros,
+      arcaea: finalResult.diagnostics.arcaea,
+      phigros: finalResult.diagnostics.phigros,
     },
   }, null, 2));
 }

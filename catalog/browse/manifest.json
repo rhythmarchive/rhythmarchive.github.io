@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-27T04:01:03.671Z",
+  "generatedAt": "2026-08-27T16:40:54.315Z",
   "games": {
     "arcaea": {
-      "sourceVersion": "6.16.8c",
-      "sourceSha256": "c2b58dcad54203645057a859524789f59cfd5ca13613b610d04ad087b58aac90",
-      "fileSha256": "727aadbb9ab939e5e2c30829792578b08c03bdfc6ac17186401942a3b09a6697",
+      "sourceVersion": "7.0.0c",
+      "sourceSha256": "8ef5225f4dab43135711a776f2fba05e0e397b29c569147e7f1f18663d9a8522",
+      "fileSha256": "28e1e64f25d4d41b5eb440ea81eae3bf6167b64dc3d2ae2435e02b5cdc240869",
       "recordCounts": {
-        "regularSongs": 543,
-        "currentArtworkSlots": 602,
-        "currentArtworkResourceReferences": 601,
+        "regularSongs": 551,
+        "currentArtworkSlots": 610,
+        "currentArtworkResourceReferences": 609,
         "missingCurrentArtwork": 1,
         "specialRecords": 9,
         "archiveExtras": 3,
@@ -19,7 +19,7 @@
     "phigros": {
       "sourceVersion": "3.19.5",
       "sourceSha256": "b9654316e52bf2d410fa2ecb3f0df41246afdc3dc8133456deaff07ecbcf28bf",
-      "fileSha256": "8db469b040b396e99c8b060a713715ed461267629d009e76c34d97b589b6d526",
+      "fileSha256": "53141c0453d96308d9fc52de6d03820cb4467265b05dfe2eaffc6f5800def461",
       "recordCounts": {
         "sourceTrackRecords": 319,
         "currentTrackArtworkEntries": 313,
@@ -49,17 +49,17 @@
   },
   "catalog": {
     "catalogId": "019fefd6-9c49-7ca0-a760-adc76811a511",
-    "catalogSha256": "d97a560c47e8721c42282c67355e33165cebca372b71b6e5514b5264f8c19df2",
-    "catalogGeneratedAt": "2026-08-27T04:01:03.671Z"
+    "catalogSha256": "19c4aa7c9a2ee28c8b1292090dfb8d091522c402c14620aa4bee4df078a41910",
+    "catalogGeneratedAt": "2026-08-27T16:33:50.200Z"
   },
   "files": {
     "arcaea": "arcaea.json",
     "phigros": "phigros.json",
-    "manifest": "manifest.json",
-    "diagnostics": "diagnostics.json",
     "rizline": "rizline.json",
     "rizlineSemantics": "rizline-semantics.json",
     "infalsus": "infalsus.json",
-    "infalsusSemantics": "infalsus-semantics.json"
+    "infalsusSemantics": "infalsus-semantics.json",
+    "manifest": "manifest.json",
+    "diagnostics": "diagnostics.json"
   }
 }

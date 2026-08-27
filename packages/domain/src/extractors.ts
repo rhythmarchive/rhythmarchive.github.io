@@ -247,6 +247,11 @@ type ArcaeaSong = {
   difficulties?: Array<{ ratingClass?: number; title_localized?: Record<string, string | undefined>; artist?: string; version?: string; bpm?: string; bg?: string; chartDesigner?: string; jacketDesigner?: string; rating?: number; ratingPlus?: boolean }>;
 };
 
+type ArcaeaPack = {
+  id?: string;
+  name_localized?: Record<string, string | undefined>;
+};
+
 function difficultyInfo(song: ArcaeaSong | undefined, filename: string) {
   const match = filename.match(/^1080_base_([0-4])\./i);
   if (!match || !song) return undefined;
@@ -259,7 +264,8 @@ function difficultyLabel(value: number | undefined): "PST" | "PRS" | "FTR" | "BY
 }
 
 function arcaeaSongContext(sourceRelativePath: string, outputFilename: string, songs: Map<string, ArcaeaSong>) {
-  const match = sourceRelativePath.match(/^songs\/([^/]+)\//i);
+  // Pack covers live directly below songs/pack/, so "pack" is not a song id.
+  const match = sourceRelativePath.match(/^songs\/(?!pack\/)([^/]+)\//i);
   const songId = match?.[1]?.replace(/^dl_/i, "");
   const song = songId ? songs.get(songId) : undefined;
   const sourceName = basename(sourceRelativePath);
@@ -269,6 +275,24 @@ function arcaeaSongContext(sourceRelativePath: string, outputFilename: string, s
   const difficultyCode = difficultyLabel(difficulty?.ratingClass);
   const unresolved = /_256\./i.test(sourceName) ? ["_256_semantics"] : [];
   return { songId, song, difficulty, title, artist, difficultyCode, unresolved, outputFilename };
+}
+
+type ArcaeaPackIdentity = {
+  id: string;
+  variantKey: "default" | "alt";
+  known: boolean;
+};
+
+function arcaeaPackIdentity(sourceRelativePath: string, packs: Map<string, ArcaeaPack>): ArcaeaPackIdentity | undefined {
+  if (!/^songs\/pack\//i.test(sourceRelativePath)) return undefined;
+  const stem = basename(sourceRelativePath).replace(/\.[^.]+$/u, "");
+  const match = stem.match(/^(?:1080_)?select_(.+)$/iu);
+  if (!match?.[1]) return undefined;
+  const rawId = match[1];
+  const alt = /_alt$/iu.test(rawId);
+  const baseId = alt ? rawId.replace(/_alt$/iu, "") : rawId;
+  if (packs.has(baseId)) return { id: baseId, variantKey: alt ? "alt" : "default", known: true };
+  return { id: baseId, variantKey: alt ? "alt" : "default", known: false };
 }
 
 export type ArcaeaLegacyAdapterOptions = {
@@ -301,28 +325,33 @@ export async function adaptArcaeaLegacyReport(options: ArcaeaLegacyAdapterOption
     const resourceType = arcaeaCategory(item.category);
     const outputFilename = basename(item.outputPath);
     const context = arcaeaSongContext(portable(item.sourcePath), outputFilename, songs);
-    const characterMatch = basename(item.sourcePath).match(/(?:^|_)(-?\d+)(?:_icon|_mp)?\.[^.]+$/i);
+    const characterMatch = (resourceType === "character-portrait" || resourceType === "character-avatar" || resourceType === "linkplay-preview")
+      ? basename(item.sourcePath).match(/(?:^|_)(-?\d+)(?:_icon|_mp)?\.[^.]+$/i)
+      : undefined;
     const characterId = characterMatch ? Number.parseInt(characterMatch[1]!, 10) : undefined;
     const character = characterId === undefined ? undefined : characterMap.get(characterId);
-    const packMatch = portable(item.sourcePath).match(/^songs\/pack\/([^/]+)/i);
-    const exactIdentity = resourceType === "jacket" ? Boolean(context.songId && context.song) : Boolean(context.songId || characterId !== undefined || packMatch);
+    const packMatch = arcaeaPackIdentity(portable(item.sourcePath), packs);
+    const exactIdentity = resourceType === "jacket" ? Boolean(context.songId && context.song) : Boolean(context.songId || characterId !== undefined || packMatch?.known);
     const identityList: Array<z.infer<typeof ExternalIdentity>> = [];
     if (context.songId) identityList.push({ namespace: "arcaea", key: "songId", value: context.songId, source: context.song ? "apk-metadata" : "filename", confidence: context.song ? "high" : "medium" });
-    if (packMatch) identityList.push({ namespace: "arcaea", key: "packId", value: packMatch[1]!, source: "apk-metadata", confidence: packs.has(packMatch[1]!) ? "high" : "medium" });
+    if (packMatch) identityList.push({ namespace: "arcaea", key: "packId", value: packMatch.id, source: packMatch.known ? "apk-metadata" : "filename", confidence: packMatch.known ? "high" : "medium" });
     if (characterId !== undefined) identityList.push({ namespace: "arcaea", key: "characterId", value: String(characterId), source: character ? "apk-metadata" : "filename", confidence: character ? "high" : "medium" });
     if (identityList.length === 0) identityList.push({ namespace: "arcaea", key: "path", value: portable(item.sourcePath), source: "filename", confidence: "high" });
-    const variantKey = context.difficultyCode ?? "default";
     const mappingEvidence = [
       evidence("apk-relative-path", `legacy Arcaea source path: ${portable(item.sourcePath)}`, "high"),
-      ...(context.song ? [evidence("metadata", `songlist metadata matched ${context.songId}`, "high")] : [evidence("filename-parser", "song identity was not matched in songlist metadata", "low")]),
+      ...(context.song
+        ? [evidence("metadata", `songlist metadata matched ${context.songId}`, "high")]
+        : packMatch?.known
+          ? [evidence("metadata", `packlist metadata matched ${packMatch.id}`, "high")]
+          : [evidence("filename-parser", "resource identity was not matched in Arcaea metadata", "low")]),
       ...(context.difficultyCode ? [evidence("metadata", `difficulty marker ${context.difficultyCode} derived from APK filename`, "high")] : []),
       ...(context.unresolved.length > 0 ? [evidence("manual-note", "_256 semantics remain unresolved", "high")] : []),
     ];
     const reviewRequirements = policy({
       game: "arcaea",
       resourceType,
-      confidence: context.song ? "high" : exactIdentity ? "medium" : "low",
-      suggestedTitle: context.title ?? (character?.name ? cleanTitle(character.name) : localized(packs.get(packMatch?.[1] ?? "")?.name_localized)),
+      confidence: context.song || packMatch?.known ? "high" : exactIdentity ? "medium" : "low",
+      suggestedTitle: context.title ?? (character?.name ? cleanTitle(character.name) : localized(packs.get(packMatch?.id ?? "")?.name_localized)),
       suggestedArtist: context.artist,
       suggestedFilename: outputFilename,
       identityExact: exactIdentity,
@@ -330,13 +359,14 @@ export async function adaptArcaeaLegacyReport(options: ArcaeaLegacyAdapterOption
       metadataComplete: Boolean(context.title || character || packMatch),
       variantUnresolved: context.unresolved.length > 0,
     });
-    const suggestedTitle = context.title ?? (character?.search_strings?.find((value) => /[\u3400-\u9fff]/u.test(value)) ?? character?.name) ?? localized(packs.get(packMatch?.[1] ?? "")?.name_localized);
+    const suggestedTitle = context.title ?? (character?.search_strings?.find((value) => /[\u3400-\u9fff]/u.test(value)) ?? character?.name) ?? localized(packs.get(packMatch?.id ?? "")?.name_localized);
     const suggestedArtist = context.artist;
-    const suggestedVariant = { key: variantKey, kind: context.difficultyCode ? "difficulty" as const : context.unresolved.length > 0 ? "unknown" as const : "default" as const, ...(context.difficultyCode ? { difficulty: context.difficultyCode } : {}), unresolved: context.unresolved };
+    const variantKey = context.difficultyCode ?? packMatch?.variantKey ?? "default";
+    const suggestedVariant = { key: variantKey, kind: context.difficultyCode ? "difficulty" as const : packMatch?.variantKey === "alt" ? "source-path" as const : context.unresolved.length > 0 ? "unknown" as const : "default" as const, ...(context.difficultyCode ? { difficulty: context.difficultyCode } : {}), unresolved: context.unresolved };
     const metadata = safeMetadata({
       artist: suggestedArtist,
       songId: context.songId,
-      packId: packMatch?.[1],
+      packId: packMatch?.id,
       difficulty: context.difficultyCode,
       sourceRelativePath: portable(item.sourcePath),
       legacyCategory: item.category,
@@ -348,7 +378,7 @@ export async function adaptArcaeaLegacyReport(options: ArcaeaLegacyAdapterOption
       sourceApkFilename: options.targetApk.filename,
       apkInternalRelativePath: portable(item.sourcePath),
       sourceHash: sourceStats.sha256,
-      metadataSource: context.song ? "_metadata/songlist.json" : packMatch ? "_metadata/packlist.json" : character ? "_metadata/characters.json" : "legacy filename/path evidence",
+      metadataSource: context.song ? "_metadata/songlist.json" : packMatch?.known ? "_metadata/packlist.json" : character ? "_metadata/characters.json" : "legacy filename/path evidence",
       originalFilename: basename(item.sourcePath),
       mappingEvidence,
     };
@@ -368,7 +398,7 @@ export async function adaptArcaeaLegacyReport(options: ArcaeaLegacyAdapterOption
       suggestedVariant,
       suggestedExternalIdentity: identityList,
       metadata,
-      confidence: context.song ? "high" : exactIdentity ? "medium" : "low",
+      confidence: context.song || packMatch?.known ? "high" : exactIdentity ? "medium" : "low",
       evidence: mappingEvidence,
       reviewRequirements,
       // Arcaea jackets enter the local upscale queue after review. The

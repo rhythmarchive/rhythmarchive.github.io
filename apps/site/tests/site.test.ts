@@ -180,8 +180,8 @@ test("public game index projects activity only from final public resources", () 
   const arcaea = projection.games.find((game) => game.slug === "arcaea");
   const phigros = projection.games.find((game) => game.slug === "phigros");
   const rizline = projection.games.find((game) => game.slug === "rizline");
-  assert.equal(arcaea?.contentVersion, "6.16.0");
-  assert.equal(arcaea?.lastUpdatedAt, "2026-08-22T11:21:34.604Z");
+  assert.equal(arcaea?.contentVersion, "7.0.0c");
+  assert.equal(arcaea?.lastUpdatedAt, "2026-08-27T16:33:50.200Z");
   assert.equal(rizline?.contentVersion, "2.7.0");
   assert.equal(rizline?.lastUpdatedAt, "2026-08-24T12:42:04.372Z");
   assert.equal(phigros?.contentVersion, undefined);
@@ -270,8 +270,8 @@ test("category semantic browse data keeps player-facing names and conservative u
   assert.equal(ignotusByd?.displayTitle, "Ignotus Afterburn");
   const portraits = siteData.galleries["arcaea/character-portrait"] ?? [];
   const namedPortraits = portraits.filter((resource) => resource.displayTitle !== "未归类角色立绘");
-  assert.equal(namedPortraits.length, 139);
-  assert.equal(portraits.length, 139);
+  assert.equal(namedPortraits.length, 140);
+  assert.equal(portraits.length, 140);
   assert.ok(namedPortraits.some((resource) => resource.displayTitle === "光"));
   assert.ok(portraits.every((resource) => !/^\d+_(?:angry|cut|twisted)/u.test(resource.displayTitle)));
 
@@ -280,7 +280,7 @@ test("category semantic browse data keeps player-facing names and conservative u
   assert.equal(knownCg?.displayTitle, "Arcaea");
   assert.match(knownCg?.subtitle ?? "", /Main Story/u);
   assert.ok((knownCg?.searchTerms ?? []).includes("Shades of Light in a Transcendent Realm"));
-  assert.equal(semantic.arcaea.resources.filter((resource) => resource.resourceType === "story-cg").length, 57);
+  assert.equal(semantic.arcaea.resources.filter((resource) => resource.resourceType === "story-cg").length, 66);
   assert.equal((siteData.galleries["arcaea/story-texture"] ?? []).length, 0);
   assert.equal((siteData.galleries["arcaea/startup"] ?? []).length, 0);
   assert.equal((siteData.galleries["rotaeno/startup"] ?? []).length, 10);
@@ -290,7 +290,7 @@ test("category semantic browse data keeps player-facing names and conservative u
 
 test("homepage navigation uses the generated jacket browse counts", () => {
   const games = getPublicNavigationGames();
-  assert.equal(games.find((game) => game.slug === "arcaea")?.categories.find((category) => category.slug === "jacket")?.count, 557);
+  assert.equal(games.find((game) => game.slug === "arcaea")?.categories.find((category) => category.slug === "jacket")?.count, 565);
   assert.equal(games.find((game) => game.slug === "phigros")?.categories.find((category) => category.slug === "jacket")?.count, 353);
   const rizline = games.find((game) => game.slug === "rizline");
   assert.equal(rizline?.categories.find((category) => category.slug === "jacket")?.count, 141);

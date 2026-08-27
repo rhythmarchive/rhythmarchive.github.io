@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
   "game": "arcaea",
-  "generatedAt": "2026-08-22T11:21:34.604Z",
+  "generatedAt": "2026-08-27T16:33:50.200Z",
   "source": {
-    "snapshot": "Arcaea APK 6.16.8c",
+    "snapshot": "Arcaea APK 7.0.0c",
     "sha256": "22f54582396879b70d8ac0e625201e678babef2f0ee27aee607b0beb6d277d55"
   },
   "resources": [
@@ -32288,6 +32288,1671 @@
       "facets": {}
     },
     {
+      "resourceId": "a57509b5-9cb7-7165-903d-d3da0e83b873",
+      "resourceType": "character-avatar",
+      "displayTitle": "咲弥",
+      "subtitle": "角色名称未在 characters.json 中找到",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "咲弥"
+      ],
+      "sortOrder": 2500000565,
+      "facets": {}
+    },
+    {
+      "resourceId": "1d53bf59-4248-7317-a02e-e788162c2f93",
+      "resourceType": "character-portrait",
+      "displayTitle": "咲弥",
+      "subtitle": "角色名称未在 characters.json 中找到",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "咲弥"
+      ],
+      "sortOrder": 2500000566,
+      "facets": {}
+    },
+    {
+      "resourceId": "6c099b5b-4c6e-7c7b-86b4-baae7da062d4",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · 2white50",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "2white50"
+      ],
+      "sortOrder": 2500000567,
+      "facets": {}
+    },
+    {
+      "resourceId": "27a969a2-7a54-7348-b007-7b20dfdff749",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · 2white70",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "2white70"
+      ],
+      "sortOrder": 2500000568,
+      "facets": {}
+    },
+    {
+      "resourceId": "b68e07fa-5766-789a-872a-ea9e4a4a2ea2",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · 4white",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "4white"
+      ],
+      "sortOrder": 2500000569,
+      "facets": {}
+    },
+    {
+      "resourceId": "f8007bd1-8ae4-7551-ae3b-a8d6834eac5f",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · 5white",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "5white"
+      ],
+      "sortOrder": 2500000570,
+      "facets": {}
+    },
+    {
+      "resourceId": "8b0f0edd-d3fb-72d2-b4a1-df1e8eccee41",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · 6white",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "6white"
+      ],
+      "sortOrder": 2500000571,
+      "facets": {}
+    },
+    {
+      "resourceId": "910da421-8bdc-72ad-a29b-7a6df261a066",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · 7white",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "7white"
+      ],
+      "sortOrder": 2500000572,
+      "facets": {}
+    },
+    {
+      "resourceId": "b51f8230-e345-74c7-899e-b936c7621a3b",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · black fade corner",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "black_fade_corner"
+      ],
+      "sortOrder": 2500000573,
+      "facets": {}
+    },
+    {
+      "resourceId": "b798d6c3-b426-750f-bdf3-70f5661cdddf",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · Divine Oblivion · card A",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · card_A"
+      ],
+      "sortOrder": 2500000574,
+      "facets": {}
+    },
+    {
+      "resourceId": "48eb8d8a-8e3a-70f2-80cb-acd83c0bdd67",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · Divine Oblivion · card B",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · card_B"
+      ],
+      "sortOrder": 2500000575,
+      "facets": {}
+    },
+    {
+      "resourceId": "952322f5-2d93-74f0-beac-62397691dd32",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · Divine Oblivion · card C",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · card_C"
+      ],
+      "sortOrder": 2500000576,
+      "facets": {}
+    },
+    {
+      "resourceId": "c571c54e-5c1a-7a99-92d4-ade43b280a6d",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · Divine Oblivion · cat 1 1 b",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · cat_1_1_b"
+      ],
+      "sortOrder": 2500000577,
+      "facets": {}
+    },
+    {
+      "resourceId": "7d92052f-14a4-7374-8d80-73c5f4f209c2",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · Divine Oblivion · cat 1 1",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · cat_1_1"
+      ],
+      "sortOrder": 2500000578,
+      "facets": {}
+    },
+    {
+      "resourceId": "0ea8cf35-588b-72d9-b86e-b78f19c3ea43",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · Divine Oblivion · cat 1 2",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · cat_1_2"
+      ],
+      "sortOrder": 2500000579,
+      "facets": {}
+    },
+    {
+      "resourceId": "c5e863e6-5990-7449-9bbe-1e739f69fb1b",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · Divine Oblivion · cat 1 3",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · cat_1_3"
+      ],
+      "sortOrder": 2500000580,
+      "facets": {}
+    },
+    {
+      "resourceId": "50dc9dfd-3206-709d-b94d-2a15d68e271c",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · Divine Oblivion · cat 1 4",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · cat_1_4"
+      ],
+      "sortOrder": 2500000581,
+      "facets": {}
+    },
+    {
+      "resourceId": "36607014-cb95-7c42-8845-e506853d5f55",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · Divine Oblivion · cat 3 1",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · cat_3_1"
+      ],
+      "sortOrder": 2500000582,
+      "facets": {}
+    },
+    {
+      "resourceId": "05a0cd3a-4106-7a92-aa40-3e2a09a35e8f",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · Divine Oblivion · cat 3 2",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · cat_3_2"
+      ],
+      "sortOrder": 2500000583,
+      "facets": {}
+    },
+    {
+      "resourceId": "a583add3-5d4c-7992-bb0f-4bac16b78c11",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · Divine Oblivion · cat 3 3",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · cat_3_3"
+      ],
+      "sortOrder": 2500000584,
+      "facets": {}
+    },
+    {
+      "resourceId": "2e56d378-edba-782c-9ceb-72e773b5b7f6",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · Divine Oblivion · cat 3 4 1",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · cat_3_4_1"
+      ],
+      "sortOrder": 2500000585,
+      "facets": {}
+    },
+    {
+      "resourceId": "d57734a9-3aa6-7cd6-bd79-bd523238422c",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · Divine Oblivion · cat 3 4 2",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · cat_3_4_2"
+      ],
+      "sortOrder": 2500000586,
+      "facets": {}
+    },
+    {
+      "resourceId": "7f251385-d47f-7e9c-982f-94c62ee975b0",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · Divine Oblivion · cat 3 4 3",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · cat_3_4_3"
+      ],
+      "sortOrder": 2500000587,
+      "facets": {}
+    },
+    {
+      "resourceId": "2e531623-2e2c-73f2-b845-9603238afe2d",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · Divine Oblivion · cat 3 4 4",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · cat_3_4_4"
+      ],
+      "sortOrder": 2500000588,
+      "facets": {}
+    },
+    {
+      "resourceId": "9bc58d3a-85fb-79d2-a492-8739b0f38062",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · Divine Oblivion · cat 3 4 5",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · cat_3_4_5"
+      ],
+      "sortOrder": 2500000589,
+      "facets": {}
+    },
+    {
+      "resourceId": "dd16c263-c776-7548-af84-7441e48bee43",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · Divine Oblivion · cat 3 4",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · cat_3_4"
+      ],
+      "sortOrder": 2500000590,
+      "facets": {}
+    },
+    {
+      "resourceId": "c27b30dc-9333-7673-b0bf-a198167ee55a",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · Divine Oblivion · cat 3 5 1",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · cat_3_5_1"
+      ],
+      "sortOrder": 2500000591,
+      "facets": {}
+    },
+    {
+      "resourceId": "ac737792-6d6e-72d5-9e4c-f6676481d706",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · Divine Oblivion · cat 3 5 1f",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · cat_3_5_1f"
+      ],
+      "sortOrder": 2500000592,
+      "facets": {}
+    },
+    {
+      "resourceId": "4f1da033-2eba-7af6-91c5-6d74c8a93851",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · Divine Oblivion · cat 3 5 1L1",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · cat_3_5_1L1"
+      ],
+      "sortOrder": 2500000593,
+      "facets": {}
+    },
+    {
+      "resourceId": "1e914ffe-17f3-7b4b-844c-c780456a2049",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · Divine Oblivion · cat 3 5 1L3",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · cat_3_5_1L3"
+      ],
+      "sortOrder": 2500000594,
+      "facets": {}
+    },
+    {
+      "resourceId": "671b191d-5f24-71da-9a05-0703ff81c77e",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · Divine Oblivion · cat 3 5 2",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · cat_3_5_2"
+      ],
+      "sortOrder": 2500000595,
+      "facets": {}
+    },
+    {
+      "resourceId": "894f1489-f3a6-7d76-9586-57223927cd58",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · Divine Oblivion · cat 3 5 2L1",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · cat_3_5_2L1"
+      ],
+      "sortOrder": 2500000596,
+      "facets": {}
+    },
+    {
+      "resourceId": "29609ac3-1dd7-7ea9-bb10-f21befaedc58",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · Divine Oblivion · cat 3 5 2L2",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · cat_3_5_2L2"
+      ],
+      "sortOrder": 2500000597,
+      "facets": {}
+    },
+    {
+      "resourceId": "95e29b1f-b7e4-79b9-8abe-ffeb4e3ea7ba",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · Divine Oblivion · cat 3 5 2L3",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · cat_3_5_2L3"
+      ],
+      "sortOrder": 2500000598,
+      "facets": {}
+    },
+    {
+      "resourceId": "b5140bc8-3db3-7e5d-b698-39113102d872",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · Divine Oblivion · cat 4 1 1",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · cat_4_1_1"
+      ],
+      "sortOrder": 2500000599,
+      "facets": {}
+    },
+    {
+      "resourceId": "1af00d8c-753c-7774-b9c2-bf2e37e7a045",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · Divine Oblivion · cat 4 1 2",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · cat_4_1_2"
+      ],
+      "sortOrder": 2500000600,
+      "facets": {}
+    },
+    {
+      "resourceId": "58e12509-d696-7f71-a53d-aafcf9185f27",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · Divine Oblivion · cat 4 1 3",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · cat_4_1_3"
+      ],
+      "sortOrder": 2500000601,
+      "facets": {}
+    },
+    {
+      "resourceId": "2ba0b295-c3b2-7dd4-9b39-48d199fb7366",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · Divine Oblivion · cat 4 1 3c",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · cat_4_1_3c"
+      ],
+      "sortOrder": 2500000602,
+      "facets": {}
+    },
+    {
+      "resourceId": "271bd435-a7f9-7884-b230-63dc6c1f9aeb",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · Divine Oblivion · cat 6 0",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · cat_6_0"
+      ],
+      "sortOrder": 2500000603,
+      "facets": {}
+    },
+    {
+      "resourceId": "a1ef5f85-2993-74a2-b2a5-269a0c8a4a3b",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · Divine Oblivion · cat 6 1 1",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · cat_6_1_1"
+      ],
+      "sortOrder": 2500000604,
+      "facets": {}
+    },
+    {
+      "resourceId": "22575a45-9628-7e0f-8b21-e1235b8385d3",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · Divine Oblivion · cat 6 1 2",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · cat_6_1_2"
+      ],
+      "sortOrder": 2500000605,
+      "facets": {}
+    },
+    {
+      "resourceId": "4604f924-6519-7313-9619-f04685ad8f96",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · Divine Oblivion · cat 6 1",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · cat_6_1"
+      ],
+      "sortOrder": 2500000606,
+      "facets": {}
+    },
+    {
+      "resourceId": "87c6f67c-a9ac-7601-9bec-707793a129d4",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · Divine Oblivion · cat 6 2",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · cat_6_2"
+      ],
+      "sortOrder": 2500000607,
+      "facets": {}
+    },
+    {
+      "resourceId": "8488ddcc-9de6-7717-b164-63375c33426b",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · Divine Oblivion · cat 6 3",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · cat_6_3"
+      ],
+      "sortOrder": 2500000608,
+      "facets": {}
+    },
+    {
+      "resourceId": "113baa9e-3eb9-7f25-9684-3884022bae9f",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · Divine Oblivion · cat 6 4 1",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · cat_6_4_1"
+      ],
+      "sortOrder": 2500000609,
+      "facets": {}
+    },
+    {
+      "resourceId": "cad28f30-dbf6-747d-b858-bc5b99d195ea",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · Divine Oblivion · cat 6 4 1c",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · cat_6_4_1c"
+      ],
+      "sortOrder": 2500000610,
+      "facets": {}
+    },
+    {
+      "resourceId": "32948c7e-d0ca-784e-a4c0-d26b29ac6608",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · Divine Oblivion · cat 6 4 2",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · cat_6_4_2"
+      ],
+      "sortOrder": 2500000611,
+      "facets": {}
+    },
+    {
+      "resourceId": "13b8ed64-0b8a-7359-b6e9-8f4c75e90b38",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · Divine Oblivion · cat 6 4 3",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · cat_6_4_3"
+      ],
+      "sortOrder": 2500000612,
+      "facets": {}
+    },
+    {
+      "resourceId": "5bce55de-3d8d-7f14-a5ad-e585fb38b768",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · Divine Oblivion · cat 6 4 A",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · cat_6_4_A"
+      ],
+      "sortOrder": 2500000613,
+      "facets": {}
+    },
+    {
+      "resourceId": "18590d35-b1e8-7df4-8a27-671629e9391c",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · Divine Oblivion · cat 6 4 B",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · cat_6_4_B"
+      ],
+      "sortOrder": 2500000614,
+      "facets": {}
+    },
+    {
+      "resourceId": "9c5dc249-2084-7c33-a789-c3ea9868eb90",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · Divine Oblivion · cat 6 4",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · cat_6_4"
+      ],
+      "sortOrder": 2500000615,
+      "facets": {}
+    },
+    {
+      "resourceId": "940697d1-937b-75d5-9fb1-cd84e9b5847b",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · Divine Oblivion · cat 6 5",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · cat_6_5"
+      ],
+      "sortOrder": 2500000616,
+      "facets": {}
+    },
+    {
+      "resourceId": "4cf54cd3-ae34-7243-8f32-8d200ae9aea0",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · Divine Oblivion · cat 8 1 1",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · cat_8_1_1"
+      ],
+      "sortOrder": 2500000617,
+      "facets": {}
+    },
+    {
+      "resourceId": "96576c77-eb27-797e-b73b-742e24c9553b",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · Divine Oblivion · cat 8 1 2",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · cat_8_1_2"
+      ],
+      "sortOrder": 2500000618,
+      "facets": {}
+    },
+    {
+      "resourceId": "658f47cd-0e3a-78f6-9385-671a64e485c1",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · Divine Oblivion · cat 8 1",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · cat_8_1"
+      ],
+      "sortOrder": 2500000619,
+      "facets": {}
+    },
+    {
+      "resourceId": "99580dbd-a330-7865-ae6f-7883b9479d4b",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · Divine Oblivion · cat 8 2 1",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · cat_8_2_1"
+      ],
+      "sortOrder": 2500000620,
+      "facets": {}
+    },
+    {
+      "resourceId": "6131a135-036d-760f-91c1-a3bdea2110a6",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · Divine Oblivion · cat 8 2 2",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · cat_8_2_2"
+      ],
+      "sortOrder": 2500000621,
+      "facets": {}
+    },
+    {
+      "resourceId": "ed8a6767-dcb7-7866-9844-43ad56672a4b",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · Divine Oblivion · cat 8 2 3",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · cat_8_2_3"
+      ],
+      "sortOrder": 2500000622,
+      "facets": {}
+    },
+    {
+      "resourceId": "cb9c75ff-4b97-776a-9720-0c716addcbca",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · Divine Oblivion · cat 8 3 1",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · cat_8_3_1"
+      ],
+      "sortOrder": 2500000623,
+      "facets": {}
+    },
+    {
+      "resourceId": "e1f49128-4bc9-70ca-8c64-a7dc393dbe9a",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · Divine Oblivion · cat 8 3 2",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · cat_8_3_2"
+      ],
+      "sortOrder": 2500000624,
+      "facets": {}
+    },
+    {
+      "resourceId": "ab99780d-4048-78aa-b6ed-c6937f484ac3",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · Divine Oblivion · cat 8 4 1",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · cat_8_4_1"
+      ],
+      "sortOrder": 2500000625,
+      "facets": {}
+    },
+    {
+      "resourceId": "5c411ce4-ebb9-7a0c-8d37-c8e377e9343c",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · Divine Oblivion · cat 8 4 2",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · cat_8_4_2"
+      ],
+      "sortOrder": 2500000626,
+      "facets": {}
+    },
+    {
+      "resourceId": "aacf20cf-c838-7d43-81b9-7d7407a840ca",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · Divine Oblivion · cat 8 4",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · cat_8_4"
+      ],
+      "sortOrder": 2500000627,
+      "facets": {}
+    },
+    {
+      "resourceId": "f46148b7-cd72-73a0-a489-358e3cde458b",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · Divine Oblivion · cat 8 5 0",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · cat_8_5_0"
+      ],
+      "sortOrder": 2500000628,
+      "facets": {}
+    },
+    {
+      "resourceId": "c31528ff-0d13-77f3-aca9-0edb882dc24a",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · Divine Oblivion · cat 8 5 1",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · cat_8_5_1"
+      ],
+      "sortOrder": 2500000629,
+      "facets": {}
+    },
+    {
+      "resourceId": "64935f31-d844-7983-a5a4-836181f875f5",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · Divine Oblivion · cat 8 5 10",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · cat_8_5_10"
+      ],
+      "sortOrder": 2500000630,
+      "facets": {}
+    },
+    {
+      "resourceId": "1c0f13e1-f926-7fdb-9bb3-e17102badc65",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · Divine Oblivion · cat 8 5 2b",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · cat_8_5_2b"
+      ],
+      "sortOrder": 2500000631,
+      "facets": {}
+    },
+    {
+      "resourceId": "ddae5e5e-d8e7-7ae7-91e3-04aae88c90bf",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · Divine Oblivion · cat 8 5 2h",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · cat_8_5_2h"
+      ],
+      "sortOrder": 2500000632,
+      "facets": {}
+    },
+    {
+      "resourceId": "f7bbb3b8-2855-7565-81db-7b4c83cd8ec3",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · Divine Oblivion · cat 8 5 3",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · cat_8_5_3"
+      ],
+      "sortOrder": 2500000633,
+      "facets": {}
+    },
+    {
+      "resourceId": "38481c6a-5179-7963-80fc-00b486c9b37e",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · Divine Oblivion · cat 8 5 4",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · cat_8_5_4"
+      ],
+      "sortOrder": 2500000634,
+      "facets": {}
+    },
+    {
+      "resourceId": "e278e9b7-aa22-7a77-9231-eb2c3892fdcd",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · Divine Oblivion · cat 8 5 5",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · cat_8_5_5"
+      ],
+      "sortOrder": 2500000635,
+      "facets": {}
+    },
+    {
+      "resourceId": "513db071-cda3-7643-9bb7-123e3e0710c8",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · Divine Oblivion · cat 8 5 6",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · cat_8_5_6"
+      ],
+      "sortOrder": 2500000636,
+      "facets": {}
+    },
+    {
+      "resourceId": "4d049c31-45c4-783c-a111-5d52550b9f6e",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · Divine Oblivion · cat 8 5 7",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · cat_8_5_7"
+      ],
+      "sortOrder": 2500000637,
+      "facets": {}
+    },
+    {
+      "resourceId": "2a7ecfd5-dedb-718f-afd7-9b387e731dc9",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · Divine Oblivion · cat 8 5 8",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · cat_8_5_8"
+      ],
+      "sortOrder": 2500000638,
+      "facets": {}
+    },
+    {
+      "resourceId": "6a3a5785-639b-75d4-b733-ab4ca444453d",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · Divine Oblivion · cat 8 5 8d",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · cat_8_5_8d"
+      ],
+      "sortOrder": 2500000639,
+      "facets": {}
+    },
+    {
+      "resourceId": "4718d763-b776-7510-8414-6897a05635a5",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · Divine Oblivion · cat 8 5 9",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · cat_8_5_9"
+      ],
+      "sortOrder": 2500000640,
+      "facets": {}
+    },
+    {
+      "resourceId": "6730b2af-154b-708a-a1dc-1220bac5f1f7",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · Divine Oblivion · cat 8 6 1",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · cat_8_6_1"
+      ],
+      "sortOrder": 2500000641,
+      "facets": {}
+    },
+    {
+      "resourceId": "522e7694-4b70-7f82-9801-03f147971507",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · Divine Oblivion · cat 8 6 2",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · cat_8_6_2"
+      ],
+      "sortOrder": 2500000642,
+      "facets": {}
+    },
+    {
+      "resourceId": "310742c4-b738-758c-be06-dc0a8088172b",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · Divine Oblivion · cat 8 6 2a",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · cat_8_6_2a"
+      ],
+      "sortOrder": 2500000643,
+      "facets": {}
+    },
+    {
+      "resourceId": "5697e856-5d4c-7d2b-a3a1-5589bc861f0c",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · Divine Oblivion · cat 8 6 2a2",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · cat_8_6_2a2"
+      ],
+      "sortOrder": 2500000644,
+      "facets": {}
+    },
+    {
+      "resourceId": "d490eae6-9d71-7898-85cd-8be13ec97416",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · Divine Oblivion · cat 8 6 2b",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · cat_8_6_2b"
+      ],
+      "sortOrder": 2500000645,
+      "facets": {}
+    },
+    {
+      "resourceId": "da981495-d748-72e8-835e-d54f3343700e",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · Divine Oblivion · cat 8 6",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · cat_8_6"
+      ],
+      "sortOrder": 2500000646,
+      "facets": {}
+    },
+    {
+      "resourceId": "13fcfb5f-6fbb-7104-8abb-2967a22d6da7",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · Divine Oblivion · cat 8 6b",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · cat_8_6b"
+      ],
+      "sortOrder": 2500000647,
+      "facets": {}
+    },
+    {
+      "resourceId": "e9456ad4-452c-7a60-b664-e570e9911ac7",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · Divine Oblivion · cat 8 6b",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · cat_8_6b"
+      ],
+      "sortOrder": 2500000648,
+      "facets": {}
+    },
+    {
+      "resourceId": "1d677506-0fad-7d74-aab0-56d1742218b1",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · Divine Oblivion · D O CG 0",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · D-O_CG_0"
+      ],
+      "sortOrder": 2500000649,
+      "facets": {}
+    },
+    {
+      "resourceId": "a5b70cdc-71fd-7d6b-90be-e0adb2db48ea",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · Divine Oblivion · D O CG 1",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · D-O_CG_1"
+      ],
+      "sortOrder": 2500000650,
+      "facets": {}
+    },
+    {
+      "resourceId": "3c0e1282-7452-7ffd-9e23-eca5a1d03f80",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · Divine Oblivion · D O CG 2",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · D-O_CG_2"
+      ],
+      "sortOrder": 2500000651,
+      "facets": {}
+    },
+    {
+      "resourceId": "b1f29b9b-5c82-7340-a397-82f6cd2501af",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · Divine Oblivion · D O CG 3",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · D-O_CG_3"
+      ],
+      "sortOrder": 2500000652,
+      "facets": {}
+    },
+    {
+      "resourceId": "94e96f2d-eeff-72e4-b59d-71e02d990e34",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · Divine Oblivion · D O CG 4",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · D-O_CG_4"
+      ],
+      "sortOrder": 2500000653,
+      "facets": {}
+    },
+    {
+      "resourceId": "0a7735da-cd84-7af0-8e0f-03cc1f08cefb",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · Divine Oblivion · flash light",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · flash_light"
+      ],
+      "sortOrder": 2500000654,
+      "facets": {}
+    },
+    {
+      "resourceId": "b59179f4-e6cc-7a79-8a8c-b75e740369ff",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · Divine Oblivion · old light",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · old_light"
+      ],
+      "sortOrder": 2500000655,
+      "facets": {}
+    },
+    {
+      "resourceId": "d59c3808-8b8b-70b9-b821-824a4f70cbfc",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · Divine Oblivion · entry konzetsu 1 pressed",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · entry_konzetsu_1_pressed"
+      ],
+      "sortOrder": 2500000656,
+      "facets": {}
+    },
+    {
+      "resourceId": "4d2fcb39-7593-7f2f-86bd-d0bb87aeacd1",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · Divine Oblivion · entry konzetsu 1",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · entry_konzetsu_1"
+      ],
+      "sortOrder": 2500000657,
+      "facets": {}
+    },
+    {
+      "resourceId": "5973b3a5-2833-7c2a-b94a-b255e63112b9",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · Divine Oblivion · entry konzetsu 2 pressed",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · entry_konzetsu_2_pressed"
+      ],
+      "sortOrder": 2500000658,
+      "facets": {}
+    },
+    {
+      "resourceId": "576f86b2-ba01-7252-954f-cdec27b33034",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · Divine Oblivion · entry konzetsu 2",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · entry_konzetsu_2"
+      ],
+      "sortOrder": 2500000659,
+      "facets": {}
+    },
+    {
+      "resourceId": "10383aea-59a1-72b3-9b1a-8242642bca53",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · Divine Oblivion · entry konzetsu 3 pressed",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · entry_konzetsu_3_pressed"
+      ],
+      "sortOrder": 2500000660,
+      "facets": {}
+    },
+    {
+      "resourceId": "95719941-b093-7128-a227-a853537be520",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · Divine Oblivion · entry konzetsu 3",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · entry_konzetsu_3"
+      ],
+      "sortOrder": 2500000661,
+      "facets": {}
+    },
+    {
+      "resourceId": "806fac7f-022e-7fd3-b32f-80e7b6da6cb8",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · Divine Oblivion · entry konzetsu 4 pressed",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · entry_konzetsu_4_pressed"
+      ],
+      "sortOrder": 2500000662,
+      "facets": {}
+    },
+    {
+      "resourceId": "b7a53889-aa61-739f-b4bd-e3f56185f8d4",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · Divine Oblivion · entry konzetsu 4",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · entry_konzetsu_4"
+      ],
+      "sortOrder": 2500000663,
+      "facets": {}
+    },
+    {
+      "resourceId": "87475215-67b2-7a89-bec7-7aacbb832cb9",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · Divine Oblivion · entry konzetsu 5 pressed",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · entry_konzetsu_5_pressed"
+      ],
+      "sortOrder": 2500000664,
+      "facets": {}
+    },
+    {
+      "resourceId": "f2459b95-6359-77d6-a350-aeb88c2d845e",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · Divine Oblivion · entry konzetsu 5",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · entry_konzetsu_5"
+      ],
+      "sortOrder": 2500000665,
+      "facets": {}
+    },
+    {
+      "resourceId": "06110c10-b1d5-7ea0-85af-105e2a33156f",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · Divine Oblivion · entry konzetsu 6 pressed",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · entry_konzetsu_6_pressed"
+      ],
+      "sortOrder": 2500000666,
+      "facets": {}
+    },
+    {
+      "resourceId": "1a8d56dc-721a-7eef-a680-65ed0a85e567",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · Divine Oblivion · entry konzetsu 6",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · entry_konzetsu_6"
+      ],
+      "sortOrder": 2500000667,
+      "facets": {}
+    },
+    {
+      "resourceId": "0157395e-848b-7ba0-ab31-255e94dd5b66",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · Divine Oblivion · entry konzetsu 7 pressed",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · entry_konzetsu_7_pressed"
+      ],
+      "sortOrder": 2500000668,
+      "facets": {}
+    },
+    {
+      "resourceId": "891004f2-ffb9-75ea-99d0-7f034621b68a",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · Divine Oblivion · entry konzetsu 7",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · entry_konzetsu_7"
+      ],
+      "sortOrder": 2500000669,
+      "facets": {}
+    },
+    {
+      "resourceId": "d49afb42-9e3f-7694-b471-1d2a3ae40467",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · Divine Oblivion · entry konzetsu 8 pressed",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · entry_konzetsu_8_pressed"
+      ],
+      "sortOrder": 2500000670,
+      "facets": {}
+    },
+    {
+      "resourceId": "ff78d1e8-08db-78ac-b9e9-caf841e460a4",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · Divine Oblivion · entry konzetsu 8",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · entry_konzetsu_8"
+      ],
+      "sortOrder": 2500000671,
+      "facets": {}
+    },
+    {
+      "resourceId": "4eef4e41-c47f-717b-ae67-3db3585de2cf",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · Divine Oblivion · entry konzetsu 9 pressed",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · entry_konzetsu_9_pressed"
+      ],
+      "sortOrder": 2500000672,
+      "facets": {}
+    },
+    {
+      "resourceId": "7015be45-d15d-7abc-82c0-4dbaed198f4b",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · Divine Oblivion · entry konzetsu 9",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · entry_konzetsu_9"
+      ],
+      "sortOrder": 2500000673,
+      "facets": {}
+    },
+    {
+      "resourceId": "4edc4fe1-9209-7dec-80c3-e876055642a1",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · Divine Oblivion · entry konzetsu pressed",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · entry_konzetsu_pressed"
+      ],
+      "sortOrder": 2500000674,
+      "facets": {}
+    },
+    {
+      "resourceId": "9c369738-3d81-78b5-921e-c6c0cd9cfbe4",
+      "resourceType": "story-texture",
+      "displayTitle": "剧情素材 · Divine Oblivion · entry konzetsu",
+      "subtitle": "VN/过场技术素材",
+      "metadata": {},
+      "badges": [
+        "待确认"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · entry_konzetsu"
+      ],
+      "sortOrder": 2500000675,
+      "facets": {}
+    },
+    {
       "resourceId": "01a00093-df71-7b81-9c2b-442c5f9920b3",
       "resourceType": "story-cg",
       "displayTitle": "Colorful Dream",
@@ -32636,6 +34301,538 @@
         ],
         "chapter": [
           "Chapter 18"
+        ]
+      }
+    },
+    {
+      "resourceId": "d75bbb05-290f-79c9-893c-995a90efad26",
+      "resourceType": "background",
+      "displayTitle": "cataclysmcry_clear",
+      "subtitle": "游玩背景",
+      "metadata": {
+        "sourceVersion": "7.0.0c"
+      },
+      "badges": [
+        "7.0.0c"
+      ],
+      "searchTerms": [
+        "cataclysmcry_clear",
+        "Arcaea/current-apk/img/bg/1080/cataclysmcry_clear.png"
+      ],
+      "sortOrder": 3100000000,
+      "facets": {
+        "release": [
+          "7.0.0c"
+        ]
+      }
+    },
+    {
+      "resourceId": "31fa2942-b293-75a4-9317-d215e753216c",
+      "resourceType": "background",
+      "displayTitle": "cataclysmcry",
+      "subtitle": "游玩背景",
+      "metadata": {
+        "sourceVersion": "7.0.0c"
+      },
+      "badges": [
+        "7.0.0c"
+      ],
+      "searchTerms": [
+        "cataclysmcry",
+        "Arcaea/current-apk/img/bg/1080/cataclysmcry.jpg"
+      ],
+      "sortOrder": 3100000001,
+      "facets": {
+        "release": [
+          "7.0.0c"
+        ]
+      }
+    },
+    {
+      "resourceId": "2e03c567-f565-7dc2-89a6-c9f5c618a15a",
+      "resourceType": "background",
+      "displayTitle": "deinosphainein_clear",
+      "subtitle": "游玩背景",
+      "metadata": {
+        "sourceVersion": "7.0.0c"
+      },
+      "badges": [
+        "7.0.0c"
+      ],
+      "searchTerms": [
+        "deinosphainein_clear",
+        "Arcaea/current-apk/img/bg/1080/deinosphainein_clear.png"
+      ],
+      "sortOrder": 3100000002,
+      "facets": {
+        "release": [
+          "7.0.0c"
+        ]
+      }
+    },
+    {
+      "resourceId": "2cd7761a-f0e1-7592-971d-a584861b498f",
+      "resourceType": "background",
+      "displayTitle": "deinosphainein",
+      "subtitle": "游玩背景",
+      "metadata": {
+        "sourceVersion": "7.0.0c"
+      },
+      "badges": [
+        "7.0.0c"
+      ],
+      "searchTerms": [
+        "deinosphainein",
+        "Arcaea/current-apk/img/bg/1080/deinosphainein.jpg"
+      ],
+      "sortOrder": 3100000003,
+      "facets": {
+        "release": [
+          "7.0.0c"
+        ]
+      }
+    },
+    {
+      "resourceId": "0d560efd-3435-7abf-8814-4bc0fb10d10e",
+      "resourceType": "background",
+      "displayTitle": "konzetsu-a_clear",
+      "subtitle": "游玩背景",
+      "metadata": {
+        "sourceVersion": "7.0.0c"
+      },
+      "badges": [
+        "7.0.0c"
+      ],
+      "searchTerms": [
+        "konzetsu-a_clear",
+        "Arcaea/current-apk/img/bg/1080/konzetsu-a_clear.png"
+      ],
+      "sortOrder": 3100000004,
+      "facets": {
+        "release": [
+          "7.0.0c"
+        ]
+      }
+    },
+    {
+      "resourceId": "5fb1c8f0-7693-7b81-ba7d-5c4547ae29ec",
+      "resourceType": "background",
+      "displayTitle": "konzetsu-a",
+      "subtitle": "游玩背景",
+      "metadata": {
+        "sourceVersion": "7.0.0c"
+      },
+      "badges": [
+        "7.0.0c"
+      ],
+      "searchTerms": [
+        "konzetsu-a",
+        "Arcaea/current-apk/img/bg/1080/konzetsu-a.jpg"
+      ],
+      "sortOrder": 3100000005,
+      "facets": {
+        "release": [
+          "7.0.0c"
+        ]
+      }
+    },
+    {
+      "resourceId": "3d9a5317-fa90-7891-8173-5335186da251",
+      "resourceType": "background",
+      "displayTitle": "konzetsu-b_clear",
+      "subtitle": "游玩背景",
+      "metadata": {
+        "sourceVersion": "7.0.0c"
+      },
+      "badges": [
+        "7.0.0c"
+      ],
+      "searchTerms": [
+        "konzetsu-b_clear",
+        "Arcaea/current-apk/img/bg/1080/konzetsu-b_clear.png"
+      ],
+      "sortOrder": 3100000006,
+      "facets": {
+        "release": [
+          "7.0.0c"
+        ]
+      }
+    },
+    {
+      "resourceId": "c21392a2-550d-7e88-a428-6aa084c3312c",
+      "resourceType": "background",
+      "displayTitle": "konzetsu-b",
+      "subtitle": "游玩背景",
+      "metadata": {
+        "sourceVersion": "7.0.0c"
+      },
+      "badges": [
+        "7.0.0c"
+      ],
+      "searchTerms": [
+        "konzetsu-b",
+        "Arcaea/current-apk/img/bg/1080/konzetsu-b.jpg"
+      ],
+      "sortOrder": 3100000007,
+      "facets": {
+        "release": [
+          "7.0.0c"
+        ]
+      }
+    },
+    {
+      "resourceId": "050d9e56-8f68-7ee4-abdd-f9d36c5b238d",
+      "resourceType": "linkplay-preview",
+      "displayTitle": "咲弥",
+      "subtitle": "LinkPlay 预览",
+      "metadata": {
+        "sourceVersion": "7.0.0c"
+      },
+      "badges": [
+        "7.0.0c"
+      ],
+      "searchTerms": [
+        "咲弥",
+        "Arcaea/current-apk/char/97_mp.png"
+      ],
+      "sortOrder": 3100000010,
+      "facets": {
+        "release": [
+          "7.0.0c"
+        ]
+      }
+    },
+    {
+      "resourceId": "6ba7ddb0-fb57-7e2a-9609-1ee5864a88b6",
+      "resourceType": "pack-cover",
+      "displayTitle": "Divine Oblivion",
+      "subtitle": "曲包封面",
+      "metadata": {
+        "sourceVersion": "7.0.0c",
+        "packId": "konzetsu"
+      },
+      "badges": [
+        "7.0.0c"
+      ],
+      "searchTerms": [
+        "Divine Oblivion",
+        "Arcaea/current-apk/songs/pack/1080_select_konzetsu_alt.png",
+        "konzetsu"
+      ],
+      "sortOrder": 3100000011,
+      "facets": {
+        "release": [
+          "7.0.0c"
+        ]
+      }
+    },
+    {
+      "resourceId": "d70f2c10-31e5-75db-ad5c-be8d87471bef",
+      "resourceType": "pack-cover",
+      "displayTitle": "Divine Oblivion",
+      "subtitle": "曲包封面",
+      "metadata": {
+        "sourceVersion": "7.0.0c",
+        "packId": "konzetsu"
+      },
+      "badges": [
+        "7.0.0c"
+      ],
+      "searchTerms": [
+        "Divine Oblivion",
+        "Arcaea/current-apk/songs/pack/1080_select_konzetsu.png",
+        "konzetsu"
+      ],
+      "sortOrder": 3100000012,
+      "facets": {
+        "release": [
+          "7.0.0c"
+        ]
+      }
+    },
+    {
+      "resourceId": "9b05ddfa-7e4e-7c13-8a39-221cdf9c7c1e",
+      "resourceType": "startup",
+      "displayTitle": "bg_konzetsu",
+      "subtitle": "启动页面",
+      "metadata": {
+        "sourceVersion": "7.0.0c"
+      },
+      "badges": [
+        "7.0.0c"
+      ],
+      "searchTerms": [
+        "bg_konzetsu",
+        "Arcaea/current-apk/startup/1080/bg_konzetsu.jpg"
+      ],
+      "sortOrder": 3100000013,
+      "facets": {
+        "release": [
+          "7.0.0c"
+        ]
+      }
+    },
+    {
+      "resourceId": "574cc8d2-6112-7984-bf18-048a1bc68d68",
+      "resourceType": "startup",
+      "displayTitle": "cg2",
+      "subtitle": "启动页面",
+      "metadata": {
+        "sourceVersion": "7.0.0c"
+      },
+      "badges": [
+        "7.0.0c"
+      ],
+      "searchTerms": [
+        "cg2",
+        "Arcaea/current-apk/startup/1080/cg2.jpg"
+      ],
+      "sortOrder": 3100000014,
+      "facets": {
+        "release": [
+          "7.0.0c"
+        ]
+      }
+    },
+    {
+      "resourceId": "faad1b85-9196-76cd-bd9e-2b3def2f7a85",
+      "resourceType": "startup",
+      "displayTitle": "cg2s_select",
+      "subtitle": "启动页面",
+      "metadata": {
+        "sourceVersion": "7.0.0c"
+      },
+      "badges": [
+        "7.0.0c"
+      ],
+      "searchTerms": [
+        "cg2s_select",
+        "Arcaea/current-apk/startup/1080/cg2s_select.jpg"
+      ],
+      "sortOrder": 3100000015,
+      "facets": {
+        "release": [
+          "7.0.0c"
+        ]
+      }
+    },
+    {
+      "resourceId": "3fce7197-d7ea-7161-bdf0-9b19a130f5ee",
+      "resourceType": "startup",
+      "displayTitle": "cg2s",
+      "subtitle": "启动页面",
+      "metadata": {
+        "sourceVersion": "7.0.0c"
+      },
+      "badges": [
+        "7.0.0c"
+      ],
+      "searchTerms": [
+        "cg2s",
+        "Arcaea/current-apk/startup/1080/cg2s.jpg"
+      ],
+      "sortOrder": 3100000016,
+      "facets": {
+        "release": [
+          "7.0.0c"
+        ]
+      }
+    },
+    {
+      "resourceId": "814e4ef8-500c-73ad-b75c-4abc8f31eb16",
+      "resourceType": "story-cg",
+      "displayTitle": "Divine Oblivion · C-2-1",
+      "subtitle": "剧情 CG",
+      "metadata": {
+        "sourceVersion": "7.0.0c"
+      },
+      "badges": [
+        "7.0.0c"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · C-2-1",
+        "Arcaea/current-apk/app-data/story/cg/C-2-1.jpg"
+      ],
+      "sortOrder": 3100000017,
+      "facets": {
+        "release": [
+          "7.0.0c"
+        ]
+      }
+    },
+    {
+      "resourceId": "c2aecd74-079f-70b1-aaf4-40e0e4efd153",
+      "resourceType": "story-cg",
+      "displayTitle": "Divine Oblivion · C-2-2",
+      "subtitle": "剧情 CG",
+      "metadata": {
+        "sourceVersion": "7.0.0c"
+      },
+      "badges": [
+        "7.0.0c"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · C-2-2",
+        "Arcaea/current-apk/app-data/story/cg/C-2-2.jpg"
+      ],
+      "sortOrder": 3100000018,
+      "facets": {
+        "release": [
+          "7.0.0c"
+        ]
+      }
+    },
+    {
+      "resourceId": "05e53be1-bc6e-7e8a-866e-a223aaeac79e",
+      "resourceType": "story-cg",
+      "displayTitle": "Divine Oblivion · C-5",
+      "subtitle": "剧情 CG",
+      "metadata": {
+        "sourceVersion": "7.0.0c"
+      },
+      "badges": [
+        "7.0.0c"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · C-5",
+        "Arcaea/current-apk/app-data/story/cg/C-5.jpg"
+      ],
+      "sortOrder": 3100000019,
+      "facets": {
+        "release": [
+          "7.0.0c"
+        ]
+      }
+    },
+    {
+      "resourceId": "c4b34076-908d-7f06-8b42-d190d0c41b01",
+      "resourceType": "story-cg",
+      "displayTitle": "Divine Oblivion · C-7-1",
+      "subtitle": "剧情 CG",
+      "metadata": {
+        "sourceVersion": "7.0.0c"
+      },
+      "badges": [
+        "7.0.0c"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · C-7-1",
+        "Arcaea/current-apk/app-data/story/cg/C-7-1.jpg"
+      ],
+      "sortOrder": 3100000020,
+      "facets": {
+        "release": [
+          "7.0.0c"
+        ]
+      }
+    },
+    {
+      "resourceId": "5f62dc93-413c-73cd-9d18-e522946ebaa3",
+      "resourceType": "story-cg",
+      "displayTitle": "Divine Oblivion · C-7-2",
+      "subtitle": "剧情 CG",
+      "metadata": {
+        "sourceVersion": "7.0.0c"
+      },
+      "badges": [
+        "7.0.0c"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · C-7-2",
+        "Arcaea/current-apk/app-data/story/cg/C-7-2.jpg"
+      ],
+      "sortOrder": 3100000021,
+      "facets": {
+        "release": [
+          "7.0.0c"
+        ]
+      }
+    },
+    {
+      "resourceId": "29385cfd-2d98-7d9b-bd85-db976e95990d",
+      "resourceType": "story-cg",
+      "displayTitle": "Divine Oblivion · C-7-3",
+      "subtitle": "剧情 CG",
+      "metadata": {
+        "sourceVersion": "7.0.0c"
+      },
+      "badges": [
+        "7.0.0c"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · C-7-3",
+        "Arcaea/current-apk/app-data/story/cg/C-7-3.jpg"
+      ],
+      "sortOrder": 3100000022,
+      "facets": {
+        "release": [
+          "7.0.0c"
+        ]
+      }
+    },
+    {
+      "resourceId": "af6eb0f4-e43c-7fc5-b1d8-f22cad4c33d5",
+      "resourceType": "story-cg",
+      "displayTitle": "Divine Oblivion · C-9-1",
+      "subtitle": "剧情 CG",
+      "metadata": {
+        "sourceVersion": "7.0.0c"
+      },
+      "badges": [
+        "7.0.0c"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · C-9-1",
+        "Arcaea/current-apk/app-data/story/cg/C-9-1.jpg"
+      ],
+      "sortOrder": 3100000023,
+      "facets": {
+        "release": [
+          "7.0.0c"
+        ]
+      }
+    },
+    {
+      "resourceId": "9d00e6a0-df6a-71f3-9a2c-0f1b92429fe9",
+      "resourceType": "story-cg",
+      "displayTitle": "Divine Oblivion · C-9-2",
+      "subtitle": "剧情 CG",
+      "metadata": {
+        "sourceVersion": "7.0.0c"
+      },
+      "badges": [
+        "7.0.0c"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · C-9-2",
+        "Arcaea/current-apk/app-data/story/cg/C-9-2.jpg"
+      ],
+      "sortOrder": 3100000024,
+      "facets": {
+        "release": [
+          "7.0.0c"
+        ]
+      }
+    },
+    {
+      "resourceId": "215b4dfa-ecf3-7bde-b16e-ef8bfd01c55c",
+      "resourceType": "story-cg",
+      "displayTitle": "Divine Oblivion · C-9-3",
+      "subtitle": "剧情 CG",
+      "metadata": {
+        "sourceVersion": "7.0.0c"
+      },
+      "badges": [
+        "7.0.0c"
+      ],
+      "searchTerms": [
+        "Divine Oblivion · C-9-3",
+        "Arcaea/current-apk/app-data/story/cg/C-9-3.jpg"
+      ],
+      "sortOrder": 3100000025,
+      "facets": {
+        "release": [
+          "7.0.0c"
         ]
       }
     },

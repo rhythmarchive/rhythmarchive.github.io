@@ -31,14 +31,15 @@ function targetFor(relativePath: string) {
 
 function variantFor(relativePath: string): string | undefined {
   const match = relativePath.match(/^songs\/[^/]+\/1080_base_([0-4])\./iu);
-  if (!match) return undefined;
-  return ["PST", "PRS", "FTR", "BYD", "ETR"][Number.parseInt(match[1]!, 10)];
+  if (match) return ["PST", "PRS", "FTR", "BYD", "ETR"][Number.parseInt(match[1]!, 10)];
+  if (/^songs\/pack\//iu.test(relativePath) && /_alt\.[^.]+$/iu.test(relativePath)) return "alt";
+  return undefined;
 }
 
 function sourceIdentity(relativePath: string): { sourceKey: string; sourceKeyType: string } {
   const song = relativePath.match(/^songs\/(?!pack\/)([^/]+)\//iu);
   if (song) return { sourceKey: song[1]!.replace(/^dl_/iu, ""), sourceKeyType: "songId" };
-  const pack = relativePath.match(/^songs\/pack\/([^/]+)\//iu);
+  const pack = path.posix.basename(relativePath).match(/^(?:1080_)?select_(.+?)(?:_alt)?\.[^.]+$/iu);
   if (pack) return { sourceKey: pack[1]!, sourceKeyType: "packId" };
   const character = path.posix.basename(relativePath).match(/(?:^|_)(-?\d+)(?:_icon|_mp)?\.[^.]+$/iu);
   if (character) return { sourceKey: character[1]!, sourceKeyType: "characterId" };

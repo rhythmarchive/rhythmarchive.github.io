@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
   "game": "arcaea",
-  "generatedAt": "2026-08-27T04:01:03.671Z",
+  "generatedAt": "2026-08-27T16:40:54.315Z",
   "source": {
-    "version": "6.16.8c",
-    "sha256": "c2b58dcad54203645057a859524789f59cfd5ca13613b610d04ad087b58aac90"
+    "version": "7.0.0c",
+    "sha256": "8ef5225f4dab43135711a776f2fba05e0e397b29c569147e7f1f18663d9a8522"
   },
   "songs": [
     {
@@ -29405,7 +29405,7 @@
         },
         {
           "difficultyClass": "PRS",
-          "displayLevel": "7"
+          "displayLevel": "7+"
         },
         {
           "difficultyClass": "PST",
@@ -34263,7 +34263,7 @@
         },
         {
           "difficultyClass": "PST",
-          "displayLevel": "4"
+          "displayLevel": "3"
         }
       ],
       "artworks": [
@@ -34458,7 +34458,7 @@
         },
         {
           "difficultyClass": "PRS",
-          "displayLevel": "7"
+          "displayLevel": "6"
         },
         {
           "difficultyClass": "PST",
@@ -34618,6 +34618,73 @@
       ]
     },
     {
+      "songId": "diein",
+      "displayTitle": "DIE IN",
+      "titleAliases": [
+        "DIE IN",
+        "다이 인",
+        "だいいん",
+        "だいん"
+      ],
+      "artist": "TAK x Sobrem",
+      "artistAliases": [
+        "소브렘",
+        "탁",
+        "そぶれむ",
+        "たく"
+      ],
+      "pack": {
+        "packId": "single",
+        "displayName": null
+      },
+      "version": "7.0",
+      "date": 1787788800,
+      "sideRaw": 1,
+      "bpm": "160-230",
+      "orderHint": 544,
+      "charts": [
+        {
+          "difficultyClass": "ETR",
+          "displayLevel": "11"
+        },
+        {
+          "difficultyClass": "FTR",
+          "displayLevel": "10"
+        },
+        {
+          "difficultyClass": "PRS",
+          "displayLevel": "8"
+        },
+        {
+          "difficultyClass": "PST",
+          "displayLevel": "5"
+        }
+      ],
+      "artworks": [
+        {
+          "role": "default",
+          "resourceId": "54986fc3-a9df-7df1-b039-c71c7a470966",
+          "currentApkPresence": true,
+          "matchStatus": "confirmed",
+          "sourcePath": "assets/songs/dl_diein/1080_base.jpg"
+        }
+      ],
+      "relatedSongs": [],
+      "searchTerms": [
+        "die in",
+        "diein",
+        "single",
+        "tak x sobrem",
+        "다이 인",
+        "소브렘",
+        "탁",
+        "そぶれむ",
+        "だいいん",
+        "だいん",
+        "たく"
+      ]
+    },
+    {
       "songId": "chronologia",
       "displayTitle": "chronologia",
       "titleAliases": [
@@ -34685,6 +34752,469 @@
         "ないとろ",
         "にとろ",
         "ろーいろさうんどちーむ"
+      ]
+    },
+    {
+      "songId": "balor",
+      "displayTitle": "Balor",
+      "titleAliases": [
+        "Balor",
+        "발러",
+        "밸러",
+        "ばろーる",
+        "ばろる"
+      ],
+      "artist": "Redsign",
+      "artistAliases": [
+        "리디자인",
+        "れっどさいん"
+      ],
+      "pack": {
+        "packId": "konzetsu",
+        "displayName": "Divine Oblivion"
+      },
+      "version": "7.0",
+      "date": 1787788801,
+      "sideRaw": 4,
+      "bpm": "157",
+      "orderHint": 546,
+      "charts": [
+        {
+          "difficultyClass": "ETR",
+          "displayLevel": "10"
+        },
+        {
+          "difficultyClass": "FTR",
+          "displayLevel": "9"
+        },
+        {
+          "difficultyClass": "PRS",
+          "displayLevel": "6"
+        },
+        {
+          "difficultyClass": "PST",
+          "displayLevel": "3"
+        }
+      ],
+      "artworks": [
+        {
+          "role": "default",
+          "resourceId": "0c9e88cd-0b0c-78ab-8022-600e7559e026",
+          "currentApkPresence": true,
+          "matchStatus": "confirmed",
+          "sourcePath": "assets/songs/dl_balor/1080_base.jpg"
+        }
+      ],
+      "relatedSongs": [],
+      "searchTerms": [
+        "balor",
+        "divine oblivion",
+        "konzetsu",
+        "redsign",
+        "리디자인",
+        "발러",
+        "밸러",
+        "ばろーる",
+        "ばろる",
+        "れっどさいん"
+      ]
+    },
+    {
+      "songId": "dreadarea",
+      "displayTitle": "DREAD AREA",
+      "titleAliases": [
+        "DREAD AREA",
+        "드레드 에어리어",
+        "どれっどえりあ"
+      ],
+      "artist": "Ashrount vs. 打打だいず",
+      "artistAliases": [
+        "다다다이즈",
+        "애쉬라운트",
+        "애쉬런트",
+        "あしゅらうんと",
+        "だだだいず"
+      ],
+      "pack": {
+        "packId": "konzetsu",
+        "displayName": "Divine Oblivion"
+      },
+      "version": "7.0",
+      "date": 1787788802,
+      "sideRaw": 2,
+      "bpm": "205",
+      "orderHint": 547,
+      "charts": [
+        {
+          "difficultyClass": "BYD",
+          "displayLevel": "11"
+        },
+        {
+          "difficultyClass": "FTR",
+          "displayLevel": "10"
+        },
+        {
+          "difficultyClass": "PRS",
+          "displayLevel": "8+"
+        },
+        {
+          "difficultyClass": "PST",
+          "displayLevel": "5"
+        }
+      ],
+      "artworks": [
+        {
+          "role": "default",
+          "resourceId": "c5dd4a4e-5b8f-7bf8-bde0-a8188e663086",
+          "currentApkPresence": true,
+          "matchStatus": "confirmed",
+          "sourcePath": "assets/songs/dl_dreadarea/1080_base.jpg"
+        }
+      ],
+      "relatedSongs": [],
+      "searchTerms": [
+        "ashrount vs. 打打だいず",
+        "divine oblivion",
+        "dread area",
+        "dreadarea",
+        "konzetsu",
+        "다다다이즈",
+        "드레드 에어리어",
+        "애쉬라운트",
+        "애쉬런트",
+        "あしゅらうんと",
+        "だだだいず",
+        "どれっどえりあ"
+      ]
+    },
+    {
+      "songId": "un",
+      "displayTitle": "un",
+      "titleAliases": [
+        "un",
+        "언",
+        "운",
+        "은",
+        "あん"
+      ],
+      "artist": "黒魔",
+      "artistAliases": [
+        "쿠로마",
+        "くろま"
+      ],
+      "pack": {
+        "packId": "konzetsu",
+        "displayName": "Divine Oblivion"
+      },
+      "version": "7.0",
+      "date": 1787788803,
+      "sideRaw": 4,
+      "bpm": "188",
+      "orderHint": 548,
+      "charts": [
+        {
+          "difficultyClass": "ETR",
+          "displayLevel": "10+"
+        },
+        {
+          "difficultyClass": "FTR",
+          "displayLevel": "9+"
+        },
+        {
+          "difficultyClass": "PRS",
+          "displayLevel": "7"
+        },
+        {
+          "difficultyClass": "PST",
+          "displayLevel": "4"
+        }
+      ],
+      "artworks": [
+        {
+          "role": "default",
+          "resourceId": "e7fbf294-aa3b-719f-b9c5-c12ebd30779a",
+          "currentApkPresence": true,
+          "matchStatus": "confirmed",
+          "sourcePath": "assets/songs/dl_un/1080_base.jpg"
+        }
+      ],
+      "relatedSongs": [],
+      "searchTerms": [
+        "divine oblivion",
+        "konzetsu",
+        "un",
+        "언",
+        "운",
+        "은",
+        "쿠로마",
+        "あん",
+        "くろま",
+        "黒魔"
+      ]
+    },
+    {
+      "songId": "rivenpilgrim",
+      "displayTitle": "Riven Pilgrimage",
+      "titleAliases": [
+        "Riven Pilgrimage",
+        "리벤 필그러메이지",
+        "りべんぴるぐりめーじ"
+      ],
+      "artist": "rejection & Supire feat. eili",
+      "artistAliases": [
+        "리젝션",
+        "스파이어",
+        "에일리",
+        "えいり",
+        "すぱいあ",
+        "りじぇくしょん"
+      ],
+      "pack": {
+        "packId": "konzetsu",
+        "displayName": "Divine Oblivion"
+      },
+      "version": "7.0",
+      "date": 1787788804,
+      "sideRaw": 2,
+      "bpm": "180",
+      "orderHint": 549,
+      "charts": [
+        {
+          "difficultyClass": "BYD",
+          "displayLevel": "11"
+        },
+        {
+          "difficultyClass": "FTR",
+          "displayLevel": "10"
+        },
+        {
+          "difficultyClass": "PRS",
+          "displayLevel": "8"
+        },
+        {
+          "difficultyClass": "PST",
+          "displayLevel": "5"
+        }
+      ],
+      "artworks": [
+        {
+          "role": "default",
+          "resourceId": "e7b66916-0d0f-7a6d-877a-5f537bb72fe9",
+          "currentApkPresence": true,
+          "matchStatus": "confirmed",
+          "sourcePath": "assets/songs/dl_rivenpilgrim/1080_base.jpg"
+        }
+      ],
+      "relatedSongs": [],
+      "searchTerms": [
+        "divine oblivion",
+        "konzetsu",
+        "rejection & supire feat. eili",
+        "riven pilgrimage",
+        "rivenpilgrim",
+        "리벤 필그러메이지",
+        "리젝션",
+        "스파이어",
+        "에일리",
+        "えいり",
+        "すぱいあ",
+        "りじぇくしょん",
+        "りべんぴるぐりめーじ"
+      ]
+    },
+    {
+      "songId": "cataclysmcry",
+      "displayTitle": "Cataclysm Cry",
+      "titleAliases": [
+        "Cataclysm Cry",
+        "카타클리즘 시티",
+        "かたくりずむくらい"
+      ],
+      "artist": "Aid",
+      "artistAliases": [
+        "에이드",
+        "えいど"
+      ],
+      "pack": {
+        "packId": "konzetsu",
+        "displayName": "Divine Oblivion"
+      },
+      "version": "7.0",
+      "date": 1787788805,
+      "sideRaw": 4,
+      "bpm": "180",
+      "orderHint": 550,
+      "charts": [
+        {
+          "difficultyClass": "BYD",
+          "displayLevel": "11+"
+        },
+        {
+          "difficultyClass": "FTR",
+          "displayLevel": "10"
+        },
+        {
+          "difficultyClass": "PRS",
+          "displayLevel": "8+"
+        },
+        {
+          "difficultyClass": "PST",
+          "displayLevel": "6"
+        }
+      ],
+      "artworks": [
+        {
+          "role": "default",
+          "resourceId": "3f19dab5-d28b-7512-b333-2e389a35bdd6",
+          "currentApkPresence": true,
+          "matchStatus": "confirmed",
+          "sourcePath": "assets/songs/dl_cataclysmcry/1080_base.jpg"
+        }
+      ],
+      "relatedSongs": [],
+      "searchTerms": [
+        "aid",
+        "cataclysm cry",
+        "cataclysmcry",
+        "divine oblivion",
+        "konzetsu",
+        "에이드",
+        "카타클리즘 시티",
+        "えいど",
+        "かたくりずむくらい"
+      ]
+    },
+    {
+      "songId": "deinosphainein",
+      "displayTitle": "DEINOS PHAINEIN",
+      "titleAliases": [
+        "DEINOS PHAINEIN",
+        "에이노스 파이네인",
+        "えいのすふぁいねいん"
+      ],
+      "artist": "Blacklolita vs Juggernaut.",
+      "artistAliases": [
+        "블랙로리타",
+        "저거너트",
+        "저거넛",
+        "じゃがーのーと",
+        "ぶらっくろりーた"
+      ],
+      "pack": {
+        "packId": "konzetsu",
+        "displayName": "Divine Oblivion"
+      },
+      "version": "7.0",
+      "date": 1787788806,
+      "sideRaw": 4,
+      "bpm": "190",
+      "orderHint": 551,
+      "charts": [
+        {
+          "difficultyClass": "BYD",
+          "displayLevel": "12"
+        },
+        {
+          "difficultyClass": "FTR",
+          "displayLevel": "10+"
+        },
+        {
+          "difficultyClass": "PRS",
+          "displayLevel": "9"
+        },
+        {
+          "difficultyClass": "PST",
+          "displayLevel": "7"
+        }
+      ],
+      "artworks": [
+        {
+          "role": "default",
+          "resourceId": "83255aad-c094-7528-b9d6-fac3399706dc",
+          "currentApkPresence": true,
+          "matchStatus": "confirmed",
+          "sourcePath": "assets/songs/dl_deinosphainein/1080_base.jpg"
+        }
+      ],
+      "relatedSongs": [],
+      "searchTerms": [
+        "blacklolita vs juggernaut.",
+        "deinos phainein",
+        "deinosphainein",
+        "divine oblivion",
+        "konzetsu",
+        "블랙로리타",
+        "에이노스 파이네인",
+        "저거너트",
+        "저거넛",
+        "えいのすふぁいねいん",
+        "じゃがーのーと",
+        "ぶらっくろりーた"
+      ]
+    },
+    {
+      "songId": "ember",
+      "displayTitle": "Ember",
+      "titleAliases": [
+        "Ember",
+        "엠버",
+        "えんばー"
+      ],
+      "artist": "Powerless & siqlo feat. Tia",
+      "artistAliases": [
+        "사이클로",
+        "티아",
+        "파워리스",
+        "さいくろ",
+        "てぃあ",
+        "ぱわーれす"
+      ],
+      "pack": {
+        "packId": "konzetsu",
+        "displayName": "Divine Oblivion"
+      },
+      "version": "7.0",
+      "date": 1787788807,
+      "sideRaw": 2,
+      "bpm": "190",
+      "orderHint": 552,
+      "charts": [
+        {
+          "difficultyClass": "FTR",
+          "displayLevel": "9+"
+        },
+        {
+          "difficultyClass": "PRS",
+          "displayLevel": "8"
+        },
+        {
+          "difficultyClass": "PST",
+          "displayLevel": "5"
+        }
+      ],
+      "artworks": [
+        {
+          "role": "default",
+          "resourceId": "302b4bd6-6607-76b3-b3b9-8cb8b474d218",
+          "currentApkPresence": true,
+          "matchStatus": "confirmed",
+          "sourcePath": "assets/songs/dl_ember/1080_base.jpg"
+        }
+      ],
+      "relatedSongs": [],
+      "searchTerms": [
+        "divine oblivion",
+        "ember",
+        "konzetsu",
+        "powerless & siqlo feat. tia",
+        "사이클로",
+        "엠버",
+        "티아",
+        "파워리스",
+        "えんばー",
+        "さいくろ",
+        "てぃあ",
+        "ぱわーれす"
       ]
     }
   ],
@@ -35013,9 +35543,9 @@
     }
   ],
   "recordCounts": {
-    "regularSongs": 543,
-    "currentArtworkSlots": 602,
-    "currentArtworkResourceReferences": 601,
+    "regularSongs": 551,
+    "currentArtworkSlots": 610,
+    "currentArtworkResourceReferences": 609,
     "missingCurrentArtwork": 1,
     "specialRecords": 9,
     "archiveExtras": 3,

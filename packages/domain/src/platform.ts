@@ -144,7 +144,7 @@ const profiles: GameProfile[] = [
     supportedAssetTypes: ["jacket", "pack-cover", "character-portrait", "character-avatar", "story-cg", "story-texture", "background", "linkplay-preview", "sticker", "world-mode", "startup", "other"],
     defaultAssetTypes: ["jacket", "pack-cover", "character-portrait", "character-avatar", "story-cg", "background"],
     siteStatus: "published",
-    sourceMarkers: ["globalgamemanagers", "assets/bin/data", "songs/", "_metadata/songlist.json"],
+    sourceMarkers: ["assets/songs/songlist", "assets/songs/packlist", "assets/char/characters.json", "assets/app-data/story2/ordering"],
     extractorEntrypoints: ["packages/domain/src/extractors.ts:adaptArcaeaLegacyReport", "tools/arcaea-apk-update.ts"],
     selectionPolicy: "jacket plus explicitly selected non-jacket categories; preserve _optimization.png for human review",
   }),
