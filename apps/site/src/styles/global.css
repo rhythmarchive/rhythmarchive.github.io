@@ -241,6 +241,26 @@ img { display: block; max-width: 100%; }
 .filter-control, .filter-check { display: inline-flex; align-items: center; gap: 8px; color: var(--text-muted); font-size: 0.78rem; }
 .filter-control select { min-width: 96px; padding: 5px 8px; border: 1px solid var(--line); border-radius: 4px; background: var(--surface-muted); color: var(--text); }
 .filter-check input { accent-color: var(--accent); }
+.filter-range-control { display: grid; flex: 1 1 100%; gap: 7px; min-width: min(100%, 340px); color: var(--text-muted); font-size: 0.76rem; }
+.filter-range-header { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.filter-range-label { white-space: nowrap; }
+.filter-range-values { display: inline-flex; align-items: center; gap: 7px; color: var(--text-soft); }
+.filter-range-input input { width: 64px; min-height: 31px; padding: 5px 7px; border: 1px solid var(--line); border-radius: 4px 7px 4px 7px; background: var(--surface-muted); color: var(--text); font-size: 0.76rem; font-variant-numeric: tabular-nums; }
+.filter-range-input input:focus { border-color: var(--accent); outline: 0; box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 12%, transparent); }
+.filter-range-slider { position: relative; height: 23px; margin: 0 3px; }
+.filter-range-track, .filter-range-fill { position: absolute; top: 9px; right: 0; left: 0; height: 5px; border-radius: 999px; }
+.filter-range-track { background: var(--line-strong); }
+.filter-range-fill { right: calc(100% - var(--range-end, 100%)); left: var(--range-start, 0%); background: var(--accent); }
+.filter-range-slider input[type="range"] { position: absolute; inset: 0; width: 100%; height: 23px; margin: 0; appearance: none; background: transparent; pointer-events: none; }
+.filter-range-slider input[type="range"]::-webkit-slider-runnable-track { height: 5px; background: transparent; }
+.filter-range-slider input[type="range"]::-moz-range-track { height: 5px; background: transparent; }
+.filter-range-slider input[type="range"]::-webkit-slider-thumb { width: 17px; height: 17px; margin-top: -6px; appearance: none; border: 3px solid var(--accent); border-radius: 50%; background: var(--surface); box-shadow: 0 1px 4px rgba(33, 73, 119, 0.14); pointer-events: auto; cursor: grab; }
+.filter-range-slider input[type="range"]::-moz-range-thumb { width: 11px; height: 11px; border: 3px solid var(--accent); border-radius: 50%; background: var(--surface); box-shadow: 0 1px 4px rgba(33, 73, 119, 0.14); pointer-events: auto; cursor: grab; }
+.filter-range-slider input[type="range"]:focus-visible { outline: 0; }
+.filter-range-slider input[type="range"]:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 18%, transparent); }
+.filter-range-slider input[type="range"]:focus-visible::-moz-range-thumb { box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 18%, transparent); }
+.filter-range-ticks { display: flex; justify-content: space-between; gap: 6px; margin: 0 -2px; color: var(--text-soft); font-size: 0.66rem; font-variant-numeric: tabular-nums; }
+.filter-range-ticks span { min-width: 1.5em; text-align: center; }
 .browse-gallery-toolbar { flex-wrap: wrap; }
 .browse-filter-row, .gallery-filter-row { display: flex; align-items: center; flex-wrap: wrap; gap: 9px 13px; margin: -2px 0 14px; padding: 10px 12px; border: 1px solid var(--line); border-radius: var(--radius-sm); background: color-mix(in srgb, var(--surface) 92%, var(--surface-muted)); }
 .filter-toggle-group { display: flex; align-items: center; flex-wrap: wrap; gap: 7px; }

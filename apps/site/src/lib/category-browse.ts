@@ -11,10 +11,17 @@ import type { PublicResource, PublicSearchEntry, PublicSiteData } from "./types"
 
 export type CategoryBrowseFacetOption = { value: string; label: string };
 
+export type CategoryBrowseFacetRange = {
+  min: number;
+  max: number;
+  step: number;
+};
+
 export type CategoryBrowseFacet = {
   key: string;
   label: string;
   options: CategoryBrowseFacetOption[];
+  range?: CategoryBrowseFacetRange;
 };
 
 export type CategoryBrowseSortOption = {
@@ -82,7 +89,8 @@ export function getCategoryBrowseConfig(game: GameId, category: string, resource
       const levelOptions = facetOptions(resources, "level");
       const constantOptions = facetOptions(resources, "constant");
       if (levelOptions.length > 0) facets.push({ key: "level", label: "难度等级", options: levelOptions });
-      if (constantOptions.length > 0) facets.push({ key: "constant", label: "谱面定数", options: constantOptions });
+      const constantRange = facetRange(resources, "constant");
+      if (constantOptions.length > 0) facets.push({ key: "constant", label: "谱面定数", options: constantOptions, ...(constantRange ? { range: constantRange } : {}) });
     }
     return {
       searchPlaceholder: "搜索曲名或曲师",
@@ -144,6 +152,17 @@ function facetOptions(resources: PublicResource[], key: string): CategoryBrowseF
   return [...values]
     .sort((left, right) => normalizeSearchText(left).localeCompare(normalizeSearchText(right), "zh-CN"))
     .map((value) => ({ value, label: key === "chart" && resources.every((resource) => resource.game === "rotaeno") && value === "IV_Alpha" ? "Ⅳ-α" : value }));
+}
+
+function facetRange(resources: PublicResource[], key: string): CategoryBrowseFacetRange | undefined {
+  const values = resources.flatMap((resource) => resource.facets?.[key] ?? [])
+    .map((value) => Number(value))
+    .filter((value) => Number.isFinite(value));
+  if (values.length < 2) return undefined;
+  const min = Math.min(...values);
+  const max = Math.max(...values);
+  if (min >= max) return undefined;
+  return { min, max, step: 0.1 };
 }
 
 function sortSemanticResources(resources: PublicResource[]): PublicResource[] {

@@ -6,6 +6,18 @@ import type { PublicDownload, PublicResource } from "../lib/types";
 
 const PAGE_SIZE = 48;
 
+type GalleryRange = {
+  root: HTMLElement;
+  key: string;
+  min: number;
+  max: number;
+  step: number;
+  minInput: HTMLInputElement;
+  maxInput: HTMLInputElement;
+  minSlider: HTMLInputElement;
+  maxSlider: HTMLInputElement;
+};
+
 const root = document.querySelector<HTMLElement>("[data-gallery-root]");
 if (root) void initializeGallery(root);
 
@@ -16,6 +28,19 @@ async function initializeGallery(root: HTMLElement): Promise<void> {
   const search = root.querySelector<HTMLInputElement>("[data-gallery-search]");
   const sort = root.querySelector<HTMLSelectElement>("[data-gallery-sort]");
   const facets = [...root.querySelectorAll<HTMLSelectElement>("[data-gallery-facet]")];
+  const ranges = [...root.querySelectorAll<HTMLElement>("[data-gallery-range]")]
+    .map((rangeRoot): GalleryRange | undefined => {
+      const minInput = rangeRoot.querySelector<HTMLInputElement>("[data-gallery-range-min-input]");
+      const maxInput = rangeRoot.querySelector<HTMLInputElement>("[data-gallery-range-max-input]");
+      const minSlider = rangeRoot.querySelector<HTMLInputElement>("[data-gallery-range-min-slider]");
+      const maxSlider = rangeRoot.querySelector<HTMLInputElement>("[data-gallery-range-max-slider]");
+      const min = Number(rangeRoot.dataset.rangeMin);
+      const max = Number(rangeRoot.dataset.rangeMax);
+      const step = Number(rangeRoot.dataset.rangeStep);
+      if (!minInput || !maxInput || !minSlider || !maxSlider || !Number.isFinite(min) || !Number.isFinite(max) || !Number.isFinite(step)) return undefined;
+      return { root: rangeRoot, key: rangeRoot.dataset.galleryRange ?? "", min, max, step, minInput, maxInput, minSlider, maxSlider };
+    })
+    .filter((range): range is GalleryRange => Boolean(range));
   const reset = root.querySelector<HTMLButtonElement>("[data-gallery-reset]");
   const active = root.querySelector<HTMLElement>("[data-gallery-active]");
   const activeChips = root.querySelector<HTMLElement>("[data-gallery-active-chips]");
@@ -33,6 +58,12 @@ async function initializeGallery(root: HTMLElement): Promise<void> {
     if (search) search.value = params.get("q") ?? "";
     if (sort) sort.value = params.get("sort") ?? sort.options[0]?.value ?? "default";
     for (const facet of facets) facet.value = params.get(`facet-${facet.dataset.galleryFacet ?? ""}`) ?? "";
+    for (const range of ranges) {
+      const legacyValue = params.get(`facet-${range.key}`);
+      const minValue = params.get(`facet-${range.key}-min`) ?? legacyValue;
+      const maxValue = params.get(`facet-${range.key}-max`) ?? legacyValue;
+      setRange(range, parseRangeValue(minValue, range.min), parseRangeValue(maxValue, range.max));
+    }
     render();
   } catch (error) {
     console.error("Gallery data failed", error);
@@ -43,11 +74,18 @@ async function initializeGallery(root: HTMLElement): Promise<void> {
   search?.addEventListener("input", applyFilter);
   sort?.addEventListener("change", applyFilter);
   facets.forEach((facet) => facet.addEventListener("change", applyFilter));
+  for (const range of ranges) {
+    range.minInput.addEventListener("change", () => updateRangeFromInput(range, "min"));
+    range.maxInput.addEventListener("change", () => updateRangeFromInput(range, "max"));
+    range.minSlider.addEventListener("input", () => updateRangeFromSlider(range, "min"));
+    range.maxSlider.addEventListener("input", () => updateRangeFromSlider(range, "max"));
+  }
   reset?.addEventListener("click", (event) => {
     event.preventDefault();
     if (search) search.value = "";
     if (sort) sort.value = sort.options[0]?.value ?? "default";
     for (const facet of facets) facet.value = "";
+    for (const range of ranges) setRange(range, range.min, range.max);
     applyFilter();
   });
   loadMore.addEventListener("click", () => {
@@ -84,7 +122,7 @@ async function initializeGallery(root: HTMLElement): Promise<void> {
       return facets.every((facet) => {
         const value = facet.value;
         return !value || (resource.facets?.[facet.dataset.galleryFacet ?? ""] ?? []).includes(value);
-      });
+      }) && ranges.every((range) => matchesRange(resource, range));
     });
     if (sortValue === "default") return filtered;
     return [...filtered].sort((left, right) => {
@@ -102,6 +140,13 @@ async function initializeGallery(root: HTMLElement): Promise<void> {
     for (const facet of facets) {
       const key = `facet-${facet.dataset.galleryFacet ?? ""}`;
       if (facet.value) url.searchParams.set(key, facet.value); else url.searchParams.delete(key);
+    }
+    for (const range of ranges) {
+      const min = readRangeValue(range, "min");
+      const max = readRangeValue(range, "max");
+      url.searchParams.delete(`facet-${range.key}`);
+      if (min > range.min) url.searchParams.set(`facet-${range.key}-min`, formatRangeValue(min)); else url.searchParams.delete(`facet-${range.key}-min`);
+      if (max < range.max) url.searchParams.set(`facet-${range.key}-max`, formatRangeValue(max)); else url.searchParams.delete(`facet-${range.key}-max`);
     }
     window.history.replaceState({}, "", url);
     render();
@@ -125,6 +170,11 @@ async function initializeGallery(root: HTMLElement): Promise<void> {
       if (!facet.value) continue;
       labels.push(facet.options[facet.selectedIndex]?.textContent ?? facet.value);
     }
+    for (const range of ranges) {
+      const min = readRangeValue(range, "min");
+      const max = readRangeValue(range, "max");
+      if (min > range.min || max < range.max) labels.push(`${range.root.dataset.rangeLabel ?? range.key}：${formatRangeValue(min)}～${formatRangeValue(max)}`);
+    }
     activeChips.replaceChildren(...labels.map((label) => {
       const chip = document.createElement("span");
       chip.className = "active-filter-chip";
@@ -140,6 +190,22 @@ async function initializeGallery(root: HTMLElement): Promise<void> {
     if (!bar || !countNode) return;
     bar.hidden = selected.size === 0;
     countNode.textContent = `已选择 ${selected.size.toLocaleString("zh-CN")} 项`;
+  }
+
+  function updateRangeFromInput(range: GalleryRange, side: "min" | "max"): void {
+    const input = side === "min" ? range.minInput : range.maxInput;
+    const fallback = side === "min" ? readRangeValue(range, "min") : readRangeValue(range, "max");
+    const value = parseRangeValue(input.value, fallback);
+    const other = side === "min" ? readRangeValue(range, "max") : readRangeValue(range, "min");
+    setRange(range, side === "min" ? Math.min(value, other) : other, side === "min" ? other : Math.max(value, other));
+    applyFilter();
+  }
+
+  function updateRangeFromSlider(range: GalleryRange, side: "min" | "max"): void {
+    const value = Number(side === "min" ? range.minSlider.value : range.maxSlider.value);
+    const other = side === "min" ? readRangeValue(range, "max") : readRangeValue(range, "min");
+    setRange(range, side === "min" ? Math.min(value, other) : other, side === "min" ? other : Math.max(value, other));
+    applyFilter();
   }
 
   async function downloadBatch(preferUpscaled: boolean): Promise<void> {
@@ -183,6 +249,47 @@ async function initializeGallery(root: HTMLElement): Promise<void> {
       if (status) status.textContent = "下载失败，请重试";
     }
   }
+}
+
+function parseRangeValue(value: string | null, fallback: number): number {
+  const parsed = value === null || value.trim() === "" ? Number.NaN : Number(value);
+  return Number.isFinite(parsed) ? parsed : fallback;
+}
+
+function formatRangeValue(value: number): string {
+  return Number.isInteger(value) ? String(value) : String(Number(value.toFixed(2)));
+}
+
+function readRangeValue(range: GalleryRange, side: "min" | "max"): number {
+  return Number(side === "min" ? range.minSlider.value : range.maxSlider.value);
+}
+
+function snapRangeValue(value: number, range: GalleryRange): number {
+  const snapped = range.min + Math.round((value - range.min) / range.step) * range.step;
+  return Math.min(range.max, Math.max(range.min, Number(snapped.toFixed(4))));
+}
+
+function setRange(range: GalleryRange, minValue: number, maxValue: number): void {
+  let min = snapRangeValue(minValue, range);
+  let max = snapRangeValue(maxValue, range);
+  if (min > max) [min, max] = [max, min];
+  range.minInput.value = formatRangeValue(min);
+  range.maxInput.value = formatRangeValue(max);
+  range.minSlider.value = String(min);
+  range.maxSlider.value = String(max);
+  const span = range.max - range.min || 1;
+  range.root.style.setProperty("--range-start", `${((min - range.min) / span) * 100}%`);
+  range.root.style.setProperty("--range-end", `${((max - range.min) / span) * 100}%`);
+}
+
+function matchesRange(resource: PublicResource, range: GalleryRange): boolean {
+  const min = readRangeValue(range, "min");
+  const max = readRangeValue(range, "max");
+  if (min <= range.min && max >= range.max) return true;
+  return (resource.charts ?? []).some((chart) => {
+    const constant = Number(chart.constant);
+    return Number.isFinite(constant) && constant >= min && constant <= max;
+  });
 }
 
 function createCard(resource: PublicResource, index: number, isSelected: boolean): HTMLElement {

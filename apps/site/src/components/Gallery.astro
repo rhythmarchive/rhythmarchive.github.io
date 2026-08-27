@@ -17,7 +17,19 @@ interface Props {
 }
 
 const { resources, total, game, category, categoryLabel, galleryUrl, config } = Astro.props;
-const hasFacets = config.facets.some((facet) => facet.options.length > 0);
+const hasFacets = config.facets.some((facet) => facet.options.length > 0 || facet.range);
+
+function rangeTicks(min: number, max: number, step: number): number[] {
+  const tickStep = Math.max(step, Math.ceil(((max - min) / 7) / step) * step);
+  const values = [min];
+  for (let value = min + tickStep; value < max - step / 2; value += tickStep) values.push(Number(value.toFixed(4)));
+  if (values[values.length - 1] !== max) values.push(max);
+  return values;
+}
+
+function formatRangeValue(value: number): string {
+  return Number.isInteger(value) ? String(value) : String(Number(value.toFixed(2)));
+}
 ---
 
 <section class="gallery-shell" data-gallery-root data-gallery-url={galleryUrl} data-base-path={BASE_PATH} data-game={game} data-category={category} data-total={total}>
@@ -45,13 +57,41 @@ const hasFacets = config.facets.some((facet) => facet.options.length > 0);
   {hasFacets ? (
     <div class="gallery-filter-row" data-gallery-filter-row>
       {config.facets.map((facet) => (
-        <label class="filter-control">
-          <span>{facet.label}</span>
-          <select data-gallery-facet={facet.key} aria-label={facet.label}>
-            <option value="">全部</option>
-            {facet.options.map((option) => <option value={option.value}>{option.label}</option>)}
-          </select>
-        </label>
+        facet.range ? (
+          <div class="filter-range-control" data-gallery-range={facet.key} data-range-label={facet.label} data-range-min={facet.range.min} data-range-max={facet.range.max} data-range-step={facet.range.step}>
+            <div class="filter-range-header">
+              <span class="filter-range-label">{facet.label}</span>
+              <div class="filter-range-values" role="group" aria-label={`${facet.label}范围`}>
+                <label class="filter-range-input">
+                  <span class="sr-only">{facet.label}最小值</span>
+                  <input type="number" data-gallery-range-min-input min={facet.range.min} max={facet.range.max} step={facet.range.step} value={facet.range.min} inputmode="decimal" />
+                </label>
+                <span aria-hidden="true">～</span>
+                <label class="filter-range-input">
+                  <span class="sr-only">{facet.label}最大值</span>
+                  <input type="number" data-gallery-range-max-input min={facet.range.min} max={facet.range.max} step={facet.range.step} value={facet.range.max} inputmode="decimal" />
+                </label>
+              </div>
+            </div>
+            <div class="filter-range-slider" data-gallery-range-slider>
+              <div class="filter-range-track" aria-hidden="true"></div>
+              <div class="filter-range-fill" aria-hidden="true"></div>
+              <input type="range" data-gallery-range-min-slider min={facet.range.min} max={facet.range.max} step={facet.range.step} value={facet.range.min} aria-label={`${facet.label}最小值`} />
+              <input type="range" data-gallery-range-max-slider min={facet.range.min} max={facet.range.max} step={facet.range.step} value={facet.range.max} aria-label={`${facet.label}最大值`} />
+            </div>
+            <div class="filter-range-ticks" aria-hidden="true">
+              {rangeTicks(facet.range.min, facet.range.max, facet.range.step).map((value) => <span>{formatRangeValue(value)}</span>)}
+            </div>
+          </div>
+        ) : (
+          <label class="filter-control">
+            <span>{facet.label}</span>
+            <select data-gallery-facet={facet.key} aria-label={facet.label}>
+              <option value="">全部</option>
+              {facet.options.map((option) => <option value={option.value}>{option.label}</option>)}
+            </select>
+          </label>
+        )
       ))}
     </div>
   ) : null}

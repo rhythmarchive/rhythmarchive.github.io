@@ -46,7 +46,9 @@ test("jacket details expose the unified chart field and user-facing identity met
   const rotaenoFacets = getCategoryBrowseConfig("rotaeno", "jacket", siteData.galleries["rotaeno/jacket"] ?? []).facets;
   assert.deepEqual(rotaenoFacets.map((facet) => facet.label), ["\u8c31\u9762\u96be\u5ea6", "\u96be\u5ea6\u7b49\u7ea7", "\u8c31\u9762\u5b9a\u6570"]);
   assert.equal(rotaenoFacets.find((facet) => facet.key === "chart")?.options.find((option) => option.value === "IV_Alpha")?.label, "Ⅳ-α");
-  assert.ok(rotaenoFacets.find((facet) => facet.key === "constant")?.options.some((option) => option.value === "12.3"));
+  const rotaenoConstantFacet = rotaenoFacets.find((facet) => facet.key === "constant");
+  assert.ok(rotaenoConstantFacet?.options.some((option) => option.value === "12.3"));
+  assert.deepEqual(rotaenoConstantFacet?.range, { min: 1, max: 14.5, step: 0.1 });
   const rotaenoWithoutCharts = siteData.resources.find((resource) => resource.game === "rotaeno" && resource.resourceType === "jacket" && resource.chartDataStatus === "unavailable");
   assert.ok(rotaenoWithoutCharts);
   const rizlineJacket = siteData.resources.find((resource) => resource.game === "rizline" && resource.resourceType === "jacket");
