@@ -48,14 +48,20 @@ test("Rotaeno search keeps formal names but excludes internal IDs and source fil
 
 test("Rotaeno chart metadata projects difficulty, v2 rating, and Alpha variants", () => {
   const song = projectedFor("song-jacket:abstruse-dilemma");
-  assert.deepEqual(song?.charts?.map((chart) => [chart.difficulty, chart.level]), [["I", "3"], ["II", "7"], ["III", "12.3"], ["IV", "14"]]);
+  assert.deepEqual(song?.charts?.map((chart) => [chart.difficulty, chart.level, chart.constant]), [["I", "3", "3.0"], ["II", "7", "7.0"], ["III", "12", "12.3"], ["IV", "14", "14.0"]]);
   assert.equal(song?.charts?.[0]?.artist, "AxEradaS");
+  assert.equal(song?.charts?.[0]?.source, "merged");
   const alpha = projectedFor("song-jacket:alfheims-faith")?.charts?.find((chart) => chart.difficulty === "IV_Alpha");
-  assert.deepEqual(alpha && [alpha.difficulty, alpha.level, alpha.artist], ["IV_Alpha", "13.3", "AXERA"]);
-  assert.equal(projectedFor("song-jacket:a-city-in-serenity")?.chartDataStatus, "unavailable");
+  assert.deepEqual(alpha && [alpha.difficulty, alpha.level, alpha.constant, alpha.artist], ["IV_Alpha", "13", "13.3", "AXERA"]);
+  assert.deepEqual(projectedFor("song-jacket:a-city-in-serenity")?.charts?.find((chart) => chart.difficulty === "IV") && [
+    projectedFor("song-jacket:a-city-in-serenity")?.charts?.find((chart) => chart.difficulty === "IV")?.level,
+    projectedFor("song-jacket:a-city-in-serenity")?.charts?.find((chart) => chart.difficulty === "IV")?.constant,
+  ], ["12", "12.0"]);
 });
 
 test("Rotaeno public chart metadata rejects unsafe keys", () => {
-  assert.deepEqual(sanitizeRotaenoCharts([{ difficulty: "IV", level: 14, available: true, status: "available" }]), [{ difficulty: "IV", level: "14", available: true, status: "available" }]);
+  assert.deepEqual(sanitizeRotaenoCharts([{ difficulty: "IV", level: 14, constant: 14.3, source: "wiki", available: true, status: "available" }]), [{ difficulty: "IV", level: "14", constant: "14.3", source: "wiki", available: true, status: "available" }]);
+  assert.throws(() => sanitizeRotaenoCharts([{ difficulty: "IV", constant: "encrypted", available: true, status: "available" }]), /invalid constant/);
+  assert.throws(() => sanitizeRotaenoCharts([{ difficulty: "IV", available: true, status: "available", source: "manual" }]), /unsupported source/);
   assert.throws(() => sanitizeRotaenoCharts([{ difficulty: "IV", available: true, status: "available", EncryptedV2ChartString: "must-not-cross" }]), /unsupported keys/);
 });

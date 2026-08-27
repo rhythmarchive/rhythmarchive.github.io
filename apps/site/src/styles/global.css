@@ -362,12 +362,13 @@ img { display: block; max-width: 100%; }
 .detail-section-heading h2 { margin: 0; font-family: var(--display-font); font-size: 1rem; }
 .detail-section-heading > span { color: var(--text-soft); font-size: 0.7rem; }
 .detail-chart-list { overflow: hidden; border-top: 1px solid var(--line); border-radius: 4px 8px 4px 8px; }
-.detail-chart-row { display: grid; grid-template-columns: 86px minmax(0, 1fr); gap: 12px; padding: 9px 10px; border-bottom: 1px solid var(--line); background: var(--surface-muted); }
+.detail-chart-row { display: grid; grid-template-columns: 128px minmax(0, 1fr); gap: 12px; padding: 9px 10px; border-bottom: 1px solid var(--line); background: var(--surface-muted); }
 .detail-chart-row:last-child { border-bottom: 0; }
 .detail-chart-main { display: flex; align-items: baseline; gap: 6px; }
 .detail-chart-main strong { color: var(--accent-strong); font-size: 0.78rem; }
 .detail-chart-main span { color: var(--text-muted); font-size: 0.72rem; }
 .detail-chart-copy { display: flex; flex-wrap: wrap; gap: 5px 10px; min-width: 0; color: var(--text-muted); font-size: 0.72rem; overflow-wrap: anywhere; }
+.detail-chart-source { color: var(--accent-strong); }
 .detail-chart-status { color: var(--text-soft); }
 .variant-tabs { display: flex; gap: 7px; margin-bottom: 11px; }
 .variant-tabs button { padding: 7px 12px; border: 1px solid var(--line); border-radius: 4px 8px 4px 8px; background: var(--surface); color: var(--text-muted); font-size: 0.77rem; }

@@ -182,6 +182,7 @@ const INFALSUS_CHART_DIFFICULTIES: Record<string, string> = {
 };
 
 const ROTAENO_CHART_DIFFICULTIES = ["I", "II", "III", "IV", "IV_Alpha"] as const;
+const ROTAENO_CHART_SOURCES = ["apk", "wiki", "merged"] as const;
 
 function publicChartsFromMetadata(resource: Resource): PublicChart[] {
   if (resource.resourceType !== "jacket") return [];
@@ -195,11 +196,15 @@ function publicChartsFromMetadata(resource: Resource): PublicChart[] {
         const difficulty = typeof chart.difficulty === "string" ? chart.difficulty.trim() : "";
         if (!(ROTAENO_CHART_DIFFICULTIES as readonly string[]).includes(difficulty)) return [];
         const level = typeof chart.level === "number" || typeof chart.level === "string" ? String(chart.level) : undefined;
+        const constant = typeof chart.constant === "number" || typeof chart.constant === "string" ? String(chart.constant).trim() || undefined : undefined;
         const artist = typeof chart.artist === "string" && chart.artist.trim() ? chart.artist.trim() : undefined;
+        const source = typeof chart.source === "string" && (ROTAENO_CHART_SOURCES as readonly string[]).includes(chart.source.trim())
+          ? chart.source.trim() as typeof ROTAENO_CHART_SOURCES[number]
+          : undefined;
         const available = typeof chart.available === "boolean" ? chart.available : true;
-        return [{ difficulty, ...(level ? { level } : {}), ...(artist ? { artist } : {}), available, status: available ? "available" as const : "unavailable" as const } satisfies PublicChart];
+        return [{ difficulty, ...(level ? { level } : {}), ...(constant ? { constant } : {}), ...(artist ? { artist } : {}), ...(source ? { source } : {}), available, status: available ? "available" as const : "unavailable" as const } satisfies PublicChart];
       })
-      .sort((left, right) => (ROTAENO_CHART_DIFFICULTIES.indexOf(left.difficulty as typeof ROTAENO_CHART_DIFFICULTIES[number]) - ROTAENO_CHART_DIFFICULTIES.indexOf(right.difficulty as typeof ROTAENO_CHART_DIFFICULTIES[number])) || (left.level ?? "").localeCompare(right.level ?? ""));
+      .sort((left, right) => (ROTAENO_CHART_DIFFICULTIES.indexOf(left.difficulty as typeof ROTAENO_CHART_DIFFICULTIES[number]) - ROTAENO_CHART_DIFFICULTIES.indexOf(right.difficulty as typeof ROTAENO_CHART_DIFFICULTIES[number])) || (left.level ?? "").localeCompare(right.level ?? "") || (left.constant ?? "").localeCompare(right.constant ?? ""));
   }
   if (resource.game !== "infalsus") return [];
   return rawCharts
@@ -325,6 +330,7 @@ function toSearchEntry(resource: PublicResource, sourceResource?: Resource): Pub
   for (const chart of resource.charts ?? []) {
     keywordSet.add(chart.difficulty);
     if (chart.level) keywordSet.add(chart.level);
+    if (chart.constant) keywordSet.add(chart.constant);
     if (chart.title) keywordSet.add(chart.title);
     if (chart.artist) keywordSet.add(chart.artist);
   }

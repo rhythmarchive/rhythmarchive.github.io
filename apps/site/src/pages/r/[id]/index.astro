@@ -67,6 +67,11 @@ function chartStatusLabel(status: NonNullable<PublicResource["charts"]>[number][
   if (status === "unavailable") return "暂不可用";
   return undefined;
 }
+function chartSourceLabel(source: NonNullable<PublicResource["charts"]>[number]["source"]): string {
+  if (source === "apk") return "APK 原生";
+  if (source === "merged") return "APK + Wiki";
+  return "Wiki";
+}
 const description = `${resource.displayTitle}${resource.artist ? ` · ${resource.artist}` : ""} - ${GAME_CONFIG[resource.game].displayName} 图片资源。`;
 ---
 
@@ -104,10 +109,11 @@ const description = `${resource.displayTitle}${resource.artist ? ` · ${resource
               <div class="detail-chart-list">
                 {charts.map((chart) => (
                   <div class="detail-chart-row">
-                    <div class="detail-chart-main"><strong>{chart.difficulty}</strong>{chart.level ? <span>{chart.level}</span> : null}</div>
+                    <div class="detail-chart-main"><strong>{chart.difficulty}</strong>{chart.level ? <span>Lv {chart.level}</span> : null}{chart.constant ? <span>定数 {chart.constant}</span> : null}</div>
                     <div class="detail-chart-copy">
                       {chart.title ? <span>{chart.title}</span> : null}
                       {chart.artist ? <span>{chart.artist}</span> : null}
+                      {chart.source ? <span class="detail-chart-source">来源：{chartSourceLabel(chart.source)}</span> : null}
                       {chartStatusLabel(chart.status) ? <span class="detail-chart-status">{chartStatusLabel(chart.status)}</span> : null}
                     </div>
                   </div>

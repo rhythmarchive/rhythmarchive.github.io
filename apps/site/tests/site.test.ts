@@ -41,9 +41,11 @@ test("jacket details expose the unified chart field and user-facing identity met
   const infalsusJacket = siteData.resources.find((resource) => resource.game === "infalsus" && resource.resourceType === "jacket");
   assert.deepEqual(infalsusJacket?.charts?.map((chart) => [chart.difficulty, chart.level]), [["MIN", "1"], ["EVO", "5"], ["ULT", "9"], ["FBD", "11"]]);
   const rotaenoJacket = siteData.resources.find((resource) => resource.game === "rotaeno" && resource.resourceType === "jacket" && resource.metadata.songId === "abstruse-dilemma");
-  assert.deepEqual(rotaenoJacket?.charts?.map((chart) => [chart.difficulty, chart.level]), [["I", "3"], ["II", "7"], ["III", "12.3"], ["IV", "14"]]);
+  assert.deepEqual(rotaenoJacket?.charts?.map((chart) => [chart.difficulty, chart.level, chart.constant]), [["I", "3", "3.0"], ["II", "7", "7.0"], ["III", "12", "12.3"], ["IV", "14", "14.0"]]);
   assert.ok(rotaenoJacket?.charts?.every((chart) => chart.status === "available"));
-  assert.equal(getCategoryBrowseConfig("rotaeno", "jacket", siteData.galleries["rotaeno/jacket"] ?? []).facets[0]?.label, "\u8c31\u9762\u96be\u5ea6");
+  const rotaenoFacets = getCategoryBrowseConfig("rotaeno", "jacket", siteData.galleries["rotaeno/jacket"] ?? []).facets;
+  assert.deepEqual(rotaenoFacets.map((facet) => facet.label), ["\u8c31\u9762\u96be\u5ea6", "\u96be\u5ea6\u7b49\u7ea7", "\u8c31\u9762\u5b9a\u6570"]);
+  assert.ok(rotaenoFacets.find((facet) => facet.key === "constant")?.options.some((option) => option.value === "12.3"));
   const rotaenoWithoutCharts = siteData.resources.find((resource) => resource.game === "rotaeno" && resource.resourceType === "jacket" && resource.chartDataStatus === "unavailable");
   assert.ok(rotaenoWithoutCharts);
   const rizlineJacket = siteData.resources.find((resource) => resource.game === "rizline" && resource.resourceType === "jacket");

@@ -142,11 +142,17 @@ function enrichFormalBrowseMetadata(siteData: PublicSiteData, browse: FormalBrow
     if (specialReleaseDate !== undefined) metadata.releaseDate = specialReleaseDate;
     if (resource.game === "arcaea" && typeof metadata.version === "string") metadata.version = formatArcaeaAddedVersion(metadata.version);
     const charts = chartsByResource.get(resource.resourceId) ?? resource.charts ?? (resource.resourceType === "jacket" ? [] : undefined);
-    const chartFacetValues = [...new Set((charts ?? [])
-      .filter((chart) => chart.available !== false && chart.status !== "error" && chart.status !== "legacy")
-      .map((chart) => chart.difficulty))];
+    const availableCharts = (charts ?? [])
+      .filter((chart) => chart.available !== false && chart.status !== "error" && chart.status !== "legacy");
+    const chartFacetValues = [...new Set(availableCharts.map((chart) => chart.difficulty))];
     const facets = { ...resource.facets };
     if (chartFacetValues.length > 0) facets.chart = chartFacetValues;
+    if (resource.game === "rotaeno") {
+      const levelFacetValues = [...new Set(availableCharts.map((chart) => chart.level).filter((value): value is string => Boolean(value)))];
+      const constantFacetValues = [...new Set(availableCharts.map((chart) => chart.constant).filter((value): value is string => Boolean(value)))];
+      if (levelFacetValues.length > 0) facets.level = levelFacetValues;
+      if (constantFacetValues.length > 0) facets.constant = constantFacetValues;
+    }
     const sourceTitle = unique(byKey, "sourceTitle");
     const difficulty = unique(byKey, "difficulty");
     const difficultyTitle = unique(byKey, "difficultyTitle");
@@ -180,6 +186,7 @@ function enrichFormalBrowseMetadata(siteData: PublicSiteData, browse: FormalBrow
     for (const chart of resource.charts ?? []) {
       keywords.add(chart.difficulty);
       if (chart.level) keywords.add(chart.level);
+      if (chart.constant) keywords.add(chart.constant);
       if (chart.title) keywords.add(chart.title);
       if (chart.artist) keywords.add(chart.artist);
     }
@@ -198,7 +205,7 @@ function enrichFormalBrowseMetadata(siteData: PublicSiteData, browse: FormalBrow
 }
 
 function chartKey(chart: PublicChart): string {
-  return [chart.difficulty, chart.level ?? "", chart.title ?? "", chart.artist ?? "", chart.status ?? ""].join("|");
+  return [chart.difficulty, chart.level ?? "", chart.constant ?? "", chart.title ?? "", chart.artist ?? "", chart.source ?? "", chart.status ?? ""].join("|");
 }
 
 export function loadCategoryBrowseProjections(): CategoryBrowseProjections {

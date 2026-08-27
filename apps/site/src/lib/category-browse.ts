@@ -77,10 +77,17 @@ export function getCategoryBrowseConfig(game: GameId, category: string, resource
   ];
   if (category === "jacket") {
     const chartOptions = facetOptions(resources, "chart");
+    const facets: CategoryBrowseFacet[] = chartOptions.length > 0 ? [{ key: "chart", label: "谱面难度", options: chartOptions }] : [];
+    if (game === "rotaeno") {
+      const levelOptions = facetOptions(resources, "level");
+      const constantOptions = facetOptions(resources, "constant");
+      if (levelOptions.length > 0) facets.push({ key: "level", label: "难度等级", options: levelOptions });
+      if (constantOptions.length > 0) facets.push({ key: "constant", label: "谱面定数", options: constantOptions });
+    }
     return {
       searchPlaceholder: "搜索曲名或曲师",
       sortOptions,
-      facets: chartOptions.length > 0 ? [{ key: "chart", label: "谱面难度", options: chartOptions }] : [],
+      facets,
     };
   }
   if (category === "all") return { searchPlaceholder: "搜索资源", sortOptions, facets: [] };
@@ -155,6 +162,7 @@ function toSemanticSearchEntry(resource: PublicResource, previous?: PublicSearch
   for (const chart of resource.charts ?? []) {
     keywords.add(chart.difficulty);
     if (chart.level) keywords.add(chart.level);
+    if (chart.constant) keywords.add(chart.constant);
     if (chart.title) keywords.add(chart.title);
     if (chart.artist) keywords.add(chart.artist);
   }

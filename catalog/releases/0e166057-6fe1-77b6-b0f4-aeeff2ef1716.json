@@ -1,0 +1,2536 @@
+{
+  "schemaVersion": "1.0",
+  "releaseSchemaVersion": "1.0",
+  "id": "0e166057-6fe1-77b6-b0f4-aeeff2ef1716",
+  "updateBatchId": "b58bd9a8-d334-7a04-b486-fb590c96bd40",
+  "game": "rotaeno",
+  "baseVersion": "2.26.1-chart-metadata-v1",
+  "targetVersion": "2.26.1-wiki-chart-metadata-v1",
+  "createdAt": "2026-08-27T01:02:13.551Z",
+  "status": "published",
+  "changes": [
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "fd01e126-4969-7952-9a6a-8b580532b7cf",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "e6c51c39-26eb-79cb-891a-3eb0b051a362",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "f43b13aa-cebd-7d0d-a126-e4e0820a5055",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "dc960e26-bb66-761d-ade8-d30d2b2e168e",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "e7e269fd-6e26-7893-9bae-ef63360a7217",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "40d5d740-3d5e-70e1-af72-fead03b93ac5",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "22b17cd1-ebd5-7f71-b223-9a36abe5fc19",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "92a70e6f-8be3-752e-a889-68481fb5945e",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "3d15652b-5028-7266-b6f3-ef7dae67584d",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "bc383696-2441-7b67-acc0-ae8f924de84c",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "c41b6103-2f88-7fef-b146-40d98ea6c770",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "77b94fd4-9397-7b47-a64a-675338d4599d",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "1e902869-1907-7827-9168-3ee14e79e1df",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "e6ca0a57-1d12-7b1d-b33b-776669b090cf",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "bb86109e-83e2-7267-bc18-b3257106aee1",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "f24a7465-2054-7b46-bba6-13e397315784",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "07676d6a-e884-75e4-ac42-0839b9a95868",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "a79e0bd3-616e-7670-8b0f-acf6cc45c6c3",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "f6c584c7-d588-74eb-99a0-6f70d12b9c00",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "5503ad6b-26fd-78f2-bfc0-f602ce51ae24",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "39399353-3c43-741f-8b4e-10ec1c5bb156",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "4e1c29bc-09a7-7d9f-af7c-d579cd1d4a4d",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "ba7f4386-ef98-7c28-bd89-fcc35ae66df4",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "0dcbe072-63ff-7abc-a5ca-8ee633606cda",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "05b6457d-80cb-78f4-8bba-276f967ad5f4",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "d35a6313-3a9a-76fa-88c9-daafb45e472d",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "57bdcf58-357f-74c1-ac2c-6f689feef70e",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "f84b1c79-982d-7e08-bdb6-dc05cc50a883",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "a2a8c9d0-27d0-7589-8744-6998e0f306bc",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "2737744c-7aa8-7702-bf1f-f1eff78ff3a3",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "0163557b-19cb-7cb5-b1fa-774b3f3ff0b5",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "092247a4-4f0c-7fe2-8a72-54c343f34bc7",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "537bc417-e8e3-7ffd-bad5-1a59244e4a9c",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "85b2e12d-e266-7084-98f2-03cbdc3a974e",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "0ef09423-19b8-73b7-8cd1-6e7faad996f1",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "6ac361a2-bbe8-7ca5-a314-c77019f904b6",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "9137b581-0e9a-7a3f-9c79-6c261dcbe502",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "9bce4260-a3ee-724e-b5fb-b136a0b255a0",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "0effe5db-320a-7840-8ed7-14a3c6b6273e",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "fef69428-98a6-734f-a861-66482f58e056",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "3c6704f2-641c-788a-9b96-34cf5d9c0fda",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "e6487c29-8e25-7c91-bc29-d85e9d247ee3",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "fdda00a2-69d9-7923-959c-b9551b8859e2",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "92c2564b-22d9-7441-94bd-8ca77d198495",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "868d220e-ccfa-7a20-b432-c6995e9f8fa3",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "9499519d-6523-7481-a0d0-e749bde182c8",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "15fbf230-d8e2-7eab-aa4e-a5ac0906e471",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "a9bcb3bd-f4fd-77af-adfd-83d6ef71df8c",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "75a8f113-71d0-7a93-a059-ca582b45934b",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "3c3cb08e-05d8-71df-943c-e2eeab99587e",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "603c5ecc-5209-7fc2-b657-204fc349d48f",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "a89381ec-c64b-7d8d-8704-bf3dea649a00",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "059e0da8-ce0e-7e45-9bdf-41ffcf3f26e2",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "da1c67d9-3e2f-7feb-9c65-876c48475c5a",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "ae670e61-50f1-74fa-844b-a5578adf15df",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "2ef162c3-b382-7a91-941a-b1feef4ab9ad",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "54ef476c-7855-7caf-9a9e-b319367fd2f4",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "5fdc2627-53e2-7b5e-9e93-c5015ad87039",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "289f27b6-ac1b-704b-8d2d-631102c50d0f",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "aa58a925-75af-7be8-9620-1a6c75fdb3ca",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "3331eab5-faa8-7819-bf9e-70c10be7f16f",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "ef014ca3-f837-7579-8b6a-809d7794c009",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "a8e6a0d4-7976-7f21-8dd0-b656a406f058",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "0406ab0b-f503-7be2-a108-15a71c32fc7d",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "916fb70a-2c07-79fc-91a9-83e9b4cb66ad",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "595efc18-c352-7ebe-8d12-835a69f518c4",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "78f76865-e2cd-7314-9751-13da5ac9c6e7",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "910a57d3-d5b2-7f63-8092-daa1c593e9da",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "66c9524f-7eac-791f-bcc0-368fa63cbd6d",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "da2dc38b-ff66-71cc-9992-c2ffbf54affd",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "71982ff4-5564-7e7d-b820-fc0e1521c896",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "d177ac4e-2e60-7338-afc9-5f64b5de7a4e",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "38fe928c-7b47-7589-a365-6819a5b113a5",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "2874c322-7863-707c-9b18-52a5c2562753",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "0dedf3ee-5382-7b0b-b443-3b46554f2f39",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "83b73eb4-0038-78bb-a294-39bebd6426ea",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "1afcfc51-d5a4-7ca5-af79-6a65d5701454",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "5a3547af-7832-788b-8620-52cba3e10c7d",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "470d9778-6519-7b96-ac41-67ce016f129d",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "9391cc20-5d0a-7fce-a265-d53321344064",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "f6dca192-693e-773e-9498-f0202a21b4e1",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "89bccb5e-ce29-7b5f-99fa-c9d49d2cc3de",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "536999e0-6444-7a5b-9047-828241680024",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "b9648df5-dffb-7387-95ce-0e84aad71dbd",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "c7c1a235-99fa-7212-9541-a0e79b8ceb8a",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "3e25623b-eaa9-7bbd-bebe-928d600c01cb",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "eaeba8c6-d293-7749-ad15-d90a006c6f39",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "745a8739-95da-78c0-8378-d5df40d713ab",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "d612152e-f0c1-722c-b6a3-dc0e81e4d052",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "b7383ef4-7005-7ee0-97ba-a8184104d9ac",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "24868ddf-843d-7747-9c95-6113011660b3",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "1c4e1263-31a9-7088-b074-8902eb600f5e",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "a1941c28-9d5e-7f68-87f1-0b1154023248",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "2b91db43-45d3-7af3-ae1d-5d18eb1fd956",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "62682494-f486-7490-8a22-f3eb44d1c9dd",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "efc8996d-c25e-7ad8-b085-c2f6d50c019b",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "6936073c-06c0-77b5-a4a9-496d24b27501",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "8cef3d7e-ea13-7274-8167-6e7855cf38e3",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "cffbc20a-6bed-76fe-a38d-c69ec5d32102",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "62d8d229-6aa9-74c5-ae24-d325f9e4e2a1",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "c697f47a-5b60-7a24-82e8-71fe7f174c36",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "114027f1-2033-7de4-8c01-5b721109a01a",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "a1082b02-39bc-7286-900f-ac6fca53c806",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "762d8367-28fb-760b-b1fd-d18738aeffc2",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "66c5c537-8728-7337-8b64-bdf2aaab9c12",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "10ce0b58-1a24-79ad-800a-7b627d623ffc",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "dd0d28fa-4b96-794f-bdc5-35b322cf6e1d",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "cfe8abcf-22c0-7044-ba8d-276c62150dda",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "332f511b-48c6-7cdf-a084-1a077e64e1ce",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "c6f6f81a-275f-78d1-8970-e6303931199d",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "cb9f04ce-b137-7639-b9e9-b61332421122",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "2cc84e87-f2b7-79e1-b417-6d8ddcafe4f8",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "84920a6d-ef4c-7dd5-be51-dada956a999c",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "b86c68cd-ed7e-70c0-82b1-cfe42aecb0d7",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "e1fa27c1-e35d-7253-ac37-17ba63440751",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "78e107c7-a4fe-7ad8-8afe-d27c65b54cf7",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "7ba744eb-2868-7855-8fc0-5b5866276117",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "cb91f49e-80ab-7475-9371-0038d9351e1d",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "e0cd0f5e-42a7-79f9-ad18-4417000c8e2f",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "b83bc4eb-3556-7244-8c79-f3faf49b883c",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "15866afe-c23f-7a04-aa79-736bd9ff0a11",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "ba830a2c-45db-7236-83c0-1ff61592d409",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "f208592f-4a6d-7916-bb21-3b7e3066ce31",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "58af8c8a-f711-7c9d-8f7c-bfd83d137e63",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "d9771d9b-1ecb-77bd-8c61-062691b1477d",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "2bfabaa8-086e-79ce-a933-90ab94c9616a",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "89945a1f-4056-72a7-b406-d7573f7abdd1",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "f0ce1b24-8720-7ff5-a402-17962eaacaca",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "8eaf021f-b3ec-73b3-8536-70e5a2021f83",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "60de6871-a9c0-7f48-9065-531d5f01bae7",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "b5fb3787-a452-77ec-b709-e1fb27727875",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "6bed2b5c-11d8-758f-ba7c-41a806dc7042",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "58199b20-331f-784f-a831-5f5f2b4003f9",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "876be629-3607-7164-88fa-fabcdb9aa6dd",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "0d37a5c1-2e3f-7da4-a6be-31aa2c9ce410",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "dfc39452-5a1d-71d0-adca-9a858575c207",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "e98def30-9c4b-748e-bb63-21e35750763e",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "8ec33c12-a98d-7baf-940b-ba7867179512",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "8ef16c72-d48a-7837-9431-c6754439daa7",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "886a746f-5ba9-7e29-9577-f0b69fa9cefa",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "0931c7b5-3e7a-7111-a57d-2e1c08f8ced9",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "f46b40cf-0584-7280-8a43-8cd519b1dd94",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "4a216d27-8923-768f-a19f-22a910f2aa69",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "6a030d2a-ad65-741f-869a-7685f2e59516",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "31feeb0f-e5ac-7122-8aac-bad5d5e6c324",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "1663f0e5-a8c6-7984-b7a4-9179379f20d2",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "48047819-fb45-7d16-8119-9187feb67e1d",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "f2fb2203-2255-7ec0-94a4-a7dc33e177d0",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "aec72cea-bc6f-7cae-b864-1fb97e8b930f",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "a0564a8c-d314-75b5-bebb-9f4fbe20b205",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "0df81315-41c6-7362-a6ff-0a7dc44b70d9",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "63b1f63c-9d67-7433-a8e3-1cd01f4db3e8",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "79270d09-7b90-711c-8515-93475d7de546",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "1385031e-c922-79f5-aa85-edb4fd9ad87d",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "5b477755-c046-739f-829b-b872be3c158f",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "11b5c6fc-5dc5-73fc-bd4e-3b64d333f568",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "7d2c9e84-99ef-7195-b4f2-aacc5c2d5c37",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "26ecfb88-006d-7c7f-8436-71c974d9268d",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "a64f9c8c-3202-7e35-a9df-b33e991a5cd2",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "b12edbd9-15dc-78fb-abc2-baaf63266457",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "49822e73-640b-7b36-9527-337b46aa5dca",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "bd69094b-0e6b-7d55-ad2e-6b1e594906a9",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "440e504e-b0d2-7470-a89e-c592fac1f3c6",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "79988cbe-b45e-7b51-91fa-356426a80061",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "9b34f4cb-e419-7c77-98ce-0ac45a92038c",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "140a5b97-626e-7e06-a3c1-96889f51556d",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "8569dbab-83e6-71e9-8a11-c5ea4f8a64d1",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "4b6b03cd-de79-7c77-8f6b-9ac18bb85f1b",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "b4cea782-d1a0-7384-a1e1-3f5b234fb8f5",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "b14801de-0bde-718a-8b15-d1ecafb7636a",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "772238dd-049e-7eb2-950b-70e71febbfa1",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "5ae26153-e90e-7316-83c9-63ddaeb4e0cf",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "ceb25982-d8d8-7042-b996-092b954503c8",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "8c852c8b-737c-7551-92c8-b4d75efe9397",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "d4e2b8c8-7e4c-7c39-ac01-1fc6a4637192",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "029a2df6-dd73-7c96-8935-e6c47699916b",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "1357ba49-a213-7a4b-ade0-3edf9a8d7445",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "7612588c-fc2a-7400-ac76-bcedff092bde",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "e0f0aa40-d49d-7efb-9aba-4a2dfda94128",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "3b483d1b-bf3c-7003-b89c-1747acffb412",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "f5ca7ffc-a074-73a5-986f-009aef5378f7",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "a1b5864f-90a5-724e-a07e-dc53c95f43ef",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "465d54c4-ade6-76d3-ac7a-8619205e1cc5",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "c9d5c9c0-941f-74a2-80cb-9b5c52efee6b",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "a1a45383-a72d-704a-a546-55416b32cf74",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "10404887-69a1-7819-9eb6-b8bb1fa5883c",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "7620a71b-1878-7441-8ef7-927a709234ee",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "a3176f3c-5b54-75f9-bae6-c8dd22020b99",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "050a510a-72d4-7ae3-810e-481c033f0ccc",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "248a4e73-fa10-7091-a0f4-bb2b59d12280",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "e3635116-b8d6-77b9-9c12-5f8f030f1d23",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "5f3884ef-1c09-716a-8bc6-1d76638b4745",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "64ab068f-fbc2-780a-924c-43525d0777ac",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "3fe4dbb4-54a2-7020-aa35-517f1e52e785",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "b5d04b19-837b-7bf1-be8e-fb8f0247f0ef",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "72fed8d0-86ce-76e5-abe9-9b1d418c0bf5",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "48452acb-a107-7295-aa2c-5949bcb0427a",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "8895704e-cfd4-7490-8026-78f414b8240e",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "2b132ed2-ab73-7624-9cb2-911ccf6bd705",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "1dc2dec5-c83e-745d-968e-2aa98c32094a",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "2c16b1cb-d9ee-7306-963b-bf15e0c76041",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "309911e6-e730-794a-8605-ee291b5c02d4",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "0a0caf10-2ef5-7668-be95-ffe28780fb06",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "fed833e2-2e77-7067-a6fe-06497db769d2",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "56dc35af-9b0b-7d9b-8103-b2110ed795b0",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "6f542566-7cb8-7871-8aea-36dd9b24e825",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "6f723e58-62cd-74da-bd4a-a55eb10b399b",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "400d70fc-25e4-780e-a726-133410ff71ba",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "c448a944-2ba8-7f1a-b1bc-d638a5b0bbac",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "e4e7a07c-1548-72c3-94e0-31450e87c6aa",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "408abea1-2a21-7744-b65f-f5a543995a71",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "99077d87-7c6a-75db-bcea-143d1a7a3ba8",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "480996fe-ca13-74d5-8936-703070ecc692",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "e9caeb7d-9c32-710b-912b-60424d1ed753",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "ffaf75af-45ba-7726-ad25-ab02a37fae6b",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "6bb472f6-2a54-7e07-a4df-5f31d4a93a48",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "db274975-5f79-7cf1-a845-26f083f0a620",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "73c15d2d-8270-77f0-8f73-85eddb16211e",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "8e7b2b5d-c188-74b5-a507-5e84e74e4897",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "35d0a7db-255b-7ed2-973e-a335d83d93c1",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "e941a85e-e6a2-7da3-afc8-c68a963f4c43",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "b28d78ad-0c74-704a-afc8-e57ba410ae94",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "6fc431bc-55be-7210-ae09-9ef15e0971ae",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "055ff7e0-3663-7901-a769-fb0eea19bae4",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "61b7309b-ec35-7ae5-a3f3-a8558012f94f",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "fc905b66-051e-7be0-98c5-81f39306fee4",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "34415340-de1f-782a-a8e2-62b10c1d3884",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "01b20b7d-b5a8-7e3a-ad33-2b88b6e0e9a7",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "e648666d-e989-7116-a13e-4029a2def091",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "7e50373a-4e73-74d3-a93f-5608f62b1ac4",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "26a15c21-8aea-7690-823b-d957827dd0fd",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "26ed195e-3744-7aa4-a2f7-89df1d2e0b8c",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "1e17ef48-2cba-71ff-9a0c-a2cd83de3585",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "f55d8353-bcf9-767d-bb04-f20695b8209b",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "7ff82957-c541-7808-81dc-5776987088cd",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "b57ec0b5-7e8b-7259-896f-03ab19d6e4c9",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "f8153b4d-d7f6-7652-bd6e-86748d61379a",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "5373cb1a-5244-7942-828a-cff616c3623c",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "85a515a7-8b4b-7bf5-bed8-4bae3c60698c",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "eb45b64d-fc29-7c84-8f33-fabb697d4b3c",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "01dbe6b7-f6d6-79b4-8b3b-a3fffa695fb8",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "3171b9b8-4015-7246-b662-105476ad4e63",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "4ff073c5-1ed0-7bf0-9189-b46165c25d77",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "f5ce13e6-1e2e-7cab-9848-614e4b1970b3",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "598e6509-2deb-72b6-a1eb-7511bf78216d",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "caba4696-b1da-7283-b86d-bd3de0464848",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "5ddb63fb-f8e6-78a9-9701-4426a92cbb42",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "77f67150-8563-7833-baac-e8ff9feb4853",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "dbb84308-afcd-7b62-b9c5-19ca581609bc",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "02f42224-45a5-7e80-9c1e-55d211f4ef98",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "8fb91e4b-3f28-750e-9916-0d1418dc066e",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "bd4d372f-7b38-7c9f-92ca-03a958e0916c",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "cca488d9-6ce0-7ec2-8793-da0412bdcde8",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "c67c02a4-bd46-7fb8-877e-128711e2d560",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "b3a89be3-4749-7a3d-a018-491e48d18a98",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "c321aec2-ab13-7909-8393-c1436f996e93",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "1b0f70fc-0e2c-7e5b-90ed-387e1fa08911",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "3642c5e7-6018-7330-8c9d-9d3d5efa60dc",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "0d2bea78-b882-7ca5-b9aa-cbedac1ce805",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "5a750723-05ba-7165-a51d-941d652cd21f",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "83c278f0-e5f7-7799-9b6a-a5cdb644c897",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "38866bf0-5039-7809-9f25-79742bf05000",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "7abf7f4f-c894-78b0-9010-0a53ee3d5bb7",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "50a6bc8b-e195-73d8-8046-c811f88b0fb9",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "9e9fb5de-cc9b-70dc-97e1-11d1bafde53a",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "483c20e9-c77c-7749-9f15-5c113fb6d968",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "779db60d-303a-7b5a-ac5e-b0fc9d9a8581",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "3c4cea08-9d7b-73c1-b481-8efaccd7a93b",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "35f6a3dc-44a6-762f-bcb4-b65d62874643",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "c7ae73a7-1e7b-74fa-8cdb-0f5504a96166",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "eb2e28e3-a38e-7f75-9217-489e155921e1",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "eef406f6-1923-7ac3-90cf-55a2121bf794",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "9bddf830-2ed5-762d-a8ee-ca7636c29310",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "e76722f8-6396-7325-bcaf-4d0830f20744",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "cc9197d4-dc69-73ea-bb2b-23b9c5b1b548",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "c04dc3f4-399f-7005-b546-b12e64d862a3",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "da65461e-77c2-77eb-8e61-2f704656b8cd",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "99d78d7b-3491-7941-b4fa-21c709ffbdc5",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "9c168e58-7580-7382-abd8-da9c57692353",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "729c0c21-c637-7649-be32-b9b10012109a",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "b270599b-ef56-7164-b732-ec08933f0e8f",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "4a77cac3-70ff-7e59-a5bb-31027117b2bf",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "d83ac467-9822-73e8-85b8-2da4b17f4acb",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "910db75b-206c-79cc-a1ca-4d21aec65040",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "2969006a-76cf-76b3-87cb-2605439c2f97",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "e66de65f-ba5e-7863-8ffb-ce8567763bfd",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "ae7eaf87-94fa-7120-9d5e-8e6b186577ea",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "602048e0-917b-7754-9b38-5d058fa8dfa1",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "67a818a8-6135-76f7-9541-ddab39e1e988",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "ca11185f-bad5-79db-a6d3-58f9a42a77ad",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "b474e6bc-11b4-7241-9d9c-bf5043601d4f",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "8a8c3597-cd5a-7528-b91a-160a4ab537f4",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "4c7b49c4-41b9-7c3f-9226-84c8dc2bef2f",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "18c6cfcc-9aae-7251-ab9b-da61995fcc8d",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "51cabbc5-4293-7fee-b557-b983d77c54ad",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "f09479a1-0a4d-79c6-b486-bbf59f34e8cf",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "b4debfd5-a55e-742b-93d8-b5e1b99ce8b9",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "914df62c-2551-77f1-a30f-5035ce49f56d",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "13b5c794-fc6c-7ed0-bf8a-acf8ee959dda",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "2d70ee57-f0f6-769d-8676-439fba827e1a",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "0996cc18-3572-7ccc-b532-e55565fafcba",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "f344bfac-6900-736f-9d09-218d51045840",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "329fcdb1-b215-710a-a5ae-fd50dccc2fc5",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "0123894d-e4cd-707e-b43d-297a16878351",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "2866748b-f074-7334-ab62-172ef38996e1",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "d323a89e-d7d4-7375-bdfd-c5f8ad933425",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "aa64d09f-044d-785b-a56b-88c907d3778b",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "4fc8fd96-b5f8-70e2-b17f-847415088f59",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "a90d9f58-3f03-7d16-a442-1f221007f0d4",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "b6eb1648-a6ae-7c05-bd96-ff60196565ba",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "9ddbe575-1be1-7c8c-a2b3-bf6440867349",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "4b0752e7-c0b7-78d1-9185-6800b5ff24b9",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "769ba164-7821-7be1-944d-93df56986fe6",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "83a81302-3f38-7076-b30f-386d40210077",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "e84d84bd-59cc-7b18-99ff-49da1b586fa9",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "7e58e14a-83c2-7b0f-8f34-c0e86a252faa",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "7c5f9165-4c2b-7c5b-9dce-a290fdc2e68d",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "fc44827d-4842-7750-98f6-6b7bf153dc4d",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "69db0d2d-1981-71f4-ac54-03270c060d04",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "2f39e0eb-50f2-7f5c-8c83-0588a1a8b205",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "dc643ce3-d61a-717c-be02-035c0e188592",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "2d644315-8423-7411-a549-f2cb849050fe",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "04ba4f9a-2909-7e47-877b-15af1a89ecc7",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "9426be3a-0684-7f59-9d38-c5174044024a",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "3a81bd34-7cc4-7837-b16a-5caa152d3aad",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "e04dbfe2-6bd0-7fbb-8fcf-dd3f3d002d9b",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "f51d4919-7892-70e4-affa-8e3dd8068cdf",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "bbd11959-0b83-7dff-9a42-324ed8c66f1b",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "27c7378f-f2b6-794b-9484-6a267300cb4d",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "1521de66-17a7-7b25-902a-cabe57a0507e",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "1959d650-a969-710d-a961-261ca7eb1e93",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "190d363c-4cef-74bf-a8e9-cd7649234ab9",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "1703d260-4c3a-77a7-88ea-6d6c5b107d2f",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "81b65e56-934b-7a3f-8d56-4be977bdefa6",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "f08713f4-9628-79fd-b69c-933bad945a58",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "73b3f646-d984-76e0-a4a4-9d6924c9c77f",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "b34fe64f-5fd3-7b44-b139-23200d4fef01",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "f8901783-25bc-7bdf-99e0-5381a20ab6d0",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "ba8d1ebf-4971-7ee0-91dc-f6522a235094",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "242e9bec-a52b-7d8d-a8ae-af71e2732c83",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "071684a3-d69e-7262-bab9-057539dba32d",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "f0010beb-d859-7660-8d85-cf2eee370d5e",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "a57e8e2c-784f-784b-a1b1-fc5cffe03b91",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "425d1649-4d29-7293-9522-27c717870cb1",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "7c7e488d-bf0c-7a5d-9bde-bc98fb13d59e",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "f102c46e-c02a-71cd-ab07-0d94925b17b1",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "e1412421-5567-7e03-a78e-16b19b1dc012",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "f29198a9-f577-77ca-a90f-c2540dce96fd",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "d174601e-c8a5-7778-8385-075feb2e1d10",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "269ae00b-6c94-7fcd-a633-6c9d1b2e6581",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "8dedca71-68e6-7acc-8d6c-19b8dad9ab0a",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "679cf6b2-1002-7121-b887-214e4dce5ba8",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "8d90694e-6cdb-7b24-becf-a78bbcf8f50e",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "07a1c966-8fd7-7231-ad9b-57181cd72245",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "fb805dfb-9eaa-75d2-b121-e4120c2e94e8",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "37f8209a-9689-774d-9468-347c853cbd0a",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "62801450-6d3b-7f4d-8547-de520933d63f",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "bc400461-7b7a-7af9-9288-146174dea31c",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "b4761ff0-e728-7a36-a71d-e93dc4f40778",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "416d411a-b314-7374-acc1-322dac0bcb4a",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "7ece9da7-cfc0-7159-85eb-07bebf5ecb6b",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "4b937b53-014b-7e81-bde2-39e37e6d9062",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "ba1f2dd5-b7e9-7612-9c99-8649ba71a1a9",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "08903404-1311-7a22-83a1-518dabf5629b",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "78b888b7-979e-773c-9d6e-2c18670c9429",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "2c03eae6-694f-792e-bb85-61c1242a2016",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "5c4846d5-8c2e-7e8e-8d28-40b95a768a9f",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "24e0121b-5f6e-747a-be20-c4526b0fe4bf",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "fe8514a6-61bd-702b-b4f7-d282d50ddcf3",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "e663bfc6-8fb8-70a3-bdd0-1c8a1fc90ce7",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "63c250ad-8489-72a0-8bbe-504594aa90d7",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "b2c13414-25e1-71e4-bb03-bde363597b53",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "556730a1-5a07-7ace-b5c1-488e857d6881",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "83727349-6f98-78d3-8118-0f52ef663e35",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "ead1ef8c-89f6-75aa-89e8-20456be13e15",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "709ff2ec-e733-7dd8-87de-be480f19b383",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "8de7605d-4381-79ec-8995-cec088548848",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "ef9873c1-f8c9-7d43-9960-abced22adcb9",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "02c793eb-0b63-711c-b4bb-4b92a2511eba",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "356ca88f-5b4f-7992-999b-ce4b65a5ccbb",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "3cd450e0-8952-7758-bae1-44ea96ca58ed",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "843dba5f-0b67-7cb7-9b43-c4e6b145b58d",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "a6174848-cf2c-7a46-bc23-63195153605a",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "64cbc8df-b6fe-7374-b705-12ef5411eeaa",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "b37e441c-b460-74a0-96ab-5f3d3126307a",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "051188ad-ba79-73a8-b1a4-c9231efa0e31",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "eb40677b-d1be-714f-bb32-dc4f7769bcef",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "5ff6a417-c395-7fec-afd4-6ccea9746562",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "13db273f-412f-7c74-b5cd-cab1f2154e3e",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "f3c127c8-9d24-717a-ae50-ecd068864929",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "74bf500b-8242-7e11-bc38-c6decd581c43",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "159f438b-5b20-7df3-afa8-dcc59a0dbcaa",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "0b39b257-dcec-76aa-925d-fdae0829eec6",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "68bce109-c6bf-7175-b542-510aee89fcc9",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "b640428f-f903-7645-9cb6-2f8d26b45cdd",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "0ff1871d-68b4-7770-8c70-b4a33d48d016",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "c99b8afe-665b-7c08-9a9c-44bee06fee84",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "4a6a53ae-1bc0-73c8-9080-09516fb8b94a",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "12d753c2-b980-760c-9408-3aab63bd6b0a",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "3aa7c2e9-6772-74ee-aeea-2f4691bdd4a4",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "6af65320-9e78-7da1-8a9c-7480c8ceb700",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "15e28ae0-5b77-7df6-82dd-1ae22707f518",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "76f299ef-c70a-7396-a762-4e0ab87ca28c",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "fdd055e4-66e9-7069-a96c-93f9514db434",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "b22b1163-e2eb-77c6-9b62-637df137fad4",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "1ff9d4fa-9a82-729f-962c-1fad55b3d3dd",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "d114b08f-24d1-7b10-89dd-8b83a62b3cd0",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "09cbbddf-f943-7d4d-974a-d1340f917df1",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "0b0713f0-6d4b-7b08-88b4-9218f60c9083",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "b4820748-d3cb-7270-aa71-d3a08c137984",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "ec322b0f-9307-7138-a598-1665da98a89d",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "c99b5e14-6cc4-7ad8-93c1-da7629a09f96",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "17b52636-4a67-7d38-bd72-be73befaa3d2",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "ce5fb1f8-d234-77cd-97f7-baeda3c45246",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "c78ba894-c3c7-77a7-a614-778e3aaa96e0",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "119d6f27-0178-7b6b-9056-a9197e0341ad",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "0427f277-fe2e-7d86-9e39-9ac59b128f12",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "7aaad8b8-08c6-7518-9379-e43a9b55aef0",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "28c18c79-2fb3-7a9b-bd34-60b3c5dd4e4d",
+      "detail": "Approved Rotaeno chart difficulty metadata; files and object identities preserved."
+    }
+  ],
+  "affectedResourceIds": [
+    "fd01e126-4969-7952-9a6a-8b580532b7cf",
+    "e6c51c39-26eb-79cb-891a-3eb0b051a362",
+    "f43b13aa-cebd-7d0d-a126-e4e0820a5055",
+    "dc960e26-bb66-761d-ade8-d30d2b2e168e",
+    "e7e269fd-6e26-7893-9bae-ef63360a7217",
+    "40d5d740-3d5e-70e1-af72-fead03b93ac5",
+    "22b17cd1-ebd5-7f71-b223-9a36abe5fc19",
+    "92a70e6f-8be3-752e-a889-68481fb5945e",
+    "3d15652b-5028-7266-b6f3-ef7dae67584d",
+    "bc383696-2441-7b67-acc0-ae8f924de84c",
+    "c41b6103-2f88-7fef-b146-40d98ea6c770",
+    "77b94fd4-9397-7b47-a64a-675338d4599d",
+    "1e902869-1907-7827-9168-3ee14e79e1df",
+    "e6ca0a57-1d12-7b1d-b33b-776669b090cf",
+    "bb86109e-83e2-7267-bc18-b3257106aee1",
+    "f24a7465-2054-7b46-bba6-13e397315784",
+    "07676d6a-e884-75e4-ac42-0839b9a95868",
+    "a79e0bd3-616e-7670-8b0f-acf6cc45c6c3",
+    "f6c584c7-d588-74eb-99a0-6f70d12b9c00",
+    "5503ad6b-26fd-78f2-bfc0-f602ce51ae24",
+    "39399353-3c43-741f-8b4e-10ec1c5bb156",
+    "4e1c29bc-09a7-7d9f-af7c-d579cd1d4a4d",
+    "ba7f4386-ef98-7c28-bd89-fcc35ae66df4",
+    "0dcbe072-63ff-7abc-a5ca-8ee633606cda",
+    "05b6457d-80cb-78f4-8bba-276f967ad5f4",
+    "d35a6313-3a9a-76fa-88c9-daafb45e472d",
+    "57bdcf58-357f-74c1-ac2c-6f689feef70e",
+    "f84b1c79-982d-7e08-bdb6-dc05cc50a883",
+    "a2a8c9d0-27d0-7589-8744-6998e0f306bc",
+    "2737744c-7aa8-7702-bf1f-f1eff78ff3a3",
+    "0163557b-19cb-7cb5-b1fa-774b3f3ff0b5",
+    "092247a4-4f0c-7fe2-8a72-54c343f34bc7",
+    "537bc417-e8e3-7ffd-bad5-1a59244e4a9c",
+    "85b2e12d-e266-7084-98f2-03cbdc3a974e",
+    "0ef09423-19b8-73b7-8cd1-6e7faad996f1",
+    "6ac361a2-bbe8-7ca5-a314-c77019f904b6",
+    "9137b581-0e9a-7a3f-9c79-6c261dcbe502",
+    "9bce4260-a3ee-724e-b5fb-b136a0b255a0",
+    "0effe5db-320a-7840-8ed7-14a3c6b6273e",
+    "fef69428-98a6-734f-a861-66482f58e056",
+    "3c6704f2-641c-788a-9b96-34cf5d9c0fda",
+    "e6487c29-8e25-7c91-bc29-d85e9d247ee3",
+    "fdda00a2-69d9-7923-959c-b9551b8859e2",
+    "92c2564b-22d9-7441-94bd-8ca77d198495",
+    "868d220e-ccfa-7a20-b432-c6995e9f8fa3",
+    "9499519d-6523-7481-a0d0-e749bde182c8",
+    "15fbf230-d8e2-7eab-aa4e-a5ac0906e471",
+    "a9bcb3bd-f4fd-77af-adfd-83d6ef71df8c",
+    "75a8f113-71d0-7a93-a059-ca582b45934b",
+    "3c3cb08e-05d8-71df-943c-e2eeab99587e",
+    "603c5ecc-5209-7fc2-b657-204fc349d48f",
+    "a89381ec-c64b-7d8d-8704-bf3dea649a00",
+    "059e0da8-ce0e-7e45-9bdf-41ffcf3f26e2",
+    "da1c67d9-3e2f-7feb-9c65-876c48475c5a",
+    "ae670e61-50f1-74fa-844b-a5578adf15df",
+    "2ef162c3-b382-7a91-941a-b1feef4ab9ad",
+    "54ef476c-7855-7caf-9a9e-b319367fd2f4",
+    "5fdc2627-53e2-7b5e-9e93-c5015ad87039",
+    "289f27b6-ac1b-704b-8d2d-631102c50d0f",
+    "aa58a925-75af-7be8-9620-1a6c75fdb3ca",
+    "3331eab5-faa8-7819-bf9e-70c10be7f16f",
+    "ef014ca3-f837-7579-8b6a-809d7794c009",
+    "a8e6a0d4-7976-7f21-8dd0-b656a406f058",
+    "0406ab0b-f503-7be2-a108-15a71c32fc7d",
+    "916fb70a-2c07-79fc-91a9-83e9b4cb66ad",
+    "595efc18-c352-7ebe-8d12-835a69f518c4",
+    "78f76865-e2cd-7314-9751-13da5ac9c6e7",
+    "910a57d3-d5b2-7f63-8092-daa1c593e9da",
+    "66c9524f-7eac-791f-bcc0-368fa63cbd6d",
+    "da2dc38b-ff66-71cc-9992-c2ffbf54affd",
+    "71982ff4-5564-7e7d-b820-fc0e1521c896",
+    "d177ac4e-2e60-7338-afc9-5f64b5de7a4e",
+    "38fe928c-7b47-7589-a365-6819a5b113a5",
+    "2874c322-7863-707c-9b18-52a5c2562753",
+    "0dedf3ee-5382-7b0b-b443-3b46554f2f39",
+    "83b73eb4-0038-78bb-a294-39bebd6426ea",
+    "1afcfc51-d5a4-7ca5-af79-6a65d5701454",
+    "5a3547af-7832-788b-8620-52cba3e10c7d",
+    "470d9778-6519-7b96-ac41-67ce016f129d",
+    "9391cc20-5d0a-7fce-a265-d53321344064",
+    "f6dca192-693e-773e-9498-f0202a21b4e1",
+    "89bccb5e-ce29-7b5f-99fa-c9d49d2cc3de",
+    "536999e0-6444-7a5b-9047-828241680024",
+    "b9648df5-dffb-7387-95ce-0e84aad71dbd",
+    "c7c1a235-99fa-7212-9541-a0e79b8ceb8a",
+    "3e25623b-eaa9-7bbd-bebe-928d600c01cb",
+    "eaeba8c6-d293-7749-ad15-d90a006c6f39",
+    "745a8739-95da-78c0-8378-d5df40d713ab",
+    "d612152e-f0c1-722c-b6a3-dc0e81e4d052",
+    "b7383ef4-7005-7ee0-97ba-a8184104d9ac",
+    "24868ddf-843d-7747-9c95-6113011660b3",
+    "1c4e1263-31a9-7088-b074-8902eb600f5e",
+    "a1941c28-9d5e-7f68-87f1-0b1154023248",
+    "2b91db43-45d3-7af3-ae1d-5d18eb1fd956",
+    "62682494-f486-7490-8a22-f3eb44d1c9dd",
+    "efc8996d-c25e-7ad8-b085-c2f6d50c019b",
+    "6936073c-06c0-77b5-a4a9-496d24b27501",
+    "8cef3d7e-ea13-7274-8167-6e7855cf38e3",
+    "cffbc20a-6bed-76fe-a38d-c69ec5d32102",
+    "62d8d229-6aa9-74c5-ae24-d325f9e4e2a1",
+    "c697f47a-5b60-7a24-82e8-71fe7f174c36",
+    "114027f1-2033-7de4-8c01-5b721109a01a",
+    "a1082b02-39bc-7286-900f-ac6fca53c806",
+    "762d8367-28fb-760b-b1fd-d18738aeffc2",
+    "66c5c537-8728-7337-8b64-bdf2aaab9c12",
+    "10ce0b58-1a24-79ad-800a-7b627d623ffc",
+    "dd0d28fa-4b96-794f-bdc5-35b322cf6e1d",
+    "cfe8abcf-22c0-7044-ba8d-276c62150dda",
+    "332f511b-48c6-7cdf-a084-1a077e64e1ce",
+    "c6f6f81a-275f-78d1-8970-e6303931199d",
+    "cb9f04ce-b137-7639-b9e9-b61332421122",
+    "2cc84e87-f2b7-79e1-b417-6d8ddcafe4f8",
+    "84920a6d-ef4c-7dd5-be51-dada956a999c",
+    "b86c68cd-ed7e-70c0-82b1-cfe42aecb0d7",
+    "e1fa27c1-e35d-7253-ac37-17ba63440751",
+    "78e107c7-a4fe-7ad8-8afe-d27c65b54cf7",
+    "7ba744eb-2868-7855-8fc0-5b5866276117",
+    "cb91f49e-80ab-7475-9371-0038d9351e1d",
+    "e0cd0f5e-42a7-79f9-ad18-4417000c8e2f",
+    "b83bc4eb-3556-7244-8c79-f3faf49b883c",
+    "15866afe-c23f-7a04-aa79-736bd9ff0a11",
+    "ba830a2c-45db-7236-83c0-1ff61592d409",
+    "f208592f-4a6d-7916-bb21-3b7e3066ce31",
+    "58af8c8a-f711-7c9d-8f7c-bfd83d137e63",
+    "d9771d9b-1ecb-77bd-8c61-062691b1477d",
+    "2bfabaa8-086e-79ce-a933-90ab94c9616a",
+    "89945a1f-4056-72a7-b406-d7573f7abdd1",
+    "f0ce1b24-8720-7ff5-a402-17962eaacaca",
+    "8eaf021f-b3ec-73b3-8536-70e5a2021f83",
+    "60de6871-a9c0-7f48-9065-531d5f01bae7",
+    "b5fb3787-a452-77ec-b709-e1fb27727875",
+    "6bed2b5c-11d8-758f-ba7c-41a806dc7042",
+    "58199b20-331f-784f-a831-5f5f2b4003f9",
+    "876be629-3607-7164-88fa-fabcdb9aa6dd",
+    "0d37a5c1-2e3f-7da4-a6be-31aa2c9ce410",
+    "dfc39452-5a1d-71d0-adca-9a858575c207",
+    "e98def30-9c4b-748e-bb63-21e35750763e",
+    "8ec33c12-a98d-7baf-940b-ba7867179512",
+    "8ef16c72-d48a-7837-9431-c6754439daa7",
+    "886a746f-5ba9-7e29-9577-f0b69fa9cefa",
+    "0931c7b5-3e7a-7111-a57d-2e1c08f8ced9",
+    "f46b40cf-0584-7280-8a43-8cd519b1dd94",
+    "4a216d27-8923-768f-a19f-22a910f2aa69",
+    "6a030d2a-ad65-741f-869a-7685f2e59516",
+    "31feeb0f-e5ac-7122-8aac-bad5d5e6c324",
+    "1663f0e5-a8c6-7984-b7a4-9179379f20d2",
+    "48047819-fb45-7d16-8119-9187feb67e1d",
+    "f2fb2203-2255-7ec0-94a4-a7dc33e177d0",
+    "aec72cea-bc6f-7cae-b864-1fb97e8b930f",
+    "a0564a8c-d314-75b5-bebb-9f4fbe20b205",
+    "0df81315-41c6-7362-a6ff-0a7dc44b70d9",
+    "63b1f63c-9d67-7433-a8e3-1cd01f4db3e8",
+    "79270d09-7b90-711c-8515-93475d7de546",
+    "1385031e-c922-79f5-aa85-edb4fd9ad87d",
+    "5b477755-c046-739f-829b-b872be3c158f",
+    "11b5c6fc-5dc5-73fc-bd4e-3b64d333f568",
+    "7d2c9e84-99ef-7195-b4f2-aacc5c2d5c37",
+    "26ecfb88-006d-7c7f-8436-71c974d9268d",
+    "a64f9c8c-3202-7e35-a9df-b33e991a5cd2",
+    "b12edbd9-15dc-78fb-abc2-baaf63266457",
+    "49822e73-640b-7b36-9527-337b46aa5dca",
+    "bd69094b-0e6b-7d55-ad2e-6b1e594906a9",
+    "440e504e-b0d2-7470-a89e-c592fac1f3c6",
+    "79988cbe-b45e-7b51-91fa-356426a80061",
+    "9b34f4cb-e419-7c77-98ce-0ac45a92038c",
+    "140a5b97-626e-7e06-a3c1-96889f51556d",
+    "8569dbab-83e6-71e9-8a11-c5ea4f8a64d1",
+    "4b6b03cd-de79-7c77-8f6b-9ac18bb85f1b",
+    "b4cea782-d1a0-7384-a1e1-3f5b234fb8f5",
+    "b14801de-0bde-718a-8b15-d1ecafb7636a",
+    "772238dd-049e-7eb2-950b-70e71febbfa1",
+    "5ae26153-e90e-7316-83c9-63ddaeb4e0cf",
+    "ceb25982-d8d8-7042-b996-092b954503c8",
+    "8c852c8b-737c-7551-92c8-b4d75efe9397",
+    "d4e2b8c8-7e4c-7c39-ac01-1fc6a4637192",
+    "029a2df6-dd73-7c96-8935-e6c47699916b",
+    "1357ba49-a213-7a4b-ade0-3edf9a8d7445",
+    "7612588c-fc2a-7400-ac76-bcedff092bde",
+    "e0f0aa40-d49d-7efb-9aba-4a2dfda94128",
+    "3b483d1b-bf3c-7003-b89c-1747acffb412",
+    "f5ca7ffc-a074-73a5-986f-009aef5378f7",
+    "a1b5864f-90a5-724e-a07e-dc53c95f43ef",
+    "465d54c4-ade6-76d3-ac7a-8619205e1cc5",
+    "c9d5c9c0-941f-74a2-80cb-9b5c52efee6b",
+    "a1a45383-a72d-704a-a546-55416b32cf74",
+    "10404887-69a1-7819-9eb6-b8bb1fa5883c",
+    "7620a71b-1878-7441-8ef7-927a709234ee",
+    "a3176f3c-5b54-75f9-bae6-c8dd22020b99",
+    "050a510a-72d4-7ae3-810e-481c033f0ccc",
+    "248a4e73-fa10-7091-a0f4-bb2b59d12280",
+    "e3635116-b8d6-77b9-9c12-5f8f030f1d23",
+    "5f3884ef-1c09-716a-8bc6-1d76638b4745",
+    "64ab068f-fbc2-780a-924c-43525d0777ac",
+    "3fe4dbb4-54a2-7020-aa35-517f1e52e785",
+    "b5d04b19-837b-7bf1-be8e-fb8f0247f0ef",
+    "72fed8d0-86ce-76e5-abe9-9b1d418c0bf5",
+    "48452acb-a107-7295-aa2c-5949bcb0427a",
+    "8895704e-cfd4-7490-8026-78f414b8240e",
+    "2b132ed2-ab73-7624-9cb2-911ccf6bd705",
+    "1dc2dec5-c83e-745d-968e-2aa98c32094a",
+    "2c16b1cb-d9ee-7306-963b-bf15e0c76041",
+    "309911e6-e730-794a-8605-ee291b5c02d4",
+    "0a0caf10-2ef5-7668-be95-ffe28780fb06",
+    "fed833e2-2e77-7067-a6fe-06497db769d2",
+    "56dc35af-9b0b-7d9b-8103-b2110ed795b0",
+    "6f542566-7cb8-7871-8aea-36dd9b24e825",
+    "6f723e58-62cd-74da-bd4a-a55eb10b399b",
+    "400d70fc-25e4-780e-a726-133410ff71ba",
+    "c448a944-2ba8-7f1a-b1bc-d638a5b0bbac",
+    "e4e7a07c-1548-72c3-94e0-31450e87c6aa",
+    "408abea1-2a21-7744-b65f-f5a543995a71",
+    "99077d87-7c6a-75db-bcea-143d1a7a3ba8",
+    "480996fe-ca13-74d5-8936-703070ecc692",
+    "e9caeb7d-9c32-710b-912b-60424d1ed753",
+    "ffaf75af-45ba-7726-ad25-ab02a37fae6b",
+    "6bb472f6-2a54-7e07-a4df-5f31d4a93a48",
+    "db274975-5f79-7cf1-a845-26f083f0a620",
+    "73c15d2d-8270-77f0-8f73-85eddb16211e",
+    "8e7b2b5d-c188-74b5-a507-5e84e74e4897",
+    "35d0a7db-255b-7ed2-973e-a335d83d93c1",
+    "e941a85e-e6a2-7da3-afc8-c68a963f4c43",
+    "b28d78ad-0c74-704a-afc8-e57ba410ae94",
+    "6fc431bc-55be-7210-ae09-9ef15e0971ae",
+    "055ff7e0-3663-7901-a769-fb0eea19bae4",
+    "61b7309b-ec35-7ae5-a3f3-a8558012f94f",
+    "fc905b66-051e-7be0-98c5-81f39306fee4",
+    "34415340-de1f-782a-a8e2-62b10c1d3884",
+    "01b20b7d-b5a8-7e3a-ad33-2b88b6e0e9a7",
+    "e648666d-e989-7116-a13e-4029a2def091",
+    "7e50373a-4e73-74d3-a93f-5608f62b1ac4",
+    "26a15c21-8aea-7690-823b-d957827dd0fd",
+    "26ed195e-3744-7aa4-a2f7-89df1d2e0b8c",
+    "1e17ef48-2cba-71ff-9a0c-a2cd83de3585",
+    "f55d8353-bcf9-767d-bb04-f20695b8209b",
+    "7ff82957-c541-7808-81dc-5776987088cd",
+    "b57ec0b5-7e8b-7259-896f-03ab19d6e4c9",
+    "f8153b4d-d7f6-7652-bd6e-86748d61379a",
+    "5373cb1a-5244-7942-828a-cff616c3623c",
+    "85a515a7-8b4b-7bf5-bed8-4bae3c60698c",
+    "eb45b64d-fc29-7c84-8f33-fabb697d4b3c",
+    "01dbe6b7-f6d6-79b4-8b3b-a3fffa695fb8",
+    "3171b9b8-4015-7246-b662-105476ad4e63",
+    "4ff073c5-1ed0-7bf0-9189-b46165c25d77",
+    "f5ce13e6-1e2e-7cab-9848-614e4b1970b3",
+    "598e6509-2deb-72b6-a1eb-7511bf78216d",
+    "caba4696-b1da-7283-b86d-bd3de0464848",
+    "5ddb63fb-f8e6-78a9-9701-4426a92cbb42",
+    "77f67150-8563-7833-baac-e8ff9feb4853",
+    "dbb84308-afcd-7b62-b9c5-19ca581609bc",
+    "02f42224-45a5-7e80-9c1e-55d211f4ef98",
+    "8fb91e4b-3f28-750e-9916-0d1418dc066e",
+    "bd4d372f-7b38-7c9f-92ca-03a958e0916c",
+    "cca488d9-6ce0-7ec2-8793-da0412bdcde8",
+    "c67c02a4-bd46-7fb8-877e-128711e2d560",
+    "b3a89be3-4749-7a3d-a018-491e48d18a98",
+    "c321aec2-ab13-7909-8393-c1436f996e93",
+    "1b0f70fc-0e2c-7e5b-90ed-387e1fa08911",
+    "3642c5e7-6018-7330-8c9d-9d3d5efa60dc",
+    "0d2bea78-b882-7ca5-b9aa-cbedac1ce805",
+    "5a750723-05ba-7165-a51d-941d652cd21f",
+    "83c278f0-e5f7-7799-9b6a-a5cdb644c897",
+    "38866bf0-5039-7809-9f25-79742bf05000",
+    "7abf7f4f-c894-78b0-9010-0a53ee3d5bb7",
+    "50a6bc8b-e195-73d8-8046-c811f88b0fb9",
+    "9e9fb5de-cc9b-70dc-97e1-11d1bafde53a",
+    "483c20e9-c77c-7749-9f15-5c113fb6d968",
+    "779db60d-303a-7b5a-ac5e-b0fc9d9a8581",
+    "3c4cea08-9d7b-73c1-b481-8efaccd7a93b",
+    "35f6a3dc-44a6-762f-bcb4-b65d62874643",
+    "c7ae73a7-1e7b-74fa-8cdb-0f5504a96166",
+    "eb2e28e3-a38e-7f75-9217-489e155921e1",
+    "eef406f6-1923-7ac3-90cf-55a2121bf794",
+    "9bddf830-2ed5-762d-a8ee-ca7636c29310",
+    "e76722f8-6396-7325-bcaf-4d0830f20744",
+    "cc9197d4-dc69-73ea-bb2b-23b9c5b1b548",
+    "c04dc3f4-399f-7005-b546-b12e64d862a3",
+    "da65461e-77c2-77eb-8e61-2f704656b8cd",
+    "99d78d7b-3491-7941-b4fa-21c709ffbdc5",
+    "9c168e58-7580-7382-abd8-da9c57692353",
+    "729c0c21-c637-7649-be32-b9b10012109a",
+    "b270599b-ef56-7164-b732-ec08933f0e8f",
+    "4a77cac3-70ff-7e59-a5bb-31027117b2bf",
+    "d83ac467-9822-73e8-85b8-2da4b17f4acb",
+    "910db75b-206c-79cc-a1ca-4d21aec65040",
+    "2969006a-76cf-76b3-87cb-2605439c2f97",
+    "e66de65f-ba5e-7863-8ffb-ce8567763bfd",
+    "ae7eaf87-94fa-7120-9d5e-8e6b186577ea",
+    "602048e0-917b-7754-9b38-5d058fa8dfa1",
+    "67a818a8-6135-76f7-9541-ddab39e1e988",
+    "ca11185f-bad5-79db-a6d3-58f9a42a77ad",
+    "b474e6bc-11b4-7241-9d9c-bf5043601d4f",
+    "8a8c3597-cd5a-7528-b91a-160a4ab537f4",
+    "4c7b49c4-41b9-7c3f-9226-84c8dc2bef2f",
+    "18c6cfcc-9aae-7251-ab9b-da61995fcc8d",
+    "51cabbc5-4293-7fee-b557-b983d77c54ad",
+    "f09479a1-0a4d-79c6-b486-bbf59f34e8cf",
+    "b4debfd5-a55e-742b-93d8-b5e1b99ce8b9",
+    "914df62c-2551-77f1-a30f-5035ce49f56d",
+    "13b5c794-fc6c-7ed0-bf8a-acf8ee959dda",
+    "2d70ee57-f0f6-769d-8676-439fba827e1a",
+    "0996cc18-3572-7ccc-b532-e55565fafcba",
+    "f344bfac-6900-736f-9d09-218d51045840",
+    "329fcdb1-b215-710a-a5ae-fd50dccc2fc5",
+    "0123894d-e4cd-707e-b43d-297a16878351",
+    "2866748b-f074-7334-ab62-172ef38996e1",
+    "d323a89e-d7d4-7375-bdfd-c5f8ad933425",
+    "aa64d09f-044d-785b-a56b-88c907d3778b",
+    "4fc8fd96-b5f8-70e2-b17f-847415088f59",
+    "a90d9f58-3f03-7d16-a442-1f221007f0d4",
+    "b6eb1648-a6ae-7c05-bd96-ff60196565ba",
+    "9ddbe575-1be1-7c8c-a2b3-bf6440867349",
+    "4b0752e7-c0b7-78d1-9185-6800b5ff24b9",
+    "769ba164-7821-7be1-944d-93df56986fe6",
+    "83a81302-3f38-7076-b30f-386d40210077",
+    "e84d84bd-59cc-7b18-99ff-49da1b586fa9",
+    "7e58e14a-83c2-7b0f-8f34-c0e86a252faa",
+    "7c5f9165-4c2b-7c5b-9dce-a290fdc2e68d",
+    "fc44827d-4842-7750-98f6-6b7bf153dc4d",
+    "69db0d2d-1981-71f4-ac54-03270c060d04",
+    "2f39e0eb-50f2-7f5c-8c83-0588a1a8b205",
+    "dc643ce3-d61a-717c-be02-035c0e188592",
+    "2d644315-8423-7411-a549-f2cb849050fe",
+    "04ba4f9a-2909-7e47-877b-15af1a89ecc7",
+    "9426be3a-0684-7f59-9d38-c5174044024a",
+    "3a81bd34-7cc4-7837-b16a-5caa152d3aad",
+    "e04dbfe2-6bd0-7fbb-8fcf-dd3f3d002d9b",
+    "f51d4919-7892-70e4-affa-8e3dd8068cdf",
+    "bbd11959-0b83-7dff-9a42-324ed8c66f1b",
+    "27c7378f-f2b6-794b-9484-6a267300cb4d",
+    "1521de66-17a7-7b25-902a-cabe57a0507e",
+    "1959d650-a969-710d-a961-261ca7eb1e93",
+    "190d363c-4cef-74bf-a8e9-cd7649234ab9",
+    "1703d260-4c3a-77a7-88ea-6d6c5b107d2f",
+    "81b65e56-934b-7a3f-8d56-4be977bdefa6",
+    "f08713f4-9628-79fd-b69c-933bad945a58",
+    "73b3f646-d984-76e0-a4a4-9d6924c9c77f",
+    "b34fe64f-5fd3-7b44-b139-23200d4fef01",
+    "f8901783-25bc-7bdf-99e0-5381a20ab6d0",
+    "ba8d1ebf-4971-7ee0-91dc-f6522a235094",
+    "242e9bec-a52b-7d8d-a8ae-af71e2732c83",
+    "071684a3-d69e-7262-bab9-057539dba32d",
+    "f0010beb-d859-7660-8d85-cf2eee370d5e",
+    "a57e8e2c-784f-784b-a1b1-fc5cffe03b91",
+    "425d1649-4d29-7293-9522-27c717870cb1",
+    "7c7e488d-bf0c-7a5d-9bde-bc98fb13d59e",
+    "f102c46e-c02a-71cd-ab07-0d94925b17b1",
+    "e1412421-5567-7e03-a78e-16b19b1dc012",
+    "f29198a9-f577-77ca-a90f-c2540dce96fd",
+    "d174601e-c8a5-7778-8385-075feb2e1d10",
+    "269ae00b-6c94-7fcd-a633-6c9d1b2e6581",
+    "8dedca71-68e6-7acc-8d6c-19b8dad9ab0a",
+    "679cf6b2-1002-7121-b887-214e4dce5ba8",
+    "8d90694e-6cdb-7b24-becf-a78bbcf8f50e",
+    "07a1c966-8fd7-7231-ad9b-57181cd72245",
+    "fb805dfb-9eaa-75d2-b121-e4120c2e94e8",
+    "37f8209a-9689-774d-9468-347c853cbd0a",
+    "62801450-6d3b-7f4d-8547-de520933d63f",
+    "bc400461-7b7a-7af9-9288-146174dea31c",
+    "b4761ff0-e728-7a36-a71d-e93dc4f40778",
+    "416d411a-b314-7374-acc1-322dac0bcb4a",
+    "7ece9da7-cfc0-7159-85eb-07bebf5ecb6b",
+    "4b937b53-014b-7e81-bde2-39e37e6d9062",
+    "ba1f2dd5-b7e9-7612-9c99-8649ba71a1a9",
+    "08903404-1311-7a22-83a1-518dabf5629b",
+    "78b888b7-979e-773c-9d6e-2c18670c9429",
+    "2c03eae6-694f-792e-bb85-61c1242a2016",
+    "5c4846d5-8c2e-7e8e-8d28-40b95a768a9f",
+    "24e0121b-5f6e-747a-be20-c4526b0fe4bf",
+    "fe8514a6-61bd-702b-b4f7-d282d50ddcf3",
+    "e663bfc6-8fb8-70a3-bdd0-1c8a1fc90ce7",
+    "63c250ad-8489-72a0-8bbe-504594aa90d7",
+    "b2c13414-25e1-71e4-bb03-bde363597b53",
+    "556730a1-5a07-7ace-b5c1-488e857d6881",
+    "83727349-6f98-78d3-8118-0f52ef663e35",
+    "ead1ef8c-89f6-75aa-89e8-20456be13e15",
+    "709ff2ec-e733-7dd8-87de-be480f19b383",
+    "8de7605d-4381-79ec-8995-cec088548848",
+    "ef9873c1-f8c9-7d43-9960-abced22adcb9",
+    "02c793eb-0b63-711c-b4bb-4b92a2511eba",
+    "356ca88f-5b4f-7992-999b-ce4b65a5ccbb",
+    "3cd450e0-8952-7758-bae1-44ea96ca58ed",
+    "843dba5f-0b67-7cb7-9b43-c4e6b145b58d",
+    "a6174848-cf2c-7a46-bc23-63195153605a",
+    "64cbc8df-b6fe-7374-b705-12ef5411eeaa",
+    "b37e441c-b460-74a0-96ab-5f3d3126307a",
+    "051188ad-ba79-73a8-b1a4-c9231efa0e31",
+    "eb40677b-d1be-714f-bb32-dc4f7769bcef",
+    "5ff6a417-c395-7fec-afd4-6ccea9746562",
+    "13db273f-412f-7c74-b5cd-cab1f2154e3e",
+    "f3c127c8-9d24-717a-ae50-ecd068864929",
+    "74bf500b-8242-7e11-bc38-c6decd581c43",
+    "159f438b-5b20-7df3-afa8-dcc59a0dbcaa",
+    "0b39b257-dcec-76aa-925d-fdae0829eec6",
+    "68bce109-c6bf-7175-b542-510aee89fcc9",
+    "b640428f-f903-7645-9cb6-2f8d26b45cdd",
+    "0ff1871d-68b4-7770-8c70-b4a33d48d016",
+    "c99b8afe-665b-7c08-9a9c-44bee06fee84",
+    "4a6a53ae-1bc0-73c8-9080-09516fb8b94a",
+    "12d753c2-b980-760c-9408-3aab63bd6b0a",
+    "3aa7c2e9-6772-74ee-aeea-2f4691bdd4a4",
+    "6af65320-9e78-7da1-8a9c-7480c8ceb700",
+    "15e28ae0-5b77-7df6-82dd-1ae22707f518",
+    "76f299ef-c70a-7396-a762-4e0ab87ca28c",
+    "fdd055e4-66e9-7069-a96c-93f9514db434",
+    "b22b1163-e2eb-77c6-9b62-637df137fad4",
+    "1ff9d4fa-9a82-729f-962c-1fad55b3d3dd",
+    "d114b08f-24d1-7b10-89dd-8b83a62b3cd0",
+    "09cbbddf-f943-7d4d-974a-d1340f917df1",
+    "0b0713f0-6d4b-7b08-88b4-9218f60c9083",
+    "b4820748-d3cb-7270-aa71-d3a08c137984",
+    "ec322b0f-9307-7138-a598-1665da98a89d",
+    "c99b5e14-6cc4-7ad8-93c1-da7629a09f96",
+    "17b52636-4a67-7d38-bd72-be73befaa3d2",
+    "ce5fb1f8-d234-77cd-97f7-baeda3c45246",
+    "c78ba894-c3c7-77a7-a614-778e3aaa96e0",
+    "119d6f27-0178-7b6b-9056-a9197e0341ad",
+    "0427f277-fe2e-7d86-9e39-9ac59b128f12",
+    "7aaad8b8-08c6-7518-9379-e43a9b55aef0",
+    "28c18c79-2fb3-7a9b-bd34-60b3c5dd4e4d"
+  ],
+  "publishedRenditions": [],
+  "removedFromCurrentSource": [],
+  "notes": [
+    "Local-only Rotaeno chart metadata correction.",
+    "difficulty and level were read from StandardChartDataSO.levelId/name and v2InnerDifficulty in the APK-local Journey map bundles.",
+    "No canonical files, object keys, renditions, aliases, source identities, remote storage, or production publication were changed."
+  ]
+}

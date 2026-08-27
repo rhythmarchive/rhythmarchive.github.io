@@ -1,10 +1,14 @@
 export const ROTAENO_CHART_DIFFICULTIES = ["I", "II", "III", "IV", "IV_Alpha"] as const;
+export const ROTAENO_CHART_SOURCES = ["apk", "wiki", "merged"] as const;
 
 export type RotaenoChartDifficulty = (typeof ROTAENO_CHART_DIFFICULTIES)[number];
+export type RotaenoChartSource = (typeof ROTAENO_CHART_SOURCES)[number];
 export type RotaenoPublicChart = {
   difficulty: RotaenoChartDifficulty;
   level?: string;
+  constant?: string;
   artist?: string;
+  source?: RotaenoChartSource;
   available: boolean;
   status: "available" | "unavailable";
 };
@@ -25,6 +29,14 @@ function isDifficulty(value: string): value is RotaenoChartDifficulty {
   return (ROTAENO_CHART_DIFFICULTIES as readonly string[]).includes(value);
 }
 
+function isSource(value: string): value is RotaenoChartSource {
+  return (ROTAENO_CHART_SOURCES as readonly string[]).includes(value);
+}
+
+function isConstant(value: string): boolean {
+  return /^\d+(?:\.\d+)?$/u.test(value);
+}
+
 /**
  * Rebuild the public-safe chart shape instead of forwarding arbitrary metadata.
  * Unknown keys are rejected so an encrypted chart body or Unity path cannot
@@ -36,7 +48,7 @@ export function sanitizeRotaenoCharts(value: unknown, context = "Rotaeno charts"
   return value.map((candidate, index) => {
     const chart = object(candidate);
     const keys = Object.keys(chart);
-    const allowed = new Set(["difficulty", "level", "artist", "available", "status"]);
+    const allowed = new Set(["difficulty", "level", "constant", "artist", "source", "available", "status"]);
     const unknown = keys.filter((key) => !allowed.has(key));
     if (unknown.length > 0) throw new Error(`${context}[${index}] contains unsupported keys: ${unknown.join(", ")}`);
     const difficulty = stringValue(chart.difficulty);
@@ -48,12 +60,19 @@ export function sanitizeRotaenoCharts(value: unknown, context = "Rotaeno charts"
     }
     const level = chart.level === undefined ? undefined : stringValue(chart.level);
     if (chart.level !== undefined && !level) throw new Error(`${context}[${index}] has an invalid level`);
+    const constant = chart.constant === undefined ? undefined : stringValue(chart.constant);
+    const sourceValue = chart.source === undefined ? undefined : stringValue(chart.source);
+    const source = sourceValue && isSource(sourceValue) ? sourceValue : undefined;
     const artist = chart.artist === undefined ? undefined : stringValue(chart.artist);
     if (chart.artist !== undefined && !artist) throw new Error(`${context}[${index}] has an invalid artist`);
+    if (chart.constant !== undefined && (!constant || !isConstant(constant))) throw new Error(context + "[" + index + "] has an invalid constant");
+    if (chart.source !== undefined && !source) throw new Error(context + "[" + index + "] has an unsupported source");
     return {
       difficulty,
       ...(level ? { level } : {}),
+      ...(constant ? { constant } : {}),
       ...(artist ? { artist } : {}),
+      ...(source ? { source } : {}),
       available: chart.available,
       status: chart.status,
     };
