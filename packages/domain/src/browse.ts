@@ -273,6 +273,42 @@ export const CategoryBrowseResource = z.object({
   facets: z.record(z.string(), z.array(z.string().min(1))).default({}),
 });
 
+/**
+ * Public, package-pinned story navigation metadata for Arcaea's Story Mode.
+ * The site uses this to reproduce the game's Act/Part -> Path -> Entry order;
+ * visual assets themselves still come from Catalog/PublicSiteData resources.
+ */
+export const ArcaeaStoryStructure = z.object({
+  source: z.object({
+    packageVersion: z.string().min(1),
+    packageSha256: SHA256,
+    orderingPath: z.string().min(1),
+    verifiedAt: z.string().min(1),
+    wikiSources: z.array(z.object({ url: z.string().url(), usedFor: z.string().min(1) })),
+  }),
+  sections: z.array(z.object({
+    act: z.number().int().nonnegative(),
+    label: z.string().min(1),
+    pathIds: z.array(z.number().int().nonnegative()),
+  })),
+  paths: z.array(z.object({
+    pathId: z.number().int().nonnegative(),
+    act: z.number().int().nonnegative(),
+    title: z.string().min(1),
+    type: z.string().min(1),
+    nodes: z.array(z.string().min(1)),
+  })),
+  nodeAnnotations: z.array(z.object({
+    nodeKey: z.string().min(1),
+    visual: z.enum(["animation", "illustration"]),
+    unlockKind: z.enum(["pack", "song"]),
+    relatedPackId: z.string().min(1).optional(),
+    relatedPackTitle: z.string().min(1).optional(),
+    relatedSongId: z.string().min(1).optional(),
+    staffRoll: z.boolean().optional(),
+  })),
+});
+
 export const CategoryBrowseProjection = z.object({
   schemaVersion: z.literal(BROWSE_SCHEMA_VERSION),
   game: z.enum(["arcaea", "phigros", "rizline", "infalsus"]),
@@ -284,7 +320,10 @@ export const CategoryBrowseProjection = z.object({
   resources: z.array(CategoryBrowseResource),
 });
 
-export const ArcaeaCategoryBrowseProjection = CategoryBrowseProjection.extend({ game: z.literal("arcaea") });
+export const ArcaeaCategoryBrowseProjection = CategoryBrowseProjection.extend({
+  game: z.literal("arcaea"),
+  storyStructure: ArcaeaStoryStructure.optional(),
+});
 export const PhigrosCategoryBrowseProjection = CategoryBrowseProjection.extend({ game: z.literal("phigros") });
 export const RizlineCategoryBrowseProjection = CategoryBrowseProjection.extend({ game: z.literal("rizline") });
 export const InfalsusCategoryBrowseProjection = CategoryBrowseProjection.extend({ game: z.literal("infalsus") });
@@ -443,6 +482,7 @@ export type RizlineSongRecordType = z.infer<typeof RizlineSongRecord>;
 export type RizlineBrowseProjectionType = z.infer<typeof RizlineBrowseProjection>;
 export type CategoryBrowseResourceType = z.infer<typeof CategoryBrowseResource>;
 export type CategoryBrowseProjectionType = z.infer<typeof CategoryBrowseProjection>;
+export type ArcaeaStoryStructureType = z.infer<typeof ArcaeaStoryStructure>;
 export type ArcaeaCategoryBrowseProjectionType = z.infer<typeof ArcaeaCategoryBrowseProjection>;
 export type PhigrosCategoryBrowseProjectionType = z.infer<typeof PhigrosCategoryBrowseProjection>;
 export type RizlineCategoryBrowseProjectionType = z.infer<typeof RizlineCategoryBrowseProjection>;

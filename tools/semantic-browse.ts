@@ -3,6 +3,7 @@ import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import {
   ArcaeaBrowseProjection,
+  ArcaeaCategoryBrowseProjection,
   CategoryBrowseProjection,
   PhigrosCategoryBrowseProjection,
   loadCatalogFile,
@@ -744,12 +745,18 @@ function buildArcaeaSemantics(catalog: Catalog, arcaeaBrowse: ReturnType<typeof 
     ...(draft.sortOrder !== undefined ? { sortOrder: draft.sortOrder } : {}),
     facets: Object.fromEntries([...draft.facets.entries()].map(([key, values]) => [key, [...values]])),
   })).sort((left, right) => (left.sortOrder ?? 3_000_000_000) - (right.sortOrder ?? 3_000_000_000) || (left.displayTitle ?? "").localeCompare(right.displayTitle ?? "", "zh-CN") || left.resourceId.localeCompare(right.resourceId, "en"));
-  const projection = CategoryBrowseProjection.parse({
+  const projection = ArcaeaCategoryBrowseProjection.parse({
     schemaVersion: 1,
     game: "arcaea",
     generatedAt: catalog.generatedAt,
     source: { snapshot: `Arcaea APK ${arcaeaBrowse.source.version}`, sha256: sourceDigest() },
     resources,
+    storyStructure: {
+      source: storyIndex.source,
+      sections: storyIndex.sections,
+      paths: storyIndex.paths,
+      nodeAnnotations: storyIndex.nodeAnnotations,
+    },
   });
   return { projection, metrics: { characterPortraitMapped: mappedPortrait.size, characterPortraitTotal: portraitResources.size, characterAvatarMapped: mappedAvatar.size, characterAvatarTotal: avatarResources.size, storyCgAnnotated: resources.filter((resource) => resource.resourceType === "story-cg").length, storyCgBaselineRows: baselineStoryCgRows.length, storyCgIndexed: indexedStoryCgResources.size + indexedStoryTextureCgResources.size, storyCgTotal: storyCgResources.length + storyTextureCgResources.length, storyCgMissing: missingStoryCgResources.length + missingStoryTextureCgResources.length, storyTextureCgAnnotated: indexedStoryTextureCgResources.size, storyTextureWithRelation: textureRelations.size, storyTextureTotal: resources.filter((resource) => resource.resourceType === "story-texture").length, backgroundAnnotated: resources.filter((resource) => resource.resourceType === "background").length, packCoverAnnotated: resources.filter((resource) => resource.resourceType === "pack-cover").length, linkplayStickerAnnotated: resources.filter((resource) => resource.resourceType === "sticker").length } };
 }

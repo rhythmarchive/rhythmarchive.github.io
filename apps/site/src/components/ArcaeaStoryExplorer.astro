@@ -1,0 +1,264 @@
+---
+import type { ArcaeaStoryStructureType } from "../../../../packages/domain/src/browse.js";
+import { buildArcaeaStoryExplorerModel } from "../lib/arcaea-story-explorer";
+import { BASE_PATH } from "../lib/site-config";
+import { formatCount } from "../lib/format";
+import { sitePath } from "../lib/url";
+import type { PublicResource } from "../lib/types";
+
+interface Props {
+  resources: PublicResource[];
+  storyStructure: ArcaeaStoryStructureType;
+}
+
+const { resources, storyStructure } = Astro.props;
+const model = buildArcaeaStoryExplorerModel(resources, storyStructure);
+const firstPathId = model.sections[0]?.paths[0]?.pathId;
+
+function resourceHref(resource: PublicResource): string {
+  return sitePath(resource.route, BASE_PATH);
+}
+
+function resourceImage(resource: PublicResource) {
+  return resource.preview.small ?? resource.preview.medium ?? resource.preview.large;
+}
+
+function resourceSrcSet(resource: PublicResource): string | undefined {
+  return [resource.preview.small ? `${resource.preview.small.url} 320w` : "", resource.preview.medium ? `${resource.preview.medium.url} 640w` : ""].filter(Boolean).join(", ") || undefined;
+}
+
+function metadataNumber(resource: PublicResource, key: string): number | undefined {
+  const value = resource.metadata[key];
+  const parsed = typeof value === "number" ? value : typeof value === "string" ? Number(value) : Number.NaN;
+  return Number.isFinite(parsed) ? parsed : undefined;
+}
+
+function visualLabel(resource: PublicResource): string {
+  return resource.resourceType === "story-texture" ? "VN CG" : "CG";
+}
+
+function imageLabel(resource: PublicResource): string {
+  const order = metadataNumber(resource, "storyImageOrder");
+  const count = metadataNumber(resource, "storyImageCount");
+  return order !== undefined && count !== undefined ? `${visualLabel(resource)} ${order}/${count}` : visualLabel(resource);
+}
+
+function relatedSong(resource: PublicResource): string | undefined {
+  const title = resource.metadata.relatedSongTitle;
+  if (typeof title === "string" && title.trim()) return title;
+  return resource.badges?.find((badge) => badge.startsWith("关联："))?.replace(/^关联：/u, "");
+}
+
+function storyEntryId(pathId: number, key: string): string {
+  return `story-entry-${pathId}-${key.replace(/[^a-zA-Z0-9_-]+/gu, "-")}`;
+}
+---
+
+<section class="story-view-launcher" data-story-view-launcher>
+  <div class="story-view-launcher-copy">
+    <span class="section-kicker">ARCAEA STORY / EXPERIMENT</span>
+    <strong>试用游戏内剧情浏览</strong>
+    <p>按 Act / Part → Path → Entry 查找画面；标准图库仍是默认视图。</p>
+  </div>
+  <button class="button button-secondary" type="button" data-story-view-toggle aria-pressed="false">开启测试版</button>
+</section>
+
+<section class="arcaea-story-explorer" data-arcaea-story-explorer hidden aria-labelledby="arcaea-story-explorer-title">
+  <div class="story-explorer-topbar">
+    <div>
+      <span class="section-kicker">STORY MODE / TEST VIEW</span>
+      <h2 id="arcaea-story-explorer-title">剧情路径</h2>
+      <p>沿用游戏内的分幕、路径与 Entry 顺序；只展示已确认的剧情画面。</p>
+    </div>
+    <button class="button button-secondary" type="button" data-story-view-toggle aria-pressed="true">返回标准图库</button>
+  </div>
+
+  <div class="story-explorer-layout">
+    <aside class="story-explorer-rail" aria-label="Story Act / Part">
+      <span class="story-explorer-rail-label">ACT / PART</span>
+      <div class="story-explorer-section-tabs" role="tablist" aria-label="选择篇章">
+        {model.sections.map((section, index) => (
+          <button class:list={{ "story-section-tab": true, "is-active": index === 0 }} type="button" data-story-section={section.act} role="tab" aria-selected={index === 0} aria-controls={`story-section-${section.act}`}>
+            <span>0{index + 1}</span>
+            <strong>{section.label}</strong>
+            <small>{formatCount(section.resourceCount)} 项画面</small>
+          </button>
+        ))}
+      </div>
+      {model.unassignedResources.length > 0 ? (
+        <button class="story-unassigned-tab" type="button" data-story-unassigned-trigger aria-selected="false">
+          <span>—</span>
+          <strong>未归档</strong>
+          <small>{formatCount(model.unassignedResources.length)} 项待确认</small>
+        </button>
+      ) : null}
+    </aside>
+
+    <div class="story-explorer-stage">
+      <div class="story-explorer-stage-heading">
+        <div>
+          <span class="story-explorer-label">STORY SELECT</span>
+          <h3>选择剧情路径</h3>
+        </div>
+        <div class="story-explorer-coverage" aria-label="剧情画面收录统计">
+          <strong>{formatCount(model.counts.total)}</strong>
+          <span>项画面</span>
+          <small>{formatCount(model.counts.storyCg)} story/cg · {formatCount(model.counts.vnCg)} VN CG</small>
+        </div>
+      </div>
+
+      {model.sections.map((section, index) => (
+        <section class="story-section-panel" data-story-section-panel={section.act} id={`story-section-${section.act}`} role="tabpanel" hidden={index !== 0}>
+          <div class="story-section-heading">
+            <div>
+              <span class="story-explorer-label">{section.label}</span>
+              <p>{section.paths.length} 条剧情路径</p>
+            </div>
+            <small>{formatCount(section.resourceCount)} 项已确认画面</small>
+          </div>
+          <div class="story-path-list">
+            {section.paths.map((path) => (
+              <button class:list={{ "story-path-button": true, "is-active": path.pathId === firstPathId }} type="button" data-story-path={path.pathId} data-story-path-section={section.act} aria-selected={path.pathId === firstPathId} aria-controls={`story-path-${path.pathId}`}>
+                <span class="story-path-code">{String(path.pathId).padStart(2, "0")}</span>
+                <span class="story-path-copy"><strong>{path.title}</strong><small>{path.typeLabel}</small></span>
+                <span class="story-path-count"><b>{path.resourceCount}</b><small>画面</small></span>
+              </button>
+            ))}
+          </div>
+        </section>
+      ))}
+
+      <section class="story-unassigned-panel" data-story-unassigned-panel hidden>
+        <div class="story-section-heading">
+          <div>
+            <span class="story-explorer-label">UNASSIGNED / REVIEW</span>
+            <h3>未归档画面</h3>
+          </div>
+          <small>{formatCount(model.unassignedResources.length)} 项</small>
+        </div>
+        <p class="story-unassigned-note">这些资源仍保留在标准图库中，但当前没有足够的包体路径证据将它们挂到某个 Story Path；不会因为猜测文件名而改变游戏内顺序。</p>
+        <div class="story-cg-grid">
+          {model.unassignedResources.map((resource, index) => {
+            const image = resourceImage(resource);
+            return (
+              <a class="story-cg-card" href={resourceHref(resource)}>
+                <div class="story-cg-card-media">
+                  {image ? <img src={image.url} srcset={resourceSrcSet(resource)} width={image.width} height={image.height} alt={`${resource.displayTitle} ${resource.subtitle ?? ""}`} loading={index < 2 ? "eager" : "lazy"} decoding="async" /> : <span>图片暂不可用</span>}
+                  <span class="story-cg-card-badge">待确认</span>
+                </div>
+                <div class="story-cg-card-body"><strong>{resource.displayTitle}</strong><span>{resource.subtitle ?? "剧情 CG"}</span></div>
+              </a>
+            );
+          })}
+        </div>
+      </section>
+
+      <div class="story-path-detail-stack">
+        {model.paths.map((path) => (
+          <article class="story-path-detail" data-story-path-detail={path.pathId} id={`story-path-${path.pathId}`} hidden={path.pathId !== firstPathId}>
+            <header class="story-path-detail-header">
+              <div>
+                <span class="story-explorer-label">{path.typeLabel} · {path.sectionLabel}</span>
+                <h3>{path.title}</h3>
+                <p>{path.entries.length} 个剧情节点 · {formatCount(path.resourceCount)} 项画面</p>
+              </div>
+              <span class="story-path-detail-code">PATH {String(path.pathId).padStart(2, "0")}</span>
+            </header>
+
+            <div class="story-entry-strip" role="tablist" aria-label={`${path.title} 剧情 Entry`}>
+              {path.entries.map((entry) => (
+                <button class:list={{ "story-entry-button": true, "is-active": entry.order === 0 }} type="button" data-story-entry data-story-path-id={path.pathId} data-story-entry-key={entry.key} aria-selected={entry.order === 0} aria-controls={storyEntryId(path.pathId, entry.key)}>
+                  <span class="story-entry-number">{entry.key}</span>
+                  <span class="story-entry-label">{entry.visualLabel}</span>
+                  <small>{entry.resources.length > 0 ? `${entry.resources.length} CG` : entry.visual === "animation" ? "动画" : "—"}</small>
+                </button>
+              ))}
+              {path.vnResources.length > 0 ? (
+                <button class="story-entry-button is-virtual" type="button" data-story-entry data-story-path-id={path.pathId} data-story-entry-key="__vn__" aria-selected="false" aria-controls={storyEntryId(path.pathId, "__vn__")}>
+                  <span class="story-entry-number">VN</span>
+                  <span class="story-entry-label">VN CG</span>
+                  <small>{path.vnResources.length} 张</small>
+                </button>
+              ) : null}
+            </div>
+
+            <div class="story-entry-detail-stack">
+              {path.entries.map((entry) => (
+                <section class="story-entry-panel" data-story-entry-panel data-story-path-id={path.pathId} data-story-entry-key={entry.key} id={storyEntryId(path.pathId, entry.key)} hidden={entry.order !== 0}>
+                  <div class="story-entry-heading">
+                    <div>
+                      <span class="story-explorer-label">ENTRY {entry.key} · {entry.visualLabel}</span>
+                      <h4>{entry.resources.length > 0 ? "剧情 CG" : "剧情节点"}</h4>
+                    </div>
+                    <strong>{entry.resources.length > 0 ? `${entry.resources.length} 项画面` : "无静态 CG"}</strong>
+                  </div>
+                  {entry.unlockLabel || entry.staffRoll ? (
+                    <div class="story-entry-meta">
+                      {entry.unlockLabel ? <span>{entry.unlockLabel}</span> : null}
+                      {entry.staffRoll ? <span>播放后进入 Staff Roll</span> : null}
+                    </div>
+                  ) : null}
+                  {entry.resources.length > 0 ? (
+                    <div class="story-cg-grid">
+                      {entry.resources.map((resource, index) => {
+                        const image = resourceImage(resource);
+                        const song = relatedSong(resource);
+                        return (
+                          <a class="story-cg-card" href={resourceHref(resource)}>
+                            <div class="story-cg-card-media">
+                              {image ? <img src={image.url} srcset={resourceSrcSet(resource)} width={image.width} height={image.height} alt={`${path.title} Entry ${entry.key} ${imageLabel(resource)}`} loading={index < 2 ? "eager" : "lazy"} decoding="async" /> : <span>图片暂不可用</span>}
+                              <span class="story-cg-card-badge">{imageLabel(resource)}</span>
+                            </div>
+                            <div class="story-cg-card-body"><strong>{imageLabel(resource)}</strong><span>{song ? `关联：${song}` : resource.displayTitle}</span></div>
+                          </a>
+                        );
+                      })}
+                    </div>
+                  ) : (
+                    <div class="story-entry-empty">
+                      <strong>此 Entry 没有可单独展示的静态 CG</strong>
+                      <p>它仍保留在游戏内剧情链中；当前 APK 将此节点标记为 {entry.visualLabel}，不把 VN 场景贴图误当作 CG。</p>
+                    </div>
+                  )}
+                </section>
+              ))}
+              {path.vnResources.length > 0 ? (
+                <section class="story-entry-panel" data-story-entry-panel data-story-path-id={path.pathId} data-story-entry-key="__vn__" id={storyEntryId(path.pathId, "__vn__")} hidden>
+                  <div class="story-entry-heading">
+                    <div>
+                      <span class="story-explorer-label">VN SCENE · {path.title}</span>
+                      <h4>VN CG</h4>
+                    </div>
+                    <strong>{path.vnResources.length} 项画面</strong>
+                  </div>
+                  <p class="story-entry-note">APK 未暴露可靠的 Entry 关系；这些已从 story-texture 中单独筛选出的 VN CG 作为独立场景列出，不与普通贴图混排。</p>
+                  <div class="story-cg-grid">
+                    {path.vnResources.map((resource, index) => {
+                      const image = resourceImage(resource);
+                      return (
+                        <a class="story-cg-card" href={resourceHref(resource)}>
+                          <div class="story-cg-card-media">
+                            {image ? <img src={image.url} srcset={resourceSrcSet(resource)} width={image.width} height={image.height} alt={`${path.title} ${imageLabel(resource)}`} loading={index < 2 ? "eager" : "lazy"} decoding="async" /> : <span>图片暂不可用</span>}
+                            <span class="story-cg-card-badge">{imageLabel(resource)}</span>
+                          </div>
+                          <div class="story-cg-card-body"><strong>{imageLabel(resource)}</strong><span>{path.title}</span></div>
+                        </a>
+                      );
+                    })}
+                  </div>
+                </section>
+              ) : null}
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <footer class="story-explorer-footnote">
+        <span>数据依据 Arcaea {model.source.packageVersion} APK 的 ordering 与节点索引</span>
+        <span>{formatCount(model.counts.assigned)} 项已挂接 · {formatCount(model.counts.unassigned)} 项待确认</span>
+      </footer>
+    </div>
+  </div>
+</section>
+
+<script src="../scripts/arcaea-story-explorer.ts"></script>
