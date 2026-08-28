@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "1.0",
+  "releaseSchemaVersion": "1.0",
+  "id": "062d9417-0f3a-7385-8f8c-e4efa118af44",
+  "updateBatchId": "4c831912-cedf-75dd-adaf-9164a605db13",
+  "game": "arcaea",
+  "baseVersion": "7.0.0c",
+  "targetVersion": "7.0.0c",
+  "createdAt": "2026-08-28T08:06:33.798Z",
+  "status": "published",
+  "changes": [
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "1d53bf59-4248-7317-a02e-e788162c2f93",
+      "detail": "Applied Arcaea 7.0.0c characters.json metadata for character_id 97; object identities and renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "a57509b5-9cb7-7165-903d-d3da0e83b873",
+      "detail": "Applied Arcaea 7.0.0c characters.json metadata for character_id 97; object identities and renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "050d9e56-8f68-7ee4-abdd-f9d36c5b238d",
+      "detail": "Applied Arcaea 7.0.0c characters.json metadata for character_id 97; object identities and renditions preserved."
+    }
+  ],
+  "affectedResourceIds": [
+    "1d53bf59-4248-7317-a02e-e788162c2f93",
+    "a57509b5-9cb7-7165-903d-d3da0e83b873",
+    "050d9e56-8f68-7ee4-abdd-f9d36c5b238d"
+  ],
+  "publishedRenditions": [],
+  "removedFromCurrentSource": [],
+  "notes": [
+    "Local-only Arcaea 7.0.0c character metadata correction.",
+    "The source is the read-only APK-extracted assets/char/characters.json record for character_id 97.",
+    "Three existing resources were updated: character portrait, avatar icon, and LinkPlay preview.",
+    "No canonical files, Object IDs, remote keys, Renditions, deletions, ROS writes, or Catalog entries were removed."
+  ]
+}

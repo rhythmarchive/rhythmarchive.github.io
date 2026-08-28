@@ -25,15 +25,17 @@
 
 ## 2. Character resources
 
+> 7.0.0c 增量核对：只读 APK 元数据 `assets/char/characters.json` 共 99 条记录，新增 `character_id=97`（`saya_konzetsu`，显示名「咲弥」），`version_from=7.0.0`、`pack_id=konzetsu`；对应的 1 条立绘、1 条头像和 1 条 LinkPlay 预览已纳入当前关系表与站点语义投影。此前“未在 characters.json 找到”的提示是旧关系表漏项，不是 APK 元数据缺失。
+
 | field | APK source | coverage | reliability | Data Capability | Recommended Public Usage |
 | --- | --- | --- | --- | --- | --- |
-| characterId | characters.json.character_id + numeric asset path | 98 | High | Available | Internal identity; optional filter |
-| internal name | characters.json.name | 98 | High | Available | Recommended search/display |
-| search strings | characters.json.search_strings | 98 | High | Available | Recommended search aliases |
+| characterId | characters.json.character_id + numeric asset path | 99 | High | Available | Internal identity; optional filter |
+| internal name | characters.json.name | 99 | High | Available | Recommended search/display |
+| search strings | characters.json.search_strings | 99 | High | Available | Recommended search aliases |
 | packId | characters.json.pack_id | present on subset | High where present | Partial | Optional / needs review |
 | variant/uncap | path suffix + version fields | 27 `u` candidates | Medium/High | Partial | Needs review |
-| avatar/icon | *_icon path | 130 image-index entries | High | Available | Optional resource role |
-| LinkPlay preview | *_mp path | character preview rows | High | Available | Optional resource role |
+| avatar/icon | *_icon path | 130 mapped relation rows | High | Available | Optional resource role |
+| LinkPlay preview | *_mp path | 149 mapped relation rows | High | Available | Optional resource role |
 
 ## 3. Story resources
 

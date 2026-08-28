@@ -195,7 +195,7 @@ test("public game index projects activity only from final public resources", () 
   const phigros = projection.games.find((game) => game.slug === "phigros");
   const rizline = projection.games.find((game) => game.slug === "rizline");
   assert.equal(arcaea?.contentVersion, "7.0.0c");
-  assert.equal(arcaea?.lastUpdatedAt, "2026-08-28T06:46:04.119Z");
+  assert.equal(arcaea?.lastUpdatedAt, catalog.generatedAt);
   assert.equal(rizline?.contentVersion, "2.7.0");
   assert.equal(rizline?.lastUpdatedAt, "2026-08-24T12:42:04.372Z");
   assert.equal(phigros?.contentVersion, undefined);
@@ -288,6 +288,14 @@ test("category semantic browse data keeps player-facing names and conservative u
   assert.equal(portraits.length, 140);
   assert.ok(namedPortraits.some((resource) => resource.displayTitle === "光"));
   assert.ok(portraits.every((resource) => !/^\d+_(?:angry|cut|twisted)/u.test(resource.displayTitle)));
+  for (const resourceType of ["character-portrait", "character-avatar", "linkplay-preview"] as const) {
+    const saya = (siteData.galleries[`arcaea/${resourceType}`] ?? []).find((resource) => resource.metadata.characterEnglishName === "saya_konzetsu");
+    assert.ok(saya, `7.0 Saya ${resourceType} resource should be mapped from characters.json`);
+    assert.equal(saya?.displayTitle, "咲弥");
+    assert.equal(saya?.metadata.characterVersionFrom, "7.0.0");
+    assert.ok(!(saya?.badges ?? []).includes("待确认"));
+    assert.ok((saya?.searchTerms ?? []).includes("さやあぶそりゅーしょん"));
+  }
 
   const story = siteData.galleries["arcaea/story-cg"] ?? [];
   const knownCg = story.find((resource) => resource.searchTerms?.includes("0-3"));

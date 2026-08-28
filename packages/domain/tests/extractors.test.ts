@@ -100,3 +100,62 @@ test("Arcaea songlist aliases class 3 to Inscribed without reclassifying ordinar
   assert.equal(bySong.get("dreadarea")?.suggestedVariant?.difficulty, "INSCRIBED");
   assert.equal(bySong.get("old-byd")?.suggestedVariant?.difficulty, "BYD");
 });
+
+test("Arcaea character resources use the full characters.json record", async () => {
+  const root = await mkdtemp(path.join(os.tmpdir(), "rhythm-arcaea-character-"));
+  const outputDir = path.join(root, "output");
+  await mkdir(path.join(outputDir, "_metadata"), { recursive: true });
+  await mkdir(path.join(outputDir, "角色", "立绘"), { recursive: true });
+  await mkdir(path.join(outputDir, "角色", "头像"), { recursive: true });
+  await mkdir(path.join(outputDir, "角色", "LinkPlay预览"), { recursive: true });
+  await writeFile(path.join(outputDir, "_metadata", "characters.json"), JSON.stringify([{
+    character_id: 97,
+    base_character_id: 23,
+    base_character: false,
+    name: "saya_konzetsu",
+    is_available: false,
+    is_previewable: false,
+    base_frag: 54,
+    base_prog: 71,
+    base_over: 51.5,
+    max_frag: 125,
+    max_prog: 160,
+    max_over: 120,
+    char_type: 2,
+    skill_unlock_level: 0,
+    skill_id: "skill_saya_konzetsu",
+    uncap_cores: [],
+    version_from: "7.0.0",
+    search_strings: ["サヤ", "咲弥", "咲彌", "사야", "さやあぶそりゅーしょん", "あぶそりゅーしょんさや"],
+    pack_id: "konzetsu",
+  }]));
+  const copied = [
+    { category: "角色/立绘", sourcePath: "char/1080/97.png", outputPath: "角色/立绘/咲弥.png" },
+    { category: "角色/头像", sourcePath: "char/97_icon.png", outputPath: "角色/头像/咲弥_icon.png" },
+    { category: "角色/LinkPlay预览", sourcePath: "char/97_mp.png", outputPath: "角色/LinkPlay预览/咲弥_mp.png" },
+  ];
+  for (const item of copied) await writeFile(path.join(outputDir, item.outputPath), item.sourcePath);
+  const reportPath = path.join(root, "arcaea-update-report.json");
+  await writeFile(reportPath, JSON.stringify({ outputDir, copied }));
+
+  const result = await adaptArcaeaLegacyReport({
+    reportPath,
+    baseVersion: "6.16.8c",
+    targetVersion: "7.0.0c",
+    baseApk: { role: "base", version: "6.16.8c", filename: "arcaea_6.16.8c.apk", absolutePath: path.join(root, "base.apk"), verification: "unverified" },
+    targetApk: { role: "target", version: "7.0.0c", filename: "Arcaea_7.0.0c.apk", absolutePath: path.join(root, "target.apk"), verification: "unverified" },
+  });
+
+  assert.equal(result.candidates.length, 3);
+  for (const candidate of result.candidates) {
+    assert.equal(candidate.confidence, "high");
+    assert.equal(candidate.suggestedTitle, "咲弥");
+    assert.equal(candidate.provenance.metadataSource, "_metadata/characters.json");
+    assert.equal(candidate.metadata.characterId, 97);
+    assert.equal(candidate.metadata.characterInternalName, "saya_konzetsu");
+    assert.equal(candidate.metadata.characterMaxProg, 160);
+    assert.deepEqual(candidate.metadata.characterSearchStrings, ["サヤ", "咲弥", "咲彌", "사야", "さやあぶそりゅーしょん", "あぶそりゅーしょんさや"]);
+    assert.ok(candidate.evidence.some((item) => item.kind === "metadata" && item.detail.includes("character_id 97")));
+    assert.ok(!candidate.evidence.some((item) => item.kind === "filename-parser"));
+  }
+});

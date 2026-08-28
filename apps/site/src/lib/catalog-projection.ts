@@ -25,6 +25,7 @@ const PUBLIC_METADATA_KEYS = new Set([
   "characterJapaneseName",
   "characterKoreanName",
   "characterVariant",
+  "characterVersionFrom",
   "difficulty",
   "difficultyTitle",
   "difficultyArtist",

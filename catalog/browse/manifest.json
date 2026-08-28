@@ -49,8 +49,8 @@
   },
   "catalog": {
     "catalogId": "019fefd6-9c49-7ca0-a760-adc76811a511",
-    "catalogSha256": "c395724bd1f826195b695c43ee945b098eaad1b247ee1a6b055446532d28698c",
-    "catalogGeneratedAt": "2026-08-28T06:46:04.119Z"
+    "catalogSha256": "8e665886a51340e1158e63cffbc2b1670cdab7ebcb4767e0736a55c36b3231e3",
+    "catalogGeneratedAt": "2026-08-28T08:06:33.798Z"
   },
   "files": {
     "arcaea": "arcaea.json",

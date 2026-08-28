@@ -352,9 +352,10 @@ function buildArcaeaSemantics(catalog: Catalog, arcaeaBrowse: ReturnType<typeof 
     const variantRaw = nonEmpty(row.variantRaw);
     const variantLabel = variantRaw ?? variant;
     const isBase = !variant || ["base", "main", "icon"].includes(normalizeSearch(variant));
+    const namedSubtitle = resource.resourceType === "linkplay-preview" && nonEmpty(row.versionFrom) === "7.0.0" ? "LinkPlay 预览" : isBase ? undefined : "变体";
     addDraft(drafts, resource, {
       displayTitle: title,
-      ...(isNamed ? (isBase ? {} : { subtitle: "变体" }) : { subtitle: "角色名称未在 characters.json 中找到", badges: ["待确认"] }),
+      ...(isNamed ? (namedSubtitle ? { subtitle: namedSubtitle } : {}) : { subtitle: "角色名称未在 characters.json 中找到", badges: ["待确认"] }),
       metadata: {
         ...(names?.zhHans ? { characterName: names.zhHans, characterChineseName: names.zhHans } : {}),
         ...(names?.ja ? { characterJapaneseName: names.ja } : {}),

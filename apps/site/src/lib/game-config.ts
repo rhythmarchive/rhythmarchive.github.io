@@ -67,6 +67,7 @@ export const GAME_CONFIG: Record<GameId, GameConfig> = {
       characterEnglishName: "英文名",
       characterKoreanName: "韩文名",
       characterVariant: "角色变体",
+      characterVersionFrom: "角色加入版本",
       difficulty: "难度",
       difficultyTitle: "特殊难度名称",
       difficultyArtist: "特殊难度曲师",

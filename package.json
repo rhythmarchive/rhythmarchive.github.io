@@ -28,6 +28,7 @@
     "legacy:check": "node --env-file-if-exists=.env --import tsx tools/legacy-consistency.ts",
     "ros:verify": "node --env-file-if-exists=.env --import tsx tools/ros-verify.ts",
     "arcaea:apk:check": "node --env-file-if-exists=.env --import tsx tools/arcaea-apk-update.ts",
+    "arcaea:character-metadata": "node --env-file-if-exists=.env --import tsx tools/apply-arcaea-character-metadata.ts",
     "browse:bootstrap": "tsx tools/browse-projection.ts --catalog catalog/index.json --output catalog/browse --bootstrap-audit docs/apk-audit/data --curation catalog/curation/arcaea-april-fools.json",
     "browse:check": "tsx tools/validate-browse-projection.ts --catalog catalog/index.json --output catalog/browse",
     "browse:semantic": "tsx tools/semantic-browse.ts --catalog catalog/index.json --audit docs/apk-audit/data --output catalog/browse"

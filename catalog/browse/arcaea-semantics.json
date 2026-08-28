@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
   "game": "arcaea",
-  "generatedAt": "2026-08-27T16:33:50.200Z",
+  "generatedAt": "2026-08-28T08:06:33.798Z",
   "source": {
     "snapshot": "Arcaea APK 7.0.0c",
-    "sha256": "22f54582396879b70d8ac0e625201e678babef2f0ee27aee607b0beb6d277d55"
+    "sha256": "75e537d71b3754f03d91ed8642cdb280e1ae415b4e6033c0d8a41680d787f6ad"
   },
   "resources": [
     {
@@ -24241,6 +24241,99 @@
       }
     },
     {
+      "resourceId": "1d53bf59-4248-7317-a02e-e788162c2f93",
+      "resourceType": "character-portrait",
+      "displayTitle": "咲弥",
+      "metadata": {
+        "characterName": "咲弥",
+        "characterChineseName": "咲弥",
+        "characterJapaneseName": "サヤ",
+        "characterEnglishName": "saya_konzetsu",
+        "characterKoreanName": "사야",
+        "characterVariant": "base"
+      },
+      "badges": [],
+      "searchTerms": [
+        "saya_konzetsu",
+        "サヤ",
+        "咲弥",
+        "咲彌",
+        "사야",
+        "さやあぶそりゅーしょん",
+        "あぶそりゅーしょんさや",
+        "base"
+      ],
+      "sortOrder": 97420,
+      "facets": {
+        "character": [
+          "咲弥"
+        ]
+      }
+    },
+    {
+      "resourceId": "a57509b5-9cb7-7165-903d-d3da0e83b873",
+      "resourceType": "character-avatar",
+      "displayTitle": "咲弥",
+      "metadata": {
+        "characterName": "咲弥",
+        "characterChineseName": "咲弥",
+        "characterJapaneseName": "サヤ",
+        "characterEnglishName": "saya_konzetsu",
+        "characterKoreanName": "사야",
+        "characterVariant": "_icon"
+      },
+      "badges": [],
+      "searchTerms": [
+        "saya_konzetsu",
+        "サヤ",
+        "咲弥",
+        "咲彌",
+        "사야",
+        "さやあぶそりゅーしょん",
+        "あぶそりゅーしょんさや",
+        "_icon",
+        "icon"
+      ],
+      "sortOrder": 97421,
+      "facets": {
+        "character": [
+          "咲弥"
+        ]
+      }
+    },
+    {
+      "resourceId": "050d9e56-8f68-7ee4-abdd-f9d36c5b238d",
+      "resourceType": "linkplay-preview",
+      "displayTitle": "咲弥",
+      "subtitle": "LinkPlay 预览",
+      "metadata": {
+        "characterName": "咲弥",
+        "characterChineseName": "咲弥",
+        "characterJapaneseName": "サヤ",
+        "characterEnglishName": "saya_konzetsu",
+        "characterKoreanName": "사야",
+        "characterVariant": "_mp"
+      },
+      "badges": [],
+      "searchTerms": [
+        "saya_konzetsu",
+        "サヤ",
+        "咲弥",
+        "咲彌",
+        "사야",
+        "さやあぶそりゅーしょん",
+        "あぶそりゅーしょんさや",
+        "_mp",
+        "multiplayer"
+      ],
+      "sortOrder": 97522,
+      "facets": {
+        "character": [
+          "咲弥"
+        ]
+      }
+    },
+    {
       "resourceId": "01a00095-0d46-7c09-93f8-4216727ac9d2",
       "resourceType": "character-portrait",
       "displayTitle": "白姫",
@@ -32288,36 +32381,6 @@
       "facets": {}
     },
     {
-      "resourceId": "a57509b5-9cb7-7165-903d-d3da0e83b873",
-      "resourceType": "character-avatar",
-      "displayTitle": "咲弥",
-      "subtitle": "角色名称未在 characters.json 中找到",
-      "metadata": {},
-      "badges": [
-        "待确认"
-      ],
-      "searchTerms": [
-        "咲弥"
-      ],
-      "sortOrder": 2500000565,
-      "facets": {}
-    },
-    {
-      "resourceId": "1d53bf59-4248-7317-a02e-e788162c2f93",
-      "resourceType": "character-portrait",
-      "displayTitle": "咲弥",
-      "subtitle": "角色名称未在 characters.json 中找到",
-      "metadata": {},
-      "badges": [
-        "待确认"
-      ],
-      "searchTerms": [
-        "咲弥"
-      ],
-      "sortOrder": 2500000566,
-      "facets": {}
-    },
-    {
       "resourceId": "6c099b5b-4c6e-7c7b-86b4-baae7da062d4",
       "resourceType": "story-texture",
       "displayTitle": "剧情素材 · 2white50",
@@ -34474,28 +34537,6 @@
         "Arcaea/current-apk/img/bg/1080/konzetsu-b.jpg"
       ],
       "sortOrder": 3100000007,
-      "facets": {
-        "release": [
-          "7.0.0c"
-        ]
-      }
-    },
-    {
-      "resourceId": "050d9e56-8f68-7ee4-abdd-f9d36c5b238d",
-      "resourceType": "linkplay-preview",
-      "displayTitle": "咲弥",
-      "subtitle": "LinkPlay 预览",
-      "metadata": {
-        "sourceVersion": "7.0.0c"
-      },
-      "badges": [
-        "7.0.0c"
-      ],
-      "searchTerms": [
-        "咲弥",
-        "Arcaea/current-apk/char/97_mp.png"
-      ],
-      "sortOrder": 3100000010,
       "facets": {
         "release": [
           "7.0.0c"

@@ -33,6 +33,7 @@ const DIFFICULTIES = new Set(["PST", "PRS", "FTR", "BYD", "ETR", "INSCRIBED"]);
 const PUBLIC_METADATA_KEYS = new Set([
   "artist", "songId", "packId", "difficulty", "sourceRelativePath", "legacyCategory",
   "confidence", "detection", "sourceType", "contentOrigin", "gameVersion",
+  "characterName", "characterChineseName", "characterJapaneseName", "characterEnglishName", "characterKoreanName", "characterVersionFrom",
 ]);
 
 const MetadataChange = z.object({
@@ -178,6 +179,11 @@ function publicMetadata(entry: UnifiedAssetManifestType["entries"][number], vers
   return output;
 }
 
+function catalogCharacterMetadata(entry: UnifiedAssetManifestType["entries"][number]): Record<string, unknown> {
+  if (!["character-portrait", "character-avatar", "linkplay-preview"].includes(entry.assetType)) return {};
+  return Object.fromEntries(Object.entries(entry.metadata).filter(([key, value]) => key.startsWith("character") && value !== undefined));
+}
+
 function uuid(kind: string, identity: string): string {
   return createDeterministicUuidV7("arcaea:" + kind + ":" + identity);
 }
@@ -289,7 +295,7 @@ async function prepareEntry(
   const resourceId = uuid("resource", entry.identityKey);
   const variantId = uuid("variant", entry.identityKey + ":" + entry.variantKey);
   const canonicalRenditionId = uuid("rendition", entry.identityKey + ":original");
-  const metadata = publicMetadata(entry, manifestVersion);
+  const metadata = { ...publicMetadata(entry, manifestVersion), ...catalogCharacterMetadata(entry) };
   const resource = Resource.parse({
     catalogSchemaVersion: "1.0",
     id: resourceId,
