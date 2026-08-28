@@ -1,0 +1,150 @@
+{
+  "releaseSchemaVersion": "1.0",
+  "id": "1c175b9a-6461-7da1-b7c5-116eef642026",
+  "updateBatchId": "87d36238-d6e7-73c6-b9c8-4dac16f09c10",
+  "game": "arcaea",
+  "baseVersion": "6.16.8c",
+  "targetVersion": "7.0.0c",
+  "createdAt": "2026-08-28T06:46:04.119Z",
+  "status": "published",
+  "changes": [
+    {
+      "changeType": "added-rendition",
+      "resourceId": "0c9e88cd-0b0c-78ab-8022-600e7559e026",
+      "variantId": "ab53991b-9926-7bcf-821b-a388c45b9ff9",
+      "renditionId": "90f8aa28-135c-7189-b987-1d9715b88d4f",
+      "objectId": "sha256:b2c3b8e67d8570fa3424e3088c7540954d2e7285032fac807f3105ae95c3d8db",
+      "detail": "add 7.0.0c upscaled jacket rendition for Balor"
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "3f19dab5-d28b-7512-b333-2e389a35bdd6",
+      "variantId": "c69e1a51-bc11-73cb-86da-bbd757559e43",
+      "renditionId": "bb40cf58-6a21-7399-8060-a56eaf0691c6",
+      "objectId": "sha256:15bc25b8b6caeb48615bf4cc071241a21f5a6170269180663e04d54cd3e44dc2",
+      "detail": "add 7.0.0c upscaled jacket rendition for Cataclysm Cry"
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "83255aad-c094-7528-b9d6-fac3399706dc",
+      "variantId": "a4b9bee4-9c66-7863-a25b-b4a983a255ef",
+      "renditionId": "feb59458-2820-7c46-99b2-518a84d201d2",
+      "objectId": "sha256:827a0a622482b78fa8ac3cb7ba44f69919a9419b38e0ebfa446e47c856ffeab2",
+      "detail": "add 7.0.0c upscaled jacket rendition for DEINOS PHAINEIN"
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "54986fc3-a9df-7df1-b039-c71c7a470966",
+      "variantId": "f8c42b44-df0e-78cb-8963-1fa94d3570df",
+      "renditionId": "047e951f-6e24-788e-b85e-c42ae9e4a753",
+      "objectId": "sha256:9398ff4366dd9955e80a1c1af7262d2bf41a89d2e72ade5ca5ba44f45128c1ed",
+      "detail": "add 7.0.0c upscaled jacket rendition for DIE IN"
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "c5dd4a4e-5b8f-7bf8-bde0-a8188e663086",
+      "variantId": "f37eba88-db85-77ea-9239-ce623bbe2f04",
+      "renditionId": "de0ad1db-aeea-7774-ab70-4e209d8eca80",
+      "objectId": "sha256:06a6c9bdae04fec2a803a4298b7b5758c45d5cd81fc2e930680bbdcc78b428aa",
+      "detail": "add 7.0.0c upscaled jacket rendition for DREAD AREA"
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "302b4bd6-6607-76b3-b3b9-8cb8b474d218",
+      "variantId": "de7a786d-89b2-7673-82af-4eb20f93a192",
+      "renditionId": "e2695873-cb3c-7961-a41a-89e4a904ad97",
+      "objectId": "sha256:5516e0cd7b665b388cbf3163fbacd63a5b2df29c45624c931bb4b40790ca3819",
+      "detail": "add 7.0.0c upscaled jacket rendition for Ember"
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "e7b66916-0d0f-7a6d-877a-5f537bb72fe9",
+      "variantId": "48d291e1-11b7-78ec-a04a-d7d09cd3acd4",
+      "renditionId": "474dc485-7e2b-7736-8785-3c63ab7fe2c2",
+      "objectId": "sha256:1fc9d7851c717fc439e10fd7d0c9d70402821fbae4effa2b4c56831eb223ede8",
+      "detail": "add 7.0.0c upscaled jacket rendition for Riven Pilgrimage"
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "e7fbf294-aa3b-719f-b9c5-c12ebd30779a",
+      "variantId": "04343193-9cda-71a4-97ad-d20b0efc78e6",
+      "renditionId": "c274de13-01f4-7956-bc22-049be54a6455",
+      "objectId": "sha256:bc92091e986388579e57a80064dd3ee38295262e6864c51beea1e24c7c169c23",
+      "detail": "add 7.0.0c upscaled jacket rendition for un"
+    }
+  ],
+  "affectedResourceIds": [
+    "0c9e88cd-0b0c-78ab-8022-600e7559e026",
+    "3f19dab5-d28b-7512-b333-2e389a35bdd6",
+    "83255aad-c094-7528-b9d6-fac3399706dc",
+    "54986fc3-a9df-7df1-b039-c71c7a470966",
+    "c5dd4a4e-5b8f-7bf8-bde0-a8188e663086",
+    "302b4bd6-6607-76b3-b3b9-8cb8b474d218",
+    "e7b66916-0d0f-7a6d-877a-5f537bb72fe9",
+    "e7fbf294-aa3b-719f-b9c5-c12ebd30779a"
+  ],
+  "publishedRenditions": [
+    {
+      "resourceId": "0c9e88cd-0b0c-78ab-8022-600e7559e026",
+      "variantId": "ab53991b-9926-7bcf-821b-a388c45b9ff9",
+      "renditionId": "90f8aa28-135c-7189-b987-1d9715b88d4f",
+      "objectId": "sha256:b2c3b8e67d8570fa3424e3088c7540954d2e7285032fac807f3105ae95c3d8db",
+      "downloadFilename": "Balor_Redsign_7.0_konzetsu_IDX 546_BPM 157_SIDE 4_konzetsu-a_1080_base.jpg"
+    },
+    {
+      "resourceId": "3f19dab5-d28b-7512-b333-2e389a35bdd6",
+      "variantId": "c69e1a51-bc11-73cb-86da-bbd757559e43",
+      "renditionId": "bb40cf58-6a21-7399-8060-a56eaf0691c6",
+      "objectId": "sha256:15bc25b8b6caeb48615bf4cc071241a21f5a6170269180663e04d54cd3e44dc2",
+      "downloadFilename": "Cataclysm Cry_Aid_7.0_konzetsu_IDX 550_BPM 180_SIDE 4_cataclysmcry_1080_base.jpg"
+    },
+    {
+      "resourceId": "83255aad-c094-7528-b9d6-fac3399706dc",
+      "variantId": "a4b9bee4-9c66-7863-a25b-b4a983a255ef",
+      "renditionId": "feb59458-2820-7c46-99b2-518a84d201d2",
+      "objectId": "sha256:827a0a622482b78fa8ac3cb7ba44f69919a9419b38e0ebfa446e47c856ffeab2",
+      "downloadFilename": "DEINOS PHAINEIN_Blacklolita vs Juggernaut._7.0_konzetsu_IDX 551_BPM 190_SIDE 4_deinosphainein_1080_base.jpg"
+    },
+    {
+      "resourceId": "54986fc3-a9df-7df1-b039-c71c7a470966",
+      "variantId": "f8c42b44-df0e-78cb-8963-1fa94d3570df",
+      "renditionId": "047e951f-6e24-788e-b85e-c42ae9e4a753",
+      "objectId": "sha256:9398ff4366dd9955e80a1c1af7262d2bf41a89d2e72ade5ca5ba44f45128c1ed",
+      "downloadFilename": "DIE IN_TAK x Sobrem_7.0_single_IDX 544_BPM 160-230_SIDE 1_djmax_nightmare_1080_base.jpg"
+    },
+    {
+      "resourceId": "c5dd4a4e-5b8f-7bf8-bde0-a8188e663086",
+      "variantId": "f37eba88-db85-77ea-9239-ce623bbe2f04",
+      "renditionId": "de0ad1db-aeea-7774-ab70-4e209d8eca80",
+      "objectId": "sha256:06a6c9bdae04fec2a803a4298b7b5758c45d5cd81fc2e930680bbdcc78b428aa",
+      "downloadFilename": "DREAD AREA_Ashrount vs. 打打だいず_7.0_konzetsu_IDX 547_BPM 205_SIDE 2_konzetsu-b_1080_base.jpg"
+    },
+    {
+      "resourceId": "302b4bd6-6607-76b3-b3b9-8cb8b474d218",
+      "variantId": "de7a786d-89b2-7673-82af-4eb20f93a192",
+      "renditionId": "e2695873-cb3c-7961-a41a-89e4a904ad97",
+      "objectId": "sha256:5516e0cd7b665b388cbf3163fbacd63a5b2df29c45624c931bb4b40790ca3819",
+      "downloadFilename": "Ember_Powerless - siqlo feat. Tia_7.0_konzetsu_IDX 552_BPM 190_SIDE 2_konzetsu-b_1080_base.jpg"
+    },
+    {
+      "resourceId": "e7b66916-0d0f-7a6d-877a-5f537bb72fe9",
+      "variantId": "48d291e1-11b7-78ec-a04a-d7d09cd3acd4",
+      "renditionId": "474dc485-7e2b-7736-8785-3c63ab7fe2c2",
+      "objectId": "sha256:1fc9d7851c717fc439e10fd7d0c9d70402821fbae4effa2b4c56831eb223ede8",
+      "downloadFilename": "Riven Pilgrimage_rejection - Supire feat. eili_7.0_konzetsu_IDX 549_BPM 180_SIDE 2_konzetsu-b_1080_base.jpg"
+    },
+    {
+      "resourceId": "e7fbf294-aa3b-719f-b9c5-c12ebd30779a",
+      "variantId": "04343193-9cda-71a4-97ad-d20b0efc78e6",
+      "renditionId": "c274de13-01f4-7956-bc22-049be54a6455",
+      "objectId": "sha256:bc92091e986388579e57a80064dd3ee38295262e6864c51beea1e24c7c169c23",
+      "downloadFilename": "un_黒魔_7.0_konzetsu_IDX 548_BPM 188_SIDE 4_konzetsu-a_1080_base.jpg"
+    }
+  ],
+  "removedFromCurrentSource": [],
+  "notes": [
+    "Arcaea 7.0.0c add-on: 8 visually reviewed Real-ESRGAN x4 jacket upscaled renditions.",
+    "Original Renditions, existing thumbnail Renditions, and all prior Objects are preserved.",
+    "No Catalog or ROS deletion was performed; the release adds only the approved upscaled JPEG Objects."
+  ]
+}

@@ -89,7 +89,15 @@ test("preview selection never falls back to original or upscaled", () => {
 test("every catalog Resource shares one preview set across original and optional upscale", () => {
   const projection = projectCatalog(catalog, rosBaseUrl);
   const upscaled = projection.resources.filter((resource) => resource.upscaled);
-  assert.equal(upscaled.length, 616);
+  assert.equal(upscaled.length, 624);
+  const arcaea70Upscaled = projection.resources.filter((resource) =>
+    resource.game === "arcaea" &&
+    resource.resourceType === "jacket" &&
+    resource.metadata.gameVersion === "7.0.0c" &&
+    Boolean(resource.upscaled),
+  );
+  assert.equal(arcaea70Upscaled.length, 8);
+  assert.ok(arcaea70Upscaled.every((resource) => resource.upscaled?.width === 3072 && resource.upscaled?.height === 3072));
   assert.ok(upscaled.every((resource) => resource.game === "arcaea" && resource.resourceType === "jacket"));
   assert.ok(upscaled.every((resource) => resource.variants.every((variant) => Boolean(variant.preview.small) && Boolean(variant.preview.medium) && Boolean(variant.preview.large))));
 });
@@ -187,7 +195,7 @@ test("public game index projects activity only from final public resources", () 
   const phigros = projection.games.find((game) => game.slug === "phigros");
   const rizline = projection.games.find((game) => game.slug === "rizline");
   assert.equal(arcaea?.contentVersion, "7.0.0c");
-  assert.equal(arcaea?.lastUpdatedAt, "2026-08-27T16:33:50.200Z");
+  assert.equal(arcaea?.lastUpdatedAt, "2026-08-28T06:46:04.119Z");
   assert.equal(rizline?.contentVersion, "2.7.0");
   assert.equal(rizline?.lastUpdatedAt, "2026-08-24T12:42:04.372Z");
   assert.equal(phigros?.contentVersion, undefined);
