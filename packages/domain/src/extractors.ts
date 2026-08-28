@@ -56,7 +56,7 @@ export const ExtractorCandidate = z.object({
   suggestedVariant: z.object({
     key: z.string().min(1),
     kind: VariantKind,
-    difficulty: z.enum(["PST", "PRS", "FTR", "BYD", "ETR"]).optional(),
+    difficulty: z.enum(["PST", "PRS", "FTR", "BYD", "ETR", "INSCRIBED"]).optional(),
     unresolved: z.array(z.string().min(1)).default([]),
   }).optional(),
   suggestedExternalIdentity: z.array(ExternalIdentity).default([]),
@@ -244,7 +244,7 @@ type ArcaeaSong = {
   version?: string;
   bydversion?: string;
   etrversion?: string;
-  difficulties?: Array<{ ratingClass?: number; title_localized?: Record<string, string | undefined>; artist?: string; version?: string; bpm?: string; bg?: string; chartDesigner?: string; jacketDesigner?: string; rating?: number; ratingPlus?: boolean }>;
+  difficulties?: Array<{ ratingClass?: number; ratingClassAlias?: number; title_localized?: Record<string, string | undefined>; artist?: string; version?: string; bpm?: string; bg?: string; chartDesigner?: string; jacketDesigner?: string; rating?: number; ratingPlus?: boolean }>;
 };
 
 type ArcaeaPack = {
@@ -259,7 +259,8 @@ function difficultyInfo(song: ArcaeaSong | undefined, filename: string) {
   return song.difficulties?.find((item) => item.ratingClass === ratingClass);
 }
 
-function difficultyLabel(value: number | undefined): "PST" | "PRS" | "FTR" | "BYD" | "ETR" | undefined {
+function difficultyLabel(value: number | undefined, alias: number | undefined): "PST" | "PRS" | "FTR" | "BYD" | "ETR" | "INSCRIBED" | undefined {
+  if (value === 3 && alias === 1) return "INSCRIBED";
   return ["PST", "PRS", "FTR", "BYD", "ETR"][value ?? -1] as "PST" | "PRS" | "FTR" | "BYD" | "ETR" | undefined;
 }
 
@@ -272,7 +273,7 @@ function arcaeaSongContext(sourceRelativePath: string, outputFilename: string, s
   const difficulty = difficultyInfo(song, sourceName);
   const title = cleanTitle(localized(difficulty?.title_localized) ?? localized(song?.title_localized));
   const artist = cleanTitle(difficulty?.artist ?? song?.artist);
-  const difficultyCode = difficultyLabel(difficulty?.ratingClass);
+  const difficultyCode = difficultyLabel(difficulty?.ratingClass, difficulty?.ratingClassAlias);
   const unresolved = /_256\./i.test(sourceName) ? ["_256_semantics"] : [];
   return { songId, song, difficulty, title, artist, difficultyCode, unresolved, outputFilename };
 }

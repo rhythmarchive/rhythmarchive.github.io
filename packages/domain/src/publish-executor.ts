@@ -262,7 +262,7 @@ function buildCatalog(options: { catalog: CatalogType; manifest: ReleaseManifest
     }
 
     const variantKey = effectiveCandidateVariantKey(candidate) ?? "default";
-    const difficulty = ["PST", "PRS", "FTR", "BYD", "ETR"].includes(variantKey) ? variantKey as "PST" | "PRS" | "FTR" | "BYD" | "ETR" : undefined;
+    const difficulty = ["PST", "PRS", "FTR", "BYD", "ETR", "INSCRIBED"].includes(variantKey) ? variantKey as "PST" | "PRS" | "FTR" | "BYD" | "ETR" | "INSCRIBED" : undefined;
     const unresolved256 = variantKey.toLowerCase().includes("_256");
     const existingVariant = variants.find((variant) => variant.id === target.variantId);
     if (!existingVariant) {

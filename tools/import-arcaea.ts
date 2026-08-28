@@ -29,7 +29,7 @@ import { isReviewApproved, readReviewPackage, validateReviewPackageForDelta } fr
 const ROOT = path.resolve(".");
 const TEMP_ROOT = path.resolve("temp") + path.sep;
 const SOURCE_TYPE = "arcaea_apk" as const;
-const DIFFICULTIES = new Set(["PST", "PRS", "FTR", "BYD", "ETR"]);
+const DIFFICULTIES = new Set(["PST", "PRS", "FTR", "BYD", "ETR", "INSCRIBED"]);
 const PUBLIC_METADATA_KEYS = new Set([
   "artist", "songId", "packId", "difficulty", "sourceRelativePath", "legacyCategory",
   "confidence", "detection", "sourceType", "contentOrigin", "gameVersion",

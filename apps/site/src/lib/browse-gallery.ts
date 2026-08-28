@@ -13,7 +13,7 @@ import type { PublicChart, PublicDownload, PublicPreview, PublicResource, Public
 export const BROWSE_GALLERY_SCHEMA_VERSION = 1 as const;
 export const BROWSE_PAGE_SIZE = 48;
 
-export const ARCAEA_DIFFICULTIES = ["PST", "PRS", "FTR", "BYD", "ETR"] as const;
+export const ARCAEA_DIFFICULTIES = ["PST", "PRS", "FTR", "BYD", "ETR", "INSCRIBED"] as const;
 export type ArcaeaDifficulty = (typeof ARCAEA_DIFFICULTIES)[number];
 
 export const PHIGROS_DIFFICULTIES = ["EZ", "HD", "IN", "AT"] as const;

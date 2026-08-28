@@ -183,8 +183,14 @@ export function categoryOrderIndex(game: GameId, resourceType: ResourceTypeId): 
   return index === -1 ? GAME_CONFIG[game].categoryOrder.length : index;
 }
 
+export function displayDifficultyLabel(value: string, game?: GameId): string {
+  if (value === "INSCRIBED" && (game === undefined || game === "arcaea")) return "Inscribed";
+  if (value === "IV_Alpha" && (game === undefined || game === "rotaeno")) return "Ⅳ-α";
+  return value;
+}
+
 export function displayVariantLabel(variant: { variantKey: string; difficulty?: string | undefined; semanticStatus: string }): string {
-  if (variant.difficulty) return variant.difficulty;
+  if (variant.difficulty) return displayDifficultyLabel(variant.difficulty);
   if (variant.semanticStatus === "unresolved" || variant.variantKey.includes("256")) return "其他版本";
   const labels: Record<string, string> = {
     default: "默认",

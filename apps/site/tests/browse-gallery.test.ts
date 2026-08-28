@@ -150,7 +150,7 @@ test("Browse search ranking is deterministic and covers title, aliases, artist, 
 
 test("Arcaea facets use projection metadata and level/version ordering", () => {
   const options = getBrowseFacetOptions(formalBrowse.arcaea) as ArcaeaFacetOptions;
-  assert.deepEqual(options.charts, ["PST", "PRS", "FTR", "BYD", "ETR"]);
+  assert.deepEqual(options.charts, ["PST", "PRS", "FTR", "BYD", "ETR", "INSCRIBED"]);
   assert.ok(options.packs.includes("Absolute Reason"));
   assert.ok(!options.packs.includes("single"));
   assert.deepEqual(options.levels.slice(0, 6), ["1", "2", "3", "4", "5", "6"]);
@@ -159,6 +159,17 @@ test("Arcaea facets use projection metadata and level/version ordering", () => {
     { label: "6.13", values: ["6.13.10", "6.13"] },
     { label: "3.12", values: ["3.12.6", "3.12"] },
   ]);
+});
+
+test("Arcaea 7.0 exposes exactly four Inscribed songs and keeps the filter shareable", () => {
+  const expected = new Set(["dreadarea", "rivenpilgrim", "cataclysmcry", "deinosphainein"]);
+  const inscribedSongs = formalBrowse.arcaea.items.filter((item) => item.recordKind === "song" && item.charts.some((chart) => "difficultyClass" in chart && chart.difficultyClass === "INSCRIBED"));
+  assert.deepEqual(new Set(inscribedSongs.map((item) => item.songId)), expected);
+  const filtered = filterBrowseItems(formalBrowse.arcaea.items, arcaeaState({ chart: ["INSCRIBED"] }));
+  assert.deepEqual(new Set(filtered.map((item) => item.songId)), expected);
+  const state = arcaeaState({ chart: ["INSCRIBED", "FTR"] });
+  assert.equal(serializeBrowseUrlState(state).toString(), "chart=FTR%2CINSCRIBED");
+  assert.deepEqual(parseBrowseUrlState("arcaea", "chart=INSCRIBED", formalBrowse.arcaea.items), arcaeaState({ chart: ["INSCRIBED"] }));
 });
 
 test("Browse URL state round-trips multi-select facets with stable encoding", () => {
@@ -306,7 +317,7 @@ function makeResource(resourceId: string, hasUpscaled = false): BrowseResolvedRe
   };
 }
 
-function makeArtwork(resourceId: string, role: string, difficultyClass?: "PST" | "PRS" | "FTR" | "BYD" | "ETR"): BrowseArtwork {
+function makeArtwork(resourceId: string, role: string, difficultyClass?: "PST" | "PRS" | "FTR" | "BYD" | "ETR" | "INSCRIBED"): BrowseArtwork {
   return { ...makeResource(resourceId), role, ...(difficultyClass ? { difficultyClass } : {}) };
 }
 

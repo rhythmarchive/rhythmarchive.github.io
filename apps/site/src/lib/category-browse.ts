@@ -4,7 +4,7 @@ import type {
   RizlineCategoryBrowseProjectionType,
   InfalsusCategoryBrowseProjectionType,
 } from "../../../../packages/domain/src/browse.js";
-import { categoryLabel, gameCategoryLabel, type GameId, type ResourceTypeId } from "./game-config";
+import { categoryLabel, displayDifficultyLabel, gameCategoryLabel, type GameId, type ResourceTypeId } from "./game-config";
 import { galleryKey } from "./catalog-projection";
 import { normalizeSearchText } from "./search";
 import type { PublicResource, PublicSearchEntry, PublicSiteData } from "./types";
@@ -83,11 +83,11 @@ export function getCategoryBrowseConfig(game: GameId, category: string, resource
     { value: "title-desc", label: "名称 Z-A" },
   ];
   if (category === "jacket") {
-    const chartOptions = facetOptions(resources, "chart");
+    const chartOptions = facetOptions(resources, "chart", game);
     const facets: CategoryBrowseFacet[] = chartOptions.length > 0 ? [{ key: "chart", label: "谱面难度", options: chartOptions }] : [];
     if (game === "rotaeno") {
-      const levelOptions = facetOptions(resources, "level");
-      const constantOptions = facetOptions(resources, "constant");
+      const levelOptions = facetOptions(resources, "level", game);
+      const constantOptions = facetOptions(resources, "constant", game);
       if (levelOptions.length > 0) facets.push({ key: "level", label: "难度等级", options: levelOptions });
       const constantRange = facetRange(resources, "constant");
       if (constantOptions.length > 0) facets.push({ key: "constant", label: "谱面定数", options: constantOptions, ...(constantRange ? { range: constantRange } : {}) });
@@ -134,7 +134,7 @@ export function getCategoryBrowseConfig(game: GameId, category: string, resource
   return {
     searchPlaceholder: placeholder,
     sortOptions,
-    facets: facetKeys.map(({ key, label }) => ({ key, label, options: facetOptions(resources, key) })),
+    facets: facetKeys.map(({ key, label }) => ({ key, label, options: facetOptions(resources, key, game) })),
   };
 }
 
@@ -146,12 +146,12 @@ function facetDefinitions(game: GameId, category: string): Array<{ key: string; 
   return [];
 }
 
-function facetOptions(resources: PublicResource[], key: string): CategoryBrowseFacetOption[] {
+function facetOptions(resources: PublicResource[], key: string, game?: GameId): CategoryBrowseFacetOption[] {
   const values = new Set<string>();
   for (const resource of resources) for (const value of resource.facets?.[key] ?? []) values.add(value);
   return [...values]
     .sort((left, right) => normalizeSearchText(left).localeCompare(normalizeSearchText(right), "zh-CN"))
-    .map((value) => ({ value, label: key === "chart" && resources.every((resource) => resource.game === "rotaeno") && value === "IV_Alpha" ? "Ⅳ-α" : value }));
+    .map((value) => ({ value, label: key === "chart" ? displayDifficultyLabel(value, game ?? resources[0]?.game) : value }));
 }
 
 function facetRange(resources: PublicResource[], key: string): CategoryBrowseFacetRange | undefined {

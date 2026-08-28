@@ -23,7 +23,7 @@ const PORTABLE_RELATIVE_PATH = z.string().min(1).refine((value) => {
   return !value.split(/[\\/]+/).includes("..");
 }, "must be an APK-relative portable path");
 
-export const ArcaeaDifficultyClass = z.enum(["PST", "PRS", "FTR", "BYD", "ETR"]);
+export const ArcaeaDifficultyClass = z.enum(["PST", "PRS", "FTR", "BYD", "ETR", "INSCRIBED"]);
 export const PhigrosDifficultyClass = z.enum(["EZ", "HD", "IN", "AT", "Legacy"]);
 
 const SearchTerms = z.array(z.string().min(1));

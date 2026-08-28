@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "game": "arcaea",
-  "generatedAt": "2026-08-27T16:40:54.315Z",
+  "generatedAt": "2026-08-28T02:25:38.975Z",
   "source": {
     "version": "7.0.0c",
     "sha256": "8ef5225f4dab43135711a776f2fba05e0e397b29c569147e7f1f18663d9a8522"
@@ -34846,12 +34846,12 @@
       "orderHint": 547,
       "charts": [
         {
-          "difficultyClass": "BYD",
-          "displayLevel": "11"
-        },
-        {
           "difficultyClass": "FTR",
           "displayLevel": "10"
+        },
+        {
+          "difficultyClass": "INSCRIBED",
+          "displayLevel": "11"
         },
         {
           "difficultyClass": "PRS",
@@ -34980,12 +34980,12 @@
       "orderHint": 549,
       "charts": [
         {
-          "difficultyClass": "BYD",
-          "displayLevel": "11"
-        },
-        {
           "difficultyClass": "FTR",
           "displayLevel": "10"
+        },
+        {
+          "difficultyClass": "INSCRIBED",
+          "displayLevel": "11"
         },
         {
           "difficultyClass": "PRS",
@@ -35046,12 +35046,12 @@
       "orderHint": 550,
       "charts": [
         {
-          "difficultyClass": "BYD",
-          "displayLevel": "11+"
-        },
-        {
           "difficultyClass": "FTR",
           "displayLevel": "10"
+        },
+        {
+          "difficultyClass": "INSCRIBED",
+          "displayLevel": "11+"
         },
         {
           "difficultyClass": "PRS",
@@ -35111,12 +35111,12 @@
       "orderHint": 551,
       "charts": [
         {
-          "difficultyClass": "BYD",
-          "displayLevel": "12"
-        },
-        {
           "difficultyClass": "FTR",
           "displayLevel": "10+"
+        },
+        {
+          "difficultyClass": "INSCRIBED",
+          "displayLevel": "12"
         },
         {
           "difficultyClass": "PRS",

@@ -154,8 +154,8 @@ function arcaeaRole(value: string | undefined): "default" | "difficulty" | "nigh
   return undefined;
 }
 
-function arcaeaDifficulty(value: string | undefined): "PST" | "PRS" | "FTR" | "BYD" | "ETR" | undefined {
-  return value === "PST" || value === "PRS" || value === "FTR" || value === "BYD" || value === "ETR" ? value : undefined;
+function arcaeaDifficulty(value: string | undefined): "PST" | "PRS" | "FTR" | "BYD" | "ETR" | "INSCRIBED" | undefined {
+  return value === "PST" || value === "PRS" || value === "FTR" || value === "BYD" || value === "ETR" || value === "INSCRIBED" ? value : undefined;
 }
 
 function uniqueCatalogJacketIdsBySha256(catalog: CatalogType): Map<string, string> {

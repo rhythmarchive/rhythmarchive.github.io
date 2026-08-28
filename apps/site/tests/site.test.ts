@@ -6,7 +6,7 @@ import sharp from "sharp";
 import { projectCatalog, selectPreviewRendition } from "../src/lib/catalog-projection.js";
 import { formatPublicApkBytes, parsePublicArcaeaApkManifest } from "../src/lib/apk.js";
 import { uniqueZipFilename } from "../src/lib/batch.js";
-import { displayVariantLabel, GAME_CONFIG } from "../src/lib/game-config.js";
+import { displayDifficultyLabel, displayVariantLabel, GAME_CONFIG } from "../src/lib/game-config.js";
 import { formatContentVersion, formatGameUpdatedAt, isRecentlyUpdated, sortPublicGames } from "../src/lib/game-index.js";
 import { rankRelatedResources } from "../src/lib/related.js";
 import { buildSearchQuickLinks } from "../src/lib/search-quick-links.js";
@@ -43,6 +43,11 @@ test("jacket details expose the unified chart field and user-facing identity met
   const rotaenoJacket = siteData.resources.find((resource) => resource.game === "rotaeno" && resource.resourceType === "jacket" && resource.metadata.songId === "abstruse-dilemma");
   assert.deepEqual(rotaenoJacket?.charts?.map((chart) => [chart.difficulty, chart.level, chart.constant]), [["I", "3", "3.0"], ["II", "7", "7.0"], ["III", "12", "12.3"], ["IV", "14", "14.0"]]);
   assert.ok(rotaenoJacket?.charts?.every((chart) => chart.status === "available"));
+  assert.equal(displayDifficultyLabel("INSCRIBED", "arcaea"), "Inscribed");
+  const inscribed = siteData.resources
+    .filter((resource) => resource.game === "arcaea" && resource.resourceType === "jacket")
+    .flatMap((resource) => (resource.charts ?? []).filter((chart) => chart.difficulty === "INSCRIBED").map(() => resource.metadata.songId));
+  assert.deepEqual(new Set(inscribed), new Set(["dreadarea", "rivenpilgrim", "cataclysmcry", "deinosphainein"]));
   const rotaenoFacets = getCategoryBrowseConfig("rotaeno", "jacket", siteData.galleries["rotaeno/jacket"] ?? []).facets;
   assert.deepEqual(rotaenoFacets.map((facet) => facet.label), ["\u8c31\u9762\u96be\u5ea6", "\u96be\u5ea6\u7b49\u7ea7", "\u8c31\u9762\u5b9a\u6570"]);
   assert.equal(rotaenoFacets.find((facet) => facet.key === "chart")?.options.find((option) => option.value === "IV_Alpha")?.label, "Ⅳ-α");

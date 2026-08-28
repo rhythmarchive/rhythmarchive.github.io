@@ -17,6 +17,7 @@ import {
   serializeBrowseUrlState,
 } from "../lib/browse-gallery";
 import { cardMediaFit, cardMediaRatio } from "../lib/media-config";
+import { displayDifficultyLabel } from "../lib/game-config";
 import { formatArcaeaAddedVersion } from "../lib/public-display";
 import type { PublicDownload } from "../lib/types";
 
@@ -252,7 +253,7 @@ async function initializeBrowseGallery(root: HTMLElement): Promise<void> {
 
 function populateFacetOptions(data: BrowseGalleryData, root: HTMLElement): void {
   const options = getBrowseFacetOptions(data);
-  const setToggles = (name: string, values: string[]) => {
+  const setToggles = (name: string, values: string[], formatValue: (value: string) => string = (value) => value) => {
     const container = root.querySelector<HTMLElement>(`[data-browse-toggle-options="${name}"]`);
     if (!container) return;
     container.replaceChildren(...values.map((value) => {
@@ -262,7 +263,7 @@ function populateFacetOptions(data: BrowseGalleryData, root: HTMLElement): void 
       button.dataset.browseFilterToggle = name;
       button.dataset.value = value;
       button.setAttribute("aria-pressed", "false");
-      button.textContent = value;
+      button.textContent = formatValue(value);
       return button;
     }));
   };
@@ -286,7 +287,7 @@ function populateFacetOptions(data: BrowseGalleryData, root: HTMLElement): void 
   };
   if (data.game === "arcaea") {
     const arcaeaOptions = options as Extract<BrowseFacetOptions, { packs: string[] }>;
-    setToggles("chart", arcaeaOptions.charts);
+    setToggles("chart", arcaeaOptions.charts, (value) => displayDifficultyLabel(value, "arcaea"));
     setCheckboxes("pack", arcaeaOptions.packs);
     setCheckboxes("level", arcaeaOptions.levels);
     setCheckboxes("version", arcaeaOptions.versions, formatArcaeaAddedVersion);
@@ -327,7 +328,11 @@ function updatePopoverSummaries(root: HTMLElement): void {
   for (const summary of root.querySelectorAll<HTMLElement>("[data-browse-summary]")) {
     const name = summary.dataset.browseSummary ?? "";
     const rawValues = selectedValues(root, name);
-    const values = name === "version" ? [...new Set(rawValues.map(formatArcaeaAddedVersion))] : rawValues;
+    const values = name === "version"
+      ? [...new Set(rawValues.map(formatArcaeaAddedVersion))]
+      : name === "chart" && root.dataset.game === "arcaea"
+        ? rawValues.map((value) => displayDifficultyLabel(value, "arcaea"))
+        : rawValues;
     const label = name === "pack" ? "曲包" : name === "level" ? "等级" : name === "disc" ? "Disc" : name === "series" ? "精选集" : "版本";
     summary.textContent = values.length === 0 ? label : values.length === 1 ? values[0]! : `${label} ${values.length}`;
   }
@@ -341,7 +346,7 @@ function updateActiveFilters(root: HTMLElement, state: BrowseUrlState): void {
   if (state.q) entries.push({ name: "q", value: state.q, label: `搜索：${state.q}` });
   if (state.game === "arcaea") {
     for (const value of state.pack) entries.push({ name: "pack", value, label: value });
-    for (const value of state.chart) entries.push({ name: "chart", value, label: value });
+    for (const value of state.chart) entries.push({ name: "chart", value, label: displayDifficultyLabel(value, "arcaea") });
     for (const value of state.level) entries.push({ name: "level", value, label: value });
     const versionEntries = new Map<string, string>();
     for (const value of state.version) versionEntries.set(formatArcaeaAddedVersion(value), value);

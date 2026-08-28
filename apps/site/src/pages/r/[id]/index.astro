@@ -3,7 +3,7 @@ import BaseLayout from "../../../layouts/BaseLayout.astro";
 import DownloadActions from "../../../components/DownloadActions.astro";
 import VariantPanel from "../../../components/VariantPanel.astro";
 import ResourceCard from "../../../components/ResourceCard.astro";
-import { GAME_CONFIG } from "../../../lib/game-config";
+import { displayDifficultyLabel, GAME_CONFIG } from "../../../lib/game-config";
 import { BASE_PATH, ROS_BASE_URL } from "../../../lib/site-config";
 import { getSiteData } from "../../../lib/site-data";
 import { rankRelatedResources } from "../../../lib/related";
@@ -78,7 +78,7 @@ function chartSourceLabel(source: NonNullable<PublicResource["charts"]>[number][
   return "Wiki";
 }
 function chartDifficultyLabel(difficulty: string): string {
-  return resource.game === "rotaeno" && difficulty === "IV_Alpha" ? "Ⅳ-α" : difficulty;
+  return displayDifficultyLabel(difficulty, resource.game);
 }
 const description = `${resource.displayTitle}${resource.artist ? ` · ${resource.artist}` : ""} - ${GAME_CONFIG[resource.game].displayName} 图片资源。`;
 ---
