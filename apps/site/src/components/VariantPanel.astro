@@ -1,13 +1,14 @@
 ---
-import type { PublicVariant } from "../lib/types";
+import type { PublicDownload, PublicVariant } from "../lib/types";
 
 interface Props {
   variant: PublicVariant;
+  fallback?: PublicDownload | undefined;
   active?: boolean;
   alt?: string;
 }
 
-const { variant, active = false, alt = "资源预览" } = Astro.props;
+const { variant, fallback, active = false, alt = "资源预览" } = Astro.props;
 const large = variant.preview.large ?? variant.preview.medium ?? variant.preview.small;
 const srcset = [variant.preview.medium ? `${variant.preview.medium.url} 640w` : "", variant.preview.large ? `${variant.preview.large.url} 1280w` : ""].filter(Boolean).join(", ");
 ---
@@ -18,6 +19,9 @@ const srcset = [variant.preview.medium ? `${variant.preview.medium.url} 640w` : 
       <button class="detail-preview-trigger" type="button" data-lightbox-open data-lightbox-preview-url={large.url} data-lightbox-preview-width={large.width} data-lightbox-preview-height={large.height} data-lightbox-preview-alt={alt} aria-label={`点击查看${alt}大图`}>
         <img
           data-detail-image
+          data-fallback-src={fallback?.url}
+          data-fallback-width={fallback?.width}
+          data-fallback-height={fallback?.height}
           src={large.url}
           srcset={srcset || undefined}
           sizes="(max-width: 760px) 100vw, 66vw"

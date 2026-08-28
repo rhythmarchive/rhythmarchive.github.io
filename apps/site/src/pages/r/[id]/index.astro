@@ -94,7 +94,7 @@ const description = `${resource.displayTitle}${resource.artist ? ` · ${resource
           </div>
         ) : null}
         <div class="variant-panels">
-          {resource.variants.map((variant, index) => <VariantPanel variant={variant} active={index === activeVariantIndex} alt={resource.displayTitle} />)}
+          {resource.variants.map((variant, index) => <VariantPanel variant={variant} fallback={variant.original} active={index === activeVariantIndex} alt={resource.displayTitle} />)}
         </div>
       </div>
       <aside class="detail-info">
