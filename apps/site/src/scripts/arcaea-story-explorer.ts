@@ -10,9 +10,17 @@ function initializeStoryExplorer(root: HTMLElement): void {
   const sectionPanels = [...root.querySelectorAll<HTMLElement>("[data-story-section-panel]")];
   const pathButtons = [...root.querySelectorAll<HTMLButtonElement>("[data-story-path]")];
   const pathDetails = [...root.querySelectorAll<HTMLElement>("[data-story-path-detail]")];
+  const mapPaths = [...root.querySelectorAll<HTMLElement>("[data-story-map-path]")];
+  const mapEntryButtons = [...root.querySelectorAll<HTMLButtonElement>("[data-story-map-entry]")];
   const unassignedTrigger = root.querySelector<HTMLButtonElement>("[data-story-unassigned-trigger]");
   const unassignedPanel = root.querySelector<HTMLElement>("[data-story-unassigned-panel]");
+  const zoomInButtons = [...root.querySelectorAll<HTMLButtonElement>("[data-story-zoom-in]")];
+  const zoomOutButtons = [...root.querySelectorAll<HTMLButtonElement>("[data-story-zoom-out]")];
+  const zoomResetButtons = [...root.querySelectorAll<HTMLButtonElement>("[data-story-zoom-reset]")];
+  const zoomLevels = [...root.querySelectorAll<HTMLElement>("[data-story-zoom-level]")];
+  const mapWorlds = [...root.querySelectorAll<HTMLElement>("[data-story-map-world]")];
   let selectionInitialized = false;
+  let mapScale = 1;
 
   for (const button of toggles) button.addEventListener("click", () => setMode(root.hidden));
   for (const button of sectionButtons) {
@@ -29,6 +37,13 @@ function initializeStoryExplorer(root: HTMLElement): void {
       if (pathId) selectPath(pathId, undefined, true);
     });
   }
+  for (const button of mapEntryButtons) {
+    button.addEventListener("click", () => {
+      const pathId = button.dataset.storyPathId;
+      const entryKey = button.dataset.storyEntryKey;
+      if (pathId && entryKey) selectPath(pathId, entryKey, true);
+    });
+  }
   for (const detail of pathDetails) {
     for (const button of detail.querySelectorAll<HTMLButtonElement>("[data-story-entry]")) {
       button.addEventListener("click", () => {
@@ -37,9 +52,13 @@ function initializeStoryExplorer(root: HTMLElement): void {
       });
     }
   }
+  for (const button of zoomInButtons) button.addEventListener("click", () => setMapScale(mapScale + 0.08));
+  for (const button of zoomOutButtons) button.addEventListener("click", () => setMapScale(mapScale - 0.08));
+  for (const button of zoomResetButtons) button.addEventListener("click", () => setMapScale(1));
   unassignedTrigger?.addEventListener("click", () => selectUnassigned(true));
 
   const initialMode = new URLSearchParams(window.location.search).get("story-view") === "game";
+  setMapScale(1);
   setMode(initialMode, false);
 
   function setMode(gameMode: boolean, syncUrl = true): void {
@@ -48,7 +67,7 @@ function initializeStoryExplorer(root: HTMLElement): void {
     if (classicGallery) classicGallery.hidden = gameMode;
     for (const button of toggles) {
       button.setAttribute("aria-pressed", String(gameMode));
-      button.textContent = gameMode ? "返回标准图库" : "开启测试版";
+      if (button.closest("[data-story-view-launcher]")) button.textContent = gameMode ? "返回标准图库" : "开启测试版";
     }
     if (gameMode && !selectionInitialized) {
       initializeSelection();
@@ -100,6 +119,7 @@ function initializeStoryExplorer(root: HTMLElement): void {
       button.classList.toggle("is-active", active);
       button.setAttribute("aria-selected", String(active));
     }
+    for (const path of mapPaths) path.classList.toggle("is-active", path.dataset.storyMapPath === pathId);
     for (const candidate of pathDetails) candidate.hidden = candidate !== detail;
     const entryButtons = [...detail.querySelectorAll<HTMLButtonElement>("[data-story-entry]")];
     const entryKey = requestedEntry && entryButtons.some((button) => button.dataset.storyEntryKey === requestedEntry)
@@ -118,21 +138,28 @@ function initializeStoryExplorer(root: HTMLElement): void {
   function selectEntry(detail: HTMLElement, entryKey: string, syncUrl: boolean): void {
     const buttons = [...detail.querySelectorAll<HTMLButtonElement>("[data-story-entry]")];
     const panels = [...detail.querySelectorAll<HTMLElement>("[data-story-entry-panel]")];
-    if (!buttons.some((button) => button.dataset.storyEntryKey === entryKey)) return;
+    const pathId = detail.dataset.storyPathDetail;
+    if (!pathId || !buttons.some((button) => button.dataset.storyEntryKey === entryKey)) return;
     for (const button of buttons) {
       const active = button.dataset.storyEntryKey === entryKey;
       button.classList.toggle("is-active", active);
       button.setAttribute("aria-selected", String(active));
     }
+    for (const button of mapEntryButtons) {
+      const active = button.dataset.storyPathId === pathId && button.dataset.storyEntryKey === entryKey;
+      button.classList.toggle("is-active", active);
+      if (active) button.setAttribute("aria-current", "true");
+      else button.removeAttribute("aria-current");
+    }
     for (const panel of panels) panel.hidden = panel.dataset.storyEntryKey !== entryKey;
     if (syncUrl) {
-      const pathId = detail.dataset.storyPathDetail;
-      if (!pathId) return;
       const url = new URL(window.location.href);
       url.searchParams.set("story-view", "game");
       url.searchParams.set("story-path", pathId);
       url.searchParams.set("story-entry", entryKey);
       window.history.replaceState({}, "", url);
+      const selectedMapEntry = mapEntryButtons.find((button) => button.dataset.storyPathId === pathId && button.dataset.storyEntryKey === entryKey);
+      selectedMapEntry?.scrollIntoView({ block: "nearest", inline: "nearest" });
     }
   }
 
@@ -147,6 +174,7 @@ function initializeStoryExplorer(root: HTMLElement): void {
       button.classList.remove("is-active");
       button.setAttribute("aria-selected", "false");
     }
+    for (const path of mapPaths) path.classList.remove("is-active");
     for (const detail of pathDetails) detail.hidden = true;
     unassignedTrigger?.setAttribute("aria-selected", "true");
     unassignedPanel.hidden = false;
@@ -157,5 +185,15 @@ function initializeStoryExplorer(root: HTMLElement): void {
       url.searchParams.delete("story-entry");
       window.history.replaceState({}, "", url);
     }
+  }
+
+  function setMapScale(next: number): void {
+    mapScale = Math.max(0.84, Math.min(1.2, Math.round(next * 100) / 100));
+    for (const world of mapWorlds) {
+      world.style.transform = "scale(" + mapScale + ")";
+      world.style.width = (100 / mapScale) + "%";
+    }
+    const label = Math.round(mapScale * 100) + "%";
+    for (const level of zoomLevels) level.textContent = label;
   }
 }

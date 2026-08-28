@@ -65,8 +65,50 @@ const PUBLIC_METADATA_KEYS = new Set([
 
 const PUBLIC_HIDDEN_RESOURCE_TYPES = new Set<ResourceTypeId>(["story-texture", "rizcard"]);
 
+const ARCAEA_STORY_UI_EXACT_FILES = new Set([
+  "act-bg.jpg",
+  "act-title-backing.png",
+  "act1-part1.png",
+  "act1-part2.png",
+  "act1-part3.png",
+  "act2-part1.png",
+  "act2-part2.png",
+  "complete-banner.png",
+  "completion-backing.png",
+  "continue-btn.png",
+  "corner-btn.png",
+  "corner-btn-right.png",
+  "partner-btn.png",
+  "arrow_cover.png",
+  "bottom_black.png",
+  "top_line.png",
+  "button_back.png",
+  "button_continue.png",
+  "button_finish.png",
+  "button_next_chapter.png",
+  "story_pack_divider_horizontal.png",
+  "story_unlock_corner.png",
+  "story_ex_line.png",
+]);
+
 function isPromotedArcaeaStoryCg(resource: Resource): boolean {
   return resource.game === "arcaea" && resource.resourceType === "story-texture" && resource.metadata.storyVisualKind === "vn-cg";
+}
+
+function arcaeaStoryUiFilename(resource: Resource): string | undefined {
+  if (resource.game !== "arcaea" || resource.resourceType !== "story-texture" || resource.lifecycle.status !== "published") return undefined;
+  const sourcePath = resource.provenance
+    .map((provenance) => provenance.sourceRelativePath.replaceAll("\\", "/"))
+    .find((candidate) => candidate.includes("/img/story/") || candidate.endsWith("/img/story_ex_line.png"));
+  if (!sourcePath) return undefined;
+  const filename = sourcePath.split("/").at(-1);
+  if (!filename || /(?:[_-]pressed|_disabled)\.png$/iu.test(filename)) return undefined;
+  if (ARCAEA_STORY_UI_EXACT_FILES.has(filename) || /^(?:entry_|cell[_-])[a-z0-9_-]+\.png$/iu.test(filename)) return filename;
+  return undefined;
+}
+
+function isArcaeaStoryUiResource(resource: Resource): boolean {
+  return Boolean(arcaeaStoryUiFilename(resource));
 }
 
 function isPublicHiddenResource(resource: Resource): boolean {
@@ -124,7 +166,52 @@ export function projectCatalog(catalog: Catalog, rosBaseUrl: string): PublicSite
 
   const sourceResourcesById = new Map(catalog.resources.map((resource) => [resource.id, resource]));
   const searchIndex = resources.map((resource) => toSearchEntry(resource, sourceResourcesById.get(resource.resourceId)));
-  return { generatedAt: catalog.generatedAt, resources, games, searchIndex, galleries };
+  return {
+    generatedAt: catalog.generatedAt,
+    resources,
+    games,
+    searchIndex,
+    galleries,
+    storyUi: {
+      arcaea: projectArcaeaStoryUi(catalog, variantsByResource, renditionsByVariant, objectsById, rosBaseUrl, phigrosAprilFoolsYear),
+    },
+  };
+}
+
+function projectArcaeaStoryUi(
+  catalog: Catalog,
+  variantsByResource: Map<string, Variant[]>,
+  renditionsByVariant: Map<string, Rendition[]>,
+  objectsById: Map<string, AssetObject>,
+  rosBaseUrl: string,
+  phigrosAprilFoolsYear?: number,
+): Record<string, PublicResource> {
+  const candidates = catalog.resources
+    .filter(isArcaeaStoryUiResource)
+    .map((resource) => {
+      const key = arcaeaStoryUiFilename(resource);
+      if (!key) return undefined;
+      return {
+        key,
+        resource,
+        current: resource.provenance.some((provenance) => provenance.sourceRelativePath.replaceAll("\\", "/").includes("Arcaea/current-apk/")),
+      };
+    })
+    .filter((candidate): candidate is { key: string; resource: Resource; current: boolean } => Boolean(candidate))
+    .sort((left, right) => Number(right.current) - Number(left.current) || left.key.localeCompare(right.key, "en") || left.resource.id.localeCompare(right.resource.id, "en"));
+  const output: Record<string, PublicResource> = {};
+  for (const candidate of candidates) {
+    if (output[candidate.key]) continue;
+    output[candidate.key] = projectResource(
+      candidate.resource,
+      variantsByResource.get(candidate.resource.id) ?? [],
+      renditionsByVariant,
+      objectsById,
+      rosBaseUrl,
+      phigrosAprilFoolsYear,
+    );
+  }
+  return output;
 }
 
 function projectGameActivity(resources: Resource[]): Pick<PublicGameIndex, "contentVersion" | "lastUpdatedAt"> {

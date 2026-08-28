@@ -307,6 +307,7 @@ export const ArcaeaStoryStructure = z.object({
     relatedSongId: z.string().min(1).optional(),
     staffRoll: z.boolean().optional(),
   })),
+  nodeIcons: z.record(z.string(), z.string().min(1)).default({}),
 });
 
 export const CategoryBrowseProjection = z.object({

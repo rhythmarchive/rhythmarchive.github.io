@@ -40,7 +40,8 @@ for (const resource of projection.resources) {
 }
 
 const previewUrls = new Set<string>();
-for (const resource of projection.resources) {
+const publicPreviewResources = [...projection.resources, ...Object.values(projection.storyUi.arcaea)];
+for (const resource of publicPreviewResources) {
   for (const variant of resource.variants) {
     for (const preview of Object.values(variant.preview)) if (preview) previewUrls.add(preview.url);
   }

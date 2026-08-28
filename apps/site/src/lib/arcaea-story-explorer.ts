@@ -10,6 +10,7 @@ export type ArcaeaStoryExplorerEntry = {
   resources: PublicResource[];
   relatedSongs: string[];
   staffRoll: boolean;
+  iconKey?: string;
   unlockLabel?: string;
 };
 
@@ -89,6 +90,7 @@ export function buildArcaeaStoryExplorerModel(resources: PublicResource[], struc
     const entries = storyPath.nodes.map((nodeKey, order) => {
       const resourcesForNode = sortResources(nodeResources.get(`${storyPath.pathId}:${nodeKey}`) ?? []);
       const annotation = annotationByNode.get(nodeKey);
+      const iconKey = structure.nodeIcons[nodeKey];
       const visual = annotation?.visual ?? (resourcesForNode.length > 0 ? "illustration" : "story");
       const relatedSongs = uniqueStrings(resourcesForNode.map((resource) => stringMetadata(resource.metadata.relatedSongTitle) ?? ""));
       const unlockLabel = annotation
@@ -107,6 +109,7 @@ export function buildArcaeaStoryExplorerModel(resources: PublicResource[], struc
         resources: resourcesForNode,
         relatedSongs,
         staffRoll: annotation?.staffRoll ?? false,
+        ...(iconKey ? { iconKey } : {}),
         ...(unlockLabel ? { unlockLabel } : {}),
       } satisfies ArcaeaStoryExplorerEntry;
     });

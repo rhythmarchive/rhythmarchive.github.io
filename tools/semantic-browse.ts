@@ -55,6 +55,7 @@ type ArcaeaStoryIndex = {
   sections: Array<{ act: number; label: string; pathIds: number[] }>;
   paths: ArcaeaStoryPath[];
   nodeAnnotations: ArcaeaStoryNodeAnnotation[];
+  nodeIcons: Record<string, string>;
   coverage: { physicalStoryCgCount: number; baselineRelationCount: number; curatedStoryCgCount: number; storyTextureCgCount: number };
   storyCg: ArcaeaStoryCgIndexEntry[];
   storyTextureCg: ArcaeaStoryTextureCgIndexEntry[];
@@ -756,6 +757,7 @@ function buildArcaeaSemantics(catalog: Catalog, arcaeaBrowse: ReturnType<typeof 
       sections: storyIndex.sections,
       paths: storyIndex.paths,
       nodeAnnotations: storyIndex.nodeAnnotations,
+      nodeIcons: storyIndex.nodeIcons,
     },
   });
   return { projection, metrics: { characterPortraitMapped: mappedPortrait.size, characterPortraitTotal: portraitResources.size, characterAvatarMapped: mappedAvatar.size, characterAvatarTotal: avatarResources.size, storyCgAnnotated: resources.filter((resource) => resource.resourceType === "story-cg").length, storyCgBaselineRows: baselineStoryCgRows.length, storyCgIndexed: indexedStoryCgResources.size + indexedStoryTextureCgResources.size, storyCgTotal: storyCgResources.length + storyTextureCgResources.length, storyCgMissing: missingStoryCgResources.length + missingStoryTextureCgResources.length, storyTextureCgAnnotated: indexedStoryTextureCgResources.size, storyTextureWithRelation: textureRelations.size, storyTextureTotal: resources.filter((resource) => resource.resourceType === "story-texture").length, backgroundAnnotated: resources.filter((resource) => resource.resourceType === "background").length, packCoverAnnotated: resources.filter((resource) => resource.resourceType === "pack-cover").length, linkplayStickerAnnotated: resources.filter((resource) => resource.resourceType === "sticker").length } };

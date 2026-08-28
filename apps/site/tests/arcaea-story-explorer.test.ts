@@ -53,3 +53,24 @@ test("Arcaea Story Mode explorer excludes unreviewed story-texture images", () =
   assert.equal(model.counts.total, 71);
   assert.equal(model.unassignedResources.some((resource) => resource.resourceId === texture.resourceId), false);
 });
+
+test("Arcaea Story Mode maps APK Entry icons into an isolated UI projection", () => {
+  const siteData = getSiteData();
+  const structure = loadCategoryBrowseProjections().arcaea.storyStructure;
+  assert.ok(structure);
+  const storyUi = siteData.storyUi.arcaea;
+
+  assert.ok(storyUi["act-bg.jpg"]);
+  assert.ok(storyUi["act-title-backing.png"]);
+  assert.ok(storyUi["story_pack_divider_horizontal.png"]);
+  assert.ok(storyUi["button_back.png"]);
+  assert.ok(storyUi["entry_konzetsu_2.png"]);
+  assert.ok(storyUi["cell-vs7.png"]);
+  assert.equal(siteData.galleries["arcaea/all"]?.filter((resource) => resource.resourceType === "story-texture").length, 5);
+
+  assert.equal(structure.nodeIcons["C-2"], "entry_konzetsu_2");
+  assert.equal(structure.nodeIcons["VS-7"], "cell-vs7");
+  assert.equal(structure.nodeIcons["18-7"], undefined);
+  const model = buildArcaeaStoryExplorerModel(siteData.galleries["arcaea/story-cg"] ?? [], structure);
+  assert.equal(model.paths.find((path) => path.pathId === 33)?.entries.find((entry) => entry.key === "C-2")?.iconKey, "entry_konzetsu_2");
+});

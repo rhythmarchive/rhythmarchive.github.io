@@ -4,14 +4,15 @@ import { buildArcaeaStoryExplorerModel } from "../lib/arcaea-story-explorer";
 import { BASE_PATH } from "../lib/site-config";
 import { formatCount } from "../lib/format";
 import { sitePath } from "../lib/url";
-import type { PublicResource } from "../lib/types";
+import type { PublicAsset, PublicResource } from "../lib/types";
 
 interface Props {
   resources: PublicResource[];
   storyStructure: ArcaeaStoryStructureType;
+  storyUi?: Record<string, PublicResource>;
 }
 
-const { resources, storyStructure } = Astro.props;
+const { resources, storyStructure, storyUi = {} } = Astro.props;
 const model = buildArcaeaStoryExplorerModel(resources, storyStructure);
 const firstPathId = model.sections[0]?.paths[0]?.pathId;
 
@@ -19,12 +20,22 @@ function resourceHref(resource: PublicResource): string {
   return sitePath(resource.route, BASE_PATH);
 }
 
-function resourceImage(resource: PublicResource) {
-  return resource.preview.small ?? resource.preview.medium ?? resource.preview.large;
+function resourceImage(resource: PublicResource): PublicAsset | undefined {
+  return resource.preview.small ?? resource.preview.medium ?? resource.preview.large ?? undefined;
 }
 
 function resourceSrcSet(resource: PublicResource): string | undefined {
-  return [resource.preview.small ? `${resource.preview.small.url} 320w` : "", resource.preview.medium ? `${resource.preview.medium.url} 640w` : ""].filter(Boolean).join(", ") || undefined;
+  return [resource.preview.small ? resource.preview.small.url + " 320w" : "", resource.preview.medium ? resource.preview.medium.url + " 640w" : ""].filter(Boolean).join(", ") || undefined;
+}
+
+function uiImage(filename: string): PublicAsset | undefined {
+  const resource = storyUi[filename];
+  return resource?.preview.large ?? resource?.preview.medium ?? resource?.preview.small ?? undefined;
+}
+
+function uiBackground(filename: string): string | undefined {
+  const image = uiImage(filename);
+  return image ? "--story-ui-image: url(\"" + image.url + "\")" : undefined;
 }
 
 function metadataNumber(resource: PublicResource, key: string): number | undefined {
@@ -40,7 +51,7 @@ function visualLabel(resource: PublicResource): string {
 function imageLabel(resource: PublicResource): string {
   const order = metadataNumber(resource, "storyImageOrder");
   const count = metadataNumber(resource, "storyImageCount");
-  return order !== undefined && count !== undefined ? `${visualLabel(resource)} ${order}/${count}` : visualLabel(resource);
+  return order !== undefined && count !== undefined ? visualLabel(resource) + " " + order + "/" + count : visualLabel(resource);
 }
 
 function relatedSong(resource: PublicResource): string | undefined {
@@ -50,7 +61,30 @@ function relatedSong(resource: PublicResource): string | undefined {
 }
 
 function storyEntryId(pathId: number, key: string): string {
-  return `story-entry-${pathId}-${key.replace(/[^a-zA-Z0-9_-]+/gu, "-")}`;
+  return "story-entry-" + pathId + "-" + key.replace(/[^a-zA-Z0-9_-]+/gu, "-");
+}
+
+function sectionPartNumber(label: string): number {
+  const part = label.match(/Part ([IV]+)/u)?.[1];
+  return part === "II" ? 2 : part === "III" ? 3 : 1;
+}
+
+function sectionActLabel(label: string): string {
+  return label.match(/Act [IV]+/u)?.[0] ?? "Act I";
+}
+
+function sectionPartLabel(label: string): string {
+  return label.match(/Part [IV]+/u)?.[0] ?? "Part I";
+}
+
+function sectionArtwork(sectionLabel: string): PublicAsset | undefined {
+  const actNumber = sectionActLabel(sectionLabel) === "Act II" ? 2 : 1;
+  return uiImage("act" + actNumber + "-part" + sectionPartNumber(sectionLabel) + ".png");
+}
+
+function nodeArtwork(entry: { iconKey?: string; resources: PublicResource[] }): PublicAsset | undefined {
+  const icon = entry.iconKey ? uiImage(entry.iconKey + ".png") : undefined;
+  return icon ?? entry.resources.map(resourceImage).find((image): image is PublicAsset => Boolean(image));
 }
 ---
 
@@ -58,206 +92,299 @@ function storyEntryId(pathId: number, key: string): string {
   <div class="story-view-launcher-copy">
     <span class="section-kicker">ARCAEA STORY / EXPERIMENT</span>
     <strong>试用游戏内剧情浏览</strong>
-    <p>按 Act / Part → Path → Entry 查找画面；标准图库仍是默认视图。</p>
+    <p>按游戏内篇章 → 路径 → Entry 节点查找画面；标准图库仍是默认视图。</p>
   </div>
   <button class="button button-secondary" type="button" data-story-view-toggle aria-pressed="false">开启测试版</button>
 </section>
 
 <section class="arcaea-story-explorer" data-arcaea-story-explorer hidden aria-labelledby="arcaea-story-explorer-title">
-  <div class="story-explorer-topbar">
-    <div>
-      <span class="section-kicker">STORY MODE / TEST VIEW</span>
-      <h2 id="arcaea-story-explorer-title">剧情路径</h2>
-      <p>沿用游戏内的分幕、路径与 Entry 顺序；只展示已确认的剧情画面。</p>
-    </div>
-    <button class="button button-secondary" type="button" data-story-view-toggle aria-pressed="true">返回标准图库</button>
-  </div>
-
-  <div class="story-explorer-layout">
-    <aside class="story-explorer-rail" aria-label="Story Act / Part">
-      <span class="story-explorer-rail-label">ACT / PART</span>
-      <div class="story-explorer-section-tabs" role="tablist" aria-label="选择篇章">
-        {model.sections.map((section, index) => (
-          <button class:list={{ "story-section-tab": true, "is-active": index === 0 }} type="button" data-story-section={section.act} role="tab" aria-selected={index === 0} aria-controls={`story-section-${section.act}`}>
-            <span>0{index + 1}</span>
-            <strong>{section.label}</strong>
-            <small>{formatCount(section.resourceCount)} 项画面</small>
-          </button>
-        ))}
+  <div class="story-game-shell">
+    <header class="story-game-hud">
+      <div class="story-game-hud-left">
+        <span class="story-game-hud-story">Story</span>
+        <span class="story-game-hud-caption">STORY MODE</span>
       </div>
-      {model.unassignedResources.length > 0 ? (
-        <button class="story-unassigned-tab" type="button" data-story-unassigned-trigger aria-selected="false">
-          <span>—</span>
-          <strong>未归档</strong>
-          <small>{formatCount(model.unassignedResources.length)} 项待确认</small>
-        </button>
-      ) : null}
-    </aside>
-
-    <div class="story-explorer-stage">
-      <div class="story-explorer-stage-heading">
-        <div>
-          <span class="story-explorer-label">STORY SELECT</span>
-          <h3>选择剧情路径</h3>
-        </div>
-        <div class="story-explorer-coverage" aria-label="剧情画面收录统计">
-          <strong>{formatCount(model.counts.total)}</strong>
-          <span>项画面</span>
-          <small>{formatCount(model.counts.storyCg)} story/cg · {formatCount(model.counts.vnCg)} VN CG</small>
-        </div>
+      <div class="story-game-hud-center">
+        <strong>ARCAEA</strong>
+        <span>MEMORIES / STORY ARCHIVE</span>
       </div>
+      <div class="story-game-hud-right">
+        <span><b>{formatCount(model.counts.total)}</b> CG</span>
+        <span><b>{formatCount(model.sections.length)}</b> PARTS</span>
+        <button class="story-game-hud-close" type="button" data-story-view-toggle aria-pressed="true">标准图库</button>
+      </div>
+    </header>
 
-      {model.sections.map((section, index) => (
-        <section class="story-section-panel" data-story-section-panel={section.act} id={`story-section-${section.act}`} role="tabpanel" hidden={index !== 0}>
-          <div class="story-section-heading">
-            <div>
-              <span class="story-explorer-label">{section.label}</span>
-              <p>{section.paths.length} 条剧情路径</p>
-            </div>
-            <small>{formatCount(section.resourceCount)} 项已确认画面</small>
-          </div>
-          <div class="story-path-list">
-            {section.paths.map((path) => (
-              <button class:list={{ "story-path-button": true, "is-active": path.pathId === firstPathId }} type="button" data-story-path={path.pathId} data-story-path-section={section.act} aria-selected={path.pathId === firstPathId} aria-controls={`story-path-${path.pathId}`}>
-                <span class="story-path-code">{String(path.pathId).padStart(2, "0")}</span>
-                <span class="story-path-copy"><strong>{path.title}</strong><small>{path.typeLabel}</small></span>
-                <span class="story-path-count"><b>{path.resourceCount}</b><small>画面</small></span>
-              </button>
-            ))}
-          </div>
-        </section>
-      ))}
-
-      <section class="story-unassigned-panel" data-story-unassigned-panel hidden>
-        <div class="story-section-heading">
-          <div>
-            <span class="story-explorer-label">UNASSIGNED / REVIEW</span>
-            <h3>未归档画面</h3>
-          </div>
-          <small>{formatCount(model.unassignedResources.length)} 项</small>
+    <div class="story-game-layout">
+      <aside class="story-game-sidebar" aria-label="Story Act and Part">
+        <div class="story-game-sidebar-heading">
+          <span>STORY</span>
+          <strong>SELECT</strong>
         </div>
-        <p class="story-unassigned-note">这些资源仍保留在标准图库中，但当前没有足够的包体路径证据将它们挂到某个 Story Path；不会因为猜测文件名而改变游戏内顺序。</p>
-        <div class="story-cg-grid">
-          {model.unassignedResources.map((resource, index) => {
-            const image = resourceImage(resource);
+        <div class="story-game-sidebar-line"></div>
+        <div class="story-game-section-tabs" role="tablist" aria-label="选择篇章">
+          {model.sections.map((section, index) => {
+            const artwork = sectionArtwork(section.label);
+            const active = index === 0;
             return (
-              <a class="story-cg-card" href={resourceHref(resource)}>
-                <div class="story-cg-card-media">
-                  {image ? <img src={image.url} srcset={resourceSrcSet(resource)} width={image.width} height={image.height} alt={`${resource.displayTitle} ${resource.subtitle ?? ""}`} loading={index < 2 ? "eager" : "lazy"} decoding="async" /> : <span>图片暂不可用</span>}
-                  <span class="story-cg-card-badge">待确认</span>
-                </div>
-                <div class="story-cg-card-body"><strong>{resource.displayTitle}</strong><span>{resource.subtitle ?? "剧情 CG"}</span></div>
-              </a>
+              <button class:list={{ "story-section-tab": true, "is-active": active }} type="button" data-story-section={section.act} role="tab" aria-selected={active} aria-controls={"story-section-" + section.act}>
+                <span class="story-section-tab-art">
+                  {artwork ? <img src={artwork.url} width={artwork.width} height={artwork.height} alt="" loading={index === 0 ? "eager" : "lazy"} decoding="async" /> : null}
+                </span>
+                <span class="story-section-tab-copy">
+                  <small>{sectionActLabel(section.label)}</small>
+                  <strong>{sectionPartLabel(section.label)}</strong>
+                  <em>{section.paths.length} PATHS · {formatCount(section.resourceCount)} CG</em>
+                </span>
+                <span class="story-section-tab-number">{String(index + 1).padStart(2, "0")}</span>
+              </button>
             );
           })}
         </div>
-      </section>
+        {model.unassignedResources.length > 0 ? (
+          <button class="story-unassigned-tab" type="button" data-story-unassigned-trigger aria-selected="false">
+            <span class="story-unassigned-tab-mark">?</span>
+            <span><strong>未归档画面</strong><small>{formatCount(model.unassignedResources.length)} 项待确认</small></span>
+          </button>
+        ) : null}
+        <div class="story-game-sidebar-hint">
+          <span class="story-game-diamond" aria-hidden="true"></span>
+          <p>选择篇章后，沿连线点击 Entry 节点查找目标画面。</p>
+        </div>
+      </aside>
 
-      <div class="story-path-detail-stack">
-        {model.paths.map((path) => (
-          <article class="story-path-detail" data-story-path-detail={path.pathId} id={`story-path-${path.pathId}`} hidden={path.pathId !== firstPathId}>
-            <header class="story-path-detail-header">
-              <div>
-                <span class="story-explorer-label">{path.typeLabel} · {path.sectionLabel}</span>
-                <h3>{path.title}</h3>
-                <p>{path.entries.length} 个剧情节点 · {formatCount(path.resourceCount)} 项画面</p>
-              </div>
-              <span class="story-path-detail-code">PATH {String(path.pathId).padStart(2, "0")}</span>
-            </header>
-
-            <div class="story-entry-strip" role="tablist" aria-label={`${path.title} 剧情 Entry`}>
-              {path.entries.map((entry) => (
-                <button class:list={{ "story-entry-button": true, "is-active": entry.order === 0 }} type="button" data-story-entry data-story-path-id={path.pathId} data-story-entry-key={entry.key} aria-selected={entry.order === 0} aria-controls={storyEntryId(path.pathId, entry.key)}>
-                  <span class="story-entry-number">{entry.key}</span>
-                  <span class="story-entry-label">{entry.visualLabel}</span>
-                  <small>{entry.resources.length > 0 ? `${entry.resources.length} CG` : entry.visual === "animation" ? "动画" : "—"}</small>
-                </button>
-              ))}
-              {path.vnResources.length > 0 ? (
-                <button class="story-entry-button is-virtual" type="button" data-story-entry data-story-path-id={path.pathId} data-story-entry-key="__vn__" aria-selected="false" aria-controls={storyEntryId(path.pathId, "__vn__")}>
-                  <span class="story-entry-number">VN</span>
-                  <span class="story-entry-label">VN CG</span>
-                  <small>{path.vnResources.length} 张</small>
-                </button>
-              ) : null}
+      <main class="story-game-main">
+        <div class="story-game-mainbar">
+          <div>
+            <span class="story-game-label">STORY MAP</span>
+            <h2 id="arcaea-story-explorer-title">剧情节点</h2>
+          </div>
+          <div class="story-game-mainbar-stats">
+            <span>{formatCount(model.counts.assigned)} 已挂接</span>
+            <span>{formatCount(model.counts.unassigned)} 待确认</span>
+            <div class="story-map-zoom-controls" aria-label="地图缩放">
+              <button type="button" data-story-zoom-out aria-label="缩小地图">−</button>
+              <span data-story-zoom-level>100%</span>
+              <button type="button" data-story-zoom-in aria-label="放大地图">＋</button>
+              <button type="button" data-story-zoom-reset aria-label="重置地图缩放">RESET</button>
             </div>
+          </div>
+        </div>
 
-            <div class="story-entry-detail-stack">
-              {path.entries.map((entry) => (
-                <section class="story-entry-panel" data-story-entry-panel data-story-path-id={path.pathId} data-story-entry-key={entry.key} id={storyEntryId(path.pathId, entry.key)} hidden={entry.order !== 0}>
-                  <div class="story-entry-heading">
-                    <div>
-                      <span class="story-explorer-label">ENTRY {entry.key} · {entry.visualLabel}</span>
-                      <h4>{entry.resources.length > 0 ? "剧情 CG" : "剧情节点"}</h4>
-                    </div>
-                    <strong>{entry.resources.length > 0 ? `${entry.resources.length} 项画面` : "无静态 CG"}</strong>
+        {model.sections.map((section, index) => {
+          const backdrop = uiImage("act-bg.jpg");
+          const titleBacking = uiImage("act-title-backing.png");
+          const divider = uiImage("story_pack_divider_horizontal.png");
+          return (
+            <section class="story-map-panel" data-story-section-panel={section.act} id={"story-section-" + section.act} role="tabpanel" hidden={index !== 0}>
+              <div class="story-map-heading">
+                <div class="story-map-act-title">
+                  {titleBacking ? <img src={titleBacking.url} width={titleBacking.width} height={titleBacking.height} alt="" /> : null}
+                  <span><small>{sectionActLabel(section.label)}</small><strong>{sectionPartLabel(section.label)}</strong></span>
+                </div>
+                <div class="story-map-heading-copy">
+                  <strong>{section.label}</strong>
+                  <small>{section.paths.length} 条路径 · {formatCount(section.resourceCount)} 项已确认画面</small>
+                </div>
+              </div>
+
+              <div class="story-map-viewport" data-story-map-viewport tabindex="0" aria-label={section.label + " 剧情节点地图"}>
+                <div class="story-map-world" data-story-map-world>
+                  {backdrop ? <img class="story-map-background" src={backdrop.url} width={backdrop.width} height={backdrop.height} alt="" decoding="async" /> : null}
+                  <div class="story-map-wash" aria-hidden="true"></div>
+                  <div class="story-map-glow story-map-glow-left" aria-hidden="true"></div>
+                  <div class="story-map-glow story-map-glow-right" aria-hidden="true"></div>
+                  <div class="story-map-paths">
+                    {section.paths.map((path, pathIndex) => (
+                      <article class:list={{ "story-map-path": true, "is-active": path.pathId === firstPathId }} data-story-map-path={path.pathId} style={"--story-path-index: " + pathIndex + ";"}>
+                        <button class="story-map-path-title" type="button" data-story-path={path.pathId} data-story-path-section={section.act} aria-selected={path.pathId === firstPathId} aria-controls={"story-path-" + path.pathId} style={divider ? "--story-ui-divider: url(\"" + divider.url + "\")" : undefined}>
+                          <span class="story-map-path-title-name">{path.title}</span>
+                          <small>{path.typeLabel}</small>
+                          <em>{path.entries.length} nodes</em>
+                        </button>
+                        <div class="story-map-route">
+                          {path.entries.map((entry) => {
+                            const artwork = nodeArtwork(entry);
+                            return (
+                              <button class="story-map-node" type="button" data-story-map-entry data-story-path-id={path.pathId} data-story-entry-key={entry.key} aria-label={path.title + " Entry " + entry.key} title={path.title + " · Entry " + entry.key}>
+                                <span class="story-node-visual">
+                                  {artwork ? <img src={artwork.url} width={artwork.width} height={artwork.height} alt="" loading="lazy" decoding="async" /> : <span class="story-node-fallback"><span>{entry.key}</span></span>}
+                                  <span class="story-node-code">{entry.key}</span>
+                                  {entry.resources.length > 0 ? <span class="story-node-count">{entry.resources.length}</span> : null}
+                                  {entry.staffRoll ? <span class="story-node-finale">★</span> : null}
+                                </span>
+                                <span class="story-node-caption">{entry.resources.length > 0 ? entry.resources.length + " CG" : entry.visualLabel}</span>
+                              </button>
+                            );
+                          })}
+                          {path.vnResources.length > 0 ? <span class="story-map-vn-mark" title={path.vnResources.length + " 张 VN CG"}>VN · {path.vnResources.length}</span> : null}
+                        </div>
+                      </article>
+                    ))}
                   </div>
-                  {entry.unlockLabel || entry.staffRoll ? (
-                    <div class="story-entry-meta">
-                      {entry.unlockLabel ? <span>{entry.unlockLabel}</span> : null}
-                      {entry.staffRoll ? <span>播放后进入 Staff Roll</span> : null}
+                </div>
+              </div>
+
+              <div class="story-map-legend">
+                <span><i class="story-legend-diamond"></i> Entry 节点</span>
+                <span><i class="story-legend-line"></i> 游戏内路径连线</span>
+                <span><i class="story-legend-glow"></i> 当前选择</span>
+              </div>
+            </section>
+          );
+        })}
+
+        <section class="story-unassigned-panel" data-story-unassigned-panel hidden>
+          <div class="story-node-inspector-header">
+            <div>
+              <span class="story-game-label">UNASSIGNED / REVIEW</span>
+              <h3>未归档画面</h3>
+            </div>
+            <strong>{formatCount(model.unassignedResources.length)} 项</strong>
+          </div>
+          <p class="story-unassigned-note">这些资源仍保留在标准图库中，但当前没有足够的路径证据将它们挂到某个 Story Path；不会因为猜测文件名而改变游戏内顺序。</p>
+          <div class="story-cg-grid">
+            {model.unassignedResources.map((resource, index) => {
+              const image = resourceImage(resource);
+              return (
+                <a class="story-cg-card" href={resourceHref(resource)}>
+                  <div class="story-cg-card-media">
+                    {image ? <img src={image.url} srcset={resourceSrcSet(resource)} width={image.width} height={image.height} alt={resource.displayTitle + " " + (resource.subtitle ?? "")} loading={index < 2 ? "eager" : "lazy"} decoding="async" /> : <span>图片暂不可用</span>}
+                    <span class="story-cg-card-badge">待确认</span>
+                  </div>
+                  <div class="story-cg-card-body"><strong>{resource.displayTitle}</strong><span>{resource.subtitle ?? "剧情 CG"}</span></div>
+                </a>
+              );
+            })}
+          </div>
+        </section>
+
+        <div class="story-path-detail-stack">
+          {model.paths.map((path) => (
+            <article class="story-path-detail" data-story-path-detail={path.pathId} id={"story-path-" + path.pathId} hidden={path.pathId !== firstPathId}>
+              <header class="story-node-inspector-header">
+                <div>
+                  <span class="story-game-label">{path.typeLabel} · {path.sectionLabel}</span>
+                  <h3>{path.title}</h3>
+                  <p>{path.entries.length} 个剧情节点 · {formatCount(path.resourceCount)} 项画面</p>
+                </div>
+                <span class="story-path-detail-code">PATH {String(path.pathId).padStart(2, "0")}</span>
+              </header>
+
+              <div class="story-entry-strip" role="tablist" aria-label={path.title + " 剧情 Entry"}>
+                {path.entries.map((entry) => (
+                  <button class:list={{ "story-entry-button": true, "is-active": entry.order === 0 }} type="button" data-story-entry data-story-path-id={path.pathId} data-story-entry-key={entry.key} aria-selected={entry.order === 0} aria-controls={storyEntryId(path.pathId, entry.key)}>
+                    <span class="story-entry-number">{entry.key}</span>
+                    <span class="story-entry-label">{entry.visualLabel}</span>
+                    <small>{entry.resources.length > 0 ? entry.resources.length + " CG" : entry.visual === "animation" ? "动画" : "—"}</small>
+                  </button>
+                ))}
+                {path.vnResources.length > 0 ? (
+                  <button class="story-entry-button is-virtual" type="button" data-story-entry data-story-path-id={path.pathId} data-story-entry-key="__vn__" aria-selected="false" aria-controls={storyEntryId(path.pathId, "__vn__")}>
+                    <span class="story-entry-number">VN</span>
+                    <span class="story-entry-label">VN CG</span>
+                    <small>{path.vnResources.length} 张</small>
+                  </button>
+                ) : null}
+              </div>
+
+              <div class="story-entry-detail-stack">
+                {path.entries.map((entry) => {
+                  const artwork = nodeArtwork(entry);
+                  return (
+                    <section class="story-entry-panel" data-story-entry-panel data-story-path-id={path.pathId} data-story-entry-key={entry.key} id={storyEntryId(path.pathId, entry.key)} hidden={entry.order !== 0}>
+                      <div class="story-selected-entry">
+                        <div class="story-selected-entry-node">
+                          {artwork ? <img src={artwork.url} width={artwork.width} height={artwork.height} alt="" loading="lazy" decoding="async" /> : <span>{entry.key}</span>}
+                          <b>{entry.key}</b>
+                        </div>
+                        <div class="story-selected-entry-copy">
+                          <span class="story-game-label">ENTRY {entry.key} · {entry.visualLabel}</span>
+                          <h4>{entry.resources.length > 0 ? "剧情 CG" : "剧情节点"}</h4>
+                          <p>{entry.resources.length > 0 ? entry.resources.length + " 项已确认画面；点击画面可进入资源详情。" : "该节点保留在游戏内剧情链中，但当前没有可单独展示的静态 CG。"}</p>
+                          {entry.unlockLabel || entry.staffRoll ? (
+                            <div class="story-entry-meta">
+                              {entry.unlockLabel ? <span>{entry.unlockLabel}</span> : null}
+                              {entry.staffRoll ? <span>播放后进入 Staff Roll</span> : null}
+                            </div>
+                          ) : null}
+                        </div>
+                      </div>
+                      {entry.resources.length > 0 ? (
+                        <div class="story-cg-grid">
+                          {entry.resources.map((resource, index) => {
+                            const image = resourceImage(resource);
+                            const song = relatedSong(resource);
+                            return (
+                              <a class="story-cg-card" href={resourceHref(resource)}>
+                                <div class="story-cg-card-media">
+                                  {image ? <img src={image.url} srcset={resourceSrcSet(resource)} width={image.width} height={image.height} alt={path.title + " Entry " + entry.key + " " + imageLabel(resource)} loading={index < 2 ? "eager" : "lazy"} decoding="async" /> : <span>图片暂不可用</span>}
+                                  <span class="story-cg-card-badge">{imageLabel(resource)}</span>
+                                </div>
+                                <div class="story-cg-card-body"><strong>{imageLabel(resource)}</strong><span>{song ? "关联：" + song : resource.displayTitle}</span></div>
+                              </a>
+                            );
+                          })}
+                        </div>
+                      ) : (
+                        <div class="story-entry-empty">
+                          <strong>此 Entry 没有可单独展示的静态 CG</strong>
+                          <p>它仍保留在游戏内剧情链中；当前索引只展示已确认的视觉类型，不把 VN 场景贴图误当作 CG。</p>
+                        </div>
+                      )}
+                    </section>
+                  );
+                })}
+                {path.vnResources.length > 0 ? (
+                  <section class="story-entry-panel" data-story-entry-panel data-story-path-id={path.pathId} data-story-entry-key="__vn__" id={storyEntryId(path.pathId, "__vn__")} hidden>
+                    <div class="story-selected-entry">
+                      <div class="story-selected-entry-node story-selected-entry-node-vn"><span>VN</span><b>{path.vnResources.length}</b></div>
+                      <div class="story-selected-entry-copy">
+                        <span class="story-game-label">VN SCENE · {path.title}</span>
+                        <h4>VN CG</h4>
+                        <p>作为当前路径的独立场景素材列出，不与普通贴图混排。</p>
+                      </div>
                     </div>
-                  ) : null}
-                  {entry.resources.length > 0 ? (
                     <div class="story-cg-grid">
-                      {entry.resources.map((resource, index) => {
+                      {path.vnResources.map((resource, index) => {
                         const image = resourceImage(resource);
-                        const song = relatedSong(resource);
                         return (
                           <a class="story-cg-card" href={resourceHref(resource)}>
                             <div class="story-cg-card-media">
-                              {image ? <img src={image.url} srcset={resourceSrcSet(resource)} width={image.width} height={image.height} alt={`${path.title} Entry ${entry.key} ${imageLabel(resource)}`} loading={index < 2 ? "eager" : "lazy"} decoding="async" /> : <span>图片暂不可用</span>}
+                              {image ? <img src={image.url} srcset={resourceSrcSet(resource)} width={image.width} height={image.height} alt={path.title + " " + imageLabel(resource)} loading={index < 2 ? "eager" : "lazy"} decoding="async" /> : <span>图片暂不可用</span>}
                               <span class="story-cg-card-badge">{imageLabel(resource)}</span>
                             </div>
-                            <div class="story-cg-card-body"><strong>{imageLabel(resource)}</strong><span>{song ? `关联：${song}` : resource.displayTitle}</span></div>
+                            <div class="story-cg-card-body"><strong>{imageLabel(resource)}</strong><span>{path.title}</span></div>
                           </a>
                         );
                       })}
                     </div>
-                  ) : (
-                    <div class="story-entry-empty">
-                      <strong>此 Entry 没有可单独展示的静态 CG</strong>
-                      <p>它仍保留在游戏内剧情链中；当前 APK 将此节点标记为 {entry.visualLabel}，不把 VN 场景贴图误当作 CG。</p>
-                    </div>
-                  )}
-                </section>
-              ))}
-              {path.vnResources.length > 0 ? (
-                <section class="story-entry-panel" data-story-entry-panel data-story-path-id={path.pathId} data-story-entry-key="__vn__" id={storyEntryId(path.pathId, "__vn__")} hidden>
-                  <div class="story-entry-heading">
-                    <div>
-                      <span class="story-explorer-label">VN SCENE · {path.title}</span>
-                      <h4>VN CG</h4>
-                    </div>
-                    <strong>{path.vnResources.length} 项画面</strong>
-                  </div>
-                  <p class="story-entry-note">APK 未暴露可靠的 Entry 关系；这些已从 story-texture 中单独筛选出的 VN CG 作为独立场景列出，不与普通贴图混排。</p>
-                  <div class="story-cg-grid">
-                    {path.vnResources.map((resource, index) => {
-                      const image = resourceImage(resource);
-                      return (
-                        <a class="story-cg-card" href={resourceHref(resource)}>
-                          <div class="story-cg-card-media">
-                            {image ? <img src={image.url} srcset={resourceSrcSet(resource)} width={image.width} height={image.height} alt={`${path.title} ${imageLabel(resource)}`} loading={index < 2 ? "eager" : "lazy"} decoding="async" /> : <span>图片暂不可用</span>}
-                            <span class="story-cg-card-badge">{imageLabel(resource)}</span>
-                          </div>
-                          <div class="story-cg-card-body"><strong>{imageLabel(resource)}</strong><span>{path.title}</span></div>
-                        </a>
-                      );
-                    })}
-                  </div>
-                </section>
-              ) : null}
-            </div>
-          </article>
-        ))}
-      </div>
-
-      <footer class="story-explorer-footnote">
-        <span>数据依据 Arcaea {model.source.packageVersion} APK 的 ordering 与节点索引</span>
-        <span>{formatCount(model.counts.assigned)} 项已挂接 · {formatCount(model.counts.unassigned)} 项待确认</span>
-      </footer>
+                  </section>
+                ) : null}
+              </div>
+            </article>
+          ))}
+        </div>
+      </main>
     </div>
+
+    <footer class="story-game-footer">
+      <button class="story-game-footer-button story-game-footer-back" type="button" data-story-view-toggle style={uiBackground("button_back.png")}>
+        <strong>Back</strong><span>标准图库</span>
+      </button>
+      <div class="story-game-footer-status">
+        <span>ARCAEA · STORY MAP</span>
+        <small>包体 {model.source.packageVersion} · 顺序按 ordering 保留</small>
+      </div>
+      <div class="story-game-footer-actions">
+        <button type="button" data-story-zoom-out aria-label="缩小地图">−</button>
+        <button type="button" data-story-zoom-reset aria-label="重置地图缩放">100%</button>
+        <button type="button" data-story-zoom-in aria-label="放大地图">＋</button>
+      </div>
+      <button class="story-game-footer-button story-game-footer-continue" type="button" data-story-view-toggle style={uiBackground("button_continue.png")}>
+        <strong>Close</strong><span>退出测试</span>
+      </button>
+    </footer>
   </div>
 </section>
 

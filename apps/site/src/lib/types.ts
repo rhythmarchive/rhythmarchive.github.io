@@ -73,6 +73,8 @@ export type PublicResource = {
   sizeBytes?: number;
 };
 
+export type PublicStoryUi = Record<string, PublicResource>;
+
 export type PublicCategory = {
   slug: string;
   label: string;
@@ -106,4 +108,7 @@ export type PublicSiteData = {
   games: PublicGameIndex[];
   searchIndex: PublicSearchEntry[];
   galleries: Record<string, PublicResource[]>;
+  storyUi: {
+    arcaea: PublicStoryUi;
+  };
 };
