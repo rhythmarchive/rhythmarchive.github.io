@@ -4,7 +4,7 @@ import type {
   RizlineCategoryBrowseProjectionType,
   InfalsusCategoryBrowseProjectionType,
 } from "../../../../packages/domain/src/browse.js";
-import { categoryLabel, displayDifficultyLabel, gameCategoryLabel, type GameId, type ResourceTypeId } from "./game-config";
+import { categoryLabel, displayFilterDifficultyLabel, gameCategoryLabel, type GameId, type ResourceTypeId } from "./game-config";
 import { galleryKey } from "./catalog-projection";
 import { normalizeSearchText } from "./search";
 import type { PublicResource, PublicSearchEntry, PublicSiteData } from "./types";
@@ -151,7 +151,7 @@ function facetOptions(resources: PublicResource[], key: string, game?: GameId): 
   for (const resource of resources) for (const value of resource.facets?.[key] ?? []) values.add(value);
   return [...values]
     .sort((left, right) => normalizeSearchText(left).localeCompare(normalizeSearchText(right), "zh-CN"))
-    .map((value) => ({ value, label: key === "chart" ? displayDifficultyLabel(value, game ?? resources[0]?.game) : value }));
+    .map((value) => ({ value, label: key === "chart" ? displayFilterDifficultyLabel(value, game ?? resources[0]?.game) : value }));
 }
 
 function facetRange(resources: PublicResource[], key: string): CategoryBrowseFacetRange | undefined {

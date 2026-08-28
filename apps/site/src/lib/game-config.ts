@@ -189,6 +189,11 @@ export function displayDifficultyLabel(value: string, game?: GameId): string {
   return value;
 }
 
+export function displayFilterDifficultyLabel(value: string, game?: GameId): string {
+  if (value === "INSCRIBED" && (game === undefined || game === "arcaea")) return "INS";
+  return displayDifficultyLabel(value, game);
+}
+
 export function displayVariantLabel(variant: { variantKey: string; difficulty?: string | undefined; semanticStatus: string }): string {
   if (variant.difficulty) return displayDifficultyLabel(variant.difficulty);
   if (variant.semanticStatus === "unresolved" || variant.variantKey.includes("256")) return "其他版本";
