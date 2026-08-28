@@ -30,6 +30,9 @@ const variantLabel = resource.variants.find((variant) => variant.label !== "é»˜è
         <img
           src={small.url}
           srcset={srcset || undefined}
+          data-fallback-src={resource.original?.url}
+          data-fallback-width={resource.original?.width}
+          data-fallback-height={resource.original?.height}
           sizes="(max-width: 640px) 50vw, (max-width: 1280px) 20vw, 210px"
           alt={resource.displayTitle}
           width={small.width}

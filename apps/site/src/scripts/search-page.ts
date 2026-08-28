@@ -84,6 +84,11 @@ function createResultCard(resource: PublicResource): HTMLElement {
     img.height = image.height;
     img.loading = "lazy";
     img.decoding = "async";
+    if (resource.original?.url) {
+      img.dataset.fallbackSrc = resource.original.url;
+      if (resource.original.width) img.dataset.fallbackWidth = String(resource.original.width);
+      if (resource.original.height) img.dataset.fallbackHeight = String(resource.original.height);
+    }
     media.append(img);
   } else {
     const placeholder = document.createElement("div");

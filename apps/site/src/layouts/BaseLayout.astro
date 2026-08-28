@@ -48,6 +48,23 @@ const rosOrigin = new URL(ROS_BASE_URL).origin;
         } catch { /* system theme remains the default */ }
       })();
     </script>
+    <script is:inline>
+      document.addEventListener("error", (event) => {
+        const image = event.target;
+        if (!(image instanceof HTMLImageElement)) return;
+        const fallback = image.dataset.fallbackSrc;
+        if (!fallback || image.dataset.fallbackApplied === "true") return;
+        image.dataset.fallbackApplied = "true";
+        image.removeAttribute("srcset");
+        image.src = fallback;
+        const lightboxTrigger = image.closest("[data-lightbox-open]");
+        if (lightboxTrigger instanceof HTMLElement) {
+          lightboxTrigger.dataset.lightboxPreviewUrl = fallback;
+          if (image.dataset.fallbackWidth) lightboxTrigger.dataset.lightboxPreviewWidth = image.dataset.fallbackWidth;
+          if (image.dataset.fallbackHeight) lightboxTrigger.dataset.lightboxPreviewHeight = image.dataset.fallbackHeight;
+        }
+      }, true);
+    </script>
   </head>
   <body class={bodyClass}>
     <SiteHeader />

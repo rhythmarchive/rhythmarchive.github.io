@@ -57,7 +57,7 @@ const ordinaryImageErrors: string[] = [];
 for (const file of htmlFiles) {
   const html = fs.readFileSync(path.join(dist, file), "utf8");
   for (const tag of html.match(/<img\b[^>]*>/giu) ?? []) {
-    for (const source of [...tag.matchAll(/(?:src|srcset)="([^"]+)"/giu)].map((match) => match[1] ?? "")) {
+    for (const source of [...tag.matchAll(/(?:\s)(?:src|srcset)="([^"]+)"/giu)].map((match) => match[1] ?? "")) {
       const candidates = source.split(",").map((part) => part.trim().split(/\s+/u)[0]).filter((candidate): candidate is string => Boolean(candidate));
       for (const candidate of candidates) {
         if (/^https?:\/\//iu.test(candidate) && !previewUrls.has(candidate)) ordinaryImageErrors.push(file + ": " + candidate);

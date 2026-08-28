@@ -29,6 +29,9 @@ const metadata = [...(item.badges ?? []), item.badge, item.selectedArtworkDiffic
         <img
           src={small.url}
           srcset={srcset || undefined}
+          data-fallback-src={item.original?.url}
+          data-fallback-width={item.original?.width}
+          data-fallback-height={item.original?.height}
           sizes="(max-width: 640px) 50vw, (max-width: 1280px) 20vw, 210px"
           alt={item.displayTitle}
           width={small.width}

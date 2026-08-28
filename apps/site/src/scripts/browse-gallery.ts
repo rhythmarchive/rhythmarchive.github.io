@@ -414,6 +414,11 @@ function createCard(item: BrowseGalleryItem, index: number, isSelected: boolean)
     img.decoding = "async";
     const srcset = [item.preview.small ? item.preview.small.url + " 320w" : "", item.preview.medium ? item.preview.medium.url + " 640w" : ""].filter(Boolean).join(", ");
     if (srcset) img.setAttribute("srcset", srcset);
+    if (item.original?.url) {
+      img.dataset.fallbackSrc = item.original.url;
+      if (item.original.width) img.dataset.fallbackWidth = String(item.original.width);
+      if (item.original.height) img.dataset.fallbackHeight = String(item.original.height);
+    }
     img.sizes = "(max-width: 640px) 50vw, (max-width: 1280px) 20vw, 210px";
     media.append(img);
   } else {

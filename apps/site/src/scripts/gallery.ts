@@ -326,6 +326,11 @@ function createCard(resource: PublicResource, index: number, isSelected: boolean
     img.decoding = "async";
     const srcset = [resource.preview.small ? `${resource.preview.small.url} 320w` : "", resource.preview.medium ? `${resource.preview.medium.url} 640w` : ""].filter(Boolean).join(", ");
     if (srcset) img.setAttribute("srcset", srcset);
+    if (resource.original?.url) {
+      img.dataset.fallbackSrc = resource.original.url;
+      if (resource.original.width) img.dataset.fallbackWidth = String(resource.original.width);
+      if (resource.original.height) img.dataset.fallbackHeight = String(resource.original.height);
+    }
     img.sizes = "(max-width: 640px) 50vw, (max-width: 1280px) 20vw, 210px";
     media.append(img);
   } else {
