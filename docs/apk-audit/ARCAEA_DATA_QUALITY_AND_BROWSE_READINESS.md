@@ -39,17 +39,17 @@
 
 ## 3. Story resources
 
-The current `Arcaea_7.0.0c.apk` recheck found 66 physical files under `assets/app-data/story/cg/`. The existing relation CSV covers the 57-file baseline (45 direct entry references and 12 intentionally unresolved files); the nine Divine Oblivion additions are indexed by the package path/node order and cross-checked against the Wiki in `data/arcaea-story-index.json`. That index is pinned to the current APK SHA and is also a generation-time coverage gate, so a later package cannot silently add an unindexed story CG.
+The current `Arcaea_7.0.0c.apk` recheck found 66 physical files under `assets/app-data/story/cg/`. The existing relation CSV covers the 57-file baseline (45 direct entry references and 12 intentionally unresolved files); the nine Divine Oblivion additions are indexed by the package path/node order and cross-checked against the Wiki in `data/arcaea-story-index.json`. The same APK contains 205 VN image files under `assets/app-data/story/vn/res/` and 200 story UI/entry images under `assets/img/story/`, but those families also contain backgrounds, character layers, transitions and UI states. A second, conservative review promotes only the five complete files named `catastrophe/D-O_CG_0.jpg` through `D-O_CG_4.jpg` as `VN CG`; the other 400 `story-texture` resources remain hidden from the public CG gallery. The index is pinned to the current APK SHA and is also a generation-time coverage gate, so a later package cannot silently add an unindexed story visual.
 
 | field | APK source | coverage | reliability | Data Capability | Recommended Public Usage |
 | --- | --- | --- | --- | --- | --- |
 | story path/title/act/order | story2/ordering + entry node key | 186 baseline entries plus current C-node index | High where node matches | Available | Implemented for current story-CG browse |
 | storyType | ordering path type, with entries_* as fallback | 186 baseline entries plus indexed current paths | High where path/node matches | Available | Implemented as story type facet |
 | related song | clearSongId/playableSongBgmId | entry-dependent | High where non-sentinel | Partial | Optional / needs review |
-| CG relation | entry.storyCgPath → cg path; 7.0.0c C-node index | 45/57 baseline direct + 9/9 current additions indexed | Confirmed for direct rows; reviewed package/Wiki evidence for additions; 12 baseline unresolved | Partial | Needs review for unresolved rows |
+| CG relation | entry.storyCgPath → cg path; 7.0.0c C-node index; explicit VN CG review | 45/57 baseline direct + 9/9 current story-cg additions + 5/5 VN CG additions indexed | Confirmed for direct rows; package/Wiki evidence for C-nodes; filename/visual/package evidence for the five D-O VN CGs; 12 baseline unresolved | Partial | Needs review for unresolved rows |
 | VN resource relation | .vns command → vn/res path | 6010/6270 refs resolved | High | Available/Partial | Optional story browse |
 
-The 12 baseline unreferenced CG files remain Unresolved rather than being assigned by filename alone. The 7.0.0c Divine Oblivion still illustrations are the separate reviewed exception: their C-node, path order, and unlock-song relation are all recorded in `data/arcaea-story-index.json`.
+The 12 baseline unreferenced CG files remain Unresolved rather than being assigned by filename alone. The 7.0.0c Divine Oblivion still illustrations are the separate reviewed exception: their C-node, path order, and unlock-song relation are all recorded in `data/arcaea-story-index.json`. The five D-O VN CGs are deliberately attached to the Divine Oblivion path after C-1–C-9 without inventing an Entry relation, because the package does not expose a reliable `storyCgPath` or VN text reference for them.
 
 ## 4. Non-jacket resources
 
@@ -62,7 +62,7 @@ The 12 baseline unreferenced CG files remain Unresolved rather than being assign
 
 ## 5. Product-facing browse guidance
 
-For story-CG browse, use `story2/ordering` path order as the default index, then node order and image order. Expose the Wiki-compatible `Act · Part`, path title and node key as display/search metadata; keep `Main Story`, `Side Story` and `Archive Story` as separate semantic labels. This preserves the game flow without treating a CG filename as a story identity.
+For story-CG browse, use `story2/ordering` path order as the default index, then node order and image order. Expose the Wiki-compatible `Act · Part`, path title and node key as display/search metadata; keep `Main Story`, `Side Story` and `Archive Story` as separate semantic labels. For a reviewed VN CG without a reliable Entry relation, use the path order plus a visible `VN CG · series · n/m` label and never fabricate a node key. This preserves the game flow without treating a CG filename or a runtime texture layer as a story identity.
 
 Recommended public search: title, localized aliases, search_title and artist.
 Recommended public facets: pack, Difficulty Class and Display Level for jacket browse.

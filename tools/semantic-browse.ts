@@ -34,6 +34,13 @@ type ArcaeaStoryCgIndexEntry = {
   imageOrder: number;
   imageCount: number;
 };
+type ArcaeaStoryTextureCgIndexEntry = {
+  assetPath: string;
+  seriesKey: string;
+  pathId: number;
+  imageOrder: number;
+  imageCount: number;
+};
 type ArcaeaStoryIndex = {
   schemaVersion: number;
   game: "arcaea";
@@ -47,8 +54,9 @@ type ArcaeaStoryIndex = {
   sections: Array<{ act: number; label: string; pathIds: number[] }>;
   paths: ArcaeaStoryPath[];
   nodeAnnotations: ArcaeaStoryNodeAnnotation[];
-  coverage: { physicalStoryCgCount: number; baselineRelationCount: number; curatedStoryCgCount: number };
+  coverage: { physicalStoryCgCount: number; baselineRelationCount: number; curatedStoryCgCount: number; storyTextureCgCount: number };
   storyCg: ArcaeaStoryCgIndexEntry[];
+  storyTextureCg: ArcaeaStoryTextureCgIndexEntry[];
 };
 type SemanticPatch = {
   displayTitle?: string;
@@ -397,6 +405,7 @@ function buildArcaeaSemantics(catalog: Catalog, arcaeaBrowse: ReturnType<typeof 
   const mappedPortrait = new Set<string>();
   const mappedAvatar = new Set<string>();
   const indexedStoryCgResources = new Set<string>();
+  const indexedStoryTextureCgResources = new Set<string>();
 
   characterRows.forEach((row, rowIndex) => {
     const resource = findResource(index, "arcaea", row.assetPath ?? "");
@@ -543,17 +552,59 @@ function buildArcaeaSemantics(catalog: Catalog, arcaeaBrowse: ReturnType<typeof 
     });
   });
 
+  storyIndex.storyTextureCg.forEach((curated, curatedIndex) => {
+    const resource = findResource(index, "arcaea", curated.assetPath);
+    if (!resource || resource.resourceType !== "story-texture" || resource.metadata.storyVisualKind !== "vn-cg") return;
+    indexedStoryTextureCgResources.add(resource.id);
+    if (drafts.has(resource.id)) return;
+    const storyPath = storyPathById.get(curated.pathId);
+    const typeLabel = storyTypeLabel(storyPath?.type);
+    const pathTitle = storyPath?.title ?? "剧情 CG";
+    const sectionLabel = storyPath ? storySectionByAct.get(storyPath.act) : undefined;
+    const sourceFilename = curated.assetPath.split("/").pop() ?? curated.assetPath;
+    const imageLabel = `VN CG ${curated.imageOrder}/${curated.imageCount}`;
+    addDraft(drafts, resource, {
+      displayTitle: pathTitle,
+      subtitle: [typeLabel, sectionLabel, "VN CG", curated.seriesKey, imageLabel].filter(Boolean).join(" · "),
+      badges: ["VN CG"],
+      metadata: {
+        storyPathTitle: pathTitle,
+        storyType: typeLabel,
+        ...(storyPath ? { storyPathId: storyPath.pathId, storyAct: String(storyPath.act) } : { storyPathId: curated.pathId }),
+        ...(sectionLabel ? { storySection: sectionLabel } : {}),
+        storyVisualKind: "VN CG",
+        storySeries: curated.seriesKey,
+        storyImageOrder: curated.imageOrder,
+        storyImageCount: curated.imageCount,
+      },
+      searchTerms: [pathTitle, typeLabel, sectionLabel ?? "", "剧情 CG", "VN CG", curated.seriesKey, sourceFilename, curated.assetPath],
+      sortOrder: storySortOrder({}, curatedIndex, curated.pathId, storyPath?.nodes.length ?? 99_998, curated.imageOrder),
+      facets: {
+        type: [typeLabel],
+        path: [pathTitle],
+        ...(sectionLabel ? { section: [sectionLabel] } : {}),
+      },
+    });
+  });
+
   const storyCgResources = catalog.resources.filter((resource) => resource.game === "arcaea" && resource.resourceType === "story-cg" && resource.lifecycle.status === "published");
+  const storyTextureCgResources = catalog.resources.filter((resource) => resource.game === "arcaea" && resource.resourceType === "story-texture" && resource.metadata.storyVisualKind === "vn-cg" && resource.lifecycle.status === "published");
   const baselineStoryCgRows = storyRows.filter((row) => normalizePath(nonEmpty(row.assetPath) ?? "").startsWith("assets/app-data/story/cg/"));
   const missingStoryCgResources = storyCgResources.filter((resource) => !indexedStoryCgResources.has(resource.id));
+  const missingStoryTextureCgResources = storyTextureCgResources.filter((resource) => !indexedStoryTextureCgResources.has(resource.id));
   const missingCuratedStoryCg = storyIndex.storyCg.filter((curated) => {
     const resource = findResource(index, "arcaea", curated.assetPath);
     return !resource || resource.resourceType !== "story-cg";
   });
-  if (baselineStoryCgRows.length !== storyIndex.coverage.baselineRelationCount || storyCgResources.length !== storyIndex.coverage.physicalStoryCgCount || storyIndex.storyCg.length !== storyIndex.coverage.curatedStoryCgCount || missingStoryCgResources.length > 0 || missingCuratedStoryCg.length > 0) {
-    const missing = missingStoryCgResources.map((resource) => resource.provenance[0]?.sourceRelativePath ?? resource.id);
+  const missingCuratedStoryTextureCg = storyIndex.storyTextureCg.filter((curated) => {
+    const resource = findResource(index, "arcaea", curated.assetPath);
+    return !resource || resource.resourceType !== "story-texture" || resource.metadata.storyVisualKind !== "vn-cg";
+  });
+  if (baselineStoryCgRows.length !== storyIndex.coverage.baselineRelationCount || storyCgResources.length !== storyIndex.coverage.physicalStoryCgCount || storyIndex.storyCg.length !== storyIndex.coverage.curatedStoryCgCount || storyTextureCgResources.length !== storyIndex.coverage.storyTextureCgCount || storyIndex.storyTextureCg.length !== storyIndex.coverage.storyTextureCgCount || missingStoryCgResources.length > 0 || missingStoryTextureCgResources.length > 0 || missingCuratedStoryCg.length > 0 || missingCuratedStoryTextureCg.length > 0) {
+    const missing = [...missingStoryCgResources, ...missingStoryTextureCgResources].map((resource) => resource.provenance[0]?.sourceRelativePath ?? resource.id);
     const missingCurated = missingCuratedStoryCg.map((curated) => curated.assetPath);
-    throw new Error(`Arcaea story CG index coverage failed: expected ${storyIndex.coverage.baselineRelationCount} baseline rows and ${storyIndex.coverage.physicalStoryCgCount} resources with ${storyIndex.coverage.curatedStoryCgCount} curated additions, found ${baselineStoryCgRows.length}, ${storyCgResources.length} and ${storyIndex.storyCg.length}; missing [${[...missing, ...missingCurated].join(", ")}]`);
+    const missingCuratedTexture = missingCuratedStoryTextureCg.map((curated) => curated.assetPath);
+    throw new Error(`Arcaea story CG index coverage failed: expected ${storyIndex.coverage.baselineRelationCount} baseline rows, ${storyIndex.coverage.physicalStoryCgCount} story-cg resources, ${storyIndex.coverage.curatedStoryCgCount} story-cg additions and ${storyIndex.coverage.storyTextureCgCount} VN CG additions, found ${baselineStoryCgRows.length}, ${storyCgResources.length}, ${storyIndex.storyCg.length} and ${storyTextureCgResources.length}; missing [${[...missing, ...missingCurated, ...missingCuratedTexture].join(", ")}]`);
   }
 
   const textureRelations = new Map<string, { resource: Resource; rows: CsvRow[] }>();
@@ -700,7 +751,7 @@ function buildArcaeaSemantics(catalog: Catalog, arcaeaBrowse: ReturnType<typeof 
     source: { snapshot: `Arcaea APK ${arcaeaBrowse.source.version}`, sha256: sourceDigest() },
     resources,
   });
-  return { projection, metrics: { characterPortraitMapped: mappedPortrait.size, characterPortraitTotal: portraitResources.size, characterAvatarMapped: mappedAvatar.size, characterAvatarTotal: avatarResources.size, storyCgAnnotated: resources.filter((resource) => resource.resourceType === "story-cg").length, storyCgBaselineRows: baselineStoryCgRows.length, storyCgIndexed: indexedStoryCgResources.size, storyCgTotal: storyCgResources.length, storyCgMissing: missingStoryCgResources.length, storyTextureWithRelation: textureRelations.size, storyTextureTotal: resources.filter((resource) => resource.resourceType === "story-texture").length, backgroundAnnotated: resources.filter((resource) => resource.resourceType === "background").length, packCoverAnnotated: resources.filter((resource) => resource.resourceType === "pack-cover").length, linkplayStickerAnnotated: resources.filter((resource) => resource.resourceType === "sticker").length } };
+  return { projection, metrics: { characterPortraitMapped: mappedPortrait.size, characterPortraitTotal: portraitResources.size, characterAvatarMapped: mappedAvatar.size, characterAvatarTotal: avatarResources.size, storyCgAnnotated: resources.filter((resource) => resource.resourceType === "story-cg").length, storyCgBaselineRows: baselineStoryCgRows.length, storyCgIndexed: indexedStoryCgResources.size + indexedStoryTextureCgResources.size, storyCgTotal: storyCgResources.length + storyTextureCgResources.length, storyCgMissing: missingStoryCgResources.length + missingStoryTextureCgResources.length, storyTextureCgAnnotated: indexedStoryTextureCgResources.size, storyTextureWithRelation: textureRelations.size, storyTextureTotal: resources.filter((resource) => resource.resourceType === "story-texture").length, backgroundAnnotated: resources.filter((resource) => resource.resourceType === "background").length, packCoverAnnotated: resources.filter((resource) => resource.resourceType === "pack-cover").length, linkplayStickerAnnotated: resources.filter((resource) => resource.resourceType === "sticker").length } };
 }
 
 function buildPhigrosSemantics(catalog: Catalog, auditRows: CsvRow[], snapshot: string, digest: string): { projection: CategoryBrowseProjectionType; metrics: Record<string, number> } {

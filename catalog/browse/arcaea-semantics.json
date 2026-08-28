@@ -4,7 +4,7 @@
   "generatedAt": "2026-08-28T08:06:33.798Z",
   "source": {
     "snapshot": "Arcaea APK 7.0.0c",
-    "sha256": "9b4172d46c88c967d5f0786bf24b4a1f1fa263d29a1a8f7a10f72d4377c7db99"
+    "sha256": "89a6c315a22914fdcf9ca84efe5d8c5dfd44a53c4468e78d121b8ff9e7f8b7a6"
   },
   "resources": [
     {
@@ -26659,6 +26659,216 @@
       }
     },
     {
+      "resourceId": "1d677506-0fad-7d74-aab0-56d1742218b1",
+      "resourceType": "story-texture",
+      "displayTitle": "Divine Oblivion",
+      "subtitle": "Main Story · Act II · Part II · VN CG · D-O · VN CG 1/5",
+      "metadata": {
+        "storyPathTitle": "Divine Oblivion",
+        "storyType": "Main Story",
+        "storyPathId": 33,
+        "storyAct": "4",
+        "storySection": "Act II · Part II",
+        "storyVisualKind": "VN CG",
+        "storySeries": "D-O",
+        "storyImageOrder": 1,
+        "storyImageCount": 5
+      },
+      "badges": [
+        "VN CG"
+      ],
+      "searchTerms": [
+        "Divine Oblivion",
+        "Main Story",
+        "Act II · Part II",
+        "剧情 CG",
+        "VN CG",
+        "D-O",
+        "D-O_CG_0.jpg",
+        "assets/app-data/story/vn/res/catastrophe/D-O_CG_0.jpg"
+      ],
+      "sortOrder": 3300901,
+      "facets": {
+        "type": [
+          "Main Story"
+        ],
+        "path": [
+          "Divine Oblivion"
+        ],
+        "section": [
+          "Act II · Part II"
+        ]
+      }
+    },
+    {
+      "resourceId": "a5b70cdc-71fd-7d6b-90be-e0adb2db48ea",
+      "resourceType": "story-texture",
+      "displayTitle": "Divine Oblivion",
+      "subtitle": "Main Story · Act II · Part II · VN CG · D-O · VN CG 2/5",
+      "metadata": {
+        "storyPathTitle": "Divine Oblivion",
+        "storyType": "Main Story",
+        "storyPathId": 33,
+        "storyAct": "4",
+        "storySection": "Act II · Part II",
+        "storyVisualKind": "VN CG",
+        "storySeries": "D-O",
+        "storyImageOrder": 2,
+        "storyImageCount": 5
+      },
+      "badges": [
+        "VN CG"
+      ],
+      "searchTerms": [
+        "Divine Oblivion",
+        "Main Story",
+        "Act II · Part II",
+        "剧情 CG",
+        "VN CG",
+        "D-O",
+        "D-O_CG_1.jpg",
+        "assets/app-data/story/vn/res/catastrophe/D-O_CG_1.jpg"
+      ],
+      "sortOrder": 3300902,
+      "facets": {
+        "type": [
+          "Main Story"
+        ],
+        "path": [
+          "Divine Oblivion"
+        ],
+        "section": [
+          "Act II · Part II"
+        ]
+      }
+    },
+    {
+      "resourceId": "3c0e1282-7452-7ffd-9e23-eca5a1d03f80",
+      "resourceType": "story-texture",
+      "displayTitle": "Divine Oblivion",
+      "subtitle": "Main Story · Act II · Part II · VN CG · D-O · VN CG 3/5",
+      "metadata": {
+        "storyPathTitle": "Divine Oblivion",
+        "storyType": "Main Story",
+        "storyPathId": 33,
+        "storyAct": "4",
+        "storySection": "Act II · Part II",
+        "storyVisualKind": "VN CG",
+        "storySeries": "D-O",
+        "storyImageOrder": 3,
+        "storyImageCount": 5
+      },
+      "badges": [
+        "VN CG"
+      ],
+      "searchTerms": [
+        "Divine Oblivion",
+        "Main Story",
+        "Act II · Part II",
+        "剧情 CG",
+        "VN CG",
+        "D-O",
+        "D-O_CG_2.jpg",
+        "assets/app-data/story/vn/res/catastrophe/D-O_CG_2.jpg"
+      ],
+      "sortOrder": 3300903,
+      "facets": {
+        "type": [
+          "Main Story"
+        ],
+        "path": [
+          "Divine Oblivion"
+        ],
+        "section": [
+          "Act II · Part II"
+        ]
+      }
+    },
+    {
+      "resourceId": "b1f29b9b-5c82-7340-a397-82f6cd2501af",
+      "resourceType": "story-texture",
+      "displayTitle": "Divine Oblivion",
+      "subtitle": "Main Story · Act II · Part II · VN CG · D-O · VN CG 4/5",
+      "metadata": {
+        "storyPathTitle": "Divine Oblivion",
+        "storyType": "Main Story",
+        "storyPathId": 33,
+        "storyAct": "4",
+        "storySection": "Act II · Part II",
+        "storyVisualKind": "VN CG",
+        "storySeries": "D-O",
+        "storyImageOrder": 4,
+        "storyImageCount": 5
+      },
+      "badges": [
+        "VN CG"
+      ],
+      "searchTerms": [
+        "Divine Oblivion",
+        "Main Story",
+        "Act II · Part II",
+        "剧情 CG",
+        "VN CG",
+        "D-O",
+        "D-O_CG_3.jpg",
+        "assets/app-data/story/vn/res/catastrophe/D-O_CG_3.jpg"
+      ],
+      "sortOrder": 3300904,
+      "facets": {
+        "type": [
+          "Main Story"
+        ],
+        "path": [
+          "Divine Oblivion"
+        ],
+        "section": [
+          "Act II · Part II"
+        ]
+      }
+    },
+    {
+      "resourceId": "94e96f2d-eeff-72e4-b59d-71e02d990e34",
+      "resourceType": "story-texture",
+      "displayTitle": "Divine Oblivion",
+      "subtitle": "Main Story · Act II · Part II · VN CG · D-O · VN CG 5/5",
+      "metadata": {
+        "storyPathTitle": "Divine Oblivion",
+        "storyType": "Main Story",
+        "storyPathId": 33,
+        "storyAct": "4",
+        "storySection": "Act II · Part II",
+        "storyVisualKind": "VN CG",
+        "storySeries": "D-O",
+        "storyImageOrder": 5,
+        "storyImageCount": 5
+      },
+      "badges": [
+        "VN CG"
+      ],
+      "searchTerms": [
+        "Divine Oblivion",
+        "Main Story",
+        "Act II · Part II",
+        "剧情 CG",
+        "VN CG",
+        "D-O",
+        "D-O_CG_4.jpg",
+        "assets/app-data/story/vn/res/catastrophe/D-O_CG_4.jpg"
+      ],
+      "sortOrder": 3300905,
+      "facets": {
+        "type": [
+          "Main Story"
+        ],
+        "path": [
+          "Divine Oblivion"
+        ],
+        "section": [
+          "Act II · Part II"
+        ]
+      }
+    },
+    {
       "resourceId": "01a00094-401b-7e6e-83b5-3eb35971ff76",
       "resourceType": "linkplay-preview",
       "displayTitle": "LinkPlay 通用预览",
@@ -35732,81 +35942,6 @@
         "Divine Oblivion · cat_8_6b"
       ],
       "sortOrder": 2500000648,
-      "facets": {}
-    },
-    {
-      "resourceId": "1d677506-0fad-7d74-aab0-56d1742218b1",
-      "resourceType": "story-texture",
-      "displayTitle": "剧情素材 · Divine Oblivion · D O CG 0",
-      "subtitle": "VN/过场技术素材",
-      "metadata": {},
-      "badges": [
-        "待确认"
-      ],
-      "searchTerms": [
-        "Divine Oblivion · D-O_CG_0"
-      ],
-      "sortOrder": 2500000649,
-      "facets": {}
-    },
-    {
-      "resourceId": "a5b70cdc-71fd-7d6b-90be-e0adb2db48ea",
-      "resourceType": "story-texture",
-      "displayTitle": "剧情素材 · Divine Oblivion · D O CG 1",
-      "subtitle": "VN/过场技术素材",
-      "metadata": {},
-      "badges": [
-        "待确认"
-      ],
-      "searchTerms": [
-        "Divine Oblivion · D-O_CG_1"
-      ],
-      "sortOrder": 2500000650,
-      "facets": {}
-    },
-    {
-      "resourceId": "3c0e1282-7452-7ffd-9e23-eca5a1d03f80",
-      "resourceType": "story-texture",
-      "displayTitle": "剧情素材 · Divine Oblivion · D O CG 2",
-      "subtitle": "VN/过场技术素材",
-      "metadata": {},
-      "badges": [
-        "待确认"
-      ],
-      "searchTerms": [
-        "Divine Oblivion · D-O_CG_2"
-      ],
-      "sortOrder": 2500000651,
-      "facets": {}
-    },
-    {
-      "resourceId": "b1f29b9b-5c82-7340-a397-82f6cd2501af",
-      "resourceType": "story-texture",
-      "displayTitle": "剧情素材 · Divine Oblivion · D O CG 3",
-      "subtitle": "VN/过场技术素材",
-      "metadata": {},
-      "badges": [
-        "待确认"
-      ],
-      "searchTerms": [
-        "Divine Oblivion · D-O_CG_3"
-      ],
-      "sortOrder": 2500000652,
-      "facets": {}
-    },
-    {
-      "resourceId": "94e96f2d-eeff-72e4-b59d-71e02d990e34",
-      "resourceType": "story-texture",
-      "displayTitle": "剧情素材 · Divine Oblivion · D O CG 4",
-      "subtitle": "VN/过场技术素材",
-      "metadata": {},
-      "badges": [
-        "待确认"
-      ],
-      "searchTerms": [
-        "Divine Oblivion · D-O_CG_4"
-      ],
-      "sortOrder": 2500000653,
       "facets": {}
     },
     {

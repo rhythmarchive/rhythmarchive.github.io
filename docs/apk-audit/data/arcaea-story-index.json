@@ -78,7 +78,8 @@
   "coverage": {
     "physicalStoryCgCount": 66,
     "baselineRelationCount": 57,
-    "curatedStoryCgCount": 9
+    "curatedStoryCgCount": 9,
+    "storyTextureCgCount": 5
   },
   "storyCg": [
     { "assetPath": "assets/app-data/story/cg/C-2-1.jpg", "nodeKey": "C-2", "imageOrder": 1, "imageCount": 2 },
@@ -90,5 +91,12 @@
     { "assetPath": "assets/app-data/story/cg/C-9-1.jpg", "nodeKey": "C-9", "imageOrder": 1, "imageCount": 3 },
     { "assetPath": "assets/app-data/story/cg/C-9-2.jpg", "nodeKey": "C-9", "imageOrder": 2, "imageCount": 3 },
     { "assetPath": "assets/app-data/story/cg/C-9-3.jpg", "nodeKey": "C-9", "imageOrder": 3, "imageCount": 3 }
+  ],
+  "storyTextureCg": [
+    { "assetPath": "assets/app-data/story/vn/res/catastrophe/D-O_CG_0.jpg", "seriesKey": "D-O", "pathId": 33, "imageOrder": 1, "imageCount": 5 },
+    { "assetPath": "assets/app-data/story/vn/res/catastrophe/D-O_CG_1.jpg", "seriesKey": "D-O", "pathId": 33, "imageOrder": 2, "imageCount": 5 },
+    { "assetPath": "assets/app-data/story/vn/res/catastrophe/D-O_CG_2.jpg", "seriesKey": "D-O", "pathId": 33, "imageOrder": 3, "imageCount": 5 },
+    { "assetPath": "assets/app-data/story/vn/res/catastrophe/D-O_CG_3.jpg", "seriesKey": "D-O", "pathId": 33, "imageOrder": 4, "imageCount": 5 },
+    { "assetPath": "assets/app-data/story/vn/res/catastrophe/D-O_CG_4.jpg", "seriesKey": "D-O", "pathId": 33, "imageOrder": 5, "imageCount": 5 }
   ]
 }

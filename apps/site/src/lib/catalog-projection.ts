@@ -65,9 +65,13 @@ const PUBLIC_METADATA_KEYS = new Set([
 
 const PUBLIC_HIDDEN_RESOURCE_TYPES = new Set<ResourceTypeId>(["story-texture", "rizcard"]);
 
+function isPromotedArcaeaStoryCg(resource: Resource): boolean {
+  return resource.game === "arcaea" && resource.resourceType === "story-texture" && resource.metadata.storyVisualKind === "vn-cg";
+}
 
 function isPublicHiddenResource(resource: Resource): boolean {
   if (resource.resourceType === "startup") return resource.game !== "rotaeno";
+  if (resource.resourceType === "story-texture") return !isPromotedArcaeaStoryCg(resource);
   return PUBLIC_HIDDEN_RESOURCE_TYPES.has(resource.resourceType);
 }
 
@@ -161,14 +165,15 @@ function projectResource(resource: Resource, variants: Variant[], renditionsByVa
   const artist = display.artist ?? (typeof metadata.artist === "string" ? metadata.artist : undefined);
   const charts = publicChartsFromMetadata(resource);
   const specialCharts = publicSpecialChartsFromMetadata(resource);
+  const promotedArcaeaStoryCg = isPromotedArcaeaStoryCg(resource);
 
   return {
     resourceId: resource.id,
     route: `/r/${encodeURIComponent(resource.id)}/`,
     game: resource.game,
     resourceType: resource.resourceType,
-    category: publicCategorySlug(resource.game, resource.resourceType),
-    categoryLabel: publicCategoryLabel(resource.game, resource.resourceType, metadata),
+    category: promotedArcaeaStoryCg ? "story-cg" : publicCategorySlug(resource.game, resource.resourceType),
+    categoryLabel: promotedArcaeaStoryCg ? "剧情 CG" : publicCategoryLabel(resource.game, resource.resourceType, metadata),
     displayTitle: display.title || (resource.game === "rotaeno" ? "Rotaeno \u56fe\u7247\u8d44\u6e90\uff08\u540d\u79f0\u5f85\u6838\u5b9e\uff09" : original?.downloadFilename || "\u672a\u547d\u540d\u8d44\u6e90"),
     ...(artist ? { artist } : {}),
     metadata,

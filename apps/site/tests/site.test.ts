@@ -69,7 +69,7 @@ test("public projection excludes local paths, credentials, and internal provenan
   assert.doesNotMatch(serialized, /[A-Z]:\\/iu);
   assert.doesNotMatch(serialized, /ROS_(?:ACCESS|SECRET)_KEY/iu);
   assert.doesNotMatch(serialized, /(?:provenance|sourceRelativePath|sourceSha256|objectId|objectKey|catalogSchemaVersion)/iu);
-  const hiddenCount = catalog.resources.filter((resource) => resource.lifecycle.status !== "published" || resource.resourceType === "story-texture" || resource.resourceType === "rizcard" || (resource.resourceType === "startup" && resource.game !== "rotaeno")).length;
+  const hiddenCount = catalog.resources.filter((resource) => resource.lifecycle.status !== "published" || (resource.resourceType === "story-texture" && resource.metadata.storyVisualKind !== "vn-cg") || resource.resourceType === "rizcard" || (resource.resourceType === "startup" && resource.game !== "rotaeno")).length;
   assert.equal(projection.resources.length, catalog.resources.length - hiddenCount);
 });
 
@@ -304,7 +304,8 @@ test("category semantic browse data keeps player-facing names and conservative u
   assert.ok((knownCg?.searchTerms ?? []).includes("Shades of Light in a Transcendent Realm"));
   const storyProjection = semantic.arcaea.resources.filter((resource) => resource.resourceType === "story-cg");
   assert.equal(storyProjection.length, 66);
-  assert.equal(story.length, 66);
+  assert.equal(story.length, 71);
+  assert.equal(semantic.arcaea.resources.filter((resource) => resource.metadata.storyVisualKind === "VN CG").length, 5);
   const divineCgs = story.filter((resource) => resource.searchTerms?.some((term) => term.startsWith("C-")));
   assert.equal(divineCgs.length, 9);
   assert.ok(divineCgs.every((resource) => resource.displayTitle === "Divine Oblivion"));
@@ -312,6 +313,12 @@ test("category semantic browse data keeps player-facing names and conservative u
   assert.ok(divineCgs.every((resource) => resource.metadata.storySection === "Act II · Part II"));
   assert.ok(divineCgs.some((resource) => resource.subtitle?.includes("Entry C-2 · CG 1/2") && (resource.badges ?? []).includes("关联：Balor")));
   assert.ok(divineCgs.some((resource) => resource.subtitle?.includes("Entry C-7 · CG 3/3") && (resource.badges ?? []).includes("关联：DEINOS PHAINEIN")));
+  const divineVnCgs = story.filter((resource) => resource.metadata.storyVisualKind === "VN CG");
+  assert.equal(divineVnCgs.length, 5);
+  assert.ok(divineVnCgs.every((resource) => resource.displayTitle === "Divine Oblivion" && resource.category === "story-cg" && resource.resourceType === "story-texture"));
+  assert.ok(divineVnCgs.every((resource) => resource.metadata.storyPathId === 33 && resource.metadata.storySection === "Act II · Part II"));
+  assert.equal(divineVnCgs[0]?.subtitle, "Main Story · Act II · Part II · VN CG · D-O · VN CG 1/5");
+  assert.equal(story.filter((resource) => resource.resourceType === "story-texture").length, 5);
   const liminalLast = story.findIndex((resource) => resource.searchTerms?.includes("23-8"));
   const divineFirst = story.findIndex((resource) => resource.searchTerms?.includes("C-2-1.jpg"));
   assert.ok(liminalLast >= 0 && divineFirst > liminalLast);
