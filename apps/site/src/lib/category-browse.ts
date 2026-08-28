@@ -139,7 +139,7 @@ export function getCategoryBrowseConfig(game: GameId, category: string, resource
 }
 
 function facetDefinitions(game: GameId, category: string): Array<{ key: string; label: string }> {
-  if (game === "arcaea" && category === "story-cg") return [{ key: "path", label: "剧情路径" }, { key: "chapter", label: "章节" }];
+  if (game === "arcaea" && category === "story-cg") return [{ key: "type", label: "剧情类型" }, { key: "section", label: "篇章" }, { key: "path", label: "剧情路径" }, { key: "chapter", label: "章节" }];
   if (game === "arcaea" && category === "story-texture") return [{ key: "entry", label: "剧情 Entry" }];
   if (game === "arcaea" && category === "sticker") return [{ key: "locale", label: "语言" }];
   if (game === "phigros" && category === "pack-cover") return [{ key: "kind", label: "封面类型" }];
@@ -149,8 +149,9 @@ function facetDefinitions(game: GameId, category: string): Array<{ key: string; 
 function facetOptions(resources: PublicResource[], key: string, game?: GameId): CategoryBrowseFacetOption[] {
   const values = new Set<string>();
   for (const resource of resources) for (const value of resource.facets?.[key] ?? []) values.add(value);
-  return [...values]
-    .sort((left, right) => normalizeSearchText(left).localeCompare(normalizeSearchText(right), "zh-CN"))
+  const orderedValues = [...values];
+  if (!(game === "arcaea" && ["type", "section", "path"].includes(key))) orderedValues.sort((left, right) => normalizeSearchText(left).localeCompare(normalizeSearchText(right), "zh-CN"));
+  return orderedValues
     .map((value) => ({ value, label: key === "chart" ? displayFilterDifficultyLabel(value, game ?? resources[0]?.game) : value }));
 }
 

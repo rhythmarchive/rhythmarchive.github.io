@@ -4,7 +4,7 @@
   "generatedAt": "2026-08-28T08:06:33.798Z",
   "source": {
     "snapshot": "Arcaea APK 7.0.0c",
-    "sha256": "75e537d71b3754f03d91ed8642cdb280e1ae415b4e6033c0d8a41680d787f6ad"
+    "sha256": "9b4172d46c88c967d5f0786bf24b4a1f1fa263d29a1a8f7a10f72d4377c7db99"
   },
   "resources": [
     {
@@ -8379,6 +8379,58 @@
       }
     },
     {
+      "resourceId": "01a00093-dc47-7763-9d18-4874af644b8a",
+      "resourceType": "story-cg",
+      "displayTitle": "Arcaea",
+      "subtitle": "Main Story · Act I · Part I · Entry 0-3",
+      "metadata": {
+        "storyPathTitle": "Arcaea",
+        "storyType": "Main Story",
+        "storyPathId": 0,
+        "storyAct": "0",
+        "storySection": "Act I · Part I",
+        "storyChapter": "0",
+        "storyEntry": "3",
+        "storyNode": "0-3",
+        "storyNodeOrder": 2,
+        "relatedSongId": "shadesoflight",
+        "relatedSongTitle": "Shades of Light in a Transcendent Realm"
+      },
+      "badges": [
+        "关联：Shades of Light in a Transcendent Realm"
+      ],
+      "searchTerms": [
+        "Arcaea",
+        "Main Story",
+        "Act I · Part I",
+        "Entry 0-3",
+        "0-3",
+        "assets/app-data/story/cg/0-3.jpg",
+        "shadesoflight",
+        "Shades of Light in a Transcendent Realm",
+        "셰이드 오브 라이트 인 어 트랜센던트 렐름",
+        "셰이즈 오브 라이트 인 어 트랜센던트 렐름",
+        "しぇーずおぶらいといんあとらんせんだんとれるむ",
+        "しぇいずおぶらいといんあとらんせんだんとれるむ",
+        "nvl"
+      ],
+      "sortOrder": 200,
+      "facets": {
+        "type": [
+          "Main Story"
+        ],
+        "path": [
+          "Arcaea"
+        ],
+        "section": [
+          "Act I · Part I"
+        ],
+        "chapter": [
+          "Chapter 0"
+        ]
+      }
+    },
+    {
       "resourceId": "01a00095-f798-78e5-8e98-75684c2d243c",
       "resourceType": "background",
       "displayTitle": "gc lance clear",
@@ -11299,42 +11351,6 @@
       "facets": {
         "pack": [
           "Shared Time"
-        ]
-      }
-    },
-    {
-      "resourceId": "01a00093-dc47-7763-9d18-4874af644b8a",
-      "resourceType": "story-cg",
-      "displayTitle": "Arcaea",
-      "subtitle": "Main Story · Chapter 0 · Entry 3",
-      "metadata": {
-        "storyPathTitle": "Arcaea",
-        "storyType": "Main Story",
-        "storyAct": "0",
-        "storyChapter": "0",
-        "storyEntry": "3",
-        "relatedSongId": "shadesoflight",
-        "relatedSongTitle": "Shades of Light in a Transcendent Realm"
-      },
-      "badges": [
-        "关联：Shades of Light in a Transcendent Realm"
-      ],
-      "searchTerms": [
-        "Arcaea",
-        "Main Story",
-        "Chapter 0 · Entry 3",
-        "0-3",
-        "shadesoflight",
-        "Shades of Light in a Transcendent Realm",
-        "nvl"
-      ],
-      "sortOrder": 3002,
-      "facets": {
-        "path": [
-          "Arcaea"
-        ],
-        "chapter": [
-          "Chapter 0"
         ]
       }
     },
@@ -24421,13 +24437,17 @@
       "resourceId": "01a00093-dd0c-7f79-8e09-f1cfb7bb77da",
       "resourceType": "story-cg",
       "displayTitle": "Eternal Core",
-      "subtitle": "Main Story · Chapter 1 · Entry 1",
+      "subtitle": "Main Story · Act I · Part I · Entry 1-1",
       "metadata": {
         "storyPathTitle": "Eternal Core",
         "storyType": "Main Story",
+        "storyPathId": 1,
         "storyAct": "0",
+        "storySection": "Act I · Part I",
         "storyChapter": "1",
         "storyEntry": "1",
+        "storyNode": "1-1",
+        "storyNodeOrder": 0,
         "relatedSongId": "lumia",
         "relatedSongTitle": "Lumia"
       },
@@ -24437,52 +24457,26 @@
       "searchTerms": [
         "Eternal Core",
         "Main Story",
-        "Chapter 1 · Entry 1",
+        "Act I · Part I",
+        "Entry 1-1",
         "1-1",
+        "assets/app-data/story/cg/1-1.jpg",
         "lumia",
         "Lumia",
+        "루미아",
+        "るみあ",
         "nvl"
       ],
-      "sortOrder": 1001000,
+      "sortOrder": 100000,
       "facets": {
+        "type": [
+          "Main Story"
+        ],
         "path": [
           "Eternal Core"
         ],
-        "chapter": [
-          "Chapter 1"
-        ]
-      }
-    },
-    {
-      "resourceId": "01a00093-dd88-7d29-995e-8a33c0e96c87",
-      "resourceType": "story-cg",
-      "displayTitle": "Luminous Sky",
-      "subtitle": "Main Story · Chapter 1 · Entry 8",
-      "metadata": {
-        "storyPathTitle": "Luminous Sky",
-        "storyType": "Main Story",
-        "storyAct": "0",
-        "storyChapter": "1",
-        "storyEntry": "8",
-        "relatedSongId": "fractureray",
-        "relatedSongTitle": "Fracture Ray"
-      },
-      "badges": [
-        "关联：Fracture Ray"
-      ],
-      "searchTerms": [
-        "Luminous Sky",
-        "Main Story",
-        "Chapter 1 · Entry 8",
-        "1-8",
-        "fractureray",
-        "Fracture Ray",
-        "nvl"
-      ],
-      "sortOrder": 1008004,
-      "facets": {
-        "path": [
-          "Luminous Sky"
+        "section": [
+          "Act I · Part I"
         ],
         "chapter": [
           "Chapter 1"
@@ -24493,13 +24487,17 @@
       "resourceId": "01a00093-e869-795f-8475-57822051e334",
       "resourceType": "story-cg",
       "displayTitle": "Eternal Core",
-      "subtitle": "Main Story · Chapter 2 · Entry 1",
+      "subtitle": "Main Story · Act I · Part I · Entry 2-1",
       "metadata": {
         "storyPathTitle": "Eternal Core",
         "storyType": "Main Story",
+        "storyPathId": 1,
         "storyAct": "0",
+        "storySection": "Act I · Part I",
         "storyChapter": "2",
         "storyEntry": "1",
+        "storyNode": "2-1",
+        "storyNodeOrder": 3,
         "relatedSongId": "viyella",
         "relatedSongTitle": "cry of viyella"
       },
@@ -24509,16 +24507,26 @@
       "searchTerms": [
         "Eternal Core",
         "Main Story",
-        "Chapter 2 · Entry 1",
+        "Act I · Part I",
+        "Entry 2-1",
         "2-1",
+        "assets/app-data/story/cg/2-1.jpg",
         "viyella",
         "cry of viyella",
+        "크라이 오브 비엘라",
+        "くらいおぶゔぃえら",
         "nvl"
       ],
-      "sortOrder": 2001003,
+      "sortOrder": 100300,
       "facets": {
+        "type": [
+          "Main Story"
+        ],
         "path": [
           "Eternal Core"
+        ],
+        "section": [
+          "Act I · Part I"
         ],
         "chapter": [
           "Chapter 2"
@@ -24529,13 +24537,17 @@
       "resourceId": "01a00093-e8e2-76a3-aa07-776d0697d70c",
       "resourceType": "story-cg",
       "displayTitle": "Vicious Labyrinth",
-      "subtitle": "Main Story · Chapter 2 · Entry 8",
+      "subtitle": "Main Story · Act I · Part I · Entry 2-8",
       "metadata": {
         "storyPathTitle": "Vicious Labyrinth",
         "storyType": "Main Story",
+        "storyPathId": 2,
         "storyAct": "0",
+        "storySection": "Act I · Part I",
         "storyChapter": "2",
         "storyEntry": "8",
+        "storyNode": "2-8",
+        "storyNodeOrder": 4,
         "relatedSongId": "grievouslady",
         "relatedSongTitle": "Grievous Lady"
       },
@@ -24545,16 +24557,27 @@
       "searchTerms": [
         "Vicious Labyrinth",
         "Main Story",
-        "Chapter 2 · Entry 8",
+        "Act I · Part I",
+        "Entry 2-8",
         "2-8",
+        "assets/app-data/story/cg/2-8.jpg",
         "grievouslady",
         "Grievous Lady",
+        "그리버스 레이디",
+        "ぐりーゔぁすでれぃー",
+        "ぐりーばすれでぃー",
         "nvl"
       ],
-      "sortOrder": 2008004,
+      "sortOrder": 200400,
       "facets": {
+        "type": [
+          "Main Story"
+        ],
         "path": [
           "Vicious Labyrinth"
+        ],
+        "section": [
+          "Act I · Part I"
         ],
         "chapter": [
           "Chapter 2"
@@ -24562,16 +24585,70 @@
       }
     },
     {
+      "resourceId": "01a00093-dd88-7d29-995e-8a33c0e96c87",
+      "resourceType": "story-cg",
+      "displayTitle": "Luminous Sky",
+      "subtitle": "Main Story · Act I · Part I · Entry 1-8",
+      "metadata": {
+        "storyPathTitle": "Luminous Sky",
+        "storyType": "Main Story",
+        "storyPathId": 3,
+        "storyAct": "0",
+        "storySection": "Act I · Part I",
+        "storyChapter": "1",
+        "storyEntry": "8",
+        "storyNode": "1-8",
+        "storyNodeOrder": 4,
+        "relatedSongId": "fractureray",
+        "relatedSongTitle": "Fracture Ray"
+      },
+      "badges": [
+        "关联：Fracture Ray"
+      ],
+      "searchTerms": [
+        "Luminous Sky",
+        "Main Story",
+        "Act I · Part I",
+        "Entry 1-8",
+        "1-8",
+        "assets/app-data/story/cg/1-8.jpg",
+        "fractureray",
+        "Fracture Ray",
+        "프랙쳐 레이",
+        "ふらくちゃーれい",
+        "nvl"
+      ],
+      "sortOrder": 300400,
+      "facets": {
+        "type": [
+          "Main Story"
+        ],
+        "path": [
+          "Luminous Sky"
+        ],
+        "section": [
+          "Act I · Part I"
+        ],
+        "chapter": [
+          "Chapter 1"
+        ]
+      }
+    },
+    {
       "resourceId": "01a00093-f36e-751b-89ba-52673087d829",
       "resourceType": "story-cg",
       "displayTitle": "Absolute Reason",
-      "subtitle": "Side Story · Chapter 3 · Entry 1",
+      "subtitle": "Side Story · Act I · Part I · Entry 3-1",
       "metadata": {
         "storyPathTitle": "Absolute Reason",
         "storyType": "Side Story",
+        "storyPathId": 4,
         "storyAct": "0",
+        "storySection": "Act I · Part I",
         "storyChapter": "3",
         "storyEntry": "1",
+        "storyNode": "3-1",
+        "storyNodeOrder": 0,
         "relatedSongId": "antithese",
         "relatedSongTitle": "Antithese"
       },
@@ -24581,16 +24658,26 @@
       "searchTerms": [
         "Absolute Reason",
         "Side Story",
-        "Chapter 3 · Entry 1",
+        "Act I · Part I",
+        "Entry 3-1",
         "3-1",
+        "assets/app-data/story/cg/3-1.jpg",
         "antithese",
         "Antithese",
+        "안티테제",
+        "あんちてーぜ",
         "nvl"
       ],
-      "sortOrder": 3001000,
+      "sortOrder": 400000,
       "facets": {
+        "type": [
+          "Side Story"
+        ],
         "path": [
           "Absolute Reason"
+        ],
+        "section": [
+          "Act I · Part I"
         ],
         "chapter": [
           "Chapter 3"
@@ -24601,13 +24688,17 @@
       "resourceId": "01a00093-f3ec-737d-9e93-de61a0044ce5",
       "resourceType": "story-cg",
       "displayTitle": "Crimson Solace",
-      "subtitle": "Side Story · Chapter 4 · Entry 1",
+      "subtitle": "Side Story · Act I · Part I · Entry 4-1",
       "metadata": {
         "storyPathTitle": "Crimson Solace",
         "storyType": "Side Story",
+        "storyPathId": 6,
         "storyAct": "0",
+        "storySection": "Act I · Part I",
         "storyChapter": "4",
         "storyEntry": "1",
+        "storyNode": "4-1",
+        "storyNodeOrder": 0,
         "relatedSongId": "paradise",
         "relatedSongTitle": "Paradise"
       },
@@ -24617,16 +24708,26 @@
       "searchTerms": [
         "Crimson Solace",
         "Side Story",
-        "Chapter 4 · Entry 1",
+        "Act I · Part I",
+        "Entry 4-1",
         "4-1",
+        "assets/app-data/story/cg/4-1.jpg",
         "paradise",
         "Paradise",
+        "파라다이스",
+        "ぱらだいす",
         "nvl"
       ],
-      "sortOrder": 4001000,
+      "sortOrder": 600000,
       "facets": {
+        "type": [
+          "Side Story"
+        ],
         "path": [
           "Crimson Solace"
+        ],
+        "section": [
+          "Act I · Part I"
         ],
         "chapter": [
           "Chapter 4"
@@ -24637,13 +24738,17 @@
       "resourceId": "01a00093-f467-711b-a73b-0e4e11420a9b",
       "resourceType": "story-cg",
       "displayTitle": "Crimson Solace",
-      "subtitle": "Side Story · Chapter 4 · Entry 7",
+      "subtitle": "Side Story · Act I · Part I · Entry 4-7",
       "metadata": {
         "storyPathTitle": "Crimson Solace",
         "storyType": "Side Story",
+        "storyPathId": 6,
         "storyAct": "0",
+        "storySection": "Act I · Part I",
         "storyChapter": "4",
         "storyEntry": "7",
+        "storyNode": "4-7",
+        "storyNodeOrder": 6,
         "relatedSongId": "diode",
         "relatedSongTitle": "Diode"
       },
@@ -24653,16 +24758,26 @@
       "searchTerms": [
         "Crimson Solace",
         "Side Story",
-        "Chapter 4 · Entry 7",
+        "Act I · Part I",
+        "Entry 4-7",
         "4-7",
+        "assets/app-data/story/cg/4-7.jpg",
         "diode",
         "Diode",
+        "다이오드",
+        "だいおーど",
         "nvl"
       ],
-      "sortOrder": 4007006,
+      "sortOrder": 600600,
       "facets": {
+        "type": [
+          "Side Story"
+        ],
         "path": [
           "Crimson Solace"
+        ],
+        "section": [
+          "Act I · Part I"
         ],
         "chapter": [
           "Chapter 4"
@@ -24673,13 +24788,17 @@
       "resourceId": "01a00093-f4e1-744b-a87e-71ceefd07fa2",
       "resourceType": "story-cg",
       "displayTitle": "Ambivalent Vision",
-      "subtitle": "Side Story · Chapter 5 · Entry 1",
+      "subtitle": "Side Story · Act I · Part I · Entry 5-1",
       "metadata": {
         "storyPathTitle": "Ambivalent Vision",
         "storyType": "Side Story",
+        "storyPathId": 7,
         "storyAct": "0",
+        "storySection": "Act I · Part I",
         "storyChapter": "5",
         "storyEntry": "1",
+        "storyNode": "5-1",
+        "storyNodeOrder": 0,
         "relatedSongId": "genesis",
         "relatedSongTitle": "Genesis"
       },
@@ -24689,16 +24808,26 @@
       "searchTerms": [
         "Ambivalent Vision",
         "Side Story",
-        "Chapter 5 · Entry 1",
+        "Act I · Part I",
+        "Entry 5-1",
         "5-1",
+        "assets/app-data/story/cg/5-1.jpg",
         "genesis",
         "Genesis",
+        "제네시스",
+        "じぇねしす",
         "nvl"
       ],
-      "sortOrder": 5001000,
+      "sortOrder": 700000,
       "facets": {
+        "type": [
+          "Side Story"
+        ],
         "path": [
           "Ambivalent Vision"
+        ],
+        "section": [
+          "Act I · Part I"
         ],
         "chapter": [
           "Chapter 5"
@@ -24709,13 +24838,17 @@
       "resourceId": "01a00093-f563-7424-a253-50c8775f2c37",
       "resourceType": "story-cg",
       "displayTitle": "Ambivalent Vision",
-      "subtitle": "Side Story · Chapter 5 · Entry 6",
+      "subtitle": "Side Story · Act I · Part I · Entry 5-6",
       "metadata": {
         "storyPathTitle": "Ambivalent Vision",
         "storyType": "Side Story",
+        "storyPathId": 7,
         "storyAct": "0",
+        "storySection": "Act I · Part I",
         "storyChapter": "5",
         "storyEntry": "6",
+        "storyNode": "5-6",
+        "storyNodeOrder": 5,
         "relatedSongId": "lethaeus",
         "relatedSongTitle": "Lethaeus"
       },
@@ -24725,19 +24858,1803 @@
       "searchTerms": [
         "Ambivalent Vision",
         "Side Story",
-        "Chapter 5 · Entry 6",
+        "Act I · Part I",
+        "Entry 5-6",
         "5-6",
+        "assets/app-data/story/cg/5-6.jpg",
         "lethaeus",
         "Lethaeus",
+        "레테우스",
+        "れーてうす",
         "nvl"
       ],
-      "sortOrder": 5006005,
+      "sortOrder": 700500,
       "facets": {
+        "type": [
+          "Side Story"
+        ],
         "path": [
           "Ambivalent Vision"
         ],
+        "section": [
+          "Act I · Part I"
+        ],
         "chapter": [
           "Chapter 5"
+        ]
+      }
+    },
+    {
+      "resourceId": "01a00093-f5ed-785e-b92c-cd56e04bbc30",
+      "resourceType": "story-cg",
+      "displayTitle": "Ephemeral Page",
+      "subtitle": "Side Story · Act I · Part II · Entry 7-6",
+      "metadata": {
+        "storyPathTitle": "Ephemeral Page",
+        "storyType": "Side Story",
+        "storyPathId": 10,
+        "storyAct": "1",
+        "storySection": "Act I · Part II",
+        "storyChapter": "7",
+        "storyEntry": "6",
+        "storyNode": "7-6",
+        "storyNodeOrder": 5,
+        "relatedSongId": "felis",
+        "relatedSongTitle": "Felis"
+      },
+      "badges": [
+        "关联：Felis"
+      ],
+      "searchTerms": [
+        "Ephemeral Page",
+        "Side Story",
+        "Act I · Part II",
+        "Entry 7-6",
+        "7-6",
+        "assets/app-data/story/cg/7-6.jpg",
+        "felis",
+        "Felis",
+        "펠리스",
+        "ふぇりす",
+        "nvl"
+      ],
+      "sortOrder": 1000500,
+      "facets": {
+        "type": [
+          "Side Story"
+        ],
+        "path": [
+          "Ephemeral Page"
+        ],
+        "section": [
+          "Act I · Part II"
+        ],
+        "chapter": [
+          "Chapter 7"
+        ]
+      }
+    },
+    {
+      "resourceId": "01a00093-def9-786b-b655-4f7feba1f1ce",
+      "resourceType": "story-cg",
+      "displayTitle": "Colorful Dream",
+      "subtitle": "Archive Story · Act I · Part II · Entry 11-2",
+      "metadata": {
+        "storyPathTitle": "Colorful Dream",
+        "storyType": "Archive Story",
+        "storyPathId": 13,
+        "storyAct": "1",
+        "storySection": "Act I · Part II",
+        "storyChapter": "11",
+        "storyEntry": "2",
+        "storyNode": "11-2",
+        "storyNodeOrder": 1,
+        "relatedSongId": "rugie",
+        "relatedSongTitle": "Rugie"
+      },
+      "badges": [
+        "关联：Rugie"
+      ],
+      "searchTerms": [
+        "Colorful Dream",
+        "Archive Story",
+        "Act I · Part II",
+        "Entry 11-2",
+        "11-2",
+        "assets/app-data/story/cg/11-2.jpg",
+        "rugie",
+        "Rugie",
+        "루기아",
+        "るぎあ",
+        "nvl"
+      ],
+      "sortOrder": 1300100,
+      "facets": {
+        "type": [
+          "Archive Story"
+        ],
+        "path": [
+          "Colorful Dream"
+        ],
+        "section": [
+          "Act I · Part II"
+        ],
+        "chapter": [
+          "Chapter 11"
+        ]
+      }
+    },
+    {
+      "resourceId": "01a00093-f66f-75be-837c-216d2e833d95",
+      "resourceType": "story-cg",
+      "displayTitle": "Esoteric Order",
+      "subtitle": "Side Story · Act I · Part III · Entry 9-5",
+      "metadata": {
+        "storyPathTitle": "Esoteric Order",
+        "storyType": "Side Story",
+        "storyPathId": 15,
+        "storyAct": "2",
+        "storySection": "Act I · Part III",
+        "storyChapter": "9",
+        "storyEntry": "5",
+        "storyNode": "9-5",
+        "storyNodeOrder": 4,
+        "relatedSongId": "aegleseeker",
+        "relatedSongTitle": "Aegleseeker"
+      },
+      "badges": [
+        "关联：Aegleseeker"
+      ],
+      "searchTerms": [
+        "Esoteric Order",
+        "Side Story",
+        "Act I · Part III",
+        "Entry 9-5",
+        "9-5",
+        "assets/app-data/story/cg/9-5.jpg",
+        "aegleseeker",
+        "Aegleseeker",
+        "아이글시커",
+        "에이글시커",
+        "あいぐれしーかー",
+        "nvl"
+      ],
+      "sortOrder": 1500400,
+      "facets": {
+        "type": [
+          "Side Story"
+        ],
+        "path": [
+          "Esoteric Order"
+        ],
+        "section": [
+          "Act I · Part III"
+        ],
+        "chapter": [
+          "Chapter 9"
+        ]
+      }
+    },
+    {
+      "resourceId": "01a00093-de83-7835-a260-c3d32188f565",
+      "resourceType": "story-cg",
+      "displayTitle": "Binary Enfold",
+      "subtitle": "Side Story · Act I · Part III · Entry 10-5",
+      "metadata": {
+        "storyPathTitle": "Binary Enfold",
+        "storyType": "Side Story",
+        "storyPathId": 16,
+        "storyAct": "2",
+        "storySection": "Act I · Part III",
+        "storyChapter": "10",
+        "storyEntry": "5",
+        "storyNode": "10-5",
+        "storyNodeOrder": 4,
+        "relatedSongId": "memoryforest",
+        "relatedSongTitle": "Memory Forest"
+      },
+      "badges": [
+        "关联：Memory Forest"
+      ],
+      "searchTerms": [
+        "Binary Enfold",
+        "Side Story",
+        "Act I · Part III",
+        "Entry 10-5",
+        "10-5",
+        "assets/app-data/story/cg/10-5.jpg",
+        "memoryforest",
+        "Memory Forest",
+        "메모리 포레스트",
+        "めもりーふぉれすと",
+        "nvl"
+      ],
+      "sortOrder": 1600400,
+      "facets": {
+        "type": [
+          "Side Story"
+        ],
+        "path": [
+          "Binary Enfold"
+        ],
+        "section": [
+          "Act I · Part III"
+        ],
+        "chapter": [
+          "Chapter 10"
+        ]
+      }
+    },
+    {
+      "resourceId": "01a00093-e272-7131-9e9f-61a4d6f7c472",
+      "resourceType": "story-cg",
+      "displayTitle": "Lasting Eden",
+      "subtitle": "Main Story · Act II · Part I · Entry 15-4",
+      "metadata": {
+        "storyPathTitle": "Lasting Eden",
+        "storyType": "Main Story",
+        "storyPathId": 22,
+        "storyAct": "3",
+        "storySection": "Act II · Part I",
+        "storyChapter": "15",
+        "storyEntry": "4",
+        "storyNode": "15-4",
+        "storyNodeOrder": 3,
+        "relatedSongId": "riseoftheworld",
+        "relatedSongTitle": "Rise of the World"
+      },
+      "badges": [
+        "关联：Rise of the World"
+      ],
+      "searchTerms": [
+        "Lasting Eden",
+        "Main Story",
+        "Act II · Part I",
+        "Entry 15-4",
+        "15-4",
+        "assets/app-data/story/cg/15-4.jpg",
+        "riseoftheworld",
+        "Rise of the World",
+        "라이즈 오브 더 월드",
+        "らいずおぶざわーるど",
+        "nvl"
+      ],
+      "sortOrder": 2200300,
+      "facets": {
+        "type": [
+          "Main Story"
+        ],
+        "path": [
+          "Lasting Eden"
+        ],
+        "section": [
+          "Act II · Part I"
+        ],
+        "chapter": [
+          "Chapter 15"
+        ]
+      }
+    },
+    {
+      "resourceId": "01a00093-e2f0-788f-ba90-c855c6345bc5",
+      "resourceType": "story-cg",
+      "displayTitle": "Severed Eden",
+      "subtitle": "Main Story · Act II · Part I · Entry 16-7",
+      "metadata": {
+        "storyPathTitle": "Severed Eden",
+        "storyType": "Main Story",
+        "storyPathId": 23,
+        "storyAct": "3",
+        "storySection": "Act II · Part I",
+        "storyChapter": "16",
+        "storyEntry": "7",
+        "storyNode": "16-7",
+        "storyNodeOrder": 6,
+        "relatedSongId": "arghena",
+        "relatedSongTitle": "Arghena"
+      },
+      "badges": [
+        "关联：Arghena"
+      ],
+      "searchTerms": [
+        "Severed Eden",
+        "Main Story",
+        "Act II · Part I",
+        "Entry 16-7",
+        "16-7",
+        "assets/app-data/story/cg/16-7-1.jpg",
+        "arghena",
+        "Arghena",
+        "아게나",
+        "아르게나",
+        "あーげな",
+        "あげな",
+        "nvl"
+      ],
+      "sortOrder": 2300600,
+      "facets": {
+        "type": [
+          "Main Story"
+        ],
+        "path": [
+          "Severed Eden"
+        ],
+        "section": [
+          "Act II · Part I"
+        ],
+        "chapter": [
+          "Chapter 16"
+        ]
+      }
+    },
+    {
+      "resourceId": "01a00093-e3df-7bdd-8490-b49fa191feab",
+      "resourceType": "story-cg",
+      "displayTitle": "Severed Eden",
+      "subtitle": "Main Story · Act II · Part I · Entry 16-8",
+      "metadata": {
+        "storyPathTitle": "Severed Eden",
+        "storyType": "Main Story",
+        "storyPathId": 23,
+        "storyAct": "3",
+        "storySection": "Act II · Part I",
+        "storyChapter": "16",
+        "storyEntry": "8",
+        "storyNode": "16-8",
+        "storyNodeOrder": 7,
+        "relatedSongId": "abstrusedilemma",
+        "relatedSongTitle": "Abstruse Dilemma"
+      },
+      "badges": [
+        "关联：Abstruse Dilemma"
+      ],
+      "searchTerms": [
+        "Severed Eden",
+        "Main Story",
+        "Act II · Part I",
+        "Entry 16-8",
+        "16-8",
+        "assets/app-data/story/cg/16-8.jpg",
+        "abstrusedilemma",
+        "Abstruse Dilemma",
+        "앱스트루스 딜레마",
+        "업스트루스 딜레마",
+        "あぶすとぅるーすじれんま",
+        "あぶすとぅるすじれんま",
+        "nvl"
+      ],
+      "sortOrder": 2300700,
+      "facets": {
+        "type": [
+          "Main Story"
+        ],
+        "path": [
+          "Severed Eden"
+        ],
+        "section": [
+          "Act II · Part I"
+        ],
+        "chapter": [
+          "Chapter 16"
+        ]
+      }
+    },
+    {
+      "resourceId": "01a00093-e48b-7ad8-a258-9f02c5380c9b",
+      "resourceType": "story-cg",
+      "displayTitle": "Sunset Radiance",
+      "subtitle": "Side Story · Act II · Part I · Entry 17-6",
+      "metadata": {
+        "storyPathTitle": "Sunset Radiance",
+        "storyType": "Side Story",
+        "storyPathId": 24,
+        "storyAct": "3",
+        "storySection": "Act II · Part I",
+        "storyChapter": "17",
+        "storyEntry": "6",
+        "storyNode": "17-6",
+        "storyNodeOrder": 5,
+        "relatedSongId": "hotarubinoyuki",
+        "relatedSongTitle": "Hotarubi no Yuki"
+      },
+      "badges": [
+        "关联：Hotarubi no Yuki"
+      ],
+      "searchTerms": [
+        "Sunset Radiance",
+        "Side Story",
+        "Act II · Part I",
+        "Entry 17-6",
+        "17-6",
+        "assets/app-data/story/cg/17-6-1.jpg",
+        "hotarubinoyuki",
+        "Hotarubi no Yuki",
+        "반딧불의 눈",
+        "호타루비노 유키",
+        "ほたるびのゆき",
+        "蛍火の雪",
+        "nvl"
+      ],
+      "sortOrder": 2400500,
+      "facets": {
+        "type": [
+          "Side Story"
+        ],
+        "path": [
+          "Sunset Radiance"
+        ],
+        "section": [
+          "Act II · Part I"
+        ],
+        "chapter": [
+          "Chapter 17"
+        ]
+      }
+    },
+    {
+      "resourceId": "01a00093-df71-7b81-9c2b-442c5f9920b3",
+      "resourceType": "story-cg",
+      "displayTitle": "Colorful Dream",
+      "subtitle": "Archive Story · Act II · Part I · Entry 11-8",
+      "metadata": {
+        "storyPathTitle": "Colorful Dream",
+        "storyType": "Archive Story",
+        "storyPathId": 25,
+        "storyAct": "3",
+        "storySection": "Act II · Part I",
+        "storyChapter": "11",
+        "storyEntry": "8",
+        "storyNode": "11-8",
+        "storyNodeOrder": 4,
+        "relatedSongId": "desive",
+        "relatedSongTitle": "Désive"
+      },
+      "badges": [
+        "关联：Désive"
+      ],
+      "searchTerms": [
+        "Colorful Dream",
+        "Archive Story",
+        "Act II · Part I",
+        "Entry 11-8",
+        "11-8",
+        "assets/app-data/story/cg/11-8-1.jpg",
+        "desive",
+        "Désive",
+        "Desive",
+        "디자이브",
+        "でぃざいゔ",
+        "nvl"
+      ],
+      "sortOrder": 2500400,
+      "facets": {
+        "type": [
+          "Archive Story"
+        ],
+        "path": [
+          "Colorful Dream"
+        ],
+        "section": [
+          "Act II · Part I"
+        ],
+        "chapter": [
+          "Chapter 11"
+        ]
+      }
+    },
+    {
+      "resourceId": "01a00093-e096-7573-8e97-c2145ff0b480",
+      "resourceType": "story-cg",
+      "displayTitle": "Unseeing Eyes",
+      "subtitle": "Archive Story · Act II · Part I · Entry 12-6",
+      "metadata": {
+        "storyPathTitle": "Unseeing Eyes",
+        "storyType": "Archive Story",
+        "storyPathId": 26,
+        "storyAct": "3",
+        "storySection": "Act II · Part I",
+        "storyChapter": "12",
+        "storyEntry": "6",
+        "storyNode": "12-6",
+        "storyNodeOrder": 2,
+        "relatedSongId": "hypervision",
+        "relatedSongTitle": "HYPER VISION"
+      },
+      "badges": [
+        "关联：HYPER VISION"
+      ],
+      "searchTerms": [
+        "Unseeing Eyes",
+        "Archive Story",
+        "Act II · Part I",
+        "Entry 12-6",
+        "12-6",
+        "assets/app-data/story/cg/12-6-1.jpg",
+        "hypervision",
+        "HYPER VISION",
+        "하이퍼 비전",
+        "はいぱーゔぃじょん",
+        "はいぱーびじょん",
+        "nvl"
+      ],
+      "sortOrder": 2600200,
+      "facets": {
+        "type": [
+          "Archive Story"
+        ],
+        "path": [
+          "Unseeing Eyes"
+        ],
+        "section": [
+          "Act II · Part I"
+        ],
+        "chapter": [
+          "Chapter 12"
+        ]
+      }
+    },
+    {
+      "resourceId": "01a00093-e56d-77ee-908c-9f6349ff2424",
+      "resourceType": "story-cg",
+      "displayTitle": "Absolute Nihil",
+      "subtitle": "Main Story · Act II · Part I · Entry 18-1",
+      "metadata": {
+        "storyPathTitle": "Absolute Nihil",
+        "storyType": "Main Story",
+        "storyPathId": 27,
+        "storyAct": "3",
+        "storySection": "Act II · Part I",
+        "storyChapter": "18",
+        "storyEntry": "1",
+        "storyNode": "18-1",
+        "storyNodeOrder": 0,
+        "relatedSongId": "_readPreviousEntry"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Absolute Nihil",
+        "Main Story",
+        "Act II · Part I",
+        "Entry 18-1",
+        "18-1",
+        "assets/app-data/story/cg/18-1.jpg",
+        "_readPreviousEntry",
+        "nvl"
+      ],
+      "sortOrder": 2700000,
+      "facets": {
+        "type": [
+          "Main Story"
+        ],
+        "path": [
+          "Absolute Nihil"
+        ],
+        "section": [
+          "Act II · Part I"
+        ],
+        "chapter": [
+          "Chapter 18"
+        ]
+      }
+    },
+    {
+      "resourceId": "01a00093-e5ff-755d-8448-ddd59eaa3baf",
+      "resourceType": "story-cg",
+      "displayTitle": "Absolute Nihil",
+      "subtitle": "Main Story · Act II · Part I · Entry 18-2",
+      "metadata": {
+        "storyPathTitle": "Absolute Nihil",
+        "storyType": "Main Story",
+        "storyPathId": 27,
+        "storyAct": "3",
+        "storySection": "Act II · Part I",
+        "storyChapter": "18",
+        "storyEntry": "2",
+        "storyNode": "18-2",
+        "storyNodeOrder": 1,
+        "relatedSongId": "_readPreviousEntry"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Absolute Nihil",
+        "Main Story",
+        "Act II · Part I",
+        "Entry 18-2",
+        "18-2",
+        "assets/app-data/story/cg/18-2.jpg",
+        "_readPreviousEntry",
+        "nvl"
+      ],
+      "sortOrder": 2700100,
+      "facets": {
+        "type": [
+          "Main Story"
+        ],
+        "path": [
+          "Absolute Nihil"
+        ],
+        "section": [
+          "Act II · Part I"
+        ],
+        "chapter": [
+          "Chapter 18"
+        ]
+      }
+    },
+    {
+      "resourceId": "01a00093-e69d-7298-8644-79a10f5159fc",
+      "resourceType": "story-cg",
+      "displayTitle": "Absolute Nihil",
+      "subtitle": "Main Story · Act II · Part I · Entry 18-6",
+      "metadata": {
+        "storyPathTitle": "Absolute Nihil",
+        "storyType": "Main Story",
+        "storyPathId": 27,
+        "storyAct": "3",
+        "storySection": "Act II · Part I",
+        "storyChapter": "18",
+        "storyEntry": "6",
+        "storyNode": "18-6",
+        "storyNodeOrder": 5,
+        "relatedSongId": "mvurbd",
+        "relatedSongTitle": "MVURBD"
+      },
+      "badges": [
+        "关联：MVURBD"
+      ],
+      "searchTerms": [
+        "Absolute Nihil",
+        "Main Story",
+        "Act II · Part I",
+        "Entry 18-6",
+        "18-6",
+        "assets/app-data/story/cg/18-6.jpg",
+        "mvurbd",
+        "MVURBD",
+        "므브유알보디",
+        "むーぶゆあぼでぃ",
+        "nvl"
+      ],
+      "sortOrder": 2700500,
+      "facets": {
+        "type": [
+          "Main Story"
+        ],
+        "path": [
+          "Absolute Nihil"
+        ],
+        "section": [
+          "Act II · Part I"
+        ],
+        "chapter": [
+          "Chapter 18"
+        ]
+      }
+    },
+    {
+      "resourceId": "01a00093-e73d-7d9f-bee0-05483405e8bf",
+      "resourceType": "story-cg",
+      "displayTitle": "Absolute Nihil",
+      "subtitle": "Main Story · Act II · Part I · Entry 18-7",
+      "metadata": {
+        "storyPathTitle": "Absolute Nihil",
+        "storyType": "Main Story",
+        "storyPathId": 27,
+        "storyAct": "3",
+        "storySection": "Act II · Part I",
+        "storyChapter": "18",
+        "storyEntry": "7",
+        "storyNode": "18-7",
+        "storyNodeOrder": 6,
+        "relatedSongId": "invertedworld",
+        "relatedSongTitle": "Inverted World"
+      },
+      "badges": [
+        "关联：Inverted World"
+      ],
+      "searchTerms": [
+        "Absolute Nihil",
+        "Main Story",
+        "Act II · Part I",
+        "Entry 18-7",
+        "18-7",
+        "assets/app-data/story/cg/18-7.jpg",
+        "invertedworld",
+        "Inverted World",
+        "인버티드 월드",
+        "いんゔぁーてっどわーるど",
+        "いんばーてっどわーるど",
+        "nvl"
+      ],
+      "sortOrder": 2700600,
+      "facets": {
+        "type": [
+          "Main Story"
+        ],
+        "path": [
+          "Absolute Nihil"
+        ],
+        "section": [
+          "Act II · Part I"
+        ],
+        "chapter": [
+          "Chapter 18"
+        ]
+      }
+    },
+    {
+      "resourceId": "01a00093-e9ea-705b-b32f-813c57d25de2",
+      "resourceType": "story-cg",
+      "displayTitle": "Lucent Historia",
+      "subtitle": "Main Story · Act II · Part II · Entry 20-1",
+      "metadata": {
+        "storyPathTitle": "Lucent Historia",
+        "storyType": "Main Story",
+        "storyPathId": 29,
+        "storyAct": "4",
+        "storySection": "Act II · Part II",
+        "storyChapter": "20",
+        "storyEntry": "1",
+        "storyNode": "20-1",
+        "storyNodeOrder": 0,
+        "relatedSongId": "_readPreviousEntry"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Lucent Historia",
+        "Main Story",
+        "Act II · Part II",
+        "Entry 20-1",
+        "20-1",
+        "assets/app-data/story/cg/20-1.jpg",
+        "_readPreviousEntry",
+        "nvl"
+      ],
+      "sortOrder": 2900000,
+      "facets": {
+        "type": [
+          "Main Story"
+        ],
+        "path": [
+          "Lucent Historia"
+        ],
+        "section": [
+          "Act II · Part II"
+        ],
+        "chapter": [
+          "Chapter 20"
+        ]
+      }
+    },
+    {
+      "resourceId": "01a00093-ea8f-75e2-b1a8-2ffe68041b8c",
+      "resourceType": "story-cg",
+      "displayTitle": "Lucent Historia",
+      "subtitle": "Main Story · Act II · Part II · Entry 20-4",
+      "metadata": {
+        "storyPathTitle": "Lucent Historia",
+        "storyType": "Main Story",
+        "storyPathId": 29,
+        "storyAct": "4",
+        "storySection": "Act II · Part II",
+        "storyChapter": "20",
+        "storyEntry": "4",
+        "storyNode": "20-4",
+        "storyNodeOrder": 3,
+        "relatedSongId": "raysofremnant",
+        "relatedSongTitle": "Rays of Remnant"
+      },
+      "badges": [
+        "关联：Rays of Remnant"
+      ],
+      "searchTerms": [
+        "Lucent Historia",
+        "Main Story",
+        "Act II · Part II",
+        "Entry 20-4",
+        "20-4",
+        "assets/app-data/story/cg/20-4.jpg",
+        "raysofremnant",
+        "Rays of Remnant",
+        "레이즈 오브 렘넌트",
+        "れいずおぶれむなんと",
+        "nvl"
+      ],
+      "sortOrder": 2900300,
+      "facets": {
+        "type": [
+          "Main Story"
+        ],
+        "path": [
+          "Lucent Historia"
+        ],
+        "section": [
+          "Act II · Part II"
+        ],
+        "chapter": [
+          "Chapter 20"
+        ]
+      }
+    },
+    {
+      "resourceId": "01a00093-eb27-713c-bb9b-16a8663b642e",
+      "resourceType": "story-cg",
+      "displayTitle": "Lucent Historia",
+      "subtitle": "Main Story · Act II · Part II · Entry 20-6",
+      "metadata": {
+        "storyPathTitle": "Lucent Historia",
+        "storyType": "Main Story",
+        "storyPathId": 29,
+        "storyAct": "4",
+        "storySection": "Act II · Part II",
+        "storyChapter": "20",
+        "storyEntry": "6",
+        "storyNode": "20-6",
+        "storyNodeOrder": 5,
+        "relatedSongId": "lamentrain",
+        "relatedSongTitle": "Lament Rain"
+      },
+      "badges": [
+        "关联：Lament Rain"
+      ],
+      "searchTerms": [
+        "Lucent Historia",
+        "Main Story",
+        "Act II · Part II",
+        "Entry 20-6",
+        "20-6",
+        "assets/app-data/story/cg/20-6.jpg",
+        "lamentrain",
+        "Lament Rain",
+        "라멘트 레인",
+        "らめんとれいん",
+        "nvl"
+      ],
+      "sortOrder": 2900500,
+      "facets": {
+        "type": [
+          "Main Story"
+        ],
+        "path": [
+          "Lucent Historia"
+        ],
+        "section": [
+          "Act II · Part II"
+        ],
+        "chapter": [
+          "Chapter 20"
+        ]
+      }
+    },
+    {
+      "resourceId": "01a00093-ebbf-7d72-a531-af54ca0a567e",
+      "resourceType": "story-cg",
+      "displayTitle": "Extant Anima",
+      "subtitle": "Side Story · Act II · Part II · Entry 21-2",
+      "metadata": {
+        "storyPathTitle": "Extant Anima",
+        "storyType": "Side Story",
+        "storyPathId": 30,
+        "storyAct": "4",
+        "storySection": "Act II · Part II",
+        "storyChapter": "21",
+        "storyEntry": "2",
+        "storyNode": "21-2",
+        "storyNodeOrder": 1,
+        "relatedSongId": "scarletlunar",
+        "relatedSongTitle": "Scarlet Lunar Empress"
+      },
+      "badges": [
+        "关联：Scarlet Lunar Empress"
+      ],
+      "searchTerms": [
+        "Extant Anima",
+        "Side Story",
+        "Act II · Part II",
+        "Entry 21-2",
+        "21-2",
+        "assets/app-data/story/cg/21-2.jpg",
+        "scarletlunar",
+        "Scarlet Lunar Empress",
+        "akatsuki no hime",
+        "붉은 달의 공주",
+        "스칼렛 루나 엠프레스",
+        "아카츠키노 히메",
+        "あかつきのひめ",
+        "朱月ノ姫",
+        "nvl"
+      ],
+      "sortOrder": 3000100,
+      "facets": {
+        "type": [
+          "Side Story"
+        ],
+        "path": [
+          "Extant Anima"
+        ],
+        "section": [
+          "Act II · Part II"
+        ],
+        "chapter": [
+          "Chapter 21"
+        ]
+      }
+    },
+    {
+      "resourceId": "01a00093-ec6c-7efb-81db-e4ae26d10e51",
+      "resourceType": "story-cg",
+      "displayTitle": "Extant Anima",
+      "subtitle": "Side Story · Act II · Part II · Entry 21-3",
+      "metadata": {
+        "storyPathTitle": "Extant Anima",
+        "storyType": "Side Story",
+        "storyPathId": 30,
+        "storyAct": "4",
+        "storySection": "Act II · Part II",
+        "storyChapter": "21",
+        "storyEntry": "3",
+        "storyNode": "21-3",
+        "storyNodeOrder": 2,
+        "relatedSongId": "dualdependency",
+        "relatedSongTitle": "Dual Dependency"
+      },
+      "badges": [
+        "关联：Dual Dependency"
+      ],
+      "searchTerms": [
+        "Extant Anima",
+        "Side Story",
+        "Act II · Part II",
+        "Entry 21-3",
+        "21-3",
+        "assets/app-data/story/cg/21-3.jpg",
+        "dualdependency",
+        "Dual Dependency",
+        "듀얼 디펜던시",
+        "でゅあるでぃぺんでんしー",
+        "nvl"
+      ],
+      "sortOrder": 3000200,
+      "facets": {
+        "type": [
+          "Side Story"
+        ],
+        "path": [
+          "Extant Anima"
+        ],
+        "section": [
+          "Act II · Part II"
+        ],
+        "chapter": [
+          "Chapter 21"
+        ]
+      }
+    },
+    {
+      "resourceId": "01a00093-ed09-7b89-ac87-37e94631624b",
+      "resourceType": "story-cg",
+      "displayTitle": "Extant Anima",
+      "subtitle": "Side Story · Act II · Part II · Entry 21-5",
+      "metadata": {
+        "storyPathTitle": "Extant Anima",
+        "storyType": "Side Story",
+        "storyPathId": 30,
+        "storyAct": "4",
+        "storySection": "Act II · Part II",
+        "storyChapter": "21",
+        "storyEntry": "5",
+        "storyNode": "21-5",
+        "storyNodeOrder": 4,
+        "relatedSongId": "extradimensional",
+        "relatedSongTitle": "Extradimensional Cosmic Phenomenon"
+      },
+      "badges": [
+        "关联：Extradimensional Cosmic Phenomenon"
+      ],
+      "searchTerms": [
+        "Extant Anima",
+        "Side Story",
+        "Act II · Part II",
+        "Entry 21-5",
+        "21-5",
+        "assets/app-data/story/cg/21-5-1.jpg",
+        "extradimensional",
+        "Extradimensional Cosmic Phenomenon",
+        "tajigen uchuu yuugouron",
+        "다차원 우주 융합론",
+        "타지겐 우츄우 유우고우론",
+        "たじげんうちゅうゆうごうろん",
+        "多次元宇宙融合論",
+        "nvl"
+      ],
+      "sortOrder": 3000400,
+      "facets": {
+        "type": [
+          "Side Story"
+        ],
+        "path": [
+          "Extant Anima"
+        ],
+        "section": [
+          "Act II · Part II"
+        ],
+        "chapter": [
+          "Chapter 21"
+        ]
+      }
+    },
+    {
+      "resourceId": "01a00093-ee57-7d73-915c-07cbcbe8e2ae",
+      "resourceType": "story-cg",
+      "displayTitle": "Chapter Experientia",
+      "subtitle": "Side Story · Act II · Part II · Entry 22-5",
+      "metadata": {
+        "storyPathTitle": "Chapter Experientia",
+        "storyType": "Side Story",
+        "storyPathId": 31,
+        "storyAct": "4",
+        "storySection": "Act II · Part II",
+        "storyChapter": "22",
+        "storyEntry": "5",
+        "storyNode": "22-5",
+        "storyNodeOrder": 0,
+        "relatedSongId": "altergate",
+        "relatedSongTitle": "AlterGate"
+      },
+      "badges": [
+        "关联：AlterGate"
+      ],
+      "searchTerms": [
+        "Chapter Experientia",
+        "Side Story",
+        "Act II · Part II",
+        "Entry 22-5",
+        "22-5",
+        "assets/app-data/story/cg/22-1.jpg",
+        "altergate",
+        "AlterGate",
+        "알터게이트",
+        "얼터게이트",
+        "あるたーげーと",
+        "nvl"
+      ],
+      "sortOrder": 3100000,
+      "facets": {
+        "type": [
+          "Side Story"
+        ],
+        "path": [
+          "Chapter Experientia"
+        ],
+        "section": [
+          "Act II · Part II"
+        ],
+        "chapter": [
+          "Chapter 22"
+        ]
+      }
+    },
+    {
+      "resourceId": "01a00093-eefb-7012-a7ff-6f616c5f5f18",
+      "resourceType": "story-cg",
+      "displayTitle": "Chapter Experientia",
+      "subtitle": "Side Story · Act II · Part II · Entry 22-4",
+      "metadata": {
+        "storyPathTitle": "Chapter Experientia",
+        "storyType": "Side Story",
+        "storyPathId": 31,
+        "storyAct": "4",
+        "storySection": "Act II · Part II",
+        "storyChapter": "22",
+        "storyEntry": "4",
+        "storyNode": "22-4",
+        "storyNodeOrder": 1,
+        "relatedSongId": "welcomequeen",
+        "relatedSongTitle": "Welcome, Queen of Fiction."
+      },
+      "badges": [
+        "关联：Welcome, Queen of Fiction."
+      ],
+      "searchTerms": [
+        "Chapter Experientia",
+        "Side Story",
+        "Act II · Part II",
+        "Entry 22-4",
+        "22-4",
+        "assets/app-data/story/cg/22-2-1.jpg",
+        "welcomequeen",
+        "Welcome, Queen of Fiction.",
+        "웰컴 퀸 오브 픽션",
+        "うぇるかむくいーんおぶふぃくしょん",
+        "nvl"
+      ],
+      "sortOrder": 3100100,
+      "facets": {
+        "type": [
+          "Side Story"
+        ],
+        "path": [
+          "Chapter Experientia"
+        ],
+        "section": [
+          "Act II · Part II"
+        ],
+        "chapter": [
+          "Chapter 22"
+        ]
+      }
+    },
+    {
+      "resourceId": "01a00093-f053-758d-9091-71dc5cb95b93",
+      "resourceType": "story-cg",
+      "displayTitle": "Chapter Experientia",
+      "subtitle": "Side Story · Act II · Part II · Entry 22-2",
+      "metadata": {
+        "storyPathTitle": "Chapter Experientia",
+        "storyType": "Side Story",
+        "storyPathId": 31,
+        "storyAct": "4",
+        "storySection": "Act II · Part II",
+        "storyChapter": "22",
+        "storyEntry": "2",
+        "storyNode": "22-2",
+        "storyNodeOrder": 3,
+        "relatedSongId": "incompleteone",
+        "relatedSongTitle": "incomplete the one"
+      },
+      "badges": [
+        "关联：incomplete the one"
+      ],
+      "searchTerms": [
+        "Chapter Experientia",
+        "Side Story",
+        "Act II · Part II",
+        "Entry 22-2",
+        "22-2",
+        "assets/app-data/story/cg/22-4.jpg",
+        "incompleteone",
+        "incomplete the one",
+        "인컴플리트 더 원",
+        "いんこんぷりーとざわん",
+        "nvl"
+      ],
+      "sortOrder": 3100300,
+      "facets": {
+        "type": [
+          "Side Story"
+        ],
+        "path": [
+          "Chapter Experientia"
+        ],
+        "section": [
+          "Act II · Part II"
+        ],
+        "chapter": [
+          "Chapter 22"
+        ]
+      }
+    },
+    {
+      "resourceId": "01a00093-f0f3-7203-9e9a-e67c9b17560e",
+      "resourceType": "story-cg",
+      "displayTitle": "Chapter Experientia",
+      "subtitle": "Side Story · Act II · Part II · Entry 22-1",
+      "metadata": {
+        "storyPathTitle": "Chapter Experientia",
+        "storyType": "Side Story",
+        "storyPathId": 31,
+        "storyAct": "4",
+        "storySection": "Act II · Part II",
+        "storyChapter": "22",
+        "storyEntry": "1",
+        "storyNode": "22-1",
+        "storyNodeOrder": 4,
+        "relatedSongId": "factorder",
+        "relatedSongTitle": "Factorder"
+      },
+      "badges": [
+        "关联：Factorder"
+      ],
+      "searchTerms": [
+        "Chapter Experientia",
+        "Side Story",
+        "Act II · Part II",
+        "Entry 22-1",
+        "22-1",
+        "assets/app-data/story/cg/22-5.jpg",
+        "factorder",
+        "Factorder",
+        "팩토더",
+        "팩트오더",
+        "ふぁくとーだー",
+        "nvl"
+      ],
+      "sortOrder": 3100400,
+      "facets": {
+        "type": [
+          "Side Story"
+        ],
+        "path": [
+          "Chapter Experientia"
+        ],
+        "section": [
+          "Act II · Part II"
+        ],
+        "chapter": [
+          "Chapter 22"
+        ]
+      }
+    },
+    {
+      "resourceId": "01a00093-f19a-7580-a32c-c6718f98d820",
+      "resourceType": "story-cg",
+      "displayTitle": "Liminal Eclipse",
+      "subtitle": "Main Story · Act II · Part II · Entry 23-2",
+      "metadata": {
+        "storyPathTitle": "Liminal Eclipse",
+        "storyType": "Main Story",
+        "storyPathId": 32,
+        "storyAct": "4",
+        "storySection": "Act II · Part II",
+        "storyChapter": "23",
+        "storyEntry": "2",
+        "storyNode": "23-2",
+        "storyNodeOrder": 1,
+        "relatedSongId": "_readPreviousEntry"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Liminal Eclipse",
+        "Main Story",
+        "Act II · Part II",
+        "Entry 23-2",
+        "23-2",
+        "assets/app-data/story/cg/23-2.jpg",
+        "_readPreviousEntry",
+        "nvl"
+      ],
+      "sortOrder": 3200100,
+      "facets": {
+        "type": [
+          "Main Story"
+        ],
+        "path": [
+          "Liminal Eclipse"
+        ],
+        "section": [
+          "Act II · Part II"
+        ],
+        "chapter": [
+          "Chapter 23"
+        ]
+      }
+    },
+    {
+      "resourceId": "01a00093-f23f-78f6-ba04-f47535d91373",
+      "resourceType": "story-cg",
+      "displayTitle": "Liminal Eclipse",
+      "subtitle": "Main Story · Act II · Part II · Entry 23-7",
+      "metadata": {
+        "storyPathTitle": "Liminal Eclipse",
+        "storyType": "Main Story",
+        "storyPathId": 32,
+        "storyAct": "4",
+        "storySection": "Act II · Part II",
+        "storyChapter": "23",
+        "storyEntry": "7",
+        "storyNode": "23-7",
+        "storyNodeOrder": 6,
+        "relatedSongId": "undyingmacula",
+        "relatedSongTitle": "Undying Macula"
+      },
+      "badges": [
+        "关联：Undying Macula"
+      ],
+      "searchTerms": [
+        "Liminal Eclipse",
+        "Main Story",
+        "Act II · Part II",
+        "Entry 23-7",
+        "23-7",
+        "assets/app-data/story/cg/23-7.jpg",
+        "undyingmacula",
+        "Undying Macula",
+        "언다잉 마큘라",
+        "あんだいんぐまーきゅら",
+        "あんだいんぐまきゅら",
+        "nvl"
+      ],
+      "sortOrder": 3200600,
+      "facets": {
+        "type": [
+          "Main Story"
+        ],
+        "path": [
+          "Liminal Eclipse"
+        ],
+        "section": [
+          "Act II · Part II"
+        ],
+        "chapter": [
+          "Chapter 23"
+        ]
+      }
+    },
+    {
+      "resourceId": "01a00093-f2db-7570-8f52-7769bde5af4a",
+      "resourceType": "story-cg",
+      "displayTitle": "Liminal Eclipse",
+      "subtitle": "Main Story · Act II · Part II · Entry 23-8",
+      "metadata": {
+        "storyPathTitle": "Liminal Eclipse",
+        "storyType": "Main Story",
+        "storyPathId": 32,
+        "storyAct": "4",
+        "storySection": "Act II · Part II",
+        "storyChapter": "23",
+        "storyEntry": "8",
+        "storyNode": "23-8",
+        "storyNodeOrder": 7,
+        "relatedSongId": "undyingmacula",
+        "relatedSongTitle": "Undying Macula"
+      },
+      "badges": [
+        "关联：Undying Macula"
+      ],
+      "searchTerms": [
+        "Liminal Eclipse",
+        "Main Story",
+        "Act II · Part II",
+        "Entry 23-8",
+        "23-8",
+        "assets/app-data/story/cg/23-8.jpg",
+        "undyingmacula",
+        "Undying Macula",
+        "언다잉 마큘라",
+        "あんだいんぐまーきゅら",
+        "あんだいんぐまきゅら",
+        "nvl"
+      ],
+      "sortOrder": 3200700,
+      "facets": {
+        "type": [
+          "Main Story"
+        ],
+        "path": [
+          "Liminal Eclipse"
+        ],
+        "section": [
+          "Act II · Part II"
+        ],
+        "chapter": [
+          "Chapter 23"
+        ]
+      }
+    },
+    {
+      "resourceId": "814e4ef8-500c-73ad-b75c-4abc8f31eb16",
+      "resourceType": "story-cg",
+      "displayTitle": "Divine Oblivion",
+      "subtitle": "Main Story · Act II · Part II · Entry C-2 · CG 1/2",
+      "metadata": {
+        "storyPathTitle": "Divine Oblivion",
+        "storyType": "Main Story",
+        "storyPathId": 33,
+        "storyAct": "4",
+        "storySection": "Act II · Part II",
+        "storyNode": "C-2",
+        "storyNodeOrder": 1,
+        "storyImageOrder": 1,
+        "storyImageCount": 2,
+        "relatedSongId": "balor",
+        "relatedSongTitle": "Balor"
+      },
+      "badges": [
+        "关联：Balor"
+      ],
+      "searchTerms": [
+        "Divine Oblivion",
+        "Main Story",
+        "Act II · Part II",
+        "Entry C-2",
+        "C-2",
+        "C-2-1.jpg",
+        "assets/app-data/story/cg/C-2-1.jpg",
+        "balor",
+        "Balor",
+        "발러",
+        "밸러",
+        "ばろーる",
+        "ばろる"
+      ],
+      "sortOrder": 3300101,
+      "facets": {
+        "type": [
+          "Main Story"
+        ],
+        "path": [
+          "Divine Oblivion"
+        ],
+        "section": [
+          "Act II · Part II"
+        ]
+      }
+    },
+    {
+      "resourceId": "c2aecd74-079f-70b1-aaf4-40e0e4efd153",
+      "resourceType": "story-cg",
+      "displayTitle": "Divine Oblivion",
+      "subtitle": "Main Story · Act II · Part II · Entry C-2 · CG 2/2",
+      "metadata": {
+        "storyPathTitle": "Divine Oblivion",
+        "storyType": "Main Story",
+        "storyPathId": 33,
+        "storyAct": "4",
+        "storySection": "Act II · Part II",
+        "storyNode": "C-2",
+        "storyNodeOrder": 1,
+        "storyImageOrder": 2,
+        "storyImageCount": 2,
+        "relatedSongId": "balor",
+        "relatedSongTitle": "Balor"
+      },
+      "badges": [
+        "关联：Balor"
+      ],
+      "searchTerms": [
+        "Divine Oblivion",
+        "Main Story",
+        "Act II · Part II",
+        "Entry C-2",
+        "C-2",
+        "C-2-2.jpg",
+        "assets/app-data/story/cg/C-2-2.jpg",
+        "balor",
+        "Balor",
+        "발러",
+        "밸러",
+        "ばろーる",
+        "ばろる"
+      ],
+      "sortOrder": 3300102,
+      "facets": {
+        "type": [
+          "Main Story"
+        ],
+        "path": [
+          "Divine Oblivion"
+        ],
+        "section": [
+          "Act II · Part II"
+        ]
+      }
+    },
+    {
+      "resourceId": "05e53be1-bc6e-7e8a-866e-a223aaeac79e",
+      "resourceType": "story-cg",
+      "displayTitle": "Divine Oblivion",
+      "subtitle": "Main Story · Act II · Part II · Entry C-5",
+      "metadata": {
+        "storyPathTitle": "Divine Oblivion",
+        "storyType": "Main Story",
+        "storyPathId": 33,
+        "storyAct": "4",
+        "storySection": "Act II · Part II",
+        "storyNode": "C-5",
+        "storyNodeOrder": 4,
+        "storyImageOrder": 1,
+        "storyImageCount": 1,
+        "relatedSongId": "rivenpilgrim",
+        "relatedSongTitle": "Riven Pilgrimage"
+      },
+      "badges": [
+        "关联：Riven Pilgrimage"
+      ],
+      "searchTerms": [
+        "Divine Oblivion",
+        "Main Story",
+        "Act II · Part II",
+        "Entry C-5",
+        "C-5",
+        "C-5.jpg",
+        "assets/app-data/story/cg/C-5.jpg",
+        "rivenpilgrim",
+        "Riven Pilgrimage",
+        "리벤 필그러메이지",
+        "りべんぴるぐりめーじ"
+      ],
+      "sortOrder": 3300401,
+      "facets": {
+        "type": [
+          "Main Story"
+        ],
+        "path": [
+          "Divine Oblivion"
+        ],
+        "section": [
+          "Act II · Part II"
+        ]
+      }
+    },
+    {
+      "resourceId": "c4b34076-908d-7f06-8b42-d190d0c41b01",
+      "resourceType": "story-cg",
+      "displayTitle": "Divine Oblivion",
+      "subtitle": "Main Story · Act II · Part II · Entry C-7 · CG 1/3",
+      "metadata": {
+        "storyPathTitle": "Divine Oblivion",
+        "storyType": "Main Story",
+        "storyPathId": 33,
+        "storyAct": "4",
+        "storySection": "Act II · Part II",
+        "storyNode": "C-7",
+        "storyNodeOrder": 6,
+        "storyImageOrder": 1,
+        "storyImageCount": 3,
+        "relatedSongId": "deinosphainein",
+        "relatedSongTitle": "DEINOS PHAINEIN"
+      },
+      "badges": [
+        "关联：DEINOS PHAINEIN"
+      ],
+      "searchTerms": [
+        "Divine Oblivion",
+        "Main Story",
+        "Act II · Part II",
+        "Entry C-7",
+        "C-7",
+        "C-7-1.jpg",
+        "assets/app-data/story/cg/C-7-1.jpg",
+        "deinosphainein",
+        "DEINOS PHAINEIN",
+        "에이노스 파이네인",
+        "えいのすふぁいねいん"
+      ],
+      "sortOrder": 3300601,
+      "facets": {
+        "type": [
+          "Main Story"
+        ],
+        "path": [
+          "Divine Oblivion"
+        ],
+        "section": [
+          "Act II · Part II"
+        ]
+      }
+    },
+    {
+      "resourceId": "5f62dc93-413c-73cd-9d18-e522946ebaa3",
+      "resourceType": "story-cg",
+      "displayTitle": "Divine Oblivion",
+      "subtitle": "Main Story · Act II · Part II · Entry C-7 · CG 2/3",
+      "metadata": {
+        "storyPathTitle": "Divine Oblivion",
+        "storyType": "Main Story",
+        "storyPathId": 33,
+        "storyAct": "4",
+        "storySection": "Act II · Part II",
+        "storyNode": "C-7",
+        "storyNodeOrder": 6,
+        "storyImageOrder": 2,
+        "storyImageCount": 3,
+        "relatedSongId": "deinosphainein",
+        "relatedSongTitle": "DEINOS PHAINEIN"
+      },
+      "badges": [
+        "关联：DEINOS PHAINEIN"
+      ],
+      "searchTerms": [
+        "Divine Oblivion",
+        "Main Story",
+        "Act II · Part II",
+        "Entry C-7",
+        "C-7",
+        "C-7-2.jpg",
+        "assets/app-data/story/cg/C-7-2.jpg",
+        "deinosphainein",
+        "DEINOS PHAINEIN",
+        "에이노스 파이네인",
+        "えいのすふぁいねいん"
+      ],
+      "sortOrder": 3300602,
+      "facets": {
+        "type": [
+          "Main Story"
+        ],
+        "path": [
+          "Divine Oblivion"
+        ],
+        "section": [
+          "Act II · Part II"
+        ]
+      }
+    },
+    {
+      "resourceId": "29385cfd-2d98-7d9b-bd85-db976e95990d",
+      "resourceType": "story-cg",
+      "displayTitle": "Divine Oblivion",
+      "subtitle": "Main Story · Act II · Part II · Entry C-7 · CG 3/3",
+      "metadata": {
+        "storyPathTitle": "Divine Oblivion",
+        "storyType": "Main Story",
+        "storyPathId": 33,
+        "storyAct": "4",
+        "storySection": "Act II · Part II",
+        "storyNode": "C-7",
+        "storyNodeOrder": 6,
+        "storyImageOrder": 3,
+        "storyImageCount": 3,
+        "relatedSongId": "deinosphainein",
+        "relatedSongTitle": "DEINOS PHAINEIN"
+      },
+      "badges": [
+        "关联：DEINOS PHAINEIN"
+      ],
+      "searchTerms": [
+        "Divine Oblivion",
+        "Main Story",
+        "Act II · Part II",
+        "Entry C-7",
+        "C-7",
+        "C-7-3.jpg",
+        "assets/app-data/story/cg/C-7-3.jpg",
+        "deinosphainein",
+        "DEINOS PHAINEIN",
+        "에이노스 파이네인",
+        "えいのすふぁいねいん"
+      ],
+      "sortOrder": 3300603,
+      "facets": {
+        "type": [
+          "Main Story"
+        ],
+        "path": [
+          "Divine Oblivion"
+        ],
+        "section": [
+          "Act II · Part II"
+        ]
+      }
+    },
+    {
+      "resourceId": "af6eb0f4-e43c-7fc5-b1d8-f22cad4c33d5",
+      "resourceType": "story-cg",
+      "displayTitle": "Divine Oblivion",
+      "subtitle": "Main Story · Act II · Part II · Entry C-9 · CG 1/3",
+      "metadata": {
+        "storyPathTitle": "Divine Oblivion",
+        "storyType": "Main Story",
+        "storyPathId": 33,
+        "storyAct": "4",
+        "storySection": "Act II · Part II",
+        "storyNode": "C-9",
+        "storyNodeOrder": 8,
+        "storyImageOrder": 1,
+        "storyImageCount": 3,
+        "relatedSongId": "ember",
+        "relatedSongTitle": "Ember"
+      },
+      "badges": [
+        "关联：Ember"
+      ],
+      "searchTerms": [
+        "Divine Oblivion",
+        "Main Story",
+        "Act II · Part II",
+        "Entry C-9",
+        "C-9",
+        "C-9-1.jpg",
+        "assets/app-data/story/cg/C-9-1.jpg",
+        "ember",
+        "Ember",
+        "엠버",
+        "えんばー"
+      ],
+      "sortOrder": 3300801,
+      "facets": {
+        "type": [
+          "Main Story"
+        ],
+        "path": [
+          "Divine Oblivion"
+        ],
+        "section": [
+          "Act II · Part II"
+        ]
+      }
+    },
+    {
+      "resourceId": "9d00e6a0-df6a-71f3-9a2c-0f1b92429fe9",
+      "resourceType": "story-cg",
+      "displayTitle": "Divine Oblivion",
+      "subtitle": "Main Story · Act II · Part II · Entry C-9 · CG 2/3",
+      "metadata": {
+        "storyPathTitle": "Divine Oblivion",
+        "storyType": "Main Story",
+        "storyPathId": 33,
+        "storyAct": "4",
+        "storySection": "Act II · Part II",
+        "storyNode": "C-9",
+        "storyNodeOrder": 8,
+        "storyImageOrder": 2,
+        "storyImageCount": 3,
+        "relatedSongId": "ember",
+        "relatedSongTitle": "Ember"
+      },
+      "badges": [
+        "关联：Ember"
+      ],
+      "searchTerms": [
+        "Divine Oblivion",
+        "Main Story",
+        "Act II · Part II",
+        "Entry C-9",
+        "C-9",
+        "C-9-2.jpg",
+        "assets/app-data/story/cg/C-9-2.jpg",
+        "ember",
+        "Ember",
+        "엠버",
+        "えんばー"
+      ],
+      "sortOrder": 3300802,
+      "facets": {
+        "type": [
+          "Main Story"
+        ],
+        "path": [
+          "Divine Oblivion"
+        ],
+        "section": [
+          "Act II · Part II"
+        ]
+      }
+    },
+    {
+      "resourceId": "215b4dfa-ecf3-7bde-b16e-ef8bfd01c55c",
+      "resourceType": "story-cg",
+      "displayTitle": "Divine Oblivion",
+      "subtitle": "Main Story · Act II · Part II · Entry C-9 · CG 3/3",
+      "metadata": {
+        "storyPathTitle": "Divine Oblivion",
+        "storyType": "Main Story",
+        "storyPathId": 33,
+        "storyAct": "4",
+        "storySection": "Act II · Part II",
+        "storyNode": "C-9",
+        "storyNodeOrder": 8,
+        "storyImageOrder": 3,
+        "storyImageCount": 3,
+        "relatedSongId": "ember",
+        "relatedSongTitle": "Ember"
+      },
+      "badges": [
+        "关联：Ember"
+      ],
+      "searchTerms": [
+        "Divine Oblivion",
+        "Main Story",
+        "Act II · Part II",
+        "Entry C-9",
+        "C-9",
+        "C-9-3.jpg",
+        "assets/app-data/story/cg/C-9-3.jpg",
+        "ember",
+        "Ember",
+        "엠버",
+        "えんばー"
+      ],
+      "sortOrder": 3300803,
+      "facets": {
+        "type": [
+          "Main Story"
+        ],
+        "path": [
+          "Divine Oblivion"
+        ],
+        "section": [
+          "Act II · Part II"
         ]
       }
     },
@@ -29225,82 +31142,313 @@
       }
     },
     {
-      "resourceId": "01a00093-f5ed-785e-b92c-cd56e04bbc30",
+      "resourceId": "01a00093-de0a-72fa-a74b-8bcf6d620942",
       "resourceType": "story-cg",
-      "displayTitle": "Ephemeral Page",
-      "subtitle": "Side Story · Chapter 7 · Entry 6",
+      "displayTitle": "Main Story",
+      "subtitle": "Main Story · Entry 1-6",
       "metadata": {
-        "storyPathTitle": "Ephemeral Page",
-        "storyType": "Side Story",
-        "storyAct": "1",
-        "storyChapter": "7",
+        "storyType": "Main Story",
+        "storyChapter": "1",
         "storyEntry": "6",
-        "relatedSongId": "felis",
-        "relatedSongTitle": "Felis"
+        "storyNode": "1-6",
+        "relatedSongId": "etherstrike",
+        "relatedSongTitle": "Ether Strike"
       },
       "badges": [
-        "关联：Felis"
+        "关联：Ether Strike"
       ],
       "searchTerms": [
-        "Ephemeral Page",
-        "Side Story",
-        "Chapter 7 · Entry 6",
-        "7-6",
-        "felis",
-        "Felis",
+        "Main Story",
+        "Entry 1-6",
+        "1-6",
+        "assets/app-data/story/cg/1-ZR.jpg",
+        "etherstrike",
+        "Ether Strike",
+        "에테르 스트라이크",
+        "えーてるすとらいく",
         "nvl"
       ],
-      "sortOrder": 1007006005,
+      "sortOrder": 1999002059,
       "facets": {
+        "type": [
+          "Main Story"
+        ],
         "path": [
-          "Ephemeral Page"
+          "Main Story"
         ],
         "chapter": [
-          "Chapter 7"
+          "Chapter 1"
         ]
       }
     },
     {
-      "resourceId": "01a00093-def9-786b-b655-4f7feba1f1ce",
+      "resourceId": "01a00093-e966-75dd-9ad8-c54bd537c5e0",
       "resourceType": "story-cg",
-      "displayTitle": "Colorful Dream",
-      "subtitle": "Side Story · Chapter 11 · Entry 2",
+      "displayTitle": "Main Story",
+      "subtitle": "Main Story · Entry 2-6",
       "metadata": {
-        "storyPathTitle": "Colorful Dream",
-        "storyType": "Side Story",
-        "storyAct": "1",
-        "storyChapter": "11",
-        "storyEntry": "2",
-        "relatedSongId": "rugie",
-        "relatedSongTitle": "Rugie"
+        "storyType": "Main Story",
+        "storyChapter": "2",
+        "storyEntry": "6",
+        "storyNode": "2-6",
+        "relatedSongId": "axiumcrisis",
+        "relatedSongTitle": "Axium Crisis"
       },
       "badges": [
-        "关联：Rugie"
+        "关联：Axium Crisis"
       ],
       "searchTerms": [
-        "Colorful Dream",
-        "Side Story",
-        "Chapter 11 · Entry 2",
-        "11-2",
-        "rugie",
-        "Rugie",
+        "Main Story",
+        "Entry 2-6",
+        "2-6",
+        "assets/app-data/story/cg/2-D.jpg",
+        "axiumcrisis",
+        "Axium Crisis",
+        "악시움 크라이시스",
+        "액시움 크라이시스",
+        "억시움 크라이시스",
+        "あくしうむくらいしす",
         "nvl"
       ],
-      "sortOrder": 1011002001,
+      "sortOrder": 1999003059,
       "facets": {
+        "type": [
+          "Main Story"
+        ],
         "path": [
-          "Colorful Dream"
+          "Main Story"
         ],
         "chapter": [
-          "Chapter 11"
+          "Chapter 2"
+        ]
+      }
+    },
+    {
+      "resourceId": "01a00093-e1ce-7c14-b13c-cfbc54d52093",
+      "resourceType": "story-cg",
+      "displayTitle": "Side Story",
+      "subtitle": "Side Story · Entry 12-7",
+      "metadata": {
+        "storyType": "Side Story",
+        "storyChapter": "12",
+        "storyEntry": "7",
+        "storyNode": "12-7",
+        "relatedSongId": "_hiddenUntilRead"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Side Story",
+        "Entry 12-7",
+        "12-7",
+        "assets/app-data/story/cg/12-X.jpg",
+        "_hiddenUntilRead",
+        "nvl"
+      ],
+      "sortOrder": 1999013069,
+      "facets": {
+        "type": [
+          "Side Story"
+        ],
+        "path": [
+          "Side Story"
+        ],
+        "chapter": [
+          "Chapter 12"
+        ]
+      }
+    },
+    {
+      "resourceId": "01a00093-e7d6-79e4-b9c8-cd3a5d6d26e1",
+      "resourceType": "story-cg",
+      "displayTitle": "Side Story",
+      "subtitle": "Side Story · Entry 18-8",
+      "metadata": {
+        "storyType": "Side Story",
+        "storyChapter": "18",
+        "storyEntry": "8",
+        "storyNode": "18-8",
+        "relatedSongId": "vulcanus",
+        "relatedSongTitle": "Vulcānus"
+      },
+      "badges": [
+        "关联：Vulcānus"
+      ],
+      "searchTerms": [
+        "Side Story",
+        "Entry 18-8",
+        "18-8",
+        "assets/app-data/story/cg/18-8.jpg",
+        "vulcanus",
+        "Vulcānus",
+        "Vulcanus",
+        "불카누스",
+        "うるかーぬす",
+        "うるかぬす",
+        "nvl"
+      ],
+      "sortOrder": 1999019079,
+      "facets": {
+        "type": [
+          "Side Story"
+        ],
+        "path": [
+          "Side Story"
+        ],
+        "chapter": [
+          "Chapter 18"
+        ]
+      }
+    },
+    {
+      "resourceId": "01a00093-f704-75cb-b705-2e0c088b306c",
+      "resourceType": "story-cg",
+      "displayTitle": "Side Story",
+      "subtitle": "Side Story · Entry 99-6",
+      "metadata": {
+        "storyType": "Side Story",
+        "storyChapter": "99",
+        "storyEntry": "6",
+        "storyNode": "99-6",
+        "relatedSongId": "lightningscrew",
+        "relatedSongTitle": "Lightning Screw"
+      },
+      "badges": [
+        "关联：Lightning Screw"
+      ],
+      "searchTerms": [
+        "Side Story",
+        "Entry 99-6",
+        "99-6",
+        "assets/app-data/story/cg/99-6.jpg",
+        "lightningscrew",
+        "Lightning Screw",
+        "라이트닝 스크류",
+        "らいとにんぐすくりゅー",
+        "nvl"
+      ],
+      "sortOrder": 1999100059,
+      "facets": {
+        "type": [
+          "Side Story"
+        ],
+        "path": [
+          "Side Story"
+        ],
+        "chapter": [
+          "Chapter 99"
+        ]
+      }
+    },
+    {
+      "resourceId": "01a00093-fb71-777b-ac2a-a145ec0302d1",
+      "resourceType": "story-cg",
+      "displayTitle": "Main Story",
+      "subtitle": "Main Story · Entry 101-5",
+      "metadata": {
+        "storyType": "Main Story",
+        "storyChapter": "101",
+        "storyEntry": "5",
+        "storyNode": "101-5",
+        "relatedSongId": "dantalion",
+        "relatedSongTitle": "Dantalion"
+      },
+      "badges": [
+        "关联：Dantalion"
+      ],
+      "searchTerms": [
+        "Main Story",
+        "Entry 101-5",
+        "101-5",
+        "assets/app-data/story/cg/V-10.jpg",
+        "dantalion",
+        "Dantalion",
+        "단탈라이온",
+        "단탈리온",
+        "だんたりおん",
+        "nvl"
+      ],
+      "sortOrder": 1999102049,
+      "facets": {
+        "type": [
+          "Main Story"
+        ],
+        "path": [
+          "Main Story"
+        ],
+        "chapter": [
+          "Chapter 101"
+        ]
+      }
+    },
+    {
+      "resourceId": "01a00093-f8e6-79f9-8bbf-0335b80d9938",
+      "resourceType": "story-cg",
+      "displayTitle": "Main Story",
+      "subtitle": "Main Story · Entry 102-2",
+      "metadata": {
+        "storyType": "Main Story",
+        "storyChapter": "102",
+        "storyEntry": "2",
+        "storyNode": "102-2"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Main Story",
+        "Entry 102-2",
+        "102-2",
+        "assets/app-data/story/cg/F-2.jpg",
+        "nvl"
+      ],
+      "sortOrder": 1999103019,
+      "facets": {
+        "type": [
+          "Main Story"
+        ],
+        "path": [
+          "Main Story"
+        ],
+        "chapter": [
+          "Chapter 102"
+        ]
+      }
+    },
+    {
+      "resourceId": "01a00093-f967-789d-ac6a-017c4b39c4ad",
+      "resourceType": "story-cg",
+      "displayTitle": "Main Story",
+      "subtitle": "Main Story · Entry 102-5",
+      "metadata": {
+        "storyType": "Main Story",
+        "storyChapter": "102",
+        "storyEntry": "5",
+        "storyNode": "102-5"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Main Story",
+        "Entry 102-5",
+        "102-5",
+        "assets/app-data/story/cg/F-5.jpg",
+        "nvl"
+      ],
+      "sortOrder": 1999103049,
+      "facets": {
+        "type": [
+          "Main Story"
+        ],
+        "path": [
+          "Main Story"
+        ],
+        "chapter": [
+          "Chapter 102"
         ]
       }
     },
     {
       "resourceId": "01a00093-e001-7283-9329-dd2f8f803dde",
       "resourceType": "story-cg",
-      "displayTitle": "Story",
-      "subtitle": "Story",
+      "displayTitle": "剧情 CG · 11 8 2",
+      "subtitle": "剧情路径待确认",
       "metadata": {
         "storyType": "Story"
       },
@@ -29308,10 +31456,14 @@
         "待确认"
       ],
       "searchTerms": [
-        "Story"
+        "Story",
+        "assets/app-data/story/cg/11-8-2.jpg"
       ],
       "sortOrder": 2000000007,
       "facets": {
+        "type": [
+          "Story"
+        ],
         "path": [
           "Story"
         ]
@@ -29320,8 +31472,8 @@
     {
       "resourceId": "01a00093-e136-7f54-806d-d4cbd7609977",
       "resourceType": "story-cg",
-      "displayTitle": "Story",
-      "subtitle": "Story",
+      "displayTitle": "剧情 CG · 12 6 2",
+      "subtitle": "剧情路径待确认",
       "metadata": {
         "storyType": "Story"
       },
@@ -29329,10 +31481,14 @@
         "待确认"
       ],
       "searchTerms": [
-        "Story"
+        "Story",
+        "assets/app-data/story/cg/12-6-2.jpg"
       ],
       "sortOrder": 2000000009,
       "facets": {
+        "type": [
+          "Story"
+        ],
         "path": [
           "Story"
         ]
@@ -29341,8 +31497,8 @@
     {
       "resourceId": "01a00093-e35d-7bb3-a85d-e6b823a9e508",
       "resourceType": "story-cg",
-      "displayTitle": "Story",
-      "subtitle": "Story",
+      "displayTitle": "剧情 CG · 16 7 2",
+      "subtitle": "剧情路径待确认",
       "metadata": {
         "storyType": "Story"
       },
@@ -29350,10 +31506,14 @@
         "待确认"
       ],
       "searchTerms": [
-        "Story"
+        "Story",
+        "assets/app-data/story/cg/16-7-2.jpg"
       ],
       "sortOrder": 2000000013,
       "facets": {
+        "type": [
+          "Story"
+        ],
         "path": [
           "Story"
         ]
@@ -29362,8 +31522,8 @@
     {
       "resourceId": "01a00093-e4ff-7dbe-a559-182dc37954a2",
       "resourceType": "story-cg",
-      "displayTitle": "Story",
-      "subtitle": "Story",
+      "displayTitle": "剧情 CG · 17 6 2",
+      "subtitle": "剧情路径待确认",
       "metadata": {
         "storyType": "Story"
       },
@@ -29371,10 +31531,14 @@
         "待确认"
       ],
       "searchTerms": [
-        "Story"
+        "Story",
+        "assets/app-data/story/cg/17-6-2.jpg"
       ],
       "sortOrder": 2000000016,
       "facets": {
+        "type": [
+          "Story"
+        ],
         "path": [
           "Story"
         ]
@@ -29383,8 +31547,8 @@
     {
       "resourceId": "01a00093-edb9-77a9-b132-0d889a0ee099",
       "resourceType": "story-cg",
-      "displayTitle": "Story",
-      "subtitle": "Story",
+      "displayTitle": "剧情 CG · 21 5 2",
+      "subtitle": "剧情路径待确认",
       "metadata": {
         "storyType": "Story"
       },
@@ -29392,10 +31556,14 @@
         "待确认"
       ],
       "searchTerms": [
-        "Story"
+        "Story",
+        "assets/app-data/story/cg/21-5-2.jpg"
       ],
       "sortOrder": 2000000031,
       "facets": {
+        "type": [
+          "Story"
+        ],
         "path": [
           "Story"
         ]
@@ -29404,8 +31572,8 @@
     {
       "resourceId": "01a00093-efaa-7aed-abd7-9e40db128447",
       "resourceType": "story-cg",
-      "displayTitle": "Story",
-      "subtitle": "Story",
+      "displayTitle": "剧情 CG · 22 2 2",
+      "subtitle": "剧情路径待确认",
       "metadata": {
         "storyType": "Story"
       },
@@ -29413,10 +31581,14 @@
         "待确认"
       ],
       "searchTerms": [
-        "Story"
+        "Story",
+        "assets/app-data/story/cg/22-2-2.jpg"
       ],
       "sortOrder": 2000000034,
       "facets": {
+        "type": [
+          "Story"
+        ],
         "path": [
           "Story"
         ]
@@ -29425,8 +31597,8 @@
     {
       "resourceId": "01a00093-f77a-7fc8-835b-d05e84dec9a4",
       "resourceType": "story-cg",
-      "displayTitle": "Story",
-      "subtitle": "Story",
+      "displayTitle": "剧情 CG · E 1 epilogue",
+      "subtitle": "剧情路径待确认",
       "metadata": {
         "storyType": "Story"
       },
@@ -29434,10 +31606,14 @@
         "待确认"
       ],
       "searchTerms": [
-        "Story"
+        "Story",
+        "assets/app-data/story/cg/E-1_epilogue.jpg"
       ],
       "sortOrder": 2000000048,
       "facets": {
+        "type": [
+          "Story"
+        ],
         "path": [
           "Story"
         ]
@@ -29446,8 +31622,8 @@
     {
       "resourceId": "01a00093-f7eb-714a-8571-58a143f6369e",
       "resourceType": "story-cg",
-      "displayTitle": "Story",
-      "subtitle": "Story",
+      "displayTitle": "剧情 CG · E 2 epilogue",
+      "subtitle": "剧情路径待确认",
       "metadata": {
         "storyType": "Story"
       },
@@ -29455,10 +31631,14 @@
         "待确认"
       ],
       "searchTerms": [
-        "Story"
+        "Story",
+        "assets/app-data/story/cg/E-2_epilogue.jpg"
       ],
       "sortOrder": 2000000049,
       "facets": {
+        "type": [
+          "Story"
+        ],
         "path": [
           "Story"
         ]
@@ -29467,8 +31647,8 @@
     {
       "resourceId": "01a00093-f855-79b6-ac41-ad0d5d423471",
       "resourceType": "story-cg",
-      "displayTitle": "Story",
-      "subtitle": "Story",
+      "displayTitle": "剧情 CG · E 4 epilogue",
+      "subtitle": "剧情路径待确认",
       "metadata": {
         "storyType": "Story"
       },
@@ -29476,10 +31656,14 @@
         "待确认"
       ],
       "searchTerms": [
-        "Story"
+        "Story",
+        "assets/app-data/story/cg/E-4_epilogue.jpg"
       ],
       "sortOrder": 2000000050,
       "facets": {
+        "type": [
+          "Story"
+        ],
         "path": [
           "Story"
         ]
@@ -29488,8 +31672,8 @@
     {
       "resourceId": "01a00093-f9e8-7bb4-ab94-b70ba75ca78d",
       "resourceType": "story-cg",
-      "displayTitle": "Story",
-      "subtitle": "Story",
+      "displayTitle": "剧情 CG · F 7 1",
+      "subtitle": "剧情路径待确认",
       "metadata": {
         "storyType": "Story"
       },
@@ -29497,10 +31681,14 @@
         "待确认"
       ],
       "searchTerms": [
-        "Story"
+        "Story",
+        "assets/app-data/story/cg/F-7-1.jpg"
       ],
       "sortOrder": 2000000053,
       "facets": {
+        "type": [
+          "Story"
+        ],
         "path": [
           "Story"
         ]
@@ -29509,8 +31697,8 @@
     {
       "resourceId": "01a00093-fa65-7854-a469-8a140e9dcca4",
       "resourceType": "story-cg",
-      "displayTitle": "Story",
-      "subtitle": "Story",
+      "displayTitle": "剧情 CG · F 7 2",
+      "subtitle": "剧情路径待确认",
       "metadata": {
         "storyType": "Story"
       },
@@ -29518,10 +31706,14 @@
         "待确认"
       ],
       "searchTerms": [
-        "Story"
+        "Story",
+        "assets/app-data/story/cg/F-7-2.jpg"
       ],
       "sortOrder": 2000000054,
       "facets": {
+        "type": [
+          "Story"
+        ],
         "path": [
           "Story"
         ]
@@ -29530,8 +31722,8 @@
     {
       "resourceId": "01a00093-fadf-7e22-87e8-47a043528644",
       "resourceType": "story-cg",
-      "displayTitle": "Story",
-      "subtitle": "Story",
+      "displayTitle": "剧情 CG · F 7",
+      "subtitle": "剧情路径待确认",
       "metadata": {
         "storyType": "Story"
       },
@@ -29539,84 +31731,16 @@
         "待确认"
       ],
       "searchTerms": [
-        "Story"
+        "Story",
+        "assets/app-data/story/cg/F-7.jpg"
       ],
       "sortOrder": 2000000055,
       "facets": {
+        "type": [
+          "Story"
+        ],
         "path": [
           "Story"
-        ]
-      }
-    },
-    {
-      "resourceId": "01a00093-f66f-75be-837c-216d2e833d95",
-      "resourceType": "story-cg",
-      "displayTitle": "Esoteric Order",
-      "subtitle": "Side Story · Chapter 9 · Entry 5",
-      "metadata": {
-        "storyPathTitle": "Esoteric Order",
-        "storyType": "Side Story",
-        "storyAct": "2",
-        "storyChapter": "9",
-        "storyEntry": "5",
-        "relatedSongId": "aegleseeker",
-        "relatedSongTitle": "Aegleseeker"
-      },
-      "badges": [
-        "关联：Aegleseeker"
-      ],
-      "searchTerms": [
-        "Esoteric Order",
-        "Side Story",
-        "Chapter 9 · Entry 5",
-        "9-5",
-        "aegleseeker",
-        "Aegleseeker",
-        "nvl"
-      ],
-      "sortOrder": 2009005004,
-      "facets": {
-        "path": [
-          "Esoteric Order"
-        ],
-        "chapter": [
-          "Chapter 9"
-        ]
-      }
-    },
-    {
-      "resourceId": "01a00093-de83-7835-a260-c3d32188f565",
-      "resourceType": "story-cg",
-      "displayTitle": "Binary Enfold",
-      "subtitle": "Side Story · Chapter 10 · Entry 5",
-      "metadata": {
-        "storyPathTitle": "Binary Enfold",
-        "storyType": "Side Story",
-        "storyAct": "2",
-        "storyChapter": "10",
-        "storyEntry": "5",
-        "relatedSongId": "memoryforest",
-        "relatedSongTitle": "Memory Forest"
-      },
-      "badges": [
-        "关联：Memory Forest"
-      ],
-      "searchTerms": [
-        "Binary Enfold",
-        "Side Story",
-        "Chapter 10 · Entry 5",
-        "10-5",
-        "memoryforest",
-        "Memory Forest",
-        "nvl"
-      ],
-      "sortOrder": 2010005004,
-      "facets": {
-        "path": [
-          "Binary Enfold"
-        ],
-        "chapter": [
-          "Chapter 10"
         ]
       }
     },
@@ -34016,358 +36140,6 @@
       "facets": {}
     },
     {
-      "resourceId": "01a00093-df71-7b81-9c2b-442c5f9920b3",
-      "resourceType": "story-cg",
-      "displayTitle": "Colorful Dream",
-      "subtitle": "Side Story · Chapter 11 · Entry 8",
-      "metadata": {
-        "storyPathTitle": "Colorful Dream",
-        "storyType": "Side Story",
-        "storyAct": "3",
-        "storyChapter": "11",
-        "storyEntry": "8",
-        "relatedSongId": "desive",
-        "relatedSongTitle": "Désive"
-      },
-      "badges": [
-        "关联：Désive"
-      ],
-      "searchTerms": [
-        "Colorful Dream",
-        "Side Story",
-        "Chapter 11 · Entry 8",
-        "11-8",
-        "desive",
-        "Désive",
-        "nvl"
-      ],
-      "sortOrder": 3011008004,
-      "facets": {
-        "path": [
-          "Colorful Dream"
-        ],
-        "chapter": [
-          "Chapter 11"
-        ]
-      }
-    },
-    {
-      "resourceId": "01a00093-e096-7573-8e97-c2145ff0b480",
-      "resourceType": "story-cg",
-      "displayTitle": "Unseeing Eyes",
-      "subtitle": "Side Story · Chapter 12 · Entry 6",
-      "metadata": {
-        "storyPathTitle": "Unseeing Eyes",
-        "storyType": "Side Story",
-        "storyAct": "3",
-        "storyChapter": "12",
-        "storyEntry": "6",
-        "relatedSongId": "hypervision",
-        "relatedSongTitle": "HYPER VISION"
-      },
-      "badges": [
-        "关联：HYPER VISION"
-      ],
-      "searchTerms": [
-        "Unseeing Eyes",
-        "Side Story",
-        "Chapter 12 · Entry 6",
-        "12-6",
-        "hypervision",
-        "HYPER VISION",
-        "nvl"
-      ],
-      "sortOrder": 3012006002,
-      "facets": {
-        "path": [
-          "Unseeing Eyes"
-        ],
-        "chapter": [
-          "Chapter 12"
-        ]
-      }
-    },
-    {
-      "resourceId": "01a00093-e272-7131-9e9f-61a4d6f7c472",
-      "resourceType": "story-cg",
-      "displayTitle": "Lasting Eden",
-      "subtitle": "Side Story · Chapter 15 · Entry 4",
-      "metadata": {
-        "storyPathTitle": "Lasting Eden",
-        "storyType": "Side Story",
-        "storyAct": "3",
-        "storyChapter": "15",
-        "storyEntry": "4",
-        "relatedSongId": "riseoftheworld",
-        "relatedSongTitle": "Rise of the World"
-      },
-      "badges": [
-        "关联：Rise of the World"
-      ],
-      "searchTerms": [
-        "Lasting Eden",
-        "Side Story",
-        "Chapter 15 · Entry 4",
-        "15-4",
-        "riseoftheworld",
-        "Rise of the World",
-        "nvl"
-      ],
-      "sortOrder": 3015004003,
-      "facets": {
-        "path": [
-          "Lasting Eden"
-        ],
-        "chapter": [
-          "Chapter 15"
-        ]
-      }
-    },
-    {
-      "resourceId": "01a00093-e2f0-788f-ba90-c855c6345bc5",
-      "resourceType": "story-cg",
-      "displayTitle": "Severed Eden",
-      "subtitle": "Side Story · Chapter 16 · Entry 7",
-      "metadata": {
-        "storyPathTitle": "Severed Eden",
-        "storyType": "Side Story",
-        "storyAct": "3",
-        "storyChapter": "16",
-        "storyEntry": "7",
-        "relatedSongId": "arghena",
-        "relatedSongTitle": "Arghena"
-      },
-      "badges": [
-        "关联：Arghena"
-      ],
-      "searchTerms": [
-        "Severed Eden",
-        "Side Story",
-        "Chapter 16 · Entry 7",
-        "16-7",
-        "arghena",
-        "Arghena",
-        "nvl"
-      ],
-      "sortOrder": 3016007006,
-      "facets": {
-        "path": [
-          "Severed Eden"
-        ],
-        "chapter": [
-          "Chapter 16"
-        ]
-      }
-    },
-    {
-      "resourceId": "01a00093-e3df-7bdd-8490-b49fa191feab",
-      "resourceType": "story-cg",
-      "displayTitle": "Severed Eden",
-      "subtitle": "Side Story · Chapter 16 · Entry 8",
-      "metadata": {
-        "storyPathTitle": "Severed Eden",
-        "storyType": "Side Story",
-        "storyAct": "3",
-        "storyChapter": "16",
-        "storyEntry": "8",
-        "relatedSongId": "abstrusedilemma",
-        "relatedSongTitle": "Abstruse Dilemma"
-      },
-      "badges": [
-        "关联：Abstruse Dilemma"
-      ],
-      "searchTerms": [
-        "Severed Eden",
-        "Side Story",
-        "Chapter 16 · Entry 8",
-        "16-8",
-        "abstrusedilemma",
-        "Abstruse Dilemma",
-        "nvl"
-      ],
-      "sortOrder": 3016008007,
-      "facets": {
-        "path": [
-          "Severed Eden"
-        ],
-        "chapter": [
-          "Chapter 16"
-        ]
-      }
-    },
-    {
-      "resourceId": "01a00093-e48b-7ad8-a258-9f02c5380c9b",
-      "resourceType": "story-cg",
-      "displayTitle": "Sunset Radiance",
-      "subtitle": "Side Story · Chapter 17 · Entry 6",
-      "metadata": {
-        "storyPathTitle": "Sunset Radiance",
-        "storyType": "Side Story",
-        "storyAct": "3",
-        "storyChapter": "17",
-        "storyEntry": "6",
-        "relatedSongId": "hotarubinoyuki",
-        "relatedSongTitle": "Hotarubi no Yuki"
-      },
-      "badges": [
-        "关联：Hotarubi no Yuki"
-      ],
-      "searchTerms": [
-        "Sunset Radiance",
-        "Side Story",
-        "Chapter 17 · Entry 6",
-        "17-6",
-        "hotarubinoyuki",
-        "Hotarubi no Yuki",
-        "nvl"
-      ],
-      "sortOrder": 3017006005,
-      "facets": {
-        "path": [
-          "Sunset Radiance"
-        ],
-        "chapter": [
-          "Chapter 17"
-        ]
-      }
-    },
-    {
-      "resourceId": "01a00093-e56d-77ee-908c-9f6349ff2424",
-      "resourceType": "story-cg",
-      "displayTitle": "Absolute Nihil",
-      "subtitle": "Side Story · Chapter 18 · Entry 1",
-      "metadata": {
-        "storyPathTitle": "Absolute Nihil",
-        "storyType": "Side Story",
-        "storyAct": "3",
-        "storyChapter": "18",
-        "storyEntry": "1",
-        "relatedSongId": "_readPreviousEntry"
-      },
-      "badges": [],
-      "searchTerms": [
-        "Absolute Nihil",
-        "Side Story",
-        "Chapter 18 · Entry 1",
-        "18-1",
-        "_readPreviousEntry",
-        "nvl"
-      ],
-      "sortOrder": 3018001000,
-      "facets": {
-        "path": [
-          "Absolute Nihil"
-        ],
-        "chapter": [
-          "Chapter 18"
-        ]
-      }
-    },
-    {
-      "resourceId": "01a00093-e5ff-755d-8448-ddd59eaa3baf",
-      "resourceType": "story-cg",
-      "displayTitle": "Absolute Nihil",
-      "subtitle": "Side Story · Chapter 18 · Entry 2",
-      "metadata": {
-        "storyPathTitle": "Absolute Nihil",
-        "storyType": "Side Story",
-        "storyAct": "3",
-        "storyChapter": "18",
-        "storyEntry": "2",
-        "relatedSongId": "_readPreviousEntry"
-      },
-      "badges": [],
-      "searchTerms": [
-        "Absolute Nihil",
-        "Side Story",
-        "Chapter 18 · Entry 2",
-        "18-2",
-        "_readPreviousEntry",
-        "nvl"
-      ],
-      "sortOrder": 3018002001,
-      "facets": {
-        "path": [
-          "Absolute Nihil"
-        ],
-        "chapter": [
-          "Chapter 18"
-        ]
-      }
-    },
-    {
-      "resourceId": "01a00093-e69d-7298-8644-79a10f5159fc",
-      "resourceType": "story-cg",
-      "displayTitle": "Absolute Nihil",
-      "subtitle": "Side Story · Chapter 18 · Entry 6",
-      "metadata": {
-        "storyPathTitle": "Absolute Nihil",
-        "storyType": "Side Story",
-        "storyAct": "3",
-        "storyChapter": "18",
-        "storyEntry": "6",
-        "relatedSongId": "mvurbd",
-        "relatedSongTitle": "MVURBD"
-      },
-      "badges": [
-        "关联：MVURBD"
-      ],
-      "searchTerms": [
-        "Absolute Nihil",
-        "Side Story",
-        "Chapter 18 · Entry 6",
-        "18-6",
-        "mvurbd",
-        "MVURBD",
-        "nvl"
-      ],
-      "sortOrder": 3018006005,
-      "facets": {
-        "path": [
-          "Absolute Nihil"
-        ],
-        "chapter": [
-          "Chapter 18"
-        ]
-      }
-    },
-    {
-      "resourceId": "01a00093-e73d-7d9f-bee0-05483405e8bf",
-      "resourceType": "story-cg",
-      "displayTitle": "Absolute Nihil",
-      "subtitle": "Side Story · Chapter 18 · Entry 7",
-      "metadata": {
-        "storyPathTitle": "Absolute Nihil",
-        "storyType": "Side Story",
-        "storyAct": "3",
-        "storyChapter": "18",
-        "storyEntry": "7",
-        "relatedSongId": "invertedworld",
-        "relatedSongTitle": "Inverted World"
-      },
-      "badges": [
-        "关联：Inverted World"
-      ],
-      "searchTerms": [
-        "Absolute Nihil",
-        "Side Story",
-        "Chapter 18 · Entry 7",
-        "18-7",
-        "invertedworld",
-        "Inverted World",
-        "nvl"
-      ],
-      "sortOrder": 3018007006,
-      "facets": {
-        "path": [
-          "Absolute Nihil"
-        ],
-        "chapter": [
-          "Chapter 18"
-        ]
-      }
-    },
-    {
       "resourceId": "d75bbb05-290f-79c9-893c-995a90efad26",
       "resourceType": "background",
       "displayTitle": "cataclysmcry_clear",
@@ -34676,912 +36448,6 @@
       "facets": {
         "release": [
           "7.0.0c"
-        ]
-      }
-    },
-    {
-      "resourceId": "814e4ef8-500c-73ad-b75c-4abc8f31eb16",
-      "resourceType": "story-cg",
-      "displayTitle": "Divine Oblivion · C-2-1",
-      "subtitle": "剧情 CG",
-      "metadata": {
-        "sourceVersion": "7.0.0c"
-      },
-      "badges": [
-        "7.0.0c"
-      ],
-      "searchTerms": [
-        "Divine Oblivion · C-2-1",
-        "Arcaea/current-apk/app-data/story/cg/C-2-1.jpg"
-      ],
-      "sortOrder": 3100000017,
-      "facets": {
-        "release": [
-          "7.0.0c"
-        ]
-      }
-    },
-    {
-      "resourceId": "c2aecd74-079f-70b1-aaf4-40e0e4efd153",
-      "resourceType": "story-cg",
-      "displayTitle": "Divine Oblivion · C-2-2",
-      "subtitle": "剧情 CG",
-      "metadata": {
-        "sourceVersion": "7.0.0c"
-      },
-      "badges": [
-        "7.0.0c"
-      ],
-      "searchTerms": [
-        "Divine Oblivion · C-2-2",
-        "Arcaea/current-apk/app-data/story/cg/C-2-2.jpg"
-      ],
-      "sortOrder": 3100000018,
-      "facets": {
-        "release": [
-          "7.0.0c"
-        ]
-      }
-    },
-    {
-      "resourceId": "05e53be1-bc6e-7e8a-866e-a223aaeac79e",
-      "resourceType": "story-cg",
-      "displayTitle": "Divine Oblivion · C-5",
-      "subtitle": "剧情 CG",
-      "metadata": {
-        "sourceVersion": "7.0.0c"
-      },
-      "badges": [
-        "7.0.0c"
-      ],
-      "searchTerms": [
-        "Divine Oblivion · C-5",
-        "Arcaea/current-apk/app-data/story/cg/C-5.jpg"
-      ],
-      "sortOrder": 3100000019,
-      "facets": {
-        "release": [
-          "7.0.0c"
-        ]
-      }
-    },
-    {
-      "resourceId": "c4b34076-908d-7f06-8b42-d190d0c41b01",
-      "resourceType": "story-cg",
-      "displayTitle": "Divine Oblivion · C-7-1",
-      "subtitle": "剧情 CG",
-      "metadata": {
-        "sourceVersion": "7.0.0c"
-      },
-      "badges": [
-        "7.0.0c"
-      ],
-      "searchTerms": [
-        "Divine Oblivion · C-7-1",
-        "Arcaea/current-apk/app-data/story/cg/C-7-1.jpg"
-      ],
-      "sortOrder": 3100000020,
-      "facets": {
-        "release": [
-          "7.0.0c"
-        ]
-      }
-    },
-    {
-      "resourceId": "5f62dc93-413c-73cd-9d18-e522946ebaa3",
-      "resourceType": "story-cg",
-      "displayTitle": "Divine Oblivion · C-7-2",
-      "subtitle": "剧情 CG",
-      "metadata": {
-        "sourceVersion": "7.0.0c"
-      },
-      "badges": [
-        "7.0.0c"
-      ],
-      "searchTerms": [
-        "Divine Oblivion · C-7-2",
-        "Arcaea/current-apk/app-data/story/cg/C-7-2.jpg"
-      ],
-      "sortOrder": 3100000021,
-      "facets": {
-        "release": [
-          "7.0.0c"
-        ]
-      }
-    },
-    {
-      "resourceId": "29385cfd-2d98-7d9b-bd85-db976e95990d",
-      "resourceType": "story-cg",
-      "displayTitle": "Divine Oblivion · C-7-3",
-      "subtitle": "剧情 CG",
-      "metadata": {
-        "sourceVersion": "7.0.0c"
-      },
-      "badges": [
-        "7.0.0c"
-      ],
-      "searchTerms": [
-        "Divine Oblivion · C-7-3",
-        "Arcaea/current-apk/app-data/story/cg/C-7-3.jpg"
-      ],
-      "sortOrder": 3100000022,
-      "facets": {
-        "release": [
-          "7.0.0c"
-        ]
-      }
-    },
-    {
-      "resourceId": "af6eb0f4-e43c-7fc5-b1d8-f22cad4c33d5",
-      "resourceType": "story-cg",
-      "displayTitle": "Divine Oblivion · C-9-1",
-      "subtitle": "剧情 CG",
-      "metadata": {
-        "sourceVersion": "7.0.0c"
-      },
-      "badges": [
-        "7.0.0c"
-      ],
-      "searchTerms": [
-        "Divine Oblivion · C-9-1",
-        "Arcaea/current-apk/app-data/story/cg/C-9-1.jpg"
-      ],
-      "sortOrder": 3100000023,
-      "facets": {
-        "release": [
-          "7.0.0c"
-        ]
-      }
-    },
-    {
-      "resourceId": "9d00e6a0-df6a-71f3-9a2c-0f1b92429fe9",
-      "resourceType": "story-cg",
-      "displayTitle": "Divine Oblivion · C-9-2",
-      "subtitle": "剧情 CG",
-      "metadata": {
-        "sourceVersion": "7.0.0c"
-      },
-      "badges": [
-        "7.0.0c"
-      ],
-      "searchTerms": [
-        "Divine Oblivion · C-9-2",
-        "Arcaea/current-apk/app-data/story/cg/C-9-2.jpg"
-      ],
-      "sortOrder": 3100000024,
-      "facets": {
-        "release": [
-          "7.0.0c"
-        ]
-      }
-    },
-    {
-      "resourceId": "215b4dfa-ecf3-7bde-b16e-ef8bfd01c55c",
-      "resourceType": "story-cg",
-      "displayTitle": "Divine Oblivion · C-9-3",
-      "subtitle": "剧情 CG",
-      "metadata": {
-        "sourceVersion": "7.0.0c"
-      },
-      "badges": [
-        "7.0.0c"
-      ],
-      "searchTerms": [
-        "Divine Oblivion · C-9-3",
-        "Arcaea/current-apk/app-data/story/cg/C-9-3.jpg"
-      ],
-      "sortOrder": 3100000025,
-      "facets": {
-        "release": [
-          "7.0.0c"
-        ]
-      }
-    },
-    {
-      "resourceId": "01a00093-e9ea-705b-b32f-813c57d25de2",
-      "resourceType": "story-cg",
-      "displayTitle": "Lucent Historia",
-      "subtitle": "Main Story · Chapter 20 · Entry 1",
-      "metadata": {
-        "storyPathTitle": "Lucent Historia",
-        "storyType": "Main Story",
-        "storyAct": "4",
-        "storyChapter": "20",
-        "storyEntry": "1",
-        "relatedSongId": "_readPreviousEntry"
-      },
-      "badges": [],
-      "searchTerms": [
-        "Lucent Historia",
-        "Main Story",
-        "Chapter 20 · Entry 1",
-        "20-1",
-        "_readPreviousEntry",
-        "nvl"
-      ],
-      "sortOrder": 4020001000,
-      "facets": {
-        "path": [
-          "Lucent Historia"
-        ],
-        "chapter": [
-          "Chapter 20"
-        ]
-      }
-    },
-    {
-      "resourceId": "01a00093-ea8f-75e2-b1a8-2ffe68041b8c",
-      "resourceType": "story-cg",
-      "displayTitle": "Lucent Historia",
-      "subtitle": "Main Story · Chapter 20 · Entry 4",
-      "metadata": {
-        "storyPathTitle": "Lucent Historia",
-        "storyType": "Main Story",
-        "storyAct": "4",
-        "storyChapter": "20",
-        "storyEntry": "4",
-        "relatedSongId": "raysofremnant",
-        "relatedSongTitle": "Rays of Remnant"
-      },
-      "badges": [
-        "关联：Rays of Remnant"
-      ],
-      "searchTerms": [
-        "Lucent Historia",
-        "Main Story",
-        "Chapter 20 · Entry 4",
-        "20-4",
-        "raysofremnant",
-        "Rays of Remnant",
-        "nvl"
-      ],
-      "sortOrder": 4020004003,
-      "facets": {
-        "path": [
-          "Lucent Historia"
-        ],
-        "chapter": [
-          "Chapter 20"
-        ]
-      }
-    },
-    {
-      "resourceId": "01a00093-eb27-713c-bb9b-16a8663b642e",
-      "resourceType": "story-cg",
-      "displayTitle": "Lucent Historia",
-      "subtitle": "Main Story · Chapter 20 · Entry 6",
-      "metadata": {
-        "storyPathTitle": "Lucent Historia",
-        "storyType": "Main Story",
-        "storyAct": "4",
-        "storyChapter": "20",
-        "storyEntry": "6",
-        "relatedSongId": "lamentrain",
-        "relatedSongTitle": "Lament Rain"
-      },
-      "badges": [
-        "关联：Lament Rain"
-      ],
-      "searchTerms": [
-        "Lucent Historia",
-        "Main Story",
-        "Chapter 20 · Entry 6",
-        "20-6",
-        "lamentrain",
-        "Lament Rain",
-        "nvl"
-      ],
-      "sortOrder": 4020006005,
-      "facets": {
-        "path": [
-          "Lucent Historia"
-        ],
-        "chapter": [
-          "Chapter 20"
-        ]
-      }
-    },
-    {
-      "resourceId": "01a00093-ebbf-7d72-a531-af54ca0a567e",
-      "resourceType": "story-cg",
-      "displayTitle": "Extant Anima",
-      "subtitle": "Side Story · Chapter 21 · Entry 2",
-      "metadata": {
-        "storyPathTitle": "Extant Anima",
-        "storyType": "Side Story",
-        "storyAct": "4",
-        "storyChapter": "21",
-        "storyEntry": "2",
-        "relatedSongId": "scarletlunar",
-        "relatedSongTitle": "Scarlet Lunar Empress"
-      },
-      "badges": [
-        "关联：Scarlet Lunar Empress"
-      ],
-      "searchTerms": [
-        "Extant Anima",
-        "Side Story",
-        "Chapter 21 · Entry 2",
-        "21-2",
-        "scarletlunar",
-        "Scarlet Lunar Empress",
-        "nvl"
-      ],
-      "sortOrder": 4021002001,
-      "facets": {
-        "path": [
-          "Extant Anima"
-        ],
-        "chapter": [
-          "Chapter 21"
-        ]
-      }
-    },
-    {
-      "resourceId": "01a00093-ec6c-7efb-81db-e4ae26d10e51",
-      "resourceType": "story-cg",
-      "displayTitle": "Extant Anima",
-      "subtitle": "Side Story · Chapter 21 · Entry 3",
-      "metadata": {
-        "storyPathTitle": "Extant Anima",
-        "storyType": "Side Story",
-        "storyAct": "4",
-        "storyChapter": "21",
-        "storyEntry": "3",
-        "relatedSongId": "dualdependency",
-        "relatedSongTitle": "Dual Dependency"
-      },
-      "badges": [
-        "关联：Dual Dependency"
-      ],
-      "searchTerms": [
-        "Extant Anima",
-        "Side Story",
-        "Chapter 21 · Entry 3",
-        "21-3",
-        "dualdependency",
-        "Dual Dependency",
-        "nvl"
-      ],
-      "sortOrder": 4021003002,
-      "facets": {
-        "path": [
-          "Extant Anima"
-        ],
-        "chapter": [
-          "Chapter 21"
-        ]
-      }
-    },
-    {
-      "resourceId": "01a00093-ed09-7b89-ac87-37e94631624b",
-      "resourceType": "story-cg",
-      "displayTitle": "Extant Anima",
-      "subtitle": "Side Story · Chapter 21 · Entry 5",
-      "metadata": {
-        "storyPathTitle": "Extant Anima",
-        "storyType": "Side Story",
-        "storyAct": "4",
-        "storyChapter": "21",
-        "storyEntry": "5",
-        "relatedSongId": "extradimensional",
-        "relatedSongTitle": "Extradimensional Cosmic Phenomenon"
-      },
-      "badges": [
-        "关联：Extradimensional Cosmic Phenomenon"
-      ],
-      "searchTerms": [
-        "Extant Anima",
-        "Side Story",
-        "Chapter 21 · Entry 5",
-        "21-5",
-        "extradimensional",
-        "Extradimensional Cosmic Phenomenon",
-        "nvl"
-      ],
-      "sortOrder": 4021005004,
-      "facets": {
-        "path": [
-          "Extant Anima"
-        ],
-        "chapter": [
-          "Chapter 21"
-        ]
-      }
-    },
-    {
-      "resourceId": "01a00093-f0f3-7203-9e9a-e67c9b17560e",
-      "resourceType": "story-cg",
-      "displayTitle": "Chapter Experientia",
-      "subtitle": "Side Story · Chapter 22 · Entry 1",
-      "metadata": {
-        "storyPathTitle": "Chapter Experientia",
-        "storyType": "Side Story",
-        "storyAct": "4",
-        "storyChapter": "22",
-        "storyEntry": "1",
-        "relatedSongId": "factorder",
-        "relatedSongTitle": "Factorder"
-      },
-      "badges": [
-        "关联：Factorder"
-      ],
-      "searchTerms": [
-        "Chapter Experientia",
-        "Side Story",
-        "Chapter 22 · Entry 1",
-        "22-1",
-        "factorder",
-        "Factorder",
-        "nvl"
-      ],
-      "sortOrder": 4022001004,
-      "facets": {
-        "path": [
-          "Chapter Experientia"
-        ],
-        "chapter": [
-          "Chapter 22"
-        ]
-      }
-    },
-    {
-      "resourceId": "01a00093-f053-758d-9091-71dc5cb95b93",
-      "resourceType": "story-cg",
-      "displayTitle": "Chapter Experientia",
-      "subtitle": "Side Story · Chapter 22 · Entry 2",
-      "metadata": {
-        "storyPathTitle": "Chapter Experientia",
-        "storyType": "Side Story",
-        "storyAct": "4",
-        "storyChapter": "22",
-        "storyEntry": "2",
-        "relatedSongId": "incompleteone",
-        "relatedSongTitle": "incomplete the one"
-      },
-      "badges": [
-        "关联：incomplete the one"
-      ],
-      "searchTerms": [
-        "Chapter Experientia",
-        "Side Story",
-        "Chapter 22 · Entry 2",
-        "22-2",
-        "incompleteone",
-        "incomplete the one",
-        "nvl"
-      ],
-      "sortOrder": 4022002003,
-      "facets": {
-        "path": [
-          "Chapter Experientia"
-        ],
-        "chapter": [
-          "Chapter 22"
-        ]
-      }
-    },
-    {
-      "resourceId": "01a00093-eefb-7012-a7ff-6f616c5f5f18",
-      "resourceType": "story-cg",
-      "displayTitle": "Chapter Experientia",
-      "subtitle": "Side Story · Chapter 22 · Entry 4",
-      "metadata": {
-        "storyPathTitle": "Chapter Experientia",
-        "storyType": "Side Story",
-        "storyAct": "4",
-        "storyChapter": "22",
-        "storyEntry": "4",
-        "relatedSongId": "welcomequeen",
-        "relatedSongTitle": "Welcome, Queen of Fiction."
-      },
-      "badges": [
-        "关联：Welcome, Queen of Fiction."
-      ],
-      "searchTerms": [
-        "Chapter Experientia",
-        "Side Story",
-        "Chapter 22 · Entry 4",
-        "22-4",
-        "welcomequeen",
-        "Welcome, Queen of Fiction.",
-        "nvl"
-      ],
-      "sortOrder": 4022004001,
-      "facets": {
-        "path": [
-          "Chapter Experientia"
-        ],
-        "chapter": [
-          "Chapter 22"
-        ]
-      }
-    },
-    {
-      "resourceId": "01a00093-ee57-7d73-915c-07cbcbe8e2ae",
-      "resourceType": "story-cg",
-      "displayTitle": "Chapter Experientia",
-      "subtitle": "Side Story · Chapter 22 · Entry 5",
-      "metadata": {
-        "storyPathTitle": "Chapter Experientia",
-        "storyType": "Side Story",
-        "storyAct": "4",
-        "storyChapter": "22",
-        "storyEntry": "5",
-        "relatedSongId": "altergate",
-        "relatedSongTitle": "AlterGate"
-      },
-      "badges": [
-        "关联：AlterGate"
-      ],
-      "searchTerms": [
-        "Chapter Experientia",
-        "Side Story",
-        "Chapter 22 · Entry 5",
-        "22-5",
-        "altergate",
-        "AlterGate",
-        "nvl"
-      ],
-      "sortOrder": 4022005000,
-      "facets": {
-        "path": [
-          "Chapter Experientia"
-        ],
-        "chapter": [
-          "Chapter 22"
-        ]
-      }
-    },
-    {
-      "resourceId": "01a00093-f19a-7580-a32c-c6718f98d820",
-      "resourceType": "story-cg",
-      "displayTitle": "Liminal Eclipse",
-      "subtitle": "Main Story · Chapter 23 · Entry 2",
-      "metadata": {
-        "storyPathTitle": "Liminal Eclipse",
-        "storyType": "Main Story",
-        "storyAct": "4",
-        "storyChapter": "23",
-        "storyEntry": "2",
-        "relatedSongId": "_readPreviousEntry"
-      },
-      "badges": [],
-      "searchTerms": [
-        "Liminal Eclipse",
-        "Main Story",
-        "Chapter 23 · Entry 2",
-        "23-2",
-        "_readPreviousEntry",
-        "nvl"
-      ],
-      "sortOrder": 4023002001,
-      "facets": {
-        "path": [
-          "Liminal Eclipse"
-        ],
-        "chapter": [
-          "Chapter 23"
-        ]
-      }
-    },
-    {
-      "resourceId": "01a00093-f23f-78f6-ba04-f47535d91373",
-      "resourceType": "story-cg",
-      "displayTitle": "Liminal Eclipse",
-      "subtitle": "Main Story · Chapter 23 · Entry 7",
-      "metadata": {
-        "storyPathTitle": "Liminal Eclipse",
-        "storyType": "Main Story",
-        "storyAct": "4",
-        "storyChapter": "23",
-        "storyEntry": "7",
-        "relatedSongId": "undyingmacula",
-        "relatedSongTitle": "Undying Macula"
-      },
-      "badges": [
-        "关联：Undying Macula"
-      ],
-      "searchTerms": [
-        "Liminal Eclipse",
-        "Main Story",
-        "Chapter 23 · Entry 7",
-        "23-7",
-        "undyingmacula",
-        "Undying Macula",
-        "nvl"
-      ],
-      "sortOrder": 4023007006,
-      "facets": {
-        "path": [
-          "Liminal Eclipse"
-        ],
-        "chapter": [
-          "Chapter 23"
-        ]
-      }
-    },
-    {
-      "resourceId": "01a00093-f2db-7570-8f52-7769bde5af4a",
-      "resourceType": "story-cg",
-      "displayTitle": "Liminal Eclipse",
-      "subtitle": "Main Story · Chapter 23 · Entry 8",
-      "metadata": {
-        "storyPathTitle": "Liminal Eclipse",
-        "storyType": "Main Story",
-        "storyAct": "4",
-        "storyChapter": "23",
-        "storyEntry": "8",
-        "relatedSongId": "undyingmacula",
-        "relatedSongTitle": "Undying Macula"
-      },
-      "badges": [
-        "关联：Undying Macula"
-      ],
-      "searchTerms": [
-        "Liminal Eclipse",
-        "Main Story",
-        "Chapter 23 · Entry 8",
-        "23-8",
-        "undyingmacula",
-        "Undying Macula",
-        "nvl"
-      ],
-      "sortOrder": 4023008007,
-      "facets": {
-        "path": [
-          "Liminal Eclipse"
-        ],
-        "chapter": [
-          "Chapter 23"
-        ]
-      }
-    },
-    {
-      "resourceId": "01a00093-de0a-72fa-a74b-8bcf6d620942",
-      "resourceType": "story-cg",
-      "displayTitle": "Main Story",
-      "subtitle": "Main Story · Chapter 1 · Entry 6",
-      "metadata": {
-        "storyType": "Main Story",
-        "storyChapter": "1",
-        "storyEntry": "6",
-        "relatedSongId": "etherstrike",
-        "relatedSongTitle": "Ether Strike"
-      },
-      "badges": [
-        "关联：Ether Strike"
-      ],
-      "searchTerms": [
-        "Main Story",
-        "Chapter 1 · Entry 6",
-        "1-6",
-        "etherstrike",
-        "Ether Strike",
-        "nvl"
-      ],
-      "sortOrder": 999001006999,
-      "facets": {
-        "path": [
-          "Main Story"
-        ],
-        "chapter": [
-          "Chapter 1"
-        ]
-      }
-    },
-    {
-      "resourceId": "01a00093-e966-75dd-9ad8-c54bd537c5e0",
-      "resourceType": "story-cg",
-      "displayTitle": "Main Story",
-      "subtitle": "Main Story · Chapter 2 · Entry 6",
-      "metadata": {
-        "storyType": "Main Story",
-        "storyChapter": "2",
-        "storyEntry": "6",
-        "relatedSongId": "axiumcrisis",
-        "relatedSongTitle": "Axium Crisis"
-      },
-      "badges": [
-        "关联：Axium Crisis"
-      ],
-      "searchTerms": [
-        "Main Story",
-        "Chapter 2 · Entry 6",
-        "2-6",
-        "axiumcrisis",
-        "Axium Crisis",
-        "nvl"
-      ],
-      "sortOrder": 999002006999,
-      "facets": {
-        "path": [
-          "Main Story"
-        ],
-        "chapter": [
-          "Chapter 2"
-        ]
-      }
-    },
-    {
-      "resourceId": "01a00093-e1ce-7c14-b13c-cfbc54d52093",
-      "resourceType": "story-cg",
-      "displayTitle": "Side Story",
-      "subtitle": "Side Story · Chapter 12 · Entry 7",
-      "metadata": {
-        "storyType": "Side Story",
-        "storyChapter": "12",
-        "storyEntry": "7",
-        "relatedSongId": "_hiddenUntilRead"
-      },
-      "badges": [],
-      "searchTerms": [
-        "Side Story",
-        "Chapter 12 · Entry 7",
-        "12-7",
-        "_hiddenUntilRead",
-        "nvl"
-      ],
-      "sortOrder": 999012007999,
-      "facets": {
-        "path": [
-          "Side Story"
-        ],
-        "chapter": [
-          "Chapter 12"
-        ]
-      }
-    },
-    {
-      "resourceId": "01a00093-e7d6-79e4-b9c8-cd3a5d6d26e1",
-      "resourceType": "story-cg",
-      "displayTitle": "Side Story",
-      "subtitle": "Side Story · Chapter 18 · Entry 8",
-      "metadata": {
-        "storyType": "Side Story",
-        "storyChapter": "18",
-        "storyEntry": "8",
-        "relatedSongId": "vulcanus",
-        "relatedSongTitle": "Vulcānus"
-      },
-      "badges": [
-        "关联：Vulcānus"
-      ],
-      "searchTerms": [
-        "Side Story",
-        "Chapter 18 · Entry 8",
-        "18-8",
-        "vulcanus",
-        "Vulcānus",
-        "nvl"
-      ],
-      "sortOrder": 999018008999,
-      "facets": {
-        "path": [
-          "Side Story"
-        ],
-        "chapter": [
-          "Chapter 18"
-        ]
-      }
-    },
-    {
-      "resourceId": "01a00093-f704-75cb-b705-2e0c088b306c",
-      "resourceType": "story-cg",
-      "displayTitle": "Side Story",
-      "subtitle": "Side Story · Chapter 99 · Entry 6",
-      "metadata": {
-        "storyType": "Side Story",
-        "storyChapter": "99",
-        "storyEntry": "6",
-        "relatedSongId": "lightningscrew",
-        "relatedSongTitle": "Lightning Screw"
-      },
-      "badges": [
-        "关联：Lightning Screw"
-      ],
-      "searchTerms": [
-        "Side Story",
-        "Chapter 99 · Entry 6",
-        "99-6",
-        "lightningscrew",
-        "Lightning Screw",
-        "nvl"
-      ],
-      "sortOrder": 999099006999,
-      "facets": {
-        "path": [
-          "Side Story"
-        ],
-        "chapter": [
-          "Chapter 99"
-        ]
-      }
-    },
-    {
-      "resourceId": "01a00093-fb71-777b-ac2a-a145ec0302d1",
-      "resourceType": "story-cg",
-      "displayTitle": "Main Story",
-      "subtitle": "Main Story · Chapter 101 · Entry 5",
-      "metadata": {
-        "storyType": "Main Story",
-        "storyChapter": "101",
-        "storyEntry": "5",
-        "relatedSongId": "dantalion",
-        "relatedSongTitle": "Dantalion"
-      },
-      "badges": [
-        "关联：Dantalion"
-      ],
-      "searchTerms": [
-        "Main Story",
-        "Chapter 101 · Entry 5",
-        "101-5",
-        "dantalion",
-        "Dantalion",
-        "nvl"
-      ],
-      "sortOrder": 999101005999,
-      "facets": {
-        "path": [
-          "Main Story"
-        ],
-        "chapter": [
-          "Chapter 101"
-        ]
-      }
-    },
-    {
-      "resourceId": "01a00093-f8e6-79f9-8bbf-0335b80d9938",
-      "resourceType": "story-cg",
-      "displayTitle": "Main Story",
-      "subtitle": "Main Story · Chapter 102 · Entry 2",
-      "metadata": {
-        "storyType": "Main Story",
-        "storyChapter": "102",
-        "storyEntry": "2"
-      },
-      "badges": [],
-      "searchTerms": [
-        "Main Story",
-        "Chapter 102 · Entry 2",
-        "102-2",
-        "nvl"
-      ],
-      "sortOrder": 999102002999,
-      "facets": {
-        "path": [
-          "Main Story"
-        ],
-        "chapter": [
-          "Chapter 102"
-        ]
-      }
-    },
-    {
-      "resourceId": "01a00093-f967-789d-ac6a-017c4b39c4ad",
-      "resourceType": "story-cg",
-      "displayTitle": "Main Story",
-      "subtitle": "Main Story · Chapter 102 · Entry 5",
-      "metadata": {
-        "storyType": "Main Story",
-        "storyChapter": "102",
-        "storyEntry": "5"
-      },
-      "badges": [],
-      "searchTerms": [
-        "Main Story",
-        "Chapter 102 · Entry 5",
-        "102-5",
-        "nvl"
-      ],
-      "sortOrder": 999102005999,
-      "facets": {
-        "path": [
-          "Main Story"
-        ],
-        "chapter": [
-          "Chapter 102"
         ]
       }
     }
