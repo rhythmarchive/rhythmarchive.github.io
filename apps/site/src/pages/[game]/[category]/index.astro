@@ -26,11 +26,12 @@ export function getStaticPaths() {
       browseData: category.slug === "jacket" && game.slug !== "rotaeno" ? browseByGame[game.slug] : undefined,
       storyStructure: game.slug === "arcaea" && category.slug === "story-cg" ? categoryBrowse.arcaea.storyStructure : undefined,
       storyUi: game.slug === "arcaea" && category.slug === "story-cg" ? siteData.storyUi.arcaea : undefined,
+      storyAvatars: game.slug === "arcaea" && category.slug === "story-cg" ? siteData.resources.filter((resource) => resource.game === "arcaea" && resource.resourceType === "character-avatar") : undefined,
     },
   })));
 }
 
-const { game, category, resources, browseData, storyStructure, storyUi } = Astro.props;
+const { game, category, resources, browseData, storyStructure, storyUi, storyAvatars } = Astro.props;
 const gameId = game.slug as GameId;
 const categoryId = category.slug as ResourceTypeId;
 const browseConfig = getCategoryBrowseConfig(gameId, categoryId, resources);
@@ -54,7 +55,7 @@ const description = `浏览并下载 ${game.displayName} ${category.label} 图�
       <BrowseGallery data={browseData} categoryLabel={category.label} galleryUrl={urls.sitePath(`/data/browse/${game.slug}/jacket.json`)} />
     ) : (
       <>
-        {storyStructure ? <ArcaeaStoryExplorer resources={resources} storyStructure={storyStructure} {...(storyUi ? { storyUi } : {})} /> : null}
+        {storyStructure ? <ArcaeaStoryExplorer resources={resources} storyStructure={storyStructure} {...(storyUi ? { storyUi } : {})} {...(storyAvatars ? { storyAvatars } : {})} /> : null}
         <Gallery resources={resources.slice(0, 48)} total={resources.length} game={gameId} category={categoryId} categoryLabel={category.label} galleryUrl={urls.sitePath(`/data/galleries/${game.slug}/${category.slug}.json`)} config={browseConfig} />
       </>
     )}

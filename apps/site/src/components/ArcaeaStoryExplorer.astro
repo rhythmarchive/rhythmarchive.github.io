@@ -10,11 +10,28 @@ interface Props {
   resources: PublicResource[];
   storyStructure: ArcaeaStoryStructureType;
   storyUi?: Record<string, PublicResource>;
+  storyAvatars?: PublicResource[];
 }
 
-const { resources, storyStructure, storyUi = {} } = Astro.props;
+const { resources, storyStructure, storyUi = {}, storyAvatars = [] } = Astro.props;
 const model = buildArcaeaStoryExplorerModel(resources, storyStructure);
 const firstPathId = model.sections[0]?.paths[0]?.pathId;
+
+type StoryGraphPoint = { x: number; y: number };
+type StoryGraphLine = { x1: number; y1: number; x2: number; y2: number; from: string; to: string; kind: "linear" | "branch" | "merge"; external: boolean };
+type StoryGraphAvatar = { id: number; x: number; y: number; entryKey: string; image?: PublicAsset; label: string };
+type StoryGraphLayout = { width: number; height: number; points: Map<string, StoryGraphPoint>; lines: StoryGraphLine[]; avatars: StoryGraphAvatar[] };
+type StoryMapPath = { path: import("../lib/arcaea-story-explorer").ArcaeaStoryExplorerPath; graph: StoryGraphLayout; x: number; y: number };
+type StoryMapLine = StoryGraphLine & { pathIds: number[]; avatar?: boolean };
+type StoryMapExternal = { key: string; x: number; y: number; line: StoryMapLine };
+type StoryMapLayout = { width: number; height: number; paths: StoryMapPath[]; lines: StoryMapLine[]; external: StoryMapExternal[] };
+
+const specialGraphRows: Record<number, string[][]> = {
+  1: [["1-1", "1-2", "1-3"], ["2-1", "2-2", "2-3"]],
+  2: [["2-4", "2-5"], ["2-D", "V-0"], ["2-7", "2-8", "2-9"]],
+  3: [["1-4", "1-5"], ["1-ZR"], ["1-7", "1-8", "1-9"]],
+  19: [["F-1", "F-2", "F-3", "F-4", "F-5", "F-6", "F-7"], ["E-1", "E-2"]],
+};
 
 function resourceHref(resource: PublicResource): string {
   return sitePath(resource.route, BASE_PATH);
@@ -85,6 +102,157 @@ function sectionArtwork(sectionLabel: string): PublicAsset | undefined {
 function nodeArtwork(entry: { iconKey?: string; resources: PublicResource[] }): PublicAsset | undefined {
   const icon = entry.iconKey ? uiImage(entry.iconKey + ".png") : undefined;
   return icon ?? entry.resources.map(resourceImage).find((image): image is PublicAsset => Boolean(image));
+}
+
+function avatarResource(characterId: number): PublicResource | undefined {
+  const expected = new RegExp("(?:^|[_-])" + characterId + "(?:[a-z])?_icon\\.png$", "iu");
+  return storyAvatars.find((resource) => {
+    const filenames = [
+      resource.original?.downloadFilename,
+      resource.downloadFilename,
+      ...resource.variants.flatMap((variant) => [
+        variant.original?.downloadFilename,
+        ...(variant.originals?.map((original) => original.downloadFilename) ?? []),
+      ]),
+    ].filter((filename): filename is string => Boolean(filename));
+    return filenames.some((filename) => expected.test(filename.replaceAll("\\", "/")));
+  });
+}
+
+function avatarImage(characterId: number): PublicAsset | undefined {
+  const resource = avatarResource(characterId);
+  return resource ? resourceImage(resource) : undefined;
+}
+
+function avatarLabel(characterId: number): string {
+  const resource = avatarResource(characterId);
+  return resource?.displayTitle?.replace(/^头像\s*[·:：]\s*/u, "") || "角色 " + characterId;
+}
+
+function compactRows(keys: string[]): string[][] {
+  const rows: string[][] = [];
+  for (let index = 0; index < keys.length; index += 5) rows.push(keys.slice(index, index + 5));
+  return rows;
+}
+
+function storyGraph(path: import("../lib/arcaea-story-explorer").ArcaeaStoryExplorerPath): StoryGraphLayout {
+  const configuredRows = specialGraphRows[path.pathId] ?? compactRows(path.entries.map((entry) => entry.key));
+  const configuredKeys = new Set(configuredRows.flat());
+  const remainder = path.entries.map((entry) => entry.key).filter((key) => !configuredKeys.has(key));
+  const rows = [...configuredRows.flatMap((row) => row.length > 5 ? compactRows(row) : [row]), ...(remainder.length > 0 ? compactRows(remainder) : [])];
+  const points = new Map<string, StoryGraphPoint>();
+  const columnGap = 78;
+  const rowGap = 78;
+  const left = 105;
+  rows.forEach((row, rowIndex) => {
+    row.forEach((key, columnIndex) => {
+      points.set(key, { x: left + columnIndex * columnGap, y: 62 + rowIndex * rowGap });
+    });
+  });
+  const width = Math.max(530, left + Math.max(...rows.map((row) => row.length), 1) * columnGap + 78);
+  const height = Math.max(150, 106 + rows.length * rowGap);
+  const lines: StoryGraphLine[] = path.connections.flatMap((connection) => {
+    const from = points.get(connection.from);
+    const to = points.get(connection.to);
+    return from && to ? [{ ...connection, x1: from.x, y1: from.y, x2: to.x, y2: to.y, external: false }] : [];
+  });
+  const avatars: StoryGraphAvatar[] = path.characterIds.map((id, index) => {
+    const entryKey = path.rootEntries[Math.min(index, Math.max(path.rootEntries.length - 1, 0))] ?? path.entries[0]?.key ?? "";
+    const target = points.get(entryKey);
+    const y = target?.y ?? 62 + index * 42;
+    const image = avatarImage(id);
+    return { id, x: 42, y, entryKey, ...(image ? { image } : {}), label: avatarLabel(id) };
+  });
+  return { width, height, points, lines, avatars };
+}
+
+function storyMap(section: import("../lib/arcaea-story-explorer").ArcaeaStoryExplorerSection): StoryMapLayout {
+  const prepared = section.paths.map((path) => ({ path, graph: storyGraph(path) }));
+  const columnCount = prepared.length >= 5 ? 3 : 2;
+  const titleHeight = 54;
+  const columnGap = 28;
+  const rowGap = 42;
+  const boardPadding = 28;
+  const columnWidths = Array.from({ length: columnCount }, () => 0);
+  const rowHeights = Array.from({ length: Math.ceil(prepared.length / columnCount) }, () => 0);
+  prepared.forEach((item, index) => {
+    const column = index % columnCount;
+    const row = Math.floor(index / columnCount);
+    columnWidths[column] = Math.max(columnWidths[column] ?? 0, item.graph.width);
+    rowHeights[row] = Math.max(rowHeights[row] ?? 0, item.graph.height + titleHeight);
+  });
+  const columnOffsets: number[] = [];
+  let x = boardPadding;
+  for (const width of columnWidths) {
+    columnOffsets.push(x);
+    x += width + columnGap;
+  }
+  const rowOffsets: number[] = [];
+  let y = boardPadding;
+  for (const height of rowHeights) {
+    rowOffsets.push(y);
+    y += height + rowGap;
+  }
+  const paths = prepared.map((item, index) => ({
+    ...item,
+    x: columnOffsets[index % columnCount] ?? boardPadding,
+    y: rowOffsets[Math.floor(index / columnCount)] ?? boardPadding,
+  }));
+  const width = Math.max(1300, (columnOffsets.at(-1) ?? boardPadding) + (columnWidths.at(-1) ?? 530) + boardPadding);
+  const height = Math.max(620, (rowOffsets.at(-1) ?? boardPadding) + (rowHeights.at(-1) ?? 250) + boardPadding);
+  const nodeByKey = new Map<string, { pathId: number; x: number; y: number }>();
+  for (const item of paths) {
+    for (const [key, point] of item.graph.points) {
+      nodeByKey.set(key, { pathId: item.path.pathId, x: item.x + point.x, y: item.y + titleHeight + point.y });
+    }
+  }
+  const lines: StoryMapLine[] = [];
+  for (const item of paths) {
+    for (const line of item.graph.lines) {
+      const from = nodeByKey.get(line.from);
+      const to = nodeByKey.get(line.to);
+      if (from && to) lines.push({ ...line, x1: from.x, y1: from.y, x2: to.x, y2: to.y, pathIds: [item.path.pathId] });
+    }
+    for (const avatar of item.graph.avatars) {
+      const target = nodeByKey.get(avatar.entryKey);
+      if (!target) continue;
+      lines.push({
+        from: "avatar-" + item.path.pathId + "-" + avatar.id,
+        to: avatar.entryKey,
+        kind: "linear",
+        external: false,
+        x1: item.x + avatar.x + 29,
+        y1: item.y + titleHeight + avatar.y,
+        x2: target.x - 32,
+        y2: target.y,
+        pathIds: [item.path.pathId],
+        avatar: true,
+      });
+    }
+  }
+  const external: StoryMapExternal[] = [];
+  const seenExternal = new Set<string>();
+  for (const sourcePath of section.paths) {
+    for (const connection of sourcePath.externalConnections) {
+      const from = nodeByKey.get(connection.from);
+      const to = nodeByKey.get(connection.to);
+      const identity = connection.from + "->" + connection.to + ":" + connection.kind;
+      if (from && to) {
+        if (seenExternal.has(identity)) continue;
+        seenExternal.add(identity);
+        lines.push({ ...connection, x1: from.x, y1: from.y, x2: to.x, y2: to.y, pathIds: [...new Set([from.pathId, to.pathId])] });
+        continue;
+      }
+      const target = from ?? to;
+      if (!target || seenExternal.has(identity)) continue;
+      seenExternal.add(identity);
+      const sourceKey = from ? connection.to : connection.from;
+      const sourceX = from ? target.x + 76 : Math.max(boardPadding + 12, target.x - 76);
+      const line: StoryMapLine = { ...connection, x1: sourceX, y1: target.y, x2: target.x, y2: target.y, pathIds: [target.pathId] };
+      external.push({ key: sourceKey, x: sourceX, y: target.y, line });
+    }
+  }
+  return { width, height, paths, lines, external };
 }
 ---
 
@@ -189,40 +357,67 @@ function nodeArtwork(entry: { iconKey?: string; resources: PublicResource[] }): 
               </div>
 
               <div class="story-map-viewport" data-story-map-viewport tabindex="0" aria-label={section.label + " 剧情节点地图"}>
-                <div class="story-map-world" data-story-map-world>
-                  {backdrop ? <img class="story-map-background" src={backdrop.url} width={backdrop.width} height={backdrop.height} alt="" decoding="async" /> : null}
-                  <div class="story-map-wash" aria-hidden="true"></div>
-                  <div class="story-map-glow story-map-glow-left" aria-hidden="true"></div>
-                  <div class="story-map-glow story-map-glow-right" aria-hidden="true"></div>
-                  <div class="story-map-paths">
-                    {section.paths.map((path, pathIndex) => (
-                      <article class:list={{ "story-map-path": true, "is-active": path.pathId === firstPathId }} data-story-map-path={path.pathId} style={"--story-path-index: " + pathIndex + ";"}>
-                        <button class="story-map-path-title" type="button" data-story-path={path.pathId} data-story-path-section={section.act} aria-selected={path.pathId === firstPathId} aria-controls={"story-path-" + path.pathId} style={divider ? "--story-ui-divider: url(\"" + divider.url + "\")" : undefined}>
-                          <span class="story-map-path-title-name">{path.title}</span>
-                          <small>{path.typeLabel}</small>
-                          <em>{path.entries.length} nodes</em>
-                        </button>
-                        <div class="story-map-route">
-                          {path.entries.map((entry) => {
-                            const artwork = nodeArtwork(entry);
-                            return (
-                              <button class="story-map-node" type="button" data-story-map-entry data-story-path-id={path.pathId} data-story-entry-key={entry.key} aria-label={path.title + " Entry " + entry.key} title={path.title + " · Entry " + entry.key}>
-                                <span class="story-node-visual">
-                                  {artwork ? <img src={artwork.url} width={artwork.width} height={artwork.height} alt="" loading="lazy" decoding="async" /> : <span class="story-node-fallback"><span>{entry.key}</span></span>}
-                                  <span class="story-node-code">{entry.key}</span>
-                                  {entry.resources.length > 0 ? <span class="story-node-count">{entry.resources.length}</span> : null}
-                                  {entry.staffRoll ? <span class="story-node-finale">★</span> : null}
-                                </span>
-                                <span class="story-node-caption">{entry.resources.length > 0 ? entry.resources.length + " CG" : entry.visualLabel}</span>
+                {(() => {
+                  const map = storyMap(section);
+                  const avatarPanel = uiImage("character_bg_panel_single_vert.png");
+                  return (
+                    <div class="story-map-world" data-story-map-world style={"--story-map-width: " + map.width + "px; --story-map-height: " + map.height + "px;"}>
+                      {backdrop ? <img class="story-map-background" src={backdrop.url} width={backdrop.width} height={backdrop.height} alt="" decoding="async" /> : null}
+                      <div class="story-map-wash" aria-hidden="true"></div>
+                      <div class="story-map-glow story-map-glow-left" aria-hidden="true"></div>
+                      <div class="story-map-glow story-map-glow-right" aria-hidden="true"></div>
+                      <div class="story-map-paths" style={"--story-map-width: " + map.width + "px; --story-map-height: " + map.height + "px;"}>
+                        <svg class="story-map-links" viewBox={"0 0 " + map.width + " " + map.height} role="presentation" aria-hidden="true">
+                          {map.lines.map((line) => <line class={"story-map-link story-map-link-" + line.kind + (line.avatar ? " story-map-link-avatar" : "")} x1={line.x1} y1={line.y1} x2={line.x2} y2={line.y2} data-story-link-path-id={line.pathIds.join(",")} data-story-link-from={line.from} data-story-link-to={line.to} />)}
+                          {map.external.map((item) => <line class={"story-map-link story-map-link-" + item.line.kind + " story-map-link-external"} x1={item.line.x1} y1={item.line.y1} x2={item.line.x2} y2={item.line.y2} data-story-link-path-id={item.line.pathIds.join(",")} data-story-link-from={item.line.from} data-story-link-to={item.line.to} />)}
+                        </svg>
+                        {map.paths.map((mapPath) => {
+                          const path = mapPath.path;
+                          const graph = mapPath.graph;
+                          return (
+                            <article class:list={{ "story-map-path": true, "is-active": path.pathId === firstPathId }} data-story-map-path={path.pathId} style={"left: " + mapPath.x + "px; top: " + mapPath.y + "px; width: " + graph.width + "px; height: " + (graph.height + 54) + "px; --story-graph-width: " + graph.width + "px; --story-graph-height: " + graph.height + "px;"}>
+                              <button class="story-map-path-title" type="button" data-story-path={path.pathId} data-story-path-section={section.act} aria-selected={path.pathId === firstPathId} aria-controls={"story-path-" + path.pathId} style={divider ? "--story-ui-divider: url(\"" + divider.url + "\")" : undefined}>
+                                <span class="story-map-path-title-name">{path.title}</span>
+                                <small>{path.typeLabel} · {path.characterIds.length} avatar{path.characterIds.length === 1 ? "" : "s"}</small>
+                                <em>{path.entries.length} nodes</em>
                               </button>
-                            );
-                          })}
-                          {path.vnResources.length > 0 ? <span class="story-map-vn-mark" title={path.vnResources.length + " 张 VN CG"}>VN · {path.vnResources.length}</span> : null}
-                        </div>
-                      </article>
-                    ))}
-                  </div>
-                </div>
+                              <div class="story-map-route" style={"--story-graph-width: " + graph.width + "px; --story-graph-height: " + graph.height + "px;"}>
+                                {graph.avatars.map((avatar) => (
+                                  <button class="story-map-avatar" type="button" data-story-avatar data-story-path-id={path.pathId} data-story-entry-key={avatar.entryKey} aria-label={"从 " + avatar.label + " 头像开始，进入 " + avatar.entryKey} title={avatar.label + " · 起点 " + avatar.entryKey} style={"left: " + avatar.x + "px; top: " + avatar.y + "px;"}>
+                                    <span class="story-map-avatar-frame" style={avatarPanel ? "--story-avatar-panel: url(\"" + avatarPanel.url + "\")" : undefined}>
+                                      {avatar.image ? <img src={avatar.image.url} width={avatar.image.width} height={avatar.image.height} alt="" loading="lazy" decoding="async" /> : <span>{avatar.id}</span>}
+                                    </span>
+                                    <small>{avatar.label}</small>
+                                  </button>
+                                ))}
+                                {path.entries.map((entry) => {
+                                  const point = graph.points.get(entry.key);
+                                  if (!point) return null;
+                                  const artwork = nodeArtwork(entry);
+                                  return (
+                                    <button class="story-map-node" type="button" data-story-map-entry data-story-path-id={path.pathId} data-story-entry-key={entry.key} aria-label={path.title + " Entry " + entry.key} title={path.title + " · Entry " + entry.key} style={"left: " + point.x + "px; top: " + point.y + "px;"}>
+                                      <span class:list={{ "story-node-visual": true, "has-art": Boolean(artwork) }}>
+                                        {artwork ? <img src={artwork.url} width={artwork.width} height={artwork.height} alt="" loading="lazy" decoding="async" /> : <span class="story-node-fallback"><span>{entry.key}</span></span>}
+                                        <span class="story-node-code">{entry.key}</span>
+                                        {entry.resources.length > 0 ? <span class="story-node-count">{entry.resources.length}</span> : null}
+                                        {entry.staffRoll ? <span class="story-node-finale">★</span> : null}
+                                      </span>
+                                      <span class="story-node-caption">{entry.resources.length > 0 ? entry.resources.length + " CG" : entry.visualLabel}</span>
+                                    </button>
+                                  );
+                                })}
+                                {path.vnResources.length > 0 ? <span class="story-map-vn-mark" title={path.vnResources.length + " 张 VN CG"}>VN · {path.vnResources.length}</span> : null}
+                              </div>
+                            </article>
+                          );
+                        })}
+                        {map.external.map((item) => (
+                          <span class="story-map-external" style={"left: " + item.x + "px; top: " + item.y + "px;"}>↳ {item.key}</span>
+                        ))}
+                      </div>
+                    </div>
+                  );
+                })()}
               </div>
 
               <div class="story-map-legend">

@@ -12,6 +12,8 @@ function initializeStoryExplorer(root: HTMLElement): void {
   const pathDetails = [...root.querySelectorAll<HTMLElement>("[data-story-path-detail]")];
   const mapPaths = [...root.querySelectorAll<HTMLElement>("[data-story-map-path]")];
   const mapEntryButtons = [...root.querySelectorAll<HTMLButtonElement>("[data-story-map-entry]")];
+  const mapAvatarButtons = [...root.querySelectorAll<HTMLButtonElement>("[data-story-avatar]")];
+  const mapLinks = [...root.querySelectorAll<SVGLineElement>("[data-story-link-path-id]")];
   const unassignedTrigger = root.querySelector<HTMLButtonElement>("[data-story-unassigned-trigger]");
   const unassignedPanel = root.querySelector<HTMLElement>("[data-story-unassigned-panel]");
   const zoomInButtons = [...root.querySelectorAll<HTMLButtonElement>("[data-story-zoom-in]")];
@@ -38,6 +40,13 @@ function initializeStoryExplorer(root: HTMLElement): void {
     });
   }
   for (const button of mapEntryButtons) {
+    button.addEventListener("click", () => {
+      const pathId = button.dataset.storyPathId;
+      const entryKey = button.dataset.storyEntryKey;
+      if (pathId && entryKey) selectPath(pathId, entryKey, true);
+    });
+  }
+  for (const button of mapAvatarButtons) {
     button.addEventListener("click", () => {
       const pathId = button.dataset.storyPathId;
       const entryKey = button.dataset.storyEntryKey;
@@ -120,6 +129,7 @@ function initializeStoryExplorer(root: HTMLElement): void {
       button.setAttribute("aria-selected", String(active));
     }
     for (const path of mapPaths) path.classList.toggle("is-active", path.dataset.storyMapPath === pathId);
+    for (const avatar of mapAvatarButtons) avatar.classList.toggle("is-active", avatar.dataset.storyPathId === pathId && avatar.dataset.storyEntryKey === requestedEntry);
     for (const candidate of pathDetails) candidate.hidden = candidate !== detail;
     const entryButtons = [...detail.querySelectorAll<HTMLButtonElement>("[data-story-entry]")];
     const entryKey = requestedEntry && entryButtons.some((button) => button.dataset.storyEntryKey === requestedEntry)
@@ -151,6 +161,15 @@ function initializeStoryExplorer(root: HTMLElement): void {
       if (active) button.setAttribute("aria-current", "true");
       else button.removeAttribute("aria-current");
     }
+    for (const avatar of mapAvatarButtons) {
+      const active = avatar.dataset.storyPathId === pathId && avatar.dataset.storyEntryKey === entryKey;
+      avatar.classList.toggle("is-active", active);
+    }
+    for (const link of mapLinks) {
+      const samePath = (link.dataset.storyLinkPathId ?? "").split(",").includes(pathId);
+      const connected = link.dataset.storyLinkFrom === entryKey || link.dataset.storyLinkTo === entryKey;
+      link.classList.toggle("is-active", samePath && connected);
+    }
     for (const panel of panels) panel.hidden = panel.dataset.storyEntryKey !== entryKey;
     if (syncUrl) {
       const url = new URL(window.location.href);
@@ -175,6 +194,8 @@ function initializeStoryExplorer(root: HTMLElement): void {
       button.setAttribute("aria-selected", "false");
     }
     for (const path of mapPaths) path.classList.remove("is-active");
+    for (const avatar of mapAvatarButtons) avatar.classList.remove("is-active");
+    for (const link of mapLinks) link.classList.remove("is-active");
     for (const detail of pathDetails) detail.hidden = true;
     unassignedTrigger?.setAttribute("aria-selected", "true");
     unassignedPanel.hidden = false;

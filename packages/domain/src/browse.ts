@@ -296,6 +296,7 @@ export const ArcaeaStoryStructure = z.object({
     act: z.number().int().nonnegative(),
     title: z.string().min(1),
     type: z.string().min(1),
+    characters: z.array(z.number().int().nonnegative()).default([]),
     nodes: z.array(z.string().min(1)),
   })),
   nodeAnnotations: z.array(z.object({
@@ -308,6 +309,11 @@ export const ArcaeaStoryStructure = z.object({
     staffRoll: z.boolean().optional(),
   })),
   nodeIcons: z.record(z.string(), z.string().min(1)).default({}),
+  nodeLinks: z.array(z.object({
+    from: z.string().min(1),
+    to: z.string().min(1),
+    kind: z.enum(["linear", "branch", "merge"]),
+  })).default([]),
 });
 
 export const CategoryBrowseProjection = z.object({

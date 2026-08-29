@@ -79,6 +79,8 @@ const ARCAEA_STORY_UI_EXACT_FILES = new Set([
   "corner-btn.png",
   "corner-btn-right.png",
   "partner-btn.png",
+  "character_bg_panel_single_vert.png",
+  "character_bg_panel_double_vert.png",
   "arrow_cover.png",
   "bottom_black.png",
   "top_line.png",

@@ -4,7 +4,7 @@
   "generatedAt": "2026-08-28T08:06:33.798Z",
   "source": {
     "snapshot": "Arcaea APK 7.0.0c",
-    "sha256": "ed213d45bc664fed468bb15e65634200c1e756a33444c0b84437dd30586c67ec"
+    "sha256": "ab95fcc387fbdca9f6c1e77a181927770e6fedf2c6fc91479711bfdd33d1eb5a"
   },
   "resources": [
     {
@@ -25396,105 +25396,105 @@
     {
       "resourceId": "01a00093-e56d-77ee-908c-9f6349ff2424",
       "resourceType": "story-cg",
-      "displayTitle": "Absolute Nihil",
-      "subtitle": "Main Story · Act II · Part I · Entry 18-1",
+      "displayTitle": "Rotaeno",
+      "subtitle": "Archive Story · Act II · Part I · Entry 19-1",
       "metadata": {
-        "storyPathTitle": "Absolute Nihil",
-        "storyType": "Main Story",
-        "storyPathId": 27,
+        "storyPathTitle": "Rotaeno",
+        "storyType": "Archive Story",
+        "storyPathId": 28,
         "storyAct": "3",
         "storySection": "Act II · Part I",
-        "storyChapter": "18",
+        "storyChapter": "19",
         "storyEntry": "1",
-        "storyNode": "18-1",
+        "storyNode": "19-1",
         "storyNodeOrder": 0,
         "relatedSongId": "_readPreviousEntry"
       },
       "badges": [],
       "searchTerms": [
-        "Absolute Nihil",
-        "Main Story",
+        "Rotaeno",
+        "Archive Story",
         "Act II · Part I",
-        "Entry 18-1",
-        "18-1",
+        "Entry 19-1",
+        "19-1",
         "assets/app-data/story/cg/18-1.jpg",
         "_readPreviousEntry",
         "nvl"
       ],
-      "sortOrder": 2700000,
+      "sortOrder": 2800000,
       "facets": {
         "type": [
-          "Main Story"
+          "Archive Story"
         ],
         "path": [
-          "Absolute Nihil"
+          "Rotaeno"
         ],
         "section": [
           "Act II · Part I"
         ],
         "chapter": [
-          "Chapter 18"
+          "Chapter 19"
         ]
       }
     },
     {
       "resourceId": "01a00093-e5ff-755d-8448-ddd59eaa3baf",
       "resourceType": "story-cg",
-      "displayTitle": "Absolute Nihil",
-      "subtitle": "Main Story · Act II · Part I · Entry 18-2",
+      "displayTitle": "Rotaeno",
+      "subtitle": "Archive Story · Act II · Part I · Entry 19-2",
       "metadata": {
-        "storyPathTitle": "Absolute Nihil",
-        "storyType": "Main Story",
-        "storyPathId": 27,
+        "storyPathTitle": "Rotaeno",
+        "storyType": "Archive Story",
+        "storyPathId": 28,
         "storyAct": "3",
         "storySection": "Act II · Part I",
-        "storyChapter": "18",
+        "storyChapter": "19",
         "storyEntry": "2",
-        "storyNode": "18-2",
+        "storyNode": "19-2",
         "storyNodeOrder": 1,
         "relatedSongId": "_readPreviousEntry"
       },
       "badges": [],
       "searchTerms": [
-        "Absolute Nihil",
-        "Main Story",
+        "Rotaeno",
+        "Archive Story",
         "Act II · Part I",
-        "Entry 18-2",
-        "18-2",
+        "Entry 19-2",
+        "19-2",
         "assets/app-data/story/cg/18-2.jpg",
         "_readPreviousEntry",
         "nvl"
       ],
-      "sortOrder": 2700100,
+      "sortOrder": 2800100,
       "facets": {
         "type": [
-          "Main Story"
+          "Archive Story"
         ],
         "path": [
-          "Absolute Nihil"
+          "Rotaeno"
         ],
         "section": [
           "Act II · Part I"
         ],
         "chapter": [
-          "Chapter 18"
+          "Chapter 19"
         ]
       }
     },
     {
       "resourceId": "01a00093-e69d-7298-8644-79a10f5159fc",
       "resourceType": "story-cg",
-      "displayTitle": "Absolute Nihil",
-      "subtitle": "Main Story · Act II · Part I · Entry 18-6",
+      "displayTitle": "Rotaeno",
+      "subtitle": "Archive Story · Act II · Part I · Entry 19-6",
       "metadata": {
-        "storyPathTitle": "Absolute Nihil",
-        "storyType": "Main Story",
-        "storyPathId": 27,
+        "storyPathTitle": "Rotaeno",
+        "storyType": "Archive Story",
+        "storyPathId": 28,
         "storyAct": "3",
         "storySection": "Act II · Part I",
-        "storyChapter": "18",
+        "storyChapter": "19",
         "storyEntry": "6",
-        "storyNode": "18-6",
+        "storyNode": "19-6",
         "storyNodeOrder": 5,
         "relatedSongId": "mvurbd",
         "relatedSongTitle": "MVURBD"
@@ -25503,11 +25503,11 @@
         "关联：MVURBD"
       ],
       "searchTerms": [
-        "Absolute Nihil",
-        "Main Story",
+        "Rotaeno",
+        "Archive Story",
         "Act II · Part I",
-        "Entry 18-6",
-        "18-6",
+        "Entry 19-6",
+        "19-6",
         "assets/app-data/story/cg/18-6.jpg",
         "mvurbd",
         "MVURBD",
@@ -25515,36 +25515,36 @@
         "むーぶゆあぼでぃ",
         "nvl"
       ],
-      "sortOrder": 2700500,
+      "sortOrder": 2800500,
       "facets": {
         "type": [
-          "Main Story"
+          "Archive Story"
         ],
         "path": [
-          "Absolute Nihil"
+          "Rotaeno"
         ],
         "section": [
           "Act II · Part I"
         ],
         "chapter": [
-          "Chapter 18"
+          "Chapter 19"
         ]
       }
     },
     {
       "resourceId": "01a00093-e73d-7d9f-bee0-05483405e8bf",
       "resourceType": "story-cg",
-      "displayTitle": "Absolute Nihil",
-      "subtitle": "Main Story · Act II · Part I · Entry 18-7",
+      "displayTitle": "Rotaeno",
+      "subtitle": "Archive Story · Act II · Part I · Entry 19-7",
       "metadata": {
-        "storyPathTitle": "Absolute Nihil",
-        "storyType": "Main Story",
-        "storyPathId": 27,
+        "storyPathTitle": "Rotaeno",
+        "storyType": "Archive Story",
+        "storyPathId": 28,
         "storyAct": "3",
         "storySection": "Act II · Part I",
-        "storyChapter": "18",
+        "storyChapter": "19",
         "storyEntry": "7",
-        "storyNode": "18-7",
+        "storyNode": "19-7",
         "storyNodeOrder": 6,
         "relatedSongId": "invertedworld",
         "relatedSongTitle": "Inverted World"
@@ -25553,11 +25553,11 @@
         "关联：Inverted World"
       ],
       "searchTerms": [
-        "Absolute Nihil",
-        "Main Story",
+        "Rotaeno",
+        "Archive Story",
         "Act II · Part I",
-        "Entry 18-7",
-        "18-7",
+        "Entry 19-7",
+        "19-7",
         "assets/app-data/story/cg/18-7.jpg",
         "invertedworld",
         "Inverted World",
@@ -25566,19 +25566,71 @@
         "いんばーてっどわーるど",
         "nvl"
       ],
-      "sortOrder": 2700600,
+      "sortOrder": 2800600,
       "facets": {
         "type": [
-          "Main Story"
+          "Archive Story"
         ],
         "path": [
-          "Absolute Nihil"
+          "Rotaeno"
         ],
         "section": [
           "Act II · Part I"
         ],
         "chapter": [
-          "Chapter 18"
+          "Chapter 19"
+        ]
+      }
+    },
+    {
+      "resourceId": "01a00093-e7d6-79e4-b9c8-cd3a5d6d26e1",
+      "resourceType": "story-cg",
+      "displayTitle": "Rotaeno",
+      "subtitle": "Archive Story · Act II · Part I · Entry 19-8",
+      "metadata": {
+        "storyPathTitle": "Rotaeno",
+        "storyType": "Archive Story",
+        "storyPathId": 28,
+        "storyAct": "3",
+        "storySection": "Act II · Part I",
+        "storyChapter": "19",
+        "storyEntry": "8",
+        "storyNode": "19-8",
+        "storyNodeOrder": 7,
+        "relatedSongId": "vulcanus",
+        "relatedSongTitle": "Vulcānus"
+      },
+      "badges": [
+        "关联：Vulcānus"
+      ],
+      "searchTerms": [
+        "Rotaeno",
+        "Archive Story",
+        "Act II · Part I",
+        "Entry 19-8",
+        "19-8",
+        "assets/app-data/story/cg/18-8.jpg",
+        "vulcanus",
+        "Vulcānus",
+        "Vulcanus",
+        "불카누스",
+        "うるかーぬす",
+        "うるかぬす",
+        "nvl"
+      ],
+      "sortOrder": 2800700,
+      "facets": {
+        "type": [
+          "Archive Story"
+        ],
+        "path": [
+          "Rotaeno"
+        ],
+        "section": [
+          "Act II · Part I"
+        ],
+        "chapter": [
+          "Chapter 19"
         ]
       }
     },
@@ -31468,48 +31520,6 @@
       }
     },
     {
-      "resourceId": "01a00093-e7d6-79e4-b9c8-cd3a5d6d26e1",
-      "resourceType": "story-cg",
-      "displayTitle": "Side Story",
-      "subtitle": "Side Story · Entry 18-8",
-      "metadata": {
-        "storyType": "Side Story",
-        "storyChapter": "18",
-        "storyEntry": "8",
-        "storyNode": "18-8",
-        "relatedSongId": "vulcanus",
-        "relatedSongTitle": "Vulcānus"
-      },
-      "badges": [
-        "关联：Vulcānus"
-      ],
-      "searchTerms": [
-        "Side Story",
-        "Entry 18-8",
-        "18-8",
-        "assets/app-data/story/cg/18-8.jpg",
-        "vulcanus",
-        "Vulcānus",
-        "Vulcanus",
-        "불카누스",
-        "うるかーぬす",
-        "うるかぬす",
-        "nvl"
-      ],
-      "sortOrder": 1999019079,
-      "facets": {
-        "type": [
-          "Side Story"
-        ],
-        "path": [
-          "Side Story"
-        ],
-        "chapter": [
-          "Chapter 18"
-        ]
-      }
-    },
-    {
       "resourceId": "01a00093-f704-75cb-b705-2e0c088b306c",
       "resourceType": "story-cg",
       "displayTitle": "Side Story",
@@ -36592,7 +36602,7 @@
       "packageVersion": "7.0.0c",
       "packageSha256": "8ef5225f4dab43135711a776f2fba05e0e397b29c569147e7f1f18663d9a8522",
       "orderingPath": "assets/app-data/story2/ordering",
-      "verifiedAt": "2026-08-28",
+      "verifiedAt": "2026-08-29",
       "wikiSources": [
         {
           "url": "https://wikiwiki.jp/arcaea/%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AA%E3%83%BC",
@@ -36605,6 +36615,14 @@
         {
           "url": "https://wikiwiki.jp/arcaea/%E3%83%91%E3%83%83%E3%82%AF%E9%A0%86",
           "usedFor": "Divine Oblivion pack and song-name cross-check"
+        },
+        {
+          "url": "https://wikiwiki.jp/arcaea/%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AA%E3%83%BC/Main%20Story/Vicious%20Labyrinth",
+          "usedFor": "V-0 prerequisite merge and the post-v6.0 V-0 node label"
+        },
+        {
+          "url": "https://d.namu.moe/w/Arcaea/%EC%8A%A4%ED%86%A0%EB%A6%AC/Act%20II-I",
+          "usedFor": "Rotaeno 19-1 through 19-8 display-name cross-check"
         }
       ]
     },
@@ -36680,6 +36698,10 @@
         "act": 0,
         "title": "Arcaea",
         "type": "main",
+        "characters": [
+          0,
+          1
+        ],
         "nodes": [
           "0-1",
           "0-2",
@@ -36691,6 +36713,10 @@
         "act": 0,
         "title": "Eternal Core",
         "type": "main",
+        "characters": [
+          0,
+          1
+        ],
         "nodes": [
           "1-1",
           "1-2",
@@ -36705,6 +36731,9 @@
         "act": 0,
         "title": "Vicious Labyrinth",
         "type": "main",
+        "characters": [
+          1
+        ],
         "nodes": [
           "2-4",
           "2-5",
@@ -36720,6 +36749,9 @@
         "act": 0,
         "title": "Luminous Sky",
         "type": "main",
+        "characters": [
+          0
+        ],
         "nodes": [
           "1-4",
           "1-5",
@@ -36734,6 +36766,9 @@
         "act": 0,
         "title": "Absolute Reason",
         "type": "side",
+        "characters": [
+          23
+        ],
         "nodes": [
           "3-1",
           "3-2",
@@ -36748,6 +36783,10 @@
         "act": 0,
         "title": "Adverse Prelude",
         "type": "main",
+        "characters": [
+          0,
+          1
+        ],
         "nodes": [
           "V-1",
           "V-2",
@@ -36760,6 +36799,9 @@
         "act": 0,
         "title": "Crimson Solace",
         "type": "side",
+        "characters": [
+          2
+        ],
         "nodes": [
           "4-1",
           "4-2",
@@ -36776,6 +36818,9 @@
         "act": 0,
         "title": "Ambivalent Vision",
         "type": "side",
+        "characters": [
+          4
+        ],
         "nodes": [
           "5-1",
           "5-2",
@@ -36790,6 +36835,10 @@
         "act": 1,
         "title": "Black Fate",
         "type": "main",
+        "characters": [
+          0,
+          1
+        ],
         "nodes": [
           "VS-1",
           "VS-2",
@@ -36806,6 +36855,9 @@
         "act": 1,
         "title": "Scarlet Cage",
         "type": "archive",
+        "characters": [
+          13
+        ],
         "nodes": [
           "6-1",
           "6-2",
@@ -36817,6 +36869,9 @@
         "act": 1,
         "title": "Ephemeral Page",
         "type": "side",
+        "characters": [
+          39
+        ],
         "nodes": [
           "7-1",
           "7-2",
@@ -36831,6 +36886,9 @@
         "act": 1,
         "title": "Divided Heart",
         "type": "side",
+        "characters": [
+          99
+        ],
         "nodes": [
           "S-1",
           "S-2",
@@ -36845,6 +36903,9 @@
         "act": 1,
         "title": "Obsidian Blade",
         "type": "archive",
+        "characters": [
+          44
+        ],
         "nodes": [
           "8-1",
           "8-2",
@@ -36856,6 +36917,9 @@
         "act": 1,
         "title": "Colorful Dream",
         "type": "archive",
+        "characters": [
+          19
+        ],
         "nodes": [
           "11-1",
           "11-2",
@@ -36867,6 +36931,9 @@
         "act": 1,
         "title": "Vermillion Shield",
         "type": "archive",
+        "characters": [
+          44
+        ],
         "nodes": [
           "8-4",
           "8-5",
@@ -36881,6 +36948,9 @@
         "act": 2,
         "title": "Esoteric Order",
         "type": "side",
+        "characters": [
+          45
+        ],
         "nodes": [
           "9-1",
           "9-2",
@@ -36895,6 +36965,10 @@
         "act": 2,
         "title": "Binary Enfold",
         "type": "side",
+        "characters": [
+          11,
+          12
+        ],
         "nodes": [
           "10-1",
           "10-2",
@@ -36909,6 +36983,9 @@
         "act": 2,
         "title": "Unseeing Eyes",
         "type": "archive",
+        "characters": [
+          54
+        ],
         "nodes": [
           "12-1",
           "12-2",
@@ -36921,6 +36998,9 @@
         "act": 2,
         "title": "Dark Ambition",
         "type": "archive",
+        "characters": [
+          10
+        ],
         "nodes": [
           "13-1",
           "13-2",
@@ -36933,6 +37013,10 @@
         "act": 2,
         "title": "Final Verdict",
         "type": "main",
+        "characters": [
+          0,
+          1
+        ],
         "nodes": [
           "F-1",
           "F-2",
@@ -36950,6 +37034,9 @@
         "act": 3,
         "title": "Ambivalent Vision",
         "type": "side",
+        "characters": [
+          4
+        ],
         "nodes": [
           "18-I",
           "18-II",
@@ -36961,6 +37048,9 @@
         "act": 3,
         "title": "Astral Sea",
         "type": "archive",
+        "characters": [
+          47
+        ],
         "nodes": [
           "14-1",
           "14-2",
@@ -36973,6 +37063,9 @@
         "act": 3,
         "title": "Lasting Eden",
         "type": "main",
+        "characters": [
+          71
+        ],
         "nodes": [
           "15-1",
           "15-2",
@@ -36987,6 +37080,9 @@
         "act": 3,
         "title": "Severed Eden",
         "type": "main",
+        "characters": [
+          72
+        ],
         "nodes": [
           "16-1",
           "16-2",
@@ -37003,6 +37099,9 @@
         "act": 3,
         "title": "Sunset Radiance",
         "type": "side",
+        "characters": [
+          30
+        ],
         "nodes": [
           "17-1",
           "17-2",
@@ -37017,6 +37116,9 @@
         "act": 3,
         "title": "Colorful Dream",
         "type": "archive",
+        "characters": [
+          19
+        ],
         "nodes": [
           "11-4",
           "11-5",
@@ -37030,6 +37132,9 @@
         "act": 3,
         "title": "Unseeing Eyes",
         "type": "archive",
+        "characters": [
+          54
+        ],
         "nodes": [
           "12-4",
           "12-5",
@@ -37041,6 +37146,9 @@
         "act": 3,
         "title": "Absolute Nihil",
         "type": "main",
+        "characters": [
+          23
+        ],
         "nodes": [
           "18-1",
           "18-2",
@@ -37056,6 +37164,10 @@
         "act": 3,
         "title": "Rotaeno",
         "type": "archive",
+        "characters": [
+          11,
+          12
+        ],
         "nodes": [
           "19-1",
           "19-2",
@@ -37072,6 +37184,9 @@
         "act": 4,
         "title": "Lucent Historia",
         "type": "main",
+        "characters": [
+          78
+        ],
         "nodes": [
           "20-1",
           "20-2",
@@ -37088,6 +37203,9 @@
         "act": 4,
         "title": "Extant Anima",
         "type": "side",
+        "characters": [
+          89
+        ],
         "nodes": [
           "21-1",
           "21-2",
@@ -37101,6 +37219,9 @@
         "act": 4,
         "title": "Chapter Experientia",
         "type": "side",
+        "characters": [
+          89
+        ],
         "nodes": [
           "22-5",
           "22-4",
@@ -37114,6 +37235,10 @@
         "act": 4,
         "title": "Liminal Eclipse",
         "type": "main",
+        "characters": [
+          71,
+          54
+        ],
         "nodes": [
           "23-1",
           "23-2",
@@ -37130,6 +37255,10 @@
         "act": 4,
         "title": "Divine Oblivion",
         "type": "main",
+        "characters": [
+          23,
+          72
+        ],
         "nodes": [
           "C-1",
           "C-2",
@@ -37213,6 +37342,7 @@
       "1-7": "entry_ls",
       "1-8": "entry_ls",
       "1-9": "entry_ls",
+      "1-ZR": "entry_ls",
       "10-1": "cell_be",
       "10-2": "cell_be",
       "10-3": "cell_be",
@@ -37233,6 +37363,7 @@
       "12-4": "entry_vita2",
       "12-5": "entry_vita2",
       "12-6": "entry_vita2",
+      "12-?": "entry_acheron",
       "13-1": "cell_crimsonthrone",
       "13-2": "cell_crimsonthrone",
       "13-3": "cell_crimsonthrone",
@@ -37261,6 +37392,16 @@
       "17-4": "entry_kanae",
       "17-5": "entry_kanae",
       "17-6": "entry_kanae_boss",
+      "18-1": "entry_nihil",
+      "18-2": "entry_nihil",
+      "18-3": "entry_nihil",
+      "18-4": "entry_nihil",
+      "18-5": "entry_nihil",
+      "18-6": "entry_nihil",
+      "18-7": "entry_nihil",
+      "18-I": "entry_apophenia",
+      "18-II": "entry_apophenia",
+      "18-III": "entry_apophenia",
       "19-1": "entry_rotaeno",
       "19-2": "entry_rotaeno",
       "19-3": "entry_rotaeno",
@@ -37277,6 +37418,7 @@
       "2-7": "entry_vl",
       "2-8": "entry_vl",
       "2-9": "entry_vl",
+      "2-D": "entry_vl",
       "20-1": "cell-lephon-1",
       "20-2": "cell-lephon-1",
       "20-3": "cell-lephon-1",
@@ -37371,6 +37513,7 @@
       "S-4": "entry_lightningscrew",
       "S-5": "entry_switch",
       "S-6": "entry_switch",
+      "V-0": "entry_con",
       "V-1": "entry_con",
       "V-2": "entry_prelude",
       "V-3": "entry_prelude",
@@ -37383,6 +37526,198 @@
       "VS-6": "cell-vs6",
       "VS-7": "cell-vs7",
       "VS-8": "cell-vs8"
-    }
+    },
+    "nodeLinks": [
+      {
+        "from": "1-1",
+        "to": "1-2",
+        "kind": "linear"
+      },
+      {
+        "from": "1-2",
+        "to": "1-3",
+        "kind": "linear"
+      },
+      {
+        "from": "2-1",
+        "to": "2-2",
+        "kind": "linear"
+      },
+      {
+        "from": "2-2",
+        "to": "2-3",
+        "kind": "linear"
+      },
+      {
+        "from": "1-5",
+        "to": "1-ZR",
+        "kind": "branch"
+      },
+      {
+        "from": "1-5",
+        "to": "1-7",
+        "kind": "branch"
+      },
+      {
+        "from": "1-4",
+        "to": "1-5",
+        "kind": "linear"
+      },
+      {
+        "from": "1-7",
+        "to": "1-8",
+        "kind": "linear"
+      },
+      {
+        "from": "1-8",
+        "to": "1-9",
+        "kind": "linear"
+      },
+      {
+        "from": "2-4",
+        "to": "2-5",
+        "kind": "linear"
+      },
+      {
+        "from": "2-5",
+        "to": "2-D",
+        "kind": "branch"
+      },
+      {
+        "from": "2-5",
+        "to": "2-7",
+        "kind": "branch"
+      },
+      {
+        "from": "2-7",
+        "to": "2-8",
+        "kind": "linear"
+      },
+      {
+        "from": "2-8",
+        "to": "2-9",
+        "kind": "linear"
+      },
+      {
+        "from": "1-9",
+        "to": "V-0",
+        "kind": "merge"
+      },
+      {
+        "from": "2-9",
+        "to": "V-0",
+        "kind": "merge"
+      },
+      {
+        "from": "V-0",
+        "to": "V-1",
+        "kind": "linear"
+      },
+      {
+        "from": "V-1",
+        "to": "V-2",
+        "kind": "linear"
+      },
+      {
+        "from": "V-2",
+        "to": "V-3",
+        "kind": "linear"
+      },
+      {
+        "from": "V-3",
+        "to": "V-4",
+        "kind": "linear"
+      },
+      {
+        "from": "VS-1",
+        "to": "VS-2",
+        "kind": "linear"
+      },
+      {
+        "from": "VS-2",
+        "to": "VS-3",
+        "kind": "linear"
+      },
+      {
+        "from": "VS-3",
+        "to": "VS-4",
+        "kind": "linear"
+      },
+      {
+        "from": "VS-4",
+        "to": "VS-5",
+        "kind": "linear"
+      },
+      {
+        "from": "VS-5",
+        "to": "VS-6",
+        "kind": "linear"
+      },
+      {
+        "from": "VS-6",
+        "to": "VS-7",
+        "kind": "linear"
+      },
+      {
+        "from": "VS-7",
+        "to": "VS-8",
+        "kind": "linear"
+      },
+      {
+        "from": "F-1",
+        "to": "F-2",
+        "kind": "linear"
+      },
+      {
+        "from": "F-2",
+        "to": "F-3",
+        "kind": "linear"
+      },
+      {
+        "from": "F-3",
+        "to": "F-4",
+        "kind": "linear"
+      },
+      {
+        "from": "F-4",
+        "to": "F-5",
+        "kind": "linear"
+      },
+      {
+        "from": "F-5",
+        "to": "F-6",
+        "kind": "linear"
+      },
+      {
+        "from": "F-6",
+        "to": "F-7",
+        "kind": "linear"
+      },
+      {
+        "from": "E-1",
+        "to": "E-2",
+        "kind": "linear"
+      },
+      {
+        "from": "5-6",
+        "to": "18-I",
+        "kind": "linear"
+      },
+      {
+        "from": "18-I",
+        "to": "18-II",
+        "kind": "linear"
+      },
+      {
+        "from": "18-II",
+        "to": "18-III",
+        "kind": "linear"
+      },
+      {
+        "from": "11-3",
+        "to": "11-4",
+        "kind": "linear"
+      }
+    ]
   }
 }

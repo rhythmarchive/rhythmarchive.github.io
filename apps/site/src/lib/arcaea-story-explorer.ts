@@ -14,6 +14,13 @@ export type ArcaeaStoryExplorerEntry = {
   unlockLabel?: string;
 };
 
+export type ArcaeaStoryExplorerConnection = {
+  from: string;
+  to: string;
+  kind: "linear" | "branch" | "merge";
+  external: boolean;
+};
+
 export type ArcaeaStoryExplorerPath = {
   pathId: number;
   act: number;
@@ -21,7 +28,11 @@ export type ArcaeaStoryExplorerPath = {
   title: string;
   type: string;
   typeLabel: string;
+  characterIds: number[];
   entries: ArcaeaStoryExplorerEntry[];
+  connections: ArcaeaStoryExplorerConnection[];
+  externalConnections: ArcaeaStoryExplorerConnection[];
+  rootEntries: string[];
   vnResources: PublicResource[];
   resourceCount: number;
 };
@@ -113,6 +124,20 @@ export function buildArcaeaStoryExplorerModel(resources: PublicResource[], struc
         ...(unlockLabel ? { unlockLabel } : {}),
       } satisfies ArcaeaStoryExplorerEntry;
     });
+    const pathNodeSet = new Set(storyPath.nodes);
+    const explicitConnections = structure.nodeLinks.filter((link) => pathNodeSet.has(link.from) || pathNodeSet.has(link.to));
+    const localExplicitConnections = explicitConnections.filter((link) => pathNodeSet.has(link.from) && pathNodeSet.has(link.to));
+    const connections = (localExplicitConnections.length > 0
+      ? localExplicitConnections
+      : storyPath.nodes.slice(1).map((nodeKey, index) => ({
+        from: storyPath.nodes[index]!,
+        to: nodeKey,
+        kind: "linear" as const,
+      }))).map((link) => ({ ...link, external: false }));
+    const externalConnections = explicitConnections
+      .filter((link) => !(pathNodeSet.has(link.from) && pathNodeSet.has(link.to)))
+      .map((link) => ({ ...link, external: true }));
+    const rootEntries = rootEntryKeys(storyPath.nodes, storyPath.pathId);
     const pathVnResources = sortResources(vnResources.get(storyPath.pathId) ?? []);
     return {
       pathId: storyPath.pathId,
@@ -121,7 +146,11 @@ export function buildArcaeaStoryExplorerModel(resources: PublicResource[], struc
       title: storyPath.title,
       type: storyPath.type,
       typeLabel: storyTypeLabel(storyPath.type),
+      characterIds: storyPath.characters,
       entries,
+      connections,
+      externalConnections,
+      rootEntries,
       vnResources: pathVnResources,
       resourceCount: entries.reduce((total, entry) => total + entry.resources.length, 0) + pathVnResources.length,
     } satisfies ArcaeaStoryExplorerPath;
@@ -182,6 +211,12 @@ function stringMetadata(value: string | number | boolean | undefined): string | 
 
 function uniqueStrings(values: string[]): string[] {
   return [...new Set(values.filter(Boolean))];
+}
+
+function rootEntryKeys(nodes: string[], pathId: number): string[] {
+  if (pathId === 1) return nodes.filter((nodeKey) => nodeKey === "1-1" || nodeKey === "2-1");
+  if (pathId === 19) return nodes.filter((nodeKey) => nodeKey === "F-1" || nodeKey === "E-1");
+  return nodes.length > 0 ? [nodes[0]!] : [];
 }
 
 function storyTypeLabel(value: string): string {

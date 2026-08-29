@@ -18,7 +18,13 @@ type ArcaeaStoryPath = {
   act: number;
   title: string;
   type: string;
+  characters: number[];
   nodes: string[];
+};
+type ArcaeaStoryNodeLink = {
+  from: string;
+  to: string;
+  kind: "linear" | "branch" | "merge";
 };
 type ArcaeaStoryNodeAnnotation = {
   nodeKey: string;
@@ -56,6 +62,7 @@ type ArcaeaStoryIndex = {
   paths: ArcaeaStoryPath[];
   nodeAnnotations: ArcaeaStoryNodeAnnotation[];
   nodeIcons: Record<string, string>;
+  nodeLinks: ArcaeaStoryNodeLink[];
   coverage: { physicalStoryCgCount: number; baselineRelationCount: number; curatedStoryCgCount: number; storyTextureCgCount: number };
   storyCg: ArcaeaStoryCgIndexEntry[];
   storyTextureCg: ArcaeaStoryTextureCgIndexEntry[];
@@ -758,6 +765,7 @@ function buildArcaeaSemantics(catalog: Catalog, arcaeaBrowse: ReturnType<typeof 
       paths: storyIndex.paths,
       nodeAnnotations: storyIndex.nodeAnnotations,
       nodeIcons: storyIndex.nodeIcons,
+      nodeLinks: storyIndex.nodeLinks,
     },
   });
   return { projection, metrics: { characterPortraitMapped: mappedPortrait.size, characterPortraitTotal: portraitResources.size, characterAvatarMapped: mappedAvatar.size, characterAvatarTotal: avatarResources.size, storyCgAnnotated: resources.filter((resource) => resource.resourceType === "story-cg").length, storyCgBaselineRows: baselineStoryCgRows.length, storyCgIndexed: indexedStoryCgResources.size + indexedStoryTextureCgResources.size, storyCgTotal: storyCgResources.length + storyTextureCgResources.length, storyCgMissing: missingStoryCgResources.length + missingStoryTextureCgResources.length, storyTextureCgAnnotated: indexedStoryTextureCgResources.size, storyTextureWithRelation: textureRelations.size, storyTextureTotal: resources.filter((resource) => resource.resourceType === "story-texture").length, backgroundAnnotated: resources.filter((resource) => resource.resourceType === "background").length, packCoverAnnotated: resources.filter((resource) => resource.resourceType === "pack-cover").length, linkplayStickerAnnotated: resources.filter((resource) => resource.resourceType === "sticker").length } };
