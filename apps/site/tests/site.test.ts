@@ -326,7 +326,10 @@ test("category semantic browse data keeps player-facing names and conservative u
   assert.deepEqual(storyFacets.map((facet) => facet.key), ["type", "section", "path", "chapter"]);
   assert.deepEqual(storyFacets.find((facet) => facet.key === "type")?.options.map((option) => option.value).slice(0, 3), ["Main Story", "Side Story", "Archive Story"]);
   assert.ok(storyFacets.find((facet) => facet.key === "section")?.options.some((option) => option.value === "Act II · Part II"));
-  assert.ok(story.some((resource) => resource.displayTitle === "剧情 CG · 11 8 2" && (resource.badges ?? []).includes("待确认")));
+  const resolvedExtraCg = story.find((resource) => resource.metadata.storyNode === "11-8" && resource.searchTerms?.some((term) => term.endsWith("story/cg/11-8-2.jpg")));
+  assert.equal(resolvedExtraCg?.displayTitle, "Colorful Dream");
+  assert.equal(resolvedExtraCg?.metadata.storyRelationKind, "node");
+  assert.equal((resolvedExtraCg?.badges ?? []).includes("待确认"), false);
   assert.equal((siteData.galleries["arcaea/story-texture"] ?? []).length, 0);
   assert.equal((siteData.galleries["arcaea/startup"] ?? []).length, 0);
   assert.equal((siteData.galleries["rotaeno/startup"] ?? []).length, 10);

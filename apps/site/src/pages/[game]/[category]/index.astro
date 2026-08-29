@@ -1,6 +1,6 @@
 ---
 import BaseLayout from "../../../layouts/BaseLayout.astro";
-import ArcaeaStoryExplorer from "../../../components/ArcaeaStoryExplorer.astro";
+import ArcaeaStoryAtlas from "../../../components/ArcaeaStoryAtlas.astro";
 import BrowseGallery from "../../../components/BrowseGallery.astro";
 import Gallery from "../../../components/Gallery.astro";
 import type { GameId, ResourceTypeId } from "../../../lib/game-config";
@@ -25,13 +25,14 @@ export function getStaticPaths() {
       resources: siteData.galleries[`${game.slug}/${category.slug}`] ?? [],
       browseData: category.slug === "jacket" && game.slug !== "rotaeno" ? browseByGame[game.slug] : undefined,
       storyStructure: game.slug === "arcaea" && category.slug === "story-cg" ? categoryBrowse.arcaea.storyStructure : undefined,
+      storyAtlas: game.slug === "arcaea" && category.slug === "story-cg" ? categoryBrowse.arcaea.storyAtlas : undefined,
       storyUi: game.slug === "arcaea" && category.slug === "story-cg" ? siteData.storyUi.arcaea : undefined,
       storyAvatars: game.slug === "arcaea" && category.slug === "story-cg" ? siteData.resources.filter((resource) => resource.game === "arcaea" && resource.resourceType === "character-avatar") : undefined,
     },
   })));
 }
 
-const { game, category, resources, browseData, storyStructure, storyUi, storyAvatars } = Astro.props;
+const { game, category, resources, browseData, storyStructure, storyAtlas, storyUi, storyAvatars } = Astro.props;
 const gameId = game.slug as GameId;
 const categoryId = category.slug as ResourceTypeId;
 const browseConfig = getCategoryBrowseConfig(gameId, categoryId, resources);
@@ -55,8 +56,8 @@ const description = `浏览并下载 ${game.displayName} ${category.label} 图�
       <BrowseGallery data={browseData} categoryLabel={category.label} galleryUrl={urls.sitePath(`/data/browse/${game.slug}/jacket.json`)} />
     ) : (
       <>
-        {storyStructure ? <ArcaeaStoryExplorer resources={resources} storyStructure={storyStructure} {...(storyUi ? { storyUi } : {})} {...(storyAvatars ? { storyAvatars } : {})} /> : null}
-        <Gallery resources={resources.slice(0, 48)} total={resources.length} game={gameId} category={categoryId} categoryLabel={category.label} galleryUrl={urls.sitePath(`/data/galleries/${game.slug}/${category.slug}.json`)} config={browseConfig} />
+        {storyStructure ? <ArcaeaStoryAtlas resources={resources} storyStructure={storyStructure} {...(storyAtlas ? { storyAtlas } : {})} {...(storyUi ? { storyUi } : {})} {...(storyAvatars ? { storyAvatars } : {})} /> : null}
+        <Gallery resources={storyStructure ? [] : resources.slice(0, 48)} total={resources.length} game={gameId} category={categoryId} categoryLabel={category.label} galleryUrl={urls.sitePath(`/data/galleries/${game.slug}/${category.slug}.json`)} config={browseConfig} {...(storyStructure ? { defer: true } : {})} />
       </>
     )}
   </div>

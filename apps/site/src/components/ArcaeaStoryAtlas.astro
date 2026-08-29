@@ -1,0 +1,321 @@
+---
+import type { ArcaeaStoryAtlasType, ArcaeaStoryStructureType } from "../../../../packages/domain/src/browse.js";
+import { buildArcaeaStoryAtlasLayout } from "../lib/arcaea-story-layout";
+import { buildArcaeaStoryExplorerModel, type ArcaeaStoryExplorerEntry, type ArcaeaStoryExplorerScene } from "../lib/arcaea-story-explorer";
+import { BASE_PATH } from "../lib/site-config";
+import { sitePath } from "../lib/url";
+import type { PublicAsset, PublicResource } from "../lib/types";
+
+interface Props {
+  resources: PublicResource[];
+  storyStructure: ArcaeaStoryStructureType;
+  storyAtlas?: ArcaeaStoryAtlasType;
+  storyUi?: Record<string, PublicResource>;
+  storyAvatars?: PublicResource[];
+}
+
+const { resources, storyStructure, storyAtlas, storyUi = {}, storyAvatars = [] } = Astro.props;
+const model = buildArcaeaStoryExplorerModel(resources, storyStructure, storyAtlas);
+const layouts = new Map(model.sections.map((section) => [section.act, buildArcaeaStoryAtlasLayout(section)]));
+const firstSection = model.sections[0];
+const firstPath = firstSection?.paths[0];
+const firstEntry = firstPath?.entries[0];
+
+function resourceHref(resource: PublicResource): string {
+  return sitePath(resource.route, BASE_PATH);
+}
+
+function resourceImage(resource: PublicResource): PublicAsset | undefined {
+  return resource.preview.small ?? resource.preview.medium ?? resource.preview.large ?? undefined;
+}
+
+function derivativeUi(filename: string): PublicAsset | undefined {
+  const asset = storyAtlas?.derivatives?.ui[filename];
+  if (asset) return { url: sitePath(asset.url, BASE_PATH), width: asset.width, height: asset.height, mime: asset.mime };
+  return storyUi[filename] ? resourceImage(storyUi[filename]) : undefined;
+}
+
+function derivativeResource(resource: PublicResource, size: "thumb" | "preview"): PublicAsset | undefined {
+  const asset = storyAtlas?.derivatives?.resources[resource.resourceId]?.[size];
+  if (asset) return { url: sitePath(asset.url, BASE_PATH), width: asset.width, height: asset.height, mime: asset.mime };
+  return size === "thumb" ? resource.preview.small ?? resource.preview.medium ?? undefined : resource.preview.medium ?? resource.preview.large ?? resource.preview.small ?? undefined;
+}
+
+function avatarResource(characterId: number): PublicResource | undefined {
+  const expected = new RegExp(`(?:^|[_-])${characterId}(?:[a-z])?_icon\\.png$`, "iu");
+  return storyAvatars.find((resource) => {
+    const filenames = [
+      resource.original?.downloadFilename,
+      resource.downloadFilename,
+      ...resource.variants.flatMap((variant) => [variant.original?.downloadFilename, ...(variant.originals?.map((original) => original.downloadFilename) ?? [])]),
+    ].filter((filename): filename is string => Boolean(filename));
+    return filenames.some((filename) => expected.test(filename.replaceAll("\\", "/")));
+  });
+}
+
+function avatarImage(characterId: number): PublicAsset | undefined {
+  const resource = avatarResource(characterId);
+  const asset = resource ? storyAtlas?.derivatives?.avatars[resource.resourceId] : undefined;
+  if (asset) return { url: sitePath(asset.url, BASE_PATH), width: asset.width, height: asset.height, mime: asset.mime };
+  return resource ? resourceImage(resource) : undefined;
+}
+
+function avatarLabel(characterId: number): string {
+  return avatarResource(characterId)?.displayTitle?.replace(/^头像\s*[·:：]\s*/u, "") || `角色 ${characterId}`;
+}
+
+function nodeImage(entry: ArcaeaStoryExplorerEntry): PublicAsset | undefined {
+  return entry.iconKey ? derivativeUi(`${entry.iconKey}.png`) : undefined;
+}
+
+function sectionArtwork(sectionLabel: string): PublicAsset | undefined {
+  const act = sectionLabel.startsWith("Act II") ? 2 : 1;
+  const part = sectionLabel.match(/Part (I{1,3})/u)?.[1] === "II" ? 2 : sectionLabel.match(/Part (I{1,3})/u)?.[1] === "III" ? 3 : 1;
+  return derivativeUi(`act${act}-part${part}.png`);
+}
+
+function storyUiAsset(filename: string): PublicAsset | undefined {
+  return derivativeUi(filename);
+}
+
+function localeLabel(locale: string): string {
+  return locale === "zh-Hans" ? "简中" : locale === "zh-Hant" ? "繁中" : locale === "ja" ? "日本語" : locale === "ko" ? "한국어" : "English";
+}
+
+function textFor(entry: ArcaeaStoryExplorerEntry | undefined): ArcaeaStoryAtlasType["text"]["entries"][number] | undefined {
+  return entry?.text;
+}
+
+function compactEntry(entry: ArcaeaStoryExplorerEntry, pathTitle: string, sectionLabel: string, sectionAct: number, characterIds: number[]): Record<string, unknown> {
+  return {
+    id: `${entry.pathId}:${entry.key}`,
+    pathId: entry.pathId,
+    key: entry.key,
+    pathTitle,
+    sectionLabel,
+    sectionAct,
+    visualLabel: entry.visualLabel,
+    characterIds,
+    characterLabels: characterIds.map(avatarLabel),
+    relatedSongs: entry.relatedSongs,
+    unlockLabel: entry.unlockLabel,
+    staffRoll: entry.staffRoll,
+    storyType: entry.text?.storyType,
+    storyData: entry.text?.storyData,
+    sceneIds: entry.sceneIds,
+    resourceIds: entry.resources.map((resource) => resource.resourceId),
+  };
+}
+
+function compactScene(scene: ArcaeaStoryExplorerScene, pathTitle: string, sectionLabel: string, sectionAct: number): Record<string, unknown> {
+  return {
+    sceneId: scene.sceneId,
+    pathId: scene.pathId,
+    pathTitle,
+    sectionLabel,
+    sectionAct,
+    kind: scene.kind,
+    displayTitle: scene.displayTitle ?? scene.sceneId,
+    scriptStem: scene.scriptStem,
+    resourceIds: scene.resources.map((resource) => resource.resourceId),
+  };
+}
+
+function compactResource(resource: PublicResource): Record<string, unknown> {
+  const thumb = derivativeResource(resource, "thumb");
+  const preview = derivativeResource(resource, "preview");
+  return {
+    resourceId: resource.resourceId,
+    route: resourceHref(resource),
+    title: resource.displayTitle,
+    subtitle: resource.subtitle,
+    thumb: thumb?.url,
+    preview: preview?.url,
+    original: resource.original?.url,
+    download: resource.original?.url,
+    downloadFilename: resource.original?.downloadFilename ?? resource.downloadFilename,
+  };
+}
+
+const clientEntries = model.sections.flatMap((section) => section.paths.flatMap((storyPath) => storyPath.entries.map((entry) => compactEntry(entry, storyPath.title, storyPath.sectionLabel, section.act, storyPath.characterIds))));
+const clientScenes = model.sections.flatMap((section) => section.paths.flatMap((storyPath) => storyPath.pathScenes.map((scene) => compactScene(scene, storyPath.title, storyPath.sectionLabel, section.act))));
+const storyResourceList = [...new Map(model.paths.flatMap((storyPath) => [
+  ...storyPath.entries.flatMap((entry) => entry.resources),
+  ...storyPath.pathScenes.flatMap((scene) => scene.resources),
+]).map((resource) => [resource.resourceId, resource])).values()];
+const clientResources = Object.fromEntries(storyResourceList.map((resource) => [resource.resourceId, compactResource(resource)]));
+const clientPayload = { entries: clientEntries, scenes: clientScenes, resources: clientResources };
+const safeJson = (value: unknown): string => JSON.stringify(value).replaceAll("<", "\\u003c");
+
+function imageAttributes(image: PublicAsset | undefined, active: boolean): Record<string, string | number> {
+  if (!image) return {};
+  return active ? { src: image.url, width: image.width, height: image.height } : { "data-src": image.url, width: image.width, height: image.height };
+}
+
+function initialTextLocale(entry: ArcaeaStoryExplorerEntry | undefined): string | undefined {
+  const texts = textFor(entry)?.texts ?? {};
+  return ["zh-Hans", "zh-Hant", "en", "ja", "ko"].find((locale) => texts[locale]);
+}
+
+const initialLocale = initialTextLocale(firstEntry);
+const initialText = initialLocale ? textFor(firstEntry)?.texts[initialLocale] : undefined;
+---
+
+<section class="story-atlas-shell" data-story-atlas-root data-story-atlas-url={sitePath("/data/story/arcaea.json", BASE_PATH)} data-base-path={BASE_PATH}>
+  <header class="story-atlas-hero">
+    <div class="story-atlas-hero-copy">
+      <span class="archive-kicker">Arcaea · Story Mode</span>
+      <h2>Story Atlas</h2>
+      <p>按 Act、Part、Path 和 Entry 探索剧情节点、角色、演出与 CG。</p>
+    </div>
+    <div class="story-atlas-hero-stats" aria-label="Story Atlas 覆盖统计">
+      <span><strong>{model.paths.length}</strong> Paths</span>
+      <span><strong>{model.paths.reduce((total, path) => total + path.entries.length, 0)}</strong> Entries</span>
+      <span><strong>{model.counts.total}</strong> CG</span>
+      <span><strong>{model.counts.pathScenes}</strong> Scenes</span>
+    </div>
+  </header>
+
+  <div class="story-atlas-toolbar">
+    <div class="story-atlas-view-switch" role="group" aria-label="Story 浏览模式">
+      <button class="button button-primary" type="button" data-story-view-toggle="atlas" aria-pressed="true">Story Atlas</button>
+      <button class="button button-secondary" type="button" data-story-view-toggle="gallery" aria-pressed="false">图库</button>
+    </div>
+    <label class="story-atlas-search">
+      <span class="sr-only">搜索剧情节点、角色、歌曲或正文</span>
+      <input type="search" data-story-search placeholder="搜索 Entry、Path、Partner、歌曲或剧情正文" autocomplete="off" />
+    </label>
+    <span class="story-atlas-search-status" data-story-search-status aria-live="polite"></span>
+  </div>
+  <div class="story-atlas-search-results" data-story-search-results hidden></div>
+
+  <nav class="story-atlas-parts" data-story-part-tabs aria-label="Act / Part">
+    {model.sections.map((section, index) => {
+      const artwork = sectionArtwork(section.label);
+      return <button class:list={{ "story-atlas-part-tab": true, "is-active": index === 0 }} type="button" role="tab" data-story-section={section.act} aria-selected={index === 0} aria-controls={`story-atlas-section-${section.act}`}>
+        {artwork ? <img {...imageAttributes(artwork, true)} alt="" decoding="async" /> : null}
+        <span><small>{section.label.split(" · ")[0]}</small><strong>{section.label.split(" · ")[1] ?? section.label}</strong><em>{section.paths.length} Paths · {section.resourceCount} CG</em></span>
+      </button>;
+    })}
+  </nav>
+
+  <div class="story-atlas-panels" data-story-panels>
+    {model.sections.map((section, index) => {
+      const layout = layouts.get(section.act);
+      const active = index === 0;
+      const backdrop = storyUiAsset("act-bg.jpg");
+      const divider = storyUiAsset("story_pack_divider_horizontal.png");
+      const titleBacking = storyUiAsset("act-title-backing.png");
+      if (!layout) return null;
+      return <section class:list={{ "story-atlas-section": true, "is-active": active }} id={`story-atlas-section-${section.act}`} data-story-section-panel={section.act} role="tabpanel" aria-label={section.label} hidden={!active}>
+        <header class="story-atlas-section-heading">
+          <div class="story-atlas-section-title" style={titleBacking ? `--story-title-backing: url('${titleBacking.url}')` : undefined}>
+            <span class="story-atlas-section-act">{section.label.split(" · ")[0]}</span>
+            <h3>{section.label.split(" · ")[1] ?? section.label}</h3>
+          </div>
+          <div class="story-atlas-section-copy">
+            <span>{section.paths.length} 条 Story Path</span>
+            <span>{section.paths.reduce((total, storyPath) => total + storyPath.entries.length, 0)} 个 Entry</span>
+            <span>{section.resourceCount} 个可查找视觉资源</span>
+          </div>
+          <div class="story-camera-controls" role="group" aria-label="Story World camera">
+            <button type="button" class="icon-button" data-story-camera="zoom-out" aria-label="缩小">−</button>
+            <button type="button" class="icon-button" data-story-camera="zoom-in" aria-label="放大">＋</button>
+            <button type="button" class="button button-secondary" data-story-camera="fit">Fit Part</button>
+            <button type="button" class="button button-secondary" data-story-camera="reset">Reset View</button>
+          </div>
+        </header>
+        <div class="story-map-legend" aria-label="Story Map 图例">
+          <span><i class="story-legend-dot story-legend-entry"></i>Entry</span>
+          <span><i class="story-legend-dot story-legend-cg"></i>CG</span>
+          <span><i class="story-legend-dot story-legend-scene"></i>Path / VN Scene</span>
+          <span><i class="story-legend-line"></i>审计边</span>
+          <span><i class="story-legend-line is-fallback"></i>顺序视觉边</span>
+        </div>
+        <div class="story-map-viewport" data-story-map-viewport tabindex="0" aria-label={`${section.label} 连续剧情地图`} data-world-width={layout.width} data-world-height={layout.height}>
+          <div class="story-map-world" data-story-map-world style={`width:${layout.width}px;height:${layout.height}px;`}>
+            {backdrop ? <img class="story-map-background" {...imageAttributes(backdrop, active)} alt="" decoding="async" /> : null}
+            <div class="story-map-wash" aria-hidden="true"></div>
+            <div class="story-map-grid" aria-hidden="true"></div>
+            <svg class="story-map-links" viewBox={`0 0 ${layout.width} ${layout.height}`} role="presentation" aria-hidden="true">
+              {layout.lines.map((line) => <line class:list={{ "story-map-link": true, [`story-map-link-${line.kind}`]: true, "is-fallback": line.provenance === "sequential-fallback", "is-external": line.external === true }} x1={line.x1} y1={line.y1} x2={line.x2} y2={line.y2} data-story-link-from={line.from} data-story-link-to={line.to} data-story-link-provenance={line.provenance} />)}
+            </svg>
+            <div class="story-map-paths">
+              {layout.paths.map((pathLayout) => <section class:list={{ "story-map-path-cluster": true, "is-active": pathLayout.path.pathId === firstPath?.pathId }} data-story-map-path={pathLayout.path.pathId} data-story-path-x={pathLayout.x + pathLayout.width / 2} data-story-path-y={pathLayout.y + pathLayout.height / 2} style={`left:${pathLayout.x}px;top:${pathLayout.y}px;width:${pathLayout.width}px;height:${pathLayout.height}px;`}>
+                <button class="story-map-path-title" type="button" data-story-path={pathLayout.path.pathId} data-story-path-section={section.act} data-story-x={pathLayout.x + pathLayout.width / 2} data-story-y={pathLayout.y + pathLayout.height / 2} aria-label={`聚焦 ${pathLayout.path.title} Path`}>
+                  <span class="story-map-path-kicker">{pathLayout.path.typeLabel}</span>
+                  <strong>{pathLayout.path.title}</strong>
+                  <small>{pathLayout.path.entries.length} Entries · {pathLayout.path.characterIds.length} Partner</small>
+                </button>
+                <div class="story-map-avatars">
+                  {pathLayout.avatars.map((avatar) => {
+                    const image = avatarImage(avatar.id);
+                    return <button class="story-map-avatar" type="button" data-story-avatar data-story-cluster-path={pathLayout.path.pathId} data-story-section={section.act} data-story-x={avatar.x} data-story-y={avatar.y} style={`left:${avatar.x - pathLayout.x}px;top:${avatar.y - pathLayout.y}px;`} aria-label={`聚焦 ${avatarLabel(avatar.id)} 角色区域`} title={`${avatarLabel(avatar.id)} · Partner ${avatar.id}`}>
+                      <span class="story-map-avatar-ring">{image ? <img {...imageAttributes(image, active)} alt={avatarLabel(avatar.id)} decoding="async" /> : <span>{avatarLabel(avatar.id)}</span>}</span>
+                    </button>;
+                  })}
+                </div>
+                <div class:list={{ "story-map-node-route": true, [`is-${pathLayout.orientation}`]: true }}>
+                  {pathLayout.path.entries.map((entry) => {
+                    const point = pathLayout.nodes[entry.key];
+                    const image = nodeImage(entry);
+                    if (!point) return null;
+                    return <button class:list={{ "story-map-node": true, "has-cg": entry.resources.length > 0, "has-scene": entry.sceneIds.length > 0, "is-active": entry.key === firstEntry?.key && pathLayout.path.pathId === firstPath?.pathId }} type="button" data-story-map-entry data-story-path-id={entry.pathId} data-story-entry-key={entry.key} data-story-x={point.x} data-story-y={point.y} style={`left:${point.x - pathLayout.x}px;top:${point.y - pathLayout.y}px;`} aria-label={`${pathLayout.path.title} Entry ${entry.key}`} aria-controls="story-detail-drawer">
+                      <span class="story-map-node-face">{image ? <img {...imageAttributes(image, active)} alt="" decoding="async" /> : <span class="story-map-node-fallback">◇</span>}</span>
+                      <span class="story-map-node-label">{entry.key}</span>
+                      {entry.resources.length > 0 ? <span class="story-map-node-count">{entry.resources.length} CG</span> : null}
+                    </button>;
+                  })}
+                </div>
+                {pathLayout.scenes.map((scene) => <button class="story-map-scene" type="button" data-story-scene={scene.sceneId} data-story-path-id={pathLayout.path.pathId} data-story-section={section.act} data-story-x={scene.x} data-story-y={scene.y} style={`left:${scene.x - pathLayout.x}px;top:${scene.y - pathLayout.y}px;`} aria-controls="story-detail-drawer">
+                  <span class="story-map-scene-mark">✦</span><span>{scene.title}</span><small>{scene.kind === "epilogue" ? "Epilogue" : scene.kind === "vn-scene" ? "VN Scene" : "Path Scene"}</small>
+                </button>)}
+                <div class="story-map-path-divider" style={divider ? `--story-divider: url('${divider.url}')` : undefined} aria-hidden="true"></div>
+              </section>)}
+            </div>
+          </div>
+        </div>
+      </section>;
+    })}
+  </div>
+
+  {model.unassignedResources.length > 0 ? <p class="story-atlas-audit-note">图库中仍有 {model.unassignedResources.length} 项关系待确认资源；它们仅在图库与审核数据中展示，不加入 Story World。</p> : null}
+
+  <aside class="story-detail-drawer" id="story-detail-drawer" data-story-detail hidden aria-label="Story Entry 详情" aria-modal="true" role="dialog">
+    <div class="story-detail-backdrop" data-story-detail-close aria-hidden="true"></div>
+    <div class="story-detail-sheet">
+      <button class="story-detail-close" type="button" data-story-detail-close aria-label="关闭详情">×</button>
+      <div class="story-detail-content" data-story-detail-content>
+        {firstEntry ? <>
+          <div class="story-detail-eyebrow">{firstPath?.title} · {firstEntry.visualLabel}</div>
+          <h3>{firstEntry.key}</h3>
+          <p class="story-detail-path">{firstPath?.sectionLabel} · {firstPath?.typeLabel}</p>
+          <div class="story-detail-pills">
+            {firstPath?.characterIds.length ? <span>Partner · {firstPath.characterIds.map(avatarLabel).join(" · ")}</span> : null}
+            {firstEntry.relatedSongs.map((song) => <span>{song}</span>)}
+            {firstEntry.unlockLabel ? <span>{firstEntry.unlockLabel}</span> : null}
+            {firstEntry.staffRoll ? <span>Staff roll</span> : null}
+          </div>
+          {initialText ? <section class="story-detail-text" data-story-detail-text>
+            <div class="story-detail-section-label">剧情正文</div>
+            <div class="story-locale-switch" role="group" aria-label="剧情语言">
+              {Object.keys(textFor(firstEntry)?.texts ?? {}).map((locale) => <button type="button" data-story-locale={locale} class:list={{ "is-active": locale === initialLocale }}>{localeLabel(locale)}</button>)}
+            </div>
+            <div class="story-text-blocks">{initialText.blocks.map((block) => block.kind === "display-event" ? <p class="story-text-display-event">视觉演出 · {block.assetPath?.split("/").at(-1) ?? "CG"}</p> : <p>{block.text}</p>)}</div>
+          </section> : null}
+          {firstEntry.resources.length > 0 ? <section class="story-detail-visuals" data-story-detail-visuals>
+            <div class="story-detail-section-label">Visual / CG</div>
+            <div class="story-detail-cg-grid">{firstEntry.resources.map((resource) => {
+              const image = derivativeResource(resource, "preview");
+              return <article class="story-detail-cg-card"><a href={resourceHref(resource)}><>{image ? <img src={image.url} width={image.width} height={image.height} alt={resource.displayTitle} loading="lazy" decoding="async" /> : null}</><span>{resource.displayTitle}</span></a><div><small>{resource.metadata.storyImageOrder ? `CG ${resource.metadata.storyImageOrder}/${resource.metadata.storyImageCount ?? ""}` : "CG"}</small>{resource.original ? <a class="text-link" href={resource.original.url} target="_blank" rel="noreferrer">查看原图</a> : null}</div></article>;
+            })}</div>
+          </section> : null}
+          {firstEntry.sceneIds.length > 0 ? <section class="story-detail-scene"><div class="story-detail-section-label">Scene information</div><p>{firstEntry.sceneIds.join(" · ")} · runtime VN scene</p></section> : null}
+        </> : <p>请选择一个 Story Entry。</p>}
+      </div>
+    </div>
+  </aside>
+
+  <script is:inline type="application/json" data-story-atlas-client-index set:html={safeJson(clientPayload)}></script>
+  <script src="../scripts/arcaea-story-atlas.ts"></script>
+</section>

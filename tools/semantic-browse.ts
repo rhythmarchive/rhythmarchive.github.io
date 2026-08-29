@@ -4,12 +4,14 @@ import path from "node:path";
 import {
   ArcaeaBrowseProjection,
   ArcaeaCategoryBrowseProjection,
+  ArcaeaStoryAtlas,
   CategoryBrowseProjection,
   PhigrosCategoryBrowseProjection,
   loadCatalogFile,
   type CategoryBrowseProjectionType,
 } from "../packages/domain/src/index.js";
 import type { Catalog, Resource } from "../packages/domain/src/schema.js";
+import type { ArcaeaStoryAtlasType, ArcaeaStoryRelationEvidenceType } from "../packages/domain/src/browse.js";
 
 type CsvRow = Record<string, string | undefined>;
 type SemanticPrimitive = string | number | boolean;
@@ -47,6 +49,12 @@ type ArcaeaStoryTextureCgIndexEntry = {
   pathId: number;
   imageOrder: number;
   imageCount: number;
+};
+type ArcaeaStoryAuditData = {
+  text: ArcaeaStoryAtlasType["text"];
+  scenes: ArcaeaStoryAtlasType["scenes"];
+  relationEvidence: ArcaeaStoryRelationEvidenceType[];
+  derivatives?: ArcaeaStoryAtlasType["derivatives"];
 };
 type ArcaeaStoryIndex = {
   schemaVersion: number;
@@ -395,7 +403,32 @@ function displayPackName(packId: string | undefined, sourceName: string | undefi
   return parentName ? `${parentName} · ${name}` : name;
 }
 
-function buildArcaeaSemantics(catalog: Catalog, arcaeaBrowse: ReturnType<typeof ArcaeaBrowseProjection.parse>, index: Map<string, Resource[]>, characterRows: CsvRow[], storyRows: CsvRow[], storyIndex: ArcaeaStoryIndex, storyReferenceRows: CsvRow[], backgroundRows: CsvRow[], packRows: CsvRow[], packRecordRows: CsvRow[], linkplayRows: CsvRow[]): { projection: CategoryBrowseProjectionType; metrics: Record<string, number> } {
+function buildArcaeaStorySearchIndex(storyIndex: ArcaeaStoryIndex, storyAudit: ArcaeaStoryAuditData, characters: ReturnType<typeof characterMaps>, songById: Map<string, ReturnType<typeof ArcaeaBrowseProjection.parse>["songs"][number]>): ArcaeaStoryAtlasType["searchIndex"] {
+  const textByNode = new Map(storyAudit.text.entries.map((entry) => [entry.nodeKey, entry]));
+  const annotationByNode = new Map(storyIndex.nodeAnnotations.map((annotation) => [annotation.nodeKey, annotation]));
+  const sectionByAct = new Map(storyIndex.sections.map((section) => [section.act, section.label]));
+  return storyIndex.paths.flatMap((storyPath) => storyPath.nodes.map((nodeKey) => {
+    const text = textByNode.get(nodeKey);
+    const annotation = annotationByNode.get(nodeKey);
+    const terms = new Set<string>([nodeKey, storyPath.title, storyTypeLabel(storyPath.type), sectionByAct.get(storyPath.act) ?? ""]);
+    for (const characterId of storyPath.characters) {
+      const character = characters.byId.get(String(characterId));
+      for (const alias of character?.aliases ?? []) terms.add(alias);
+    }
+    if (annotation?.relatedSongId) {
+      terms.add(annotation.relatedSongId);
+      const song = songById.get(annotation.relatedSongId);
+      if (song) {
+        terms.add(song.displayTitle);
+        for (const alias of song.titleAliases) terms.add(alias);
+      }
+    }
+    if (text?.storyData) terms.add(text.storyData);
+    return { nodeKey, pathId: storyPath.pathId, terms: [...terms].filter((term) => term.trim().length > 0) };
+  }));
+}
+
+function buildArcaeaSemantics(catalog: Catalog, arcaeaBrowse: ReturnType<typeof ArcaeaBrowseProjection.parse>, index: Map<string, Resource[]>, characterRows: CsvRow[], storyRows: CsvRow[], storyIndex: ArcaeaStoryIndex, storyReferenceRows: CsvRow[], backgroundRows: CsvRow[], packRows: CsvRow[], packRecordRows: CsvRow[], linkplayRows: CsvRow[], storyAudit: ArcaeaStoryAuditData): { projection: CategoryBrowseProjectionType; metrics: Record<string, number> } {
   const drafts = new Map<string, SemanticDraft>();
   const characters = characterMaps(characterRows);
   const songById = new Map(arcaeaBrowse.songs.map((song) => [song.songId, song]));
@@ -415,6 +448,8 @@ function buildArcaeaSemantics(catalog: Catalog, arcaeaBrowse: ReturnType<typeof 
   const mappedAvatar = new Set<string>();
   const indexedStoryCgResources = new Set<string>();
   const indexedStoryTextureCgResources = new Set<string>();
+  const relationByAsset = new Map(storyAudit.relationEvidence.map((relation) => [normalizePath(relation.assetPath), relation]));
+  const storySearchIndex = buildArcaeaStorySearchIndex(storyIndex, storyAudit, characters, songById);
 
   characterRows.forEach((row, rowIndex) => {
     const resource = findResource(index, "arcaea", row.assetPath ?? "");
@@ -469,11 +504,13 @@ function buildArcaeaSemantics(catalog: Catalog, arcaeaBrowse: ReturnType<typeof 
     const resource = findResource(index, "arcaea", row.assetPath ?? "");
     if (!resource || resource.resourceType !== "story-cg") return;
     indexedStoryCgResources.add(resource.id);
-    const nodeKey = nonEmpty(row.nodeKey);
+    const relation = relationByAsset.get(normalizePath(nonEmpty(row.assetPath) ?? ""));
+    const relationNodeKey = relation?.finalRelation === "node" ? relation.finalNodeKey : undefined;
+    const nodeKey = relation ? relationNodeKey : nonEmpty(row.nodeKey);
     const nodeContext = nodeKey ? storyNodeByKey.get(nodeKey) : undefined;
-    const rowPath = integer(row.pathId) !== undefined ? storyPathById.get(integer(row.pathId)!) : undefined;
+    const rowPath = relation?.finalPathId !== undefined ? storyPathById.get(relation.finalPathId) : integer(row.pathId) !== undefined ? storyPathById.get(integer(row.pathId)!) : undefined;
     const storyPath = rowPath ?? nodeContext?.path;
-    const pathId = storyPath?.pathId ?? integer(row.pathId);
+    const pathId = storyPath?.pathId ?? relation?.finalPathId ?? integer(row.pathId);
     const nodeOrder = integer(row.order) ?? nodeContext?.nodeOrder;
     const typeLabel = storyTypeLabel(storyPath?.type ?? row.storyPath);
     const pathTitle = storyPath?.title ?? nonEmpty(row.pathTitle);
@@ -481,14 +518,17 @@ function buildArcaeaSemantics(catalog: Catalog, arcaeaBrowse: ReturnType<typeof 
     const locator = storyLocator(row, nodeKey);
     const relatedSong = songById.get(nonEmpty(row.relatedSongId) ?? "");
     const relatedSongTitle = relatedSong?.displayTitle;
-    const unresolved = nonEmpty(row.confidence)?.toLowerCase() === "unresolved" || nonEmpty(row.resourceRole)?.includes("unreferenced");
+    const relationKind = relation?.finalRelation;
+    const sceneId = relationKind === "path-scene" || relationKind === "vn-scene" ? relation?.finalSceneId : undefined;
+    const unresolved = relationKind === "unresolved" || (!relation && (nonEmpty(row.confidence)?.toLowerCase() === "unresolved" || nonEmpty(row.resourceRole)?.includes("unreferenced")));
     const fallbackIdentifier = cleanIdentifier(resource.title ?? resource.provenance[0]?.sourceFilename ?? "");
     const displayTitle = pathTitle ?? (unresolved ? `剧情 CG · ${fallbackIdentifier || "技术资源"}` : typeLabel);
-    const subtitle = unresolved && !pathTitle && !locator ? "剧情路径待确认" : [typeLabel, sectionLabel, locator].filter(Boolean).join(" · ");
+    const relationLabel = relationKind === "path-scene" ? "Path Scene" : relationKind === "vn-scene" ? "VN Scene" : undefined;
+    const subtitle = unresolved && !pathTitle && !locator ? "关系待确认" : [typeLabel, sectionLabel, relationLabel, locator ?? (sceneId ? `Scene ${sceneId}` : undefined)].filter(Boolean).join(" · ");
     addDraft(drafts, resource, {
       displayTitle,
       subtitle,
-      badges: [ ...(relatedSongTitle ? [`关联：${relatedSongTitle}`] : []), ...(unresolved ? ["待确认"] : []) ],
+      badges: [ ...(relatedSongTitle ? [`关联：${relatedSongTitle}`] : []), ...(relationLabel ? [relationLabel] : []), ...(unresolved ? ["关系待确认"] : []) ],
       metadata: {
         ...(pathTitle ? { storyPathTitle: pathTitle } : {}),
         storyType: typeLabel,
@@ -499,10 +539,13 @@ function buildArcaeaSemantics(catalog: Catalog, arcaeaBrowse: ReturnType<typeof 
         ...(nonEmpty(row.entry) ? { storyEntry: nonEmpty(row.entry)! } : {}),
         ...(nodeKey ? { storyNode: nodeKey } : {}),
         ...(nodeOrder !== undefined ? { storyNodeOrder: nodeOrder } : {}),
+        ...(relationKind ? { storyRelationKind: relationKind } : {}),
+        ...(sceneId ? { storySceneId: sceneId } : {}),
+        ...(relation?.confidence ? { storyEvidenceConfidence: relation.confidence } : {}),
         ...(nonEmpty(row.relatedSongId) ? { relatedSongId: nonEmpty(row.relatedSongId)! } : {}),
         ...(relatedSongTitle ? { relatedSongTitle } : {}),
       },
-      searchTerms: [pathTitle ?? "", typeLabel, sectionLabel ?? "", locator ?? "", nodeKey ?? "", nonEmpty(row.assetPath) ?? "", nonEmpty(row.relatedSongId) ?? "", relatedSongTitle ?? "", ...(relatedSong?.titleAliases ?? []), nonEmpty(row.storyType) ?? ""],
+      searchTerms: [pathTitle ?? "", typeLabel, sectionLabel ?? "", locator ?? "", nodeKey ?? "", sceneId ?? "", relationLabel ?? "", nonEmpty(row.assetPath) ?? "", nonEmpty(row.relatedSongId) ?? "", relatedSongTitle ?? "", ...(relatedSong?.titleAliases ?? []), nonEmpty(row.storyType) ?? ""],
       sortOrder: storySortOrder(row, rowIndex, pathId, nodeOrder, undefined, unresolved),
       facets: {
         type: [typeLabel],
@@ -753,6 +796,15 @@ function buildArcaeaSemantics(catalog: Catalog, arcaeaBrowse: ReturnType<typeof 
     ...(draft.sortOrder !== undefined ? { sortOrder: draft.sortOrder } : {}),
     facets: Object.fromEntries([...draft.facets.entries()].map(([key, values]) => [key, [...values]])),
   })).sort((left, right) => (left.sortOrder ?? 3_000_000_000) - (right.sortOrder ?? 3_000_000_000) || (left.displayTitle ?? "").localeCompare(right.displayTitle ?? "", "zh-CN") || left.resourceId.localeCompare(right.resourceId, "en"));
+  const storyAtlas = ArcaeaStoryAtlas.parse({
+    schemaVersion: 1,
+    source: storyIndex.source,
+    text: storyAudit.text,
+    scenes: storyAudit.scenes,
+    relationEvidence: storyAudit.relationEvidence,
+    ...(storyAudit.derivatives ? { derivatives: storyAudit.derivatives } : {}),
+    searchIndex: storySearchIndex,
+  });
   const projection = ArcaeaCategoryBrowseProjection.parse({
     schemaVersion: 1,
     game: "arcaea",
@@ -767,8 +819,9 @@ function buildArcaeaSemantics(catalog: Catalog, arcaeaBrowse: ReturnType<typeof 
       nodeIcons: storyIndex.nodeIcons,
       nodeLinks: storyIndex.nodeLinks,
     },
+    storyAtlas,
   });
-  return { projection, metrics: { characterPortraitMapped: mappedPortrait.size, characterPortraitTotal: portraitResources.size, characterAvatarMapped: mappedAvatar.size, characterAvatarTotal: avatarResources.size, storyCgAnnotated: resources.filter((resource) => resource.resourceType === "story-cg").length, storyCgBaselineRows: baselineStoryCgRows.length, storyCgIndexed: indexedStoryCgResources.size + indexedStoryTextureCgResources.size, storyCgTotal: storyCgResources.length + storyTextureCgResources.length, storyCgMissing: missingStoryCgResources.length + missingStoryTextureCgResources.length, storyTextureCgAnnotated: indexedStoryTextureCgResources.size, storyTextureWithRelation: textureRelations.size, storyTextureTotal: resources.filter((resource) => resource.resourceType === "story-texture").length, backgroundAnnotated: resources.filter((resource) => resource.resourceType === "background").length, packCoverAnnotated: resources.filter((resource) => resource.resourceType === "pack-cover").length, linkplayStickerAnnotated: resources.filter((resource) => resource.resourceType === "sticker").length } };
+  return { projection, metrics: { characterPortraitMapped: mappedPortrait.size, characterPortraitTotal: portraitResources.size, characterAvatarMapped: mappedAvatar.size, characterAvatarTotal: avatarResources.size, storyCgAnnotated: resources.filter((resource) => resource.resourceType === "story-cg").length, storyCgBaselineRows: baselineStoryCgRows.length, storyCgIndexed: indexedStoryCgResources.size + indexedStoryTextureCgResources.size, storyCgTotal: storyCgResources.length + storyTextureCgResources.length, storyCgMissing: missingStoryCgResources.length + missingStoryTextureCgResources.length, storyTextureCgAnnotated: indexedStoryTextureCgResources.size, storyTextureWithRelation: textureRelations.size, storyTextureTotal: resources.filter((resource) => resource.resourceType === "story-texture").length, backgroundAnnotated: resources.filter((resource) => resource.resourceType === "background").length, packCoverAnnotated: resources.filter((resource) => resource.resourceType === "pack-cover").length, linkplayStickerAnnotated: resources.filter((resource) => resource.resourceType === "sticker").length, storyTextEntries: storyAudit.text.coverage.entriesWithText, storyTextLocales: Object.keys(storyAudit.text.coverage.localeCounts).length, storyScenes: storyAudit.scenes.length, storyRelationEvidence: storyAudit.relationEvidence.length } };
 }
 
 function buildPhigrosSemantics(catalog: Catalog, auditRows: CsvRow[], snapshot: string, digest: string): { projection: CategoryBrowseProjectionType; metrics: Record<string, number> } {
@@ -808,6 +861,10 @@ async function main(): Promise<void> {
   const characterRows = await trackedCsv(auditDirectory, "arcaea-character-relations.csv");
   const storyRows = await trackedCsv(auditDirectory, "arcaea-story-resource-relations.csv");
   const storyIndex = await trackedJson<ArcaeaStoryIndex>(auditDirectory, "arcaea-story-index.json");
+  const storyText = await trackedJson<ArcaeaStoryAtlasType["text"]>(auditDirectory, "arcaea-story-text.json");
+  const storyScenes = await trackedJson<ArcaeaStoryAtlasType["scenes"]>(auditDirectory, "arcaea-story-scenes.json");
+  const storyRelationEvidence = await trackedJson<ArcaeaStoryRelationEvidenceType[]>(auditDirectory, "arcaea-story-cg-relation-evidence.json");
+  const storyDerivatives = await trackedJson<NonNullable<ArcaeaStoryAtlasType["derivatives"]>>(auditDirectory, "arcaea-story-derivative-manifest.json");
   const storyReferenceRows = await trackedCsv(auditDirectory, "arcaea-story-vn-references.csv");
   const backgroundRows = await trackedCsv(auditDirectory, "arcaea-background-relations.csv");
   const packRows = await trackedCsv(auditDirectory, "arcaea-pack-cover-relations.csv");
@@ -815,8 +872,15 @@ async function main(): Promise<void> {
   const linkplayRows = await trackedCsv(auditDirectory, "arcaea-linkplay-relations.csv");
   const phigrosChapterRows = await trackedCsv(auditDirectory, "phigros-chapter-cover-records.csv");
   const index = createPathIndex(catalog);
-  const arcaea = buildArcaeaSemantics(catalog, arcaeaBrowse, index, characterRows, storyRows, storyIndex, storyReferenceRows, backgroundRows, packRows, packRecordRows, linkplayRows);
-  const phigros = buildPhigrosSemantics(catalog, phigrosChapterRows, `Phigros APK ${apkVersion(phigrosManifest)}`, sourceDigest(new Set(["arcaea-story-index.json"])));
+  const arcaea = buildArcaeaSemantics(catalog, arcaeaBrowse, index, characterRows, storyRows, storyIndex, storyReferenceRows, backgroundRows, packRows, packRecordRows, linkplayRows, { text: storyText, scenes: storyScenes, relationEvidence: storyRelationEvidence, derivatives: storyDerivatives });
+  const phigrosDigestExclusions = new Set([
+    "arcaea-story-index.json",
+    "arcaea-story-text.json",
+    "arcaea-story-scenes.json",
+    "arcaea-story-cg-relation-evidence.json",
+    "arcaea-story-derivative-manifest.json",
+  ]);
+  const phigros = buildPhigrosSemantics(catalog, phigrosChapterRows, `Phigros APK ${apkVersion(phigrosManifest)}`, sourceDigest(phigrosDigestExclusions));
   await mkdir(outputDirectory, { recursive: true });
   await writeFile(path.join(outputDirectory, "arcaea-semantics.json"), `${JSON.stringify(arcaea.projection, null, 2)}\n`, "utf8");
   await writeFile(path.join(outputDirectory, "phigros-semantics.json"), `${JSON.stringify(phigros.projection, null, 2)}\n`, "utf8");

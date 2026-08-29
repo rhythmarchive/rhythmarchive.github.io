@@ -1,0 +1,2183 @@
+[
+  {
+    "sceneId": "vn:catastrophe1",
+    "kind": "vn-scene",
+    "displayTitle": "C-1 · catastrophe1",
+    "pathId": 33,
+    "nodeKey": "C-1",
+    "storyData": "catastrophe1",
+    "scriptStem": "catastrophe1",
+    "resourceIds": [],
+    "locales": {
+      "en": {
+        "locale": "en",
+        "sourcePath": "assets/app-data/story/vn/catastrophe1_en.vns",
+        "sayCount": 27,
+        "commandCounts": {
+          "show": 14,
+          "move": 8,
+          "play": 14,
+          "volume": 3,
+          "hide": 14,
+          "stop": 3
+        },
+        "visualReferences": [],
+        "audioReferences": []
+      },
+      "ja": {
+        "locale": "ja",
+        "sourcePath": "assets/app-data/story/vn/catastrophe1_ja.vns",
+        "sayCount": 27,
+        "commandCounts": {
+          "show": 14,
+          "move": 8,
+          "play": 14,
+          "volume": 3,
+          "hide": 14,
+          "stop": 3
+        },
+        "visualReferences": [],
+        "audioReferences": []
+      },
+      "ko": {
+        "locale": "ko",
+        "sourcePath": "assets/app-data/story/vn/catastrophe1_ko.vns",
+        "sayCount": 27,
+        "commandCounts": {
+          "show": 14,
+          "move": 8,
+          "play": 14,
+          "volume": 3,
+          "hide": 14,
+          "stop": 3
+        },
+        "visualReferences": [],
+        "audioReferences": []
+      },
+      "zh-Hans": {
+        "locale": "zh-Hans",
+        "sourcePath": "assets/app-data/story/vn/catastrophe1_zh-Hans.vns",
+        "sayCount": 27,
+        "commandCounts": {
+          "show": 14,
+          "move": 8,
+          "play": 14,
+          "volume": 3,
+          "hide": 14,
+          "stop": 3
+        },
+        "visualReferences": [],
+        "audioReferences": []
+      },
+      "zh-Hant": {
+        "locale": "zh-Hant",
+        "sourcePath": "assets/app-data/story/vn/catastrophe1_zh-Hant.vns",
+        "sayCount": 27,
+        "commandCounts": {
+          "show": 14,
+          "move": 8,
+          "play": 14,
+          "volume": 3,
+          "hide": 14,
+          "stop": 3
+        },
+        "visualReferences": [],
+        "audioReferences": []
+      }
+    }
+  },
+  {
+    "sceneId": "vn:catastrophe3",
+    "kind": "vn-scene",
+    "displayTitle": "C-3 · catastrophe3",
+    "pathId": 33,
+    "nodeKey": "C-3",
+    "storyData": "catastrophe3",
+    "scriptStem": "catastrophe3",
+    "resourceIds": [],
+    "locales": {
+      "en": {
+        "locale": "en",
+        "sourcePath": "assets/app-data/story/vn/catastrophe3_en.vns",
+        "sayCount": 30,
+        "commandCounts": {
+          "play": 31,
+          "volume": 2,
+          "show": 41,
+          "move": 18,
+          "stop": 5,
+          "hide": 37
+        },
+        "visualReferences": [],
+        "audioReferences": []
+      },
+      "ja": {
+        "locale": "ja",
+        "sourcePath": "assets/app-data/story/vn/catastrophe3_ja.vns",
+        "sayCount": 30,
+        "commandCounts": {
+          "play": 31,
+          "volume": 2,
+          "show": 41,
+          "move": 18,
+          "stop": 5,
+          "hide": 37
+        },
+        "visualReferences": [],
+        "audioReferences": []
+      },
+      "ko": {
+        "locale": "ko",
+        "sourcePath": "assets/app-data/story/vn/catastrophe3_ko.vns",
+        "sayCount": 30,
+        "commandCounts": {
+          "play": 31,
+          "volume": 2,
+          "show": 41,
+          "move": 18,
+          "stop": 5,
+          "hide": 37
+        },
+        "visualReferences": [],
+        "audioReferences": []
+      },
+      "zh-Hans": {
+        "locale": "zh-Hans",
+        "sourcePath": "assets/app-data/story/vn/catastrophe3_zh-Hans.vns",
+        "sayCount": 30,
+        "commandCounts": {
+          "play": 31,
+          "volume": 2,
+          "show": 41,
+          "move": 18,
+          "stop": 5,
+          "hide": 37
+        },
+        "visualReferences": [],
+        "audioReferences": []
+      },
+      "zh-Hant": {
+        "locale": "zh-Hant",
+        "sourcePath": "assets/app-data/story/vn/catastrophe3_zh-Hant.vns",
+        "sayCount": 30,
+        "commandCounts": {
+          "play": 31,
+          "volume": 2,
+          "show": 41,
+          "move": 18,
+          "stop": 5,
+          "hide": 37
+        },
+        "visualReferences": [],
+        "audioReferences": []
+      }
+    }
+  },
+  {
+    "sceneId": "vn:catastrophe4",
+    "kind": "vn-scene",
+    "displayTitle": "C-4 · catastrophe4",
+    "pathId": 33,
+    "nodeKey": "C-4",
+    "storyData": "catastrophe4",
+    "scriptStem": "catastrophe4",
+    "resourceIds": [],
+    "locales": {
+      "en": {
+        "locale": "en",
+        "sourcePath": "assets/app-data/story/vn/catastrophe4_en.vns",
+        "sayCount": 29,
+        "commandCounts": {
+          "play": 23,
+          "show": 29,
+          "move": 9,
+          "hide": 27,
+          "volume": 1,
+          "stop": 2
+        },
+        "visualReferences": [],
+        "audioReferences": []
+      },
+      "ja": {
+        "locale": "ja",
+        "sourcePath": "assets/app-data/story/vn/catastrophe4_ja.vns",
+        "sayCount": 29,
+        "commandCounts": {
+          "play": 23,
+          "show": 29,
+          "move": 9,
+          "hide": 27,
+          "volume": 1,
+          "stop": 2
+        },
+        "visualReferences": [],
+        "audioReferences": []
+      },
+      "ko": {
+        "locale": "ko",
+        "sourcePath": "assets/app-data/story/vn/catastrophe4_ko.vns",
+        "sayCount": 29,
+        "commandCounts": {
+          "play": 23,
+          "show": 29,
+          "move": 9,
+          "hide": 27,
+          "volume": 1,
+          "stop": 2
+        },
+        "visualReferences": [],
+        "audioReferences": []
+      },
+      "zh-Hans": {
+        "locale": "zh-Hans",
+        "sourcePath": "assets/app-data/story/vn/catastrophe4_zh-Hans.vns",
+        "sayCount": 29,
+        "commandCounts": {
+          "play": 23,
+          "show": 29,
+          "move": 9,
+          "hide": 27,
+          "volume": 1,
+          "stop": 2
+        },
+        "visualReferences": [],
+        "audioReferences": []
+      },
+      "zh-Hant": {
+        "locale": "zh-Hant",
+        "sourcePath": "assets/app-data/story/vn/catastrophe4_zh-Hant.vns",
+        "sayCount": 29,
+        "commandCounts": {
+          "play": 23,
+          "show": 29,
+          "move": 9,
+          "hide": 27,
+          "volume": 1,
+          "stop": 2
+        },
+        "visualReferences": [],
+        "audioReferences": []
+      }
+    }
+  },
+  {
+    "sceneId": "vn:catastrophe6",
+    "kind": "vn-scene",
+    "displayTitle": "C-6 · catastrophe6",
+    "pathId": 33,
+    "nodeKey": "C-6",
+    "storyData": "catastrophe6",
+    "scriptStem": "catastrophe6",
+    "resourceIds": [],
+    "locales": {
+      "en": {
+        "locale": "en",
+        "sourcePath": "assets/app-data/story/vn/catastrophe6_en.vns",
+        "sayCount": 24,
+        "commandCounts": {
+          "play": 18,
+          "show": 25,
+          "move": 31,
+          "hide": 14,
+          "volume": 2,
+          "stop": 6
+        },
+        "visualReferences": [],
+        "audioReferences": []
+      },
+      "ja": {
+        "locale": "ja",
+        "sourcePath": "assets/app-data/story/vn/catastrophe6_ja.vns",
+        "sayCount": 24,
+        "commandCounts": {
+          "play": 18,
+          "show": 25,
+          "move": 31,
+          "hide": 14,
+          "volume": 2,
+          "stop": 6
+        },
+        "visualReferences": [],
+        "audioReferences": []
+      },
+      "ko": {
+        "locale": "ko",
+        "sourcePath": "assets/app-data/story/vn/catastrophe6_ko.vns",
+        "sayCount": 24,
+        "commandCounts": {
+          "play": 18,
+          "show": 25,
+          "move": 31,
+          "hide": 14,
+          "volume": 2,
+          "stop": 6
+        },
+        "visualReferences": [],
+        "audioReferences": []
+      },
+      "zh-Hans": {
+        "locale": "zh-Hans",
+        "sourcePath": "assets/app-data/story/vn/catastrophe6_zh-Hans.vns",
+        "sayCount": 24,
+        "commandCounts": {
+          "play": 18,
+          "show": 25,
+          "move": 31,
+          "hide": 14,
+          "volume": 2,
+          "stop": 6
+        },
+        "visualReferences": [],
+        "audioReferences": []
+      },
+      "zh-Hant": {
+        "locale": "zh-Hant",
+        "sourcePath": "assets/app-data/story/vn/catastrophe6_zh-Hant.vns",
+        "sayCount": 24,
+        "commandCounts": {
+          "play": 18,
+          "show": 25,
+          "move": 31,
+          "hide": 14,
+          "volume": 2,
+          "stop": 6
+        },
+        "visualReferences": [],
+        "audioReferences": []
+      }
+    }
+  },
+  {
+    "sceneId": "vn:catastrophe8",
+    "kind": "vn-scene",
+    "displayTitle": "C-8 · catastrophe8",
+    "pathId": 33,
+    "nodeKey": "C-8",
+    "storyData": "catastrophe8",
+    "scriptStem": "catastrophe8",
+    "resourceIds": [],
+    "locales": {
+      "en": {
+        "locale": "en",
+        "sourcePath": "assets/app-data/story/vn/catastrophe8_en.vns",
+        "sayCount": 41,
+        "commandCounts": {
+          "play": 28,
+          "volume": 6,
+          "stop": 6,
+          "show": 48,
+          "move": 35,
+          "hide": 46
+        },
+        "visualReferences": [],
+        "audioReferences": []
+      },
+      "ja": {
+        "locale": "ja",
+        "sourcePath": "assets/app-data/story/vn/catastrophe8_ja.vns",
+        "sayCount": 41,
+        "commandCounts": {
+          "play": 28,
+          "volume": 6,
+          "stop": 6,
+          "show": 48,
+          "move": 35,
+          "hide": 46
+        },
+        "visualReferences": [],
+        "audioReferences": []
+      },
+      "ko": {
+        "locale": "ko",
+        "sourcePath": "assets/app-data/story/vn/catastrophe8_ko.vns",
+        "sayCount": 41,
+        "commandCounts": {
+          "play": 28,
+          "volume": 6,
+          "stop": 6,
+          "show": 48,
+          "move": 35,
+          "hide": 46
+        },
+        "visualReferences": [],
+        "audioReferences": []
+      },
+      "zh-Hans": {
+        "locale": "zh-Hans",
+        "sourcePath": "assets/app-data/story/vn/catastrophe8_zh-Hans.vns",
+        "sayCount": 41,
+        "commandCounts": {
+          "play": 28,
+          "volume": 6,
+          "stop": 6,
+          "show": 48,
+          "move": 35,
+          "hide": 46
+        },
+        "visualReferences": [],
+        "audioReferences": []
+      },
+      "zh-Hant": {
+        "locale": "zh-Hant",
+        "sourcePath": "assets/app-data/story/vn/catastrophe8_zh-Hant.vns",
+        "sayCount": 41,
+        "commandCounts": {
+          "play": 28,
+          "volume": 6,
+          "stop": 6,
+          "show": 48,
+          "move": 35,
+          "hide": 46
+        },
+        "visualReferences": [],
+        "audioReferences": []
+      }
+    }
+  },
+  {
+    "sceneId": "vn:epilogue_last",
+    "kind": "epilogue",
+    "displayTitle": "E-1 · epilogue_last",
+    "pathId": 19,
+    "storyData": "epilogue_last",
+    "scriptStem": "epilogue_last",
+    "resourceIds": [
+      "01a00093-e869-795f-8475-57822051e334",
+      "01a00093-fadf-7e22-87e8-47a043528644"
+    ],
+    "locales": {
+      "en": {
+        "locale": "en",
+        "sourcePath": "assets/app-data/story/vn/epilogue_last_en.vns",
+        "sayCount": 141,
+        "commandCounts": {
+          "play": 70,
+          "show": 100,
+          "hide": 100,
+          "move": 55,
+          "stop": 21,
+          "scale": 7,
+          "volume": 5,
+          "say_legacy": 4
+        },
+        "visualReferences": [
+          {
+            "assetPath": "assets/app-data/story/cg/2-1.jpg",
+            "commands": [
+              "hide",
+              "move",
+              "show"
+            ]
+          },
+          {
+            "assetPath": "assets/app-data/story/cg/F-7.jpg",
+            "commands": [
+              "hide",
+              "move",
+              "show"
+            ]
+          }
+        ],
+        "audioReferences": []
+      },
+      "ja": {
+        "locale": "ja",
+        "sourcePath": "assets/app-data/story/vn/epilogue_last_ja.vns",
+        "sayCount": 188,
+        "commandCounts": {
+          "play": 70,
+          "show": 100,
+          "hide": 100,
+          "move": 55,
+          "stop": 21,
+          "scale": 7,
+          "volume": 5,
+          "say_legacy": 4
+        },
+        "visualReferences": [
+          {
+            "assetPath": "assets/app-data/story/cg/2-1.jpg",
+            "commands": [
+              "hide",
+              "move",
+              "show"
+            ]
+          },
+          {
+            "assetPath": "assets/app-data/story/cg/F-7.jpg",
+            "commands": [
+              "hide",
+              "move",
+              "show"
+            ]
+          }
+        ],
+        "audioReferences": []
+      },
+      "ko": {
+        "locale": "ko",
+        "sourcePath": "assets/app-data/story/vn/epilogue_last_ko.vns",
+        "sayCount": 141,
+        "commandCounts": {
+          "play": 70,
+          "show": 100,
+          "hide": 100,
+          "move": 55,
+          "stop": 21,
+          "scale": 7,
+          "volume": 5,
+          "say_legacy": 4
+        },
+        "visualReferences": [
+          {
+            "assetPath": "assets/app-data/story/cg/2-1.jpg",
+            "commands": [
+              "hide",
+              "move",
+              "show"
+            ]
+          },
+          {
+            "assetPath": "assets/app-data/story/cg/F-7.jpg",
+            "commands": [
+              "hide",
+              "move",
+              "show"
+            ]
+          }
+        ],
+        "audioReferences": []
+      },
+      "zh-Hans": {
+        "locale": "zh-Hans",
+        "sourcePath": "assets/app-data/story/vn/epilogue_last_zh-Hans.vns",
+        "sayCount": 141,
+        "commandCounts": {
+          "play": 70,
+          "show": 100,
+          "hide": 100,
+          "move": 55,
+          "stop": 21,
+          "scale": 7,
+          "volume": 5,
+          "say_legacy": 4
+        },
+        "visualReferences": [
+          {
+            "assetPath": "assets/app-data/story/cg/2-1.jpg",
+            "commands": [
+              "hide",
+              "move",
+              "show"
+            ]
+          },
+          {
+            "assetPath": "assets/app-data/story/cg/F-7.jpg",
+            "commands": [
+              "hide",
+              "move",
+              "show"
+            ]
+          }
+        ],
+        "audioReferences": []
+      },
+      "zh-Hant": {
+        "locale": "zh-Hant",
+        "sourcePath": "assets/app-data/story/vn/epilogue_last_zh-Hant.vns",
+        "sayCount": 141,
+        "commandCounts": {
+          "play": 70,
+          "show": 100,
+          "hide": 100,
+          "move": 55,
+          "stop": 21,
+          "scale": 7,
+          "volume": 5,
+          "say_legacy": 4
+        },
+        "visualReferences": [
+          {
+            "assetPath": "assets/app-data/story/cg/2-1.jpg",
+            "commands": [
+              "hide",
+              "move",
+              "show"
+            ]
+          },
+          {
+            "assetPath": "assets/app-data/story/cg/F-7.jpg",
+            "commands": [
+              "hide",
+              "move",
+              "show"
+            ]
+          }
+        ],
+        "audioReferences": []
+      }
+    }
+  },
+  {
+    "sceneId": "vn:finale_testify",
+    "kind": "vn-scene",
+    "displayTitle": "F-6 · finale_testify",
+    "pathId": 19,
+    "nodeKey": "F-6",
+    "storyData": "finale_testify",
+    "scriptStem": "finale_testify",
+    "resourceIds": [
+      "01a00093-dd0c-7f79-8e09-f1cfb7bb77da",
+      "01a00093-e8e2-76a3-aa07-776d0697d70c",
+      "01a00093-fb71-777b-ac2a-a145ec0302d1"
+    ],
+    "locales": {
+      "en": {
+        "locale": "en",
+        "sourcePath": "assets/app-data/story/vn/finale_testify_en.vns",
+        "sayCount": 53,
+        "commandCounts": {
+          "show": 70,
+          "hide": 70,
+          "move": 57,
+          "play": 24,
+          "scale": 10,
+          "stop": 7,
+          "say_legacy": 6,
+          "volume": 2
+        },
+        "visualReferences": [
+          {
+            "assetPath": "assets/app-data/story/cg/1-1.jpg",
+            "commands": [
+              "hide",
+              "move",
+              "scale",
+              "show"
+            ]
+          },
+          {
+            "assetPath": "assets/app-data/story/cg/2-8.jpg",
+            "commands": [
+              "hide",
+              "show"
+            ]
+          },
+          {
+            "assetPath": "assets/app-data/story/cg/V-10.jpg",
+            "commands": [
+              "hide",
+              "move",
+              "show"
+            ]
+          }
+        ],
+        "audioReferences": []
+      },
+      "ja": {
+        "locale": "ja",
+        "sourcePath": "assets/app-data/story/vn/finale_testify_ja.vns",
+        "sayCount": 98,
+        "commandCounts": {
+          "show": 70,
+          "hide": 70,
+          "move": 57,
+          "play": 24,
+          "scale": 10,
+          "stop": 7,
+          "say_legacy": 9,
+          "volume": 2
+        },
+        "visualReferences": [
+          {
+            "assetPath": "assets/app-data/story/cg/1-1.jpg",
+            "commands": [
+              "hide",
+              "move",
+              "scale",
+              "show"
+            ]
+          },
+          {
+            "assetPath": "assets/app-data/story/cg/2-8.jpg",
+            "commands": [
+              "hide",
+              "show"
+            ]
+          },
+          {
+            "assetPath": "assets/app-data/story/cg/V-10.jpg",
+            "commands": [
+              "hide",
+              "move",
+              "show"
+            ]
+          }
+        ],
+        "audioReferences": []
+      },
+      "ko": {
+        "locale": "ko",
+        "sourcePath": "assets/app-data/story/vn/finale_testify_ko.vns",
+        "sayCount": 54,
+        "commandCounts": {
+          "show": 70,
+          "hide": 70,
+          "move": 57,
+          "play": 24,
+          "scale": 10,
+          "stop": 7,
+          "say_legacy": 6,
+          "volume": 2
+        },
+        "visualReferences": [
+          {
+            "assetPath": "assets/app-data/story/cg/1-1.jpg",
+            "commands": [
+              "hide",
+              "move",
+              "scale",
+              "show"
+            ]
+          },
+          {
+            "assetPath": "assets/app-data/story/cg/2-8.jpg",
+            "commands": [
+              "hide",
+              "show"
+            ]
+          },
+          {
+            "assetPath": "assets/app-data/story/cg/V-10.jpg",
+            "commands": [
+              "hide",
+              "move",
+              "show"
+            ]
+          }
+        ],
+        "audioReferences": []
+      },
+      "zh-Hans": {
+        "locale": "zh-Hans",
+        "sourcePath": "assets/app-data/story/vn/finale_testify_zh-Hans.vns",
+        "sayCount": 53,
+        "commandCounts": {
+          "show": 70,
+          "hide": 70,
+          "move": 57,
+          "play": 24,
+          "scale": 10,
+          "stop": 7,
+          "say_legacy": 6,
+          "volume": 2
+        },
+        "visualReferences": [
+          {
+            "assetPath": "assets/app-data/story/cg/1-1.jpg",
+            "commands": [
+              "hide",
+              "move",
+              "scale",
+              "show"
+            ]
+          },
+          {
+            "assetPath": "assets/app-data/story/cg/2-8.jpg",
+            "commands": [
+              "hide",
+              "show"
+            ]
+          },
+          {
+            "assetPath": "assets/app-data/story/cg/V-10.jpg",
+            "commands": [
+              "hide",
+              "move",
+              "show"
+            ]
+          }
+        ],
+        "audioReferences": []
+      },
+      "zh-Hant": {
+        "locale": "zh-Hant",
+        "sourcePath": "assets/app-data/story/vn/finale_testify_zh-Hant.vns",
+        "sayCount": 53,
+        "commandCounts": {
+          "show": 70,
+          "hide": 70,
+          "move": 57,
+          "play": 24,
+          "scale": 10,
+          "stop": 7,
+          "say_legacy": 6,
+          "volume": 2
+        },
+        "visualReferences": [
+          {
+            "assetPath": "assets/app-data/story/cg/1-1.jpg",
+            "commands": [
+              "hide",
+              "move",
+              "scale",
+              "show"
+            ]
+          },
+          {
+            "assetPath": "assets/app-data/story/cg/2-8.jpg",
+            "commands": [
+              "hide",
+              "show"
+            ]
+          },
+          {
+            "assetPath": "assets/app-data/story/cg/V-10.jpg",
+            "commands": [
+              "hide",
+              "move",
+              "show"
+            ]
+          }
+        ],
+        "audioReferences": []
+      }
+    }
+  },
+  {
+    "sceneId": "vn:lephon_story7",
+    "kind": "vn-scene",
+    "displayTitle": "20-7 · lephon_story7",
+    "pathId": 29,
+    "nodeKey": "20-7",
+    "storyData": "lephon_story7",
+    "scriptStem": "lephon_story7",
+    "resourceIds": [
+      "01a00093-de83-7835-a260-c3d32188f565",
+      "01a00093-e001-7283-9329-dd2f8f803dde",
+      "01a00093-e2f0-788f-ba90-c855c6345bc5",
+      "01a00093-e35d-7bb3-a85d-e6b823a9e508",
+      "01a00093-e48b-7ad8-a258-9f02c5380c9b",
+      "01a00093-e869-795f-8475-57822051e334",
+      "01a00093-f36e-751b-89ba-52673087d829",
+      "01a00093-f3ec-737d-9e93-de61a0044ce5",
+      "01a00093-f4e1-744b-a87e-71ceefd07fa2",
+      "01a00093-f5ed-785e-b92c-cd56e04bbc30",
+      "01a00093-f66f-75be-837c-216d2e833d95",
+      "01a00093-f77a-7fc8-835b-d05e84dec9a4",
+      "01a00093-f967-789d-ac6a-017c4b39c4ad"
+    ],
+    "locales": {
+      "en": {
+        "locale": "en",
+        "sourcePath": "assets/app-data/story/vn/lephon_story7_en.vns",
+        "sayCount": 74,
+        "commandCounts": {
+          "play": 23,
+          "volume": 6,
+          "show": 75,
+          "move": 30,
+          "stop": 5,
+          "hide": 70,
+          "scale": 6,
+          "play_game": 1,
+          "volume_game": 1,
+          "stop_game": 1
+        },
+        "visualReferences": [
+          {
+            "assetPath": "assets/app-data/story/cg/10-5.jpg",
+            "commands": [
+              "hide",
+              "show"
+            ]
+          },
+          {
+            "assetPath": "assets/app-data/story/cg/11-8-2.jpg",
+            "commands": [
+              "hide",
+              "show"
+            ]
+          },
+          {
+            "assetPath": "assets/app-data/story/cg/16-7-1.jpg",
+            "commands": [
+              "hide",
+              "scale",
+              "show"
+            ]
+          },
+          {
+            "assetPath": "assets/app-data/story/cg/16-7-2.jpg",
+            "commands": [
+              "hide",
+              "move",
+              "show"
+            ]
+          },
+          {
+            "assetPath": "assets/app-data/story/cg/17-6-1.jpg",
+            "commands": [
+              "hide",
+              "show"
+            ]
+          },
+          {
+            "assetPath": "assets/app-data/story/cg/2-1.jpg",
+            "commands": [
+              "hide",
+              "show"
+            ]
+          },
+          {
+            "assetPath": "assets/app-data/story/cg/3-1.jpg",
+            "commands": [
+              "hide",
+              "show"
+            ]
+          },
+          {
+            "assetPath": "assets/app-data/story/cg/4-1.jpg",
+            "commands": [
+              "hide",
+              "show"
+            ]
+          },
+          {
+            "assetPath": "assets/app-data/story/cg/5-1.jpg",
+            "commands": [
+              "hide",
+              "show"
+            ]
+          },
+          {
+            "assetPath": "assets/app-data/story/cg/7-6.jpg",
+            "commands": [
+              "hide",
+              "show"
+            ]
+          },
+          {
+            "assetPath": "assets/app-data/story/cg/9-5.jpg",
+            "commands": [
+              "hide",
+              "show"
+            ]
+          },
+          {
+            "assetPath": "assets/app-data/story/cg/E-1_epilogue.jpg",
+            "commands": [
+              "hide",
+              "move",
+              "scale",
+              "show"
+            ]
+          },
+          {
+            "assetPath": "assets/app-data/story/cg/F-5.jpg",
+            "commands": [
+              "hide",
+              "show"
+            ]
+          }
+        ],
+        "audioReferences": []
+      },
+      "ja": {
+        "locale": "ja",
+        "sourcePath": "assets/app-data/story/vn/lephon_story7_ja.vns",
+        "sayCount": 74,
+        "commandCounts": {
+          "play": 23,
+          "volume": 6,
+          "show": 75,
+          "move": 30,
+          "stop": 5,
+          "hide": 70,
+          "scale": 6,
+          "play_game": 1,
+          "volume_game": 1,
+          "stop_game": 1
+        },
+        "visualReferences": [
+          {
+            "assetPath": "assets/app-data/story/cg/10-5.jpg",
+            "commands": [
+              "hide",
+              "show"
+            ]
+          },
+          {
+            "assetPath": "assets/app-data/story/cg/11-8-2.jpg",
+            "commands": [
+              "hide",
+              "show"
+            ]
+          },
+          {
+            "assetPath": "assets/app-data/story/cg/16-7-1.jpg",
+            "commands": [
+              "hide",
+              "scale",
+              "show"
+            ]
+          },
+          {
+            "assetPath": "assets/app-data/story/cg/16-7-2.jpg",
+            "commands": [
+              "hide",
+              "move",
+              "show"
+            ]
+          },
+          {
+            "assetPath": "assets/app-data/story/cg/17-6-1.jpg",
+            "commands": [
+              "hide",
+              "show"
+            ]
+          },
+          {
+            "assetPath": "assets/app-data/story/cg/2-1.jpg",
+            "commands": [
+              "hide",
+              "show"
+            ]
+          },
+          {
+            "assetPath": "assets/app-data/story/cg/3-1.jpg",
+            "commands": [
+              "hide",
+              "show"
+            ]
+          },
+          {
+            "assetPath": "assets/app-data/story/cg/4-1.jpg",
+            "commands": [
+              "hide",
+              "show"
+            ]
+          },
+          {
+            "assetPath": "assets/app-data/story/cg/5-1.jpg",
+            "commands": [
+              "hide",
+              "show"
+            ]
+          },
+          {
+            "assetPath": "assets/app-data/story/cg/7-6.jpg",
+            "commands": [
+              "hide",
+              "show"
+            ]
+          },
+          {
+            "assetPath": "assets/app-data/story/cg/9-5.jpg",
+            "commands": [
+              "hide",
+              "show"
+            ]
+          },
+          {
+            "assetPath": "assets/app-data/story/cg/E-1_epilogue.jpg",
+            "commands": [
+              "hide",
+              "move",
+              "scale",
+              "show"
+            ]
+          },
+          {
+            "assetPath": "assets/app-data/story/cg/F-5.jpg",
+            "commands": [
+              "hide",
+              "show"
+            ]
+          }
+        ],
+        "audioReferences": []
+      },
+      "ko": {
+        "locale": "ko",
+        "sourcePath": "assets/app-data/story/vn/lephon_story7_ko.vns",
+        "sayCount": 74,
+        "commandCounts": {
+          "play": 23,
+          "volume": 6,
+          "show": 75,
+          "move": 30,
+          "stop": 5,
+          "hide": 70,
+          "scale": 6,
+          "play_game": 1,
+          "volume_game": 1,
+          "stop_game": 1
+        },
+        "visualReferences": [
+          {
+            "assetPath": "assets/app-data/story/cg/10-5.jpg",
+            "commands": [
+              "hide",
+              "show"
+            ]
+          },
+          {
+            "assetPath": "assets/app-data/story/cg/11-8-2.jpg",
+            "commands": [
+              "hide",
+              "show"
+            ]
+          },
+          {
+            "assetPath": "assets/app-data/story/cg/16-7-1.jpg",
+            "commands": [
+              "hide",
+              "scale",
+              "show"
+            ]
+          },
+          {
+            "assetPath": "assets/app-data/story/cg/16-7-2.jpg",
+            "commands": [
+              "hide",
+              "move",
+              "show"
+            ]
+          },
+          {
+            "assetPath": "assets/app-data/story/cg/17-6-1.jpg",
+            "commands": [
+              "hide",
+              "show"
+            ]
+          },
+          {
+            "assetPath": "assets/app-data/story/cg/2-1.jpg",
+            "commands": [
+              "hide",
+              "show"
+            ]
+          },
+          {
+            "assetPath": "assets/app-data/story/cg/3-1.jpg",
+            "commands": [
+              "hide",
+              "show"
+            ]
+          },
+          {
+            "assetPath": "assets/app-data/story/cg/4-1.jpg",
+            "commands": [
+              "hide",
+              "show"
+            ]
+          },
+          {
+            "assetPath": "assets/app-data/story/cg/5-1.jpg",
+            "commands": [
+              "hide",
+              "show"
+            ]
+          },
+          {
+            "assetPath": "assets/app-data/story/cg/7-6.jpg",
+            "commands": [
+              "hide",
+              "show"
+            ]
+          },
+          {
+            "assetPath": "assets/app-data/story/cg/9-5.jpg",
+            "commands": [
+              "hide",
+              "show"
+            ]
+          },
+          {
+            "assetPath": "assets/app-data/story/cg/E-1_epilogue.jpg",
+            "commands": [
+              "hide",
+              "move",
+              "scale",
+              "show"
+            ]
+          },
+          {
+            "assetPath": "assets/app-data/story/cg/F-5.jpg",
+            "commands": [
+              "hide",
+              "show"
+            ]
+          }
+        ],
+        "audioReferences": []
+      },
+      "zh-Hans": {
+        "locale": "zh-Hans",
+        "sourcePath": "assets/app-data/story/vn/lephon_story7_zh-Hans.vns",
+        "sayCount": 75,
+        "commandCounts": {
+          "play": 23,
+          "volume": 6,
+          "show": 75,
+          "move": 30,
+          "stop": 5,
+          "hide": 70,
+          "scale": 6,
+          "play_game": 1,
+          "volume_game": 1,
+          "stop_game": 1
+        },
+        "visualReferences": [
+          {
+            "assetPath": "assets/app-data/story/cg/10-5.jpg",
+            "commands": [
+              "hide",
+              "show"
+            ]
+          },
+          {
+            "assetPath": "assets/app-data/story/cg/11-8-2.jpg",
+            "commands": [
+              "hide",
+              "show"
+            ]
+          },
+          {
+            "assetPath": "assets/app-data/story/cg/16-7-1.jpg",
+            "commands": [
+              "hide",
+              "scale",
+              "show"
+            ]
+          },
+          {
+            "assetPath": "assets/app-data/story/cg/16-7-2.jpg",
+            "commands": [
+              "hide",
+              "move",
+              "show"
+            ]
+          },
+          {
+            "assetPath": "assets/app-data/story/cg/17-6-1.jpg",
+            "commands": [
+              "hide",
+              "show"
+            ]
+          },
+          {
+            "assetPath": "assets/app-data/story/cg/2-1.jpg",
+            "commands": [
+              "hide",
+              "show"
+            ]
+          },
+          {
+            "assetPath": "assets/app-data/story/cg/3-1.jpg",
+            "commands": [
+              "hide",
+              "show"
+            ]
+          },
+          {
+            "assetPath": "assets/app-data/story/cg/4-1.jpg",
+            "commands": [
+              "hide",
+              "show"
+            ]
+          },
+          {
+            "assetPath": "assets/app-data/story/cg/5-1.jpg",
+            "commands": [
+              "hide",
+              "show"
+            ]
+          },
+          {
+            "assetPath": "assets/app-data/story/cg/7-6.jpg",
+            "commands": [
+              "hide",
+              "show"
+            ]
+          },
+          {
+            "assetPath": "assets/app-data/story/cg/9-5.jpg",
+            "commands": [
+              "hide",
+              "show"
+            ]
+          },
+          {
+            "assetPath": "assets/app-data/story/cg/E-1_epilogue.jpg",
+            "commands": [
+              "hide",
+              "move",
+              "scale",
+              "show"
+            ]
+          },
+          {
+            "assetPath": "assets/app-data/story/cg/F-5.jpg",
+            "commands": [
+              "hide",
+              "show"
+            ]
+          }
+        ],
+        "audioReferences": []
+      },
+      "zh-Hant": {
+        "locale": "zh-Hant",
+        "sourcePath": "assets/app-data/story/vn/lephon_story7_zh-Hant.vns",
+        "sayCount": 75,
+        "commandCounts": {
+          "play": 23,
+          "volume": 6,
+          "show": 75,
+          "move": 30,
+          "stop": 5,
+          "hide": 70,
+          "scale": 6,
+          "play_game": 1,
+          "volume_game": 1,
+          "stop_game": 1
+        },
+        "visualReferences": [
+          {
+            "assetPath": "assets/app-data/story/cg/10-5.jpg",
+            "commands": [
+              "hide",
+              "show"
+            ]
+          },
+          {
+            "assetPath": "assets/app-data/story/cg/11-8-2.jpg",
+            "commands": [
+              "hide",
+              "show"
+            ]
+          },
+          {
+            "assetPath": "assets/app-data/story/cg/16-7-1.jpg",
+            "commands": [
+              "hide",
+              "scale",
+              "show"
+            ]
+          },
+          {
+            "assetPath": "assets/app-data/story/cg/16-7-2.jpg",
+            "commands": [
+              "hide",
+              "move",
+              "show"
+            ]
+          },
+          {
+            "assetPath": "assets/app-data/story/cg/17-6-1.jpg",
+            "commands": [
+              "hide",
+              "show"
+            ]
+          },
+          {
+            "assetPath": "assets/app-data/story/cg/2-1.jpg",
+            "commands": [
+              "hide",
+              "show"
+            ]
+          },
+          {
+            "assetPath": "assets/app-data/story/cg/3-1.jpg",
+            "commands": [
+              "hide",
+              "show"
+            ]
+          },
+          {
+            "assetPath": "assets/app-data/story/cg/4-1.jpg",
+            "commands": [
+              "hide",
+              "show"
+            ]
+          },
+          {
+            "assetPath": "assets/app-data/story/cg/5-1.jpg",
+            "commands": [
+              "hide",
+              "show"
+            ]
+          },
+          {
+            "assetPath": "assets/app-data/story/cg/7-6.jpg",
+            "commands": [
+              "hide",
+              "show"
+            ]
+          },
+          {
+            "assetPath": "assets/app-data/story/cg/9-5.jpg",
+            "commands": [
+              "hide",
+              "show"
+            ]
+          },
+          {
+            "assetPath": "assets/app-data/story/cg/E-1_epilogue.jpg",
+            "commands": [
+              "hide",
+              "move",
+              "scale",
+              "show"
+            ]
+          },
+          {
+            "assetPath": "assets/app-data/story/cg/F-5.jpg",
+            "commands": [
+              "hide",
+              "show"
+            ]
+          }
+        ],
+        "audioReferences": []
+      }
+    }
+  },
+  {
+    "sceneId": "vn:lephon_story8",
+    "kind": "vn-scene",
+    "displayTitle": "20-8 · lephon_story8",
+    "pathId": 29,
+    "nodeKey": "20-8",
+    "storyData": "lephon_story8",
+    "scriptStem": "lephon_story8",
+    "resourceIds": [],
+    "locales": {
+      "en": {
+        "locale": "en",
+        "sourcePath": "assets/app-data/story/vn/lephon_story8_en.vns",
+        "sayCount": 13,
+        "commandCounts": {
+          "play": 3,
+          "volume": 3,
+          "stop": 3,
+          "show": 9,
+          "move": 4,
+          "hide": 4,
+          "scale": 1
+        },
+        "visualReferences": [],
+        "audioReferences": []
+      },
+      "ja": {
+        "locale": "ja",
+        "sourcePath": "assets/app-data/story/vn/lephon_story8_ja.vns",
+        "sayCount": 16,
+        "commandCounts": {
+          "play": 3,
+          "volume": 3,
+          "stop": 3,
+          "show": 9,
+          "move": 4,
+          "hide": 4,
+          "scale": 1
+        },
+        "visualReferences": [],
+        "audioReferences": []
+      },
+      "ko": {
+        "locale": "ko",
+        "sourcePath": "assets/app-data/story/vn/lephon_story8_ko.vns",
+        "sayCount": 13,
+        "commandCounts": {
+          "play": 3,
+          "volume": 3,
+          "stop": 3,
+          "show": 9,
+          "move": 4,
+          "hide": 4,
+          "scale": 1
+        },
+        "visualReferences": [],
+        "audioReferences": []
+      },
+      "zh-Hans": {
+        "locale": "zh-Hans",
+        "sourcePath": "assets/app-data/story/vn/lephon_story8_zh-Hans.vns",
+        "sayCount": 13,
+        "commandCounts": {
+          "play": 3,
+          "volume": 3,
+          "stop": 3,
+          "show": 9,
+          "move": 4,
+          "hide": 4,
+          "scale": 1
+        },
+        "visualReferences": [],
+        "audioReferences": []
+      },
+      "zh-Hant": {
+        "locale": "zh-Hant",
+        "sourcePath": "assets/app-data/story/vn/lephon_story8_zh-Hant.vns",
+        "sayCount": 13,
+        "commandCounts": {
+          "play": 3,
+          "volume": 3,
+          "stop": 3,
+          "show": 9,
+          "move": 4,
+          "hide": 4,
+          "scale": 1
+        },
+        "visualReferences": [],
+        "audioReferences": []
+      }
+    }
+  },
+  {
+    "sceneId": "vn:meeting",
+    "kind": "vn-scene",
+    "displayTitle": "V-0 · meeting",
+    "pathId": 2,
+    "nodeKey": "V-0",
+    "storyData": "meeting",
+    "scriptStem": "meeting",
+    "resourceIds": [],
+    "locales": {
+      "en": {
+        "locale": "en",
+        "sourcePath": "assets/app-data/story/vn/meeting_en.vns",
+        "sayCount": 15,
+        "commandCounts": {
+          "show": 7,
+          "move": 12,
+          "play": 3,
+          "volume": 1,
+          "stop": 1
+        },
+        "visualReferences": [],
+        "audioReferences": []
+      },
+      "ja": {
+        "locale": "ja",
+        "sourcePath": "assets/app-data/story/vn/meeting_ja.vns",
+        "sayCount": 14,
+        "commandCounts": {
+          "show": 7,
+          "move": 12,
+          "play": 3,
+          "volume": 1,
+          "stop": 1
+        },
+        "visualReferences": [],
+        "audioReferences": []
+      },
+      "ko": {
+        "locale": "ko",
+        "sourcePath": "assets/app-data/story/vn/meeting_ko.vns",
+        "sayCount": 15,
+        "commandCounts": {
+          "show": 7,
+          "move": 12,
+          "play": 3,
+          "volume": 1,
+          "stop": 1
+        },
+        "visualReferences": [],
+        "audioReferences": []
+      },
+      "zh-Hans": {
+        "locale": "zh-Hans",
+        "sourcePath": "assets/app-data/story/vn/meeting_zh-Hans.vns",
+        "sayCount": 15,
+        "commandCounts": {
+          "show": 7,
+          "move": 12,
+          "play": 3,
+          "volume": 1,
+          "stop": 1
+        },
+        "visualReferences": [],
+        "audioReferences": []
+      },
+      "zh-Hant": {
+        "locale": "zh-Hant",
+        "sourcePath": "assets/app-data/story/vn/meeting_zh-Hant.vns",
+        "sayCount": 15,
+        "commandCounts": {
+          "show": 7,
+          "move": 12,
+          "play": 3,
+          "volume": 1,
+          "stop": 1
+        },
+        "visualReferences": [],
+        "audioReferences": []
+      }
+    }
+  },
+  {
+    "sceneId": "vn:nihil6",
+    "kind": "vn-scene",
+    "displayTitle": "18-6 · nihil6",
+    "pathId": 27,
+    "nodeKey": "18-6",
+    "storyData": "nihil6",
+    "scriptStem": "nihil6",
+    "resourceIds": [],
+    "locales": {
+      "en": {
+        "locale": "en",
+        "sourcePath": "assets/app-data/story/vn/nihil6_en.vns",
+        "sayCount": 33,
+        "commandCounts": {
+          "show": 28,
+          "play": 22,
+          "volume": 12,
+          "move": 21,
+          "hide": 22,
+          "stop": 5,
+          "scale": 3,
+          "say_legacy": 6
+        },
+        "visualReferences": [],
+        "audioReferences": []
+      },
+      "ja": {
+        "locale": "ja",
+        "sourcePath": "assets/app-data/story/vn/nihil6_ja.vns",
+        "sayCount": 34,
+        "commandCounts": {
+          "show": 28,
+          "play": 22,
+          "volume": 12,
+          "move": 21,
+          "hide": 22,
+          "stop": 5,
+          "scale": 3,
+          "say_legacy": 6
+        },
+        "visualReferences": [],
+        "audioReferences": []
+      },
+      "ko": {
+        "locale": "ko",
+        "sourcePath": "assets/app-data/story/vn/nihil6_ko.vns",
+        "sayCount": 33,
+        "commandCounts": {
+          "show": 28,
+          "play": 22,
+          "volume": 12,
+          "move": 21,
+          "hide": 22,
+          "stop": 5,
+          "scale": 3,
+          "say_legacy": 6
+        },
+        "visualReferences": [],
+        "audioReferences": []
+      },
+      "zh-Hans": {
+        "locale": "zh-Hans",
+        "sourcePath": "assets/app-data/story/vn/nihil6_zh-Hans.vns",
+        "sayCount": 33,
+        "commandCounts": {
+          "show": 28,
+          "play": 22,
+          "volume": 12,
+          "move": 21,
+          "hide": 22,
+          "stop": 5,
+          "scale": 3,
+          "say_legacy": 6
+        },
+        "visualReferences": [],
+        "audioReferences": []
+      },
+      "zh-Hant": {
+        "locale": "zh-Hant",
+        "sourcePath": "assets/app-data/story/vn/nihil6_zh-Hant.vns",
+        "sayCount": 33,
+        "commandCounts": {
+          "show": 28,
+          "play": 22,
+          "volume": 12,
+          "move": 21,
+          "hide": 22,
+          "stop": 5,
+          "scale": 3,
+          "say_legacy": 6
+        },
+        "visualReferences": [],
+        "audioReferences": []
+      }
+    }
+  },
+  {
+    "sceneId": "vn:nihil7",
+    "kind": "vn-scene",
+    "displayTitle": "18-7 · nihil7",
+    "pathId": 27,
+    "nodeKey": "18-7",
+    "storyData": "nihil7",
+    "scriptStem": "nihil7",
+    "resourceIds": [],
+    "locales": {
+      "en": {
+        "locale": "en",
+        "sourcePath": "assets/app-data/story/vn/nihil7_en.vns",
+        "sayCount": 26,
+        "commandCounts": {
+          "show": 10,
+          "scale": 1,
+          "play": 21,
+          "hide": 10,
+          "volume": 5,
+          "move": 8,
+          "stop": 6,
+          "say_legacy": 2
+        },
+        "visualReferences": [],
+        "audioReferences": []
+      },
+      "ja": {
+        "locale": "ja",
+        "sourcePath": "assets/app-data/story/vn/nihil7_ja.vns",
+        "sayCount": 25,
+        "commandCounts": {
+          "show": 10,
+          "scale": 1,
+          "play": 21,
+          "hide": 10,
+          "volume": 5,
+          "move": 8,
+          "stop": 6,
+          "say_legacy": 2
+        },
+        "visualReferences": [],
+        "audioReferences": []
+      },
+      "ko": {
+        "locale": "ko",
+        "sourcePath": "assets/app-data/story/vn/nihil7_ko.vns",
+        "sayCount": 26,
+        "commandCounts": {
+          "show": 10,
+          "scale": 1,
+          "play": 21,
+          "hide": 10,
+          "volume": 5,
+          "move": 8,
+          "stop": 6,
+          "say_legacy": 2
+        },
+        "visualReferences": [],
+        "audioReferences": []
+      },
+      "zh-Hans": {
+        "locale": "zh-Hans",
+        "sourcePath": "assets/app-data/story/vn/nihil7_zh-Hans.vns",
+        "sayCount": 26,
+        "commandCounts": {
+          "show": 10,
+          "scale": 1,
+          "play": 21,
+          "hide": 10,
+          "volume": 5,
+          "move": 8,
+          "stop": 6,
+          "say_legacy": 2
+        },
+        "visualReferences": [],
+        "audioReferences": []
+      },
+      "zh-Hant": {
+        "locale": "zh-Hant",
+        "sourcePath": "assets/app-data/story/vn/nihil7_zh-Hant.vns",
+        "sayCount": 26,
+        "commandCounts": {
+          "show": 10,
+          "scale": 1,
+          "play": 21,
+          "hide": 10,
+          "volume": 5,
+          "move": 8,
+          "stop": 6,
+          "say_legacy": 2
+        },
+        "visualReferences": [],
+        "audioReferences": []
+      }
+    }
+  },
+  {
+    "sceneId": "vn:prelude",
+    "kind": "vn-scene",
+    "displayTitle": "V-4 · prelude",
+    "pathId": 5,
+    "nodeKey": "V-4",
+    "storyData": "prelude",
+    "scriptStem": "prelude",
+    "resourceIds": [],
+    "locales": {
+      "en": {
+        "locale": "en",
+        "sourcePath": "assets/app-data/story/vn/prelude_en.vns",
+        "sayCount": 36,
+        "commandCounts": {
+          "play": 6,
+          "show": 23,
+          "move": 19,
+          "hide": 15,
+          "stop": 5
+        },
+        "visualReferences": [],
+        "audioReferences": []
+      },
+      "ja": {
+        "locale": "ja",
+        "sourcePath": "assets/app-data/story/vn/prelude_ja.vns",
+        "sayCount": 36,
+        "commandCounts": {
+          "play": 6,
+          "show": 23,
+          "move": 19,
+          "hide": 15,
+          "stop": 5
+        },
+        "visualReferences": [],
+        "audioReferences": []
+      },
+      "ko": {
+        "locale": "ko",
+        "sourcePath": "assets/app-data/story/vn/prelude_ko.vns",
+        "sayCount": 36,
+        "commandCounts": {
+          "play": 6,
+          "show": 23,
+          "move": 19,
+          "hide": 15,
+          "stop": 5
+        },
+        "visualReferences": [],
+        "audioReferences": []
+      },
+      "zh-Hans": {
+        "locale": "zh-Hans",
+        "sourcePath": "assets/app-data/story/vn/prelude_zh-Hans.vns",
+        "sayCount": 36,
+        "commandCounts": {
+          "play": 6,
+          "show": 23,
+          "move": 19,
+          "hide": 15,
+          "stop": 5
+        },
+        "visualReferences": [],
+        "audioReferences": []
+      },
+      "zh-Hant": {
+        "locale": "zh-Hant",
+        "sourcePath": "assets/app-data/story/vn/prelude_zh-Hant.vns",
+        "sayCount": 36,
+        "commandCounts": {
+          "play": 6,
+          "show": 23,
+          "move": 19,
+          "hide": 15,
+          "stop": 5
+        },
+        "visualReferences": [],
+        "audioReferences": []
+      }
+    }
+  },
+  {
+    "sceneId": "vn:vs_arcahv",
+    "kind": "vn-scene",
+    "displayTitle": "VS-8 · vs_arcahv",
+    "pathId": 8,
+    "nodeKey": "VS-8",
+    "storyData": "vs_arcahv",
+    "scriptStem": "vs_arcahv",
+    "resourceIds": [],
+    "locales": {
+      "en": {
+        "locale": "en",
+        "sourcePath": "assets/app-data/story/vn/vs_arcahv_en.vns",
+        "sayCount": 39,
+        "commandCounts": {
+          "show": 23,
+          "play": 16,
+          "volume": 6,
+          "scale": 1,
+          "hide": 18,
+          "stop": 7,
+          "move": 7,
+          "say_legacy": 7
+        },
+        "visualReferences": [],
+        "audioReferences": []
+      },
+      "ja": {
+        "locale": "ja",
+        "sourcePath": "assets/app-data/story/vn/vs_arcahv_ja.vns",
+        "sayCount": 39,
+        "commandCounts": {
+          "show": 23,
+          "play": 16,
+          "volume": 6,
+          "scale": 1,
+          "hide": 18,
+          "stop": 7,
+          "move": 7,
+          "say_legacy": 7
+        },
+        "visualReferences": [],
+        "audioReferences": []
+      },
+      "ko": {
+        "locale": "ko",
+        "sourcePath": "assets/app-data/story/vn/vs_arcahv_ko.vns",
+        "sayCount": 40,
+        "commandCounts": {
+          "show": 23,
+          "play": 16,
+          "volume": 6,
+          "scale": 1,
+          "hide": 18,
+          "stop": 7,
+          "move": 7,
+          "say_legacy": 7
+        },
+        "visualReferences": [],
+        "audioReferences": []
+      },
+      "zh-Hans": {
+        "locale": "zh-Hans",
+        "sourcePath": "assets/app-data/story/vn/vs_arcahv_zh-Hans.vns",
+        "sayCount": 39,
+        "commandCounts": {
+          "show": 23,
+          "play": 16,
+          "volume": 6,
+          "scale": 1,
+          "hide": 18,
+          "stop": 7,
+          "move": 7,
+          "say_legacy": 7
+        },
+        "visualReferences": [],
+        "audioReferences": []
+      },
+      "zh-Hant": {
+        "locale": "zh-Hant",
+        "sourcePath": "assets/app-data/story/vn/vs_arcahv_zh-Hant.vns",
+        "sayCount": 39,
+        "commandCounts": {
+          "show": 23,
+          "play": 16,
+          "volume": 6,
+          "scale": 1,
+          "hide": 18,
+          "stop": 7,
+          "move": 7,
+          "say_legacy": 7
+        },
+        "visualReferences": [],
+        "audioReferences": []
+      }
+    }
+  },
+  {
+    "sceneId": "vn:vs_tempest",
+    "kind": "vn-scene",
+    "displayTitle": "VS-7 · vs_tempest",
+    "pathId": 8,
+    "nodeKey": "VS-7",
+    "storyData": "vs_tempest",
+    "scriptStem": "vs_tempest",
+    "resourceIds": [],
+    "locales": {
+      "en": {
+        "locale": "en",
+        "sourcePath": "assets/app-data/story/vn/vs_tempest_en.vns",
+        "sayCount": 48,
+        "commandCounts": {
+          "show": 18,
+          "play": 18,
+          "volume": 7,
+          "hide": 17,
+          "move": 3,
+          "stop": 6,
+          "scale": 1
+        },
+        "visualReferences": [],
+        "audioReferences": []
+      },
+      "ja": {
+        "locale": "ja",
+        "sourcePath": "assets/app-data/story/vn/vs_tempest_ja.vns",
+        "sayCount": 50,
+        "commandCounts": {
+          "show": 18,
+          "play": 18,
+          "volume": 7,
+          "hide": 17,
+          "move": 3,
+          "stop": 6,
+          "scale": 1
+        },
+        "visualReferences": [],
+        "audioReferences": []
+      },
+      "ko": {
+        "locale": "ko",
+        "sourcePath": "assets/app-data/story/vn/vs_tempest_ko.vns",
+        "sayCount": 48,
+        "commandCounts": {
+          "show": 18,
+          "play": 18,
+          "volume": 7,
+          "hide": 17,
+          "move": 3,
+          "stop": 6,
+          "scale": 1
+        },
+        "visualReferences": [],
+        "audioReferences": []
+      },
+      "zh-Hans": {
+        "locale": "zh-Hans",
+        "sourcePath": "assets/app-data/story/vn/vs_tempest_zh-Hans.vns",
+        "sayCount": 48,
+        "commandCounts": {
+          "show": 18,
+          "play": 18,
+          "volume": 7,
+          "hide": 17,
+          "move": 3,
+          "stop": 6,
+          "scale": 1
+        },
+        "visualReferences": [],
+        "audioReferences": []
+      },
+      "zh-Hant": {
+        "locale": "zh-Hant",
+        "sourcePath": "assets/app-data/story/vn/vs_tempest_zh-Hant.vns",
+        "sayCount": 48,
+        "commandCounts": {
+          "show": 18,
+          "play": 18,
+          "volume": 7,
+          "hide": 17,
+          "move": 3,
+          "stop": 6,
+          "scale": 1
+        },
+        "visualReferences": [],
+        "audioReferences": []
+      }
+    }
+  },
+  {
+    "sceneId": "vn:zettai",
+    "kind": "vn-scene",
+    "displayTitle": "3-3 · zettai",
+    "pathId": 4,
+    "nodeKey": "3-3",
+    "storyData": "zettai",
+    "scriptStem": "zettai",
+    "resourceIds": [],
+    "locales": {
+      "en": {
+        "locale": "en",
+        "sourcePath": "assets/app-data/story/vn/zettai_en.vns",
+        "sayCount": 30,
+        "commandCounts": {
+          "play": 9,
+          "show": 8,
+          "hide": 6,
+          "move": 6,
+          "stop": 1
+        },
+        "visualReferences": [],
+        "audioReferences": []
+      },
+      "ja": {
+        "locale": "ja",
+        "sourcePath": "assets/app-data/story/vn/zettai_ja.vns",
+        "sayCount": 30,
+        "commandCounts": {
+          "play": 9,
+          "show": 8,
+          "hide": 6,
+          "move": 6,
+          "stop": 1
+        },
+        "visualReferences": [],
+        "audioReferences": []
+      },
+      "ko": {
+        "locale": "ko",
+        "sourcePath": "assets/app-data/story/vn/zettai_ko.vns",
+        "sayCount": 30,
+        "commandCounts": {
+          "play": 9,
+          "show": 8,
+          "hide": 6,
+          "move": 6,
+          "stop": 1
+        },
+        "visualReferences": [],
+        "audioReferences": []
+      },
+      "zh-Hans": {
+        "locale": "zh-Hans",
+        "sourcePath": "assets/app-data/story/vn/zettai_zh-Hans.vns",
+        "sayCount": 30,
+        "commandCounts": {
+          "play": 9,
+          "show": 8,
+          "hide": 6,
+          "move": 6,
+          "stop": 1
+        },
+        "visualReferences": [],
+        "audioReferences": []
+      },
+      "zh-Hant": {
+        "locale": "zh-Hant",
+        "sourcePath": "assets/app-data/story/vn/zettai_zh-Hant.vns",
+        "sayCount": 30,
+        "commandCounts": {
+          "play": 9,
+          "show": 8,
+          "hide": 6,
+          "move": 6,
+          "stop": 1
+        },
+        "visualReferences": [],
+        "audioReferences": []
+      }
+    }
+  },
+  {
+    "sceneId": "path:33:divine-oblivion-vn",
+    "kind": "path-scene",
+    "displayTitle": "Divine Oblivion · VN scene",
+    "pathId": 33,
+    "resourceIds": [
+      "1d677506-0fad-7d74-aab0-56d1742218b1",
+      "a5b70cdc-71fd-7d6b-90be-e0adb2db48ea",
+      "3c0e1282-7452-7ffd-9e23-eca5a1d03f80",
+      "b1f29b9b-5c82-7340-a397-82f6cd2501af",
+      "94e96f2d-eeff-72e4-b59d-71e02d990e34"
+    ],
+    "locales": {}
+  }
+]

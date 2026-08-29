@@ -14,9 +14,10 @@ interface Props {
   categoryLabel: string;
   galleryUrl: string;
   config: CategoryBrowseConfig;
+  defer?: boolean;
 }
 
-const { resources, total, game, category, categoryLabel, galleryUrl, config } = Astro.props;
+const { resources, total, game, category, categoryLabel, galleryUrl, config, defer = false } = Astro.props;
 const hasFacets = config.facets.some((facet) => facet.options.length > 0 || facet.range);
 
 function rangeTicks(min: number, max: number, step: number): number[] {
@@ -32,7 +33,7 @@ function formatRangeValue(value: number): string {
 }
 ---
 
-<section class="gallery-shell" data-gallery-root data-gallery-url={galleryUrl} data-base-path={BASE_PATH} data-game={game} data-category={category} data-total={total}>
+<section class="gallery-shell" data-gallery-root data-gallery-defer={defer ? "true" : undefined} data-gallery-url={galleryUrl} data-base-path={BASE_PATH} data-game={game} data-category={category} data-total={total}>
   <div class="gallery-toolbar">
     <div class="gallery-toolbar-copy">
       <span class="section-kicker">{category === "all" ? GAME_CONFIG[game].displayName : categoryLabel}</span>

@@ -1,5 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
+import { displayNodeKey, parseStoryTextBlocks, parseVnsScript } from "../../../tools/arcaea-story-audit.js";
+import { buildArcaeaStoryAtlasLayout } from "../src/lib/arcaea-story-layout.js";
 import { buildArcaeaStoryExplorerModel, isArcaeaStoryCgResource, isArcaeaVnCgResource } from "../src/lib/arcaea-story-explorer.js";
 import { getSiteData, loadCategoryBrowseProjections } from "../src/lib/site-data.js";
 import type { PublicResource } from "../src/lib/types.js";
@@ -7,9 +9,11 @@ import type { PublicResource } from "../src/lib/types.js";
 test("Arcaea Story Mode explorer keeps APK Act/Part, Path and Entry order", () => {
   const siteData = getSiteData();
   const structure = loadCategoryBrowseProjections().arcaea.storyStructure;
+  const storyAtlas = loadCategoryBrowseProjections().arcaea.storyAtlas;
   assert.ok(structure);
+  assert.ok(storyAtlas);
   const story = siteData.galleries["arcaea/story-cg"] ?? [];
-  const model = buildArcaeaStoryExplorerModel(story, structure);
+  const model = buildArcaeaStoryExplorerModel(story, structure, storyAtlas);
 
   assert.equal(structure.source.packageVersion, "7.0.0c");
   assert.deepEqual(model.sections.map((section) => section.label), [
@@ -29,8 +33,13 @@ test("Arcaea Story Mode explorer keeps APK Act/Part, Path and Entry order", () =
   assert.equal(model.counts.total, 71);
   assert.equal(model.counts.storyCg, 66);
   assert.equal(model.counts.vnCg, 5);
-  assert.equal(model.counts.unassigned, 19);
+  assert.equal(model.counts.unassigned, 0);
   assert.equal(model.counts.assigned + model.counts.unassigned, model.counts.total);
+  assert.equal(model.counts.pathScenes, 2);
+  assert.equal(model.counts.vnScenes, 16);
+  assert.equal(model.counts.textEntries, 195);
+  assert.equal(model.paths.flatMap((path) => path.entries).every((entry) => Boolean(entry.text?.texts["zh-Hans"])), true);
+  assert.equal(model.paths.flatMap((path) => path.entries).find((entry) => entry.key === "C-7")?.resources.length, 3);
 });
 
 test("Arcaea Story Mode explorer excludes unreviewed story-texture images", () => {
@@ -106,4 +115,75 @@ test("Arcaea Story Mode keeps APK source filenames separate from displayed Entry
   assert.equal(viciousLabyrinth?.connections.some((link) => link.from === "2-5" && link.to === "2-D" && link.kind === "branch"), true);
   assert.equal(viciousLabyrinth?.connections.some((link) => link.from === "2-5" && link.to === "2-7" && link.kind === "branch"), true);
   assert.equal(viciousLabyrinth?.externalConnections.some((link) => link.from === "1-9" && link.to === "V-0" && link.kind === "merge"), true);
+  assert.equal(viciousLabyrinth?.connections.filter((link) => link.kind === "branch").every((link) => link.provenance === "audited"), true);
+  assert.equal(model.paths.some((path) => path.connections.some((link) => link.provenance === "sequential-fallback")), true);
+});
+
+test("Arcaea Story text parser preserves pages, CG events and VN controls separately", () => {
+  const blocks = parseStoryTextBlocks("Opening|%%CG:app-data/story/cg/C-7-2.jpg%%|After");
+  assert.deepEqual(blocks, [
+    { kind: "paragraph", page: 0, text: "Opening" },
+    { kind: "display-event", page: 1, event: "cg", assetPath: "assets/app-data/story/cg/C-7-2.jpg" },
+    { kind: "paragraph", page: 2, text: "After" },
+  ]);
+  const script = parseVnsScript(
+    'say "Read this line"\nshow "vn/res/cg/F-7.jpg"\nmove "vn/res/cg/F-7.jpg"\nplay "vn/res/bgm/wind.ogg"',
+    "assets/app-data/story/vn/test_zh-Hans.vns",
+    "test",
+    "zh-Hans",
+  );
+  assert.deepEqual(script.sayBlocks, [{ page: 0, text: "Read this line" }]);
+  assert.deepEqual(script.visualReferences, [{ assetPath: "assets/app-data/story/vn/res/cg/F-7.jpg", commands: ["move", "show"] }]);
+  assert.deepEqual(script.audioReferences, [{ assetPath: "assets/app-data/story/vn/res/bgm/wind.ogg", commands: ["play"] }]);
+  assert.equal(script.commandCounts.show, 1);
+  assert.equal(script.commandCounts.play, 1);
+});
+
+test("Arcaea Story projection keeps locale/source/provenance and deterministic Atlas layout", () => {
+  const siteData = getSiteData();
+  const browse = loadCategoryBrowseProjections().arcaea;
+  assert.ok(browse.storyStructure);
+  assert.ok(browse.storyAtlas);
+  const first = browse.storyAtlas.text.entries.find((entry) => entry.nodeKey === "1-ZR");
+  assert.equal(first?.sourcePath, "assets/app-data/story/main/entries_1");
+  assert.equal(first?.texts["zh-Hans"]?.sourcePath, "assets/app-data/story/main/vn");
+  assert.equal(first?.texts["zh-Hans"]?.parserVersion, "arcaea-story-parser/1");
+  assert.deepEqual(first?.texts["zh-Hans"]?.blocks.map((block) => block.kind), ["paragraph", "paragraph"]);
+  const c7 = browse.storyAtlas.text.entries.find((entry) => entry.nodeKey === "C-7");
+  assert.equal(c7?.storyCgPaths.length, 3);
+  assert.equal(c7?.texts["zh-Hans"]?.blocks.filter((block) => block.event === "cg").length, 2);
+  const evidence = browse.storyAtlas.relationEvidence;
+  assert.equal(evidence.length, 19);
+  assert.equal(evidence.filter((item) => item.finalRelation === "node").length, 17);
+  assert.equal(evidence.filter((item) => item.finalRelation === "path-scene").length, 2);
+  assert.equal(evidence.every((item) => item.evidence.length > 0), true);
+  assert.equal(evidence.find((item) => item.assetPath.endsWith("/E-1_epilogue.jpg"))?.finalRelation, "path-scene");
+  assert.equal(evidence.find((item) => item.assetPath.endsWith("/E-1_epilogue.jpg"))?.finalNodeKey, undefined);
+  const derivatives = browse.storyAtlas.derivatives;
+  assert.ok(derivatives);
+  assert.equal(Object.keys(derivatives.ui).length, 97);
+  assert.equal(Object.keys(derivatives.avatars).length, 21);
+  assert.equal(Object.keys(derivatives.resources).length, 71);
+  const derivativeAssets = Object.values(derivatives.resources).flatMap((group) => [group.thumb, group.preview]);
+  assert.equal(derivativeAssets.every((asset) => asset.url.startsWith("/generated/arcaea/story/")), true);
+  assert.equal(derivativeAssets.every((asset) => asset.mime === "image/webp" && asset.sizeBytes > 0), true);
+  assert.equal(derivativeAssets.filter((asset) => asset.url.includes("/cg/thumb/")).every((asset) => asset.sizeBytes <= 150_000), true);
+  assert.equal(derivativeAssets.filter((asset) => asset.url.includes("/cg/preview/")).every((asset) => asset.sizeBytes <= 300_000), true);
+  const searchable = browse.storyAtlas.searchIndex.find((entry) => entry.nodeKey === "1-ZR");
+  assert.ok(searchable);
+  assert.equal(searchable.terms.includes("1-ZR"), true);
+  assert.equal(searchable.terms.includes("hikari"), true);
+  assert.equal(browse.storyAtlas.searchIndex.some((entry) => entry.terms.includes("Luminous Sky")), true);
+  const section = buildArcaeaStoryExplorerModel(siteData.galleries["arcaea/story-cg"] ?? [], browse.storyStructure, browse.storyAtlas).sections[0];
+  assert.ok(section);
+  const firstLayout = buildArcaeaStoryAtlasLayout(section);
+  const secondLayout = buildArcaeaStoryAtlasLayout(section);
+  assert.deepEqual(firstLayout, secondLayout);
+  assert.equal(firstLayout.lines.some((line) => line.provenance === "audited"), true);
+  assert.equal(firstLayout.lines.every((line) => line.x1 !== line.x2 || line.y1 !== line.y2), true);
+});
+
+test("Arcaea Story display key mapping follows alternate prefix/suffix fields", () => {
+  assert.equal(displayNodeKey("24", { minor: 7, alternatePrefix: "C" }, 7), "C-7");
+  assert.equal(displayNodeKey("1", { minor: 6, alternateSuffix: "ZR" }, 6), "1-ZR");
 });

@@ -278,14 +278,16 @@ export const CategoryBrowseResource = z.object({
  * The site uses this to reproduce the game's Act/Part -> Path -> Entry order;
  * visual assets themselves still come from Catalog/PublicSiteData resources.
  */
+export const ArcaeaStorySource = z.object({
+  packageVersion: z.string().min(1),
+  packageSha256: SHA256,
+  orderingPath: PORTABLE_RELATIVE_PATH,
+  verifiedAt: z.string().min(1),
+  wikiSources: z.array(z.object({ url: z.string().url(), usedFor: z.string().min(1) })),
+});
+
 export const ArcaeaStoryStructure = z.object({
-  source: z.object({
-    packageVersion: z.string().min(1),
-    packageSha256: SHA256,
-    orderingPath: z.string().min(1),
-    verifiedAt: z.string().min(1),
-    wikiSources: z.array(z.object({ url: z.string().url(), usedFor: z.string().min(1) })),
-  }),
+  source: ArcaeaStorySource,
   sections: z.array(z.object({
     act: z.number().int().nonnegative(),
     label: z.string().min(1),
@@ -316,6 +318,150 @@ export const ArcaeaStoryStructure = z.object({
   })).default([]),
 });
 
+/** A text projection keeps display pages/events separate from VN controls. */
+export const ArcaeaStoryTextBlock = z.object({
+  kind: z.enum(["paragraph", "display-event"]),
+  page: z.number().int().nonnegative(),
+  text: z.string().optional(),
+  event: z.enum(["cg"]).optional(),
+  assetPath: PORTABLE_RELATIVE_PATH.optional(),
+});
+
+export const ArcaeaStoryTextLocale = z.object({
+  locale: z.string().min(1),
+  sourcePath: PORTABLE_RELATIVE_PATH,
+  rawEntryKey: z.string().min(1),
+  entryKey: z.string().min(1),
+  storyData: z.string().min(1).optional(),
+  parserVersion: z.string().min(1),
+  blocks: z.array(ArcaeaStoryTextBlock),
+});
+
+export const ArcaeaStoryTextEntry = z.object({
+  nodeKey: z.string().min(1),
+  pathId: z.number().int().nonnegative(),
+  rawEntryKey: z.string().min(1),
+  sourcePath: PORTABLE_RELATIVE_PATH,
+  storyType: z.enum(["nvl", "vn"]),
+  storyData: z.string().min(1).optional(),
+  characterIds: z.array(z.number().int().nonnegative()).default([]),
+  clearSongId: z.string().min(1).optional(),
+  playableSongBgmId: z.string().min(1).optional(),
+  bgmOverride: z.string().min(1).optional(),
+  requiredPurchase: z.string().min(1).optional(),
+  requiredPurchaseAlternate: z.string().min(1).optional(),
+  requiredMinor: z.number().int().nonnegative().optional(),
+  additionalRequires: z.array(z.string().min(1)).default([]),
+  requirementAnomalyId: z.string().min(1).optional(),
+  unlockedSongId: z.string().min(1).optional(),
+  mapId: z.string().min(1).optional(),
+  hasAlternative: z.boolean().optional(),
+  blockReadingUntilPrevRead: z.boolean().optional(),
+  hiddenFromCount: z.boolean().optional(),
+  storyCgPaths: z.array(PORTABLE_RELATIVE_PATH).default([]),
+  texts: z.record(z.string().min(1), ArcaeaStoryTextLocale),
+});
+
+export const ArcaeaStoryTextProjection = z.object({
+  schemaVersion: z.literal(1),
+  game: z.literal("arcaea"),
+  source: ArcaeaStorySource,
+  parserVersion: z.string().min(1),
+  entries: z.array(ArcaeaStoryTextEntry),
+  coverage: z.object({
+    entryCount: z.number().int().nonnegative(),
+    entriesWithText: z.number().int().nonnegative(),
+    localeCounts: z.record(z.string().min(1), z.number().int().nonnegative()),
+  }),
+});
+
+export const ArcaeaStorySceneAsset = z.object({
+  assetPath: PORTABLE_RELATIVE_PATH,
+  commands: z.array(z.string().min(1)).default([]),
+});
+
+export const ArcaeaStorySceneLocale = z.object({
+  locale: z.string().min(1),
+  sourcePath: PORTABLE_RELATIVE_PATH,
+  sayCount: z.number().int().nonnegative(),
+  commandCounts: z.record(z.string().min(1), z.number().int().nonnegative()).default({}),
+  visualReferences: z.array(ArcaeaStorySceneAsset).default([]),
+  audioReferences: z.array(ArcaeaStorySceneAsset).default([]),
+});
+
+export const ArcaeaStoryScene = z.object({
+  sceneId: z.string().min(1),
+  kind: z.enum(["node-bound", "path-scene", "vn-scene", "epilogue"]),
+  displayTitle: z.string().min(1).optional(),
+  pathId: z.number().int().nonnegative().optional(),
+  nodeKey: z.string().min(1).optional(),
+  storyData: z.string().min(1).optional(),
+  scriptStem: z.string().min(1).optional(),
+  resourceIds: z.array(UUIDV7).default([]),
+  locales: z.record(z.string().min(1), ArcaeaStorySceneLocale),
+});
+
+export const ArcaeaStoryRelationEvidenceItem = z.object({
+  kind: z.enum(["entry-storyCgPath", "localized-text-display-event", "vn-script-visual", "storyData-mapping", "ordering"]),
+  sourcePath: PORTABLE_RELATIVE_PATH,
+  recordKey: z.string().min(1).optional(),
+  scriptName: z.string().min(1).optional(),
+  scriptCommand: z.string().min(1).optional(),
+  referencedAsset: PORTABLE_RELATIVE_PATH.optional(),
+  explanation: z.string().min(1),
+});
+
+export const ArcaeaStoryRelationEvidence = z.object({
+  assetPath: PORTABLE_RELATIVE_PATH,
+  resourceId: UUIDV7.optional(),
+  resolution: z.object({ width: z.number().int().positive(), height: z.number().int().positive() }).optional(),
+  candidateNodeKey: z.string().min(1).optional(),
+  candidatePathId: z.number().int().nonnegative().optional(),
+  candidateSceneId: z.string().min(1).optional(),
+  evidence: z.array(ArcaeaStoryRelationEvidenceItem),
+  confidence: z.enum(["high", "medium", "unresolved"]),
+  finalRelation: z.enum(["node", "path-scene", "vn-scene", "unresolved"]),
+  finalNodeKey: z.string().min(1).optional(),
+  finalPathId: z.number().int().nonnegative().optional(),
+  finalSceneId: z.string().min(1).optional(),
+});
+
+export const ArcaeaStoryDerivativeAsset = z.object({
+  url: z.string().min(1),
+  width: z.number().int().positive(),
+  height: z.number().int().positive(),
+  mime: z.enum(["image/webp", "image/png"]),
+  sizeBytes: z.number().int().positive(),
+});
+
+export const ArcaeaStoryDerivatives = z.object({
+  manifestVersion: z.literal(1),
+  source: ArcaeaStorySource,
+  ui: z.record(z.string().min(1), ArcaeaStoryDerivativeAsset),
+  avatars: z.record(UUIDV7, ArcaeaStoryDerivativeAsset),
+  resources: z.record(UUIDV7, z.object({
+    thumb: ArcaeaStoryDerivativeAsset,
+    preview: ArcaeaStoryDerivativeAsset,
+  })),
+});
+
+export const ArcaeaStorySearchEntry = z.object({
+  nodeKey: z.string().min(1),
+  pathId: z.number().int().nonnegative(),
+  terms: z.array(z.string().min(1)).default([]),
+});
+
+/** Independent Story Atlas data; Catalog Resources remain the stable media identity. */
+export const ArcaeaStoryAtlas = z.object({
+  schemaVersion: z.literal(1),
+  source: ArcaeaStorySource,
+  text: ArcaeaStoryTextProjection,
+  scenes: z.array(ArcaeaStoryScene),
+  relationEvidence: z.array(ArcaeaStoryRelationEvidence),
+  derivatives: ArcaeaStoryDerivatives.optional(),
+  searchIndex: z.array(ArcaeaStorySearchEntry).default([]),
+});
+
 export const CategoryBrowseProjection = z.object({
   schemaVersion: z.literal(BROWSE_SCHEMA_VERSION),
   game: z.enum(["arcaea", "phigros", "rizline", "infalsus"]),
@@ -330,6 +476,7 @@ export const CategoryBrowseProjection = z.object({
 export const ArcaeaCategoryBrowseProjection = CategoryBrowseProjection.extend({
   game: z.literal("arcaea"),
   storyStructure: ArcaeaStoryStructure.optional(),
+  storyAtlas: ArcaeaStoryAtlas.optional(),
 });
 export const PhigrosCategoryBrowseProjection = CategoryBrowseProjection.extend({ game: z.literal("phigros") });
 export const RizlineCategoryBrowseProjection = CategoryBrowseProjection.extend({ game: z.literal("rizline") });
@@ -490,6 +637,12 @@ export type RizlineBrowseProjectionType = z.infer<typeof RizlineBrowseProjection
 export type CategoryBrowseResourceType = z.infer<typeof CategoryBrowseResource>;
 export type CategoryBrowseProjectionType = z.infer<typeof CategoryBrowseProjection>;
 export type ArcaeaStoryStructureType = z.infer<typeof ArcaeaStoryStructure>;
+export type ArcaeaStoryTextBlockType = z.infer<typeof ArcaeaStoryTextBlock>;
+export type ArcaeaStoryTextProjectionType = z.infer<typeof ArcaeaStoryTextProjection>;
+export type ArcaeaStorySceneType = z.infer<typeof ArcaeaStoryScene>;
+export type ArcaeaStoryRelationEvidenceType = z.infer<typeof ArcaeaStoryRelationEvidence>;
+export type ArcaeaStoryDerivativesType = z.infer<typeof ArcaeaStoryDerivatives>;
+export type ArcaeaStoryAtlasType = z.infer<typeof ArcaeaStoryAtlas>;
 export type ArcaeaCategoryBrowseProjectionType = z.infer<typeof ArcaeaCategoryBrowseProjection>;
 export type PhigrosCategoryBrowseProjectionType = z.infer<typeof PhigrosCategoryBrowseProjection>;
 export type RizlineCategoryBrowseProjectionType = z.infer<typeof RizlineCategoryBrowseProjection>;
@@ -543,7 +696,9 @@ function stableJson(value: unknown): string {
 }
 
 function localSensitiveBrowseValue(value: string): boolean {
-  return /^[a-zA-Z]:/u.test(value) || value.startsWith("/") || value.startsWith("\\") || value.split(/[\\/]+/u).some((segment) => segment === ".runtime");
+  const storyComment = value.startsWith("//") && !/^\/\/[A-Za-z0-9._-]+[\\/]/u.test(value);
+  const publicStaticUrl = /^\/(?:generated|data)\//u.test(value);
+  return /^[a-zA-Z]:[\\/]/u.test(value) || (value.startsWith("/") && !publicStaticUrl && !storyComment) || value.startsWith("\\") || value.split(/[\\/]+/u).some((segment) => segment === ".runtime");
 }
 
 function browsePublicDataIssues(value: unknown, currentPath = "$"): string[] {

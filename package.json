@@ -29,6 +29,8 @@
     "ros:verify": "node --env-file-if-exists=.env --import tsx tools/ros-verify.ts",
     "arcaea:apk:check": "node --env-file-if-exists=.env --import tsx tools/arcaea-apk-update.ts",
     "arcaea:character-metadata": "node --env-file-if-exists=.env --import tsx tools/apply-arcaea-character-metadata.ts",
+    "arcaea:story:audit": "tsx tools/arcaea-story-audit.ts --package-root temp/arcaea-story-atlas-investigation/package --index docs/apk-audit/data/arcaea-story-index.json --output docs/apk-audit/data --catalog catalog/index.json",
+    "arcaea:story:derivatives": "tsx tools/arcaea-story-derivatives.ts --package-root temp/arcaea-story-atlas-investigation/package --index docs/apk-audit/data/arcaea-story-index.json --catalog catalog/index.json --output-root apps/site/public/generated/arcaea/story --manifest docs/apk-audit/data/arcaea-story-derivative-manifest.json",
     "browse:bootstrap": "tsx tools/browse-projection.ts --catalog catalog/index.json --output catalog/browse --bootstrap-audit docs/apk-audit/data --curation catalog/curation/arcaea-april-fools.json",
     "browse:check": "tsx tools/validate-browse-projection.ts --catalog catalog/index.json --output catalog/browse",
     "browse:semantic": "tsx tools/semantic-browse.ts --catalog catalog/index.json --audit docs/apk-audit/data --output catalog/browse"

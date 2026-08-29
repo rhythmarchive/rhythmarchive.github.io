@@ -1,0 +1,1630 @@
+[
+  {
+    "assetPath": "assets/app-data/story/cg/1-ZR.jpg",
+    "resourceId": "01a00093-de0a-72fa-a74b-8bcf6d620942",
+    "resolution": {
+      "width": 1920,
+      "height": 1080
+    },
+    "candidateNodeKey": "1-ZR",
+    "candidatePathId": 3,
+    "evidence": [
+      {
+        "kind": "entry-storyCgPath",
+        "sourcePath": "assets/app-data/story/main/entries_1",
+        "recordKey": "1-6",
+        "referencedAsset": "assets/app-data/story/cg/1-ZR.jpg",
+        "explanation": "Entry 1-ZR contains the exact storyCgPath field."
+      },
+      {
+        "kind": "ordering",
+        "sourcePath": "assets/app-data/story2/ordering",
+        "recordKey": "path:3",
+        "explanation": "The exact referenced Entry occurs in Story ordering path 3."
+      }
+    ],
+    "confidence": "high",
+    "finalRelation": "node",
+    "finalNodeKey": "1-ZR",
+    "finalPathId": 3
+  },
+  {
+    "assetPath": "assets/app-data/story/cg/11-8-2.jpg",
+    "resourceId": "01a00093-e001-7283-9329-dd2f8f803dde",
+    "resolution": {
+      "width": 1920,
+      "height": 1080
+    },
+    "candidateNodeKey": "11-8",
+    "candidateSceneId": "vn:lephon_story7",
+    "evidence": [
+      {
+        "kind": "localized-text-display-event",
+        "sourcePath": "assets/app-data/story/side/vn",
+        "recordKey": "11-8",
+        "referencedAsset": "assets/app-data/story/cg/11-8-2.jpg",
+        "explanation": "Locale en display data for Entry 11-8 contains an exact CG display event."
+      },
+      {
+        "kind": "localized-text-display-event",
+        "sourcePath": "assets/app-data/story/side/vn",
+        "recordKey": "11-8",
+        "referencedAsset": "assets/app-data/story/cg/11-8-2.jpg",
+        "explanation": "Locale ja display data for Entry 11-8 contains an exact CG display event."
+      },
+      {
+        "kind": "localized-text-display-event",
+        "sourcePath": "assets/app-data/story/side/vn",
+        "recordKey": "11-8",
+        "referencedAsset": "assets/app-data/story/cg/11-8-2.jpg",
+        "explanation": "Locale ko display data for Entry 11-8 contains an exact CG display event."
+      },
+      {
+        "kind": "localized-text-display-event",
+        "sourcePath": "assets/app-data/story/side/vn",
+        "recordKey": "11-8",
+        "referencedAsset": "assets/app-data/story/cg/11-8-2.jpg",
+        "explanation": "Locale zh-Hans display data for Entry 11-8 contains an exact CG display event."
+      },
+      {
+        "kind": "localized-text-display-event",
+        "sourcePath": "assets/app-data/story/side/vn",
+        "recordKey": "11-8",
+        "referencedAsset": "assets/app-data/story/cg/11-8-2.jpg",
+        "explanation": "Locale zh-Hant display data for Entry 11-8 contains an exact CG display event."
+      },
+      {
+        "kind": "vn-script-visual",
+        "sourcePath": "assets/app-data/story/vn/lephon_story7_en.vns",
+        "scriptName": "lephon_story7",
+        "scriptCommand": "hide",
+        "referencedAsset": "assets/app-data/story/cg/11-8-2.jpg",
+        "explanation": "VN script lephon_story7 uses the exact visual resource in a hide command."
+      },
+      {
+        "kind": "vn-script-visual",
+        "sourcePath": "assets/app-data/story/vn/lephon_story7_en.vns",
+        "scriptName": "lephon_story7",
+        "scriptCommand": "show",
+        "referencedAsset": "assets/app-data/story/cg/11-8-2.jpg",
+        "explanation": "VN script lephon_story7 uses the exact visual resource in a show command."
+      },
+      {
+        "kind": "storyData-mapping",
+        "sourcePath": "assets/app-data/story/main/entries_20",
+        "recordKey": "20-7",
+        "referencedAsset": "assets/app-data/story/cg/11-8-2.jpg",
+        "explanation": "Entry 20-7 storyData=lephon_story7 selects VN script lephon_story7."
+      },
+      {
+        "kind": "vn-script-visual",
+        "sourcePath": "assets/app-data/story/vn/lephon_story7_ja.vns",
+        "scriptName": "lephon_story7",
+        "scriptCommand": "hide",
+        "referencedAsset": "assets/app-data/story/cg/11-8-2.jpg",
+        "explanation": "VN script lephon_story7 uses the exact visual resource in a hide command."
+      },
+      {
+        "kind": "vn-script-visual",
+        "sourcePath": "assets/app-data/story/vn/lephon_story7_ja.vns",
+        "scriptName": "lephon_story7",
+        "scriptCommand": "show",
+        "referencedAsset": "assets/app-data/story/cg/11-8-2.jpg",
+        "explanation": "VN script lephon_story7 uses the exact visual resource in a show command."
+      },
+      {
+        "kind": "vn-script-visual",
+        "sourcePath": "assets/app-data/story/vn/lephon_story7_ko.vns",
+        "scriptName": "lephon_story7",
+        "scriptCommand": "hide",
+        "referencedAsset": "assets/app-data/story/cg/11-8-2.jpg",
+        "explanation": "VN script lephon_story7 uses the exact visual resource in a hide command."
+      },
+      {
+        "kind": "vn-script-visual",
+        "sourcePath": "assets/app-data/story/vn/lephon_story7_ko.vns",
+        "scriptName": "lephon_story7",
+        "scriptCommand": "show",
+        "referencedAsset": "assets/app-data/story/cg/11-8-2.jpg",
+        "explanation": "VN script lephon_story7 uses the exact visual resource in a show command."
+      },
+      {
+        "kind": "vn-script-visual",
+        "sourcePath": "assets/app-data/story/vn/lephon_story7_zh-Hans.vns",
+        "scriptName": "lephon_story7",
+        "scriptCommand": "hide",
+        "referencedAsset": "assets/app-data/story/cg/11-8-2.jpg",
+        "explanation": "VN script lephon_story7 uses the exact visual resource in a hide command."
+      },
+      {
+        "kind": "vn-script-visual",
+        "sourcePath": "assets/app-data/story/vn/lephon_story7_zh-Hans.vns",
+        "scriptName": "lephon_story7",
+        "scriptCommand": "show",
+        "referencedAsset": "assets/app-data/story/cg/11-8-2.jpg",
+        "explanation": "VN script lephon_story7 uses the exact visual resource in a show command."
+      },
+      {
+        "kind": "vn-script-visual",
+        "sourcePath": "assets/app-data/story/vn/lephon_story7_zh-Hant.vns",
+        "scriptName": "lephon_story7",
+        "scriptCommand": "hide",
+        "referencedAsset": "assets/app-data/story/cg/11-8-2.jpg",
+        "explanation": "VN script lephon_story7 uses the exact visual resource in a hide command."
+      },
+      {
+        "kind": "vn-script-visual",
+        "sourcePath": "assets/app-data/story/vn/lephon_story7_zh-Hant.vns",
+        "scriptName": "lephon_story7",
+        "scriptCommand": "show",
+        "referencedAsset": "assets/app-data/story/cg/11-8-2.jpg",
+        "explanation": "VN script lephon_story7 uses the exact visual resource in a show command."
+      }
+    ],
+    "confidence": "high",
+    "finalRelation": "node",
+    "finalNodeKey": "11-8",
+    "finalPathId": 25
+  },
+  {
+    "assetPath": "assets/app-data/story/cg/12-6-2.jpg",
+    "resourceId": "01a00093-e136-7f54-806d-d4cbd7609977",
+    "resolution": {
+      "width": 1920,
+      "height": 1080
+    },
+    "candidateNodeKey": "12-6",
+    "candidatePathId": 26,
+    "evidence": [
+      {
+        "kind": "localized-text-display-event",
+        "sourcePath": "assets/app-data/story/side/vn",
+        "recordKey": "12-6",
+        "referencedAsset": "assets/app-data/story/cg/12-6-2.jpg",
+        "explanation": "Locale en display data for Entry 12-6 contains an exact CG display event."
+      },
+      {
+        "kind": "localized-text-display-event",
+        "sourcePath": "assets/app-data/story/side/vn",
+        "recordKey": "12-6",
+        "referencedAsset": "assets/app-data/story/cg/12-6-2.jpg",
+        "explanation": "Locale ja display data for Entry 12-6 contains an exact CG display event."
+      },
+      {
+        "kind": "localized-text-display-event",
+        "sourcePath": "assets/app-data/story/side/vn",
+        "recordKey": "12-6",
+        "referencedAsset": "assets/app-data/story/cg/12-6-2.jpg",
+        "explanation": "Locale ko display data for Entry 12-6 contains an exact CG display event."
+      },
+      {
+        "kind": "localized-text-display-event",
+        "sourcePath": "assets/app-data/story/side/vn",
+        "recordKey": "12-6",
+        "referencedAsset": "assets/app-data/story/cg/12-6-2.jpg",
+        "explanation": "Locale zh-Hans display data for Entry 12-6 contains an exact CG display event."
+      },
+      {
+        "kind": "localized-text-display-event",
+        "sourcePath": "assets/app-data/story/side/vn",
+        "recordKey": "12-6",
+        "referencedAsset": "assets/app-data/story/cg/12-6-2.jpg",
+        "explanation": "Locale zh-Hant display data for Entry 12-6 contains an exact CG display event."
+      },
+      {
+        "kind": "ordering",
+        "sourcePath": "assets/app-data/story2/ordering",
+        "recordKey": "path:26",
+        "explanation": "The exact referenced Entry occurs in Story ordering path 26."
+      }
+    ],
+    "confidence": "high",
+    "finalRelation": "node",
+    "finalNodeKey": "12-6",
+    "finalPathId": 26
+  },
+  {
+    "assetPath": "assets/app-data/story/cg/12-X.jpg",
+    "resourceId": "01a00093-e1ce-7c14-b13c-cfbc54d52093",
+    "resolution": {
+      "width": 1920,
+      "height": 1080
+    },
+    "candidateNodeKey": "12-?",
+    "candidatePathId": 17,
+    "evidence": [
+      {
+        "kind": "entry-storyCgPath",
+        "sourcePath": "assets/app-data/story/side/entries_12",
+        "recordKey": "12-7",
+        "referencedAsset": "assets/app-data/story/cg/12-X.jpg",
+        "explanation": "Entry 12-? contains the exact storyCgPath field."
+      },
+      {
+        "kind": "ordering",
+        "sourcePath": "assets/app-data/story2/ordering",
+        "recordKey": "path:17",
+        "explanation": "The exact referenced Entry occurs in Story ordering path 17."
+      }
+    ],
+    "confidence": "high",
+    "finalRelation": "node",
+    "finalNodeKey": "12-?",
+    "finalPathId": 17
+  },
+  {
+    "assetPath": "assets/app-data/story/cg/16-7-2.jpg",
+    "resourceId": "01a00093-e35d-7bb3-a85d-e6b823a9e508",
+    "resolution": {
+      "width": 1920,
+      "height": 1080
+    },
+    "candidateNodeKey": "16-7",
+    "candidateSceneId": "vn:lephon_story7",
+    "evidence": [
+      {
+        "kind": "localized-text-display-event",
+        "sourcePath": "assets/app-data/story/side/vn",
+        "recordKey": "16-7",
+        "referencedAsset": "assets/app-data/story/cg/16-7-2.jpg",
+        "explanation": "Locale en display data for Entry 16-7 contains an exact CG display event."
+      },
+      {
+        "kind": "localized-text-display-event",
+        "sourcePath": "assets/app-data/story/side/vn",
+        "recordKey": "16-7",
+        "referencedAsset": "assets/app-data/story/cg/16-7-2.jpg",
+        "explanation": "Locale ja display data for Entry 16-7 contains an exact CG display event."
+      },
+      {
+        "kind": "localized-text-display-event",
+        "sourcePath": "assets/app-data/story/side/vn",
+        "recordKey": "16-7",
+        "referencedAsset": "assets/app-data/story/cg/16-7-2.jpg",
+        "explanation": "Locale ko display data for Entry 16-7 contains an exact CG display event."
+      },
+      {
+        "kind": "localized-text-display-event",
+        "sourcePath": "assets/app-data/story/side/vn",
+        "recordKey": "16-7",
+        "referencedAsset": "assets/app-data/story/cg/16-7-2.jpg",
+        "explanation": "Locale zh-Hans display data for Entry 16-7 contains an exact CG display event."
+      },
+      {
+        "kind": "localized-text-display-event",
+        "sourcePath": "assets/app-data/story/side/vn",
+        "recordKey": "16-7",
+        "referencedAsset": "assets/app-data/story/cg/16-7-2.jpg",
+        "explanation": "Locale zh-Hant display data for Entry 16-7 contains an exact CG display event."
+      },
+      {
+        "kind": "vn-script-visual",
+        "sourcePath": "assets/app-data/story/vn/lephon_story7_en.vns",
+        "scriptName": "lephon_story7",
+        "scriptCommand": "hide",
+        "referencedAsset": "assets/app-data/story/cg/16-7-2.jpg",
+        "explanation": "VN script lephon_story7 uses the exact visual resource in a hide command."
+      },
+      {
+        "kind": "vn-script-visual",
+        "sourcePath": "assets/app-data/story/vn/lephon_story7_en.vns",
+        "scriptName": "lephon_story7",
+        "scriptCommand": "move",
+        "referencedAsset": "assets/app-data/story/cg/16-7-2.jpg",
+        "explanation": "VN script lephon_story7 uses the exact visual resource in a move command."
+      },
+      {
+        "kind": "vn-script-visual",
+        "sourcePath": "assets/app-data/story/vn/lephon_story7_en.vns",
+        "scriptName": "lephon_story7",
+        "scriptCommand": "show",
+        "referencedAsset": "assets/app-data/story/cg/16-7-2.jpg",
+        "explanation": "VN script lephon_story7 uses the exact visual resource in a show command."
+      },
+      {
+        "kind": "storyData-mapping",
+        "sourcePath": "assets/app-data/story/main/entries_20",
+        "recordKey": "20-7",
+        "referencedAsset": "assets/app-data/story/cg/16-7-2.jpg",
+        "explanation": "Entry 20-7 storyData=lephon_story7 selects VN script lephon_story7."
+      },
+      {
+        "kind": "vn-script-visual",
+        "sourcePath": "assets/app-data/story/vn/lephon_story7_ja.vns",
+        "scriptName": "lephon_story7",
+        "scriptCommand": "hide",
+        "referencedAsset": "assets/app-data/story/cg/16-7-2.jpg",
+        "explanation": "VN script lephon_story7 uses the exact visual resource in a hide command."
+      },
+      {
+        "kind": "vn-script-visual",
+        "sourcePath": "assets/app-data/story/vn/lephon_story7_ja.vns",
+        "scriptName": "lephon_story7",
+        "scriptCommand": "move",
+        "referencedAsset": "assets/app-data/story/cg/16-7-2.jpg",
+        "explanation": "VN script lephon_story7 uses the exact visual resource in a move command."
+      },
+      {
+        "kind": "vn-script-visual",
+        "sourcePath": "assets/app-data/story/vn/lephon_story7_ja.vns",
+        "scriptName": "lephon_story7",
+        "scriptCommand": "show",
+        "referencedAsset": "assets/app-data/story/cg/16-7-2.jpg",
+        "explanation": "VN script lephon_story7 uses the exact visual resource in a show command."
+      },
+      {
+        "kind": "vn-script-visual",
+        "sourcePath": "assets/app-data/story/vn/lephon_story7_ko.vns",
+        "scriptName": "lephon_story7",
+        "scriptCommand": "hide",
+        "referencedAsset": "assets/app-data/story/cg/16-7-2.jpg",
+        "explanation": "VN script lephon_story7 uses the exact visual resource in a hide command."
+      },
+      {
+        "kind": "vn-script-visual",
+        "sourcePath": "assets/app-data/story/vn/lephon_story7_ko.vns",
+        "scriptName": "lephon_story7",
+        "scriptCommand": "move",
+        "referencedAsset": "assets/app-data/story/cg/16-7-2.jpg",
+        "explanation": "VN script lephon_story7 uses the exact visual resource in a move command."
+      },
+      {
+        "kind": "vn-script-visual",
+        "sourcePath": "assets/app-data/story/vn/lephon_story7_ko.vns",
+        "scriptName": "lephon_story7",
+        "scriptCommand": "show",
+        "referencedAsset": "assets/app-data/story/cg/16-7-2.jpg",
+        "explanation": "VN script lephon_story7 uses the exact visual resource in a show command."
+      },
+      {
+        "kind": "vn-script-visual",
+        "sourcePath": "assets/app-data/story/vn/lephon_story7_zh-Hans.vns",
+        "scriptName": "lephon_story7",
+        "scriptCommand": "hide",
+        "referencedAsset": "assets/app-data/story/cg/16-7-2.jpg",
+        "explanation": "VN script lephon_story7 uses the exact visual resource in a hide command."
+      },
+      {
+        "kind": "vn-script-visual",
+        "sourcePath": "assets/app-data/story/vn/lephon_story7_zh-Hans.vns",
+        "scriptName": "lephon_story7",
+        "scriptCommand": "move",
+        "referencedAsset": "assets/app-data/story/cg/16-7-2.jpg",
+        "explanation": "VN script lephon_story7 uses the exact visual resource in a move command."
+      },
+      {
+        "kind": "vn-script-visual",
+        "sourcePath": "assets/app-data/story/vn/lephon_story7_zh-Hans.vns",
+        "scriptName": "lephon_story7",
+        "scriptCommand": "show",
+        "referencedAsset": "assets/app-data/story/cg/16-7-2.jpg",
+        "explanation": "VN script lephon_story7 uses the exact visual resource in a show command."
+      },
+      {
+        "kind": "vn-script-visual",
+        "sourcePath": "assets/app-data/story/vn/lephon_story7_zh-Hant.vns",
+        "scriptName": "lephon_story7",
+        "scriptCommand": "hide",
+        "referencedAsset": "assets/app-data/story/cg/16-7-2.jpg",
+        "explanation": "VN script lephon_story7 uses the exact visual resource in a hide command."
+      },
+      {
+        "kind": "vn-script-visual",
+        "sourcePath": "assets/app-data/story/vn/lephon_story7_zh-Hant.vns",
+        "scriptName": "lephon_story7",
+        "scriptCommand": "move",
+        "referencedAsset": "assets/app-data/story/cg/16-7-2.jpg",
+        "explanation": "VN script lephon_story7 uses the exact visual resource in a move command."
+      },
+      {
+        "kind": "vn-script-visual",
+        "sourcePath": "assets/app-data/story/vn/lephon_story7_zh-Hant.vns",
+        "scriptName": "lephon_story7",
+        "scriptCommand": "show",
+        "referencedAsset": "assets/app-data/story/cg/16-7-2.jpg",
+        "explanation": "VN script lephon_story7 uses the exact visual resource in a show command."
+      }
+    ],
+    "confidence": "high",
+    "finalRelation": "node",
+    "finalNodeKey": "16-7",
+    "finalPathId": 23
+  },
+  {
+    "assetPath": "assets/app-data/story/cg/17-6-2.jpg",
+    "resourceId": "01a00093-e4ff-7dbe-a559-182dc37954a2",
+    "resolution": {
+      "width": 1920,
+      "height": 1080
+    },
+    "candidateNodeKey": "17-6",
+    "candidatePathId": 24,
+    "evidence": [
+      {
+        "kind": "localized-text-display-event",
+        "sourcePath": "assets/app-data/story/side/vn",
+        "recordKey": "17-6",
+        "referencedAsset": "assets/app-data/story/cg/17-6-2.jpg",
+        "explanation": "Locale en display data for Entry 17-6 contains an exact CG display event."
+      },
+      {
+        "kind": "localized-text-display-event",
+        "sourcePath": "assets/app-data/story/side/vn",
+        "recordKey": "17-6",
+        "referencedAsset": "assets/app-data/story/cg/17-6-2.jpg",
+        "explanation": "Locale ja display data for Entry 17-6 contains an exact CG display event."
+      },
+      {
+        "kind": "localized-text-display-event",
+        "sourcePath": "assets/app-data/story/side/vn",
+        "recordKey": "17-6",
+        "referencedAsset": "assets/app-data/story/cg/17-6-2.jpg",
+        "explanation": "Locale ko display data for Entry 17-6 contains an exact CG display event."
+      },
+      {
+        "kind": "localized-text-display-event",
+        "sourcePath": "assets/app-data/story/side/vn",
+        "recordKey": "17-6",
+        "referencedAsset": "assets/app-data/story/cg/17-6-2.jpg",
+        "explanation": "Locale zh-Hans display data for Entry 17-6 contains an exact CG display event."
+      },
+      {
+        "kind": "localized-text-display-event",
+        "sourcePath": "assets/app-data/story/side/vn",
+        "recordKey": "17-6",
+        "referencedAsset": "assets/app-data/story/cg/17-6-2.jpg",
+        "explanation": "Locale zh-Hant display data for Entry 17-6 contains an exact CG display event."
+      },
+      {
+        "kind": "ordering",
+        "sourcePath": "assets/app-data/story2/ordering",
+        "recordKey": "path:24",
+        "explanation": "The exact referenced Entry occurs in Story ordering path 24."
+      }
+    ],
+    "confidence": "high",
+    "finalRelation": "node",
+    "finalNodeKey": "17-6",
+    "finalPathId": 24
+  },
+  {
+    "assetPath": "assets/app-data/story/cg/2-D.jpg",
+    "resourceId": "01a00093-e966-75dd-9ad8-c54bd537c5e0",
+    "resolution": {
+      "width": 1920,
+      "height": 1080
+    },
+    "candidateNodeKey": "2-D",
+    "candidatePathId": 2,
+    "evidence": [
+      {
+        "kind": "entry-storyCgPath",
+        "sourcePath": "assets/app-data/story/main/entries_2",
+        "recordKey": "2-6",
+        "referencedAsset": "assets/app-data/story/cg/2-D.jpg",
+        "explanation": "Entry 2-D contains the exact storyCgPath field."
+      },
+      {
+        "kind": "ordering",
+        "sourcePath": "assets/app-data/story2/ordering",
+        "recordKey": "path:2",
+        "explanation": "The exact referenced Entry occurs in Story ordering path 2."
+      }
+    ],
+    "confidence": "high",
+    "finalRelation": "node",
+    "finalNodeKey": "2-D",
+    "finalPathId": 2
+  },
+  {
+    "assetPath": "assets/app-data/story/cg/21-5-2.jpg",
+    "resourceId": "01a00093-edb9-77a9-b132-0d889a0ee099",
+    "resolution": {
+      "width": 1920,
+      "height": 1080
+    },
+    "candidateNodeKey": "21-5",
+    "candidatePathId": 30,
+    "evidence": [
+      {
+        "kind": "localized-text-display-event",
+        "sourcePath": "assets/app-data/story/side/vn",
+        "recordKey": "21-5",
+        "referencedAsset": "assets/app-data/story/cg/21-5-2.jpg",
+        "explanation": "Locale en display data for Entry 21-5 contains an exact CG display event."
+      },
+      {
+        "kind": "localized-text-display-event",
+        "sourcePath": "assets/app-data/story/side/vn",
+        "recordKey": "21-5",
+        "referencedAsset": "assets/app-data/story/cg/21-5-2.jpg",
+        "explanation": "Locale ja display data for Entry 21-5 contains an exact CG display event."
+      },
+      {
+        "kind": "localized-text-display-event",
+        "sourcePath": "assets/app-data/story/side/vn",
+        "recordKey": "21-5",
+        "referencedAsset": "assets/app-data/story/cg/21-5-2.jpg",
+        "explanation": "Locale ko display data for Entry 21-5 contains an exact CG display event."
+      },
+      {
+        "kind": "localized-text-display-event",
+        "sourcePath": "assets/app-data/story/side/vn",
+        "recordKey": "21-5",
+        "referencedAsset": "assets/app-data/story/cg/21-5-2.jpg",
+        "explanation": "Locale zh-Hans display data for Entry 21-5 contains an exact CG display event."
+      },
+      {
+        "kind": "localized-text-display-event",
+        "sourcePath": "assets/app-data/story/side/vn",
+        "recordKey": "21-5",
+        "referencedAsset": "assets/app-data/story/cg/21-5-2.jpg",
+        "explanation": "Locale zh-Hant display data for Entry 21-5 contains an exact CG display event."
+      },
+      {
+        "kind": "ordering",
+        "sourcePath": "assets/app-data/story2/ordering",
+        "recordKey": "path:30",
+        "explanation": "The exact referenced Entry occurs in Story ordering path 30."
+      }
+    ],
+    "confidence": "high",
+    "finalRelation": "node",
+    "finalNodeKey": "21-5",
+    "finalPathId": 30
+  },
+  {
+    "assetPath": "assets/app-data/story/cg/22-2-2.jpg",
+    "resourceId": "01a00093-efaa-7aed-abd7-9e40db128447",
+    "resolution": {
+      "width": 1920,
+      "height": 1080
+    },
+    "candidateNodeKey": "22-2",
+    "candidatePathId": 31,
+    "evidence": [
+      {
+        "kind": "localized-text-display-event",
+        "sourcePath": "assets/app-data/story/side/vn",
+        "recordKey": "22-4",
+        "referencedAsset": "assets/app-data/story/cg/22-2-2.jpg",
+        "explanation": "Locale en display data for Entry 22-2 contains an exact CG display event."
+      },
+      {
+        "kind": "localized-text-display-event",
+        "sourcePath": "assets/app-data/story/side/vn",
+        "recordKey": "22-4",
+        "referencedAsset": "assets/app-data/story/cg/22-2-2.jpg",
+        "explanation": "Locale ja display data for Entry 22-2 contains an exact CG display event."
+      },
+      {
+        "kind": "localized-text-display-event",
+        "sourcePath": "assets/app-data/story/side/vn",
+        "recordKey": "22-4",
+        "referencedAsset": "assets/app-data/story/cg/22-2-2.jpg",
+        "explanation": "Locale ko display data for Entry 22-2 contains an exact CG display event."
+      },
+      {
+        "kind": "localized-text-display-event",
+        "sourcePath": "assets/app-data/story/side/vn",
+        "recordKey": "22-4",
+        "referencedAsset": "assets/app-data/story/cg/22-2-2.jpg",
+        "explanation": "Locale zh-Hans display data for Entry 22-2 contains an exact CG display event."
+      },
+      {
+        "kind": "localized-text-display-event",
+        "sourcePath": "assets/app-data/story/side/vn",
+        "recordKey": "22-4",
+        "referencedAsset": "assets/app-data/story/cg/22-2-2.jpg",
+        "explanation": "Locale zh-Hant display data for Entry 22-2 contains an exact CG display event."
+      },
+      {
+        "kind": "ordering",
+        "sourcePath": "assets/app-data/story2/ordering",
+        "recordKey": "path:31",
+        "explanation": "The exact referenced Entry occurs in Story ordering path 31."
+      }
+    ],
+    "confidence": "high",
+    "finalRelation": "node",
+    "finalNodeKey": "22-2",
+    "finalPathId": 31
+  },
+  {
+    "assetPath": "assets/app-data/story/cg/99-6.jpg",
+    "resourceId": "01a00093-f704-75cb-b705-2e0c088b306c",
+    "resolution": {
+      "width": 1920,
+      "height": 1080
+    },
+    "candidateNodeKey": "S-6",
+    "candidatePathId": 11,
+    "evidence": [
+      {
+        "kind": "entry-storyCgPath",
+        "sourcePath": "assets/app-data/story/side/entries_99",
+        "recordKey": "99-6",
+        "referencedAsset": "assets/app-data/story/cg/99-6.jpg",
+        "explanation": "Entry S-6 contains the exact storyCgPath field."
+      },
+      {
+        "kind": "ordering",
+        "sourcePath": "assets/app-data/story2/ordering",
+        "recordKey": "path:11",
+        "explanation": "The exact referenced Entry occurs in Story ordering path 11."
+      }
+    ],
+    "confidence": "high",
+    "finalRelation": "node",
+    "finalNodeKey": "S-6",
+    "finalPathId": 11
+  },
+  {
+    "assetPath": "assets/app-data/story/cg/E-1_epilogue.jpg",
+    "resourceId": "01a00093-f77a-7fc8-835b-d05e84dec9a4",
+    "resolution": {
+      "width": 1920,
+      "height": 1080
+    },
+    "candidateNodeKey": "E-2",
+    "evidence": [
+      {
+        "kind": "localized-text-display-event",
+        "sourcePath": "assets/app-data/story/main/vn",
+        "recordKey": "103-2",
+        "referencedAsset": "assets/app-data/story/cg/E-1_epilogue.jpg",
+        "explanation": "Locale en display data for Entry E-2 contains an exact CG display event."
+      },
+      {
+        "kind": "localized-text-display-event",
+        "sourcePath": "assets/app-data/story/main/vn",
+        "recordKey": "103-2",
+        "referencedAsset": "assets/app-data/story/cg/E-1_epilogue.jpg",
+        "explanation": "Locale ja display data for Entry E-2 contains an exact CG display event."
+      },
+      {
+        "kind": "localized-text-display-event",
+        "sourcePath": "assets/app-data/story/main/vn",
+        "recordKey": "103-2",
+        "referencedAsset": "assets/app-data/story/cg/E-1_epilogue.jpg",
+        "explanation": "Locale ko display data for Entry E-2 contains an exact CG display event."
+      },
+      {
+        "kind": "localized-text-display-event",
+        "sourcePath": "assets/app-data/story/main/vn",
+        "recordKey": "103-2",
+        "referencedAsset": "assets/app-data/story/cg/E-1_epilogue.jpg",
+        "explanation": "Locale zh-Hans display data for Entry E-2 contains an exact CG display event."
+      },
+      {
+        "kind": "localized-text-display-event",
+        "sourcePath": "assets/app-data/story/main/vn",
+        "recordKey": "103-2",
+        "referencedAsset": "assets/app-data/story/cg/E-1_epilogue.jpg",
+        "explanation": "Locale zh-Hant display data for Entry E-2 contains an exact CG display event."
+      },
+      {
+        "kind": "vn-script-visual",
+        "sourcePath": "assets/app-data/story/vn/lephon_story7_en.vns",
+        "scriptName": "lephon_story7",
+        "scriptCommand": "hide",
+        "referencedAsset": "assets/app-data/story/cg/E-1_epilogue.jpg",
+        "explanation": "VN script lephon_story7 uses the exact visual resource in a hide command."
+      },
+      {
+        "kind": "vn-script-visual",
+        "sourcePath": "assets/app-data/story/vn/lephon_story7_en.vns",
+        "scriptName": "lephon_story7",
+        "scriptCommand": "move",
+        "referencedAsset": "assets/app-data/story/cg/E-1_epilogue.jpg",
+        "explanation": "VN script lephon_story7 uses the exact visual resource in a move command."
+      },
+      {
+        "kind": "vn-script-visual",
+        "sourcePath": "assets/app-data/story/vn/lephon_story7_en.vns",
+        "scriptName": "lephon_story7",
+        "scriptCommand": "scale",
+        "referencedAsset": "assets/app-data/story/cg/E-1_epilogue.jpg",
+        "explanation": "VN script lephon_story7 uses the exact visual resource in a scale command."
+      },
+      {
+        "kind": "vn-script-visual",
+        "sourcePath": "assets/app-data/story/vn/lephon_story7_en.vns",
+        "scriptName": "lephon_story7",
+        "scriptCommand": "show",
+        "referencedAsset": "assets/app-data/story/cg/E-1_epilogue.jpg",
+        "explanation": "VN script lephon_story7 uses the exact visual resource in a show command."
+      },
+      {
+        "kind": "storyData-mapping",
+        "sourcePath": "assets/app-data/story/main/entries_20",
+        "recordKey": "20-7",
+        "referencedAsset": "assets/app-data/story/cg/E-1_epilogue.jpg",
+        "explanation": "Entry 20-7 storyData=lephon_story7 selects VN script lephon_story7."
+      },
+      {
+        "kind": "vn-script-visual",
+        "sourcePath": "assets/app-data/story/vn/lephon_story7_ja.vns",
+        "scriptName": "lephon_story7",
+        "scriptCommand": "hide",
+        "referencedAsset": "assets/app-data/story/cg/E-1_epilogue.jpg",
+        "explanation": "VN script lephon_story7 uses the exact visual resource in a hide command."
+      },
+      {
+        "kind": "vn-script-visual",
+        "sourcePath": "assets/app-data/story/vn/lephon_story7_ja.vns",
+        "scriptName": "lephon_story7",
+        "scriptCommand": "move",
+        "referencedAsset": "assets/app-data/story/cg/E-1_epilogue.jpg",
+        "explanation": "VN script lephon_story7 uses the exact visual resource in a move command."
+      },
+      {
+        "kind": "vn-script-visual",
+        "sourcePath": "assets/app-data/story/vn/lephon_story7_ja.vns",
+        "scriptName": "lephon_story7",
+        "scriptCommand": "scale",
+        "referencedAsset": "assets/app-data/story/cg/E-1_epilogue.jpg",
+        "explanation": "VN script lephon_story7 uses the exact visual resource in a scale command."
+      },
+      {
+        "kind": "vn-script-visual",
+        "sourcePath": "assets/app-data/story/vn/lephon_story7_ja.vns",
+        "scriptName": "lephon_story7",
+        "scriptCommand": "show",
+        "referencedAsset": "assets/app-data/story/cg/E-1_epilogue.jpg",
+        "explanation": "VN script lephon_story7 uses the exact visual resource in a show command."
+      },
+      {
+        "kind": "vn-script-visual",
+        "sourcePath": "assets/app-data/story/vn/lephon_story7_ko.vns",
+        "scriptName": "lephon_story7",
+        "scriptCommand": "hide",
+        "referencedAsset": "assets/app-data/story/cg/E-1_epilogue.jpg",
+        "explanation": "VN script lephon_story7 uses the exact visual resource in a hide command."
+      },
+      {
+        "kind": "vn-script-visual",
+        "sourcePath": "assets/app-data/story/vn/lephon_story7_ko.vns",
+        "scriptName": "lephon_story7",
+        "scriptCommand": "move",
+        "referencedAsset": "assets/app-data/story/cg/E-1_epilogue.jpg",
+        "explanation": "VN script lephon_story7 uses the exact visual resource in a move command."
+      },
+      {
+        "kind": "vn-script-visual",
+        "sourcePath": "assets/app-data/story/vn/lephon_story7_ko.vns",
+        "scriptName": "lephon_story7",
+        "scriptCommand": "scale",
+        "referencedAsset": "assets/app-data/story/cg/E-1_epilogue.jpg",
+        "explanation": "VN script lephon_story7 uses the exact visual resource in a scale command."
+      },
+      {
+        "kind": "vn-script-visual",
+        "sourcePath": "assets/app-data/story/vn/lephon_story7_ko.vns",
+        "scriptName": "lephon_story7",
+        "scriptCommand": "show",
+        "referencedAsset": "assets/app-data/story/cg/E-1_epilogue.jpg",
+        "explanation": "VN script lephon_story7 uses the exact visual resource in a show command."
+      },
+      {
+        "kind": "vn-script-visual",
+        "sourcePath": "assets/app-data/story/vn/lephon_story7_zh-Hans.vns",
+        "scriptName": "lephon_story7",
+        "scriptCommand": "hide",
+        "referencedAsset": "assets/app-data/story/cg/E-1_epilogue.jpg",
+        "explanation": "VN script lephon_story7 uses the exact visual resource in a hide command."
+      },
+      {
+        "kind": "vn-script-visual",
+        "sourcePath": "assets/app-data/story/vn/lephon_story7_zh-Hans.vns",
+        "scriptName": "lephon_story7",
+        "scriptCommand": "move",
+        "referencedAsset": "assets/app-data/story/cg/E-1_epilogue.jpg",
+        "explanation": "VN script lephon_story7 uses the exact visual resource in a move command."
+      },
+      {
+        "kind": "vn-script-visual",
+        "sourcePath": "assets/app-data/story/vn/lephon_story7_zh-Hans.vns",
+        "scriptName": "lephon_story7",
+        "scriptCommand": "scale",
+        "referencedAsset": "assets/app-data/story/cg/E-1_epilogue.jpg",
+        "explanation": "VN script lephon_story7 uses the exact visual resource in a scale command."
+      },
+      {
+        "kind": "vn-script-visual",
+        "sourcePath": "assets/app-data/story/vn/lephon_story7_zh-Hans.vns",
+        "scriptName": "lephon_story7",
+        "scriptCommand": "show",
+        "referencedAsset": "assets/app-data/story/cg/E-1_epilogue.jpg",
+        "explanation": "VN script lephon_story7 uses the exact visual resource in a show command."
+      },
+      {
+        "kind": "vn-script-visual",
+        "sourcePath": "assets/app-data/story/vn/lephon_story7_zh-Hant.vns",
+        "scriptName": "lephon_story7",
+        "scriptCommand": "hide",
+        "referencedAsset": "assets/app-data/story/cg/E-1_epilogue.jpg",
+        "explanation": "VN script lephon_story7 uses the exact visual resource in a hide command."
+      },
+      {
+        "kind": "vn-script-visual",
+        "sourcePath": "assets/app-data/story/vn/lephon_story7_zh-Hant.vns",
+        "scriptName": "lephon_story7",
+        "scriptCommand": "move",
+        "referencedAsset": "assets/app-data/story/cg/E-1_epilogue.jpg",
+        "explanation": "VN script lephon_story7 uses the exact visual resource in a move command."
+      },
+      {
+        "kind": "vn-script-visual",
+        "sourcePath": "assets/app-data/story/vn/lephon_story7_zh-Hant.vns",
+        "scriptName": "lephon_story7",
+        "scriptCommand": "scale",
+        "referencedAsset": "assets/app-data/story/cg/E-1_epilogue.jpg",
+        "explanation": "VN script lephon_story7 uses the exact visual resource in a scale command."
+      },
+      {
+        "kind": "vn-script-visual",
+        "sourcePath": "assets/app-data/story/vn/lephon_story7_zh-Hant.vns",
+        "scriptName": "lephon_story7",
+        "scriptCommand": "show",
+        "referencedAsset": "assets/app-data/story/cg/E-1_epilogue.jpg",
+        "explanation": "VN script lephon_story7 uses the exact visual resource in a show command."
+      },
+      {
+        "kind": "storyData-mapping",
+        "sourcePath": "assets/app-data/story/main/entries_103",
+        "recordKey": "103-1",
+        "referencedAsset": "assets/app-data/story/cg/E-1_epilogue.jpg",
+        "explanation": "The epilogue asset is selected by a path-level epilogue VN scene; no exact single Entry storyCgPath proves a node binding."
+      }
+    ],
+    "confidence": "medium",
+    "finalRelation": "path-scene",
+    "finalPathId": 19,
+    "finalSceneId": "vn:epilogue_last"
+  },
+  {
+    "assetPath": "assets/app-data/story/cg/E-2_epilogue.jpg",
+    "resourceId": "01a00093-f7eb-714a-8571-58a143f6369e",
+    "resolution": {
+      "width": 1920,
+      "height": 1080
+    },
+    "candidateNodeKey": "E-2",
+    "candidatePathId": 19,
+    "evidence": [
+      {
+        "kind": "localized-text-display-event",
+        "sourcePath": "assets/app-data/story/main/vn",
+        "recordKey": "103-2",
+        "referencedAsset": "assets/app-data/story/cg/E-2_epilogue.jpg",
+        "explanation": "Locale en display data for Entry E-2 contains an exact CG display event."
+      },
+      {
+        "kind": "localized-text-display-event",
+        "sourcePath": "assets/app-data/story/main/vn",
+        "recordKey": "103-2",
+        "referencedAsset": "assets/app-data/story/cg/E-2_epilogue.jpg",
+        "explanation": "Locale ja display data for Entry E-2 contains an exact CG display event."
+      },
+      {
+        "kind": "localized-text-display-event",
+        "sourcePath": "assets/app-data/story/main/vn",
+        "recordKey": "103-2",
+        "referencedAsset": "assets/app-data/story/cg/E-2_epilogue.jpg",
+        "explanation": "Locale ko display data for Entry E-2 contains an exact CG display event."
+      },
+      {
+        "kind": "localized-text-display-event",
+        "sourcePath": "assets/app-data/story/main/vn",
+        "recordKey": "103-2",
+        "referencedAsset": "assets/app-data/story/cg/E-2_epilogue.jpg",
+        "explanation": "Locale zh-Hans display data for Entry E-2 contains an exact CG display event."
+      },
+      {
+        "kind": "localized-text-display-event",
+        "sourcePath": "assets/app-data/story/main/vn",
+        "recordKey": "103-2",
+        "referencedAsset": "assets/app-data/story/cg/E-2_epilogue.jpg",
+        "explanation": "Locale zh-Hant display data for Entry E-2 contains an exact CG display event."
+      },
+      {
+        "kind": "ordering",
+        "sourcePath": "assets/app-data/story2/ordering",
+        "recordKey": "path:19",
+        "explanation": "The exact referenced Entry occurs in Story ordering path 19."
+      }
+    ],
+    "confidence": "high",
+    "finalRelation": "node",
+    "finalNodeKey": "E-2",
+    "finalPathId": 19
+  },
+  {
+    "assetPath": "assets/app-data/story/cg/E-4_epilogue.jpg",
+    "resourceId": "01a00093-f855-79b6-ac41-ad0d5d423471",
+    "resolution": {
+      "width": 1920,
+      "height": 1080
+    },
+    "candidateNodeKey": "E-2",
+    "candidatePathId": 19,
+    "candidateSceneId": "vn:epilogue_last",
+    "evidence": [
+      {
+        "kind": "localized-text-display-event",
+        "sourcePath": "assets/app-data/story/main/vn",
+        "recordKey": "103-2",
+        "referencedAsset": "assets/app-data/story/cg/E-4_epilogue.jpg",
+        "explanation": "Locale en display data for Entry E-2 contains an exact CG display event."
+      },
+      {
+        "kind": "localized-text-display-event",
+        "sourcePath": "assets/app-data/story/main/vn",
+        "recordKey": "103-2",
+        "referencedAsset": "assets/app-data/story/cg/E-4_epilogue.jpg",
+        "explanation": "Locale ja display data for Entry E-2 contains an exact CG display event."
+      },
+      {
+        "kind": "localized-text-display-event",
+        "sourcePath": "assets/app-data/story/main/vn",
+        "recordKey": "103-2",
+        "referencedAsset": "assets/app-data/story/cg/E-4_epilogue.jpg",
+        "explanation": "Locale ko display data for Entry E-2 contains an exact CG display event."
+      },
+      {
+        "kind": "localized-text-display-event",
+        "sourcePath": "assets/app-data/story/main/vn",
+        "recordKey": "103-2",
+        "referencedAsset": "assets/app-data/story/cg/E-4_epilogue.jpg",
+        "explanation": "Locale zh-Hans display data for Entry E-2 contains an exact CG display event."
+      },
+      {
+        "kind": "localized-text-display-event",
+        "sourcePath": "assets/app-data/story/main/vn",
+        "recordKey": "103-2",
+        "referencedAsset": "assets/app-data/story/cg/E-4_epilogue.jpg",
+        "explanation": "Locale zh-Hant display data for Entry E-2 contains an exact CG display event."
+      },
+      {
+        "kind": "ordering",
+        "sourcePath": "assets/app-data/story2/ordering",
+        "recordKey": "path:19",
+        "explanation": "The exact referenced Entry occurs in Story ordering path 19."
+      },
+      {
+        "kind": "storyData-mapping",
+        "sourcePath": "assets/app-data/story/main/entries_103",
+        "recordKey": "103-1",
+        "referencedAsset": "assets/app-data/story/cg/E-4_epilogue.jpg",
+        "explanation": "The epilogue asset is selected by a path-level epilogue VN scene; no exact single Entry storyCgPath proves a node binding."
+      }
+    ],
+    "confidence": "medium",
+    "finalRelation": "path-scene",
+    "finalPathId": 19,
+    "finalSceneId": "vn:epilogue_last"
+  },
+  {
+    "assetPath": "assets/app-data/story/cg/F-2.jpg",
+    "resourceId": "01a00093-f8e6-79f9-8bbf-0335b80d9938",
+    "resolution": {
+      "width": 1920,
+      "height": 1080
+    },
+    "candidateNodeKey": "F-2",
+    "candidatePathId": 19,
+    "evidence": [
+      {
+        "kind": "entry-storyCgPath",
+        "sourcePath": "assets/app-data/story/main/entries_102",
+        "recordKey": "102-2",
+        "referencedAsset": "assets/app-data/story/cg/F-2.jpg",
+        "explanation": "Entry F-2 contains the exact storyCgPath field."
+      },
+      {
+        "kind": "ordering",
+        "sourcePath": "assets/app-data/story2/ordering",
+        "recordKey": "path:19",
+        "explanation": "The exact referenced Entry occurs in Story ordering path 19."
+      }
+    ],
+    "confidence": "high",
+    "finalRelation": "node",
+    "finalNodeKey": "F-2",
+    "finalPathId": 19
+  },
+  {
+    "assetPath": "assets/app-data/story/cg/F-5.jpg",
+    "resourceId": "01a00093-f967-789d-ac6a-017c4b39c4ad",
+    "resolution": {
+      "width": 1920,
+      "height": 1080
+    },
+    "candidateNodeKey": "F-5",
+    "candidateSceneId": "vn:lephon_story7",
+    "evidence": [
+      {
+        "kind": "entry-storyCgPath",
+        "sourcePath": "assets/app-data/story/main/entries_102",
+        "recordKey": "102-5",
+        "referencedAsset": "assets/app-data/story/cg/F-5.jpg",
+        "explanation": "Entry F-5 contains the exact storyCgPath field."
+      },
+      {
+        "kind": "vn-script-visual",
+        "sourcePath": "assets/app-data/story/vn/lephon_story7_en.vns",
+        "scriptName": "lephon_story7",
+        "scriptCommand": "hide",
+        "referencedAsset": "assets/app-data/story/cg/F-5.jpg",
+        "explanation": "VN script lephon_story7 uses the exact visual resource in a hide command."
+      },
+      {
+        "kind": "vn-script-visual",
+        "sourcePath": "assets/app-data/story/vn/lephon_story7_en.vns",
+        "scriptName": "lephon_story7",
+        "scriptCommand": "show",
+        "referencedAsset": "assets/app-data/story/cg/F-5.jpg",
+        "explanation": "VN script lephon_story7 uses the exact visual resource in a show command."
+      },
+      {
+        "kind": "storyData-mapping",
+        "sourcePath": "assets/app-data/story/main/entries_20",
+        "recordKey": "20-7",
+        "referencedAsset": "assets/app-data/story/cg/F-5.jpg",
+        "explanation": "Entry 20-7 storyData=lephon_story7 selects VN script lephon_story7."
+      },
+      {
+        "kind": "vn-script-visual",
+        "sourcePath": "assets/app-data/story/vn/lephon_story7_ja.vns",
+        "scriptName": "lephon_story7",
+        "scriptCommand": "hide",
+        "referencedAsset": "assets/app-data/story/cg/F-5.jpg",
+        "explanation": "VN script lephon_story7 uses the exact visual resource in a hide command."
+      },
+      {
+        "kind": "vn-script-visual",
+        "sourcePath": "assets/app-data/story/vn/lephon_story7_ja.vns",
+        "scriptName": "lephon_story7",
+        "scriptCommand": "show",
+        "referencedAsset": "assets/app-data/story/cg/F-5.jpg",
+        "explanation": "VN script lephon_story7 uses the exact visual resource in a show command."
+      },
+      {
+        "kind": "vn-script-visual",
+        "sourcePath": "assets/app-data/story/vn/lephon_story7_ko.vns",
+        "scriptName": "lephon_story7",
+        "scriptCommand": "hide",
+        "referencedAsset": "assets/app-data/story/cg/F-5.jpg",
+        "explanation": "VN script lephon_story7 uses the exact visual resource in a hide command."
+      },
+      {
+        "kind": "vn-script-visual",
+        "sourcePath": "assets/app-data/story/vn/lephon_story7_ko.vns",
+        "scriptName": "lephon_story7",
+        "scriptCommand": "show",
+        "referencedAsset": "assets/app-data/story/cg/F-5.jpg",
+        "explanation": "VN script lephon_story7 uses the exact visual resource in a show command."
+      },
+      {
+        "kind": "vn-script-visual",
+        "sourcePath": "assets/app-data/story/vn/lephon_story7_zh-Hans.vns",
+        "scriptName": "lephon_story7",
+        "scriptCommand": "hide",
+        "referencedAsset": "assets/app-data/story/cg/F-5.jpg",
+        "explanation": "VN script lephon_story7 uses the exact visual resource in a hide command."
+      },
+      {
+        "kind": "vn-script-visual",
+        "sourcePath": "assets/app-data/story/vn/lephon_story7_zh-Hans.vns",
+        "scriptName": "lephon_story7",
+        "scriptCommand": "show",
+        "referencedAsset": "assets/app-data/story/cg/F-5.jpg",
+        "explanation": "VN script lephon_story7 uses the exact visual resource in a show command."
+      },
+      {
+        "kind": "vn-script-visual",
+        "sourcePath": "assets/app-data/story/vn/lephon_story7_zh-Hant.vns",
+        "scriptName": "lephon_story7",
+        "scriptCommand": "hide",
+        "referencedAsset": "assets/app-data/story/cg/F-5.jpg",
+        "explanation": "VN script lephon_story7 uses the exact visual resource in a hide command."
+      },
+      {
+        "kind": "vn-script-visual",
+        "sourcePath": "assets/app-data/story/vn/lephon_story7_zh-Hant.vns",
+        "scriptName": "lephon_story7",
+        "scriptCommand": "show",
+        "referencedAsset": "assets/app-data/story/cg/F-5.jpg",
+        "explanation": "VN script lephon_story7 uses the exact visual resource in a show command."
+      }
+    ],
+    "confidence": "high",
+    "finalRelation": "node",
+    "finalNodeKey": "F-5",
+    "finalPathId": 19
+  },
+  {
+    "assetPath": "assets/app-data/story/cg/F-7.jpg",
+    "resourceId": "01a00093-fadf-7e22-87e8-47a043528644",
+    "resolution": {
+      "width": 1920,
+      "height": 1080
+    },
+    "candidateNodeKey": "F-7",
+    "candidatePathId": 19,
+    "candidateSceneId": "vn:epilogue_last",
+    "evidence": [
+      {
+        "kind": "localized-text-display-event",
+        "sourcePath": "assets/app-data/story/main/vn",
+        "recordKey": "102-7",
+        "referencedAsset": "assets/app-data/story/cg/F-7.jpg",
+        "explanation": "Locale en display data for Entry F-7 contains an exact CG display event."
+      },
+      {
+        "kind": "localized-text-display-event",
+        "sourcePath": "assets/app-data/story/main/vn",
+        "recordKey": "102-7",
+        "referencedAsset": "assets/app-data/story/cg/F-7.jpg",
+        "explanation": "Locale ja display data for Entry F-7 contains an exact CG display event."
+      },
+      {
+        "kind": "localized-text-display-event",
+        "sourcePath": "assets/app-data/story/main/vn",
+        "recordKey": "102-7",
+        "referencedAsset": "assets/app-data/story/cg/F-7.jpg",
+        "explanation": "Locale ko display data for Entry F-7 contains an exact CG display event."
+      },
+      {
+        "kind": "localized-text-display-event",
+        "sourcePath": "assets/app-data/story/main/vn",
+        "recordKey": "102-7",
+        "referencedAsset": "assets/app-data/story/cg/F-7.jpg",
+        "explanation": "Locale zh-Hans display data for Entry F-7 contains an exact CG display event."
+      },
+      {
+        "kind": "localized-text-display-event",
+        "sourcePath": "assets/app-data/story/main/vn",
+        "recordKey": "102-7",
+        "referencedAsset": "assets/app-data/story/cg/F-7.jpg",
+        "explanation": "Locale zh-Hant display data for Entry F-7 contains an exact CG display event."
+      },
+      {
+        "kind": "vn-script-visual",
+        "sourcePath": "assets/app-data/story/vn/epilogue_last_en.vns",
+        "scriptName": "epilogue_last",
+        "scriptCommand": "hide",
+        "referencedAsset": "assets/app-data/story/cg/F-7.jpg",
+        "explanation": "VN script epilogue_last uses the exact visual resource in a hide command."
+      },
+      {
+        "kind": "vn-script-visual",
+        "sourcePath": "assets/app-data/story/vn/epilogue_last_en.vns",
+        "scriptName": "epilogue_last",
+        "scriptCommand": "move",
+        "referencedAsset": "assets/app-data/story/cg/F-7.jpg",
+        "explanation": "VN script epilogue_last uses the exact visual resource in a move command."
+      },
+      {
+        "kind": "vn-script-visual",
+        "sourcePath": "assets/app-data/story/vn/epilogue_last_en.vns",
+        "scriptName": "epilogue_last",
+        "scriptCommand": "show",
+        "referencedAsset": "assets/app-data/story/cg/F-7.jpg",
+        "explanation": "VN script epilogue_last uses the exact visual resource in a show command."
+      },
+      {
+        "kind": "storyData-mapping",
+        "sourcePath": "assets/app-data/story/main/entries_103",
+        "recordKey": "103-1",
+        "referencedAsset": "assets/app-data/story/cg/F-7.jpg",
+        "explanation": "Entry E-1 storyData=epilogue_last selects VN script epilogue_last."
+      },
+      {
+        "kind": "vn-script-visual",
+        "sourcePath": "assets/app-data/story/vn/epilogue_last_ja.vns",
+        "scriptName": "epilogue_last",
+        "scriptCommand": "hide",
+        "referencedAsset": "assets/app-data/story/cg/F-7.jpg",
+        "explanation": "VN script epilogue_last uses the exact visual resource in a hide command."
+      },
+      {
+        "kind": "vn-script-visual",
+        "sourcePath": "assets/app-data/story/vn/epilogue_last_ja.vns",
+        "scriptName": "epilogue_last",
+        "scriptCommand": "move",
+        "referencedAsset": "assets/app-data/story/cg/F-7.jpg",
+        "explanation": "VN script epilogue_last uses the exact visual resource in a move command."
+      },
+      {
+        "kind": "vn-script-visual",
+        "sourcePath": "assets/app-data/story/vn/epilogue_last_ja.vns",
+        "scriptName": "epilogue_last",
+        "scriptCommand": "show",
+        "referencedAsset": "assets/app-data/story/cg/F-7.jpg",
+        "explanation": "VN script epilogue_last uses the exact visual resource in a show command."
+      },
+      {
+        "kind": "vn-script-visual",
+        "sourcePath": "assets/app-data/story/vn/epilogue_last_ko.vns",
+        "scriptName": "epilogue_last",
+        "scriptCommand": "hide",
+        "referencedAsset": "assets/app-data/story/cg/F-7.jpg",
+        "explanation": "VN script epilogue_last uses the exact visual resource in a hide command."
+      },
+      {
+        "kind": "vn-script-visual",
+        "sourcePath": "assets/app-data/story/vn/epilogue_last_ko.vns",
+        "scriptName": "epilogue_last",
+        "scriptCommand": "move",
+        "referencedAsset": "assets/app-data/story/cg/F-7.jpg",
+        "explanation": "VN script epilogue_last uses the exact visual resource in a move command."
+      },
+      {
+        "kind": "vn-script-visual",
+        "sourcePath": "assets/app-data/story/vn/epilogue_last_ko.vns",
+        "scriptName": "epilogue_last",
+        "scriptCommand": "show",
+        "referencedAsset": "assets/app-data/story/cg/F-7.jpg",
+        "explanation": "VN script epilogue_last uses the exact visual resource in a show command."
+      },
+      {
+        "kind": "vn-script-visual",
+        "sourcePath": "assets/app-data/story/vn/epilogue_last_zh-Hans.vns",
+        "scriptName": "epilogue_last",
+        "scriptCommand": "hide",
+        "referencedAsset": "assets/app-data/story/cg/F-7.jpg",
+        "explanation": "VN script epilogue_last uses the exact visual resource in a hide command."
+      },
+      {
+        "kind": "vn-script-visual",
+        "sourcePath": "assets/app-data/story/vn/epilogue_last_zh-Hans.vns",
+        "scriptName": "epilogue_last",
+        "scriptCommand": "move",
+        "referencedAsset": "assets/app-data/story/cg/F-7.jpg",
+        "explanation": "VN script epilogue_last uses the exact visual resource in a move command."
+      },
+      {
+        "kind": "vn-script-visual",
+        "sourcePath": "assets/app-data/story/vn/epilogue_last_zh-Hans.vns",
+        "scriptName": "epilogue_last",
+        "scriptCommand": "show",
+        "referencedAsset": "assets/app-data/story/cg/F-7.jpg",
+        "explanation": "VN script epilogue_last uses the exact visual resource in a show command."
+      },
+      {
+        "kind": "vn-script-visual",
+        "sourcePath": "assets/app-data/story/vn/epilogue_last_zh-Hant.vns",
+        "scriptName": "epilogue_last",
+        "scriptCommand": "hide",
+        "referencedAsset": "assets/app-data/story/cg/F-7.jpg",
+        "explanation": "VN script epilogue_last uses the exact visual resource in a hide command."
+      },
+      {
+        "kind": "vn-script-visual",
+        "sourcePath": "assets/app-data/story/vn/epilogue_last_zh-Hant.vns",
+        "scriptName": "epilogue_last",
+        "scriptCommand": "move",
+        "referencedAsset": "assets/app-data/story/cg/F-7.jpg",
+        "explanation": "VN script epilogue_last uses the exact visual resource in a move command."
+      },
+      {
+        "kind": "vn-script-visual",
+        "sourcePath": "assets/app-data/story/vn/epilogue_last_zh-Hant.vns",
+        "scriptName": "epilogue_last",
+        "scriptCommand": "show",
+        "referencedAsset": "assets/app-data/story/cg/F-7.jpg",
+        "explanation": "VN script epilogue_last uses the exact visual resource in a show command."
+      },
+      {
+        "kind": "ordering",
+        "sourcePath": "assets/app-data/story2/ordering",
+        "recordKey": "path:19",
+        "explanation": "The exact referenced Entry occurs in Story ordering path 19."
+      }
+    ],
+    "confidence": "high",
+    "finalRelation": "node",
+    "finalNodeKey": "F-7",
+    "finalPathId": 19
+  },
+  {
+    "assetPath": "assets/app-data/story/cg/F-7-1.jpg",
+    "resourceId": "01a00093-f9e8-7bb4-ab94-b70ba75ca78d",
+    "resolution": {
+      "width": 1920,
+      "height": 1080
+    },
+    "candidatePathId": 19,
+    "evidence": [
+      {
+        "kind": "localized-text-display-event",
+        "sourcePath": "assets/app-data/story/main/vn",
+        "recordKey": "102-7",
+        "referencedAsset": "assets/app-data/story/cg/F-7-1.jpg",
+        "explanation": "Locale en display data for Entry F-7 contains an exact CG display event."
+      },
+      {
+        "kind": "localized-text-display-event",
+        "sourcePath": "assets/app-data/story/main/vn",
+        "recordKey": "102-7",
+        "referencedAsset": "assets/app-data/story/cg/F-7-1.jpg",
+        "explanation": "Locale ja display data for Entry F-7 contains an exact CG display event."
+      },
+      {
+        "kind": "localized-text-display-event",
+        "sourcePath": "assets/app-data/story/main/vn",
+        "recordKey": "102-7",
+        "referencedAsset": "assets/app-data/story/cg/F-7-1.jpg",
+        "explanation": "Locale ko display data for Entry F-7 contains an exact CG display event."
+      },
+      {
+        "kind": "localized-text-display-event",
+        "sourcePath": "assets/app-data/story/main/vn",
+        "recordKey": "102-7",
+        "referencedAsset": "assets/app-data/story/cg/F-7-1.jpg",
+        "explanation": "Locale zh-Hans display data for Entry F-7 contains an exact CG display event."
+      },
+      {
+        "kind": "localized-text-display-event",
+        "sourcePath": "assets/app-data/story/main/vn",
+        "recordKey": "102-7",
+        "referencedAsset": "assets/app-data/story/cg/F-7-1.jpg",
+        "explanation": "Locale zh-Hant display data for Entry F-7 contains an exact CG display event."
+      },
+      {
+        "kind": "localized-text-display-event",
+        "sourcePath": "assets/app-data/story/main/vn",
+        "recordKey": "103-2",
+        "referencedAsset": "assets/app-data/story/cg/F-7-1.jpg",
+        "explanation": "Locale en display data for Entry E-2 contains an exact CG display event."
+      },
+      {
+        "kind": "localized-text-display-event",
+        "sourcePath": "assets/app-data/story/main/vn",
+        "recordKey": "103-2",
+        "referencedAsset": "assets/app-data/story/cg/F-7-1.jpg",
+        "explanation": "Locale ja display data for Entry E-2 contains an exact CG display event."
+      },
+      {
+        "kind": "localized-text-display-event",
+        "sourcePath": "assets/app-data/story/main/vn",
+        "recordKey": "103-2",
+        "referencedAsset": "assets/app-data/story/cg/F-7-1.jpg",
+        "explanation": "Locale ko display data for Entry E-2 contains an exact CG display event."
+      },
+      {
+        "kind": "localized-text-display-event",
+        "sourcePath": "assets/app-data/story/main/vn",
+        "recordKey": "103-2",
+        "referencedAsset": "assets/app-data/story/cg/F-7-1.jpg",
+        "explanation": "Locale zh-Hans display data for Entry E-2 contains an exact CG display event."
+      },
+      {
+        "kind": "localized-text-display-event",
+        "sourcePath": "assets/app-data/story/main/vn",
+        "recordKey": "103-2",
+        "referencedAsset": "assets/app-data/story/cg/F-7-1.jpg",
+        "explanation": "Locale zh-Hant display data for Entry E-2 contains an exact CG display event."
+      },
+      {
+        "kind": "ordering",
+        "sourcePath": "assets/app-data/story2/ordering",
+        "recordKey": "path:19",
+        "explanation": "The exact referenced Entry occurs in Story ordering path 19."
+      }
+    ],
+    "confidence": "high",
+    "finalRelation": "node",
+    "finalNodeKey": "F-7",
+    "finalPathId": 19
+  },
+  {
+    "assetPath": "assets/app-data/story/cg/F-7-2.jpg",
+    "resourceId": "01a00093-fa65-7854-a469-8a140e9dcca4",
+    "resolution": {
+      "width": 1920,
+      "height": 1080
+    },
+    "candidateNodeKey": "F-7",
+    "candidatePathId": 19,
+    "evidence": [
+      {
+        "kind": "localized-text-display-event",
+        "sourcePath": "assets/app-data/story/main/vn",
+        "recordKey": "102-7",
+        "referencedAsset": "assets/app-data/story/cg/F-7-2.jpg",
+        "explanation": "Locale en display data for Entry F-7 contains an exact CG display event."
+      },
+      {
+        "kind": "localized-text-display-event",
+        "sourcePath": "assets/app-data/story/main/vn",
+        "recordKey": "102-7",
+        "referencedAsset": "assets/app-data/story/cg/F-7-2.jpg",
+        "explanation": "Locale ja display data for Entry F-7 contains an exact CG display event."
+      },
+      {
+        "kind": "localized-text-display-event",
+        "sourcePath": "assets/app-data/story/main/vn",
+        "recordKey": "102-7",
+        "referencedAsset": "assets/app-data/story/cg/F-7-2.jpg",
+        "explanation": "Locale ko display data for Entry F-7 contains an exact CG display event."
+      },
+      {
+        "kind": "localized-text-display-event",
+        "sourcePath": "assets/app-data/story/main/vn",
+        "recordKey": "102-7",
+        "referencedAsset": "assets/app-data/story/cg/F-7-2.jpg",
+        "explanation": "Locale zh-Hans display data for Entry F-7 contains an exact CG display event."
+      },
+      {
+        "kind": "localized-text-display-event",
+        "sourcePath": "assets/app-data/story/main/vn",
+        "recordKey": "102-7",
+        "referencedAsset": "assets/app-data/story/cg/F-7-2.jpg",
+        "explanation": "Locale zh-Hant display data for Entry F-7 contains an exact CG display event."
+      },
+      {
+        "kind": "ordering",
+        "sourcePath": "assets/app-data/story2/ordering",
+        "recordKey": "path:19",
+        "explanation": "The exact referenced Entry occurs in Story ordering path 19."
+      }
+    ],
+    "confidence": "high",
+    "finalRelation": "node",
+    "finalNodeKey": "F-7",
+    "finalPathId": 19
+  },
+  {
+    "assetPath": "assets/app-data/story/cg/V-10.jpg",
+    "resourceId": "01a00093-fb71-777b-ac2a-a145ec0302d1",
+    "resolution": {
+      "width": 1920,
+      "height": 1080
+    },
+    "candidateNodeKey": "VS-5",
+    "candidateSceneId": "vn:finale_testify",
+    "evidence": [
+      {
+        "kind": "entry-storyCgPath",
+        "sourcePath": "assets/app-data/story/main/entries_101",
+        "recordKey": "101-5",
+        "referencedAsset": "assets/app-data/story/cg/V-10.jpg",
+        "explanation": "Entry VS-5 contains the exact storyCgPath field."
+      },
+      {
+        "kind": "vn-script-visual",
+        "sourcePath": "assets/app-data/story/vn/finale_testify_en.vns",
+        "scriptName": "finale_testify",
+        "scriptCommand": "hide",
+        "referencedAsset": "assets/app-data/story/cg/V-10.jpg",
+        "explanation": "VN script finale_testify uses the exact visual resource in a hide command."
+      },
+      {
+        "kind": "vn-script-visual",
+        "sourcePath": "assets/app-data/story/vn/finale_testify_en.vns",
+        "scriptName": "finale_testify",
+        "scriptCommand": "move",
+        "referencedAsset": "assets/app-data/story/cg/V-10.jpg",
+        "explanation": "VN script finale_testify uses the exact visual resource in a move command."
+      },
+      {
+        "kind": "vn-script-visual",
+        "sourcePath": "assets/app-data/story/vn/finale_testify_en.vns",
+        "scriptName": "finale_testify",
+        "scriptCommand": "show",
+        "referencedAsset": "assets/app-data/story/cg/V-10.jpg",
+        "explanation": "VN script finale_testify uses the exact visual resource in a show command."
+      },
+      {
+        "kind": "storyData-mapping",
+        "sourcePath": "assets/app-data/story/main/entries_102",
+        "recordKey": "102-6",
+        "referencedAsset": "assets/app-data/story/cg/V-10.jpg",
+        "explanation": "Entry F-6 storyData=finale_testify selects VN script finale_testify."
+      },
+      {
+        "kind": "vn-script-visual",
+        "sourcePath": "assets/app-data/story/vn/finale_testify_ja.vns",
+        "scriptName": "finale_testify",
+        "scriptCommand": "hide",
+        "referencedAsset": "assets/app-data/story/cg/V-10.jpg",
+        "explanation": "VN script finale_testify uses the exact visual resource in a hide command."
+      },
+      {
+        "kind": "vn-script-visual",
+        "sourcePath": "assets/app-data/story/vn/finale_testify_ja.vns",
+        "scriptName": "finale_testify",
+        "scriptCommand": "move",
+        "referencedAsset": "assets/app-data/story/cg/V-10.jpg",
+        "explanation": "VN script finale_testify uses the exact visual resource in a move command."
+      },
+      {
+        "kind": "vn-script-visual",
+        "sourcePath": "assets/app-data/story/vn/finale_testify_ja.vns",
+        "scriptName": "finale_testify",
+        "scriptCommand": "show",
+        "referencedAsset": "assets/app-data/story/cg/V-10.jpg",
+        "explanation": "VN script finale_testify uses the exact visual resource in a show command."
+      },
+      {
+        "kind": "vn-script-visual",
+        "sourcePath": "assets/app-data/story/vn/finale_testify_ko.vns",
+        "scriptName": "finale_testify",
+        "scriptCommand": "hide",
+        "referencedAsset": "assets/app-data/story/cg/V-10.jpg",
+        "explanation": "VN script finale_testify uses the exact visual resource in a hide command."
+      },
+      {
+        "kind": "vn-script-visual",
+        "sourcePath": "assets/app-data/story/vn/finale_testify_ko.vns",
+        "scriptName": "finale_testify",
+        "scriptCommand": "move",
+        "referencedAsset": "assets/app-data/story/cg/V-10.jpg",
+        "explanation": "VN script finale_testify uses the exact visual resource in a move command."
+      },
+      {
+        "kind": "vn-script-visual",
+        "sourcePath": "assets/app-data/story/vn/finale_testify_ko.vns",
+        "scriptName": "finale_testify",
+        "scriptCommand": "show",
+        "referencedAsset": "assets/app-data/story/cg/V-10.jpg",
+        "explanation": "VN script finale_testify uses the exact visual resource in a show command."
+      },
+      {
+        "kind": "vn-script-visual",
+        "sourcePath": "assets/app-data/story/vn/finale_testify_zh-Hans.vns",
+        "scriptName": "finale_testify",
+        "scriptCommand": "hide",
+        "referencedAsset": "assets/app-data/story/cg/V-10.jpg",
+        "explanation": "VN script finale_testify uses the exact visual resource in a hide command."
+      },
+      {
+        "kind": "vn-script-visual",
+        "sourcePath": "assets/app-data/story/vn/finale_testify_zh-Hans.vns",
+        "scriptName": "finale_testify",
+        "scriptCommand": "move",
+        "referencedAsset": "assets/app-data/story/cg/V-10.jpg",
+        "explanation": "VN script finale_testify uses the exact visual resource in a move command."
+      },
+      {
+        "kind": "vn-script-visual",
+        "sourcePath": "assets/app-data/story/vn/finale_testify_zh-Hans.vns",
+        "scriptName": "finale_testify",
+        "scriptCommand": "show",
+        "referencedAsset": "assets/app-data/story/cg/V-10.jpg",
+        "explanation": "VN script finale_testify uses the exact visual resource in a show command."
+      },
+      {
+        "kind": "vn-script-visual",
+        "sourcePath": "assets/app-data/story/vn/finale_testify_zh-Hant.vns",
+        "scriptName": "finale_testify",
+        "scriptCommand": "hide",
+        "referencedAsset": "assets/app-data/story/cg/V-10.jpg",
+        "explanation": "VN script finale_testify uses the exact visual resource in a hide command."
+      },
+      {
+        "kind": "vn-script-visual",
+        "sourcePath": "assets/app-data/story/vn/finale_testify_zh-Hant.vns",
+        "scriptName": "finale_testify",
+        "scriptCommand": "move",
+        "referencedAsset": "assets/app-data/story/cg/V-10.jpg",
+        "explanation": "VN script finale_testify uses the exact visual resource in a move command."
+      },
+      {
+        "kind": "vn-script-visual",
+        "sourcePath": "assets/app-data/story/vn/finale_testify_zh-Hant.vns",
+        "scriptName": "finale_testify",
+        "scriptCommand": "show",
+        "referencedAsset": "assets/app-data/story/cg/V-10.jpg",
+        "explanation": "VN script finale_testify uses the exact visual resource in a show command."
+      }
+    ],
+    "confidence": "high",
+    "finalRelation": "node",
+    "finalNodeKey": "VS-5",
+    "finalPathId": 8
+  }
+]

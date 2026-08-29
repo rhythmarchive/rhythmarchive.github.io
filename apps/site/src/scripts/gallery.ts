@@ -18,10 +18,20 @@ type GalleryRange = {
   maxSlider: HTMLInputElement;
 };
 
-const root = document.querySelector<HTMLElement>("[data-gallery-root]");
-if (root) void initializeGallery(root);
+for (const root of document.querySelectorAll<HTMLElement>("[data-gallery-root]")) {
+  if (root.dataset.galleryDefer === "true") {
+    root.addEventListener("gallery:activate", () => {
+      root.dataset.galleryDefer = "false";
+      if (root.dataset.galleryInitialized !== "true") void initializeGallery(root);
+    }, { once: true });
+  } else {
+    void initializeGallery(root);
+  }
+}
 
 async function initializeGallery(root: HTMLElement): Promise<void> {
+  if (root.dataset.galleryInitialized === "true") return;
+  root.dataset.galleryInitialized = "true";
   const grid = root.querySelector<HTMLElement>("[data-gallery-grid]");
   const loadMore = root.querySelector<HTMLButtonElement>("[data-load-more]");
   const count = root.querySelector<HTMLElement>("[data-gallery-count]");

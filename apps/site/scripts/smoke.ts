@@ -46,9 +46,10 @@ for (const resource of publicPreviewResources) {
     for (const preview of Object.values(variant.preview)) if (preview) previewUrls.add(preview.url);
   }
 }
-const forbidden = [/E:\\/iu, /D:\\/iu, /ROS_ACCESS_KEY/iu, /ROS_SECRET_KEY/iu, /\.runtime/iu, /ReviewLog/iu, /migration report/iu, /sourceRelativePath/iu, /sourceSha256/iu, /objectId/iu, /objectKey/iu, /catalogSchemaVersion/iu, /accessKey/iu, /secretKey/iu, /(?:^|[\\/])workspace(?:[\\/]|$)/iu];
+const forbidden = [/(?:[A-Za-z]:\\\\|[A-Za-z]:\\(?![nrtbfv0u"]))/iu, /ROS_ACCESS_KEY/iu, /ROS_SECRET_KEY/iu, /\.runtime/iu, /ReviewLog/iu, /migration report/iu, /sourceRelativePath/iu, /sourceSha256/iu, /objectId/iu, /objectKey/iu, /catalogSchemaVersion/iu, /accessKey/iu, /secretKey/iu, /(?:^|[\\/])workspace(?:[\\/]|$)/iu];
 const forbiddenHits: string[] = [];
 for (const file of files) {
+  if (!/\.(?:html|json|js|css|xml|txt|svg|webmanifest)$/iu.test(file)) continue;
   const text = fs.readFileSync(path.join(dist, file), "utf8");
   for (const pattern of forbidden) if (pattern.test(text)) forbiddenHits.push(file + ": " + pattern);
 }

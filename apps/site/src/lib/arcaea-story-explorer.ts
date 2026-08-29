@@ -1,4 +1,4 @@
-import type { ArcaeaStoryStructureType } from "../../../../packages/domain/src/browse.js";
+import type { ArcaeaStoryAtlasType, ArcaeaStorySceneType, ArcaeaStoryStructureType, ArcaeaStoryTextProjectionType } from "../../../../packages/domain/src/browse.js";
 import type { PublicResource } from "./types";
 
 export type ArcaeaStoryExplorerEntry = {
@@ -12,6 +12,8 @@ export type ArcaeaStoryExplorerEntry = {
   staffRoll: boolean;
   iconKey?: string;
   unlockLabel?: string;
+  text?: ArcaeaStoryTextProjectionType["entries"][number];
+  sceneIds: string[];
 };
 
 export type ArcaeaStoryExplorerConnection = {
@@ -19,7 +21,10 @@ export type ArcaeaStoryExplorerConnection = {
   to: string;
   kind: "linear" | "branch" | "merge";
   external: boolean;
+  provenance: "audited" | "sequential-fallback";
 };
+
+export type ArcaeaStoryExplorerScene = ArcaeaStorySceneType & { resources: PublicResource[] };
 
 export type ArcaeaStoryExplorerPath = {
   pathId: number;
@@ -34,6 +39,7 @@ export type ArcaeaStoryExplorerPath = {
   externalConnections: ArcaeaStoryExplorerConnection[];
   rootEntries: string[];
   vnResources: PublicResource[];
+  pathScenes: ArcaeaStoryExplorerScene[];
   resourceCount: number;
 };
 
@@ -49,12 +55,16 @@ export type ArcaeaStoryExplorerModel = {
   sections: ArcaeaStoryExplorerSection[];
   paths: ArcaeaStoryExplorerPath[];
   unassignedResources: PublicResource[];
+  storyAtlas?: ArcaeaStoryAtlasType;
   counts: {
     total: number;
     storyCg: number;
     vnCg: number;
     assigned: number;
     unassigned: number;
+    pathScenes: number;
+    vnScenes: number;
+    textEntries: number;
   };
 };
 
@@ -71,23 +81,26 @@ export function isArcaeaStoryCgResource(resource: PublicResource): boolean {
     && (resource.resourceType === "story-cg" || isArcaeaVnCgResource(resource));
 }
 
-export function buildArcaeaStoryExplorerModel(resources: PublicResource[], structure: ArcaeaStoryStructureType): ArcaeaStoryExplorerModel {
+export function buildArcaeaStoryExplorerModel(resources: PublicResource[], structure: ArcaeaStoryStructureType, storyAtlas?: ArcaeaStoryAtlasType): ArcaeaStoryExplorerModel {
   const storyResources = resources.filter(isArcaeaStoryCgResource);
   const pathById = new Map(structure.paths.map((path) => [path.pathId, path]));
   const pathByNode = new Map(structure.paths.flatMap((path) => path.nodes.map((nodeKey) => [nodeKey, path] as const)));
   const sectionByAct = new Map(structure.sections.map((section) => [section.act, section.label]));
   const annotationByNode = new Map(structure.nodeAnnotations.map((annotation) => [annotation.nodeKey, annotation]));
+  const textByNode = new Map(storyAtlas?.text.entries.map((entry) => [entry.nodeKey, entry]) ?? []);
   const nodeResources = new Map<string, PublicResource[]>();
-  const vnResources = new Map<number, PublicResource[]>();
+  const pathSceneResources = new Map<string, PublicResource[]>();
   const assignedIds = new Set<string>();
 
   for (const resource of storyResources) {
+    const relationKind = stringMetadata(resource.metadata.storyRelationKind);
     const nodeKey = stringMetadata(resource.metadata.storyNode);
     const nodePath = nodeKey ? pathByNode.get(nodeKey) : undefined;
     const pathId = numericMetadata(resource.metadata.storyPathId) ?? nodePath?.pathId;
     if (pathId === undefined || !pathById.has(pathId)) continue;
-    if (isArcaeaVnCgResource(resource)) {
-      addResource(vnResources, pathId, resource);
+    if (relationKind === "path-scene" || relationKind === "vn-scene" || isArcaeaVnCgResource(resource)) {
+      const sceneId = stringMetadata(resource.metadata.storySceneId) ?? "path:33:divine-oblivion-vn";
+      addResource(pathSceneResources, sceneId, resource);
       assignedIds.add(resource.resourceId);
       continue;
     }
@@ -97,13 +110,18 @@ export function buildArcaeaStoryExplorerModel(resources: PublicResource[], struc
     assignedIds.add(resource.resourceId);
   }
 
-  const paths = structure.paths.map((storyPath) => {
+  const paths: ArcaeaStoryExplorerPath[] = structure.paths.map((storyPath): ArcaeaStoryExplorerPath => {
     const entries = storyPath.nodes.map((nodeKey, order) => {
       const resourcesForNode = sortResources(nodeResources.get(`${storyPath.pathId}:${nodeKey}`) ?? []);
       const annotation = annotationByNode.get(nodeKey);
       const iconKey = structure.nodeIcons[nodeKey];
+      const text = textByNode.get(nodeKey);
+      const sceneIds = storyAtlas?.scenes.filter((scene) => scene.nodeKey === nodeKey).map((scene) => scene.sceneId) ?? [];
       const visual = annotation?.visual ?? (resourcesForNode.length > 0 ? "illustration" : "story");
-      const relatedSongs = uniqueStrings(resourcesForNode.map((resource) => stringMetadata(resource.metadata.relatedSongTitle) ?? ""));
+      const relatedSongs = uniqueStrings([
+        ...resourcesForNode.map((resource) => stringMetadata(resource.metadata.relatedSongTitle) ?? ""),
+        annotation?.relatedSongId ?? "",
+      ]);
       const unlockLabel = annotation
         ? annotation.unlockKind === "pack"
           ? `解锁：${annotation.relatedPackTitle ?? "对应曲包"}`
@@ -122,6 +140,8 @@ export function buildArcaeaStoryExplorerModel(resources: PublicResource[], struc
         staffRoll: annotation?.staffRoll ?? false,
         ...(iconKey ? { iconKey } : {}),
         ...(unlockLabel ? { unlockLabel } : {}),
+        ...(text ? { text } : {}),
+        sceneIds,
       } satisfies ArcaeaStoryExplorerEntry;
     });
     const pathNodeSet = new Set(storyPath.nodes);
@@ -133,12 +153,28 @@ export function buildArcaeaStoryExplorerModel(resources: PublicResource[], struc
         from: storyPath.nodes[index]!,
         to: nodeKey,
         kind: "linear" as const,
-      }))).map((link) => ({ ...link, external: false }));
+      }))).map((link) => ({ ...link, external: false, provenance: localExplicitConnections.length > 0 ? "audited" as const : "sequential-fallback" as const }));
     const externalConnections = explicitConnections
       .filter((link) => !(pathNodeSet.has(link.from) && pathNodeSet.has(link.to)))
-      .map((link) => ({ ...link, external: true }));
+      .map((link) => ({ ...link, external: true, provenance: "audited" as const }));
     const rootEntries = rootEntryKeys(storyPath.nodes, storyPath.pathId);
-    const pathVnResources = sortResources(vnResources.get(storyPath.pathId) ?? []);
+    const pathScenes = [...(storyAtlas?.scenes ?? [])]
+      .filter((scene) => scene.pathId === storyPath.pathId && (!scene.nodeKey || scene.kind === "path-scene" || scene.kind === "epilogue"))
+      .map((scene) => ({ ...scene, resources: sortResources(pathSceneResources.get(scene.sceneId) ?? []) }));
+    const fallbackSceneIds = [...pathSceneResources.entries()]
+      .filter(([sceneId, sceneResources]) => sceneResources.some((resource) => numericMetadata(resource.metadata.storyPathId) === storyPath.pathId) && !pathScenes.some((scene) => scene.sceneId === sceneId))
+      .map(([sceneId]) => sceneId);
+    const fallbackScenes: ArcaeaStoryExplorerScene[] = fallbackSceneIds.map((sceneId) => ({
+      sceneId,
+      kind: "path-scene",
+      displayTitle: "Path Scene",
+      pathId: storyPath.pathId,
+      resourceIds: sortResources(pathSceneResources.get(sceneId) ?? []).map((resource) => resource.resourceId),
+      locales: {},
+      resources: sortResources(pathSceneResources.get(sceneId) ?? []),
+    }));
+    const allPathScenes = [...pathScenes, ...fallbackScenes];
+    const pathVnResources = sortResources(allPathScenes.flatMap((scene) => scene.resources));
     return {
       pathId: storyPath.pathId,
       act: storyPath.act,
@@ -152,10 +188,11 @@ export function buildArcaeaStoryExplorerModel(resources: PublicResource[], struc
       externalConnections,
       rootEntries,
       vnResources: pathVnResources,
+      pathScenes: allPathScenes,
       resourceCount: entries.reduce((total, entry) => total + entry.resources.length, 0) + pathVnResources.length,
     } satisfies ArcaeaStoryExplorerPath;
   });
-  const pathByIdModel = new Map(paths.map((path) => [path.pathId, path]));
+  const pathByIdModel = new Map(paths.map((path) => [path.pathId, path] as const));
   const sections = structure.sections.map((section) => {
     const sectionPaths = section.pathIds
       .map((pathId) => pathByIdModel.get(pathId))
@@ -179,7 +216,11 @@ export function buildArcaeaStoryExplorerModel(resources: PublicResource[], struc
       vnCg: storyResources.filter(isArcaeaVnCgResource).length,
       assigned: assignedIds.size,
       unassigned: unassignedResources.length,
+      pathScenes: paths.reduce((total, storyPath) => total + storyPath.pathScenes.length, 0),
+      vnScenes: storyAtlas?.scenes.filter((scene) => scene.kind === "vn-scene" || scene.kind === "epilogue").length ?? 0,
+      textEntries: storyAtlas?.text.coverage.entriesWithText ?? 0,
     },
+    ...(storyAtlas ? { storyAtlas } : {}),
   };
 }
 
