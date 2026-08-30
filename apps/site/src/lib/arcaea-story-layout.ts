@@ -1,4 +1,12 @@
-import type { ArcaeaStoryExplorerConnection, ArcaeaStoryExplorerPath, ArcaeaStoryExplorerSection } from "./arcaea-story-explorer";
+import type {
+  ArcaeaStoryAuthoredContinuationType,
+  ArcaeaStoryAuthoredLineType,
+  ArcaeaStoryAuthoredNodeType,
+  ArcaeaStoryAuthoredPortalType,
+  ArcaeaStoryAuthoredSubworldType,
+  ArcaeaStoryLayoutType,
+} from "../../../../packages/domain/src/browse";
+import type { ArcaeaStoryExplorerConnection, ArcaeaStoryExplorerPath, ArcaeaStoryExplorerSection, ArcaeaStoryExplorerModel } from "./arcaea-story-explorer";
 
 export type StoryAtlasPoint = { x: number; y: number };
 export type StoryAtlasBounds = {
@@ -10,20 +18,50 @@ export type StoryAtlasBounds = {
   bottom: number;
 };
 export type StoryAtlasOrientation = "horizontal" | "compact-horizontal" | "vertical" | "branch-horizontal" | "stepped";
+export type StoryAtlasNodeTransform = {
+  scaleX: number;
+  scaleY: number;
+  rotation: number;
+  width: number;
+  height: number;
+  artRef?: string;
+};
 export type StoryAtlasLine = {
-  x1: number;
-  y1: number;
-  x2: number;
-  y2: number;
-  from: string;
-  to: string;
-  kind: "linear" | "branch" | "merge";
-  provenance: "audited" | "sequential-fallback";
+  x: number;
+  y: number;
+  length: number;
+  thickness: number;
+  rotation: number;
+  scaleX: number;
+  scaleY: number;
+  lineId?: string;
+  sourceName?: string;
+  resourcePath?: string;
+  provenance: "authored-csb" | "sequential-fallback";
   pathIds: number[];
+  from?: string;
+  to?: string;
+  kind?: "linear" | "branch" | "merge";
   external?: boolean;
+  x1?: number;
+  y1?: number;
+  x2?: number;
+  y2?: number;
 };
 export type StoryAtlasAvatar = { id: number; x: number; y: number; pathId: number; label: string };
 export type StoryAtlasScenePoint = { sceneId: string; x: number; y: number; kind: string; title: string };
+export type StoryAtlasPortal = {
+  portalId: string;
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+  scaleX: number;
+  scaleY: number;
+  rotation: number;
+  sourceName: string;
+  artRef?: string;
+};
 export type StoryAtlasPathLayout = {
   path: ArcaeaStoryExplorerPath;
   x: number;
@@ -33,69 +71,67 @@ export type StoryAtlasPathLayout = {
   orientation: StoryAtlasOrientation;
   bounds: StoryAtlasBounds;
   interactiveBounds: StoryAtlasBounds;
-  title: StoryAtlasPoint;
-  titleBounds: StoryAtlasBounds;
+  title?: StoryAtlasPoint;
+  titleBounds?: StoryAtlasBounds;
   nodes: Record<string, StoryAtlasPoint>;
   nodeBounds: Record<string, StoryAtlasBounds>;
+  nodeTransforms: Record<string, StoryAtlasNodeTransform>;
   avatars: StoryAtlasAvatar[];
   avatarBounds: StoryAtlasBounds[];
   scenes: StoryAtlasScenePoint[];
   sceneBounds: Record<string, StoryAtlasBounds>;
 };
+export type StoryAtlasOverviewPath = {
+  pathId: number;
+  point: StoryAtlasPoint;
+  titlePoint?: StoryAtlasPoint;
+};
+export type StoryAtlasContinuationLayout = {
+  continuation: ArcaeaStoryAuthoredContinuationType;
+  bounds: StoryAtlasBounds;
+  nodes: Record<string, StoryAtlasPoint>;
+  nodeBounds: Record<string, StoryAtlasBounds>;
+  nodeTransforms: Record<string, StoryAtlasNodeTransform>;
+  lines: StoryAtlasLine[];
+};
+export type StoryAtlasSubworldLayout = {
+  subworld: ArcaeaStoryAuthoredSubworldType;
+  width: number;
+  height: number;
+  worldBounds: StoryAtlasBounds;
+  title: StoryAtlasPoint;
+  titleBounds: StoryAtlasBounds;
+  nodes: Record<string, StoryAtlasPoint>;
+  nodeBounds: Record<string, StoryAtlasBounds>;
+  nodeTransforms: Record<string, StoryAtlasNodeTransform>;
+  lines: StoryAtlasLine[];
+  continuation?: StoryAtlasContinuationLayout;
+};
 export type StoryAtlasLayout = {
+  layoutSource: "authored-csb" | "fallback-generated";
   sectionAct: number;
   width: number;
   height: number;
   worldBounds: StoryAtlasBounds;
+  overview: {
+    csbPath?: string;
+    bounds: StoryAtlasBounds;
+    paths: StoryAtlasOverviewPath[];
+  };
   paths: StoryAtlasPathLayout[];
   lines: StoryAtlasLine[];
+  portals: StoryAtlasPortal[];
   initialCamera: { x: number; y: number; scale: number };
 };
 
-const PATH_PADDING = 34;
-const WORLD_MARGIN = 120;
-const PATH_GAP = 86;
-const NODE_HALF_WIDTH = 60;
-const NODE_HALF_HEIGHT = 56;
-const AVATAR_HALF_WIDTH = 52;
-const AVATAR_HALF_HEIGHT = 56;
-const SCENE_HALF_WIDTH = 96;
-const SCENE_HALF_HEIGHT = 38;
-
-// These are only content-layout hints. They are not Story facts and can be
-// changed without touching the semantic projection.
-const LAYOUT_OVERRIDES: Partial<Record<number, StoryAtlasOrientation>> = {
-  1: "branch-horizontal", // Eternal Core
-  2: "branch-horizontal", // Vicious Labyrinth
-  8: "branch-horizontal", // Black Fate
-  19: "branch-horizontal", // Final Verdict
-  27: "branch-horizontal", // Absolute Nihil
-  32: "stepped", // Liminal Eclipse
-  33: "stepped", // Divine Oblivion
-};
-
-const CLUSTER_ANCHORS: StoryAtlasPoint[] = [
-  { x: 100, y: 100 },
-  { x: 1250, y: 100 },
-  { x: 2400, y: 100 },
-  { x: 120, y: 720 },
-  { x: 1450, y: 720 },
-  { x: 2700, y: 720 },
-  { x: 520, y: 1400 },
-  { x: 1900, y: 1400 },
-];
-
-const SEARCH_DIRECTIONS: StoryAtlasPoint[] = [
-  { x: 0, y: 0 },
-  { x: 0, y: 1 },
-  { x: 1, y: 0 },
-  { x: -1, y: 0 },
-  { x: 0, y: -1 },
-  { x: 1, y: 1 },
-  { x: -1, y: 1 },
-  { x: -1, y: -1 },
-  { x: 1, y: -1 },
-];
+const DEFAULT_NODE_WIDTH = 193;
+const DEFAULT_NODE_HEIGHT = 193;
+const DEFAULT_TITLE_WIDTH = 300;
+const DEFAULT_TITLE_HEIGHT = 72;
+const DEFAULT_AVATAR_SIZE = 72;
+const DEFAULT_SCENE_WIDTH = 180;
+const DEFAULT_SCENE_HEIGHT = 64;
+const DEFAULT_PORTAL_SIZE = 260;
 
 export function boundsIntersect(left: StoryAtlasBounds, right: StoryAtlasBounds, gap = 0): boolean {
   return left.left < right.right + gap
@@ -111,266 +147,12 @@ export function boundsContains(outer: StoryAtlasBounds, inner: StoryAtlasBounds)
     && inner.bottom <= outer.bottom;
 }
 
-export function buildArcaeaStoryAtlasLayout(section: ArcaeaStoryExplorerSection): StoryAtlasLayout {
-  const localLayouts = section.paths.map(buildPathLayout);
-  const clusterOrder = new Map<string, number>();
-  const clusterCounts = new Map<string, number>();
-  for (const storyPath of section.paths) {
-    const key = clusterKey(storyPath);
-    if (!clusterOrder.has(key)) clusterOrder.set(key, clusterOrder.size);
-  }
-
-  const placed: StoryAtlasPathLayout[] = [];
-  for (const [index, local] of localLayouts.entries()) {
-    const key = clusterKey(local.path);
-    const clusterIndex = clusterOrder.get(key) ?? index;
-    const clusterOffset = clusterCounts.get(key) ?? 0;
-    clusterCounts.set(key, clusterOffset + 1);
-    const anchor = CLUSTER_ANCHORS[(clusterIndex + section.act) % CLUSTER_ANCHORS.length] ?? CLUSTER_ANCHORS[0]!;
-    const seed = {
-      x: anchor.x,
-      y: anchor.y + clusterOffset * (local.height + PATH_GAP + 44),
-    };
-    placed.push(resolveCollision(translatePath(local, seed.x, seed.y), placed));
-  }
-
-  const minLeft = Math.min(0, ...placed.map((pathLayout) => pathLayout.interactiveBounds.left));
-  const minTop = Math.min(0, ...placed.map((pathLayout) => pathLayout.interactiveBounds.top));
-  const shiftX = WORLD_MARGIN - minLeft;
-  const shiftY = WORLD_MARGIN - minTop;
-  const paths = placed.map((pathLayout) => translatePath(pathLayout, pathLayout.x + shiftX, pathLayout.y + shiftY));
-  const maxRight = Math.max(WORLD_MARGIN, ...paths.map((pathLayout) => pathLayout.interactiveBounds.right));
-  const maxBottom = Math.max(WORLD_MARGIN, ...paths.map((pathLayout) => pathLayout.interactiveBounds.bottom));
-  const width = Math.ceil(maxRight + WORLD_MARGIN);
-  const height = Math.ceil(maxBottom + WORLD_MARGIN);
-  const worldBounds = makeBounds(0, 0, width, height);
-  const pointByNode = new Map<string, StoryAtlasPoint>();
-  const pathByNode = new Map<string, number>();
-  for (const pathLayout of paths) {
-    for (const [nodeKey, point] of Object.entries(pathLayout.nodes)) {
-      pointByNode.set(nodeKey, point);
-      pathByNode.set(nodeKey, pathLayout.path.pathId);
-    }
-  }
-
-  const lines: StoryAtlasLine[] = [];
-  const lineKeys = new Set<string>();
-  for (const pathLayout of paths) {
-    for (const connection of [...pathLayout.path.connections, ...pathLayout.path.externalConnections]) {
-      const external = connection.external;
-      const key = connection.from + "|" + connection.to + "|" + connection.kind + "|" + external;
-      if (lineKeys.has(key)) continue;
-      lineKeys.add(key);
-      const line = lineForConnection(connection, pointByNode, pathByNode, pathLayout.path.pathId, external);
-      if (line) lines.push(line);
-    }
-  }
-
-  return {
-    sectionAct: section.act,
-    width,
-    height,
-    worldBounds,
-    paths,
-    lines,
-    initialCamera: { x: width / 2, y: height / 2, scale: 0.82 },
-  };
-}
-
-type LocalPathLayout = StoryAtlasPathLayout;
-
-function buildPathLayout(storyPath: ArcaeaStoryExplorerPath): LocalPathLayout {
-  const orientation = chooseOrientation(storyPath);
-  const nodes: Record<string, StoryAtlasPoint> = {};
-  const nodeBounds: Record<string, StoryAtlasBounds> = {};
-  const nodePositions = nodePositionsFor(storyPath, orientation);
-  for (const [index, entry] of storyPath.entries.entries()) {
-    const point = nodePositions[index] ?? { x: 80, y: 190 };
-    nodes[entry.key] = point;
-    nodeBounds[entry.key] = makeBounds(point.x - NODE_HALF_WIDTH, point.y - NODE_HALF_HEIGHT, NODE_HALF_WIDTH * 2, NODE_HALF_HEIGHT * 2);
-  }
-
-  const avatarPositions = avatarPositionsFor(storyPath.characterIds);
-  const avatars = storyPath.characterIds.map((id, index) => ({
-    id,
-    x: avatarPositions[index]?.x ?? 54,
-    y: avatarPositions[index]?.y ?? 62,
-    pathId: storyPath.pathId,
-    label: storyPath.title,
-  }));
-  const avatarBounds = avatars.map((avatar) => makeBounds(avatar.x - AVATAR_HALF_WIDTH, avatar.y - AVATAR_HALF_HEIGHT, AVATAR_HALF_WIDTH * 2, AVATAR_HALF_HEIGHT * 2));
-
-  const titleWidth = Math.max(220, Math.min(370, 220 + Math.max(0, storyPath.title.length - 12) * 5));
-  const avatarColumns = Math.min(3, Math.max(1, storyPath.characterIds.length));
-  const titleLeft = storyPath.characterIds.length > 0 ? avatarColumns * 82 + 28 : 28;
-  const titleBounds = makeBounds(titleLeft, 24, titleWidth, 68);
-  const title = { x: titleBounds.left + titleBounds.width / 2, y: titleBounds.top + titleBounds.height / 2 };
-
-  const maxNodeRight = Math.max(120, ...Object.values(nodeBounds).map((bounds) => bounds.right));
-  const maxNodeBottom = Math.max(210, ...Object.values(nodeBounds).map((bounds) => bounds.bottom));
-  const sceneStartX = Math.max(130, Math.min(maxNodeRight + 30, maxNodeRight - 40));
-  const scenes = storyPath.pathScenes.map((scene, index) => ({
-    sceneId: scene.sceneId,
-    x: sceneStartX + index * (SCENE_HALF_WIDTH * 2 + 20),
-    y: maxNodeBottom + 70,
-    kind: scene.kind,
-    title: scene.displayTitle ?? scene.sceneId,
-  }));
-  const sceneBounds: Record<string, StoryAtlasBounds> = {};
-  for (const scene of scenes) {
-    sceneBounds[scene.sceneId] = makeBounds(scene.x - SCENE_HALF_WIDTH, scene.y - SCENE_HALF_HEIGHT, SCENE_HALF_WIDTH * 2, SCENE_HALF_HEIGHT * 2);
-  }
-
-  const contentBounds = unionBounds([
-    titleBounds,
-    ...Object.values(nodeBounds),
-    ...avatarBounds,
-    ...Object.values(sceneBounds),
-  ]);
-  const shiftX = PATH_PADDING - contentBounds.left;
-  const shiftY = PATH_PADDING - contentBounds.top;
-  const translatedNodes = mapPoints(nodes, shiftX, shiftY);
-  const translatedNodeBounds = mapBoundsRecord(nodeBounds, shiftX, shiftY);
-  const translatedAvatars = avatars.map((avatar) => ({ ...avatar, x: avatar.x + shiftX, y: avatar.y + shiftY }));
-  const translatedAvatarBounds = avatarBounds.map((bounds) => shiftBounds(bounds, shiftX, shiftY));
-  const translatedScenes = scenes.map((scene) => ({ ...scene, x: scene.x + shiftX, y: scene.y + shiftY }));
-  const translatedSceneBounds = mapBoundsRecord(sceneBounds, shiftX, shiftY);
-  const translatedTitleBounds = shiftBounds(titleBounds, shiftX, shiftY);
-  const translatedTitle = { x: title.x + shiftX, y: title.y + shiftY };
-  const translatedContent = shiftBounds(contentBounds, shiftX, shiftY);
-  const width = Math.ceil(translatedContent.right + PATH_PADDING);
-  const height = Math.ceil(translatedContent.bottom + PATH_PADDING);
-  const bounds = makeBounds(0, 0, width, height);
-
-  return {
-    path: storyPath,
-    x: 0,
-    y: 0,
-    width,
-    height,
-    orientation,
-    bounds,
-    interactiveBounds: bounds,
-    title: translatedTitle,
-    titleBounds: translatedTitleBounds,
-    nodes: translatedNodes,
-    nodeBounds: translatedNodeBounds,
-    avatars: translatedAvatars,
-    avatarBounds: translatedAvatarBounds,
-    scenes: translatedScenes,
-    sceneBounds: translatedSceneBounds,
-  };
-}
-
-function chooseOrientation(storyPath: ArcaeaStoryExplorerPath): StoryAtlasOrientation {
-  const override = LAYOUT_OVERRIDES[storyPath.pathId];
-  if (override) return override;
-  const hasBranchOrMerge = [...storyPath.connections, ...storyPath.externalConnections].some((connection) => connection.kind !== "linear");
-  if (hasBranchOrMerge) return storyPath.entries.length >= 7 ? "branch-horizontal" : "stepped";
-  if (storyPath.pathScenes.length > 0) return storyPath.entries.length <= 5 ? "vertical" : "stepped";
-  if (storyPath.entries.length >= 8) return "compact-horizontal";
-  return "horizontal";
-}
-
-function nodePositionsFor(storyPath: ArcaeaStoryExplorerPath, orientation: StoryAtlasOrientation): StoryAtlasPoint[] {
-  const count = storyPath.entries.length;
-  const nodeTop = 166;
-  if (orientation === "vertical") {
-    return storyPath.entries.map((_, index) => ({ x: 105 + (index % 2) * 32, y: nodeTop + index * 112 }));
-  }
-  if (orientation === "stepped") {
-    const columns = Math.min(5, Math.max(3, Math.ceil(Math.sqrt(Math.max(1, count) * 1.25))));
-    return storyPath.entries.map((_, index) => {
-      const row = Math.floor(index / columns);
-      const column = index % columns;
-      const serpentineColumn = row % 2 === 0 ? column : columns - 1 - column;
-      return { x: 76 + serpentineColumn * 122, y: nodeTop + row * 128 };
-    });
-  }
-  if (orientation === "branch-horizontal") {
-    return storyPath.entries.map((entry, index) => {
-      const incoming = storyPath.connections.find((connection) => connection.to === entry.key);
-      const row = incoming?.kind === "branch" ? (index % 2 === 0 ? 0 : 2) : incoming?.kind === "merge" ? 1 : index % 3 === 0 ? 0 : 1;
-      return { x: 76 + index * 112, y: nodeTop + row * 84 };
-    });
-  }
-  const gap = orientation === "compact-horizontal" ? 98 : 116;
-  return storyPath.entries.map((_, index) => ({
-    x: 76 + index * gap,
-    y: nodeTop + (orientation === "compact-horizontal" ? [0, 18, 8][index % 3]! : index % 2 === 0 ? 0 : 16),
-  }));
-}
-
-function avatarPositionsFor(characterIds: number[]): StoryAtlasPoint[] {
-  const columns = Math.min(3, Math.max(1, characterIds.length));
-  return characterIds.map((_, index) => ({
-    x: 54 + (index % columns) * 82,
-    y: 62 + Math.floor(index / columns) * 76,
-  }));
-}
-
-function clusterKey(storyPath: ArcaeaStoryExplorerPath): string {
-  const characters = [...storyPath.characterIds].sort((left, right) => left - right);
-  return characters.length > 0 ? "characters:" + characters.join(",") : "type:" + storyPath.type;
-}
-
-function resolveCollision(candidate: StoryAtlasPathLayout, placed: StoryAtlasPathLayout[]): StoryAtlasPathLayout {
-  if (placed.every((other) => !boundsIntersect(candidate.interactiveBounds, other.interactiveBounds, PATH_GAP))) return candidate;
-  const stepX = Math.max(260, Math.round(candidate.width * 0.72));
-  const stepY = Math.max(190, Math.round(candidate.height * 0.78));
-  for (let ring = 1; ring <= 64; ring += 1) {
-    for (const direction of SEARCH_DIRECTIONS.slice(1)) {
-      const shifted = translatePath(candidate, candidate.x + direction.x * ring * stepX, candidate.y + direction.y * ring * stepY);
-      if (shifted.interactiveBounds.left < 0 || shifted.interactiveBounds.top < 0) continue;
-      if (placed.every((other) => !boundsIntersect(shifted.interactiveBounds, other.interactiveBounds, PATH_GAP))) return shifted;
-    }
-  }
-  return candidate;
-}
-
-function lineForConnection(
-  connection: ArcaeaStoryExplorerConnection,
-  points: Map<string, StoryAtlasPoint>,
-  pathByNode: Map<string, number>,
-  pathId: number,
-  external: boolean,
-): StoryAtlasLine | undefined {
-  const from = points.get(connection.from);
-  const to = points.get(connection.to);
-  if (!from || !to) return undefined;
-  const pathIds = [...new Set([pathId, pathByNode.get(connection.to)])].filter((value): value is number => value !== undefined);
-  return {
-    x1: from.x,
-    y1: from.y,
-    x2: to.x,
-    y2: to.y,
-    from: connection.from,
-    to: connection.to,
-    kind: connection.kind,
-    provenance: connection.provenance,
-    pathIds,
-    ...(external ? { external: true } : {}),
-  };
-}
-
 function makeBounds(left: number, top: number, width: number, height: number): StoryAtlasBounds {
   return { left, top, width, height, right: left + width, bottom: top + height };
 }
 
-function shiftBounds(bounds: StoryAtlasBounds, x: number, y: number): StoryAtlasBounds {
-  return makeBounds(bounds.left + x, bounds.top + y, bounds.width, bounds.height);
-}
-
-function mapPoints(points: Record<string, StoryAtlasPoint>, x: number, y: number): Record<string, StoryAtlasPoint> {
-  return Object.fromEntries(Object.entries(points).map(([key, point]) => [key, { x: point.x + x, y: point.y + y }]));
-}
-
-function mapBoundsRecord(bounds: Record<string, StoryAtlasBounds>, x: number, y: number): Record<string, StoryAtlasBounds> {
-  return Object.fromEntries(Object.entries(bounds).map(([key, value]) => [key, shiftBounds(value, x, y)]));
-}
-
 function unionBounds(bounds: StoryAtlasBounds[]): StoryAtlasBounds {
-  if (bounds.length === 0) return makeBounds(0, 0, 0, 0);
+  if (bounds.length === 0) return makeBounds(0, 0, 1, 1);
   const left = Math.min(...bounds.map((item) => item.left));
   const top = Math.min(...bounds.map((item) => item.top));
   const right = Math.max(...bounds.map((item) => item.right));
@@ -378,22 +160,303 @@ function unionBounds(bounds: StoryAtlasBounds[]): StoryAtlasBounds {
   return makeBounds(left, top, right - left, bottom - top);
 }
 
-function translatePath(pathLayout: StoryAtlasPathLayout, x: number, y: number): StoryAtlasPathLayout {
-  const deltaX = x - pathLayout.x;
-  const deltaY = y - pathLayout.y;
+function pointFromPlacement(item: { x: number; y: number }): StoryAtlasPoint {
+  return { x: item.x, y: item.y };
+}
+
+function nodeTransform(item: ArcaeaStoryAuthoredNodeType, fallbackWidth = DEFAULT_NODE_WIDTH, fallbackHeight = DEFAULT_NODE_HEIGHT): StoryAtlasNodeTransform {
   return {
-    ...pathLayout,
-    x,
-    y,
-    bounds: shiftBounds(pathLayout.bounds, deltaX, deltaY),
-    interactiveBounds: shiftBounds(pathLayout.interactiveBounds, deltaX, deltaY),
-    title: { x: pathLayout.title.x + deltaX, y: pathLayout.title.y + deltaY },
-    titleBounds: shiftBounds(pathLayout.titleBounds, deltaX, deltaY),
-    nodes: mapPoints(pathLayout.nodes, deltaX, deltaY),
-    nodeBounds: mapBoundsRecord(pathLayout.nodeBounds, deltaX, deltaY),
-    avatars: pathLayout.avatars.map((avatar) => ({ ...avatar, x: avatar.x + deltaX, y: avatar.y + deltaY })),
-    avatarBounds: pathLayout.avatarBounds.map((bounds) => shiftBounds(bounds, deltaX, deltaY)),
-    scenes: pathLayout.scenes.map((scene) => ({ ...scene, x: scene.x + deltaX, y: scene.y + deltaY })),
-    sceneBounds: mapBoundsRecord(pathLayout.sceneBounds, deltaX, deltaY),
+    scaleX: item.scaleX,
+    scaleY: item.scaleY,
+    rotation: item.rotation,
+    width: item.width ?? fallbackWidth,
+    height: item.height ?? fallbackHeight,
+    ...(item.artRef ? { artRef: item.artRef } : {}),
+  };
+}
+
+function nodeBounds(point: StoryAtlasPoint, transform: StoryAtlasNodeTransform): StoryAtlasBounds {
+  return makeBounds(point.x - transform.width * Math.abs(transform.scaleX) / 2, point.y - transform.height * Math.abs(transform.scaleY) / 2, transform.width * Math.abs(transform.scaleX), transform.height * Math.abs(transform.scaleY));
+}
+
+function titleBounds(point: StoryAtlasPoint): StoryAtlasBounds {
+  return makeBounds(point.x - DEFAULT_TITLE_WIDTH / 2, point.y - DEFAULT_TITLE_HEIGHT / 2, DEFAULT_TITLE_WIDTH, DEFAULT_TITLE_HEIGHT);
+}
+
+function authoredLine(item: ArcaeaStoryAuthoredLineType): StoryAtlasLine {
+  return {
+    x: item.x,
+    y: item.y,
+    length: item.length,
+    thickness: item.thickness,
+    rotation: item.rotation,
+    scaleX: item.scaleX,
+    scaleY: item.scaleY,
+    lineId: item.lineId,
+    sourceName: item.sourceName,
+    ...(item.resourcePath ? { resourcePath: item.resourcePath } : {}),
+    provenance: "authored-csb",
+    pathIds: item.pathId === undefined ? [] : [item.pathId],
+  };
+}
+
+function authoredPortal(item: ArcaeaStoryAuthoredPortalType): StoryAtlasPortal {
+  return {
+    portalId: item.portalId,
+    x: item.x,
+    y: item.y,
+    width: item.width ?? DEFAULT_PORTAL_SIZE,
+    height: item.height ?? DEFAULT_PORTAL_SIZE,
+    scaleX: item.scaleX,
+    scaleY: item.scaleY,
+    rotation: item.rotation,
+    sourceName: item.sourceName,
+    ...(item.artRef ? { artRef: item.artRef } : {}),
+  };
+}
+
+function pathScenes(path: ArcaeaStoryExplorerPath, lastPoint: StoryAtlasPoint): { scenes: StoryAtlasScenePoint[]; bounds: StoryAtlasBounds[] } {
+  return {
+    scenes: path.pathScenes.map((scene, index) => ({
+      sceneId: scene.sceneId,
+      x: lastPoint.x + 170 + index * (DEFAULT_SCENE_WIDTH + 24),
+      y: lastPoint.y,
+      kind: scene.kind,
+      title: scene.displayTitle ?? scene.sceneId,
+    })),
+    bounds: path.pathScenes.map((_, index) => makeBounds(lastPoint.x + 170 + index * (DEFAULT_SCENE_WIDTH + 24) - DEFAULT_SCENE_WIDTH / 2, lastPoint.y - DEFAULT_SCENE_HEIGHT / 2, DEFAULT_SCENE_WIDTH, DEFAULT_SCENE_HEIGHT)),
+  };
+}
+
+function makePathLayout(path: ArcaeaStoryExplorerPath, points: Record<string, StoryAtlasPoint>, transforms: Record<string, StoryAtlasNodeTransform>, avatars: StoryAtlasAvatar[], scenes: StoryAtlasScenePoint[], sceneBoundValues: StoryAtlasBounds[], title?: StoryAtlasPoint, titleBound?: StoryAtlasBounds): StoryAtlasPathLayout {
+  const fallbackTransform: StoryAtlasNodeTransform = { scaleX: 1, scaleY: 1, rotation: 0, width: DEFAULT_NODE_WIDTH, height: DEFAULT_NODE_HEIGHT };
+  const nodeBoundValues = Object.entries(points).map(([key, point]) => nodeBounds(point, transforms[key] ?? fallbackTransform));
+  const bounds = unionBounds([...nodeBoundValues, ...avatars.map((avatar) => makeBounds(avatar.x - DEFAULT_AVATAR_SIZE / 2, avatar.y - DEFAULT_AVATAR_SIZE / 2, DEFAULT_AVATAR_SIZE, DEFAULT_AVATAR_SIZE)), ...sceneBoundValues, ...(titleBound ? [titleBound] : [])]);
+  const padded = makeBounds(bounds.left - 34, bounds.top - 34, bounds.width + 68, bounds.height + 68);
+  const nodeBoundRecord: Record<string, StoryAtlasBounds> = {};
+  for (const [key, point] of Object.entries(points)) nodeBoundRecord[key] = nodeBounds(point, transforms[key] ?? fallbackTransform);
+  const sceneBoundRecord: Record<string, StoryAtlasBounds> = {};
+  for (const [index, scene] of scenes.entries()) {
+    const bound = sceneBoundValues[index];
+    if (bound) sceneBoundRecord[scene.sceneId] = bound;
+  }
+  return {
+    path,
+    x: padded.left,
+    y: padded.top,
+    width: padded.width,
+    height: padded.height,
+    orientation: "horizontal",
+    bounds: padded,
+    interactiveBounds: padded,
+    ...(title ? { title } : {}),
+    ...(titleBound ? { titleBounds: titleBound } : {}),
+    nodes: points,
+    nodeBounds: nodeBoundRecord,
+    nodeTransforms: transforms,
+    avatars,
+    avatarBounds: avatars.map((avatar) => makeBounds(avatar.x - DEFAULT_AVATAR_SIZE / 2, avatar.y - DEFAULT_AVATAR_SIZE / 2, DEFAULT_AVATAR_SIZE, DEFAULT_AVATAR_SIZE)),
+    scenes,
+    sceneBounds: sceneBoundRecord,
+  };
+}
+
+function initialCamera(section: ArcaeaStoryExplorerSection, paths: StoryAtlasPathLayout[], worldBounds: StoryAtlasBounds): { x: number; y: number; scale: number } {
+  const mainPaths = section.paths
+    .filter((path) => path.type === "main")
+    .map((path) => paths.find((layout) => layout.path.pathId === path.pathId))
+    .filter((value): value is StoryAtlasPathLayout => value !== undefined);
+  const focusPaths = (mainPaths.length > 0 ? mainPaths : paths).slice(0, 3);
+  const points = focusPaths.flatMap((path) => Object.values(path.nodes));
+  if (points.length === 0) return { x: worldBounds.width / 2, y: worldBounds.height / 2, scale: 0.78 };
+  return {
+    x: points.reduce((sum, point) => sum + point.x, 0) / points.length,
+    y: points.reduce((sum, point) => sum + point.y, 0) / points.length,
+    scale: 0.78,
+  };
+}
+
+function authoredOverview(layout: ArcaeaStoryLayoutType, sectionAct: number): StoryAtlasLayout["overview"] {
+  const source = layout.sections.find((section) => section.sectionAct === sectionAct)?.overview;
+  if (!source) return { bounds: makeBounds(0, 0, 1, 1), paths: [] };
+  return {
+    csbPath: source.csbPath,
+    bounds: makeBounds(0, 0, source.bounds.width, source.bounds.height),
+    paths: source.paths.map((path) => ({
+      pathId: path.pathId,
+      point: pointFromPlacement(path.entry ?? path.anchor),
+      ...(path.title ? { titlePoint: pointFromPlacement(path.title) } : {}),
+    })),
+  };
+}
+
+function buildAuthoredLayout(section: ArcaeaStoryExplorerSection, authored: ArcaeaStoryLayoutType["sections"][number], layout: ArcaeaStoryLayoutType): StoryAtlasLayout {
+  const paths: StoryAtlasPathLayout[] = [];
+  for (const authoredPath of authored.world.paths) {
+    if (authoredPath.pathId === 19 && authored.world.portals.length > 0) continue;
+    const storyPath = section.paths.find((path) => path.pathId === authoredPath.pathId);
+    if (!storyPath) continue;
+    const points: Record<string, StoryAtlasPoint> = {};
+    const transforms: Record<string, StoryAtlasNodeTransform> = {};
+    for (const node of authoredPath.nodes) {
+      if (!node.nodeKey || !storyPath.entries.some((entry) => entry.key === node.nodeKey)) continue;
+      points[node.nodeKey] = pointFromPlacement(node);
+      transforms[node.nodeKey] = nodeTransform(node);
+    }
+    const title = authoredPath.title ? pointFromPlacement(authoredPath.title) : undefined;
+    const titleBound = title ? titleBounds(title) : undefined;
+    const last = [...Object.values(points)].at(-1) ?? pointFromPlacement(authoredPath.anchor);
+    const sceneResult = pathScenes(storyPath, last);
+    const avatars = authoredPath.avatars.map((avatar) => ({
+      id: avatar.characterId,
+      x: avatar.x,
+      y: avatar.y,
+      pathId: authoredPath.pathId,
+      label: storyPath.title,
+    }));
+    paths.push(makePathLayout(storyPath, points, transforms, avatars, sceneResult.scenes, sceneResult.bounds, title, titleBound));
+  }
+  const worldBounds = makeBounds(0, 0, authored.world.bounds.width, authored.world.bounds.height);
+  return {
+    layoutSource: "authored-csb",
+    sectionAct: section.act,
+    width: Math.ceil(worldBounds.width),
+    height: Math.ceil(worldBounds.height),
+    worldBounds,
+    overview: authoredOverview(layout, section.act),
+    paths,
+    lines: authored.world.lines.map(authoredLine),
+    portals: authored.world.portals.map(authoredPortal),
+    initialCamera: initialCamera(section, paths, worldBounds),
+  };
+}
+
+function fallbackLine(connection: ArcaeaStoryExplorerConnection, points: Map<string, StoryAtlasPoint>, pathIds: number[], external: boolean): StoryAtlasLine | undefined {
+  const from = points.get(connection.from);
+  const to = points.get(connection.to);
+  if (!from || !to) return undefined;
+  const dx = to.x - from.x;
+  const dy = to.y - from.y;
+  return {
+    x: from.x,
+    y: from.y,
+    length: Math.max(1, Math.hypot(dx, dy)),
+    thickness: 3,
+    rotation: Math.atan2(dy, dx) * 180 / Math.PI,
+    scaleX: 1,
+    scaleY: 1,
+    from: connection.from,
+    to: connection.to,
+    kind: connection.kind,
+    provenance: "sequential-fallback",
+    pathIds,
+    ...(external ? { external: true } : {}),
+    x1: from.x,
+    y1: from.y,
+    x2: to.x,
+    y2: to.y,
+  };
+}
+
+function buildFallbackLayout(section: ArcaeaStoryExplorerSection): StoryAtlasLayout {
+  const paths: StoryAtlasPathLayout[] = [];
+  const allPoints = new Map<string, StoryAtlasPoint>();
+  const columns = Math.max(1, Math.ceil(Math.sqrt(section.paths.length)));
+  for (const [index, storyPath] of section.paths.entries()) {
+    const column = index % columns;
+    const row = Math.floor(index / columns);
+    const points: Record<string, StoryAtlasPoint> = {};
+    const transforms: Record<string, StoryAtlasNodeTransform> = {};
+    for (const [entryIndex, entry] of storyPath.entries.entries()) {
+      const point = { x: 180 + column * 880 + entryIndex * 230, y: 180 + row * 420 + (entryIndex % 2) * 48 };
+      points[entry.key] = point;
+      transforms[entry.key] = { scaleX: 1, scaleY: 1, rotation: 0, width: DEFAULT_NODE_WIDTH, height: DEFAULT_NODE_HEIGHT };
+      allPoints.set(entry.key, point);
+    }
+    const last = [...Object.values(points)].at(-1) ?? { x: 180, y: 180 };
+    const scenes = pathScenes(storyPath, last);
+    const title = { x: Object.values(points)[0]?.x ?? last.x, y: last.y - 150 };
+    paths.push(makePathLayout(storyPath, points, transforms, [], scenes.scenes, scenes.bounds, title, titleBounds(title)));
+  }
+  const lines: StoryAtlasLine[] = [];
+  for (const storyPath of section.paths) {
+    for (const connection of [...storyPath.connections, ...storyPath.externalConnections]) {
+      const line = fallbackLine(connection, allPoints, [storyPath.pathId], connection.external);
+      if (line) lines.push(line);
+    }
+  }
+  const contentBounds = unionBounds(paths.map((path) => path.interactiveBounds));
+  const width = Math.ceil(contentBounds.right + 180);
+  const height = Math.ceil(contentBounds.bottom + 180);
+  const worldBounds = makeBounds(0, 0, width, height);
+  return {
+    layoutSource: "fallback-generated",
+    sectionAct: section.act,
+    width,
+    height,
+    worldBounds,
+    overview: { bounds: makeBounds(0, 0, 1, 1), paths: [] },
+    paths,
+    lines,
+    portals: [],
+    initialCamera: initialCamera(section, paths, worldBounds),
+  };
+}
+
+export function buildArcaeaStoryAtlasLayout(section: ArcaeaStoryExplorerSection, storyAtlas?: ArcaeaStoryExplorerModel["storyAtlas"]): StoryAtlasLayout {
+  const authored = storyAtlas?.layout?.sections.find((item) => item.sectionAct === section.act);
+  return authored && storyAtlas?.layout ? buildAuthoredLayout(section, authored, storyAtlas.layout) : buildFallbackLayout(section);
+}
+
+function continuationLayout(continuation: ArcaeaStoryAuthoredContinuationType): StoryAtlasContinuationLayout {
+  const nodes: Record<string, StoryAtlasPoint> = {};
+  const transforms: Record<string, StoryAtlasNodeTransform> = {};
+  const bounds: Record<string, StoryAtlasBounds> = {};
+  for (const node of continuation.nodes) {
+    const point = pointFromPlacement(node);
+    nodes[node.nodeId] = point;
+    transforms[node.nodeId] = {
+      scaleX: node.scaleX,
+      scaleY: node.scaleY,
+      rotation: node.rotation,
+      width: node.width ?? 420,
+      height: node.height ?? 350,
+      ...(node.artRef ? { artRef: node.artRef } : {}),
+    };
+    bounds[node.nodeId] = nodeBounds(point, transforms[node.nodeId]!);
+  }
+  return {
+    continuation,
+    bounds: makeBounds(0, 0, continuation.bounds.width, continuation.bounds.height),
+    nodes,
+    nodeBounds: bounds,
+    nodeTransforms: transforms,
+    lines: continuation.lines.map(authoredLine),
+  };
+}
+
+export function buildArcaeaStorySubworldLayout(subworld: ArcaeaStoryAuthoredSubworldType): StoryAtlasSubworldLayout {
+  const nodes: Record<string, StoryAtlasPoint> = {};
+  const transforms: Record<string, StoryAtlasNodeTransform> = {};
+  const bounds: Record<string, StoryAtlasBounds> = {};
+  for (const node of subworld.nodes) {
+    const point = pointFromPlacement(node);
+    nodes[node.nodeKey] = point;
+    transforms[node.nodeKey] = nodeTransform(node, node.width ?? DEFAULT_NODE_WIDTH, node.height ?? DEFAULT_NODE_HEIGHT);
+    bounds[node.nodeKey] = nodeBounds(point, transforms[node.nodeKey]!);
+  }
+  const title = subworld.titlePlacement ? pointFromPlacement(subworld.titlePlacement) : { x: subworld.bounds.width / 2, y: 48 };
+  return {
+    subworld,
+    width: Math.ceil(subworld.bounds.width),
+    height: Math.ceil(subworld.bounds.height),
+    worldBounds: makeBounds(0, 0, subworld.bounds.width, subworld.bounds.height),
+    title,
+    titleBounds: titleBounds(title),
+    nodes,
+    nodeBounds: bounds,
+    nodeTransforms: transforms,
+    lines: subworld.lines.map(authoredLine),
+    ...(subworld.continuation ? { continuation: continuationLayout(subworld.continuation) } : {}),
   };
 }

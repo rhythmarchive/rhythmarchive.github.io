@@ -707,6 +707,125 @@
       "height": 189,
       "mime": "image/webp",
       "sizeBytes": 270
+    },
+    "finale-1.png": {
+      "url": "/generated/arcaea/story/ui/finale-1.webp",
+      "width": 177,
+      "height": 315,
+      "mime": "image/webp",
+      "sizeBytes": 19686
+    },
+    "finale-2.png": {
+      "url": "/generated/arcaea/story/ui/finale-2.webp",
+      "width": 177,
+      "height": 257,
+      "mime": "image/webp",
+      "sizeBytes": 17860
+    },
+    "finale-3.png": {
+      "url": "/generated/arcaea/story/ui/finale-3.webp",
+      "width": 177,
+      "height": 257,
+      "mime": "image/webp",
+      "sizeBytes": 17332
+    },
+    "finale-4.png": {
+      "url": "/generated/arcaea/story/ui/finale-4.webp",
+      "width": 177,
+      "height": 257,
+      "mime": "image/webp",
+      "sizeBytes": 17532
+    },
+    "finale-5.png": {
+      "url": "/generated/arcaea/story/ui/finale-5.webp",
+      "width": 177,
+      "height": 257,
+      "mime": "image/webp",
+      "sizeBytes": 15738
+    },
+    "finale-6.png": {
+      "url": "/generated/arcaea/story/ui/finale-6.webp",
+      "width": 271,
+      "height": 181,
+      "mime": "image/webp",
+      "sizeBytes": 21942
+    },
+    "finale-7.png": {
+      "url": "/generated/arcaea/story/ui/finale-7.webp",
+      "width": 277,
+      "height": 223,
+      "mime": "image/webp",
+      "sizeBytes": 26426
+    },
+    "finale-divider.png": {
+      "url": "/generated/arcaea/story/ui/finale-divider.webp",
+      "width": 15,
+      "height": 36,
+      "mime": "image/webp",
+      "sizeBytes": 712
+    },
+    "finale-divider-2.png": {
+      "url": "/generated/arcaea/story/ui/finale-divider-2.webp",
+      "width": 43,
+      "height": 196,
+      "mime": "image/webp",
+      "sizeBytes": 7210
+    },
+    "finale-6-divider.png": {
+      "url": "/generated/arcaea/story/ui/finale-6-divider.webp",
+      "width": 45,
+      "height": 111,
+      "mime": "image/webp",
+      "sizeBytes": 4696
+    },
+    "finale-portal-default.png": {
+      "url": "/generated/arcaea/story/ui/finale-portal-default.webp",
+      "width": 412,
+      "height": 412,
+      "mime": "image/webp",
+      "sizeBytes": 26436
+    },
+    "finale-portal-buttonbg.png": {
+      "url": "/generated/arcaea/story/ui/finale-portal-buttonbg.webp",
+      "width": 600,
+      "height": 600,
+      "mime": "image/webp",
+      "sizeBytes": 57850
+    },
+    "finale-portal-bgfragments.png": {
+      "url": "/generated/arcaea/story/ui/finale-portal-bgfragments.webp",
+      "width": 816,
+      "height": 959,
+      "mime": "image/webp",
+      "sizeBytes": 15920
+    },
+    "finale-portal-fgfragments.png": {
+      "url": "/generated/arcaea/story/ui/finale-portal-fgfragments.webp",
+      "width": 546,
+      "height": 329,
+      "mime": "image/webp",
+      "sizeBytes": 6384
+    },
+    "epilogue-a.png": {
+      "url": "/generated/arcaea/story/ui/epilogue-a.webp",
+      "width": 512,
+      "height": 364,
+      "mime": "image/webp",
+      "sizeBytes": 71058
+    },
+    "epilogue-b.png": {
+      "url": "/generated/arcaea/story/ui/epilogue-b.webp",
+      "width": 428,
+      "height": 360,
+      "mime": "image/webp",
+      "sizeBytes": 63544
+    },
+    "epilogue-line.png": {
+      "url": "/generated/arcaea/story/ui/epilogue-line.webp",
+      "width": 222,
+      "height": 830,
+      "mime": "image/webp",
+      "sizeBytes": 9308
     }
   },
   "avatars": {

@@ -451,6 +451,137 @@ export const ArcaeaStorySearchEntry = z.object({
   terms: z.array(z.string().min(1)).default([]),
 });
 
+/**
+ * Build-time authored Story Mode geometry extracted from the package's Cocos
+ * Studio CSB files. These values are deliberately separate from semantic
+ * dependency edges: a visual line is authored geometry, not an inferred edge.
+ */
+export const ArcaeaStoryLayoutPlacement = z.object({
+  x: z.number(),
+  y: z.number(),
+  scaleX: z.number(),
+  scaleY: z.number(),
+  rotation: z.number(),
+});
+
+export const ArcaeaStoryAuthoredNode = ArcaeaStoryLayoutPlacement.extend({
+  nodeKey: z.string().min(1),
+  pathId: z.number().int().nonnegative(),
+  slot: z.number().int().positive(),
+  sourceName: z.string().min(1),
+  artRef: PORTABLE_RELATIVE_PATH.optional(),
+  width: z.number().positive().optional(),
+  height: z.number().positive().optional(),
+});
+
+export const ArcaeaStoryAuthoredAvatar = ArcaeaStoryLayoutPlacement.extend({
+  characterId: z.number().int().nonnegative(),
+  sourceName: z.string().min(1),
+});
+
+export const ArcaeaStoryAuthoredTitle = ArcaeaStoryLayoutPlacement.extend({
+  sourceName: z.string().min(1),
+  text: z.string().min(1).optional(),
+});
+
+export const ArcaeaStoryAuthoredLine = ArcaeaStoryLayoutPlacement.extend({
+  lineId: z.string().min(1),
+  length: z.number().positive(),
+  thickness: z.number().positive(),
+  sourceName: z.string().min(1),
+  resourcePath: PORTABLE_RELATIVE_PATH.optional(),
+  pathId: z.number().int().nonnegative().optional(),
+});
+
+export const ArcaeaStoryAuthoredOverviewPath = z.object({
+  pathId: z.number().int().nonnegative(),
+  slot: z.number().int().positive(),
+  sourceName: z.string().min(1),
+  anchor: ArcaeaStoryLayoutPlacement,
+  entry: ArcaeaStoryLayoutPlacement.optional(),
+  title: ArcaeaStoryAuthoredTitle.optional(),
+});
+
+export const ArcaeaStoryAuthoredWorldPath = z.object({
+  pathId: z.number().int().nonnegative(),
+  sourceName: z.string().min(1),
+  anchor: ArcaeaStoryLayoutPlacement,
+  title: ArcaeaStoryAuthoredTitle.optional(),
+  nodes: z.array(ArcaeaStoryAuthoredNode),
+  avatars: z.array(ArcaeaStoryAuthoredAvatar).default([]),
+});
+
+export const ArcaeaStoryAuthoredPortal = ArcaeaStoryLayoutPlacement.extend({
+  portalId: z.string().min(1),
+  sourceName: z.string().min(1),
+  artRef: PORTABLE_RELATIVE_PATH.optional(),
+  width: z.number().positive().optional(),
+  height: z.number().positive().optional(),
+});
+
+export const ArcaeaStoryAuthoredBounds = z.object({
+  width: z.number().positive(),
+  height: z.number().positive(),
+});
+
+export const ArcaeaStoryAuthoredOverview = z.object({
+  csbPath: PORTABLE_RELATIVE_PATH,
+  bounds: ArcaeaStoryAuthoredBounds,
+  paths: z.array(ArcaeaStoryAuthoredOverviewPath),
+});
+
+export const ArcaeaStoryAuthoredWorld = z.object({
+  csbPath: PORTABLE_RELATIVE_PATH,
+  bounds: ArcaeaStoryAuthoredBounds,
+  paths: z.array(ArcaeaStoryAuthoredWorldPath),
+  lines: z.array(ArcaeaStoryAuthoredLine),
+  portals: z.array(ArcaeaStoryAuthoredPortal).default([]),
+});
+
+export const ArcaeaStoryAuthoredContinuationNode = ArcaeaStoryLayoutPlacement.extend({
+  nodeId: z.string().min(1),
+  sourceName: z.string().min(1),
+  artRef: PORTABLE_RELATIVE_PATH.optional(),
+  label: z.string().min(1).optional(),
+  width: z.number().positive().optional(),
+  height: z.number().positive().optional(),
+});
+
+export const ArcaeaStoryAuthoredContinuation = z.object({
+  continuationId: z.string().min(1),
+  title: z.string().min(1),
+  csbPath: PORTABLE_RELATIVE_PATH,
+  bounds: ArcaeaStoryAuthoredBounds,
+  nodes: z.array(ArcaeaStoryAuthoredContinuationNode),
+  lines: z.array(ArcaeaStoryAuthoredLine).default([]),
+});
+
+export const ArcaeaStoryAuthoredSubworld = z.object({
+  subworldId: z.string().min(1),
+  sectionAct: z.number().int().nonnegative(),
+  title: z.string().min(1),
+  csbPath: PORTABLE_RELATIVE_PATH,
+  bounds: ArcaeaStoryAuthoredBounds,
+  titlePlacement: ArcaeaStoryAuthoredTitle.optional(),
+  nodes: z.array(ArcaeaStoryAuthoredNode),
+  lines: z.array(ArcaeaStoryAuthoredLine).default([]),
+  continuation: ArcaeaStoryAuthoredContinuation.optional(),
+});
+
+export const ArcaeaStoryLayout = z.object({
+  schemaVersion: z.literal(1),
+  game: z.literal("arcaea"),
+  source: ArcaeaStorySource,
+  extractionVersion: z.string().min(1),
+  csbPaths: z.array(PORTABLE_RELATIVE_PATH).min(1),
+  sections: z.array(z.object({
+    sectionAct: z.number().int().nonnegative(),
+    overview: ArcaeaStoryAuthoredOverview,
+    world: ArcaeaStoryAuthoredWorld,
+  })).min(1),
+  subworlds: z.array(ArcaeaStoryAuthoredSubworld).default([]),
+});
+
 /** Independent Story Atlas data; Catalog Resources remain the stable media identity. */
 export const ArcaeaStoryAtlas = z.object({
   schemaVersion: z.literal(1),
@@ -460,6 +591,7 @@ export const ArcaeaStoryAtlas = z.object({
   relationEvidence: z.array(ArcaeaStoryRelationEvidence),
   derivatives: ArcaeaStoryDerivatives.optional(),
   searchIndex: z.array(ArcaeaStorySearchEntry).default([]),
+  layout: ArcaeaStoryLayout.optional(),
 });
 
 export const CategoryBrowseProjection = z.object({
@@ -642,6 +774,20 @@ export type ArcaeaStoryTextProjectionType = z.infer<typeof ArcaeaStoryTextProjec
 export type ArcaeaStorySceneType = z.infer<typeof ArcaeaStoryScene>;
 export type ArcaeaStoryRelationEvidenceType = z.infer<typeof ArcaeaStoryRelationEvidence>;
 export type ArcaeaStoryDerivativesType = z.infer<typeof ArcaeaStoryDerivatives>;
+export type ArcaeaStoryLayoutPlacementType = z.infer<typeof ArcaeaStoryLayoutPlacement>;
+export type ArcaeaStoryAuthoredNodeType = z.infer<typeof ArcaeaStoryAuthoredNode>;
+export type ArcaeaStoryAuthoredAvatarType = z.infer<typeof ArcaeaStoryAuthoredAvatar>;
+export type ArcaeaStoryAuthoredTitleType = z.infer<typeof ArcaeaStoryAuthoredTitle>;
+export type ArcaeaStoryAuthoredLineType = z.infer<typeof ArcaeaStoryAuthoredLine>;
+export type ArcaeaStoryAuthoredOverviewPathType = z.infer<typeof ArcaeaStoryAuthoredOverviewPath>;
+export type ArcaeaStoryAuthoredWorldPathType = z.infer<typeof ArcaeaStoryAuthoredWorldPath>;
+export type ArcaeaStoryAuthoredOverviewType = z.infer<typeof ArcaeaStoryAuthoredOverview>;
+export type ArcaeaStoryAuthoredWorldType = z.infer<typeof ArcaeaStoryAuthoredWorld>;
+export type ArcaeaStoryAuthoredContinuationType = z.infer<typeof ArcaeaStoryAuthoredContinuation>;
+export type ArcaeaStoryAuthoredContinuationNodeType = z.infer<typeof ArcaeaStoryAuthoredContinuationNode>;
+export type ArcaeaStoryAuthoredPortalType = z.infer<typeof ArcaeaStoryAuthoredPortal>;
+export type ArcaeaStoryAuthoredSubworldType = z.infer<typeof ArcaeaStoryAuthoredSubworld>;
+export type ArcaeaStoryLayoutType = z.infer<typeof ArcaeaStoryLayout>;
 export type ArcaeaStoryAtlasType = z.infer<typeof ArcaeaStoryAtlas>;
 export type ArcaeaCategoryBrowseProjectionType = z.infer<typeof ArcaeaCategoryBrowseProjection>;
 export type PhigrosCategoryBrowseProjectionType = z.infer<typeof PhigrosCategoryBrowseProjection>;

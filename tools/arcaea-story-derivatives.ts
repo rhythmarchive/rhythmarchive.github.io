@@ -14,6 +14,24 @@ const UI_EXACT_FILES = new Set([
 ]);
 const sourcePackageVersion = "7.0.0c";
 
+const SPECIAL_UI_SOURCES = [
+  ...Array.from({ length: 7 }, (_, index) => ({
+    key: `finale-${index + 1}.png`,
+    relativePath: `assets/layouts/story/finale/Finale-${index + 1}.png`,
+    width: 900,
+  })),
+  { key: "finale-divider.png", relativePath: "assets/layouts/story/finale/Finale-Divider.png", width: 120 },
+  { key: "finale-divider-2.png", relativePath: "assets/layouts/story/finale/Finale-Divider-2.png", width: 180 },
+  { key: "finale-6-divider.png", relativePath: "assets/layouts/story/finale/Finale-6-Divider.png", width: 180 },
+  { key: "finale-portal-default.png", relativePath: "assets/layouts/1080/story/finaleportal/node-finale-button-default.png", width: 720 },
+  { key: "finale-portal-buttonbg.png", relativePath: "assets/layouts/1080/story/finaleportal/node-finale-buttonbg-portal.png", width: 900 },
+  { key: "finale-portal-bgfragments.png", relativePath: "assets/layouts/1080/story/finaleportal/node-finale-bgfragments.png", width: 900 },
+  { key: "finale-portal-fgfragments.png", relativePath: "assets/layouts/1080/story/finaleportal/node-finale-fgfragments.png", width: 900 },
+  { key: "epilogue-a.png", relativePath: "assets/layouts/story/finale/epilogue/Epilogue-A.png", width: 720 },
+  { key: "epilogue-b.png", relativePath: "assets/layouts/story/finale/epilogue/Epilogue-B.png", width: 720 },
+  { key: "epilogue-line.png", relativePath: "assets/layouts/story/finale/epilogue/Epilogue-Line.png", width: 360 },
+] as const;
+
 type StoryIndex = {
   source: ArcaeaStoryDerivativesType["source"];
   paths: Array<{ characters: number[] }>;
@@ -96,6 +114,7 @@ async function main(): Promise<void> {
     return index >= 0 && args[index + 1] ? args[index + 1]! : fallback;
   };
   const packageRoot = path.resolve(argument("--package-root", "temp/arcaea-story-atlas-investigation/package"));
+  const specialPackageRoot = path.resolve(argument("--special-package-root", "apk/Arcaea_7.0.0c"));
   const indexPath = path.resolve(argument("--index", "docs/apk-audit/data/arcaea-story-index.json"));
   const catalogPath = path.resolve(argument("--catalog", "catalog/index.json"));
   const outputRoot = path.resolve(argument("--output-root", "apps/site/public/generated/arcaea/story"));
@@ -132,11 +151,29 @@ async function main(): Promise<void> {
     if (dimensions.sizeBytes > budget) budgetViolations.push(`${url} (${dimensions.sizeBytes} > ${budget})`);
     return derivative(url, dimensions);
   };
+  const makeFile = async (relativePath: string, output: string, url: string, width: number, budget: number): Promise<ReturnType<typeof derivative> | undefined> => {
+    const input = path.join(specialPackageRoot, ...relativePath.replaceAll("\\", "/").split("/"));
+    try {
+      const info = await stat(input);
+      if (!info.isFile()) throw new Error("not a file");
+    } catch {
+      missing.push(relativePath);
+      return undefined;
+    }
+    const dimensions = await makeDerivative(input, output, width, 80);
+    if (dimensions.sizeBytes > budget) budgetViolations.push(`${url} (${dimensions.sizeBytes} > ${budget})`);
+    return derivative(url, dimensions);
+  };
 
   for (const [key, resource] of [...uiCandidates.entries()].sort(([left], [right]) => left.localeCompare(right, "en"))) {
     const url = `/generated/arcaea/story/ui/${key.replace(/\.[^.]+$/u, ".webp")}`;
     const result = await make(resource, path.join(outputRoot, "ui", key.replace(/\.[^.]+$/u, ".webp")), url, key === "act-bg.jpg" ? 1800 : 1200, 78, key === "act-bg.jpg" ? 700_000 : 250_000);
     if (result) ui[key] = result;
+  }
+  for (const special of SPECIAL_UI_SOURCES) {
+    const url = `/generated/arcaea/story/ui/${special.key.replace(/\.[^.]+$/u, ".webp")}`;
+    const result = await makeFile(special.relativePath, path.join(outputRoot, "ui", special.key.replace(/\.[^.]+$/u, ".webp")), url, special.width, 400_000);
+    if (result) ui[special.key] = result;
   }
   for (const resource of avatarCandidates.sort((left, right) => left.id.localeCompare(right.id, "en"))) {
     const url = `/generated/arcaea/story/avatars/${resource.id}.webp`;

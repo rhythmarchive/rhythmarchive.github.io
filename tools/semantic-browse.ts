@@ -55,6 +55,7 @@ type ArcaeaStoryAuditData = {
   scenes: ArcaeaStoryAtlasType["scenes"];
   relationEvidence: ArcaeaStoryRelationEvidenceType[];
   derivatives?: ArcaeaStoryAtlasType["derivatives"];
+  layout?: ArcaeaStoryAtlasType["layout"];
 };
 type ArcaeaStoryIndex = {
   schemaVersion: number;
@@ -804,6 +805,7 @@ function buildArcaeaSemantics(catalog: Catalog, arcaeaBrowse: ReturnType<typeof 
     relationEvidence: storyAudit.relationEvidence,
     ...(storyAudit.derivatives ? { derivatives: storyAudit.derivatives } : {}),
     searchIndex: storySearchIndex,
+    ...(storyAudit.layout ? { layout: storyAudit.layout } : {}),
   });
   const projection = ArcaeaCategoryBrowseProjection.parse({
     schemaVersion: 1,
@@ -865,6 +867,7 @@ async function main(): Promise<void> {
   const storyScenes = await trackedJson<ArcaeaStoryAtlasType["scenes"]>(auditDirectory, "arcaea-story-scenes.json");
   const storyRelationEvidence = await trackedJson<ArcaeaStoryRelationEvidenceType[]>(auditDirectory, "arcaea-story-cg-relation-evidence.json");
   const storyDerivatives = await trackedJson<NonNullable<ArcaeaStoryAtlasType["derivatives"]>>(auditDirectory, "arcaea-story-derivative-manifest.json");
+  const storyLayout = await trackedJson<NonNullable<ArcaeaStoryAtlasType["layout"]>>(auditDirectory, "arcaea-story-layout.json");
   const storyReferenceRows = await trackedCsv(auditDirectory, "arcaea-story-vn-references.csv");
   const backgroundRows = await trackedCsv(auditDirectory, "arcaea-background-relations.csv");
   const packRows = await trackedCsv(auditDirectory, "arcaea-pack-cover-relations.csv");
@@ -872,13 +875,14 @@ async function main(): Promise<void> {
   const linkplayRows = await trackedCsv(auditDirectory, "arcaea-linkplay-relations.csv");
   const phigrosChapterRows = await trackedCsv(auditDirectory, "phigros-chapter-cover-records.csv");
   const index = createPathIndex(catalog);
-  const arcaea = buildArcaeaSemantics(catalog, arcaeaBrowse, index, characterRows, storyRows, storyIndex, storyReferenceRows, backgroundRows, packRows, packRecordRows, linkplayRows, { text: storyText, scenes: storyScenes, relationEvidence: storyRelationEvidence, derivatives: storyDerivatives });
+  const arcaea = buildArcaeaSemantics(catalog, arcaeaBrowse, index, characterRows, storyRows, storyIndex, storyReferenceRows, backgroundRows, packRows, packRecordRows, linkplayRows, { text: storyText, scenes: storyScenes, relationEvidence: storyRelationEvidence, derivatives: storyDerivatives, layout: storyLayout });
   const phigrosDigestExclusions = new Set([
     "arcaea-story-index.json",
     "arcaea-story-text.json",
     "arcaea-story-scenes.json",
     "arcaea-story-cg-relation-evidence.json",
     "arcaea-story-derivative-manifest.json",
+    "arcaea-story-layout.json",
   ]);
   const phigros = buildPhigrosSemantics(catalog, phigrosChapterRows, `Phigros APK ${apkVersion(phigrosManifest)}`, sourceDigest(phigrosDigestExclusions));
   await mkdir(outputDirectory, { recursive: true });
