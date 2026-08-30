@@ -1,5 +1,6 @@
 import type {
   ArcaeaStoryAuthoredContinuationType,
+  ArcaeaStoryCompositeTransformType,
   ArcaeaStoryAuthoredLineType,
   ArcaeaStoryAuthoredNodeType,
   ArcaeaStoryAuthoredPortalType,
@@ -27,13 +28,11 @@ export type StoryAtlasNodeTransform = {
   artRef?: string;
 };
 export type StoryAtlasLine = {
-  x: number;
-  y: number;
-  length: number;
+  x1: number;
+  y1: number;
+  x2: number;
+  y2: number;
   thickness: number;
-  rotation: number;
-  scaleX: number;
-  scaleY: number;
   lineId?: string;
   sourceName?: string;
   resourcePath?: string;
@@ -43,10 +42,6 @@ export type StoryAtlasLine = {
   to?: string;
   kind?: "linear" | "branch" | "merge";
   external?: boolean;
-  x1?: number;
-  y1?: number;
-  x2?: number;
-  y2?: number;
 };
 export type StoryAtlasAvatar = { id: number; x: number; y: number; pathId: number; label: string };
 export type StoryAtlasScenePoint = { sceneId: string; x: number; y: number; kind: string; title: string };
@@ -106,6 +101,7 @@ export type StoryAtlasSubworldLayout = {
   nodeTransforms: Record<string, StoryAtlasNodeTransform>;
   lines: StoryAtlasLine[];
   continuation?: StoryAtlasContinuationLayout;
+  initialCamera: { x: number; y: number; scale: number };
 };
 export type StoryAtlasLayout = {
   layoutSource: "authored-csb" | "fallback-generated";
@@ -176,7 +172,12 @@ function nodeTransform(item: ArcaeaStoryAuthoredNodeType, fallbackWidth = DEFAUL
 }
 
 function nodeBounds(point: StoryAtlasPoint, transform: StoryAtlasNodeTransform): StoryAtlasBounds {
-  return makeBounds(point.x - transform.width * Math.abs(transform.scaleX) / 2, point.y - transform.height * Math.abs(transform.scaleY) / 2, transform.width * Math.abs(transform.scaleX), transform.height * Math.abs(transform.scaleY));
+  const halfWidth = transform.width * Math.abs(transform.scaleX) / 2;
+  const halfHeight = transform.height * Math.abs(transform.scaleY) / 2;
+  const radians = transform.rotation * Math.PI / 180;
+  const extentX = Math.abs(Math.cos(radians)) * halfWidth + Math.abs(Math.sin(radians)) * halfHeight;
+  const extentY = Math.abs(Math.sin(radians)) * halfWidth + Math.abs(Math.cos(radians)) * halfHeight;
+  return makeBounds(point.x - extentX, point.y - extentY, extentX * 2, extentY * 2);
 }
 
 function titleBounds(point: StoryAtlasPoint): StoryAtlasBounds {
@@ -185,18 +186,19 @@ function titleBounds(point: StoryAtlasPoint): StoryAtlasBounds {
 
 function authoredLine(item: ArcaeaStoryAuthoredLineType): StoryAtlasLine {
   return {
-    x: item.x,
-    y: item.y,
-    length: item.length,
+    x1: item.x1,
+    y1: item.y1,
+    x2: item.x2,
+    y2: item.y2,
     thickness: item.thickness,
-    rotation: item.rotation,
-    scaleX: item.scaleX,
-    scaleY: item.scaleY,
     lineId: item.lineId,
     sourceName: item.sourceName,
     ...(item.resourcePath ? { resourcePath: item.resourcePath } : {}),
     provenance: "authored-csb",
     pathIds: item.pathId === undefined ? [] : [item.pathId],
+    ...(item.from ? { from: item.from } : {}),
+    ...(item.to ? { to: item.to } : {}),
+    ...(item.kind ? { kind: item.kind } : {}),
   };
 }
 
@@ -335,26 +337,18 @@ function fallbackLine(connection: ArcaeaStoryExplorerConnection, points: Map<str
   const from = points.get(connection.from);
   const to = points.get(connection.to);
   if (!from || !to) return undefined;
-  const dx = to.x - from.x;
-  const dy = to.y - from.y;
   return {
-    x: from.x,
-    y: from.y,
-    length: Math.max(1, Math.hypot(dx, dy)),
+    x1: from.x,
+    y1: from.y,
+    x2: to.x,
+    y2: to.y,
     thickness: 3,
-    rotation: Math.atan2(dy, dx) * 180 / Math.PI,
-    scaleX: 1,
-    scaleY: 1,
     from: connection.from,
     to: connection.to,
     kind: connection.kind,
     provenance: "sequential-fallback",
     pathIds,
     ...(external ? { external: true } : {}),
-    x1: from.x,
-    y1: from.y,
-    x2: to.x,
-    y2: to.y,
   };
 }
 
@@ -408,16 +402,19 @@ export function buildArcaeaStoryAtlasLayout(section: ArcaeaStoryExplorerSection,
   return authored && storyAtlas?.layout ? buildAuthoredLayout(section, authored, storyAtlas.layout) : buildFallbackLayout(section);
 }
 
-function continuationLayout(continuation: ArcaeaStoryAuthoredContinuationType): StoryAtlasContinuationLayout {
+function continuationLayout(continuation: ArcaeaStoryAuthoredContinuationType, transform: ArcaeaStoryCompositeTransformType = { translateX: 0, translateY: 0, scale: 1 }): StoryAtlasContinuationLayout {
   const nodes: Record<string, StoryAtlasPoint> = {};
   const transforms: Record<string, StoryAtlasNodeTransform> = {};
   const bounds: Record<string, StoryAtlasBounds> = {};
   for (const node of continuation.nodes) {
-    const point = pointFromPlacement(node);
+    const point = {
+      x: transform.translateX + node.x * transform.scale,
+      y: transform.translateY + node.y * transform.scale,
+    };
     nodes[node.nodeId] = point;
     transforms[node.nodeId] = {
-      scaleX: node.scaleX,
-      scaleY: node.scaleY,
+      scaleX: node.scaleX * transform.scale,
+      scaleY: node.scaleY * transform.scale,
       rotation: node.rotation,
       width: node.width ?? 420,
       height: node.height ?? 350,
@@ -427,11 +424,21 @@ function continuationLayout(continuation: ArcaeaStoryAuthoredContinuationType): 
   }
   return {
     continuation,
-    bounds: makeBounds(0, 0, continuation.bounds.width, continuation.bounds.height),
+    bounds: makeBounds(transform.translateX, transform.translateY, continuation.bounds.width * transform.scale, continuation.bounds.height * transform.scale),
     nodes,
     nodeBounds: bounds,
     nodeTransforms: transforms,
-    lines: continuation.lines.map(authoredLine),
+    lines: continuation.lines.map((line) => {
+      const authored = authoredLine(line);
+      return {
+        ...authored,
+        x1: transform.translateX + authored.x1 * transform.scale,
+        y1: transform.translateY + authored.y1 * transform.scale,
+        x2: transform.translateX + authored.x2 * transform.scale,
+        y2: transform.translateY + authored.y2 * transform.scale,
+        thickness: authored.thickness * transform.scale,
+      };
+    }),
   };
 }
 
@@ -446,6 +453,15 @@ export function buildArcaeaStorySubworldLayout(subworld: ArcaeaStoryAuthoredSubw
     bounds[node.nodeKey] = nodeBounds(point, transforms[node.nodeKey]!);
   }
   const title = subworld.titlePlacement ? pointFromPlacement(subworld.titlePlacement) : { x: subworld.bounds.width / 2, y: 48 };
+  const continuation = subworld.continuation
+    ? continuationLayout(subworld.continuation, subworld.composite?.epilogueTransform)
+    : undefined;
+  const lines = [
+    ...subworld.lines.map(authoredLine),
+    ...(subworld.composite?.forkLines ?? []).map(authoredLine),
+    ...(continuation?.lines ?? []),
+  ];
+  const initialNode = nodes["F-7"] ?? Object.values(nodes)[0] ?? { x: subworld.bounds.width / 2, y: subworld.bounds.height / 2 };
   return {
     subworld,
     width: Math.ceil(subworld.bounds.width),
@@ -456,7 +472,8 @@ export function buildArcaeaStorySubworldLayout(subworld: ArcaeaStoryAuthoredSubw
     nodes,
     nodeBounds: bounds,
     nodeTransforms: transforms,
-    lines: subworld.lines.map(authoredLine),
-    ...(subworld.continuation ? { continuation: continuationLayout(subworld.continuation) } : {}),
+    lines,
+    ...(continuation ? { continuation } : {}),
+    initialCamera: { x: initialNode.x, y: initialNode.y, scale: 0.78 },
   };
 }

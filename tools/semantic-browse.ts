@@ -11,6 +11,7 @@ import {
   type CategoryBrowseProjectionType,
 } from "../packages/domain/src/index.js";
 import type { Catalog, Resource } from "../packages/domain/src/schema.js";
+import { ARCAEA_STORY_ATLAS_SCHEMA_VERSION } from "../packages/domain/src/browse.js";
 import type { ArcaeaStoryAtlasType, ArcaeaStoryRelationEvidenceType } from "../packages/domain/src/browse.js";
 
 type CsvRow = Record<string, string | undefined>;
@@ -798,7 +799,7 @@ function buildArcaeaSemantics(catalog: Catalog, arcaeaBrowse: ReturnType<typeof 
     facets: Object.fromEntries([...draft.facets.entries()].map(([key, values]) => [key, [...values]])),
   })).sort((left, right) => (left.sortOrder ?? 3_000_000_000) - (right.sortOrder ?? 3_000_000_000) || (left.displayTitle ?? "").localeCompare(right.displayTitle ?? "", "zh-CN") || left.resourceId.localeCompare(right.resourceId, "en"));
   const storyAtlas = ArcaeaStoryAtlas.parse({
-    schemaVersion: 1,
+    schemaVersion: ARCAEA_STORY_ATLAS_SCHEMA_VERSION,
     source: storyIndex.source,
     text: storyAudit.text,
     scenes: storyAudit.scenes,

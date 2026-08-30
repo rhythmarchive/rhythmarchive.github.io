@@ -271,32 +271,42 @@ test("header keeps a single extensible game-library entry on mobile and desktop"
   assert.doesNotMatch(styles, /site-nav > a:not\(\.nav-search\)/u);
 });
 
-test("Story Atlas UX contract keeps authored maps, subworld reader and modal behavior player-facing", () => {
+test("Story Atlas UX contract keeps authored maps, direct dialog reading and player-facing copy", () => {
   const component = fs.readFileSync(path.join(siteRoot, "src", "components", "ArcaeaStoryAtlas.astro"), "utf8");
   const script = fs.readFileSync(path.join(siteRoot, "src", "scripts", "arcaea-story-atlas.ts"), "utf8");
   const styles = fs.readFileSync(path.join(siteRoot, "src", "styles", "global.css"), "utf8");
   assert.match(component, /data-story-link-path-ids/u);
-  assert.match(component, /data-story-overview-csb/u);
   assert.match(component, /data-story-subworld-panel="final-verdict"/u);
   assert.match(component, /data-story-subworld-node/u);
-  assert.match(component, /data-story-reader-content/u);
+  assert.match(component, /x1=\{line\.x1\}.*x2=\{line\.x2\}/u);
+  assert.match(component, /data-story-node-variant/u);
+  assert.match(component, /model\.unassignedResources/u);
+  assert.match(component, /story-detail-dialog/u);
+  assert.doesNotMatch(component, /story-map-avatar-ring/u);
+  assert.doesNotMatch(component, /story-atlas-overview|story-continuation-node|story-reader/u);
   assert.doesNotMatch(component, /story-map-node-face/u);
   assert.match(script, /const interactiveSelector = "button, a, input, select, textarea/u);
   assert.match(script, /DRAG_THRESHOLD = 5/u);
-  assert.match(script, /function renderStoryPreview/u);
-  assert.match(script, /function buildReaderSegments/u);
+  assert.match(script, /function renderStoryFlow/u);
+  assert.match(script, /function buildStorySegments/u);
+  assert.match(script, /Object\.values\(payload\.resources\)\.find/u);
+  assert.match(script, /flowResourceIds/u);
+  assert.match(script, /button\[data-story-detail-close\]/u);
+  assert.match(script, /story-dialog-inline-visual/u);
+  assert.match(script, /zh-Hans.*zh-Hant.*en.*ja.*ko/u);
   assert.match(script, /activeSubworldId/u);
   assert.match(script, /story-subworld/u);
   assert.match(script, /lockBody/u);
   assert.match(script, /story-modal-open/u);
-  assert.doesNotMatch(script, /story-preview-next/u);
+  assert.match(script, /"story-path": undefined, "story-entry": undefined/u);
+  assert.doesNotMatch(script, /story-reader|story-open-reader|Read full story/u);
   assert.doesNotMatch(script, /renderMoreInfo/u);
   assert.match(styles, /\.story-map-path-cluster[^}]*pointer-events: none/u);
   assert.match(styles, /\.story-map-path-title[^}]*pointer-events: auto/u);
   assert.match(styles, /\.story-map-node-image/u);
-  assert.match(styles, /\.story-reader-overlay/u);
+  assert.match(styles, /\.story-detail-dialog/u);
+  assert.match(styles, /\.story-dialog-story-flow/u);
   assert.match(styles, /overscroll-behavior: contain/u);
-  assert.match(styles, /backdrop-filter: none/u);
   assert.match(styles, /\.story-map-link\.is-external[^}]*opacity: \.2/u);
 });
 

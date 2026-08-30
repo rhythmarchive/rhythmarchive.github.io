@@ -21,6 +21,7 @@ export type CsbNode = {
   position: CsbPoint;
   scale: CsbScale;
   rotation: number;
+  anchor: CsbPoint;
   size: CsbSize;
   visible: boolean;
   resourcePath?: string;
@@ -151,8 +152,8 @@ class FlatBufferReader {
     return value.replaceAll("\\", "/").replace(/^\.\//u, "");
   }
 
-  private structPoint(address: number | undefined): CsbPoint {
-    return address === undefined ? { x: 0, y: 0 } : { x: this.float32(address), y: this.float32(address + 4) };
+  private structPoint(address: number | undefined, fallback: CsbPoint = { x: 0, y: 0 }): CsbPoint {
+    return address === undefined ? fallback : { x: this.float32(address), y: this.float32(address + 4) };
   }
 
   private structScale(address: number | undefined): CsbScale {
@@ -221,6 +222,7 @@ class FlatBufferReader {
     }
     const position = this.structPoint(this.tableFieldStruct(widget, 7, 8));
     const scale = this.structScale(this.tableFieldStruct(widget, 8, 8));
+    const anchor = this.structPoint(this.tableFieldStruct(widget, 9, 8), { x: 0.5, y: 0.5 });
     const rotationAddress = this.tableFieldStruct(widget, 2, 8);
     const rotation = rotationAddress === undefined ? 0 : this.float32(rotationAddress);
     const size = this.structSize(this.tableFieldStruct(widget, 11, 8));
@@ -232,6 +234,7 @@ class FlatBufferReader {
       position,
       scale,
       rotation,
+      anchor,
       size,
       visible,
       ...(parsed.resourcePath ? { resourcePath: parsed.resourcePath } : {}),

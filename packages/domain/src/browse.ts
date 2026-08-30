@@ -456,6 +456,9 @@ export const ArcaeaStorySearchEntry = z.object({
  * Studio CSB files. These values are deliberately separate from semantic
  * dependency edges: a visual line is authored geometry, not an inferred edge.
  */
+export const ARCAEA_STORY_LAYOUT_SCHEMA_VERSION = 2 as const;
+export const ARCAEA_STORY_ATLAS_SCHEMA_VERSION = 2 as const;
+
 export const ArcaeaStoryLayoutPlacement = z.object({
   x: z.number(),
   y: z.number(),
@@ -489,6 +492,17 @@ export const ArcaeaStoryAuthoredLine = ArcaeaStoryLayoutPlacement.extend({
   length: z.number().positive(),
   thickness: z.number().positive(),
   sourceName: z.string().min(1),
+  width: z.number().positive(),
+  height: z.number().positive(),
+  anchorX: z.number().min(0).max(1),
+  anchorY: z.number().min(0).max(1),
+  x1: z.number(),
+  y1: z.number(),
+  x2: z.number(),
+  y2: z.number(),
+  from: z.string().min(1).optional(),
+  to: z.string().min(1).optional(),
+  kind: z.enum(["linear", "branch", "merge"]).optional(),
   resourcePath: PORTABLE_RELATIVE_PATH.optional(),
   pathId: z.number().int().nonnegative().optional(),
 });
@@ -556,6 +570,17 @@ export const ArcaeaStoryAuthoredContinuation = z.object({
   lines: z.array(ArcaeaStoryAuthoredLine).default([]),
 });
 
+export const ArcaeaStoryCompositeTransform = z.object({
+  translateX: z.number(),
+  translateY: z.number(),
+  scale: z.number().positive(),
+});
+
+export const ArcaeaStoryAuthoredComposite = z.object({
+  epilogueTransform: ArcaeaStoryCompositeTransform,
+  forkLines: z.array(ArcaeaStoryAuthoredLine).default([]),
+});
+
 export const ArcaeaStoryAuthoredSubworld = z.object({
   subworldId: z.string().min(1),
   sectionAct: z.number().int().nonnegative(),
@@ -566,10 +591,11 @@ export const ArcaeaStoryAuthoredSubworld = z.object({
   nodes: z.array(ArcaeaStoryAuthoredNode),
   lines: z.array(ArcaeaStoryAuthoredLine).default([]),
   continuation: ArcaeaStoryAuthoredContinuation.optional(),
+  composite: ArcaeaStoryAuthoredComposite.optional(),
 });
 
 export const ArcaeaStoryLayout = z.object({
-  schemaVersion: z.literal(1),
+  schemaVersion: z.literal(ARCAEA_STORY_LAYOUT_SCHEMA_VERSION),
   game: z.literal("arcaea"),
   source: ArcaeaStorySource,
   extractionVersion: z.string().min(1),
@@ -584,7 +610,7 @@ export const ArcaeaStoryLayout = z.object({
 
 /** Independent Story Atlas data; Catalog Resources remain the stable media identity. */
 export const ArcaeaStoryAtlas = z.object({
-  schemaVersion: z.literal(1),
+  schemaVersion: z.literal(ARCAEA_STORY_ATLAS_SCHEMA_VERSION),
   source: ArcaeaStorySource,
   text: ArcaeaStoryTextProjection,
   scenes: z.array(ArcaeaStoryScene),
@@ -785,6 +811,8 @@ export type ArcaeaStoryAuthoredOverviewType = z.infer<typeof ArcaeaStoryAuthored
 export type ArcaeaStoryAuthoredWorldType = z.infer<typeof ArcaeaStoryAuthoredWorld>;
 export type ArcaeaStoryAuthoredContinuationType = z.infer<typeof ArcaeaStoryAuthoredContinuation>;
 export type ArcaeaStoryAuthoredContinuationNodeType = z.infer<typeof ArcaeaStoryAuthoredContinuationNode>;
+export type ArcaeaStoryCompositeTransformType = z.infer<typeof ArcaeaStoryCompositeTransform>;
+export type ArcaeaStoryAuthoredCompositeType = z.infer<typeof ArcaeaStoryAuthoredComposite>;
 export type ArcaeaStoryAuthoredPortalType = z.infer<typeof ArcaeaStoryAuthoredPortal>;
 export type ArcaeaStoryAuthoredSubworldType = z.infer<typeof ArcaeaStoryAuthoredSubworld>;
 export type ArcaeaStoryLayoutType = z.infer<typeof ArcaeaStoryLayout>;

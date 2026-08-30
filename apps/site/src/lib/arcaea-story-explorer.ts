@@ -116,7 +116,10 @@ export function buildArcaeaStoryExplorerModel(resources: PublicResource[], struc
       const annotation = annotationByNode.get(nodeKey);
       const iconKey = structure.nodeIcons[nodeKey];
       const text = textByNode.get(nodeKey);
-      const sceneIds = storyAtlas?.scenes.filter((scene) => scene.nodeKey === nodeKey).map((scene) => scene.sceneId) ?? [];
+      const sceneIds = storyAtlas?.scenes.filter((scene) => (
+        scene.nodeKey === nodeKey
+        || (scene.kind === "epilogue" && Boolean(text?.storyData) && scene.storyData === text?.storyData)
+      )).map((scene) => scene.sceneId) ?? [];
       const visual = annotation?.visual ?? (resourcesForNode.length > 0 ? "illustration" : "story");
       const relatedSongs = uniqueStrings([
         ...resourcesForNode.map((resource) => stringMetadata(resource.metadata.relatedSongTitle) ?? ""),

@@ -98,12 +98,9 @@ function storyUiAsset(filename: string): PublicAsset | undefined {
   return derivativeUi(filename);
 }
 
-function textFor(entry: ArcaeaStoryExplorerEntry | undefined): ArcaeaStoryAtlasType["text"]["entries"][number] | undefined {
-  return entry?.text;
-}
-
 function compactEntry(entry: ArcaeaStoryExplorerEntry, pathTitle: string, sectionLabel: string, sectionAct: number, characterIds: number[]): Record<string, unknown> {
   const subworldId = /^(?:F|E)-/u.test(entry.key) ? "final-verdict" : undefined;
+  const endingLabel = entry.key === "E-1" ? "One Last Dream" : entry.key === "E-2" ? "A Perfect Wish" : undefined;
   return {
     id: sectionAct + ":" + entry.pathId + ":" + entry.key,
     pathId: entry.pathId,
@@ -112,6 +109,7 @@ function compactEntry(entry: ArcaeaStoryExplorerEntry, pathTitle: string, sectio
     sectionLabel,
     sectionAct,
     ...(subworldId ? { subworldId } : {}),
+    ...(endingLabel ? { endingLabel } : {}),
     visualLabel: entry.visualLabel,
     characterIds,
     characterLabels: characterIds.map(avatarLabel),
@@ -161,7 +159,7 @@ const clientScenes = model.sections.flatMap((section) => section.paths.flatMap((
 const storyResourceList = [...new Map(model.paths.flatMap((storyPath) => [
   ...storyPath.entries.flatMap((entry) => entry.resources),
   ...storyPath.pathScenes.flatMap((scene) => scene.resources),
-]).map((resource) => [resource.resourceId, resource])).values()];
+]).concat(model.unassignedResources).map((resource) => [resource.resourceId, resource])).values()];
 const clientResources = Object.fromEntries(storyResourceList.map((resource) => [resource.resourceId, compactResource(resource)]));
 const clientPayload = {
   entries: clientEntries,
@@ -184,13 +182,6 @@ function imageAttributes(image: PublicAsset | undefined, active: boolean): Recor
   return active ? { src: image.url, width: image.width, height: image.height } : { "data-src": image.url, width: image.width, height: image.height };
 }
 
-function initialTextLocale(entry: ArcaeaStoryExplorerEntry | undefined): string | undefined {
-  const texts = textFor(entry)?.texts ?? {};
-  return ["zh-Hans", "zh-Hant", "en", "ja", "ko"].find((locale) => texts[locale]);
-}
-
-const initialLocale = initialTextLocale(firstEntry);
-const initialText = initialLocale ? textFor(firstEntry)?.texts[initialLocale] : undefined;
 ---
 
 <section class="story-atlas-shell" data-story-atlas-root data-story-atlas-url={sitePath("/data/story/arcaea.json", BASE_PATH)} data-base-path={BASE_PATH}>
@@ -198,30 +189,30 @@ const initialText = initialLocale ? textFor(firstEntry)?.texts[initialLocale] : 
     <div class="story-atlas-hero-copy">
       <span class="archive-kicker">Arcaea</span>
       <h2>Story Atlas</h2>
-      <p>A story map shaped by the authored Story Mode layout, with a focused reader for the text behind each node.</p>
+      <p>按游戏中的剧情路径浏览节点、角色与 CG，点击节点即可阅读完整故事。</p>
     </div>
   </header>
 
   <div class="story-atlas-toolbar">
-    <div class="story-atlas-view-switch" role="group" aria-label="Story view">
-      <button class="button button-primary" type="button" data-story-view-toggle="atlas" aria-pressed="true">Story Atlas</button>
-      <button class="button button-secondary" type="button" data-story-view-toggle="gallery" aria-pressed="false">Gallery</button>
+    <div class="story-atlas-view-switch" role="group" aria-label="剧情浏览模式">
+      <button class="button button-primary" type="button" data-story-view-toggle="atlas" aria-pressed="true">剧情图谱</button>
+      <button class="button button-secondary" type="button" data-story-view-toggle="gallery" aria-pressed="false">图库</button>
     </div>
     <label class="story-atlas-search">
-      <span class="sr-only">Search story entries, paths, partners or scenes</span>
-      <input type="search" data-story-search placeholder="Search Entry, Path, Partner..." autocomplete="off" />
+      <span class="sr-only">搜索剧情节点、章节或角色</span>
+      <input type="search" data-story-search placeholder="搜索剧情节点、章节或角色……" autocomplete="off" />
     </label>
     <span class="story-atlas-search-status" data-story-search-status aria-live="polite"></span>
   </div>
   <div class="story-atlas-search-results" data-story-search-results hidden></div>
 
-  <nav class="story-atlas-parts" data-story-part-tabs aria-label="Act / Part">
+  <nav class="story-atlas-parts" data-story-part-tabs aria-label="章节">
     {model.sections.map((section, index) => {
       const artwork = sectionArtwork(section.label);
       const parts = sectionParts(section.label);
       return <button class:list={{ "story-atlas-part-tab": true, "is-active": index === 0 }} type="button" role="tab" data-story-section={section.act} aria-selected={index === 0} aria-controls={"story-atlas-section-" + section.act}>
         {artwork ? <img {...imageAttributes(artwork, true)} alt="" decoding="async" /> : null}
-        <span><small>{parts.act}</small><strong>{parts.part}</strong>{section.resourceCount > 0 ? <em>{section.resourceCount} CG</em> : null}</span>
+        <span><small>{parts.act}</small><strong>{parts.part}</strong>{section.resourceCount > 0 ? <em>{section.resourceCount} 个视觉资源</em> : null}</span>
       </button>;
     })}
   </nav>
@@ -241,45 +232,33 @@ const initialText = initialLocale ? textFor(firstEntry)?.texts[initialLocale] : 
             <span class="story-atlas-section-act">{parts.act}</span>
             <h3>{parts.part}</h3>
           </div>
-          <div class="story-atlas-section-copy">
-            <span>Authored Story World</span>
-            <span>{layout.layoutSource === "authored-csb" ? "CSB authored layout" : "fallback layout"}</span>
-          </div>
-          <div class="story-camera-controls" role="group" aria-label="Story World camera">
-            <button type="button" class="icon-button" data-story-camera="zoom-out" aria-label="Zoom out">-</button>
-            <button type="button" class="icon-button" data-story-camera="zoom-in" aria-label="Zoom in">+</button>
-            <button type="button" class="button button-secondary" data-story-camera="fit">Fit Part</button>
-            <button type="button" class="button button-secondary" data-story-camera="initial">Initial view</button>
+          <div class="story-camera-controls" role="group" aria-label="剧情地图视角">
+            <button type="button" class="icon-button" data-story-camera="zoom-out" aria-label="缩小">−</button>
+            <button type="button" class="icon-button" data-story-camera="zoom-in" aria-label="放大">＋</button>
+            <button type="button" class="button button-secondary" data-story-camera="fit">总览</button>
+            <button type="button" class="button button-secondary" data-story-camera="initial">初始视角</button>
           </div>
         </header>
-        <div class="story-atlas-overview" data-story-overview>
-          <div class="story-atlas-overview-label">Part overview</div>
-          <div class="story-atlas-overview-map" style={"width:" + Math.max(1, layout.overview.bounds.width) + "px;height:" + Math.max(1, layout.overview.bounds.height) + "px;"} data-story-overview-csb={layout.overview.csbPath}>
-            {layout.overview.paths.map((overviewPath) => <button class="story-atlas-overview-path" type="button" data-story-overview-path={overviewPath.pathId} data-story-overview-section={section.act} style={"left:" + overviewPath.point.x + "px;top:" + overviewPath.point.y + "px;"} aria-label={"Focus " + (section.paths.find((path) => path.pathId === overviewPath.pathId)?.title ?? "Path " + overviewPath.pathId)}>
-              <span></span>
-            </button>)}
-          </div>
-        </div>
-        <div class="story-map-viewport" data-story-map-viewport tabindex="0" aria-label={section.label + " story map"} data-world-width={layout.width} data-world-height={layout.height} data-story-initial-x={layout.initialCamera.x} data-story-initial-y={layout.initialCamera.y} data-story-initial-scale={layout.initialCamera.scale}>
+        <div class="story-map-viewport" data-story-map-viewport tabindex="0" aria-label={section.label + " 剧情地图"} data-world-width={layout.width} data-world-height={layout.height} data-story-initial-x={layout.initialCamera.x} data-story-initial-y={layout.initialCamera.y} data-story-initial-scale={layout.initialCamera.scale}>
           <div class="story-map-world" data-story-map-world data-story-world-source={layout.layoutSource} style={"width:" + layout.width + "px;height:" + layout.height + "px;"}>
             {backdrop ? <img class="story-map-background" {...imageAttributes(backdrop, active)} alt="" decoding="async" /> : null}
             <div class="story-map-wash" aria-hidden="true"></div>
             <div class="story-map-grid" aria-hidden="true"></div>
             <svg class="story-map-links" viewBox={"0 0 " + layout.width + " " + layout.height} role="presentation" aria-hidden="true">
-              {layout.lines.map((line) => <line class:list={{ "story-map-link": true, "is-authored": line.provenance === "authored-csb", "is-fallback": line.provenance === "sequential-fallback", "is-external": line.external === true }} x1="0" y1="0" x2={line.length} y2="0" stroke-width={line.thickness} transform={"translate(" + line.x + " " + line.y + ") rotate(" + line.rotation + ") scale(" + line.scaleX + " " + line.scaleY + ")"} data-story-link-from={line.from} data-story-link-to={line.to} data-story-link-path-ids={line.pathIds.join(",")} data-story-link-provenance={line.provenance} />)}
+              {layout.lines.map((line) => <line class:list={{ "story-map-link": true, "is-authored": line.provenance === "authored-csb", "is-fallback": line.provenance === "sequential-fallback", "is-external": line.external === true }} x1={line.x1} y1={line.y1} x2={line.x2} y2={line.y2} stroke-width={line.thickness} data-story-link-from={line.from} data-story-link-to={line.to} data-story-link-path-ids={line.pathIds.join(",")} data-story-link-provenance={line.provenance} />)}
             </svg>
             <div class="story-map-paths">
               {layout.paths.map((pathLayout) => {
                 const pathTitle = pathLayout.title ?? { x: pathLayout.x + pathLayout.width / 2, y: pathLayout.y + 30 };
                 return <section class:list={{ "story-map-path-cluster": true, "is-active": pathLayout.path.pathId === firstPath?.pathId }} data-story-map-path={pathLayout.path.pathId} data-story-path-x={pathTitle.x} data-story-path-y={pathTitle.y} style={"left:" + pathLayout.x + "px;top:" + pathLayout.y + "px;width:" + pathLayout.width + "px;height:" + pathLayout.height + "px;"}>
-                  <button class="story-map-path-title" type="button" data-story-path={pathLayout.path.pathId} data-story-path-section={section.act} data-story-x={pathTitle.x} data-story-y={pathTitle.y} style={"left:" + (pathTitle.x - pathLayout.x) + "px;top:" + (pathTitle.y - pathLayout.y) + "px;"} aria-label={"Focus " + pathLayout.path.title + " Path"}>
+                  <button class="story-map-path-title" type="button" data-story-path={pathLayout.path.pathId} data-story-path-section={section.act} data-story-x={pathTitle.x} data-story-y={pathTitle.y} style={"left:" + (pathTitle.x - pathLayout.x) + "px;top:" + (pathTitle.y - pathLayout.y) + "px;"} aria-label={"定位 " + pathLayout.path.title + " 路径"}>
                     <strong>{pathLayout.path.title}</strong>
                   </button>
                   <div class="story-map-avatars">
                     {pathLayout.avatars.map((avatar) => {
                       const image = avatarImage(avatar.id);
-                      return <button class="story-map-avatar" type="button" data-story-avatar data-story-cluster-path={pathLayout.path.pathId} data-story-section={section.act} data-story-x={avatar.x} data-story-y={avatar.y} style={"left:" + (avatar.x - pathLayout.x) + "px;top:" + (avatar.y - pathLayout.y) + "px;"} aria-label={"Focus " + avatarLabel(avatar.id)} title={avatarLabel(avatar.id)}>
-                        <span class="story-map-avatar-ring">{image ? <img {...imageAttributes(image, active)} alt={avatarLabel(avatar.id)} decoding="async" /> : <span>{avatarLabel(avatar.id)}</span>}</span>
+                      return <button class="story-map-avatar" type="button" data-story-avatar data-story-cluster-path={pathLayout.path.pathId} data-story-section={section.act} data-story-x={avatar.x} data-story-y={avatar.y} style={"left:" + (avatar.x - pathLayout.x) + "px;top:" + (avatar.y - pathLayout.y) + "px;"} aria-label={"定位 " + avatarLabel(avatar.id)} title={avatarLabel(avatar.id)}>
+                        {image ? <img {...imageAttributes(image, active)} alt={avatarLabel(avatar.id)} decoding="async" /> : <span class="story-map-avatar-fallback">{avatarLabel(avatar.id)}</span>}
                       </button>;
                     })}
                   </div>
@@ -289,15 +268,15 @@ const initialText = initialLocale ? textFor(firstEntry)?.texts[initialLocale] : 
                       const transform = pathLayout.nodeTransforms[entry.key];
                       const image = nodeImage(entry);
                       if (!point || !transform) return null;
-                      return <button class:list={{ "story-map-node": true, "has-cg": entry.resources.length > 0, "has-scene": entry.sceneIds.length > 0, "is-active": entry.key === firstEntry?.key && pathLayout.path.pathId === firstPath?.pathId }} type="button" data-story-map-entry data-story-path-id={entry.pathId} data-story-entry-key={entry.key} data-story-x={point.x} data-story-y={point.y} style={"left:" + (point.x - pathLayout.x) + "px;top:" + (point.y - pathLayout.y) + "px;--story-node-width:" + transform.width + "px;--story-node-height:" + transform.height + "px;--story-node-scale-x:" + transform.scaleX + ";--story-node-scale-y:" + transform.scaleY + ";--story-node-rotation:" + transform.rotation + "deg;"} aria-label={pathLayout.path.title + " Entry " + entry.key} aria-controls="story-detail-drawer">
+                      return <button class:list={{ "story-map-node": true, "has-cg": entry.resources.length > 0, "has-scene": entry.sceneIds.length > 0, "is-active": entry.key === firstEntry?.key && pathLayout.path.pathId === firstPath?.pathId }} type="button" data-story-map-entry data-story-node-variant={/^VS-/u.test(entry.key) ? "vs" : /^F-/u.test(entry.key) ? "finale" : /^(?:V|E)-/u.test(entry.key) ? "special" : "standard"} data-story-path-id={entry.pathId} data-story-entry-key={entry.key} data-story-x={point.x} data-story-y={point.y} style={"left:" + (point.x - pathLayout.x) + "px;top:" + (point.y - pathLayout.y) + "px;--story-node-width:" + transform.width + "px;--story-node-height:" + transform.height + "px;--story-node-scale-x:" + transform.scaleX + ";--story-node-scale-y:" + transform.scaleY + ";--story-node-rotation:" + transform.rotation + "deg;"} aria-label={pathLayout.path.title + " Entry " + entry.key} aria-controls="story-story-dialog">
                         {image ? <img class="story-map-node-image" {...imageAttributes(image, active)} alt="" decoding="async" /> : <span class="story-map-node-fallback">?</span>}
                         <span class="story-map-node-label">{entry.key}</span>
                         {entry.resources.length > 0 ? <span class="story-map-node-count">{entry.resources.length}</span> : null}
                       </button>;
                     })}
                   </div>
-                  {pathLayout.scenes.map((scene) => <button class="story-map-scene" type="button" data-story-scene={scene.sceneId} data-story-path-id={pathLayout.path.pathId} data-story-section={section.act} data-story-x={scene.x} data-story-y={scene.y} style={"left:" + (scene.x - pathLayout.x) + "px;top:" + (scene.y - pathLayout.y) + "px;"} aria-controls="story-detail-drawer">
-                    <span class="story-map-scene-mark">+</span><span>{scene.title}</span><small>Scene</small>
+                  {pathLayout.scenes.map((scene) => <button class="story-map-scene" type="button" data-story-scene={scene.sceneId} data-story-path-id={pathLayout.path.pathId} data-story-section={section.act} data-story-x={scene.x} data-story-y={scene.y} style={"left:" + (scene.x - pathLayout.x) + "px;top:" + (scene.y - pathLayout.y) + "px;"} aria-controls="story-story-dialog">
+                    <span class="story-map-scene-mark">+</span><span>{scene.title}</span><small>场景</small>
                   </button>)}
                   <div class="story-map-path-divider" style={divider ? "--story-divider: url('" + divider.url + "')" : undefined} aria-hidden="true"></div>
                 </section>;
@@ -305,9 +284,9 @@ const initialText = initialLocale ? textFor(firstEntry)?.texts[initialLocale] : 
             </div>
             {layout.portals.map((portal) => {
               const image = storyUiAsset("finale-portal-default.png") ?? derivativeUi("entry_finaleOpen.png");
-              return <button class="story-map-portal" type="button" data-story-portal="final-verdict" data-story-subworld="final-verdict" data-story-section={section.act} data-story-x={portal.x} data-story-y={portal.y} style={"left:" + portal.x + "px;top:" + portal.y + "px;--story-portal-width:" + portal.width + "px;--story-portal-height:" + portal.height + "px;--story-portal-scale-x:" + portal.scaleX + ";--story-portal-scale-y:" + portal.scaleY + ";--story-portal-rotation:" + portal.rotation + "deg;"} aria-label="Open Final Verdict">
+              return <button class="story-map-portal" type="button" data-story-portal="final-verdict" data-story-subworld="final-verdict" data-story-section={section.act} data-story-x={portal.x} data-story-y={portal.y} style={"left:" + portal.x + "px;top:" + portal.y + "px;--story-portal-width:" + portal.width + "px;--story-portal-height:" + portal.height + "px;--story-portal-scale-x:" + portal.scaleX + ";--story-portal-scale-y:" + portal.scaleY + ";--story-portal-rotation:" + portal.rotation + "deg;"} aria-label="进入 Final Verdict">
                 {image ? <img {...imageAttributes(image, active)} alt="" decoding="async" /> : <span>Final Verdict</span>}
-                <strong>Final Verdict</strong>
+                <strong>进入 Final Verdict</strong>
               </button>;
             })}
           </div>
@@ -315,21 +294,27 @@ const initialText = initialLocale ? textFor(firstEntry)?.texts[initialLocale] : 
       </section>;
     })}
   </div>
-  {finaleLayout ? <section class="story-atlas-subworld" data-story-subworld-panel="final-verdict" hidden aria-label="Final Verdict subworld">
+  {finaleLayout ? <section class="story-atlas-subworld" data-story-subworld-panel="final-verdict" hidden aria-label="Final Verdict">
     <header class="story-atlas-subworld-heading">
       <div>
-        <span class="story-atlas-section-act">Act I / Part III</span>
+        <span class="story-atlas-section-act">Act I · Part III</span>
         <h3>Final Verdict</h3>
-        <p>A separate vertical story world for the finale sequence.</p>
+        <p>探索最终章节的连续路径。</p>
       </div>
-      <button class="button button-secondary" type="button" data-story-subworld-back>Back to Part III</button>
+      <div class="story-camera-controls">
+        <button type="button" class="icon-button" data-story-camera="zoom-out" aria-label="缩小">−</button>
+        <button type="button" class="icon-button" data-story-camera="zoom-in" aria-label="放大">＋</button>
+        <button type="button" class="button button-secondary" data-story-camera="fit">总览</button>
+        <button type="button" class="button button-secondary" data-story-camera="initial">初始视角</button>
+        <button type="button" class="button button-secondary" data-story-subworld-back>返回 Part III</button>
+      </div>
     </header>
-    <div class="story-map-viewport story-map-viewport-subworld" data-story-map-viewport data-story-subworld-viewport data-story-subworld-id="final-verdict" tabindex="0" aria-label="Final Verdict story map" data-world-width={finaleLayout.width} data-world-height={finaleLayout.height} data-story-initial-x={finaleLayout.width / 2} data-story-initial-y={finaleLayout.height / 2} data-story-initial-scale="0.8">
-      <div class="story-map-world story-map-world-subworld" data-story-map-world data-story-world-source="authored-csb" style={"width:" + finaleLayout.width + "px;height:" + finaleLayout.height + "px;"}>
+    <div class="story-map-viewport story-map-viewport-subworld" data-story-map-viewport data-story-subworld-viewport data-story-subworld-id="final-verdict" tabindex="0" aria-label="Final Verdict 剧情地图" data-world-width={finaleLayout.width} data-world-height={finaleLayout.height} data-story-initial-x={finaleLayout.initialCamera.x} data-story-initial-y={finaleLayout.initialCamera.y} data-story-initial-scale={finaleLayout.initialCamera.scale}>
+      <div class="story-map-world story-map-world-subworld" data-story-map-world style={"width:" + finaleLayout.width + "px;height:" + finaleLayout.height + "px;"}>
         <div class="story-map-wash" aria-hidden="true"></div>
         <div class="story-map-grid" aria-hidden="true"></div>
         <svg class="story-map-links" viewBox={"0 0 " + finaleLayout.width + " " + finaleLayout.height} role="presentation" aria-hidden="true">
-          {finaleLayout.lines.map((line) => <line class:list={{ "story-map-link": true, "is-authored": true }} x1="0" y1="0" x2={line.length} y2="0" stroke-width={line.thickness} transform={"translate(" + line.x + " " + line.y + ") rotate(" + line.rotation + ") scale(" + line.scaleX + " " + line.scaleY + ")"} data-story-link-provenance="authored-csb" />)}
+          {finaleLayout.lines.map((line) => <line class:list={{ "story-map-link": true, "is-authored": true }} x1={line.x1} y1={line.y1} x2={line.x2} y2={line.y2} stroke-width={line.thickness} data-story-link-from={line.from} data-story-link-to={line.to} data-story-link-path-ids={line.pathIds.join(",")} data-story-link-provenance={line.provenance} />)}
         </svg>
         <div class="story-map-subworld-title" style={"left:" + finaleLayout.title.x + "px;top:" + finaleLayout.title.y + "px;"}>Final Verdict</div>
         <div class="story-map-subworld-nodes">
@@ -339,78 +324,46 @@ const initialText = initialLocale ? textFor(firstEntry)?.texts[initialLocale] : 
             const entry = finalVerdictPath?.entries.find((candidate) => candidate.key === authoredNode.nodeKey);
             const image = entry ? nodeImage(entry) : derivativeUi("finale-" + authoredNode.nodeKey.slice(2) + ".png");
             if (!point || !transform) return null;
-            return <button class="story-map-node story-map-node-finale" type="button" data-story-map-entry data-story-subworld-node data-story-subworld-id="final-verdict" data-story-path-id="19" data-story-entry-key={authoredNode.nodeKey} data-story-x={point.x} data-story-y={point.y} style={"left:" + point.x + "px;top:" + point.y + "px;--story-node-width:" + transform.width + "px;--story-node-height:" + transform.height + "px;--story-node-scale-x:" + transform.scaleX + ";--story-node-scale-y:" + transform.scaleY + ";--story-node-rotation:" + transform.rotation + "deg;"} aria-label={"Final Verdict Entry " + authoredNode.nodeKey} aria-controls="story-detail-drawer">
+            return <button class="story-map-node story-map-node-finale" type="button" data-story-map-entry data-story-subworld-node data-story-subworld-id="final-verdict" data-story-node-variant="finale" data-story-path-id="19" data-story-entry-key={authoredNode.nodeKey} data-story-x={point.x} data-story-y={point.y} style={"left:" + point.x + "px;top:" + point.y + "px;--story-node-width:" + transform.width + "px;--story-node-height:" + transform.height + "px;--story-node-scale-x:" + transform.scaleX + ";--story-node-scale-y:" + transform.scaleY + ";--story-node-rotation:" + transform.rotation + "deg;"} aria-label={"Final Verdict Entry " + authoredNode.nodeKey} aria-controls="story-story-dialog">
               {image ? <img class="story-map-node-image" {...imageAttributes(image, true)} alt="" decoding="async" /> : <span class="story-map-node-fallback">?</span>}
               <span class="story-map-node-label">{authoredNode.nodeKey}</span>
+            </button>;
+          })}
+          {finaleLayout.continuation?.continuation.nodes.map((node) => {
+            const point = finaleLayout.continuation?.nodes[node.nodeId];
+            const transform = finaleLayout.continuation?.nodeTransforms[node.nodeId];
+            const entryKey = node.nodeId === "epilogue_a" ? "E-1" : "E-2";
+            const image = continuationImage(node.nodeId);
+            if (!point || !transform) return null;
+            return <button class="story-map-node story-map-node-ending" type="button" data-story-map-entry data-story-subworld-node data-story-subworld-id="final-verdict" data-story-node-variant="ending" data-story-path-id="19" data-story-entry-key={entryKey} data-story-x={point.x} data-story-y={point.y} style={"left:" + point.x + "px;top:" + point.y + "px;--story-node-width:" + transform.width + "px;--story-node-height:" + transform.height + "px;--story-node-scale-x:" + transform.scaleX + ";--story-node-scale-y:" + transform.scaleY + ";--story-node-rotation:" + transform.rotation + "deg;"} aria-label={"Final Verdict Entry " + entryKey + " " + (node.label ?? entryKey)} aria-controls="story-story-dialog">
+              {image ? <img class="story-map-node-image" {...imageAttributes(image, true)} alt="" decoding="async" /> : <span class="story-map-node-fallback">?</span>}
+              <span class="story-map-node-label">{entryKey}</span>
+              <span class="story-map-node-name">{node.label ?? entryKey}</span>
             </button>;
           })}
         </div>
       </div>
     </div>
-    {finaleLayout.continuation ? <section class="story-atlas-continuation" aria-labelledby="story-continuation-heading">
-      <div class="story-atlas-continuation-heading"><span class="story-atlas-section-act">Continuation</span><h4 id="story-continuation-heading">Epilogue</h4></div>
-      <div class="story-atlas-continuation-world" style={"width:" + finaleLayout.continuation.bounds.width + "px;height:" + finaleLayout.continuation.bounds.height + "px;"}>
-        <svg class="story-map-links" viewBox={"0 0 " + finaleLayout.continuation.bounds.width + " " + finaleLayout.continuation.bounds.height} role="presentation" aria-hidden="true">
-          {finaleLayout.continuation.lines.map((line) => <line class:list={{ "story-map-link": true, "is-authored": true }} x1="0" y1="0" x2={line.length} y2="0" stroke-width={line.thickness} transform={"translate(" + line.x + " " + line.y + ") rotate(" + line.rotation + ") scale(" + line.scaleX + " " + line.scaleY + ")"} />)}
-        </svg>
-        {finaleLayout.continuation.continuation.nodes.map((node) => {
-          const point = finaleLayout.continuation?.nodes[node.nodeId];
-          const transform = finaleLayout.continuation?.nodeTransforms[node.nodeId];
-          const image = continuationImage(node.nodeId);
-          if (!point || !transform) return null;
-          return <button class="story-continuation-node" type="button" data-story-scene="vn:epilogue_last" data-story-continuation={node.nodeId} data-story-x={point.x} data-story-y={point.y} style={"left:" + point.x + "px;top:" + point.y + "px;--story-node-width:" + transform.width + "px;--story-node-height:" + transform.height + "px;"} aria-controls="story-detail-drawer">
-            {image ? <img {...imageAttributes(image, true)} alt="" decoding="async" /> : null}
-            <span>{node.label ?? node.nodeId}</span>
-          </button>;
-        })}
-      </div>
-    </section> : null}
   </section> : null}
 
-  <aside class="story-detail-drawer" id="story-detail-drawer" data-story-detail hidden aria-labelledby="story-detail-heading" aria-describedby="story-detail-summary" aria-modal="true" role="dialog">
+  <aside class="story-detail-dialog" id="story-story-dialog" data-story-detail hidden aria-labelledby="story-detail-heading" aria-describedby="story-detail-summary" aria-modal="true" role="dialog">
     <div class="story-detail-backdrop" data-story-detail-close aria-hidden="true"></div>
     <div class="story-detail-sheet">
-      <button class="story-detail-close" type="button" data-story-detail-close aria-label="Close detail">x</button>
+      <button class="story-detail-close" type="button" data-story-detail-close aria-label="关闭剧情">×</button>
       <div class="story-detail-content" data-story-detail-content>
         {firstEntry ? <>
           <div class="story-detail-eyebrow">{firstEntry.key}</div>
           <h3 id="story-detail-heading">{firstPath?.title}</h3>
-          <p class="story-detail-path" id="story-detail-summary">{firstPath?.characterIds.map(avatarLabel).join(" / ")}</p>
-          <div class="story-detail-pills">{firstEntry.relatedSongs.slice(0, 2).map((song) => <span>{song}</span>)}</div>
-          {initialText ? <section class="story-detail-text" data-story-detail-text>
-            <div class="story-detail-section-label">Story preview</div>
-            <div class="story-text-blocks">{initialText.blocks.filter((block) => block.kind === "display-event" || Boolean(block.text?.trim())).slice(0, 3).map((block) => block.kind === "display-event" ? <p class="story-text-display-event">Visual event</p> : <p>{block.text}</p>)}</div>
-          </section> : null}
-          {firstEntry.resources[0] ? <section class="story-detail-visuals" data-story-detail-visuals>
-            <div class="story-detail-section-label">Representative visual</div>
-            <a class="story-detail-representative" href={resourceHref(firstEntry.resources[0])}>
-              {derivativeResource(firstEntry.resources[0], "preview") ? <img src={derivativeResource(firstEntry.resources[0], "preview")?.url} alt={firstEntry.resources[0].displayTitle} loading="lazy" decoding="async" /> : null}
-              <span>{firstEntry.resources.length} visual resource{firstEntry.resources.length === 1 ? "" : "s"} / open gallery</span>
-            </a>
-          </section> : null}
-          <div class="story-detail-actions">
-            {firstEntry.text ? <button class="button button-primary" type="button" data-story-open-reader>Read full story</button> : null}
-            {firstEntry.resources[0] ? <a class="button button-secondary" data-story-resource-link href={resourceHref(firstEntry.resources[0])}>Open resources</a> : null}
+          <p class="story-detail-path" id="story-detail-summary">路径：{firstPath?.title} · {firstPath?.sectionLabel}</p>
+          <div class="story-detail-meta">
+            {firstPath?.characterIds.length ? <div><dt>角色</dt><dd>{firstPath.characterIds.map(avatarLabel).join(" / ")}</dd></div> : null}
+            {firstEntry.relatedSongs.length ? <div><dt>相关歌曲</dt><dd>{firstEntry.relatedSongs.join(" / ")}</dd></div> : null}
           </div>
-        </> : <p>No Story Entry selected.</p>}
+          <p class="story-detail-empty">点击地图中的节点查看完整剧情。</p>
+        </> : <p>请选择一个剧情节点。</p>}
       </div>
     </div>
   </aside>
-
-  <section class="story-reader-overlay" id="story-full-reader" data-story-reader hidden aria-labelledby="story-reader-heading" aria-modal="true" role="dialog">
-    <div class="story-reader-backdrop" data-story-reader-close aria-hidden="true"></div>
-    <div class="story-reader-sheet">
-      <header class="story-reader-header">
-        <div><span class="story-reader-context" data-story-reader-context>Story Atlas</span><h2 id="story-reader-heading" data-story-reader-title>Full story</h2></div>
-        <button class="story-detail-close" type="button" data-story-reader-close aria-label="Close reader">x</button>
-      </header>
-      <div class="story-reader-toolbar">
-        <div class="story-reader-locales" data-story-reader-locales role="group" aria-label="Story language"></div>
-        <span class="story-reader-mode">Continuous reading</span>
-      </div>
-      <div class="story-reader-content" data-story-reader-content></div>
-    </div>
-  </section>
 
   <script is:inline type="application/json" data-story-atlas-client-index set:html={safeJson(clientPayload)}></script>
   <script src="../scripts/arcaea-story-atlas.ts"></script>

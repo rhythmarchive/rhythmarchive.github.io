@@ -1,9 +1,11 @@
 import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import {
+  ARCAEA_STORY_LAYOUT_SCHEMA_VERSION,
   ArcaeaStoryLayout,
   type ArcaeaStoryAuthoredAvatarType,
   type ArcaeaStoryAuthoredContinuationNodeType,
+  type ArcaeaStoryAuthoredCompositeType,
   type ArcaeaStoryAuthoredLineType,
   type ArcaeaStoryAuthoredNodeType,
   type ArcaeaStoryAuthoredOverviewPathType,
@@ -15,7 +17,7 @@ import {
 } from "../packages/domain/src/browse.js";
 import { readCsbFile, type CsbNode, type CsbPoint } from "./arcaea-story-csb.js";
 
-const EXTRACTION_VERSION = "arcaea-story-csb-v1";
+const EXTRACTION_VERSION = "arcaea-story-csb-v2";
 const LAYOUT_PADDING = 180;
 const DEFAULT_NODE_WIDTH = 193;
 const DEFAULT_NODE_HEIGHT = 193;
@@ -23,6 +25,9 @@ const DEFAULT_TITLE_WIDTH = 300;
 const DEFAULT_TITLE_HEIGHT = 72;
 const DEFAULT_AVATAR_SIZE = 72;
 const DEFAULT_PORTAL_SIZE = 260;
+const EPILOGUE_COMPOSITE_SCALE = 0.72;
+const EPILOGUE_FORK_GAP = 96;
+const EPILOGUE_FORK_X_OFFSET = 80;
 
 type StoryIndex = {
   source: ArcaeaStoryLayoutType["source"];
@@ -43,19 +48,36 @@ type RawTransform = {
   scaleX: number;
   scaleY: number;
   rotation: number;
+  matrix?: RawMatrix;
+};
+
+type RawMatrix = {
+  a: number;
+  b: number;
+  c: number;
+  d: number;
+  tx: number;
+  ty: number;
 };
 
 type RawNode = {
   transform: RawTransform;
+  anchor: CsbPoint;
   width?: number;
   height?: number;
   sourceName: string;
   artRef?: string | undefined;
 };
 
-type RawLine = RawTransform & {
+type RawLine = {
+  transform: RawTransform;
+  start: CsbPoint;
+  end: CsbPoint;
+  bounds: CsbPoint[];
+  width: number;
+  height: number;
+  anchor: CsbPoint;
   lineId: string;
-  length: number;
   thickness: number;
   sourceName: string;
   resourcePath?: string | undefined;
@@ -79,6 +101,7 @@ type RawBoundsItem = {
   transform: RawTransform;
   width: number;
   height: number;
+  anchor?: CsbPoint;
 };
 
 type CsbPart = {
@@ -111,28 +134,78 @@ function packagePath(relativePath: string): string {
 }
 
 function sourceTransform(node: CsbNode): RawTransform {
-  return {
+  const transform = {
     x: finite(node.position.x, 0),
     y: finite(node.position.y, 0),
     scaleX: finite(node.scale.x, 1),
     scaleY: finite(node.scale.y, 1),
     rotation: finite(node.rotation, 0),
   };
+  return { ...transform, matrix: matrixFromTransform(transform) };
 }
 
 function compose(parent: RawTransform, child: RawTransform): RawTransform {
-  const radians = parent.rotation * Math.PI / 180;
-  return {
-    x: parent.x + Math.cos(radians) * child.x * parent.scaleX - Math.sin(radians) * child.y * parent.scaleY,
-    y: parent.y + Math.sin(radians) * child.x * parent.scaleX + Math.cos(radians) * child.y * parent.scaleY,
-    scaleX: parent.scaleX * child.scaleX,
-    scaleY: parent.scaleY * child.scaleY,
-    rotation: parent.rotation + child.rotation,
-  };
+  return decomposeMatrix(multiplyMatrices(matrixFromTransform(parent), matrixFromTransform(child)));
 }
 
 function identity(): RawTransform {
-  return { x: 0, y: 0, scaleX: 1, scaleY: 1, rotation: 0 };
+  const transform = { x: 0, y: 0, scaleX: 1, scaleY: 1, rotation: 0 };
+  return { ...transform, matrix: matrixFromTransform(transform) };
+}
+
+function matrixFromTransform(transform: Omit<RawTransform, "matrix"> | RawTransform): RawMatrix {
+  if ("matrix" in transform && transform.matrix) return transform.matrix;
+  const radians = transform.rotation * Math.PI / 180;
+  const cosine = Math.cos(radians);
+  const sine = Math.sin(radians);
+  return {
+    a: cosine * transform.scaleX,
+    b: -sine * transform.scaleX,
+    c: sine * transform.scaleY,
+    d: cosine * transform.scaleY,
+    tx: transform.x,
+    ty: transform.y,
+  };
+}
+
+function multiplyMatrices(parent: RawMatrix, child: RawMatrix): RawMatrix {
+  return {
+    a: parent.a * child.a + parent.c * child.b,
+    b: parent.b * child.a + parent.d * child.b,
+    c: parent.a * child.c + parent.c * child.d,
+    d: parent.b * child.c + parent.d * child.d,
+    tx: parent.a * child.tx + parent.c * child.ty + parent.tx,
+    ty: parent.b * child.tx + parent.d * child.ty + parent.ty,
+  };
+}
+
+function applyMatrix(matrix: RawMatrix, point: CsbPoint): CsbPoint {
+  return {
+    x: matrix.a * point.x + matrix.c * point.y + matrix.tx,
+    y: matrix.b * point.x + matrix.d * point.y + matrix.ty,
+  };
+}
+
+function applyMatrixVector(matrix: RawMatrix, point: CsbPoint): CsbPoint {
+  return {
+    x: matrix.a * point.x + matrix.c * point.y,
+    y: matrix.b * point.x + matrix.d * point.y,
+  };
+}
+
+function decomposeMatrix(matrix: RawMatrix): RawTransform {
+  const scaleX = Math.hypot(matrix.a, matrix.b);
+  const determinant = matrix.a * matrix.d - matrix.b * matrix.c;
+  const scaleY = Math.hypot(matrix.c, matrix.d) * (determinant < 0 ? -1 : 1);
+  const rotation = scaleX > 0 ? Math.atan2(-matrix.b, matrix.a) * 180 / Math.PI : 0;
+  return {
+    x: matrix.tx,
+    y: matrix.ty,
+    scaleX: scaleX || 1,
+    scaleY: scaleY || 1,
+    rotation,
+    matrix,
+  };
 }
 
 function positiveDimension(value: number, fallback: number): number {
@@ -153,38 +226,57 @@ function placement(transform: RawTransform, minX: number, maxY: number): ArcaeaS
   };
 }
 
-function addTransformedRect(items: RawBoundsItem[], transform: RawTransform, width: number, height: number): void {
-  items.push({ transform, width, height });
+function addTransformedRect(items: RawBoundsItem[], transform: RawTransform, width: number, height: number, anchor: CsbPoint = { x: 0.5, y: 0.5 }): void {
+  items.push({ transform, width, height, anchor });
 }
 
 function transformedCorners(item: RawBoundsItem): CsbPoint[] {
-  const halfWidth = item.width / 2;
-  const halfHeight = item.height / 2;
-  const radians = item.transform.rotation * Math.PI / 180;
+  const anchor = item.anchor ?? { x: 0.5, y: 0.5 };
   const corners: Array<[number, number]> = [
-    [-halfWidth, -halfHeight],
-    [halfWidth, -halfHeight],
-    [halfWidth, halfHeight],
-    [-halfWidth, halfHeight],
+    [-anchor.x * item.width, -anchor.y * item.height],
+    [(1 - anchor.x) * item.width, -anchor.y * item.height],
+    [(1 - anchor.x) * item.width, (1 - anchor.y) * item.height],
+    [-anchor.x * item.width, (1 - anchor.y) * item.height],
   ];
-  return corners.map(([x, y]) => ({
-    x: item.transform.x + Math.cos(radians) * x * item.transform.scaleX - Math.sin(radians) * y * item.transform.scaleY,
-    y: item.transform.y + Math.sin(radians) * x * item.transform.scaleX + Math.cos(radians) * y * item.transform.scaleY,
-  }));
+  return corners.map(([x, y]) => applyMatrix(matrixFromTransform(item.transform), { x, y }));
 }
 
-function lineEndpoints(line: RawLine): CsbPoint[] {
-  const radians = line.rotation * Math.PI / 180;
-  const length = line.length * Math.abs(line.scaleX);
-  return [
-    { x: line.x, y: line.y },
-    { x: line.x + Math.cos(radians) * length, y: line.y + Math.sin(radians) * length },
+function lineGeometry(node: CsbNode, transform: RawTransform, axis: "x" | "y" = "x"): { start: CsbPoint; end: CsbPoint; bounds: CsbPoint[]; width: number; height: number; thickness: number; anchor: CsbPoint } {
+  const width = nodeDimension(node, "width", 1);
+  const height = nodeDimension(node, "height", 1);
+  const anchor = node.anchor;
+  const centerX = (0.5 - anchor.x) * width;
+  const matrix = matrixFromTransform(transform);
+  const start = axis === "x"
+    ? applyMatrix(matrix, { x: -anchor.x * width, y: (0.5 - anchor.y) * height })
+    : applyMatrix(matrix, { x: centerX, y: -anchor.y * height });
+  const end = axis === "x"
+    ? applyMatrix(matrix, { x: (1 - anchor.x) * width, y: (0.5 - anchor.y) * height })
+    : applyMatrix(matrix, { x: centerX, y: (1 - anchor.y) * height });
+  const corners: Array<[number, number]> = [
+    [-anchor.x * width, -anchor.y * height],
+    [(1 - anchor.x) * width, -anchor.y * height],
+    [(1 - anchor.x) * width, (1 - anchor.y) * height],
+    [-anchor.x * width, (1 - anchor.y) * height],
   ];
+  const bounds = corners.map(([x, y]) => applyMatrix(matrix, { x, y }));
+  const transformedThickness = axis === "x"
+    ? applyMatrixVector(matrix, { x: 0, y: 1 })
+    : applyMatrixVector(matrix, { x: 1, y: 0 });
+  return {
+    start,
+    end,
+    bounds,
+    width,
+    height,
+    thickness: Math.max(0.5, (axis === "x" ? height : width) * Math.hypot(transformedThickness.x, transformedThickness.y)),
+    anchor,
+  };
 }
 
 function normalizedBounds(items: RawBoundsItem[], lines: RawLine[]): { minX: number; minY: number; maxX: number; maxY: number } {
   const points = items.flatMap((item) => transformedCorners(item));
-  points.push(...lines.flatMap((line) => lineEndpoints(line)));
+  points.push(...lines.flatMap((line) => line.bounds));
   if (points.length === 0) return { minX: 0, minY: 0, maxX: 1, maxY: 1 };
   return {
     minX: Math.min(...points.map((point) => point.x)),
@@ -202,12 +294,28 @@ function normalizedSize(bounds: { minX: number; minY: number; maxX: number; maxY
 }
 
 function normalizedLine(line: RawLine, bounds: { minX: number; maxY: number }): ArcaeaStoryAuthoredLineType {
+  const start = {
+    x: line.start.x - bounds.minX + LAYOUT_PADDING,
+    y: bounds.maxY - line.start.y + LAYOUT_PADDING,
+  };
+  const end = {
+    x: line.end.x - bounds.minX + LAYOUT_PADDING,
+    y: bounds.maxY - line.end.y + LAYOUT_PADDING,
+  };
   return {
-    ...placement(line, bounds.minX, bounds.maxY),
+    ...placement(line.transform, bounds.minX, bounds.maxY),
     lineId: line.lineId,
-    length: Math.max(1, line.length),
-    thickness: Math.max(0.5, line.thickness),
+    length: Math.max(1, Math.hypot(end.x - start.x, end.y - start.y)),
+    thickness: line.thickness,
     sourceName: line.sourceName,
+    width: line.width,
+    height: line.height,
+    anchorX: line.anchor.x,
+    anchorY: line.anchor.y,
+    x1: start.x,
+    y1: start.y,
+    x2: end.x,
+    y2: end.y,
     ...(line.resourcePath ? { resourcePath: line.resourcePath } : {}),
     ...(line.pathId === undefined ? {} : { pathId: line.pathId }),
   };
@@ -273,13 +381,11 @@ function extractRawLines(root: CsbNode, base: RawTransform, pathId?: number): Ra
     const transform = compose(parent, sourceTransform(node));
     const resource = node.resourcePath ?? node.normalPath;
     if (node.visible && resource === "img/white.png") {
-      const length = positiveDimension(node.size.width, 1);
-      const thickness = positiveDimension(node.size.height, 1);
+      const geometry = lineGeometry(node, transform);
       lines.push({
-        ...transform,
+        transform,
+        ...geometry,
         lineId: `${pathId === undefined ? "world" : `path-${pathId}`}-${count++}-${node.name || node.classname}`,
-        length,
-        thickness,
         sourceName: node.name || node.classname,
         resourcePath: "assets/img/white.png",
         ...(pathId === undefined ? {} : { pathId }),
@@ -316,9 +422,9 @@ function overviewFromDocument(documentRoot: CsbNode): {
       ...(titleNode.text ? { text: titleNode.text } : {}),
     } : undefined;
     rawPaths.push({ pathId, sourceName: group.name, anchor, ...(entry ? { entry } : {}), ...(title ? { title } : {}) });
-    addTransformedRect(boundsItems, anchor, DEFAULT_NODE_WIDTH, DEFAULT_NODE_HEIGHT);
-    if (entry) addTransformedRect(boundsItems, entry, DEFAULT_NODE_WIDTH, DEFAULT_NODE_HEIGHT);
-    if (title) addTransformedRect(boundsItems, title, DEFAULT_TITLE_WIDTH, DEFAULT_TITLE_HEIGHT);
+    addTransformedRect(boundsItems, anchor, DEFAULT_NODE_WIDTH, DEFAULT_NODE_HEIGHT, group.anchor);
+    if (entry) addTransformedRect(boundsItems, entry, DEFAULT_NODE_WIDTH, DEFAULT_NODE_HEIGHT, entryNode?.anchor);
+    if (title) addTransformedRect(boundsItems, title, DEFAULT_TITLE_WIDTH, DEFAULT_TITLE_HEIGHT, titleNode?.anchor);
   }
   const bounds = normalizedBounds(boundsItems, []);
   return {
@@ -371,23 +477,24 @@ function worldFromDocument(documentRoot: CsbNode, csbPath: string, ordering: Map
         const height = nodeDimension(child, "height", DEFAULT_NODE_HEIGHT);
         pathNodes.push({
           transform,
+          anchor: child.anchor,
           width,
           height,
           sourceName: child.name,
           artRef: packagePath(child.resourcePath ?? "layouts/story/StoryV2Entry.csb"),
           slot,
         });
-        addTransformedRect(boundsItems, transform, width, height);
+        addTransformedRect(boundsItems, transform, width, height, child.anchor);
         void nodeKey;
       } else if (isTitleProjectNode(child)) {
         title = { ...transform, sourceName: child.name || "title", ...(child.text ? { text: child.text } : {}) };
-        addTransformedRect(boundsItems, transform, DEFAULT_TITLE_WIDTH, DEFAULT_TITLE_HEIGHT);
+        addTransformedRect(boundsItems, transform, DEFAULT_TITLE_WIDTH, DEFAULT_TITLE_HEIGHT, child.anchor);
       } else if (isAvatarProjectNode(child)) {
         const match = /^chara_(\d+)$/u.exec(child.name);
         if (match) {
           const characterId = Number(match[1]);
           pathAvatars.push({ transform, characterId, sourceName: child.name });
-          addTransformedRect(boundsItems, transform, DEFAULT_AVATAR_SIZE, DEFAULT_AVATAR_SIZE);
+          addTransformedRect(boundsItems, transform, DEFAULT_AVATAR_SIZE, DEFAULT_AVATAR_SIZE, child.anchor);
         }
       } else if (child.classname === "ProjectNode" && (child.resourcePath ?? "").endsWith("StoryV2EntryFinale.csb")) {
         rawPortals.push({
@@ -398,7 +505,7 @@ function worldFromDocument(documentRoot: CsbNode, csbPath: string, ordering: Map
           width: DEFAULT_PORTAL_SIZE,
           height: DEFAULT_PORTAL_SIZE,
         });
-        addTransformedRect(boundsItems, transform, DEFAULT_PORTAL_SIZE, DEFAULT_PORTAL_SIZE);
+        addTransformedRect(boundsItems, transform, DEFAULT_PORTAL_SIZE, DEFAULT_PORTAL_SIZE, child.anchor);
       }
     }
     rawLines.push(...extractRawLines(pathGroup, pathAnchor, pathId));
@@ -461,27 +568,27 @@ function finaleSubworld(documentRoot: CsbNode): {
       const height = nodeDimension(item.node, "height", DEFAULT_NODE_HEIGHT);
       rawNodes.push({
         transform: item.transform,
+        anchor: item.node.anchor,
         width,
         height,
         sourceName: item.node.name,
         ...(resourcePathForNode(item.node) ? { artRef: resourcePathForNode(item.node) } : {}),
         slot,
       });
-      addTransformedRect(boundsItems, item.transform, width, height);
+      addTransformedRect(boundsItems, item.transform, width, height, item.node.anchor);
     }
     const resource = item.node.resourcePath ?? item.node.normalPath;
     if (item.node.classname === "Sprite" && resource && /Finale-Divider/u.test(resource)) {
       const width = nodeDimension(item.node, "width", 12);
       const height = nodeDimension(item.node, "height", 12);
       rawLines.push({
-        ...item.transform,
+        transform: item.transform,
+        ...lineGeometry(item.node, item.transform, "y"),
         lineId: `finale-${rawLines.length}-${item.node.name || "divider"}`,
-        length: Math.max(width, height),
-        thickness: Math.min(width, height),
         sourceName: item.node.name || "divider",
         ...(resourcePathForNode(item.node) ? { resourcePath: resourcePathForNode(item.node) } : {}),
       });
-      addTransformedRect(boundsItems, item.transform, width, height);
+      addTransformedRect(boundsItems, item.transform, width, height, item.node.anchor);
     }
   }
   const bounds = normalizedBounds(boundsItems, rawLines);
@@ -524,6 +631,7 @@ function epilogueContinuation(documentRoot: CsbNode, csbPath: string): {
     const height = nodeDimension(button, "height", 350);
     rawNodes.push({
       transform: item.transform,
+      anchor: button.anchor,
       width,
       height,
       sourceName: button.name || parent.name,
@@ -531,7 +639,7 @@ function epilogueContinuation(documentRoot: CsbNode, csbPath: string): {
       nodeId: parent.name || button.name || `epilogue-${rawNodes.length + 1}`,
       ...(label ? { label } : {}),
     });
-    addTransformedRect(boundsItems, item.transform, width, height);
+    addTransformedRect(boundsItems, item.transform, width, height, button.anchor);
     rawLines.push(...extractRawLines(parent, sourceTransform(parent)).filter((line) => /(?:Epilogue-Line|Finale-Divider)/u.test(line.resourcePath ?? "")));
   }
   const bounds = normalizedBounds(boundsItems, rawLines);
@@ -550,6 +658,169 @@ function epilogueContinuation(documentRoot: CsbNode, csbPath: string): {
       ...(node.height ? { height: node.height } : {}),
     })),
     lines: rawLines.map((line) => normalizedLine(line, { minX: bounds.minX, maxY: bounds.maxY })),
+  };
+}
+
+type LayoutBox = { left: number; top: number; right: number; bottom: number };
+
+function layoutBox(left: number, top: number, right: number, bottom: number): LayoutBox {
+  return { left, top, right, bottom };
+}
+
+function unionLayoutBoxes(boxes: LayoutBox[]): LayoutBox {
+  if (boxes.length === 0) return layoutBox(0, 0, 1, 1);
+  return layoutBox(
+    Math.min(...boxes.map((box) => box.left)),
+    Math.min(...boxes.map((box) => box.top)),
+    Math.max(...boxes.map((box) => box.right)),
+    Math.max(...boxes.map((box) => box.bottom)),
+  );
+}
+
+function authoredNodeBox(node: { x: number; y: number; scaleX: number; scaleY: number; rotation: number; width?: number; height?: number }): LayoutBox {
+  const halfWidth = (node.width ?? DEFAULT_NODE_WIDTH) * Math.abs(node.scaleX) / 2;
+  const halfHeight = (node.height ?? DEFAULT_NODE_HEIGHT) * Math.abs(node.scaleY) / 2;
+  const radians = node.rotation * Math.PI / 180;
+  const extentX = Math.abs(Math.cos(radians)) * halfWidth + Math.abs(Math.sin(radians)) * halfHeight;
+  const extentY = Math.abs(Math.sin(radians)) * halfWidth + Math.abs(Math.cos(radians)) * halfHeight;
+  return layoutBox(node.x - extentX, node.y - extentY, node.x + extentX, node.y + extentY);
+}
+
+function authoredLineBox(line: ArcaeaStoryAuthoredLineType): LayoutBox {
+  const padding = Math.max(0.5, line.thickness / 2);
+  return layoutBox(
+    Math.min(line.x1, line.x2) - padding,
+    Math.min(line.y1, line.y2) - padding,
+    Math.max(line.x1, line.x2) + padding,
+    Math.max(line.y1, line.y2) + padding,
+  );
+}
+
+function transformPoint(point: CsbPoint, transform: { translateX: number; translateY: number; scale: number }): CsbPoint {
+  return {
+    x: transform.translateX + point.x * transform.scale,
+    y: transform.translateY + point.y * transform.scale,
+  };
+}
+
+function transformContinuationBox(bounds: { width: number; height: number }, transform: { translateX: number; translateY: number; scale: number }): LayoutBox {
+  return layoutBox(
+    transform.translateX,
+    transform.translateY,
+    transform.translateX + bounds.width * transform.scale,
+    transform.translateY + bounds.height * transform.scale,
+  );
+}
+
+function shiftAuthoredNode(node: ArcaeaStoryAuthoredNodeType, x: number, y: number): ArcaeaStoryAuthoredNodeType {
+  return { ...node, x: node.x + x, y: node.y + y };
+}
+
+function shiftAuthoredLine(line: ArcaeaStoryAuthoredLineType, x: number, y: number): ArcaeaStoryAuthoredLineType {
+  return {
+    ...line,
+    x: line.x + x,
+    y: line.y + y,
+    x1: line.x1 + x,
+    y1: line.y1 + y,
+    x2: line.x2 + x,
+    y2: line.y2 + y,
+  };
+}
+
+function forkLine(from: CsbPoint, to: CsbPoint, lineId: string, targetKey: string): ArcaeaStoryAuthoredLineType {
+  const length = Math.max(1, Math.hypot(to.x - from.x, to.y - from.y));
+  return {
+    x: from.x,
+    y: from.y,
+    scaleX: 1,
+    scaleY: 1,
+    rotation: Math.atan2(-(to.y - from.y), to.x - from.x) * 180 / Math.PI,
+    lineId,
+    length,
+    thickness: 3,
+    sourceName: "final-verdict-fork",
+    width: length,
+    height: 3,
+    anchorX: 0,
+    anchorY: 0.5,
+    x1: from.x,
+    y1: from.y,
+    x2: to.x,
+    y2: to.y,
+    from: "F-7",
+    to: targetKey,
+    kind: "branch",
+    pathId: 19,
+  };
+}
+
+function composeFinaleSubworld(finale: ReturnType<typeof finaleSubworld>, continuation: ReturnType<typeof epilogueContinuation>): {
+  bounds: { width: number; height: number };
+  nodes: ArcaeaStoryAuthoredNodeType[];
+  lines: ArcaeaStoryAuthoredLineType[];
+  continuation: ReturnType<typeof epilogueContinuation>;
+  composite: ArcaeaStoryAuthoredCompositeType;
+} {
+  const f7 = finale.nodes.find((node) => node.nodeKey === "F-7");
+  const oneLastDream = continuation.nodes.find((node) => node.nodeId === "epilogue_a");
+  if (!f7 || !oneLastDream) {
+    return {
+      bounds: finale.bounds,
+      nodes: finale.nodes,
+      lines: finale.lines,
+      continuation,
+      composite: {
+        epilogueTransform: { translateX: 0, translateY: 0, scale: 1 },
+        forkLines: [],
+      },
+    };
+  }
+  const scale = EPILOGUE_COMPOSITE_SCALE;
+  const f7Top = f7.y - (f7.height ?? DEFAULT_NODE_HEIGHT) * Math.abs(f7.scaleY) / 2;
+  const translateX = f7.x + EPILOGUE_FORK_X_OFFSET - oneLastDream.x * scale;
+  const translateY = f7Top - EPILOGUE_FORK_GAP
+    - (oneLastDream.y * scale + (oneLastDream.height ?? DEFAULT_NODE_HEIGHT) * scale / 2);
+  const preTransform = { translateX, translateY, scale };
+  const endingPoints = continuation.nodes.map((node) => {
+    const point = transformPoint({ x: node.x, y: node.y }, preTransform);
+    return {
+      node,
+      point,
+      bottom: point.y + (node.height ?? DEFAULT_NODE_HEIGHT) * scale * Math.abs(node.scaleY) / 2,
+    };
+  });
+  const forkStart = { x: f7.x, y: f7Top };
+  const forkLines = endingPoints.map((ending, index) => forkLine(
+    forkStart,
+    { x: ending.point.x, y: ending.bottom },
+    "final-verdict-fork-" + (index + 1),
+    ending.node.nodeId === "epilogue_a" ? "E-1" : "E-2",
+  ));
+  const bounds = unionLayoutBoxes([
+    layoutBox(0, 0, finale.bounds.width, finale.bounds.height),
+    transformContinuationBox(continuation.bounds, preTransform),
+    ...forkLines.map(authoredLineBox),
+  ]);
+  const offsetX = -bounds.left;
+  const offsetY = -bounds.top;
+  const compositeTransform = {
+    translateX: translateX + offsetX,
+    translateY: translateY + offsetY,
+    scale,
+  };
+  return {
+    bounds: {
+      width: Math.max(1, bounds.right + offsetX),
+      height: Math.max(1, bounds.bottom + offsetY),
+    },
+    nodes: finale.nodes.map((node) => shiftAuthoredNode(node, offsetX, offsetY)),
+    lines: finale.lines.map((line) => shiftAuthoredLine(line, offsetX, offsetY)),
+    continuation,
+    composite: {
+      epilogueTransform: compositeTransform,
+      forkLines: forkLines.map((line) => shiftAuthoredLine(line, offsetX, offsetY)),
+    },
   };
 }
 
@@ -602,10 +873,11 @@ export async function buildArcaeaStoryLayout(packageRoot: string, indexPath: str
   const epilogueDocument = await readCsbFile(path.join(packageRoot, epiloguePath));
   const finale = finaleSubworld(finaleDocument.root);
   const continuation = epilogueContinuation(epilogueDocument.root, epiloguePath);
+  const composite = composeFinaleSubworld(finale, continuation);
   csbPaths.push(finalePath, epiloguePath);
 
   return ArcaeaStoryLayout.parse({
-    schemaVersion: 1,
+    schemaVersion: ARCAEA_STORY_LAYOUT_SCHEMA_VERSION,
     game: "arcaea",
     source: index.source,
     extractionVersion: EXTRACTION_VERSION,
@@ -616,9 +888,9 @@ export async function buildArcaeaStoryLayout(packageRoot: string, indexPath: str
       sectionAct: 2,
       title: "Final Verdict",
       csbPath: finalePath,
-      bounds: finale.bounds,
+      bounds: composite.bounds,
       titlePlacement: {
-        x: finale.bounds.width / 2,
+        x: composite.bounds.width / 2,
         y: 48,
         scaleX: 1,
         scaleY: 1,
@@ -626,9 +898,10 @@ export async function buildArcaeaStoryLayout(packageRoot: string, indexPath: str
         sourceName: "final-verdict-title",
         text: "Final Verdict",
       },
-      nodes: finale.nodes,
-      lines: finale.lines,
-      continuation,
+      nodes: composite.nodes,
+      lines: composite.lines,
+      continuation: composite.continuation,
+      composite: composite.composite,
     }],
   });
 }

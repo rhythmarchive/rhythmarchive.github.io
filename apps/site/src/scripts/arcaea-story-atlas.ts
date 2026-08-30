@@ -20,6 +20,7 @@ type CompactEntry = {
   sectionLabel: string;
   sectionAct: number;
   subworldId?: string;
+  endingLabel?: string;
   visualLabel: string;
   characterIds: number[];
   characterLabels: string[];
@@ -60,7 +61,7 @@ type StoryTextEntry = ArcaeaStoryAtlasType["text"]["entries"][number];
 type StoryLocale = StoryTextEntry["texts"][string];
 type StoryTextBlock = StoryLocale["blocks"][number];
 type StoryPage = { page: number; blocks: StoryTextBlock[] };
-type ReaderSegment =
+type StorySegment =
   | { kind: "text"; text: string; pageStart: number; pageEnd: number }
   | { kind: "visual"; resource?: CompactResource; assetPath?: string; page: number };
 
@@ -81,20 +82,10 @@ async function initialize(root: HTMLElement): Promise<void> {
   const searchResults = root.querySelector<HTMLElement>("[data-story-search-results]");
   const detail = root.querySelector<HTMLElement>("[data-story-detail]");
   const detailContent = root.querySelector<HTMLElement>("[data-story-detail-content]");
-  const reader = root.querySelector<HTMLElement>("[data-story-reader]");
-  const readerContent = root.querySelector<HTMLElement>("[data-story-reader-content]");
-  const readerTitle = root.querySelector<HTMLElement>("[data-story-reader-title]");
-  const readerContext = root.querySelector<HTMLElement>("[data-story-reader-context]");
-  const readerLocales = root.querySelector<HTMLElement>("[data-story-reader-locales]");
-  if (panels.length === 0 || !detail || !detailContent || !reader || !readerContent || !readerTitle || !readerContext || !readerLocales) return;
+  if (panels.length === 0 || !detail || !detailContent) return;
 
   const detailElement = detail;
-  const readerElement = reader;
   const detailContentElement = detailContent;
-  const readerContentElement = readerContent;
-  const readerTitleElement = readerTitle;
-  const readerContextElement = readerContext;
-  const readerLocalesElement = readerLocales;
   const allViewPanels = [...panels, ...subworldPanels];
   const cameras = new Map<HTMLElement, Camera>();
   const gestures = new Map<HTMLElement, Gesture>();
@@ -108,8 +99,6 @@ async function initialize(root: HTMLElement): Promise<void> {
   let openEntryId: string | undefined;
   let openSceneId: string | undefined;
   let lastFocusedElement: HTMLElement | null = null;
-  let readerTrigger: HTMLElement | null = null;
-  let readerTargetKey: string | undefined;
   let modalLockCount = 0;
   let savedScrollY = 0;
   let savedBodyStyles: { position: string; top: string; width: string; overflow: string } | undefined;
@@ -463,11 +452,10 @@ async function initialize(root: HTMLElement): Promise<void> {
     return normalized;
   }
 
-  function resourceForAsset(assetPath: string | undefined, resourceIds: string[]): CompactResource | undefined {
+  function resourceForAsset(assetPath: string | undefined): CompactResource | undefined {
     const normalized = normalizeAssetPath(assetPath);
-    if (!normalized || resourceIds.length === 0) return undefined;
-    const allowed = new Set(resourceIds);
-    return Object.values(payload.resources).find((resource) => allowed.has(resource.resourceId) && resource.assetPaths.some((path) => normalizeAssetPath(path) === normalized));
+    if (!normalized) return undefined;
+    return Object.values(payload.resources).find((resource) => resource.assetPaths.some((path) => normalizeAssetPath(path) === normalized));
   }
 
   function resourcesForIds(resourceIds: string[]): CompactResource[] {
@@ -494,8 +482,8 @@ async function initialize(root: HTMLElement): Promise<void> {
     return locale && textEntry.texts[locale] ? { locale, text: textEntry.texts[locale] } : undefined;
   }
 
-  function buildReaderSegments(locale: StoryLocale, resourceIds: string[]): ReaderSegment[] {
-    const segments: ReaderSegment[] = [];
+  function buildStorySegments(locale: StoryLocale): StorySegment[] {
+    const segments: StorySegment[] = [];
     const pages = pagesForText(locale);
     let textParts: string[] = [];
     let textStart = 0;
@@ -517,7 +505,7 @@ async function initialize(root: HTMLElement): Promise<void> {
         }
         if (block.kind === "display-event") {
           flushText();
-          const resource = resourceForAsset(block.assetPath, resourceIds);
+          const resource = resourceForAsset(block.assetPath);
           if (resource) {
             segments.push(block.assetPath
               ? { kind: "visual", resource, assetPath: block.assetPath, page: page.page }
@@ -532,18 +520,23 @@ async function initialize(root: HTMLElement): Promise<void> {
   }
 
   function localeLabel(locale: string): string {
-    return locale === "zh-Hans" ? "Simplified Chinese"
-      : locale === "zh-Hant" ? "Traditional Chinese"
-        : locale === "ja" ? "Japanese"
-          : locale === "ko" ? "Korean"
+    return locale === "zh-Hans" ? "简中"
+      : locale === "zh-Hant" ? "繁中"
+        : locale === "ja" ? "日本語"
+          : locale === "ko" ? "한국어"
             : "English";
   }
 
   function appendLocaleSwitch(parent: HTMLElement, textEntry: StoryTextEntry, targetKey: string, activeLocale: string): void {
     const switcher = element("div", "story-locale-switch");
     switcher.setAttribute("role", "group");
-    switcher.setAttribute("aria-label", "Story language");
-    for (const locale of Object.keys(textEntry.texts)) {
+    switcher.setAttribute("aria-label", "剧情语言");
+    const localeOrder = ["zh-Hans", "zh-Hant", "en", "ja", "ko"];
+    const locales = [
+      ...localeOrder.filter((locale) => textEntry.texts[locale]),
+      ...Object.keys(textEntry.texts).filter((locale) => !localeOrder.includes(locale)),
+    ];
+    for (const locale of locales) {
       const button = document.createElement("button");
       button.type = "button";
       button.dataset.storyLocale = locale;
@@ -555,86 +548,138 @@ async function initialize(root: HTMLElement): Promise<void> {
     parent.append(switcher);
   }
 
-  function renderStoryPreview(textEntry: StoryTextEntry | undefined, resourceIds: string[], targetKey: string): HTMLElement | undefined {
-    if (!textEntry) return undefined;
-    const choice = chooseLocale(textEntry, targetKey);
-    if (!choice) return undefined;
-    const segments = buildReaderSegments(choice.text, resourceIds);
-    if (segments.length === 0) return undefined;
-    const section = element("section", "story-preview");
-    const heading = element("div", "story-preview-heading");
-    heading.append(textNode("div", "Story preview", "story-detail-section-label"));
-    appendLocaleSwitch(heading, textEntry, targetKey, choice.locale);
-    section.append(heading);
-    const body = element("div", "story-preview-body");
-    for (const segment of segments) {
-      if (segment.kind !== "text") continue;
-      for (const paragraph of segment.text.split(/\n{2,}/u).slice(0, 2)) {
-        if (paragraph.trim()) body.append(textNode("p", paragraph.trim()));
+  function appendMetaRow(parent: HTMLElement, label: string, value: string): void {
+    const row = element("div", "story-detail-meta-row");
+    row.append(textNode("dt", label), textNode("dd", value));
+    parent.append(row);
+  }
+
+  function renderResources(resourceIds: string[], compact: boolean): HTMLElement | undefined {
+    const items = resourcesForIds([...new Set(resourceIds)]);
+    if (items.length === 0) return undefined;
+    const section = element("section", compact ? "story-dialog-resources is-compact" : "story-dialog-resources");
+    section.append(textNode("div", compact ? "相关视觉资源" : "相关视觉", "story-detail-section-label"));
+    const grid = element("div", compact ? "story-dialog-resource-strip" : "story-dialog-resource-grid");
+    for (const resource of items) {
+      const card = element("article", "story-dialog-resource-card");
+      const link = document.createElement("a");
+      link.href = resource.route;
+      link.className = "story-dialog-resource-link";
+      const imageSource = compact ? resource.thumb ?? resource.preview : resource.preview ?? resource.thumb;
+      if (imageSource) {
+        const image = document.createElement("img");
+        image.src = imageSource;
+        image.alt = resource.title;
+        image.loading = "lazy";
+        image.decoding = "async";
+        link.append(image);
       }
-      break;
+      link.append(textNode("span", resource.title));
+      card.append(link);
+      if (resource.download) {
+        const download = document.createElement("a");
+        download.className = "story-dialog-download";
+        download.href = resource.download;
+        download.textContent = "下载原图";
+        download.target = "_blank";
+        download.rel = "noreferrer";
+        if (resource.downloadFilename) download.download = resource.downloadFilename;
+        card.append(download);
+      }
+      grid.append(card);
     }
-    if (body.childElementCount === 0) return undefined;
-    section.append(body);
+    section.append(grid);
     return section;
   }
 
-  function renderRepresentativeVisual(resourceIds: string[]): HTMLElement | undefined {
-    const items = resourcesForIds(resourceIds);
-    const active = items[0];
-    if (!active) return undefined;
-    const section = element("section", "story-detail-visuals");
-    section.append(textNode("div", "Representative visual", "story-detail-section-label"));
-    const link = document.createElement("a");
-    link.className = "story-detail-representative";
-    link.href = active.route;
-    if (active.preview) {
-      const image = document.createElement("img");
-      image.src = active.preview;
-      image.alt = active.title;
-      image.loading = "lazy";
-      image.decoding = "async";
-      link.append(image);
+  function renderStoryFlow(textEntry: StoryTextEntry | undefined, resourceIds: string[], targetKey: string): HTMLElement {
+    const section = element("section", "story-dialog-story");
+    const choice = textEntry ? chooseLocale(textEntry, targetKey) : undefined;
+    const segments = choice ? buildStorySegments(choice.text) : [];
+    const hasInlineVisual = segments.some((segment) => segment.kind === "visual" && Boolean(segment.resource?.preview));
+    const flowResourceIds = [...new Set([
+      ...resourceIds,
+      ...segments.flatMap((segment) => segment.kind === "visual" && segment.resource ? [segment.resource.resourceId] : []),
+    ])];
+    if (!hasInlineVisual) {
+      const gallery = renderResources(resourceIds, false);
+      if (gallery) section.append(gallery);
     }
-    link.append(textNode("span", items.length + " visual resource" + (items.length === 1 ? "" : "s") + " / open gallery"));
-    section.append(link);
+    if (textEntry && choice) {
+      const toolbar = element("div", "story-dialog-story-toolbar");
+      toolbar.append(textNode("div", "完整剧情", "story-detail-section-label"));
+      appendLocaleSwitch(toolbar, textEntry, targetKey, choice.locale);
+      section.append(toolbar);
+    }
+    const flow = element("div", "story-dialog-story-flow");
+    for (const segment of segments) {
+      if (segment.kind === "visual") {
+        if (!segment.resource?.preview) continue;
+        const figure = element("figure", "story-dialog-inline-visual");
+        const image = document.createElement("img");
+        image.src = segment.resource.preview;
+        image.alt = segment.resource.title;
+        image.loading = "lazy";
+        image.decoding = "async";
+        figure.append(image, textNode("figcaption", segment.resource.title));
+        flow.append(figure);
+        continue;
+      }
+      const article = element("article", "story-dialog-text-segment");
+      article.dataset.storyPages = segment.pageStart + "-" + segment.pageEnd;
+      for (const paragraph of segment.text.split(/\n{2,}/u)) {
+        if (paragraph.trim()) article.append(textNode("p", paragraph.trim()));
+      }
+      if (article.childElementCount > 0) flow.append(article);
+    }
+    if (flow.childElementCount === 0 && (!textEntry || !choice || segments.length === 0)) {
+      flow.append(textNode("p", "这条剧情暂时没有可显示的正文。", "story-dialog-empty"));
+    }
+    if (flow.childElementCount > 0) section.append(flow);
+    if (hasInlineVisual) {
+      const related = renderResources(flowResourceIds, true);
+      if (related) section.append(related);
+    }
     return section;
   }
 
   function sceneKindLabel(kind: string): string {
-    return kind === "epilogue" ? "Epilogue" : kind === "vn-scene" ? "Story scene" : "Story scene";
+    return kind === "path-scene" ? "相关场景" : "剧情场景";
   }
 
-  function renderEntryMetadata(entry: CompactEntry, scenes: ArcaeaStoryAtlasType["scenes"]): HTMLElement {
-    const metadata = element("div", "story-detail-pills");
-    for (const label of [
-      ...entry.characterLabels,
-      entry.relatedSongs[0] ?? "",
-      scenes.length > 0 ? sceneKindLabel(scenes[0]?.kind ?? "") : "",
-    ].filter(Boolean)) metadata.append(textNode("span", label));
-    return metadata;
+  function sceneDisplayTitle(scene: CompactScene): string {
+    if (scene.kind === "epilogue") return "One Last Dream";
+    return scene.displayTitle.replace(/\s*·\s*VN scene$/u, "");
   }
 
-  function appendDetailActions(entry: CompactEntry, textEntry: StoryTextEntry | undefined): void {
-    const actions = element("div", "story-detail-actions");
-    if (textEntry) {
-      const readerButton = document.createElement("button");
-      readerButton.className = "button button-primary";
-      readerButton.type = "button";
-      readerButton.dataset.storyOpenReader = "true";
-      readerButton.textContent = "Read full story";
-      actions.append(readerButton);
+  function renderDialogHeader(key: string, title: string, summary: string, metadata: Array<[string, string]>): void {
+    const summaryNode = textNode("p", summary, "story-detail-path");
+    summaryNode.id = "story-detail-summary";
+    const heading = textNode("h3", title);
+    heading.id = "story-detail-heading";
+    detailContentElement.append(
+      textNode("div", key, "story-detail-eyebrow"),
+      heading,
+      summaryNode,
+    );
+    if (metadata.length > 0) {
+      const details = element("dl", "story-detail-meta");
+      for (const [label, value] of metadata) appendMetaRow(details, label, value);
+      detailContentElement.append(details);
     }
-    const resource = payload.resources[entry.resourceIds[0] ?? ""];
+  }
+
+  function renderDialogResources(resourceIds: string[]): void {
+    const resource = resourcesForIds(resourceIds)[0];
     if (resource?.route) {
+      const actions = element("div", "story-detail-actions");
       const link = document.createElement("a");
       link.className = "button button-secondary";
-      link.dataset.storyResourceLink = "true";
       link.href = resource.route;
-      link.textContent = "Open resources";
+      link.textContent = "打开资源页";
       actions.append(link);
+      detailContentElement.append(actions);
     }
-    if (actions.childElementCount > 0) detailContentElement.append(actions);
   }
 
   async function renderEntryDetail(entry: CompactEntry): Promise<void> {
@@ -642,18 +687,20 @@ async function initialize(root: HTMLElement): Promise<void> {
     if (openEntryId !== entry.id) return;
     const textEntry = atlas.text.entries.find((candidate) => candidate.nodeKey === entry.key);
     const scenes = atlas.scenes.filter((scene) => entry.sceneIds.includes(scene.sceneId));
+    const resourceIds = [...new Set([
+      ...entry.resourceIds,
+      ...scenes.flatMap((scene) => scene.resourceIds),
+    ])];
     detailContentElement.replaceChildren();
-    detailContentElement.append(
-      textNode("div", entry.key, "story-detail-eyebrow"),
-      textNode("h3", entry.pathTitle),
-      textNode("p", entry.characterLabels.join(" / "), "story-detail-path"),
-      renderEntryMetadata(entry, scenes),
-    );
-    const preview = renderStoryPreview(textEntry, entry.resourceIds, entry.id);
-    if (preview) detailContentElement.append(preview);
-    const visuals = renderRepresentativeVisual(entry.resourceIds);
-    if (visuals) detailContentElement.append(visuals);
-    appendDetailActions(entry, textEntry);
+    const metadata: Array<[string, string]> = [
+      ["章节", entry.sectionLabel],
+      ...(entry.characterLabels.length > 0 ? [["角色", entry.characterLabels.join(" / ")] as [string, string]] : []),
+      ...(entry.relatedSongs.length > 0 ? [["相关歌曲", entry.relatedSongs.join(" / ")] as [string, string]] : []),
+    ];
+    const title = entry.endingLabel ?? entry.pathTitle;
+    renderDialogHeader(entry.key, title, "路径：" + entry.pathTitle, metadata);
+    detailContentElement.append(renderStoryFlow(textEntry, resourceIds, entry.id));
+    renderDialogResources(resourceIds);
   }
 
   async function renderSceneDetail(scene: CompactScene): Promise<void> {
@@ -666,85 +713,22 @@ async function initialize(root: HTMLElement): Promise<void> {
         ? atlas.text.entries.find((entry) => entry.storyData === definition.storyData)
         : undefined;
     detailContentElement.replaceChildren();
-    const sceneTitle = scene.kind === "epilogue" ? "Epilogue" : scene.displayTitle;
-    detailContentElement.append(
-      textNode("div", sceneKindLabel(scene.kind), "story-detail-eyebrow"),
-      textNode("h3", sceneTitle),
-      textNode("p", scene.pathTitle, "story-detail-path"),
-    );
-    const preview = renderStoryPreview(textEntry, scene.resourceIds, scene.sceneId);
-    if (preview) detailContentElement.append(preview);
-    const visuals = renderRepresentativeVisual(scene.resourceIds);
-    if (visuals) detailContentElement.append(visuals);
-    if (textEntry) {
-      const actions = element("div", "story-detail-actions");
-      const button = document.createElement("button");
-      button.className = "button button-primary";
-      button.type = "button";
-      button.dataset.storyOpenReader = "true";
-      button.textContent = "Read full story";
-      actions.append(button);
-      detailContentElement.append(actions);
-    }
-  }
-
-  function renderReaderText(targetKey: string, textEntry: StoryTextEntry | undefined, title: string, context: string, resourceIds: string[]): void {
-    const choice = textEntry ? chooseLocale(textEntry, targetKey) : undefined;
-    readerTitleElement.textContent = title;
-    readerContextElement.textContent = context;
-    readerLocalesElement.replaceChildren();
-    readerContentElement.replaceChildren();
-    if (!textEntry || !choice) {
-      readerContentElement.append(textNode("p", "No published story text is available for this entry.", "story-reader-empty"));
-      return;
-    }
-    selectedLocale[targetKey] = choice.locale;
-    appendLocaleSwitch(readerLocalesElement, textEntry, targetKey, choice.locale);
-    const segments = buildReaderSegments(choice.text, resourceIds);
-    for (const segment of segments) {
-      if (segment.kind === "visual") {
-        if (!segment.resource?.preview) continue;
-        const figure = element("figure", "story-reader-visual");
-        const image = document.createElement("img");
-        image.src = segment.resource.preview;
-        image.alt = segment.resource.title;
-        image.loading = "lazy";
-        image.decoding = "async";
-        figure.append(image, textNode("figcaption", segment.resource.title));
-        readerContentElement.append(figure);
-        continue;
-      }
-      const article = element("article", "story-reader-segment");
-      article.dataset.storyReaderSegment = "text";
-      article.dataset.storyPages = segment.pageStart + "-" + segment.pageEnd;
-      for (const paragraph of segment.text.split(/\n{2,}/u)) {
-        if (paragraph.trim()) article.append(textNode("p", paragraph.trim()));
-      }
-      if (article.childElementCount > 0) readerContentElement.append(article);
-    }
-    if (readerContentElement.childElementCount === 0) readerContentElement.append(textNode("p", "No published story text is available for this entry.", "story-reader-empty"));
-  }
-
-  async function renderReader(): Promise<void> {
-    if (!readerTargetKey) return;
-    const atlas = await ensureAtlas();
-    if (!readerTargetKey) return;
-    const entry = openEntryId ? payload.entries.find((candidate) => candidate.id === openEntryId) : undefined;
-    const scene = openSceneId ? payload.scenes.find((candidate) => candidate.sceneId === openSceneId) : undefined;
-    const textEntry = entry
-      ? atlas.text.entries.find((candidate) => candidate.nodeKey === entry.key)
-      : scene?.pathId !== undefined
-        ? atlas.scenes.find((candidate) => candidate.sceneId === scene.sceneId)?.nodeKey
-          ? atlas.text.entries.find((candidate) => candidate.nodeKey === atlas.scenes.find((item) => item.sceneId === scene.sceneId)?.nodeKey)
-          : undefined
-        : undefined;
-    renderReaderText(
-      readerTargetKey,
-      textEntry,
-      entry?.key ?? scene?.displayTitle ?? "Full story",
-      entry?.pathTitle ?? scene?.pathTitle ?? "Story Atlas",
-      entry?.resourceIds ?? scene?.resourceIds ?? [],
-    );
+    const sceneTitle = sceneDisplayTitle(scene);
+    const entry = textEntry ? payload.entries.find((candidate) => candidate.key === textEntry.nodeKey) : undefined;
+    const resourceIds = [...new Set([
+      ...scene.resourceIds,
+      ...(entry?.resourceIds ?? []),
+    ])];
+    const metadata: Array<[string, string]> = [
+      ["章节", scene.sectionLabel],
+      ["路径", scene.pathTitle],
+      ...(entry?.characterLabels.length ? [["角色", entry.characterLabels.join(" / ")] as [string, string]] : []),
+      ...(entry?.relatedSongs.length ? [["相关歌曲", entry.relatedSongs.join(" / ")] as [string, string]] : []),
+    ];
+    detailContentElement.replaceChildren();
+    renderDialogHeader(textEntry?.nodeKey ?? sceneKindLabel(scene.kind), sceneTitle, "路径：" + scene.pathTitle, metadata);
+    detailContentElement.append(renderStoryFlow(textEntry, resourceIds, scene.sceneId));
+    renderDialogResources(resourceIds);
   }
 
   function renderError(message: string): void {
@@ -756,15 +740,14 @@ async function initialize(root: HTMLElement): Promise<void> {
     lastFocusedElement = document.activeElement instanceof HTMLElement && !detailElement.contains(document.activeElement) ? document.activeElement : null;
     openEntryId = entry.id;
     openSceneId = undefined;
-    readerTargetKey = undefined;
     detailElement.hidden = false;
     root.classList.add("has-story-detail");
     try {
       await renderEntryDetail(entry);
     } catch {
-      if (openEntryId === entry.id) renderError("Story detail could not be loaded.");
+      if (openEntryId === entry.id) renderError("剧情内容加载失败，请稍后再试。");
     }
-    if (openEntryId === entry.id) root.querySelector<HTMLButtonElement>("[data-story-detail-close]")?.focus();
+    if (openEntryId === entry.id) root.querySelector<HTMLButtonElement>("button[data-story-detail-close]")?.focus();
   }
 
   async function openScene(scene: CompactScene): Promise<void> {
@@ -772,50 +755,22 @@ async function initialize(root: HTMLElement): Promise<void> {
     lastFocusedElement = document.activeElement instanceof HTMLElement && !detailElement.contains(document.activeElement) ? document.activeElement : null;
     openEntryId = undefined;
     openSceneId = scene.sceneId;
-    readerTargetKey = undefined;
     detailElement.hidden = false;
     root.classList.add("has-story-detail");
     try {
       await renderSceneDetail(scene);
     } catch {
-      if (openSceneId === scene.sceneId) renderError("Story scene could not be loaded.");
+      if (openSceneId === scene.sceneId) renderError("剧情场景加载失败，请稍后再试。");
     }
-    if (openSceneId === scene.sceneId) root.querySelector<HTMLButtonElement>("[data-story-detail-close]")?.focus();
-  }
-
-  async function openReader(): Promise<void> {
-    const target = openEntryId ?? openSceneId;
-    if (!target) return;
-    readerTargetKey = target;
-    readerTrigger = document.activeElement instanceof HTMLElement ? document.activeElement : null;
-    readerElement.hidden = false;
-    root.classList.add("has-story-reader");
-    try {
-      await renderReader();
-    } catch {
-      readerContentElement.replaceChildren(textNode("p", "Story text could not be loaded.", "story-reader-empty"));
-    }
-    readerElement.querySelector<HTMLButtonElement>("[data-story-reader-close]")?.focus();
-  }
-
-  function closeReader(): void {
-    if (readerElement.hidden) return;
-    readerElement.hidden = true;
-    root.classList.remove("has-story-reader");
-    readerTargetKey = undefined;
-    const focusTarget = readerTrigger;
-    readerTrigger = null;
-    if (focusTarget?.isConnected && !readerElement.contains(focusTarget)) focusTarget.focus();
+    if (openSceneId === scene.sceneId) root.querySelector<HTMLButtonElement>("button[data-story-detail-close]")?.focus();
   }
 
   function closeDetail(): void {
-    if (!detailElement.hidden && !readerElement.hidden) closeReader();
     if (detailElement.hidden) return;
     detailElement.hidden = true;
     root.classList.remove("has-story-detail");
     openEntryId = undefined;
     openSceneId = undefined;
-    readerTargetKey = undefined;
     updateUrl({ "story-entry": undefined, "story-scene": undefined });
     const focusTarget = lastFocusedElement;
     lastFocusedElement = null;
@@ -858,7 +813,7 @@ async function initialize(root: HTMLElement): Promise<void> {
     hideSubworldPanel();
     activateSection(origin);
     if (restoreScrollY !== undefined) window.scrollTo(0, restoreScrollY);
-    if (update) updateUrl({ "story-subworld": undefined, "story-entry": undefined, "story-scene": undefined });
+    if (update) updateUrl({ "story-subworld": undefined, "story-path": undefined, "story-entry": undefined, "story-scene": undefined });
   }
 
   function focusSubworldNode(nodeKey: string, scale = 0.96): void {
@@ -943,7 +898,7 @@ async function initialize(root: HTMLElement): Promise<void> {
   }
 
   function activeModal(): HTMLElement | null {
-    return !readerElement.hidden ? readerElement : !detailElement.hidden ? detailElement : null;
+    return detailElement.hidden ? null : detailElement;
   }
 
   root.addEventListener("click", (event) => {
@@ -954,20 +909,9 @@ async function initialize(root: HTMLElement): Promise<void> {
     }
     const target = event.target;
     if (!(target instanceof Element)) return;
-    if (target.closest("[data-story-reader-close]")) {
-      event.preventDefault();
-      closeReader();
-      return;
-    }
     if (target.closest("[data-story-detail-close]")) {
       event.preventDefault();
       closeDetail();
-      return;
-    }
-    const readerButton = target.closest<HTMLElement>("[data-story-open-reader]");
-    if (readerButton) {
-      event.preventDefault();
-      void openReader();
       return;
     }
     const view = target.closest<HTMLButtonElement>("[data-story-view-toggle]");
@@ -1045,10 +989,9 @@ async function initialize(root: HTMLElement): Promise<void> {
     }
     const locale = target.closest<HTMLElement>("[data-story-locale]");
     if (locale?.dataset.storyLocale) {
-      const key = locale.dataset.storyLocaleTarget ?? readerTargetKey ?? openEntryId ?? openSceneId ?? "";
+      const key = locale.dataset.storyLocaleTarget ?? openEntryId ?? openSceneId ?? "";
       if (key) selectedLocale[key] = locale.dataset.storyLocale;
-      if (!readerElement.hidden) void renderReader();
-      else if (openEntryId || openSceneId) {
+      if (openEntryId || openSceneId) {
         const entry = openEntryId ? payload.entries.find((candidate) => candidate.id === openEntryId) : undefined;
         const sceneValue = openSceneId ? payload.scenes.find((candidate) => candidate.sceneId === openSceneId) : undefined;
         if (entry) void renderEntryDetail(entry);
@@ -1065,7 +1008,7 @@ async function initialize(root: HTMLElement): Promise<void> {
       searchStatus.textContent = "";
       return;
     }
-    searchStatus.textContent = "Searching...";
+    searchStatus.textContent = "正在搜索…";
     try {
       const atlas = await ensureAtlas();
       const indexByNode = new Map(atlas.searchIndex.map((entry) => [entry.nodeKey, entry.terms.join(" ")]));
@@ -1081,6 +1024,7 @@ async function initialize(root: HTMLElement): Promise<void> {
           entry.pathTitle,
           entry.sectionLabel,
           entry.visualLabel,
+          entry.endingLabel ?? "",
           ...entry.characterLabels,
           ...entry.relatedSongs,
           entry.unlockLabel ?? "",
@@ -1102,24 +1046,27 @@ async function initialize(root: HTMLElement): Promise<void> {
         const button = document.createElement("button");
         button.type = "button";
         button.dataset.storySearchResult = entry.id;
-        button.append(textNode("strong", entry.key), textNode("span", entry.pathTitle + " / " + entry.sectionLabel));
+        button.append(
+          textNode("strong", entry.endingLabel ?? entry.key),
+          textNode("span", (entry.endingLabel ? entry.key + " · " : "") + entry.pathTitle + " / " + entry.sectionLabel),
+        );
         searchResults.append(button);
       }
       for (const scene of sceneMatches) {
         const button = document.createElement("button");
         button.type = "button";
         button.dataset.storySearchResult = scene.sceneId;
-        button.append(textNode("strong", scene.displayTitle), textNode("span", scene.pathTitle + " / " + sceneKindLabel(scene.kind)));
+        button.append(textNode("strong", sceneDisplayTitle(scene)), textNode("span", scene.pathTitle + " / " + sceneKindLabel(scene.kind)));
         searchResults.append(button);
       }
       const count = matches.length + sceneMatches.length;
       searchResults.hidden = false;
-      searchStatus.textContent = count + (count === 1 ? " match" : " matches");
-      if (count === 0) searchResults.append(textNode("p", "No matching story entry or scene.", "story-search-empty"));
+      searchStatus.textContent = count + " 个结果";
+      if (count === 0) searchResults.append(textNode("p", "没有找到匹配的剧情节点或场景。", "story-search-empty"));
     } catch {
       searchResults.hidden = false;
-      searchResults.replaceChildren(textNode("p", "Search is temporarily unavailable.", "story-search-empty"));
-      searchStatus.textContent = "Search unavailable";
+      searchResults.replaceChildren(textNode("p", "搜索暂时不可用。", "story-search-empty"));
+      searchStatus.textContent = "搜索不可用";
     }
   }
 
@@ -1171,11 +1118,6 @@ async function initialize(root: HTMLElement): Promise<void> {
 
   root.addEventListener("keydown", (event) => {
     const modal = activeModal();
-    if (event.key === "Escape" && modal === readerElement) {
-      event.preventDefault();
-      closeReader();
-      return;
-    }
     if (event.key === "Escape" && modal === detailElement) {
       event.preventDefault();
       closeDetail();

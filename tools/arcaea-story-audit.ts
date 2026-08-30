@@ -2,6 +2,7 @@ import { mkdir, readFile, readdir, writeFile } from "node:fs/promises";
 import path from "node:path";
 import sharp from "sharp";
 import {
+  ARCAEA_STORY_ATLAS_SCHEMA_VERSION,
   ArcaeaStoryAtlas,
   ArcaeaStoryRelationEvidence,
   ArcaeaStoryScene,
@@ -669,7 +670,7 @@ export async function buildArcaeaStoryAudit(options: {
   const scenes = buildStoryScenes(index, entries, vns, catalog);
   const relationEvidence = await buildRelationEvidence(options.packageRoot, index, text, entries, vns, catalog);
   const atlas = ArcaeaStoryAtlas.parse({
-    schemaVersion: 1,
+    schemaVersion: ARCAEA_STORY_ATLAS_SCHEMA_VERSION,
     source: index.source,
     text,
     scenes,
