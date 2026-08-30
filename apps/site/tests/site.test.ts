@@ -271,6 +271,23 @@ test("header keeps a single extensible game-library entry on mobile and desktop"
   assert.doesNotMatch(styles, /site-nav > a:not\(\.nav-search\)/u);
 });
 
+test("Story Atlas UX contract keeps map hit targets and page reader player-facing", () => {
+  const component = fs.readFileSync(path.join(siteRoot, "src", "components", "ArcaeaStoryAtlas.astro"), "utf8");
+  const script = fs.readFileSync(path.join(siteRoot, "src", "scripts", "arcaea-story-atlas.ts"), "utf8");
+  const styles = fs.readFileSync(path.join(siteRoot, "src", "styles", "global.css"), "utf8");
+  assert.match(component, /data-story-link-path-ids/u);
+  assert.match(script, /const interactiveSelector = "button, a, input, select, textarea/u);
+  assert.match(script, /DRAG_THRESHOLD = 5/u);
+  assert.match(script, /function renderStoryPreview/u);
+  assert.match(script, /data-story-preview-previous/u);
+  assert.match(script, /data-story-preview-next/u);
+  assert.doesNotMatch(script, /renderStoryText\(/u);
+  assert.match(styles, /\.story-map-path-cluster[^}]*pointer-events: none/u);
+  assert.match(styles, /\.story-map-path-title[^}]*pointer-events: auto/u);
+  assert.match(styles, /\.story-preview-stage/u);
+  assert.match(styles, /\.story-map-link\.is-external[^}]*opacity: \.2/u);
+});
+
 test("category semantic browse data keeps player-facing names and conservative unresolved labels", () => {
   const semantic = loadCategoryBrowseProjections();
   const siteData = getSiteData();

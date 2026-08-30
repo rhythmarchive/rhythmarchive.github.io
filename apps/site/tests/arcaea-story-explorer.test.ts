@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import { displayNodeKey, parseStoryTextBlocks, parseVnsScript } from "../../../tools/arcaea-story-audit.js";
-import { buildArcaeaStoryAtlasLayout } from "../src/lib/arcaea-story-layout.js";
+import { boundsContains, boundsIntersect, buildArcaeaStoryAtlasLayout } from "../src/lib/arcaea-story-layout.js";
 import { buildArcaeaStoryExplorerModel, isArcaeaStoryCgResource, isArcaeaVnCgResource } from "../src/lib/arcaea-story-explorer.js";
 import { getSiteData, loadCategoryBrowseProjections } from "../src/lib/site-data.js";
 import type { PublicResource } from "../src/lib/types.js";
@@ -181,6 +181,33 @@ test("Arcaea Story projection keeps locale/source/provenance and deterministic A
   assert.deepEqual(firstLayout, secondLayout);
   assert.equal(firstLayout.lines.some((line) => line.provenance === "audited"), true);
   assert.equal(firstLayout.lines.every((line) => line.x1 !== line.x2 || line.y1 !== line.y2), true);
+});
+
+test("Arcaea Story Atlas content-aware layout contains interactive content and separates Path bounds", () => {
+  const siteData = getSiteData();
+  const browse = loadCategoryBrowseProjections().arcaea;
+  assert.ok(browse.storyStructure);
+  const model = buildArcaeaStoryExplorerModel(siteData.galleries["arcaea/story-cg"] ?? [], browse.storyStructure, browse.storyAtlas);
+
+  for (const section of model.sections) {
+    const layout = buildArcaeaStoryAtlasLayout(section);
+    assert.deepEqual(layout, buildArcaeaStoryAtlasLayout(section));
+    for (const pathLayout of layout.paths) {
+      assert.equal(boundsContains(pathLayout.bounds, pathLayout.interactiveBounds), true);
+      assert.equal(boundsContains(pathLayout.interactiveBounds, pathLayout.titleBounds), true);
+      assert.ok(Object.values(pathLayout.nodeBounds).every((bounds) => boundsContains(pathLayout.interactiveBounds, bounds)));
+      assert.ok(pathLayout.avatarBounds.every((bounds) => boundsContains(pathLayout.interactiveBounds, bounds)));
+      assert.ok(Object.values(pathLayout.sceneBounds).every((bounds) => boundsContains(pathLayout.interactiveBounds, bounds)));
+      assert.equal(boundsContains(layout.worldBounds, pathLayout.interactiveBounds), true);
+    }
+    for (let left = 0; left < layout.paths.length; left += 1) {
+      for (let right = left + 1; right < layout.paths.length; right += 1) {
+        assert.equal(boundsIntersect(layout.paths[left]!.interactiveBounds, layout.paths[right]!.interactiveBounds), false, `${section.label}: Path interactive bounds overlap`);
+      }
+    }
+    const nodePoints = layout.paths.flatMap((pathLayout) => Object.values(pathLayout.nodes));
+    assert.ok(layout.lines.every((line) => nodePoints.some((point) => point.x === line.x1 && point.y === line.y1) && nodePoints.some((point) => point.x === line.x2 && point.y === line.y2)));
+  }
 });
 
 test("Arcaea Story display key mapping follows alternate prefix/suffix fields", () => {

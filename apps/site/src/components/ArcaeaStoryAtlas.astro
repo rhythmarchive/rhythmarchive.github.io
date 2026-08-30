@@ -134,6 +134,7 @@ function compactResource(resource: PublicResource): Record<string, unknown> {
     original: resource.original?.url,
     download: resource.original?.url,
     downloadFilename: resource.original?.downloadFilename ?? resource.downloadFilename,
+    assetPaths: (resource.searchTerms ?? []).filter((term) => /^assets\/app-data\/story\//u.test(term)),
   };
 }
 
@@ -226,11 +227,10 @@ const initialText = initialLocale ? textFor(firstEntry)?.texts[initialLocale] : 
           </div>
         </header>
         <div class="story-map-legend" aria-label="Story Map 图例">
-          <span><i class="story-legend-dot story-legend-entry"></i>Entry</span>
-          <span><i class="story-legend-dot story-legend-cg"></i>CG</span>
-          <span><i class="story-legend-dot story-legend-scene"></i>Path / VN Scene</span>
-          <span><i class="story-legend-line"></i>审计边</span>
-          <span><i class="story-legend-line is-fallback"></i>顺序视觉边</span>
+          <span><i class="story-legend-dot story-legend-entry"></i>剧情节点</span>
+          <span><i class="story-legend-dot story-legend-cg"></i>含 CG</span>
+          <span><i class="story-legend-dot story-legend-scene"></i>特殊演出</span>
+          <span><i class="story-legend-line"></i>剧情连接</span>
         </div>
         <div class="story-map-viewport" data-story-map-viewport tabindex="0" aria-label={`${section.label} 连续剧情地图`} data-world-width={layout.width} data-world-height={layout.height}>
           <div class="story-map-world" data-story-map-world style={`width:${layout.width}px;height:${layout.height}px;`}>
@@ -238,7 +238,7 @@ const initialText = initialLocale ? textFor(firstEntry)?.texts[initialLocale] : 
             <div class="story-map-wash" aria-hidden="true"></div>
             <div class="story-map-grid" aria-hidden="true"></div>
             <svg class="story-map-links" viewBox={`0 0 ${layout.width} ${layout.height}`} role="presentation" aria-hidden="true">
-              {layout.lines.map((line) => <line class:list={{ "story-map-link": true, [`story-map-link-${line.kind}`]: true, "is-fallback": line.provenance === "sequential-fallback", "is-external": line.external === true }} x1={line.x1} y1={line.y1} x2={line.x2} y2={line.y2} data-story-link-from={line.from} data-story-link-to={line.to} data-story-link-provenance={line.provenance} />)}
+              {layout.lines.map((line) => <line class:list={{ "story-map-link": true, [`story-map-link-${line.kind}`]: true, "is-fallback": line.provenance === "sequential-fallback", "is-external": line.external === true }} x1={line.x1} y1={line.y1} x2={line.x2} y2={line.y2} data-story-link-from={line.from} data-story-link-to={line.to} data-story-link-path-ids={line.pathIds.join(",")} data-story-link-provenance={line.provenance} />)}
             </svg>
             <div class="story-map-paths">
               {layout.paths.map((pathLayout) => <section class:list={{ "story-map-path-cluster": true, "is-active": pathLayout.path.pathId === firstPath?.pathId }} data-story-map-path={pathLayout.path.pathId} data-story-path-x={pathLayout.x + pathLayout.width / 2} data-story-path-y={pathLayout.y + pathLayout.height / 2} style={`left:${pathLayout.x}px;top:${pathLayout.y}px;width:${pathLayout.width}px;height:${pathLayout.height}px;`}>
@@ -297,20 +297,20 @@ const initialText = initialLocale ? textFor(firstEntry)?.texts[initialLocale] : 
             {firstEntry.staffRoll ? <span>Staff roll</span> : null}
           </div>
           {initialText ? <section class="story-detail-text" data-story-detail-text>
-            <div class="story-detail-section-label">剧情正文</div>
+            <div class="story-detail-section-label">剧情预览</div>
             <div class="story-locale-switch" role="group" aria-label="剧情语言">
               {Object.keys(textFor(firstEntry)?.texts ?? {}).map((locale) => <button type="button" data-story-locale={locale} class:list={{ "is-active": locale === initialLocale }}>{localeLabel(locale)}</button>)}
             </div>
             <div class="story-text-blocks">{initialText.blocks.map((block) => block.kind === "display-event" ? <p class="story-text-display-event">视觉演出 · {block.assetPath?.split("/").at(-1) ?? "CG"}</p> : <p>{block.text}</p>)}</div>
           </section> : null}
           {firstEntry.resources.length > 0 ? <section class="story-detail-visuals" data-story-detail-visuals>
-            <div class="story-detail-section-label">Visual / CG</div>
+            <div class="story-detail-section-label">CG / 视觉资源</div>
             <div class="story-detail-cg-grid">{firstEntry.resources.map((resource) => {
               const image = derivativeResource(resource, "preview");
               return <article class="story-detail-cg-card"><a href={resourceHref(resource)}><>{image ? <img src={image.url} width={image.width} height={image.height} alt={resource.displayTitle} loading="lazy" decoding="async" /> : null}</><span>{resource.displayTitle}</span></a><div><small>{resource.metadata.storyImageOrder ? `CG ${resource.metadata.storyImageOrder}/${resource.metadata.storyImageCount ?? ""}` : "CG"}</small>{resource.original ? <a class="text-link" href={resource.original.url} target="_blank" rel="noreferrer">查看原图</a> : null}</div></article>;
             })}</div>
           </section> : null}
-          {firstEntry.sceneIds.length > 0 ? <section class="story-detail-scene"><div class="story-detail-section-label">Scene information</div><p>{firstEntry.sceneIds.join(" · ")} · runtime VN scene</p></section> : null}
+          {firstEntry.sceneIds.length > 0 ? <section class="story-detail-scene"><div class="story-detail-section-label">场景</div><p>{firstEntry.sceneIds.join(" · ")} · VN Scene</p></section> : null}
         </> : <p>请选择一个 Story Entry。</p>}
       </div>
     </div>
