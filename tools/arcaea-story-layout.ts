@@ -6,6 +6,7 @@ import {
   type ArcaeaStoryAuthoredAvatarType,
   type ArcaeaStoryAuthoredContinuationNodeType,
   type ArcaeaStoryAuthoredCompositeType,
+  type ArcaeaStoryAuthoredLabelType,
   type ArcaeaStoryAuthoredLineType,
   type ArcaeaStoryAuthoredNodeType,
   type ArcaeaStoryAuthoredOverviewPathType,
@@ -17,13 +18,12 @@ import {
 } from "../packages/domain/src/browse.js";
 import { readCsbFile, type CsbNode, type CsbPoint } from "./arcaea-story-csb.js";
 
-const EXTRACTION_VERSION = "arcaea-story-csb-v2";
+const EXTRACTION_VERSION = "arcaea-story-csb-v3";
 const LAYOUT_PADDING = 180;
 const DEFAULT_NODE_WIDTH = 193;
 const DEFAULT_NODE_HEIGHT = 193;
 const DEFAULT_TITLE_WIDTH = 300;
 const DEFAULT_TITLE_HEIGHT = 72;
-const DEFAULT_AVATAR_SIZE = 72;
 const DEFAULT_PORTAL_SIZE = 260;
 const EPILOGUE_COMPOSITE_SCALE = 0.72;
 const EPILOGUE_FORK_GAP = 96;
@@ -65,8 +65,23 @@ type RawNode = {
   anchor: CsbPoint;
   width?: number;
   height?: number;
+  label?: RawLabel;
+  labelMode?: "overlay" | "baked";
   sourceName: string;
   artRef?: string | undefined;
+};
+
+type RawLabel = {
+  transform: RawTransform;
+  width: number;
+  height: number;
+  anchor: CsbPoint;
+  text?: string;
+  fontSize?: number;
+  fontResourcePath?: string;
+  fontName?: string;
+  horizontalAlignment?: "left" | "center" | "right";
+  verticalAlignment?: "top" | "center" | "bottom";
 };
 
 type RawLine = {
@@ -95,6 +110,27 @@ type RawPortal = RawTransform & {
 type RawTitle = RawTransform & {
   sourceName: string;
   text?: string;
+  label?: RawLabel;
+};
+
+type RawAvatar = {
+  transform: RawTransform;
+  characterId: number;
+  sourceName: string;
+  width: number;
+  height: number;
+  anchor: CsbPoint;
+};
+
+type StoryComponentGeometry = {
+  entryLabel: RawLabel;
+  titleLabel: RawLabel;
+  avatarVisual: {
+    transform: RawTransform;
+    width: number;
+    height: number;
+    anchor: CsbPoint;
+  };
 };
 
 type RawBoundsItem = {
@@ -216,6 +252,35 @@ function nodeDimension(node: CsbNode, axis: "width" | "height", fallback: number
   return positiveDimension(axis === "width" ? node.size.width : node.size.height, fallback);
 }
 
+function horizontalAlignmentName(value: number | undefined): "left" | "center" | "right" | undefined {
+  return value === 0 ? "left" : value === 1 ? "center" : value === 2 ? "right" : undefined;
+}
+
+function verticalAlignmentName(value: number | undefined): "top" | "center" | "bottom" | undefined {
+  return value === 0 ? "top" : value === 1 ? "center" : value === 2 ? "bottom" : undefined;
+}
+
+function rawLabel(node: CsbNode, transform: RawTransform): RawLabel {
+  const horizontalAlignment = horizontalAlignmentName(node.horizontalAlignment);
+  const verticalAlignment = verticalAlignmentName(node.verticalAlignment);
+  return {
+    transform,
+    width: nodeDimension(node, "width", 1),
+    height: nodeDimension(node, "height", 1),
+    anchor: node.anchor,
+    ...(node.text ? { text: node.text } : {}),
+    ...(node.fontSize && node.fontSize > 0 ? { fontSize: node.fontSize } : {}),
+    ...(node.fontResourcePath ? { fontResourcePath: packagePath(node.fontResourcePath) } : {}),
+    ...(node.fontName ? { fontName: node.fontName } : {}),
+    ...(horizontalAlignment ? { horizontalAlignment } : {}),
+    ...(verticalAlignment ? { verticalAlignment } : {}),
+  };
+}
+
+function composeLabel(parent: RawTransform, template: RawLabel): RawLabel {
+  return { ...template, transform: compose(parent, template.transform) };
+}
+
 function placement(transform: RawTransform, minX: number, maxY: number): ArcaeaStoryLayoutPlacementType {
   return {
     x: transform.x - minX + LAYOUT_PADDING,
@@ -321,7 +386,7 @@ function normalizedLine(line: RawLine, bounds: { minX: number; maxY: number }): 
   };
 }
 
-function normalizedNode(node: RawNode, pathId: number, slot: number, bounds: { minX: number; maxY: number }): ArcaeaStoryAuthoredNodeType {
+function normalizedNode(node: RawNode, pathId: number, slot: number, bounds: { minX: number; maxY: number }, labelText?: string): ArcaeaStoryAuthoredNodeType {
   return {
     ...placement(node.transform, bounds.minX, bounds.maxY),
     nodeKey: "",
@@ -331,6 +396,25 @@ function normalizedNode(node: RawNode, pathId: number, slot: number, bounds: { m
     ...(node.artRef ? { artRef: node.artRef } : {}),
     ...(node.width ? { width: node.width } : {}),
     ...(node.height ? { height: node.height } : {}),
+    labelMode: node.labelMode ?? "overlay",
+    ...(node.label ? { label: normalizedLabel(node.label, bounds, labelText) } : {}),
+  };
+}
+
+function normalizedLabel(label: RawLabel, bounds: { minX: number; maxY: number }, textOverride?: string): ArcaeaStoryAuthoredLabelType {
+  const text = textOverride ?? label.text;
+  return {
+    ...placement(label.transform, bounds.minX, bounds.maxY),
+    width: label.width,
+    height: label.height,
+    anchorX: label.anchor.x,
+    anchorY: label.anchor.y,
+    ...(text ? { text } : {}),
+    ...(label.fontSize ? { fontSize: label.fontSize } : {}),
+    ...(label.fontResourcePath ? { fontResourcePath: label.fontResourcePath } : {}),
+    ...(label.fontName ? { fontName: label.fontName } : {}),
+    ...(label.horizontalAlignment ? { horizontalAlignment: label.horizontalAlignment } : {}),
+    ...(label.verticalAlignment ? { verticalAlignment: label.verticalAlignment } : {}),
   };
 }
 
@@ -339,6 +423,7 @@ function normalizedTitle(title: RawTitle, bounds: { minX: number; maxY: number }
     ...placement(title, bounds.minX, bounds.maxY),
     sourceName: title.sourceName,
     ...(title.text ? { text: title.text } : {}),
+    ...(title.label ? { label: normalizedLabel(title.label, bounds) } : {}),
   };
 }
 
@@ -354,6 +439,34 @@ function findDescendants(root: CsbNode, predicate: (node: CsbNode) => boolean): 
 
 function findDirect(node: CsbNode, predicate: (child: CsbNode) => boolean): CsbNode | undefined {
   return node.children.find(predicate);
+}
+
+async function loadStoryComponentGeometry(packageRoot: string): Promise<StoryComponentGeometry> {
+  const componentRoot = path.join(packageRoot, "assets", "layouts", "story");
+  const [entry, title, avatar, finale] = await Promise.all([
+    readCsbFile(path.join(componentRoot, "StoryV2Entry.csb")),
+    readCsbFile(path.join(componentRoot, "StoryV2TitleButton.csb")),
+    readCsbFile(path.join(componentRoot, "StoryV2CharaPointerNode.csb")),
+    readCsbFile(path.join(componentRoot, "StoryV2EntryFinale.csb")),
+  ]);
+  const entryLabelNode = findDescendants(entry.root, (node) => node.classname === "Text" && node.name === "text")[0];
+  const titleLabelNode = findDescendants(title.root, (node) => node.classname === "Text" && node.name === "text")[0];
+  const avatarVisualNode = findDescendants(avatar.root, (node) => node.classname === "Button" && node.name === "button")[0];
+  const finaleTextNode = findDescendants(finale.root, (node) => node.classname.startsWith("Text"))[0];
+  if (!entryLabelNode || !titleLabelNode || !avatarVisualNode) {
+    throw new Error("Story component CSB is missing Entry, Title or Avatar geometry");
+  }
+  if (finaleTextNode) throw new Error("StoryV2EntryFinale unexpectedly contains a text label");
+  return {
+    entryLabel: rawLabel(entryLabelNode, sourceTransform(entryLabelNode)),
+    titleLabel: rawLabel(titleLabelNode, sourceTransform(titleLabelNode)),
+    avatarVisual: {
+      transform: sourceTransform(avatarVisualNode),
+      width: nodeDimension(avatarVisualNode, "width", 1),
+      height: nodeDimension(avatarVisualNode, "height", 1),
+      anchor: avatarVisualNode.anchor,
+    },
+  };
 }
 
 
@@ -397,7 +510,7 @@ function extractRawLines(root: CsbNode, base: RawTransform, pathId?: number): Ra
   return lines;
 }
 
-function overviewFromDocument(documentRoot: CsbNode): {
+function overviewFromDocument(documentRoot: CsbNode, components: StoryComponentGeometry): {
   paths: ArcaeaStoryAuthoredOverviewPathType[];
   bounds: { width: number; height: number };
 } {
@@ -416,15 +529,18 @@ function overviewFromDocument(documentRoot: CsbNode): {
     const entryNode = findDirect(group, isEntryProjectNode);
     const titleNode = findDirect(group, isTitleProjectNode);
     const entry = entryNode ? compose(anchor, sourceTransform(entryNode)) : undefined;
-    const title = titleNode ? {
-      ...compose(anchor, sourceTransform(titleNode)),
+    const titleTransform = titleNode ? compose(anchor, sourceTransform(titleNode)) : undefined;
+    const title = titleNode && titleTransform ? {
+      ...titleTransform,
       sourceName: titleNode.name || "title",
       ...(titleNode.text ? { text: titleNode.text } : {}),
+      label: composeLabel(titleTransform, components.titleLabel),
     } : undefined;
     rawPaths.push({ pathId, sourceName: group.name, anchor, ...(entry ? { entry } : {}), ...(title ? { title } : {}) });
     addTransformedRect(boundsItems, anchor, DEFAULT_NODE_WIDTH, DEFAULT_NODE_HEIGHT, group.anchor);
     if (entry) addTransformedRect(boundsItems, entry, DEFAULT_NODE_WIDTH, DEFAULT_NODE_HEIGHT, entryNode?.anchor);
     if (title) addTransformedRect(boundsItems, title, DEFAULT_TITLE_WIDTH, DEFAULT_TITLE_HEIGHT, titleNode?.anchor);
+    if (title?.label) addTransformedRect(boundsItems, title.label.transform, title.label.width, title.label.height, title.label.anchor);
   }
   const bounds = normalizedBounds(boundsItems, []);
   return {
@@ -440,7 +556,7 @@ function overviewFromDocument(documentRoot: CsbNode): {
   };
 }
 
-function worldFromDocument(documentRoot: CsbNode, csbPath: string, ordering: Map<number, string[]>): {
+function worldFromDocument(documentRoot: CsbNode, csbPath: string, ordering: Map<number, string[]>, components: StoryComponentGeometry): {
   paths: ArcaeaStoryAuthoredWorldPathType[];
   lines: ArcaeaStoryAuthoredLineType[];
   portals: ArcaeaStoryAuthoredPortalType[];
@@ -452,7 +568,7 @@ function worldFromDocument(documentRoot: CsbNode, csbPath: string, ordering: Map
     anchor: RawTransform;
     title?: RawTitle;
     nodes: Array<RawNode & { slot: number }>;
-    avatars: Array<{ transform: RawTransform; characterId: number; sourceName: string }>;
+    avatars: RawAvatar[];
   }> = [];
   const rawLines: RawLine[] = [];
   const rawPortals: RawPortal[] = [];
@@ -464,7 +580,7 @@ function worldFromDocument(documentRoot: CsbNode, csbPath: string, ordering: Map
     const pathId = numberFromName(pathGroup.name, "world path id");
     const pathAnchor = compose(sourceTransform(group), sourceTransform(pathGroup));
     const pathNodes: Array<RawNode & { slot: number }> = [];
-    const pathAvatars: Array<{ transform: RawTransform; characterId: number; sourceName: string }> = [];
+    const pathAvatars: RawAvatar[] = [];
     let title: RawTitle | undefined;
     const pathOrdering = ordering.get(pathId) ?? [];
     for (const child of pathGroup.children) {
@@ -480,21 +596,38 @@ function worldFromDocument(documentRoot: CsbNode, csbPath: string, ordering: Map
           anchor: child.anchor,
           width,
           height,
+          label: composeLabel(transform, components.entryLabel),
           sourceName: child.name,
           artRef: packagePath(child.resourcePath ?? "layouts/story/StoryV2Entry.csb"),
           slot,
         });
         addTransformedRect(boundsItems, transform, width, height, child.anchor);
+        addTransformedRect(boundsItems, composeLabel(transform, components.entryLabel).transform, components.entryLabel.width, components.entryLabel.height, components.entryLabel.anchor);
         void nodeKey;
       } else if (isTitleProjectNode(child)) {
-        title = { ...transform, sourceName: child.name || "title", ...(child.text ? { text: child.text } : {}) };
+        const titleLabel = composeLabel(transform, components.titleLabel);
+        title = {
+          ...transform,
+          sourceName: child.name || "title",
+          ...(child.text ? { text: child.text } : {}),
+          label: titleLabel,
+        };
         addTransformedRect(boundsItems, transform, DEFAULT_TITLE_WIDTH, DEFAULT_TITLE_HEIGHT, child.anchor);
+        addTransformedRect(boundsItems, titleLabel.transform, titleLabel.width, titleLabel.height, titleLabel.anchor);
       } else if (isAvatarProjectNode(child)) {
         const match = /^chara_(\d+)$/u.exec(child.name);
         if (match) {
           const characterId = Number(match[1]);
-          pathAvatars.push({ transform, characterId, sourceName: child.name });
-          addTransformedRect(boundsItems, transform, DEFAULT_AVATAR_SIZE, DEFAULT_AVATAR_SIZE, child.anchor);
+          const avatarTransform = compose(transform, components.avatarVisual.transform);
+          pathAvatars.push({
+            transform: avatarTransform,
+            characterId,
+            sourceName: child.name,
+            width: components.avatarVisual.width,
+            height: components.avatarVisual.height,
+            anchor: components.avatarVisual.anchor,
+          });
+          addTransformedRect(boundsItems, avatarTransform, components.avatarVisual.width, components.avatarVisual.height, components.avatarVisual.anchor);
         }
       } else if (child.classname === "ProjectNode" && (child.resourcePath ?? "").endsWith("StoryV2EntryFinale.csb")) {
         rawPortals.push({
@@ -530,14 +663,21 @@ function worldFromDocument(documentRoot: CsbNode, csbPath: string, ordering: Map
       nodes: item.nodes
         .slice()
         .sort((a, b) => a.slot - b.slot)
-        .map((node): ArcaeaStoryAuthoredNodeType => ({
-          ...normalizedNode(node, item.pathId, node.slot, { minX: bounds.minX, maxY: bounds.maxY }),
-          nodeKey: (ordering.get(item.pathId) ?? [])[node.slot - 1] ?? "",
-        })),
+        .map((node): ArcaeaStoryAuthoredNodeType => {
+          const nodeKey = (ordering.get(item.pathId) ?? [])[node.slot - 1] ?? "";
+          return {
+            ...normalizedNode(node, item.pathId, node.slot, { minX: bounds.minX, maxY: bounds.maxY }, nodeKey),
+            nodeKey,
+          };
+        }),
       avatars: item.avatars.map((avatar): ArcaeaStoryAuthoredAvatarType => ({
         ...placement(avatar.transform, bounds.minX, bounds.maxY),
         characterId: avatar.characterId,
         sourceName: avatar.sourceName,
+        width: avatar.width,
+        height: avatar.height,
+        anchorX: avatar.anchor.x,
+        anchorY: avatar.anchor.y,
       })),
     })),
     lines: rawLines.map((line) => normalizedLine(line, { minX: bounds.minX, maxY: bounds.maxY })),
@@ -602,6 +742,7 @@ function finaleSubworld(documentRoot: CsbNode): {
         pathId: 19,
         slot: node.slot,
         sourceName: node.sourceName,
+        labelMode: "baked",
         ...(node.artRef ? { artRef: node.artRef } : {}),
         ...(node.width ? { width: node.width } : {}),
         ...(node.height ? { height: node.height } : {}),
@@ -618,7 +759,7 @@ function epilogueContinuation(documentRoot: CsbNode, csbPath: string): {
   nodes: ArcaeaStoryAuthoredContinuationNodeType[];
   lines: ArcaeaStoryAuthoredLineType[];
 } {
-  const rawNodes: Array<RawNode & { nodeId: string; label?: string }> = [];
+  const rawNodes: Array<RawNode & { nodeId: string; displayLabel?: string }> = [];
   const rawLines: RawLine[] = [];
   const boundsItems: RawBoundsItem[] = [];
   for (const parent of documentRoot.children) {
@@ -626,7 +767,9 @@ function epilogueContinuation(documentRoot: CsbNode, csbPath: string): {
     if (!button) continue;
     const item = composeChildren(parent).find((entry) => entry.node === button);
     if (!item) continue;
-    const label = findDescendants(parent, (node) => node.classname === "Text" && Boolean(node.text))[0]?.text;
+    const parentTransform = sourceTransform(parent);
+    const labelNode = findDescendants(parent, (node) => node.classname === "Text" && node.name === "label")[0];
+    const label = labelNode ? rawLabel(labelNode, compose(parentTransform, sourceTransform(labelNode))) : undefined;
     const width = nodeDimension(button, "width", 420);
     const height = nodeDimension(button, "height", 350);
     rawNodes.push({
@@ -638,8 +781,10 @@ function epilogueContinuation(documentRoot: CsbNode, csbPath: string): {
       ...(resourcePathForNode(button) ? { artRef: resourcePathForNode(button) } : {}),
       nodeId: parent.name || button.name || `epilogue-${rawNodes.length + 1}`,
       ...(label ? { label } : {}),
+      ...(label?.text ? { displayLabel: label.text } : {}),
     });
     addTransformedRect(boundsItems, item.transform, width, height, button.anchor);
+    if (label) addTransformedRect(boundsItems, label.transform, label.width, label.height, label.anchor);
     rawLines.push(...extractRawLines(parent, sourceTransform(parent)).filter((line) => /(?:Epilogue-Line|Finale-Divider)/u.test(line.resourcePath ?? "")));
   }
   const bounds = normalizedBounds(boundsItems, rawLines);
@@ -653,7 +798,9 @@ function epilogueContinuation(documentRoot: CsbNode, csbPath: string): {
       nodeId: node.nodeId,
       sourceName: node.sourceName,
       ...(node.artRef ? { artRef: node.artRef } : {}),
-      ...(node.label ? { label: node.label } : {}),
+      labelMode: "overlay",
+      ...(node.displayLabel ? { label: node.displayLabel } : {}),
+      ...(node.label ? { labelGeometry: normalizedLabel(node.label, { minX: bounds.minX, maxY: bounds.maxY }) } : {}),
       ...(node.width ? { width: node.width } : {}),
       ...(node.height ? { height: node.height } : {}),
     })),
@@ -840,8 +987,14 @@ export async function buildArcaeaStoryLayout(packageRoot: string, indexPath: str
   const index = await loadJson<StoryIndex>(indexPath);
   const orderingPath = path.join(packageRoot, "assets", "app-data", "story2", "ordering");
   const ordering = flattenOrdering(await loadJson<OrderingFile>(orderingPath));
+  const componentGeometry = await loadStoryComponentGeometry(packageRoot);
   const sections = [];
-  const csbPaths: string[] = [];
+  const csbPaths: string[] = [
+    "assets/layouts/story/StoryV2Entry.csb",
+    "assets/layouts/story/StoryV2CharaPointerNode.csb",
+    "assets/layouts/story/StoryV2TitleButton.csb",
+    "assets/layouts/story/StoryV2EntryFinale.csb",
+  ];
 
   for (let sectionAct = 0; sectionAct < PARTS.length; sectionAct += 1) {
     const part = PARTS[sectionAct];
@@ -850,8 +1003,8 @@ export async function buildArcaeaStoryLayout(packageRoot: string, indexPath: str
     const worldPath = `assets/app-data/story2/${part.world}`;
     const overviewDocument = await readCsbFile(path.join(packageRoot, overviewPath));
     const worldDocument = await readCsbFile(path.join(packageRoot, worldPath));
-    const overview = overviewFromDocument(overviewDocument.root);
-    const world = worldFromDocument(worldDocument.root, worldPath, ordering);
+    const overview = overviewFromDocument(overviewDocument.root, componentGeometry);
+    const world = worldFromDocument(worldDocument.root, worldPath, ordering, componentGeometry);
     const expectedPathIds = index.sections.find((section) => section.act === sectionAct)?.pathIds ?? [];
     const overviewPathIds = new Set(overview.paths.map((item) => item.pathId));
     const worldPathIds = new Set(world.paths.map((item) => item.pathId).concat(world.portals.length ? [19] : []));

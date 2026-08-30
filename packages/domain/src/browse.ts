@@ -456,8 +456,29 @@ export const ArcaeaStorySearchEntry = z.object({
  * Studio CSB files. These values are deliberately separate from semantic
  * dependency edges: a visual line is authored geometry, not an inferred edge.
  */
-export const ARCAEA_STORY_LAYOUT_SCHEMA_VERSION = 2 as const;
-export const ARCAEA_STORY_ATLAS_SCHEMA_VERSION = 2 as const;
+export const ARCAEA_STORY_LAYOUT_SCHEMA_VERSION = 3 as const;
+export const ARCAEA_STORY_ATLAS_SCHEMA_VERSION = 3 as const;
+
+export const ArcaeaStoryLabelMode = z.enum(["overlay", "baked"]);
+
+export const ArcaeaStoryAuthoredLabel = z.object({
+  /** Normalized Story World position of the label's own authored anchor. */
+  x: z.number(),
+  y: z.number(),
+  width: z.number().positive(),
+  height: z.number().positive(),
+  anchorX: z.number().min(0).max(1),
+  anchorY: z.number().min(0).max(1),
+  scaleX: z.number(),
+  scaleY: z.number(),
+  rotation: z.number(),
+  text: z.string().optional(),
+  fontSize: z.number().positive().optional(),
+  fontResourcePath: PORTABLE_RELATIVE_PATH.optional(),
+  fontName: z.string().min(1).optional(),
+  horizontalAlignment: z.enum(["left", "center", "right"]).optional(),
+  verticalAlignment: z.enum(["top", "center", "bottom"]).optional(),
+});
 
 export const ArcaeaStoryLayoutPlacement = z.object({
   x: z.number(),
@@ -475,16 +496,23 @@ export const ArcaeaStoryAuthoredNode = ArcaeaStoryLayoutPlacement.extend({
   artRef: PORTABLE_RELATIVE_PATH.optional(),
   width: z.number().positive().optional(),
   height: z.number().positive().optional(),
+  labelMode: ArcaeaStoryLabelMode,
+  label: ArcaeaStoryAuthoredLabel.optional(),
 });
 
 export const ArcaeaStoryAuthoredAvatar = ArcaeaStoryLayoutPlacement.extend({
   characterId: z.number().int().nonnegative(),
   sourceName: z.string().min(1),
+  width: z.number().positive(),
+  height: z.number().positive(),
+  anchorX: z.number().min(0).max(1),
+  anchorY: z.number().min(0).max(1),
 });
 
 export const ArcaeaStoryAuthoredTitle = ArcaeaStoryLayoutPlacement.extend({
   sourceName: z.string().min(1),
   text: z.string().min(1).optional(),
+  label: ArcaeaStoryAuthoredLabel.optional(),
 });
 
 export const ArcaeaStoryAuthoredLine = ArcaeaStoryLayoutPlacement.extend({
@@ -559,6 +587,8 @@ export const ArcaeaStoryAuthoredContinuationNode = ArcaeaStoryLayoutPlacement.ex
   label: z.string().min(1).optional(),
   width: z.number().positive().optional(),
   height: z.number().positive().optional(),
+  labelMode: ArcaeaStoryLabelMode,
+  labelGeometry: ArcaeaStoryAuthoredLabel.optional(),
 });
 
 export const ArcaeaStoryAuthoredContinuation = z.object({
@@ -801,6 +831,8 @@ export type ArcaeaStorySceneType = z.infer<typeof ArcaeaStoryScene>;
 export type ArcaeaStoryRelationEvidenceType = z.infer<typeof ArcaeaStoryRelationEvidence>;
 export type ArcaeaStoryDerivativesType = z.infer<typeof ArcaeaStoryDerivatives>;
 export type ArcaeaStoryLayoutPlacementType = z.infer<typeof ArcaeaStoryLayoutPlacement>;
+export type ArcaeaStoryLabelModeType = z.infer<typeof ArcaeaStoryLabelMode>;
+export type ArcaeaStoryAuthoredLabelType = z.infer<typeof ArcaeaStoryAuthoredLabel>;
 export type ArcaeaStoryAuthoredNodeType = z.infer<typeof ArcaeaStoryAuthoredNode>;
 export type ArcaeaStoryAuthoredAvatarType = z.infer<typeof ArcaeaStoryAuthoredAvatar>;
 export type ArcaeaStoryAuthoredTitleType = z.infer<typeof ArcaeaStoryAuthoredTitle>;

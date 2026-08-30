@@ -1,6 +1,8 @@
 import type {
   ArcaeaStoryAuthoredContinuationType,
   ArcaeaStoryCompositeTransformType,
+  ArcaeaStoryAuthoredLabelType,
+  ArcaeaStoryLabelModeType,
   ArcaeaStoryAuthoredLineType,
   ArcaeaStoryAuthoredNodeType,
   ArcaeaStoryAuthoredPortalType,
@@ -19,6 +21,7 @@ export type StoryAtlasBounds = {
   bottom: number;
 };
 export type StoryAtlasOrientation = "horizontal" | "compact-horizontal" | "vertical" | "branch-horizontal" | "stepped";
+export type StoryAtlasNodeLabel = ArcaeaStoryAuthoredLabelType;
 export type StoryAtlasNodeTransform = {
   scaleX: number;
   scaleY: number;
@@ -26,6 +29,8 @@ export type StoryAtlasNodeTransform = {
   width: number;
   height: number;
   artRef?: string;
+  labelMode: ArcaeaStoryLabelModeType;
+  label?: StoryAtlasNodeLabel;
 };
 export type StoryAtlasLine = {
   x1: number;
@@ -43,7 +48,20 @@ export type StoryAtlasLine = {
   kind?: "linear" | "branch" | "merge";
   external?: boolean;
 };
-export type StoryAtlasAvatar = { id: number; x: number; y: number; pathId: number; label: string };
+export type StoryAtlasAvatar = {
+  id: number;
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+  anchorX: number;
+  anchorY: number;
+  scaleX: number;
+  scaleY: number;
+  rotation: number;
+  pathId: number;
+  label: string;
+};
 export type StoryAtlasScenePoint = { sceneId: string; x: number; y: number; kind: string; title: string };
 export type StoryAtlasPortal = {
   portalId: string;
@@ -67,6 +85,7 @@ export type StoryAtlasPathLayout = {
   bounds: StoryAtlasBounds;
   interactiveBounds: StoryAtlasBounds;
   title?: StoryAtlasPoint;
+  titleLabel?: StoryAtlasNodeLabel;
   titleBounds?: StoryAtlasBounds;
   nodes: Record<string, StoryAtlasPoint>;
   nodeBounds: Record<string, StoryAtlasBounds>;
@@ -124,7 +143,6 @@ const DEFAULT_NODE_WIDTH = 193;
 const DEFAULT_NODE_HEIGHT = 193;
 const DEFAULT_TITLE_WIDTH = 300;
 const DEFAULT_TITLE_HEIGHT = 72;
-const DEFAULT_AVATAR_SIZE = 72;
 const DEFAULT_SCENE_WIDTH = 180;
 const DEFAULT_SCENE_HEIGHT = 64;
 const DEFAULT_PORTAL_SIZE = 260;
@@ -167,6 +185,8 @@ function nodeTransform(item: ArcaeaStoryAuthoredNodeType, fallbackWidth = DEFAUL
     rotation: item.rotation,
     width: item.width ?? fallbackWidth,
     height: item.height ?? fallbackHeight,
+    labelMode: item.labelMode,
+    ...(item.label ? { label: item.label } : {}),
     ...(item.artRef ? { artRef: item.artRef } : {}),
   };
 }
@@ -230,10 +250,10 @@ function pathScenes(path: ArcaeaStoryExplorerPath, lastPoint: StoryAtlasPoint): 
   };
 }
 
-function makePathLayout(path: ArcaeaStoryExplorerPath, points: Record<string, StoryAtlasPoint>, transforms: Record<string, StoryAtlasNodeTransform>, avatars: StoryAtlasAvatar[], scenes: StoryAtlasScenePoint[], sceneBoundValues: StoryAtlasBounds[], title?: StoryAtlasPoint, titleBound?: StoryAtlasBounds): StoryAtlasPathLayout {
-  const fallbackTransform: StoryAtlasNodeTransform = { scaleX: 1, scaleY: 1, rotation: 0, width: DEFAULT_NODE_WIDTH, height: DEFAULT_NODE_HEIGHT };
+function makePathLayout(path: ArcaeaStoryExplorerPath, points: Record<string, StoryAtlasPoint>, transforms: Record<string, StoryAtlasNodeTransform>, avatars: StoryAtlasAvatar[], scenes: StoryAtlasScenePoint[], sceneBoundValues: StoryAtlasBounds[], title?: StoryAtlasPoint, titleLabel?: StoryAtlasNodeLabel, titleBound?: StoryAtlasBounds): StoryAtlasPathLayout {
+  const fallbackTransform: StoryAtlasNodeTransform = { scaleX: 1, scaleY: 1, rotation: 0, width: DEFAULT_NODE_WIDTH, height: DEFAULT_NODE_HEIGHT, labelMode: "overlay" };
   const nodeBoundValues = Object.entries(points).map(([key, point]) => nodeBounds(point, transforms[key] ?? fallbackTransform));
-  const bounds = unionBounds([...nodeBoundValues, ...avatars.map((avatar) => makeBounds(avatar.x - DEFAULT_AVATAR_SIZE / 2, avatar.y - DEFAULT_AVATAR_SIZE / 2, DEFAULT_AVATAR_SIZE, DEFAULT_AVATAR_SIZE)), ...sceneBoundValues, ...(titleBound ? [titleBound] : [])]);
+  const bounds = unionBounds([...nodeBoundValues, ...avatars.map((avatar) => nodeBounds(avatar, { scaleX: avatar.scaleX, scaleY: avatar.scaleY, rotation: avatar.rotation, width: avatar.width, height: avatar.height, labelMode: "overlay" })), ...sceneBoundValues, ...(titleBound ? [titleBound] : [])]);
   const padded = makeBounds(bounds.left - 34, bounds.top - 34, bounds.width + 68, bounds.height + 68);
   const nodeBoundRecord: Record<string, StoryAtlasBounds> = {};
   for (const [key, point] of Object.entries(points)) nodeBoundRecord[key] = nodeBounds(point, transforms[key] ?? fallbackTransform);
@@ -252,12 +272,13 @@ function makePathLayout(path: ArcaeaStoryExplorerPath, points: Record<string, St
     bounds: padded,
     interactiveBounds: padded,
     ...(title ? { title } : {}),
+    ...(titleLabel ? { titleLabel } : {}),
     ...(titleBound ? { titleBounds: titleBound } : {}),
     nodes: points,
     nodeBounds: nodeBoundRecord,
     nodeTransforms: transforms,
     avatars,
-    avatarBounds: avatars.map((avatar) => makeBounds(avatar.x - DEFAULT_AVATAR_SIZE / 2, avatar.y - DEFAULT_AVATAR_SIZE / 2, DEFAULT_AVATAR_SIZE, DEFAULT_AVATAR_SIZE)),
+    avatarBounds: avatars.map((avatar) => nodeBounds(avatar, { scaleX: avatar.scaleX, scaleY: avatar.scaleY, rotation: avatar.rotation, width: avatar.width, height: avatar.height, labelMode: "overlay" })),
     scenes,
     sceneBounds: sceneBoundRecord,
   };
@@ -306,6 +327,7 @@ function buildAuthoredLayout(section: ArcaeaStoryExplorerSection, authored: Arca
       transforms[node.nodeKey] = nodeTransform(node);
     }
     const title = authoredPath.title ? pointFromPlacement(authoredPath.title) : undefined;
+    const titleLabel = authoredPath.title?.label;
     const titleBound = title ? titleBounds(title) : undefined;
     const last = [...Object.values(points)].at(-1) ?? pointFromPlacement(authoredPath.anchor);
     const sceneResult = pathScenes(storyPath, last);
@@ -313,10 +335,17 @@ function buildAuthoredLayout(section: ArcaeaStoryExplorerSection, authored: Arca
       id: avatar.characterId,
       x: avatar.x,
       y: avatar.y,
+      width: avatar.width,
+      height: avatar.height,
+      anchorX: avatar.anchorX,
+      anchorY: avatar.anchorY,
+      scaleX: avatar.scaleX,
+      scaleY: avatar.scaleY,
+      rotation: avatar.rotation,
       pathId: authoredPath.pathId,
       label: storyPath.title,
     }));
-    paths.push(makePathLayout(storyPath, points, transforms, avatars, sceneResult.scenes, sceneResult.bounds, title, titleBound));
+    paths.push(makePathLayout(storyPath, points, transforms, avatars, sceneResult.scenes, sceneResult.bounds, title, titleLabel, titleBound));
   }
   const worldBounds = makeBounds(0, 0, authored.world.bounds.width, authored.world.bounds.height);
   return {
@@ -364,13 +393,13 @@ function buildFallbackLayout(section: ArcaeaStoryExplorerSection): StoryAtlasLay
     for (const [entryIndex, entry] of storyPath.entries.entries()) {
       const point = { x: 180 + column * 880 + entryIndex * 230, y: 180 + row * 420 + (entryIndex % 2) * 48 };
       points[entry.key] = point;
-      transforms[entry.key] = { scaleX: 1, scaleY: 1, rotation: 0, width: DEFAULT_NODE_WIDTH, height: DEFAULT_NODE_HEIGHT };
+      transforms[entry.key] = { scaleX: 1, scaleY: 1, rotation: 0, width: DEFAULT_NODE_WIDTH, height: DEFAULT_NODE_HEIGHT, labelMode: "overlay" };
       allPoints.set(entry.key, point);
     }
     const last = [...Object.values(points)].at(-1) ?? { x: 180, y: 180 };
     const scenes = pathScenes(storyPath, last);
     const title = { x: Object.values(points)[0]?.x ?? last.x, y: last.y - 150 };
-    paths.push(makePathLayout(storyPath, points, transforms, [], scenes.scenes, scenes.bounds, title, titleBounds(title)));
+    paths.push(makePathLayout(storyPath, points, transforms, [], scenes.scenes, scenes.bounds, title, undefined, titleBounds(title)));
   }
   const lines: StoryAtlasLine[] = [];
   for (const storyPath of section.paths) {
@@ -418,6 +447,16 @@ function continuationLayout(continuation: ArcaeaStoryAuthoredContinuationType, t
       rotation: node.rotation,
       width: node.width ?? 420,
       height: node.height ?? 350,
+      labelMode: node.labelMode,
+      ...(node.labelGeometry ? {
+        label: {
+          ...node.labelGeometry,
+          x: transform.translateX + node.labelGeometry.x * transform.scale,
+          y: transform.translateY + node.labelGeometry.y * transform.scale,
+          scaleX: node.labelGeometry.scaleX * transform.scale,
+          scaleY: node.labelGeometry.scaleY * transform.scale,
+        },
+      } : {}),
       ...(node.artRef ? { artRef: node.artRef } : {}),
     };
     bounds[node.nodeId] = nodeBounds(point, transforms[node.nodeId]!);

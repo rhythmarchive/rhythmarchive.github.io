@@ -280,6 +280,9 @@ test("Story Atlas UX contract keeps authored maps, direct dialog reading and pla
   assert.match(component, /data-story-subworld-node/u);
   assert.match(component, /x1=\{line\.x1\}.*x2=\{line\.x2\}/u);
   assert.match(component, /data-story-node-variant/u);
+  assert.match(component, /aria-label="Arcaea 剧情图谱"/u);
+  assert.match(component, /transform\.labelMode === "overlay"/u);
+  assert.doesNotMatch(component, /story-atlas-hero|Story Atlas|按游戏中的剧情路径浏览/u);
   assert.match(component, /model\.unassignedResources/u);
   assert.match(component, /story-detail-dialog/u);
   assert.doesNotMatch(component, /story-map-avatar-ring/u);
@@ -304,6 +307,9 @@ test("Story Atlas UX contract keeps authored maps, direct dialog reading and pla
   assert.match(styles, /\.story-map-path-cluster[^}]*pointer-events: none/u);
   assert.match(styles, /\.story-map-path-title[^}]*pointer-events: auto/u);
   assert.match(styles, /\.story-map-node-image/u);
+  assert.match(styles, /--story-avatar-width/u);
+  assert.match(styles, /--story-label-font-size/u);
+  assert.doesNotMatch(styles, /story-atlas-hero/u);
   assert.match(styles, /\.story-detail-dialog/u);
   assert.match(styles, /\.story-dialog-story-flow/u);
   assert.match(styles, /overscroll-behavior: contain/u);

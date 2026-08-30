@@ -1,6 +1,6 @@
 ---
 import type { ArcaeaStoryAtlasType, ArcaeaStoryStructureType } from "../../../../packages/domain/src/browse.js";
-import { buildArcaeaStoryAtlasLayout, buildArcaeaStorySubworldLayout } from "../lib/arcaea-story-layout";
+import { buildArcaeaStoryAtlasLayout, buildArcaeaStorySubworldLayout, type StoryAtlasNodeLabel } from "../lib/arcaea-story-layout";
 import { buildArcaeaStoryExplorerModel, type ArcaeaStoryExplorerEntry, type ArcaeaStoryExplorerScene } from "../lib/arcaea-story-explorer";
 import { BASE_PATH } from "../lib/site-config";
 import { sitePath } from "../lib/url";
@@ -182,17 +182,27 @@ function imageAttributes(image: PublicAsset | undefined, active: boolean): Recor
   return active ? { src: image.url, width: image.width, height: image.height } : { "data-src": image.url, width: image.width, height: image.height };
 }
 
+function authoredLabelStyle(point: { x: number; y: number }, label: StoryAtlasNodeLabel): string {
+  return [
+    "--story-label-offset-x:" + (label.x - point.x) + "px",
+    "--story-label-offset-y:" + (label.y - point.y) + "px",
+    "--story-label-width:" + label.width + "px",
+    "--story-label-height:" + label.height + "px",
+    "--story-label-anchor-x:" + label.anchorX,
+    "--story-label-anchor-y:" + label.anchorY,
+    "--story-label-scale-x:" + label.scaleX,
+    "--story-label-scale-y:" + label.scaleY,
+    "--story-label-rotation:" + label.rotation + "deg",
+    "--story-label-font-size:" + (label.fontSize ?? 18) + "px",
+    "--story-label-text-align:" + (label.horizontalAlignment ?? "center"),
+    "--story-label-justify-items:" + (label.horizontalAlignment === "left" ? "start" : label.horizontalAlignment === "right" ? "end" : "center"),
+    "--story-label-align-items:" + (label.verticalAlignment === "top" ? "start" : label.verticalAlignment === "bottom" ? "end" : "center"),
+  ].join(";") + ";";
+}
+
 ---
 
-<section class="story-atlas-shell" data-story-atlas-root data-story-atlas-url={sitePath("/data/story/arcaea.json", BASE_PATH)} data-base-path={BASE_PATH}>
-  <header class="story-atlas-hero">
-    <div class="story-atlas-hero-copy">
-      <span class="archive-kicker">Arcaea</span>
-      <h2>Story Atlas</h2>
-      <p>按游戏中的剧情路径浏览节点、角色与 CG，点击节点即可阅读完整故事。</p>
-    </div>
-  </header>
-
+<section class="story-atlas-shell" aria-label="Arcaea 剧情图谱" data-story-atlas-root data-story-atlas-url={sitePath("/data/story/arcaea.json", BASE_PATH)} data-base-path={BASE_PATH}>
   <div class="story-atlas-toolbar">
     <div class="story-atlas-view-switch" role="group" aria-label="剧情浏览模式">
       <button class="button button-primary" type="button" data-story-view-toggle="atlas" aria-pressed="true">剧情图谱</button>
@@ -252,12 +262,12 @@ function imageAttributes(image: PublicAsset | undefined, active: boolean): Recor
                 const pathTitle = pathLayout.title ?? { x: pathLayout.x + pathLayout.width / 2, y: pathLayout.y + 30 };
                 return <section class:list={{ "story-map-path-cluster": true, "is-active": pathLayout.path.pathId === firstPath?.pathId }} data-story-map-path={pathLayout.path.pathId} data-story-path-x={pathTitle.x} data-story-path-y={pathTitle.y} style={"left:" + pathLayout.x + "px;top:" + pathLayout.y + "px;width:" + pathLayout.width + "px;height:" + pathLayout.height + "px;"}>
                   <button class="story-map-path-title" type="button" data-story-path={pathLayout.path.pathId} data-story-path-section={section.act} data-story-x={pathTitle.x} data-story-y={pathTitle.y} style={"left:" + (pathTitle.x - pathLayout.x) + "px;top:" + (pathTitle.y - pathLayout.y) + "px;"} aria-label={"定位 " + pathLayout.path.title + " 路径"}>
-                    <strong>{pathLayout.path.title}</strong>
+                    <strong style={pathLayout.titleLabel ? authoredLabelStyle(pathTitle, pathLayout.titleLabel) : undefined}>{pathLayout.path.title}</strong>
                   </button>
                   <div class="story-map-avatars">
                     {pathLayout.avatars.map((avatar) => {
                       const image = avatarImage(avatar.id);
-                      return <button class="story-map-avatar" type="button" data-story-avatar data-story-cluster-path={pathLayout.path.pathId} data-story-section={section.act} data-story-x={avatar.x} data-story-y={avatar.y} style={"left:" + (avatar.x - pathLayout.x) + "px;top:" + (avatar.y - pathLayout.y) + "px;"} aria-label={"定位 " + avatarLabel(avatar.id)} title={avatarLabel(avatar.id)}>
+                      return <button class="story-map-avatar" type="button" data-story-avatar data-story-cluster-path={pathLayout.path.pathId} data-story-section={section.act} data-story-x={avatar.x} data-story-y={avatar.y} style={"left:" + (avatar.x - pathLayout.x) + "px;top:" + (avatar.y - pathLayout.y) + "px;--story-avatar-width:" + avatar.width + "px;--story-avatar-height:" + avatar.height + "px;--story-avatar-scale-x:" + avatar.scaleX + ";--story-avatar-scale-y:" + avatar.scaleY + ";--story-avatar-anchor-x:" + avatar.anchorX + ";--story-avatar-anchor-y:" + avatar.anchorY + ";--story-avatar-rotation:" + avatar.rotation + "deg;"} aria-label={"定位 " + avatarLabel(avatar.id)} title={avatarLabel(avatar.id)}>
                         {image ? <img {...imageAttributes(image, active)} alt={avatarLabel(avatar.id)} decoding="async" /> : <span class="story-map-avatar-fallback">{avatarLabel(avatar.id)}</span>}
                       </button>;
                     })}
@@ -270,7 +280,7 @@ function imageAttributes(image: PublicAsset | undefined, active: boolean): Recor
                       if (!point || !transform) return null;
                       return <button class:list={{ "story-map-node": true, "has-cg": entry.resources.length > 0, "has-scene": entry.sceneIds.length > 0, "is-active": entry.key === firstEntry?.key && pathLayout.path.pathId === firstPath?.pathId }} type="button" data-story-map-entry data-story-node-variant={/^VS-/u.test(entry.key) ? "vs" : /^F-/u.test(entry.key) ? "finale" : /^(?:V|E)-/u.test(entry.key) ? "special" : "standard"} data-story-path-id={entry.pathId} data-story-entry-key={entry.key} data-story-x={point.x} data-story-y={point.y} style={"left:" + (point.x - pathLayout.x) + "px;top:" + (point.y - pathLayout.y) + "px;--story-node-width:" + transform.width + "px;--story-node-height:" + transform.height + "px;--story-node-scale-x:" + transform.scaleX + ";--story-node-scale-y:" + transform.scaleY + ";--story-node-rotation:" + transform.rotation + "deg;"} aria-label={pathLayout.path.title + " Entry " + entry.key} aria-controls="story-story-dialog">
                         {image ? <img class="story-map-node-image" {...imageAttributes(image, active)} alt="" decoding="async" /> : <span class="story-map-node-fallback">?</span>}
-                        <span class="story-map-node-label">{entry.key}</span>
+                        {transform.labelMode === "overlay" ? <span class="story-map-node-label" style={transform.label ? authoredLabelStyle(point, transform.label) : undefined}>{entry.key}</span> : null}
                         {entry.resources.length > 0 ? <span class="story-map-node-count">{entry.resources.length}</span> : null}
                       </button>;
                     })}
@@ -326,7 +336,7 @@ function imageAttributes(image: PublicAsset | undefined, active: boolean): Recor
             if (!point || !transform) return null;
             return <button class="story-map-node story-map-node-finale" type="button" data-story-map-entry data-story-subworld-node data-story-subworld-id="final-verdict" data-story-node-variant="finale" data-story-path-id="19" data-story-entry-key={authoredNode.nodeKey} data-story-x={point.x} data-story-y={point.y} style={"left:" + point.x + "px;top:" + point.y + "px;--story-node-width:" + transform.width + "px;--story-node-height:" + transform.height + "px;--story-node-scale-x:" + transform.scaleX + ";--story-node-scale-y:" + transform.scaleY + ";--story-node-rotation:" + transform.rotation + "deg;"} aria-label={"Final Verdict Entry " + authoredNode.nodeKey} aria-controls="story-story-dialog">
               {image ? <img class="story-map-node-image" {...imageAttributes(image, true)} alt="" decoding="async" /> : <span class="story-map-node-fallback">?</span>}
-              <span class="story-map-node-label">{authoredNode.nodeKey}</span>
+              {transform.labelMode === "overlay" ? <span class="story-map-node-label" style={transform.label ? authoredLabelStyle(point, transform.label) : undefined}>{authoredNode.nodeKey}</span> : null}
             </button>;
           })}
           {finaleLayout.continuation?.continuation.nodes.map((node) => {
@@ -337,8 +347,7 @@ function imageAttributes(image: PublicAsset | undefined, active: boolean): Recor
             if (!point || !transform) return null;
             return <button class="story-map-node story-map-node-ending" type="button" data-story-map-entry data-story-subworld-node data-story-subworld-id="final-verdict" data-story-node-variant="ending" data-story-path-id="19" data-story-entry-key={entryKey} data-story-x={point.x} data-story-y={point.y} style={"left:" + point.x + "px;top:" + point.y + "px;--story-node-width:" + transform.width + "px;--story-node-height:" + transform.height + "px;--story-node-scale-x:" + transform.scaleX + ";--story-node-scale-y:" + transform.scaleY + ";--story-node-rotation:" + transform.rotation + "deg;"} aria-label={"Final Verdict Entry " + entryKey + " " + (node.label ?? entryKey)} aria-controls="story-story-dialog">
               {image ? <img class="story-map-node-image" {...imageAttributes(image, true)} alt="" decoding="async" /> : <span class="story-map-node-fallback">?</span>}
-              <span class="story-map-node-label">{entryKey}</span>
-              <span class="story-map-node-name">{node.label ?? entryKey}</span>
+              {transform.labelMode === "overlay" ? <span class="story-map-node-label" style={transform.label ? authoredLabelStyle(point, transform.label) : undefined}>{node.label ?? entryKey}</span> : null}
             </button>;
           })}
         </div>

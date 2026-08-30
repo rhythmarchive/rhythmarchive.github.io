@@ -28,6 +28,11 @@ export type CsbNode = {
   normalPath?: string;
   pressedPath?: string;
   text?: string;
+  fontResourcePath?: string;
+  fontName?: string;
+  fontSize?: number;
+  horizontalAlignment?: number;
+  verticalAlignment?: number;
   children: CsbNode[];
 };
 
@@ -115,6 +120,11 @@ class FlatBufferReader {
     return address === undefined ? fallback : this.uint8(address);
   }
 
+  private tableFieldInt32(table: number | undefined, fieldIndex: number, fallback: number): number {
+    const address = this.tableFieldAddress(table, fieldIndex);
+    return address === undefined ? fallback : this.int32(address);
+  }
+
   private tableFieldStruct(table: number | undefined, fieldIndex: number, width: number): number | undefined {
     const address = this.tableFieldAddress(table, fieldIndex);
     if (address !== undefined && address + width > this.view.byteLength) {
@@ -180,6 +190,11 @@ class FlatBufferReader {
     normalPath?: string | undefined;
     pressedPath?: string | undefined;
     text?: string | undefined;
+    fontResourcePath?: string | undefined;
+    fontName?: string | undefined;
+    fontSize?: number | undefined;
+    horizontalAlignment?: number | undefined;
+    verticalAlignment?: number | undefined;
   } {
     const specialized = this.specializedOptions(treeOptions);
     const widget = this.widgetOptions(specialized);
@@ -194,19 +209,34 @@ class FlatBufferReader {
         normalPath: this.resourcePath(this.tableFieldTable(specialized, 1)),
         pressedPath: this.resourcePath(this.tableFieldTable(specialized, 2)),
         text: this.tableFieldString(specialized, 5),
+        fontResourcePath: this.resourcePath(this.tableFieldTable(specialized, 4)),
+        fontName: this.tableFieldString(specialized, 6),
+        fontSize: this.tableFieldInt32(specialized, 7, 0),
       };
     }
     if (classname === "Sprite" || classname === "ImageView" || classname === "ParticleSystem" || classname === "GameMap") {
       return { widget, resourcePath: this.resourcePath(this.tableFieldTable(specialized, 1)) };
     }
     if (classname === "Text") {
-      return { widget, text: this.tableFieldString(specialized, 4) };
+      return {
+        widget,
+        text: this.tableFieldString(specialized, 4),
+        fontResourcePath: this.resourcePath(this.tableFieldTable(specialized, 1)),
+        fontName: this.tableFieldString(specialized, 2),
+        fontSize: this.tableFieldInt32(specialized, 3, 0),
+        horizontalAlignment: this.tableFieldInt32(specialized, 7, 0),
+        verticalAlignment: this.tableFieldInt32(specialized, 8, 0),
+      };
     }
     if (classname === "TextAtlas") {
       return { widget, text: this.tableFieldString(specialized, 2) };
     }
     if (classname === "TextBMFont") {
-      return { widget, text: this.tableFieldString(specialized, 2) };
+      return {
+        widget,
+        text: this.tableFieldString(specialized, 2),
+        fontResourcePath: this.resourcePath(this.tableFieldTable(specialized, 1)),
+      };
     }
     return { widget };
   }
@@ -241,6 +271,11 @@ class FlatBufferReader {
       ...(parsed.normalPath ? { normalPath: parsed.normalPath } : {}),
       ...(parsed.pressedPath ? { pressedPath: parsed.pressedPath } : {}),
       ...(parsed.text ? { text: parsed.text } : {}),
+      ...(parsed.fontResourcePath ? { fontResourcePath: parsed.fontResourcePath } : {}),
+      ...(parsed.fontName ? { fontName: parsed.fontName } : {}),
+      ...(parsed.fontSize && parsed.fontSize > 0 ? { fontSize: parsed.fontSize } : {}),
+      ...(parsed.horizontalAlignment !== undefined ? { horizontalAlignment: parsed.horizontalAlignment } : {}),
+      ...(parsed.verticalAlignment !== undefined ? { verticalAlignment: parsed.verticalAlignment } : {}),
       children,
     };
   }

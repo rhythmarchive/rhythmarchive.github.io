@@ -12,6 +12,7 @@ test("Arcaea Story Mode explorer keeps APK Act/Part, Path and Entry order", () =
   const storyAtlas = loadCategoryBrowseProjections().arcaea.storyAtlas;
   assert.ok(structure);
   assert.ok(storyAtlas);
+  assert.equal(storyAtlas.schemaVersion, 3);
   const story = siteData.galleries["arcaea/story-cg"] ?? [];
   const model = buildArcaeaStoryExplorerModel(story, structure, storyAtlas);
   const separator = String.fromCharCode(0x00b7);
@@ -146,12 +147,12 @@ test("Arcaea authored CSB layout covers overviews, worlds, portal and opaque nod
   const browse = loadCategoryBrowseProjections().arcaea;
   assert.ok(browse.storyStructure);
   assert.ok(browse.storyAtlas);
-  assert.equal(browse.storyAtlas.schemaVersion, 2);
-  assert.equal(browse.storyAtlas.layout?.schemaVersion, 2);
+  assert.equal(browse.storyAtlas.schemaVersion, 3);
+  assert.equal(browse.storyAtlas.layout?.schemaVersion, 3);
   const authored = browse.storyAtlas.layout;
   assert.ok(authored);
   assert.equal(authored.sections.length, 5);
-  assert.equal(authored.extractionVersion, "arcaea-story-csb-v2");
+  assert.equal(authored.extractionVersion, "arcaea-story-csb-v3");
   assert.equal(authored.sections.every((section) => section.overview.csbPath.includes("overview_")), true);
   assert.equal(authored.sections.every((section) => section.world.csbPath.includes("act")), true);
   assert.equal(authored.subworlds.some((subworld) => subworld.subworldId === "final-verdict" && subworld.csbPath.endsWith("/f.csb")), true);
@@ -166,6 +167,27 @@ test("Arcaea authored CSB layout covers overviews, worlds, portal and opaque nod
   assert.equal(vicious.nodes["2-D"] !== undefined, true);
   assert.equal(vicious.nodes["V-0"] !== undefined, true);
   assert.equal(luminous.nodes["1-ZR"] !== undefined, true);
+  const prologue = firstLayout.paths.find((path) => path.path.pathId === 0);
+  const entryOneFour = luminous.nodeTransforms["1-4"];
+  const firstAvatar = prologue?.avatars[0];
+  assert.ok(prologue);
+  assert.ok(entryOneFour);
+  assert.ok(firstAvatar);
+  assert.equal(entryOneFour.labelMode, "overlay");
+  assert.equal(entryOneFour.label?.text, "1-4");
+  assert.equal(entryOneFour.label?.fontSize, 50);
+  assert.equal(entryOneFour.label?.fontResourcePath, "assets/Fonts/GeosansLight.ttf");
+  assert.equal(entryOneFour.label?.horizontalAlignment, "center");
+  assert.equal(entryOneFour.label?.verticalAlignment, "center");
+  assert.notEqual(entryOneFour.label?.x, luminous.nodes["1-4"]?.x);
+  assert.equal(firstAvatar.width, 1);
+  assert.equal(firstAvatar.height, 1);
+  assert.equal(firstAvatar.anchorX, 0.5);
+  assert.equal(firstAvatar.anchorY, 0.5);
+  assert.equal(firstAvatar.scaleX, 160);
+  assert.equal(firstAvatar.scaleY, 160);
+  assert.ok((prologue.avatarBounds[0]?.width ?? 0) >= 160);
+  assert.equal(luminous.titleLabel?.fontResourcePath, "assets/Fonts/GeosansLight.ttf");
   assert.equal(firstLayout.lines.some((line) => line.provenance === "authored-csb" && line.pathIds.includes(2)), true);
   assert.equal(firstLayout.lines.some((line) => line.provenance === "authored-csb" && line.pathIds.includes(3)), true);
   assert.equal(firstLayout.lines.every((line) => Number.isFinite(line.x1) && Number.isFinite(line.y1) && Number.isFinite(line.x2) && Number.isFinite(line.y2)), true);
@@ -207,6 +229,7 @@ test("Arcaea authored CSB layout covers overviews, worlds, portal and opaque nod
   assert.ok(finale.continuation?.nodes.some((node) => node.nodeId === "epilogue_a"));
   assert.ok(finale.continuation?.nodes.some((node) => node.nodeId === "epilogue_b"));
   assert.ok(finale.composite);
+  assert.equal(finale.nodes.every((node) => node.labelMode === "baked" && node.label === undefined), true);
   assert.equal(finale.composite?.epilogueTransform.scale, 0.72);
   assert.deepEqual(finale.composite?.forkLines.map((line) => [line.from, line.to, line.kind]), [
     ["F-7", "E-2", "branch"],
@@ -222,6 +245,9 @@ test("Arcaea authored CSB layout covers overviews, worlds, portal and opaque nod
   assert.equal(composite.lines.some((line) => line.from === "E-1" && line.to === "E-2"), false);
   assert.ok((composite.continuation?.nodes.epilogue_b?.y ?? 0) < (composite.continuation?.nodes.epilogue_a?.y ?? 0));
   assert.ok((composite.continuation?.nodes.epilogue_a?.y ?? 0) < (composite.nodes["F-7"]?.y ?? Number.MAX_SAFE_INTEGER));
+  assert.equal(composite.continuation?.nodeTransforms.epilogue_a?.labelMode, "overlay");
+  assert.equal(composite.continuation?.nodeTransforms.epilogue_a?.label?.text, "One Last Dream");
+  assert.equal(composite.continuation?.nodeTransforms.epilogue_a?.label?.fontResourcePath, "assets/Fonts/L2-Semibold.ttf");
 });
 
 test("Arcaea Story projection preserves raw text provenance and deterministic fallback", () => {
