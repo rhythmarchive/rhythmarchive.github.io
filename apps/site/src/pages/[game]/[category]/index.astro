@@ -7,17 +7,18 @@ import type { GameId, ResourceTypeId } from "../../../lib/game-config";
 import { getCategoryBrowseConfig } from "../../../lib/category-browse";
 import { formatCount } from "../../../lib/format";
 import { BASE_PATH, ROS_BASE_URL } from "../../../lib/site-config";
-import { getBrowseGalleryBuild, getSiteData, loadCategoryBrowseProjections } from "../../../lib/site-data";
+import { getBrowseGalleryBuild, getPublicNavigationGames, getSiteData, loadCategoryBrowseProjections } from "../../../lib/site-data";
 import { createUrlHelpers } from "../../../lib/url";
 
 const urls = createUrlHelpers({ basePath: BASE_PATH, origin: "https://rhythmarchive.github.io", rosBaseUrl: ROS_BASE_URL });
 
 export function getStaticPaths() {
   const siteData = getSiteData();
+  const navigationGames = getPublicNavigationGames();
   const browseBuild = getBrowseGalleryBuild();
   const categoryBrowse = loadCategoryBrowseProjections();
   const browseByGame = { arcaea: browseBuild.arcaea, phigros: browseBuild.phigros, rizline: browseBuild.rizline, infalsus: browseBuild.infalsus } as const;
-  return siteData.games.flatMap((game) => game.categories.map((category) => ({
+  return navigationGames.flatMap((game) => game.categories.map((category) => ({
     params: { game: game.slug, category: category.slug },
     props: {
       game,

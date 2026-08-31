@@ -402,6 +402,15 @@ test("homepage navigation uses the generated jacket browse counts", () => {
   assert.deepEqual(rizline?.featuredCategories.map((category) => category.slug), ["jacket", "special-art", "track-series", "rizcard", "character-avatar"]);
 });
 
+test("game routes reuse public navigation counts for shared category navigation", () => {
+  const gamePage = fs.readFileSync(path.join(siteRoot, "src", "pages", "[game]", "index.astro"), "utf8");
+  const categoryPage = fs.readFileSync(path.join(siteRoot, "src", "pages", "[game]", "[category]", "index.astro"), "utf8");
+  assert.match(gamePage, /const navigationGames = getPublicNavigationGames\(\)/u);
+  assert.match(gamePage, /return navigationGames\.map/u);
+  assert.match(categoryPage, /const navigationGames = getPublicNavigationGames\(\)/u);
+  assert.match(categoryPage, /return navigationGames\.flatMap/u);
+});
+
 test("Rizline Catalog and public projections preserve approved boundaries", () => {
   const rizlineResources = catalog.resources.filter((resource) => resource.game === "rizline");
   const published = rizlineResources.filter((resource) => resource.lifecycle.status === "published");

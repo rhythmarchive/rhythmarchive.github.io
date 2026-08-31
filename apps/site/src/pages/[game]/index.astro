@@ -5,14 +5,15 @@ import type { GameId } from "../../lib/game-config";
 import { getCategoryBrowseConfig } from "../../lib/category-browse";
 import { formatCount } from "../../lib/format";
 import { BASE_PATH, ROS_BASE_URL } from "../../lib/site-config";
-import { getSiteData } from "../../lib/site-data";
+import { getPublicNavigationGames, getSiteData } from "../../lib/site-data";
 import { createUrlHelpers } from "../../lib/url";
 
 const urls = createUrlHelpers({ basePath: BASE_PATH, origin: "https://rhythmarchive.github.io", rosBaseUrl: ROS_BASE_URL });
 
 export function getStaticPaths() {
   const siteData = getSiteData();
-  return siteData.games.map((game) => ({ params: { game: game.slug }, props: { game, resources: siteData.galleries[`${game.slug}/all`] ?? [] } }));
+  const navigationGames = getPublicNavigationGames();
+  return navigationGames.map((game) => ({ params: { game: game.slug }, props: { game, resources: siteData.galleries[`${game.slug}/all`] ?? [] } }));
 }
 
 const { game, resources } = Astro.props;
