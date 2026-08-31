@@ -23,6 +23,20 @@ export const CANDIDATE_ASSETS = [
   "E-4_epilogue.jpg", "F-2.jpg", "F-5.jpg", "F-7.jpg", "F-7-1.jpg", "F-7-2.jpg", "V-10.jpg",
 ] as const;
 
+const STORY_VN_IMAGE_EXTENSIONS = /\.(?:jpg|jpeg|png|webp)$/iu;
+const STORY_VN_RESOURCE_PREFIX = "assets/app-data/story/vn/res/";
+const STORY_VN_FOLDER_PATH_FALLBACKS: Record<string, number> = {
+  catastrophe: 33,
+  epilogue: 19,
+  finale: 19,
+  lephon: 29,
+  meeting: 2,
+  nihil: 27,
+  prelude: 5,
+  vs: 8,
+  zettai: 4,
+};
+
 type JsonRecord = Record<string, unknown>;
 type EntryRecord = {
   rawEntryKey: string;
@@ -68,7 +82,9 @@ export function normalizeStoryAssetPath(value: string): string | undefined {
   if (normalized.startsWith("vn/res/")) return `assets/app-data/story/${normalized}`;
   if (normalized.startsWith("app-data/")) return `assets/${normalized}`;
   if (normalized.startsWith("img/")) return `assets/${normalized}`;
-  return undefined;
+  // VN scripts address visual and audio resources relative to vn/res/.
+  // Resolve bare forms such as `catastrophe/cat_8_1.jpg` instead of dropping them.
+  return normalized ? `assets/app-data/story/vn/res/${normalized}` : undefined;
 }
 
 function stringValue(record: JsonRecord, ...keys: string[]): string | undefined {
@@ -506,6 +522,52 @@ function relationAssetPath(filename: string): string {
   return portableSourcePath("assets", "app-data", "story", "cg", filename);
 }
 
+function catalogStoryVnAssetPath(resource: Catalog["resources"][number]): string | undefined {
+  const barePrefix = STORY_VN_RESOURCE_PREFIX.replace(/^assets\//u, "");
+  const candidates = [
+    typeof resource.metadata.sourceRelativePath === "string" ? resource.metadata.sourceRelativePath : undefined,
+    ...resource.provenance.map((item) => item.sourceRelativePath),
+  ];
+  for (const candidate of candidates) {
+    if (!candidate) continue;
+    const normalized = normalizeSlash(candidate).replace(/^assets\//iu, "").replace(/^Arcaea\/current-apk\//iu, "");
+    if (!normalized.startsWith(barePrefix)) continue;
+    const relative = normalized.slice(barePrefix.length);
+    if (relative.includes("/") && STORY_VN_IMAGE_EXTENSIONS.test(relative)) return STORY_VN_RESOURCE_PREFIX + relative;
+  }
+  return undefined;
+}
+
+function storyVnFolder(assetPath: string): string | undefined {
+  if (!assetPath.startsWith(STORY_VN_RESOURCE_PREFIX)) return undefined;
+  const relative = assetPath.slice(STORY_VN_RESOURCE_PREFIX.length);
+  const separator = relative.indexOf("/");
+  return separator > 0 ? relative.slice(0, separator) : undefined;
+}
+
+async function collectStoryVnAssetPaths(packageRoot: string, catalog: Catalog | undefined): Promise<string[]> {
+  const fromCatalog = catalog
+    ? catalog.resources
+      .filter((resource) => resource.game === "arcaea" && resource.resourceType === "story-texture")
+      .map(catalogStoryVnAssetPath)
+      .filter((value): value is string => Boolean(value))
+    : [];
+  if (fromCatalog.length > 0) return [...new Set(fromCatalog)].sort((left, right) => left.localeCompare(right, "en"));
+
+  const root = path.join(packageRoot, "assets", "app-data", "story", "vn", "res");
+  const output: string[] = [];
+  const visit = async (directory: string, relativeDirectory: string): Promise<void> => {
+    for (const entry of await readdir(directory, { withFileTypes: true })) {
+      const relative = relativeDirectory ? `${relativeDirectory}/${entry.name}` : entry.name;
+      const absolute = path.join(directory, entry.name);
+      if (entry.isDirectory()) await visit(absolute, relative);
+      else if (entry.isFile() && relative.includes("/") && STORY_VN_IMAGE_EXTENSIONS.test(relative)) output.push(STORY_VN_RESOURCE_PREFIX + relative);
+    }
+  };
+  await visit(root, "");
+  return output.sort((left, right) => left.localeCompare(right, "en"));
+
+}
 async function imageResolution(packageRoot: string, assetPath: string): Promise<{ width: number; height: number } | undefined> {
   try {
     const info = await sharp(path.join(packageRoot, ...assetPath.split("/"))).metadata();
@@ -562,6 +624,7 @@ async function buildRelationEvidence(packageRoot: string, index: StoryIndexLike,
       }, entry, `vn:${script.scriptStem}`);
     }
   }
+  const nestedStoryAssets = await collectStoryVnAssetPaths(packageRoot, catalog);
   const orderingPath = index.source.orderingPath;
   for (const [assetPath, current] of byAsset) {
     if (current.pathIds.size === 1) {
@@ -577,13 +640,27 @@ async function buildRelationEvidence(packageRoot: string, index: StoryIndexLike,
   const epilogueAssets = new Set([relationAssetPath("E-1_epilogue.jpg"), relationAssetPath("E-4_epilogue.jpg")]);
   const entriesByNode = new Map(entries.map((entry) => [entry.nodeKey, entry]));
   const results: ReturnType<typeof ArcaeaStoryRelationEvidence.parse>[] = [];
-  for (const filename of CANDIDATE_ASSETS) {
-    const assetPath = relationAssetPath(filename);
+  const candidateAssetPaths = [...new Set([...CANDIDATE_ASSETS.map(relationAssetPath), ...nestedStoryAssets])].sort((left, right) => left.localeCompare(right, "en"));
+  for (const assetPath of candidateAssetPaths) {
     const current = byAsset.get(assetPath) ?? { evidence: [], nodeKeys: new Set<string>(), textNodes: new Set<string>(), pathIds: new Set<number>(), sceneIds: new Set<string>(), directNodes: new Set<string>() };
     let finalRelation: "node" | "path-scene" | "vn-scene" | "unresolved" = "unresolved";
     let finalNodeKey: string | undefined;
     let finalPathId: number | undefined;
     let finalSceneId: string | undefined;
+    const vnFolder = storyVnFolder(assetPath);
+    if (vnFolder && current.pathIds.size === 0) {
+      const fallbackPathId = STORY_VN_FOLDER_PATH_FALLBACKS[vnFolder];
+      if (fallbackPathId !== undefined) {
+        current.pathIds.add(fallbackPathId);
+        current.evidence.push({
+          kind: "ordering",
+          sourcePath: orderingPath,
+          recordKey: `path:${fallbackPathId}`,
+          referencedAsset: assetPath,
+          explanation: `The unreferenced VN image is placed in the ${vnFolder} Story resource group for path ${fallbackPathId}.`,
+        });
+      }
+    }
     if (epilogueAssets.has(assetPath)) {
       finalRelation = "path-scene";
       finalPathId = 19;
@@ -597,7 +674,7 @@ async function buildRelationEvidence(packageRoot: string, index: StoryIndexLike,
         referencedAsset: assetPath,
         explanation: "The epilogue asset is selected by a path-level epilogue VN scene; no exact single Entry storyCgPath proves a node binding.",
       });
-    } else if (filename.startsWith("F-7")) {
+    } else if ((assetPath.split("/").at(-1) ?? "").startsWith("F-7")) {
       const f7 = entriesByNode.get("F-7");
       if (f7 && current.textNodes.has("F-7")) {
         finalRelation = "node";
@@ -612,6 +689,13 @@ async function buildRelationEvidence(packageRoot: string, index: StoryIndexLike,
       finalRelation = "node";
       finalNodeKey = [...current.textNodes][0];
       finalPathId = finalNodeKey ? entriesByNode.get(finalNodeKey)?.pathId : undefined;
+    } else if (vnFolder && current.nodeKeys.size === 1 && !current.sceneIds.has("vn:epilogue_last")) {
+      finalRelation = "node";
+      finalNodeKey = [...current.nodeKeys][0];
+      finalPathId = finalNodeKey ? entriesByNode.get(finalNodeKey)?.pathId : undefined;
+    } else if (vnFolder && current.pathIds.size > 0) {
+      finalRelation = "path-scene";
+      finalPathId = [...current.pathIds].sort((left, right) => left - right)[0];
     } else if (current.sceneIds.size === 1) {
       finalRelation = "vn-scene";
       finalSceneId = [...current.sceneIds][0];
@@ -626,7 +710,7 @@ async function buildRelationEvidence(packageRoot: string, index: StoryIndexLike,
       assetPath,
       ...(mappedResourceId(catalog, assetPath) ? { resourceId: mappedResourceId(catalog, assetPath) } : {}),
       ...(resolution ? { resolution } : {}),
-      ...(current.textNodes.size === 1 ? { candidateNodeKey: [...current.textNodes][0] } : {}),
+      ...(current.textNodes.size === 1 ? { candidateNodeKey: [...current.textNodes][0] } : vnFolder && current.nodeKeys.size === 1 ? { candidateNodeKey: [...current.nodeKeys][0] } : {}),
       ...(current.pathIds.size === 1 ? { candidatePathId: [...current.pathIds][0] } : {}),
       ...(current.sceneIds.size === 1 ? { candidateSceneId: [...current.sceneIds][0] } : {}),
       evidence,

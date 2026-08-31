@@ -62,7 +62,7 @@ export type StoryAtlasAvatar = {
   pathId: number;
   label: string;
 };
-export type StoryAtlasScenePoint = { sceneId: string; x: number; y: number; kind: string; title: string };
+export type StoryAtlasScenePoint = { sceneId: string; x: number; y: number; kind: string; title: string; isUnassignedCg?: boolean };
 export type StoryAtlasPortal = {
   portalId: string;
   x: number;
@@ -120,6 +120,7 @@ export type StoryAtlasSubworldLayout = {
   nodeTransforms: Record<string, StoryAtlasNodeTransform>;
   lines: StoryAtlasLine[];
   continuation?: StoryAtlasContinuationLayout;
+  unassignedCg?: { sceneId: string; point: StoryAtlasPoint; bounds: StoryAtlasBounds };
   initialCamera: { x: number; y: number; scale: number };
 };
 export type StoryAtlasLayout = {
@@ -145,6 +146,8 @@ const DEFAULT_TITLE_WIDTH = 300;
 const DEFAULT_TITLE_HEIGHT = 72;
 const DEFAULT_SCENE_WIDTH = 180;
 const DEFAULT_SCENE_HEIGHT = 64;
+const UNASSIGNED_CG_WIDTH = 224;
+const UNASSIGNED_CG_HEIGHT = 132;
 const DEFAULT_PORTAL_SIZE = 260;
 
 export function boundsIntersect(left: StoryAtlasBounds, right: StoryAtlasBounds, gap = 0): boolean {
@@ -238,15 +241,21 @@ function authoredPortal(item: ArcaeaStoryAuthoredPortalType): StoryAtlasPortal {
 }
 
 function pathScenes(path: ArcaeaStoryExplorerPath, lastPoint: StoryAtlasPoint): { scenes: StoryAtlasScenePoint[]; bounds: StoryAtlasBounds[] } {
+  const visibleScenes = path.pathScenes.filter((scene) => scene.mapVisible !== false);
   return {
-    scenes: path.pathScenes.map((scene, index) => ({
+    scenes: visibleScenes.map((scene, index) => ({
       sceneId: scene.sceneId,
-      x: lastPoint.x + 170 + index * (DEFAULT_SCENE_WIDTH + 24),
+      x: lastPoint.x + 170 + index * ((scene.isUnassignedCg ? UNASSIGNED_CG_WIDTH : DEFAULT_SCENE_WIDTH) + 24),
       y: lastPoint.y,
       kind: scene.kind,
       title: scene.displayTitle ?? scene.sceneId,
+      ...(scene.isUnassignedCg ? { isUnassignedCg: true } : {}),
     })),
-    bounds: path.pathScenes.map((_, index) => makeBounds(lastPoint.x + 170 + index * (DEFAULT_SCENE_WIDTH + 24) - DEFAULT_SCENE_WIDTH / 2, lastPoint.y - DEFAULT_SCENE_HEIGHT / 2, DEFAULT_SCENE_WIDTH, DEFAULT_SCENE_HEIGHT)),
+    bounds: visibleScenes.map((scene, index) => {
+      const width = scene.isUnassignedCg ? UNASSIGNED_CG_WIDTH : DEFAULT_SCENE_WIDTH;
+      const height = scene.isUnassignedCg ? UNASSIGNED_CG_HEIGHT : DEFAULT_SCENE_HEIGHT;
+      return makeBounds(lastPoint.x + 170 + index * ((scene.isUnassignedCg ? UNASSIGNED_CG_WIDTH : DEFAULT_SCENE_WIDTH) + 24) - width / 2, lastPoint.y - height / 2, width, height);
+    }),
   };
 }
 
@@ -481,7 +490,7 @@ function continuationLayout(continuation: ArcaeaStoryAuthoredContinuationType, t
   };
 }
 
-export function buildArcaeaStorySubworldLayout(subworld: ArcaeaStoryAuthoredSubworldType): StoryAtlasSubworldLayout {
+export function buildArcaeaStorySubworldLayout(subworld: ArcaeaStoryAuthoredSubworldType, unassignedCg?: ArcaeaStoryExplorerPath["unassignedCg"]): StoryAtlasSubworldLayout {
   const nodes: Record<string, StoryAtlasPoint> = {};
   const transforms: Record<string, StoryAtlasNodeTransform> = {};
   const bounds: Record<string, StoryAtlasBounds> = {};
@@ -500,12 +509,16 @@ export function buildArcaeaStorySubworldLayout(subworld: ArcaeaStoryAuthoredSubw
     ...(subworld.composite?.forkLines ?? []).map(authoredLine),
     ...(continuation?.lines ?? []),
   ];
+  const unassignedPoint = unassignedCg ? { x: (nodes["F-7"]?.x ?? subworld.bounds.width / 2) + 250, y: nodes["F-7"]?.y ?? subworld.bounds.height / 2 } : undefined;
+  const unassignedBounds = unassignedPoint ? makeBounds(unassignedPoint.x - UNASSIGNED_CG_WIDTH / 2, unassignedPoint.y - UNASSIGNED_CG_HEIGHT / 2, UNASSIGNED_CG_WIDTH, UNASSIGNED_CG_HEIGHT) : undefined;
+  const baseWorldBounds = makeBounds(0, 0, subworld.bounds.width, subworld.bounds.height);
+  const worldBounds = unassignedBounds ? unionBounds([baseWorldBounds, unassignedBounds]) : baseWorldBounds;
   const initialNode = nodes["F-7"] ?? Object.values(nodes)[0] ?? { x: subworld.bounds.width / 2, y: subworld.bounds.height / 2 };
   return {
     subworld,
-    width: Math.ceil(subworld.bounds.width),
-    height: Math.ceil(subworld.bounds.height),
-    worldBounds: makeBounds(0, 0, subworld.bounds.width, subworld.bounds.height),
+    width: Math.ceil(worldBounds.width),
+    height: Math.ceil(worldBounds.height),
+    worldBounds,
     title,
     titleBounds: titleBounds(title),
     nodes,
@@ -513,6 +526,7 @@ export function buildArcaeaStorySubworldLayout(subworld: ArcaeaStoryAuthoredSubw
     nodeTransforms: transforms,
     lines,
     ...(continuation ? { continuation } : {}),
+    ...(unassignedPoint && unassignedBounds && unassignedCg ? { unassignedCg: { sceneId: unassignedCg.sceneId, point: unassignedPoint, bounds: unassignedBounds } } : {}),
     initialCamera: { x: initialNode.x, y: initialNode.y, scale: 0.78 },
   };
 }

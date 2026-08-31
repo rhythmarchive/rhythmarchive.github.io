@@ -613,6 +613,11 @@ body.detail-lightbox-open { overflow: hidden; }
 .story-map-scene-mark { grid-row: span 2; color: var(--atlas-violet); }
 .story-map-scene span:not(.story-map-scene-mark) { overflow: hidden; font-size: .52rem; text-overflow: ellipsis; white-space: nowrap; }
 .story-map-scene small { color: var(--atlas-soft); font-size: .45rem; }
+.story-map-unassigned-cg { grid-template-columns: 5.2rem minmax(0,1fr); grid-template-rows: auto auto; width: 14rem; max-width: 14rem; min-height: 6.6rem; padding: .42rem; border-style: solid; border-radius: 4px 14px 4px 14px; background: rgba(11,16,34,.94); text-align: left; }
+.story-map-unassigned-cg img { grid-row: span 2; display: block; width: 5.2rem; height: 5.2rem; object-fit: cover; border-radius: 2px 8px 2px 8px; }
+.story-map-unassigned-cg strong { align-self: end; color: var(--atlas-white); font-size: .72rem; }
+.story-map-unassigned-cg small { align-self: start; color: var(--atlas-soft); font-size: .58rem; }
+.story-map-unassigned-cg:hover img,.story-map-unassigned-cg:focus-visible img { filter: brightness(1.08) saturate(1.08); }
 .story-map-path-divider { position: absolute; right: 0; bottom: 0; left: 0; height: 1.5rem; background-image: var(--story-divider); background-position: center; background-repeat: no-repeat; background-size: 100% 100%; opacity: .45; pointer-events: none; }
 .story-map-portal { position: absolute; z-index: 6; display: grid; justify-items: center; width: calc(var(--story-portal-width) * var(--story-portal-scale-x)); height: calc(var(--story-portal-height) * var(--story-portal-scale-y)); padding: 0; border: 0; background: transparent; color: var(--atlas-white); transform: translate(-50%,-50%) rotate(var(--story-portal-rotation)); cursor: pointer; }
 .story-map-portal img { display: block; width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 0 11px rgba(182,248,255,.45)); }

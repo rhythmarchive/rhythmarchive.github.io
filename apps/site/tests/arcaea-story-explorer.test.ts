@@ -29,22 +29,39 @@ test("Arcaea Story Mode explorer keeps APK Act/Part, Path and Entry order", () =
   const divine = model.paths.find((path) => path.pathId === 33);
   assert.ok(divine);
   assert.deepEqual(divine.entries.map((entry) => entry.key), ["C-1", "C-2", "C-3", "C-4", "C-5", "C-6", "C-7", "C-8", "C-9"]);
-  assert.deepEqual(divine.entries.map((entry) => entry.resources.length), [0, 2, 0, 0, 1, 0, 3, 0, 3]);
-  assert.equal(divine.vnResources.length, 5);
+  assert.deepEqual(divine.entries.map((entry) => entry.resources.length), [10, 2, 20, 11, 1, 14, 3, 30, 3]);
+  assert.equal(divine.vnResources.length, 7);
+  assert.equal(divine.entries.find((entry) => entry.key === "C-8")?.resources.some((resource) => resource.downloadFilename === "cat_8_1.jpg"), true);
+  assert.equal(divine.unassignedCg?.displayTitle, "未归类 CG");
+  assert.equal(divine.unassignedCg?.resources.length, 7);
   assert.equal(divine.entries.find((entry) => entry.key === "C-8")?.staffRoll, true);
-  assert.equal(model.counts.total, 71);
+  assert.equal(model.counts.total, 237);
   assert.equal(model.counts.storyCg, 66);
-  assert.equal(model.counts.vnCg, 5);
-  assert.equal(model.counts.unassigned, 0);
+  assert.equal(model.counts.vnCg, 171);
+  assert.equal(model.counts.unassigned, 24);
   assert.equal(model.counts.assigned + model.counts.unassigned, model.counts.total);
-  assert.equal(model.counts.pathScenes, 2);
+  const nestedVnCgIds = story.filter(isArcaeaVnCgResource).map((resource) => resource.resourceId).sort();
+  const explorerVnCgIds = model.paths
+    .flatMap((path) => [
+      ...path.entries.flatMap((entry) => entry.resources),
+      ...path.pathScenes.flatMap((scene) => scene.resources),
+      ...(path.unassignedCg?.resources ?? []),
+    ])
+    .filter(isArcaeaVnCgResource)
+    .map((resource) => resource.resourceId)
+    .filter((resourceId, index, resourceIds) => resourceIds.indexOf(resourceId) === index)
+    .sort();
+  assert.deepEqual(explorerVnCgIds, nestedVnCgIds);
+  assert.equal(story.some((resource) => resource.searchTerms?.some((term) => term.includes("story/vn/res/") && !term.match(/story\/vn\/res\/[^/]+\//u))), false);
+  assert.equal(model.counts.pathScenes, 5);
   assert.equal(model.counts.vnScenes, 16);
   assert.equal(model.counts.textEntries, 195);
   assert.equal(model.paths.flatMap((path) => path.entries).every((entry) => Boolean(entry.text?.texts["zh-Hans"])), true);
   assert.equal(model.paths.flatMap((path) => path.entries).find((entry) => entry.key === "C-7")?.resources.length, 3);
   const finalVerdict = model.paths.find((path) => path.pathId === 19);
   assert.deepEqual(finalVerdict?.entries.find((entry) => entry.key === "E-1")?.sceneIds, ["vn:epilogue_last"]);
-  assert.equal(finalVerdict?.pathScenes.find((scene) => scene.sceneId === "vn:epilogue_last")?.resources.length, 2);
+  assert.equal(finalVerdict?.pathScenes.find((scene) => scene.sceneId === "vn:epilogue_last")?.resources.length, 26);
+  assert.equal(finalVerdict?.unassignedCg?.resources.length, 16);
 });
 
 test("Arcaea Story Mode explorer excludes unreviewed story-texture images", () => {
@@ -54,7 +71,7 @@ test("Arcaea Story Mode explorer excludes unreviewed story-texture images", () =
   const story = siteData.galleries["arcaea/story-cg"] ?? [];
   const vnCg = story.find(isArcaeaVnCgResource);
   assert.ok(vnCg);
-  assert.equal(story.filter(isArcaeaVnCgResource).length, 5);
+  assert.equal(story.filter(isArcaeaVnCgResource).length, 171);
   const texture = {
     ...vnCg,
     resourceId: "01a00093-dc47-7763-9d18-4874af644b8a",
@@ -63,7 +80,7 @@ test("Arcaea Story Mode explorer excludes unreviewed story-texture images", () =
   } satisfies PublicResource;
   assert.equal(isArcaeaStoryCgResource(texture), false);
   const model = buildArcaeaStoryExplorerModel([...story, texture], structure);
-  assert.equal(model.counts.total, 71);
+  assert.equal(model.counts.total, 237);
   assert.equal(model.unassignedResources.some((resource) => resource.resourceId === texture.resourceId), false);
 });
 
@@ -80,7 +97,7 @@ test("Arcaea Story Mode maps APK Entry icons into an isolated UI projection", ()
   assert.ok(storyUi["character_bg_panel_double_vert.png"]);
   assert.ok(storyUi["entry_konzetsu_2.png"]);
   assert.ok(storyUi["cell-vs7.png"]);
-  assert.equal(siteData.galleries["arcaea/all"]?.filter((resource) => resource.resourceType === "story-texture").length, 5);
+  assert.equal(siteData.galleries["arcaea/all"]?.filter((resource) => resource.resourceType === "story-texture").length, 171);
   assert.equal(structure.nodeIcons["C-2"], "entry_konzetsu_2");
   assert.equal(structure.nodeIcons["VS-7"], "cell-vs7");
   assert.equal(structure.nodeIcons["18-7"], "entry_nihil");
@@ -140,6 +157,13 @@ test("Arcaea Story text parser preserves pages, CG events and VN controls separa
   assert.deepEqual(script.audioReferences, [{ assetPath: "assets/app-data/story/vn/res/bgm/wind.ogg", commands: ["play"] }]);
   assert.equal(script.commandCounts.show, 1);
   assert.equal(script.commandCounts.play, 1);
+  const nestedScript = parseVnsScript(
+    'show "catastrophe/cat_8_1.jpg" 0.5:0.4 0.5:0.4 0.7:0.7 fade(1,linear) normal\nhide "catastrophe/cat_8_1.jpg"',
+    "assets/app-data/story/vn/catastrophe8_zh-Hans.vns",
+    "catastrophe8",
+    "zh-Hans",
+  );
+  assert.deepEqual(nestedScript.visualReferences, [{ assetPath: "assets/app-data/story/vn/res/catastrophe/cat_8_1.jpg", commands: ["hide", "show"] }]);
 });
 
 test("Arcaea authored CSB layout covers overviews, worlds, portal and opaque node keys", () => {
@@ -237,7 +261,11 @@ test("Arcaea authored CSB layout covers overviews, worlds, portal and opaque nod
   ]);
   assert.equal(finale.composite?.forkLines.some((line) => line.from === "E-1" && line.to === "E-2"), false);
   assert.ok(finale.bounds.height > (finale.continuation?.bounds.height ?? 0));
-  const composite = buildArcaeaStorySubworldLayout(finale);
+  const finalVerdictPath = model.paths.find((path) => path.pathId === 19);
+  assert.equal(finalVerdictPath?.unassignedCg?.sceneId, "unassigned-cg:19");
+  assert.equal(finalVerdictPath?.unassignedCg?.resources.length, 16);
+  const composite = buildArcaeaStorySubworldLayout(finale, finalVerdictPath?.unassignedCg);
+  assert.equal(composite.unassignedCg?.sceneId, "unassigned-cg:19");
   assert.equal(composite.continuation?.nodes.epilogue_a !== undefined, true);
   assert.equal(composite.continuation?.nodes.epilogue_b !== undefined, true);
   assert.equal(composite.lines.some((line) => line.from === "F-7" && line.to === "E-1"), true);
@@ -263,9 +291,9 @@ test("Arcaea Story projection preserves raw text provenance and deterministic fa
   const c7 = browse.storyAtlas.text.entries.find((entry) => entry.nodeKey === "C-7");
   assert.equal(c7?.storyCgPaths.length, 3);
   assert.equal(c7?.texts["zh-Hans"]?.blocks.filter((block) => block.event === "cg").length, 2);
-  assert.equal(browse.storyAtlas.relationEvidence.length, 19);
-  assert.equal(browse.storyAtlas.relationEvidence.filter((item) => item.finalRelation === "node").length, 17);
-  assert.equal(browse.storyAtlas.relationEvidence.filter((item) => item.finalRelation === "path-scene").length, 2);
+  assert.equal(browse.storyAtlas.relationEvidence.length, 190);
+  assert.equal(browse.storyAtlas.relationEvidence.filter((item) => item.finalRelation === "node").length, 141);
+  assert.equal(browse.storyAtlas.relationEvidence.filter((item) => item.finalRelation === "path-scene").length, 49);
   const finaleText = browse.storyAtlas.text.entries.find((entry) => entry.nodeKey === "E-2");
   assert.deepEqual(finaleText?.texts["zh-Hans"]?.blocks.filter((block) => block.kind === "display-event").map((block) => block.assetPath), [
     "assets/app-data/story/cg/E-1_epilogue.jpg",
@@ -273,13 +301,13 @@ test("Arcaea Story projection preserves raw text provenance and deterministic fa
     "assets/app-data/story/cg/F-7-1.jpg",
     "assets/app-data/story/cg/E-4_epilogue.jpg",
   ]);
-  assert.equal(browse.storyAtlas.scenes.find((scene) => scene.sceneId === "vn:epilogue_last")?.resourceIds.length, 2);
+  assert.equal(browse.storyAtlas.scenes.find((scene) => scene.sceneId === "vn:epilogue_last")?.resourceIds.length, 35);
   assert.equal(browse.storyAtlas.relationEvidence.every((item) => item.evidence.length > 0), true);
   const derivatives = browse.storyAtlas.derivatives;
   assert.ok(derivatives);
   assert.ok(Object.keys(derivatives.ui).length >= 114);
   assert.equal(Object.keys(derivatives.avatars).length, 21);
-  assert.equal(Object.keys(derivatives.resources).length, 71);
+  assert.equal(Object.keys(derivatives.resources).length, 237);
   assert.ok(derivatives.ui["finale-7.png"]);
   const derivativeAssets = Object.values(derivatives.resources).flatMap((group) => [group.thumb, group.preview]);
   assert.equal(derivativeAssets.every((asset) => asset.url.startsWith("/generated/arcaea/story/")), true);

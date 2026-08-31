@@ -18,8 +18,9 @@ const { resources, storyStructure, storyAtlas, storyUi = {}, storyAvatars = [] }
 const model = buildArcaeaStoryExplorerModel(resources, storyStructure, storyAtlas);
 const layouts = new Map(model.sections.map((section) => [section.act, buildArcaeaStoryAtlasLayout(section, storyAtlas)]));
 const finaleSource = storyAtlas?.layout?.subworlds?.find((subworld) => subworld.subworldId === "final-verdict");
-const finaleLayout = finaleSource ? buildArcaeaStorySubworldLayout(finaleSource) : undefined;
 const finalVerdictPath = model.paths.find((storyPath) => storyPath.pathId === 19);
+const finalUnassignedCg = finalVerdictPath?.unassignedCg;
+const finaleLayout = finaleSource ? buildArcaeaStorySubworldLayout(finaleSource, finalVerdictPath?.unassignedCg) : undefined;
 const firstSection = model.sections[0];
 const firstPath = firstSection?.paths[0];
 const firstEntry = firstPath?.entries[0];
@@ -132,6 +133,7 @@ function compactScene(scene: ArcaeaStoryExplorerScene, pathTitle: string, sectio
     sectionAct,
     kind: scene.kind,
     displayTitle: scene.displayTitle ?? scene.sceneId,
+    ...(scene.isUnassignedCg ? { isUnassignedCg: true } : {}),
     scriptStem: scene.scriptStem,
     resourceIds: scene.resources.map((resource) => resource.resourceId),
   };
@@ -285,9 +287,19 @@ function authoredLabelStyle(point: { x: number; y: number }, label: StoryAtlasNo
                       </button>;
                     })}
                   </div>
-                  {pathLayout.scenes.map((scene) => <button class="story-map-scene" type="button" data-story-scene={scene.sceneId} data-story-path-id={pathLayout.path.pathId} data-story-section={section.act} data-story-x={scene.x} data-story-y={scene.y} style={"left:" + (scene.x - pathLayout.x) + "px;top:" + (scene.y - pathLayout.y) + "px;"} aria-controls="story-story-dialog">
-                    <span class="story-map-scene-mark">+</span><span>{scene.title}</span><small>场景</small>
-                  </button>)}
+                  {pathLayout.scenes.map((scene) => {
+                    const source = pathLayout.path.pathScenes.find((candidate) => candidate.sceneId === scene.sceneId);
+                    const isUnassignedCg = source?.isUnassignedCg === true;
+                    const image = isUnassignedCg && source?.resources[0] ? resourceImage(source.resources[0]) : undefined;
+                    return <button class:list={{ "story-map-scene": true, "story-map-unassigned-cg": isUnassignedCg }} type="button" data-story-scene={scene.sceneId} data-story-path-id={pathLayout.path.pathId} data-story-section={section.act} data-story-x={scene.x} data-story-y={scene.y} style={"left:" + (scene.x - pathLayout.x) + "px;top:" + (scene.y - pathLayout.y) + "px;"} aria-label={isUnassignedCg ? pathLayout.path.title + " 未归类 CG" : scene.title} aria-controls="story-story-dialog">
+                      {isUnassignedCg ? <>
+                        {image ? <img {...imageAttributes(image, active)} alt="" decoding="async" /> : null}
+                        <strong>未归类 CG</strong><small>{source?.resources.length ?? 0} 张</small>
+                      </> : <>
+                        <span class="story-map-scene-mark">+</span><span>{scene.title}</span><small>场景</small>
+                      </>}
+                    </button>;
+                  })}
                   <div class="story-map-path-divider" style={divider ? "--story-divider: url('" + divider.url + "')" : undefined} aria-hidden="true"></div>
                 </section>;
               })}
@@ -350,6 +362,10 @@ function authoredLabelStyle(point: { x: number; y: number }, label: StoryAtlasNo
               {transform.labelMode === "overlay" ? <span class="story-map-node-label" style={transform.label ? authoredLabelStyle(point, transform.label) : undefined}>{node.label ?? entryKey}</span> : null}
             </button>;
           })}
+          {finalUnassignedCg && finaleLayout.unassignedCg ? <button class="story-map-scene story-map-unassigned-cg story-map-subworld-unassigned-cg" type="button" data-story-scene={finalUnassignedCg.sceneId} data-story-path-id="19" data-story-section="2" data-story-x={finaleLayout.unassignedCg.point.x} data-story-y={finaleLayout.unassignedCg.point.y} style={"left:" + finaleLayout.unassignedCg.point.x + "px;top:" + finaleLayout.unassignedCg.point.y + "px;"} aria-label="Final Verdict 未归类 CG" aria-controls="story-story-dialog">
+             {finalUnassignedCg.resources[0] ? <img {...imageAttributes(resourceImage(finalUnassignedCg.resources[0]), true)} alt="" decoding="async" /> : null}
+             <strong>未归类 CG</strong><small>{finalUnassignedCg.resources.length} 张</small>
+           </button> : null}
         </div>
       </div>
     </div>

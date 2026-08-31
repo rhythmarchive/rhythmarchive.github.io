@@ -77,6 +77,48 @@ type ArcaeaStoryIndex = {
   storyCg: ArcaeaStoryCgIndexEntry[];
   storyTextureCg: ArcaeaStoryTextureCgIndexEntry[];
 };
+
+const STORY_VN_IMAGE_EXTENSIONS = /\.(?:jpg|jpeg|png|webp)$/iu;
+const STORY_VN_RESOURCE_PREFIX = "assets/app-data/story/vn/res/";
+const STORY_VN_FOLDER_PATH_FALLBACKS: Record<string, number> = {
+  catastrophe: 33,
+  epilogue: 19,
+  finale: 19,
+  lephon: 29,
+  meeting: 2,
+  nihil: 27,
+  prelude: 5,
+  vs: 8,
+  zettai: 4,
+};
+
+function storyVnAssetPath(resource: Resource): string | undefined {
+  const barePrefix = STORY_VN_RESOURCE_PREFIX.replace(/^assets\//u, "");
+  const candidates = [
+    typeof resource.metadata.sourceRelativePath === "string" ? resource.metadata.sourceRelativePath : undefined,
+    ...resource.provenance.map((item) => item.sourceRelativePath),
+  ];
+  for (const candidate of candidates) {
+    if (!candidate) continue;
+    const normalized = normalizePath(candidate).replace(/^assets\//iu, "").replace(/^Arcaea\/current-apk\//iu, "");
+    if (!normalized.startsWith(barePrefix)) continue;
+    const relative = normalized.slice(barePrefix.length);
+    if (relative.includes("/") && STORY_VN_IMAGE_EXTENSIONS.test(relative)) return STORY_VN_RESOURCE_PREFIX + relative;
+  }
+  return undefined;
+}
+
+function storyVnFolder(assetPath: string): string | undefined {
+  if (!assetPath.startsWith(STORY_VN_RESOURCE_PREFIX)) return undefined;
+  const relative = assetPath.slice(STORY_VN_RESOURCE_PREFIX.length);
+  const separator = relative.indexOf("/");
+  return separator > 0 ? relative.slice(0, separator) : undefined;
+}
+
+function storyVnFallbackPathId(assetPath: string): number | undefined {
+  const folder = storyVnFolder(assetPath);
+  return folder ? STORY_VN_FOLDER_PATH_FALLBACKS[folder] : undefined;
+}
 type SemanticPatch = {
   displayTitle?: string;
   subtitle?: string;
@@ -606,43 +648,90 @@ function buildArcaeaSemantics(catalog: Catalog, arcaeaBrowse: ReturnType<typeof 
     });
   });
 
-  storyIndex.storyTextureCg.forEach((curated, curatedIndex) => {
-    const resource = findResource(index, "arcaea", curated.assetPath);
-    if (!resource || resource.resourceType !== "story-texture" || resource.metadata.storyVisualKind !== "vn-cg") return;
+  const storyTextureCgResources = catalog.resources.filter((resource) => resource.game === "arcaea" && resource.resourceType === "story-texture" && resource.metadata.storyVisualKind === "vn-cg" && resource.lifecycle.status === "published" && Boolean(storyVnAssetPath(resource)));
+  const curatedStoryTextureCgByAsset = new Map(storyIndex.storyTextureCg.map((curated) => [normalizePath(curated.assetPath), curated]));
+  const scenesByResourceId = new Map<string, ArcaeaStoryAtlasType["scenes"]>();
+  for (const scene of storyAudit.scenes) {
+    for (const resourceId of scene.resourceIds) scenesByResourceId.set(resourceId, [...(scenesByResourceId.get(resourceId) ?? []), scene]);
+  }
+  const storyTextureImageOrder = new Map<string, { order: number; count: number }>();
+  const storyTextureGroups = new Map<string, string[]>();
+  for (const resource of storyTextureCgResources) {
+    const assetPath = storyVnAssetPath(resource);
+    const folder = assetPath ? storyVnFolder(assetPath) ?? "vn" : undefined;
+    if (!assetPath || !folder) continue;
+    storyTextureGroups.set(folder, [...(storyTextureGroups.get(folder) ?? []), resource.id]);
+  }
+  for (const [folder, resourceIds] of storyTextureGroups) {
+    const sortedIds = resourceIds
+      .map((resourceId) => ({ resourceId, assetPath: storyVnAssetPath(storyTextureCgResources.find((resource) => resource.id === resourceId)!) ?? resourceId }))
+      .sort((left, right) => left.assetPath.localeCompare(right.assetPath, "en"));
+    sortedIds.forEach(({ resourceId }, index) => storyTextureImageOrder.set(resourceId, { order: index + 1, count: resourceIds.length }));
+    storyTextureGroups.set(folder, resourceIds);
+  }
+  const sortedStoryTextureCgResources = [...storyTextureCgResources].sort((left, right) => (storyVnAssetPath(left) ?? left.id).localeCompare(storyVnAssetPath(right) ?? right.id, "en"));
+  for (const [resourceIndex, resource] of sortedStoryTextureCgResources.entries()) {
+    const assetPath = storyVnAssetPath(resource);
+    if (!assetPath) continue;
     indexedStoryTextureCgResources.add(resource.id);
-    if (drafts.has(resource.id)) return;
-    const storyPath = storyPathById.get(curated.pathId);
+    if (drafts.has(resource.id)) continue;
+    const curated = curatedStoryTextureCgByAsset.get(normalizePath(assetPath));
+    const scenes = scenesByResourceId.get(resource.id) ?? [];
+    const nodeScenes = scenes
+      .filter((scene) => scene.nodeKey && scene.kind !== "epilogue" && scene.pathId !== undefined)
+      .sort((left, right) => {
+        const leftOrder = left.nodeKey ? storyNodeByKey.get(left.nodeKey)?.nodeOrder ?? Number.MAX_SAFE_INTEGER : Number.MAX_SAFE_INTEGER;
+        const rightOrder = right.nodeKey ? storyNodeByKey.get(right.nodeKey)?.nodeOrder ?? Number.MAX_SAFE_INTEGER : Number.MAX_SAFE_INTEGER;
+        return (left.pathId ?? Number.MAX_SAFE_INTEGER) - (right.pathId ?? Number.MAX_SAFE_INTEGER) || leftOrder - rightOrder || left.sceneId.localeCompare(right.sceneId, "en");
+      });
+    const relation = relationByAsset.get(normalizePath(assetPath));
+    const nodeKey = relation?.finalRelation === "node" ? relation.finalNodeKey : nodeScenes[0]?.nodeKey;
+    const pathId = nodeScenes[0]?.pathId ?? relation?.finalPathId ?? relation?.candidatePathId ?? curated?.pathId ?? storyVnFallbackPathId(assetPath);
+    const storyPath = pathId === undefined ? undefined : storyPathById.get(pathId);
     const typeLabel = storyTypeLabel(storyPath?.type);
     const pathTitle = storyPath?.title ?? "剧情 CG";
     const sectionLabel = storyPath ? storySectionByAct.get(storyPath.act) : undefined;
-    const sourceFilename = curated.assetPath.split("/").pop() ?? curated.assetPath;
-    const imageLabel = `VN CG ${curated.imageOrder}/${curated.imageCount}`;
+    const sourceFilename = assetPath.split("/").pop() ?? assetPath;
+    const folder = storyVnFolder(assetPath) ?? curated?.seriesKey ?? "VN";
+    const seriesKey = curated?.seriesKey ?? folder;
+    const imageInfo = curated ? { order: curated.imageOrder, count: curated.imageCount } : storyTextureImageOrder.get(resource.id) ?? { order: 1, count: 1 };
+    const imageLabel = curated ? `VN CG ${imageInfo.order}/${imageInfo.count}` : sourceFilename;
+    const nodeContext = nodeKey ? storyNodeByKey.get(nodeKey) : undefined;
+    const annotation = nodeKey ? storyNodeAnnotationByKey.get(nodeKey) : undefined;
+    const relatedSongId = annotation?.relatedSongId;
+    const relatedSong = relatedSongId ? songById.get(relatedSongId) : undefined;
+    const relatedSongTitle = relatedSong?.displayTitle;
+    const sceneId = nodeScenes[0]?.sceneId ?? scenes.find((scene) => scene.pathId === pathId)?.sceneId;
     addDraft(drafts, resource, {
       displayTitle: pathTitle,
-      subtitle: [typeLabel, sectionLabel, "VN CG", curated.seriesKey, imageLabel].filter(Boolean).join(" · "),
-      badges: ["VN CG"],
+      subtitle: [typeLabel, sectionLabel, "VN CG", seriesKey, imageLabel].filter(Boolean).join(" · "),
+      badges: ["VN CG", ...(relatedSongTitle ? [`关联：${relatedSongTitle}`] : [])],
       metadata: {
         storyPathTitle: pathTitle,
         storyType: typeLabel,
-        ...(storyPath ? { storyPathId: storyPath.pathId, storyAct: String(storyPath.act) } : { storyPathId: curated.pathId }),
+        ...(pathId !== undefined ? { storyPathId: pathId } : {}),
+        ...(storyPath ? { storyAct: String(storyPath.act) } : {}),
         ...(sectionLabel ? { storySection: sectionLabel } : {}),
+        ...(nodeKey ? { storyNode: nodeKey, storyNodeOrder: nodeContext?.nodeOrder ?? 0, storyRelationKind: "node" } : { storyRelationKind: "path-scene" }),
+        ...(sceneId ? { storySceneId: sceneId } : {}),
         storyVisualKind: "VN CG",
-        storySeries: curated.seriesKey,
-        storyImageOrder: curated.imageOrder,
-        storyImageCount: curated.imageCount,
+        storySeries: seriesKey,
+        storyImageOrder: imageInfo.order,
+        storyImageCount: imageInfo.count,
+        ...(relatedSongId ? { relatedSongId } : {}),
+        ...(relatedSongTitle ? { relatedSongTitle } : {}),
       },
-      searchTerms: [pathTitle, typeLabel, sectionLabel ?? "", "剧情 CG", "VN CG", curated.seriesKey, sourceFilename, curated.assetPath],
-      sortOrder: storySortOrder({}, curatedIndex, curated.pathId, storyPath?.nodes.length ?? 99_998, curated.imageOrder),
+      searchTerms: [pathTitle, typeLabel, sectionLabel ?? "", "剧情 CG", "VN CG", folder, sourceFilename, assetPath, nodeKey ?? "", sceneId ?? "", relatedSongId ?? "", relatedSongTitle ?? ""],
+      sortOrder: storySortOrder({}, resourceIndex, pathId, nodeContext?.nodeOrder, imageInfo.order, !nodeKey),
       facets: {
         type: [typeLabel],
         path: [pathTitle],
         ...(sectionLabel ? { section: [sectionLabel] } : {}),
       },
     });
-  });
+  }
 
   const storyCgResources = catalog.resources.filter((resource) => resource.game === "arcaea" && resource.resourceType === "story-cg" && resource.lifecycle.status === "published");
-  const storyTextureCgResources = catalog.resources.filter((resource) => resource.game === "arcaea" && resource.resourceType === "story-texture" && resource.metadata.storyVisualKind === "vn-cg" && resource.lifecycle.status === "published");
   const baselineStoryCgRows = storyRows.filter((row) => normalizePath(nonEmpty(row.assetPath) ?? "").startsWith("assets/app-data/story/cg/"));
   const missingStoryCgResources = storyCgResources.filter((resource) => !indexedStoryCgResources.has(resource.id));
   const missingStoryTextureCgResources = storyTextureCgResources.filter((resource) => !indexedStoryTextureCgResources.has(resource.id));
@@ -654,7 +743,7 @@ function buildArcaeaSemantics(catalog: Catalog, arcaeaBrowse: ReturnType<typeof 
     const resource = findResource(index, "arcaea", curated.assetPath);
     return !resource || resource.resourceType !== "story-texture" || resource.metadata.storyVisualKind !== "vn-cg";
   });
-  if (baselineStoryCgRows.length !== storyIndex.coverage.baselineRelationCount || storyCgResources.length !== storyIndex.coverage.physicalStoryCgCount || storyIndex.storyCg.length !== storyIndex.coverage.curatedStoryCgCount || storyTextureCgResources.length !== storyIndex.coverage.storyTextureCgCount || storyIndex.storyTextureCg.length !== storyIndex.coverage.storyTextureCgCount || missingStoryCgResources.length > 0 || missingStoryTextureCgResources.length > 0 || missingCuratedStoryCg.length > 0 || missingCuratedStoryTextureCg.length > 0) {
+  if (baselineStoryCgRows.length !== storyIndex.coverage.baselineRelationCount || storyCgResources.length !== storyIndex.coverage.physicalStoryCgCount || storyIndex.storyCg.length !== storyIndex.coverage.curatedStoryCgCount || storyTextureCgResources.length !== storyIndex.coverage.storyTextureCgCount || missingStoryCgResources.length > 0 || missingStoryTextureCgResources.length > 0 || missingCuratedStoryCg.length > 0 || missingCuratedStoryTextureCg.length > 0) {
     const missing = [...missingStoryCgResources, ...missingStoryTextureCgResources].map((resource) => resource.provenance[0]?.sourceRelativePath ?? resource.id);
     const missingCurated = missingCuratedStoryCg.map((curated) => curated.assetPath);
     const missingCuratedTexture = missingCuratedStoryTextureCg.map((curated) => curated.assetPath);

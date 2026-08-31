@@ -24,7 +24,7 @@ export type ArcaeaStoryExplorerConnection = {
   provenance: "audited" | "sequential-fallback";
 };
 
-export type ArcaeaStoryExplorerScene = ArcaeaStorySceneType & { resources: PublicResource[] };
+export type ArcaeaStoryExplorerScene = ArcaeaStorySceneType & { resources: PublicResource[]; mapVisible?: boolean; isUnassignedCg?: boolean };
 
 export type ArcaeaStoryExplorerPath = {
   pathId: number;
@@ -40,6 +40,7 @@ export type ArcaeaStoryExplorerPath = {
   rootEntries: string[];
   vnResources: PublicResource[];
   pathScenes: ArcaeaStoryExplorerScene[];
+  unassignedCg?: ArcaeaStoryExplorerScene;
   resourceCount: number;
 };
 
@@ -90,24 +91,48 @@ export function buildArcaeaStoryExplorerModel(resources: PublicResource[], struc
   const textByNode = new Map(storyAtlas?.text.entries.map((entry) => [entry.nodeKey, entry]) ?? []);
   const nodeResources = new Map<string, PublicResource[]>();
   const pathSceneResources = new Map<string, PublicResource[]>();
+  const unassignedResourcesByPath = new Map<number, PublicResource[]>();
   const assignedIds = new Set<string>();
+  const resourceById = new Map(storyResources.map((resource) => [resource.resourceId, resource] as const));
+  const sceneById = new Map((storyAtlas?.scenes ?? []).map((scene) => [scene.sceneId, scene] as const));
+
+  for (const scene of storyAtlas?.scenes ?? []) {
+    for (const resourceId of scene.resourceIds) {
+      const resource = resourceById.get(resourceId);
+      if (!resource || scene.pathId === undefined || !pathById.has(scene.pathId)) continue;
+      if (scene.nodeKey && scene.kind !== "epilogue") {
+        addUniqueResource(nodeResources, `${scene.pathId}:${scene.nodeKey}`, resource);
+        assignedIds.add(resource.resourceId);
+      } else {
+        addUniqueResource(pathSceneResources, scene.sceneId, resource);
+      }
+    }
+  }
 
   for (const resource of storyResources) {
-    const relationKind = stringMetadata(resource.metadata.storyRelationKind);
+    if (assignedIds.has(resource.resourceId)) continue;
     const nodeKey = stringMetadata(resource.metadata.storyNode);
     const nodePath = nodeKey ? pathByNode.get(nodeKey) : undefined;
     const pathId = numericMetadata(resource.metadata.storyPathId) ?? nodePath?.pathId;
     if (pathId === undefined || !pathById.has(pathId)) continue;
-    if (relationKind === "path-scene" || relationKind === "vn-scene" || isArcaeaVnCgResource(resource)) {
-      const sceneId = stringMetadata(resource.metadata.storySceneId) ?? "path:33:divine-oblivion-vn";
-      addResource(pathSceneResources, sceneId, resource);
-      assignedIds.add(resource.resourceId);
-      continue;
-    }
     const storyPath = pathById.get(pathId);
-    if (!nodeKey || !storyPath?.nodes.includes(nodeKey)) continue;
-    addResource(nodeResources, `${pathId}:${nodeKey}`, resource);
-    assignedIds.add(resource.resourceId);
+    if (nodeKey && storyPath?.nodes.includes(nodeKey)) {
+      addUniqueResource(nodeResources, `${pathId}:${nodeKey}`, resource);
+      assignedIds.add(resource.resourceId);
+    }
+  }
+
+  for (const [sceneId, resourcesForScene] of pathSceneResources) {
+    const scene = sceneById.get(sceneId);
+    if (scene?.pathId === undefined || !pathById.has(scene.pathId)) continue;
+    for (const resource of resourcesForScene) {
+      if (!assignedIds.has(resource.resourceId)) addUniqueResource(unassignedResourcesByPath, scene.pathId, resource);
+    }
+  }
+  for (const resource of storyResources) {
+    if (assignedIds.has(resource.resourceId)) continue;
+    const pathId = numericMetadata(resource.metadata.storyPathId);
+    if (pathId !== undefined && pathById.has(pathId)) addUniqueResource(unassignedResourcesByPath, pathId, resource);
   }
 
   const paths: ArcaeaStoryExplorerPath[] = structure.paths.map((storyPath): ArcaeaStoryExplorerPath => {
@@ -163,9 +188,12 @@ export function buildArcaeaStoryExplorerModel(resources: PublicResource[], struc
     const rootEntries = rootEntryKeys(storyPath.nodes, storyPath.pathId);
     const pathScenes = [...(storyAtlas?.scenes ?? [])]
       .filter((scene) => scene.pathId === storyPath.pathId && (!scene.nodeKey || scene.kind === "path-scene" || scene.kind === "epilogue"))
-      .map((scene) => ({ ...scene, resources: sortResources(pathSceneResources.get(scene.sceneId) ?? []) }));
+      .map((scene) => ({ ...scene, mapVisible: Boolean(scene.nodeKey), resources: sortResources(pathSceneResources.get(scene.sceneId) ?? []) }));
     const fallbackSceneIds = [...pathSceneResources.entries()]
-      .filter(([sceneId, sceneResources]) => sceneResources.some((resource) => numericMetadata(resource.metadata.storyPathId) === storyPath.pathId) && !pathScenes.some((scene) => scene.sceneId === sceneId))
+      .filter(([sceneId]) => {
+        const scene = sceneById.get(sceneId);
+        return scene?.pathId === storyPath.pathId && !pathScenes.some((candidate) => candidate.sceneId === sceneId);
+      })
       .map(([sceneId]) => sceneId);
     const fallbackScenes: ArcaeaStoryExplorerScene[] = fallbackSceneIds.map((sceneId) => ({
       sceneId,
@@ -175,9 +203,23 @@ export function buildArcaeaStoryExplorerModel(resources: PublicResource[], struc
       resourceIds: sortResources(pathSceneResources.get(sceneId) ?? []).map((resource) => resource.resourceId),
       locales: {},
       resources: sortResources(pathSceneResources.get(sceneId) ?? []),
+      mapVisible: false,
     }));
-    const allPathScenes = [...pathScenes, ...fallbackScenes];
-    const pathVnResources = sortResources(allPathScenes.flatMap((scene) => scene.resources));
+    const unassignedForPath = sortUniqueResources(unassignedResourcesByPath.get(storyPath.pathId) ?? []);
+    const unassignedCg: ArcaeaStoryExplorerScene | undefined = unassignedForPath.length > 0 ? {
+      sceneId: `unassigned-cg:${storyPath.pathId}`,
+      kind: "path-scene",
+      displayTitle: "未归类 CG",
+      pathId: storyPath.pathId,
+      resourceIds: unassignedForPath.map((resource) => resource.resourceId),
+      locales: {},
+      resources: unassignedForPath,
+      mapVisible: true,
+      isUnassignedCg: true,
+    } : undefined;
+    const allPathScenes = [...pathScenes, ...fallbackScenes, ...(unassignedCg ? [unassignedCg] : [])];
+    const pathVnResources = sortUniqueResources(allPathScenes.flatMap((scene) => scene.resources));
+    const pathResourceIds = new Set([...entries.flatMap((entry) => entry.resources.map((resource) => resource.resourceId)), ...pathVnResources.map((resource) => resource.resourceId)]);
     return {
       pathId: storyPath.pathId,
       act: storyPath.act,
@@ -192,7 +234,8 @@ export function buildArcaeaStoryExplorerModel(resources: PublicResource[], struc
       rootEntries,
       vnResources: pathVnResources,
       pathScenes: allPathScenes,
-      resourceCount: entries.reduce((total, entry) => total + entry.resources.length, 0) + pathVnResources.length,
+      ...(unassignedCg ? { unassignedCg } : {}),
+      resourceCount: pathResourceIds.size,
     } satisfies ArcaeaStoryExplorerPath;
   });
   const pathByIdModel = new Map(paths.map((path) => [path.pathId, path] as const));
@@ -227,8 +270,9 @@ export function buildArcaeaStoryExplorerModel(resources: PublicResource[], struc
   };
 }
 
-function addResource<T>(map: Map<T, PublicResource[]>, key: T, resource: PublicResource): void {
-  map.set(key, [...(map.get(key) ?? []), resource]);
+function addUniqueResource<T>(map: Map<T, PublicResource[]>, key: T, resource: PublicResource): void {
+  const resources = map.get(key) ?? [];
+  if (!resources.some((candidate) => candidate.resourceId === resource.resourceId)) map.set(key, [...resources, resource]);
 }
 
 function sortResources(resources: PublicResource[]): PublicResource[] {
@@ -240,6 +284,11 @@ function sortResources(resources: PublicResource[]): PublicResource[] {
       || left.resourceId.localeCompare(right.resourceId, "en");
   });
 }
+function sortUniqueResources(resources: PublicResource[]): PublicResource[] {
+  const unique = new Map(resources.map((resource) => [resource.resourceId, resource] as const));
+  return sortResources([...unique.values()]);
+}
+
 
 function numericMetadata(value: string | number | boolean | undefined): number | undefined {
   if (typeof value === "number") return Number.isFinite(value) ? value : undefined;

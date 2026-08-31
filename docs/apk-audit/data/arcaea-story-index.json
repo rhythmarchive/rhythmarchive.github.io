@@ -325,7 +325,7 @@
     "physicalStoryCgCount": 66,
     "baselineRelationCount": 57,
     "curatedStoryCgCount": 9,
-    "storyTextureCgCount": 5
+    "storyTextureCgCount": 171
   },
   "storyCg": [
     { "assetPath": "assets/app-data/story/cg/C-2-1.jpg", "nodeKey": "C-2", "imageOrder": 1, "imageCount": 2 },

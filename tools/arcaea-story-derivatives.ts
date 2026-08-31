@@ -47,20 +47,23 @@ function sourceFilename(resource: Resource): string | undefined {
   return candidates.find((item) => item.includes("/Arcaea/current-apk/")) ?? candidates[0];
 }
 
-async function sourceFile(packageRoot: string, resource: Resource): Promise<string | undefined> {
+async function sourceFile(packageRoot: string, resource: Resource, fallbackPackageRoot?: string): Promise<string | undefined> {
   const source = sourceFilename(resource);
   if (!source) return undefined;
   const relative = source.replace(/^.*?Arcaea\/current-apk\//u, "");
-  const candidates = [
-    path.join(packageRoot, "assets", ...relative.split("/")),
-    path.join(packageRoot, ...relative.split("/")),
-  ];
-  for (const candidate of candidates) {
-    try {
-      const info = await stat(candidate);
-      if (info.isFile()) return candidate;
-    } catch {
-      // The bounded investigation extraction may omit an unselected technical asset.
+  const roots = [...new Set([packageRoot, fallbackPackageRoot].filter((value): value is string => Boolean(value)))];
+  for (const root of roots) {
+    const candidates = [
+      path.join(root, "assets", ...relative.split("/")),
+      path.join(root, ...relative.split("/")),
+    ];
+    for (const candidate of candidates) {
+      try {
+        const info = await stat(candidate);
+        if (info.isFile()) return candidate;
+      } catch {
+        // The bounded investigation extraction may omit an unselected technical asset.
+      }
     }
   }
   return undefined;
@@ -96,11 +99,38 @@ async function makeDerivative(input: string, output: string, width: number, qual
   const image = sharp(input, { animated: false });
   const info = await image.metadata();
   if (!info.width || !info.height) throw new Error(`Missing dimensions for ${input}`);
-  await image.resize({ width, withoutEnlargement: true }).webp({ quality, effort: 4 }).toFile(output);
-  const outputInfo = await sharp(output).metadata();
-  const outputStat = await stat(output);
+  const buffer = await image.resize({ width, withoutEnlargement: true }).webp({ quality, effort: 4 }).toBuffer();
+  await writeFile(output, buffer);
+  const outputInfo = await sharp(buffer).metadata();
   if (!outputInfo.width || !outputInfo.height) throw new Error(`Missing derivative dimensions for ${output}`);
-  return { width: outputInfo.width, height: outputInfo.height, sizeBytes: outputStat.size };
+  return { width: outputInfo.width, height: outputInfo.height, sizeBytes: buffer.byteLength };
+}
+
+async function makeBoundedDerivative(input: string, output: string, width: number, quality: number, budget: number): Promise<{ width: number; height: number; sizeBytes: number }> {
+  try {
+    const existing = await stat(output);
+    const existingInfo = await sharp(await readFile(output)).metadata();
+    if (existing.isFile() && existingInfo.width && existingInfo.height && existing.size <= budget) {
+      return { width: existingInfo.width, height: existingInfo.height, sizeBytes: existing.size };
+    }
+  } catch {
+    // The derivative is generated below when no reusable bounded output exists.
+  }
+  let currentWidth = width;
+  let currentQuality = quality;
+  let dimensions = await makeDerivative(input, output, currentWidth, currentQuality);
+  while (dimensions.sizeBytes > budget) {
+    if (currentQuality > 40) {
+      currentQuality = Math.max(40, currentQuality - 8);
+    } else if (currentWidth > 240) {
+      currentWidth = Math.max(240, Math.round(currentWidth * 0.75));
+      currentQuality = quality;
+    } else {
+      break;
+    }
+    dimensions = await makeDerivative(input, output, currentWidth, currentQuality);
+  }
+  return dimensions;
 }
 
 function derivative(url: string, dimensions: { width: number; height: number; sizeBytes: number }): { url: string; width: number; height: number; mime: "image/webp"; sizeBytes: number } {
@@ -142,12 +172,12 @@ async function main(): Promise<void> {
   const missing: string[] = [];
   const budgetViolations: string[] = [];
   const make = async (resource: Resource, output: string, url: string, width: number, quality: number, budget: number): Promise<ReturnType<typeof derivative> | undefined> => {
-    const input = await sourceFile(packageRoot, resource);
+    const input = await sourceFile(packageRoot, resource, specialPackageRoot);
     if (!input) {
       missing.push(resource.id);
       return undefined;
     }
-    const dimensions = await makeDerivative(input, output, width, quality);
+    const dimensions = await makeBoundedDerivative(input, output, width, quality, budget);
     if (dimensions.sizeBytes > budget) budgetViolations.push(`${url} (${dimensions.sizeBytes} > ${budget})`);
     return derivative(url, dimensions);
   };
@@ -160,7 +190,7 @@ async function main(): Promise<void> {
       missing.push(relativePath);
       return undefined;
     }
-    const dimensions = await makeDerivative(input, output, width, 80);
+    const dimensions = await makeBoundedDerivative(input, output, width, 80, budget);
     if (dimensions.sizeBytes > budget) budgetViolations.push(`${url} (${dimensions.sizeBytes} > ${budget})`);
     return derivative(url, dimensions);
   };

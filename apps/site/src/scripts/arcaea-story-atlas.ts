@@ -40,6 +40,7 @@ type CompactScene = {
   sectionAct: number;
   kind: string;
   displayTitle: string;
+  isUnassignedCg?: boolean;
   scriptStem?: string;
   resourceIds: string[];
 };
@@ -648,6 +649,7 @@ async function initialize(root: HTMLElement): Promise<void> {
   }
 
   function sceneDisplayTitle(scene: CompactScene): string {
+    if (scene.isUnassignedCg) return "未归类 CG";
     if (scene.kind === "epilogue") return "One Last Dream";
     return scene.displayTitle.replace(/\s*·\s*VN scene$/u, "");
   }
@@ -704,6 +706,15 @@ async function initialize(root: HTMLElement): Promise<void> {
   }
 
   async function renderSceneDetail(scene: CompactScene): Promise<void> {
+    if (scene.isUnassignedCg) {
+      if (openSceneId !== scene.sceneId) return;
+      detailContentElement.replaceChildren();
+      renderDialogHeader("未归类 CG", "未归类 CG", "路径：" + scene.pathTitle, [["章节", scene.sectionLabel], ["资源数量", String(scene.resourceIds.length)]]);
+      const gallery = renderResources(scene.resourceIds, false);
+      if (gallery) detailContentElement.append(gallery);
+      renderDialogResources(scene.resourceIds);
+      return;
+    }
     const atlas = await ensureAtlas();
     if (openSceneId !== scene.sceneId) return;
     const definition = atlas.scenes.find((candidate) => candidate.sceneId === scene.sceneId);

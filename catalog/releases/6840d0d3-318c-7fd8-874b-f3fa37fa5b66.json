@@ -1,0 +1,1019 @@
+{
+  "schemaVersion": "1.0",
+  "releaseSchemaVersion": "1.0",
+  "id": "6840d0d3-318c-7fd8-874b-f3fa37fa5b66",
+  "updateBatchId": "b9bb807a-a0d4-72fd-bc73-ef7bfaf2d0f8",
+  "game": "arcaea",
+  "baseVersion": "7.0.0c",
+  "targetVersion": "7.0.0c",
+  "createdAt": "2026-08-31T03:22:57.898Z",
+  "status": "published",
+  "changes": [
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "b798d6c3-b426-750f-bdf3-70f5661cdddf",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "48eb8d8a-8e3a-70f2-80cb-acd83c0bdd67",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "952322f5-2d93-74f0-beac-62397691dd32",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "c571c54e-5c1a-7a99-92d4-ade43b280a6d",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "7d92052f-14a4-7374-8d80-73c5f4f209c2",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "0ea8cf35-588b-72d9-b86e-b78f19c3ea43",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "c5e863e6-5990-7449-9bbe-1e739f69fb1b",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "50dc9dfd-3206-709d-b94d-2a15d68e271c",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "36607014-cb95-7c42-8845-e506853d5f55",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "05a0cd3a-4106-7a92-aa40-3e2a09a35e8f",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "a583add3-5d4c-7992-bb0f-4bac16b78c11",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "2e56d378-edba-782c-9ceb-72e773b5b7f6",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "d57734a9-3aa6-7cd6-bd79-bd523238422c",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "7f251385-d47f-7e9c-982f-94c62ee975b0",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "2e531623-2e2c-73f2-b845-9603238afe2d",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "9bc58d3a-85fb-79d2-a492-8739b0f38062",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "dd16c263-c776-7548-af84-7441e48bee43",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "c27b30dc-9333-7673-b0bf-a198167ee55a",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "ac737792-6d6e-72d5-9e4c-f6676481d706",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "4f1da033-2eba-7af6-91c5-6d74c8a93851",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "1e914ffe-17f3-7b4b-844c-c780456a2049",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "671b191d-5f24-71da-9a05-0703ff81c77e",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "894f1489-f3a6-7d76-9586-57223927cd58",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "29609ac3-1dd7-7ea9-bb10-f21befaedc58",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "95e29b1f-b7e4-79b9-8abe-ffeb4e3ea7ba",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "b5140bc8-3db3-7e5d-b698-39113102d872",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "1af00d8c-753c-7774-b9c2-bf2e37e7a045",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "58e12509-d696-7f71-a53d-aafcf9185f27",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "2ba0b295-c3b2-7dd4-9b39-48d199fb7366",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "271bd435-a7f9-7884-b230-63dc6c1f9aeb",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "a1ef5f85-2993-74a2-b2a5-269a0c8a4a3b",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "22575a45-9628-7e0f-8b21-e1235b8385d3",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "4604f924-6519-7313-9619-f04685ad8f96",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "87c6f67c-a9ac-7601-9bec-707793a129d4",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "8488ddcc-9de6-7717-b164-63375c33426b",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "113baa9e-3eb9-7f25-9684-3884022bae9f",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "cad28f30-dbf6-747d-b858-bc5b99d195ea",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "32948c7e-d0ca-784e-a4c0-d26b29ac6608",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "13b8ed64-0b8a-7359-b6e9-8f4c75e90b38",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "5bce55de-3d8d-7f14-a5ad-e585fb38b768",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "18590d35-b1e8-7df4-8a27-671629e9391c",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "9c5dc249-2084-7c33-a789-c3ea9868eb90",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "940697d1-937b-75d5-9fb1-cd84e9b5847b",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "4cf54cd3-ae34-7243-8f32-8d200ae9aea0",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "96576c77-eb27-797e-b73b-742e24c9553b",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "658f47cd-0e3a-78f6-9385-671a64e485c1",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "99580dbd-a330-7865-ae6f-7883b9479d4b",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "6131a135-036d-760f-91c1-a3bdea2110a6",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "ed8a6767-dcb7-7866-9844-43ad56672a4b",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "cb9c75ff-4b97-776a-9720-0c716addcbca",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "e1f49128-4bc9-70ca-8c64-a7dc393dbe9a",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "ab99780d-4048-78aa-b6ed-c6937f484ac3",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "5c411ce4-ebb9-7a0c-8d37-c8e377e9343c",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "aacf20cf-c838-7d43-81b9-7d7407a840ca",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "f46148b7-cd72-73a0-a489-358e3cde458b",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "c31528ff-0d13-77f3-aca9-0edb882dc24a",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "64935f31-d844-7983-a5a4-836181f875f5",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "1c0f13e1-f926-7fdb-9bb3-e17102badc65",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "ddae5e5e-d8e7-7ae7-91e3-04aae88c90bf",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "f7bbb3b8-2855-7565-81db-7b4c83cd8ec3",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "38481c6a-5179-7963-80fc-00b486c9b37e",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "e278e9b7-aa22-7a77-9231-eb2c3892fdcd",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "513db071-cda3-7643-9bb7-123e3e0710c8",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "4d049c31-45c4-783c-a111-5d52550b9f6e",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "2a7ecfd5-dedb-718f-afd7-9b387e731dc9",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "6a3a5785-639b-75d4-b733-ab4ca444453d",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "4718d763-b776-7510-8414-6897a05635a5",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "6730b2af-154b-708a-a1dc-1220bac5f1f7",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "522e7694-4b70-7f82-9801-03f147971507",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "310742c4-b738-758c-be06-dc0a8088172b",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "5697e856-5d4c-7d2b-a3a1-5589bc861f0c",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "d490eae6-9d71-7898-85cd-8be13ec97416",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "da981495-d748-72e8-835e-d54f3343700e",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "13fcfb5f-6fbb-7104-8abb-2967a22d6da7",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "e9456ad4-452c-7a60-b664-e570e9911ac7",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "0a7735da-cd84-7af0-8e0f-03cc1f08cefb",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "b59179f4-e6cc-7a79-8a8c-b75e740369ff",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "01a00094-04bb-710a-b06a-c172dbc02e63",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "01a00094-0551-7e77-82ff-bc445da94ff5",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "01a00094-0617-77c4-8810-b506a62dbd1f",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "01a00094-06b1-7fe6-ba41-1e717bea69b5",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "01a00094-0712-7ae1-923f-9feabf3e322b",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "01a00094-077a-7f9c-9551-b61a8114b66e",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "01a00094-080f-7ce9-a758-bee87500f8e0",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "01a00094-08b6-745f-ac7a-4319dc1b1910",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "01a00094-0934-776b-a9d2-a3da37286dcd",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "01a00094-09d3-7840-9ea7-1d28d83a66cd",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "01a00094-0a28-7607-beeb-d5a7458d7e09",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "01a00094-0a7c-71bd-bcc5-196fe70d26e0",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "01a00094-0add-7b32-8daa-da332c5364b7",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "01a00094-0b7d-7452-96de-9e62152c8732",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "01a00094-0bf3-7957-a175-0dd8304dfa06",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "01a00094-0cbd-7755-8b0f-ae4b42f90564",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "01a00094-0d32-7013-ba07-9e20cf4771ed",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "01a00094-0e43-7eeb-abe1-c50ced5637f3",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "01a00094-0f44-7174-a6f8-eb6618a6a0e0",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "01a00094-104b-7f7c-ad2a-7481442cbdf9",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "01a00094-10fc-7b4f-a1dd-c51584ac1426",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "01a00094-1188-7034-bf2d-a1e21db88523",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "01a00094-12a8-7f50-87ec-9417db87e6f4",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "01a00094-131e-7614-84bc-448cd81be966",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "01a00094-1394-7c4d-8b50-6fed14b5a701",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "01a00094-13fd-771b-ba08-9196ed27a2fd",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "01a00094-149a-7b41-aad5-4e63fcdc0e9b",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "01a00094-1515-72c3-a359-bb07bd8e3e31",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "01a00094-15e3-7b78-bc9e-a021c6736d32",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "01a00094-168b-790d-8d5c-f14006672852",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "01a00094-1712-7d96-8302-9b04db7feb43",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "01a00094-177a-7ecd-84b1-e2d90876e157",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "01a00094-1830-7836-a72a-57060ac5b43e",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "01a00094-18ac-7890-be19-91f252ac7ddd",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "01a00094-1949-7aba-aaac-8b1e096bc768",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "01a00094-19f1-749d-9980-dd8175b83834",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "01a00094-1a66-78d1-9a97-9a04a9e8434f",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "01a00094-1ae9-7173-b402-dad4c907625c",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "01a00094-1b73-76ca-87b6-c028ca5f4036",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "01a00094-1c0d-7b76-918b-03f276741627",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "01a00094-1c85-7432-b6aa-4d0b1927c7f6",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "01a00094-1cea-72c2-9d65-2abf22169b54",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "01a00094-1dcc-7098-bfd2-ef0fcf3922e7",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "01a00094-1edc-7366-b93a-5ddbea6405d2",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "01a00094-1f6f-7111-a507-56cdb9fdbd46",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "01a00094-203f-734a-8297-1c57d0bc4f24",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "01a00094-20d7-70b7-8578-3f6fed24d4a0",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "01a00094-2197-7f45-82ae-3b16ef2031ee",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "01a00094-224b-7582-8e64-b696b2e8395e",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "01a00094-22a6-7617-b8a3-8d3af0fc7acf",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "01a00094-231f-7b9f-a1e4-7f1a4ff661f1",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "01a00094-2434-7a2b-be09-02464a5222d3",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "01a00094-2519-7689-86ee-67f35a2c0176",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "01a00094-25f7-78ac-8100-c0a1df76a54b",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "01a00094-269e-7af6-bbd8-5a9bf04c9699",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "01a00094-26ee-7e37-94f9-a918bcc67c4f",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "01a00094-2741-7375-98db-002356df4516",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "01a00094-2849-778a-92dd-06c52d597193",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "01a00094-2943-7f83-badb-aecb98fa54f2",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "01a00094-2a00-7895-9f5d-059c39505636",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "01a00094-2ad2-7f3e-8edc-c87df8f6a37e",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "01a00094-2bb4-7841-9688-7dc96edcf7c0",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "01a00094-2c22-7377-bbd2-8808127c1f34",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "01a00094-2c92-7c47-9717-11f191bb3e3d",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "01a00094-2d03-7f9c-af0d-50a394d203fc",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "01a00094-2d79-7f1e-90f7-83af8a9eb422",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "01a00094-2e03-77de-a598-9e73d10ed028",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "01a00094-2e57-7e7a-89bb-fb13b3b0dc2a",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "01a00094-2edc-7e7e-84ff-982a1d49e0e5",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "01a00094-2f84-7809-aef2-9225fa1a260c",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "01a00094-3026-72ef-89c4-bad395ff4335",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "01a00094-3171-7219-b7f1-061ada1026f3",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "01a00094-32aa-7246-97f3-f9bc119bcb0e",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "01a00094-33f9-7282-bd1d-02b27a99dd9d",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "01a00094-347f-75d0-950b-d256d713206c",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "01a00094-3615-717d-be4e-a1a35ce060e0",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "01a00094-372b-7fa8-a4fe-99b3efb1c114",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "01a00094-3852-7d89-9066-c106e37cc9c9",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "01a00094-3956-7b0d-bbca-7f334844f9f1",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "01a00094-39c0-7291-abde-df7e929865dc",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "01a00094-3a35-71df-86ad-20e7035c05b1",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "01a00094-3a8c-752b-a63f-5de071f00491",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "01a00094-3b9b-7281-b0d0-9fdb13959e5b",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "01a00094-3c67-75f7-821e-164a3931b68b",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "01a00094-3ce8-7790-8e9d-357fec2fa3c9",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "01a00094-3d45-7495-88bd-51fa250ed7be",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "01a00094-3dfb-7813-b1cd-f004dfc65c12",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "01a00094-3e6f-773c-88b0-017337f33c14",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "01a00094-3eee-77a6-8814-f8af98696312",
+      "detail": "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded. Existing Object IDs and Renditions preserved."
+    }
+  ],
+  "affectedResourceIds": [
+    "b798d6c3-b426-750f-bdf3-70f5661cdddf",
+    "48eb8d8a-8e3a-70f2-80cb-acd83c0bdd67",
+    "952322f5-2d93-74f0-beac-62397691dd32",
+    "c571c54e-5c1a-7a99-92d4-ade43b280a6d",
+    "7d92052f-14a4-7374-8d80-73c5f4f209c2",
+    "0ea8cf35-588b-72d9-b86e-b78f19c3ea43",
+    "c5e863e6-5990-7449-9bbe-1e739f69fb1b",
+    "50dc9dfd-3206-709d-b94d-2a15d68e271c",
+    "36607014-cb95-7c42-8845-e506853d5f55",
+    "05a0cd3a-4106-7a92-aa40-3e2a09a35e8f",
+    "a583add3-5d4c-7992-bb0f-4bac16b78c11",
+    "2e56d378-edba-782c-9ceb-72e773b5b7f6",
+    "d57734a9-3aa6-7cd6-bd79-bd523238422c",
+    "7f251385-d47f-7e9c-982f-94c62ee975b0",
+    "2e531623-2e2c-73f2-b845-9603238afe2d",
+    "9bc58d3a-85fb-79d2-a492-8739b0f38062",
+    "dd16c263-c776-7548-af84-7441e48bee43",
+    "c27b30dc-9333-7673-b0bf-a198167ee55a",
+    "ac737792-6d6e-72d5-9e4c-f6676481d706",
+    "4f1da033-2eba-7af6-91c5-6d74c8a93851",
+    "1e914ffe-17f3-7b4b-844c-c780456a2049",
+    "671b191d-5f24-71da-9a05-0703ff81c77e",
+    "894f1489-f3a6-7d76-9586-57223927cd58",
+    "29609ac3-1dd7-7ea9-bb10-f21befaedc58",
+    "95e29b1f-b7e4-79b9-8abe-ffeb4e3ea7ba",
+    "b5140bc8-3db3-7e5d-b698-39113102d872",
+    "1af00d8c-753c-7774-b9c2-bf2e37e7a045",
+    "58e12509-d696-7f71-a53d-aafcf9185f27",
+    "2ba0b295-c3b2-7dd4-9b39-48d199fb7366",
+    "271bd435-a7f9-7884-b230-63dc6c1f9aeb",
+    "a1ef5f85-2993-74a2-b2a5-269a0c8a4a3b",
+    "22575a45-9628-7e0f-8b21-e1235b8385d3",
+    "4604f924-6519-7313-9619-f04685ad8f96",
+    "87c6f67c-a9ac-7601-9bec-707793a129d4",
+    "8488ddcc-9de6-7717-b164-63375c33426b",
+    "113baa9e-3eb9-7f25-9684-3884022bae9f",
+    "cad28f30-dbf6-747d-b858-bc5b99d195ea",
+    "32948c7e-d0ca-784e-a4c0-d26b29ac6608",
+    "13b8ed64-0b8a-7359-b6e9-8f4c75e90b38",
+    "5bce55de-3d8d-7f14-a5ad-e585fb38b768",
+    "18590d35-b1e8-7df4-8a27-671629e9391c",
+    "9c5dc249-2084-7c33-a789-c3ea9868eb90",
+    "940697d1-937b-75d5-9fb1-cd84e9b5847b",
+    "4cf54cd3-ae34-7243-8f32-8d200ae9aea0",
+    "96576c77-eb27-797e-b73b-742e24c9553b",
+    "658f47cd-0e3a-78f6-9385-671a64e485c1",
+    "99580dbd-a330-7865-ae6f-7883b9479d4b",
+    "6131a135-036d-760f-91c1-a3bdea2110a6",
+    "ed8a6767-dcb7-7866-9844-43ad56672a4b",
+    "cb9c75ff-4b97-776a-9720-0c716addcbca",
+    "e1f49128-4bc9-70ca-8c64-a7dc393dbe9a",
+    "ab99780d-4048-78aa-b6ed-c6937f484ac3",
+    "5c411ce4-ebb9-7a0c-8d37-c8e377e9343c",
+    "aacf20cf-c838-7d43-81b9-7d7407a840ca",
+    "f46148b7-cd72-73a0-a489-358e3cde458b",
+    "c31528ff-0d13-77f3-aca9-0edb882dc24a",
+    "64935f31-d844-7983-a5a4-836181f875f5",
+    "1c0f13e1-f926-7fdb-9bb3-e17102badc65",
+    "ddae5e5e-d8e7-7ae7-91e3-04aae88c90bf",
+    "f7bbb3b8-2855-7565-81db-7b4c83cd8ec3",
+    "38481c6a-5179-7963-80fc-00b486c9b37e",
+    "e278e9b7-aa22-7a77-9231-eb2c3892fdcd",
+    "513db071-cda3-7643-9bb7-123e3e0710c8",
+    "4d049c31-45c4-783c-a111-5d52550b9f6e",
+    "2a7ecfd5-dedb-718f-afd7-9b387e731dc9",
+    "6a3a5785-639b-75d4-b733-ab4ca444453d",
+    "4718d763-b776-7510-8414-6897a05635a5",
+    "6730b2af-154b-708a-a1dc-1220bac5f1f7",
+    "522e7694-4b70-7f82-9801-03f147971507",
+    "310742c4-b738-758c-be06-dc0a8088172b",
+    "5697e856-5d4c-7d2b-a3a1-5589bc861f0c",
+    "d490eae6-9d71-7898-85cd-8be13ec97416",
+    "da981495-d748-72e8-835e-d54f3343700e",
+    "13fcfb5f-6fbb-7104-8abb-2967a22d6da7",
+    "e9456ad4-452c-7a60-b664-e570e9911ac7",
+    "0a7735da-cd84-7af0-8e0f-03cc1f08cefb",
+    "b59179f4-e6cc-7a79-8a8c-b75e740369ff",
+    "01a00094-04bb-710a-b06a-c172dbc02e63",
+    "01a00094-0551-7e77-82ff-bc445da94ff5",
+    "01a00094-0617-77c4-8810-b506a62dbd1f",
+    "01a00094-06b1-7fe6-ba41-1e717bea69b5",
+    "01a00094-0712-7ae1-923f-9feabf3e322b",
+    "01a00094-077a-7f9c-9551-b61a8114b66e",
+    "01a00094-080f-7ce9-a758-bee87500f8e0",
+    "01a00094-08b6-745f-ac7a-4319dc1b1910",
+    "01a00094-0934-776b-a9d2-a3da37286dcd",
+    "01a00094-09d3-7840-9ea7-1d28d83a66cd",
+    "01a00094-0a28-7607-beeb-d5a7458d7e09",
+    "01a00094-0a7c-71bd-bcc5-196fe70d26e0",
+    "01a00094-0add-7b32-8daa-da332c5364b7",
+    "01a00094-0b7d-7452-96de-9e62152c8732",
+    "01a00094-0bf3-7957-a175-0dd8304dfa06",
+    "01a00094-0cbd-7755-8b0f-ae4b42f90564",
+    "01a00094-0d32-7013-ba07-9e20cf4771ed",
+    "01a00094-0e43-7eeb-abe1-c50ced5637f3",
+    "01a00094-0f44-7174-a6f8-eb6618a6a0e0",
+    "01a00094-104b-7f7c-ad2a-7481442cbdf9",
+    "01a00094-10fc-7b4f-a1dd-c51584ac1426",
+    "01a00094-1188-7034-bf2d-a1e21db88523",
+    "01a00094-12a8-7f50-87ec-9417db87e6f4",
+    "01a00094-131e-7614-84bc-448cd81be966",
+    "01a00094-1394-7c4d-8b50-6fed14b5a701",
+    "01a00094-13fd-771b-ba08-9196ed27a2fd",
+    "01a00094-149a-7b41-aad5-4e63fcdc0e9b",
+    "01a00094-1515-72c3-a359-bb07bd8e3e31",
+    "01a00094-15e3-7b78-bc9e-a021c6736d32",
+    "01a00094-168b-790d-8d5c-f14006672852",
+    "01a00094-1712-7d96-8302-9b04db7feb43",
+    "01a00094-177a-7ecd-84b1-e2d90876e157",
+    "01a00094-1830-7836-a72a-57060ac5b43e",
+    "01a00094-18ac-7890-be19-91f252ac7ddd",
+    "01a00094-1949-7aba-aaac-8b1e096bc768",
+    "01a00094-19f1-749d-9980-dd8175b83834",
+    "01a00094-1a66-78d1-9a97-9a04a9e8434f",
+    "01a00094-1ae9-7173-b402-dad4c907625c",
+    "01a00094-1b73-76ca-87b6-c028ca5f4036",
+    "01a00094-1c0d-7b76-918b-03f276741627",
+    "01a00094-1c85-7432-b6aa-4d0b1927c7f6",
+    "01a00094-1cea-72c2-9d65-2abf22169b54",
+    "01a00094-1dcc-7098-bfd2-ef0fcf3922e7",
+    "01a00094-1edc-7366-b93a-5ddbea6405d2",
+    "01a00094-1f6f-7111-a507-56cdb9fdbd46",
+    "01a00094-203f-734a-8297-1c57d0bc4f24",
+    "01a00094-20d7-70b7-8578-3f6fed24d4a0",
+    "01a00094-2197-7f45-82ae-3b16ef2031ee",
+    "01a00094-224b-7582-8e64-b696b2e8395e",
+    "01a00094-22a6-7617-b8a3-8d3af0fc7acf",
+    "01a00094-231f-7b9f-a1e4-7f1a4ff661f1",
+    "01a00094-2434-7a2b-be09-02464a5222d3",
+    "01a00094-2519-7689-86ee-67f35a2c0176",
+    "01a00094-25f7-78ac-8100-c0a1df76a54b",
+    "01a00094-269e-7af6-bbd8-5a9bf04c9699",
+    "01a00094-26ee-7e37-94f9-a918bcc67c4f",
+    "01a00094-2741-7375-98db-002356df4516",
+    "01a00094-2849-778a-92dd-06c52d597193",
+    "01a00094-2943-7f83-badb-aecb98fa54f2",
+    "01a00094-2a00-7895-9f5d-059c39505636",
+    "01a00094-2ad2-7f3e-8edc-c87df8f6a37e",
+    "01a00094-2bb4-7841-9688-7dc96edcf7c0",
+    "01a00094-2c22-7377-bbd2-8808127c1f34",
+    "01a00094-2c92-7c47-9717-11f191bb3e3d",
+    "01a00094-2d03-7f9c-af0d-50a394d203fc",
+    "01a00094-2d79-7f1e-90f7-83af8a9eb422",
+    "01a00094-2e03-77de-a598-9e73d10ed028",
+    "01a00094-2e57-7e7a-89bb-fb13b3b0dc2a",
+    "01a00094-2edc-7e7e-84ff-982a1d49e0e5",
+    "01a00094-2f84-7809-aef2-9225fa1a260c",
+    "01a00094-3026-72ef-89c4-bad395ff4335",
+    "01a00094-3171-7219-b7f1-061ada1026f3",
+    "01a00094-32aa-7246-97f3-f9bc119bcb0e",
+    "01a00094-33f9-7282-bd1d-02b27a99dd9d",
+    "01a00094-347f-75d0-950b-d256d713206c",
+    "01a00094-3615-717d-be4e-a1a35ce060e0",
+    "01a00094-372b-7fa8-a4fe-99b3efb1c114",
+    "01a00094-3852-7d89-9066-c106e37cc9c9",
+    "01a00094-3956-7b0d-bbca-7f334844f9f1",
+    "01a00094-39c0-7291-abde-df7e929865dc",
+    "01a00094-3a35-71df-86ad-20e7035c05b1",
+    "01a00094-3a8c-752b-a63f-5de071f00491",
+    "01a00094-3b9b-7281-b0d0-9fdb13959e5b",
+    "01a00094-3c67-75f7-821e-164a3931b68b",
+    "01a00094-3ce8-7790-8e9d-357fec2fa3c9",
+    "01a00094-3d45-7495-88bd-51fa250ed7be",
+    "01a00094-3dfb-7813-b1cd-f004dfc65c12",
+    "01a00094-3e6f-773c-88b0-017337f33c14",
+    "01a00094-3eee-77a6-8814-f8af98696312"
+  ],
+  "publishedRenditions": [],
+  "removedFromCurrentSource": [],
+  "notes": [
+    "Local-only Arcaea Story VN CG public-scope metadata correction.",
+    "User-approved scope: every image below app-data/story/vn/res/<subdirectory>/ is a public VN CG; root-level VN textures remain excluded.",
+    "The 34 root-level vn/res images remain hidden and are not part of this release.",
+    "No canonical files, Object IDs, Renditions, remote keys, ROS writes, or deletions were performed."
+  ]
+}
