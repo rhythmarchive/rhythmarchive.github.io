@@ -1,39 +1,15 @@
 ---
-import BaseLayout from "../../layouts/BaseLayout.astro";
-import Gallery from "../../components/Gallery.astro";
-import type { GameId } from "../../lib/game-config";
-import { getCategoryBrowseConfig } from "../../lib/category-browse";
-import { formatCount } from "../../lib/format";
 import { BASE_PATH, ROS_BASE_URL } from "../../lib/site-config";
-import { getPublicNavigationGames, getSiteData } from "../../lib/site-data";
+import { getPublicNavigationGames } from "../../lib/site-data";
 import { createUrlHelpers } from "../../lib/url";
 
-const urls = createUrlHelpers({ basePath: BASE_PATH, origin: "https://rhythmarchive.github.io", rosBaseUrl: ROS_BASE_URL });
-
 export function getStaticPaths() {
-  const siteData = getSiteData();
-  const navigationGames = getPublicNavigationGames();
-  return navigationGames.map((game) => ({ params: { game: game.slug }, props: { game, resources: siteData.galleries[`${game.slug}/all`] ?? [] } }));
+  const urls = createUrlHelpers({ basePath: BASE_PATH, origin: "https://rhythmarchive.github.io", rosBaseUrl: ROS_BASE_URL });
+  return getPublicNavigationGames().map((game) => ({
+    params: { game: game.slug },
+    props: { redirectTo: urls.sitePath(`/${game.slug}/jacket/`) },
+  }));
 }
 
-const { game, resources } = Astro.props;
-const gameId = game.slug as GameId;
-const browseConfig = getCategoryBrowseConfig(gameId, "all", resources);
-const firstImage = resources.find((resource) => resource.preview.large)?.preview.large?.url;
-const description = `浏览并下载 ${game.displayName} 的曲绘、角色立绘、剧情 CG 与其他游戏图片资源。`;
+return Astro.redirect(Astro.props.redirectTo, 301);
 ---
-
-<BaseLayout title={`${game.displayName} 图片资源 | Rhythm Archive`} description={description} canonicalPath={`/${game.slug}/`} ogImage={firstImage} bodyClass={`game-page theme-${game.slug}`}>
-  <section class="page-container game-hero">
-    <div><h1>{game.displayName}</h1><p>{formatCount(game.count)} 项资源</p></div>
-    <div class="game-hero-rail" aria-hidden="true"><span></span><span></span><span></span></div>
-  </section>
-  <nav class="page-container category-nav" aria-label={`${game.displayName} 分类`}>
-    <span class="category-nav-label">资源类型</span>
-    <a class="category-nav-all is-active" href={urls.sitePath(`/${game.slug}/`)}>全部 <span>{formatCount(game.count)}</span></a>
-    {game.categories.map((category) => <a href={urls.sitePath(`/${game.slug}/${category.slug}/`)}>{category.label} <span>{formatCount(category.count)}</span></a>)}
-  </nav>
-  <div class="page-container">
-    <Gallery resources={resources.slice(0, 48)} total={resources.length} game={gameId} category="all" categoryLabel="全部资源" galleryUrl={urls.sitePath(`/data/galleries/${game.slug}/all.json`)} config={browseConfig} />
-  </div>
-</BaseLayout>

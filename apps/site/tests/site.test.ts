@@ -406,10 +406,18 @@ test("homepage navigation uses the generated jacket browse counts", () => {
 test("game routes reuse public navigation counts for shared category navigation", () => {
   const gamePage = fs.readFileSync(path.join(siteRoot, "src", "pages", "[game]", "index.astro"), "utf8");
   const categoryPage = fs.readFileSync(path.join(siteRoot, "src", "pages", "[game]", "[category]", "index.astro"), "utf8");
-  assert.match(gamePage, /const navigationGames = getPublicNavigationGames\(\)/u);
-  assert.match(gamePage, /return navigationGames\.map/u);
+  assert.match(gamePage, /getPublicNavigationGames\(\)\.map/u);
   assert.match(categoryPage, /const navigationGames = getPublicNavigationGames\(\)/u);
   assert.match(categoryPage, /return navigationGames\.flatMap/u);
+});
+
+test("game roots redirect to jacket pages while category navigation keeps its type label", () => {
+  const gamePage = fs.readFileSync(path.join(siteRoot, "src", "pages", "[game]", "index.astro"), "utf8");
+  const categoryPage = fs.readFileSync(path.join(siteRoot, "src", "pages", "[game]", "[category]", "index.astro"), "utf8");
+  assert.match(gamePage, /return Astro\.redirect/u);
+  assert.match(gamePage, /\/\$\{game\.slug\}\/jacket\//u);
+  assert.match(categoryPage, /<span class="category-nav-label">资源类型<\/span>/u);
+  assert.doesNotMatch(categoryPage, /category-nav-all|>全部 <span>/u);
 });
 
 test("Rizline Catalog and public projections preserve approved boundaries", () => {
