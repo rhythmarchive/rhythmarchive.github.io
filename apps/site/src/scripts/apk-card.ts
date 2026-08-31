@@ -55,8 +55,8 @@ function renderManifest(cardElement: HTMLElement, stateElement: HTMLElement, lat
 
   const actions = document.createElement("div");
   actions.className = "apk-download-actions";
-  if (latest.downloads.official) actions.append(createDownloadLink(latest.downloads.official, latest.fileName, "button apk-official-button", "官方下载"));
-  actions.append(createDownloadLink(latest.downloads.github, latest.fileName, "button apk-download-button", "GitHub 下载"));
+  if (latest.downloads.official) actions.append(createDownloadLink(latest.downloads.official, latest.fileName, "button apk-official-button", "前往Releases↗"));
+  actions.append(createDownloadLink(latest.downloads.github, latest.fileName, "button apk-download-button", "下载APK"));
 
   stateElement.append(main, actions, createDigest(latest.sha256));
   if (previous) stateElement.append(createPreviousVersion(previous));
@@ -112,8 +112,8 @@ function createPreviousVersion(previous: PublicArcaeaApkEntry): HTMLDetailsEleme
   metadata.textContent = `${formatPublicApkBytes(previous.fileSize)} · ${formatDate(previous.publishedAt)}`;
   const actions = document.createElement("span");
   actions.className = "apk-previous-actions";
-  actions.append(createDownloadLink(previous.downloads.github, previous.fileName, "", "GitHub 下载"));
-  if (previous.downloads.official) actions.append(" · ", createDownloadLink(previous.downloads.official, previous.fileName, "", "官方下载"));
+  actions.append(createDownloadLink(previous.downloads.github, previous.fileName, "", "下载APK"));
+  if (previous.downloads.official) actions.append(" · ", createDownloadLink(previous.downloads.official, previous.fileName, "", "前往Releases↗"));
   row.append(metadata, actions);
   details.append(summary, row);
   return details;
