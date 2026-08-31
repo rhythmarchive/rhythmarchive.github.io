@@ -403,7 +403,7 @@ img { display: block; max-width: 100%; }
 .download-button:hover { border-color: var(--accent); background: var(--surface); }
 .download-button span { font-size: 0.81rem; font-weight: 740; }
 .download-button small { color: var(--text-soft); font-size: 0.68rem; }
-.download-recommend { margin-left: 4px; color: var(--accent-strong); font-size: 0.62rem; font-style: normal; font-weight: 700; }
+.download-dimensions { margin-left: 6px; color: var(--text-soft); font-size: 0.68rem; font-style: normal; font-variant-numeric: tabular-nums; font-weight: 600; }
 .detail-lightbox { position: fixed; inset: 0; z-index: 100; display: grid; place-items: center; padding: clamp(16px, 4vw, 48px); background: rgba(8, 18, 32, 0.8); }
 .detail-lightbox[hidden] { display: none; }
 .detail-lightbox-backdrop { position: absolute; inset: 0; width: 100%; height: 100%; padding: 0; border: 0; background: transparent; cursor: zoom-out; }

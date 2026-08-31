@@ -7,6 +7,7 @@ import { projectCatalog, selectPreviewRendition } from "../src/lib/catalog-proje
 import { formatPublicApkBytes, parsePublicArcaeaApkManifest } from "../src/lib/apk.js";
 import { uniqueZipFilename } from "../src/lib/batch.js";
 import { displayDifficultyLabel, displayFilterDifficultyLabel, displayVariantLabel, GAME_CONFIG } from "../src/lib/game-config.js";
+import { formatImageDimensions } from "../src/lib/format.js";
 import { formatContentVersion, formatGameUpdatedAt, isRecentlyUpdated, sortPublicGames } from "../src/lib/game-index.js";
 import { rankRelatedResources } from "../src/lib/related.js";
 import { buildSearchQuickLinks } from "../src/lib/search-quick-links.js";
@@ -531,6 +532,19 @@ test("detail lightbox opens only an existing preview rendition", () => {
   assert.match(script, /event\.key !== "Tab"/u);
   assert.match(script, /detail-lightbox-open/u);
   assert.match(styles, /\.detail-lightbox\[hidden\] \{ display: none; \}/u);
+});
+
+test("detail downloads show image dimensions without the recommendation label", () => {
+  const component = fs.readFileSync(path.join(siteRoot, "src", "components", "DownloadActions.astro"), "utf8");
+  const styles = fs.readFileSync(path.join(siteRoot, "src", "styles", "global.css"), "utf8");
+  assert.equal(formatImageDimensions(500, 500), "500 × 500");
+  assert.equal(formatImageDimensions(undefined, 500), undefined);
+  assert.match(component, /formatImageDimensions\(original\.width, original\.height\)/u);
+  assert.match(component, /formatImageDimensions\(upscaled\.width, upscaled\.height\)/u);
+  assert.match(component, /download-dimensions/u);
+  assert.doesNotMatch(component, /推荐|download-recommend/u);
+  assert.match(styles, /\.download-dimensions/u);
+  assert.doesNotMatch(styles, /\.download-recommend/u);
 });
 
 test("ROS preconnect is derived from the configured base URL", () => {

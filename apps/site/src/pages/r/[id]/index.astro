@@ -4,6 +4,7 @@ import DownloadActions from "../../../components/DownloadActions.astro";
 import VariantPanel from "../../../components/VariantPanel.astro";
 import ResourceCard from "../../../components/ResourceCard.astro";
 import { displayDifficultyLabel, GAME_CONFIG } from "../../../lib/game-config";
+import { formatImageDimensions } from "../../../lib/format";
 import { BASE_PATH, ROS_BASE_URL } from "../../../lib/site-config";
 import { getSiteData } from "../../../lib/site-data";
 import { rankRelatedResources } from "../../../lib/related";
@@ -40,11 +41,8 @@ const specialCharts = resource.specialCharts ?? [];
 const allCharts = [...charts, ...specialCharts];
 const primaryDownload = resource.original ?? firstVariant?.original;
 const primaryPreview = firstVariant?.preview.large ?? firstVariant?.preview.medium ?? firstVariant?.preview.small;
-const dimensions = primaryDownload?.width && primaryDownload.height
-  ? primaryDownload.width + " × " + primaryDownload.height
-  : primaryPreview
-    ? primaryPreview.width + " × " + primaryPreview.height
-    : undefined;
+const dimensions = formatImageDimensions(primaryDownload?.width, primaryDownload?.height)
+  ?? formatImageDimensions(primaryPreview?.width, primaryPreview?.height);
 const technicalMetadata: Array<[string, string]> = [];
 if (difficultyValues.length > 0 && !metadata.some(([key]) => key === "difficulty")) technicalMetadata.push(["难度", difficultyValues.join(" / ")]);
 if (dimensions) technicalMetadata.push(["图片尺寸", dimensions]);

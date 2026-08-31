@@ -1,6 +1,6 @@
 ---
 import type { PublicVariant } from "../lib/types";
-import { formatBytes } from "../lib/format";
+import { formatBytes, formatImageDimensions } from "../lib/format";
 
 interface Props {
   variant: PublicVariant;
@@ -9,6 +9,9 @@ interface Props {
 
 const { variant, active = true } = Astro.props;
 const originals = variant.originals ?? (variant.original ? [variant.original] : []);
+const originalOptions = originals.map((original, index) => ({ original, index, dimensions: formatImageDimensions(original.width, original.height) }));
+const upscaled = variant.upscaled;
+const upscaledDimensions = upscaled ? formatImageDimensions(upscaled.width, upscaled.height) : undefined;
 ---
 
 <div class="download-panel" data-download-panel data-download-variant={variant.variantId} hidden={!active}>
@@ -17,14 +20,14 @@ const originals = variant.originals ?? (variant.original ? [variant.original] : 
     <span data-download-status aria-live="polite"></span>
   </div>
   <div class="download-actions">
-    {originals.map((original, index) => (
+    {originalOptions.map(({ original, index, dimensions }) => (
       <button class="download-button" type="button" data-download-kind="original" data-download-url={original.url} data-download-filename={original.downloadFilename}>
-        <span>{originals.length > 1 ? "原图 " + (index + 1) : "原图"}</span><small>{formatBytes(original.sizeBytes)}</small>
+        <span>{originals.length > 1 ? "原图 " + (index + 1) : "原图"}{dimensions ? <em class="download-dimensions">{dimensions}</em> : null}</span><small>{formatBytes(original.sizeBytes)}</small>
       </button>
     ))}
-    {variant.upscaled ? (
-      <button class="download-button" type="button" data-download-kind="upscaled" data-download-url={variant.upscaled.url} data-download-filename={variant.upscaled.downloadFilename}>
-        <span>超分版 <em class="download-recommend">推荐</em></span><small>{formatBytes(variant.upscaled.sizeBytes)}</small>
+    {upscaled ? (
+      <button class="download-button" type="button" data-download-kind="upscaled" data-download-url={upscaled.url} data-download-filename={upscaled.downloadFilename}>
+        <span>超分版{upscaledDimensions ? <em class="download-dimensions">{upscaledDimensions}</em> : null}</span><small>{formatBytes(upscaled.sizeBytes)}</small>
       </button>
     ) : null}
   </div>

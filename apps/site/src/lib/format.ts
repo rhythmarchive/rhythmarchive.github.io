@@ -9,8 +9,12 @@ export function formatBytes(bytes?: number): string {
   return `${(bytes / 1024 / 1024 / 1024).toFixed(2)} GB`;
 }
 
+export function formatImageDimensions(width?: number, height?: number): string | undefined {
+  if (typeof width !== "number" || typeof height !== "number" || !Number.isSafeInteger(width) || !Number.isSafeInteger(height) || width <= 0 || height <= 0) return undefined;
+  return `${width} × ${height}`;
+}
+
 export function formatMetadataValue(value: string | number | boolean): string {
   if (typeof value === "boolean") return value ? "是" : "否";
   return String(value);
 }
-
