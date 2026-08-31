@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
   "game": "rizline",
-  "generatedAt": "2026-08-24T12:42:04.372Z",
+  "generatedAt": "2026-08-31T10:40:50.486Z",
   "source": {
-    "version": "2.7.0",
-    "sha256": "d62d559f6d6bbdbc8d7a85d17b386341ab6eca738cffa64ab16f6f8efa78c66e"
+    "version": "2.7.1",
+    "sha256": "74e6967166b3cf494eae76be244ee9d344e3ce29691c96b5cd08ec59f8ecac89"
   },
   "songs": [
     {
@@ -3779,10 +3779,70 @@
         "Shun Yamaguchi",
         "EX - Single"
       ]
+    },
+    {
+      "songId": "Concvssion.Halv.0",
+      "displayTitle": "Concvssion",
+      "musicArtist": "Halv",
+      "illustrator": "汉堡",
+      "disc": "EX - T.S.",
+      "trackSeries": [
+        {
+          "id": "rizline:track-series:00012",
+          "name": "T.S. SP — Phigros"
+        }
+      ],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:Concvssion.Halv.0__hires",
+          "resourceId": "60fa9b98-e364-765e-bbcd-0fd861e4bed9",
+          "variantId": "f4f64efc-e2ae-78ae-88e6-16133b33f603",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "Concvssion",
+        "Concvssion.Halv.0",
+        "Halv",
+        "汉堡",
+        "EX - T.S.",
+        "T.S. SP — Phigros"
+      ]
+    },
+    {
+      "songId": "SnowDesert.WyvernP.0",
+      "displayTitle": "Snow Desert",
+      "musicArtist": "WyvernP",
+      "illustrator": "美工刀",
+      "disc": "EX - T.S.",
+      "trackSeries": [
+        {
+          "id": "rizline:track-series:00012",
+          "name": "T.S. SP — Phigros"
+        }
+      ],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:SnowDesert.WyvernP.0__hires",
+          "resourceId": "d116292f-21ea-7df4-897c-c32567cd6992",
+          "variantId": "62d9e85d-7032-7996-a351-020e54300049",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "Snow Desert",
+        "SnowDesert.WyvernP.0",
+        "WyvernP",
+        "美工刀",
+        "EX - T.S.",
+        "T.S. SP — Phigros"
+      ]
     }
   ],
   "recordCounts": {
-    "songs": 141,
-    "artworks": 144
+    "songs": 143,
+    "artworks": 146
   }
 }

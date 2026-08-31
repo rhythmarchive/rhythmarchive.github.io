@@ -124,7 +124,7 @@ async function buildPlan(manifestPath: string): Promise<Plan> {
       catalogSchemaVersion:"1.0", id:uuid("resource",id), game:"rizline", resourceType:typeFor(kind), title:title(entity), aliases:aliases(entity),
       externalIdentities:[{namespace:"rizline-semantic",key:"id",value:id,source:"remote-canonical",confidence:"high"}],
       metadata:metadata(entity,kind,names,assetEntity), relations:[], provenance:[{
-        sourceType:"rizline_remote",sourceSnapshot:snapshot(manifest),gameVersion:version(manifest),sourceRelativePath:"manifests/rizline_publish_manifest_v1.json",sourceFilename:"rizline_publish_manifest_v1.json",sourceSha256:hash,
+        sourceType:"rizline_remote",sourceSnapshot:snapshot(manifest),gameVersion:txt(entity.source_game_version) ?? version(manifest),sourceRelativePath:"manifests/rizline_publish_manifest_v1.json",sourceFilename:"rizline_publish_manifest_v1.json",sourceSha256:hash,
         evidence:[{kind:"metadata",detail:"Phase 3.8 frozen REMOTE_CANONICAL manifest",confidence:"high"}],
       }], lifecycle:{status:isPublic ? "published" : "draft",createdAt:now,updatedAt:now,...(isPublic ? {publishedAt:now} : {})},
     }));

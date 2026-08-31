@@ -255,9 +255,9 @@ test("In Falsus exposes chart difficulties and keeps the filter state shareable"
 
 test("Rizline Browse groups one card per Song and preserves all artwork variants", () => {
   const songs = formalBrowse.rizline.items.filter((item) => item.recordKind === "song");
-  assert.equal(songs.length, 141);
-  assert.equal(new Set(songs.map((item) => item.songId)).size, 141);
-  assert.equal(songs.reduce((sum, item) => sum + item.artworks.length, 0), 144);
+  assert.equal(songs.length, 143);
+  assert.equal(new Set(songs.map((item) => item.songId)).size, 143);
+  assert.equal(songs.reduce((sum, item) => sum + item.artworks.length, 0), 146);
   assert.ok(songs.every((item) => item.game === "rizline"));
   assert.ok(songs.every((item) => item.game !== "phigros"));
   assert.ok(songs.some((item) => item.artworks.length > 1));

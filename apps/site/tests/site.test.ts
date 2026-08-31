@@ -195,9 +195,14 @@ test("public game index projects activity only from final public resources", () 
   const phigros = projection.games.find((game) => game.slug === "phigros");
   const rizline = projection.games.find((game) => game.slug === "rizline");
   assert.equal(arcaea?.contentVersion, "7.0.0c");
-  assert.equal(arcaea?.lastUpdatedAt, catalog.generatedAt);
-  assert.equal(rizline?.contentVersion, "2.7.0");
-  assert.equal(rizline?.lastUpdatedAt, "2026-08-24T12:42:04.372Z");
+  const arcaeaUpdatedAt = catalog.resources
+    .filter((resource) => resource.game === "arcaea" && resource.lifecycle.status === "published")
+    .map((resource) => resource.lifecycle.updatedAt)
+    .sort()
+    .at(-1);
+  assert.equal(arcaea?.lastUpdatedAt, arcaeaUpdatedAt);
+  assert.equal(rizline?.contentVersion, "2.7.1");
+  assert.equal(rizline?.lastUpdatedAt, catalog.generatedAt);
   assert.equal(phigros?.contentVersion, undefined);
   assert.equal(phigros?.lastUpdatedAt, "2026-08-14T13:57:23.100Z");
   assert.deepEqual(projection.games.map((game) => game.slug), sortPublicGames(projection.games).map((game) => game.slug));
@@ -391,7 +396,7 @@ test("homepage navigation uses the generated jacket browse counts", () => {
   assert.equal(games.find((game) => game.slug === "arcaea")?.categories.find((category) => category.slug === "jacket")?.count, 565);
   assert.equal(games.find((game) => game.slug === "phigros")?.categories.find((category) => category.slug === "jacket")?.count, 353);
   const rizline = games.find((game) => game.slug === "rizline");
-  assert.equal(rizline?.categories.find((category) => category.slug === "jacket")?.count, 141);
+  assert.equal(rizline?.categories.find((category) => category.slug === "jacket")?.count, 143);
   assert.equal(rizline?.categories.find((category) => category.slug === "rizcard")?.count, 44);
   assert.equal(rizline?.categories.some((category) => category.slug === "rizcard-layout"), false);
   assert.deepEqual(rizline?.featuredCategories.map((category) => category.slug), ["jacket", "special-art", "track-series", "rizcard", "character-avatar"]);
@@ -400,19 +405,19 @@ test("homepage navigation uses the generated jacket browse counts", () => {
 test("Rizline Catalog and public projections preserve approved boundaries", () => {
   const rizlineResources = catalog.resources.filter((resource) => resource.game === "rizline");
   const published = rizlineResources.filter((resource) => resource.lifecycle.status === "published");
-  assert.equal(rizlineResources.length, 336);
-  assert.equal(published.filter((resource) => resource.resourceType === "jacket").length, 141);
+  assert.equal(rizlineResources.length, 338);
+  assert.equal(published.filter((resource) => resource.resourceType === "jacket").length, 143);
   assert.equal(published.filter((resource) => resource.resourceType === "special-art").length, 6);
   assert.equal(published.filter((resource) => resource.resourceType === "track-series").length, 19);
   assert.equal(published.filter((resource) => resource.resourceType === "rizcard-layout").length, 44);
   assert.equal(published.filter((resource) => resource.resourceType === "character-avatar").length, 8);
   assert.equal(published.filter((resource) => resource.resourceType === "rizcard").length, 29);
   assert.equal(rizlineResources.filter((resource) => resource.resourceType === "rizcard" && resource.lifecycle.status === "draft").length, 65);
-  assert.equal(catalog.variants.filter((variant) => rizlineResources.some((resource) => resource.id === variant.resourceId)).length, 328);
-  assert.equal(catalog.renditions.filter((rendition) => rizlineResources.some((resource) => catalog.variants.find((variant) => variant.id === rendition.variantId)?.resourceId === resource.id)).length, 1420);
+  assert.equal(catalog.variants.filter((variant) => rizlineResources.some((resource) => resource.id === variant.resourceId)).length, 330);
+  assert.equal(catalog.renditions.filter((rendition) => rizlineResources.some((resource) => catalog.variants.find((variant) => variant.id === rendition.variantId)?.resourceId === resource.id)).length, 1428);
   const siteData = getSiteData();
   const publicRizline = siteData.resources.filter((resource) => resource.game === "rizline");
-  assert.equal(publicRizline.length, 218);
+  assert.equal(publicRizline.length, 220);
   assert.equal(publicRizline.filter((resource) => resource.resourceType === "rizcard").length, 0);
   assert.equal(publicRizline.filter((resource) => resource.resourceType === "rizcard-layout").length, 44);
   assert.ok(publicRizline.filter((resource) => resource.resourceType === "rizcard-layout").every((resource) => resource.category === "rizcard" && resource.categoryLabel === "Rizcard" && resource.metadata.layoutId));
