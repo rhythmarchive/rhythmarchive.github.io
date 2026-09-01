@@ -420,6 +420,20 @@ test("game roots redirect to jacket pages while category navigation keeps its ty
   assert.doesNotMatch(categoryPage, /category-nav-all|>全部 <span>/u);
 });
 
+test("internal game entries link directly to jacket pages", () => {
+  const sources = [
+    fs.readFileSync(path.join(siteRoot, "src", "components", "GameCard.astro"), "utf8"),
+    fs.readFileSync(path.join(siteRoot, "src", "components", "SiteHeader.astro"), "utf8"),
+    fs.readFileSync(path.join(siteRoot, "src", "components", "Footer.astro"), "utf8"),
+    fs.readFileSync(path.join(siteRoot, "src", "pages", "[game]", "[category]", "index.astro"), "utf8"),
+    fs.readFileSync(path.join(siteRoot, "src", "pages", "r", "[id]", "index.astro"), "utf8"),
+  ];
+  assert.ok(sources.every((source) => source.includes("/jacket/")));
+  assert.ok(sources.every((source) => !/sitePath\(`\/\$\{(?:game\.slug|resource\.game)\}\/`\)/u.test(source)));
+  const quickLinks = buildSearchQuickLinks({ games: getPublicNavigationGames() });
+  assert.ok(quickLinks.filter((entry) => ["Arcaea", "Phigros", "Rizline", "In Falsus", "Rotaeno"].includes(entry.label)).every((entry) => entry.href.endsWith("/jacket/")));
+});
+
 test("Rizline Catalog and public projections preserve approved boundaries", () => {
   const rizlineResources = catalog.resources.filter((resource) => resource.game === "rizline");
   const published = rizlineResources.filter((resource) => resource.lifecycle.status === "published");

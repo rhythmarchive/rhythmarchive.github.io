@@ -22,7 +22,7 @@ const games = getPublicNavigationGames();
           </div>
           <div class="nav-game-list">
             {games.map((game) => (
-              <a href={urls.sitePath(`/${game.slug}/`)}>
+              <a href={urls.sitePath(`/${game.slug}/jacket/`)}>
                 <span>{game.displayName}</span>
                 <small>{formatCount(game.count)} 项</small>
               </a>

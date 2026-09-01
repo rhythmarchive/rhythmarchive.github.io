@@ -15,7 +15,7 @@ const games = getPublicNavigationGames();
     </div>
     <nav class="site-footer-links" aria-label="页脚导航">
       <a href={urls.sitePath("/games/")}>游戏库</a>
-      {games.map((game) => <a href={urls.sitePath(`/${game.slug}/`)}>{game.displayName}</a>)}
+      {games.map((game) => <a href={urls.sitePath(`/${game.slug}/jacket/`)}>{game.displayName}</a>)}
       <a href={urls.sitePath("/feedback/")}>意见反馈</a>
       <a href={BILIBILI_URL} target="_blank" rel="noopener noreferrer">B站主页</a>
     </nav>

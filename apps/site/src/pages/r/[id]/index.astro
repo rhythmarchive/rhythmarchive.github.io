@@ -83,7 +83,7 @@ const description = `${resource.displayTitle}${resource.artist ? ` · ${resource
 
 <BaseLayout title={`${resource.displayTitle} - ${GAME_CONFIG[resource.game].displayName} | Rhythm Archive`} description={description} canonicalPath={resource.route} ogImage={preview} bodyClass="detail-page">
   <div class="page-container detail-shell" data-detail-root>
-    <div class="detail-breadcrumb"><a href={urls.sitePath(`/${resource.game}/`)}>{GAME_CONFIG[resource.game].displayName}</a><span>/</span><span>{resource.categoryLabel}</span></div>
+    <div class="detail-breadcrumb"><a href={urls.sitePath(`/${resource.game}/jacket/`)}>{GAME_CONFIG[resource.game].displayName}</a><span>/</span><span>{resource.categoryLabel}</span></div>
     <div class="detail-layout">
       <div class="detail-visual">
         {resource.variants.length > 1 ? (
