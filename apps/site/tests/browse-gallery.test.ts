@@ -271,6 +271,27 @@ test("Rizline Browse groups one card per Song and preserves all artwork variants
   const facetOptions = getBrowseFacetOptions(formalBrowse.rizline) as RizlineFacetOptions;
   assert.deepEqual(facetOptions.discs, ["Disc 1", "Disc 2", "Disc O", "EX - Single", "EX - T.S."]);
   assert.equal(facetOptions.trackSeries.length, 19);
+  assert.deepEqual(facetOptions.trackSeries, [
+    "Paradigm: Reboot collaboration",
+    "T.S. #1 — Juggernaut.",
+    "T.S. #2 — DIVERSE SYSTEM",
+    "T.S. #3 — Sobrem",
+    "T.S. #4 — Tone Sphere",
+    "T.S. #5 — BlackY",
+    "T.S. #6 — Cytus II × Muse Dash",
+    "T.S. #7 — KALPA",
+    "T.S. #8 — Rotaeno",
+    "T.S. #9 — Cosmic Radio 2024",
+    "T.S. #10 — HARDCORE TANO*C",
+    "T.S. #11 — DEEMO II",
+    "T.S. #12 — kuro",
+    "T.S. #13 — 天地万象",
+    "T.S. #14 — Tanchiky",
+    "T.S. #15 — ルゼ & LisicA",
+    "T.S. #16 — 古韻今声 / Diachronic Resonance",
+    "T.S. SP — Phigros",
+    "去远方 collaboration",
+  ]);
   const discState: RizlineBrowseUrlState = { game: "rizline", q: "", sort: "default", disc: ["Disc 1"], series: [], chart: [] };
   assert.ok(filterBrowseItems(songs, discState).every((item) => item.disc === "Disc 1"));
   const targetSeries = facetOptions.trackSeries.find((value) => value.includes("T.S. #1"))!;

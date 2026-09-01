@@ -6,8 +6,11 @@ import type {
 } from "../../../../packages/domain/src/browse.js";
 import { categoryLabel, displayFilterDifficultyLabel, gameCategoryLabel, type GameId, type ResourceTypeId } from "./game-config";
 import { galleryKey } from "./catalog-projection";
-import { normalizeSearchText } from "./search";
+import { compareNaturalText, normalizeSearchText } from "./search";
 import type { PublicResource, PublicSearchEntry, PublicSiteData } from "./types";
+
+const ROTAENO_CHART_ORDER = ["I", "II", "III", "IV", "IV_Alpha"] as const;
+const PHIGROS_PACK_KIND_ORDER = ["主线", "支线", "单曲", "全部曲目", "其他曲包"] as const;
 
 export type CategoryBrowseFacetOption = { value: string; label: string };
 
@@ -150,9 +153,48 @@ function facetOptions(resources: PublicResource[], key: string, game?: GameId): 
   const values = new Set<string>();
   for (const resource of resources) for (const value of resource.facets?.[key] ?? []) values.add(value);
   const orderedValues = [...values];
-  if (!(game === "arcaea" && ["type", "section", "path"].includes(key))) orderedValues.sort((left, right) => normalizeSearchText(left).localeCompare(normalizeSearchText(right), "zh-CN"));
+  if (!(game === "arcaea" && ["type", "section", "path"].includes(key))) orderedValues.sort((left, right) => compareFacetValues(left, right, key, game));
   return orderedValues
     .map((value) => ({ value, label: key === "chart" ? displayFilterDifficultyLabel(value, game ?? resources[0]?.game) : value }));
+}
+
+function compareFacetValues(left: string, right: string, key: string, game?: GameId): number {
+  if (game === "rotaeno" && key === "chart") return compareOrderedValues(left, right, ROTAENO_CHART_ORDER);
+  if (game === "rotaeno" && key === "level") return compareRotaenoLevels(left, right);
+  if (game === "rotaeno" && key === "constant") return compareNumericFacetValues(left, right);
+  if (game === "phigros" && key === "kind") return compareOrderedValues(left, right, PHIGROS_PACK_KIND_ORDER);
+  return compareNaturalText(left, right);
+}
+
+function compareOrderedValues(left: string, right: string, order: readonly string[]): number {
+  const leftIndex = order.indexOf(left);
+  const rightIndex = order.indexOf(right);
+  if (leftIndex !== -1 || rightIndex !== -1) return (leftIndex === -1 ? order.length : leftIndex) - (rightIndex === -1 ? order.length : rightIndex);
+  return compareNaturalText(left, right);
+}
+
+function compareRotaenoLevels(left: string, right: string): number {
+  const leftMatch = /^(\d+)(\+)?$/u.exec(left);
+  const rightMatch = /^(\d+)(\+)?$/u.exec(right);
+  if (leftMatch && rightMatch) {
+    const numericDifference = Number(leftMatch[1]) - Number(rightMatch[1]);
+    if (numericDifference !== 0) return numericDifference;
+    return Number(Boolean(leftMatch[2])) - Number(Boolean(rightMatch[2]));
+  }
+  if (leftMatch) return -1;
+  if (rightMatch) return 1;
+  return compareNaturalText(left, right);
+}
+
+function compareNumericFacetValues(left: string, right: string): number {
+  const leftNumber = Number(left);
+  const rightNumber = Number(right);
+  const leftIsNumeric = Number.isFinite(leftNumber);
+  const rightIsNumeric = Number.isFinite(rightNumber);
+  if (leftIsNumeric && rightIsNumeric) return leftNumber - rightNumber || compareNaturalText(left, right);
+  if (leftIsNumeric) return -1;
+  if (rightIsNumeric) return 1;
+  return compareNaturalText(left, right);
 }
 
 function facetRange(resources: PublicResource[], key: string): CategoryBrowseFacetRange | undefined {
@@ -170,7 +212,7 @@ function sortSemanticResources(resources: PublicResource[]): PublicResource[] {
   return [...resources].sort((left, right) => {
     const leftOrder = left.sortOrder ?? Number.MAX_SAFE_INTEGER;
     const rightOrder = right.sortOrder ?? Number.MAX_SAFE_INTEGER;
-    return leftOrder - rightOrder || normalizeSearchText(left.displayTitle).localeCompare(normalizeSearchText(right.displayTitle), "zh-CN") || left.resourceId.localeCompare(right.resourceId, "en");
+    return leftOrder - rightOrder || compareNaturalText(left.displayTitle, right.displayTitle) || left.resourceId.localeCompare(right.resourceId, "en");
   });
 }
 
@@ -196,7 +238,7 @@ function toSemanticSearchEntry(resource: PublicResource, previous?: PublicSearch
     category: resource.category,
     categoryLabel: resource.categoryLabel,
     ...(resource.artist ? { artist: resource.artist } : {}),
-    keywords: [...keywords].filter((value) => normalizeSearchText(value)).sort((left, right) => normalizeSearchText(left).localeCompare(normalizeSearchText(right), "zh-CN")),
+    keywords: [...keywords].filter((value) => normalizeSearchText(value)).sort(compareNaturalText),
   };
 }
 

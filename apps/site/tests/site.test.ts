@@ -13,7 +13,7 @@ import { rankRelatedResources } from "../src/lib/related.js";
 import { buildSearchQuickLinks } from "../src/lib/search-quick-links.js";
 import { getCategoryBrowseConfig } from "../src/lib/category-browse.js";
 import { GISCUS_CONFIG, GITHUB_DISCUSSIONS_URL } from "../src/lib/site-config.js";
-import { rankSearchEntries } from "../src/lib/search.js";
+import { compareNaturalText, rankSearchEntries } from "../src/lib/search.js";
 import { createUrlHelpers } from "../src/lib/url.js";
 import { getPublicNavigationGames, getSiteData, loadCategoryBrowseProjections, loadFormalCatalog } from "../src/lib/site-data.js";
 import { formatArcaeaAddedVersion } from "../src/lib/public-display.js";
@@ -390,6 +390,34 @@ test("category semantic browse data keeps player-facing names and conservative u
   assert.equal((siteData.galleries["rotaeno/startup"] ?? []).length, 10);
   const phigrosKinds = getCategoryBrowseConfig("phigros", "pack-cover", siteData.galleries["phigros/pack-cover"] ?? []).facets[0]?.options.map((option) => option.label) ?? [];
   assert.ok(phigrosKinds.includes("主线") && phigrosKinds.includes("支线") && phigrosKinds.includes("单曲") && phigrosKinds.includes("其他曲包"));
+});
+
+test("category facet options use natural numeric and semantic ordering", () => {
+  const siteData = getSiteData();
+  const rotaeno = getCategoryBrowseConfig("rotaeno", "jacket", siteData.galleries["rotaeno/jacket"] ?? []);
+  const facetValues = (config: ReturnType<typeof getCategoryBrowseConfig>, key: string): string[] => config.facets.find((facet) => facet.key === key)?.options.map((option) => option.value) ?? [];
+  assert.deepEqual(facetValues(rotaeno, "chart"), ["I", "II", "III", "IV", "IV_Alpha", "特殊", "Meow"]);
+  assert.deepEqual(facetValues(rotaeno, "level"), [
+    "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "10+", "11", "11+", "12", "12+", "13", "13+", "14", "Aleph 0", "Lv.4",
+  ]);
+  const constants = facetValues(rotaeno, "constant");
+  assert.equal(constants[0], "1.0");
+  assert.equal(constants.at(-1), "14.5");
+  assert.deepEqual(constants.map(Number), [...constants].map(Number).sort((left, right) => left - right));
+
+  const arcaeaStory = getCategoryBrowseConfig("arcaea", "story-cg", siteData.galleries["arcaea/story-cg"] ?? []);
+  assert.deepEqual(facetValues(arcaeaStory, "chapter"), [
+    "Chapter 0", "Chapter 1", "Chapter 2", "Chapter 3", "Chapter 4", "Chapter 5", "Chapter 7", "Chapter 9", "Chapter 10", "Chapter 11", "Chapter 12", "Chapter 15", "Chapter 16", "Chapter 17", "Chapter 19", "Chapter 20", "Chapter 21", "Chapter 22", "Chapter 23", "Chapter 99", "Chapter 101", "Chapter 102",
+  ]);
+
+  const phigrosPack = getCategoryBrowseConfig("phigros", "pack-cover", siteData.galleries["phigros/pack-cover"] ?? []);
+  assert.deepEqual(facetValues(phigrosPack, "kind"), ["主线", "支线", "单曲", "全部曲目", "其他曲包"]);
+});
+
+test("natural text comparison keeps numeric ordering without folding accents", () => {
+  assert.ok(compareNaturalText("Chapter 2", "Chapter 10") < 0);
+  assert.ok(compareNaturalText("T.S. #2", "T.S. #10", "en") < 0);
+  assert.notEqual(compareNaturalText("café", "cafe"), 0);
 });
 
 test("homepage navigation uses the generated jacket browse counts", () => {

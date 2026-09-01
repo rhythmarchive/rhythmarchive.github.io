@@ -7,7 +7,7 @@ import type {
 } from "../../../../packages/domain/src/browse.js";
 import type { GameId, ResourceTypeId } from "./game-config";
 import type { CategoryBrowseProjectionType } from "../../../../packages/domain/src/browse.js";
-import { normalizeSearchText } from "./search";
+import { compareNaturalText, normalizeSearchText } from "./search";
 import type { PublicChart, PublicDownload, PublicPreview, PublicResource, PublicSiteData } from "./types";
 
 export const BROWSE_GALLERY_SCHEMA_VERSION = 1 as const;
@@ -578,7 +578,7 @@ function toResolvedResource(resource: PublicResource, variantId?: string): Brows
 }
 
 function searchTerms(values: Array<string | null | undefined>): string[] {
-  return [...new Set(values.map((value) => value?.trim()).filter((value): value is string => Boolean(value)))].sort((a, b) => normalizeSearchText(a).localeCompare(normalizeSearchText(b), "en"));
+  return [...new Set(values.map((value) => value?.trim()).filter((value): value is string => Boolean(value)))].sort((left, right) => compareNaturalText(left, right, "en"));
 }
 
 export function getBrowseFacetOptions(data: BrowseGalleryData): BrowseFacetOptions {
@@ -779,7 +779,7 @@ export function compareVersionStrings(left: string, right: string): number {
     }
     return left.localeCompare(right, "en");
   }
-  return left.localeCompare(right, "en");
+  return compareNaturalText(left, right, "en");
 }
 
 export function compareDisplayLevels(left: string, right: string): number {
@@ -942,7 +942,7 @@ function compareNullableText(left: string | null | undefined, right: string | nu
 }
 
 function compareText(left: string, right: string): number {
-  return normalizeSearchText(left).localeCompare(normalizeSearchText(right), "en");
+  return compareNaturalText(left, right, "en");
 }
 
 function unique<T>(values: T[], comparator: (left: T, right: T) => number): T[] {

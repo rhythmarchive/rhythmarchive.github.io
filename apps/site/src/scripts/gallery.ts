@@ -1,7 +1,7 @@
 import { zipSync } from "fflate";
 import { DOWNLOAD_CONCURRENCY, MAX_BATCH_BYTES, MAX_BATCH_FILES, uniqueZipFilename } from "../lib/batch";
 import { cardMediaFit, cardMediaRatio } from "../lib/media-config";
-import { normalizeSearchText } from "../lib/search";
+import { compareNaturalText, normalizeSearchText } from "../lib/search";
 import type { PublicDownload, PublicResource } from "../lib/types";
 
 const PAGE_SIZE = 48;
@@ -136,8 +136,8 @@ async function initializeGallery(root: HTMLElement): Promise<void> {
     });
     if (sortValue === "default") return filtered;
     return [...filtered].sort((left, right) => {
-      if (sortValue === "artist-asc") return normalizeSearchText(left.artist ?? "").localeCompare(normalizeSearchText(right.artist ?? ""), "zh-CN") || normalizeSearchText(left.displayTitle).localeCompare(normalizeSearchText(right.displayTitle), "zh-CN");
-      const compared = normalizeSearchText(left.displayTitle).localeCompare(normalizeSearchText(right.displayTitle), "zh-CN");
+      if (sortValue === "artist-asc") return compareNaturalText(left.artist ?? "", right.artist ?? "") || compareNaturalText(left.displayTitle, right.displayTitle);
+      const compared = compareNaturalText(left.displayTitle, right.displayTitle);
       return sortValue === "title-desc" ? -compared : compared;
     });
   }

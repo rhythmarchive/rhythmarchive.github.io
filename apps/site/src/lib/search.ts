@@ -1,5 +1,9 @@
 import type { PublicSearchEntry } from "./types";
 
+const naturalTextCollators = new Map<string, Intl.Collator>([
+  ["zh-CN", new Intl.Collator("zh-CN", { numeric: true, sensitivity: "variant" })],
+]);
+
 export function normalizeSearchText(value: string): string {
   return value
     .normalize("NFKC")
@@ -9,6 +13,15 @@ export function normalizeSearchText(value: string): string {
     .replace(/[\u3001\u3002，。！？；：、“”‘’（）【】《》]/gu, " ")
     .replace(/[\s_-]+/gu, " ")
     .trim();
+}
+
+export function compareNaturalText(left: string, right: string, locale = "zh-CN"): number {
+  let collator = naturalTextCollators.get(locale);
+  if (!collator) {
+    collator = new Intl.Collator(locale, { numeric: true, sensitivity: "variant" });
+    naturalTextCollators.set(locale, collator);
+  }
+  return collator.compare(normalizeSearchText(left), normalizeSearchText(right));
 }
 
 export function splitSearchQuery(value: string): string[] {
@@ -28,7 +41,7 @@ export function rankSearchEntries(entries: PublicSearchEntry[], query: string): 
   });
 
   return scored
-    .sort((a, b) => b.score - a.score || normalizeSearchText(a.entry.title).localeCompare(normalizeSearchText(b.entry.title), "zh-CN") || a.entry.resourceId.localeCompare(b.entry.resourceId))
+    .sort((a, b) => b.score - a.score || compareNaturalText(a.entry.title, b.entry.title) || a.entry.resourceId.localeCompare(b.entry.resourceId))
     .map(({ entry }) => entry);
 }
 
@@ -44,4 +57,3 @@ function scoreEntry(title: string, artist: string, keywords: string[], terms: st
   }
   return total;
 }
-

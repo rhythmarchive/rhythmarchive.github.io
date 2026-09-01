@@ -1,15 +1,16 @@
 import type { PublicGameIndex } from "./types";
+import { compareNaturalText } from "./search";
 
 export type PublicGameSort = "updated" | "name";
 
 export function sortPublicGames(games: readonly PublicGameIndex[], sort: PublicGameSort = "updated"): PublicGameIndex[] {
   return [...games].sort((left, right) => {
     if (sort === "name") {
-      return left.displayName.localeCompare(right.displayName, "zh-CN") || left.slug.localeCompare(right.slug, "en");
+      return compareNaturalText(left.displayName, right.displayName) || left.slug.localeCompare(right.slug, "en");
     }
 
     const updatedDifference = timestamp(right.lastUpdatedAt) - timestamp(left.lastUpdatedAt);
-    return updatedDifference || left.displayName.localeCompare(right.displayName, "zh-CN") || left.slug.localeCompare(right.slug, "en");
+    return updatedDifference || compareNaturalText(left.displayName, right.displayName) || left.slug.localeCompare(right.slug, "en");
   });
 }
 

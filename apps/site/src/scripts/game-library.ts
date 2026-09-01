@@ -1,3 +1,5 @@
+import { compareNaturalText } from "../lib/search";
+
 const grid = document.querySelector<HTMLElement>("[data-games-grid]");
 const controls = [...document.querySelectorAll<HTMLButtonElement>("[data-games-sort]")];
 
@@ -20,10 +22,10 @@ if (grid && controls.length > 0) {
 
   function applySort(sort: "updated" | "name"): void {
     const ordered = [...cards].sort((left, right) => {
-      if (sort === "name") return (left.dataset.gameName ?? "").localeCompare(right.dataset.gameName ?? "", "zh-CN");
+      if (sort === "name") return compareNaturalText(left.dataset.gameName ?? "", right.dataset.gameName ?? "");
       const rightUpdated = timestamp(right.dataset.gameUpdatedAt);
       const leftUpdated = timestamp(left.dataset.gameUpdatedAt);
-      return rightUpdated - leftUpdated || (left.dataset.gameName ?? "").localeCompare(right.dataset.gameName ?? "", "zh-CN");
+      return rightUpdated - leftUpdated || compareNaturalText(left.dataset.gameName ?? "", right.dataset.gameName ?? "");
     });
     for (const card of ordered) gameGrid.append(card);
     for (const control of controls) control.setAttribute("aria-pressed", String(control.dataset.gamesSort === sort));
