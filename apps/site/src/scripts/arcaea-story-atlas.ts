@@ -634,7 +634,7 @@ async function initialize(root: HTMLElement): Promise<void> {
       if (article.childElementCount > 0) flow.append(article);
     }
     if (flow.childElementCount === 0 && (!textEntry || !choice || segments.length === 0)) {
-      flow.append(textNode("p", "这条剧情暂时没有可显示的正文。", "story-dialog-empty"));
+      flow.append(textNode("p", resourceIds.length > 0 ? "该节点仅包含游戏内插画，包体未提供对白正文。" : "这条剧情暂时没有可显示的正文。", "story-dialog-empty"));
     }
     if (flow.childElementCount > 0) section.append(flow);
     if (hasInlineVisual) {

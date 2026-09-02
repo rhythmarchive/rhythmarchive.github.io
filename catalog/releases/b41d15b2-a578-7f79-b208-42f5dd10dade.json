@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "1.0",
+  "releaseSchemaVersion": "1.0",
+  "id": "b41d15b2-a578-7f79-b208-42f5dd10dade",
+  "updateBatchId": "7f1aea8d-89e5-7209-8cfc-b7847e2a4e1c",
+  "game": "arcaea",
+  "baseVersion": "7.0.255c",
+  "targetVersion": "7.0.255c",
+  "createdAt": "2026-09-02T08:18:27.826Z",
+  "status": "published",
+  "changes": [
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "01a00095-0eb3-7060-be48-589b7905401c",
+      "detail": "Tombstoned from the public Arcaea character-portrait gallery: luna_fo.png is a 62x48 Luna mouth fragment, not a full character portrait."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "01a00095-0ec9-7e52-b8dc-057960e46e7d",
+      "detail": "Tombstoned from the public Arcaea character-portrait gallery: luna_ho.png is a 62x48 Luna mouth fragment, not a full character portrait."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "01a00095-0ede-7ae8-b242-2fa2ad4fb746",
+      "detail": "Tombstoned from the public Arcaea character-portrait gallery: luna_o.png is a 62x48 Luna mouth fragment, not a full character portrait."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "01a00095-0ef4-7f39-b876-efc6b75cf55a",
+      "detail": "Tombstoned from the public Arcaea character-portrait gallery: luna_oo.png is a 62x48 Luna mouth fragment, not a full character portrait."
+    }
+  ],
+  "affectedResourceIds": [
+    "01a00095-0eb3-7060-be48-589b7905401c",
+    "01a00095-0ec9-7e52-b8dc-057960e46e7d",
+    "01a00095-0ede-7ae8-b242-2fa2ad4fb746",
+    "01a00095-0ef4-7f39-b876-efc6b75cf55a"
+  ],
+  "publishedRenditions": [],
+  "removedFromCurrentSource": [],
+  "notes": [
+    "Editorial Arcaea character-portrait cleanup for 7.0.255c.",
+    "Four 62x48 Luna mouth fragments were removed from public projections by tombstoning their Resources.",
+    "Catalog, original Renditions, Objects, and ROS objects are retained; no remote deletion or overwrite was performed."
+  ]
+}

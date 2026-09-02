@@ -53462,7 +53462,10 @@
       "additionalRequires": [],
       "hiddenFromCount": true,
       "storyCgPaths": [
-        "assets/app-data/story/cg/C-10-1.jpg"
+        "assets/app-data/story/cg/C-10-1.jpg",
+        "assets/app-data/story/cg/C-10-2.jpg",
+        "assets/app-data/story/cg/C-10-3.jpg",
+        "assets/app-data/story/cg/C-10-4.jpg"
       ],
       "texts": {}
     }

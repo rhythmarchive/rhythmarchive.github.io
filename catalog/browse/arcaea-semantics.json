@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
   "game": "arcaea",
-  "generatedAt": "2026-09-02T06:11:11.177Z",
+  "generatedAt": "2026-09-02T08:18:27.826Z",
   "source": {
     "snapshot": "Arcaea APK 7.0.255c",
-    "sha256": "8a30a6dde67612d83ed45c953463de4735a473cd3ed66d50791db3ac30640f72"
+    "sha256": "495506a3150f3b43868d209cc628d9d6e093273d4f27e3e32f96f2b4f8284386"
   },
   "resources": [
     {
@@ -24350,6 +24350,123 @@
       }
     },
     {
+      "resourceId": "c4cda7d3-d462-7dfb-a14f-bef1fd129362",
+      "resourceType": "character-portrait",
+      "displayTitle": "識眼",
+      "metadata": {
+        "characterName": "識眼",
+        "characterChineseName": "識眼",
+        "characterJapaneseName": "ラクリミラ",
+        "characterEnglishName": "insight_konzetsu",
+        "characterKoreanName": "라크리미라",
+        "characterVariant": "base"
+      },
+      "badges": [],
+      "searchTerms": [
+        "insight_konzetsu",
+        "Lacrymira",
+        "Insight",
+        "識眼",
+        "洞烛",
+        "洞燭",
+        "ラクリミラ",
+        "拉可弥拉",
+        "拉可彌拉",
+        "라크리미라",
+        "혜안",
+        "しきがんぬりふぁいど",
+        "ぬりふぁいどしきがん",
+        "ぬりふぁいどらくみりら",
+        "らくみりらぬりふぁいど",
+        "base"
+      ],
+      "sortOrder": 98423,
+      "facets": {
+        "character": [
+          "識眼"
+        ]
+      }
+    },
+    {
+      "resourceId": "8d25a475-49eb-754e-b9be-7c7b07a67d14",
+      "resourceType": "character-avatar",
+      "displayTitle": "識眼",
+      "metadata": {
+        "characterName": "識眼",
+        "characterChineseName": "識眼",
+        "characterJapaneseName": "ラクリミラ",
+        "characterEnglishName": "insight_konzetsu",
+        "characterKoreanName": "라크리미라",
+        "characterVariant": "_icon"
+      },
+      "badges": [],
+      "searchTerms": [
+        "insight_konzetsu",
+        "Lacrymira",
+        "Insight",
+        "識眼",
+        "洞烛",
+        "洞燭",
+        "ラクリミラ",
+        "拉可弥拉",
+        "拉可彌拉",
+        "라크리미라",
+        "혜안",
+        "しきがんぬりふぁいど",
+        "ぬりふぁいどしきがん",
+        "ぬりふぁいどらくみりら",
+        "らくみりらぬりふぁいど",
+        "_icon",
+        "icon"
+      ],
+      "sortOrder": 98424,
+      "facets": {
+        "character": [
+          "識眼"
+        ]
+      }
+    },
+    {
+      "resourceId": "0aad3170-e11c-7fcb-a5ee-e21735b6e3d3",
+      "resourceType": "linkplay-preview",
+      "displayTitle": "識眼",
+      "subtitle": "变体",
+      "metadata": {
+        "characterName": "識眼",
+        "characterChineseName": "識眼",
+        "characterJapaneseName": "ラクリミラ",
+        "characterEnglishName": "insight_konzetsu",
+        "characterKoreanName": "라크리미라",
+        "characterVariant": "_mp"
+      },
+      "badges": [],
+      "searchTerms": [
+        "insight_konzetsu",
+        "Lacrymira",
+        "Insight",
+        "識眼",
+        "洞烛",
+        "洞燭",
+        "ラクリミラ",
+        "拉可弥拉",
+        "拉可彌拉",
+        "라크리미라",
+        "혜안",
+        "しきがんぬりふぁいど",
+        "ぬりふぁいどしきがん",
+        "ぬりふぁいどらくみりら",
+        "らくみりらぬりふぁいど",
+        "_mp",
+        "multiplayer"
+      ],
+      "sortOrder": 98525,
+      "facets": {
+        "character": [
+          "識眼"
+        ]
+      }
+    },
+    {
       "resourceId": "01a00095-0d46-7c09-93f8-4216727ac9d2",
       "resourceType": "character-portrait",
       "displayTitle": "白姫",
@@ -35793,114 +35910,6 @@
       "facets": {}
     },
     {
-      "resourceId": "01a00095-0eb3-7060-be48-589b7905401c",
-      "resourceType": "character-portrait",
-      "displayTitle": "露娜",
-      "metadata": {
-        "characterName": "露娜",
-        "characterChineseName": "露娜",
-        "characterJapaneseName": "ルナ",
-        "characterEnglishName": "luna",
-        "characterKoreanName": "루나",
-        "characterVariant": "base"
-      },
-      "badges": [],
-      "searchTerms": [
-        "luna",
-        "ルナ",
-        "露娜",
-        "루나",
-        "base"
-      ],
-      "sortOrder": 9999142,
-      "facets": {
-        "character": [
-          "露娜"
-        ]
-      }
-    },
-    {
-      "resourceId": "01a00095-0ec9-7e52-b8dc-057960e46e7d",
-      "resourceType": "character-portrait",
-      "displayTitle": "露娜",
-      "metadata": {
-        "characterName": "露娜",
-        "characterChineseName": "露娜",
-        "characterJapaneseName": "ルナ",
-        "characterEnglishName": "luna",
-        "characterKoreanName": "루나",
-        "characterVariant": "base"
-      },
-      "badges": [],
-      "searchTerms": [
-        "luna",
-        "ルナ",
-        "露娜",
-        "루나",
-        "base"
-      ],
-      "sortOrder": 9999143,
-      "facets": {
-        "character": [
-          "露娜"
-        ]
-      }
-    },
-    {
-      "resourceId": "01a00095-0ede-7ae8-b242-2fa2ad4fb746",
-      "resourceType": "character-portrait",
-      "displayTitle": "露娜",
-      "metadata": {
-        "characterName": "露娜",
-        "characterChineseName": "露娜",
-        "characterJapaneseName": "ルナ",
-        "characterEnglishName": "luna",
-        "characterKoreanName": "루나",
-        "characterVariant": "base"
-      },
-      "badges": [],
-      "searchTerms": [
-        "luna",
-        "ルナ",
-        "露娜",
-        "루나",
-        "base"
-      ],
-      "sortOrder": 9999144,
-      "facets": {
-        "character": [
-          "露娜"
-        ]
-      }
-    },
-    {
-      "resourceId": "01a00095-0ef4-7f39-b876-efc6b75cf55a",
-      "resourceType": "character-portrait",
-      "displayTitle": "露娜",
-      "metadata": {
-        "characterName": "露娜",
-        "characterChineseName": "露娜",
-        "characterJapaneseName": "ルナ",
-        "characterEnglishName": "luna",
-        "characterKoreanName": "루나",
-        "characterVariant": "base"
-      },
-      "badges": [],
-      "searchTerms": [
-        "luna",
-        "ルナ",
-        "露娜",
-        "루나",
-        "base"
-      ],
-      "sortOrder": 9999145,
-      "facets": {
-        "character": [
-          "露娜"
-        ]
-      }
-    },
-    {
       "resourceId": "01a00095-9bd4-77be-9330-1139dc9d2bb0",
       "resourceType": "character-avatar",
       "displayTitle": "头像 · unknown icon",
@@ -39426,7 +39435,7 @@
       "searchTerms": [
         "act-bg"
       ],
-      "sortOrder": 2500000385,
+      "sortOrder": 2500000381,
       "facets": {}
     },
     {
@@ -39441,7 +39450,7 @@
       "searchTerms": [
         "act-title-backing"
       ],
-      "sortOrder": 2500000386,
+      "sortOrder": 2500000382,
       "facets": {}
     },
     {
@@ -39456,7 +39465,7 @@
       "searchTerms": [
         "act1-part1-pressed"
       ],
-      "sortOrder": 2500000387,
+      "sortOrder": 2500000383,
       "facets": {}
     },
     {
@@ -39471,7 +39480,7 @@
       "searchTerms": [
         "act1-part1"
       ],
-      "sortOrder": 2500000388,
+      "sortOrder": 2500000384,
       "facets": {}
     },
     {
@@ -39486,7 +39495,7 @@
       "searchTerms": [
         "act1-part2-pressed"
       ],
-      "sortOrder": 2500000389,
+      "sortOrder": 2500000385,
       "facets": {}
     },
     {
@@ -39501,7 +39510,7 @@
       "searchTerms": [
         "act1-part2"
       ],
-      "sortOrder": 2500000390,
+      "sortOrder": 2500000386,
       "facets": {}
     },
     {
@@ -39516,7 +39525,7 @@
       "searchTerms": [
         "act1-part3-pressed"
       ],
-      "sortOrder": 2500000391,
+      "sortOrder": 2500000387,
       "facets": {}
     },
     {
@@ -39531,7 +39540,7 @@
       "searchTerms": [
         "act1-part3"
       ],
-      "sortOrder": 2500000392,
+      "sortOrder": 2500000388,
       "facets": {}
     },
     {
@@ -39546,7 +39555,7 @@
       "searchTerms": [
         "act2-part1-pressed"
       ],
-      "sortOrder": 2500000393,
+      "sortOrder": 2500000389,
       "facets": {}
     },
     {
@@ -39561,7 +39570,7 @@
       "searchTerms": [
         "act2-part1"
       ],
-      "sortOrder": 2500000394,
+      "sortOrder": 2500000390,
       "facets": {}
     },
     {
@@ -39576,7 +39585,7 @@
       "searchTerms": [
         "act2-part2-pressed"
       ],
-      "sortOrder": 2500000395,
+      "sortOrder": 2500000391,
       "facets": {}
     },
     {
@@ -39591,7 +39600,7 @@
       "searchTerms": [
         "act2-part2"
       ],
-      "sortOrder": 2500000396,
+      "sortOrder": 2500000392,
       "facets": {}
     },
     {
@@ -39606,7 +39615,7 @@
       "searchTerms": [
         "complete-banner"
       ],
-      "sortOrder": 2500000397,
+      "sortOrder": 2500000393,
       "facets": {}
     },
     {
@@ -39621,7 +39630,7 @@
       "searchTerms": [
         "completion-backing"
       ],
-      "sortOrder": 2500000398,
+      "sortOrder": 2500000394,
       "facets": {}
     },
     {
@@ -39636,7 +39645,7 @@
       "searchTerms": [
         "continue-btn-pressed"
       ],
-      "sortOrder": 2500000399,
+      "sortOrder": 2500000395,
       "facets": {}
     },
     {
@@ -39651,7 +39660,7 @@
       "searchTerms": [
         "continue-btn"
       ],
-      "sortOrder": 2500000400,
+      "sortOrder": 2500000396,
       "facets": {}
     },
     {
@@ -39666,7 +39675,7 @@
       "searchTerms": [
         "corner-btn-pressed"
       ],
-      "sortOrder": 2500000401,
+      "sortOrder": 2500000397,
       "facets": {}
     },
     {
@@ -39681,7 +39690,7 @@
       "searchTerms": [
         "corner-btn-right-pressed"
       ],
-      "sortOrder": 2500000402,
+      "sortOrder": 2500000398,
       "facets": {}
     },
     {
@@ -39696,7 +39705,7 @@
       "searchTerms": [
         "corner-btn-right"
       ],
-      "sortOrder": 2500000403,
+      "sortOrder": 2500000399,
       "facets": {}
     },
     {
@@ -39711,7 +39720,7 @@
       "searchTerms": [
         "corner-btn"
       ],
-      "sortOrder": 2500000404,
+      "sortOrder": 2500000400,
       "facets": {}
     },
     {
@@ -39726,7 +39735,7 @@
       "searchTerms": [
         "partner-btn-pressed"
       ],
-      "sortOrder": 2500000405,
+      "sortOrder": 2500000401,
       "facets": {}
     },
     {
@@ -39741,7 +39750,7 @@
       "searchTerms": [
         "partner-btn"
       ],
-      "sortOrder": 2500000406,
+      "sortOrder": 2500000402,
       "facets": {}
     },
     {
@@ -39756,7 +39765,7 @@
       "searchTerms": [
         "arrow_cover"
       ],
-      "sortOrder": 2500000407,
+      "sortOrder": 2500000403,
       "facets": {}
     },
     {
@@ -39771,7 +39780,7 @@
       "searchTerms": [
         "bottom_black"
       ],
-      "sortOrder": 2500000408,
+      "sortOrder": 2500000404,
       "facets": {}
     },
     {
@@ -39786,7 +39795,7 @@
       "searchTerms": [
         "button_back_disabled"
       ],
-      "sortOrder": 2500000409,
+      "sortOrder": 2500000405,
       "facets": {}
     },
     {
@@ -39801,7 +39810,7 @@
       "searchTerms": [
         "button_back_pressed"
       ],
-      "sortOrder": 2500000410,
+      "sortOrder": 2500000406,
       "facets": {}
     },
     {
@@ -39816,7 +39825,7 @@
       "searchTerms": [
         "button_back"
       ],
-      "sortOrder": 2500000411,
+      "sortOrder": 2500000407,
       "facets": {}
     },
     {
@@ -39831,7 +39840,7 @@
       "searchTerms": [
         "button_continue_pressed"
       ],
-      "sortOrder": 2500000412,
+      "sortOrder": 2500000408,
       "facets": {}
     },
     {
@@ -39846,7 +39855,7 @@
       "searchTerms": [
         "button_continue"
       ],
-      "sortOrder": 2500000413,
+      "sortOrder": 2500000409,
       "facets": {}
     },
     {
@@ -39861,7 +39870,7 @@
       "searchTerms": [
         "button_finish_pressed"
       ],
-      "sortOrder": 2500000414,
+      "sortOrder": 2500000410,
       "facets": {}
     },
     {
@@ -39876,7 +39885,7 @@
       "searchTerms": [
         "button_finish"
       ],
-      "sortOrder": 2500000415,
+      "sortOrder": 2500000411,
       "facets": {}
     },
     {
@@ -39891,7 +39900,7 @@
       "searchTerms": [
         "button_next_chapter-pressed"
       ],
-      "sortOrder": 2500000416,
+      "sortOrder": 2500000412,
       "facets": {}
     },
     {
@@ -39906,7 +39915,7 @@
       "searchTerms": [
         "button_next_chapter"
       ],
-      "sortOrder": 2500000417,
+      "sortOrder": 2500000413,
       "facets": {}
     },
     {
@@ -39921,7 +39930,7 @@
       "searchTerms": [
         "cell_be_pressed"
       ],
-      "sortOrder": 2500000418,
+      "sortOrder": 2500000414,
       "facets": {}
     },
     {
@@ -39936,7 +39945,7 @@
       "searchTerms": [
         "cell_be"
       ],
-      "sortOrder": 2500000419,
+      "sortOrder": 2500000415,
       "facets": {}
     },
     {
@@ -39951,7 +39960,7 @@
       "searchTerms": [
         "cell_crimsonthrone_pressed"
       ],
-      "sortOrder": 2500000420,
+      "sortOrder": 2500000416,
       "facets": {}
     },
     {
@@ -39966,7 +39975,7 @@
       "searchTerms": [
         "cell_crimsonthrone"
       ],
-      "sortOrder": 2500000421,
+      "sortOrder": 2500000417,
       "facets": {}
     },
     {
@@ -39981,7 +39990,7 @@
       "searchTerms": [
         "cell_livefastdieyoung_pressed"
       ],
-      "sortOrder": 2500000422,
+      "sortOrder": 2500000418,
       "facets": {}
     },
     {
@@ -39996,7 +40005,7 @@
       "searchTerms": [
         "cell_livefastdieyoung"
       ],
-      "sortOrder": 2500000423,
+      "sortOrder": 2500000419,
       "facets": {}
     },
     {
@@ -40011,7 +40020,7 @@
       "searchTerms": [
         "cell_livefastdieyoungpressed"
       ],
-      "sortOrder": 2500000424,
+      "sortOrder": 2500000420,
       "facets": {}
     },
     {
@@ -40026,7 +40035,7 @@
       "searchTerms": [
         "cell-lephon-1_pressed"
       ],
-      "sortOrder": 2500000425,
+      "sortOrder": 2500000421,
       "facets": {}
     },
     {
@@ -40041,7 +40050,7 @@
       "searchTerms": [
         "cell-lephon-1"
       ],
-      "sortOrder": 2500000426,
+      "sortOrder": 2500000422,
       "facets": {}
     },
     {
@@ -40056,7 +40065,7 @@
       "searchTerms": [
         "cell-lephon-2_pressed"
       ],
-      "sortOrder": 2500000427,
+      "sortOrder": 2500000423,
       "facets": {}
     },
     {
@@ -40071,7 +40080,7 @@
       "searchTerms": [
         "cell-lephon-2"
       ],
-      "sortOrder": 2500000428,
+      "sortOrder": 2500000424,
       "facets": {}
     },
     {
@@ -40086,7 +40095,7 @@
       "searchTerms": [
         "cell-lephon-3_pressed"
       ],
-      "sortOrder": 2500000429,
+      "sortOrder": 2500000425,
       "facets": {}
     },
     {
@@ -40101,7 +40110,7 @@
       "searchTerms": [
         "cell-lephon-3"
       ],
-      "sortOrder": 2500000430,
+      "sortOrder": 2500000426,
       "facets": {}
     },
     {
@@ -40116,7 +40125,7 @@
       "searchTerms": [
         "cell-vs1_pressed"
       ],
-      "sortOrder": 2500000431,
+      "sortOrder": 2500000427,
       "facets": {}
     },
     {
@@ -40131,7 +40140,7 @@
       "searchTerms": [
         "cell-vs1"
       ],
-      "sortOrder": 2500000432,
+      "sortOrder": 2500000428,
       "facets": {}
     },
     {
@@ -40146,7 +40155,7 @@
       "searchTerms": [
         "cell-vs2_pressed"
       ],
-      "sortOrder": 2500000433,
+      "sortOrder": 2500000429,
       "facets": {}
     },
     {
@@ -40161,7 +40170,7 @@
       "searchTerms": [
         "cell-vs2"
       ],
-      "sortOrder": 2500000434,
+      "sortOrder": 2500000430,
       "facets": {}
     },
     {
@@ -40176,7 +40185,7 @@
       "searchTerms": [
         "cell-vs3_pressed"
       ],
-      "sortOrder": 2500000435,
+      "sortOrder": 2500000431,
       "facets": {}
     },
     {
@@ -40191,7 +40200,7 @@
       "searchTerms": [
         "cell-vs3"
       ],
-      "sortOrder": 2500000436,
+      "sortOrder": 2500000432,
       "facets": {}
     },
     {
@@ -40206,7 +40215,7 @@
       "searchTerms": [
         "cell-vs4_pressed"
       ],
-      "sortOrder": 2500000437,
+      "sortOrder": 2500000433,
       "facets": {}
     },
     {
@@ -40221,7 +40230,7 @@
       "searchTerms": [
         "cell-vs4"
       ],
-      "sortOrder": 2500000438,
+      "sortOrder": 2500000434,
       "facets": {}
     },
     {
@@ -40236,7 +40245,7 @@
       "searchTerms": [
         "cell-vs5_pressed"
       ],
-      "sortOrder": 2500000439,
+      "sortOrder": 2500000435,
       "facets": {}
     },
     {
@@ -40251,7 +40260,7 @@
       "searchTerms": [
         "cell-vs5"
       ],
-      "sortOrder": 2500000440,
+      "sortOrder": 2500000436,
       "facets": {}
     },
     {
@@ -40266,7 +40275,7 @@
       "searchTerms": [
         "cell-vs6_pressed"
       ],
-      "sortOrder": 2500000441,
+      "sortOrder": 2500000437,
       "facets": {}
     },
     {
@@ -40281,7 +40290,7 @@
       "searchTerms": [
         "cell-vs6"
       ],
-      "sortOrder": 2500000442,
+      "sortOrder": 2500000438,
       "facets": {}
     },
     {
@@ -40296,7 +40305,7 @@
       "searchTerms": [
         "cell-vs7_pressed"
       ],
-      "sortOrder": 2500000443,
+      "sortOrder": 2500000439,
       "facets": {}
     },
     {
@@ -40311,7 +40320,7 @@
       "searchTerms": [
         "cell-vs7"
       ],
-      "sortOrder": 2500000444,
+      "sortOrder": 2500000440,
       "facets": {}
     },
     {
@@ -40326,7 +40335,7 @@
       "searchTerms": [
         "cell-vs8_pressed"
       ],
-      "sortOrder": 2500000445,
+      "sortOrder": 2500000441,
       "facets": {}
     },
     {
@@ -40341,7 +40350,7 @@
       "searchTerms": [
         "cell-vs8"
       ],
-      "sortOrder": 2500000446,
+      "sortOrder": 2500000442,
       "facets": {}
     },
     {
@@ -40356,7 +40365,7 @@
       "searchTerms": [
         "cg_indicator_stronger"
       ],
-      "sortOrder": 2500000447,
+      "sortOrder": 2500000443,
       "facets": {}
     },
     {
@@ -40371,7 +40380,7 @@
       "searchTerms": [
         "character_bg_panel_double_vert"
       ],
-      "sortOrder": 2500000448,
+      "sortOrder": 2500000444,
       "facets": {}
     },
     {
@@ -40386,7 +40395,7 @@
       "searchTerms": [
         "character_bg_panel_single_vert"
       ],
-      "sortOrder": 2500000449,
+      "sortOrder": 2500000445,
       "facets": {}
     },
     {
@@ -40401,7 +40410,7 @@
       "searchTerms": [
         "double_white_arrow_pressed"
       ],
-      "sortOrder": 2500000450,
+      "sortOrder": 2500000446,
       "facets": {}
     },
     {
@@ -40416,7 +40425,7 @@
       "searchTerms": [
         "double_white_arrow"
       ],
-      "sortOrder": 2500000451,
+      "sortOrder": 2500000447,
       "facets": {}
     },
     {
@@ -40431,7 +40440,7 @@
       "searchTerms": [
         "entry_acheron_pressed"
       ],
-      "sortOrder": 2500000452,
+      "sortOrder": 2500000448,
       "facets": {}
     },
     {
@@ -40446,7 +40455,7 @@
       "searchTerms": [
         "entry_acheron"
       ],
-      "sortOrder": 2500000453,
+      "sortOrder": 2500000449,
       "facets": {}
     },
     {
@@ -40461,7 +40470,7 @@
       "searchTerms": [
         "entry_aegleseeker_pressed"
       ],
-      "sortOrder": 2500000454,
+      "sortOrder": 2500000450,
       "facets": {}
     },
     {
@@ -40476,7 +40485,7 @@
       "searchTerms": [
         "entry_aegleseeker"
       ],
-      "sortOrder": 2500000455,
+      "sortOrder": 2500000451,
       "facets": {}
     },
     {
@@ -40491,7 +40500,7 @@
       "searchTerms": [
         "entry_anima_boss_pressed"
       ],
-      "sortOrder": 2500000456,
+      "sortOrder": 2500000452,
       "facets": {}
     },
     {
@@ -40506,7 +40515,7 @@
       "searchTerms": [
         "entry_anima_boss"
       ],
-      "sortOrder": 2500000457,
+      "sortOrder": 2500000453,
       "facets": {}
     },
     {
@@ -40521,7 +40530,7 @@
       "searchTerms": [
         "entry_anima_pressed"
       ],
-      "sortOrder": 2500000458,
+      "sortOrder": 2500000454,
       "facets": {}
     },
     {
@@ -40536,7 +40545,7 @@
       "searchTerms": [
         "entry_anima"
       ],
-      "sortOrder": 2500000459,
+      "sortOrder": 2500000455,
       "facets": {}
     },
     {
@@ -40551,7 +40560,7 @@
       "searchTerms": [
         "entry_anima2_boss_pressed"
       ],
-      "sortOrder": 2500000460,
+      "sortOrder": 2500000456,
       "facets": {}
     },
     {
@@ -40566,7 +40575,7 @@
       "searchTerms": [
         "entry_anima2_boss"
       ],
-      "sortOrder": 2500000461,
+      "sortOrder": 2500000457,
       "facets": {}
     },
     {
@@ -40581,7 +40590,7 @@
       "searchTerms": [
         "entry_anima2_pressed"
       ],
-      "sortOrder": 2500000462,
+      "sortOrder": 2500000458,
       "facets": {}
     },
     {
@@ -40596,7 +40605,7 @@
       "searchTerms": [
         "entry_anima2"
       ],
-      "sortOrder": 2500000463,
+      "sortOrder": 2500000459,
       "facets": {}
     },
     {
@@ -40611,7 +40620,7 @@
       "searchTerms": [
         "entry_apophenia_pressed"
       ],
-      "sortOrder": 2500000464,
+      "sortOrder": 2500000460,
       "facets": {}
     },
     {
@@ -40626,7 +40635,7 @@
       "searchTerms": [
         "entry_apophenia"
       ],
-      "sortOrder": 2500000465,
+      "sortOrder": 2500000461,
       "facets": {}
     },
     {
@@ -40641,7 +40650,7 @@
       "searchTerms": [
         "entry_arghena_pressed"
       ],
-      "sortOrder": 2500000466,
+      "sortOrder": 2500000462,
       "facets": {}
     },
     {
@@ -40656,7 +40665,7 @@
       "searchTerms": [
         "entry_arghena"
       ],
-      "sortOrder": 2500000467,
+      "sortOrder": 2500000463,
       "facets": {}
     },
     {
@@ -40671,7 +40680,7 @@
       "searchTerms": [
         "entry_ayu2_boss_pressed"
       ],
-      "sortOrder": 2500000468,
+      "sortOrder": 2500000464,
       "facets": {}
     },
     {
@@ -40686,7 +40695,7 @@
       "searchTerms": [
         "entry_ayu2_boss"
       ],
-      "sortOrder": 2500000469,
+      "sortOrder": 2500000465,
       "facets": {}
     },
     {
@@ -40701,7 +40710,7 @@
       "searchTerms": [
         "entry_ayu2_new_pressed"
       ],
-      "sortOrder": 2500000470,
+      "sortOrder": 2500000466,
       "facets": {}
     },
     {
@@ -40716,7 +40725,7 @@
       "searchTerms": [
         "entry_ayu2_new"
       ],
-      "sortOrder": 2500000471,
+      "sortOrder": 2500000467,
       "facets": {}
     },
     {
@@ -40731,7 +40740,7 @@
       "searchTerms": [
         "entry_con_pressed"
       ],
-      "sortOrder": 2500000472,
+      "sortOrder": 2500000468,
       "facets": {}
     },
     {
@@ -40746,7 +40755,7 @@
       "searchTerms": [
         "entry_con"
       ],
-      "sortOrder": 2500000473,
+      "sortOrder": 2500000469,
       "facets": {}
     },
     {
@@ -40761,7 +40770,7 @@
       "searchTerms": [
         "entry_cyaegha_pressed"
       ],
-      "sortOrder": 2500000474,
+      "sortOrder": 2500000470,
       "facets": {}
     },
     {
@@ -40776,7 +40785,7 @@
       "searchTerms": [
         "entry_cyaegha"
       ],
-      "sortOrder": 2500000475,
+      "sortOrder": 2500000471,
       "facets": {}
     },
     {
@@ -40791,7 +40800,7 @@
       "searchTerms": [
         "entry_ec_pressed"
       ],
-      "sortOrder": 2500000476,
+      "sortOrder": 2500000472,
       "facets": {}
     },
     {
@@ -40806,7 +40815,7 @@
       "searchTerms": [
         "entry_ec"
       ],
-      "sortOrder": 2500000477,
+      "sortOrder": 2500000473,
       "facets": {}
     },
     {
@@ -40821,7 +40830,7 @@
       "searchTerms": [
         "entry_eclipse_1_pressed"
       ],
-      "sortOrder": 2500000478,
+      "sortOrder": 2500000474,
       "facets": {}
     },
     {
@@ -40836,7 +40845,7 @@
       "searchTerms": [
         "entry_eclipse_1"
       ],
-      "sortOrder": 2500000479,
+      "sortOrder": 2500000475,
       "facets": {}
     },
     {
@@ -40851,7 +40860,7 @@
       "searchTerms": [
         "entry_eclipse_2_pressed"
       ],
-      "sortOrder": 2500000480,
+      "sortOrder": 2500000476,
       "facets": {}
     },
     {
@@ -40866,7 +40875,7 @@
       "searchTerms": [
         "entry_eclipse_2"
       ],
-      "sortOrder": 2500000481,
+      "sortOrder": 2500000477,
       "facets": {}
     },
     {
@@ -40881,7 +40890,7 @@
       "searchTerms": [
         "entry_ep_pressed"
       ],
-      "sortOrder": 2500000482,
+      "sortOrder": 2500000478,
       "facets": {}
     },
     {
@@ -40896,7 +40905,7 @@
       "searchTerms": [
         "entry_ep"
       ],
-      "sortOrder": 2500000483,
+      "sortOrder": 2500000479,
       "facets": {}
     },
     {
@@ -40911,7 +40920,7 @@
       "searchTerms": [
         "entry_felis_pressed"
       ],
-      "sortOrder": 2500000484,
+      "sortOrder": 2500000480,
       "facets": {}
     },
     {
@@ -40926,7 +40935,7 @@
       "searchTerms": [
         "entry_felis"
       ],
-      "sortOrder": 2500000485,
+      "sortOrder": 2500000481,
       "facets": {}
     },
     {
@@ -40941,7 +40950,7 @@
       "searchTerms": [
         "entry_finale_pressed"
       ],
-      "sortOrder": 2500000486,
+      "sortOrder": 2500000482,
       "facets": {}
     },
     {
@@ -40956,7 +40965,7 @@
       "searchTerms": [
         "entry_finale"
       ],
-      "sortOrder": 2500000487,
+      "sortOrder": 2500000483,
       "facets": {}
     },
     {
@@ -40971,7 +40980,7 @@
       "searchTerms": [
         "entry_finaleOpen_pressed"
       ],
-      "sortOrder": 2500000488,
+      "sortOrder": 2500000484,
       "facets": {}
     },
     {
@@ -40986,7 +40995,7 @@
       "searchTerms": [
         "entry_finaleOpen"
       ],
-      "sortOrder": 2500000489,
+      "sortOrder": 2500000485,
       "facets": {}
     },
     {
@@ -41001,7 +41010,7 @@
       "searchTerms": [
         "entry_gimmedablood_pressed"
       ],
-      "sortOrder": 2500000490,
+      "sortOrder": 2500000486,
       "facets": {}
     },
     {
@@ -41016,7 +41025,7 @@
       "searchTerms": [
         "entry_gimmedablood"
       ],
-      "sortOrder": 2500000491,
+      "sortOrder": 2500000487,
       "facets": {}
     },
     {
@@ -41031,7 +41040,7 @@
       "searchTerms": [
         "entry_gr_pressed"
       ],
-      "sortOrder": 2500000492,
+      "sortOrder": 2500000488,
       "facets": {}
     },
     {
@@ -41046,7 +41055,7 @@
       "searchTerms": [
         "entry_gr"
       ],
-      "sortOrder": 2500000493,
+      "sortOrder": 2500000489,
       "facets": {}
     },
     {
@@ -41061,7 +41070,7 @@
       "searchTerms": [
         "entry_init_pressed"
       ],
-      "sortOrder": 2500000494,
+      "sortOrder": 2500000490,
       "facets": {}
     },
     {
@@ -41076,7 +41085,7 @@
       "searchTerms": [
         "entry_init"
       ],
-      "sortOrder": 2500000495,
+      "sortOrder": 2500000491,
       "facets": {}
     },
     {
@@ -41091,7 +41100,7 @@
       "searchTerms": [
         "entry_kanae_boss_pressed"
       ],
-      "sortOrder": 2500000496,
+      "sortOrder": 2500000492,
       "facets": {}
     },
     {
@@ -41106,7 +41115,7 @@
       "searchTerms": [
         "entry_kanae_boss"
       ],
-      "sortOrder": 2500000497,
+      "sortOrder": 2500000493,
       "facets": {}
     },
     {
@@ -41121,7 +41130,7 @@
       "searchTerms": [
         "entry_kanae_pressed"
       ],
-      "sortOrder": 2500000498,
+      "sortOrder": 2500000494,
       "facets": {}
     },
     {
@@ -41136,7 +41145,7 @@
       "searchTerms": [
         "entry_kanae"
       ],
-      "sortOrder": 2500000499,
+      "sortOrder": 2500000495,
       "facets": {}
     },
     {
@@ -41151,7 +41160,7 @@
       "searchTerms": [
         "entry_lagrange_pressed"
       ],
-      "sortOrder": 2500000500,
+      "sortOrder": 2500000496,
       "facets": {}
     },
     {
@@ -41166,7 +41175,7 @@
       "searchTerms": [
         "entry_lagrange"
       ],
-      "sortOrder": 2500000501,
+      "sortOrder": 2500000497,
       "facets": {}
     },
     {
@@ -41181,7 +41190,7 @@
       "searchTerms": [
         "entry_lightningscrew_pressed"
       ],
-      "sortOrder": 2500000502,
+      "sortOrder": 2500000498,
       "facets": {}
     },
     {
@@ -41196,7 +41205,7 @@
       "searchTerms": [
         "entry_lightningscrew"
       ],
-      "sortOrder": 2500000503,
+      "sortOrder": 2500000499,
       "facets": {}
     },
     {
@@ -41211,7 +41220,7 @@
       "searchTerms": [
         "entry_ls_pressed"
       ],
-      "sortOrder": 2500000504,
+      "sortOrder": 2500000500,
       "facets": {}
     },
     {
@@ -41226,7 +41235,7 @@
       "searchTerms": [
         "entry_ls"
       ],
-      "sortOrder": 2500000505,
+      "sortOrder": 2500000501,
       "facets": {}
     },
     {
@@ -41241,7 +41250,7 @@
       "searchTerms": [
         "entry_maya_boss_pressed"
       ],
-      "sortOrder": 2500000506,
+      "sortOrder": 2500000502,
       "facets": {}
     },
     {
@@ -41256,7 +41265,7 @@
       "searchTerms": [
         "entry_maya_boss"
       ],
-      "sortOrder": 2500000507,
+      "sortOrder": 2500000503,
       "facets": {}
     },
     {
@@ -41271,7 +41280,7 @@
       "searchTerms": [
         "entry_maya_pressed"
       ],
-      "sortOrder": 2500000508,
+      "sortOrder": 2500000504,
       "facets": {}
     },
     {
@@ -41286,7 +41295,7 @@
       "searchTerms": [
         "entry_maya"
       ],
-      "sortOrder": 2500000509,
+      "sortOrder": 2500000505,
       "facets": {}
     },
     {
@@ -41301,7 +41310,7 @@
       "searchTerms": [
         "entry_mir2_1_pressed"
       ],
-      "sortOrder": 2500000510,
+      "sortOrder": 2500000506,
       "facets": {}
     },
     {
@@ -41316,7 +41325,7 @@
       "searchTerms": [
         "entry_mir2_1"
       ],
-      "sortOrder": 2500000511,
+      "sortOrder": 2500000507,
       "facets": {}
     },
     {
@@ -41331,7 +41340,7 @@
       "searchTerms": [
         "entry_mir2_2_pressed"
       ],
-      "sortOrder": 2500000512,
+      "sortOrder": 2500000508,
       "facets": {}
     },
     {
@@ -41346,7 +41355,7 @@
       "searchTerms": [
         "entry_mir2_2"
       ],
-      "sortOrder": 2500000513,
+      "sortOrder": 2500000509,
       "facets": {}
     },
     {
@@ -41361,7 +41370,7 @@
       "searchTerms": [
         "entry_mir2_3_pressed"
       ],
-      "sortOrder": 2500000514,
+      "sortOrder": 2500000510,
       "facets": {}
     },
     {
@@ -41376,7 +41385,7 @@
       "searchTerms": [
         "entry_mir2_3"
       ],
-      "sortOrder": 2500000515,
+      "sortOrder": 2500000511,
       "facets": {}
     },
     {
@@ -41391,7 +41400,7 @@
       "searchTerms": [
         "entry_mirai_pressed"
       ],
-      "sortOrder": 2500000516,
+      "sortOrder": 2500000512,
       "facets": {}
     },
     {
@@ -41406,7 +41415,7 @@
       "searchTerms": [
         "entry_mirai"
       ],
-      "sortOrder": 2500000517,
+      "sortOrder": 2500000513,
       "facets": {}
     },
     {
@@ -41421,7 +41430,7 @@
       "searchTerms": [
         "entry_neowings_pressed"
       ],
-      "sortOrder": 2500000518,
+      "sortOrder": 2500000514,
       "facets": {}
     },
     {
@@ -41436,7 +41445,7 @@
       "searchTerms": [
         "entry_neowings"
       ],
-      "sortOrder": 2500000519,
+      "sortOrder": 2500000515,
       "facets": {}
     },
     {
@@ -41451,7 +41460,7 @@
       "searchTerms": [
         "entry_nihil_boss_pressed"
       ],
-      "sortOrder": 2500000520,
+      "sortOrder": 2500000516,
       "facets": {}
     },
     {
@@ -41466,7 +41475,7 @@
       "searchTerms": [
         "entry_nihil_boss"
       ],
-      "sortOrder": 2500000521,
+      "sortOrder": 2500000517,
       "facets": {}
     },
     {
@@ -41481,7 +41490,7 @@
       "searchTerms": [
         "entry_nihil_pressed"
       ],
-      "sortOrder": 2500000522,
+      "sortOrder": 2500000518,
       "facets": {}
     },
     {
@@ -41496,7 +41505,7 @@
       "searchTerms": [
         "entry_nihil"
       ],
-      "sortOrder": 2500000523,
+      "sortOrder": 2500000519,
       "facets": {}
     },
     {
@@ -41511,7 +41520,7 @@
       "searchTerms": [
         "entry_prelude_pressed"
       ],
-      "sortOrder": 2500000524,
+      "sortOrder": 2500000520,
       "facets": {}
     },
     {
@@ -41526,7 +41535,7 @@
       "searchTerms": [
         "entry_prelude"
       ],
-      "sortOrder": 2500000525,
+      "sortOrder": 2500000521,
       "facets": {}
     },
     {
@@ -41541,7 +41550,7 @@
       "searchTerms": [
         "entry_prologue_pressed"
       ],
-      "sortOrder": 2500000526,
+      "sortOrder": 2500000522,
       "facets": {}
     },
     {
@@ -41556,7 +41565,7 @@
       "searchTerms": [
         "entry_prologue"
       ],
-      "sortOrder": 2500000527,
+      "sortOrder": 2500000523,
       "facets": {}
     },
     {
@@ -41571,7 +41580,7 @@
       "searchTerms": [
         "entry_rotaeno_boss_pressed"
       ],
-      "sortOrder": 2500000528,
+      "sortOrder": 2500000524,
       "facets": {}
     },
     {
@@ -41586,7 +41595,7 @@
       "searchTerms": [
         "entry_rotaeno_boss"
       ],
-      "sortOrder": 2500000529,
+      "sortOrder": 2500000525,
       "facets": {}
     },
     {
@@ -41601,7 +41610,7 @@
       "searchTerms": [
         "entry_rotaeno_pressed"
       ],
-      "sortOrder": 2500000530,
+      "sortOrder": 2500000526,
       "facets": {}
     },
     {
@@ -41616,7 +41625,7 @@
       "searchTerms": [
         "entry_rotaeno"
       ],
-      "sortOrder": 2500000531,
+      "sortOrder": 2500000527,
       "facets": {}
     },
     {
@@ -41631,7 +41640,7 @@
       "searchTerms": [
         "entry_sans_pressed"
       ],
-      "sortOrder": 2500000532,
+      "sortOrder": 2500000528,
       "facets": {}
     },
     {
@@ -41646,7 +41655,7 @@
       "searchTerms": [
         "entry_sans"
       ],
-      "sortOrder": 2500000533,
+      "sortOrder": 2500000529,
       "facets": {}
     },
     {
@@ -41661,7 +41670,7 @@
       "searchTerms": [
         "entry_severededen_pressed"
       ],
-      "sortOrder": 2500000534,
+      "sortOrder": 2500000530,
       "facets": {}
     },
     {
@@ -41676,7 +41685,7 @@
       "searchTerms": [
         "entry_severededen"
       ],
-      "sortOrder": 2500000535,
+      "sortOrder": 2500000531,
       "facets": {}
     },
     {
@@ -41691,7 +41700,7 @@
       "searchTerms": [
         "entry_shiawase_pressed"
       ],
-      "sortOrder": 2500000536,
+      "sortOrder": 2500000532,
       "facets": {}
     },
     {
@@ -41706,7 +41715,7 @@
       "searchTerms": [
         "entry_shiawase"
       ],
-      "sortOrder": 2500000537,
+      "sortOrder": 2500000533,
       "facets": {}
     },
     {
@@ -41721,7 +41730,7 @@
       "searchTerms": [
         "entry_shirabe_pressed"
       ],
-      "sortOrder": 2500000538,
+      "sortOrder": 2500000534,
       "facets": {}
     },
     {
@@ -41736,7 +41745,7 @@
       "searchTerms": [
         "entry_shirabe"
       ],
-      "sortOrder": 2500000539,
+      "sortOrder": 2500000535,
       "facets": {}
     },
     {
@@ -41751,7 +41760,7 @@
       "searchTerms": [
         "entry_switch_pressed"
       ],
-      "sortOrder": 2500000540,
+      "sortOrder": 2500000536,
       "facets": {}
     },
     {
@@ -41766,7 +41775,7 @@
       "searchTerms": [
         "entry_switch"
       ],
-      "sortOrder": 2500000541,
+      "sortOrder": 2500000537,
       "facets": {}
     },
     {
@@ -41781,7 +41790,7 @@
       "searchTerms": [
         "entry_tothemilkyway_pressed"
       ],
-      "sortOrder": 2500000542,
+      "sortOrder": 2500000538,
       "facets": {}
     },
     {
@@ -41796,7 +41805,7 @@
       "searchTerms": [
         "entry_tothemilkyway"
       ],
-      "sortOrder": 2500000543,
+      "sortOrder": 2500000539,
       "facets": {}
     },
     {
@@ -41811,7 +41820,7 @@
       "searchTerms": [
         "entry_vita2_pressed"
       ],
-      "sortOrder": 2500000544,
+      "sortOrder": 2500000540,
       "facets": {}
     },
     {
@@ -41826,7 +41835,7 @@
       "searchTerms": [
         "entry_vita2"
       ],
-      "sortOrder": 2500000545,
+      "sortOrder": 2500000541,
       "facets": {}
     },
     {
@@ -41841,7 +41850,7 @@
       "searchTerms": [
         "entry_vl_pressed"
       ],
-      "sortOrder": 2500000546,
+      "sortOrder": 2500000542,
       "facets": {}
     },
     {
@@ -41856,7 +41865,7 @@
       "searchTerms": [
         "entry_vl"
       ],
-      "sortOrder": 2500000547,
+      "sortOrder": 2500000543,
       "facets": {}
     },
     {
@@ -41871,7 +41880,7 @@
       "searchTerms": [
         "entry_z_pressed"
       ],
-      "sortOrder": 2500000548,
+      "sortOrder": 2500000544,
       "facets": {}
     },
     {
@@ -41886,7 +41895,7 @@
       "searchTerms": [
         "entry_z"
       ],
-      "sortOrder": 2500000549,
+      "sortOrder": 2500000545,
       "facets": {}
     },
     {
@@ -41901,7 +41910,7 @@
       "searchTerms": [
         "gradient-mask"
       ],
-      "sortOrder": 2500000550,
+      "sortOrder": 2500000546,
       "facets": {}
     },
     {
@@ -41916,7 +41925,7 @@
       "searchTerms": [
         "icon_vn-menu"
       ],
-      "sortOrder": 2500000551,
+      "sortOrder": 2500000547,
       "facets": {}
     },
     {
@@ -41931,7 +41940,7 @@
       "searchTerms": [
         "icon-hidetext"
       ],
-      "sortOrder": 2500000552,
+      "sortOrder": 2500000548,
       "facets": {}
     },
     {
@@ -41946,7 +41955,7 @@
       "searchTerms": [
         "icon-quit"
       ],
-      "sortOrder": 2500000553,
+      "sortOrder": 2500000549,
       "facets": {}
     },
     {
@@ -41961,7 +41970,7 @@
       "searchTerms": [
         "lasagna"
       ],
-      "sortOrder": 2500000554,
+      "sortOrder": 2500000550,
       "facets": {}
     },
     {
@@ -41976,7 +41985,7 @@
       "searchTerms": [
         "light_wipe"
       ],
-      "sortOrder": 2500000555,
+      "sortOrder": 2500000551,
       "facets": {}
     },
     {
@@ -41991,7 +42000,7 @@
       "searchTerms": [
         "reflected_shard_softer_edge"
       ],
-      "sortOrder": 2500000556,
+      "sortOrder": 2500000552,
       "facets": {}
     },
     {
@@ -42006,7 +42015,7 @@
       "searchTerms": [
         "reflected_shard"
       ],
-      "sortOrder": 2500000557,
+      "sortOrder": 2500000553,
       "facets": {}
     },
     {
@@ -42021,7 +42030,7 @@
       "searchTerms": [
         "side_black"
       ],
-      "sortOrder": 2500000558,
+      "sortOrder": 2500000554,
       "facets": {}
     },
     {
@@ -42036,7 +42045,7 @@
       "searchTerms": [
         "horizontal_story_pack_divider_horizontal"
       ],
-      "sortOrder": 2500000559,
+      "sortOrder": 2500000555,
       "facets": {}
     },
     {
@@ -42051,7 +42060,7 @@
       "searchTerms": [
         "text_backing"
       ],
-      "sortOrder": 2500000560,
+      "sortOrder": 2500000556,
       "facets": {}
     },
     {
@@ -42066,7 +42075,7 @@
       "searchTerms": [
         "title-lock"
       ],
-      "sortOrder": 2500000561,
+      "sortOrder": 2500000557,
       "facets": {}
     },
     {
@@ -42081,7 +42090,7 @@
       "searchTerms": [
         "top_line"
       ],
-      "sortOrder": 2500000562,
+      "sortOrder": 2500000558,
       "facets": {}
     },
     {
@@ -42096,7 +42105,7 @@
       "searchTerms": [
         "vn_menu-pressed"
       ],
-      "sortOrder": 2500000563,
+      "sortOrder": 2500000559,
       "facets": {}
     },
     {
@@ -42111,7 +42120,7 @@
       "searchTerms": [
         "vn_menu"
       ],
-      "sortOrder": 2500000564,
+      "sortOrder": 2500000560,
       "facets": {}
     },
     {
@@ -42126,7 +42135,7 @@
       "searchTerms": [
         "2white50"
       ],
-      "sortOrder": 2500000567,
+      "sortOrder": 2500000563,
       "facets": {}
     },
     {
@@ -42141,7 +42150,7 @@
       "searchTerms": [
         "2white70"
       ],
-      "sortOrder": 2500000568,
+      "sortOrder": 2500000564,
       "facets": {}
     },
     {
@@ -42156,7 +42165,7 @@
       "searchTerms": [
         "4white"
       ],
-      "sortOrder": 2500000569,
+      "sortOrder": 2500000565,
       "facets": {}
     },
     {
@@ -42171,7 +42180,7 @@
       "searchTerms": [
         "5white"
       ],
-      "sortOrder": 2500000570,
+      "sortOrder": 2500000566,
       "facets": {}
     },
     {
@@ -42186,7 +42195,7 @@
       "searchTerms": [
         "6white"
       ],
-      "sortOrder": 2500000571,
+      "sortOrder": 2500000567,
       "facets": {}
     },
     {
@@ -42201,7 +42210,7 @@
       "searchTerms": [
         "7white"
       ],
-      "sortOrder": 2500000572,
+      "sortOrder": 2500000568,
       "facets": {}
     },
     {
@@ -42216,7 +42225,7 @@
       "searchTerms": [
         "black_fade_corner"
       ],
-      "sortOrder": 2500000573,
+      "sortOrder": 2500000569,
       "facets": {}
     },
     {
@@ -42231,7 +42240,7 @@
       "searchTerms": [
         "Divine Oblivion · entry_konzetsu_1_pressed"
       ],
-      "sortOrder": 2500000656,
+      "sortOrder": 2500000652,
       "facets": {}
     },
     {
@@ -42246,7 +42255,7 @@
       "searchTerms": [
         "Divine Oblivion · entry_konzetsu_1"
       ],
-      "sortOrder": 2500000657,
+      "sortOrder": 2500000653,
       "facets": {}
     },
     {
@@ -42261,7 +42270,7 @@
       "searchTerms": [
         "Divine Oblivion · entry_konzetsu_2_pressed"
       ],
-      "sortOrder": 2500000658,
+      "sortOrder": 2500000654,
       "facets": {}
     },
     {
@@ -42276,7 +42285,7 @@
       "searchTerms": [
         "Divine Oblivion · entry_konzetsu_2"
       ],
-      "sortOrder": 2500000659,
+      "sortOrder": 2500000655,
       "facets": {}
     },
     {
@@ -42291,7 +42300,7 @@
       "searchTerms": [
         "Divine Oblivion · entry_konzetsu_3_pressed"
       ],
-      "sortOrder": 2500000660,
+      "sortOrder": 2500000656,
       "facets": {}
     },
     {
@@ -42306,7 +42315,7 @@
       "searchTerms": [
         "Divine Oblivion · entry_konzetsu_3"
       ],
-      "sortOrder": 2500000661,
+      "sortOrder": 2500000657,
       "facets": {}
     },
     {
@@ -42321,7 +42330,7 @@
       "searchTerms": [
         "Divine Oblivion · entry_konzetsu_4_pressed"
       ],
-      "sortOrder": 2500000662,
+      "sortOrder": 2500000658,
       "facets": {}
     },
     {
@@ -42336,7 +42345,7 @@
       "searchTerms": [
         "Divine Oblivion · entry_konzetsu_4"
       ],
-      "sortOrder": 2500000663,
+      "sortOrder": 2500000659,
       "facets": {}
     },
     {
@@ -42351,7 +42360,7 @@
       "searchTerms": [
         "Divine Oblivion · entry_konzetsu_5_pressed"
       ],
-      "sortOrder": 2500000664,
+      "sortOrder": 2500000660,
       "facets": {}
     },
     {
@@ -42366,7 +42375,7 @@
       "searchTerms": [
         "Divine Oblivion · entry_konzetsu_5"
       ],
-      "sortOrder": 2500000665,
+      "sortOrder": 2500000661,
       "facets": {}
     },
     {
@@ -42381,7 +42390,7 @@
       "searchTerms": [
         "Divine Oblivion · entry_konzetsu_6_pressed"
       ],
-      "sortOrder": 2500000666,
+      "sortOrder": 2500000662,
       "facets": {}
     },
     {
@@ -42396,7 +42405,7 @@
       "searchTerms": [
         "Divine Oblivion · entry_konzetsu_6"
       ],
-      "sortOrder": 2500000667,
+      "sortOrder": 2500000663,
       "facets": {}
     },
     {
@@ -42411,7 +42420,7 @@
       "searchTerms": [
         "Divine Oblivion · entry_konzetsu_7_pressed"
       ],
-      "sortOrder": 2500000668,
+      "sortOrder": 2500000664,
       "facets": {}
     },
     {
@@ -42426,7 +42435,7 @@
       "searchTerms": [
         "Divine Oblivion · entry_konzetsu_7"
       ],
-      "sortOrder": 2500000669,
+      "sortOrder": 2500000665,
       "facets": {}
     },
     {
@@ -42441,7 +42450,7 @@
       "searchTerms": [
         "Divine Oblivion · entry_konzetsu_8_pressed"
       ],
-      "sortOrder": 2500000670,
+      "sortOrder": 2500000666,
       "facets": {}
     },
     {
@@ -42456,7 +42465,7 @@
       "searchTerms": [
         "Divine Oblivion · entry_konzetsu_8"
       ],
-      "sortOrder": 2500000671,
+      "sortOrder": 2500000667,
       "facets": {}
     },
     {
@@ -42471,7 +42480,7 @@
       "searchTerms": [
         "Divine Oblivion · entry_konzetsu_9_pressed"
       ],
-      "sortOrder": 2500000672,
+      "sortOrder": 2500000668,
       "facets": {}
     },
     {
@@ -42486,7 +42495,7 @@
       "searchTerms": [
         "Divine Oblivion · entry_konzetsu_9"
       ],
-      "sortOrder": 2500000673,
+      "sortOrder": 2500000669,
       "facets": {}
     },
     {
@@ -42501,7 +42510,7 @@
       "searchTerms": [
         "Divine Oblivion · entry_konzetsu_pressed"
       ],
-      "sortOrder": 2500000674,
+      "sortOrder": 2500000670,
       "facets": {}
     },
     {
@@ -42516,37 +42525,7 @@
       "searchTerms": [
         "Divine Oblivion · entry_konzetsu"
       ],
-      "sortOrder": 2500000675,
-      "facets": {}
-    },
-    {
-      "resourceId": "8d25a475-49eb-754e-b9be-7c7b07a67d14",
-      "resourceType": "character-avatar",
-      "displayTitle": "識眼",
-      "subtitle": "角色名称未在 characters.json 中找到",
-      "metadata": {},
-      "badges": [
-        "待确认"
-      ],
-      "searchTerms": [
-        "識眼"
-      ],
-      "sortOrder": 2500000676,
-      "facets": {}
-    },
-    {
-      "resourceId": "c4cda7d3-d462-7dfb-a14f-bef1fd129362",
-      "resourceType": "character-portrait",
-      "displayTitle": "識眼",
-      "subtitle": "角色名称未在 characters.json 中找到",
-      "metadata": {},
-      "badges": [
-        "待确认"
-      ],
-      "searchTerms": [
-        "識眼"
-      ],
-      "sortOrder": 2500000677,
+      "sortOrder": 2500000671,
       "facets": {}
     },
     {
@@ -42561,7 +42540,7 @@
       "searchTerms": [
         "Divine Oblivion · entry_konzetsu_10_pressed"
       ],
-      "sortOrder": 2500000678,
+      "sortOrder": 2500000674,
       "facets": {}
     },
     {
@@ -42576,7 +42555,7 @@
       "searchTerms": [
         "Divine Oblivion · entry_konzetsu_10"
       ],
-      "sortOrder": 2500000679,
+      "sortOrder": 2500000675,
       "facets": {}
     },
     {
@@ -42617,28 +42596,6 @@
         "Arcaea/current-apk/img/bg/1080/sacrosanct.jpg"
       ],
       "sortOrder": 3100000001,
-      "facets": {
-        "release": [
-          "7.0.255c"
-        ]
-      }
-    },
-    {
-      "resourceId": "0aad3170-e11c-7fcb-a5ee-e21735b6e3d3",
-      "resourceType": "linkplay-preview",
-      "displayTitle": "識眼",
-      "subtitle": "LinkPlay 预览",
-      "metadata": {
-        "sourceVersion": "7.0.255c"
-      },
-      "badges": [
-        "7.0.255c"
-      ],
-      "searchTerms": [
-        "識眼",
-        "Arcaea/current-apk/char/98_mp.png"
-      ],
-      "sortOrder": 3100000004,
       "facets": {
         "release": [
           "7.0.255c"
@@ -97275,7 +97232,10 @@
           "additionalRequires": [],
           "hiddenFromCount": true,
           "storyCgPaths": [
-            "assets/app-data/story/cg/C-10-1.jpg"
+            "assets/app-data/story/cg/C-10-1.jpg",
+            "assets/app-data/story/cg/C-10-2.jpg",
+            "assets/app-data/story/cg/C-10-3.jpg",
+            "assets/app-data/story/cg/C-10-4.jpg"
           ],
           "texts": {}
         }

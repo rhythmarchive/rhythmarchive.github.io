@@ -57,6 +57,8 @@ test("Arcaea Story Mode explorer keeps APK Act/Part, Path and Entry order", () =
   assert.equal(model.counts.vnScenes, 16);
   assert.equal(model.counts.textEntries, 195);
   assert.equal(storyAtlas.text.entries.length, 196);
+  assert.deepEqual(storyAtlas.text.entries.find((entry) => entry.nodeKey === "C-10")?.storyCgPaths, ["assets/app-data/story/cg/C-10-1.jpg", "assets/app-data/story/cg/C-10-2.jpg", "assets/app-data/story/cg/C-10-3.jpg", "assets/app-data/story/cg/C-10-4.jpg"]);
+  assert.deepEqual(storyAtlas.text.entries.find((entry) => entry.nodeKey === "C-10")?.characterIds, [98]);
   assert.equal(model.paths.flatMap((path) => path.entries).every((entry) => entry.key === "C-10" || Boolean(entry.text?.texts["zh-Hans"])), true);
   assert.equal(model.paths.flatMap((path) => path.entries).find((entry) => entry.key === "C-7")?.resources.length, 3);
   const finalVerdict = model.paths.find((path) => path.pathId === 19);

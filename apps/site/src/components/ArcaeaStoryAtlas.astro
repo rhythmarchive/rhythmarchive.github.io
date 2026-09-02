@@ -156,7 +156,10 @@ function compactResource(resource: PublicResource): Record<string, unknown> {
   };
 }
 
-const clientEntries = model.sections.flatMap((section) => section.paths.flatMap((storyPath) => storyPath.entries.map((entry) => compactEntry(entry, storyPath.title, storyPath.sectionLabel, section.act, storyPath.characterIds))));
+const clientEntries = model.sections.flatMap((section) => section.paths.flatMap((storyPath) => storyPath.entries.map((entry) => {
+  const characterIds = entry.text?.characterIds?.length ? entry.text.characterIds : storyPath.characterIds;
+  return compactEntry(entry, storyPath.title, storyPath.sectionLabel, section.act, characterIds);
+})));
 const clientScenes = model.sections.flatMap((section) => section.paths.flatMap((storyPath) => storyPath.pathScenes.map((scene) => compactScene(scene, storyPath.title, storyPath.sectionLabel, section.act))));
 const storyResourceList = [...new Map(model.paths.flatMap((storyPath) => [
   ...storyPath.entries.flatMap((entry) => entry.resources),

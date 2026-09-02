@@ -400,7 +400,11 @@ async function buildTextProjection(packageRoot: string, index: StoryIndexLike, e
       }
     }
     const displayCg = Object.values(texts).flatMap((text) => text.blocks.flatMap((block) => block.assetPath ? [block.assetPath] : []));
-    const storyCgPaths = uniqueStrings([...entry.storyCgPaths, ...displayCg]);
+    const curatedCg = (index.storyCg ?? [])
+      .filter((item) => item.nodeKey === entry.nodeKey)
+      .sort((left, right) => left.imageOrder - right.imageOrder || left.assetPath.localeCompare(right.assetPath, "en"))
+      .map((item) => item.assetPath);
+    const storyCgPaths = uniqueStrings([...entry.storyCgPaths, ...displayCg, ...curatedCg]);
     return {
       nodeKey: entry.nodeKey,
       pathId: entry.pathId,

@@ -317,6 +317,7 @@ test("Story Atlas UX contract keeps authored maps, direct dialog reading and pla
   assert.match(script, /const interactiveSelector = "button, a, input, select, textarea/u);
   assert.match(script, /DRAG_THRESHOLD = 5/u);
   assert.match(script, /function renderStoryFlow/u);
+  assert.match(script, /包体未提供对白正文/u);
   assert.match(script, /function buildStorySegments/u);
   assert.match(script, /Object\.values\(payload\.resources\)\.find/u);
   assert.match(script, /flowResourceIds/u);
@@ -355,10 +356,14 @@ test("category semantic browse data keeps player-facing names and conservative u
   assert.equal(ignotusByd?.displayTitle, "Ignotus Afterburn");
   const portraits = siteData.galleries["arcaea/character-portrait"] ?? [];
   const namedPortraits = portraits.filter((resource) => resource.displayTitle !== "未归类角色立绘");
-  assert.equal(namedPortraits.length, 141);
-  assert.equal(portraits.length, 141);
+  assert.equal(namedPortraits.length, 137);
+  assert.equal(portraits.length, 137);
   assert.ok(namedPortraits.some((resource) => resource.displayTitle === "光"));
   assert.ok(namedPortraits.some((resource) => resource.displayTitle === "識眼"));
+  const insightPortrait = portraits.find((resource) => resource.metadata.characterEnglishName === "insight_konzetsu");
+  assert.equal(insightPortrait?.displayTitle, "識眼");
+  assert.equal((insightPortrait?.badges ?? []).includes("待确认"), false);
+  assert.equal(portraits.some((resource) => ["01a00095-0eb3-7060-be48-589b7905401c", "01a00095-0ec9-7e52-b8dc-057960e46e7d", "01a00095-0ede-7ae8-b242-2fa2ad4fb746", "01a00095-0ef4-7f39-b876-efc6b75cf55a"].includes(resource.resourceId)), false);
   assert.ok(portraits.every((resource) => !/^\d+_(?:angry|cut|twisted)/u.test(resource.displayTitle)));
   for (const resourceType of ["character-portrait", "character-avatar", "linkplay-preview"] as const) {
     const saya = (siteData.galleries[`arcaea/${resourceType}`] ?? []).find((resource) => resource.metadata.characterEnglishName === "saya_konzetsu");
