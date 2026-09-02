@@ -157,6 +157,7 @@ type StoryIndexLike = {
   sections: Array<{ act: number; label: string; pathIds: number[] }>;
   paths: Array<{ pathId: number; act: number; title: string; type: string; characters: number[]; nodes: string[] }>;
   nodeAnnotations: Array<{ nodeKey: string; relatedSongId?: string; relatedSongTitle?: string; storyType?: string }>;
+  storyCg?: Array<{ assetPath: string; nodeKey: string; imageOrder: number; imageCount: number }>;
 };
 
 function rawEntryObject(file: string): Promise<JsonRecord> {
@@ -626,6 +627,16 @@ async function buildRelationEvidence(packageRoot: string, index: StoryIndexLike,
   }
   const nestedStoryAssets = await collectStoryVnAssetPaths(packageRoot, catalog);
   const orderingPath = index.source.orderingPath;
+  for (const curated of index.storyCg ?? []) {
+    const entry = entries.find((candidate) => candidate.nodeKey === curated.nodeKey);
+    addEvidence(byAsset, curated.assetPath, {
+      kind: "ordering",
+      sourcePath: orderingPath,
+      recordKey: `${curated.nodeKey}:${curated.imageOrder}`,
+      referencedAsset: curated.assetPath,
+      explanation: `Curated Story CG ${curated.assetPath} is explicitly assigned to Entry ${curated.nodeKey}.`,
+    }, entry, undefined, true);
+  }
   for (const [assetPath, current] of byAsset) {
     if (current.pathIds.size === 1) {
       const pathId = [...current.pathIds][0];
@@ -640,7 +651,7 @@ async function buildRelationEvidence(packageRoot: string, index: StoryIndexLike,
   const epilogueAssets = new Set([relationAssetPath("E-1_epilogue.jpg"), relationAssetPath("E-4_epilogue.jpg")]);
   const entriesByNode = new Map(entries.map((entry) => [entry.nodeKey, entry]));
   const results: ReturnType<typeof ArcaeaStoryRelationEvidence.parse>[] = [];
-  const candidateAssetPaths = [...new Set([...CANDIDATE_ASSETS.map(relationAssetPath), ...nestedStoryAssets])].sort((left, right) => left.localeCompare(right, "en"));
+  const candidateAssetPaths = [...new Set([...CANDIDATE_ASSETS.map(relationAssetPath), ...(index.storyCg ?? []).map((item) => item.assetPath), ...nestedStoryAssets])].sort((left, right) => left.localeCompare(right, "en"));
   for (const assetPath of candidateAssetPaths) {
     const current = byAsset.get(assetPath) ?? { evidence: [], nodeKeys: new Set<string>(), textNodes: new Set<string>(), pathIds: new Set<number>(), sceneIds: new Set<string>(), directNodes: new Set<string>() };
     let finalRelation: "node" | "path-scene" | "vn-scene" | "unresolved" = "unresolved";

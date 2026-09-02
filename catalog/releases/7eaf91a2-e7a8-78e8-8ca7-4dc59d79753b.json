@@ -1,0 +1,38 @@
+{
+  "releaseSchemaVersion": "1.0",
+  "id": "7eaf91a2-e7a8-78e8-8ca7-4dc59d79753b",
+  "updateBatchId": "896d504c-42fd-7c9f-932d-58d6d2b15c6c",
+  "game": "arcaea",
+  "baseVersion": "7.0.255c",
+  "targetVersion": "7.0.255c",
+  "createdAt": "2026-09-02T06:11:11.177Z",
+  "status": "published",
+  "changes": [
+    {
+      "changeType": "added-rendition",
+      "resourceId": "a0a4d486-1216-78d9-a3c6-ad6ff049b46a",
+      "variantId": "890c38a3-eb5f-79c2-bfd0-6866503d6bf2",
+      "renditionId": "94887a8a-2973-7483-8659-5cff51c9b737",
+      "objectId": "sha256:09d25ead3b7f481d450554dee1d4cc029ea54f385e3aacf47136ff0dc5544f16",
+      "detail": "Approved Real-ESRGAN x4 jacket rendition for sacrosanct."
+    }
+  ],
+  "affectedResourceIds": [
+    "a0a4d486-1216-78d9-a3c6-ad6ff049b46a"
+  ],
+  "publishedRenditions": [
+    {
+      "resourceId": "a0a4d486-1216-78d9-a3c6-ad6ff049b46a",
+      "variantId": "890c38a3-eb5f-79c2-bfd0-6866503d6bf2",
+      "renditionId": "94887a8a-2973-7483-8659-5cff51c9b737",
+      "objectId": "sha256:09d25ead3b7f481d450554dee1d4cc029ea54f385e3aacf47136ff0dc5544f16",
+      "downloadFilename": "_Silentroom Dismantled XOR かたぎり_7.0_konzetsu_IDX 553_BPM_SIDE 4_sacrosanct_1080_base.jpg"
+    }
+  ],
+  "removedFromCurrentSource": [],
+  "notes": [
+    "Local-only Arcaea 7.0.255c upscaled jacket rendition.",
+    "The original jacket and Real-ESRGAN _optimization.png work file remain preserved.",
+    "ROS/object storage and production publication are disabled."
+  ]
+}

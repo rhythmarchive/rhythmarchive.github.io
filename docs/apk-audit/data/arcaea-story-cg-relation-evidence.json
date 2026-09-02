@@ -660,6 +660,593 @@
     "finalPathId": 11
   },
   {
+    "assetPath": "assets/app-data/story/cg/C-10-1.jpg",
+    "resourceId": "1cbb80df-3653-77d5-ba1c-6e0e6ef64140",
+    "resolution": {
+      "width": 1920,
+      "height": 1080
+    },
+    "candidateNodeKey": "C-10",
+    "candidatePathId": 33,
+    "evidence": [
+      {
+        "kind": "entry-storyCgPath",
+        "sourcePath": "assets/app-data/story/main/entries_24",
+        "recordKey": "24-10",
+        "referencedAsset": "assets/app-data/story/cg/C-10-1.jpg",
+        "explanation": "Entry C-10 contains the exact storyCgPath field."
+      },
+      {
+        "kind": "ordering",
+        "sourcePath": "assets/app-data/story2/ordering",
+        "recordKey": "C-10:1",
+        "referencedAsset": "assets/app-data/story/cg/C-10-1.jpg",
+        "explanation": "Curated Story CG assets/app-data/story/cg/C-10-1.jpg is explicitly assigned to Entry C-10."
+      },
+      {
+        "kind": "ordering",
+        "sourcePath": "assets/app-data/story2/ordering",
+        "recordKey": "path:33",
+        "explanation": "The exact referenced Entry occurs in Story ordering path 33."
+      }
+    ],
+    "confidence": "high",
+    "finalRelation": "node",
+    "finalNodeKey": "C-10",
+    "finalPathId": 33
+  },
+  {
+    "assetPath": "assets/app-data/story/cg/C-10-2.jpg",
+    "resourceId": "9e3c124e-c8db-7dd7-b5f9-93e06b335919",
+    "resolution": {
+      "width": 1920,
+      "height": 1080
+    },
+    "candidateNodeKey": "C-10",
+    "candidatePathId": 33,
+    "evidence": [
+      {
+        "kind": "ordering",
+        "sourcePath": "assets/app-data/story2/ordering",
+        "recordKey": "C-10:2",
+        "referencedAsset": "assets/app-data/story/cg/C-10-2.jpg",
+        "explanation": "Curated Story CG assets/app-data/story/cg/C-10-2.jpg is explicitly assigned to Entry C-10."
+      },
+      {
+        "kind": "ordering",
+        "sourcePath": "assets/app-data/story2/ordering",
+        "recordKey": "path:33",
+        "explanation": "The exact referenced Entry occurs in Story ordering path 33."
+      }
+    ],
+    "confidence": "high",
+    "finalRelation": "node",
+    "finalNodeKey": "C-10",
+    "finalPathId": 33
+  },
+  {
+    "assetPath": "assets/app-data/story/cg/C-10-3.jpg",
+    "resourceId": "bb0b62f6-6a36-7d03-beed-03191ef5768e",
+    "resolution": {
+      "width": 1920,
+      "height": 1080
+    },
+    "candidateNodeKey": "C-10",
+    "candidatePathId": 33,
+    "evidence": [
+      {
+        "kind": "ordering",
+        "sourcePath": "assets/app-data/story2/ordering",
+        "recordKey": "C-10:3",
+        "referencedAsset": "assets/app-data/story/cg/C-10-3.jpg",
+        "explanation": "Curated Story CG assets/app-data/story/cg/C-10-3.jpg is explicitly assigned to Entry C-10."
+      },
+      {
+        "kind": "ordering",
+        "sourcePath": "assets/app-data/story2/ordering",
+        "recordKey": "path:33",
+        "explanation": "The exact referenced Entry occurs in Story ordering path 33."
+      }
+    ],
+    "confidence": "high",
+    "finalRelation": "node",
+    "finalNodeKey": "C-10",
+    "finalPathId": 33
+  },
+  {
+    "assetPath": "assets/app-data/story/cg/C-10-4.jpg",
+    "resourceId": "cd2b127c-a998-79d6-a529-80259c8ae465",
+    "resolution": {
+      "width": 1920,
+      "height": 1080
+    },
+    "candidateNodeKey": "C-10",
+    "candidatePathId": 33,
+    "evidence": [
+      {
+        "kind": "ordering",
+        "sourcePath": "assets/app-data/story2/ordering",
+        "recordKey": "C-10:4",
+        "referencedAsset": "assets/app-data/story/cg/C-10-4.jpg",
+        "explanation": "Curated Story CG assets/app-data/story/cg/C-10-4.jpg is explicitly assigned to Entry C-10."
+      },
+      {
+        "kind": "ordering",
+        "sourcePath": "assets/app-data/story2/ordering",
+        "recordKey": "path:33",
+        "explanation": "The exact referenced Entry occurs in Story ordering path 33."
+      }
+    ],
+    "confidence": "high",
+    "finalRelation": "node",
+    "finalNodeKey": "C-10",
+    "finalPathId": 33
+  },
+  {
+    "assetPath": "assets/app-data/story/cg/C-2-1.jpg",
+    "resourceId": "814e4ef8-500c-73ad-b75c-4abc8f31eb16",
+    "resolution": {
+      "width": 1920,
+      "height": 1080
+    },
+    "candidateNodeKey": "C-2",
+    "candidatePathId": 33,
+    "evidence": [
+      {
+        "kind": "entry-storyCgPath",
+        "sourcePath": "assets/app-data/story/main/entries_24",
+        "recordKey": "24-2",
+        "referencedAsset": "assets/app-data/story/cg/C-2-1.jpg",
+        "explanation": "Entry C-2 contains the exact storyCgPath field."
+      },
+      {
+        "kind": "ordering",
+        "sourcePath": "assets/app-data/story2/ordering",
+        "recordKey": "C-2:1",
+        "referencedAsset": "assets/app-data/story/cg/C-2-1.jpg",
+        "explanation": "Curated Story CG assets/app-data/story/cg/C-2-1.jpg is explicitly assigned to Entry C-2."
+      },
+      {
+        "kind": "ordering",
+        "sourcePath": "assets/app-data/story2/ordering",
+        "recordKey": "path:33",
+        "explanation": "The exact referenced Entry occurs in Story ordering path 33."
+      }
+    ],
+    "confidence": "high",
+    "finalRelation": "node",
+    "finalNodeKey": "C-2",
+    "finalPathId": 33
+  },
+  {
+    "assetPath": "assets/app-data/story/cg/C-2-2.jpg",
+    "resourceId": "c2aecd74-079f-70b1-aaf4-40e0e4efd153",
+    "resolution": {
+      "width": 1920,
+      "height": 1080
+    },
+    "candidateNodeKey": "C-2",
+    "candidatePathId": 33,
+    "evidence": [
+      {
+        "kind": "localized-text-display-event",
+        "sourcePath": "assets/app-data/story/main/vn",
+        "recordKey": "24-2",
+        "referencedAsset": "assets/app-data/story/cg/C-2-2.jpg",
+        "explanation": "Locale en display data for Entry C-2 contains an exact CG display event."
+      },
+      {
+        "kind": "localized-text-display-event",
+        "sourcePath": "assets/app-data/story/main/vn",
+        "recordKey": "24-2",
+        "referencedAsset": "assets/app-data/story/cg/C-2-2.jpg",
+        "explanation": "Locale ja display data for Entry C-2 contains an exact CG display event."
+      },
+      {
+        "kind": "localized-text-display-event",
+        "sourcePath": "assets/app-data/story/main/vn",
+        "recordKey": "24-2",
+        "referencedAsset": "assets/app-data/story/cg/C-2-2.jpg",
+        "explanation": "Locale ko display data for Entry C-2 contains an exact CG display event."
+      },
+      {
+        "kind": "localized-text-display-event",
+        "sourcePath": "assets/app-data/story/main/vn",
+        "recordKey": "24-2",
+        "referencedAsset": "assets/app-data/story/cg/C-2-2.jpg",
+        "explanation": "Locale zh-Hans display data for Entry C-2 contains an exact CG display event."
+      },
+      {
+        "kind": "localized-text-display-event",
+        "sourcePath": "assets/app-data/story/main/vn",
+        "recordKey": "24-2",
+        "referencedAsset": "assets/app-data/story/cg/C-2-2.jpg",
+        "explanation": "Locale zh-Hant display data for Entry C-2 contains an exact CG display event."
+      },
+      {
+        "kind": "ordering",
+        "sourcePath": "assets/app-data/story2/ordering",
+        "recordKey": "C-2:2",
+        "referencedAsset": "assets/app-data/story/cg/C-2-2.jpg",
+        "explanation": "Curated Story CG assets/app-data/story/cg/C-2-2.jpg is explicitly assigned to Entry C-2."
+      },
+      {
+        "kind": "ordering",
+        "sourcePath": "assets/app-data/story2/ordering",
+        "recordKey": "path:33",
+        "explanation": "The exact referenced Entry occurs in Story ordering path 33."
+      }
+    ],
+    "confidence": "high",
+    "finalRelation": "node",
+    "finalNodeKey": "C-2",
+    "finalPathId": 33
+  },
+  {
+    "assetPath": "assets/app-data/story/cg/C-5.jpg",
+    "resourceId": "05e53be1-bc6e-7e8a-866e-a223aaeac79e",
+    "resolution": {
+      "width": 1920,
+      "height": 1080
+    },
+    "candidateNodeKey": "C-5",
+    "candidatePathId": 33,
+    "evidence": [
+      {
+        "kind": "entry-storyCgPath",
+        "sourcePath": "assets/app-data/story/main/entries_24",
+        "recordKey": "24-5",
+        "referencedAsset": "assets/app-data/story/cg/C-5.jpg",
+        "explanation": "Entry C-5 contains the exact storyCgPath field."
+      },
+      {
+        "kind": "ordering",
+        "sourcePath": "assets/app-data/story2/ordering",
+        "recordKey": "C-5:1",
+        "referencedAsset": "assets/app-data/story/cg/C-5.jpg",
+        "explanation": "Curated Story CG assets/app-data/story/cg/C-5.jpg is explicitly assigned to Entry C-5."
+      },
+      {
+        "kind": "ordering",
+        "sourcePath": "assets/app-data/story2/ordering",
+        "recordKey": "path:33",
+        "explanation": "The exact referenced Entry occurs in Story ordering path 33."
+      }
+    ],
+    "confidence": "high",
+    "finalRelation": "node",
+    "finalNodeKey": "C-5",
+    "finalPathId": 33
+  },
+  {
+    "assetPath": "assets/app-data/story/cg/C-7-1.jpg",
+    "resourceId": "c4b34076-908d-7f06-8b42-d190d0c41b01",
+    "resolution": {
+      "width": 1920,
+      "height": 1080
+    },
+    "candidateNodeKey": "C-7",
+    "candidatePathId": 33,
+    "evidence": [
+      {
+        "kind": "entry-storyCgPath",
+        "sourcePath": "assets/app-data/story/main/entries_24",
+        "recordKey": "24-7",
+        "referencedAsset": "assets/app-data/story/cg/C-7-1.jpg",
+        "explanation": "Entry C-7 contains the exact storyCgPath field."
+      },
+      {
+        "kind": "ordering",
+        "sourcePath": "assets/app-data/story2/ordering",
+        "recordKey": "C-7:1",
+        "referencedAsset": "assets/app-data/story/cg/C-7-1.jpg",
+        "explanation": "Curated Story CG assets/app-data/story/cg/C-7-1.jpg is explicitly assigned to Entry C-7."
+      },
+      {
+        "kind": "ordering",
+        "sourcePath": "assets/app-data/story2/ordering",
+        "recordKey": "path:33",
+        "explanation": "The exact referenced Entry occurs in Story ordering path 33."
+      }
+    ],
+    "confidence": "high",
+    "finalRelation": "node",
+    "finalNodeKey": "C-7",
+    "finalPathId": 33
+  },
+  {
+    "assetPath": "assets/app-data/story/cg/C-7-2.jpg",
+    "resourceId": "5f62dc93-413c-73cd-9d18-e522946ebaa3",
+    "resolution": {
+      "width": 1920,
+      "height": 1080
+    },
+    "candidateNodeKey": "C-7",
+    "candidatePathId": 33,
+    "evidence": [
+      {
+        "kind": "localized-text-display-event",
+        "sourcePath": "assets/app-data/story/main/vn",
+        "recordKey": "24-7",
+        "referencedAsset": "assets/app-data/story/cg/C-7-2.jpg",
+        "explanation": "Locale en display data for Entry C-7 contains an exact CG display event."
+      },
+      {
+        "kind": "localized-text-display-event",
+        "sourcePath": "assets/app-data/story/main/vn",
+        "recordKey": "24-7",
+        "referencedAsset": "assets/app-data/story/cg/C-7-2.jpg",
+        "explanation": "Locale ja display data for Entry C-7 contains an exact CG display event."
+      },
+      {
+        "kind": "localized-text-display-event",
+        "sourcePath": "assets/app-data/story/main/vn",
+        "recordKey": "24-7",
+        "referencedAsset": "assets/app-data/story/cg/C-7-2.jpg",
+        "explanation": "Locale ko display data for Entry C-7 contains an exact CG display event."
+      },
+      {
+        "kind": "localized-text-display-event",
+        "sourcePath": "assets/app-data/story/main/vn",
+        "recordKey": "24-7",
+        "referencedAsset": "assets/app-data/story/cg/C-7-2.jpg",
+        "explanation": "Locale zh-Hans display data for Entry C-7 contains an exact CG display event."
+      },
+      {
+        "kind": "localized-text-display-event",
+        "sourcePath": "assets/app-data/story/main/vn",
+        "recordKey": "24-7",
+        "referencedAsset": "assets/app-data/story/cg/C-7-2.jpg",
+        "explanation": "Locale zh-Hant display data for Entry C-7 contains an exact CG display event."
+      },
+      {
+        "kind": "ordering",
+        "sourcePath": "assets/app-data/story2/ordering",
+        "recordKey": "C-7:2",
+        "referencedAsset": "assets/app-data/story/cg/C-7-2.jpg",
+        "explanation": "Curated Story CG assets/app-data/story/cg/C-7-2.jpg is explicitly assigned to Entry C-7."
+      },
+      {
+        "kind": "ordering",
+        "sourcePath": "assets/app-data/story2/ordering",
+        "recordKey": "path:33",
+        "explanation": "The exact referenced Entry occurs in Story ordering path 33."
+      }
+    ],
+    "confidence": "high",
+    "finalRelation": "node",
+    "finalNodeKey": "C-7",
+    "finalPathId": 33
+  },
+  {
+    "assetPath": "assets/app-data/story/cg/C-7-3.jpg",
+    "resourceId": "29385cfd-2d98-7d9b-bd85-db976e95990d",
+    "resolution": {
+      "width": 1920,
+      "height": 1080
+    },
+    "candidateNodeKey": "C-7",
+    "candidatePathId": 33,
+    "evidence": [
+      {
+        "kind": "localized-text-display-event",
+        "sourcePath": "assets/app-data/story/main/vn",
+        "recordKey": "24-7",
+        "referencedAsset": "assets/app-data/story/cg/C-7-3.jpg",
+        "explanation": "Locale en display data for Entry C-7 contains an exact CG display event."
+      },
+      {
+        "kind": "localized-text-display-event",
+        "sourcePath": "assets/app-data/story/main/vn",
+        "recordKey": "24-7",
+        "referencedAsset": "assets/app-data/story/cg/C-7-3.jpg",
+        "explanation": "Locale ja display data for Entry C-7 contains an exact CG display event."
+      },
+      {
+        "kind": "localized-text-display-event",
+        "sourcePath": "assets/app-data/story/main/vn",
+        "recordKey": "24-7",
+        "referencedAsset": "assets/app-data/story/cg/C-7-3.jpg",
+        "explanation": "Locale ko display data for Entry C-7 contains an exact CG display event."
+      },
+      {
+        "kind": "localized-text-display-event",
+        "sourcePath": "assets/app-data/story/main/vn",
+        "recordKey": "24-7",
+        "referencedAsset": "assets/app-data/story/cg/C-7-3.jpg",
+        "explanation": "Locale zh-Hans display data for Entry C-7 contains an exact CG display event."
+      },
+      {
+        "kind": "localized-text-display-event",
+        "sourcePath": "assets/app-data/story/main/vn",
+        "recordKey": "24-7",
+        "referencedAsset": "assets/app-data/story/cg/C-7-3.jpg",
+        "explanation": "Locale zh-Hant display data for Entry C-7 contains an exact CG display event."
+      },
+      {
+        "kind": "ordering",
+        "sourcePath": "assets/app-data/story2/ordering",
+        "recordKey": "C-7:3",
+        "referencedAsset": "assets/app-data/story/cg/C-7-3.jpg",
+        "explanation": "Curated Story CG assets/app-data/story/cg/C-7-3.jpg is explicitly assigned to Entry C-7."
+      },
+      {
+        "kind": "ordering",
+        "sourcePath": "assets/app-data/story2/ordering",
+        "recordKey": "path:33",
+        "explanation": "The exact referenced Entry occurs in Story ordering path 33."
+      }
+    ],
+    "confidence": "high",
+    "finalRelation": "node",
+    "finalNodeKey": "C-7",
+    "finalPathId": 33
+  },
+  {
+    "assetPath": "assets/app-data/story/cg/C-9-1.jpg",
+    "resourceId": "af6eb0f4-e43c-7fc5-b1d8-f22cad4c33d5",
+    "resolution": {
+      "width": 1920,
+      "height": 1080
+    },
+    "candidateNodeKey": "C-9",
+    "candidatePathId": 33,
+    "evidence": [
+      {
+        "kind": "entry-storyCgPath",
+        "sourcePath": "assets/app-data/story/main/entries_24",
+        "recordKey": "24-9",
+        "referencedAsset": "assets/app-data/story/cg/C-9-1.jpg",
+        "explanation": "Entry C-9 contains the exact storyCgPath field."
+      },
+      {
+        "kind": "ordering",
+        "sourcePath": "assets/app-data/story2/ordering",
+        "recordKey": "C-9:1",
+        "referencedAsset": "assets/app-data/story/cg/C-9-1.jpg",
+        "explanation": "Curated Story CG assets/app-data/story/cg/C-9-1.jpg is explicitly assigned to Entry C-9."
+      },
+      {
+        "kind": "ordering",
+        "sourcePath": "assets/app-data/story2/ordering",
+        "recordKey": "path:33",
+        "explanation": "The exact referenced Entry occurs in Story ordering path 33."
+      }
+    ],
+    "confidence": "high",
+    "finalRelation": "node",
+    "finalNodeKey": "C-9",
+    "finalPathId": 33
+  },
+  {
+    "assetPath": "assets/app-data/story/cg/C-9-2.jpg",
+    "resourceId": "9d00e6a0-df6a-71f3-9a2c-0f1b92429fe9",
+    "resolution": {
+      "width": 1920,
+      "height": 1080
+    },
+    "candidateNodeKey": "C-9",
+    "candidatePathId": 33,
+    "evidence": [
+      {
+        "kind": "localized-text-display-event",
+        "sourcePath": "assets/app-data/story/main/vn",
+        "recordKey": "24-9",
+        "referencedAsset": "assets/app-data/story/cg/C-9-2.jpg",
+        "explanation": "Locale en display data for Entry C-9 contains an exact CG display event."
+      },
+      {
+        "kind": "localized-text-display-event",
+        "sourcePath": "assets/app-data/story/main/vn",
+        "recordKey": "24-9",
+        "referencedAsset": "assets/app-data/story/cg/C-9-2.jpg",
+        "explanation": "Locale ja display data for Entry C-9 contains an exact CG display event."
+      },
+      {
+        "kind": "localized-text-display-event",
+        "sourcePath": "assets/app-data/story/main/vn",
+        "recordKey": "24-9",
+        "referencedAsset": "assets/app-data/story/cg/C-9-2.jpg",
+        "explanation": "Locale ko display data for Entry C-9 contains an exact CG display event."
+      },
+      {
+        "kind": "localized-text-display-event",
+        "sourcePath": "assets/app-data/story/main/vn",
+        "recordKey": "24-9",
+        "referencedAsset": "assets/app-data/story/cg/C-9-2.jpg",
+        "explanation": "Locale zh-Hans display data for Entry C-9 contains an exact CG display event."
+      },
+      {
+        "kind": "localized-text-display-event",
+        "sourcePath": "assets/app-data/story/main/vn",
+        "recordKey": "24-9",
+        "referencedAsset": "assets/app-data/story/cg/C-9-2.jpg",
+        "explanation": "Locale zh-Hant display data for Entry C-9 contains an exact CG display event."
+      },
+      {
+        "kind": "ordering",
+        "sourcePath": "assets/app-data/story2/ordering",
+        "recordKey": "C-9:2",
+        "referencedAsset": "assets/app-data/story/cg/C-9-2.jpg",
+        "explanation": "Curated Story CG assets/app-data/story/cg/C-9-2.jpg is explicitly assigned to Entry C-9."
+      },
+      {
+        "kind": "ordering",
+        "sourcePath": "assets/app-data/story2/ordering",
+        "recordKey": "path:33",
+        "explanation": "The exact referenced Entry occurs in Story ordering path 33."
+      }
+    ],
+    "confidence": "high",
+    "finalRelation": "node",
+    "finalNodeKey": "C-9",
+    "finalPathId": 33
+  },
+  {
+    "assetPath": "assets/app-data/story/cg/C-9-3.jpg",
+    "resourceId": "215b4dfa-ecf3-7bde-b16e-ef8bfd01c55c",
+    "resolution": {
+      "width": 1920,
+      "height": 1080
+    },
+    "candidateNodeKey": "C-9",
+    "candidatePathId": 33,
+    "evidence": [
+      {
+        "kind": "localized-text-display-event",
+        "sourcePath": "assets/app-data/story/main/vn",
+        "recordKey": "24-9",
+        "referencedAsset": "assets/app-data/story/cg/C-9-3.jpg",
+        "explanation": "Locale en display data for Entry C-9 contains an exact CG display event."
+      },
+      {
+        "kind": "localized-text-display-event",
+        "sourcePath": "assets/app-data/story/main/vn",
+        "recordKey": "24-9",
+        "referencedAsset": "assets/app-data/story/cg/C-9-3.jpg",
+        "explanation": "Locale ja display data for Entry C-9 contains an exact CG display event."
+      },
+      {
+        "kind": "localized-text-display-event",
+        "sourcePath": "assets/app-data/story/main/vn",
+        "recordKey": "24-9",
+        "referencedAsset": "assets/app-data/story/cg/C-9-3.jpg",
+        "explanation": "Locale ko display data for Entry C-9 contains an exact CG display event."
+      },
+      {
+        "kind": "localized-text-display-event",
+        "sourcePath": "assets/app-data/story/main/vn",
+        "recordKey": "24-9",
+        "referencedAsset": "assets/app-data/story/cg/C-9-3.jpg",
+        "explanation": "Locale zh-Hans display data for Entry C-9 contains an exact CG display event."
+      },
+      {
+        "kind": "localized-text-display-event",
+        "sourcePath": "assets/app-data/story/main/vn",
+        "recordKey": "24-9",
+        "referencedAsset": "assets/app-data/story/cg/C-9-3.jpg",
+        "explanation": "Locale zh-Hant display data for Entry C-9 contains an exact CG display event."
+      },
+      {
+        "kind": "ordering",
+        "sourcePath": "assets/app-data/story2/ordering",
+        "recordKey": "C-9:3",
+        "referencedAsset": "assets/app-data/story/cg/C-9-3.jpg",
+        "explanation": "Curated Story CG assets/app-data/story/cg/C-9-3.jpg is explicitly assigned to Entry C-9."
+      },
+      {
+        "kind": "ordering",
+        "sourcePath": "assets/app-data/story2/ordering",
+        "recordKey": "path:33",
+        "explanation": "The exact referenced Entry occurs in Story ordering path 33."
+      }
+    ],
+    "confidence": "high",
+    "finalRelation": "node",
+    "finalNodeKey": "C-9",
+    "finalPathId": 33
+  },
+  {
     "assetPath": "assets/app-data/story/cg/E-1_epilogue.jpg",
     "resourceId": "01a00093-f77a-7fc8-835b-d05e84dec9a4",
     "resolution": {
@@ -1630,10 +2217,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/catastrophe/card_A.png",
     "resourceId": "b798d6c3-b426-750f-bdf3-70f5661cdddf",
-    "resolution": {
-      "width": 3840,
-      "height": 2880
-    },
     "candidateNodeKey": "C-1",
     "candidatePathId": 33,
     "candidateSceneId": "vn:catastrophe1",
@@ -1780,10 +2363,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/catastrophe/card_B.png",
     "resourceId": "48eb8d8a-8e3a-70f2-80cb-acd83c0bdd67",
-    "resolution": {
-      "width": 3840,
-      "height": 2880
-    },
     "candidateNodeKey": "C-1",
     "candidatePathId": 33,
     "candidateSceneId": "vn:catastrophe1",
@@ -1930,10 +2509,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/catastrophe/card_C.png",
     "resourceId": "952322f5-2d93-74f0-beac-62397691dd32",
-    "resolution": {
-      "width": 3840,
-      "height": 2880
-    },
     "candidateNodeKey": "C-1",
     "candidatePathId": 33,
     "candidateSceneId": "vn:catastrophe1",
@@ -2080,10 +2655,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/catastrophe/cat_1_1_b.jpg",
     "resourceId": "c571c54e-5c1a-7a99-92d4-ade43b280a6d",
-    "resolution": {
-      "width": 2300,
-      "height": 1294
-    },
     "candidateNodeKey": "C-1",
     "candidatePathId": 33,
     "candidateSceneId": "vn:catastrophe1",
@@ -2230,10 +2801,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/catastrophe/cat_1_1.jpg",
     "resourceId": "7d92052f-14a4-7374-8d80-73c5f4f209c2",
-    "resolution": {
-      "width": 2300,
-      "height": 1294
-    },
     "candidateNodeKey": "C-1",
     "candidatePathId": 33,
     "candidateSceneId": "vn:catastrophe1",
@@ -2380,10 +2947,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/catastrophe/cat_1_2.jpg",
     "resourceId": "0ea8cf35-588b-72d9-b86e-b78f19c3ea43",
-    "resolution": {
-      "width": 2300,
-      "height": 1294
-    },
     "candidateNodeKey": "C-1",
     "candidatePathId": 33,
     "candidateSceneId": "vn:catastrophe1",
@@ -2530,10 +3093,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/catastrophe/cat_1_3.jpg",
     "resourceId": "c5e863e6-5990-7449-9bbe-1e739f69fb1b",
-    "resolution": {
-      "width": 2300,
-      "height": 1294
-    },
     "candidateNodeKey": "C-1",
     "candidatePathId": 33,
     "candidateSceneId": "vn:catastrophe1",
@@ -2680,10 +3239,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/catastrophe/cat_1_4.jpg",
     "resourceId": "50dc9dfd-3206-709d-b94d-2a15d68e271c",
-    "resolution": {
-      "width": 1920,
-      "height": 1080
-    },
     "candidateNodeKey": "C-1",
     "candidatePathId": 33,
     "candidateSceneId": "vn:catastrophe1",
@@ -2830,10 +3385,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/catastrophe/cat_3_1.jpg",
     "resourceId": "36607014-cb95-7c42-8845-e506853d5f55",
-    "resolution": {
-      "width": 940,
-      "height": 552
-    },
     "candidateNodeKey": "C-3",
     "candidatePathId": 33,
     "candidateSceneId": "vn:catastrophe3",
@@ -2940,10 +3491,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/catastrophe/cat_3_2.jpg",
     "resourceId": "05a0cd3a-4106-7a92-aa40-3e2a09a35e8f",
-    "resolution": {
-      "width": 1246,
-      "height": 695
-    },
     "candidatePathId": 33,
     "evidence": [
       {
@@ -3134,10 +3681,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/catastrophe/cat_3_3.jpg",
     "resourceId": "a583add3-5d4c-7992-bb0f-4bac16b78c11",
-    "resolution": {
-      "width": 1858,
-      "height": 2840
-    },
     "candidatePathId": 33,
     "evidence": [
       {
@@ -3288,10 +3831,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/catastrophe/cat_3_4_1.jpg",
     "resourceId": "2e56d378-edba-782c-9ceb-72e773b5b7f6",
-    "resolution": {
-      "width": 1731,
-      "height": 820
-    },
     "candidateNodeKey": "C-3",
     "candidatePathId": 33,
     "candidateSceneId": "vn:catastrophe3",
@@ -3438,10 +3977,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/catastrophe/cat_3_4_2.jpg",
     "resourceId": "d57734a9-3aa6-7cd6-bd79-bd523238422c",
-    "resolution": {
-      "width": 2277,
-      "height": 1078
-    },
     "candidatePathId": 33,
     "evidence": [
       {
@@ -3712,10 +4247,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/catastrophe/cat_3_4_3.jpg",
     "resourceId": "7f251385-d47f-7e9c-982f-94c62ee975b0",
-    "resolution": {
-      "width": 1731,
-      "height": 820
-    },
     "candidateNodeKey": "C-3",
     "candidatePathId": 33,
     "candidateSceneId": "vn:catastrophe3",
@@ -3862,10 +4393,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/catastrophe/cat_3_4_4.jpg",
     "resourceId": "2e531623-2e2c-73f2-b845-9603238afe2d",
-    "resolution": {
-      "width": 1731,
-      "height": 821
-    },
     "candidateNodeKey": "C-3",
     "candidatePathId": 33,
     "candidateSceneId": "vn:catastrophe3",
@@ -3972,10 +4499,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/catastrophe/cat_3_4_5.jpg",
     "resourceId": "9bc58d3a-85fb-79d2-a492-8739b0f38062",
-    "resolution": {
-      "width": 1827,
-      "height": 1078
-    },
     "candidatePathId": 33,
     "evidence": [
       {
@@ -4246,10 +4769,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/catastrophe/cat_3_4.jpg",
     "resourceId": "dd16c263-c776-7548-af84-7441e48bee43",
-    "resolution": {
-      "width": 2300,
-      "height": 1294
-    },
     "candidatePathId": 33,
     "evidence": [
       {
@@ -4400,10 +4919,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/catastrophe/cat_3_5_1.jpg",
     "resourceId": "c27b30dc-9333-7673-b0bf-a198167ee55a",
-    "resolution": {
-      "width": 2300,
-      "height": 1293
-    },
     "candidateNodeKey": "C-3",
     "candidatePathId": 33,
     "candidateSceneId": "vn:catastrophe3",
@@ -4550,10 +5065,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/catastrophe/cat_3_5_1f.png",
     "resourceId": "ac737792-6d6e-72d5-9e4c-f6676481d706",
-    "resolution": {
-      "width": 2300,
-      "height": 1293
-    },
     "candidateNodeKey": "C-3",
     "candidatePathId": 33,
     "candidateSceneId": "vn:catastrophe3",
@@ -4700,10 +5211,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/catastrophe/cat_3_5_1L1.png",
     "resourceId": "4f1da033-2eba-7af6-91c5-6d74c8a93851",
-    "resolution": {
-      "width": 2300,
-      "height": 1293
-    },
     "candidateNodeKey": "C-3",
     "candidatePathId": 33,
     "candidateSceneId": "vn:catastrophe3",
@@ -4850,10 +5357,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/catastrophe/cat_3_5_1L3.png",
     "resourceId": "1e914ffe-17f3-7b4b-844c-c780456a2049",
-    "resolution": {
-      "width": 2300,
-      "height": 1293
-    },
     "candidateNodeKey": "C-3",
     "candidatePathId": 33,
     "candidateSceneId": "vn:catastrophe3",
@@ -4960,10 +5463,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/catastrophe/cat_3_5_2.jpg",
     "resourceId": "671b191d-5f24-71da-9a05-0703ff81c77e",
-    "resolution": {
-      "width": 2300,
-      "height": 1294
-    },
     "candidateNodeKey": "C-3",
     "candidatePathId": 33,
     "candidateSceneId": "vn:catastrophe3",
@@ -5070,10 +5569,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/catastrophe/cat_3_5_2L1.png",
     "resourceId": "894f1489-f3a6-7d76-9586-57223927cd58",
-    "resolution": {
-      "width": 2300,
-      "height": 1293
-    },
     "candidateNodeKey": "C-3",
     "candidatePathId": 33,
     "candidateSceneId": "vn:catastrophe3",
@@ -5180,10 +5675,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/catastrophe/cat_3_5_2L2.jpg",
     "resourceId": "29609ac3-1dd7-7ea9-bb10-f21befaedc58",
-    "resolution": {
-      "width": 2300,
-      "height": 1294
-    },
     "candidateNodeKey": "C-3",
     "candidatePathId": 33,
     "candidateSceneId": "vn:catastrophe3",
@@ -5290,10 +5781,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/catastrophe/cat_3_5_2L3.png",
     "resourceId": "95e29b1f-b7e4-79b9-8abe-ffeb4e3ea7ba",
-    "resolution": {
-      "width": 2300,
-      "height": 1293
-    },
     "candidateNodeKey": "C-3",
     "candidatePathId": 33,
     "candidateSceneId": "vn:catastrophe3",
@@ -5400,10 +5887,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/catastrophe/cat_4_1_1.jpg",
     "resourceId": "b5140bc8-3db3-7e5d-b698-39113102d872",
-    "resolution": {
-      "width": 1742,
-      "height": 973
-    },
     "candidateNodeKey": "C-4",
     "candidatePathId": 33,
     "candidateSceneId": "vn:catastrophe4",
@@ -5550,10 +6033,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/catastrophe/cat_4_1_2.jpg",
     "resourceId": "1af00d8c-753c-7774-b9c2-bf2e37e7a045",
-    "resolution": {
-      "width": 1742,
-      "height": 980
-    },
     "candidateNodeKey": "C-4",
     "candidatePathId": 33,
     "candidateSceneId": "vn:catastrophe4",
@@ -5660,10 +6139,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/catastrophe/cat_4_1_3.jpg",
     "resourceId": "58e12509-d696-7f71-a53d-aafcf9185f27",
-    "resolution": {
-      "width": 2340,
-      "height": 1660
-    },
     "candidateNodeKey": "C-4",
     "candidatePathId": 33,
     "candidateSceneId": "vn:catastrophe4",
@@ -5730,10 +6205,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/catastrophe/cat_4_1_3c.jpg",
     "resourceId": "2ba0b295-c3b2-7dd4-9b39-48d199fb7366",
-    "resolution": {
-      "width": 2340,
-      "height": 1660
-    },
     "candidateNodeKey": "C-4",
     "candidatePathId": 33,
     "candidateSceneId": "vn:catastrophe4",
@@ -5800,10 +6271,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/catastrophe/cat_6_0.jpg",
     "resourceId": "271bd435-a7f9-7884-b230-63dc6c1f9aeb",
-    "resolution": {
-      "width": 2300,
-      "height": 1303
-    },
     "candidateNodeKey": "C-6",
     "candidatePathId": 33,
     "candidateSceneId": "vn:catastrophe6",
@@ -5950,10 +6417,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/catastrophe/cat_6_1_1.jpg",
     "resourceId": "a1ef5f85-2993-74a2-b2a5-269a0c8a4a3b",
-    "resolution": {
-      "width": 2348,
-      "height": 1067
-    },
     "candidateNodeKey": "C-6",
     "candidatePathId": 33,
     "candidateSceneId": "vn:catastrophe6",
@@ -6060,10 +6523,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/catastrophe/cat_6_1_2.jpg",
     "resourceId": "22575a45-9628-7e0f-8b21-e1235b8385d3",
-    "resolution": {
-      "width": 2564,
-      "height": 1470
-    },
     "candidateNodeKey": "C-6",
     "candidatePathId": 33,
     "candidateSceneId": "vn:catastrophe6",
@@ -6170,10 +6629,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/catastrophe/cat_6_1.jpg",
     "resourceId": "4604f924-6519-7313-9619-f04685ad8f96",
-    "resolution": {
-      "width": 2300,
-      "height": 1294
-    },
     "candidateNodeKey": "C-6",
     "candidatePathId": 33,
     "candidateSceneId": "vn:catastrophe6",
@@ -6240,10 +6695,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/catastrophe/cat_6_2.jpg",
     "resourceId": "87c6f67c-a9ac-7601-9bec-707793a129d4",
-    "resolution": {
-      "width": 2260,
-      "height": 1600
-    },
     "candidateNodeKey": "C-6",
     "candidatePathId": 33,
     "candidateSceneId": "vn:catastrophe6",
@@ -6310,10 +6761,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/catastrophe/cat_6_3.jpg",
     "resourceId": "8488ddcc-9de6-7717-b164-63375c33426b",
-    "resolution": {
-      "width": 2200,
-      "height": 1728
-    },
     "candidateNodeKey": "C-6",
     "candidatePathId": 33,
     "candidateSceneId": "vn:catastrophe6",
@@ -6460,10 +6907,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/catastrophe/cat_6_4_1.jpg",
     "resourceId": "113baa9e-3eb9-7f25-9684-3884022bae9f",
-    "resolution": {
-      "width": 1527,
-      "height": 2100
-    },
     "candidateNodeKey": "C-6",
     "candidatePathId": 33,
     "candidateSceneId": "vn:catastrophe6",
@@ -6570,10 +7013,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/catastrophe/cat_6_4_1c.jpg",
     "resourceId": "cad28f30-dbf6-747d-b858-bc5b99d195ea",
-    "resolution": {
-      "width": 1527,
-      "height": 2100
-    },
     "candidateNodeKey": "C-6",
     "candidatePathId": 33,
     "candidateSceneId": "vn:catastrophe6",
@@ -6680,10 +7119,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/catastrophe/cat_6_4_2.jpg",
     "resourceId": "32948c7e-d0ca-784e-a4c0-d26b29ac6608",
-    "resolution": {
-      "width": 1527,
-      "height": 2100
-    },
     "candidateNodeKey": "C-6",
     "candidatePathId": 33,
     "candidateSceneId": "vn:catastrophe6",
@@ -6790,10 +7225,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/catastrophe/cat_6_4_3.jpg",
     "resourceId": "13b8ed64-0b8a-7359-b6e9-8f4c75e90b38",
-    "resolution": {
-      "width": 2500,
-      "height": 1818
-    },
     "candidateNodeKey": "C-6",
     "candidatePathId": 33,
     "candidateSceneId": "vn:catastrophe6",
@@ -6940,10 +7371,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/catastrophe/cat_6_4_A.jpg",
     "resourceId": "5bce55de-3d8d-7f14-a5ad-e585fb38b768",
-    "resolution": {
-      "width": 2926,
-      "height": 1118
-    },
     "candidateNodeKey": "C-6",
     "candidatePathId": 33,
     "candidateSceneId": "vn:catastrophe6",
@@ -7090,10 +7517,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/catastrophe/cat_6_4_B.jpg",
     "resourceId": "18590d35-b1e8-7df4-8a27-671629e9391c",
-    "resolution": {
-      "width": 2926,
-      "height": 1118
-    },
     "candidateNodeKey": "C-6",
     "candidatePathId": 33,
     "candidateSceneId": "vn:catastrophe6",
@@ -7200,10 +7623,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/catastrophe/cat_6_4.jpg",
     "resourceId": "9c5dc249-2084-7c33-a789-c3ea9868eb90",
-    "resolution": {
-      "width": 2300,
-      "height": 1294
-    },
     "candidateNodeKey": "C-6",
     "candidatePathId": 33,
     "candidateSceneId": "vn:catastrophe6",
@@ -7350,10 +7769,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/catastrophe/cat_6_5.jpg",
     "resourceId": "940697d1-937b-75d5-9fb1-cd84e9b5847b",
-    "resolution": {
-      "width": 2683,
-      "height": 1267
-    },
     "candidateNodeKey": "C-6",
     "candidatePathId": 33,
     "candidateSceneId": "vn:catastrophe6",
@@ -7500,10 +7915,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/catastrophe/cat_8_1_1.jpg",
     "resourceId": "4cf54cd3-ae34-7243-8f32-8d200ae9aea0",
-    "resolution": {
-      "width": 3040,
-      "height": 1560
-    },
     "candidateNodeKey": "C-8",
     "candidatePathId": 33,
     "candidateSceneId": "vn:catastrophe8",
@@ -7650,10 +8061,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/catastrophe/cat_8_1_2.jpg",
     "resourceId": "96576c77-eb27-797e-b73b-742e24c9553b",
-    "resolution": {
-      "width": 2300,
-      "height": 1294
-    },
     "candidateNodeKey": "C-8",
     "candidatePathId": 33,
     "candidateSceneId": "vn:catastrophe8",
@@ -7800,10 +8207,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/catastrophe/cat_8_1.jpg",
     "resourceId": "658f47cd-0e3a-78f6-9385-671a64e485c1",
-    "resolution": {
-      "width": 2300,
-      "height": 1294
-    },
     "candidateNodeKey": "C-8",
     "candidatePathId": 33,
     "candidateSceneId": "vn:catastrophe8",
@@ -7950,10 +8353,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/catastrophe/cat_8_2_1.jpg",
     "resourceId": "99580dbd-a330-7865-ae6f-7883b9479d4b",
-    "resolution": {
-      "width": 2300,
-      "height": 1119
-    },
     "candidateNodeKey": "C-8",
     "candidatePathId": 33,
     "candidateSceneId": "vn:catastrophe8",
@@ -8060,10 +8459,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/catastrophe/cat_8_2_2.png",
     "resourceId": "6131a135-036d-760f-91c1-a3bdea2110a6",
-    "resolution": {
-      "width": 2300,
-      "height": 1119
-    },
     "candidateNodeKey": "C-8",
     "candidatePathId": 33,
     "candidateSceneId": "vn:catastrophe8",
@@ -8170,10 +8565,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/catastrophe/cat_8_2_3.png",
     "resourceId": "ed8a6767-dcb7-7866-9844-43ad56672a4b",
-    "resolution": {
-      "width": 2300,
-      "height": 1119
-    },
     "candidateNodeKey": "C-8",
     "candidatePathId": 33,
     "candidateSceneId": "vn:catastrophe8",
@@ -8280,10 +8671,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/catastrophe/cat_8_3_1.jpg",
     "resourceId": "cb9c75ff-4b97-776a-9720-0c716addcbca",
-    "resolution": {
-      "width": 2768,
-      "height": 1395
-    },
     "candidateNodeKey": "C-8",
     "candidatePathId": 33,
     "candidateSceneId": "vn:catastrophe8",
@@ -8430,10 +8817,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/catastrophe/cat_8_3_2.jpg",
     "resourceId": "e1f49128-4bc9-70ca-8c64-a7dc393dbe9a",
-    "resolution": {
-      "width": 2300,
-      "height": 1195
-    },
     "candidateNodeKey": "C-8",
     "candidatePathId": 33,
     "candidateSceneId": "vn:catastrophe8",
@@ -8580,10 +8963,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/catastrophe/cat_8_4_1.jpg",
     "resourceId": "ab99780d-4048-78aa-b6ed-c6937f484ac3",
-    "resolution": {
-      "width": 2620,
-      "height": 992
-    },
     "candidateNodeKey": "C-8",
     "candidatePathId": 33,
     "candidateSceneId": "vn:catastrophe8",
@@ -8730,10 +9109,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/catastrophe/cat_8_4_2.jpg",
     "resourceId": "5c411ce4-ebb9-7a0c-8d37-c8e377e9343c",
-    "resolution": {
-      "width": 1940,
-      "height": 997
-    },
     "candidateNodeKey": "C-8",
     "candidatePathId": 33,
     "candidateSceneId": "vn:catastrophe8",
@@ -8840,10 +9215,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/catastrophe/cat_8_4.jpg",
     "resourceId": "aacf20cf-c838-7d43-81b9-7d7407a840ca",
-    "resolution": {
-      "width": 2300,
-      "height": 1294
-    },
     "candidateNodeKey": "C-8",
     "candidatePathId": 33,
     "candidateSceneId": "vn:catastrophe8",
@@ -8990,10 +9361,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/catastrophe/cat_8_5_0.jpg",
     "resourceId": "f46148b7-cd72-73a0-a489-358e3cde458b",
-    "resolution": {
-      "width": 2300,
-      "height": 1076
-    },
     "candidateNodeKey": "C-8",
     "candidatePathId": 33,
     "candidateSceneId": "vn:catastrophe8",
@@ -9100,10 +9467,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/catastrophe/cat_8_5_1.jpg",
     "resourceId": "c31528ff-0d13-77f3-aca9-0edb882dc24a",
-    "resolution": {
-      "width": 2300,
-      "height": 1294
-    },
     "candidateNodeKey": "C-8",
     "candidatePathId": 33,
     "candidateSceneId": "vn:catastrophe8",
@@ -9210,10 +9573,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/catastrophe/cat_8_5_10.jpg",
     "resourceId": "64935f31-d844-7983-a5a4-836181f875f5",
-    "resolution": {
-      "width": 2300,
-      "height": 1294
-    },
     "candidateNodeKey": "C-8",
     "candidatePathId": 33,
     "candidateSceneId": "vn:catastrophe8",
@@ -9320,10 +9679,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/catastrophe/cat_8_5_2b.png",
     "resourceId": "1c0f13e1-f926-7fdb-9bb3-e17102badc65",
-    "resolution": {
-      "width": 2300,
-      "height": 1295
-    },
     "candidateNodeKey": "C-8",
     "candidatePathId": 33,
     "candidateSceneId": "vn:catastrophe8",
@@ -9470,10 +9825,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/catastrophe/cat_8_5_2h.png",
     "resourceId": "ddae5e5e-d8e7-7ae7-91e3-04aae88c90bf",
-    "resolution": {
-      "width": 2300,
-      "height": 1295
-    },
     "candidateNodeKey": "C-8",
     "candidatePathId": 33,
     "candidateSceneId": "vn:catastrophe8",
@@ -9620,10 +9971,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/catastrophe/cat_8_5_3.jpg",
     "resourceId": "f7bbb3b8-2855-7565-81db-7b4c83cd8ec3",
-    "resolution": {
-      "width": 2300,
-      "height": 1294
-    },
     "candidateNodeKey": "C-8",
     "candidatePathId": 33,
     "candidateSceneId": "vn:catastrophe8",
@@ -9770,10 +10117,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/catastrophe/cat_8_5_4.jpg",
     "resourceId": "38481c6a-5179-7963-80fc-00b486c9b37e",
-    "resolution": {
-      "width": 2300,
-      "height": 1294
-    },
     "candidateNodeKey": "C-8",
     "candidatePathId": 33,
     "candidateSceneId": "vn:catastrophe8",
@@ -9920,10 +10263,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/catastrophe/cat_8_5_5.jpg",
     "resourceId": "e278e9b7-aa22-7a77-9231-eb2c3892fdcd",
-    "resolution": {
-      "width": 2300,
-      "height": 1294
-    },
     "candidateNodeKey": "C-8",
     "candidatePathId": 33,
     "candidateSceneId": "vn:catastrophe8",
@@ -10070,10 +10409,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/catastrophe/cat_8_5_6.jpg",
     "resourceId": "513db071-cda3-7643-9bb7-123e3e0710c8",
-    "resolution": {
-      "width": 2300,
-      "height": 1294
-    },
     "candidatePathId": 33,
     "evidence": [
       {
@@ -10091,10 +10426,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/catastrophe/cat_8_5_7.jpg",
     "resourceId": "4d049c31-45c4-783c-a111-5d52550b9f6e",
-    "resolution": {
-      "width": 2300,
-      "height": 1294
-    },
     "candidateNodeKey": "C-8",
     "candidatePathId": 33,
     "candidateSceneId": "vn:catastrophe8",
@@ -10241,10 +10572,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/catastrophe/cat_8_5_8.jpg",
     "resourceId": "2a7ecfd5-dedb-718f-afd7-9b387e731dc9",
-    "resolution": {
-      "width": 2300,
-      "height": 1294
-    },
     "candidateNodeKey": "C-8",
     "candidatePathId": 33,
     "candidateSceneId": "vn:catastrophe8",
@@ -10391,10 +10718,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/catastrophe/cat_8_5_8d.jpg",
     "resourceId": "6a3a5785-639b-75d4-b733-ab4ca444453d",
-    "resolution": {
-      "width": 2300,
-      "height": 1295
-    },
     "candidateNodeKey": "C-8",
     "candidatePathId": 33,
     "candidateSceneId": "vn:catastrophe8",
@@ -10541,10 +10864,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/catastrophe/cat_8_5_9.jpg",
     "resourceId": "4718d763-b776-7510-8414-6897a05635a5",
-    "resolution": {
-      "width": 2300,
-      "height": 1294
-    },
     "candidateNodeKey": "C-8",
     "candidatePathId": 33,
     "candidateSceneId": "vn:catastrophe8",
@@ -10651,10 +10970,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/catastrophe/cat_8_6_1.jpg",
     "resourceId": "6730b2af-154b-708a-a1dc-1220bac5f1f7",
-    "resolution": {
-      "width": 2301,
-      "height": 1295
-    },
     "candidateNodeKey": "C-8",
     "candidatePathId": 33,
     "candidateSceneId": "vn:catastrophe8",
@@ -10761,10 +11076,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/catastrophe/cat_8_6_2.jpg",
     "resourceId": "522e7694-4b70-7f82-9801-03f147971507",
-    "resolution": {
-      "width": 3704,
-      "height": 2279
-    },
     "candidateNodeKey": "C-8",
     "candidatePathId": 33,
     "candidateSceneId": "vn:catastrophe8",
@@ -10911,10 +11222,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/catastrophe/cat_8_6_2a.png",
     "resourceId": "310742c4-b738-758c-be06-dc0a8088172b",
-    "resolution": {
-      "width": 3704,
-      "height": 2279
-    },
     "candidateNodeKey": "C-8",
     "candidatePathId": 33,
     "candidateSceneId": "vn:catastrophe8",
@@ -11061,10 +11368,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/catastrophe/cat_8_6_2a2.png",
     "resourceId": "5697e856-5d4c-7d2b-a3a1-5589bc861f0c",
-    "resolution": {
-      "width": 3704,
-      "height": 2279
-    },
     "candidateNodeKey": "C-8",
     "candidatePathId": 33,
     "candidateSceneId": "vn:catastrophe8",
@@ -11211,10 +11514,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/catastrophe/cat_8_6_2b.png",
     "resourceId": "d490eae6-9d71-7898-85cd-8be13ec97416",
-    "resolution": {
-      "width": 3704,
-      "height": 2279
-    },
     "candidateNodeKey": "C-8",
     "candidatePathId": 33,
     "candidateSceneId": "vn:catastrophe8",
@@ -11361,10 +11660,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/catastrophe/cat_8_6.jpg",
     "resourceId": "da981495-d748-72e8-835e-d54f3343700e",
-    "resolution": {
-      "width": 2300,
-      "height": 1294
-    },
     "candidateNodeKey": "C-8",
     "candidatePathId": 33,
     "candidateSceneId": "vn:catastrophe8",
@@ -11471,10 +11766,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/catastrophe/cat_8_6b.jpg",
     "resourceId": "13fcfb5f-6fbb-7104-8abb-2967a22d6da7",
-    "resolution": {
-      "width": 2300,
-      "height": 1294
-    },
     "candidatePathId": 33,
     "evidence": [
       {
@@ -11492,10 +11783,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/catastrophe/cat_8_6b.png",
     "resourceId": "e9456ad4-452c-7a60-b664-e570e9911ac7",
-    "resolution": {
-      "width": 2300,
-      "height": 1294
-    },
     "candidateNodeKey": "C-8",
     "candidatePathId": 33,
     "candidateSceneId": "vn:catastrophe8",
@@ -11707,10 +11994,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/catastrophe/flash_light.png",
     "resourceId": "0a7735da-cd84-7af0-8e0f-03cc1f08cefb",
-    "resolution": {
-      "width": 480,
-      "height": 2160
-    },
     "candidateNodeKey": "C-3",
     "candidatePathId": 33,
     "candidateSceneId": "vn:catastrophe3",
@@ -11817,10 +12100,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/catastrophe/old_light.png",
     "resourceId": "b59179f4-e6cc-7a79-8a8c-b75e740369ff",
-    "resolution": {
-      "width": 3840,
-      "height": 2160
-    },
     "candidateNodeKey": "C-4",
     "candidatePathId": 33,
     "candidateSceneId": "vn:catastrophe4",
@@ -11927,10 +12206,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/epilogue/2last1_c3_epilogue.jpg",
     "resourceId": "01a00094-04bb-710a-b06a-c172dbc02e63",
-    "resolution": {
-      "width": 2048,
-      "height": 1672
-    },
     "candidatePathId": 19,
     "evidence": [
       {
@@ -11948,10 +12223,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/epilogue/2missingtai_epilogue.png",
     "resourceId": "01a00094-0551-7e77-82ff-bc445da94ff5",
-    "resolution": {
-      "width": 500,
-      "height": 633
-    },
     "candidateNodeKey": "E-1",
     "candidatePathId": 19,
     "candidateSceneId": "vn:epilogue_last",
@@ -12097,10 +12368,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/epilogue/forgotten_epilogue.jpg",
     "resourceId": "01a00094-0617-77c4-8810-b506a62dbd1f",
-    "resolution": {
-      "width": 2048,
-      "height": 1672
-    },
     "candidateNodeKey": "E-1",
     "candidatePathId": 19,
     "candidateSceneId": "vn:epilogue_last",
@@ -12246,10 +12513,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/epilogue/last1_c1_epilogue.jpg",
     "resourceId": "01a00094-06b1-7fe6-ba41-1e717bea69b5",
-    "resolution": {
-      "width": 2048,
-      "height": 1071
-    },
     "candidateNodeKey": "E-1",
     "candidatePathId": 19,
     "candidateSceneId": "vn:epilogue_last",
@@ -12395,10 +12658,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/epilogue/last1_c2_epilogue.jpg",
     "resourceId": "01a00094-0712-7ae1-923f-9feabf3e322b",
-    "resolution": {
-      "width": 2050,
-      "height": 1152
-    },
     "candidateNodeKey": "E-1",
     "candidatePathId": 19,
     "candidateSceneId": "vn:epilogue_last",
@@ -12544,10 +12803,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/epilogue/last1_c3_epilogue.jpg",
     "resourceId": "01a00094-077a-7f9c-9551-b61a8114b66e",
-    "resolution": {
-      "width": 2048,
-      "height": 1672
-    },
     "candidateNodeKey": "E-1",
     "candidatePathId": 19,
     "candidateSceneId": "vn:epilogue_last",
@@ -12693,10 +12948,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/epilogue/last1_c4_epilogue.jpg",
     "resourceId": "01a00094-080f-7ce9-a758-bee87500f8e0",
-    "resolution": {
-      "width": 2048,
-      "height": 1676
-    },
     "candidateNodeKey": "E-1",
     "candidatePathId": 19,
     "candidateSceneId": "vn:epilogue_last",
@@ -12882,10 +13133,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/epilogue/last1_epilogue.jpg",
     "resourceId": "01a00094-08b6-745f-ac7a-4319dc1b1910",
-    "resolution": {
-      "width": 2048,
-      "height": 1152
-    },
     "evidence": [
       {
         "kind": "vn-script-visual",
@@ -13189,10 +13436,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/epilogue/last2_c1_epilogue.jpg",
     "resourceId": "01a00094-0934-776b-a9d2-a3da37286dcd",
-    "resolution": {
-      "width": 2048,
-      "height": 1672
-    },
     "candidateNodeKey": "E-1",
     "candidatePathId": 19,
     "candidateSceneId": "vn:epilogue_last",
@@ -13338,10 +13581,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/epilogue/last2_c2_epilogue.jpg",
     "resourceId": "01a00094-09d3-7840-9ea7-1d28d83a66cd",
-    "resolution": {
-      "width": 1255,
-      "height": 557
-    },
     "candidateNodeKey": "E-1",
     "candidatePathId": 19,
     "candidateSceneId": "vn:epilogue_last",
@@ -13487,10 +13726,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/epilogue/last2_c3_epilogue.jpg",
     "resourceId": "01a00094-0a28-7607-beeb-d5a7458d7e09",
-    "resolution": {
-      "width": 1255,
-      "height": 557
-    },
     "candidateNodeKey": "E-1",
     "candidatePathId": 19,
     "candidateSceneId": "vn:epilogue_last",
@@ -13636,10 +13871,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/epilogue/last2_c4_epilogue.jpg",
     "resourceId": "01a00094-0a7c-71bd-bcc5-196fe70d26e0",
-    "resolution": {
-      "width": 2048,
-      "height": 866
-    },
     "candidateNodeKey": "E-1",
     "candidatePathId": 19,
     "candidateSceneId": "vn:epilogue_last",
@@ -13785,10 +14016,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/epilogue/last2_c5_epilogue.jpg",
     "resourceId": "01a00094-0add-7b32-8daa-da332c5364b7",
-    "resolution": {
-      "width": 2048,
-      "height": 1673
-    },
     "candidateNodeKey": "E-1",
     "candidatePathId": 19,
     "candidateSceneId": "vn:epilogue_last",
@@ -13934,10 +14161,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/epilogue/last2_epilogue.jpg",
     "resourceId": "01a00094-0b7d-7452-96de-9e62152c8732",
-    "resolution": {
-      "width": 2048,
-      "height": 1152
-    },
     "candidateNodeKey": "E-1",
     "candidatePathId": 19,
     "candidateSceneId": "vn:epilogue_last",
@@ -14123,10 +14346,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/epilogue/missingtai_epilogue.png",
     "resourceId": "01a00094-0bf3-7957-a175-0dd8304dfa06",
-    "resolution": {
-      "width": 500,
-      "height": 633
-    },
     "candidateNodeKey": "E-1",
     "candidatePathId": 19,
     "candidateSceneId": "vn:epilogue_last",
@@ -14272,10 +14491,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/epilogue/tai_epilogue.png",
     "resourceId": "01a00094-0cbd-7755-8b0f-ae4b42f90564",
-    "resolution": {
-      "width": 800,
-      "height": 450
-    },
     "candidateNodeKey": "E-1",
     "candidatePathId": 19,
     "candidateSceneId": "vn:epilogue_last",
@@ -14381,10 +14596,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/finale/bg_distance.jpg",
     "resourceId": "01a00094-0d32-7013-ba07-9e20cf4771ed",
-    "resolution": {
-      "width": 2048,
-      "height": 1672
-    },
     "evidence": [
       {
         "kind": "vn-script-visual",
@@ -14775,10 +14986,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/finale/bg3.jpg",
     "resourceId": "01a00094-0e43-7eeb-abe1-c50ced5637f3",
-    "resolution": {
-      "width": 1152,
-      "height": 2047
-    },
     "evidence": [
       {
         "kind": "vn-script-visual",
@@ -15129,10 +15336,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/finale/bg7.jpg",
     "resourceId": "01a00094-0f44-7174-a6f8-eb6618a6a0e0",
-    "resolution": {
-      "width": 1152,
-      "height": 2047
-    },
     "candidatePathId": 19,
     "evidence": [
       {
@@ -15403,10 +15606,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/finale/LS.jpg",
     "resourceId": "01a00094-104b-7f7c-ad2a-7481442cbdf9",
-    "resolution": {
-      "width": 2048,
-      "height": 1547
-    },
     "candidatePathId": 19,
     "evidence": [
       {
@@ -15717,10 +15916,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/finale/testify1.jpg",
     "resourceId": "01a00094-10fc-7b4f-a1dd-c51584ac1426",
-    "resolution": {
-      "width": 2048,
-      "height": 1152
-    },
     "candidateNodeKey": "F-6",
     "candidatePathId": 19,
     "candidateSceneId": "vn:finale_testify",
@@ -15907,10 +16102,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/finale/vs_overlay.png",
     "resourceId": "01a00094-1188-7034-bf2d-a1e21db88523",
-    "resolution": {
-      "width": 1920,
-      "height": 1080
-    },
     "evidence": [
       {
         "kind": "vn-script-visual",
@@ -16094,10 +16285,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/lephon/2_lephon_1.jpg",
     "resourceId": "01a00094-12a8-7f50-87ec-9417db87e6f4",
-    "resolution": {
-      "width": 1200,
-      "height": 675
-    },
     "candidateNodeKey": "20-7",
     "candidatePathId": 29,
     "candidateSceneId": "vn:lephon_story7",
@@ -16284,10 +16471,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/lephon/2lephon_1_cut2.jpg",
     "resourceId": "01a00094-131e-7614-84bc-448cd81be966",
-    "resolution": {
-      "width": 940,
-      "height": 551
-    },
     "candidateNodeKey": "20-7",
     "candidatePathId": 29,
     "candidateSceneId": "vn:lephon_story7",
@@ -16434,10 +16617,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/lephon/3lephon_1_cut2.jpg",
     "resourceId": "01a00094-1394-7c4d-8b50-6fed14b5a701",
-    "resolution": {
-      "width": 940,
-      "height": 551
-    },
     "candidateNodeKey": "20-7",
     "candidatePathId": 29,
     "candidateSceneId": "vn:lephon_story7",
@@ -16544,10 +16723,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/lephon/arc6_bg1.jpg",
     "resourceId": "01a00094-13fd-771b-ba08-9196ed27a2fd",
-    "resolution": {
-      "width": 1570,
-      "height": 857
-    },
     "candidateNodeKey": "20-7",
     "candidatePathId": 29,
     "candidateSceneId": "vn:lephon_story7",
@@ -16654,10 +16829,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/lephon/arc6_bg2.jpg",
     "resourceId": "01a00094-149a-7b41-aad5-4e63fcdc0e9b",
-    "resolution": {
-      "width": 1933,
-      "height": 801
-    },
     "candidateNodeKey": "20-7",
     "candidatePathId": 29,
     "candidateSceneId": "vn:lephon_story7",
@@ -16764,10 +16935,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/lephon/arc6_bg3.jpg",
     "resourceId": "01a00094-1515-72c3-a359-bb07bd8e3e31",
-    "resolution": {
-      "width": 1952,
-      "height": 1600
-    },
     "candidateNodeKey": "20-8",
     "candidatePathId": 29,
     "candidateSceneId": "vn:lephon_story8",
@@ -16914,10 +17081,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/lephon/designant_j.jpg",
     "resourceId": "01a00094-15e3-7b78-bc9e-a021c6736d32",
-    "resolution": {
-      "width": 1250,
-      "height": 924
-    },
     "candidateNodeKey": "20-7",
     "candidatePathId": 29,
     "candidateSceneId": "vn:lephon_story7",
@@ -17064,10 +17227,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/lephon/lephon_1_cut1.jpg",
     "resourceId": "01a00094-168b-790d-8d5c-f14006672852",
-    "resolution": {
-      "width": 2276,
-      "height": 899
-    },
     "candidateNodeKey": "20-7",
     "candidatePathId": 29,
     "candidateSceneId": "vn:lephon_story7",
@@ -17214,10 +17373,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/lephon/lephon_1_cut2.jpg",
     "resourceId": "01a00094-1712-7d96-8302-9b04db7feb43",
-    "resolution": {
-      "width": 940,
-      "height": 551
-    },
     "candidateNodeKey": "20-7",
     "candidatePathId": 29,
     "candidateSceneId": "vn:lephon_story7",
@@ -17324,10 +17479,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/lephon/lephon_1_cut3.jpg",
     "resourceId": "01a00094-177a-7ecd-84b1-e2d90876e157",
-    "resolution": {
-      "width": 2377,
-      "height": 1263
-    },
     "candidateNodeKey": "20-7",
     "candidatePathId": 29,
     "candidateSceneId": "vn:lephon_story7",
@@ -17474,10 +17625,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/lephon/lephon_1.jpg",
     "resourceId": "01a00094-1830-7836-a72a-57060ac5b43e",
-    "resolution": {
-      "width": 1200,
-      "height": 675
-    },
     "candidateNodeKey": "20-7",
     "candidatePathId": 29,
     "candidateSceneId": "vn:lephon_story7",
@@ -17664,10 +17811,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/lephon/lephon_2_1.jpg",
     "resourceId": "01a00094-18ac-7890-be19-91f252ac7ddd",
-    "resolution": {
-      "width": 1920,
-      "height": 1080
-    },
     "candidateNodeKey": "20-7",
     "candidatePathId": 29,
     "candidateSceneId": "vn:lephon_story7",
@@ -17774,10 +17917,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/lephon/lephon_2_2.jpg",
     "resourceId": "01a00094-1949-7aba-aaac-8b1e096bc768",
-    "resolution": {
-      "width": 1920,
-      "height": 1080
-    },
     "candidateNodeKey": "20-7",
     "candidatePathId": 29,
     "candidateSceneId": "vn:lephon_story7",
@@ -17884,10 +18023,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/lephon/lephon_2_cut1.jpg",
     "resourceId": "01a00094-19f1-749d-9980-dd8175b83834",
-    "resolution": {
-      "width": 2426,
-      "height": 806
-    },
     "candidateNodeKey": "20-7",
     "candidatePathId": 29,
     "candidateSceneId": "vn:lephon_story7",
@@ -18034,10 +18169,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/lephon/lephon_2_cut2.jpg",
     "resourceId": "01a00094-1a66-78d1-9a97-9a04a9e8434f",
-    "resolution": {
-      "width": 1900,
-      "height": 708
-    },
     "candidateNodeKey": "20-7",
     "candidatePathId": 29,
     "candidateSceneId": "vn:lephon_story7",
@@ -18184,10 +18315,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/lephon/lephon_2_cut3.jpg",
     "resourceId": "01a00094-1ae9-7173-b402-dad4c907625c",
-    "resolution": {
-      "width": 1901,
-      "height": 709
-    },
     "candidateNodeKey": "20-7",
     "candidatePathId": 29,
     "candidateSceneId": "vn:lephon_story7",
@@ -18334,10 +18461,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/lephon/lephon_2_cut4.jpg",
     "resourceId": "01a00094-1b73-76ca-87b6-c028ca5f4036",
-    "resolution": {
-      "width": 1640,
-      "height": 984
-    },
     "candidateNodeKey": "20-7",
     "candidatePathId": 29,
     "candidateSceneId": "vn:lephon_story7",
@@ -18484,10 +18607,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/lephon/lephon_2_cut5.jpg",
     "resourceId": "01a00094-1c0d-7b76-918b-03f276741627",
-    "resolution": {
-      "width": 1901,
-      "height": 708
-    },
     "candidateNodeKey": "20-7",
     "candidatePathId": 29,
     "candidateSceneId": "vn:lephon_story7",
@@ -18634,10 +18753,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/lephon/lephon_2_cut6.jpg",
     "resourceId": "01a00094-1c85-7432-b6aa-4d0b1927c7f6",
-    "resolution": {
-      "width": 1429,
-      "height": 533
-    },
     "candidateNodeKey": "20-7",
     "candidatePathId": 29,
     "candidateSceneId": "vn:lephon_story7",
@@ -18744,10 +18859,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/lephon/lephon_2_cut7.jpg",
     "resourceId": "01a00094-1cea-72c2-9d65-2abf22169b54",
-    "resolution": {
-      "width": 1900,
-      "height": 1600
-    },
     "candidateNodeKey": "20-7",
     "candidatePathId": 29,
     "candidateSceneId": "vn:lephon_story7",
@@ -18894,10 +19005,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/lephon/lephon_2_cut8.jpg",
     "resourceId": "01a00094-1dcc-7098-bfd2-ef0fcf3922e7",
-    "resolution": {
-      "width": 1380,
-      "height": 1765
-    },
     "candidateNodeKey": "20-7",
     "candidatePathId": 29,
     "candidateSceneId": "vn:lephon_story7",
@@ -19044,10 +19151,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/lephon/lephon_bg1.jpg",
     "resourceId": "01a00094-1edc-7366-b93a-5ddbea6405d2",
-    "resolution": {
-      "width": 2074,
-      "height": 1180
-    },
     "candidateNodeKey": "20-7",
     "candidatePathId": 29,
     "candidateSceneId": "vn:lephon_story7",
@@ -19154,10 +19257,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/lephon/lephon_bg2.jpg",
     "resourceId": "01a00094-1f6f-7111-a507-56cdb9fdbd46",
-    "resolution": {
-      "width": 1000,
-      "height": 1777
-    },
     "candidateNodeKey": "20-7",
     "candidatePathId": 29,
     "candidateSceneId": "vn:lephon_story7",
@@ -19304,10 +19403,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/lephon/lephon_epilogue_cut1.jpg",
     "resourceId": "01a00094-203f-734a-8297-1c57d0bc4f24",
-    "resolution": {
-      "width": 1333,
-      "height": 820
-    },
     "candidateNodeKey": "20-8",
     "candidatePathId": 29,
     "candidateSceneId": "vn:lephon_story8",
@@ -19494,10 +19589,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/lephon/lephon_epilogue_cut2.jpg",
     "resourceId": "01a00094-20d7-70b7-8578-3f6fed24d4a0",
-    "resolution": {
-      "width": 2400,
-      "height": 980
-    },
     "candidateNodeKey": "20-8",
     "candidatePathId": 29,
     "candidateSceneId": "vn:lephon_story8",
@@ -19644,10 +19735,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/lephon/lephon_epilogue.jpg",
     "resourceId": "01a00094-2197-7f45-82ae-3b16ef2031ee",
-    "resolution": {
-      "width": 1920,
-      "height": 1080
-    },
     "candidateNodeKey": "20-8",
     "candidatePathId": 29,
     "candidateSceneId": "vn:lephon_story8",
@@ -19754,10 +19841,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/meeting/bars.png",
     "resourceId": "01a00094-224b-7582-8e64-b696b2e8395e",
-    "resolution": {
-      "width": 198,
-      "height": 720
-    },
     "candidateNodeKey": "V-0",
     "candidatePathId": 2,
     "candidateSceneId": "vn:meeting",
@@ -19864,10 +19947,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/meeting/bg.jpg",
     "resourceId": "01a00094-22a6-7617-b8a3-8d3af0fc7acf",
-    "resolution": {
-      "width": 1560,
-      "height": 877
-    },
     "evidence": [
       {
         "kind": "vn-script-visual",
@@ -20305,10 +20384,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/meeting/fx-l.png",
     "resourceId": "01a00094-231f-7b9f-a1e4-7f1a4ff661f1",
-    "resolution": {
-      "width": 652,
-      "height": 720
-    },
     "candidateNodeKey": "V-0",
     "candidatePathId": 2,
     "candidateSceneId": "vn:meeting",
@@ -20415,10 +20490,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/meeting/fx-r.png",
     "resourceId": "01a00094-2434-7a2b-be09-02464a5222d3",
-    "resolution": {
-      "width": 629,
-      "height": 720
-    },
     "candidateNodeKey": "V-0",
     "candidatePathId": 2,
     "candidateSceneId": "vn:meeting",
@@ -20525,10 +20596,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/meeting/hikari.png",
     "resourceId": "01a00094-2519-7689-86ee-67f35a2c0176",
-    "resolution": {
-      "width": 680,
-      "height": 720
-    },
     "candidateNodeKey": "V-0",
     "candidatePathId": 2,
     "candidateSceneId": "vn:meeting",
@@ -20635,10 +20702,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/meeting/tairitsu.png",
     "resourceId": "01a00094-25f7-78ac-8100-c0a1df76a54b",
-    "resolution": {
-      "width": 837,
-      "height": 620
-    },
     "candidateNodeKey": "V-0",
     "candidatePathId": 2,
     "candidateSceneId": "vn:meeting",
@@ -20745,10 +20808,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/nihil/bg_cut1.jpg",
     "resourceId": "01a00094-269e-7af6-bbd8-5a9bf04c9699",
-    "resolution": {
-      "width": 2000,
-      "height": 309
-    },
     "candidateNodeKey": "18-6",
     "candidatePathId": 27,
     "candidateSceneId": "vn:nihil6",
@@ -20895,10 +20954,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/nihil/bg_cut2.jpg",
     "resourceId": "01a00094-26ee-7e37-94f9-a918bcc67c4f",
-    "resolution": {
-      "width": 2000,
-      "height": 309
-    },
     "candidateNodeKey": "18-6",
     "candidatePathId": 27,
     "candidateSceneId": "vn:nihil6",
@@ -21045,10 +21100,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/nihil/bg_cut3.jpg",
     "resourceId": "01a00094-2741-7375-98db-002356df4516",
-    "resolution": {
-      "width": 2000,
-      "height": 2471
-    },
     "evidence": [
       {
         "kind": "vn-script-visual",
@@ -21272,10 +21323,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/nihil/nihil_1_cut1.jpg",
     "resourceId": "01a00094-2849-778a-92dd-06c52d597193",
-    "resolution": {
-      "width": 1519,
-      "height": 1274
-    },
     "candidateNodeKey": "18-6",
     "candidatePathId": 27,
     "candidateSceneId": "vn:nihil6",
@@ -21422,10 +21469,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/nihil/nihil_1_cut2.jpg",
     "resourceId": "01a00094-2943-7f83-badb-aecb98fa54f2",
-    "resolution": {
-      "width": 1332,
-      "height": 749
-    },
     "candidateNodeKey": "18-6",
     "candidatePathId": 27,
     "candidateSceneId": "vn:nihil6",
@@ -21572,10 +21615,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/nihil/nihil_1A.jpg",
     "resourceId": "01a00094-2a00-7895-9f5d-059c39505636",
-    "resolution": {
-      "width": 1920,
-      "height": 1080
-    },
     "candidateNodeKey": "18-6",
     "candidatePathId": 27,
     "candidateSceneId": "vn:nihil6",
@@ -21722,10 +21761,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/nihil/nihil_1B.jpg",
     "resourceId": "01a00094-2ad2-7f3e-8edc-c87df8f6a37e",
-    "resolution": {
-      "width": 1920,
-      "height": 1080
-    },
     "candidateNodeKey": "18-6",
     "candidatePathId": 27,
     "candidateSceneId": "vn:nihil6",
@@ -21872,10 +21907,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/nihil/nihil_2_cut1.jpg",
     "resourceId": "01a00094-2bb4-7841-9688-7dc96edcf7c0",
-    "resolution": {
-      "width": 1177,
-      "height": 651
-    },
     "candidateNodeKey": "18-6",
     "candidatePathId": 27,
     "candidateSceneId": "vn:nihil6",
@@ -21982,10 +22013,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/nihil/nihil_2_cut2.jpg",
     "resourceId": "01a00094-2c22-7377-bbd2-8808127c1f34",
-    "resolution": {
-      "width": 1177,
-      "height": 662
-    },
     "candidateNodeKey": "18-6",
     "candidatePathId": 27,
     "candidateSceneId": "vn:nihil6",
@@ -22092,10 +22119,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/nihil/nihil_2_cut3.jpg",
     "resourceId": "01a00094-2c92-7c47-9717-11f191bb3e3d",
-    "resolution": {
-      "width": 1177,
-      "height": 662
-    },
     "evidence": [
       {
         "kind": "vn-script-visual",
@@ -22366,10 +22389,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/nihil/nihil_2_cut4.jpg",
     "resourceId": "01a00094-2d03-7f9c-af0d-50a394d203fc",
-    "resolution": {
-      "width": 1177,
-      "height": 662
-    },
     "candidateNodeKey": "18-6",
     "candidatePathId": 27,
     "candidateSceneId": "vn:nihil6",
@@ -22476,10 +22495,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/nihil/nihil_2.jpg",
     "resourceId": "01a00094-2d79-7f1e-90f7-83af8a9eb422",
-    "resolution": {
-      "width": 3840,
-      "height": 2160
-    },
     "candidatePathId": 27,
     "evidence": [
       {
@@ -22830,10 +22845,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/nihil/nihil_3_cut1.jpg",
     "resourceId": "01a00094-2e03-77de-a598-9e73d10ed028",
-    "resolution": {
-      "width": 832,
-      "height": 468
-    },
     "candidateNodeKey": "18-7",
     "candidatePathId": 27,
     "candidateSceneId": "vn:nihil7",
@@ -22940,10 +22951,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/nihil/nihil_3_cut2.jpg",
     "resourceId": "01a00094-2e57-7e7a-89bb-fb13b3b0dc2a",
-    "resolution": {
-      "width": 1246,
-      "height": 701
-    },
     "evidence": [
       {
         "kind": "vn-script-visual",
@@ -23127,10 +23134,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/nihil/nihil_3_cut3.jpg",
     "resourceId": "01a00094-2edc-7e7e-84ff-982a1d49e0e5",
-    "resolution": {
-      "width": 2023,
-      "height": 1138
-    },
     "evidence": [
       {
         "kind": "vn-script-visual",
@@ -23354,10 +23357,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/nihil/nihil_3.jpg",
     "resourceId": "01a00094-2f84-7809-aef2-9225fa1a260c",
-    "resolution": {
-      "width": 2765,
-      "height": 1555
-    },
     "evidence": [
       {
         "kind": "vn-script-visual",
@@ -23621,10 +23620,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/prelude/2.png",
     "resourceId": "01a00094-3026-72ef-89c4-bad395ff4335",
-    "resolution": {
-      "width": 1560,
-      "height": 877
-    },
     "candidatePathId": 5,
     "evidence": [
       {
@@ -23642,10 +23637,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/prelude/3.png",
     "resourceId": "01a00094-3171-7219-b7f1-061ada1026f3",
-    "resolution": {
-      "width": 1560,
-      "height": 877
-    },
     "candidateNodeKey": "V-4",
     "candidatePathId": 5,
     "candidateSceneId": "vn:prelude",
@@ -23752,10 +23743,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/prelude/4.png",
     "resourceId": "01a00094-32aa-7246-97f3-f9bc119bcb0e",
-    "resolution": {
-      "width": 1560,
-      "height": 877
-    },
     "candidateNodeKey": "V-4",
     "candidatePathId": 5,
     "candidateSceneId": "vn:prelude",
@@ -23902,10 +23889,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/prelude/bg.jpg",
     "resourceId": "01a00094-33f9-7282-bd1d-02b27a99dd9d",
-    "resolution": {
-      "width": 1560,
-      "height": 877
-    },
     "evidence": [
       {
         "kind": "vn-script-visual",
@@ -24089,10 +24072,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/prelude/glass.png",
     "resourceId": "01a00094-347f-75d0-950b-d256d713206c",
-    "resolution": {
-      "width": 1560,
-      "height": 877
-    },
     "candidateNodeKey": "V-4",
     "candidatePathId": 5,
     "candidateSceneId": "vn:prelude",
@@ -24239,10 +24218,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/prelude/over.png",
     "resourceId": "01a00094-3615-717d-be4e-a1a35ce060e0",
-    "resolution": {
-      "width": 1560,
-      "height": 877
-    },
     "candidateNodeKey": "V-4",
     "candidatePathId": 5,
     "candidateSceneId": "vn:prelude",
@@ -24389,10 +24364,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/prelude/t.png",
     "resourceId": "01a00094-372b-7fa8-a4fe-99b3efb1c114",
-    "resolution": {
-      "width": 1560,
-      "height": 877
-    },
     "candidateNodeKey": "V-4",
     "candidatePathId": 5,
     "candidateSceneId": "vn:prelude",
@@ -24499,10 +24470,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/prelude/tai2.jpg",
     "resourceId": "01a00094-3852-7d89-9066-c106e37cc9c9",
-    "resolution": {
-      "width": 2048,
-      "height": 1152
-    },
     "candidateNodeKey": "F-6",
     "candidatePathId": 19,
     "candidateSceneId": "vn:finale_testify",
@@ -24609,10 +24576,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/vs/arcahv1.jpg",
     "resourceId": "01a00094-3956-7b0d-bbca-7f334844f9f1",
-    "resolution": {
-      "width": 2048,
-      "height": 1152
-    },
     "evidence": [
       {
         "kind": "vn-script-visual",
@@ -24963,10 +24926,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/vs/arcahv2.jpg",
     "resourceId": "01a00094-39c0-7291-abde-df7e929865dc",
-    "resolution": {
-      "width": 2048,
-      "height": 1152
-    },
     "evidence": [
       {
         "kind": "vn-script-visual",
@@ -25190,10 +25149,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/vs/arcahvcut.jpg",
     "resourceId": "01a00094-3a35-71df-86ad-20e7035c05b1",
-    "resolution": {
-      "width": 2048,
-      "height": 847
-    },
     "candidateNodeKey": "VS-8",
     "candidatePathId": 8,
     "candidateSceneId": "vn:vs_arcahv",
@@ -25340,10 +25295,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/vs/bg.jpg",
     "resourceId": "01a00094-3a8c-752b-a63f-5de071f00491",
-    "resolution": {
-      "width": 1152,
-      "height": 2048
-    },
     "evidence": [
       {
         "kind": "vn-script-visual",
@@ -25774,10 +25725,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/vs/bglass.jpg",
     "resourceId": "01a00094-3b9b-7281-b0d0-9fdb13959e5b",
-    "resolution": {
-      "width": 1248,
-      "height": 2048
-    },
     "candidateNodeKey": "VS-7",
     "candidatePathId": 8,
     "candidateSceneId": "vn:vs_tempest",
@@ -25924,10 +25871,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/vs/low.jpg",
     "resourceId": "01a00094-3c67-75f7-821e-164a3931b68b",
-    "resolution": {
-      "width": 2048,
-      "height": 1488
-    },
     "candidateNodeKey": "VS-8",
     "candidatePathId": 8,
     "candidateSceneId": "vn:vs_arcahv",
@@ -26074,10 +26017,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/vs/mid.jpg",
     "resourceId": "01a00094-3ce8-7790-8e9d-357fec2fa3c9",
-    "resolution": {
-      "width": 1280,
-      "height": 720
-    },
     "candidateNodeKey": "VS-7",
     "candidatePathId": 8,
     "candidateSceneId": "vn:vs_tempest",
@@ -26184,10 +26123,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/vs/sky.jpg",
     "resourceId": "01a00094-3d45-7495-88bd-51fa250ed7be",
-    "resolution": {
-      "width": 1280,
-      "height": 1440
-    },
     "candidateNodeKey": "VS-7",
     "candidatePathId": 8,
     "candidateSceneId": "vn:vs_tempest",
@@ -26374,10 +26309,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/vs/tempestissimo.jpg",
     "resourceId": "01a00094-3dfb-7813-b1cd-f004dfc65c12",
-    "resolution": {
-      "width": 2048,
-      "height": 1152
-    },
     "candidateNodeKey": "VS-7",
     "candidatePathId": 8,
     "candidateSceneId": "vn:vs_tempest",
@@ -26444,10 +26375,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/vs/wglass.jpg",
     "resourceId": "01a00094-3e6f-773c-88b0-017337f33c14",
-    "resolution": {
-      "width": 2048,
-      "height": 526
-    },
     "candidatePathId": 8,
     "evidence": [
       {
@@ -26718,10 +26645,6 @@
   {
     "assetPath": "assets/app-data/story/vn/res/zettai/bg.jpg",
     "resourceId": "01a00094-3eee-77a6-8814-f8af98696312",
-    "resolution": {
-      "width": 1280,
-      "height": 2048
-    },
     "evidence": [
       {
         "kind": "vn-script-visual",

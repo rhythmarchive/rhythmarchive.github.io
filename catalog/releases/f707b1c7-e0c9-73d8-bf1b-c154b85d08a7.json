@@ -1,0 +1,636 @@
+{
+  "releaseSchemaVersion": "1.0",
+  "id": "f707b1c7-e0c9-73d8-bf1b-c154b85d08a7",
+  "updateBatchId": "ea9a859f-9474-7bf4-a714-620401b991f6",
+  "game": "arcaea",
+  "baseVersion": "7.0.0c",
+  "targetVersion": "7.0.255c",
+  "createdAt": "2026-09-02T05:52:52.235Z",
+  "status": "published",
+  "changes": [
+    {
+      "changeType": "added-resource",
+      "resourceId": "e404c17d-fb83-7da3-be5a-bee4ef201056",
+      "detail": "Approved Arcaea 7.0.255c source resource."
+    },
+    {
+      "changeType": "added-variant",
+      "resourceId": "e404c17d-fb83-7da3-be5a-bee4ef201056",
+      "variantId": "f88b2083-72b5-76f0-8510-aa0abac9f749",
+      "detail": "Approved Arcaea 7.0.255c semantic variant."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "e404c17d-fb83-7da3-be5a-bee4ef201056",
+      "variantId": "f88b2083-72b5-76f0-8510-aa0abac9f749",
+      "renditionId": "308d0d7c-0851-719e-8dbc-c4a17074ee9f",
+      "objectId": "sha256:979c8e5ed392463e96fa016de2287c4ca3137a7a020818d655e8395712fbf7a2",
+      "detail": "Canonical or derived Arcaea 7.0.255c image rendition."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "e404c17d-fb83-7da3-be5a-bee4ef201056",
+      "variantId": "f88b2083-72b5-76f0-8510-aa0abac9f749",
+      "renditionId": "9676ae22-2e21-7290-b10e-f90d233b3d16",
+      "objectId": "sha256:493de6b6e5932f13c9fe66269a53e04e9dc13633ff89f4f22d6b9f76519da587",
+      "detail": "Canonical or derived Arcaea 7.0.255c image rendition."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "e404c17d-fb83-7da3-be5a-bee4ef201056",
+      "variantId": "f88b2083-72b5-76f0-8510-aa0abac9f749",
+      "renditionId": "93b76f6a-ce23-74d4-8380-4f2bce5d3c7b",
+      "objectId": "sha256:8722b53ff531050799bcf9fe2e7edb09bab8bc751c7d185480a4c1ee45f78957",
+      "detail": "Canonical or derived Arcaea 7.0.255c image rendition."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "e404c17d-fb83-7da3-be5a-bee4ef201056",
+      "variantId": "f88b2083-72b5-76f0-8510-aa0abac9f749",
+      "renditionId": "3921cbd5-1263-7fd3-ba5c-29c2bea2d92b",
+      "objectId": "sha256:f79f89424061163a4055de6d0ca805cd93f545831ca97a82e11050e5317496ff",
+      "detail": "Canonical or derived Arcaea 7.0.255c image rendition."
+    },
+    {
+      "changeType": "added-resource",
+      "resourceId": "4dba004f-2867-7f12-a0a8-425389d583bd",
+      "detail": "Approved Arcaea 7.0.255c source resource."
+    },
+    {
+      "changeType": "added-variant",
+      "resourceId": "4dba004f-2867-7f12-a0a8-425389d583bd",
+      "variantId": "15f31493-8fe7-72ca-87a8-b551a9c1be61",
+      "detail": "Approved Arcaea 7.0.255c semantic variant."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "4dba004f-2867-7f12-a0a8-425389d583bd",
+      "variantId": "15f31493-8fe7-72ca-87a8-b551a9c1be61",
+      "renditionId": "55b78c1b-12f1-7067-a737-dd470a3d84de",
+      "objectId": "sha256:f00c9a584fc8689505f263d45c9a63cd6cf4c44cd52abe4a4cc54dfb5ea7a77b",
+      "detail": "Canonical or derived Arcaea 7.0.255c image rendition."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "4dba004f-2867-7f12-a0a8-425389d583bd",
+      "variantId": "15f31493-8fe7-72ca-87a8-b551a9c1be61",
+      "renditionId": "b240e894-9d90-7eb3-9116-30ffde483112",
+      "objectId": "sha256:890fc2d8fe145e421fe6e519813eb51c7222c2811ea74d809c674b1e88709fe0",
+      "detail": "Canonical or derived Arcaea 7.0.255c image rendition."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "4dba004f-2867-7f12-a0a8-425389d583bd",
+      "variantId": "15f31493-8fe7-72ca-87a8-b551a9c1be61",
+      "renditionId": "06ce7cd0-60e1-7339-8894-12ee3c9a5a66",
+      "objectId": "sha256:b543fb23d68db4626bffcba1d50da0bd33eb845ce05c5c976194f3dc281e1842",
+      "detail": "Canonical or derived Arcaea 7.0.255c image rendition."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "4dba004f-2867-7f12-a0a8-425389d583bd",
+      "variantId": "15f31493-8fe7-72ca-87a8-b551a9c1be61",
+      "renditionId": "e8706b86-e144-786f-b1a4-8078ca3f086f",
+      "objectId": "sha256:64d12ce1b62e9cff67403d44832660916c84c9404181dfb68095330c9d344a6d",
+      "detail": "Canonical or derived Arcaea 7.0.255c image rendition."
+    },
+    {
+      "changeType": "added-resource",
+      "resourceId": "8d25a475-49eb-754e-b9be-7c7b07a67d14",
+      "detail": "Approved Arcaea 7.0.255c source resource."
+    },
+    {
+      "changeType": "added-variant",
+      "resourceId": "8d25a475-49eb-754e-b9be-7c7b07a67d14",
+      "variantId": "5924d352-a764-799f-ba33-76bdab828fa3",
+      "detail": "Approved Arcaea 7.0.255c semantic variant."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "8d25a475-49eb-754e-b9be-7c7b07a67d14",
+      "variantId": "5924d352-a764-799f-ba33-76bdab828fa3",
+      "renditionId": "554e09db-1e0c-7a43-93af-c6c14aa2cd73",
+      "objectId": "sha256:bae9f0e688ead93d32b4760896a1dd01751d7404cb6cf6b7114ea0b051b62cf1",
+      "detail": "Canonical or derived Arcaea 7.0.255c image rendition."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "8d25a475-49eb-754e-b9be-7c7b07a67d14",
+      "variantId": "5924d352-a764-799f-ba33-76bdab828fa3",
+      "renditionId": "54edd941-e9aa-7431-a705-5b793e81afba",
+      "objectId": "sha256:21f23ecb4b4ba8a04062607bd949ffa1616daeb686f64730b75693f7de2c2bb2",
+      "detail": "Canonical or derived Arcaea 7.0.255c image rendition."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "8d25a475-49eb-754e-b9be-7c7b07a67d14",
+      "variantId": "5924d352-a764-799f-ba33-76bdab828fa3",
+      "renditionId": "36fb8ffc-22c7-7ec0-a009-4145294d9f90",
+      "objectId": "sha256:21f23ecb4b4ba8a04062607bd949ffa1616daeb686f64730b75693f7de2c2bb2",
+      "detail": "Canonical or derived Arcaea 7.0.255c image rendition."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "8d25a475-49eb-754e-b9be-7c7b07a67d14",
+      "variantId": "5924d352-a764-799f-ba33-76bdab828fa3",
+      "renditionId": "ea93574b-0df4-7fc8-8b25-cc25b7e5aa91",
+      "objectId": "sha256:21f23ecb4b4ba8a04062607bd949ffa1616daeb686f64730b75693f7de2c2bb2",
+      "detail": "Canonical or derived Arcaea 7.0.255c image rendition."
+    },
+    {
+      "changeType": "added-resource",
+      "resourceId": "c4cda7d3-d462-7dfb-a14f-bef1fd129362",
+      "detail": "Approved Arcaea 7.0.255c source resource."
+    },
+    {
+      "changeType": "added-variant",
+      "resourceId": "c4cda7d3-d462-7dfb-a14f-bef1fd129362",
+      "variantId": "abcd5db5-a6bf-70f6-9ca6-1521d9989ed7",
+      "detail": "Approved Arcaea 7.0.255c semantic variant."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "c4cda7d3-d462-7dfb-a14f-bef1fd129362",
+      "variantId": "abcd5db5-a6bf-70f6-9ca6-1521d9989ed7",
+      "renditionId": "f501e039-cdfd-7d63-a79c-58825e315b44",
+      "objectId": "sha256:29bd60fd3d8e8aedd41934ef1cc1ff61fd8c24de3516ca25e3a455cb695dbef7",
+      "detail": "Canonical or derived Arcaea 7.0.255c image rendition."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "c4cda7d3-d462-7dfb-a14f-bef1fd129362",
+      "variantId": "abcd5db5-a6bf-70f6-9ca6-1521d9989ed7",
+      "renditionId": "36ad4866-dc31-727e-8988-f4ed50ea8091",
+      "objectId": "sha256:add7e603b8cdff18baf9c1585bde8a5ab1a33126899477e342385b884fec87ab",
+      "detail": "Canonical or derived Arcaea 7.0.255c image rendition."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "c4cda7d3-d462-7dfb-a14f-bef1fd129362",
+      "variantId": "abcd5db5-a6bf-70f6-9ca6-1521d9989ed7",
+      "renditionId": "36322689-7fce-737b-9372-38dce7dc85f4",
+      "objectId": "sha256:a7d73119c49f6ada519e9da47c34fdcb4cc5f1a0ef5787e61c6294a9499cae26",
+      "detail": "Canonical or derived Arcaea 7.0.255c image rendition."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "c4cda7d3-d462-7dfb-a14f-bef1fd129362",
+      "variantId": "abcd5db5-a6bf-70f6-9ca6-1521d9989ed7",
+      "renditionId": "039b462b-0dec-79fc-a86e-9ae7c255d8ff",
+      "objectId": "sha256:f8a7e3f777ab84f4f6c136df975025e11541df711802c200a4b6b376c32d6876",
+      "detail": "Canonical or derived Arcaea 7.0.255c image rendition."
+    },
+    {
+      "changeType": "added-resource",
+      "resourceId": "a0a4d486-1216-78d9-a3c6-ad6ff049b46a",
+      "detail": "Approved Arcaea 7.0.255c source resource."
+    },
+    {
+      "changeType": "added-variant",
+      "resourceId": "a0a4d486-1216-78d9-a3c6-ad6ff049b46a",
+      "variantId": "890c38a3-eb5f-79c2-bfd0-6866503d6bf2",
+      "detail": "Approved Arcaea 7.0.255c semantic variant."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "a0a4d486-1216-78d9-a3c6-ad6ff049b46a",
+      "variantId": "890c38a3-eb5f-79c2-bfd0-6866503d6bf2",
+      "renditionId": "7ef2a8ed-3f51-7fb6-9459-fa4f9cd8360c",
+      "objectId": "sha256:270d8539231cf6a040efa3e4d727f62b3134e3c175e1c508f88eb10d0900215d",
+      "detail": "Canonical or derived Arcaea 7.0.255c image rendition."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "a0a4d486-1216-78d9-a3c6-ad6ff049b46a",
+      "variantId": "890c38a3-eb5f-79c2-bfd0-6866503d6bf2",
+      "renditionId": "7d4761e0-12fa-7edd-813e-8c7d9aa0ae25",
+      "objectId": "sha256:9a72e5865dace3858821b6c678e3aab7f5ef4337ea0c35b3f72e67075645d078",
+      "detail": "Canonical or derived Arcaea 7.0.255c image rendition."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "a0a4d486-1216-78d9-a3c6-ad6ff049b46a",
+      "variantId": "890c38a3-eb5f-79c2-bfd0-6866503d6bf2",
+      "renditionId": "69720709-6979-7a89-8041-40d48ff84d0c",
+      "objectId": "sha256:fdb0405661b7a84be57993efdbe374404d49dbe0e7cb05885f69ccfac90db034",
+      "detail": "Canonical or derived Arcaea 7.0.255c image rendition."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "a0a4d486-1216-78d9-a3c6-ad6ff049b46a",
+      "variantId": "890c38a3-eb5f-79c2-bfd0-6866503d6bf2",
+      "renditionId": "ffda94a7-3585-7085-ae3a-3aeb5d4672c1",
+      "objectId": "sha256:eacabbaa1485d274db57cd4d5889ecbcc9a785c8a7b8fad42aa7da11b3f218d2",
+      "detail": "Canonical or derived Arcaea 7.0.255c image rendition."
+    },
+    {
+      "changeType": "added-resource",
+      "resourceId": "0aad3170-e11c-7fcb-a5ee-e21735b6e3d3",
+      "detail": "Approved Arcaea 7.0.255c source resource."
+    },
+    {
+      "changeType": "added-variant",
+      "resourceId": "0aad3170-e11c-7fcb-a5ee-e21735b6e3d3",
+      "variantId": "2fa1234d-1c3e-734f-9240-7b48296ace92",
+      "detail": "Approved Arcaea 7.0.255c semantic variant."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "0aad3170-e11c-7fcb-a5ee-e21735b6e3d3",
+      "variantId": "2fa1234d-1c3e-734f-9240-7b48296ace92",
+      "renditionId": "3b47ff92-c124-7aa4-9e18-1a2242a576a7",
+      "objectId": "sha256:35c165f20dddac17fa32186395a2f32b2d7fb6d4ab9c823f8929b1b9e16d29e1",
+      "detail": "Canonical or derived Arcaea 7.0.255c image rendition."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "0aad3170-e11c-7fcb-a5ee-e21735b6e3d3",
+      "variantId": "2fa1234d-1c3e-734f-9240-7b48296ace92",
+      "renditionId": "ede40cbc-d8c1-7279-9142-98dac04451ac",
+      "objectId": "sha256:d8baced877a6ffa5c4c31999f3dbd8b521c3ca76c24ed20928bf676cd25f2238",
+      "detail": "Canonical or derived Arcaea 7.0.255c image rendition."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "0aad3170-e11c-7fcb-a5ee-e21735b6e3d3",
+      "variantId": "2fa1234d-1c3e-734f-9240-7b48296ace92",
+      "renditionId": "3ef8855b-4859-7302-aa2a-3e6d577f716d",
+      "objectId": "sha256:ec953f9a62ea4f794533a16eb55943443dd405796f473b3426c93bd561461f64",
+      "detail": "Canonical or derived Arcaea 7.0.255c image rendition."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "0aad3170-e11c-7fcb-a5ee-e21735b6e3d3",
+      "variantId": "2fa1234d-1c3e-734f-9240-7b48296ace92",
+      "renditionId": "310a05c4-a083-7395-be9b-978dfd461845",
+      "objectId": "sha256:68e3297b9f800afc33757db42228972a6c763efa77a19bfeaa97c274710e780c",
+      "detail": "Canonical or derived Arcaea 7.0.255c image rendition."
+    },
+    {
+      "changeType": "added-resource",
+      "resourceId": "1cbb80df-3653-77d5-ba1c-6e0e6ef64140",
+      "detail": "Approved Arcaea 7.0.255c source resource."
+    },
+    {
+      "changeType": "added-variant",
+      "resourceId": "1cbb80df-3653-77d5-ba1c-6e0e6ef64140",
+      "variantId": "ec3dd12c-faec-7ab4-8241-36d45ef33c0d",
+      "detail": "Approved Arcaea 7.0.255c semantic variant."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "1cbb80df-3653-77d5-ba1c-6e0e6ef64140",
+      "variantId": "ec3dd12c-faec-7ab4-8241-36d45ef33c0d",
+      "renditionId": "efc1949a-9658-74b6-b045-558c13c8c42b",
+      "objectId": "sha256:68c3c52350dc79ddd61118cfbe099a083a9337b8763a0eb995a2d56d11f858fd",
+      "detail": "Canonical or derived Arcaea 7.0.255c image rendition."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "1cbb80df-3653-77d5-ba1c-6e0e6ef64140",
+      "variantId": "ec3dd12c-faec-7ab4-8241-36d45ef33c0d",
+      "renditionId": "1c9d3bdd-9242-7f42-80a9-28f9c548a759",
+      "objectId": "sha256:8887ed3d4add45165f3341f95838bfbd65d17edb3848cb1a5446787d80fa042f",
+      "detail": "Canonical or derived Arcaea 7.0.255c image rendition."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "1cbb80df-3653-77d5-ba1c-6e0e6ef64140",
+      "variantId": "ec3dd12c-faec-7ab4-8241-36d45ef33c0d",
+      "renditionId": "237ce068-9093-720a-82b2-159e7668686f",
+      "objectId": "sha256:2566418e4d8e96c48328a63dcb31f98f609eb628981d921a6cc572fef3be5d4b",
+      "detail": "Canonical or derived Arcaea 7.0.255c image rendition."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "1cbb80df-3653-77d5-ba1c-6e0e6ef64140",
+      "variantId": "ec3dd12c-faec-7ab4-8241-36d45ef33c0d",
+      "renditionId": "048f11d7-cfdd-70a8-9a8d-e743d51d3185",
+      "objectId": "sha256:54bd1b9f8962e94baacb9d335fc0e069c6020c9bf1207a50eeef69f02a35b879",
+      "detail": "Canonical or derived Arcaea 7.0.255c image rendition."
+    },
+    {
+      "changeType": "added-resource",
+      "resourceId": "9e3c124e-c8db-7dd7-b5f9-93e06b335919",
+      "detail": "Approved Arcaea 7.0.255c source resource."
+    },
+    {
+      "changeType": "added-variant",
+      "resourceId": "9e3c124e-c8db-7dd7-b5f9-93e06b335919",
+      "variantId": "f96df462-554d-7020-83c0-5ef35b9390a1",
+      "detail": "Approved Arcaea 7.0.255c semantic variant."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "9e3c124e-c8db-7dd7-b5f9-93e06b335919",
+      "variantId": "f96df462-554d-7020-83c0-5ef35b9390a1",
+      "renditionId": "db08d1b4-324e-7881-8eff-810229d40c59",
+      "objectId": "sha256:feea18ff9ca2b52b78a7958b244d4609b933582c8e997a2bee93c51ca76b662d",
+      "detail": "Canonical or derived Arcaea 7.0.255c image rendition."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "9e3c124e-c8db-7dd7-b5f9-93e06b335919",
+      "variantId": "f96df462-554d-7020-83c0-5ef35b9390a1",
+      "renditionId": "de0c2e48-97d4-7e77-8b3a-2b1ee8a112ea",
+      "objectId": "sha256:596898071b7996876b6502f8aba51e7ede43bd192108bc1523bd39dbbaba49fb",
+      "detail": "Canonical or derived Arcaea 7.0.255c image rendition."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "9e3c124e-c8db-7dd7-b5f9-93e06b335919",
+      "variantId": "f96df462-554d-7020-83c0-5ef35b9390a1",
+      "renditionId": "ddf8a626-a46f-7d5f-8394-962f8d15d5b6",
+      "objectId": "sha256:e7f75ae2279b4e592d608ec3115add9c937bc8c4a7cba017163919de22dee15b",
+      "detail": "Canonical or derived Arcaea 7.0.255c image rendition."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "9e3c124e-c8db-7dd7-b5f9-93e06b335919",
+      "variantId": "f96df462-554d-7020-83c0-5ef35b9390a1",
+      "renditionId": "eb821d2b-5b07-779f-a74c-0753132ff7f5",
+      "objectId": "sha256:0477fed101bdde6fae1f3701cda8fa6884e397d0f1b8e6786975310e9909a698",
+      "detail": "Canonical or derived Arcaea 7.0.255c image rendition."
+    },
+    {
+      "changeType": "added-resource",
+      "resourceId": "bb0b62f6-6a36-7d03-beed-03191ef5768e",
+      "detail": "Approved Arcaea 7.0.255c source resource."
+    },
+    {
+      "changeType": "added-variant",
+      "resourceId": "bb0b62f6-6a36-7d03-beed-03191ef5768e",
+      "variantId": "8a5a2458-5b69-7a70-b1fa-a3b85c4f18b6",
+      "detail": "Approved Arcaea 7.0.255c semantic variant."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "bb0b62f6-6a36-7d03-beed-03191ef5768e",
+      "variantId": "8a5a2458-5b69-7a70-b1fa-a3b85c4f18b6",
+      "renditionId": "7e1d550d-c9d6-7381-9c9f-fc7769a87f63",
+      "objectId": "sha256:f0eb9713d8256943914dc0e02f163d0d004dd0cfe115df3ffd3f9541371f15c8",
+      "detail": "Canonical or derived Arcaea 7.0.255c image rendition."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "bb0b62f6-6a36-7d03-beed-03191ef5768e",
+      "variantId": "8a5a2458-5b69-7a70-b1fa-a3b85c4f18b6",
+      "renditionId": "45f6da01-612c-7ccd-ab15-a4e6067ca8e2",
+      "objectId": "sha256:c08d1885dfccefa3e67530a63b890dfe9b948cf611547dbf3c64112ce433c302",
+      "detail": "Canonical or derived Arcaea 7.0.255c image rendition."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "bb0b62f6-6a36-7d03-beed-03191ef5768e",
+      "variantId": "8a5a2458-5b69-7a70-b1fa-a3b85c4f18b6",
+      "renditionId": "7bcc92ea-0f1f-7f6c-b325-9655d448291d",
+      "objectId": "sha256:0a49e728908de6feab14b1175681e53a6af99f038d0bbd536ea1e13854e76da6",
+      "detail": "Canonical or derived Arcaea 7.0.255c image rendition."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "bb0b62f6-6a36-7d03-beed-03191ef5768e",
+      "variantId": "8a5a2458-5b69-7a70-b1fa-a3b85c4f18b6",
+      "renditionId": "91aeae69-4891-70df-9d11-70afd3f3e0d1",
+      "objectId": "sha256:c7ca80abb11f633d74426c35efd4d3d7d3bcd28f68a7308ac9104375ee447dfb",
+      "detail": "Canonical or derived Arcaea 7.0.255c image rendition."
+    },
+    {
+      "changeType": "added-resource",
+      "resourceId": "cd2b127c-a998-79d6-a529-80259c8ae465",
+      "detail": "Approved Arcaea 7.0.255c source resource."
+    },
+    {
+      "changeType": "added-variant",
+      "resourceId": "cd2b127c-a998-79d6-a529-80259c8ae465",
+      "variantId": "feaccc45-7a04-7b26-ac06-8a072ff9037b",
+      "detail": "Approved Arcaea 7.0.255c semantic variant."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "cd2b127c-a998-79d6-a529-80259c8ae465",
+      "variantId": "feaccc45-7a04-7b26-ac06-8a072ff9037b",
+      "renditionId": "b6fe6251-3271-7382-905c-0effbe8659f0",
+      "objectId": "sha256:eca02836becbb136451c89e3aa7c93f596f078973b16a429dbd844cd2217cc20",
+      "detail": "Canonical or derived Arcaea 7.0.255c image rendition."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "cd2b127c-a998-79d6-a529-80259c8ae465",
+      "variantId": "feaccc45-7a04-7b26-ac06-8a072ff9037b",
+      "renditionId": "19573414-c1f7-713e-bd06-400367f69ba8",
+      "objectId": "sha256:07158cdc52660af68e2b1db1f6450df7fdcd1fec7685c945a20d45db113fe1ca",
+      "detail": "Canonical or derived Arcaea 7.0.255c image rendition."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "cd2b127c-a998-79d6-a529-80259c8ae465",
+      "variantId": "feaccc45-7a04-7b26-ac06-8a072ff9037b",
+      "renditionId": "c0c3c8c2-65c6-7993-8374-b9383f998ba3",
+      "objectId": "sha256:d2680ef039778ecfb0b3a4470c289d633bd76c35a6e90d1c69283cf791a2e8e0",
+      "detail": "Canonical or derived Arcaea 7.0.255c image rendition."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "cd2b127c-a998-79d6-a529-80259c8ae465",
+      "variantId": "feaccc45-7a04-7b26-ac06-8a072ff9037b",
+      "renditionId": "bc0cd283-767c-7336-ba40-0e518ded9781",
+      "objectId": "sha256:11e9cb864f79b7ddb6dee738729756a7dc2f2d52b74dabe64d7b6b0f77cebf3d",
+      "detail": "Canonical or derived Arcaea 7.0.255c image rendition."
+    },
+    {
+      "changeType": "added-resource",
+      "resourceId": "8aa2dfc2-aa80-73a5-8f55-dc1cb1cbbd91",
+      "detail": "Approved Arcaea 7.0.255c source resource."
+    },
+    {
+      "changeType": "added-variant",
+      "resourceId": "8aa2dfc2-aa80-73a5-8f55-dc1cb1cbbd91",
+      "variantId": "92d3c464-2965-78f6-9057-cb758442a460",
+      "detail": "Approved Arcaea 7.0.255c semantic variant."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "8aa2dfc2-aa80-73a5-8f55-dc1cb1cbbd91",
+      "variantId": "92d3c464-2965-78f6-9057-cb758442a460",
+      "renditionId": "73ca9d06-f120-732b-b47c-5b85867eecef",
+      "objectId": "sha256:13b54d859f35ef5efd68345a9b7212bb05d2ff01fa30b61abb85746cd5dcbf99",
+      "detail": "Canonical or derived Arcaea 7.0.255c image rendition."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "8aa2dfc2-aa80-73a5-8f55-dc1cb1cbbd91",
+      "variantId": "92d3c464-2965-78f6-9057-cb758442a460",
+      "renditionId": "0a0f2abd-2ee1-7e17-97da-e9ad4d976376",
+      "objectId": "sha256:e4962b8a09e2d0cf8438b8d42b1bb0b1c75888b67529738d6852deb3475463ff",
+      "detail": "Canonical or derived Arcaea 7.0.255c image rendition."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "8aa2dfc2-aa80-73a5-8f55-dc1cb1cbbd91",
+      "variantId": "92d3c464-2965-78f6-9057-cb758442a460",
+      "renditionId": "21c40aa3-ea45-79dd-8f03-be71ae46c57a",
+      "objectId": "sha256:e4962b8a09e2d0cf8438b8d42b1bb0b1c75888b67529738d6852deb3475463ff",
+      "detail": "Canonical or derived Arcaea 7.0.255c image rendition."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "8aa2dfc2-aa80-73a5-8f55-dc1cb1cbbd91",
+      "variantId": "92d3c464-2965-78f6-9057-cb758442a460",
+      "renditionId": "6286751f-1ff9-754e-8b22-927aa598c21f",
+      "objectId": "sha256:e4962b8a09e2d0cf8438b8d42b1bb0b1c75888b67529738d6852deb3475463ff",
+      "detail": "Canonical or derived Arcaea 7.0.255c image rendition."
+    },
+    {
+      "changeType": "added-resource",
+      "resourceId": "6bd965af-29e7-7895-8c40-df11f47892a1",
+      "detail": "Approved Arcaea 7.0.255c source resource."
+    },
+    {
+      "changeType": "added-variant",
+      "resourceId": "6bd965af-29e7-7895-8c40-df11f47892a1",
+      "variantId": "22be0454-7064-792d-83dd-2b235b103429",
+      "detail": "Approved Arcaea 7.0.255c semantic variant."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "6bd965af-29e7-7895-8c40-df11f47892a1",
+      "variantId": "22be0454-7064-792d-83dd-2b235b103429",
+      "renditionId": "ca72e785-d09f-72f5-ae22-c9b3e6a2b8a2",
+      "objectId": "sha256:798e2f5563ab4c51417fbbe8052480e488c8e7199722658072685ac4b84e8008",
+      "detail": "Canonical or derived Arcaea 7.0.255c image rendition."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "6bd965af-29e7-7895-8c40-df11f47892a1",
+      "variantId": "22be0454-7064-792d-83dd-2b235b103429",
+      "renditionId": "278dc68c-c164-7f5c-9c2d-df3743cdee3d",
+      "objectId": "sha256:96b6aa16fad0782b4045dd3caa0809e1d4d94b980046ec5c270e0cd464431bb0",
+      "detail": "Canonical or derived Arcaea 7.0.255c image rendition."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "6bd965af-29e7-7895-8c40-df11f47892a1",
+      "variantId": "22be0454-7064-792d-83dd-2b235b103429",
+      "renditionId": "52ad38a1-1083-7745-85b2-4d31a999299d",
+      "objectId": "sha256:96b6aa16fad0782b4045dd3caa0809e1d4d94b980046ec5c270e0cd464431bb0",
+      "detail": "Canonical or derived Arcaea 7.0.255c image rendition."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "6bd965af-29e7-7895-8c40-df11f47892a1",
+      "variantId": "22be0454-7064-792d-83dd-2b235b103429",
+      "renditionId": "434a90e5-c2d1-7db0-a95f-33aa3d1ad1b0",
+      "objectId": "sha256:96b6aa16fad0782b4045dd3caa0809e1d4d94b980046ec5c270e0cd464431bb0",
+      "detail": "Canonical or derived Arcaea 7.0.255c image rendition."
+    }
+  ],
+  "affectedResourceIds": [
+    "e404c17d-fb83-7da3-be5a-bee4ef201056",
+    "4dba004f-2867-7f12-a0a8-425389d583bd",
+    "8d25a475-49eb-754e-b9be-7c7b07a67d14",
+    "c4cda7d3-d462-7dfb-a14f-bef1fd129362",
+    "a0a4d486-1216-78d9-a3c6-ad6ff049b46a",
+    "0aad3170-e11c-7fcb-a5ee-e21735b6e3d3",
+    "1cbb80df-3653-77d5-ba1c-6e0e6ef64140",
+    "9e3c124e-c8db-7dd7-b5f9-93e06b335919",
+    "bb0b62f6-6a36-7d03-beed-03191ef5768e",
+    "cd2b127c-a998-79d6-a529-80259c8ae465",
+    "8aa2dfc2-aa80-73a5-8f55-dc1cb1cbbd91",
+    "6bd965af-29e7-7895-8c40-df11f47892a1"
+  ],
+  "publishedRenditions": [
+    {
+      "resourceId": "e404c17d-fb83-7da3-be5a-bee4ef201056",
+      "variantId": "f88b2083-72b5-76f0-8510-aa0abac9f749",
+      "renditionId": "308d0d7c-0851-719e-8dbc-c4a17074ee9f",
+      "objectId": "sha256:979c8e5ed392463e96fa016de2287c4ca3137a7a020818d655e8395712fbf7a2",
+      "downloadFilename": "sacrosanct_clear.png"
+    },
+    {
+      "resourceId": "4dba004f-2867-7f12-a0a8-425389d583bd",
+      "variantId": "15f31493-8fe7-72ca-87a8-b551a9c1be61",
+      "renditionId": "55b78c1b-12f1-7067-a737-dd470a3d84de",
+      "objectId": "sha256:f00c9a584fc8689505f263d45c9a63cd6cf4c44cd52abe4a4cc54dfb5ea7a77b",
+      "downloadFilename": "sacrosanct.jpg"
+    },
+    {
+      "resourceId": "8d25a475-49eb-754e-b9be-7c7b07a67d14",
+      "variantId": "5924d352-a764-799f-ba33-76bdab828fa3",
+      "renditionId": "554e09db-1e0c-7a43-93af-c6c14aa2cd73",
+      "objectId": "sha256:bae9f0e688ead93d32b4760896a1dd01751d7404cb6cf6b7114ea0b051b62cf1",
+      "downloadFilename": "識眼_insight konzetsu_98_icon.png"
+    },
+    {
+      "resourceId": "c4cda7d3-d462-7dfb-a14f-bef1fd129362",
+      "variantId": "abcd5db5-a6bf-70f6-9ca6-1521d9989ed7",
+      "renditionId": "f501e039-cdfd-7d63-a79c-58825e315b44",
+      "objectId": "sha256:29bd60fd3d8e8aedd41934ef1cc1ff61fd8c24de3516ca25e3a455cb695dbef7",
+      "downloadFilename": "識眼_insight konzetsu_98.png"
+    },
+    {
+      "resourceId": "a0a4d486-1216-78d9-a3c6-ad6ff049b46a",
+      "variantId": "890c38a3-eb5f-79c2-bfd0-6866503d6bf2",
+      "renditionId": "7ef2a8ed-3f51-7fb6-9459-fa4f9cd8360c",
+      "objectId": "sha256:270d8539231cf6a040efa3e4d727f62b3134e3c175e1c508f88eb10d0900215d",
+      "downloadFilename": "_Silentroom Dismantled XOR かたぎり_7.0_konzetsu_IDX 553_BPM_SIDE 4_sacrosanct_1080_base.jpg"
+    },
+    {
+      "resourceId": "0aad3170-e11c-7fcb-a5ee-e21735b6e3d3",
+      "variantId": "2fa1234d-1c3e-734f-9240-7b48296ace92",
+      "renditionId": "3b47ff92-c124-7aa4-9e18-1a2242a576a7",
+      "objectId": "sha256:35c165f20dddac17fa32186395a2f32b2d7fb6d4ab9c823f8929b1b9e16d29e1",
+      "downloadFilename": "識眼_insight konzetsu_98_mp.png"
+    },
+    {
+      "resourceId": "1cbb80df-3653-77d5-ba1c-6e0e6ef64140",
+      "variantId": "ec3dd12c-faec-7ab4-8241-36d45ef33c0d",
+      "renditionId": "efc1949a-9658-74b6-b045-558c13c8c42b",
+      "objectId": "sha256:68c3c52350dc79ddd61118cfbe099a083a9337b8763a0eb995a2d56d11f858fd",
+      "downloadFilename": "C-10-1.jpg"
+    },
+    {
+      "resourceId": "9e3c124e-c8db-7dd7-b5f9-93e06b335919",
+      "variantId": "f96df462-554d-7020-83c0-5ef35b9390a1",
+      "renditionId": "db08d1b4-324e-7881-8eff-810229d40c59",
+      "objectId": "sha256:feea18ff9ca2b52b78a7958b244d4609b933582c8e997a2bee93c51ca76b662d",
+      "downloadFilename": "C-10-2.jpg"
+    },
+    {
+      "resourceId": "bb0b62f6-6a36-7d03-beed-03191ef5768e",
+      "variantId": "8a5a2458-5b69-7a70-b1fa-a3b85c4f18b6",
+      "renditionId": "7e1d550d-c9d6-7381-9c9f-fc7769a87f63",
+      "objectId": "sha256:f0eb9713d8256943914dc0e02f163d0d004dd0cfe115df3ffd3f9541371f15c8",
+      "downloadFilename": "C-10-3.jpg"
+    },
+    {
+      "resourceId": "cd2b127c-a998-79d6-a529-80259c8ae465",
+      "variantId": "feaccc45-7a04-7b26-ac06-8a072ff9037b",
+      "renditionId": "b6fe6251-3271-7382-905c-0effbe8659f0",
+      "objectId": "sha256:eca02836becbb136451c89e3aa7c93f596f078973b16a429dbd844cd2217cc20",
+      "downloadFilename": "C-10-4.jpg"
+    },
+    {
+      "resourceId": "8aa2dfc2-aa80-73a5-8f55-dc1cb1cbbd91",
+      "variantId": "92d3c464-2965-78f6-9057-cb758442a460",
+      "renditionId": "73ca9d06-f120-732b-b47c-5b85867eecef",
+      "objectId": "sha256:13b54d859f35ef5efd68345a9b7212bb05d2ff01fa30b61abb85746cd5dcbf99",
+      "downloadFilename": "entry_konzetsu_10_pressed.png"
+    },
+    {
+      "resourceId": "6bd965af-29e7-7895-8c40-df11f47892a1",
+      "variantId": "22be0454-7064-792d-83dd-2b235b103429",
+      "renditionId": "ca72e785-d09f-72f5-ae22-c9b3e6a2b8a2",
+      "objectId": "sha256:798e2f5563ab4c51417fbbe8052480e488c8e7199722658072685ac4b84e8008",
+      "downloadFilename": "entry_konzetsu_10.png"
+    }
+  ],
+  "removedFromCurrentSource": [],
+  "notes": [
+    "Arcaea 7.0.255c Cocos2d-x APK update integrated from the approved local review package.",
+    "Scope includes 12 new non-sticker image resources (48 original/thumbnail Renditions); unchanged full-snapshot categories remain represented by the previous Catalog snapshot.",
+    "Browse metadata separately records the new song, Divine Oblivion C-10 story content, character 98, and chart-level corrections.",
+    "REMOVED is empty; no Catalog or object deletion was performed.",
+    "Local Catalog and ReleaseManifest only; ROS/object-storage upload and production publication are disabled for this repository workflow."
+  ]
+}

@@ -314,11 +314,11 @@ async function prepareEntry(
       sourceFilename: path.basename(sourceApkPath),
       sourceSha256: apkSha256,
       evidence: [
-        { kind: "apk-relative-path" as const, detail: "Selected from the Arcaea 7.0 APK at assets/" + normalizePath(candidate.sourceRelativePath) + ".", confidence: "high" as const },
+        { kind: "apk-relative-path" as const, detail: `Selected from the Arcaea ${manifestVersion} APK at assets/${normalizePath(candidate.sourceRelativePath)}.`, confidence: "high" as const },
         ...candidate.evidence,
         { kind: "sha256" as const, detail: "Extracted bytes were verified against the approved candidate manifest.", confidence: "high" as const },
       ],
-      reviewerNote: "Accepted in the local Arcaea 7.0 evidence review.",
+      reviewerNote: `Accepted in the local Arcaea ${manifestVersion} evidence review.`,
     }],
     lifecycle: { status: "published", createdAt: now, updatedAt: now, publishedAt: now },
   });
@@ -333,7 +333,7 @@ async function prepareEntry(
     ...(entry.variantKey === "default" ? { preferred: true } : {}),
     ...(DIFFICULTIES.has(entry.variantKey) ? { difficulty: entry.variantKey } : {}),
     markers: { unresolved: suggestedVariant?.unresolved ?? [] },
-    note: "Accepted from the approved Arcaea 7.0 local update review.",
+    note: `Accepted from the approved Arcaea ${manifestVersion} local update review.`,
   });
   const canonicalObject = makeObject({
     candidate,
@@ -448,8 +448,8 @@ async function buildPlan(
   const releaseId = uuid("release", sourceSnapshot);
   const changes: ReleaseManifestType["changes"] = [];
   for (const item of prepared) {
-    changes.push({ changeType: "added-resource", resourceId: item.resource.id, detail: "Approved Arcaea 7.0 source resource." });
-    changes.push({ changeType: "added-variant", resourceId: item.resource.id, variantId: item.variant.id, detail: "Approved Arcaea 7.0 semantic variant." });
+    changes.push({ changeType: "added-resource", resourceId: item.resource.id, detail: `Approved Arcaea ${manifest.version} source resource.` });
+    changes.push({ changeType: "added-variant", resourceId: item.resource.id, variantId: item.variant.id, detail: `Approved Arcaea ${manifest.version} semantic variant.` });
     for (const rendition of item.renditions) {
       changes.push({
         changeType: "added-rendition",
@@ -457,7 +457,7 @@ async function buildPlan(
         variantId: item.variant.id,
         renditionId: rendition.id,
         objectId: rendition.objectId,
-        detail: "Canonical or derived Arcaea 7.0 image rendition.",
+        detail: `Canonical or derived Arcaea ${manifest.version} image rendition.`,
       });
     }
   }
@@ -492,9 +492,9 @@ async function buildPlan(
     })),
     removedFromCurrentSource: [],
     notes: [
-      "Arcaea 7.0 Cocos2d-x APK update integrated from the approved local review package.",
-      "Scope includes 143 new non-sticker image resources; the 99 unchanged LinkPlay stickers remain represented by the previous Catalog snapshot.",
-      "Browse metadata separately records 8 new songs, Divine Oblivion pack/story content, and 3 existing chart-level corrections.",
+      `Arcaea ${manifest.version} Cocos2d-x APK update integrated from the approved local review package.`,
+      `Scope includes ${prepared.length} new non-sticker image resources; unchanged full-snapshot categories remain represented by the previous Catalog snapshot.`,
+      "Browse metadata is updated separately from the package songlist, character, story and chart audit inputs.",
       "REMOVED is empty; no Catalog or object deletion was performed.",
       "Local Catalog and ReleaseManifest only; ROS/object-storage upload and production publication are disabled for this repository workflow.",
     ],

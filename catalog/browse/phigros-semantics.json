@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
   "game": "phigros",
-  "generatedAt": "2026-08-28T08:06:33.798Z",
+  "generatedAt": "2026-09-02T06:11:11.177Z",
   "source": {
     "snapshot": "Phigros APK 3.19.5",
-    "sha256": "75e537d71b3754f03d91ed8642cdb280e1ae415b4e6033c0d8a41680d787f6ad"
+    "sha256": "5586683fc93decc4f1a0244398139521b1135b7bbc1fd99d7ab8321d3d500668"
   },
   "resources": [
     {

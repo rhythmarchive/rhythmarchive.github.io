@@ -2,10 +2,10 @@
   "schemaVersion": 1,
   "game": "arcaea",
   "source": {
-    "packageVersion": "7.0.0c",
-    "packageSha256": "8ef5225f4dab43135711a776f2fba05e0e397b29c569147e7f1f18663d9a8522",
+    "packageVersion": "7.0.255c",
+    "packageSha256": "5aeb5edc425808605cc8a682cd9269aecae671fdab9573376b100d08ee3577c6",
     "orderingPath": "assets/app-data/story2/ordering",
-    "verifiedAt": "2026-08-29",
+    "verifiedAt": "2026-09-02",
     "wikiSources": [
       {
         "url": "https://wikiwiki.jp/arcaea/%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AA%E3%83%BC",
@@ -53445,10 +53445,30 @@
           ]
         }
       }
+    },
+    {
+      "nodeKey": "C-10",
+      "pathId": 33,
+      "rawEntryKey": "24-10",
+      "sourcePath": "assets/app-data/story/main/entries_24",
+      "storyType": "nvl",
+      "characterIds": [
+        98
+      ],
+      "clearSongId": "_hiddenUntilRead",
+      "bgmOverride": "sigil.ogg",
+      "requiredPurchase": "konzetsu",
+      "requiredMinor": 9,
+      "additionalRequires": [],
+      "hiddenFromCount": true,
+      "storyCgPaths": [
+        "assets/app-data/story/cg/C-10-1.jpg"
+      ],
+      "texts": {}
     }
   ],
   "coverage": {
-    "entryCount": 195,
+    "entryCount": 196,
     "entriesWithText": 195,
     "localeCounts": {
       "zh-Hans": 195,

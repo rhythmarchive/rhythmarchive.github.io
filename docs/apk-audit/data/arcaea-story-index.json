@@ -2,10 +2,10 @@
   "schemaVersion": 1,
   "game": "arcaea",
   "source": {
-    "packageVersion": "7.0.0c",
-    "packageSha256": "8ef5225f4dab43135711a776f2fba05e0e397b29c569147e7f1f18663d9a8522",
+    "packageVersion": "7.0.255c",
+    "packageSha256": "5aeb5edc425808605cc8a682cd9269aecae671fdab9573376b100d08ee3577c6",
     "orderingPath": "assets/app-data/story2/ordering",
-    "verifiedAt": "2026-08-29",
+    "verifiedAt": "2026-09-02",
     "wikiSources": [
       {
         "url": "https://wikiwiki.jp/arcaea/%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AA%E3%83%BC",
@@ -30,319 +30,1231 @@
     ]
   },
   "sections": [
-    { "act": 0, "label": "Act I · Part I", "pathIds": [0, 1, 2, 3, 4, 5, 6, 7] },
-    { "act": 1, "label": "Act I · Part II", "pathIds": [8, 9, 10, 11, 12, 13, 14] },
-    { "act": 2, "label": "Act I · Part III", "pathIds": [15, 16, 17, 18, 19] },
-    { "act": 3, "label": "Act II · Part I", "pathIds": [20, 21, 22, 23, 24, 25, 26, 27, 28] },
-    { "act": 4, "label": "Act II · Part II", "pathIds": [29, 30, 31, 32, 33] }
+    {
+      "act": 0,
+      "label": "Act I · Part I",
+      "pathIds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ]
+    },
+    {
+      "act": 1,
+      "label": "Act I · Part II",
+      "pathIds": [
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14
+      ]
+    },
+    {
+      "act": 2,
+      "label": "Act I · Part III",
+      "pathIds": [
+        15,
+        16,
+        17,
+        18,
+        19
+      ]
+    },
+    {
+      "act": 3,
+      "label": "Act II · Part I",
+      "pathIds": [
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28
+      ]
+    },
+    {
+      "act": 4,
+      "label": "Act II · Part II",
+      "pathIds": [
+        29,
+        30,
+        31,
+        32,
+        33
+      ]
+    }
   ],
   "paths": [
-    { "pathId": 0, "act": 0, "title": "Arcaea", "type": "main", "characters": [0, 1], "nodes": ["0-1", "0-2", "0-3"] },
-    { "pathId": 1, "act": 0, "title": "Eternal Core", "type": "main", "characters": [0, 1], "nodes": ["1-1", "1-2", "1-3", "2-1", "2-2", "2-3"] },
-    { "pathId": 2, "act": 0, "title": "Vicious Labyrinth", "type": "main", "characters": [1], "nodes": ["2-4", "2-5", "2-D", "2-7", "2-8", "2-9", "V-0"] },
-    { "pathId": 3, "act": 0, "title": "Luminous Sky", "type": "main", "characters": [0], "nodes": ["1-4", "1-5", "1-ZR", "1-7", "1-8", "1-9"] },
-    { "pathId": 4, "act": 0, "title": "Absolute Reason", "type": "side", "characters": [23], "nodes": ["3-1", "3-2", "3-3", "3-4", "3-5", "3-6"] },
-    { "pathId": 5, "act": 0, "title": "Adverse Prelude", "type": "main", "characters": [0, 1], "nodes": ["V-1", "V-2", "V-3", "V-4"] },
-    { "pathId": 6, "act": 0, "title": "Crimson Solace", "type": "side", "characters": [2], "nodes": ["4-1", "4-2", "4-3", "4-4", "4-5", "4-6", "4-7", "4-8"] },
-    { "pathId": 7, "act": 0, "title": "Ambivalent Vision", "type": "side", "characters": [4], "nodes": ["5-1", "5-2", "5-3", "5-4", "5-5", "5-6"] },
-    { "pathId": 8, "act": 1, "title": "Black Fate", "type": "main", "characters": [0, 1], "nodes": ["VS-1", "VS-2", "VS-3", "VS-4", "VS-5", "VS-6", "VS-7", "VS-8"] },
-    { "pathId": 9, "act": 1, "title": "Scarlet Cage", "type": "archive", "characters": [13], "nodes": ["6-1", "6-2", "6-3"] },
-    { "pathId": 10, "act": 1, "title": "Ephemeral Page", "type": "side", "characters": [39], "nodes": ["7-1", "7-2", "7-3", "7-4", "7-5", "7-6"] },
-    { "pathId": 11, "act": 1, "title": "Divided Heart", "type": "side", "characters": [99], "nodes": ["S-1", "S-2", "S-3", "S-4", "S-5", "S-6"] },
-    { "pathId": 12, "act": 1, "title": "Obsidian Blade", "type": "archive", "characters": [44], "nodes": ["8-1", "8-2", "8-3"] },
-    { "pathId": 13, "act": 1, "title": "Colorful Dream", "type": "archive", "characters": [19], "nodes": ["11-1", "11-2", "11-3"] },
-    { "pathId": 14, "act": 1, "title": "Vermillion Shield", "type": "archive", "characters": [44], "nodes": ["8-4", "8-5", "8-6", "8-7", "8-8", "8-9"] },
-    { "pathId": 15, "act": 2, "title": "Esoteric Order", "type": "side", "characters": [45], "nodes": ["9-1", "9-2", "9-3", "9-4", "9-5", "9-6"] },
-    { "pathId": 16, "act": 2, "title": "Binary Enfold", "type": "side", "characters": [11, 12], "nodes": ["10-1", "10-2", "10-3", "10-4", "10-5", "10-6"] },
-    { "pathId": 17, "act": 2, "title": "Unseeing Eyes", "type": "archive", "characters": [54], "nodes": ["12-1", "12-2", "12-3", "12-?"] },
-    { "pathId": 18, "act": 2, "title": "Dark Ambition", "type": "archive", "characters": [10], "nodes": ["13-1", "13-2", "13-3", "13-4"] },
-    { "pathId": 19, "act": 2, "title": "Final Verdict", "type": "main", "characters": [0, 1], "nodes": ["F-1", "F-2", "F-3", "F-4", "F-5", "F-6", "F-7", "E-1", "E-2"] },
-    { "pathId": 20, "act": 3, "title": "Ambivalent Vision", "type": "side", "characters": [4], "nodes": ["18-I", "18-II", "18-III"] },
-    { "pathId": 21, "act": 3, "title": "Astral Sea", "type": "archive", "characters": [47], "nodes": ["14-1", "14-2", "14-3", "14-4"] },
-    { "pathId": 22, "act": 3, "title": "Lasting Eden", "type": "main", "characters": [71], "nodes": ["15-1", "15-2", "15-3", "15-4", "15-5", "15-6"] },
-    { "pathId": 23, "act": 3, "title": "Severed Eden", "type": "main", "characters": [72], "nodes": ["16-1", "16-2", "16-3", "16-4", "16-5", "16-6", "16-7", "16-8"] },
-    { "pathId": 24, "act": 3, "title": "Sunset Radiance", "type": "side", "characters": [30], "nodes": ["17-1", "17-2", "17-3", "17-4", "17-5", "17-6"] },
-    { "pathId": 25, "act": 3, "title": "Colorful Dream", "type": "archive", "characters": [19], "nodes": ["11-4", "11-5", "11-6", "11-7", "11-8"] },
-    { "pathId": 26, "act": 3, "title": "Unseeing Eyes", "type": "archive", "characters": [54], "nodes": ["12-4", "12-5", "12-6"] },
-    { "pathId": 27, "act": 3, "title": "Absolute Nihil", "type": "main", "characters": [23], "nodes": ["18-1", "18-2", "18-3", "18-4", "18-5", "18-6", "18-7"] },
-    { "pathId": 28, "act": 3, "title": "Rotaeno", "type": "archive", "characters": [11, 12], "nodes": ["19-1", "19-2", "19-3", "19-4", "19-5", "19-6", "19-7", "19-8"] },
-    { "pathId": 29, "act": 4, "title": "Lucent Historia", "type": "main", "characters": [78], "nodes": ["20-1", "20-2", "20-3", "20-4", "20-5", "20-6", "20-7", "20-8"] },
-    { "pathId": 30, "act": 4, "title": "Extant Anima", "type": "side", "characters": [89], "nodes": ["21-1", "21-2", "21-3", "21-4", "21-5"] },
-    { "pathId": 31, "act": 4, "title": "Chapter Experientia", "type": "side", "characters": [89], "nodes": ["22-5", "22-4", "22-3", "22-2", "22-1"] },
-    { "pathId": 32, "act": 4, "title": "Liminal Eclipse", "type": "main", "characters": [71, 54], "nodes": ["23-1", "23-2", "23-3", "23-4", "23-5", "23-6", "23-7", "23-8"] },
-    { "pathId": 33, "act": 4, "title": "Divine Oblivion", "type": "main", "characters": [23, 72], "nodes": ["C-1", "C-2", "C-3", "C-4", "C-5", "C-6", "C-7", "C-8", "C-9"] }
+    {
+      "pathId": 0,
+      "act": 0,
+      "title": "Arcaea",
+      "type": "main",
+      "characters": [
+        0,
+        1
+      ],
+      "nodes": [
+        "0-1",
+        "0-2",
+        "0-3"
+      ]
+    },
+    {
+      "pathId": 1,
+      "act": 0,
+      "title": "Eternal Core",
+      "type": "main",
+      "characters": [
+        0,
+        1
+      ],
+      "nodes": [
+        "1-1",
+        "1-2",
+        "1-3",
+        "2-1",
+        "2-2",
+        "2-3"
+      ]
+    },
+    {
+      "pathId": 2,
+      "act": 0,
+      "title": "Vicious Labyrinth",
+      "type": "main",
+      "characters": [
+        1
+      ],
+      "nodes": [
+        "2-4",
+        "2-5",
+        "2-D",
+        "2-7",
+        "2-8",
+        "2-9",
+        "V-0"
+      ]
+    },
+    {
+      "pathId": 3,
+      "act": 0,
+      "title": "Luminous Sky",
+      "type": "main",
+      "characters": [
+        0
+      ],
+      "nodes": [
+        "1-4",
+        "1-5",
+        "1-ZR",
+        "1-7",
+        "1-8",
+        "1-9"
+      ]
+    },
+    {
+      "pathId": 4,
+      "act": 0,
+      "title": "Absolute Reason",
+      "type": "side",
+      "characters": [
+        23
+      ],
+      "nodes": [
+        "3-1",
+        "3-2",
+        "3-3",
+        "3-4",
+        "3-5",
+        "3-6"
+      ]
+    },
+    {
+      "pathId": 5,
+      "act": 0,
+      "title": "Adverse Prelude",
+      "type": "main",
+      "characters": [
+        0,
+        1
+      ],
+      "nodes": [
+        "V-1",
+        "V-2",
+        "V-3",
+        "V-4"
+      ]
+    },
+    {
+      "pathId": 6,
+      "act": 0,
+      "title": "Crimson Solace",
+      "type": "side",
+      "characters": [
+        2
+      ],
+      "nodes": [
+        "4-1",
+        "4-2",
+        "4-3",
+        "4-4",
+        "4-5",
+        "4-6",
+        "4-7",
+        "4-8"
+      ]
+    },
+    {
+      "pathId": 7,
+      "act": 0,
+      "title": "Ambivalent Vision",
+      "type": "side",
+      "characters": [
+        4
+      ],
+      "nodes": [
+        "5-1",
+        "5-2",
+        "5-3",
+        "5-4",
+        "5-5",
+        "5-6"
+      ]
+    },
+    {
+      "pathId": 8,
+      "act": 1,
+      "title": "Black Fate",
+      "type": "main",
+      "characters": [
+        0,
+        1
+      ],
+      "nodes": [
+        "VS-1",
+        "VS-2",
+        "VS-3",
+        "VS-4",
+        "VS-5",
+        "VS-6",
+        "VS-7",
+        "VS-8"
+      ]
+    },
+    {
+      "pathId": 9,
+      "act": 1,
+      "title": "Scarlet Cage",
+      "type": "archive",
+      "characters": [
+        13
+      ],
+      "nodes": [
+        "6-1",
+        "6-2",
+        "6-3"
+      ]
+    },
+    {
+      "pathId": 10,
+      "act": 1,
+      "title": "Ephemeral Page",
+      "type": "side",
+      "characters": [
+        39
+      ],
+      "nodes": [
+        "7-1",
+        "7-2",
+        "7-3",
+        "7-4",
+        "7-5",
+        "7-6"
+      ]
+    },
+    {
+      "pathId": 11,
+      "act": 1,
+      "title": "Divided Heart",
+      "type": "side",
+      "characters": [
+        99
+      ],
+      "nodes": [
+        "S-1",
+        "S-2",
+        "S-3",
+        "S-4",
+        "S-5",
+        "S-6"
+      ]
+    },
+    {
+      "pathId": 12,
+      "act": 1,
+      "title": "Obsidian Blade",
+      "type": "archive",
+      "characters": [
+        44
+      ],
+      "nodes": [
+        "8-1",
+        "8-2",
+        "8-3"
+      ]
+    },
+    {
+      "pathId": 13,
+      "act": 1,
+      "title": "Colorful Dream",
+      "type": "archive",
+      "characters": [
+        19
+      ],
+      "nodes": [
+        "11-1",
+        "11-2",
+        "11-3"
+      ]
+    },
+    {
+      "pathId": 14,
+      "act": 1,
+      "title": "Vermillion Shield",
+      "type": "archive",
+      "characters": [
+        44
+      ],
+      "nodes": [
+        "8-4",
+        "8-5",
+        "8-6",
+        "8-7",
+        "8-8",
+        "8-9"
+      ]
+    },
+    {
+      "pathId": 15,
+      "act": 2,
+      "title": "Esoteric Order",
+      "type": "side",
+      "characters": [
+        45
+      ],
+      "nodes": [
+        "9-1",
+        "9-2",
+        "9-3",
+        "9-4",
+        "9-5",
+        "9-6"
+      ]
+    },
+    {
+      "pathId": 16,
+      "act": 2,
+      "title": "Binary Enfold",
+      "type": "side",
+      "characters": [
+        11,
+        12
+      ],
+      "nodes": [
+        "10-1",
+        "10-2",
+        "10-3",
+        "10-4",
+        "10-5",
+        "10-6"
+      ]
+    },
+    {
+      "pathId": 17,
+      "act": 2,
+      "title": "Unseeing Eyes",
+      "type": "archive",
+      "characters": [
+        54
+      ],
+      "nodes": [
+        "12-1",
+        "12-2",
+        "12-3",
+        "12-?"
+      ]
+    },
+    {
+      "pathId": 18,
+      "act": 2,
+      "title": "Dark Ambition",
+      "type": "archive",
+      "characters": [
+        10
+      ],
+      "nodes": [
+        "13-1",
+        "13-2",
+        "13-3",
+        "13-4"
+      ]
+    },
+    {
+      "pathId": 19,
+      "act": 2,
+      "title": "Final Verdict",
+      "type": "main",
+      "characters": [
+        0,
+        1
+      ],
+      "nodes": [
+        "F-1",
+        "F-2",
+        "F-3",
+        "F-4",
+        "F-5",
+        "F-6",
+        "F-7",
+        "E-1",
+        "E-2"
+      ]
+    },
+    {
+      "pathId": 20,
+      "act": 3,
+      "title": "Ambivalent Vision",
+      "type": "side",
+      "characters": [
+        4
+      ],
+      "nodes": [
+        "18-I",
+        "18-II",
+        "18-III"
+      ]
+    },
+    {
+      "pathId": 21,
+      "act": 3,
+      "title": "Astral Sea",
+      "type": "archive",
+      "characters": [
+        47
+      ],
+      "nodes": [
+        "14-1",
+        "14-2",
+        "14-3",
+        "14-4"
+      ]
+    },
+    {
+      "pathId": 22,
+      "act": 3,
+      "title": "Lasting Eden",
+      "type": "main",
+      "characters": [
+        71
+      ],
+      "nodes": [
+        "15-1",
+        "15-2",
+        "15-3",
+        "15-4",
+        "15-5",
+        "15-6"
+      ]
+    },
+    {
+      "pathId": 23,
+      "act": 3,
+      "title": "Severed Eden",
+      "type": "main",
+      "characters": [
+        72
+      ],
+      "nodes": [
+        "16-1",
+        "16-2",
+        "16-3",
+        "16-4",
+        "16-5",
+        "16-6",
+        "16-7",
+        "16-8"
+      ]
+    },
+    {
+      "pathId": 24,
+      "act": 3,
+      "title": "Sunset Radiance",
+      "type": "side",
+      "characters": [
+        30
+      ],
+      "nodes": [
+        "17-1",
+        "17-2",
+        "17-3",
+        "17-4",
+        "17-5",
+        "17-6"
+      ]
+    },
+    {
+      "pathId": 25,
+      "act": 3,
+      "title": "Colorful Dream",
+      "type": "archive",
+      "characters": [
+        19
+      ],
+      "nodes": [
+        "11-4",
+        "11-5",
+        "11-6",
+        "11-7",
+        "11-8"
+      ]
+    },
+    {
+      "pathId": 26,
+      "act": 3,
+      "title": "Unseeing Eyes",
+      "type": "archive",
+      "characters": [
+        54
+      ],
+      "nodes": [
+        "12-4",
+        "12-5",
+        "12-6"
+      ]
+    },
+    {
+      "pathId": 27,
+      "act": 3,
+      "title": "Absolute Nihil",
+      "type": "main",
+      "characters": [
+        23
+      ],
+      "nodes": [
+        "18-1",
+        "18-2",
+        "18-3",
+        "18-4",
+        "18-5",
+        "18-6",
+        "18-7"
+      ]
+    },
+    {
+      "pathId": 28,
+      "act": 3,
+      "title": "Rotaeno",
+      "type": "archive",
+      "characters": [
+        11,
+        12
+      ],
+      "nodes": [
+        "19-1",
+        "19-2",
+        "19-3",
+        "19-4",
+        "19-5",
+        "19-6",
+        "19-7",
+        "19-8"
+      ]
+    },
+    {
+      "pathId": 29,
+      "act": 4,
+      "title": "Lucent Historia",
+      "type": "main",
+      "characters": [
+        78
+      ],
+      "nodes": [
+        "20-1",
+        "20-2",
+        "20-3",
+        "20-4",
+        "20-5",
+        "20-6",
+        "20-7",
+        "20-8"
+      ]
+    },
+    {
+      "pathId": 30,
+      "act": 4,
+      "title": "Extant Anima",
+      "type": "side",
+      "characters": [
+        89
+      ],
+      "nodes": [
+        "21-1",
+        "21-2",
+        "21-3",
+        "21-4",
+        "21-5"
+      ]
+    },
+    {
+      "pathId": 31,
+      "act": 4,
+      "title": "Chapter Experientia",
+      "type": "side",
+      "characters": [
+        89
+      ],
+      "nodes": [
+        "22-5",
+        "22-4",
+        "22-3",
+        "22-2",
+        "22-1"
+      ]
+    },
+    {
+      "pathId": 32,
+      "act": 4,
+      "title": "Liminal Eclipse",
+      "type": "main",
+      "characters": [
+        71,
+        54
+      ],
+      "nodes": [
+        "23-1",
+        "23-2",
+        "23-3",
+        "23-4",
+        "23-5",
+        "23-6",
+        "23-7",
+        "23-8"
+      ]
+    },
+    {
+      "pathId": 33,
+      "act": 4,
+      "title": "Divine Oblivion",
+      "type": "main",
+      "characters": [
+        23,
+        72
+      ],
+      "nodes": [
+        "C-1",
+        "C-2",
+        "C-3",
+        "C-4",
+        "C-5",
+        "C-6",
+        "C-7",
+        "C-8",
+        "C-9",
+        "C-10"
+      ]
+    }
   ],
   "nodeAnnotations": [
-    { "nodeKey": "C-1", "visual": "animation", "unlockKind": "pack", "relatedPackId": "konzetsu", "relatedPackTitle": "Divine Oblivion" },
-    { "nodeKey": "C-2", "visual": "illustration", "unlockKind": "song", "relatedSongId": "balor" },
-    { "nodeKey": "C-3", "visual": "animation", "unlockKind": "song", "relatedSongId": "dreadarea" },
-    { "nodeKey": "C-4", "visual": "animation", "unlockKind": "song", "relatedSongId": "un" },
-    { "nodeKey": "C-5", "visual": "illustration", "unlockKind": "song", "relatedSongId": "rivenpilgrim" },
-    { "nodeKey": "C-6", "visual": "animation", "unlockKind": "song", "relatedSongId": "cataclysmcry" },
-    { "nodeKey": "C-7", "visual": "illustration", "unlockKind": "song", "relatedSongId": "deinosphainein" },
-    { "nodeKey": "C-8", "visual": "animation", "staffRoll": true, "unlockKind": "song", "relatedSongId": "deinosphainein" },
-    { "nodeKey": "C-9", "visual": "illustration", "unlockKind": "song", "relatedSongId": "ember" }
+    {
+      "nodeKey": "C-1",
+      "visual": "animation",
+      "unlockKind": "pack",
+      "relatedPackId": "konzetsu",
+      "relatedPackTitle": "Divine Oblivion"
+    },
+    {
+      "nodeKey": "C-2",
+      "visual": "illustration",
+      "unlockKind": "song",
+      "relatedSongId": "balor"
+    },
+    {
+      "nodeKey": "C-3",
+      "visual": "animation",
+      "unlockKind": "song",
+      "relatedSongId": "dreadarea"
+    },
+    {
+      "nodeKey": "C-4",
+      "visual": "animation",
+      "unlockKind": "song",
+      "relatedSongId": "un"
+    },
+    {
+      "nodeKey": "C-5",
+      "visual": "illustration",
+      "unlockKind": "song",
+      "relatedSongId": "rivenpilgrim"
+    },
+    {
+      "nodeKey": "C-6",
+      "visual": "animation",
+      "unlockKind": "song",
+      "relatedSongId": "cataclysmcry"
+    },
+    {
+      "nodeKey": "C-7",
+      "visual": "illustration",
+      "unlockKind": "song",
+      "relatedSongId": "deinosphainein"
+    },
+    {
+      "nodeKey": "C-8",
+      "visual": "animation",
+      "staffRoll": true,
+      "unlockKind": "song",
+      "relatedSongId": "deinosphainein"
+    },
+    {
+      "nodeKey": "C-9",
+      "visual": "illustration",
+      "unlockKind": "song",
+      "relatedSongId": "ember"
+    },
+    {
+      "nodeKey": "C-10",
+      "visual": "illustration",
+      "unlockKind": "song"
+    }
   ],
   "nodeIcons": {
-  "0-1": "entry_prologue",
-  "0-2": "entry_prologue",
-  "0-3": "entry_prologue",
-  "1-1": "entry_ec",
-  "1-2": "entry_ec",
-  "1-3": "entry_ec",
-  "1-4": "entry_ls",
-  "1-5": "entry_ls",
-  "1-7": "entry_ls",
-  "1-8": "entry_ls",
+    "0-1": "entry_prologue",
+    "0-2": "entry_prologue",
+    "0-3": "entry_prologue",
+    "1-1": "entry_ec",
+    "1-2": "entry_ec",
+    "1-3": "entry_ec",
+    "1-4": "entry_ls",
+    "1-5": "entry_ls",
+    "1-7": "entry_ls",
+    "1-8": "entry_ls",
     "1-9": "entry_ls",
     "1-ZR": "entry_ls",
-  "10-1": "cell_be",
-  "10-2": "cell_be",
-  "10-3": "cell_be",
-  "10-4": "cell_be",
-  "10-5": "cell_be",
-  "10-6": "cell_livefastdieyoung",
-  "11-1": "entry_init",
-  "11-2": "entry_init",
-  "11-3": "entry_init",
-  "11-4": "entry_ayu2_new",
-  "11-5": "entry_ayu2_new",
-  "11-6": "entry_ayu2_new",
-  "11-7": "entry_ayu2_new",
-  "11-8": "entry_ayu2_boss",
-  "12-1": "entry_neowings",
-  "12-2": "entry_neowings",
-  "12-3": "entry_neowings",
-  "12-4": "entry_vita2",
-  "12-5": "entry_vita2",
+    "10-1": "cell_be",
+    "10-2": "cell_be",
+    "10-3": "cell_be",
+    "10-4": "cell_be",
+    "10-5": "cell_be",
+    "10-6": "cell_livefastdieyoung",
+    "11-1": "entry_init",
+    "11-2": "entry_init",
+    "11-3": "entry_init",
+    "11-4": "entry_ayu2_new",
+    "11-5": "entry_ayu2_new",
+    "11-6": "entry_ayu2_new",
+    "11-7": "entry_ayu2_new",
+    "11-8": "entry_ayu2_boss",
+    "12-1": "entry_neowings",
+    "12-2": "entry_neowings",
+    "12-3": "entry_neowings",
+    "12-4": "entry_vita2",
+    "12-5": "entry_vita2",
     "12-6": "entry_vita2",
     "12-?": "entry_acheron",
-  "13-1": "cell_crimsonthrone",
-  "13-2": "cell_crimsonthrone",
-  "13-3": "cell_crimsonthrone",
-  "13-4": "cell_crimsonthrone",
-  "14-1": "entry_tothemilkyway",
-  "14-2": "entry_tothemilkyway",
-  "14-3": "entry_tothemilkyway",
-  "14-4": "entry_tothemilkyway",
-  "15-1": "entry_maya",
-  "15-2": "entry_maya",
-  "15-3": "entry_maya",
-  "15-4": "entry_maya",
-  "15-5": "entry_maya",
-  "15-6": "entry_maya_boss",
-  "16-1": "entry_severededen",
-  "16-2": "entry_severededen",
-  "16-3": "entry_severededen",
-  "16-4": "entry_severededen",
-  "16-5": "entry_severededen",
-  "16-6": "entry_severededen",
-  "16-7": "entry_arghena",
-  "16-8": "entry_arghena",
-  "17-1": "entry_kanae",
-  "17-2": "entry_kanae",
-  "17-3": "entry_kanae",
-  "17-4": "entry_kanae",
-  "17-5": "entry_kanae",
-  "17-6": "entry_kanae_boss",
-  "18-1": "entry_nihil",
-  "18-2": "entry_nihil",
-  "18-3": "entry_nihil",
-  "18-4": "entry_nihil",
-  "18-5": "entry_nihil",
-  "18-6": "entry_nihil",
-  "18-7": "entry_nihil",
-  "18-I": "entry_apophenia",
-  "18-II": "entry_apophenia",
-  "18-III": "entry_apophenia",
-  "19-1": "entry_rotaeno",
-  "19-2": "entry_rotaeno",
-  "19-3": "entry_rotaeno",
-  "19-4": "entry_rotaeno",
-  "19-5": "entry_rotaeno",
-  "19-6": "entry_rotaeno",
-  "19-7": "entry_rotaeno",
-  "19-8": "entry_rotaeno_boss",
-  "2-1": "entry_ec",
-  "2-2": "entry_ec",
-  "2-3": "entry_ec",
-  "2-4": "entry_vl",
-  "2-5": "entry_vl",
-  "2-7": "entry_vl",
-  "2-8": "entry_vl",
-  "2-9": "entry_vl",
-  "2-D": "entry_vl",
-  "20-1": "cell-lephon-1",
-  "20-2": "cell-lephon-1",
-  "20-3": "cell-lephon-1",
-  "20-4": "cell-lephon-1",
-  "20-5": "cell-lephon-1",
-  "20-6": "cell-lephon-1",
-  "20-7": "cell-lephon-2",
-  "20-8": "cell-lephon-3",
-  "21-1": "entry_anima",
-  "21-2": "entry_anima",
-  "21-3": "entry_anima",
-  "21-4": "entry_anima",
-  "21-5": "entry_anima_boss",
-  "22-1": "entry_anima2",
-  "22-2": "entry_anima2",
-  "22-3": "entry_anima2",
-  "22-4": "entry_anima2",
-  "22-5": "entry_anima2_boss",
-  "23-1": "entry_eclipse_1",
-  "23-2": "entry_eclipse_1",
-  "23-3": "entry_eclipse_1",
-  "23-4": "entry_eclipse_1",
-  "23-5": "entry_eclipse_1",
-  "23-6": "entry_eclipse_1",
-  "23-7": "entry_eclipse_2",
-  "23-8": "entry_eclipse_2",
-  "3-1": "entry_z",
-  "3-2": "entry_z",
-  "3-3": "entry_cyaegha",
-  "3-4": "entry_z",
-  "3-5": "entry_z",
-  "3-6": "entry_z",
-  "4-1": "entry_shiawase",
-  "4-2": "entry_shiawase",
-  "4-3": "entry_shiawase",
-  "4-4": "entry_shiawase",
-  "4-5": "entry_shiawase",
-  "4-6": "entry_shiawase",
-  "4-7": "entry_shiawase",
-  "4-8": "entry_gr",
-  "5-1": "entry_mirai",
-  "5-2": "entry_mirai",
-  "5-3": "entry_mirai",
-  "5-4": "entry_mirai",
-  "5-5": "entry_sans",
-  "5-6": "entry_mirai",
-  "6-1": "entry_shirabe",
-  "6-2": "entry_shirabe",
-  "6-3": "entry_shirabe",
-  "7-1": "entry_ep",
-  "7-2": "entry_ep",
-  "7-3": "entry_ep",
-  "7-4": "entry_ep",
-  "7-5": "entry_ep",
-  "7-6": "entry_felis",
-  "8-1": "entry_gimmedablood",
-  "8-2": "entry_gimmedablood",
-  "8-3": "entry_gimmedablood",
-  "8-4": "entry_mir2_1",
-  "8-5": "entry_mir2_1",
-  "8-6": "entry_mir2_1",
-  "8-7": "entry_mir2_1",
-  "8-8": "entry_mir2_2",
-  "8-9": "entry_mir2_3",
-  "9-1": "entry_lagrange",
-  "9-2": "entry_lagrange",
-  "9-3": "entry_lagrange",
-  "9-4": "entry_lagrange",
-  "9-5": "entry_aegleseeker",
-  "9-6": "entry_lagrange",
-  "C-1": "entry_konzetsu_1",
-  "C-2": "entry_konzetsu_2",
-  "C-3": "entry_konzetsu_3",
-  "C-4": "entry_konzetsu_4",
-  "C-5": "entry_konzetsu_5",
-  "C-6": "entry_konzetsu_6",
-  "C-7": "entry_konzetsu_7",
-  "C-8": "entry_konzetsu_8",
-  "C-9": "entry_konzetsu_9",
-  "E-1": "entry_finale",
-  "E-2": "entry_finale",
-  "F-1": "entry_finale",
-  "F-2": "entry_finale",
-  "F-3": "entry_finale",
-  "F-4": "entry_finale",
-  "F-5": "entry_finale",
-  "F-6": "entry_finale",
-  "F-7": "entry_finale",
-  "S-1": "entry_switch",
-  "S-2": "entry_switch",
-  "S-3": "entry_switch",
-  "S-4": "entry_lightningscrew",
-  "S-5": "entry_switch",
-  "S-6": "entry_switch",
-  "V-0": "entry_con",
-  "V-1": "entry_con",
-  "V-2": "entry_prelude",
-  "V-3": "entry_prelude",
-  "V-4": "entry_prelude",
-  "VS-1": "cell-vs1",
-  "VS-2": "cell-vs2",
-  "VS-3": "cell-vs3",
-  "VS-4": "cell-vs4",
-  "VS-5": "cell-vs5",
-  "VS-6": "cell-vs6",
-  "VS-7": "cell-vs7",
-  "VS-8": "cell-vs8"
+    "13-1": "cell_crimsonthrone",
+    "13-2": "cell_crimsonthrone",
+    "13-3": "cell_crimsonthrone",
+    "13-4": "cell_crimsonthrone",
+    "14-1": "entry_tothemilkyway",
+    "14-2": "entry_tothemilkyway",
+    "14-3": "entry_tothemilkyway",
+    "14-4": "entry_tothemilkyway",
+    "15-1": "entry_maya",
+    "15-2": "entry_maya",
+    "15-3": "entry_maya",
+    "15-4": "entry_maya",
+    "15-5": "entry_maya",
+    "15-6": "entry_maya_boss",
+    "16-1": "entry_severededen",
+    "16-2": "entry_severededen",
+    "16-3": "entry_severededen",
+    "16-4": "entry_severededen",
+    "16-5": "entry_severededen",
+    "16-6": "entry_severededen",
+    "16-7": "entry_arghena",
+    "16-8": "entry_arghena",
+    "17-1": "entry_kanae",
+    "17-2": "entry_kanae",
+    "17-3": "entry_kanae",
+    "17-4": "entry_kanae",
+    "17-5": "entry_kanae",
+    "17-6": "entry_kanae_boss",
+    "18-1": "entry_nihil",
+    "18-2": "entry_nihil",
+    "18-3": "entry_nihil",
+    "18-4": "entry_nihil",
+    "18-5": "entry_nihil",
+    "18-6": "entry_nihil",
+    "18-7": "entry_nihil",
+    "18-I": "entry_apophenia",
+    "18-II": "entry_apophenia",
+    "18-III": "entry_apophenia",
+    "19-1": "entry_rotaeno",
+    "19-2": "entry_rotaeno",
+    "19-3": "entry_rotaeno",
+    "19-4": "entry_rotaeno",
+    "19-5": "entry_rotaeno",
+    "19-6": "entry_rotaeno",
+    "19-7": "entry_rotaeno",
+    "19-8": "entry_rotaeno_boss",
+    "2-1": "entry_ec",
+    "2-2": "entry_ec",
+    "2-3": "entry_ec",
+    "2-4": "entry_vl",
+    "2-5": "entry_vl",
+    "2-7": "entry_vl",
+    "2-8": "entry_vl",
+    "2-9": "entry_vl",
+    "2-D": "entry_vl",
+    "20-1": "cell-lephon-1",
+    "20-2": "cell-lephon-1",
+    "20-3": "cell-lephon-1",
+    "20-4": "cell-lephon-1",
+    "20-5": "cell-lephon-1",
+    "20-6": "cell-lephon-1",
+    "20-7": "cell-lephon-2",
+    "20-8": "cell-lephon-3",
+    "21-1": "entry_anima",
+    "21-2": "entry_anima",
+    "21-3": "entry_anima",
+    "21-4": "entry_anima",
+    "21-5": "entry_anima_boss",
+    "22-1": "entry_anima2",
+    "22-2": "entry_anima2",
+    "22-3": "entry_anima2",
+    "22-4": "entry_anima2",
+    "22-5": "entry_anima2_boss",
+    "23-1": "entry_eclipse_1",
+    "23-2": "entry_eclipse_1",
+    "23-3": "entry_eclipse_1",
+    "23-4": "entry_eclipse_1",
+    "23-5": "entry_eclipse_1",
+    "23-6": "entry_eclipse_1",
+    "23-7": "entry_eclipse_2",
+    "23-8": "entry_eclipse_2",
+    "3-1": "entry_z",
+    "3-2": "entry_z",
+    "3-3": "entry_cyaegha",
+    "3-4": "entry_z",
+    "3-5": "entry_z",
+    "3-6": "entry_z",
+    "4-1": "entry_shiawase",
+    "4-2": "entry_shiawase",
+    "4-3": "entry_shiawase",
+    "4-4": "entry_shiawase",
+    "4-5": "entry_shiawase",
+    "4-6": "entry_shiawase",
+    "4-7": "entry_shiawase",
+    "4-8": "entry_gr",
+    "5-1": "entry_mirai",
+    "5-2": "entry_mirai",
+    "5-3": "entry_mirai",
+    "5-4": "entry_mirai",
+    "5-5": "entry_sans",
+    "5-6": "entry_mirai",
+    "6-1": "entry_shirabe",
+    "6-2": "entry_shirabe",
+    "6-3": "entry_shirabe",
+    "7-1": "entry_ep",
+    "7-2": "entry_ep",
+    "7-3": "entry_ep",
+    "7-4": "entry_ep",
+    "7-5": "entry_ep",
+    "7-6": "entry_felis",
+    "8-1": "entry_gimmedablood",
+    "8-2": "entry_gimmedablood",
+    "8-3": "entry_gimmedablood",
+    "8-4": "entry_mir2_1",
+    "8-5": "entry_mir2_1",
+    "8-6": "entry_mir2_1",
+    "8-7": "entry_mir2_1",
+    "8-8": "entry_mir2_2",
+    "8-9": "entry_mir2_3",
+    "9-1": "entry_lagrange",
+    "9-2": "entry_lagrange",
+    "9-3": "entry_lagrange",
+    "9-4": "entry_lagrange",
+    "9-5": "entry_aegleseeker",
+    "9-6": "entry_lagrange",
+    "C-1": "entry_konzetsu_1",
+    "C-2": "entry_konzetsu_2",
+    "C-3": "entry_konzetsu_3",
+    "C-4": "entry_konzetsu_4",
+    "C-5": "entry_konzetsu_5",
+    "C-6": "entry_konzetsu_6",
+    "C-7": "entry_konzetsu_7",
+    "C-8": "entry_konzetsu_8",
+    "C-9": "entry_konzetsu_9",
+    "E-1": "entry_finale",
+    "E-2": "entry_finale",
+    "F-1": "entry_finale",
+    "F-2": "entry_finale",
+    "F-3": "entry_finale",
+    "F-4": "entry_finale",
+    "F-5": "entry_finale",
+    "F-6": "entry_finale",
+    "F-7": "entry_finale",
+    "S-1": "entry_switch",
+    "S-2": "entry_switch",
+    "S-3": "entry_switch",
+    "S-4": "entry_lightningscrew",
+    "S-5": "entry_switch",
+    "S-6": "entry_switch",
+    "V-0": "entry_con",
+    "V-1": "entry_con",
+    "V-2": "entry_prelude",
+    "V-3": "entry_prelude",
+    "V-4": "entry_prelude",
+    "VS-1": "cell-vs1",
+    "VS-2": "cell-vs2",
+    "VS-3": "cell-vs3",
+    "VS-4": "cell-vs4",
+    "VS-5": "cell-vs5",
+    "VS-6": "cell-vs6",
+    "VS-7": "cell-vs7",
+    "VS-8": "cell-vs8",
+    "C-10": "entry_konzetsu_10"
   },
   "nodeLinks": [
-    { "from": "1-1", "to": "1-2", "kind": "linear" },
-    { "from": "1-2", "to": "1-3", "kind": "linear" },
-    { "from": "2-1", "to": "2-2", "kind": "linear" },
-    { "from": "2-2", "to": "2-3", "kind": "linear" },
-    { "from": "1-5", "to": "1-ZR", "kind": "branch" },
-    { "from": "1-5", "to": "1-7", "kind": "branch" },
-    { "from": "1-4", "to": "1-5", "kind": "linear" },
-    { "from": "1-7", "to": "1-8", "kind": "linear" },
-    { "from": "1-8", "to": "1-9", "kind": "linear" },
-    { "from": "2-4", "to": "2-5", "kind": "linear" },
-    { "from": "2-5", "to": "2-D", "kind": "branch" },
-    { "from": "2-5", "to": "2-7", "kind": "branch" },
-    { "from": "2-7", "to": "2-8", "kind": "linear" },
-    { "from": "2-8", "to": "2-9", "kind": "linear" },
-    { "from": "1-9", "to": "V-0", "kind": "merge" },
-    { "from": "2-9", "to": "V-0", "kind": "merge" },
-    { "from": "V-0", "to": "V-1", "kind": "linear" },
-    { "from": "V-1", "to": "V-2", "kind": "linear" },
-    { "from": "V-2", "to": "V-3", "kind": "linear" },
-    { "from": "V-3", "to": "V-4", "kind": "linear" },
-    { "from": "VS-1", "to": "VS-2", "kind": "linear" },
-    { "from": "VS-2", "to": "VS-3", "kind": "linear" },
-    { "from": "VS-3", "to": "VS-4", "kind": "linear" },
-    { "from": "VS-4", "to": "VS-5", "kind": "linear" },
-    { "from": "VS-5", "to": "VS-6", "kind": "linear" },
-    { "from": "VS-6", "to": "VS-7", "kind": "linear" },
-    { "from": "VS-7", "to": "VS-8", "kind": "linear" },
-    { "from": "F-1", "to": "F-2", "kind": "linear" },
-    { "from": "F-2", "to": "F-3", "kind": "linear" },
-    { "from": "F-3", "to": "F-4", "kind": "linear" },
-    { "from": "F-4", "to": "F-5", "kind": "linear" },
-    { "from": "F-5", "to": "F-6", "kind": "linear" },
-    { "from": "F-6", "to": "F-7", "kind": "linear" },
-    { "from": "F-7", "to": "E-1", "kind": "branch" },
-    { "from": "F-7", "to": "E-2", "kind": "branch" },
-    { "from": "5-6", "to": "18-I", "kind": "linear" },
-    { "from": "18-I", "to": "18-II", "kind": "linear" },
-    { "from": "18-II", "to": "18-III", "kind": "linear" },
-    { "from": "11-3", "to": "11-4", "kind": "linear" }
+    {
+      "from": "1-1",
+      "to": "1-2",
+      "kind": "linear"
+    },
+    {
+      "from": "1-2",
+      "to": "1-3",
+      "kind": "linear"
+    },
+    {
+      "from": "2-1",
+      "to": "2-2",
+      "kind": "linear"
+    },
+    {
+      "from": "2-2",
+      "to": "2-3",
+      "kind": "linear"
+    },
+    {
+      "from": "1-5",
+      "to": "1-ZR",
+      "kind": "branch"
+    },
+    {
+      "from": "1-5",
+      "to": "1-7",
+      "kind": "branch"
+    },
+    {
+      "from": "1-4",
+      "to": "1-5",
+      "kind": "linear"
+    },
+    {
+      "from": "1-7",
+      "to": "1-8",
+      "kind": "linear"
+    },
+    {
+      "from": "1-8",
+      "to": "1-9",
+      "kind": "linear"
+    },
+    {
+      "from": "2-4",
+      "to": "2-5",
+      "kind": "linear"
+    },
+    {
+      "from": "2-5",
+      "to": "2-D",
+      "kind": "branch"
+    },
+    {
+      "from": "2-5",
+      "to": "2-7",
+      "kind": "branch"
+    },
+    {
+      "from": "2-7",
+      "to": "2-8",
+      "kind": "linear"
+    },
+    {
+      "from": "2-8",
+      "to": "2-9",
+      "kind": "linear"
+    },
+    {
+      "from": "1-9",
+      "to": "V-0",
+      "kind": "merge"
+    },
+    {
+      "from": "2-9",
+      "to": "V-0",
+      "kind": "merge"
+    },
+    {
+      "from": "V-0",
+      "to": "V-1",
+      "kind": "linear"
+    },
+    {
+      "from": "V-1",
+      "to": "V-2",
+      "kind": "linear"
+    },
+    {
+      "from": "V-2",
+      "to": "V-3",
+      "kind": "linear"
+    },
+    {
+      "from": "V-3",
+      "to": "V-4",
+      "kind": "linear"
+    },
+    {
+      "from": "VS-1",
+      "to": "VS-2",
+      "kind": "linear"
+    },
+    {
+      "from": "VS-2",
+      "to": "VS-3",
+      "kind": "linear"
+    },
+    {
+      "from": "VS-3",
+      "to": "VS-4",
+      "kind": "linear"
+    },
+    {
+      "from": "VS-4",
+      "to": "VS-5",
+      "kind": "linear"
+    },
+    {
+      "from": "VS-5",
+      "to": "VS-6",
+      "kind": "linear"
+    },
+    {
+      "from": "VS-6",
+      "to": "VS-7",
+      "kind": "linear"
+    },
+    {
+      "from": "VS-7",
+      "to": "VS-8",
+      "kind": "linear"
+    },
+    {
+      "from": "F-1",
+      "to": "F-2",
+      "kind": "linear"
+    },
+    {
+      "from": "F-2",
+      "to": "F-3",
+      "kind": "linear"
+    },
+    {
+      "from": "F-3",
+      "to": "F-4",
+      "kind": "linear"
+    },
+    {
+      "from": "F-4",
+      "to": "F-5",
+      "kind": "linear"
+    },
+    {
+      "from": "F-5",
+      "to": "F-6",
+      "kind": "linear"
+    },
+    {
+      "from": "F-6",
+      "to": "F-7",
+      "kind": "linear"
+    },
+    {
+      "from": "F-7",
+      "to": "E-1",
+      "kind": "branch"
+    },
+    {
+      "from": "F-7",
+      "to": "E-2",
+      "kind": "branch"
+    },
+    {
+      "from": "5-6",
+      "to": "18-I",
+      "kind": "linear"
+    },
+    {
+      "from": "18-I",
+      "to": "18-II",
+      "kind": "linear"
+    },
+    {
+      "from": "18-II",
+      "to": "18-III",
+      "kind": "linear"
+    },
+    {
+      "from": "11-3",
+      "to": "11-4",
+      "kind": "linear"
+    }
   ],
   "coverage": {
-    "physicalStoryCgCount": 66,
+    "physicalStoryCgCount": 70,
     "baselineRelationCount": 57,
-    "curatedStoryCgCount": 9,
+    "curatedStoryCgCount": 13,
     "storyTextureCgCount": 171
   },
   "storyCg": [
-    { "assetPath": "assets/app-data/story/cg/C-2-1.jpg", "nodeKey": "C-2", "imageOrder": 1, "imageCount": 2 },
-    { "assetPath": "assets/app-data/story/cg/C-2-2.jpg", "nodeKey": "C-2", "imageOrder": 2, "imageCount": 2 },
-    { "assetPath": "assets/app-data/story/cg/C-5.jpg", "nodeKey": "C-5", "imageOrder": 1, "imageCount": 1 },
-    { "assetPath": "assets/app-data/story/cg/C-7-1.jpg", "nodeKey": "C-7", "imageOrder": 1, "imageCount": 3 },
-    { "assetPath": "assets/app-data/story/cg/C-7-2.jpg", "nodeKey": "C-7", "imageOrder": 2, "imageCount": 3 },
-    { "assetPath": "assets/app-data/story/cg/C-7-3.jpg", "nodeKey": "C-7", "imageOrder": 3, "imageCount": 3 },
-    { "assetPath": "assets/app-data/story/cg/C-9-1.jpg", "nodeKey": "C-9", "imageOrder": 1, "imageCount": 3 },
-    { "assetPath": "assets/app-data/story/cg/C-9-2.jpg", "nodeKey": "C-9", "imageOrder": 2, "imageCount": 3 },
-    { "assetPath": "assets/app-data/story/cg/C-9-3.jpg", "nodeKey": "C-9", "imageOrder": 3, "imageCount": 3 }
+    {
+      "assetPath": "assets/app-data/story/cg/C-2-1.jpg",
+      "nodeKey": "C-2",
+      "imageOrder": 1,
+      "imageCount": 2
+    },
+    {
+      "assetPath": "assets/app-data/story/cg/C-2-2.jpg",
+      "nodeKey": "C-2",
+      "imageOrder": 2,
+      "imageCount": 2
+    },
+    {
+      "assetPath": "assets/app-data/story/cg/C-5.jpg",
+      "nodeKey": "C-5",
+      "imageOrder": 1,
+      "imageCount": 1
+    },
+    {
+      "assetPath": "assets/app-data/story/cg/C-7-1.jpg",
+      "nodeKey": "C-7",
+      "imageOrder": 1,
+      "imageCount": 3
+    },
+    {
+      "assetPath": "assets/app-data/story/cg/C-7-2.jpg",
+      "nodeKey": "C-7",
+      "imageOrder": 2,
+      "imageCount": 3
+    },
+    {
+      "assetPath": "assets/app-data/story/cg/C-7-3.jpg",
+      "nodeKey": "C-7",
+      "imageOrder": 3,
+      "imageCount": 3
+    },
+    {
+      "assetPath": "assets/app-data/story/cg/C-9-1.jpg",
+      "nodeKey": "C-9",
+      "imageOrder": 1,
+      "imageCount": 3
+    },
+    {
+      "assetPath": "assets/app-data/story/cg/C-9-2.jpg",
+      "nodeKey": "C-9",
+      "imageOrder": 2,
+      "imageCount": 3
+    },
+    {
+      "assetPath": "assets/app-data/story/cg/C-9-3.jpg",
+      "nodeKey": "C-9",
+      "imageOrder": 3,
+      "imageCount": 3
+    },
+    {
+      "assetPath": "assets/app-data/story/cg/C-10-1.jpg",
+      "nodeKey": "C-10",
+      "imageOrder": 1,
+      "imageCount": 4
+    },
+    {
+      "assetPath": "assets/app-data/story/cg/C-10-2.jpg",
+      "nodeKey": "C-10",
+      "imageOrder": 2,
+      "imageCount": 4
+    },
+    {
+      "assetPath": "assets/app-data/story/cg/C-10-3.jpg",
+      "nodeKey": "C-10",
+      "imageOrder": 3,
+      "imageCount": 4
+    },
+    {
+      "assetPath": "assets/app-data/story/cg/C-10-4.jpg",
+      "nodeKey": "C-10",
+      "imageOrder": 4,
+      "imageCount": 4
+    }
   ],
   "storyTextureCg": [
-    { "assetPath": "assets/app-data/story/vn/res/catastrophe/D-O_CG_0.jpg", "seriesKey": "D-O", "pathId": 33, "imageOrder": 1, "imageCount": 5 },
-    { "assetPath": "assets/app-data/story/vn/res/catastrophe/D-O_CG_1.jpg", "seriesKey": "D-O", "pathId": 33, "imageOrder": 2, "imageCount": 5 },
-    { "assetPath": "assets/app-data/story/vn/res/catastrophe/D-O_CG_2.jpg", "seriesKey": "D-O", "pathId": 33, "imageOrder": 3, "imageCount": 5 },
-    { "assetPath": "assets/app-data/story/vn/res/catastrophe/D-O_CG_3.jpg", "seriesKey": "D-O", "pathId": 33, "imageOrder": 4, "imageCount": 5 },
-    { "assetPath": "assets/app-data/story/vn/res/catastrophe/D-O_CG_4.jpg", "seriesKey": "D-O", "pathId": 33, "imageOrder": 5, "imageCount": 5 }
+    {
+      "assetPath": "assets/app-data/story/vn/res/catastrophe/D-O_CG_0.jpg",
+      "seriesKey": "D-O",
+      "pathId": 33,
+      "imageOrder": 1,
+      "imageCount": 5
+    },
+    {
+      "assetPath": "assets/app-data/story/vn/res/catastrophe/D-O_CG_1.jpg",
+      "seriesKey": "D-O",
+      "pathId": 33,
+      "imageOrder": 2,
+      "imageCount": 5
+    },
+    {
+      "assetPath": "assets/app-data/story/vn/res/catastrophe/D-O_CG_2.jpg",
+      "seriesKey": "D-O",
+      "pathId": 33,
+      "imageOrder": 3,
+      "imageCount": 5
+    },
+    {
+      "assetPath": "assets/app-data/story/vn/res/catastrophe/D-O_CG_3.jpg",
+      "seriesKey": "D-O",
+      "pathId": 33,
+      "imageOrder": 4,
+      "imageCount": 5
+    },
+    {
+      "assetPath": "assets/app-data/story/vn/res/catastrophe/D-O_CG_4.jpg",
+      "seriesKey": "D-O",
+      "pathId": 33,
+      "imageOrder": 5,
+      "imageCount": 5
+    }
   ]
 }

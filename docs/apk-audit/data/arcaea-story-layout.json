@@ -2,10 +2,10 @@
   "schemaVersion": 3,
   "game": "arcaea",
   "source": {
-    "packageVersion": "7.0.0c",
-    "packageSha256": "8ef5225f4dab43135711a776f2fba05e0e397b29c569147e7f1f18663d9a8522",
+    "packageVersion": "7.0.255c",
+    "packageSha256": "5aeb5edc425808605cc8a682cd9269aecae671fdab9573376b100d08ee3577c6",
     "orderingPath": "assets/app-data/story2/ordering",
-    "verifiedAt": "2026-08-29",
+    "verifiedAt": "2026-09-02",
     "wikiSources": [
       {
         "url": "https://wikiwiki.jp/arcaea/%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AA%E3%83%BC",
@@ -11295,7 +11295,7 @@
       "world": {
         "csbPath": "assets/app-data/story2/act2part2.csb",
         "bounds": {
-          "width": 8783,
+          "width": 9133,
           "height": 1452.803695678711
         },
         "paths": [
@@ -12612,6 +12612,37 @@
                   "horizontalAlignment": "center",
                   "verticalAlignment": "center"
                 }
+              },
+              {
+                "x": 8760,
+                "y": 442.80369567871094,
+                "scaleX": 1,
+                "scaleY": 1,
+                "rotation": 0,
+                "nodeKey": "C-10",
+                "pathId": 33,
+                "slot": 10,
+                "sourceName": "10",
+                "artRef": "assets/layouts/story/StoryV2Entry.csb",
+                "width": 193,
+                "height": 193,
+                "labelMode": "overlay",
+                "label": {
+                  "x": 8756.244199991226,
+                  "y": 445.102995634079,
+                  "width": 62,
+                  "height": 61,
+                  "anchorX": 0.5,
+                  "anchorY": 0.5,
+                  "scaleX": 1,
+                  "scaleY": 1,
+                  "rotation": 0,
+                  "text": "C-10",
+                  "fontSize": 50,
+                  "fontResourcePath": "assets/Fonts/GeosansLight.ttf",
+                  "horizontalAlignment": "center",
+                  "verticalAlignment": "center"
+                }
               }
             ],
             "avatars": [
@@ -13418,6 +13449,27 @@
             "x1": 8195,
             "y1": 442.30369567871094,
             "x2": 8279,
+            "y2": 442.30369567871094,
+            "resourcePath": "assets/img/white.png",
+            "pathId": 33
+          },
+          {
+            "x": 8545,
+            "y": 442.30369567871094,
+            "scaleX": 1,
+            "scaleY": 1,
+            "rotation": 0,
+            "lineId": "path-33-11-line",
+            "length": 84,
+            "thickness": 3,
+            "sourceName": "line",
+            "width": 84,
+            "height": 3,
+            "anchorX": 0,
+            "anchorY": 0.5,
+            "x1": 8545,
+            "y1": 442.30369567871094,
+            "x2": 8629,
             "y2": 442.30369567871094,
             "resourcePath": "assets/img/white.png",
             "pathId": 33

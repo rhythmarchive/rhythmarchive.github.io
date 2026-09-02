@@ -90,7 +90,7 @@ test("preview selection never falls back to original or upscaled", () => {
 test("every catalog Resource shares one preview set across original and optional upscale", () => {
   const projection = projectCatalog(catalog, rosBaseUrl);
   const upscaled = projection.resources.filter((resource) => resource.upscaled);
-  assert.equal(upscaled.length, 624);
+  assert.equal(upscaled.length, 625);
   const arcaea70Upscaled = projection.resources.filter((resource) =>
     resource.game === "arcaea" &&
     resource.resourceType === "jacket" &&
@@ -99,6 +99,16 @@ test("every catalog Resource shares one preview set across original and optional
   );
   assert.equal(arcaea70Upscaled.length, 8);
   assert.ok(arcaea70Upscaled.every((resource) => resource.upscaled?.width === 3072 && resource.upscaled?.height === 3072));
+  const arcaea7255Upscaled = projection.resources.filter((resource) =>
+    resource.game === "arcaea" &&
+    resource.resourceType === "jacket" &&
+    resource.metadata.gameVersion === "7.0.255c" &&
+    Boolean(resource.upscaled),
+  );
+  assert.equal(arcaea7255Upscaled.length, 1);
+  assert.equal(arcaea7255Upscaled[0]?.resourceId, "a0a4d486-1216-78d9-a3c6-ad6ff049b46a");
+  assert.equal(arcaea7255Upscaled[0]?.upscaled?.width, 3072);
+  assert.equal(arcaea7255Upscaled[0]?.upscaled?.height, 3072);
   assert.ok(upscaled.every((resource) => resource.game === "arcaea" && resource.resourceType === "jacket"));
   assert.ok(upscaled.every((resource) => resource.variants.every((variant) => Boolean(variant.preview.small) && Boolean(variant.preview.medium) && Boolean(variant.preview.large))));
 });
@@ -195,7 +205,7 @@ test("public game index projects activity only from final public resources", () 
   const arcaea = projection.games.find((game) => game.slug === "arcaea");
   const phigros = projection.games.find((game) => game.slug === "phigros");
   const rizline = projection.games.find((game) => game.slug === "rizline");
-  assert.equal(arcaea?.contentVersion, "7.0.0c");
+  assert.equal(arcaea?.contentVersion, "7.0.255c");
   const arcaeaUpdatedAt = catalog.resources
     .filter((resource) => resource.game === "arcaea" && resource.lifecycle.status === "published")
     .map((resource) => resource.lifecycle.updatedAt)
@@ -203,9 +213,19 @@ test("public game index projects activity only from final public resources", () 
     .at(-1);
   assert.equal(arcaea?.lastUpdatedAt, arcaeaUpdatedAt);
   assert.equal(rizline?.contentVersion, "2.7.1");
-  assert.equal(rizline?.lastUpdatedAt, catalog.generatedAt);
+  const rizlineUpdatedAt = catalog.resources
+    .filter((resource) => resource.game === "rizline" && resource.lifecycle.status === "published")
+    .map((resource) => resource.lifecycle.updatedAt)
+    .sort()
+    .at(-1);
+  assert.equal(rizline?.lastUpdatedAt, rizlineUpdatedAt);
   assert.equal(phigros?.contentVersion, undefined);
-  assert.equal(phigros?.lastUpdatedAt, "2026-08-14T13:57:23.100Z");
+  const phigrosUpdatedAt = catalog.resources
+    .filter((resource) => resource.game === "phigros" && resource.lifecycle.status === "published")
+    .map((resource) => resource.lifecycle.updatedAt)
+    .sort()
+    .at(-1);
+  assert.equal(phigros?.lastUpdatedAt, phigrosUpdatedAt);
   assert.deepEqual(projection.games.map((game) => game.slug), sortPublicGames(projection.games).map((game) => game.slug));
 
   const mutated = structuredClone(catalog);
@@ -335,9 +355,10 @@ test("category semantic browse data keeps player-facing names and conservative u
   assert.equal(ignotusByd?.displayTitle, "Ignotus Afterburn");
   const portraits = siteData.galleries["arcaea/character-portrait"] ?? [];
   const namedPortraits = portraits.filter((resource) => resource.displayTitle !== "未归类角色立绘");
-  assert.equal(namedPortraits.length, 140);
-  assert.equal(portraits.length, 140);
+  assert.equal(namedPortraits.length, 141);
+  assert.equal(portraits.length, 141);
   assert.ok(namedPortraits.some((resource) => resource.displayTitle === "光"));
+  assert.ok(namedPortraits.some((resource) => resource.displayTitle === "識眼"));
   assert.ok(portraits.every((resource) => !/^\d+_(?:angry|cut|twisted)/u.test(resource.displayTitle)));
   for (const resourceType of ["character-portrait", "character-avatar", "linkplay-preview"] as const) {
     const saya = (siteData.galleries[`arcaea/${resourceType}`] ?? []).find((resource) => resource.metadata.characterEnglishName === "saya_konzetsu");
@@ -354,14 +375,15 @@ test("category semantic browse data keeps player-facing names and conservative u
   assert.equal(knownCg?.subtitle, "Main Story · Act I · Part I · Entry 0-3");
   assert.ok((knownCg?.searchTerms ?? []).includes("Shades of Light in a Transcendent Realm"));
   const storyProjection = semantic.arcaea.resources.filter((resource) => resource.resourceType === "story-cg");
-  assert.equal(storyProjection.length, 66);
-  assert.equal(story.length, 237);
+  assert.equal(storyProjection.length, 70);
+  assert.equal(story.length, 241);
   assert.equal(semantic.arcaea.resources.filter((resource) => resource.metadata.storyVisualKind === "VN CG").length, 171);
   const divineCgs = story.filter((resource) => resource.resourceType === "story-cg" && resource.searchTerms?.some((term) => term.startsWith("C-")));
-  assert.equal(divineCgs.length, 9);
+  assert.equal(divineCgs.length, 13);
   assert.ok(divineCgs.every((resource) => resource.displayTitle === "Divine Oblivion"));
   assert.ok(divineCgs.every((resource) => resource.metadata.storyPathId === 33));
   assert.ok(divineCgs.every((resource) => resource.metadata.storySection === "Act II · Part II"));
+  assert.equal(divineCgs.filter((resource) => resource.metadata.storyNode === "C-10").length, 4);
   assert.ok(divineCgs.some((resource) => resource.subtitle?.includes("Entry C-2 · CG 1/2") && (resource.badges ?? []).includes("关联：Balor")));
   assert.ok(divineCgs.some((resource) => resource.subtitle?.includes("Entry C-7 · CG 3/3") && (resource.badges ?? []).includes("关联：DEINOS PHAINEIN")));
   const allVnCgs = story.filter((resource) => resource.metadata.storyVisualKind === "VN CG");
@@ -422,7 +444,7 @@ test("natural text comparison keeps numeric ordering without folding accents", (
 
 test("homepage navigation uses the generated jacket browse counts", () => {
   const games = getPublicNavigationGames();
-  assert.equal(games.find((game) => game.slug === "arcaea")?.categories.find((category) => category.slug === "jacket")?.count, 565);
+  assert.equal(games.find((game) => game.slug === "arcaea")?.categories.find((category) => category.slug === "jacket")?.count, 566);
   assert.equal(games.find((game) => game.slug === "phigros")?.categories.find((category) => category.slug === "jacket")?.count, 353);
   const rizline = games.find((game) => game.slug === "rizline");
   assert.equal(rizline?.categories.find((category) => category.slug === "jacket")?.count, 143);
@@ -515,21 +537,19 @@ test("game icons use real assets with a non-breaking fallback", () => {
   assert.match(source, /rotaeno/u);
 });
 
-test("Arcaea icon does not retain the adaptive green edge", async () => {
+test("Arcaea icon does not retain an extracted blank black/white edge", async () => {
   const icon = await sharp(path.join(siteRoot, "public", "game-icons", "arcaea.png")).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
-  let greenEdgePixels = 0;
-  for (let y = 0; y < icon.info.height; y += 1) {
-    for (let x = 0; x < icon.info.width; x += 1) {
-      const edge = Math.min(x, y, icon.info.width - 1 - x, icon.info.height - 1 - y);
-      const offset = (y * icon.info.width + x) * icon.info.channels;
-      const red = icon.data[offset] ?? 0;
-      const green = icon.data[offset + 1] ?? 0;
-      const blue = icon.data[offset + 2] ?? 0;
-      const alpha = icon.data[offset + 3] ?? 0;
-      if (edge <= 32 && alpha > 10 && green > red + 50 && blue > red + 30) greenEdgePixels += 1;
-    }
+  assert.equal(icon.info.width, 192);
+  assert.equal(icon.info.height, 192);
+  for (const [x, y] of [[0, 0], [icon.info.width - 1, 0], [0, icon.info.height - 1], [icon.info.width - 1, icon.info.height - 1]] as Array<[number, number]>) {
+    const offset = (y * icon.info.width + x) * icon.info.channels;
+    const red = icon.data[offset] ?? 0;
+    const green = icon.data[offset + 1] ?? 0;
+    const blue = icon.data[offset + 2] ?? 0;
+    const alpha = icon.data[offset + 3] ?? 0;
+    assert.ok(alpha >= 200, "Arcaea icon corners should remain opaque after transparent-boundary cropping");
+    assert.ok(Math.max(red, green, blue) > 24 && Math.min(red, green, blue) < 240, "Arcaea icon corners should not be a blank black/white border");
   }
-  assert.equal(greenEdgePixels, 0);
   const bottomCenterOffset = ((icon.info.height - 1) * icon.info.width + Math.floor(icon.info.width / 2)) * icon.info.channels;
   assert.ok((icon.data[bottomCenterOffset + 3] ?? 0) >= 200, "Arcaea icon should not retain a transparent drop-shadow strip at the bottom");
 });

@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
   "game": "arcaea",
-  "generatedAt": "2026-08-28T02:25:38.975Z",
+  "generatedAt": "2026-09-02T07:09:52.513Z",
   "source": {
-    "version": "7.0.0c",
-    "sha256": "8ef5225f4dab43135711a776f2fba05e0e397b29c569147e7f1f18663d9a8522"
+    "version": "7.0.255c",
+    "sha256": "5aeb5edc425808605cc8a682cd9269aecae671fdab9573376b100d08ee3577c6"
   },
   "songs": [
     {
@@ -34855,7 +34855,7 @@
         },
         {
           "difficultyClass": "PRS",
-          "displayLevel": "8+"
+          "displayLevel": "8"
         },
         {
           "difficultyClass": "PST",
@@ -35216,6 +35216,69 @@
         "てぃあ",
         "ぱわーれす"
       ]
+    },
+    {
+      "songId": "sacrosanct",
+      "displayTitle": "⊥⊬",
+      "titleAliases": [
+        "⊥⊬",
+        "sacrosanct",
+        "사크로상트",
+        "さくろさんくと"
+      ],
+      "artist": "Silentroom Dismantled XOR かたぎり",
+      "artistAliases": [
+        "사일런트 룸 디스맨틀드",
+        "카타기리",
+        "かたぎり",
+        "さいれんとるーむ"
+      ],
+      "pack": {
+        "packId": "konzetsu",
+        "displayName": "Divine Oblivion"
+      },
+      "version": "7.0",
+      "date": 1787788808,
+      "sideRaw": 4,
+      "bpm": "?",
+      "orderHint": 553,
+      "charts": [
+        {
+          "difficultyClass": "FTR",
+          "displayLevel": "10+"
+        },
+        {
+          "difficultyClass": "PRS",
+          "displayLevel": "9"
+        },
+        {
+          "difficultyClass": "PST",
+          "displayLevel": "6"
+        }
+      ],
+      "artworks": [
+        {
+          "role": "default",
+          "resourceId": "a0a4d486-1216-78d9-a3c6-ad6ff049b46a",
+          "currentApkPresence": true,
+          "matchStatus": "confirmed",
+          "sourcePath": "assets/songs/dl_sacrosanct/1080_base.jpg"
+        }
+      ],
+      "relatedSongs": [],
+      "searchTerms": [
+        "⊥⊬",
+        "divine oblivion",
+        "konzetsu",
+        "sacrosanct",
+        "silentroom dismantled xor かたぎり",
+        "사일런트 룸 디스맨틀드",
+        "사크로상트",
+        "카타기리",
+        "かたぎり",
+        "さいれんとるーむ",
+        "さくろさんくと"
+      ]
     }
   ],
   "specials": [
@@ -35543,9 +35606,9 @@
     }
   ],
   "recordCounts": {
-    "regularSongs": 551,
-    "currentArtworkSlots": 610,
-    "currentArtworkResourceReferences": 609,
+    "regularSongs": 552,
+    "currentArtworkSlots": 611,
+    "currentArtworkResourceReferences": 610,
     "missingCurrentArtwork": 1,
     "specialRecords": 9,
     "archiveExtras": 3,

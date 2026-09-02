@@ -1,10 +1,10 @@
 {
   "manifestVersion": 1,
   "source": {
-    "packageVersion": "7.0.0c",
-    "packageSha256": "8ef5225f4dab43135711a776f2fba05e0e397b29c569147e7f1f18663d9a8522",
+    "packageVersion": "7.0.255c",
+    "packageSha256": "5aeb5edc425808605cc8a682cd9269aecae671fdab9573376b100d08ee3577c6",
     "orderingPath": "assets/app-data/story2/ordering",
-    "verifiedAt": "2026-08-29",
+    "verifiedAt": "2026-09-02",
     "wikiSources": [
       {
         "url": "https://wikiwiki.jp/arcaea/%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AA%E3%83%BC",
@@ -448,6 +448,13 @@
       "height": 185,
       "mime": "image/webp",
       "sizeBytes": 9164
+    },
+    "entry_konzetsu_10.png": {
+      "url": "/generated/arcaea/story/ui/entry_konzetsu_10.webp",
+      "width": 307,
+      "height": 185,
+      "mime": "image/webp",
+      "sizeBytes": 10146
     },
     "entry_konzetsu_2.png": {
       "url": "/generated/arcaea/story/ui/entry_konzetsu_2.webp",
@@ -3474,6 +3481,22 @@
         "sizeBytes": 57640
       }
     },
+    "1cbb80df-3653-77d5-ba1c-6e0e6ef64140": {
+      "thumb": {
+        "url": "/generated/arcaea/story/cg/thumb/1cbb80df-3653-77d5-ba1c-6e0e6ef64140.webp",
+        "width": 420,
+        "height": 236,
+        "mime": "image/webp",
+        "sizeBytes": 25318
+      },
+      "preview": {
+        "url": "/generated/arcaea/story/cg/preview/1cbb80df-3653-77d5-ba1c-6e0e6ef64140.webp",
+        "width": 1200,
+        "height": 675,
+        "mime": "image/webp",
+        "sizeBytes": 157340
+      }
+    },
     "1d677506-0fad-7d74-aab0-56d1742218b1": {
       "thumb": {
         "url": "/generated/arcaea/story/cg/thumb/1d677506-0fad-7d74-aab0-56d1742218b1.webp",
@@ -4290,6 +4313,22 @@
         "sizeBytes": 107426
       }
     },
+    "9e3c124e-c8db-7dd7-b5f9-93e06b335919": {
+      "thumb": {
+        "url": "/generated/arcaea/story/cg/thumb/9e3c124e-c8db-7dd7-b5f9-93e06b335919.webp",
+        "width": 420,
+        "height": 236,
+        "mime": "image/webp",
+        "sizeBytes": 25074
+      },
+      "preview": {
+        "url": "/generated/arcaea/story/cg/preview/9e3c124e-c8db-7dd7-b5f9-93e06b335919.webp",
+        "width": 1200,
+        "height": 675,
+        "mime": "image/webp",
+        "sizeBytes": 156372
+      }
+    },
     "a1ef5f85-2993-74a2-b2a5-269a0c8a4a3b": {
       "thumb": {
         "url": "/generated/arcaea/story/cg/thumb/a1ef5f85-2993-74a2-b2a5-269a0c8a4a3b.webp",
@@ -4466,6 +4505,22 @@
         "sizeBytes": 18768
       }
     },
+    "bb0b62f6-6a36-7d03-beed-03191ef5768e": {
+      "thumb": {
+        "url": "/generated/arcaea/story/cg/thumb/bb0b62f6-6a36-7d03-beed-03191ef5768e.webp",
+        "width": 420,
+        "height": 236,
+        "mime": "image/webp",
+        "sizeBytes": 23520
+      },
+      "preview": {
+        "url": "/generated/arcaea/story/cg/preview/bb0b62f6-6a36-7d03-beed-03191ef5768e.webp",
+        "width": 1200,
+        "height": 675,
+        "mime": "image/webp",
+        "sizeBytes": 142738
+      }
+    },
     "c27b30dc-9333-7673-b0bf-a198167ee55a": {
       "thumb": {
         "url": "/generated/arcaea/story/cg/thumb/c27b30dc-9333-7673-b0bf-a198167ee55a.webp",
@@ -4592,6 +4647,22 @@
         "height": 605,
         "mime": "image/webp",
         "sizeBytes": 131334
+      }
+    },
+    "cd2b127c-a998-79d6-a529-80259c8ae465": {
+      "thumb": {
+        "url": "/generated/arcaea/story/cg/thumb/cd2b127c-a998-79d6-a529-80259c8ae465.webp",
+        "width": 420,
+        "height": 236,
+        "mime": "image/webp",
+        "sizeBytes": 14890
+      },
+      "preview": {
+        "url": "/generated/arcaea/story/cg/preview/cd2b127c-a998-79d6-a529-80259c8ae465.webp",
+        "width": 1200,
+        "height": 675,
+        "mime": "image/webp",
+        "sizeBytes": 77332
       }
     },
     "d490eae6-9d71-7898-85cd-8be13ec97416": {
