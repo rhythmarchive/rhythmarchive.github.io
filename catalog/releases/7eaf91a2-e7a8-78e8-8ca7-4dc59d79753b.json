@@ -33,6 +33,6 @@
   "notes": [
     "Local-only Arcaea 7.0.255c upscaled jacket rendition.",
     "The original jacket and Real-ESRGAN _optimization.png work file remain preserved.",
-    "ROS/object storage and production publication are disabled."
+    "ROS object was uploaded and SHA-256/size verified after explicit authorization; production publication remains disabled."
   ]
 }

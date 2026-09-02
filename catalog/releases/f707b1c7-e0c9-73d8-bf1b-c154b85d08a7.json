@@ -631,6 +631,6 @@
     "Scope includes 12 new non-sticker image resources (48 original/thumbnail Renditions); unchanged full-snapshot categories remain represented by the previous Catalog snapshot.",
     "Browse metadata separately records the new song, Divine Oblivion C-10 story content, character 98, and chart-level corrections.",
     "REMOVED is empty; no Catalog or object deletion was performed.",
-    "Local Catalog and ReleaseManifest only; ROS/object-storage upload and production publication are disabled for this repository workflow."
+    "ROS objects were uploaded and SHA-256/size verified after explicit authorization; no object deletion or overwrite was performed. Production publication remains disabled."
   ]
 }
