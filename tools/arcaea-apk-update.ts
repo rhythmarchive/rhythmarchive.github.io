@@ -5,7 +5,7 @@ function usage(): never {
   console.log([
     "Usage: npm run arcaea:apk:check -- [--check-only | --mode check-only|publish] [--staging-dir <dir>]",
     "",
-    "The official source is fixed to https://arcaea.lowiro.com/zh.",
+    "The official source is fixed to https://webapi.lowiro.com/webapi/serve/static/bin/arcaea/apk.",
     "--check-only discovers the official version and CDN host without reading or writing ROS.",
   ].join("\n"));
   process.exit(0);

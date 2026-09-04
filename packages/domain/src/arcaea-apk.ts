@@ -5,7 +5,6 @@ import path from "node:path";
 import { Readable } from "node:stream";
 import { pipeline } from "node:stream/promises";
 import { ReadableStream } from "node:stream/web";
-import { chromium } from "playwright";
 import {
   StorageError,
   type StorageClient,
@@ -20,6 +19,7 @@ import {
 } from "./github-release.js";
 
 export const ARCAEA_SOURCE_PAGE = "https://arcaea.lowiro.com/zh";
+export const ARCAEA_APK_API_URL = "https://webapi.lowiro.com/webapi/serve/static/bin/arcaea/apk";
 export const ARCAEA_OFFICIAL_CDN_HOST = "arcaea-static.lowiro-cdn.net";
 export const ARCAEA_APK_CONTENT_TYPE = "application/vnd.android.package-archive";
 export const ARCAEA_APK_LATEST_KEY = "apk/arcaea/latest.json";
@@ -156,63 +156,36 @@ export function assertOfficialArcaeaApkUrl(value: string): URL {
   return url;
 }
 
-function versionFromPageText(value: string | null): string | undefined {
-  if (!value) return undefined;
-  const candidate = value.replace(/^\s*版本\s*/iu, "").trim();
-  return canonicalArcaeaVersion(candidate);
+function parseOfficialArcaeaApkApiResponse(value: unknown): { version: string; officialFilename: string; sourceUrl: string } {
+  if (!value || typeof value !== "object") throw new Error("Official Arcaea APK API returned an invalid response.");
+  const record = value as Record<string, unknown>;
+  if (record.success !== true || !record.value || typeof record.value !== "object") throw new Error("Official Arcaea APK API returned an unsuccessful response.");
+  const apiValue = record.value as Record<string, unknown>;
+  if (typeof apiValue.url !== "string" || typeof apiValue.version !== "string") throw new Error("Official Arcaea APK API response is missing url or version.");
+  const sourceUrl = assertOfficialArcaeaApkUrl(apiValue.url);
+  const officialFilename = filenameFromOfficialUrl(sourceUrl);
+  const filenameVersion = arcaeaVersionFromOfficialFilename(officialFilename);
+  const version = canonicalArcaeaVersion(apiValue.version);
+  if (!/\.apk$/iu.test(officialFilename) || !filenameVersion || !version) throw new Error("Official Arcaea APK API returned an invalid APK filename or version.");
+  if (compareArcaeaVersion(version, filenameVersion) !== 0) throw new Error("Official API version " + version + " does not match APK filename version " + filenameVersion + ".");
+  return { version, officialFilename, sourceUrl: sourceUrl.toString() };
 }
 
-export async function discoverArcaeaApk(): Promise<ArcaeaDiscovery> {
-  const browser = await chromium.launch({ headless: true });
+export async function discoverArcaeaApk(fetchImpl: FetchLike = fetch): Promise<ArcaeaDiscovery> {
+  const response = await fetchImpl(ARCAEA_APK_API_URL, { headers: { Accept: "application/json" }, redirect: "follow" });
+  if (!response.ok) throw new Error("Official Arcaea APK API request failed: " + response.status + " " + response.statusText);
+  let payload: unknown;
   try {
-    const context = await browser.newContext({
-      userAgent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36",
-    });
-    const page = await context.newPage();
-    await page.goto(ARCAEA_SOURCE_PAGE, { waitUntil: "domcontentloaded", timeout: 30_000 });
-    const links = page.locator(`a[href*='${ARCAEA_OFFICIAL_CDN_HOST}']`);
-    await page.waitForSelector(`a[href*='${ARCAEA_OFFICIAL_CDN_HOST}']`, { timeout: 20_000 });
-    let sourceUrl: URL | undefined;
-    let officialFilename = "";
-    for (let index = 0; index < await links.count(); index += 1) {
-      const href = await links.nth(index).getAttribute("href");
-      if (!href) continue;
-      try {
-        const candidateUrl = assertOfficialArcaeaApkUrl(new URL(href, ARCAEA_SOURCE_PAGE).toString());
-        const candidateFilename = filenameFromOfficialUrl(candidateUrl);
-        if (!/\.apk$/iu.test(candidateFilename)) continue;
-        sourceUrl = candidateUrl;
-        officialFilename = candidateFilename;
-        break;
-      } catch {
-        continue;
-      }
-    }
-    if (!sourceUrl || !officialFilename) throw new Error("Official Arcaea APK link was not found.");
-    const pageVersion = versionFromPageText(await page.locator(".version").first().textContent().catch(() => null));
-    const filenameVersion = arcaeaVersionFromOfficialFilename(officialFilename);
-    let version = pageVersion ?? filenameVersion;
-    if (pageVersion && filenameVersion && compareArcaeaVersion(pageVersion, filenameVersion) !== 0) {
-      const pageParts = parsedVersion(pageVersion);
-      const filenameParts = parsedVersion(filenameVersion);
-      const numericPartsMatch = pageParts.numbers.length === filenameParts.numbers.length && pageParts.numbers.every((value, index) => value === filenameParts.numbers[index]);
-      if (numericPartsMatch && !pageParts.suffix && Boolean(filenameParts.suffix)) {
-        version = filenameVersion;
-      } else {
-        throw new Error(`Official page version ${pageVersion} does not match APK filename version ${filenameVersion}.`);
-      }
-    }
-    if (!version) throw new Error("Could not determine the official Arcaea APK version.");
-    return {
-      version,
-      officialFilename,
-      sourceUrl: sourceUrl.toString(),
-      sourceHost: ARCAEA_OFFICIAL_CDN_HOST,
-      discoveredAt: new Date().toISOString(),
-    };
-  } finally {
-    await browser.close();
+    payload = await response.json();
+  } catch {
+    throw new Error("Official Arcaea APK API returned invalid JSON.");
   }
+  const parsed = parseOfficialArcaeaApkApiResponse(payload);
+  return {
+    ...parsed,
+    sourceHost: ARCAEA_OFFICIAL_CDN_HOST,
+    discoveredAt: new Date().toISOString(),
+  };
 }
 
 function readableFromBody(body: unknown): Readable {
@@ -522,8 +495,8 @@ export async function runArcaeaApkUpdate(options: {
 }): Promise<ArcaeaUpdateResult> {
   const mode = options.mode ?? "publish";
   const log = options.log ?? ((message: string) => console.log(message));
-  const discover = options.discover ?? discoverArcaeaApk;
   const fetchImpl = options.fetchImpl ?? fetch;
+  const discover = options.discover ?? (() => discoverArcaeaApk(fetchImpl));
   const discovered = await discover();
   const canonicalVersion = canonicalArcaeaVersion(discovered.version);
   if (!canonicalVersion) throw new Error("Discovered Arcaea version cannot be safely stored.");

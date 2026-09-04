@@ -633,9 +633,9 @@ test("APK card keeps digest and previous version behind secondary disclosure", (
   const source = fs.readFileSync(path.join(siteRoot, "src", "scripts", "apk-card.ts"), "utf8");
   assert.match(source, /summary\.textContent = "校验信息"/u);
   assert.match(source, /createPreviousVersion\(previous\)/u);
-  assert.match(source, /"前往Releases↗"/u);
+  assert.match(source, /"官方下载链接"/u);
   assert.match(source, /"下载APK"/u);
-  assert.doesNotMatch(source, /官方下载|GitHub 下载/u);
+  assert.doesNotMatch(source, /前往Releases|GitHub 下载/u);
   assert.doesNotMatch(source, /sha256\.slice\(/u);
   assert.doesNotMatch(source, /previousRow\.className/u);
 });

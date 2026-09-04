@@ -2,7 +2,7 @@ name: Arcaea APK update
 
 on:
   schedule:
-    - cron: "15 1,7,13,19 * * *"
+    - cron: "*/30 * * * *"
   workflow_dispatch:
     inputs:
       mode:
@@ -44,9 +44,6 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
-
-      - name: Install Playwright Chromium
-        run: npx playwright install chromium
 
       - name: Run Arcaea APK updater
         run: npm run arcaea:apk:check -- --mode "${{ inputs.mode || 'publish' }}"

@@ -6,6 +6,7 @@ import path from "node:path";
 import test from "node:test";
 import { zipSync } from "fflate";
 import {
+  ARCAEA_APK_API_URL,
   ARCAEA_APK_LATEST_KEY,
   ARCAEA_APK_MAX_SIZE_BYTES,
   MemoryStorageClient,
@@ -232,6 +233,33 @@ test("compareArcaeaVersion is narrow and rejects unknown formats", () => {
   assert.ok(compareArcaeaVersion("6.17.0", "6.16.2") > 0);
   assert.ok(compareArcaeaVersion("6.16.0c", "6.16.0") > 0);
   assert.throws(() => compareArcaeaVersion("latest", "6.16.0"), /Invalid Arcaea version/iu);
+});
+
+test("check-only discovers the official APK through the Lowiro API", async () => {
+  const requests: Array<{ url: string; init: unknown }> = [];
+  const result = await runArcaeaApkUpdate({
+    mode: "check-only",
+    fetchImpl: async (input, init) => {
+      requests.push({ url: String(input), init });
+      return new Response(JSON.stringify({ success: true, value: { url: OFFICIAL_URL, version: "6.17.1" } }), {
+        status: 200,
+        headers: { "content-type": "application/json" },
+      });
+    },
+  });
+  assert.equal(result.status, "checked");
+  assert.equal(result.discovered.version, "6.17.1");
+  assert.equal(result.discovered.officialFilename, "arcaea_6.17.1.apk");
+  assert.equal(result.discovered.sourceUrl, OFFICIAL_URL);
+  assert.equal(requests[0]?.url, ARCAEA_APK_API_URL);
+  assert.deepEqual(requests[0]?.init, { headers: { Accept: "application/json" }, redirect: "follow" });
+});
+
+test("official APK API discovery rejects a mismatched filename version", async () => {
+  await assert.rejects(() => runArcaeaApkUpdate({
+    mode: "check-only",
+    fetchImpl: async () => new Response(JSON.stringify({ success: true, value: { url: OFFICIAL_URL, version: "6.17.2" } }), { status: 200 }),
+  }), /does not match APK filename version/iu);
 });
 
 test("manifest v2 accepts exact GitHub and official download origins", () => {

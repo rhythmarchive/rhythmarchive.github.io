@@ -5,11 +5,10 @@ import test from "node:test";
 
 test("Arcaea updater workflow uses the required schedule and serialized concurrency group", async () => {
   const workflow = await readFile(path.resolve(".github", "workflows", "arcaea-apk-update.yml"), "utf8");
-  assert.match(workflow, /cron:\s*["']15 1,7,13,19 \* \* \*["']/u);
+  assert.match(workflow, /cron:\s*["']\*\/30 \* \* \* \*["']/u);
   assert.match(workflow, /concurrency:\s*\n\s+group:\s*arcaea-apk-update\s*\n\s+cancel-in-progress:\s*false/u);
   assert.match(workflow, /mode:\s*\n\s+description:/u);
   assert.match(workflow, /permissions:\s*\n\s+contents:\s*write/u);
   assert.match(workflow, /GITHUB_TOKEN:\s*\$\{\{\s*github\.token\s*\}\}/u);
-  assert.match(workflow, /npx playwright install chromium/u);
-  assert.doesNotMatch(workflow, /--with-deps/u);
+  assert.doesNotMatch(workflow, /playwright|chromium/iu);
 });
