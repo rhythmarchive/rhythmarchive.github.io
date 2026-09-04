@@ -89,7 +89,8 @@ type FetchLike = typeof fetch;
 export function canonicalArcaeaVersion(value: string): string | undefined {
   const match = value.trim().match(ARCAEA_VERSION_PATTERN);
   if (!match) return undefined;
-  const numeric = match[1]!.split(".").map((part) => String(Number.parseInt(part, 10)));
+  const numeric = match[1]!.split(".").map((part) => Number(part));
+  if (numeric.some((part) => !Number.isSafeInteger(part))) return undefined;
   return `${numeric.join(".")}${match[2]!.toLowerCase()}`;
 }
 
@@ -172,7 +173,7 @@ function parseOfficialArcaeaApkApiResponse(value: unknown): { version: string; o
 }
 
 export async function discoverArcaeaApk(fetchImpl: FetchLike = fetch): Promise<ArcaeaDiscovery> {
-  const response = await fetchImpl(ARCAEA_APK_API_URL, { headers: { Accept: "application/json" }, redirect: "follow" });
+  const response = await fetchImpl(ARCAEA_APK_API_URL, { headers: { Accept: "application/json" }, redirect: "error", signal: AbortSignal.timeout(30_000) });
   if (!response.ok) throw new Error("Official Arcaea APK API request failed: " + response.status + " " + response.statusText);
   let payload: unknown;
   try {

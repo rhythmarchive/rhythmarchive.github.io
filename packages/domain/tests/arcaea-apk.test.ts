@@ -12,6 +12,7 @@ import {
   MemoryStorageClient,
   arcaeaGithubAssetUrl,
   arcaeaGithubReleaseTag,
+  canonicalArcaeaVersion,
   canonicalArcaeaApkFilename,
   compareArcaeaVersion,
   parseArcaeaApkManifest,
@@ -233,6 +234,7 @@ test("compareArcaeaVersion is narrow and rejects unknown formats", () => {
   assert.ok(compareArcaeaVersion("6.17.0", "6.16.2") > 0);
   assert.ok(compareArcaeaVersion("6.16.0c", "6.16.0") > 0);
   assert.throws(() => compareArcaeaVersion("latest", "6.16.0"), /Invalid Arcaea version/iu);
+  assert.equal(canonicalArcaeaVersion("9007199254740993.0.0"), undefined);
 });
 
 test("check-only discovers the official APK through the Lowiro API", async () => {
@@ -252,7 +254,9 @@ test("check-only discovers the official APK through the Lowiro API", async () =>
   assert.equal(result.discovered.officialFilename, "arcaea_6.17.1.apk");
   assert.equal(result.discovered.sourceUrl, OFFICIAL_URL);
   assert.equal(requests[0]?.url, ARCAEA_APK_API_URL);
-  assert.deepEqual(requests[0]?.init, { headers: { Accept: "application/json" }, redirect: "follow" });
+  const requestInit = requests[0]?.init as { headers?: unknown; redirect?: unknown; signal?: unknown } | undefined;
+  assert.deepEqual({ headers: requestInit?.headers, redirect: requestInit?.redirect }, { headers: { Accept: "application/json" }, redirect: "error" });
+  assert.ok(requestInit?.signal instanceof AbortSignal);
 });
 
 test("official APK API discovery rejects a mismatched filename version", async () => {
@@ -260,6 +264,25 @@ test("official APK API discovery rejects a mismatched filename version", async (
     mode: "check-only",
     fetchImpl: async () => new Response(JSON.stringify({ success: true, value: { url: OFFICIAL_URL, version: "6.17.2" } }), { status: 200 }),
   }), /does not match APK filename version/iu);
+});
+
+test("official APK API discovery rejects unsuccessful, invalid, and unsafe responses", async () => {
+  const cases: Array<{ body: string; message: RegExp }> = [
+    { body: JSON.stringify({ success: false, value: null }), message: /unsuccessful response/iu },
+    { body: JSON.stringify({ success: true, value: {} }), message: /missing url or version/iu },
+    { body: JSON.stringify({ success: true, value: { url: "https://evil.example/arcaea_6.17.1.apk", version: "6.17.1" } }), message: /outside the allowed official CDN/iu },
+    { body: JSON.stringify({ success: true, value: { url: "https://arcaea-static.lowiro-cdn.net/download?filename=arcaea_9007199254740993.0.0.apk", version: "9007199254740993.0.0" } }), message: /invalid APK filename or version/iu },
+  ];
+  for (const item of cases) {
+    await assert.rejects(() => runArcaeaApkUpdate({
+      mode: "check-only",
+      fetchImpl: async () => new Response(item.body, { status: 200 }),
+    }), item.message);
+  }
+  await assert.rejects(() => runArcaeaApkUpdate({
+    mode: "check-only",
+    fetchImpl: async () => new Response("not-json", { status: 200 }),
+  }), /invalid JSON/iu);
 });
 
 test("manifest v2 accepts exact GitHub and official download origins", () => {

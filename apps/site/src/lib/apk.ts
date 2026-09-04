@@ -31,7 +31,9 @@ const SHA256_PATTERN = /^[0-9a-f]{64}$/iu;
 function canonicalVersion(value: string): string | undefined {
   const match = value.trim().match(VERSION_PATTERN);
   if (!match) return undefined;
-  return `${match[1]!.split(".").map((part) => String(Number.parseInt(part, 10))).join(".")}${match[2]!.toLowerCase()}`;
+  const numeric = match[1]!.split(".").map((part) => Number(part));
+  if (numeric.some((part) => !Number.isSafeInteger(part))) return undefined;
+  return `${numeric.join(".")}${match[2]!.toLowerCase()}`;
 }
 
 function expectedGithubPath(version: string, fileName: string): string {

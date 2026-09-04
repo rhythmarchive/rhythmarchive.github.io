@@ -41,9 +41,10 @@ jobs:
         with:
           node-version: 22
           cache: npm
+          cache-dependency-path: tools/arcaea-apk-updater/package-lock.json
 
-      - name: Install dependencies
-        run: npm ci
+      - name: Install Arcaea updater dependencies
+        run: npm --prefix tools/arcaea-apk-updater ci --no-audit --no-fund
 
       - name: Run Arcaea APK updater
-        run: npm run arcaea:apk:check -- --mode "${{ inputs.mode || 'publish' }}"
+        run: npm --prefix tools/arcaea-apk-updater run check -- --mode "${{ inputs.mode || 'publish' }}"

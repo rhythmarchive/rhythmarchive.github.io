@@ -1,5 +1,6 @@
 import path from "node:path";
-import { runArcaeaApkUpdate, S3StorageClient } from "../packages/domain/src/index.js";
+import { runArcaeaApkUpdate } from "../packages/domain/src/arcaea-apk.js";
+import { S3StorageClient } from "../packages/domain/src/storage.js";
 
 function usage(): never {
   console.log([

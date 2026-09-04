@@ -12,7 +12,7 @@ Phase 7 将 Arcaea APK updater 的正式执行环境改为 GitHub-hosted Actions
 - schedule：`*/30 * * * *` UTC，每半小时运行一次。
 - `workflow_dispatch` 只有 `mode` input：`publish`（默认）或 `check-only`。
 - `concurrency.group` 为 `arcaea-apk-update`，`cancel-in-progress: false`；定时和手动触发串行等待。
-- workflow 只执行 checkout、Node 22、`npm ci` 和 `npm run arcaea:apk:check`。
+- workflow 只执行 checkout、Node 22、`tools/arcaea-apk-updater/package-lock.json` 对应的独立 `npm ci` 和 updater 脚本；网站根依赖不参与 Arcaea 定时任务。
 
 CLI 仍可本地运行：
 
@@ -90,7 +90,7 @@ manifest 只保留经过 host 校验的 official URL 和 versioned GitHub asset 
 - workflow schedule/concurrency 和首页 latest/previous parser 有轻量测试。
 - 本机 `npm run arcaea:apk:check -- --check-only` 已真实访问官方 APK API，发现 API 返回的版本和 `arcaea-static.lowiro-cdn.net` 下载地址；没有下载 APK。
 
-GitHub-hosted Ubuntu runner 的 `check-only` 尚未实测：当前工作区未提交/未推送，无法在 GitHub-hosted runner 执行本地未推送代码。这是首次启用前的验收 blocker，不能把本机结果冒充 runner 结果。用户提交并推送后，应先在 Actions 手动选择 `check-only`，确认 API → lowiro CDN → version/URL 成功，再批准第一次 `publish`。
+此前的 `e34a8c7` 已在 GitHub-hosted Ubuntu runner 上完成 `check-only`；本次独立 updater 依赖隔离仍应在推送后重复一次 `check-only`，确认独立 `npm ci`、API → lowiro CDN → version/URL 全链路成功，再运行 `publish`。
 
 ## Final local checks
 
@@ -103,7 +103,7 @@ npm run site:check
 npm run site:build
 ```
 
-本轮未执行正式 APK 下载、ROS APK PUT、latest.json 正式写入、ROS delete、deploy、commit 或 push；Phase 6 workflow、图片 extractor、Review、超分、Catalog、Gallery、Detail、Search 和其他冻结范围未由 Phase 7 触发。
+本次依赖隔离未执行正式 APK 下载、ROS APK PUT、latest.json 正式写入、ROS delete 或 deploy；网站 Pages workflow、Catalog、Gallery、Detail、Search 和其他冻结范围保持不变。
 
 首次生产启用仍需用户完成：
 

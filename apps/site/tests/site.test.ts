@@ -197,6 +197,7 @@ test("homepage APK parser accepts GitHub/official downloads and rejects unsafe U
   assert.equal(parsePublicArcaeaApkManifest({ schemaVersion: 1, game: "arcaea", generatedAt: "now", latest: entry("6.17.1"), previous: null }), null);
   assert.equal(parsePublicArcaeaApkManifest({ schemaVersion: 2, game: "arcaea", generatedAt: "now", latest: { ...entry("6.17.1"), downloads: { ...entry("6.17.1").downloads, github: "https://evil.example/releases/download/arcaea-apk-6.17.1/Arcaea_6.17.1.apk" } }, previous: null }), null);
   assert.equal(parsePublicArcaeaApkManifest({ schemaVersion: 2, game: "arcaea", generatedAt: "now", latest: { ...entry("6.17.1"), downloads: { ...entry("6.17.1").downloads, official: "http://arcaea-static.lowiro-cdn.net/arcaea.apk" } }, previous: null }), null);
+  assert.equal(parsePublicArcaeaApkManifest({ schemaVersion: 2, game: "arcaea", generatedAt: "now", latest: entry("9007199254740993.0.0"), previous: null }), null);
   assert.equal(formatPublicApkBytes(1234), "1.21 KB");
 });
 
