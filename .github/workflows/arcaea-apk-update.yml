@@ -46,5 +46,8 @@ jobs:
       - name: Install Arcaea updater dependencies
         run: npm --prefix tools/arcaea-apk-updater ci --no-audit --no-fund
 
+      - name: Expose updater dependencies to shared domain source
+        run: ln -s tools/arcaea-apk-updater/node_modules node_modules
+
       - name: Run Arcaea APK updater
         run: npm --prefix tools/arcaea-apk-updater run check -- --mode "${{ inputs.mode || 'publish' }}"

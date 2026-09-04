@@ -12,7 +12,7 @@ Phase 7 将 Arcaea APK updater 的正式执行环境改为 GitHub-hosted Actions
 - schedule：`*/30 * * * *` UTC，每半小时运行一次。
 - `workflow_dispatch` 只有 `mode` input：`publish`（默认）或 `check-only`。
 - `concurrency.group` 为 `arcaea-apk-update`，`cancel-in-progress: false`；定时和手动触发串行等待。
-- workflow 只执行 checkout、Node 22、`tools/arcaea-apk-updater/package-lock.json` 对应的独立 `npm ci` 和 updater 脚本；网站根依赖不参与 Arcaea 定时任务。
+- workflow 只执行 checkout、Node 22、`tools/arcaea-apk-updater/package-lock.json` 对应的独立 `npm ci`、临时暴露共享 domain 所需的 updater 依赖和 updater 脚本；网站根依赖不参与 Arcaea 定时任务。
 
 CLI 仍可本地运行：
 

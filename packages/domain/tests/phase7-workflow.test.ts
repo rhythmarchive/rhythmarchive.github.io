@@ -13,6 +13,7 @@ test("Arcaea updater workflow uses the required schedule and serialized concurre
   assert.match(workflow, /GITHUB_TOKEN:\s*\$\{\{\s*github\.token\s*\}\}/u);
   assert.match(workflow, /cache-dependency-path:\s*tools\/arcaea-apk-updater\/package-lock\.json/u);
   assert.match(workflow, /run:\s*npm --prefix tools\/arcaea-apk-updater ci --no-audit --no-fund/u);
+  assert.match(workflow, /run:\s*ln -s tools\/arcaea-apk-updater\/node_modules node_modules/u);
   assert.match(workflow, /run:\s*npm --prefix tools\/arcaea-apk-updater run check/u);
   assert.doesNotMatch(workflow, /run:\s*npm ci\s*$/mu);
   assert.doesNotMatch(workflow, /playwright|chromium/iu);
