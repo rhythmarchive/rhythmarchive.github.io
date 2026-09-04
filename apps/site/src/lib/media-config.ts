@@ -5,7 +5,7 @@ export type CardMediaFit = "cover" | "contain";
 
 export function cardMediaRatio(game: GameId, resourceType: ResourceTypeId): CardMediaRatio {
   if (resourceType === "jacket") {
-    const jacketRatios: Record<GameId, CardMediaRatio> = { arcaea: "square", phigros: "wide", rizline: "square", infalsus: "square", rotaeno: "square" };
+    const jacketRatios: Record<GameId, CardMediaRatio> = { arcaea: "square", phigros: "wide", rizline: "square", infalsus: "square", rotaeno: "square", "paradigm-reboot": "square" };
     return jacketRatios[game];
   }
   if (game === "rizline" && (resourceType === "special-art" || resourceType === "character-avatar")) return "square";

@@ -3,6 +3,7 @@ import BrandMark from "./BrandMark.astro";
 import { formatCount } from "../lib/format";
 import { BASE_PATH, ROS_BASE_URL, SITE_ORIGIN } from "../lib/site-config";
 import { getPublicNavigationGames } from "../lib/site-data";
+import { primaryCategorySlug } from "../lib/game-config";
 import { createUrlHelpers } from "../lib/url";
 
 const urls = createUrlHelpers({ basePath: BASE_PATH, origin: SITE_ORIGIN, rosBaseUrl: ROS_BASE_URL });
@@ -22,7 +23,7 @@ const games = getPublicNavigationGames();
           </div>
           <div class="nav-game-list">
             {games.map((game) => (
-              <a href={urls.sitePath(`/${game.slug}/jacket/`)}>
+              <a href={urls.sitePath(`/${game.slug}/${primaryCategorySlug(game.slug)}/`)}>
                 <span>{game.displayName}</span>
                 <small>{formatCount(game.count)} 项</small>
               </a>

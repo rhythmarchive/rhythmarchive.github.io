@@ -4,6 +4,7 @@ import ArcaeaStoryAtlas from "../../../components/ArcaeaStoryAtlas.astro";
 import BrowseGallery from "../../../components/BrowseGallery.astro";
 import Gallery from "../../../components/Gallery.astro";
 import type { GameId, ResourceTypeId } from "../../../lib/game-config";
+import { primaryCategorySlug } from "../../../lib/game-config";
 import { getCategoryBrowseConfig } from "../../../lib/category-browse";
 import { formatCount } from "../../../lib/format";
 import { BASE_PATH, ROS_BASE_URL } from "../../../lib/site-config";
@@ -17,14 +18,14 @@ export function getStaticPaths() {
   const navigationGames = getPublicNavigationGames();
   const browseBuild = getBrowseGalleryBuild();
   const categoryBrowse = loadCategoryBrowseProjections();
-  const browseByGame = { arcaea: browseBuild.arcaea, phigros: browseBuild.phigros, rizline: browseBuild.rizline, infalsus: browseBuild.infalsus } as const;
+  const browseByGame: Partial<Record<GameId, typeof browseBuild.arcaea>> = { arcaea: browseBuild.arcaea, phigros: browseBuild.phigros, rizline: browseBuild.rizline, infalsus: browseBuild.infalsus };
   return navigationGames.flatMap((game) => game.categories.map((category) => ({
     params: { game: game.slug, category: category.slug },
     props: {
       game,
       category,
       resources: siteData.galleries[`${game.slug}/${category.slug}`] ?? [],
-      browseData: category.slug === "jacket" && game.slug !== "rotaeno" ? browseByGame[game.slug] : undefined,
+      browseData: category.slug === "jacket" ? browseByGame[game.slug] : undefined,
       storyStructure: game.slug === "arcaea" && category.slug === "story-cg" ? categoryBrowse.arcaea.storyStructure : undefined,
       storyAtlas: game.slug === "arcaea" && category.slug === "story-cg" ? categoryBrowse.arcaea.storyAtlas : undefined,
       storyUi: game.slug === "arcaea" && category.slug === "story-cg" ? siteData.storyUi.arcaea : undefined,
@@ -45,7 +46,7 @@ const description = `浏览并下载 ${game.displayName} ${category.label} 图�
 <BaseLayout title={`${game.displayName} ${category.label}图片 | Rhythm Archive`} description={description} canonicalPath={`/${game.slug}/${category.slug}/`} ogImage={firstImage} bodyClass="gallery-page">
   <section class="page-container category-hero">
     <div><span class="archive-kicker">{game.displayName}</span><h1>{category.label}</h1><p>{formatCount(categoryCount)} 项资源</p></div>
-    <a class="text-link" href={urls.sitePath(`/${game.slug}/jacket/`)}>返回 {game.displayName}</a>
+    <a class="text-link" href={urls.sitePath(`/${game.slug}/${primaryCategorySlug(game.slug)}/`)}>返回 {game.displayName}</a>
   </section>
   <nav class="page-container category-nav" aria-label={`${game.displayName} 分类`}>
     <span class="category-nav-label">资源类型</span>

@@ -159,12 +159,36 @@ async function runRotaeno(options: RegisteredExtractionOptions): Promise<Registe
     ...(result.message ? { message: result.message } : {}),
   };
 }
+
+async function runParadigm(options: RegisteredExtractionOptions): Promise<RegisteredExtractionResult> {
+  if (!options.apk) throw new Error("adapter paradigm-apk requires --apk");
+  const result = await runExternalAdapter({
+    game: "paradigm-reboot",
+    version: options.version,
+    repoRoot: options.repoRoot,
+    outputDir: options.outputDir,
+    apk: options.apk,
+    ...(options.sourceSnapshot ? { sourceSnapshot: options.sourceSnapshot } : {}),
+  });
+  return {
+    status: result.status,
+    game: options.game,
+    adapterId: "paradigm-apk",
+    outputDir: result.outputDir,
+    adapterReport: result.adapterReport,
+    manifestPath: result.unifiedPath,
+    diagnostics: result.message ? [result.message] : [],
+    ...(result.message ? { message: result.message } : {}),
+  };
+}
+
 const ADAPTER_HANDLERS: Readonly<Record<string, AdapterHandler>> = Object.freeze({
   "arcaea-apk": (options) => runLegacyReport(options, "arcaea-apk"),
   "phigros-apk": (options) => runLegacyReport(options, "phigros-apk"),
   "rizline-remote": runRizline,
   "infalsus-addressables": runInFalsus,
   "rotaeno-apk": runRotaeno,
+  "paradigm-apk": runParadigm,
 });
 
 export function listRegisteredAdapters(): Array<{ adapterId: string; games: PlatformGameId[]; capabilities: string[] }> {

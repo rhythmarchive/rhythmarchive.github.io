@@ -167,6 +167,16 @@ export const GAME_CONFIG: Record<GameId, GameConfig> = {
       gameVersion: "游戏版本",
     },
   },
+  "paradigm-reboot": {
+    slug: "paradigm-reboot",
+    displayName: "范式：起源",
+    categoryOrder: ["pack-cover", "character-avatar", "background"],
+    featuredCategories: ["pack-cover", "character-avatar", "background"],
+    filters: { difficulty: false, upscale: false },
+    metadataLabels: {
+      gameVersion: "游戏版本",
+    },
+  },
 };
 
 export function categoryLabel(resourceType: ResourceTypeId): string {
@@ -176,12 +186,17 @@ export function categoryLabel(resourceType: ResourceTypeId): string {
 export function gameCategoryLabel(game: GameId, resourceType: ResourceTypeId): string {
   if (game === "rotaeno" && resourceType === "character-portrait") return "驾驶员立绘";
   if (game === "rizline" && resourceType === "character-avatar") return "角色头像";
+  if (game === "paradigm-reboot" && resourceType === "character-avatar") return "角色头像";
   return categoryLabel(resourceType);
 }
 
 export function categoryOrderIndex(game: GameId, resourceType: ResourceTypeId): number {
   const index = GAME_CONFIG[game].categoryOrder.indexOf(resourceType);
   return index === -1 ? GAME_CONFIG[game].categoryOrder.length : index;
+}
+
+export function primaryCategorySlug(game: GameId): ResourceTypeId {
+  return GAME_CONFIG[game].categoryOrder[0] ?? "jacket";
 }
 
 export function displayDifficultyLabel(value: string, game?: GameId): string {

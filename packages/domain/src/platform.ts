@@ -208,6 +208,21 @@ const profiles: GameProfile[] = [
     extractorEntrypoints: ["python -m tools.rotaeno inspect", "python -m tools.rotaeno extract-images", "python -m tools.rotaeno extract-charts", "tools/rotaeno/images.py", "tools/rotaeno/charts.py"],
     selectionPolicy: "publish only the reviewed non-event image selection; keep event artwork, journey, badges, encrypted chart bodies, audio, and non-image candidates in temp; chart difficulty metadata may enter the shared Catalog through content-addition",
   }),
+  GameProfile.parse({
+    gameId: "paradigm-reboot",
+    displayName: "范式：起源",
+    aliases: ["paradigm: reboot", "paradigm reboot", "范式起源"],
+    adapterId: "paradigm-apk",
+    adapterVersion: "1.0",
+    inputKinds: ["apk", "manifest"],
+    defaultSourceType: "paradigm_apk",
+    supportedAssetTypes: ["pack-cover", "background", "character-avatar", "jacket", "other"],
+    defaultAssetTypes: ["pack-cover", "character-avatar", "background"],
+    siteStatus: "staging",
+    sourceMarkers: ["assets/bin/Data/data.unity3d", "assets/aa/catalog.json", "unityplayer"],
+    extractorEntrypoints: ["python -m tools.paradigm extract", "tools/paradigm/extractor.py"],
+    selectionPolicy: "publish only the reviewed static Unity image families; dynamic song artwork, audio, charts, encrypted hotassets, and UI fragments remain outside the public Catalog",
+  }),
 ];
 
 export const GAME_PROFILES: Readonly<Record<PlatformGameId, GameProfile>> = Object.freeze(Object.fromEntries(profiles.map((profile) => [profile.gameId, profile])) as Record<PlatformGameId, GameProfile>);

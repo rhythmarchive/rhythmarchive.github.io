@@ -53,8 +53,8 @@ test("game profiles expose a real adapter boundary and read-only probe", async (
 test("GameRecord and AssetRecord project validated catalog information", () => {
   const catalog = createEmptyCatalog("2026-08-25T00:00:00.000Z");
   const games = gameRecordsFromCatalog(catalog);
-  assert.equal(games.length, 5);
-  assert.deepEqual(games.map((game) => game.gameId), ["arcaea", "phigros", "rizline", "infalsus", "rotaeno"]);
+  assert.equal(games.length, 6);
+  assert.deepEqual(games.map((game) => game.gameId), ["arcaea", "phigros", "rizline", "infalsus", "rotaeno", "paradigm-reboot"]);
   assert.equal(GameRecord.parse(games[0]).gameId, "arcaea");
   const asset = AssetRecord.parse({ gameId: "arcaea", assetId: "asset-1", assetType: "jacket", title: "Test", aliases: ["test"], sourceIdentity: "arcaea:songId=test", metadata: {} });
   assert.equal(asset.assetType, "jacket");
@@ -117,6 +117,27 @@ test("Rizline and In Falsus adapter manifests normalize into the same boundary",
   const infalsus = manifestFromExternalManifest({ songs: [{ identity: "infalsus:song:1", song_id: 1, base_name: "alpha", title: "Alpha", artist: "Artist", artwork: { identity: "infalsus:artwork:1:canonical", canonical: { pixel_sha256: hashB, width: 2048, height: 2048 } } }] }, { gameId: "infalsus", version: "demo" });
   assert.equal(infalsus.entries[0]?.assetType, "jacket");
   assert.equal(infalsus.entries[0]?.metadata.pixelSha256, hashB);
+});
+
+test("Paradigm static adapter manifests preserve the selected image families", () => {
+  const paradigm = manifestFromExternalManifest({
+    source_snapshot: "paradigm-apk:4.10:test",
+    assets: [{
+      asset_family: "character-avatar",
+      source_identity: "paradigm:texture:sharedassets0.assets:249",
+      semantic_id: "paradigm:texture:sharedassets0.assets:249",
+      title: "Para新头像",
+      export_path: "temp/paradigm/avatar.png",
+      decoded_sha256: hashC,
+      width: 256,
+      height: 256,
+      parse_status: "SUCCESS",
+      review_status: "EXTRACTED",
+    }],
+  }, { gameId: "paradigm-reboot", version: "4.10" });
+  assert.equal(paradigm.gameId, "paradigm-reboot");
+  assert.equal(paradigm.entries[0]?.assetType, "character-avatar");
+  assert.equal(paradigm.entries[0]?.file?.sha256, hashC);
 });
 
 test("remote inputs stay declaration-only and review must match its delta", async () => {

@@ -266,7 +266,13 @@ export function getPublicNavigationGames(): PublicGameIndex[] {
   const siteData = getSiteData();
   const browseBuild = getBrowseGalleryBuild();
   const jacketCounts = Object.fromEntries(
-    (Object.keys(GAME_CONFIG) as GameId[]).map((game) => [game, game === "rotaeno" ? (siteData.galleries[game + "/jacket"]?.length ?? 0) : browseBuild[game].items.length]),
+    (Object.keys(GAME_CONFIG) as GameId[]).map((game) => {
+      const browseData = (browseBuild as unknown as Record<string, { items: unknown[] }>)[game];
+      const count = game === "rotaeno" || !browseData
+        ? siteData.galleries[game + "/jacket"]?.length ?? 0
+        : browseData.items.length;
+      return [game, count];
+    }),
   ) as Record<GameId, number>;
 
   const navigationGames = siteData.games.filter((game) => game.count > 0).map((game) => {

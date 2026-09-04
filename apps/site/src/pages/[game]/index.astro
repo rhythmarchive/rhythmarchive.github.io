@@ -1,13 +1,14 @@
 ---
 import { BASE_PATH, ROS_BASE_URL } from "../../lib/site-config";
 import { getPublicNavigationGames } from "../../lib/site-data";
+import { primaryCategorySlug } from "../../lib/game-config";
 import { createUrlHelpers } from "../../lib/url";
 
 export function getStaticPaths() {
   const urls = createUrlHelpers({ basePath: BASE_PATH, origin: "https://rhythmarchive.github.io", rosBaseUrl: ROS_BASE_URL });
   return getPublicNavigationGames().map((game) => ({
     params: { game: game.slug },
-    props: { redirectTo: urls.sitePath(`/${game.slug}/jacket/`) },
+    props: { redirectTo: urls.sitePath(`/${game.slug}/${primaryCategorySlug(game.slug)}/`) },
   }));
 }
 

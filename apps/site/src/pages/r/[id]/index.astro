@@ -3,7 +3,7 @@ import BaseLayout from "../../../layouts/BaseLayout.astro";
 import DownloadActions from "../../../components/DownloadActions.astro";
 import VariantPanel from "../../../components/VariantPanel.astro";
 import ResourceCard from "../../../components/ResourceCard.astro";
-import { displayDifficultyLabel, GAME_CONFIG } from "../../../lib/game-config";
+import { displayDifficultyLabel, GAME_CONFIG, primaryCategorySlug } from "../../../lib/game-config";
 import { formatImageDimensions } from "../../../lib/format";
 import { BASE_PATH, ROS_BASE_URL } from "../../../lib/site-config";
 import { getSiteData } from "../../../lib/site-data";
@@ -83,7 +83,7 @@ const description = `${resource.displayTitle}${resource.artist ? ` · ${resource
 
 <BaseLayout title={`${resource.displayTitle} - ${GAME_CONFIG[resource.game].displayName} | Rhythm Archive`} description={description} canonicalPath={resource.route} ogImage={preview} bodyClass="detail-page">
   <div class="page-container detail-shell" data-detail-root>
-    <div class="detail-breadcrumb"><a href={urls.sitePath(`/${resource.game}/jacket/`)}>{GAME_CONFIG[resource.game].displayName}</a><span>/</span><span>{resource.categoryLabel}</span></div>
+    <div class="detail-breadcrumb"><a href={urls.sitePath(`/${resource.game}/${primaryCategorySlug(resource.game)}/`)}>{GAME_CONFIG[resource.game].displayName}</a><span>/</span><span>{resource.categoryLabel}</span></div>
     <div class="detail-layout">
       <div class="detail-visual">
         {resource.variants.length > 1 ? (

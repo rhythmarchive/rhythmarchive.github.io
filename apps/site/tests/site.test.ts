@@ -6,7 +6,7 @@ import sharp from "sharp";
 import { projectCatalog, selectPreviewRendition } from "../src/lib/catalog-projection.js";
 import { formatPublicApkBytes, parsePublicArcaeaApkManifest } from "../src/lib/apk.js";
 import { uniqueZipFilename } from "../src/lib/batch.js";
-import { displayDifficultyLabel, displayFilterDifficultyLabel, displayVariantLabel, GAME_CONFIG } from "../src/lib/game-config.js";
+import { displayDifficultyLabel, displayFilterDifficultyLabel, displayVariantLabel, GAME_CONFIG, primaryCategorySlug } from "../src/lib/game-config.js";
 import { formatImageDimensions } from "../src/lib/format.js";
 import { formatContentVersion, formatGameUpdatedAt, isRecentlyUpdated, sortPublicGames } from "../src/lib/game-index.js";
 import { rankRelatedResources } from "../src/lib/related.js";
@@ -467,16 +467,16 @@ test("game routes reuse public navigation counts for shared category navigation"
   assert.match(categoryPage, /return navigationGames\.flatMap/u);
 });
 
-test("game roots redirect to jacket pages while category navigation keeps its type label", () => {
+test("game roots redirect to primary category pages while category navigation keeps its type label", () => {
   const gamePage = fs.readFileSync(path.join(siteRoot, "src", "pages", "[game]", "index.astro"), "utf8");
   const categoryPage = fs.readFileSync(path.join(siteRoot, "src", "pages", "[game]", "[category]", "index.astro"), "utf8");
   assert.match(gamePage, /return Astro\.redirect/u);
-  assert.match(gamePage, /\/\$\{game\.slug\}\/jacket\//u);
+  assert.match(gamePage, /primaryCategorySlug\(game\.slug\)/u);
   assert.match(categoryPage, /<span class="category-nav-label">资源类型<\/span>/u);
   assert.doesNotMatch(categoryPage, /category-nav-all|>全部 <span>/u);
 });
 
-test("internal game entries link directly to jacket pages", () => {
+test("internal game entries link directly to each game's primary category", () => {
   const sources = [
     fs.readFileSync(path.join(siteRoot, "src", "components", "GameCard.astro"), "utf8"),
     fs.readFileSync(path.join(siteRoot, "src", "components", "SiteHeader.astro"), "utf8"),
@@ -484,10 +484,12 @@ test("internal game entries link directly to jacket pages", () => {
     fs.readFileSync(path.join(siteRoot, "src", "pages", "[game]", "[category]", "index.astro"), "utf8"),
     fs.readFileSync(path.join(siteRoot, "src", "pages", "r", "[id]", "index.astro"), "utf8"),
   ];
-  assert.ok(sources.every((source) => source.includes("/jacket/")));
+  assert.ok(sources.every((source) => source.includes("primaryCategorySlug")));
   assert.ok(sources.every((source) => !/sitePath\(`\/\$\{(?:game\.slug|resource\.game)\}\/`\)/u.test(source)));
   const quickLinks = buildSearchQuickLinks({ games: getPublicNavigationGames() });
   assert.ok(quickLinks.filter((entry) => ["Arcaea", "Phigros", "Rizline", "In Falsus", "Rotaeno"].includes(entry.label)).every((entry) => entry.href.endsWith("/jacket/")));
+  assert.equal(primaryCategorySlug("arcaea"), "jacket");
+  assert.equal(primaryCategorySlug("paradigm-reboot"), "pack-cover");
 });
 
 test("Rizline Catalog and public projections preserve approved boundaries", () => {

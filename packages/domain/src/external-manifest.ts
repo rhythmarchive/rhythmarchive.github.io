@@ -25,7 +25,7 @@ function resourceType(family: string | undefined): z.infer<typeof ResourceType> 
   const mapping: Record<string, z.infer<typeof ResourceType>> = {
     illustration: "jacket", altIllustration: "special-art", seriesPoster: "track-series", seriesBanner: "track-series",
     "avatar.npc": "character-avatar", rizcard: "rizcard", layout: "rizcard-layout", banner: "other",
-    jacket: "jacket", "pack-cover": "pack-cover", "character-portrait": "character-portrait",
+    jacket: "jacket", "pack-cover": "pack-cover", "character-portrait": "character-portrait", "character-avatar": "character-avatar",
     "special-art": "special-art", "story-cg": "story-cg", startup: "startup", background: "background",
   };
   return mapping[family ?? ""] ?? "other";

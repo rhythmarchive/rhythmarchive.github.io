@@ -28,7 +28,7 @@ export type ExternalExtractionResult = {
 };
 
 export async function runExternalAdapter(options: {
-  game: "rizline" | "infalsus" | "rotaeno";
+  game: "rizline" | "infalsus" | "rotaeno" | "paradigm-reboot";
   version: string;
   repoRoot: string;
   outputDir: string;
@@ -44,12 +44,14 @@ export async function runExternalAdapter(options: {
   const cacheRoot = tempOnly(options.repoRoot, options.cacheRoot ?? path.join(outputDir, "cache"), "cache output");
   await mkdir(outputDir, { recursive: true });
   const python = options.python?.trim() || "python";
-  const commandArgs = options.game === "rizline"
+  const commandArgs = options.game === "paradigm-reboot"
+    ? ["-m", "tools.paradigm", "extract", "--apk", path.resolve(options.apk ?? ""), "--version", options.version, "--output", outputDir]
+    : options.game === "rizline"
     ? ["-m", "tools.rizline", "extract", "--apk", path.resolve(options.apk ?? ""), "--cache-root", cacheRoot, "--output", outputDir, "--dry-run"]
     : options.game === "rotaeno"
       ? ["-m", "tools.rotaeno", "extract-images", "--apk", path.resolve(options.apk ?? ""), "--selection", path.resolve(options.selection ?? ""), "--out", outputDir]
       : ["-m", "tools.infalsus", "prepare-publish", "--game-root", path.resolve(options.gameRoot ?? ""), "--output", outputDir, ...(options.previousManifest ? ["--previous-manifest", path.resolve(options.previousManifest)] : [])];
-  const adapterReport = path.join(outputDir, options.game === "rizline" ? "manifest.json" : options.game === "rotaeno" ? "rotaeno-image-manifest.json" : "manifests/infalsus-semantic-manifest.json");
+  const adapterReport = path.join(outputDir, options.game === "paradigm-reboot" ? "paradigm-manifest.json" : options.game === "rizline" ? "manifest.json" : options.game === "rotaeno" ? "rotaeno-image-manifest.json" : "manifests/infalsus-semantic-manifest.json");
   const unifiedPath = path.join(outputDir, "unified-manifest.json");
   try {
     const result = await execFileAsync(python, commandArgs, { cwd: options.repoRoot, maxBuffer: 20 * 1024 * 1024 });
