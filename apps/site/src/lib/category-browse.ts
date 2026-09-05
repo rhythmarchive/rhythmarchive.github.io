@@ -10,6 +10,7 @@ import { compareNaturalText, normalizeSearchText } from "./search";
 import type { PublicResource, PublicSearchEntry, PublicSiteData } from "./types";
 
 const ROTAENO_CHART_ORDER = ["I", "II", "III", "IV", "IV_Alpha"] as const;
+const PARADIGM_CHART_ORDER = ["DET", "IVD", "MSV", "RBT", "CTC"] as const;
 const PHIGROS_PACK_KIND_ORDER = ["主线", "支线", "单曲", "全部曲目", "其他曲包"] as const;
 
 export type CategoryBrowseFacetOption = { value: string; label: string };
@@ -28,7 +29,7 @@ export type CategoryBrowseFacet = {
 };
 
 export type CategoryBrowseSortOption = {
-  value: "default" | "title-asc" | "title-desc" | "artist-asc";
+  value: "default" | "title-asc" | "title-desc" | "artist-asc" | "artist-desc" | "updated-desc" | "updated-asc" | "bpm-desc" | "bpm-asc";
   label: string;
 };
 
@@ -80,25 +81,35 @@ export function applyCategoryBrowseSemantics(siteData: PublicSiteData, projectio
 }
 
 export function getCategoryBrowseConfig(game: GameId, category: string, resources: PublicResource[]): CategoryBrowseConfig {
-  const sortOptions: CategoryBrowseSortOption[] = [
-    { value: "default", label: "默认排序" },
-    { value: "title-asc", label: "名称 A-Z" },
-    { value: "title-desc", label: "名称 Z-A" },
-  ];
+  const sortOptions = baseSortOptions();
   if (category === "jacket") {
     const chartOptions = facetOptions(resources, "chart", game);
-    const facets: CategoryBrowseFacet[] = chartOptions.length > 0 ? [{ key: "chart", label: "谱面难度", options: chartOptions }] : [];
-    if (game === "rotaeno") {
+    const listFacets: CategoryBrowseFacet[] = chartOptions.length > 0 ? [{ key: "chart", label: "谱面难度", options: chartOptions }] : [];
+    const rangeFacets: CategoryBrowseFacet[] = [];
+    if (game === "rotaeno" || game === "paradigm-reboot") {
       const levelOptions = facetOptions(resources, "level", game);
       const constantOptions = facetOptions(resources, "constant", game);
-      if (levelOptions.length > 0) facets.push({ key: "level", label: "难度等级", options: levelOptions });
-      const constantRange = facetRange(resources, "constant");
-      if (constantOptions.length > 0) facets.push({ key: "constant", label: "谱面定数", options: constantOptions, ...(constantRange ? { range: constantRange } : {}) });
+      if (levelOptions.length > 0) listFacets.push({ key: "level", label: "难度等级", options: levelOptions });
+      const constantRange = facetRange(resources, "constant", 0.1);
+      if (constantOptions.length > 0) {
+        const constantFacet = { key: "constant", label: "谱面定数", options: constantOptions, ...(constantRange ? { range: constantRange } : {}) };
+        (constantRange ? rangeFacets : listFacets).push(constantFacet);
+      }
     }
+    const packOptions = facetOptions(resources, "pack", game);
+    if (packOptions.length > 0) listFacets.push({ key: "pack", label: "曲包", options: packOptions });
+    const bpmOptions = facetOptions(resources, "bpm", game);
+    const bpmRange = facetRange(resources, "bpm");
+    if (bpmOptions.length > 0) {
+      const bpmFacet = { key: "bpm", label: "BPM", options: bpmOptions, ...(bpmRange ? { range: bpmRange } : {}) };
+      (bpmRange ? rangeFacets : listFacets).push(bpmFacet);
+    }
+    const versionOptions = facetOptions(resources, "version", game);
+    if (versionOptions.length > 0) listFacets.push({ key: "version", label: "加入版本", options: versionOptions });
     return {
       searchPlaceholder: "搜索曲名或曲师",
-      sortOptions,
-      facets,
+      sortOptions: jacketSortOptions(resources),
+      facets: [...listFacets, ...rangeFacets],
     };
   }
   if (category === "all") return { searchPlaceholder: "搜索资源", sortOptions, facets: [] };
@@ -141,6 +152,25 @@ export function getCategoryBrowseConfig(game: GameId, category: string, resource
   };
 }
 
+function baseSortOptions(): CategoryBrowseSortOption[] {
+  return [
+    { value: "default", label: "默认排序" },
+    { value: "title-asc", label: "名称 A-Z" },
+    { value: "title-desc", label: "名称 Z-A" },
+  ];
+}
+
+function jacketSortOptions(resources: PublicResource[]): CategoryBrowseSortOption[] {
+  const options = [...baseSortOptions(), { value: "artist-asc" as const, label: "曲师 A-Z" }, { value: "artist-desc" as const, label: "曲师 Z-A" }];
+  if (resources.some((resource) => resourceDateValue(resource) !== undefined)) {
+    options.push({ value: "updated-desc", label: "更新日期：新 → 旧" }, { value: "updated-asc", label: "更新日期：旧 → 新" });
+  }
+  if (resources.some((resource) => numericFacetValue(resource, "bpm") !== undefined)) {
+    options.push({ value: "bpm-desc", label: "BPM：高 → 低" }, { value: "bpm-asc", label: "BPM：低 → 高" });
+  }
+  return options;
+}
+
 function facetDefinitions(game: GameId, category: string): Array<{ key: string; label: string }> {
   if (game === "arcaea" && category === "story-cg") return [{ key: "type", label: "剧情类型" }, { key: "section", label: "篇章" }, { key: "path", label: "剧情路径" }, { key: "chapter", label: "章节" }];
   if (game === "arcaea" && category === "story-texture") return [{ key: "entry", label: "剧情 Entry" }];
@@ -152,15 +182,23 @@ function facetDefinitions(game: GameId, category: string): Array<{ key: string; 
 function facetOptions(resources: PublicResource[], key: string, game?: GameId): CategoryBrowseFacetOption[] {
   const values = new Set<string>();
   for (const resource of resources) for (const value of resource.facets?.[key] ?? []) values.add(value);
-  const orderedValues = [...values];
+  const orderedValues = [...values].filter((value) => key !== "level" || game !== "paradigm-reboot" || /^\d+(?:\+)?$/u.test(value));
   if (!(game === "arcaea" && ["type", "section", "path"].includes(key))) orderedValues.sort((left, right) => compareFacetValues(left, right, key, game));
   return orderedValues
-    .map((value) => ({ value, label: key === "chart" ? displayFilterDifficultyLabel(value, game ?? resources[0]?.game) : value }));
+    .map((value) => ({
+      value,
+      label: key === "chart"
+        ? displayFilterDifficultyLabel(value, game ?? resources[0]?.game)
+        : key === "version"
+          ? formatVersionFacet(value)
+          : value,
+    }));
 }
 
 function compareFacetValues(left: string, right: string, key: string, game?: GameId): number {
   if (game === "rotaeno" && key === "chart") return compareOrderedValues(left, right, ROTAENO_CHART_ORDER);
-  if (game === "rotaeno" && key === "level") return compareRotaenoLevels(left, right);
+  if (game === "paradigm-reboot" && key === "chart") return compareOrderedValues(left, right, PARADIGM_CHART_ORDER);
+  if ((game === "rotaeno" || game === "paradigm-reboot") && key === "level") return compareRotaenoLevels(left, right);
   if (game === "rotaeno" && key === "constant") return compareNumericFacetValues(left, right);
   if (game === "phigros" && key === "kind") return compareOrderedValues(left, right, PHIGROS_PACK_KIND_ORDER);
   return compareNaturalText(left, right);
@@ -197,15 +235,48 @@ function compareNumericFacetValues(left: string, right: string): number {
   return compareNaturalText(left, right);
 }
 
-function facetRange(resources: PublicResource[], key: string): CategoryBrowseFacetRange | undefined {
-  const values = resources.flatMap((resource) => resource.facets?.[key] ?? [])
-    .map((value) => Number(value))
-    .filter((value) => Number.isFinite(value));
+function facetRange(resources: PublicResource[], key: string, preferredStep?: number): CategoryBrowseFacetRange | undefined {
+  const values = resources.flatMap((resource) => resource.facets?.[key] ?? []).flatMap((value) => numericFacetValues(value));
   if (values.length < 2) return undefined;
-  const min = Math.min(...values);
-  const max = Math.max(...values);
+  const step = preferredStep ?? (values.every((value) => Number.isInteger(value)) ? 1 : 0.1);
+  const rawMin = Math.min(...values);
+  const rawMax = Math.max(...values);
+  const min = Number((Math.floor(rawMin / step) * step).toFixed(4));
+  const max = Number((Math.ceil(rawMax / step) * step).toFixed(4));
   if (min >= max) return undefined;
-  return { min, max, step: 0.1 };
+  return { min, max, step };
+}
+
+function numericFacetValue(resource: PublicResource, key: string): number | undefined {
+  const values = resource.facets?.[key] ?? (resource.metadata[key] === undefined ? [] : [String(resource.metadata[key])]);
+  return Math.max(...values.flatMap((value) => numericFacetValues(value)), Number.NEGATIVE_INFINITY) === Number.NEGATIVE_INFINITY
+    ? undefined
+    : Math.max(...values.flatMap((value) => numericFacetValues(value)));
+}
+
+function numericFacetValues(value: string): number[] {
+  return [...value.matchAll(/\d+(?:\.\d+)?/gu)].map((match) => Number(match[0])).filter((number) => Number.isFinite(number));
+}
+
+function resourceDateValue(resource: PublicResource): number | undefined {
+  const value = resource.facets?.updateDate?.[0] ?? resource.metadata.updateDate;
+  if (typeof value === "string") {
+    const timestamp = Date.parse(value.replaceAll("/", "-"));
+    if (Number.isFinite(timestamp)) return timestamp;
+  }
+  const version = resource.metadata.updateVersion;
+  if (typeof version === "string") {
+    const match = [...version.matchAll(/(20\d{2})[\/-](\d{1,2})[\/-](\d{1,2})/gu)].at(-1);
+    if (match) {
+      const timestamp = Date.UTC(Number(match[1]), Number(match[2]) - 1, Number(match[3]));
+      if (Number.isFinite(timestamp)) return timestamp;
+    }
+  }
+  return undefined;
+}
+
+function formatVersionFacet(value: string): string {
+  return value.split(",").map((part) => part.trim().replace(/^ver\.?\s*/iu, "").replace(/\s*\([^)]*\)$/u, "")).filter(Boolean).join(", ") || value;
 }
 
 function sortSemanticResources(resources: PublicResource[]): PublicResource[] {
@@ -229,6 +300,7 @@ function toSemanticSearchEntry(resource: PublicResource, previous?: PublicSearch
     if (chart.constant) keywords.add(chart.constant);
     if (chart.title) keywords.add(chart.title);
     if (chart.artist) keywords.add(chart.artist);
+    if (chart.noter) keywords.add(chart.noter);
   }
   return {
     resourceId: resource.resourceId,

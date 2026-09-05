@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
   "game": "arcaea",
-  "generatedAt": "2026-09-02T08:18:27.826Z",
+  "generatedAt": "2026-09-05T15:05:10.893Z",
   "source": {
     "snapshot": "Arcaea APK 7.0.255c",
-    "sha256": "495506a3150f3b43868d209cc628d9d6e093273d4f27e3e32f96f2b4f8284386"
+    "sha256": "589ca44b36f88a7c3c806b678abd3eb1452c26e73da12c4560a0ab689d11ad11"
   },
   "resources": [
     {

@@ -20,6 +20,7 @@ export type PublicChart = {
   constant?: string;
   title?: string;
   artist?: string;
+  noter?: string;
   source?: "apk" | "wiki" | "merged";
   available?: boolean;
   status?: "available" | "legacy" | "error" | "unavailable";

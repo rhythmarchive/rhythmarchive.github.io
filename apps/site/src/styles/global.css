@@ -167,6 +167,7 @@ img { display: block; max-width: 100%; }
 .game-icon-wave { position: absolute; left: 18px; bottom: 25px; width: 29px; height: 8px; border-top: 2px solid var(--cyan); border-bottom: 1px solid rgba(255, 255, 255, 0.7); transform: skewX(-26deg); }
 .game-icon-phigros { background: #4c91e8; }
 .game-icon-phigros .game-icon-mark { font-size: 3.5rem; }
+.game-icon-paradigm-reboot .game-icon-image { object-fit: contain; padding: 10px; background: #1d2b4a; }
 .section-link { flex: 0 0 auto; color: var(--accent); font-size: 0.76rem; font-weight: 720; }
 .section-link:hover { color: var(--accent-strong); text-decoration: underline; text-underline-offset: 3px; }
 .apk-card-state { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 17px 24px; min-height: 116px; padding: 21px 22px; border: 1px solid var(--line); border-radius: var(--radius-md); background: var(--surface); box-shadow: var(--shadow); color: var(--text-muted); }
@@ -388,7 +389,6 @@ img { display: block; max-width: 100%; }
 .detail-chart-main strong { color: var(--accent-strong); font-size: 0.78rem; }
 .detail-chart-main span { color: var(--text-muted); font-size: 0.72rem; }
 .detail-chart-copy { display: flex; flex-wrap: wrap; gap: 5px 10px; min-width: 0; color: var(--text-muted); font-size: 0.72rem; overflow-wrap: anywhere; }
-.detail-chart-source { color: var(--accent-strong); }
 .detail-chart-status { color: var(--text-soft); }
 .variant-tabs { display: flex; gap: 7px; margin-bottom: 11px; }
 .variant-tabs button { padding: 7px 12px; border: 1px solid var(--line); border-radius: 4px 8px 4px 8px; background: var(--surface); color: var(--text-muted); font-size: 0.77rem; }

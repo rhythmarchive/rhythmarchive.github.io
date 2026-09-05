@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-02T08:23:02.429Z",
+  "generatedAt": "2026-09-05T15:36:01.955Z",
   "arcaea": {
     "ok": true,
     "catalogResourceCount": 625,
@@ -26,14 +26,14 @@
   },
   "phigros": {
     "ok": true,
-    "catalogResourceCount": 353,
-    "referencedResourceCount": 353,
+    "catalogResourceCount": 355,
+    "referencedResourceCount": 355,
     "unreferencedResourceIds": [],
     "danglingResourceIds": [],
     "warnings": [],
     "counts": {
-      "sourceTrackRecords": 319,
-      "currentTrackArtworkEntries": 313,
+      "sourceTrackRecords": 321,
+      "currentTrackArtworkEntries": 315,
       "specialRecords": 33,
       "archiveExtras": 7,
       "sourceOnlyTracks": 6

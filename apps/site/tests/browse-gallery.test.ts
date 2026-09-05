@@ -206,7 +206,7 @@ test("Browse pagination starts at 48 and reset state is empty without changing s
 
 test("Phigros projection keeps current, special, archive, and source-only boundaries", () => {
   const kinds = countKinds(formalBrowse.phigros.items);
-  assert.deepEqual(kinds, { track: 313, special: 33, "archive-extra": 7 });
+  assert.deepEqual(kinds, { track: 315, special: 33, "archive-extra": 7 });
   assert.equal(formalBrowse.diagnostics.phigros.skipped.length, 6);
   assert.ok(formalBrowse.diagnostics.phigros.skipped.every((item) => item.identity.includes("Random.SobremSilentroom")));
   assert.equal(formalBrowse.phigros.items.some((item) => item.sourceIdentityCandidate?.endsWith("Random.SobremSilentroom.1/")), false);

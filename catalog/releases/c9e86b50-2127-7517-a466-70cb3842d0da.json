@@ -1,0 +1,125 @@
+{
+  "schemaVersion": "1.0",
+  "releaseSchemaVersion": "1.0",
+  "id": "c9e86b50-2127-7517-a466-70cb3842d0da",
+  "updateBatchId": "01a07202-7b4b-7362-934e-074880d3c771",
+  "game": "phigros",
+  "baseVersion": "3.19.5",
+  "targetVersion": "3.20.0",
+  "createdAt": "2026-09-05T15:05:10.893Z",
+  "status": "published",
+  "changes": [
+    {
+      "changeType": "added-resource",
+      "resourceId": "3a6b5873-c60c-7496-9184-0f1ca22731a2",
+      "detail": "Phigros 3.20.0 new Addressables track illustration"
+    },
+    {
+      "changeType": "added-variant",
+      "resourceId": "3a6b5873-c60c-7496-9184-0f1ca22731a2",
+      "variantId": "ce168d1c-3cfc-7e30-9241-7b6feba9ab51",
+      "detail": "Default canonical Phigros jacket variant"
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "3a6b5873-c60c-7496-9184-0f1ca22731a2",
+      "variantId": "ce168d1c-3cfc-7e30-9241-7b6feba9ab51",
+      "renditionId": "726f7ccf-3ff4-76b3-bb87-2d5f274ae1ba",
+      "objectId": "sha256:8cec7b6efbba154d3d75741bc25d44b19e122ed86b7a0adf52feabbfc0105953",
+      "detail": "Canonical extracted PNG"
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "3a6b5873-c60c-7496-9184-0f1ca22731a2",
+      "variantId": "ce168d1c-3cfc-7e30-9241-7b6feba9ab51",
+      "renditionId": "6bf804a3-41e3-7512-b7d3-69817f0db514",
+      "objectId": "sha256:f4b009525e38c5d0b47e214783a820e5c0d364ed3ad6b29098f062b2dc0f6065",
+      "detail": "320px WebP preview"
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "3a6b5873-c60c-7496-9184-0f1ca22731a2",
+      "variantId": "ce168d1c-3cfc-7e30-9241-7b6feba9ab51",
+      "renditionId": "b523f42b-9062-7795-b68f-b340ae756d1b",
+      "objectId": "sha256:c9b9df981b1618b1d0e52560c010ac0432bdd043f2a883630df8c6e4920320ca",
+      "detail": "640px WebP preview"
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "3a6b5873-c60c-7496-9184-0f1ca22731a2",
+      "variantId": "ce168d1c-3cfc-7e30-9241-7b6feba9ab51",
+      "renditionId": "f90a8663-1294-797d-bca9-28a2b249700a",
+      "objectId": "sha256:3575a85667e885226dcad90bc760ad62a4ed07eeb367b180b92489d147ac6de5",
+      "detail": "1280px WebP preview"
+    },
+    {
+      "changeType": "added-resource",
+      "resourceId": "0ec3a36e-6ce1-7e01-9d09-c6a2d4e8c4b8",
+      "detail": "Phigros 3.20.0 new Addressables track illustration"
+    },
+    {
+      "changeType": "added-variant",
+      "resourceId": "0ec3a36e-6ce1-7e01-9d09-c6a2d4e8c4b8",
+      "variantId": "0d89e394-c774-7932-9863-20edc6c8e123",
+      "detail": "Default canonical Phigros jacket variant"
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "0ec3a36e-6ce1-7e01-9d09-c6a2d4e8c4b8",
+      "variantId": "0d89e394-c774-7932-9863-20edc6c8e123",
+      "renditionId": "49755f5a-ba5e-700c-9d9d-9d566b438a8d",
+      "objectId": "sha256:83d7a8918e4b1ad2d1ff28a1da5b0a2b501d5957460794cae28dddac0b547739",
+      "detail": "Canonical extracted PNG"
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "0ec3a36e-6ce1-7e01-9d09-c6a2d4e8c4b8",
+      "variantId": "0d89e394-c774-7932-9863-20edc6c8e123",
+      "renditionId": "a349e408-3817-7178-90c0-48828e0b3d9a",
+      "objectId": "sha256:37163369ddaa2970daf76d090cf8091ea19059abade8e0a8d633255b8c1471b4",
+      "detail": "320px WebP preview"
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "0ec3a36e-6ce1-7e01-9d09-c6a2d4e8c4b8",
+      "variantId": "0d89e394-c774-7932-9863-20edc6c8e123",
+      "renditionId": "db6aa728-dd70-783c-bbee-5528f840104a",
+      "objectId": "sha256:44a84e212c557e7a651688869b13bad78b95bf8db434327ad55eb14db57ce42f",
+      "detail": "640px WebP preview"
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "0ec3a36e-6ce1-7e01-9d09-c6a2d4e8c4b8",
+      "variantId": "0d89e394-c774-7932-9863-20edc6c8e123",
+      "renditionId": "ae06a339-7aff-7c9e-9ce4-4682f507c84a",
+      "objectId": "sha256:9bce2e8a69d2e4b402d292152a5b40505aa9ef3474a5463d0398b9c220d99fb7",
+      "detail": "1280px WebP preview"
+    }
+  ],
+  "affectedResourceIds": [
+    "3a6b5873-c60c-7496-9184-0f1ca22731a2",
+    "0ec3a36e-6ce1-7e01-9d09-c6a2d4e8c4b8"
+  ],
+  "publishedRenditions": [
+    {
+      "resourceId": "3a6b5873-c60c-7496-9184-0f1ca22731a2",
+      "variantId": "ce168d1c-3cfc-7e30-9241-7b6feba9ab51",
+      "renditionId": "726f7ccf-3ff4-76b3-bb87-2d5f274ae1ba",
+      "objectId": "sha256:8cec7b6efbba154d3d75741bc25d44b19e122ed86b7a0adf52feabbfc0105953",
+      "downloadFilename": "DevastatingHistory - NAMV.png"
+    },
+    {
+      "resourceId": "0ec3a36e-6ce1-7e01-9d09-c6a2d4e8c4b8",
+      "variantId": "0d89e394-c774-7932-9863-20edc6c8e123",
+      "renditionId": "49755f5a-ba5e-700c-9d9d-9d566b438a8d",
+      "objectId": "sha256:83d7a8918e4b1ad2d1ff28a1da5b0a2b501d5957460794cae28dddac0b547739",
+      "downloadFilename": "NWAD - Knighthood.png"
+    }
+  ],
+  "removedFromCurrentSource": [],
+  "notes": [
+    "Local-only Phigros 3.20.0 release plan.",
+    "ROS/object-storage upload and production publication are disabled for this task.",
+    "Published after ROS object upload and HEAD/content hash verification."
+  ]
+}

@@ -35,7 +35,9 @@
     "arcaea:story:promote-vn-cg": "tsx tools/apply-arcaea-story-cg-promotion.ts",
     "browse:bootstrap": "tsx tools/browse-projection.ts --catalog catalog/index.json --output catalog/browse --bootstrap-audit docs/apk-audit/data --curation catalog/curation/arcaea-april-fools.json",
     "browse:check": "tsx tools/validate-browse-projection.ts --catalog catalog/index.json --output catalog/browse",
-    "browse:semantic": "tsx tools/semantic-browse.ts --catalog catalog/index.json --audit docs/apk-audit/data --output catalog/browse"
+    "browse:semantic": "tsx tools/semantic-browse.ts --catalog catalog/index.json --audit docs/apk-audit/data --output catalog/browse",
+    "paradigm:import": "node --env-file-if-exists=.env --import tsx tools/import-paradigm.ts",
+    "paradigm:upscaled": "node --env-file-if-exists=.env --import tsx tools/apply-paradigm-upscaled.ts --apply"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",

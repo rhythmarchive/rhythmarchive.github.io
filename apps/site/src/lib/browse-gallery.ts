@@ -115,10 +115,10 @@ export type BrowseGalleryBuildResult = {
   };
 };
 
-export type ArcaeaBrowseSort = "default" | "title-asc" | "title-desc" | "artist-asc" | "version-desc" | "version-asc";
-export type PhigrosBrowseSort = "default" | "title-asc" | "title-desc" | "artist-asc";
-export type InfalsusBrowseSort = "default" | "title-asc" | "title-desc" | "artist-asc";
-export type RizlineBrowseSort = "default" | "title-asc" | "title-desc" | "artist-asc";
+export type ArcaeaBrowseSort = "default" | "title-asc" | "title-desc" | "artist-asc" | "artist-desc" | "version-desc" | "version-asc";
+export type PhigrosBrowseSort = "default" | "title-asc" | "title-desc" | "artist-asc" | "artist-desc";
+export type InfalsusBrowseSort = "default" | "title-asc" | "title-desc" | "artist-asc" | "artist-desc";
+export type RizlineBrowseSort = "default" | "title-asc" | "title-desc" | "artist-asc" | "artist-desc";
 
 export type ArcaeaBrowseUrlState = {
   game: "arcaea";
@@ -716,6 +716,7 @@ export function compareBrowseItems(left: BrowseGalleryItem, right: BrowseGallery
   if (sort === "title-asc") result = compareText(left.displayTitle, right.displayTitle);
   else if (sort === "title-desc") result = compareText(right.displayTitle, left.displayTitle);
   else if (sort === "artist-asc") result = compareNullableText(left.artist, right.artist) || compareText(left.displayTitle, right.displayTitle);
+  else if (sort === "artist-desc") result = compareNullableText(right.artist, left.artist) || compareText(left.displayTitle, right.displayTitle);
   else if (sort === "version-desc" && left.game === "arcaea" && right.game === "arcaea") result = compareNullableVersion(right.version, left.version);
   else if (sort === "version-asc" && left.game === "arcaea" && right.game === "arcaea") result = compareNullableVersion(left.version, right.version);
   if (result !== 0) return result;
@@ -883,19 +884,19 @@ function readFacetValues(params: URLSearchParams, name: string, allowed: string[
 }
 
 function isArcaeaSort(value: string | null): value is ArcaeaBrowseSort {
-  return value === "default" || value === "title-asc" || value === "title-desc" || value === "artist-asc" || value === "version-desc" || value === "version-asc";
+  return value === "default" || value === "title-asc" || value === "title-desc" || value === "artist-asc" || value === "artist-desc" || value === "version-desc" || value === "version-asc";
 }
 
 function isPhigrosSort(value: string | null): value is PhigrosBrowseSort {
-  return value === "default" || value === "title-asc" || value === "title-desc" || value === "artist-asc";
+  return value === "default" || value === "title-asc" || value === "title-desc" || value === "artist-asc" || value === "artist-desc";
 }
 
 function isInfalsusSort(value: string | null): value is InfalsusBrowseSort {
-  return value === "default" || value === "title-asc" || value === "title-desc" || value === "artist-asc";
+  return value === "default" || value === "title-asc" || value === "title-desc" || value === "artist-asc" || value === "artist-desc";
 }
 
 function isRizlineSort(value: string | null): value is RizlineBrowseSort {
-  return value === "default" || value === "title-asc" || value === "title-desc" || value === "artist-asc";
+  return value === "default" || value === "title-asc" || value === "title-desc" || value === "artist-asc" || value === "artist-desc";
 }
 
 function difficultyOrder(game: BrowseGame, values: string[]): string[] {
@@ -952,4 +953,3 @@ function unique<T>(values: T[], comparator: (left: T, right: T) => number): T[] 
 function stableValues(values: string[], comparator: (left: string, right: string) => number): string[] {
   return unique(values, comparator);
 }
-

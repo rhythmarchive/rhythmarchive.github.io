@@ -141,13 +141,33 @@ function enrichFormalBrowseMetadata(siteData: PublicSiteData, browse: FormalBrow
     const specialReleaseDate = unique(byKey, "specialReleaseDate");
     if (specialReleaseDate !== undefined) metadata.releaseDate = specialReleaseDate;
     if (resource.game === "arcaea" && typeof metadata.version === "string") metadata.version = formatArcaeaAddedVersion(metadata.version);
+    const rawUpdateVersion = metadata.updateVersion;
+    const updateDate = typeof metadata.updateDate === "string" ? metadata.updateDate : extractDateFromVersion(rawUpdateVersion);
+    if (resource.game === "paradigm-reboot" && typeof rawUpdateVersion === "string") metadata.updateVersion = formatPublicVersion(rawUpdateVersion);
+    if (resource.game === "paradigm-reboot" && updateDate) metadata.updateDate = updateDate;
     const charts = chartsByResource.get(resource.resourceId) ?? resource.charts ?? (resource.resourceType === "jacket" ? [] : undefined);
     const availableCharts = (charts ?? [])
       .filter((chart) => chart.available !== false && chart.status !== "error" && chart.status !== "legacy");
     const chartFacetValues = [...new Set([...availableCharts, ...(resource.specialCharts ?? []).filter((chart) => chart.available !== false && chart.status !== "error" && chart.status !== "legacy")].map((chart) => chart.difficulty))];
     const facets = { ...resource.facets };
     if (chartFacetValues.length > 0) facets.chart = chartFacetValues;
-    if (resource.game === "rotaeno") {
+    const addFacetValue = (key: string, value: unknown): void => {
+      if (value === null || value === undefined) return;
+      const text = String(value).trim();
+      if (!text) return;
+      facets[key] = [...new Set([...(facets[key] ?? []), text])];
+    };
+    addFacetValue("pack", metadata.pack ?? metadata.packName);
+    if (resource.game === "paradigm-reboot") {
+      const versionValues = [...(facets.version ?? []), metadata.updateVersion ?? metadata.version]
+        .flatMap((value) => paradigmVersionFacetValues(value));
+      if (versionValues.length > 0) facets.version = [...new Set(versionValues)];
+    } else {
+      addFacetValue("version", metadata.updateVersion ?? metadata.version);
+    }
+    addFacetValue("bpm", metadata.bpm);
+    addFacetValue("updateDate", updateDate);
+    if (resource.game === "rotaeno" || resource.game === "paradigm-reboot") {
       const levelFacetValues = [...new Set(availableCharts.map((chart) => chart.level).filter((value): value is string => Boolean(value)))];
       const constantFacetValues = [...new Set(availableCharts.map((chart) => chart.constant).filter((value): value is string => Boolean(value)))];
       if (levelFacetValues.length > 0) facets.level = levelFacetValues;
@@ -190,6 +210,7 @@ function enrichFormalBrowseMetadata(siteData: PublicSiteData, browse: FormalBrow
       if (chart.constant) keywords.add(chart.constant);
       if (chart.title) keywords.add(chart.title);
       if (chart.artist) keywords.add(chart.artist);
+      if (chart.noter) keywords.add(chart.noter);
     }
     return {
       resourceId: resource.resourceId,
@@ -205,8 +226,32 @@ function enrichFormalBrowseMetadata(siteData: PublicSiteData, browse: FormalBrow
   return { ...siteData, resources, searchIndex, galleries };
 }
 
+function extractDateFromVersion(value: unknown): string | undefined {
+  if (typeof value !== "string") return undefined;
+  const matches = [...value.matchAll(/(?:^|[^0-9])(20\d{2})[\/-](\d{1,2})[\/-](\d{1,2})(?:[^0-9]|$)/gu)];
+  const match = matches.at(-1);
+  if (!match) return undefined;
+  return `${match[1]}-${match[2]!.padStart(2, "0")}-${match[3]!.padStart(2, "0")}`;
+}
+
+function formatPublicVersion(value: string): string {
+  return value.split(",").map((part) => part.trim().replace(/^ver\.?\s*/iu, "").replace(/\s*\([^)]*\)$/u, "")).filter(Boolean).join(", ");
+}
+
+function paradigmVersionFacetValues(value: unknown): string[] {
+  if (typeof value !== "string") return [];
+  return value.split(",")
+    .map((part) => part.trim().replace(/^ver\.?\s*/iu, "").replace(/\s*\([^)]*\)$/u, ""))
+    .map((part) => {
+      const match = /^(\d+)(?:\.(\d+))?/u.exec(part);
+      if (!match) return undefined;
+      return match[2] === undefined ? match[1] : `${match[1]}.${match[2]}`;
+    })
+    .filter((version): version is string => Boolean(version));
+}
+
 function chartKey(chart: PublicChart): string {
-  return [chart.difficulty, chart.level ?? "", chart.notes ?? "", chart.constant ?? "", chart.title ?? "", chart.artist ?? "", chart.source ?? "", chart.status ?? ""].join("|");
+  return [chart.difficulty, chart.level ?? "", chart.notes ?? "", chart.constant ?? "", chart.title ?? "", chart.artist ?? "", chart.noter ?? "", chart.source ?? "", chart.status ?? ""].join("|");
 }
 
 export function loadCategoryBrowseProjections(): CategoryBrowseProjections {

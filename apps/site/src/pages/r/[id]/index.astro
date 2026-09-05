@@ -23,7 +23,8 @@ const { resource } = Astro.props;
 const firstVariant = resource.variants.find((variant) => variant.preferred) ?? resource.variants[0];
 const activeVariantIndex = Math.max(0, firstVariant ? resource.variants.findIndex((variant) => variant.variantId === firstVariant.variantId) : 0);
 const related = rankRelatedResources(resource, data.resources);
-const metadata = Object.entries(resource.metadata).filter(([key]) => key !== "artist" && GAME_CONFIG[resource.game].metadataLabels[key]);
+const hiddenDetailMetadata = new Set(["artist", "bpmSource", "gameVersion", "metadataStatus", "songId", "wikiBpm"]);
+const metadata = Object.entries(resource.metadata).filter(([key]) => !hiddenDetailMetadata.has(key) && GAME_CONFIG[resource.game].metadataLabels[key]);
 const facetLabels: Record<string, string> = {
   path: "剧情路径",
   chapter: "章节",
@@ -46,8 +47,6 @@ const dimensions = formatImageDimensions(primaryDownload?.width, primaryDownload
 const technicalMetadata: Array<[string, string]> = [];
 if (difficultyValues.length > 0 && !metadata.some(([key]) => key === "difficulty")) technicalMetadata.push(["难度", difficultyValues.join(" / ")]);
 if (dimensions) technicalMetadata.push(["图片尺寸", dimensions]);
-const mime = primaryDownload?.mime ?? primaryPreview?.mime ?? resource.mime;
-if (mime) technicalMetadata.push(["文件格式", mime.split("/")[1]?.toUpperCase() ?? mime]);
 const sizeBytes = primaryDownload?.sizeBytes ?? resource.sizeBytes;
 if (sizeBytes !== undefined) technicalMetadata.push(["文件大小", formatBytes(sizeBytes)]);
 
@@ -69,11 +68,6 @@ function chartStatusLabel(status: NonNullable<PublicResource["charts"]>[number][
   if (status === "error") return "异常变体";
   if (status === "unavailable") return "暂不可用";
   return undefined;
-}
-function chartSourceLabel(source: NonNullable<PublicResource["charts"]>[number]["source"]): string {
-  if (source === "apk") return "APK 原生";
-  if (source === "merged") return "APK + Wiki";
-  return "Wiki";
 }
 function chartDifficultyLabel(difficulty: string): string {
   return displayDifficultyLabel(difficulty, resource.game);
@@ -119,7 +113,7 @@ const description = `${resource.displayTitle}${resource.artist ? ` · ${resource
                     <div class="detail-chart-copy">
                       {chart.title ? <span>{chart.title}</span> : null}
                       {chart.artist ? <span>{chart.artist}</span> : null}
-                      {chart.source ? <span class="detail-chart-source">来源：{chartSourceLabel(chart.source)}</span> : null}
+                      {chart.noter ? <span>谱师：{chart.noter}</span> : null}
                       {chartStatusLabel(chart.status) ? <span class="detail-chart-status">{chartStatusLabel(chart.status)}</span> : null}
                     </div>
                   </div>

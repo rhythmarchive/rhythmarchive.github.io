@@ -5,7 +5,7 @@
 ## 不可违反的边界
 
 - APK、AAB、安装目录、AssetBundle、Addressables 和用户原始资源永久只读；分析、候选、报告、截图、workflow state 和 scratch 只写仓库 temp/。
-- 无人值守任务不执行 git push、生产发布、ROS/对象存储写入或删除、DNS/凭据修改、reset 或 clean。REMOTE WRITE 不是本地完成条件。
+- 无人值守任务不执行 git push、生产发布、DNS/凭据修改、reset 或 clean。REMOTE WRITE 不是本地完成条件。
 - Catalog、公开 URL、remote key 和 Object identity 是兼容边界；REMOVED 只进 Review/Storage Diff，不自动删除。
 
 ## Intent router

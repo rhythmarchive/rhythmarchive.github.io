@@ -136,7 +136,18 @@ async function initializeGallery(root: HTMLElement): Promise<void> {
     });
     if (sortValue === "default") return filtered;
     return [...filtered].sort((left, right) => {
-      if (sortValue === "artist-asc") return compareNaturalText(left.artist ?? "", right.artist ?? "") || compareNaturalText(left.displayTitle, right.displayTitle);
+      if (sortValue === "artist-asc" || sortValue === "artist-desc") {
+        const artistCompared = compareNaturalText(left.artist ?? "", right.artist ?? "");
+        return (sortValue === "artist-desc" ? -artistCompared : artistCompared) || compareNaturalText(left.displayTitle, right.displayTitle);
+      }
+      if (sortValue === "updated-desc" || sortValue === "updated-asc") {
+        const compared = compareNullableNumber(resourceDateValue(left), resourceDateValue(right), sortValue === "updated-desc");
+        return compared || compareNaturalText(left.displayTitle, right.displayTitle);
+      }
+      if (sortValue === "bpm-desc" || sortValue === "bpm-asc") {
+        const compared = compareNullableNumber(numericFacetValue(left, "bpm"), numericFacetValue(right, "bpm"), sortValue === "bpm-desc");
+        return compared || compareNaturalText(left.displayTitle, right.displayTitle);
+      }
       const compared = compareNaturalText(left.displayTitle, right.displayTitle);
       return sortValue === "title-desc" ? -compared : compared;
     });
@@ -296,6 +307,13 @@ function matchesRange(resource: PublicResource, range: GalleryRange): boolean {
   const min = readRangeValue(range, "min");
   const max = readRangeValue(range, "max");
   if (min <= range.min && max >= range.max) return true;
+  if (range.key === "bpm") {
+    return (resource.facets?.bpm ?? []).some((value) => {
+      const values = numericFacetValues(value);
+      if (values.some((number) => number >= min && number <= max)) return true;
+      return values.length > 1 && Math.min(...values) <= max && Math.max(...values) >= min;
+    });
+  }
   return (resource.charts ?? []).some((chart) => {
     const constant = Number(chart.constant);
     return Number.isFinite(constant) && constant >= min && constant <= max;
@@ -418,4 +436,35 @@ function resolveSitePath(path: string): string {
   const base = document.querySelector<HTMLElement>("[data-gallery-root]")?.dataset.basePath ?? "/";
   const clean = path.startsWith("/") ? path : `/${path}`;
   return base === "/" ? clean : `${base.replace(/\/+$/u, "")}${clean}`;
+}
+
+function numericFacetValue(resource: PublicResource, key: string): number | undefined {
+  const values = resource.facets?.[key] ?? (resource.metadata[key] === undefined ? [] : [String(resource.metadata[key])]);
+  const numbers = values.flatMap((value) => numericFacetValues(value));
+  return numbers.length > 0 ? Math.max(...numbers) : undefined;
+}
+
+function numericFacetValues(value: string): number[] {
+  return [...value.matchAll(/\d+(?:\.\d+)?/gu)].map((match) => Number(match[0])).filter((number) => Number.isFinite(number));
+}
+
+function resourceDateValue(resource: PublicResource): number | undefined {
+  const value = resource.facets?.updateDate?.[0] ?? resource.metadata.updateDate;
+  if (typeof value === "string") {
+    const timestamp = Date.parse(value.replaceAll("/", "-"));
+    if (Number.isFinite(timestamp)) return timestamp;
+  }
+  const version = resource.metadata.updateVersion;
+  if (typeof version === "string") {
+    const match = [...version.matchAll(/(20\d{2})[\/-](\d{1,2})[\/-](\d{1,2})/gu)].at(-1);
+    if (match) return Date.UTC(Number(match[1]), Number(match[2]) - 1, Number(match[3]));
+  }
+  return undefined;
+}
+
+function compareNullableNumber(left: number | undefined, right: number | undefined, descending: boolean): number {
+  if (left === undefined && right === undefined) return 0;
+  if (left === undefined) return 1;
+  if (right === undefined) return -1;
+  return descending ? right - left : left - right;
 }

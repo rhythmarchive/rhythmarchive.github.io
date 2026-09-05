@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
   "game": "phigros",
-  "generatedAt": "2026-09-02T08:23:02.429Z",
+  "generatedAt": "2026-09-05T15:36:01.955Z",
   "source": {
-    "version": "3.19.5",
-    "sha256": "b9654316e52bf2d410fa2ecb3f0df41246afdc3dc8133456deaff07ecbcf28bf"
+    "version": "3.20.0",
+    "sha256": "15f410d39dc8189dd6295488c1f1607665bfa7971f5587cc61257924327ab82d"
   },
   "tracks": [
     {
@@ -3104,6 +3104,45 @@
       ]
     },
     {
+      "sourceIdentityCandidate": "Assets/Tracks/DevastatingHistory.NAMV.0/",
+      "sourceTrackPath": "Assets/Tracks/DevastatingHistory.NAMV.0/",
+      "displayTitle": "DevastatingHistory",
+      "sourceTitle": "DevastatingHistory",
+      "displayArtist": "NAMV",
+      "sourceArtist": "NAMV",
+      "indexRaw": "0",
+      "artwork": {
+        "resourceId": "3a6b5873-c60c-7496-9184-0f1ca22731a2",
+        "confidence": "high",
+        "role": "current-track-artwork"
+      },
+      "charts": [
+        {
+          "difficultyClass": "EZ",
+          "structurallyPresent": true,
+          "errorVariant": false
+        },
+        {
+          "difficultyClass": "HD",
+          "structurallyPresent": true,
+          "errorVariant": false
+        },
+        {
+          "difficultyClass": "IN",
+          "structurallyPresent": true,
+          "errorVariant": false
+        }
+      ],
+      "displayLevel": null,
+      "chapter": null,
+      "searchAliases": [],
+      "searchTerms": [
+        "assets/tracks/devastatinghistory.namv.0/",
+        "devastatinghistory",
+        "namv"
+      ]
+    },
+    {
       "sourceIdentityCandidate": "Assets/Tracks/DevIAtiOnshortver.polysha.0/",
       "sourceTrackPath": "Assets/Tracks/DevIAtiOnshortver.polysha.0/",
       "displayTitle": "DevIAtiOn (short ver.)",
@@ -5504,7 +5543,6 @@
       ],
       "displayLevel": null,
       "chapter": null,
-      "specialKind": "system-or-tutorial-candidate",
       "searchAliases": [],
       "searchTerms": [
         "assets/tracks/introduction/",
@@ -6911,6 +6949,45 @@
       ]
     },
     {
+      "sourceIdentityCandidate": "Assets/Tracks/NWAD.Knighthood.0/",
+      "sourceTrackPath": "Assets/Tracks/NWAD.Knighthood.0/",
+      "displayTitle": "NWAD",
+      "sourceTitle": "NWAD",
+      "displayArtist": "Knighthood",
+      "sourceArtist": "Knighthood",
+      "indexRaw": "0",
+      "artwork": {
+        "resourceId": "0ec3a36e-6ce1-7e01-9d09-c6a2d4e8c4b8",
+        "confidence": "high",
+        "role": "current-track-artwork"
+      },
+      "charts": [
+        {
+          "difficultyClass": "EZ",
+          "structurallyPresent": true,
+          "errorVariant": false
+        },
+        {
+          "difficultyClass": "HD",
+          "structurallyPresent": true,
+          "errorVariant": false
+        },
+        {
+          "difficultyClass": "IN",
+          "structurallyPresent": true,
+          "errorVariant": false
+        }
+      ],
+      "displayLevel": null,
+      "chapter": null,
+      "searchAliases": [],
+      "searchTerms": [
+        "assets/tracks/nwad.knighthood.0/",
+        "knighthood",
+        "nwad"
+      ]
+    },
+    {
       "sourceIdentityCandidate": "Assets/Tracks/NYA.FLuoRiTe姜米條.0/",
       "sourceTrackPath": "Assets/Tracks/NYA.FLuoRiTe姜米條.0/",
       "displayTitle": "NYA!!!(Phigros ver.)",
@@ -7840,13 +7917,6 @@
       ],
       "displayLevel": null,
       "chapter": null,
-      "specialKind": "random-family-member",
-      "family": {
-        "familyId": "Random.SobremSilentroom",
-        "memberIndex": 0,
-        "memberCount": 7,
-        "primaryMemberIndex": 0
-      },
       "searchAliases": [],
       "searchTerms": [
         "assets/tracks/random.sobremsilentroom.0/",
@@ -13208,13 +13278,6 @@
       ],
       "displayLevel": null,
       "chapter": null,
-      "specialKind": "random-family-member",
-      "family": {
-        "familyId": "Random.SobremSilentroom",
-        "memberIndex": 1,
-        "memberCount": 7,
-        "primaryMemberIndex": 0
-      },
       "searchAliases": [],
       "searchTerms": [
         "assets/tracks/random.sobremsilentroom.1/",
@@ -13250,13 +13313,6 @@
       ],
       "displayLevel": null,
       "chapter": null,
-      "specialKind": "random-family-member",
-      "family": {
-        "familyId": "Random.SobremSilentroom",
-        "memberIndex": 2,
-        "memberCount": 7,
-        "primaryMemberIndex": 0
-      },
       "searchAliases": [],
       "searchTerms": [
         "assets/tracks/random.sobremsilentroom.2/",
@@ -13292,13 +13348,6 @@
       ],
       "displayLevel": null,
       "chapter": null,
-      "specialKind": "random-family-member",
-      "family": {
-        "familyId": "Random.SobremSilentroom",
-        "memberIndex": 3,
-        "memberCount": 7,
-        "primaryMemberIndex": 0
-      },
       "searchAliases": [],
       "searchTerms": [
         "assets/tracks/random.sobremsilentroom.3/",
@@ -13334,13 +13383,6 @@
       ],
       "displayLevel": null,
       "chapter": null,
-      "specialKind": "random-family-member",
-      "family": {
-        "familyId": "Random.SobremSilentroom",
-        "memberIndex": 4,
-        "memberCount": 7,
-        "primaryMemberIndex": 0
-      },
       "searchAliases": [],
       "searchTerms": [
         "assets/tracks/random.sobremsilentroom.4/",
@@ -13376,13 +13418,6 @@
       ],
       "displayLevel": null,
       "chapter": null,
-      "specialKind": "random-family-member",
-      "family": {
-        "familyId": "Random.SobremSilentroom",
-        "memberIndex": 5,
-        "memberCount": 7,
-        "primaryMemberIndex": 0
-      },
       "searchAliases": [],
       "searchTerms": [
         "assets/tracks/random.sobremsilentroom.5/",
@@ -13418,13 +13453,6 @@
       ],
       "displayLevel": null,
       "chapter": null,
-      "specialKind": "random-family-member",
-      "family": {
-        "familyId": "Random.SobremSilentroom",
-        "memberIndex": 6,
-        "memberCount": 7,
-        "primaryMemberIndex": 0
-      },
       "searchAliases": [],
       "searchTerms": [
         "assets/tracks/random.sobremsilentroom.6/",
@@ -13434,8 +13462,8 @@
     }
   ],
   "recordCounts": {
-    "sourceTrackRecords": 319,
-    "currentTrackArtworkEntries": 313,
+    "sourceTrackRecords": 321,
+    "currentTrackArtworkEntries": 315,
     "specialRecords": 33,
     "archiveExtras": 7,
     "sourceOnlyTracks": 6

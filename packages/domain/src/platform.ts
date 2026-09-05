@@ -217,11 +217,11 @@ const profiles: GameProfile[] = [
     inputKinds: ["apk", "manifest"],
     defaultSourceType: "paradigm_apk",
     supportedAssetTypes: ["pack-cover", "background", "character-avatar", "jacket", "other"],
-    defaultAssetTypes: ["pack-cover", "character-avatar", "background"],
-    siteStatus: "staging",
+    defaultAssetTypes: ["jacket", "pack-cover", "character-avatar", "background"],
+    siteStatus: "published",
     sourceMarkers: ["assets/bin/Data/data.unity3d", "assets/aa/catalog.json", "unityplayer"],
     extractorEntrypoints: ["python -m tools.paradigm extract", "tools/paradigm/extractor.py"],
-    selectionPolicy: "publish only the reviewed static Unity image families; dynamic song artwork, audio, charts, encrypted hotassets, and UI fragments remain outside the public Catalog",
+    selectionPolicy: "publish one reviewed jacket Resource per catalog song with client-derived audio/chart attachments; preserve the two catalog band-variant jackets on their owning songs; unselected UI and unrelated hotassets remain outside the public Catalog",
   }),
 ];
 
@@ -396,7 +396,7 @@ export function assetRecordsFromCatalog(catalog: Catalog): AssetRecord[] {
         aliases: resource.aliases.map((alias) => alias.value),
         sourceIdentity: externalIdentity(resource),
         ...(provenance?.sourceRelativePath ? { sourcePath: provenance.sourceRelativePath } : {}),
-        ...(original && object ? { publishedFile: { objectId: object.id, objectKey: object.objectKey, sha256: object.sha256, sizeBytes: object.sizeBytes, width: object.width, height: object.height, mime: object.mime } } : {}),
+        ...(original && object && object.width !== undefined && object.height !== undefined ? { publishedFile: { objectId: object.id, objectKey: object.objectKey, sha256: object.sha256, sizeBytes: object.sizeBytes, width: object.width, height: object.height, mime: object.mime } } : {}),
         ...(provenance?.gameVersion ? { versionAdded: provenance.gameVersion, versionChanged: provenance.gameVersion } : {}),
         metadata: { ...resource.metadata, variantKey: variant.variantKey, semanticStatus: variant.semanticStatus },
       });

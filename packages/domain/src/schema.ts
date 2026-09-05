@@ -17,8 +17,8 @@ const UUID = z.string().regex(/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-
 const UUIDV7 = z.string().regex(/^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i, "must be an RFC 9562 UUIDv7");
 const SHA256 = z.string().regex(/^[0-9a-f]{64}$/i, "must be a SHA-256 hex digest");
 const ISO_DATE = z.string().refine((value) => !Number.isNaN(Date.parse(value)), "must be an ISO-like timestamp");
-const MIME = z.enum(["image/jpeg", "image/png", "image/webp", "image/avif", "image/gif", "application/octet-stream"]);
-const EXTENSION = z.enum(["jpg", "jpeg", "png", "webp", "avif", "gif", "bin"]);
+const MIME = z.enum(["image/jpeg", "image/png", "image/webp", "image/avif", "image/gif", "audio/ogg", "application/octet-stream"]);
+const EXTENSION = z.enum(["jpg", "jpeg", "png", "webp", "avif", "gif", "ogg", "bin"]);
 const FILE_NAME = z.string().min(1).refine((value) => !/[\\/\0]/.test(value), "must be a file name, not a path");
 const PORTABLE_RELATIVE_PATH = z.string().min(1).refine((value) => {
   if (value.includes("\0")) return false;
@@ -61,7 +61,7 @@ export const Confidence = z.enum(["high", "medium", "low", "unknown"]);
 export const Difficulty = z.enum(["PST", "PRS", "FTR", "BYD", "ETR", "INSCRIBED"]);
 export const VariantKind = z.enum(["default", "difficulty", "event", "source-path", "manual", "unknown"]);
 export const VariantSemanticStatus = z.enum(["confirmed", "manual", "unresolved"]);
-export const RenditionType = z.enum(["original", "upscaled", "thumbnail-320", "thumbnail-640", "thumbnail-1280", "other-derived"]);
+export const RenditionType = z.enum(["original", "upscaled", "thumbnail-320", "thumbnail-640", "thumbnail-1280", "music", "preview-audio", "chart", "other-derived"]);
 export const RenditionOrigin = z.enum(["source", "derived"]);
 export const CandidateStatus = z.enum([
   "EXTRACTED",
@@ -195,8 +195,8 @@ export const AssetObject = z.object({
   mime: MIME,
   extension: EXTENSION,
   sizeBytes: z.number().int().nonnegative(),
-  width: z.number().int().positive(),
-  height: z.number().int().positive(),
+  width: z.number().int().positive().optional(),
+  height: z.number().int().positive().optional(),
   alpha: z.enum(["none", "opaque", "translucent", "unknown"]),
   objectKey: z.string().regex(/^(objects|assets)\/[0-9a-f]{64}\/[a-z0-9]+$/i, "objectKey must be immutable and portable"),
   createdAt: ISO_DATE,
@@ -219,6 +219,7 @@ const RenditionShape = z.object({
   sourceRenditionId: UUIDV7.optional(),
   generatedBy: z.enum(["extractor", "external-ai", "converter", "thumbnailer", "manual"]),
   createdAt: ISO_DATE,
+  metadata: z.record(z.string(), JsonValue).default({}),
 });
 
 export const Rendition = z.preprocess((value) => {

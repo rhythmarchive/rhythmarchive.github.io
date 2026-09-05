@@ -49,6 +49,13 @@ export function validateRendition(value: unknown) {
   const parsed = parse(Rendition, value);
   if (!parsed.success) return parsed;
   const issues: ValidationIssue[] = [];
+  const sourceAttachment = parsed.data.renditionType === "music"
+    || parsed.data.renditionType === "preview-audio"
+    || parsed.data.renditionType === "chart";
+  if (sourceAttachment && (parsed.data.origin !== "source" || parsed.data.sourceRenditionId)) {
+    issues.push(issue("origin", parsed.data.renditionType + " rendition must be a source rendition without a sourceRenditionId"));
+  }
+  if (sourceAttachment && !parsed.data.publishable) issues.push(issue("publishable", parsed.data.renditionType + " rendition must be publishable"));
   if (parsed.data.renditionType === "original" && (parsed.data.origin !== "source" || parsed.data.sourceRenditionId)) {
     issues.push(issue("origin", "original rendition must be a source rendition without a sourceRenditionId"));
   }
@@ -56,7 +63,7 @@ export function validateRendition(value: unknown) {
   if (parsed.data.renditionType.startsWith("thumbnail") && (parsed.data.origin !== "derived" || parsed.data.publishable)) issues.push(issue("publishable", "thumbnail renditions are derived-only"));
   if ((parsed.data.renditionType === "original" || parsed.data.renditionType === "upscaled") && !parsed.data.publishable) issues.push(issue("publishable", `${parsed.data.renditionType} rendition must be publishable`));
   if (parsed.data.renditionType === "other-derived" && parsed.data.publishable) issues.push(issue("publishable", "other-derived renditions are staging-only"));
-  if (parsed.data.renditionType !== "original" && parsed.data.origin !== "derived") issues.push(issue("origin", "non-original renditions must be derived"));
+  if (!sourceAttachment && parsed.data.renditionType !== "original" && parsed.data.origin !== "derived") issues.push(issue("origin", "non-original renditions must be derived"));
   return appendCrossIssues(parsed, issues);
 }
 

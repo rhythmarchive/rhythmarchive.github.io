@@ -105,7 +105,7 @@ export function objectIdFromSha256(sha256: string): string {
 export function immutableObjectKey(sha256: string, extension: string): string {
   const objectId = objectIdFromSha256(sha256);
   const normalizedExtension = extension.toLowerCase().replace(/^\./, "");
-  if (!/^(?:jpg|jpeg|png|webp|avif|gif|bin)$/u.test(normalizedExtension)) throw new Error("invalid object extension");
+  if (!/^(?:jpg|jpeg|png|webp|avif|gif|ogg|bin)$/u.test(normalizedExtension)) throw new Error("invalid object extension");
   return `objects/${objectId.slice("sha256:".length)}/${normalizedExtension}`;
 }
 

@@ -30,9 +30,13 @@ test("Arcaea added-version labels keep only major and minor components", () => {
 });
 
 test("jacket details expose the unified chart field and user-facing identity metadata", () => {
-  assert.equal(GAME_CONFIG.rizline.metadataLabels.songId, "歌曲 ID");
-  assert.equal(GAME_CONFIG.rizline.metadataLabels.gameVersion, "资源版本");
+  assert.equal(GAME_CONFIG.rizline.metadataLabels.songId, undefined);
+  assert.equal(GAME_CONFIG.rizline.metadataLabels.gameVersion, undefined);
   assert.equal(GAME_CONFIG.rizline.metadataLabels.specialArtId, "特殊插画 ID");
+  assert.equal(GAME_CONFIG.rotaeno.metadataLabels.metadataStatus, undefined);
+  assert.equal(GAME_CONFIG.rotaeno.metadataLabels.gameVersion, undefined);
+  assert.equal(GAME_CONFIG["paradigm-reboot"].metadataLabels.songId, undefined);
+  assert.equal(GAME_CONFIG["paradigm-reboot"].metadataLabels.gameVersion, undefined);
   const siteData = getSiteData();
   for (const game of ["arcaea", "phigros", "rizline", "infalsus", "rotaeno"] as const) {
     const jackets = siteData.resources.filter((resource) => resource.game === game && resource.resourceType === "jacket");
@@ -51,7 +55,12 @@ test("jacket details expose the unified chart field and user-facing identity met
     .flatMap((resource) => (resource.charts ?? []).filter((chart) => chart.difficulty === "INSCRIBED").map(() => resource.metadata.songId));
   assert.deepEqual(new Set(inscribed), new Set(["dreadarea", "rivenpilgrim", "cataclysmcry", "deinosphainein"]));
   const rotaenoFacets = getCategoryBrowseConfig("rotaeno", "jacket", siteData.galleries["rotaeno/jacket"] ?? []).facets;
-  assert.deepEqual(rotaenoFacets.map((facet) => facet.label), ["\u8c31\u9762\u96be\u5ea6", "\u96be\u5ea6\u7b49\u7ea7", "\u8c31\u9762\u5b9a\u6570"]);
+  assert.deepEqual(rotaenoFacets.slice(0, 2).map((facet) => facet.label), ["\u8c31\u9762\u96be\u5ea6", "\u96be\u5ea6\u7b49\u7ea7"]);
+  assert.ok(rotaenoFacets.findIndex((facet) => facet.key === "pack") < rotaenoFacets.findIndex((facet) => facet.key === "constant"));
+  assert.ok(rotaenoFacets.findIndex((facet) => facet.key === "version") < rotaenoFacets.findIndex((facet) => facet.key === "constant"));
+  assert.ok(rotaenoFacets.some((facet) => facet.key === "pack"));
+  assert.ok(rotaenoFacets.some((facet) => facet.key === "bpm" && facet.range));
+  assert.ok(rotaenoFacets.some((facet) => facet.key === "version"));
   assert.equal(rotaenoFacets.find((facet) => facet.key === "chart")?.options.find((option) => option.value === "IV_Alpha")?.label, "Ⅳ-α");
   const rotaenoConstantFacet = rotaenoFacets.find((facet) => facet.key === "constant");
   assert.ok(rotaenoConstantFacet?.options.some((option) => option.value === "12.3"));
@@ -64,12 +73,75 @@ test("jacket details expose the unified chart field and user-facing identity met
   assert.equal(typeof rizlineJacket?.metadata.gameVersion, "string");
 });
 
+test("Paradigm 4.10 publishes one song Resource with catalog-aligned charts and image-only public downloads", () => {
+  const paradigmResources = catalog.resources.filter((resource) => resource.game === "paradigm-reboot" && resource.lifecycle.status === "published");
+  assert.equal(paradigmResources.length, 419);
+  assert.equal(new Set(paradigmResources.map((resource) => resource.metadata.songId)).size, 419);
+  const resourceIds = new Set(paradigmResources.map((resource) => resource.id));
+  const paradigmVariants = catalog.variants.filter((variant) => resourceIds.has(variant.resourceId));
+  const paradigmRenditions = catalog.renditions.filter((rendition) => paradigmVariants.some((variant) => variant.id === rendition.variantId));
+  assert.equal(paradigmVariants.length, 421);
+  assert.equal(paradigmRenditions.filter((rendition) => rendition.renditionType === "original").length, 421);
+  assert.equal(paradigmRenditions.filter((rendition) => rendition.renditionType === "music").length, 419);
+  assert.equal(paradigmRenditions.filter((rendition) => rendition.renditionType === "preview-audio").length, 419);
+  assert.equal(paradigmRenditions.filter((rendition) => rendition.renditionType === "chart").length, 1302);
+  assert.equal(paradigmRenditions.filter((rendition) => rendition.renditionType === "thumbnail-320").length, 421);
+  assert.equal(paradigmRenditions.filter((rendition) => rendition.renditionType === "thumbnail-640").length, 421);
+  assert.equal(paradigmRenditions.filter((rendition) => rendition.renditionType === "thumbnail-1280").length, 421);
+  const paradigmObjects = new Set(paradigmRenditions.map((rendition) => rendition.objectId));
+  assert.equal([...paradigmObjects].filter((objectId) => catalog.objects.find((object) => object.id === objectId)?.mime === "audio/ogg").length, 838);
+  assert.equal([...paradigmObjects].filter((objectId) => catalog.objects.find((object) => object.id === objectId)?.mime === "application/octet-stream").length, 1302);
+
+  const siteData = getSiteData();
+  const projected = siteData.resources.filter((resource) => resource.game === "paradigm-reboot");
+  assert.equal(projected.length, 419);
+  assert.ok(projected.every((resource) => resource.resourceType === "jacket" && resource.charts?.length === paradigmRenditions.filter((rendition) => rendition.variantId === resource.variants.find((variant) => variant.preferred)?.variantId && rendition.renditionType === "chart").length));
+  const phasebreak = projected.find((resource) => resource.metadata.songId === "phasebreak");
+  assert.equal(phasebreak?.displayTitle, "PHASEBREAK");
+  assert.equal(phasebreak?.artist, "Zekk");
+  assert.ok(projected.some((resource) => resource.charts?.some((chart) => chart.level === "17")));
+  assert.ok(projected.every((resource) => !resource.charts?.some((chart) => chart.level === "17+")));
+  assert.deepEqual(phasebreak?.charts?.map((chart) => [chart.difficulty, chart.level, chart.constant, chart.noter]), [
+    ["DET", "5", "5.0", "SCREWCAT"],
+    ["IVD", "10", "10.5", "SCREWCAT"],
+    ["MSV", "15+", "15.8", "SCREWCAT"],
+  ]);
+  assert.ok(phasebreak?.searchTerms?.includes("SCREWCAT"));
+  assert.equal(phasebreak?.charts?.length, 3);
+  assert.ok(projected.every((resource) => resource.variants.every((variant) => !("attachments" in variant))));
+  const innernorm = projected.find((resource) => resource.metadata.songId === "innernorm");
+  const lynn = projected.find((resource) => resource.metadata.songId === "lynn");
+  assert.ok(innernorm?.variants.some((variant) => variant.label === "CHAOTIC 封面"));
+  assert.ok(lynn?.variants.some((variant) => variant.label === "Override 封面"));
+  assert.equal(innernorm?.charts?.length, 4);
+  const config = getCategoryBrowseConfig("paradigm-reboot", "jacket", siteData.galleries["paradigm-reboot/jacket"] ?? []);
+  assert.deepEqual(config.facets.find((facet) => facet.key === "chart")?.options.map((option) => option.value), ["DET", "IVD", "MSV", "RBT", "CTC"]);
+  assert.ok(config.facets.some((facet) => facet.key === "pack" && facet.options.length > 0));
+  assert.ok(config.facets.some((facet) => facet.key === "bpm" && facet.range));
+  assert.ok(config.facets.some((facet) => facet.key === "version" && facet.options.length > 0));
+  assert.ok(config.facets.some((facet) => facet.key === "constant" && facet.range));
+  assert.deepEqual(config.facets.filter((facet) => !facet.range).map((facet) => facet.key), ["chart", "level", "pack", "version"]);
+  assert.deepEqual(config.facets.filter((facet) => facet.range).map((facet) => facet.key), ["constant", "bpm"]);
+  const versionFacet = config.facets.find((facet) => facet.key === "version");
+  assert.ok(versionFacet?.options.every((option) => /^\d+(?:\.\d+)?$/u.test(option.value)));
+  assert.ok(versionFacet?.options.every((option) => !option.value.includes(",")));
+  const multiVersion = projected.find((resource) => typeof resource.metadata.updateVersion === "string" && resource.metadata.updateVersion.includes(","));
+  assert.ok(multiVersion);
+  assert.ok((multiVersion?.facets?.version ?? []).length > 1);
+  assert.ok((multiVersion?.facets?.version ?? []).every((value) => /^\d+(?:\.\d+)?$/u.test(value)));
+  assert.ok(config.sortOptions.some((option) => option.value === "updated-desc"));
+  assert.ok(config.sortOptions.some((option) => option.value === "bpm-desc"));
+  assert.ok(config.sortOptions.some((option) => option.value === "artist-desc" && option.label === "曲师 Z-A"));
+  assert.ok(siteData.searchIndex.some((entry) => entry.game === "paradigm-reboot" && entry.keywords.includes("SCREWCAT")));
+});
+
 test("public projection excludes local paths, credentials, and internal provenance", () => {
   const projection = projectCatalog(catalog, rosBaseUrl);
   const serialized = JSON.stringify(projection);
   assert.doesNotMatch(serialized, /[A-Z]:\\/iu);
   assert.doesNotMatch(serialized, /ROS_(?:ACCESS|SECRET)_KEY/iu);
   assert.doesNotMatch(serialized, /(?:provenance|sourceRelativePath|sourceSha256|objectId|objectKey|catalogSchemaVersion)/iu);
+  assert.doesNotMatch(serialized, /attachments/iu);
   const hiddenCount = catalog.resources.filter((resource) => resource.lifecycle.status !== "published" || (resource.resourceType === "story-texture" && resource.metadata.storyVisualKind !== "vn-cg") || resource.resourceType === "rizcard" || (resource.resourceType === "startup" && resource.game !== "rotaeno")).length;
   assert.equal(projection.resources.length, catalog.resources.length - hiddenCount);
 });
@@ -90,7 +162,7 @@ test("preview selection never falls back to original or upscaled", () => {
 test("every catalog Resource shares one preview set across original and optional upscale", () => {
   const projection = projectCatalog(catalog, rosBaseUrl);
   const upscaled = projection.resources.filter((resource) => resource.upscaled);
-  assert.equal(upscaled.length, 625);
+  assert.equal(upscaled.length, 1044);
   const arcaea70Upscaled = projection.resources.filter((resource) =>
     resource.game === "arcaea" &&
     resource.resourceType === "jacket" &&
@@ -109,8 +181,12 @@ test("every catalog Resource shares one preview set across original and optional
   assert.equal(arcaea7255Upscaled[0]?.resourceId, "a0a4d486-1216-78d9-a3c6-ad6ff049b46a");
   assert.equal(arcaea7255Upscaled[0]?.upscaled?.width, 3072);
   assert.equal(arcaea7255Upscaled[0]?.upscaled?.height, 3072);
-  assert.ok(upscaled.every((resource) => resource.game === "arcaea" && resource.resourceType === "jacket"));
+  assert.ok(upscaled.every((resource) => ["arcaea", "paradigm-reboot"].includes(resource.game) && resource.resourceType === "jacket"));
   assert.ok(upscaled.every((resource) => resource.variants.every((variant) => Boolean(variant.preview.small) && Boolean(variant.preview.medium) && Boolean(variant.preview.large))));
+  const paradigmUpscaled = upscaled.filter((resource) => resource.game === "paradigm-reboot");
+  assert.equal(paradigmUpscaled.length, 419);
+  assert.ok(paradigmUpscaled.every((resource) => resource.upscaled?.width === (resource.original?.width ?? 0) * 4 && resource.upscaled?.height === (resource.original?.height ?? 0) * 4));
+  assert.ok(paradigmUpscaled.every((resource) => resource.variants.every((variant) => Boolean(variant.upscaled))));
 });
 
 test("Arcaea public titles use the real title segment and keep extraction markers out of SEO/search text", () => {
@@ -220,7 +296,7 @@ test("public game index projects activity only from final public resources", () 
     .sort()
     .at(-1);
   assert.equal(rizline?.lastUpdatedAt, rizlineUpdatedAt);
-  assert.equal(phigros?.contentVersion, undefined);
+  assert.equal(phigros?.contentVersion, "3.20.0");
   const phigrosUpdatedAt = catalog.resources
     .filter((resource) => resource.game === "phigros" && resource.lifecycle.status === "published")
     .map((resource) => resource.lifecycle.updatedAt)
@@ -451,7 +527,7 @@ test("natural text comparison keeps numeric ordering without folding accents", (
 test("homepage navigation uses the generated jacket browse counts", () => {
   const games = getPublicNavigationGames();
   assert.equal(games.find((game) => game.slug === "arcaea")?.categories.find((category) => category.slug === "jacket")?.count, 566);
-  assert.equal(games.find((game) => game.slug === "phigros")?.categories.find((category) => category.slug === "jacket")?.count, 353);
+  assert.equal(games.find((game) => game.slug === "phigros")?.categories.find((category) => category.slug === "jacket")?.count, 355);
   const rizline = games.find((game) => game.slug === "rizline");
   assert.equal(rizline?.categories.find((category) => category.slug === "jacket")?.count, 143);
   assert.equal(rizline?.categories.find((category) => category.slug === "rizcard")?.count, 44);
@@ -489,7 +565,7 @@ test("internal game entries link directly to each game's primary category", () =
   const quickLinks = buildSearchQuickLinks({ games: getPublicNavigationGames() });
   assert.ok(quickLinks.filter((entry) => ["Arcaea", "Phigros", "Rizline", "In Falsus", "Rotaeno"].includes(entry.label)).every((entry) => entry.href.endsWith("/jacket/")));
   assert.equal(primaryCategorySlug("arcaea"), "jacket");
-  assert.equal(primaryCategorySlug("paradigm-reboot"), "pack-cover");
+  assert.equal(primaryCategorySlug("paradigm-reboot"), "jacket");
 });
 
 test("Rizline Catalog and public projections preserve approved boundaries", () => {
@@ -541,8 +617,17 @@ test("game icons use real assets with a non-breaking fallback", () => {
   assert.equal(fs.existsSync(path.join(siteRoot, "public", "game-icons", "phigros.png")), true);
   assert.equal(fs.existsSync(path.join(siteRoot, "public", "game-icons", "rizline.png")), true);
   assert.equal(fs.existsSync(path.join(siteRoot, "public", "game-icons", "rotaeno.png")), true);
+  assert.equal(fs.existsSync(path.join(siteRoot, "public", "game-icons", "paradigm-reboot.png")), true);
+  assert.match(styles, /\.game-icon-paradigm-reboot \.game-icon-image \{[^}]*object-fit: contain/u);
   assert.match(source, /rizline/u);
   assert.match(source, /rotaeno/u);
+});
+
+test("Paradigm game icon keeps the APK app-icon square geometry", async () => {
+  const icon = await sharp(path.join(siteRoot, "public", "game-icons", "paradigm-reboot.png")).metadata();
+  assert.equal(icon.format, "png");
+  assert.equal(icon.width, 192);
+  assert.equal(icon.height, 192);
 });
 
 test("Arcaea icon does not retain an extracted blank black/white edge", async () => {
@@ -613,6 +698,7 @@ test("detail lightbox opens only an existing preview rendition", () => {
 });
 
 test("detail downloads show image dimensions without the recommendation label", () => {
+  const page = fs.readFileSync(path.join(siteRoot, "src", "pages", "r", "[id]", "index.astro"), "utf8");
   const component = fs.readFileSync(path.join(siteRoot, "src", "components", "DownloadActions.astro"), "utf8");
   const styles = fs.readFileSync(path.join(siteRoot, "src", "styles", "global.css"), "utf8");
   assert.equal(formatImageDimensions(500, 500), "500 × 500");
@@ -621,6 +707,9 @@ test("detail downloads show image dimensions without the recommendation label", 
   assert.match(component, /formatImageDimensions\(upscaled\.width, upscaled\.height\)/u);
   assert.match(component, /download-dimensions/u);
   assert.doesNotMatch(component, /推荐|download-recommend/u);
+  assert.doesNotMatch(component, /attachments|music|preview|chart/u);
+  assert.doesNotMatch(page, /来源：|APK \+ Wiki|元数据状态|文件格式|歌曲 ID|游戏版本|Wiki BPM/u);
+  assert.doesNotMatch(page, /chartSourceLabel|chart\.source/u);
   assert.match(styles, /\.download-dimensions/u);
   assert.doesNotMatch(styles, /\.download-recommend/u);
 });
