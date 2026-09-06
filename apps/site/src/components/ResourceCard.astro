@@ -14,7 +14,10 @@ interface Props {
 const { resource, selectable = false, eager = false } = Astro.props;
 const urls = createUrlHelpers({ basePath: BASE_PATH, origin: "https://rhythmarchive.github.io", rosBaseUrl: "https://rhythm-assets.cn-nb1.rains3.com" });
 const small = resource.preview.small ?? resource.preview.medium ?? resource.preview.large;
-const srcset = [resource.preview.small ? `${resource.preview.small.url} 320w` : "", resource.preview.medium ? `${resource.preview.medium.url} 640w` : ""].filter(Boolean).join(", ");
+const useOriginalGallerySource = ["arcaea", "paradigm-reboot"].includes(resource.game) && resource.resourceType === "jacket" && Boolean(resource.original);
+const gallerySource = useOriginalGallerySource ? resource.original : small;
+const galleryFallback = useOriginalGallerySource ? small : resource.original;
+const gallerySrcset = useOriginalGallerySource ? "" : [resource.preview.small ? resource.preview.small.url + " 320w" : "", resource.preview.medium ? resource.preview.medium.url + " 640w" : ""].filter(Boolean).join(", ");
 const variantLabel = resource.variants.find((variant) => variant.label !== "默认")?.label;
 ---
 
@@ -26,17 +29,17 @@ const variantLabel = resource.variants.find((variant) => variant.label !== "默�
   ) : null}
   <a class="resource-card-link" href={urls.sitePath(resource.route)}>
     <div class="resource-card-media">
-      {small ? (
+      {gallerySource ? (
         <img
-          src={small.url}
-          srcset={srcset || undefined}
-          data-fallback-src={resource.original?.url}
-          data-fallback-width={resource.original?.width}
-          data-fallback-height={resource.original?.height}
+          src={gallerySource.url}
+          srcset={gallerySrcset || undefined}
+          data-fallback-src={galleryFallback?.url}
+          data-fallback-width={galleryFallback?.width}
+          data-fallback-height={galleryFallback?.height}
           sizes="(max-width: 640px) 50vw, (max-width: 1280px) 20vw, 210px"
           alt={resource.displayTitle}
-          width={small.width}
-          height={small.height}
+          width={gallerySource.width ?? small?.width}
+          height={gallerySource.height ?? small?.height}
           loading={eager ? "eager" : "lazy"}
           decoding="async"
         />

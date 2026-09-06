@@ -500,21 +500,25 @@ function createCard(item: BrowseGalleryItem, index: number, isSelected: boolean)
   anchor.href = resolveSitePath(item.route);
   const media = document.createElement("div");
   media.className = "resource-card-media";
-  const image = item.preview.small ?? item.preview.medium ?? item.preview.large;
+  const useOriginalGallerySource = item.game === "arcaea" && item.resourceType === "jacket" && Boolean(item.original);
+  const image = useOriginalGallerySource ? item.original : item.preview.small ?? item.preview.medium ?? item.preview.large;
+  const fallbackImage = useOriginalGallerySource ? item.preview.small ?? item.preview.medium ?? item.preview.large : item.original;
   if (image) {
     const img = document.createElement("img");
     img.src = image.url;
     img.alt = item.displayTitle;
-    img.width = image.width;
-    img.height = image.height;
+    const imageWidth = image.width ?? fallbackImage?.width;
+    const imageHeight = image.height ?? fallbackImage?.height;
+    if (imageWidth) img.width = imageWidth;
+    if (imageHeight) img.height = imageHeight;
     img.loading = index < 6 ? "eager" : "lazy";
     img.decoding = "async";
-    const srcset = [item.preview.small ? item.preview.small.url + " 320w" : "", item.preview.medium ? item.preview.medium.url + " 640w" : ""].filter(Boolean).join(", ");
+    const srcset = useOriginalGallerySource ? "" : [item.preview.small ? item.preview.small.url + " 320w" : "", item.preview.medium ? item.preview.medium.url + " 640w" : ""].filter(Boolean).join(", ");
     if (srcset) img.setAttribute("srcset", srcset);
-    if (item.original?.url) {
-      img.dataset.fallbackSrc = item.original.url;
-      if (item.original.width) img.dataset.fallbackWidth = String(item.original.width);
-      if (item.original.height) img.dataset.fallbackHeight = String(item.original.height);
+    if (fallbackImage?.url) {
+      img.dataset.fallbackSrc = fallbackImage.url;
+      if (fallbackImage.width) img.dataset.fallbackWidth = String(fallbackImage.width);
+      if (fallbackImage.height) img.dataset.fallbackHeight = String(fallbackImage.height);
     }
     img.sizes = "(max-width: 640px) 50vw, (max-width: 1280px) 20vw, 210px";
     media.append(img);

@@ -689,16 +689,32 @@ test("related ranking is deterministic and prioritizes shared artist", () => {
 
 test("detail lightbox opens only an existing preview rendition", () => {
   const panel = fs.readFileSync(path.join(siteRoot, "src", "components", "VariantPanel.astro"), "utf8");
+  const page = fs.readFileSync(path.join(siteRoot, "src", "pages", "r", "[id]", "index.astro"), "utf8");
   const script = fs.readFileSync(path.join(siteRoot, "src", "scripts", "detail.ts"), "utf8");
   const styles = fs.readFileSync(path.join(siteRoot, "src", "styles", "global.css"), "utf8");
-  assert.match(panel, /data-lightbox-preview-url=\{large\.url\}/u);
-  assert.doesNotMatch(panel, /variant\.original/u);
+  assert.match(panel, /data-detail-source-select="original"/u);
+  assert.match(panel, /data-detail-source-select="upscaled"/u);
+  assert.match(panel, /data-lightbox-preview-url=\{variant\.original!\.url\}/u);
+  assert.match(panel, /data-lightbox-preview-url=\{variant\.upscaled!\.url\}/u);
   assert.match(script, /Escape/u);
   assert.match(script, /event\.key !== "Tab"/u);
+  assert.match(script, /data-detail-source-select/u);
   assert.match(script, /detail-lightbox-open/u);
   assert.match(styles, /\.detail-lightbox\[hidden\] \{ display: none; \}/u);
+  assert.match(panel, /const useOriginalSource = sourceToggle && Boolean\(variant\.original\)/u);
+  assert.match(page, /sourceToggle=\{resource\.resourceType === "jacket" &&/u);
 });
 
+test("client gallery rerenders preserve original jacket sources", () => {
+  const gallery = fs.readFileSync(path.join(siteRoot, "src", "scripts", "gallery.ts"), "utf8");
+  const browse = fs.readFileSync(path.join(siteRoot, "src", "scripts", "browse-gallery.ts"), "utf8");
+  assert.match(gallery, /const useOriginalGallerySource = \["arcaea", "paradigm-reboot"\]\.includes\(resource\.game\) && resource\.resourceType === "jacket"/u);
+  assert.match(gallery, /const image = useOriginalGallerySource \? resource\.original :/u);
+  assert.match(gallery, /const srcset = useOriginalGallerySource \? "" :/u);
+  assert.match(browse, /const useOriginalGallerySource = item\.game === "arcaea" && item\.resourceType === "jacket"/u);
+  assert.match(browse, /const image = useOriginalGallerySource \? item\.original :/u);
+  assert.match(browse, /const srcset = useOriginalGallerySource \? "" :/u);
+});
 test("detail downloads show image dimensions without the recommendation label", () => {
   const page = fs.readFileSync(path.join(siteRoot, "src", "pages", "r", "[id]", "index.astro"), "utf8");
   const component = fs.readFileSync(path.join(siteRoot, "src", "components", "DownloadActions.astro"), "utf8");

@@ -46,6 +46,15 @@ for (const resource of publicPreviewResources) {
     for (const preview of Object.values(variant.preview)) if (preview) previewUrls.add(preview.url);
   }
 }
+const gallerySourceUrls = new Set<string>(
+  projection.resources
+    .filter((resource) => ["arcaea", "paradigm-reboot"].includes(resource.game) && resource.resourceType === "jacket")
+    .flatMap((resource) => [
+      resource.original?.url,
+      resource.upscaled?.url,
+      ...resource.variants.flatMap((variant) => [variant.original?.url, variant.upscaled?.url]),
+    ].filter((url): url is string => Boolean(url))),
+);
 const forbidden = [/(?:[A-Za-z]:\\\\|[A-Za-z]:\\(?![nrtbfv0u"]))/iu, /ROS_ACCESS_KEY/iu, /ROS_SECRET_KEY/iu, /\.runtime/iu, /ReviewLog/iu, /migration report/iu, /sourceRelativePath/iu, /sourceSha256/iu, /objectId/iu, /objectKey/iu, /catalogSchemaVersion/iu, /accessKey/iu, /secretKey/iu, /(?:^|[\\/])workspace(?:[\\/]|$)/iu];
 const forbiddenHits: string[] = [];
 for (const file of files) {
@@ -62,7 +71,7 @@ for (const file of htmlFiles) {
     for (const source of [...tag.matchAll(/(?:\s)(?:src|srcset)="([^"]+)"/giu)].map((match) => match[1] ?? "")) {
       const candidates = source.split(",").map((part) => part.trim().split(/\s+/u)[0]).filter((candidate): candidate is string => Boolean(candidate));
       for (const candidate of candidates) {
-        if (/^https?:\/\//iu.test(candidate) && !previewUrls.has(candidate)) ordinaryImageErrors.push(file + ": " + candidate);
+        if (/^https?:\/\//iu.test(candidate) && !previewUrls.has(candidate) && !gallerySourceUrls.has(candidate)) ordinaryImageErrors.push(file + ": " + candidate);
       }
     }
   }

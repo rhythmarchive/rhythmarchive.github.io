@@ -46,6 +46,21 @@ if (root) {
     });
   }
 
+  for (const button of root.querySelectorAll<HTMLButtonElement>("[data-detail-source-select]")) {
+    button.addEventListener("click", () => {
+      const source = button.dataset.detailSourceSelect;
+      const panelRoot = button.closest<HTMLElement>("[data-variant-panel]");
+      if (!source || !panelRoot) return;
+      closeLightbox();
+      for (const panel of panelRoot.querySelectorAll<HTMLElement>("[data-detail-source-panel]")) panel.hidden = panel.dataset.detailSourcePanel !== source;
+      for (const item of panelRoot.querySelectorAll<HTMLButtonElement>("[data-detail-source-select]")) {
+        const active = item.dataset.detailSourceSelect === source;
+        item.classList.toggle("is-active", active);
+        item.setAttribute("aria-selected", String(active));
+      }
+    });
+  }
+
   for (const trigger of root.querySelectorAll<HTMLButtonElement>("[data-lightbox-open]")) {
     trigger.addEventListener("click", () => openLightbox(trigger));
   }

@@ -393,7 +393,7 @@ img { display: block; max-width: 100%; }
 .variant-tabs { display: flex; gap: 7px; margin-bottom: 11px; }
 .variant-tabs button { padding: 7px 12px; border: 1px solid var(--line); border-radius: 4px 8px 4px 8px; background: var(--surface); color: var(--text-muted); font-size: 0.77rem; }
 .variant-tabs button:hover, .variant-tabs button.is-active { border-color: var(--accent); background: var(--cyan-soft); color: var(--accent-strong); }
-.variant-panel[hidden], .download-panel[hidden] { display: none; }
+.variant-panel[hidden], .detail-source-panel[hidden], .download-panel[hidden] { display: none; }
 .detail-downloads { margin-top: 1.3rem; }
 .download-panel { padding: 14px; border: 1px solid var(--line); border-radius: 6px 12px 6px 12px; background: var(--surface); }
 .download-panel-heading { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
