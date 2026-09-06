@@ -1,6 +1,6 @@
 ---
 import BrowseCard from "./BrowseCard.astro";
-import { getBrowseFacetOptions, type BrowseGalleryData } from "../lib/browse-gallery";
+import { getBrowseFacetOptions, type BrowseGalleryData, type PhigrosFacetOptions } from "../lib/browse-gallery";
 import { formatCount } from "../lib/format";
 import { BASE_PATH } from "../lib/site-config";
 
@@ -14,7 +14,11 @@ const { data, categoryLabel, galleryUrl } = Astro.props;
 const initialItems = data.items.slice(0, 48);
 const hasUpscale = data.items.some((item) => item.hasUpscaled);
 const searchPlaceholder = data.game === "rizline" ? "搜索曲名、曲师或画师" : "搜索曲名或曲师";
-const chartOptions = getBrowseFacetOptions(data).charts;
+const browseOptions = getBrowseFacetOptions(data);
+const chartOptions = browseOptions.charts;
+const phigrosOptions = data.game === "phigros" ? browseOptions as PhigrosFacetOptions : undefined;
+const phigrosPackOptions = phigrosOptions?.packs ?? [];
+const phigrosLevelOptions = phigrosOptions?.levels ?? [];
 ---
 
 <section class="gallery-shell browse-gallery-shell" data-browse-gallery-root data-gallery-url={galleryUrl} data-base-path={BASE_PATH} data-game={data.game} data-category="jacket" data-total={data.items.length}>
@@ -48,6 +52,7 @@ const chartOptions = getBrowseFacetOptions(data).charts;
               <option value="title-desc">曲名 Z-A</option>
               <option value="artist-asc">曲师 A-Z</option>
               <option value="artist-desc">曲师 Z-A</option>
+              {data.game === "phigros" ? <><option value="pack-asc">曲包 A-Z</option><option value="pack-desc">曲包 Z-A</option><option value="level-desc">最高难度高 → 低</option><option value="level-asc">最高难度低 → 高</option></> : null}
             </>
           )}
         </select>
@@ -91,6 +96,23 @@ const chartOptions = getBrowseFacetOptions(data).charts;
         <span class="filter-group-label">谱面难度</span>
         <div class="filter-toggles" data-browse-toggle-options="chart"></div>
       </div>
+      {data.game === "phigros" && phigrosPackOptions.length > 0 ? (
+        <details class="filter-popover">
+          <summary data-browse-summary="pack">曲包</summary>
+          <div class="filter-popover-body">
+            <input class="popover-search" type="search" data-browse-option-search="pack" placeholder="搜索曲包" autocomplete="off" />
+            <div class="filter-options" data-browse-options="pack"></div>
+          </div>
+        </details>
+      ) : null}
+      {data.game === "phigros" && phigrosLevelOptions.length > 0 ? (
+        <details class="filter-popover">
+          <summary data-browse-summary="level">难度等级</summary>
+          <div class="filter-popover-body">
+            <div class="filter-options compact-options" data-browse-options="level"></div>
+          </div>
+        </details>
+      ) : null}
     </div>
   ) : null}
 

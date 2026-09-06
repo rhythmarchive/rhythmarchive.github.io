@@ -8,6 +8,7 @@ import {
   type BrowseGalleryItem,
   type BrowseResolvedResource,
   type BrowseUrlState,
+  type PhigrosFacetOptions,
   defaultBrowseUrlState,
   displayBrowseItem,
   filterBrowseItems,
@@ -137,7 +138,7 @@ async function initializeBrowseGallery(root: HTMLElement): Promise<void> {
         ai: ai?.checked ?? false,
       };
     }
-    if (game === "phigros") return { game, q: search!.value, sort: sort!.value as Extract<BrowseUrlState, { game: "phigros" }>["sort"], chart: selectedValues(root, "chart") as Extract<BrowseUrlState, { game: "phigros" }>["chart"] };
+    if (game === "phigros") return { game, q: search!.value, sort: sort!.value as Extract<BrowseUrlState, { game: "phigros" }>["sort"], pack: selectedValues(root, "pack"), chart: selectedValues(root, "chart") as Extract<BrowseUrlState, { game: "phigros" }>["chart"], level: selectedValues(root, "level") };
     if (game === "infalsus") return { game, q: search!.value, sort: sort!.value as Extract<BrowseUrlState, { game: "infalsus" }>["sort"], chart: selectedValues(root, "chart") as Extract<BrowseUrlState, { game: "infalsus" }>["chart"] };
     return {
       game,
@@ -178,6 +179,9 @@ async function initializeBrowseGallery(root: HTMLElement): Promise<void> {
       setSelectedValues(root, "level", nextState.level);
       setSelectedValues(root, "version", nextState.version);
       if (ai) ai.checked = nextState.ai;
+    } else if (nextState.game === "phigros") {
+      setSelectedValues(root, "pack", nextState.pack);
+      setSelectedValues(root, "level", nextState.level);
     } else if (nextState.game === "rizline") {
       setSelectedValues(root, "disc", nextState.disc);
       setSelectedValues(root, "series", nextState.series);
@@ -286,16 +290,21 @@ function populateFacetOptions(data: BrowseGalleryData, root: HTMLElement): void 
     }));
   };
   if (data.game === "arcaea") {
-    const arcaeaOptions = options as Extract<BrowseFacetOptions, { packs: string[] }>;
+    const arcaeaOptions = options as Extract<BrowseFacetOptions, { levels: string[]; versions: string[] }>;
     setToggles("chart", arcaeaOptions.charts, (value) => displayFilterDifficultyLabel(value, "arcaea"));
     setCheckboxes("pack", arcaeaOptions.packs);
     setCheckboxes("level", arcaeaOptions.levels);
     setCheckboxes("version", arcaeaOptions.versions, formatArcaeaAddedVersion);
     return;
   }
-  if (data.game === "phigros" || data.game === "infalsus" || data.game === "rizline") {
-    setToggles("chart", options.charts);
+  if (data.game === "phigros") {
+    const phigrosOptions = options as PhigrosFacetOptions;
+    setToggles("chart", phigrosOptions.charts);
+    setCheckboxes("pack", phigrosOptions.packs);
+    setCheckboxes("level", phigrosOptions.levels);
+    return;
   }
+  if (data.game === "infalsus") setToggles("chart", options.charts);
   if (data.game === "rizline") {
     const rizlineOptions = options as Extract<BrowseFacetOptions, { discs: string[] }>;
     setCheckboxes("disc", rizlineOptions.discs);
@@ -352,6 +361,10 @@ function updateActiveFilters(root: HTMLElement, state: BrowseUrlState): void {
     for (const value of state.version) versionEntries.set(formatArcaeaAddedVersion(value), value);
     for (const [label, value] of versionEntries) entries.push({ name: "version", value, label });
     if (state.ai) entries.push({ name: "ai", value: "1", label: "含超分版" });
+  } else if (state.game === "phigros") {
+    for (const value of state.pack) entries.push({ name: "pack", value, label: value });
+    for (const value of state.chart) entries.push({ name: "chart", value, label: value });
+    for (const value of state.level) entries.push({ name: "level", value, label: value });
   } else if (state.game === "rizline") {
     for (const value of state.chart) entries.push({ name: "chart", value, label: value });
     for (const value of state.disc) entries.push({ name: "disc", value, label: value });

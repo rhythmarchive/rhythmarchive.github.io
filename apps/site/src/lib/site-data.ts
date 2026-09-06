@@ -145,7 +145,10 @@ function enrichFormalBrowseMetadata(siteData: PublicSiteData, browse: FormalBrow
     const updateDate = typeof metadata.updateDate === "string" ? metadata.updateDate : extractDateFromVersion(rawUpdateVersion);
     if (resource.game === "paradigm-reboot" && typeof rawUpdateVersion === "string") metadata.updateVersion = formatPublicVersion(rawUpdateVersion);
     if (resource.game === "paradigm-reboot" && updateDate) metadata.updateDate = updateDate;
-    const charts = chartsByResource.get(resource.resourceId) ?? resource.charts ?? (resource.resourceType === "jacket" ? [] : undefined);
+    const formalCharts = chartsByResource.get(resource.resourceId);
+    const charts = resource.game === "phigros" && formalCharts
+      ? mergePhigrosCharts(resource.charts ?? [], formalCharts)
+      : formalCharts ?? resource.charts ?? (resource.resourceType === "jacket" ? [] : undefined);
     const availableCharts = (charts ?? [])
       .filter((chart) => chart.available !== false && chart.status !== "error" && chart.status !== "legacy");
     const chartFacetValues = [...new Set([...availableCharts, ...(resource.specialCharts ?? []).filter((chart) => chart.available !== false && chart.status !== "error" && chart.status !== "legacy")].map((chart) => chart.difficulty))];
@@ -252,6 +255,15 @@ function paradigmVersionFacetValues(value: unknown): string[] {
 
 function chartKey(chart: PublicChart): string {
   return [chart.difficulty, chart.level ?? "", chart.notes ?? "", chart.constant ?? "", chart.title ?? "", chart.artist ?? "", chart.noter ?? "", chart.source ?? "", chart.status ?? ""].join("|");
+}
+
+function mergePhigrosCharts(base: PublicChart[], overlay: PublicChart[]): PublicChart[] {
+  const merged = new Map<string, PublicChart>();
+  for (const chart of base) merged.set(chart.difficulty, chart);
+  for (const chart of overlay) {
+    merged.set(chart.difficulty, { ...(merged.get(chart.difficulty) ?? {}), ...chart });
+  }
+  return [...merged.values()];
 }
 
 export function loadCategoryBrowseProjections(): CategoryBrowseProjections {

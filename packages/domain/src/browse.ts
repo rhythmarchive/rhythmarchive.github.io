@@ -130,6 +130,9 @@ const PhigrosChart = z.object({
   difficultyClass: PhigrosDifficultyClass,
   structurallyPresent: z.boolean(),
   errorVariant: z.boolean(),
+  level: z.string().min(1).optional(),
+  available: z.boolean().optional(),
+  status: z.enum(["available", "unavailable", "legacy"]).optional(),
 });
 
 const PhigrosArtwork = z.object({

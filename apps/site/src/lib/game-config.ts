@@ -86,8 +86,12 @@ export const GAME_CONFIG: Record<GameId, GameConfig> = {
     filters: { difficulty: true, upscale: false },
     metadataLabels: {
       artist: "曲师",
+      composer: "曲师",
+      illustrator: "画师",
+      charter: "谱师",
       pack: "曲包",
       packName: "曲包",
+      songName: "游戏内曲名",
       characterName: "中文名",
       characterJapaneseName: "日文名",
       characterEnglishName: "英文名",

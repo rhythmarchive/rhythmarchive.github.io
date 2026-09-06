@@ -236,6 +236,26 @@ test("Phigros primary difficulty facets use structural charts and exclude Legacy
   assert.equal(options.charts.includes("Error" as never), false);
 });
 
+
+test("Phigros exposes APK-backed pack facets, URL state, and highest-level sorting", () => {
+  const options = getBrowseFacetOptions(formalBrowse.phigros) as { packs: string[]; charts: string[]; levels: string[] };
+  assert.ok(options.packs.includes("Single"));
+  assert.ok(options.levels.includes("14.4"));
+  const single = filterBrowseItems(formalBrowse.phigros.items, phigrosStateFor({ pack: ["Single"] }));
+  assert.ok(single.length > 0);
+  assert.ok(single.every((item) => item.pack === "Single"));
+  const state = phigrosStateFor({ pack: ["Single"], level: ["14.4"], sort: "level-desc" });
+  const serialized = serializeBrowseUrlState(state).toString();
+  assert.equal(serialized, "sort=level-desc&pack=Single&level=14.4");
+  assert.deepEqual(parseBrowseUrlState("phigros", serialized, formalBrowse.phigros.items), state);
+  const levelFiltered = filterBrowseItems(formalBrowse.phigros.items, phigrosStateFor({ level: ["14.4"] }));
+  assert.ok(levelFiltered.length > 0);
+  assert.ok(levelFiltered.every((item) => item.charts.some((chart) => "level" in chart && chart.level === "14.4")));
+  const sorted = filterBrowseItems(formalBrowse.phigros.items.filter((item) => item.pack === "Single"), phigrosStateFor({ sort: "level-desc" }));
+  const maxLevel = (item: BrowseGalleryItem): number => Math.max(...item.charts.filter((chart) => "structurallyPresent" in chart && chart.available !== false && chart.status !== "legacy" && !chart.errorVariant).map((chart) => Number("level" in chart ? chart.level : undefined)).filter(Number.isFinite));
+  assert.ok(maxLevel(sorted[0]!) >= maxLevel(sorted.at(-1)!));
+});
+
 test("Phigros special and archive records stay separate even with repeated titles", () => {
   const matches = filterBrowseItems(formalBrowse.phigros.items, phigrosStateFor({ q: "After ZABANIYA" }));
   assert.equal(matches.length, 2);
@@ -320,7 +340,9 @@ test("Phigros chart selections are retained by the client state bridge", () => {
   const browseScript = fs.readFileSync(path.join(process.cwd(), "apps", "site", "src", "scripts", "browse-gallery.ts"), "utf8");
   assert.doesNotMatch(browseScript, /gameId === "phigros" \? \{\.\.\.parsed, chart: \[\] \}/u);
   assert.match(browseScript, /game === "phigros"\).*selectedValues\(root, "chart"\)/u);
-  assert.match(browseScript, /data\.game === "phigros" \|\| data\.game === "infalsus" \|\| data\.game === "rizline"/u);
+  assert.match(browseScript, /if \(data\.game === "phigros"\)/u);
+  assert.match(browseScript, /if \(data\.game === "infalsus"\) setToggles\("chart"/u);
+  assert.match(browseScript, /if \(data\.game === "rizline"\)/u);
 });
 
 function makeResource(resourceId: string, hasUpscaled = false): BrowseResolvedResource {
@@ -375,7 +397,7 @@ function arcaeaState(overrides: Partial<ArcaeaBrowseUrlState> = {}): ArcaeaBrows
 }
 
 function phigrosStateFor(overrides: Partial<PhigrosBrowseUrlState> = {}): PhigrosBrowseUrlState {
-  return { game: "phigros", q: "", sort: "default", chart: [], ...overrides };
+  return { game: "phigros", q: "", sort: "default", pack: [], chart: [], level: [], ...overrides };
 }
 
 function countKinds(items: BrowseGalleryItem[]): Record<string, number> {

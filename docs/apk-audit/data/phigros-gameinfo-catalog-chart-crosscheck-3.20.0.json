@@ -1,0 +1,1635 @@
+{
+  "catalogChartKeyPresence": {
+    "EZ:present": 315,
+    "HD:present": 314,
+    "IN:present": 314,
+    "AT:absent": 268,
+    "AT:present": 47,
+    "Legacy:present": 4,
+    "HD:absent": 1,
+    "IN:absent": 1
+  },
+  "missingCatalogChartKeys": [
+    {
+      "songsId": "Glaciaxion.SunsetRay.0",
+      "level": "AT",
+      "key": "Assets/Tracks/Glaciaxion.SunsetRay.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "EradicationCatastrophe.NceS.0",
+      "level": "AT",
+      "key": "Assets/Tracks/EradicationCatastrophe.NceS.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "Dlyrotz.Likey.0",
+      "level": "AT",
+      "key": "Assets/Tracks/Dlyrotz.Likey.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "EnginexStartmelodymix.CrossingSound.0",
+      "level": "AT",
+      "key": "Assets/Tracks/EnginexStartmelodymix.CrossingSound.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "光.姜米條.0",
+      "level": "AT",
+      "key": "Assets/Tracks/光.姜米條.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "Wintercube.CtymaxfeatNceS.0",
+      "level": "AT",
+      "key": "Assets/Tracks/Wintercube.CtymaxfeatNceS.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "Cipher20.TetrajectoryfeatCtymax.0",
+      "level": "AT",
+      "key": "Assets/Tracks/Cipher20.TetrajectoryfeatCtymax.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "混乱Confusion.OnlyMyBlackScore.0",
+      "level": "AT",
+      "key": "Assets/Tracks/混乱Confusion.OnlyMyBlackScore.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "FULiAUTOSHOOTER.MYUKKE.0",
+      "level": "AT",
+      "key": "Assets/Tracks/FULiAUTOSHOOTER.MYUKKE.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "HumaN.SOTUI.0",
+      "level": "AT",
+      "key": "Assets/Tracks/HumaN.SOTUI.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "PRAW.Bluewind.0",
+      "level": "AT",
+      "key": "Assets/Tracks/PRAW.Bluewind.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "PixelRebelz.Normal1zer.0",
+      "level": "AT",
+      "key": "Assets/Tracks/PixelRebelz.Normal1zer.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "Cereris.SunsetRayNceS.0",
+      "level": "AT",
+      "key": "Assets/Tracks/Cereris.SunsetRayNceS.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "NonMelodicRagezMUGEdit.Normal1zer.0",
+      "level": "AT",
+      "key": "Assets/Tracks/NonMelodicRagezMUGEdit.Normal1zer.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "SultanRage.MonstDeath.0",
+      "level": "AT",
+      "key": "Assets/Tracks/SultanRage.MonstDeath.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "ClassMemories.AntistarfeatCtymax.0",
+      "level": "AT",
+      "key": "Assets/Tracks/ClassMemories.AntistarfeatCtymax.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "SURREALISM.Itsuki.0",
+      "level": "AT",
+      "key": "Assets/Tracks/SURREALISM.Itsuki.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "BonusTime.MegaloPaleWhite.0",
+      "level": "AT",
+      "key": "Assets/Tracks/BonusTime.MegaloPaleWhite.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "ENERGYSYNERGYMATRIX.Tanchiky.0",
+      "level": "AT",
+      "key": "Assets/Tracks/ENERGYSYNERGYMATRIX.Tanchiky.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "NYA.FLuoRiTe姜米條.0",
+      "level": "AT",
+      "key": "Assets/Tracks/NYA.FLuoRiTe姜米條.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "JunXionBetweenLifeAndDeathVIPMix.1N6Fs.0",
+      "level": "AT",
+      "key": "Assets/Tracks/JunXionBetweenLifeAndDeathVIPMix.1N6Fs.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "cryout.JuE.0",
+      "level": "AT",
+      "key": "Assets/Tracks/cryout.JuE.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "Reimei.影虎.0",
+      "level": "AT",
+      "key": "Assets/Tracks/Reimei.影虎.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "尊師TheGuru.rider.0",
+      "level": "AT",
+      "key": "Assets/Tracks/尊師TheGuru.rider.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "LeaveAllBehind.rider.0",
+      "level": "AT",
+      "key": "Assets/Tracks/LeaveAllBehind.rider.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "ColorfulDays.P4koofeatつゆり花鈴.0",
+      "level": "AT",
+      "key": "Assets/Tracks/ColorfulDays.P4koofeatつゆり花鈴.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "microwav.dandeless.0",
+      "level": "AT",
+      "key": "Assets/Tracks/microwav.dandeless.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "重生.姜米條.0",
+      "level": "AT",
+      "key": "Assets/Tracks/重生.姜米條.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "NOONEYESMAN.MYUKKE.0",
+      "level": "AT",
+      "key": "Assets/Tracks/NOONEYESMAN.MYUKKE.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "望影の方舟Six.SeURa.0",
+      "level": "AT",
+      "key": "Assets/Tracks/望影の方舟Six.SeURa.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "ClockParadox.WyvernP.0",
+      "level": "AT",
+      "key": "Assets/Tracks/ClockParadox.WyvernP.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "Chronologika.Hundotte.0",
+      "level": "AT",
+      "key": "Assets/Tracks/Chronologika.Hundotte.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "NickofTime.P4koo.0",
+      "level": "AT",
+      "key": "Assets/Tracks/NickofTime.P4koo.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "Chronomia.Lime.0",
+      "level": "AT",
+      "key": "Assets/Tracks/Chronomia.Lime.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "ChronosCollapseLaCampanella.SunsetRay.0",
+      "level": "AT",
+      "key": "Assets/Tracks/ChronosCollapseLaCampanella.SunsetRay.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "CraveWave.LandRoot.0",
+      "level": "AT",
+      "key": "Assets/Tracks/CraveWave.LandRoot.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "TheChariotREVIIVAL.Attoclef.0",
+      "level": "AT",
+      "key": "Assets/Tracks/TheChariotREVIIVAL.Attoclef.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "Luminescence.米虾Fomiki初云CLoudie.0",
+      "level": "AT",
+      "key": "Assets/Tracks/Luminescence.米虾Fomiki初云CLoudie.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "Retribution.nmyKryexe.0",
+      "level": "AT",
+      "key": "Assets/Tracks/Retribution.nmyKryexe.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "Doppelganger.LeaF.0",
+      "level": "AT",
+      "key": "Assets/Tracks/Doppelganger.LeaF.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "MARENOL.LeaF.0",
+      "level": "AT",
+      "key": "Assets/Tracks/MARENOL.LeaF.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "萤火虫の怨.闫东炜.0",
+      "level": "AT",
+      "key": "Assets/Tracks/萤火虫の怨.闫东炜.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "万吨匿名信.闫东炜.0",
+      "level": "AT",
+      "key": "Assets/Tracks/万吨匿名信.闫东炜.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "Dash.小红Akane李祥辉.0",
+      "level": "AT",
+      "key": "Assets/Tracks/Dash.小红Akane李祥辉.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "云女孩.符白牙SiYFics.0",
+      "level": "AT",
+      "key": "Assets/Tracks/云女孩.符白牙SiYFics.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "DropIt.Asuka.0",
+      "level": "AT",
+      "key": "Assets/Tracks/DropIt.Asuka.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "RIPPER.Friedwav.0",
+      "level": "AT",
+      "key": "Assets/Tracks/RIPPER.Friedwav.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "Aphasia.闫东炜.0",
+      "level": "AT",
+      "key": "Assets/Tracks/Aphasia.闫东炜.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "开心病.闫东炜.0",
+      "level": "AT",
+      "key": "Assets/Tracks/开心病.闫东炜.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "華灯爱.闫东炜.0",
+      "level": "AT",
+      "key": "Assets/Tracks/華灯爱.闫东炜.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "FindMe.Kforest.0",
+      "level": "AT",
+      "key": "Assets/Tracks/FindMe.Kforest.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "Sein.朔Apo11oprogramvsお月さま交響曲ftkuroa荒巻.0",
+      "level": "AT",
+      "key": "Assets/Tracks/Sein.朔Apo11oprogramvsお月さま交響曲ftkuroa荒巻.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "SparkleNewLife.rider.0",
+      "level": "AT",
+      "key": "Assets/Tracks/SparkleNewLife.rider.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "KhronostasisKatharsis.Halv.0",
+      "level": "AT",
+      "key": "Assets/Tracks/KhronostasisKatharsis.Halv.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "SnowDesert.WyvernP.0",
+      "level": "AT",
+      "key": "Assets/Tracks/SnowDesert.WyvernP.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "Burn.NceS.0",
+      "level": "AT",
+      "key": "Assets/Tracks/Burn.NceS.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "Aleph0.LeaF.0",
+      "level": "AT",
+      "key": "Assets/Tracks/Aleph0.LeaF.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "NextTime.SaMZIng.0",
+      "level": "AT",
+      "key": "Assets/Tracks/NextTime.SaMZIng.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "RubbishSorting.CtymaxvsNceS.0",
+      "level": "AT",
+      "key": "Assets/Tracks/RubbishSorting.CtymaxvsNceS.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "AnotherMe.NeutralMoon.0",
+      "level": "AT",
+      "key": "Assets/Tracks/AnotherMe.NeutralMoon.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "mechanted.rareguy.0",
+      "level": "AT",
+      "key": "Assets/Tracks/mechanted.rareguy.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "lifeflashesbeforeweebeyes.BilliumMoto.0",
+      "level": "AT",
+      "key": "Assets/Tracks/lifeflashesbeforeweebeyes.BilliumMoto.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "BreakThroughTheBarrier.lixound.0",
+      "level": "AT",
+      "key": "Assets/Tracks/BreakThroughTheBarrier.lixound.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "Chronostasis.黒皇帝.0",
+      "level": "AT",
+      "key": "Assets/Tracks/Chronostasis.黒皇帝.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "DeadSoul.SoundSouler.0",
+      "level": "AT",
+      "key": "Assets/Tracks/DeadSoul.SoundSouler.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "InfinityHeaven.HyuN.0",
+      "level": "AT",
+      "key": "Assets/Tracks/InfinityHeaven.HyuN.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "Disorder.HyuNfeatYURI.0",
+      "level": "AT",
+      "key": "Assets/Tracks/Disorder.HyuNfeatYURI.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "CROSSSOUL.HyuNfeatSyepias.0",
+      "level": "AT",
+      "key": "Assets/Tracks/CROSSSOUL.HyuNfeatSyepias.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "SpeedUp.DarTokki.0",
+      "level": "AT",
+      "key": "Assets/Tracks/SpeedUp.DarTokki.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "MagentaPotion.EmoCo.0",
+      "level": "AT",
+      "key": "Assets/Tracks/MagentaPotion.EmoCo.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "GetBack.CAP3.0",
+      "level": "AT",
+      "key": "Assets/Tracks/GetBack.CAP3.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "Palescreen.WyvernPfeatMadol.0",
+      "level": "AT",
+      "key": "Assets/Tracks/Palescreen.WyvernPfeatMadol.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "GOODTEK.EBIMAYO.0",
+      "level": "AT",
+      "key": "Assets/Tracks/GOODTEK.EBIMAYO.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "GOODBOUNCE.EBIMAYO.0",
+      "level": "AT",
+      "key": "Assets/Tracks/GOODBOUNCE.EBIMAYO.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "GOODWORLD.EBIMAYO.0",
+      "level": "AT",
+      "key": "Assets/Tracks/GOODWORLD.EBIMAYO.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "GOODFORTUNE.EBIMAYO.0",
+      "level": "AT",
+      "key": "Assets/Tracks/GOODFORTUNE.EBIMAYO.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "GOODRAGE.EBIMAYO.0",
+      "level": "AT",
+      "key": "Assets/Tracks/GOODRAGE.EBIMAYO.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "TheMountainEater.PaulBazooka.0",
+      "level": "AT",
+      "key": "Assets/Tracks/TheMountainEater.PaulBazooka.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "Orthodox.tokiwa.0",
+      "level": "AT",
+      "key": "Assets/Tracks/Orthodox.tokiwa.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "EndMe.ZxNXasDelaina.0",
+      "level": "AT",
+      "key": "Assets/Tracks/EndMe.ZxNXasDelaina.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "ParallelRetrogressionGameVer.Tetrajectory.0",
+      "level": "AT",
+      "key": "Assets/Tracks/ParallelRetrogressionGameVer.Tetrajectory.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "Starduster.Quree.0",
+      "level": "AT",
+      "key": "Assets/Tracks/Starduster.Quree.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "Electron.ElousFZ.0",
+      "level": "AT",
+      "key": "Assets/Tracks/Electron.ElousFZ.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "SIGMA.Kryexe.0",
+      "level": "AT",
+      "key": "Assets/Tracks/SIGMA.Kryexe.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "HardcoreKwaya.EnFr.0",
+      "level": "AT",
+      "key": "Assets/Tracks/HardcoreKwaya.EnFr.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "Aventyr.GrandThawRigelTheatre.0",
+      "level": "AT",
+      "key": "Assets/Tracks/Aventyr.GrandThawRigelTheatre.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "Trane.MALVA.0",
+      "level": "AT",
+      "key": "Assets/Tracks/Trane.MALVA.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "雪降りメリクリ.A39.0",
+      "level": "AT",
+      "key": "Assets/Tracks/雪降りメリクリ.A39.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "CervelleConnexion.SCTL.0",
+      "level": "AT",
+      "key": "Assets/Tracks/CervelleConnexion.SCTL.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "modulus.PTB10.0",
+      "level": "AT",
+      "key": "Assets/Tracks/modulus.PTB10.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "Wavetapper.Frums.0",
+      "level": "AT",
+      "key": "Assets/Tracks/Wavetapper.Frums.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "大和撫子WildDances.adapatorvsDRIVE.0",
+      "level": "AT",
+      "key": "Assets/Tracks/大和撫子WildDances.adapatorvsDRIVE.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "Eltaw.Fl00t.0",
+      "level": "AT",
+      "key": "Assets/Tracks/Eltaw.Fl00t.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "Initialize.iF.0",
+      "level": "AT",
+      "key": "Assets/Tracks/Initialize.iF.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "桜樹街道.kozatosnow.0",
+      "level": "AT",
+      "key": "Assets/Tracks/桜樹街道.kozatosnow.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "GetReady.iF.0",
+      "level": "AT",
+      "key": "Assets/Tracks/GetReady.iF.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "BetterGraphicAnimation.ルゼ.0",
+      "level": "AT",
+      "key": "Assets/Tracks/BetterGraphicAnimation.ルゼ.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "XING.ginkiha.0",
+      "level": "AT",
+      "key": "Assets/Tracks/XING.ginkiha.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "FinalStep.Lime.0",
+      "level": "AT",
+      "key": "Assets/Tracks/FinalStep.Lime.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "WithYou.Cashew.0",
+      "level": "AT",
+      "key": "Assets/Tracks/WithYou.Cashew.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "UnorthodoxThoughts.Joulez.0",
+      "level": "AT",
+      "key": "Assets/Tracks/UnorthodoxThoughts.Joulez.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "Apocalyptic.ZClaxxSumaiLight.0",
+      "level": "AT",
+      "key": "Assets/Tracks/Apocalyptic.ZClaxxSumaiLight.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "游园地.椒盐菠萝.0",
+      "level": "AT",
+      "key": "Assets/Tracks/游园地.椒盐菠萝.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "energytrixxx.KAH.0",
+      "level": "AT",
+      "key": "Assets/Tracks/energytrixxx.KAH.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "Nhelv.Silentroom.0",
+      "level": "AT",
+      "key": "Assets/Tracks/Nhelv.Silentroom.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "Arkhei.SeraAmagi.0",
+      "level": "AT",
+      "key": "Assets/Tracks/Arkhei.SeraAmagi.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "Kerberos.Zris.0",
+      "level": "AT",
+      "key": "Assets/Tracks/Kerberos.Zris.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "parsey.siqlo.0",
+      "level": "AT",
+      "key": "Assets/Tracks/parsey.siqlo.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "Concvssion.Halv.0",
+      "level": "AT",
+      "key": "Assets/Tracks/Concvssion.Halv.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "ジングルベルJingleBell.A39沙包P.0",
+      "level": "AT",
+      "key": "Assets/Tracks/ジングルベルJingleBell.A39沙包P.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "TimetoNightSkyfeatLeeYuJin.HyuNKLYDIX.0",
+      "level": "AT",
+      "key": "Assets/Tracks/TimetoNightSkyfeatLeeYuJin.HyuNKLYDIX.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "HAZARD.Limpid.0",
+      "level": "AT",
+      "key": "Assets/Tracks/HAZARD.Limpid.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "AnotherMe.DAAN.0",
+      "level": "AT",
+      "key": "Assets/Tracks/AnotherMe.DAAN.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "DontNeverAround.HAMA.0",
+      "level": "AT",
+      "key": "Assets/Tracks/DontNeverAround.HAMA.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "RESSiSTANCE.ぐるたみん.0",
+      "level": "AT",
+      "key": "Assets/Tracks/RESSiSTANCE.ぐるたみん.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "Dreamland.z1onkyrrin.0",
+      "level": "AT",
+      "key": "Assets/Tracks/Dreamland.z1onkyrrin.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "AnotherRound.JustinDai.0",
+      "level": "AT",
+      "key": "Assets/Tracks/AnotherRound.JustinDai.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "996.李化禹.0",
+      "level": "AT",
+      "key": "Assets/Tracks/996.李化禹.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "FutureMind.RayNauticaRekuMochizuki.0",
+      "level": "AT",
+      "key": "Assets/Tracks/FutureMind.RayNauticaRekuMochizuki.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "Luminescent.Daison.0",
+      "level": "AT",
+      "key": "Assets/Tracks/Luminescent.Daison.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "FULiAUTOBUSTER.MYUKKE.0",
+      "level": "AT",
+      "key": "Assets/Tracks/FULiAUTOBUSTER.MYUKKE.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "IMustSayNo.TangJuan.0",
+      "level": "AT",
+      "key": "Assets/Tracks/IMustSayNo.TangJuan.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "opia.rN.0",
+      "level": "AT",
+      "key": "Assets/Tracks/opia.rN.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "Apocalypse.アリスシャッハと魔法の楽団.0",
+      "level": "AT",
+      "key": "Assets/Tracks/Apocalypse.アリスシャッハと魔法の楽団.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "Protoflicker.Silentroom.0",
+      "level": "AT",
+      "key": "Assets/Tracks/Protoflicker.Silentroom.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "HorizonBlue.NothingButRequiemfeatAikapinChiyoko.0",
+      "level": "AT",
+      "key": "Assets/Tracks/HorizonBlue.NothingButRequiemfeatAikapinChiyoko.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "いざ参ります.Uskefeat棗いつき.0",
+      "level": "AT",
+      "key": "Assets/Tracks/いざ参ります.Uskefeat棗いつき.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "月下缭乱.月見静華vsLUNARiUM.0",
+      "level": "AT",
+      "key": "Assets/Tracks/月下缭乱.月見静華vsLUNARiUM.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "OnAndOn.ETIAfeatJenga.0",
+      "level": "AT",
+      "key": "Assets/Tracks/OnAndOn.ETIAfeatJenga.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "DataErr0r.Cosmograph.0",
+      "level": "AT",
+      "key": "Assets/Tracks/DataErr0r.Cosmograph.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "心之所向.姜米條.0",
+      "level": "AT",
+      "key": "Assets/Tracks/心之所向.姜米條.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "inferior.姜米條.0",
+      "level": "AT",
+      "key": "Assets/Tracks/inferior.姜米條.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "csqn.Aoi.0",
+      "level": "AT",
+      "key": "Assets/Tracks/csqn.Aoi.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "BraveNotes.TurquoiseDRIVENota.0",
+      "level": "AT",
+      "key": "Assets/Tracks/BraveNotes.TurquoiseDRIVENota.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "盏茗.茶鸣拾贰律.0",
+      "level": "AT",
+      "key": "Assets/Tracks/盏茗.茶鸣拾贰律.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "青芽.茶鸣拾贰律.0",
+      "level": "AT",
+      "key": "Assets/Tracks/青芽.茶鸣拾贰律.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "EternalSnow.AbyssIdols.0",
+      "level": "AT",
+      "key": "Assets/Tracks/EternalSnow.AbyssIdols.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "RainySeason.AbyssIdols.0",
+      "level": "AT",
+      "key": "Assets/Tracks/RainySeason.AbyssIdols.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "ElCondorPasaPhigrosEdit.PlasticFruits.0",
+      "level": "AT",
+      "key": "Assets/Tracks/ElCondorPasaPhigrosEdit.PlasticFruits.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "BelieveLightfeat果丸哒呦.ScalerMestie果丸哒呦.0",
+      "level": "AT",
+      "key": "Assets/Tracks/BelieveLightfeat果丸哒呦.ScalerMestie果丸哒呦.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "Pontdessouvenirs.VeetaCrushvsitsufeatitsu.0",
+      "level": "AT",
+      "key": "Assets/Tracks/Pontdessouvenirs.VeetaCrushvsitsufeatitsu.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "青丘.BLACK0.0",
+      "level": "AT",
+      "key": "Assets/Tracks/青丘.BLACK0.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "瓷岁.茶鸣拾贰律.0",
+      "level": "AT",
+      "key": "Assets/Tracks/瓷岁.茶鸣拾贰律.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "Feast远东之宴.茶鸣拾贰律.0",
+      "level": "AT",
+      "key": "Assets/Tracks/Feast远东之宴.茶鸣拾贰律.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "インフェルノシティ.Ponchifeatはぁち.0",
+      "level": "AT",
+      "key": "Assets/Tracks/インフェルノシティ.Ponchifeatはぁち.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "Upshift.Iriss-Frantzz.0",
+      "level": "AT",
+      "key": "Assets/Tracks/Upshift.Iriss-Frantzz.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "PoisonANDORAffection.LeaF.0",
+      "level": "AT",
+      "key": "Assets/Tracks/PoisonANDORAffection.LeaF.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "Random.SobremSilentroom.0",
+      "level": "AT",
+      "key": "Assets/Tracks/Random.SobremSilentroom.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "零號車輛.seatrus.0",
+      "level": "AT",
+      "key": "Assets/Tracks/零號車輛.seatrus.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "NowIsTheTimeDoIt.RoyMikelate.0",
+      "level": "AT",
+      "key": "Assets/Tracks/NowIsTheTimeDoIt.RoyMikelate.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "Bougainvillea.Jade.0",
+      "level": "AT",
+      "key": "Assets/Tracks/Bougainvillea.Jade.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "神話.PicaM2U.0",
+      "level": "AT",
+      "key": "Assets/Tracks/神話.PicaM2U.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "Elúltimobaile.Θ.0",
+      "level": "AT",
+      "key": "Assets/Tracks/Elúltimobaile.Θ.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "Trojan.litmus.0",
+      "level": "AT",
+      "key": "Assets/Tracks/Trojan.litmus.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "TemporalShifting.LureRabbitVC.0",
+      "level": "AT",
+      "key": "Assets/Tracks/TemporalShifting.LureRabbitVC.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "Adastraperaspera.RabbitHouse.0",
+      "level": "AT",
+      "key": "Assets/Tracks/Adastraperaspera.RabbitHouse.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "Ajourneytothemoonlight.Yesod.0",
+      "level": "AT",
+      "key": "Assets/Tracks/Ajourneytothemoonlight.Yesod.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "RainyHeart.BelieverInYou阿卡姆巫师.0",
+      "level": "AT",
+      "key": "Assets/Tracks/RainyHeart.BelieverInYou阿卡姆巫师.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "Realms.HinkikAHimitsu.0",
+      "level": "AT",
+      "key": "Assets/Tracks/Realms.HinkikAHimitsu.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "ぱぴぷぴぷぴぱ.ころねぽちWith立秋.0",
+      "level": "AT",
+      "key": "Assets/Tracks/ぱぴぷぴぷぴぱ.ころねぽちWith立秋.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "TriumphRegret.typeMARS.0",
+      "level": "AT",
+      "key": "Assets/Tracks/TriumphRegret.typeMARS.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "DancewithSilence.かめりあ.0",
+      "level": "AT",
+      "key": "Assets/Tracks/DancewithSilence.かめりあ.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "LabyrinthinKowloonWalledWorld.かめりあ.0",
+      "level": "AT",
+      "key": "Assets/Tracks/LabyrinthinKowloonWalledWorld.かめりあ.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "ComputeItWithSomeDevilishAlcoholicSteampunkEngines.かめりあ.0",
+      "level": "AT",
+      "key": "Assets/Tracks/ComputeItWithSomeDevilishAlcoholicSteampunkEngines.かめりあ.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "DiamondEyes.SYNTHETIC.0",
+      "level": "AT",
+      "key": "Assets/Tracks/DiamondEyes.SYNTHETIC.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "Bitterblossom.imvi.0",
+      "level": "AT",
+      "key": "Assets/Tracks/Bitterblossom.imvi.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "SilenceisGoldenSpeechisGolden.NIWASHI.0",
+      "level": "AT",
+      "key": "Assets/Tracks/SilenceisGoldenSpeechisGolden.NIWASHI.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "FracturedAngel.DJRaisei.0",
+      "level": "AT",
+      "key": "Assets/Tracks/FracturedAngel.DJRaisei.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "JourneywithYou.Iris.0",
+      "level": "AT",
+      "key": "Assets/Tracks/JourneywithYou.Iris.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "SecretIllumination.Yooh.0",
+      "level": "AT",
+      "key": "Assets/Tracks/SecretIllumination.Yooh.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "InvertedWorld.ARForest.0",
+      "level": "AT",
+      "key": "Assets/Tracks/InvertedWorld.ARForest.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "bye.DingerBox.0",
+      "level": "AT",
+      "key": "Assets/Tracks/bye.DingerBox.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "聖夜讃歌.A39沙包P.0",
+      "level": "AT",
+      "key": "Assets/Tracks/聖夜讃歌.A39沙包P.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "ストレイソウルアラウンド.みーに.0",
+      "level": "AT",
+      "key": "Assets/Tracks/ストレイソウルアラウンド.みーに.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "ManifoldHypothesis.cybermisofeattigerlily.0",
+      "level": "AT",
+      "key": "Assets/Tracks/ManifoldHypothesis.cybermisofeattigerlily.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "KMoeVIP.ZxNX.0",
+      "level": "AT",
+      "key": "Assets/Tracks/KMoeVIP.ZxNX.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "GVNGlitterVomitusandNeon.SaltySaltUnfold33.0",
+      "level": "AT",
+      "key": "Assets/Tracks/GVNGlitterVomitusandNeon.SaltySaltUnfold33.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "CrushBETA.shadow_bling.0",
+      "level": "AT",
+      "key": "Assets/Tracks/CrushBETA.shadow_bling.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "BrokenSky.JungoMAX3feat刘佳宜Snow幻影刃shadow.0",
+      "level": "AT",
+      "key": "Assets/Tracks/BrokenSky.JungoMAX3feat刘佳宜Snow幻影刃shadow.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "BRAINHACKER.SOMON.0",
+      "level": "AT",
+      "key": "Assets/Tracks/BRAINHACKER.SOMON.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "Xenolith.Tatsh.0",
+      "level": "AT",
+      "key": "Assets/Tracks/Xenolith.Tatsh.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "ArtificialExistence.JunKuroda.0",
+      "level": "AT",
+      "key": "Assets/Tracks/ArtificialExistence.JunKuroda.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "ShineAfter.ADeanJocularACE.0",
+      "level": "AT",
+      "key": "Assets/Tracks/ShineAfter.ADeanJocularACE.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "Bloom.targ麻团qwq.0",
+      "level": "AT",
+      "key": "Assets/Tracks/Bloom.targ麻团qwq.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "幽世桔梗.Capchiifeatまるもこ.0",
+      "level": "AT",
+      "key": "Assets/Tracks/幽世桔梗.Capchiifeatまるもこ.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "千紫万紅.r0yvsWABI.0",
+      "level": "AT",
+      "key": "Assets/Tracks/千紫万紅.r0yvsWABI.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "明鏡烈火.MUEvsRekuMochizuki.0",
+      "level": "AT",
+      "key": "Assets/Tracks/明鏡烈火.MUEvsRekuMochizuki.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "今天不是明天.PIKASONICfeat兰音Reine.0",
+      "level": "AT",
+      "key": "Assets/Tracks/今天不是明天.PIKASONICfeat兰音Reine.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "iLArtifact.Link0.0",
+      "level": "AT",
+      "key": "Assets/Tracks/iLArtifact.Link0.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "atruthseekerCommunicationwithUtopiawillbelost.kuro.0",
+      "level": "AT",
+      "key": "Assets/Tracks/atruthseekerCommunicationwithUtopiawillbelost.kuro.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "BoundedQuietude.FiniteLimitvsSiLiS.0",
+      "level": "AT",
+      "key": "Assets/Tracks/BoundedQuietude.FiniteLimitvsSiLiS.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "君往何处QuoVadis.M2U.0",
+      "level": "AT",
+      "key": "Assets/Tracks/君往何处QuoVadis.M2U.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "暗夜苏醒REANIMATE.Warak.0",
+      "level": "AT",
+      "key": "Assets/Tracks/暗夜苏醒REANIMATE.Warak.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "Grimheart.Puru.0",
+      "level": "AT",
+      "key": "Assets/Tracks/Grimheart.Puru.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "Thrashforce.KAHvsE0ri4.0",
+      "level": "AT",
+      "key": "Assets/Tracks/Thrashforce.KAHvsE0ri4.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "Originally.SNKSMizku.0",
+      "level": "AT",
+      "key": "Assets/Tracks/Originally.SNKSMizku.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "黄金之城GOLDTOWN.Memme.0",
+      "level": "AT",
+      "key": "Assets/Tracks/黄金之城GOLDTOWN.Memme.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "双重间谍DoubleAgent.WAVAV.0",
+      "level": "AT",
+      "key": "Assets/Tracks/双重间谍DoubleAgent.WAVAV.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "Schadenfreude.ZxNX.0",
+      "level": "AT",
+      "key": "Assets/Tracks/Schadenfreude.ZxNX.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "Letempsperdu.Daison.0",
+      "level": "AT",
+      "key": "Assets/Tracks/Letempsperdu.Daison.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "FixationsTowardtheStars.Foodbot.0",
+      "level": "AT",
+      "key": "Assets/Tracks/FixationsTowardtheStars.Foodbot.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "valorstarcross.LundyvsWyvren.0",
+      "level": "AT",
+      "key": "Assets/Tracks/valorstarcross.LundyvsWyvren.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "CometFeat符白牙.CNHKSS.0",
+      "level": "AT",
+      "key": "Assets/Tracks/CometFeat符白牙.CNHKSS.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "白と黒のバケモノ.テヅカ.0",
+      "level": "AT",
+      "key": "Assets/Tracks/白と黒のバケモノ.テヅカ.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "Devotion.Connexio.0",
+      "level": "AT",
+      "key": "Assets/Tracks/Devotion.Connexio.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "KirakiraNoelStory.RekuMochizuki.0",
+      "level": "AT",
+      "key": "Assets/Tracks/KirakiraNoelStory.RekuMochizuki.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "Shelter.MeatyRabbitNceS.0",
+      "level": "AT",
+      "key": "Assets/Tracks/Shelter.MeatyRabbitNceS.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "蝎虎天体Lacertid.CreamvsDaily天利.0",
+      "level": "AT",
+      "key": "Assets/Tracks/蝎虎天体Lacertid.CreamvsDaily天利.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "贝多芬祝福BeethovenBlessing.Nauts.0",
+      "level": "AT",
+      "key": "Assets/Tracks/贝多芬祝福BeethovenBlessing.Nauts.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "インマイマインド.レシオP.0",
+      "level": "AT",
+      "key": "Assets/Tracks/インマイマインド.レシオP.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "ニライカナイNiraicA_naiMix.roopfromSTR.0",
+      "level": "AT",
+      "key": "Assets/Tracks/ニライカナイNiraicA_naiMix.roopfromSTR.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "SwingSkipDrop.ミハイル.0",
+      "level": "AT",
+      "key": "Assets/Tracks/SwingSkipDrop.ミハイル.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "宇宙残骸少女CosmicDustyGirl.辻原一郎.0",
+      "level": "AT",
+      "key": "Assets/Tracks/宇宙残骸少女CosmicDustyGirl.辻原一郎.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "Resolver.Gomadare.0",
+      "level": "AT",
+      "key": "Assets/Tracks/Resolver.Gomadare.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "LuminousEntitiesLostHeart.NormalMfeatUsagiDenki.0",
+      "level": "AT",
+      "key": "Assets/Tracks/LuminousEntitiesLostHeart.NormalMfeatUsagiDenki.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "KIZUNAResolution.TAG.0",
+      "level": "AT",
+      "key": "Assets/Tracks/KIZUNAResolution.TAG.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "AphroditesChildshortver.RUQOA.0",
+      "level": "AT",
+      "key": "Assets/Tracks/AphroditesChildshortver.RUQOA.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "DevIAtiOnshortver.polysha.0",
+      "level": "AT",
+      "key": "Assets/Tracks/DevIAtiOnshortver.polysha.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "NOx.Juggernaut.0",
+      "level": "AT",
+      "key": "Assets/Tracks/NOx.Juggernaut.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "Aliceinaxxxxxxxx.Nagiha.0",
+      "level": "AT",
+      "key": "Assets/Tracks/Aliceinaxxxxxxxx.Nagiha.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "FrozenHeart.A39沙包P.0",
+      "level": "AT",
+      "key": "Assets/Tracks/FrozenHeart.A39沙包P.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "Helios.NOABotaNya.0",
+      "level": "AT",
+      "key": "Assets/Tracks/Helios.NOABotaNya.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "FlutterEcho.Cansol.0",
+      "level": "AT",
+      "key": "Assets/Tracks/FlutterEcho.Cansol.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "Rebirth.ああああ.0",
+      "level": "AT",
+      "key": "Assets/Tracks/Rebirth.ああああ.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "RetributionCycleofRedemption.ArdolfvsDaily天利.0",
+      "level": "AT",
+      "key": "Assets/Tracks/RetributionCycleofRedemption.ArdolfvsDaily天利.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "アンビバレンス.すりぃ相沢.0",
+      "level": "AT",
+      "key": "Assets/Tracks/アンビバレンス.すりぃ相沢.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "Komplexe.雄之助featSennzai.0",
+      "level": "AT",
+      "key": "Assets/Tracks/Komplexe.雄之助featSennzai.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "SolaggyfeatUzumaki.ShrimpCatsはぁち後藤涼輔.0",
+      "level": "AT",
+      "key": "Assets/Tracks/SolaggyfeatUzumaki.ShrimpCatsはぁち後藤涼輔.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "000AinSophAur.Yumeji.0",
+      "level": "AT",
+      "key": "Assets/Tracks/000AinSophAur.Yumeji.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "Xepion.Acotto.0",
+      "level": "AT",
+      "key": "Assets/Tracks/Xepion.Acotto.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "百鬼夜行.SaladSavior.0",
+      "level": "AT",
+      "key": "Assets/Tracks/百鬼夜行.SaladSavior.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "TheWholeRest.KIVΛ.0",
+      "level": "AT",
+      "key": "Assets/Tracks/TheWholeRest.KIVΛ.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "Cristalisia.onoken.0",
+      "level": "AT",
+      "key": "Assets/Tracks/Cristalisia.onoken.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "最高傑作.PYKAMIA.0",
+      "level": "AT",
+      "key": "Assets/Tracks/最高傑作.PYKAMIA.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "Locomotive.K.0",
+      "level": "AT",
+      "key": "Assets/Tracks/Locomotive.K.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "Alb.Avans.0",
+      "level": "AT",
+      "key": "Assets/Tracks/Alb.Avans.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "Incyde.YbeLL.0",
+      "level": "AT",
+      "key": "Assets/Tracks/Incyde.YbeLL.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "彩.MisoilePunch.0",
+      "level": "AT",
+      "key": "Assets/Tracks/彩.MisoilePunch.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "彼方へ名もなき海辺より.打打だいず&月乃.0",
+      "level": "AT",
+      "key": "Assets/Tracks/彼方へ名もなき海辺より.打打だいず&月乃.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "ABYSSMOTION192333.ariiolTSAR奏Sou.0",
+      "level": "AT",
+      "key": "Assets/Tracks/ABYSSMOTION192333.ariiolTSAR奏Sou.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "Xenophobia.XinG.0",
+      "level": "AT",
+      "key": "Assets/Tracks/Xenophobia.XinG.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "Verruckt.Raimukun.0",
+      "level": "AT",
+      "key": "Assets/Tracks/Verruckt.Raimukun.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "AfterZABANIYAMUGEdit.Daily天利.0",
+      "level": "AT",
+      "key": "Assets/Tracks/AfterZABANIYAMUGEdit.Daily天利.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "下一秒.BobHouSherlock卓智媛feat兰音Reine.0",
+      "level": "AT",
+      "key": "Assets/Tracks/下一秒.BobHouSherlock卓智媛feat兰音Reine.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "SnowDance.悠叶いのり.0",
+      "level": "AT",
+      "key": "Assets/Tracks/SnowDance.悠叶いのり.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "亂舞.NekockLK.0",
+      "level": "AT",
+      "key": "Assets/Tracks/亂舞.NekockLK.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "Cleyera.Riya.0",
+      "level": "AT",
+      "key": "Assets/Tracks/Cleyera.Riya.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "70MinutesFighters.かたぎり.0",
+      "level": "AT",
+      "key": "Assets/Tracks/70MinutesFighters.かたぎり.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "GungnirFracture.Kryexe.0",
+      "level": "AT",
+      "key": "Assets/Tracks/GungnirFracture.Kryexe.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "夢の降る日に.seatrus.0",
+      "level": "AT",
+      "key": "Assets/Tracks/夢の降る日に.seatrus.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "星拂云锦featkoi.S9ryne.0",
+      "level": "AT",
+      "key": "Assets/Tracks/星拂云锦featkoi.S9ryne.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "NWAD.Knighthood.0",
+      "level": "AT",
+      "key": "Assets/Tracks/NWAD.Knighthood.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "DevastatingHistory.NAMV.0",
+      "level": "AT",
+      "key": "Assets/Tracks/DevastatingHistory.NAMV.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "WATER.A39沙包P.0",
+      "level": "AT",
+      "key": "Assets/Tracks/WATER.A39沙包P.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "MiracleForestVIPMix.Rinthlive.0",
+      "level": "AT",
+      "key": "Assets/Tracks/MiracleForestVIPMix.Rinthlive.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "MOBILYS.Dachs.0",
+      "level": "AT",
+      "key": "Assets/Tracks/MOBILYS.Dachs.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "Demiurge.Rabpit.0",
+      "level": "AT",
+      "key": "Assets/Tracks/Demiurge.Rabpit.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "Demonkin.ForgedReigns.0",
+      "level": "AT",
+      "key": "Assets/Tracks/Demonkin.ForgedReigns.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "Re_NascencePsystyleVer.Rinth_live.0",
+      "level": "AT",
+      "key": "Assets/Tracks/Re_NascencePsystyleVer.Rinth_live.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "AfterDawn.S9ryne.0",
+      "level": "AT",
+      "key": "Assets/Tracks/AfterDawn.S9ryne.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "Khalid.Dolphin.0",
+      "level": "AT",
+      "key": "Assets/Tracks/Khalid.Dolphin.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "QuantumHyperspace.D_AAN.0",
+      "level": "AT",
+      "key": "Assets/Tracks/QuantumHyperspace.D_AAN.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "FreakyUndulationsNobleKnightsofTune.JehezukielKURORAK.0",
+      "level": "AT",
+      "key": "Assets/Tracks/FreakyUndulationsNobleKnightsofTune.JehezukielKURORAK.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "心の記憶.A39沙包P.0",
+      "level": "AT",
+      "key": "Assets/Tracks/心の記憶.A39沙包P.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "Spotlight.Ardolf.0",
+      "level": "AT",
+      "key": "Assets/Tracks/Spotlight.Ardolf.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "NightTheater.わかどり.0",
+      "level": "AT",
+      "key": "Assets/Tracks/NightTheater.わかどり.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "Ramification.rareguyReina.0",
+      "level": "AT",
+      "key": "Assets/Tracks/Ramification.rareguyReina.0/Chart_AT.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "Introduction",
+      "level": "HD",
+      "key": "Assets/Tracks/Introduction/Chart_HD.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "Introduction",
+      "level": "IN",
+      "key": "Assets/Tracks/Introduction/Chart_IN.json",
+      "difficulty": 0.0
+    },
+    {
+      "songsId": "Introduction",
+      "level": "AT",
+      "key": "Assets/Tracks/Introduction/Chart_AT.json",
+      "difficulty": 0.0
+    }
+  ],
+  "missingCount": 270
+}

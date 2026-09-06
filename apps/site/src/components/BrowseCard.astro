@@ -14,7 +14,7 @@ const { item, selectable = false, eager = false } = Astro.props;
 const urls = createUrlHelpers({ basePath: BASE_PATH, origin: "https://rhythmarchive.github.io", rosBaseUrl: "https://rhythm-assets.cn-nb1.rains3.com" });
 const small = item.preview.small ?? item.preview.medium ?? item.preview.large;
 const srcset = [item.preview.small ? `${item.preview.small.url} 320w` : "", item.preview.medium ? `${item.preview.medium.url} 640w` : ""].filter(Boolean).join(", ");
-const metadata = [...(item.badges ?? []), item.badge, item.selectedArtworkDifficulty, item.selectedChartDifficulty, item.game === "arcaea" ? item.pack : undefined].filter((value): value is string => Boolean(value));
+const metadata = [...(item.badges ?? []), item.badge, item.selectedArtworkDifficulty, item.selectedChartDifficulty, item.game === "arcaea" || item.game === "phigros" ? item.pack : undefined].filter((value): value is string => Boolean(value));
 ---
 
 <article class="resource-card" data-browse-card data-resource-card data-resource-id={item.resourceId} data-game={item.game} data-resource-type={item.resourceType} data-media-ratio={cardMediaRatio(item.game, item.resourceType)} data-media-fit={cardMediaFit(item.game, item.resourceType)}>

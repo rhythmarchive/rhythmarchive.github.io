@@ -1,0 +1,34 @@
+﻿order,chapterCode,title,subTitle,banner,songCount,unlockMode,unlockFlag
+1,Single,\ChapterSingleTitle,,Single,144,0,
+2,MainStoryLegacy,\ChapterLegacyTitle,,Legacy,20,0,
+3,MainStory5,\ChapterMainStory5Title,\ChapterMainStory5SubTitle,Chapter 5,7,2,6
+4,MainStory6,\ChapterMainStory6Title,\ChapterMainStory6SubTitle,Chapter 6,6,1,LeaveAllBehind.rider.0
+5,MainStory7,\ChapterMainStory7Title,\ChapterMainStory7SubTitle,Chapter 7,6,1,Igallta.SeURa.0
+6,MainStory8,\ChapterMainStory8Title,\ChapterMainStory8SubTitle,Chapter 8,6,1,Rrharil.TeamGrimoire.0
+7,SideStory1,\ChapterSideStory1Title,\ChapterSideStory1SubTitle,Side story 1,5,0,
+8,SideStory2,\ChapterSideStory2Title,\ChapterSideStory2SubTitle,Side story 2,6,1,Rrharil.TeamGrimoire.0
+9,SideStory3,\ChapterSideStory3Title,\ChapterSideStory3SubTitle,Side story 3,5,3,NOONEYESMAN.MYUKKE.0
+10,SideStory4,\ChapterSideStory4Title,\ChapterSideStory4SubTitle,Side story 4,6,4,MOBILYS.Dachs.0
+11,Cytus2,\ChapterCytus2Title,\ChapterExtraSubTitle,CYTUS II,6,0,
+12,Liminality,\ChapterLiminalityTitle,\ChapterExtraSubTitle,Liminality,4,0,
+13,Maimai,\ChapterMaimaiTitle,\ChapterExtraSubTitle,maimai,4,0,
+14,Ongeki,\ChapterOngekiTitle,\ChapterExtraSubTitle,オンゲキ,3,0,
+15,ImmaculeeSekai,\ChapterImmaculeeSekaiTitle,\ChapterExtraSubTitle,Immaculée Sekai,3,0,
+16,EGTS,\ChapterEGTSTitle,\ChapterExtraSubTitle,EGTS,6,0,
+17,RhythmMaster,\ChapterRhythmMasterTitle,\ChapterExtraSubTitle,节奏大师,5,0,
+18,TAKUMI3,\ChapterTAKUMI3Title,\ChapterExtraSubTitle,TAKUMI³,3,0,
+19,SHINOBISLASH,\ChapterSHINOBISLASHTitle,\ChapterExtraSubTitle,SHINOBI SLASH,3,0,
+20,ParadigmReboot,\ChapterParadigmRebootTitle,\ChapterExtraSubTitle,Paradigm: Reboot,5,0,
+21,CHUNITHM,\ChapterCHUNITHMTitle,\ChapterExtraSubTitle,CHUNITHM,4,0,
+22,Rotaeno,\ChapterRotaenoTitle,\ChapterExtraSubTitle,Rotaeno,6,0,
+23,Camellia,\ChapterCamelliaTitle,\ChapterCamelliaSubTitle,かめりあ,5,0,
+24,OverRapid,\ChapterOverRapidTitle,\ChapterExtraSubTitle,OverRapid,6,0,
+25,TEA12,\ChapterTEA12Title,\ChapterExtraSubTitle,茶鸣拾贰律,4,0,
+26,JMT,\ChapterJMTTitle,\ChapterExtraSubTitle,姜米條,3,0,
+27,Lanota,\ChapterLanotaTitle,\ChapterExtraSubTitle,Lanota,5,0,
+28,KALPA,\ChapterKALPATitle,\ChapterExtraSubTitle,KALPA,8,0,
+29,MUSEDASH,\ChapterMuseDashTitle,\ChapterExtraSubTitle,Muse Dash,3,0,
+30,WAVEAT,\ChapterWaveatTitle,\ChapterExtraSubTitle,WAVEAT,4,0,
+31,Good,\ChapterGoodTitle,\ChapterExtraSubTitle,GOOD,5,0,
+32,HyuN,\ChapterHyunTitle,\ChapterExtraSubTitle,HyuN,3,0,
+33,RST,\ChapterRSTTitle,\ChapterExtraSubTitle,Rising Sun Traxx,5,0,

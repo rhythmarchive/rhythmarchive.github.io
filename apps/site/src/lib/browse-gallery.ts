@@ -116,7 +116,7 @@ export type BrowseGalleryBuildResult = {
 };
 
 export type ArcaeaBrowseSort = "default" | "title-asc" | "title-desc" | "artist-asc" | "artist-desc" | "version-desc" | "version-asc";
-export type PhigrosBrowseSort = "default" | "title-asc" | "title-desc" | "artist-asc" | "artist-desc";
+export type PhigrosBrowseSort = "default" | "title-asc" | "title-desc" | "artist-asc" | "artist-desc" | "pack-asc" | "pack-desc" | "level-desc" | "level-asc";
 export type InfalsusBrowseSort = "default" | "title-asc" | "title-desc" | "artist-asc" | "artist-desc";
 export type RizlineBrowseSort = "default" | "title-asc" | "title-desc" | "artist-asc" | "artist-desc";
 
@@ -135,7 +135,9 @@ export type PhigrosBrowseUrlState = {
   game: "phigros";
   q: string;
   sort: PhigrosBrowseSort;
+  pack: string[];
   chart: PhigrosDifficulty[];
+  level: string[];
 };
 
 export type RizlineBrowseUrlState = {
@@ -175,7 +177,9 @@ export function groupBrowseFacetOptions(values: string[], formatValue: (value: s
 }
 
 export type PhigrosFacetOptions = {
+  packs: string[];
   charts: PhigrosDifficulty[];
+  levels: string[];
 };
 
 export type RizlineFacetOptions = {
@@ -386,17 +390,41 @@ function buildPhigrosItems(
       continue;
     }
     const artwork = { ...toResolvedResource(resource), role: track.artwork.role } satisfies BrowseArtwork;
+    const composer = typeof resource.metadata.composer === "string" && resource.metadata.composer.trim() ? resource.metadata.composer.trim() : undefined;
+    const illustrator = typeof resource.metadata.illustrator === "string" && resource.metadata.illustrator.trim() ? resource.metadata.illustrator.trim() : undefined;
+    const pack = typeof resource.metadata.pack === "string" && resource.metadata.pack.trim() ? resource.metadata.pack.trim() : undefined;
+    const songName = typeof resource.metadata.songName === "string" ? resource.metadata.songName : undefined;
+    const songKey = typeof resource.metadata.songKey === "string" ? resource.metadata.songKey : undefined;
+    const artist = composer ?? resource.artist ?? track.displayArtist ?? undefined;
+    const metadataCharts = resource.charts ?? [];
+    const charts = track.charts.map((chart) => {
+      const metadataChart = metadataCharts.find((candidate) => candidate.difficulty === chart.difficultyClass);
+      const metadataStatus = metadataChart?.status === "available" || metadataChart?.status === "unavailable" || metadataChart?.status === "legacy" ? metadataChart.status : undefined;
+      const mergedChart: BrowsePhigrosChart = {
+        difficultyClass: chart.difficultyClass,
+        structurallyPresent: chart.structurallyPresent,
+        errorVariant: chart.errorVariant,
+      };
+      if (chart.level !== undefined) mergedChart.level = chart.level;
+      if (chart.available !== undefined) mergedChart.available = chart.available;
+      if (chart.status !== undefined) mergedChart.status = chart.status;
+      if (metadataChart?.level) mergedChart.level = metadataChart.level;
+      if (metadataChart?.available !== undefined) mergedChart.available = metadataChart.available;
+      if (metadataStatus !== undefined) mergedChart.status = metadataStatus;
+      return mergedChart;
+    });
     items.push({
       ...toResolvedResource(resource),
       key: `track:${track.sourceIdentityCandidate}`,
       game: "phigros",
       recordKind: "track",
       displayTitle: track.displayTitle,
-      ...(track.displayArtist ? { artist: track.displayArtist } : {}),
-      searchTerms: searchTerms([...track.searchTerms, track.displayTitle, track.sourceTitle, track.displayArtist, track.sourceArtist, ...track.searchAliases]),
-      titleAliases: searchTerms([track.sourceTitle, ...track.searchAliases]),
+      ...(artist ? { artist } : {}),
+      ...(pack ? { pack } : {}),
+      searchTerms: searchTerms([...track.searchTerms, track.displayTitle, track.sourceTitle, track.displayArtist, track.sourceArtist, composer, illustrator, pack, songName, songKey, ...track.searchAliases]),
+      titleAliases: searchTerms([track.sourceTitle, songName, songKey, ...track.searchAliases]),
       artistAliases: track.sourceArtist ? searchTerms([track.sourceArtist]) : [],
-      charts: track.charts,
+      charts,
       artworks: [artwork],
       artworkRole: artwork.role,
       sourceIdentityCandidate: track.sourceIdentityCandidate,
@@ -591,8 +619,11 @@ export function getBrowseFacetOptions(data: BrowseGalleryData): BrowseFacetOptio
   }
 
   if (data.game === "phigros") {
-    const charts = PHIGROS_DIFFICULTIES.filter((difficulty) => data.items.some((item) => item.recordKind === "track" && item.charts.some((chart) => isPhigrosChart(chart) && chart.structurallyPresent && !chart.errorVariant && chart.difficultyClass === difficulty)));
-    return { charts };
+    const packs = unique(data.items.flatMap((item) => item.recordKind === "track" && item.pack ? [item.pack] : []), compareText);
+    const phigrosCharts = data.items.flatMap((item) => item.recordKind === "track" ? item.charts.filter(isPhigrosChart).filter(isFilterablePhigrosChart) : []);
+    const charts = PHIGROS_DIFFICULTIES.filter((difficulty) => phigrosCharts.some((chart) => chart.difficultyClass === difficulty));
+    const levels = unique(phigrosCharts.map((chart) => chart.level).filter((level): level is string => Boolean(level)), comparePhigrosLevels);
+    return { packs, charts, levels };
   }
   if (data.game === "infalsus") {
     const charts = INFALSUS_DIFFICULTIES.filter((difficulty) => data.items.some((item) => item.recordKind === "song" && item.charts.some((chart) => isPublicChart(chart) && chart.difficulty === difficulty && isFilterablePublicChart(chart))));
@@ -657,7 +688,8 @@ export function filterBrowseItems(items: BrowseGalleryItem[], state: BrowseUrlSt
       if (!matchesArcaeaCharts(item, state.chart, state.level)) return false;
       if (state.ai && !displayBrowseItem(item, state.chart).hasUpscaled) return false;
     } else if (state.game === "phigros") {
-      if (!matchesPhigrosCharts(item, state.chart)) return false;
+      if (state.pack.length > 0 && !state.pack.includes(item.pack ?? "")) return false;
+      if (!matchesPhigrosCharts(item, state.chart, state.level)) return false;
     } else if (state.game === "infalsus") {
       if (!matchesPublicCharts(item, state.chart)) return false;
     } else if (state.game === "rizline") {
@@ -693,10 +725,17 @@ function matchesArcaeaCharts(item: BrowseGalleryItem, selectedDifficulties: Arca
   });
 }
 
-function matchesPhigrosCharts(item: BrowseGalleryItem, selectedDifficulties: PhigrosDifficulty[]): boolean {
-  if (selectedDifficulties.length === 0) return true;
+function matchesPhigrosCharts(item: BrowseGalleryItem, selectedDifficulties: PhigrosDifficulty[], selectedLevels: string[]): boolean {
+  if (selectedDifficulties.length === 0 && selectedLevels.length === 0) return true;
   if (item.recordKind !== "track") return false;
-  return item.charts.some((chart) => isPhigrosChart(chart) && chart.structurallyPresent && !chart.errorVariant && selectedDifficulties.includes(chart.difficultyClass as PhigrosDifficulty));
+  return item.charts.some((chart) => isPhigrosChart(chart)
+    && isFilterablePhigrosChart(chart)
+    && (selectedDifficulties.length === 0 || selectedDifficulties.includes(chart.difficultyClass as PhigrosDifficulty))
+    && (selectedLevels.length === 0 || (chart.level !== undefined && selectedLevels.includes(chart.level))));
+}
+
+function isFilterablePhigrosChart(chart: BrowsePhigrosChart): boolean {
+  return chart.structurallyPresent && !chart.errorVariant && chart.available !== false && chart.status !== "legacy";
 }
 
 function matchesPublicCharts(item: BrowseGalleryItem, selectedDifficulties: string[]): boolean {
@@ -717,10 +756,23 @@ export function compareBrowseItems(left: BrowseGalleryItem, right: BrowseGallery
   else if (sort === "title-desc") result = compareText(right.displayTitle, left.displayTitle);
   else if (sort === "artist-asc") result = compareNullableText(left.artist, right.artist) || compareText(left.displayTitle, right.displayTitle);
   else if (sort === "artist-desc") result = compareNullableText(right.artist, left.artist) || compareText(left.displayTitle, right.displayTitle);
+  else if (sort === "pack-asc" && left.game === "phigros" && right.game === "phigros") result = compareNullableText(left.pack, right.pack) || compareText(left.displayTitle, right.displayTitle);
+  else if (sort === "pack-desc" && left.game === "phigros" && right.game === "phigros") result = compareNullableText(right.pack, left.pack) || compareText(left.displayTitle, right.displayTitle);
+  else if (sort === "level-desc" && left.game === "phigros" && right.game === "phigros") result = comparePhigrosHighestLevel(right, left);
+  else if (sort === "level-asc" && left.game === "phigros" && right.game === "phigros") result = comparePhigrosHighestLevel(left, right);
   else if (sort === "version-desc" && left.game === "arcaea" && right.game === "arcaea") result = compareNullableVersion(right.version, left.version);
   else if (sort === "version-asc" && left.game === "arcaea" && right.game === "arcaea") result = compareNullableVersion(left.version, right.version);
   if (result !== 0) return result;
   return compareBrowseOrder(left, right);
+}
+
+function comparePhigrosHighestLevel(left: BrowseGalleryItem, right: BrowseGalleryItem): number {
+  const leftLevel = Math.max(...left.charts.filter(isPhigrosChart).filter(isFilterablePhigrosChart).map((chart) => Number(chart.level)).filter(Number.isFinite), Number.NEGATIVE_INFINITY);
+  const rightLevel = Math.max(...right.charts.filter(isPhigrosChart).filter(isFilterablePhigrosChart).map((chart) => Number(chart.level)).filter(Number.isFinite), Number.NEGATIVE_INFINITY);
+  if (leftLevel === Number.NEGATIVE_INFINITY && rightLevel === Number.NEGATIVE_INFINITY) return 0;
+  if (leftLevel === Number.NEGATIVE_INFINITY) return 1;
+  if (rightLevel === Number.NEGATIVE_INFINITY) return -1;
+  return leftLevel - rightLevel || compareText(left.displayTitle, right.displayTitle);
 }
 
 function compareBrowseTail(left: BrowseGalleryItem, right: BrowseGalleryItem): number {
@@ -796,9 +848,20 @@ export function compareDisplayLevels(left: string, right: string): number {
   return left.localeCompare(right, "en");
 }
 
+export function comparePhigrosLevels(left: string, right: string): number {
+  const leftNumber = Number(left);
+  const rightNumber = Number(right);
+  const leftFinite = Number.isFinite(leftNumber);
+  const rightFinite = Number.isFinite(rightNumber);
+  if (leftFinite && rightFinite) return leftNumber - rightNumber || left.localeCompare(right, "en");
+  if (leftFinite) return -1;
+  if (rightFinite) return 1;
+  return left.localeCompare(right, "en");
+}
+
 export function defaultBrowseUrlState(game: BrowseGame): BrowseUrlState {
   if (game === "arcaea") return { game, q: "", sort: "default", pack: [], chart: [], level: [], version: [], ai: false };
-  if (game === "phigros") return { game, q: "", sort: "default", chart: [] };
+  if (game === "phigros") return { game, q: "", sort: "default", pack: [], chart: [], level: [] };
   if (game === "infalsus") return { game, q: "", sort: "default", chart: [] };
   return { game, q: "", sort: "default", disc: [], series: [], chart: [] };
 }
@@ -826,7 +889,8 @@ export function parseBrowseUrlState(game: BrowseGame, input: URLSearchParams | s
   const sortValue = params.get("sort");
   if (game === "phigros") {
     const sort: PhigrosBrowseSort = isPhigrosSort(sortValue) ? sortValue : "default";
-    return { game, q, sort, chart: readFacetValues(params, "chart", (options as PhigrosFacetOptions).charts) as PhigrosDifficulty[] };
+    const phigrosOptions = options as PhigrosFacetOptions;
+    return { game, q, sort, pack: readFacetValues(params, "pack", phigrosOptions.packs), chart: readFacetValues(params, "chart", phigrosOptions.charts) as PhigrosDifficulty[], level: readFacetValues(params, "level", phigrosOptions.levels) };
   }
   if (game === "infalsus") {
     const sort: InfalsusBrowseSort = isInfalsusSort(sortValue) ? sortValue : "default";
@@ -859,8 +923,12 @@ export function serializeBrowseUrlState(state: BrowseUrlState): URLSearchParams 
     if (versions.length > 0) params.set("version", versions.join(","));
     if (state.ai) params.set("ai", "1");
   } else if (state.game === "phigros") {
+    const packs = stableValues(state.pack, compareText);
     const charts = stableValues(state.chart, (left, right) => PHIGROS_DIFFICULTIES.indexOf(left as PhigrosDifficulty) - PHIGROS_DIFFICULTIES.indexOf(right as PhigrosDifficulty));
+    const levels = stableValues(state.level, comparePhigrosLevels);
+    if (packs.length > 0) params.set("pack", packs.join(","));
     if (charts.length > 0) params.set("chart", charts.join(","));
+    if (levels.length > 0) params.set("level", levels.join(","));
   } else if (state.game === "infalsus") {
     const charts = stableValues(state.chart, (left, right) => INFALSUS_DIFFICULTIES.indexOf(left as InfalsusDifficulty) - INFALSUS_DIFFICULTIES.indexOf(right as InfalsusDifficulty));
     if (charts.length > 0) params.set("chart", charts.join(","));
@@ -888,7 +956,7 @@ function isArcaeaSort(value: string | null): value is ArcaeaBrowseSort {
 }
 
 function isPhigrosSort(value: string | null): value is PhigrosBrowseSort {
-  return value === "default" || value === "title-asc" || value === "title-desc" || value === "artist-asc" || value === "artist-desc";
+  return value === "default" || value === "title-asc" || value === "title-desc" || value === "artist-asc" || value === "artist-desc" || value === "pack-asc" || value === "pack-desc" || value === "level-desc" || value === "level-asc";
 }
 
 function isInfalsusSort(value: string | null): value is InfalsusBrowseSort {

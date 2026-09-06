@@ -11,6 +11,8 @@ const PUBLIC_METADATA_KEYS = new Set([
   "pack",
   "packName",
   "packDisplayName",
+  "composer",
+  "charter",
   "side",
   "version",
   "releaseDate",
@@ -49,6 +51,8 @@ const PUBLIC_METADATA_KEYS = new Set([
   "specialArtId",
   "musicArtist",
   "illustrator",
+  "songName",
+  "songKey",
   "trackSeries",
   "jacketIllustrator",
   "seriesName",
@@ -59,6 +63,15 @@ const PUBLIC_METADATA_KEYS = new Set([
   "layoutId",
   "songId",
   "gameVersion",
+  "displayMetadataSource",
+  "chapterCode",
+  "chapterOrder",
+  "chapterSongOrder",
+  "unlockType",
+  "secretType",
+  "isCnLimited",
+  "hasDifferentMusic",
+  "hasDifferentCover",
   "relatedSong",
   "relatedSongs",
   "collaborationPartner",
@@ -263,6 +276,13 @@ function projectResource(resource: Resource, variants: Variant[], renditionsByVa
   const charts = publicChartsFromMetadata(resource);
   const specialCharts = publicSpecialChartsFromMetadata(resource);
   const chartSearchTerms = [...new Set([...charts, ...specialCharts].flatMap((chart) => [chart.difficulty, chart.level, chart.constant, chart.title, chart.artist, chart.noter].filter((value): value is string => typeof value === "string" && value.trim().length > 0)))].sort((left, right) => normalizeSearchText(left).localeCompare(normalizeSearchText(right), "zh-CN"));
+  const facets = resource.game === "phigros" && resource.resourceType === "jacket"
+    ? {
+      ...(typeof metadata.pack === "string" && metadata.pack ? { pack: [metadata.pack] } : {}),
+      ...(charts.length > 0 ? { chart: [...new Set(charts.map((chart) => chart.difficulty))] } : {}),
+      ...(charts.some((chart) => chart.level) ? { level: [...new Set(charts.flatMap((chart) => chart.level ? [chart.level] : []))] } : {}),
+    }
+    : undefined;
   const promotedArcaeaStoryCg = isPromotedArcaeaStoryCg(resource);
 
   return {
@@ -276,6 +296,7 @@ function projectResource(resource: Resource, variants: Variant[], renditionsByVa
     ...(artist ? { artist } : {}),
     ...(chartSearchTerms.length > 0 ? { searchTerms: chartSearchTerms } : {}),
     metadata,
+    ...(facets && Object.keys(facets).length > 0 ? { facets } : {}),
     ...(resource.resourceType === "jacket" ? {
       charts,
       ...(specialCharts.length > 0 ? { specialCharts } : {}),
@@ -298,11 +319,27 @@ const INFALSUS_CHART_DIFFICULTIES: Record<string, string> = {
 const ROTAENO_CHART_DIFFICULTIES = ["I", "II", "III", "IV", "IV_Alpha"] as const;
 const ROTAENO_CHART_SOURCES = ["apk", "wiki", "merged"] as const;
 const PARADIGM_CHART_DIFFICULTIES = ["DET", "IVD", "MSV", "RBT", "CTC"] as const;
+const PHIGROS_CHART_DIFFICULTIES = ["EZ", "HD", "IN", "AT", "Legacy"] as const;
 
 function publicChartsFromMetadata(resource: Resource): PublicChart[] {
   if (resource.resourceType !== "jacket") return [];
   const rawCharts = resource.metadata.charts;
   if (!Array.isArray(rawCharts)) return [];
+  if (resource.game === "phigros") {
+    return rawCharts
+      .flatMap((candidate) => {
+        if (!candidate || typeof candidate !== "object") return [];
+        const chart = candidate as Record<string, unknown>;
+        const difficulty = typeof chart.difficulty === "string" ? chart.difficulty.trim() : "";
+        if (!(PHIGROS_CHART_DIFFICULTIES as readonly string[]).includes(difficulty)) return [];
+        const available = typeof chart.available === "boolean" ? chart.available : true;
+        if (!available) return [];
+        const level = typeof chart.level === "number" || typeof chart.level === "string" ? String(chart.level).trim() : undefined;
+        const status = chart.status === "legacy" ? "legacy" as const : "available" as const;
+        return [{ difficulty, ...(level ? { level } : {}), source: "apk" as const, available: true, status } satisfies PublicChart];
+      })
+      .sort((left, right) => PHIGROS_CHART_DIFFICULTIES.indexOf(left.difficulty as typeof PHIGROS_CHART_DIFFICULTIES[number]) - PHIGROS_CHART_DIFFICULTIES.indexOf(right.difficulty as typeof PHIGROS_CHART_DIFFICULTIES[number]));
+  }
   if (resource.game === "paradigm-reboot") {
     return rawCharts
       .flatMap((candidate) => {

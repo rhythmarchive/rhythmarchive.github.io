@@ -1,0 +1,2198 @@
+{
+  "chapterCount": 33,
+  "chapterSongRowCount": 314,
+  "chapterUniqueSongCount": 314,
+  "songBaseCounts": {
+    "mainSongs": 45,
+    "extraSongs": 247,
+    "sideStorySongs": 22,
+    "otherSongs": 1
+  },
+  "songBaseTotal": 315,
+  "songUniqueIdCount": 315,
+  "duplicateSongIds": [],
+  "chapterSongsNotInSongBase": [],
+  "songBaseNotInAnyChapter": [
+    "Introduction"
+  ],
+  "chaptersWithDuplicateSongIds": {},
+  "levelSlotCounts": {
+    "EZ": 315,
+    "HD": 315,
+    "IN": 315,
+    "AT": 315,
+    "Legacy": 4
+  },
+  "difficultyValueCounts": {
+    "1.0": 3,
+    "6.5": 22,
+    "12.6": 5,
+    "0.0": 270,
+    "3.5": 30,
+    "7.5": 21,
+    "12.7": 5,
+    "4.5": 39,
+    "10.4": 9,
+    "13.6": 8,
+    "15.8": 10,
+    "4.0": 36,
+    "9.1": 7,
+    "13.7": 9,
+    "2.5": 12,
+    "8.3": 6,
+    "13.2": 7,
+    "2.0": 10,
+    "12.4": 6,
+    "8.2": 5,
+    "13.3": 6,
+    "5.0": 40,
+    "10.3": 8,
+    "14.4": 10,
+    "10.0": 4,
+    "14.8": 11,
+    "3.0": 18,
+    "9.0": 5,
+    "14.9": 10,
+    "8.0": 3,
+    "12.9": 5,
+    "6.0": 34,
+    "10.6": 9,
+    "15.1": 8,
+    "9.7": 7,
+    "15.3": 10,
+    "5.5": 36,
+    "10.9": 7,
+    "14.7": 11,
+    "11.6": 7,
+    "16.1": 8,
+    "7.0": 23,
+    "12.2": 6,
+    "10.8": 8,
+    "13.8": 8,
+    "9.4": 8,
+    "13.4": 9,
+    "9.3": 8,
+    "11.5": 7,
+    "14.0": 7,
+    "8.6": 5,
+    "13.1": 6,
+    "8.7": 5,
+    "9.9": 8,
+    "11.7": 6,
+    "15.4": 11,
+    "15.5": 12,
+    "16.7": 4,
+    "8.9": 5,
+    "10.5": 9,
+    "8.8": 5,
+    "14.3": 10,
+    "11.9": 5,
+    "15.9": 11,
+    "17.4": 3,
+    "12.5": 6,
+    "9.8": 8,
+    "13.9": 7,
+    "11.1": 6,
+    "16.3": 8,
+    "17.6": 1,
+    "11.0": 5,
+    "14.5": 11,
+    "16.2": 8,
+    "8.5": 6,
+    "17.3": 3,
+    "8.1": 4,
+    "13.5": 9,
+    "9.5": 7,
+    "13.0": 5,
+    "1.5": 8,
+    "12.8": 5,
+    "9.2": 7,
+    "14.2": 10,
+    "10.1": 7,
+    "16.4": 7,
+    "11.8": 6,
+    "11.2": 6,
+    "15.2": 9,
+    "16.0": 7,
+    "15.6": 12,
+    "11.3": 6,
+    "15.0": 7,
+    "10.7": 8,
+    "12.3": 6,
+    "8.4": 6,
+    "14.1": 9,
+    "11.4": 7,
+    "15.7": 11,
+    "9.6": 7,
+    "14.6": 11,
+    "12.1": 6,
+    "16.6": 7,
+    "12.0": 5,
+    "10.2": 7,
+    "16.5": 5,
+    "17.0": 2,
+    "17.2": 2,
+    "16.8": 2,
+    "16.9": 4,
+    "17.1": 1,
+    "17.5": 1
+  },
+  "difficultyRanges": {
+    "EZ": {
+      "min": 1.0,
+      "max": 8.6,
+      "uniqueRounded": [
+        1.0,
+        1.5,
+        2.0,
+        2.5,
+        3.0,
+        3.5,
+        4.0,
+        4.5,
+        5.0,
+        5.5,
+        6.0,
+        6.5,
+        7.0,
+        7.5,
+        8.0,
+        8.1,
+        8.2,
+        8.4,
+        8.5,
+        8.6
+      ]
+    },
+    "HD": {
+      "min": 0.0,
+      "max": 13.5,
+      "uniqueRounded": [
+        0.0,
+        3.5,
+        4.5,
+        5.5,
+        6.0,
+        6.5,
+        7.0,
+        7.5,
+        8.0,
+        8.1,
+        8.2,
+        8.3,
+        8.4,
+        8.5,
+        8.6,
+        8.7,
+        8.8,
+        8.9,
+        9.0,
+        9.1,
+        9.2,
+        9.3,
+        9.4,
+        9.5,
+        9.6,
+        9.7,
+        9.8,
+        9.9,
+        10.0,
+        10.1,
+        10.2,
+        10.3,
+        10.4,
+        10.5,
+        10.6,
+        10.7,
+        10.8,
+        10.9,
+        11.0,
+        11.1,
+        11.2,
+        11.3,
+        11.4,
+        11.5,
+        11.6,
+        11.7,
+        11.8,
+        11.9,
+        12.0,
+        12.1,
+        12.2,
+        12.3,
+        12.4,
+        12.5,
+        12.6,
+        12.7,
+        12.8,
+        12.9,
+        13.0,
+        13.1,
+        13.2,
+        13.3,
+        13.4,
+        13.5
+      ]
+    },
+    "IN": {
+      "min": 0.0,
+      "max": 16.6,
+      "uniqueRounded": [
+        0.0,
+        7.0,
+        8.3,
+        9.7,
+        11.1,
+        11.6,
+        11.8,
+        12.0,
+        12.2,
+        12.3,
+        12.4,
+        12.5,
+        12.6,
+        12.7,
+        12.8,
+        12.9,
+        13.0,
+        13.1,
+        13.2,
+        13.3,
+        13.4,
+        13.5,
+        13.6,
+        13.7,
+        13.8,
+        13.9,
+        14.0,
+        14.1,
+        14.2,
+        14.3,
+        14.4,
+        14.5,
+        14.6,
+        14.7,
+        14.8,
+        14.9,
+        15.0,
+        15.1,
+        15.2,
+        15.3,
+        15.4,
+        15.5,
+        15.6,
+        15.7,
+        15.8,
+        15.9,
+        16.0,
+        16.1,
+        16.2,
+        16.3,
+        16.4,
+        16.5,
+        16.6
+      ]
+    },
+    "AT": {
+      "min": 0.0,
+      "max": 17.6,
+      "uniqueRounded": [
+        0.0,
+        13.4,
+        14.0,
+        14.9,
+        15.1,
+        15.4,
+        15.6,
+        15.7,
+        15.8,
+        15.9,
+        16.1,
+        16.2,
+        16.4,
+        16.5,
+        16.6,
+        16.7,
+        16.8,
+        16.9,
+        17.0,
+        17.1,
+        17.2,
+        17.3,
+        17.4,
+        17.5,
+        17.6
+      ]
+    },
+    "Legacy": {
+      "min": 14.0,
+      "max": 15.9,
+      "uniqueRounded": [
+        14.0,
+        15.0,
+        15.6,
+        15.9
+      ]
+    }
+  },
+  "chartPresence": {
+    "EZ:present": 315,
+    "HD:present": 314,
+    "IN:present": 314,
+    "AT:absent": 269,
+    "AT:present": 46,
+    "Legacy:present": 4,
+    "HD:absent": 1,
+    "IN:absent": 1
+  },
+  "songBaseCategoryById": {
+    "Glaciaxion.SunsetRay.0": "mainSongs",
+    "EradicationCatastrophe.NceS.0": "mainSongs",
+    "Credits.Frums.0": "mainSongs",
+    "Dlyrotz.Likey.0": "mainSongs",
+    "EnginexStartmelodymix.CrossingSound.0": "mainSongs",
+    "光.姜米條.0": "mainSongs",
+    "Wintercube.CtymaxfeatNceS.0": "mainSongs",
+    "Cipher20.TetrajectoryfeatCtymax.0": "mainSongs",
+    "混乱Confusion.OnlyMyBlackScore.0": "mainSongs",
+    "FULiAUTOSHOOTER.MYUKKE.0": "mainSongs",
+    "HumaN.SOTUI.0": "mainSongs",
+    "PRAW.Bluewind.0": "mainSongs",
+    "PixelRebelz.Normal1zer.0": "mainSongs",
+    "Cereris.SunsetRayNceS.0": "mainSongs",
+    "NonMelodicRagezMUGEdit.Normal1zer.0": "mainSongs",
+    "SultanRage.MonstDeath.0": "mainSongs",
+    "ClassMemories.AntistarfeatCtymax.0": "mainSongs",
+    "SURREALISM.Itsuki.0": "mainSongs",
+    "BonusTime.MegaloPaleWhite.0": "mainSongs",
+    "ENERGYSYNERGYMATRIX.Tanchiky.0": "mainSongs",
+    "NYA.FLuoRiTe姜米條.0": "mainSongs",
+    "JunXionBetweenLifeAndDeathVIPMix.1N6Fs.0": "mainSongs",
+    "cryout.JuE.0": "mainSongs",
+    "Reimei.影虎.0": "mainSongs",
+    "尊師TheGuru.rider.0": "mainSongs",
+    "Spasmodic.姜米條颶風元力上人.0": "mainSongs",
+    "LeaveAllBehind.rider.0": "mainSongs",
+    "ColorfulDays.P4koofeatつゆり花鈴.0": "mainSongs",
+    "microwav.dandeless.0": "mainSongs",
+    "重生.姜米條.0": "mainSongs",
+    "NOONEYESMAN.MYUKKE.0": "mainSongs",
+    "望影の方舟Six.SeURa.0": "mainSongs",
+    "Igallta.SeURa.0": "mainSongs",
+    "ClockParadox.WyvernP.0": "mainSongs",
+    "Chronologika.Hundotte.0": "mainSongs",
+    "NickofTime.P4koo.0": "mainSongs",
+    "Chronomia.Lime.0": "mainSongs",
+    "ChronosCollapseLaCampanella.SunsetRay.0": "mainSongs",
+    "Rrharil.TeamGrimoire.0": "mainSongs",
+    "CraveWave.LandRoot.0": "mainSongs",
+    "TheChariotREVIIVAL.Attoclef.0": "mainSongs",
+    "Luminescence.米虾Fomiki初云CLoudie.0": "mainSongs",
+    "Retribution.nmyKryexe.0": "mainSongs",
+    "DESTRUCTION321.Normal1zervsBrokenNerdz.0": "mainSongs",
+    "DistortedFate.Sakuzyo.0": "mainSongs",
+    "Doppelganger.LeaF.0": "extraSongs",
+    "もぺもぺ.LeaF.0": "extraSongs",
+    "MARENOL.LeaF.0": "extraSongs",
+    "萤火虫の怨.闫东炜.0": "extraSongs",
+    "万吨匿名信.闫东炜.0": "extraSongs",
+    "风屿.闫东炜.0": "extraSongs",
+    "dBdoll.YUESTEVENuen.0": "extraSongs",
+    "Dash.小红Akane李祥辉.0": "extraSongs",
+    "云女孩.符白牙SiYFics.0": "extraSongs",
+    "DropIt.Asuka.0": "extraSongs",
+    "RIPPER.Friedwav.0": "extraSongs",
+    "Aphasia.闫东炜.0": "extraSongs",
+    "开心病.闫东炜.0": "extraSongs",
+    "華灯爱.闫东炜.0": "extraSongs",
+    "FindMe.Kforest.0": "extraSongs",
+    "Sein.朔Apo11oprogramvsお月さま交響曲ftkuroa荒巻.0": "extraSongs",
+    "狂喜蘭舞.LeaF.0": "extraSongs",
+    "SparkleNewLife.rider.0": "extraSongs",
+    "KhronostasisKatharsis.Halv.0": "extraSongs",
+    "SnowDesert.WyvernP.0": "extraSongs",
+    "Burn.NceS.0": "extraSongs",
+    "Aleph0.LeaF.0": "extraSongs",
+    "NextTime.SaMZIng.0": "extraSongs",
+    "RubbishSorting.CtymaxvsNceS.0": "extraSongs",
+    "AnotherMe.NeutralMoon.0": "extraSongs",
+    "mechanted.rareguy.0": "extraSongs",
+    "lifeflashesbeforeweebeyes.BilliumMoto.0": "extraSongs",
+    "BreakThroughTheBarrier.lixound.0": "extraSongs",
+    "Chronostasis.黒皇帝.0": "extraSongs",
+    "DeadSoul.SoundSouler.0": "extraSongs",
+    "InfinityHeaven.HyuN.0": "extraSongs",
+    "Disorder.HyuNfeatYURI.0": "extraSongs",
+    "CROSSSOUL.HyuNfeatSyepias.0": "extraSongs",
+    "SpeedUp.DarTokki.0": "extraSongs",
+    "MagentaPotion.EmoCo.0": "extraSongs",
+    "GetBack.CAP3.0": "extraSongs",
+    "Palescreen.WyvernPfeatMadol.0": "extraSongs",
+    "GOODTEK.EBIMAYO.0": "extraSongs",
+    "GOODBOUNCE.EBIMAYO.0": "extraSongs",
+    "GOODWORLD.EBIMAYO.0": "extraSongs",
+    "GOODFORTUNE.EBIMAYO.0": "extraSongs",
+    "GOODRAGE.EBIMAYO.0": "extraSongs",
+    "TheMountainEater.PaulBazooka.0": "extraSongs",
+    "Orthodox.tokiwa.0": "extraSongs",
+    "EndMe.ZxNXasDelaina.0": "extraSongs",
+    "ParallelRetrogressionGameVer.Tetrajectory.0": "extraSongs",
+    "Starduster.Quree.0": "extraSongs",
+    "Electron.ElousFZ.0": "extraSongs",
+    "SIGMA.Kryexe.0": "extraSongs",
+    "HardcoreKwaya.EnFr.0": "extraSongs",
+    "Aventyr.GrandThawRigelTheatre.0": "extraSongs",
+    "Trane.MALVA.0": "extraSongs",
+    "雪降りメリクリ.A39.0": "extraSongs",
+    "CervelleConnexion.SCTL.0": "extraSongs",
+    "modulus.PTB10.0": "extraSongs",
+    "Wavetapper.Frums.0": "extraSongs",
+    "大和撫子WildDances.adapatorvsDRIVE.0": "extraSongs",
+    "Eltaw.Fl00t.0": "extraSongs",
+    "Initialize.iF.0": "extraSongs",
+    "桜樹街道.kozatosnow.0": "extraSongs",
+    "GetReady.iF.0": "extraSongs",
+    "volcanic.DETROakaルゼ.0": "extraSongs",
+    "BetterGraphicAnimation.ルゼ.0": "extraSongs",
+    "XING.ginkiha.0": "extraSongs",
+    "FinalStep.Lime.0": "extraSongs",
+    "Cthugha.USAO.0": "extraSongs",
+    "WithYou.Cashew.0": "extraSongs",
+    "UnorthodoxThoughts.Joulez.0": "extraSongs",
+    "Apocalyptic.ZClaxxSumaiLight.0": "extraSongs",
+    "游园地.椒盐菠萝.0": "extraSongs",
+    "energytrixxx.KAH.0": "extraSongs",
+    "Nhelv.Silentroom.0": "extraSongs",
+    "Arkhei.SeraAmagi.0": "extraSongs",
+    "Kerberos.Zris.0": "extraSongs",
+    "parsey.siqlo.0": "extraSongs",
+    "Concvssion.Halv.0": "extraSongs",
+    "ジングルベルJingleBell.A39沙包P.0": "extraSongs",
+    "TimetoNightSkyfeatLeeYuJin.HyuNKLYDIX.0": "extraSongs",
+    "HAZARD.Limpid.0": "extraSongs",
+    "AnotherMe.DAAN.0": "extraSongs",
+    "DontNeverAround.HAMA.0": "extraSongs",
+    "RESSiSTANCE.ぐるたみん.0": "extraSongs",
+    "Dreamland.z1onkyrrin.0": "extraSongs",
+    "AnotherRound.JustinDai.0": "extraSongs",
+    "996.李化禹.0": "extraSongs",
+    "FutureMind.RayNauticaRekuMochizuki.0": "extraSongs",
+    "Luminescent.Daison.0": "extraSongs",
+    "FULiAUTOBUSTER.MYUKKE.0": "extraSongs",
+    "IMustSayNo.TangJuan.0": "extraSongs",
+    "opia.rN.0": "extraSongs",
+    "Apocalypse.アリスシャッハと魔法の楽団.0": "extraSongs",
+    "Protoflicker.Silentroom.0": "extraSongs",
+    "HorizonBlue.NothingButRequiemfeatAikapinChiyoko.0": "extraSongs",
+    "YouaretheMiserable.tpazolite.0": "extraSongs",
+    "Stasis.Maozon.0": "extraSongs",
+    "いざ参ります.Uskefeat棗いつき.0": "extraSongs",
+    "月下缭乱.月見静華vsLUNARiUM.0": "extraSongs",
+    "OnAndOn.ETIAfeatJenga.0": "extraSongs",
+    "DataErr0r.Cosmograph.0": "extraSongs",
+    "Shadow.SumaiLightvs姜米條.0": "extraSongs",
+    "心之所向.姜米條.0": "extraSongs",
+    "inferior.姜米條.0": "extraSongs",
+    "csqn.Aoi.0": "extraSongs",
+    "BraveNotes.TurquoiseDRIVENota.0": "extraSongs",
+    "盏茗.茶鸣拾贰律.0": "extraSongs",
+    "青芽.茶鸣拾贰律.0": "extraSongs",
+    "EternalSnow.AbyssIdols.0": "extraSongs",
+    "RainySeason.AbyssIdols.0": "extraSongs",
+    "ElCondorPasaPhigrosEdit.PlasticFruits.0": "extraSongs",
+    "BreakOver.Kforest.0": "extraSongs",
+    "BelieveLightfeat果丸哒呦.ScalerMestie果丸哒呦.0": "extraSongs",
+    "Pontdessouvenirs.VeetaCrushvsitsufeatitsu.0": "extraSongs",
+    "青丘.BLACK0.0": "extraSongs",
+    "瓷岁.茶鸣拾贰律.0": "extraSongs",
+    "Feast远东之宴.茶鸣拾贰律.0": "extraSongs",
+    "インフェルノシティ.Ponchifeatはぁち.0": "extraSongs",
+    "Upshift.Iriss-Frantzz.0": "extraSongs",
+    "PoisonANDORAffection.LeaF.0": "extraSongs",
+    "Random.SobremSilentroom.0": "extraSongs",
+    "零號車輛.seatrus.0": "extraSongs",
+    "NowIsTheTimeDoIt.RoyMikelate.0": "extraSongs",
+    "Bougainvillea.Jade.0": "extraSongs",
+    "神話.PicaM2U.0": "extraSongs",
+    "Elúltimobaile.Θ.0": "extraSongs",
+    "Trojan.litmus.0": "extraSongs",
+    "TemporalShifting.LureRabbitVC.0": "extraSongs",
+    "Adastraperaspera.RabbitHouse.0": "extraSongs",
+    "Ajourneytothemoonlight.Yesod.0": "extraSongs",
+    "RainyHeart.BelieverInYou阿卡姆巫师.0": "extraSongs",
+    "Realms.HinkikAHimitsu.0": "extraSongs",
+    "ぱぴぷぴぷぴぱ.ころねぽちWith立秋.0": "extraSongs",
+    "TriumphRegret.typeMARS.0": "extraSongs",
+    "SATELLITE.かめりあ.0": "extraSongs",
+    "DancewithSilence.かめりあ.0": "extraSongs",
+    "LabyrinthinKowloonWalledWorld.かめりあ.0": "extraSongs",
+    "ComputeItWithSomeDevilishAlcoholicSteampunkEngines.かめりあ.0": "extraSongs",
+    "ERABYECONNEC10N.かめりあ.0": "extraSongs",
+    "DiamondEyes.SYNTHETIC.0": "extraSongs",
+    "Bitterblossom.imvi.0": "extraSongs",
+    "SilenceisGoldenSpeechisGolden.NIWASHI.0": "extraSongs",
+    "FracturedAngel.DJRaisei.0": "extraSongs",
+    "JourneywithYou.Iris.0": "extraSongs",
+    "SecretIllumination.Yooh.0": "extraSongs",
+    "InvertedWorld.ARForest.0": "extraSongs",
+    "月詠に鳴る.Feryquitousfeat藍月なくる.0": "extraSongs",
+    "TECHNOPOLIS2085.PRASTIKDANCEFLOOR.0": "extraSongs",
+    "祈-我ら神祖と共に歩む者なり-.光吉猛修VS穴山大輔VSKaiVS水野健治VS大国奏音.0": "extraSongs",
+    "bye.DingerBox.0": "extraSongs",
+    "聖夜讃歌.A39沙包P.0": "extraSongs",
+    "ストレイソウルアラウンド.みーに.0": "extraSongs",
+    "ManifoldHypothesis.cybermisofeattigerlily.0": "extraSongs",
+    "KMoeVIP.ZxNX.0": "extraSongs",
+    "GVNGlitterVomitusandNeon.SaltySaltUnfold33.0": "extraSongs",
+    "CrushBETA.shadow_bling.0": "extraSongs",
+    "BrokenSky.JungoMAX3feat刘佳宜Snow幻影刃shadow.0": "extraSongs",
+    "BRAINHACKER.SOMON.0": "extraSongs",
+    "Xenolith.Tatsh.0": "extraSongs",
+    "ArtificialExistence.JunKuroda.0": "extraSongs",
+    "IndelibleScar.Noah.0": "extraSongs",
+    "Antithese.Blacklolita.0": "extraSongs",
+    "PRAGMATISMRESURRECTION.Laur.0": "extraSongs",
+    "ShineAfter.ADeanJocularACE.0": "extraSongs",
+    "Bloom.targ麻团qwq.0": "extraSongs",
+    "幽世桔梗.Capchiifeatまるもこ.0": "extraSongs",
+    "千紫万紅.r0yvsWABI.0": "extraSongs",
+    "明鏡烈火.MUEvsRekuMochizuki.0": "extraSongs",
+    "今天不是明天.PIKASONICfeat兰音Reine.0": "extraSongs",
+    "Cuvism.Fl00tvsHalv.0": "extraSongs",
+    "iLArtifact.Link0.0": "extraSongs",
+    "atruthseekerCommunicationwithUtopiawillbelost.kuro.0": "extraSongs",
+    "BoundedQuietude.FiniteLimitvsSiLiS.0": "extraSongs",
+    "君往何处QuoVadis.M2U.0": "extraSongs",
+    "暗夜苏醒REANIMATE.Warak.0": "extraSongs",
+    "Grimheart.Puru.0": "extraSongs",
+    "Thrashforce.KAHvsE0ri4.0": "extraSongs",
+    "Originally.SNKSMizku.0": "extraSongs",
+    "黄金之城GOLDTOWN.Memme.0": "extraSongs",
+    "双重间谍DoubleAgent.WAVAV.0": "extraSongs",
+    "幻影鬼魅PLEASE.R300K.0": "extraSongs",
+    "Schadenfreude.ZxNX.0": "extraSongs",
+    "Letempsperdu.Daison.0": "extraSongs",
+    "FixationsTowardtheStars.Foodbot.0": "extraSongs",
+    "valorstarcross.LundyvsWyvren.0": "extraSongs",
+    "CometFeat符白牙.CNHKSS.0": "extraSongs",
+    "白と黒のバケモノ.テヅカ.0": "extraSongs",
+    "Devotion.Connexio.0": "extraSongs",
+    "KirakiraNoelStory.RekuMochizuki.0": "extraSongs",
+    "Shelter.MeatyRabbitNceS.0": "extraSongs",
+    "蝎虎天体Lacertid.CreamvsDaily天利.0": "extraSongs",
+    "贝多芬祝福BeethovenBlessing.Nauts.0": "extraSongs",
+    "インマイマインド.レシオP.0": "extraSongs",
+    "ニライカナイNiraicA_naiMix.roopfromSTR.0": "extraSongs",
+    "SwingSkipDrop.ミハイル.0": "extraSongs",
+    "宇宙残骸少女CosmicDustyGirl.辻原一郎.0": "extraSongs",
+    "Resolver.Gomadare.0": "extraSongs",
+    "LuminousEntitiesLostHeart.NormalMfeatUsagiDenki.0": "extraSongs",
+    "KIZUNAResolution.TAG.0": "extraSongs",
+    "AbsoluTedisoRdeR.AcuteDisarray.0": "extraSongs",
+    "AphroditesChildshortver.RUQOA.0": "extraSongs",
+    "DevIAtiOnshortver.polysha.0": "extraSongs",
+    "NOx.Juggernaut.0": "extraSongs",
+    "Aliceinaxxxxxxxx.Nagiha.0": "extraSongs",
+    "Radiance.Nhato.0": "extraSongs",
+    "DiamondDust.MasahiroGodspeedAoki.0": "extraSongs",
+    "StardustRAY.kanonevsBlackY.0": "extraSongs",
+    "FrozenHeart.A39沙包P.0": "extraSongs",
+    "Helios.NOABotaNya.0": "extraSongs",
+    "FlutterEcho.Cansol.0": "extraSongs",
+    "Rebirth.ああああ.0": "extraSongs",
+    "AvataarReincarnationofKalpa.ScarletteakaCrYmson.0": "extraSongs",
+    "雪降り雪が降っている.AiSSw夜輪ft結月ゆかり.0": "extraSongs",
+    "RetributionCycleofRedemption.ArdolfvsDaily天利.0": "extraSongs",
+    "アンビバレンス.すりぃ相沢.0": "extraSongs",
+    "Komplexe.雄之助featSennzai.0": "extraSongs",
+    "slips.rintarosoma.0": "extraSongs",
+    "QZKagoRequiem.tpazolite.0": "extraSongs",
+    "SolaggyfeatUzumaki.ShrimpCatsはぁち後藤涼輔.0": "extraSongs",
+    "000AinSophAur.Yumeji.0": "extraSongs",
+    "Xepion.Acotto.0": "extraSongs",
+    "Archidoxen.Se_IRA.0": "extraSongs",
+    "百鬼夜行.SaladSavior.0": "extraSongs",
+    "BANGINGSTRIKE.DewPleiades.0": "extraSongs",
+    "TheWholeRest.KIVΛ.0": "extraSongs",
+    "Cristalisia.onoken.0": "extraSongs",
+    "Hydra.JamesLandinoXAkiraComplex.0": "extraSongs",
+    "最高傑作.PYKAMIA.0": "extraSongs",
+    "Locomotive.K.0": "extraSongs",
+    "Alb.Avans.0": "extraSongs",
+    "Incyde.YbeLL.0": "extraSongs",
+    "彩.MisoilePunch.0": "extraSongs",
+    "彼方へ名もなき海辺より.打打だいず&月乃.0": "extraSongs",
+    "ABYSSMOTION192333.ariiolTSAR奏Sou.0": "extraSongs",
+    "Xenophobia.XinG.0": "extraSongs",
+    "Verruckt.Raimukun.0": "extraSongs",
+    "AfterZABANIYAMUGEdit.Daily天利.0": "extraSongs",
+    "下一秒.BobHouSherlock卓智媛feat兰音Reine.0": "extraSongs",
+    "玩具狂奏曲終焉.きくお.0": "extraSongs",
+    "SnowDance.悠叶いのり.0": "extraSongs",
+    "亂舞.NekockLK.0": "extraSongs",
+    "Cleyera.Riya.0": "extraSongs",
+    "70MinutesFighters.かたぎり.0": "extraSongs",
+    "GungnirFracture.Kryexe.0": "extraSongs",
+    "夢の降る日に.seatrus.0": "extraSongs",
+    "DerSchneid.Ωμεγα.0": "extraSongs",
+    "星拂云锦featkoi.S9ryne.0": "extraSongs",
+    "NWAD.Knighthood.0": "extraSongs",
+    "DevastatingHistory.NAMV.0": "extraSongs",
+    "Poseidon.1112vsStar.0": "sideStorySongs",
+    "WATER.A39沙包P.0": "sideStorySongs",
+    "MiracleForestVIPMix.Rinthlive.0": "sideStorySongs",
+    "MOBILYS.Dachs.0": "sideStorySongs",
+    "Lyrith迷宮リリス.ユメミド.0": "sideStorySongs",
+    "Demiurge.Rabpit.0": "sideStorySongs",
+    "Demonkin.ForgedReigns.0": "sideStorySongs",
+    "Re_NascencePsystyleVer.Rinth_live.0": "sideStorySongs",
+    "Ark.kanoryo.0": "sideStorySongs",
+    "AfterDawn.S9ryne.0": "sideStorySongs",
+    "INFiNiTEENERZYOverdoze.RekuMochizuki.0": "sideStorySongs",
+    "Khalid.Dolphin.0": "sideStorySongs",
+    "QuantumHyperspace.D_AAN.0": "sideStorySongs",
+    "FreakyUndulationsNobleKnightsofTune.JehezukielKURORAK.0": "sideStorySongs",
+    "PANICPARADISE.DJSHIONY.0": "sideStorySongs",
+    "ReEndofaDream.umavsモリモリあつし.0": "sideStorySongs",
+    "心の記憶.A39沙包P.0": "sideStorySongs",
+    "Spotlight.Ardolf.0": "sideStorySongs",
+    "NightTheater.わかどり.0": "sideStorySongs",
+    "Ramification.rareguyReina.0": "sideStorySongs",
+    "DerRichter.Ωμεγα.0": "sideStorySongs",
+    "ATHAZA.LeaF.0": "sideStorySongs",
+    "Introduction": "otherSongs"
+  },
+  "chapterRows": [
+    [
+      "Single",
+      "星拂云锦featkoi.S9ryne.0"
+    ],
+    [
+      "Single",
+      "DerSchneid.Ωμεγα.0"
+    ],
+    [
+      "Single",
+      "夢の降る日に.seatrus.0"
+    ],
+    [
+      "Single",
+      "GungnirFracture.Kryexe.0"
+    ],
+    [
+      "Single",
+      "70MinutesFighters.かたぎり.0"
+    ],
+    [
+      "Single",
+      "Cleyera.Riya.0"
+    ],
+    [
+      "Single",
+      "亂舞.NekockLK.0"
+    ],
+    [
+      "Single",
+      "SnowDance.悠叶いのり.0"
+    ],
+    [
+      "Single",
+      "下一秒.BobHouSherlock卓智媛feat兰音Reine.0"
+    ],
+    [
+      "Single",
+      "AfterZABANIYAMUGEdit.Daily天利.0"
+    ],
+    [
+      "Single",
+      "Verruckt.Raimukun.0"
+    ],
+    [
+      "Single",
+      "Xenophobia.XinG.0"
+    ],
+    [
+      "Single",
+      "ABYSSMOTION192333.ariiolTSAR奏Sou.0"
+    ],
+    [
+      "Single",
+      "彼方へ名もなき海辺より.打打だいず&月乃.0"
+    ],
+    [
+      "Single",
+      "Locomotive.K.0"
+    ],
+    [
+      "Single",
+      "最高傑作.PYKAMIA.0"
+    ],
+    [
+      "Single",
+      "BANGINGSTRIKE.DewPleiades.0"
+    ],
+    [
+      "Single",
+      "000AinSophAur.Yumeji.0"
+    ],
+    [
+      "Single",
+      "SolaggyfeatUzumaki.ShrimpCatsはぁち後藤涼輔.0"
+    ],
+    [
+      "Single",
+      "RetributionCycleofRedemption.ArdolfvsDaily天利.0"
+    ],
+    [
+      "Single",
+      "雪降り雪が降っている.AiSSw夜輪ft結月ゆかり.0"
+    ],
+    [
+      "Single",
+      "Helios.NOABotaNya.0"
+    ],
+    [
+      "Single",
+      "FrozenHeart.A39沙包P.0"
+    ],
+    [
+      "Single",
+      "Aliceinaxxxxxxxx.Nagiha.0"
+    ],
+    [
+      "Single",
+      "宇宙残骸少女CosmicDustyGirl.辻原一郎.0"
+    ],
+    [
+      "Single",
+      "SwingSkipDrop.ミハイル.0"
+    ],
+    [
+      "Single",
+      "ニライカナイNiraicA_naiMix.roopfromSTR.0"
+    ],
+    [
+      "Single",
+      "インマイマインド.レシオP.0"
+    ],
+    [
+      "Single",
+      "贝多芬祝福BeethovenBlessing.Nauts.0"
+    ],
+    [
+      "Single",
+      "蝎虎天体Lacertid.CreamvsDaily天利.0"
+    ],
+    [
+      "Single",
+      "Shelter.MeatyRabbitNceS.0"
+    ],
+    [
+      "Single",
+      "KirakiraNoelStory.RekuMochizuki.0"
+    ],
+    [
+      "Single",
+      "Devotion.Connexio.0"
+    ],
+    [
+      "Single",
+      "白と黒のバケモノ.テヅカ.0"
+    ],
+    [
+      "Single",
+      "CometFeat符白牙.CNHKSS.0"
+    ],
+    [
+      "Single",
+      "valorstarcross.LundyvsWyvren.0"
+    ],
+    [
+      "Single",
+      "FixationsTowardtheStars.Foodbot.0"
+    ],
+    [
+      "Single",
+      "Letempsperdu.Daison.0"
+    ],
+    [
+      "Single",
+      "Schadenfreude.ZxNX.0"
+    ],
+    [
+      "Single",
+      "Originally.SNKSMizku.0"
+    ],
+    [
+      "Single",
+      "Thrashforce.KAHvsE0ri4.0"
+    ],
+    [
+      "Single",
+      "Grimheart.Puru.0"
+    ],
+    [
+      "Single",
+      "BoundedQuietude.FiniteLimitvsSiLiS.0"
+    ],
+    [
+      "Single",
+      "今天不是明天.PIKASONICfeat兰音Reine.0"
+    ],
+    [
+      "Single",
+      "Bloom.targ麻团qwq.0"
+    ],
+    [
+      "Single",
+      "ShineAfter.ADeanJocularACE.0"
+    ],
+    [
+      "Single",
+      "PRAGMATISMRESURRECTION.Laur.0"
+    ],
+    [
+      "Single",
+      "Antithese.Blacklolita.0"
+    ],
+    [
+      "Single",
+      "BRAINHACKER.SOMON.0"
+    ],
+    [
+      "Single",
+      "BrokenSky.JungoMAX3feat刘佳宜Snow幻影刃shadow.0"
+    ],
+    [
+      "Single",
+      "CrushBETA.shadow_bling.0"
+    ],
+    [
+      "Single",
+      "GVNGlitterVomitusandNeon.SaltySaltUnfold33.0"
+    ],
+    [
+      "Single",
+      "聖夜讃歌.A39沙包P.0"
+    ],
+    [
+      "Single",
+      "bye.DingerBox.0"
+    ],
+    [
+      "Single",
+      "Bitterblossom.imvi.0"
+    ],
+    [
+      "Single",
+      "DiamondEyes.SYNTHETIC.0"
+    ],
+    [
+      "Single",
+      "TriumphRegret.typeMARS.0"
+    ],
+    [
+      "Single",
+      "ぱぴぷぴぷぴぱ.ころねぽちWith立秋.0"
+    ],
+    [
+      "Single",
+      "Realms.HinkikAHimitsu.0"
+    ],
+    [
+      "Single",
+      "RainyHeart.BelieverInYou阿卡姆巫师.0"
+    ],
+    [
+      "Single",
+      "NowIsTheTimeDoIt.RoyMikelate.0"
+    ],
+    [
+      "Single",
+      "Bougainvillea.Jade.0"
+    ],
+    [
+      "Single",
+      "Random.SobremSilentroom.0"
+    ],
+    [
+      "Single",
+      "PoisonANDORAffection.LeaF.0"
+    ],
+    [
+      "Single",
+      "Upshift.Iriss-Frantzz.0"
+    ],
+    [
+      "Single",
+      "インフェルノシティ.Ponchifeatはぁち.0"
+    ],
+    [
+      "Single",
+      "青丘.BLACK0.0"
+    ],
+    [
+      "Single",
+      "Pontdessouvenirs.VeetaCrushvsitsufeatitsu.0"
+    ],
+    [
+      "Single",
+      "BelieveLightfeat果丸哒呦.ScalerMestie果丸哒呦.0"
+    ],
+    [
+      "Single",
+      "BreakOver.Kforest.0"
+    ],
+    [
+      "Single",
+      "ElCondorPasaPhigrosEdit.PlasticFruits.0"
+    ],
+    [
+      "Single",
+      "RainySeason.AbyssIdols.0"
+    ],
+    [
+      "Single",
+      "EternalSnow.AbyssIdols.0"
+    ],
+    [
+      "Single",
+      "BraveNotes.TurquoiseDRIVENota.0"
+    ],
+    [
+      "Single",
+      "csqn.Aoi.0"
+    ],
+    [
+      "Single",
+      "DataErr0r.Cosmograph.0"
+    ],
+    [
+      "Single",
+      "OnAndOn.ETIAfeatJenga.0"
+    ],
+    [
+      "Single",
+      "月下缭乱.月見静華vsLUNARiUM.0"
+    ],
+    [
+      "Single",
+      "いざ参ります.Uskefeat棗いつき.0"
+    ],
+    [
+      "Single",
+      "opia.rN.0"
+    ],
+    [
+      "Single",
+      "IMustSayNo.TangJuan.0"
+    ],
+    [
+      "Single",
+      "FULiAUTOBUSTER.MYUKKE.0"
+    ],
+    [
+      "Single",
+      "Luminescent.Daison.0"
+    ],
+    [
+      "Single",
+      "FutureMind.RayNauticaRekuMochizuki.0"
+    ],
+    [
+      "Single",
+      "996.李化禹.0"
+    ],
+    [
+      "Single",
+      "AnotherRound.JustinDai.0"
+    ],
+    [
+      "Single",
+      "Dreamland.z1onkyrrin.0"
+    ],
+    [
+      "Single",
+      "ジングルベルJingleBell.A39沙包P.0"
+    ],
+    [
+      "Single",
+      "Concvssion.Halv.0"
+    ],
+    [
+      "Single",
+      "parsey.siqlo.0"
+    ],
+    [
+      "Single",
+      "Kerberos.Zris.0"
+    ],
+    [
+      "Single",
+      "Arkhei.SeraAmagi.0"
+    ],
+    [
+      "Single",
+      "Nhelv.Silentroom.0"
+    ],
+    [
+      "Single",
+      "energytrixxx.KAH.0"
+    ],
+    [
+      "Single",
+      "游园地.椒盐菠萝.0"
+    ],
+    [
+      "Single",
+      "Apocalyptic.ZClaxxSumaiLight.0"
+    ],
+    [
+      "Single",
+      "UnorthodoxThoughts.Joulez.0"
+    ],
+    [
+      "Single",
+      "WithYou.Cashew.0"
+    ],
+    [
+      "Single",
+      "BetterGraphicAnimation.ルゼ.0"
+    ],
+    [
+      "Single",
+      "Eltaw.Fl00t.0"
+    ],
+    [
+      "Single",
+      "大和撫子WildDances.adapatorvsDRIVE.0"
+    ],
+    [
+      "Single",
+      "Wavetapper.Frums.0"
+    ],
+    [
+      "Single",
+      "modulus.PTB10.0"
+    ],
+    [
+      "Single",
+      "CervelleConnexion.SCTL.0"
+    ],
+    [
+      "Single",
+      "雪降りメリクリ.A39.0"
+    ],
+    [
+      "Single",
+      "Trane.MALVA.0"
+    ],
+    [
+      "Single",
+      "Aventyr.GrandThawRigelTheatre.0"
+    ],
+    [
+      "Single",
+      "HardcoreKwaya.EnFr.0"
+    ],
+    [
+      "Single",
+      "SIGMA.Kryexe.0"
+    ],
+    [
+      "Single",
+      "Electron.ElousFZ.0"
+    ],
+    [
+      "Single",
+      "Starduster.Quree.0"
+    ],
+    [
+      "Single",
+      "ParallelRetrogressionGameVer.Tetrajectory.0"
+    ],
+    [
+      "Single",
+      "EndMe.ZxNXasDelaina.0"
+    ],
+    [
+      "Single",
+      "Orthodox.tokiwa.0"
+    ],
+    [
+      "Single",
+      "TheMountainEater.PaulBazooka.0"
+    ],
+    [
+      "Single",
+      "Palescreen.WyvernPfeatMadol.0"
+    ],
+    [
+      "Single",
+      "GetBack.CAP3.0"
+    ],
+    [
+      "Single",
+      "MagentaPotion.EmoCo.0"
+    ],
+    [
+      "Single",
+      "SpeedUp.DarTokki.0"
+    ],
+    [
+      "Single",
+      "DeadSoul.SoundSouler.0"
+    ],
+    [
+      "Single",
+      "RubbishSorting.CtymaxvsNceS.0"
+    ],
+    [
+      "Single",
+      "NextTime.SaMZIng.0"
+    ],
+    [
+      "Single",
+      "Aleph0.LeaF.0"
+    ],
+    [
+      "Single",
+      "Burn.NceS.0"
+    ],
+    [
+      "Single",
+      "SnowDesert.WyvernP.0"
+    ],
+    [
+      "Single",
+      "KhronostasisKatharsis.Halv.0"
+    ],
+    [
+      "Single",
+      "SparkleNewLife.rider.0"
+    ],
+    [
+      "Single",
+      "狂喜蘭舞.LeaF.0"
+    ],
+    [
+      "Single",
+      "Sein.朔Apo11oprogramvsお月さま交響曲ftkuroa荒巻.0"
+    ],
+    [
+      "Single",
+      "FindMe.Kforest.0"
+    ],
+    [
+      "Single",
+      "華灯爱.闫东炜.0"
+    ],
+    [
+      "Single",
+      "开心病.闫东炜.0"
+    ],
+    [
+      "Single",
+      "Aphasia.闫东炜.0"
+    ],
+    [
+      "Single",
+      "RIPPER.Friedwav.0"
+    ],
+    [
+      "Single",
+      "DropIt.Asuka.0"
+    ],
+    [
+      "Single",
+      "云女孩.符白牙SiYFics.0"
+    ],
+    [
+      "Single",
+      "Dash.小红Akane李祥辉.0"
+    ],
+    [
+      "Single",
+      "dBdoll.YUESTEVENuen.0"
+    ],
+    [
+      "Single",
+      "风屿.闫东炜.0"
+    ],
+    [
+      "Single",
+      "万吨匿名信.闫东炜.0"
+    ],
+    [
+      "Single",
+      "萤火虫の怨.闫东炜.0"
+    ],
+    [
+      "Single",
+      "MARENOL.LeaF.0"
+    ],
+    [
+      "Single",
+      "もぺもぺ.LeaF.0"
+    ],
+    [
+      "Single",
+      "Doppelganger.LeaF.0"
+    ],
+    [
+      "MainStoryLegacy",
+      "Glaciaxion.SunsetRay.0"
+    ],
+    [
+      "MainStoryLegacy",
+      "EradicationCatastrophe.NceS.0"
+    ],
+    [
+      "MainStoryLegacy",
+      "Credits.Frums.0"
+    ],
+    [
+      "MainStoryLegacy",
+      "Dlyrotz.Likey.0"
+    ],
+    [
+      "MainStoryLegacy",
+      "EnginexStartmelodymix.CrossingSound.0"
+    ],
+    [
+      "MainStoryLegacy",
+      "光.姜米條.0"
+    ],
+    [
+      "MainStoryLegacy",
+      "Wintercube.CtymaxfeatNceS.0"
+    ],
+    [
+      "MainStoryLegacy",
+      "混乱Confusion.OnlyMyBlackScore.0"
+    ],
+    [
+      "MainStoryLegacy",
+      "Cipher20.TetrajectoryfeatCtymax.0"
+    ],
+    [
+      "MainStoryLegacy",
+      "FULiAUTOSHOOTER.MYUKKE.0"
+    ],
+    [
+      "MainStoryLegacy",
+      "HumaN.SOTUI.0"
+    ],
+    [
+      "MainStoryLegacy",
+      "PRAW.Bluewind.0"
+    ],
+    [
+      "MainStoryLegacy",
+      "Cereris.SunsetRayNceS.0"
+    ],
+    [
+      "MainStoryLegacy",
+      "PixelRebelz.Normal1zer.0"
+    ],
+    [
+      "MainStoryLegacy",
+      "NonMelodicRagezMUGEdit.Normal1zer.0"
+    ],
+    [
+      "MainStoryLegacy",
+      "SultanRage.MonstDeath.0"
+    ],
+    [
+      "MainStoryLegacy",
+      "ClassMemories.AntistarfeatCtymax.0"
+    ],
+    [
+      "MainStoryLegacy",
+      "SURREALISM.Itsuki.0"
+    ],
+    [
+      "MainStoryLegacy",
+      "BonusTime.MegaloPaleWhite.0"
+    ],
+    [
+      "MainStoryLegacy",
+      "ENERGYSYNERGYMATRIX.Tanchiky.0"
+    ],
+    [
+      "MainStory5",
+      "NYA.FLuoRiTe姜米條.0"
+    ],
+    [
+      "MainStory5",
+      "JunXionBetweenLifeAndDeathVIPMix.1N6Fs.0"
+    ],
+    [
+      "MainStory5",
+      "cryout.JuE.0"
+    ],
+    [
+      "MainStory5",
+      "Reimei.影虎.0"
+    ],
+    [
+      "MainStory5",
+      "尊師TheGuru.rider.0"
+    ],
+    [
+      "MainStory5",
+      "Spasmodic.姜米條颶風元力上人.0"
+    ],
+    [
+      "MainStory5",
+      "LeaveAllBehind.rider.0"
+    ],
+    [
+      "MainStory6",
+      "ColorfulDays.P4koofeatつゆり花鈴.0"
+    ],
+    [
+      "MainStory6",
+      "microwav.dandeless.0"
+    ],
+    [
+      "MainStory6",
+      "重生.姜米條.0"
+    ],
+    [
+      "MainStory6",
+      "NOONEYESMAN.MYUKKE.0"
+    ],
+    [
+      "MainStory6",
+      "望影の方舟Six.SeURa.0"
+    ],
+    [
+      "MainStory6",
+      "Igallta.SeURa.0"
+    ],
+    [
+      "MainStory7",
+      "ClockParadox.WyvernP.0"
+    ],
+    [
+      "MainStory7",
+      "Chronologika.Hundotte.0"
+    ],
+    [
+      "MainStory7",
+      "NickofTime.P4koo.0"
+    ],
+    [
+      "MainStory7",
+      "Chronomia.Lime.0"
+    ],
+    [
+      "MainStory7",
+      "ChronosCollapseLaCampanella.SunsetRay.0"
+    ],
+    [
+      "MainStory7",
+      "Rrharil.TeamGrimoire.0"
+    ],
+    [
+      "MainStory8",
+      "CraveWave.LandRoot.0"
+    ],
+    [
+      "MainStory8",
+      "TheChariotREVIIVAL.Attoclef.0"
+    ],
+    [
+      "MainStory8",
+      "Luminescence.米虾Fomiki初云CLoudie.0"
+    ],
+    [
+      "MainStory8",
+      "Retribution.nmyKryexe.0"
+    ],
+    [
+      "MainStory8",
+      "DESTRUCTION321.Normal1zervsBrokenNerdz.0"
+    ],
+    [
+      "MainStory8",
+      "DistortedFate.Sakuzyo.0"
+    ],
+    [
+      "SideStory1",
+      "Poseidon.1112vsStar.0"
+    ],
+    [
+      "SideStory1",
+      "WATER.A39沙包P.0"
+    ],
+    [
+      "SideStory1",
+      "MiracleForestVIPMix.Rinthlive.0"
+    ],
+    [
+      "SideStory1",
+      "MOBILYS.Dachs.0"
+    ],
+    [
+      "SideStory1",
+      "Lyrith迷宮リリス.ユメミド.0"
+    ],
+    [
+      "SideStory2",
+      "Demiurge.Rabpit.0"
+    ],
+    [
+      "SideStory2",
+      "Demonkin.ForgedReigns.0"
+    ],
+    [
+      "SideStory2",
+      "Re_NascencePsystyleVer.Rinth_live.0"
+    ],
+    [
+      "SideStory2",
+      "Ark.kanoryo.0"
+    ],
+    [
+      "SideStory2",
+      "AfterDawn.S9ryne.0"
+    ],
+    [
+      "SideStory2",
+      "INFiNiTEENERZYOverdoze.RekuMochizuki.0"
+    ],
+    [
+      "SideStory3",
+      "Khalid.Dolphin.0"
+    ],
+    [
+      "SideStory3",
+      "QuantumHyperspace.D_AAN.0"
+    ],
+    [
+      "SideStory3",
+      "FreakyUndulationsNobleKnightsofTune.JehezukielKURORAK.0"
+    ],
+    [
+      "SideStory3",
+      "PANICPARADISE.DJSHIONY.0"
+    ],
+    [
+      "SideStory3",
+      "ReEndofaDream.umavsモリモリあつし.0"
+    ],
+    [
+      "SideStory4",
+      "心の記憶.A39沙包P.0"
+    ],
+    [
+      "SideStory4",
+      "Spotlight.Ardolf.0"
+    ],
+    [
+      "SideStory4",
+      "NightTheater.わかどり.0"
+    ],
+    [
+      "SideStory4",
+      "Ramification.rareguyReina.0"
+    ],
+    [
+      "SideStory4",
+      "DerRichter.Ωμεγα.0"
+    ],
+    [
+      "SideStory4",
+      "ATHAZA.LeaF.0"
+    ],
+    [
+      "Cytus2",
+      "TheWholeRest.KIVΛ.0"
+    ],
+    [
+      "Cytus2",
+      "Cristalisia.onoken.0"
+    ],
+    [
+      "Cytus2",
+      "Hydra.JamesLandinoXAkiraComplex.0"
+    ],
+    [
+      "Cytus2",
+      "Alb.Avans.0"
+    ],
+    [
+      "Cytus2",
+      "Incyde.YbeLL.0"
+    ],
+    [
+      "Cytus2",
+      "彩.MisoilePunch.0"
+    ],
+    [
+      "Liminality",
+      "Xepion.Acotto.0"
+    ],
+    [
+      "Liminality",
+      "Archidoxen.Se_IRA.0"
+    ],
+    [
+      "Liminality",
+      "百鬼夜行.SaladSavior.0"
+    ],
+    [
+      "Liminality",
+      "DevastatingHistory.NAMV.0"
+    ],
+    [
+      "Maimai",
+      "アンビバレンス.すりぃ相沢.0"
+    ],
+    [
+      "Maimai",
+      "Komplexe.雄之助featSennzai.0"
+    ],
+    [
+      "Maimai",
+      "slips.rintarosoma.0"
+    ],
+    [
+      "Maimai",
+      "QZKagoRequiem.tpazolite.0"
+    ],
+    [
+      "Ongeki",
+      "Radiance.Nhato.0"
+    ],
+    [
+      "Ongeki",
+      "DiamondDust.MasahiroGodspeedAoki.0"
+    ],
+    [
+      "Ongeki",
+      "StardustRAY.kanonevsBlackY.0"
+    ],
+    [
+      "ImmaculeeSekai",
+      "AphroditesChildshortver.RUQOA.0"
+    ],
+    [
+      "ImmaculeeSekai",
+      "DevIAtiOnshortver.polysha.0"
+    ],
+    [
+      "ImmaculeeSekai",
+      "NOx.Juggernaut.0"
+    ],
+    [
+      "EGTS",
+      "SilenceisGoldenSpeechisGolden.NIWASHI.0"
+    ],
+    [
+      "EGTS",
+      "FracturedAngel.DJRaisei.0"
+    ],
+    [
+      "EGTS",
+      "Resolver.Gomadare.0"
+    ],
+    [
+      "EGTS",
+      "LuminousEntitiesLostHeart.NormalMfeatUsagiDenki.0"
+    ],
+    [
+      "EGTS",
+      "KIZUNAResolution.TAG.0"
+    ],
+    [
+      "EGTS",
+      "AbsoluTedisoRdeR.AcuteDisarray.0"
+    ],
+    [
+      "RhythmMaster",
+      "君往何处QuoVadis.M2U.0"
+    ],
+    [
+      "RhythmMaster",
+      "暗夜苏醒REANIMATE.Warak.0"
+    ],
+    [
+      "RhythmMaster",
+      "黄金之城GOLDTOWN.Memme.0"
+    ],
+    [
+      "RhythmMaster",
+      "双重间谍DoubleAgent.WAVAV.0"
+    ],
+    [
+      "RhythmMaster",
+      "幻影鬼魅PLEASE.R300K.0"
+    ],
+    [
+      "TAKUMI3",
+      "Cuvism.Fl00tvsHalv.0"
+    ],
+    [
+      "TAKUMI3",
+      "iLArtifact.Link0.0"
+    ],
+    [
+      "TAKUMI3",
+      "atruthseekerCommunicationwithUtopiawillbelost.kuro.0"
+    ],
+    [
+      "SHINOBISLASH",
+      "幽世桔梗.Capchiifeatまるもこ.0"
+    ],
+    [
+      "SHINOBISLASH",
+      "千紫万紅.r0yvsWABI.0"
+    ],
+    [
+      "SHINOBISLASH",
+      "明鏡烈火.MUEvsRekuMochizuki.0"
+    ],
+    [
+      "ParadigmReboot",
+      "零號車輛.seatrus.0"
+    ],
+    [
+      "ParadigmReboot",
+      "Xenolith.Tatsh.0"
+    ],
+    [
+      "ParadigmReboot",
+      "ArtificialExistence.JunKuroda.0"
+    ],
+    [
+      "ParadigmReboot",
+      "IndelibleScar.Noah.0"
+    ],
+    [
+      "ParadigmReboot",
+      "NWAD.Knighthood.0"
+    ],
+    [
+      "CHUNITHM",
+      "月詠に鳴る.Feryquitousfeat藍月なくる.0"
+    ],
+    [
+      "CHUNITHM",
+      "TECHNOPOLIS2085.PRASTIKDANCEFLOOR.0"
+    ],
+    [
+      "CHUNITHM",
+      "祈-我ら神祖と共に歩む者なり-.光吉猛修VS穴山大輔VSKaiVS水野健治VS大国奏音.0"
+    ],
+    [
+      "CHUNITHM",
+      "玩具狂奏曲終焉.きくお.0"
+    ],
+    [
+      "Rotaeno",
+      "JourneywithYou.Iris.0"
+    ],
+    [
+      "Rotaeno",
+      "SecretIllumination.Yooh.0"
+    ],
+    [
+      "Rotaeno",
+      "InvertedWorld.ARForest.0"
+    ],
+    [
+      "Rotaeno",
+      "ストレイソウルアラウンド.みーに.0"
+    ],
+    [
+      "Rotaeno",
+      "ManifoldHypothesis.cybermisofeattigerlily.0"
+    ],
+    [
+      "Rotaeno",
+      "KMoeVIP.ZxNX.0"
+    ],
+    [
+      "Camellia",
+      "SATELLITE.かめりあ.0"
+    ],
+    [
+      "Camellia",
+      "DancewithSilence.かめりあ.0"
+    ],
+    [
+      "Camellia",
+      "LabyrinthinKowloonWalledWorld.かめりあ.0"
+    ],
+    [
+      "Camellia",
+      "ComputeItWithSomeDevilishAlcoholicSteampunkEngines.かめりあ.0"
+    ],
+    [
+      "Camellia",
+      "ERABYECONNEC10N.かめりあ.0"
+    ],
+    [
+      "OverRapid",
+      "神話.PicaM2U.0"
+    ],
+    [
+      "OverRapid",
+      "Elúltimobaile.Θ.0"
+    ],
+    [
+      "OverRapid",
+      "Trojan.litmus.0"
+    ],
+    [
+      "OverRapid",
+      "TemporalShifting.LureRabbitVC.0"
+    ],
+    [
+      "OverRapid",
+      "Adastraperaspera.RabbitHouse.0"
+    ],
+    [
+      "OverRapid",
+      "Ajourneytothemoonlight.Yesod.0"
+    ],
+    [
+      "TEA12",
+      "盏茗.茶鸣拾贰律.0"
+    ],
+    [
+      "TEA12",
+      "青芽.茶鸣拾贰律.0"
+    ],
+    [
+      "TEA12",
+      "瓷岁.茶鸣拾贰律.0"
+    ],
+    [
+      "TEA12",
+      "Feast远东之宴.茶鸣拾贰律.0"
+    ],
+    [
+      "JMT",
+      "Shadow.SumaiLightvs姜米條.0"
+    ],
+    [
+      "JMT",
+      "心之所向.姜米條.0"
+    ],
+    [
+      "JMT",
+      "inferior.姜米條.0"
+    ],
+    [
+      "Lanota",
+      "Apocalypse.アリスシャッハと魔法の楽団.0"
+    ],
+    [
+      "Lanota",
+      "Protoflicker.Silentroom.0"
+    ],
+    [
+      "Lanota",
+      "HorizonBlue.NothingButRequiemfeatAikapinChiyoko.0"
+    ],
+    [
+      "Lanota",
+      "YouaretheMiserable.tpazolite.0"
+    ],
+    [
+      "Lanota",
+      "Stasis.Maozon.0"
+    ],
+    [
+      "KALPA",
+      "TimetoNightSkyfeatLeeYuJin.HyuNKLYDIX.0"
+    ],
+    [
+      "KALPA",
+      "HAZARD.Limpid.0"
+    ],
+    [
+      "KALPA",
+      "AnotherMe.DAAN.0"
+    ],
+    [
+      "KALPA",
+      "DontNeverAround.HAMA.0"
+    ],
+    [
+      "KALPA",
+      "RESSiSTANCE.ぐるたみん.0"
+    ],
+    [
+      "KALPA",
+      "FlutterEcho.Cansol.0"
+    ],
+    [
+      "KALPA",
+      "Rebirth.ああああ.0"
+    ],
+    [
+      "KALPA",
+      "AvataarReincarnationofKalpa.ScarletteakaCrYmson.0"
+    ],
+    [
+      "MUSEDASH",
+      "XING.ginkiha.0"
+    ],
+    [
+      "MUSEDASH",
+      "FinalStep.Lime.0"
+    ],
+    [
+      "MUSEDASH",
+      "Cthugha.USAO.0"
+    ],
+    [
+      "WAVEAT",
+      "Initialize.iF.0"
+    ],
+    [
+      "WAVEAT",
+      "桜樹街道.kozatosnow.0"
+    ],
+    [
+      "WAVEAT",
+      "GetReady.iF.0"
+    ],
+    [
+      "WAVEAT",
+      "volcanic.DETROakaルゼ.0"
+    ],
+    [
+      "Good",
+      "GOODTEK.EBIMAYO.0"
+    ],
+    [
+      "Good",
+      "GOODBOUNCE.EBIMAYO.0"
+    ],
+    [
+      "Good",
+      "GOODWORLD.EBIMAYO.0"
+    ],
+    [
+      "Good",
+      "GOODFORTUNE.EBIMAYO.0"
+    ],
+    [
+      "Good",
+      "GOODRAGE.EBIMAYO.0"
+    ],
+    [
+      "HyuN",
+      "InfinityHeaven.HyuN.0"
+    ],
+    [
+      "HyuN",
+      "Disorder.HyuNfeatYURI.0"
+    ],
+    [
+      "HyuN",
+      "CROSSSOUL.HyuNfeatSyepias.0"
+    ],
+    [
+      "RST",
+      "AnotherMe.NeutralMoon.0"
+    ],
+    [
+      "RST",
+      "mechanted.rareguy.0"
+    ],
+    [
+      "RST",
+      "lifeflashesbeforeweebeyes.BilliumMoto.0"
+    ],
+    [
+      "RST",
+      "BreakThroughTheBarrier.lixound.0"
+    ],
+    [
+      "RST",
+      "Chronostasis.黒皇帝.0"
+    ]
+  ],
+  "chapterList": [
+    {
+      "chapterCode": "Single",
+      "title": "\\ChapterSingleTitle",
+      "subTitle": "",
+      "banner": "Single",
+      "songCount": 144,
+      "unlockMode": 0
+    },
+    {
+      "chapterCode": "MainStoryLegacy",
+      "title": "\\ChapterLegacyTitle",
+      "subTitle": "",
+      "banner": "Legacy",
+      "songCount": 20,
+      "unlockMode": 0
+    },
+    {
+      "chapterCode": "MainStory5",
+      "title": "\\ChapterMainStory5Title",
+      "subTitle": "\\ChapterMainStory5SubTitle",
+      "banner": "Chapter 5",
+      "songCount": 7,
+      "unlockMode": 2
+    },
+    {
+      "chapterCode": "MainStory6",
+      "title": "\\ChapterMainStory6Title",
+      "subTitle": "\\ChapterMainStory6SubTitle",
+      "banner": "Chapter 6",
+      "songCount": 6,
+      "unlockMode": 1
+    },
+    {
+      "chapterCode": "MainStory7",
+      "title": "\\ChapterMainStory7Title",
+      "subTitle": "\\ChapterMainStory7SubTitle",
+      "banner": "Chapter 7",
+      "songCount": 6,
+      "unlockMode": 1
+    },
+    {
+      "chapterCode": "MainStory8",
+      "title": "\\ChapterMainStory8Title",
+      "subTitle": "\\ChapterMainStory8SubTitle",
+      "banner": "Chapter 8",
+      "songCount": 6,
+      "unlockMode": 1
+    },
+    {
+      "chapterCode": "SideStory1",
+      "title": "\\ChapterSideStory1Title",
+      "subTitle": "\\ChapterSideStory1SubTitle",
+      "banner": "Side story 1",
+      "songCount": 5,
+      "unlockMode": 0
+    },
+    {
+      "chapterCode": "SideStory2",
+      "title": "\\ChapterSideStory2Title",
+      "subTitle": "\\ChapterSideStory2SubTitle",
+      "banner": "Side story 2",
+      "songCount": 6,
+      "unlockMode": 1
+    },
+    {
+      "chapterCode": "SideStory3",
+      "title": "\\ChapterSideStory3Title",
+      "subTitle": "\\ChapterSideStory3SubTitle",
+      "banner": "Side story 3",
+      "songCount": 5,
+      "unlockMode": 3
+    },
+    {
+      "chapterCode": "SideStory4",
+      "title": "\\ChapterSideStory4Title",
+      "subTitle": "\\ChapterSideStory4SubTitle",
+      "banner": "Side story 4",
+      "songCount": 6,
+      "unlockMode": 4
+    },
+    {
+      "chapterCode": "Cytus2",
+      "title": "\\ChapterCytus2Title",
+      "subTitle": "\\ChapterExtraSubTitle",
+      "banner": "CYTUS II",
+      "songCount": 6,
+      "unlockMode": 0
+    },
+    {
+      "chapterCode": "Liminality",
+      "title": "\\ChapterLiminalityTitle",
+      "subTitle": "\\ChapterExtraSubTitle",
+      "banner": "Liminality",
+      "songCount": 4,
+      "unlockMode": 0
+    },
+    {
+      "chapterCode": "Maimai",
+      "title": "\\ChapterMaimaiTitle",
+      "subTitle": "\\ChapterExtraSubTitle",
+      "banner": "maimai",
+      "songCount": 4,
+      "unlockMode": 0
+    },
+    {
+      "chapterCode": "Ongeki",
+      "title": "\\ChapterOngekiTitle",
+      "subTitle": "\\ChapterExtraSubTitle",
+      "banner": "オンゲキ",
+      "songCount": 3,
+      "unlockMode": 0
+    },
+    {
+      "chapterCode": "ImmaculeeSekai",
+      "title": "\\ChapterImmaculeeSekaiTitle",
+      "subTitle": "\\ChapterExtraSubTitle",
+      "banner": "Immaculée Sekai",
+      "songCount": 3,
+      "unlockMode": 0
+    },
+    {
+      "chapterCode": "EGTS",
+      "title": "\\ChapterEGTSTitle",
+      "subTitle": "\\ChapterExtraSubTitle",
+      "banner": "EGTS",
+      "songCount": 6,
+      "unlockMode": 0
+    },
+    {
+      "chapterCode": "RhythmMaster",
+      "title": "\\ChapterRhythmMasterTitle",
+      "subTitle": "\\ChapterExtraSubTitle",
+      "banner": "节奏大师",
+      "songCount": 5,
+      "unlockMode": 0
+    },
+    {
+      "chapterCode": "TAKUMI3",
+      "title": "\\ChapterTAKUMI3Title",
+      "subTitle": "\\ChapterExtraSubTitle",
+      "banner": "TAKUMI³",
+      "songCount": 3,
+      "unlockMode": 0
+    },
+    {
+      "chapterCode": "SHINOBISLASH",
+      "title": "\\ChapterSHINOBISLASHTitle",
+      "subTitle": "\\ChapterExtraSubTitle",
+      "banner": "SHINOBI SLASH",
+      "songCount": 3,
+      "unlockMode": 0
+    },
+    {
+      "chapterCode": "ParadigmReboot",
+      "title": "\\ChapterParadigmRebootTitle",
+      "subTitle": "\\ChapterExtraSubTitle",
+      "banner": "Paradigm: Reboot",
+      "songCount": 5,
+      "unlockMode": 0
+    },
+    {
+      "chapterCode": "CHUNITHM",
+      "title": "\\ChapterCHUNITHMTitle",
+      "subTitle": "\\ChapterExtraSubTitle",
+      "banner": "CHUNITHM",
+      "songCount": 4,
+      "unlockMode": 0
+    },
+    {
+      "chapterCode": "Rotaeno",
+      "title": "\\ChapterRotaenoTitle",
+      "subTitle": "\\ChapterExtraSubTitle",
+      "banner": "Rotaeno",
+      "songCount": 6,
+      "unlockMode": 0
+    },
+    {
+      "chapterCode": "Camellia",
+      "title": "\\ChapterCamelliaTitle",
+      "subTitle": "\\ChapterCamelliaSubTitle",
+      "banner": "かめりあ",
+      "songCount": 5,
+      "unlockMode": 0
+    },
+    {
+      "chapterCode": "OverRapid",
+      "title": "\\ChapterOverRapidTitle",
+      "subTitle": "\\ChapterExtraSubTitle",
+      "banner": "OverRapid",
+      "songCount": 6,
+      "unlockMode": 0
+    },
+    {
+      "chapterCode": "TEA12",
+      "title": "\\ChapterTEA12Title",
+      "subTitle": "\\ChapterExtraSubTitle",
+      "banner": "茶鸣拾贰律",
+      "songCount": 4,
+      "unlockMode": 0
+    },
+    {
+      "chapterCode": "JMT",
+      "title": "\\ChapterJMTTitle",
+      "subTitle": "\\ChapterExtraSubTitle",
+      "banner": "姜米條",
+      "songCount": 3,
+      "unlockMode": 0
+    },
+    {
+      "chapterCode": "Lanota",
+      "title": "\\ChapterLanotaTitle",
+      "subTitle": "\\ChapterExtraSubTitle",
+      "banner": "Lanota",
+      "songCount": 5,
+      "unlockMode": 0
+    },
+    {
+      "chapterCode": "KALPA",
+      "title": "\\ChapterKALPATitle",
+      "subTitle": "\\ChapterExtraSubTitle",
+      "banner": "KALPA",
+      "songCount": 8,
+      "unlockMode": 0
+    },
+    {
+      "chapterCode": "MUSEDASH",
+      "title": "\\ChapterMuseDashTitle",
+      "subTitle": "\\ChapterExtraSubTitle",
+      "banner": "Muse Dash",
+      "songCount": 3,
+      "unlockMode": 0
+    },
+    {
+      "chapterCode": "WAVEAT",
+      "title": "\\ChapterWaveatTitle",
+      "subTitle": "\\ChapterExtraSubTitle",
+      "banner": "WAVEAT",
+      "songCount": 4,
+      "unlockMode": 0
+    },
+    {
+      "chapterCode": "Good",
+      "title": "\\ChapterGoodTitle",
+      "subTitle": "\\ChapterExtraSubTitle",
+      "banner": "GOOD",
+      "songCount": 5,
+      "unlockMode": 0
+    },
+    {
+      "chapterCode": "HyuN",
+      "title": "\\ChapterHyunTitle",
+      "subTitle": "\\ChapterExtraSubTitle",
+      "banner": "HyuN",
+      "songCount": 3,
+      "unlockMode": 0
+    },
+    {
+      "chapterCode": "RST",
+      "title": "\\ChapterRSTTitle",
+      "subTitle": "\\ChapterExtraSubTitle",
+      "banner": "Rising Sun Traxx",
+      "songCount": 5,
+      "unlockMode": 0
+    }
+  ],
+  "difficultyPresenceMismatches": [
+    {
+      "songsId": "Archidoxen.Se_IRA.0",
+      "level": "AT",
+      "difficulty": 16.9
+    }
+  ],
+  "trackMapCount": 321,
+  "songsMatchedToTrackMap": 315
+}
