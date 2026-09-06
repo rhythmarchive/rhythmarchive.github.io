@@ -83,6 +83,7 @@ async function initializeBrowseGallery(root: HTMLElement): Promise<void> {
     difficultyRange.maxSlider.addEventListener("input", () => { syncBrowseDifficultyRange(difficultyRange, Number(difficultyRange.minSlider.value), Number(difficultyRange.maxSlider.value)); commitState("replace"); });
   }
   root.querySelectorAll<HTMLInputElement>("[data-browse-filter-check]").forEach((input) => input.addEventListener("change", () => commitState("push")));
+  root.querySelectorAll<HTMLSelectElement>("[data-browse-filter-select]").forEach((select) => select.addEventListener("change", () => commitState("push")));
   root.querySelectorAll<HTMLButtonElement>("[data-browse-filter-toggle]").forEach((button) => button.addEventListener("click", () => {
     button.setAttribute("aria-pressed", String(button.getAttribute("aria-pressed") !== "true"));
     commitState("push");
@@ -106,10 +107,15 @@ async function initializeBrowseGallery(root: HTMLElement): Promise<void> {
     } else if (name === "difficulty") {
       if (difficultyRange) syncBrowseDifficultyRange(difficultyRange);
     } else {
-      const input = [...root.querySelectorAll<HTMLInputElement>(`[data-browse-filter-check="${name}"]`)].find((candidate) => checkboxValues(candidate).includes(value ?? ""));
-      if (input) {
-        input.checked = false;
-        input.indeterminate = false;
+      const select = root.querySelector<HTMLSelectElement>(`[data-browse-filter-select="${name}"]`);
+      if (select) {
+        select.value = "";
+      } else {
+        const input = [...root.querySelectorAll<HTMLInputElement>(`[data-browse-filter-check="${name}"]`)].find((candidate) => checkboxValues(candidate).includes(value ?? ""));
+        if (input) {
+          input.checked = false;
+          input.indeterminate = false;
+        }
       }
     }
     commitState("push");
@@ -386,6 +392,8 @@ function populateFacetOptions(data: BrowseGalleryData, root: HTMLElement): void 
 }
 
 function selectedValues(root: HTMLElement, name: string): string[] {
+  const select = root.querySelector<HTMLSelectElement>(`[data-browse-filter-select="${name}"]`);
+  if (select?.value) return [select.value];
   const checked = [...root.querySelectorAll<HTMLInputElement>(`[data-browse-filter-check="${name}"]:checked`)].flatMap((input) => checkboxValues(input));
   const toggled = [...root.querySelectorAll<HTMLButtonElement>(`[data-browse-filter-toggle="${name}"][aria-pressed="true"]`)].map((button) => button.dataset.value ?? "");
   return [...checked, ...toggled].filter(Boolean);
@@ -393,6 +401,8 @@ function selectedValues(root: HTMLElement, name: string): string[] {
 
 function setSelectedValues(root: HTMLElement, name: string, values: string[]): void {
   const selected = new Set(values);
+  const select = root.querySelector<HTMLSelectElement>(`[data-browse-filter-select="${name}"]`);
+  if (select) select.value = values[0] ?? "";
   root.querySelectorAll<HTMLInputElement>(`[data-browse-filter-check="${name}"]`).forEach((input) => {
     const optionValues = checkboxValues(input);
     const selectedCount = optionValues.filter((value) => selected.has(value)).length;

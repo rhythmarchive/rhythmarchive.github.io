@@ -1,7 +1,8 @@
 ---
 import BrowseCard from "./BrowseCard.astro";
-import { getBrowseFacetOptions, type BrowseGalleryData, type PhigrosFacetOptions } from "../lib/browse-gallery";
+import { getBrowseFacetOptions, type ArcaeaFacetOptions, type BrowseGalleryData, type InfalsusFacetOptions, type PhigrosFacetOptions, type RizlineFacetOptions } from "../lib/browse-gallery";
 import { formatCount } from "../lib/format";
+import { displayFilterDifficultyLabel } from "../lib/game-config";
 import { BASE_PATH } from "../lib/site-config";
 
 interface Props {
@@ -15,8 +16,10 @@ const initialItems = data.items.slice(0, 48);
 const hasUpscale = data.items.some((item) => item.hasUpscaled);
 const searchPlaceholder = data.game === "rizline" ? "搜索曲名、曲师或画师" : "搜索曲名或曲师";
 const browseOptions = getBrowseFacetOptions(data);
-const chartOptions = browseOptions.charts;
+const arcaeaOptions = data.game === "arcaea" ? browseOptions as ArcaeaFacetOptions : undefined;
 const phigrosOptions = data.game === "phigros" ? browseOptions as PhigrosFacetOptions : undefined;
+const rizlineOptions = data.game === "rizline" ? browseOptions as RizlineFacetOptions : undefined;
+const infalsusOptions = data.game === "infalsus" ? browseOptions as InfalsusFacetOptions : undefined;
 const phigrosPackOptions = phigrosOptions?.packs ?? [];
 const phigrosLevelOptions = phigrosOptions?.levels ?? [];
 const phigrosDifficultyRange = phigrosOptions?.difficultyRange;
@@ -73,38 +76,16 @@ function formatRangeValue(value: number): string {
     </div>
   </div>
 
-  {data.game === "arcaea" ? (
-    <div class="browse-filter-row">
-      <div class="filter-toggle-group" aria-label="难度">
-        <span class="filter-group-label">难度</span>
-        <div class="filter-toggles" data-browse-toggle-options="chart"></div>
-      </div>
-      <details class="filter-popover">
-        <summary data-browse-summary="pack">曲包</summary>
-        <div class="filter-popover-body">
-          <input class="popover-search" type="search" data-browse-option-search="pack" placeholder="搜索曲包" autocomplete="off" />
-          <div class="filter-options" data-browse-options="pack"></div>
-        </div>
-      </details>
-      <details class="filter-popover">
-        <summary data-browse-summary="level">等级</summary>
-        <div class="filter-popover-body">
-          <div class="filter-options compact-options" data-browse-options="level"></div>
-        </div>
-      </details>
-      <details class="filter-popover more-filters-popover">
-        <summary>更多筛选</summary>
-        <div class="filter-popover-body">
-          <input class="popover-search" type="search" data-browse-option-search="version" placeholder="搜索版本" autocomplete="off" />
-          <div class="filter-options" data-browse-options="version"></div>
-          {hasUpscale ? <label class="filter-check popover-check"><input type="checkbox" data-filter-ai /> <span>含超分版</span></label> : null}
-        </div>
-      </details>
+  {data.game === "arcaea" && arcaeaOptions ? (
+    <div class="gallery-filter-row" data-gallery-filter-row>
+      <label class="filter-control"><span>难度</span><select data-browse-filter-select="chart" aria-label="难度"><option value="">全部</option>{arcaeaOptions.charts.map((value) => <option value={value}>{displayFilterDifficultyLabel(value, "arcaea")}</option>)}</select></label>
+      <label class="filter-control"><span>曲包</span><select data-browse-filter-select="pack" aria-label="曲包"><option value="">全部</option>{arcaeaOptions.packs.map((value) => <option value={value}>{value}</option>)}</select></label>
+      <label class="filter-control"><span>等级</span><select data-browse-filter-select="level" aria-label="等级"><option value="">全部</option>{arcaeaOptions.levels.map((value) => <option value={value}>{value}</option>)}</select></label>
+      <label class="filter-control"><span>加入版本</span><select data-browse-filter-select="version" aria-label="加入版本"><option value="">全部</option>{arcaeaOptions.versions.map((value) => <option value={value}>{value}</option>)}</select></label>
+      {hasUpscale ? <label class="filter-check"><input type="checkbox" data-filter-ai /> <span>含超分版</span></label> : null}
     </div>
-  ) : null}
-
-  {data.game === "phigros" ? (
-    <div class="browse-filter-row">
+  ) : data.game === "phigros" ? (
+    <div class="gallery-filter-row" data-gallery-filter-row>
       {phigrosDifficultyRange ? (
         <div class="filter-range-control" data-browse-range="difficulty" data-range-label="难度" data-range-min={phigrosDifficultyRange.min} data-range-max={phigrosDifficultyRange.max} data-range-step={phigrosDifficultyRange.step}>
           <div class="filter-range-header">
@@ -127,47 +108,23 @@ function formatRangeValue(value: number): string {
       {phigrosLevelOptions.length > 0 ? (
         <label class="filter-control">
           <span>难度等级</span>
-          <select data-browse-level aria-label="难度等级">
+          <select data-browse-filter-select="level" data-browse-level aria-label="难度等级">
             <option value="">全部</option>
             {phigrosLevelOptions.map((level) => <option value={level}>{level}</option>)}
           </select>
         </label>
       ) : null}
-      {phigrosPackOptions.length > 0 ? (
-        <details class="filter-popover">
-          <summary data-browse-summary="pack">曲包</summary>
-          <div class="filter-popover-body">
-            <input class="popover-search" type="search" data-browse-option-search="pack" placeholder="搜索曲包" autocomplete="off" />
-            <div class="filter-options" data-browse-options="pack"></div>
-          </div>
-        </details>
-      ) : null}
+      {phigrosPackOptions.length > 0 ? <label class="filter-control"><span>曲包</span><select data-browse-filter-select="pack" aria-label="曲包"><option value="">全部</option>{phigrosPackOptions.map((value) => <option value={value}>{value}</option>)}</select></label> : null}
     </div>
-  ) : data.game !== "arcaea" && chartOptions.length > 0 ? (
-    <div class="browse-filter-row">
-      <div class="filter-toggle-group" aria-label="谱面难度">
-        <span class="filter-group-label">谱面难度</span>
-        <div class="filter-toggles" data-browse-toggle-options="chart"></div>
-      </div>
+  ) : data.game === "rizline" && rizlineOptions ? (
+    <div class="gallery-filter-row" data-gallery-filter-row>
+      <label class="filter-control"><span>谱面难度</span><select data-browse-filter-select="chart" aria-label="谱面难度"><option value="">全部</option>{rizlineOptions.charts.map((value) => <option value={value}>{value}</option>)}</select></label>
+      <label class="filter-control"><span>Disc</span><select data-browse-filter-select="disc" aria-label="Disc"><option value="">全部</option>{rizlineOptions.discs.map((value) => <option value={value}>{value}</option>)}</select></label>
+      <label class="filter-control"><span>精选集</span><select data-browse-filter-select="series" aria-label="精选集"><option value="">全部</option>{rizlineOptions.trackSeries.map((value) => <option value={value}>{value}</option>)}</select></label>
     </div>
-  ) : null}
-
-  {data.game === "rizline" ? (
-    <div class="browse-filter-row">
-      <details class="filter-popover">
-        <summary data-browse-summary="disc">Disc</summary>
-        <div class="filter-popover-body">
-          <input class="popover-search" type="search" data-browse-option-search="disc" placeholder="搜索 Disc" autocomplete="off" />
-          <div class="filter-options" data-browse-options="disc"></div>
-        </div>
-      </details>
-      <details class="filter-popover">
-        <summary data-browse-summary="series">精选集</summary>
-        <div class="filter-popover-body">
-          <input class="popover-search" type="search" data-browse-option-search="series" placeholder="搜索精选集" autocomplete="off" />
-          <div class="filter-options" data-browse-options="series"></div>
-        </div>
-      </details>
+  ) : data.game === "infalsus" && infalsusOptions ? (
+    <div class="gallery-filter-row" data-gallery-filter-row>
+      <label class="filter-control"><span>谱面难度</span><select data-browse-filter-select="chart" aria-label="谱面难度"><option value="">全部</option>{infalsusOptions.charts.map((value) => <option value={value}>{value}</option>)}</select></label>
     </div>
   ) : null}
 
