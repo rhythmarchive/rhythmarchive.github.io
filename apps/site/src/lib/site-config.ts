@@ -3,6 +3,7 @@ const runtimeEnv = (import.meta as ImportMeta & { env?: Record<string, string | 
 export const SITE_ORIGIN = stripTrailingSlash(runtimeEnv.PUBLIC_SITE_ORIGIN || "https://rhythmarchive.github.io");
 export const BASE_PATH = normalizeBasePath(runtimeEnv.PUBLIC_BASE_PATH || "/");
 export const ROS_BASE_URL = stripTrailingSlash(runtimeEnv.PUBLIC_ROS_BASE_URL || "https://rhythm-assets.cn-nb1.rains3.com");
+export const PUBLIC_STATS_API_URL = optionalUrl(runtimeEnv.PUBLIC_STATS_API_URL);
 
 export const BILIBILI_URL = "https://space.bilibili.com/385607044";
 export const GITHUB_DISCUSSIONS_URL = "https://github.com/rhythmarchive/rhythmarchive.github.io/discussions";
@@ -31,4 +32,9 @@ export function normalizeBasePath(value: string): string {
 
 export function stripTrailingSlash(value: string): string {
   return value.replace(/\/+$/u, "");
+}
+
+function optionalUrl(value: string | undefined): string | undefined {
+  const trimmed = value?.trim();
+  return trimmed ? stripTrailingSlash(trimmed) : undefined;
 }

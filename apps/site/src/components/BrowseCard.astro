@@ -49,6 +49,7 @@ const metadata = [...(item.badges ?? []), item.badge, item.selectedArtworkDiffic
       <h3>{item.displayTitle}</h3>
       {item.artist ? <p>{item.artist}</p> : null}
       {metadata.map((value) => <span class="resource-card-variant">{value}</span>)}
+      <span class="resource-card-views" data-resource-views hidden aria-label="浏览量"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 12s3.5-5.5 9.5-5.5 9.5 5.5 9.5 5.5-3.5 5.5-9.5 5.5S2.5 12 2.5 12Z"></path><circle cx="12" cy="12" r="2.5"></circle></svg><span data-resource-views-value>0</span></span>
     </div>
   </a>
 </article>

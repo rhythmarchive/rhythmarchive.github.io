@@ -1,7 +1,7 @@
 ---
 import Footer from "../components/Footer.astro";
 import SiteHeader from "../components/SiteHeader.astro";
-import { BASE_PATH, ROS_BASE_URL, SITE_ORIGIN } from "../lib/site-config";
+import { BASE_PATH, PUBLIC_STATS_API_URL, ROS_BASE_URL, SITE_ORIGIN } from "../lib/site-config";
 import { createUrlHelpers } from "../lib/url";
 import "../styles/global.css";
 
@@ -21,7 +21,7 @@ const rosOrigin = new URL(ROS_BASE_URL).origin;
 ---
 
 <!doctype html>
-<html lang="zh-CN" data-theme="system" data-base-path={BASE_PATH}>
+<html lang="zh-CN" data-theme="system" data-base-path={BASE_PATH} data-stats-api-url={PUBLIC_STATS_API_URL}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -65,6 +65,7 @@ const rosOrigin = new URL(ROS_BASE_URL).origin;
         }
       }, true);
     </script>
+    <script src="../scripts/stats.ts"></script>
   </head>
   <body class={bodyClass}>
     <SiteHeader />

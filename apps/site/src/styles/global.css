@@ -121,9 +121,11 @@ img { display: block; max-width: 100%; }
 .home-hero-content { width: min(100%, 780px); }
 .home-hero h1 { margin: 0.65rem 0 0.8rem; font-family: var(--display-font); font-size: clamp(2.25rem, 6vw, 4rem); line-height: 1.08; letter-spacing: -0.02em; font-kerning: normal; }
 .home-hero p { margin: 0; color: var(--text-muted); font-size: 1rem; }
-.home-stats { display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 1rem !important; color: var(--text) !important; }
+.home-stats { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 10px; margin-top: 1rem !important; padding: .55rem .8rem; border: 1px solid color-mix(in srgb, var(--accent) 20%, var(--line)); border-radius: 16px; background: linear-gradient(105deg, color-mix(in srgb, var(--cyan-soft) 72%, transparent), color-mix(in srgb, var(--surface) 60%, transparent)); box-shadow: 0 6px 18px rgba(42, 93, 137, 0.045); color: var(--text) !important; }
 .home-stats strong { font-size: 0.87rem; font-weight: 720; }
 .home-stats > span { color: var(--text-soft); }
+.home-stats-runtime { display: contents; }
+.home-stats-runtime strong { color: var(--accent-strong); font-variant-numeric: tabular-nums; }
 .home-search-block { width: min(100%, 760px); margin: 1.75rem auto 0; }
 .home-search-block .search-box { min-height: 64px; border-radius: var(--radius-md); }
 .home-search-block .search-box input { height: 62px; font-size: 1rem; }
@@ -311,6 +313,8 @@ img { display: block; max-width: 100%; }
 .resource-card-body p { margin: 4px 0 0; overflow: hidden; color: var(--text-muted); font-size: 0.72rem; text-overflow: ellipsis; white-space: nowrap; }
 .resource-card-body .resource-card-subtitle { display: -webkit-box; white-space: normal; text-overflow: clip; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
 .resource-card-variant { display: inline-block; margin-top: 7px; padding: 2px 5px; border-radius: 3px; background: var(--surface-muted); color: var(--text-soft); font-size: 0.62rem; }
+.resource-card-views { display: inline-flex; align-items: center; gap: 4px; margin-top: 8px; color: var(--text-soft); font-size: 0.61rem; font-variant-numeric: tabular-nums; line-height: 1.2; }
+.resource-card-views svg, .detail-resource-stats svg { width: 13px; height: 13px; fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.7; }
 .resource-select { position: absolute; top: 9px; right: 9px; z-index: 2; display: grid; place-items: center; width: 25px; height: 25px; padding: 0; border: 1px solid color-mix(in srgb, var(--line-strong) 80%, transparent); border-radius: 6px; background: color-mix(in srgb, var(--surface) 88%, transparent); color: transparent; opacity: 0; pointer-events: none; transition: opacity 140ms ease, background 140ms ease, border-color 140ms ease; }
 .resource-card:hover .resource-select, .resource-card:focus-within .resource-select, .resource-card.is-selected .resource-select, .gallery-shell.has-selection .resource-select { opacity: 1; pointer-events: auto; }
 .resource-select:hover, .resource-card.is-selected .resource-select { border-color: var(--accent); background: var(--accent); color: #fff; }
@@ -371,6 +375,8 @@ img { display: block; max-width: 100%; }
 .detail-info h1 { max-width: 600px; margin: 0.45rem 0 0.5rem; font-family: var(--display-font); font-size: clamp(1.75rem, 3vw, 2.65rem); line-height: 1.08; letter-spacing: -0.02em; font-kerning: normal; overflow-wrap: anywhere; }
 .detail-artist { margin: 0; color: var(--text-muted); font-size: 0.95rem; }
 .detail-subtitle { margin: 0.35rem 0 0; color: var(--text-soft); font-size: 0.78rem; }
+.detail-resource-stats { display: inline-flex; align-items: center; gap: 6px; margin-top: .7rem; padding: .35rem .6rem; border: 1px solid color-mix(in srgb, var(--accent) 24%, var(--line)); border-radius: 999px; background: color-mix(in srgb, var(--cyan-soft) 72%, transparent); box-shadow: 0 5px 15px rgba(42, 93, 137, 0.045); color: var(--text-muted); font-size: .72rem; font-variant-numeric: tabular-nums; }
+.detail-resource-stats span { color: var(--accent-strong); font-weight: 720; }
 .detail-badges { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 0.85rem; }
 .detail-badge { padding: 4px 8px; border: 1px solid var(--line); border-radius: 4px 8px 4px 8px; background: var(--surface-muted); color: var(--text-muted); font-size: 0.68rem; }
 .detail-meta { display: grid; gap: 0; margin: 1.55rem 0 0; border-top: 1px solid var(--line); }

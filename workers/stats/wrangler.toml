@@ -1,0 +1,14 @@
+name = "rhythm-archive-stats"
+main = "src/index.ts"
+compatibility_date = "2026-09-06"
+workers_dev = true
+
+[vars]
+ALLOWED_ORIGINS = "https://rhythmarchive.github.io,http://localhost:4321,http://127.0.0.1:4321"
+SITE_TIME_ZONE = "Asia/Shanghai"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "rhythm-archive-stats"
+database_id = "2baa6844-3fee-4baf-ac11-885079a7813e"
+migrations_dir = "migrations"

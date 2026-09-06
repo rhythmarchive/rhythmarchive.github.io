@@ -24,6 +24,7 @@ playwright-report/
 apps/site/.astro/
 apps/site/src/generated/
 apps/site/public/data/
+workers/stats/.wrangler/
 
 # Local configuration and secrets
 .env

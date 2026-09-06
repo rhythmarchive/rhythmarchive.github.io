@@ -2,6 +2,7 @@ import { zipSync } from "fflate";
 import { DOWNLOAD_CONCURRENCY, MAX_BATCH_BYTES, MAX_BATCH_FILES, uniqueZipFilename } from "../lib/batch";
 import { cardMediaFit, cardMediaRatio } from "../lib/media-config";
 import { compareNaturalText, normalizeSearchText } from "../lib/search";
+import { appendResourceViews, getBrowserStatsClient, updateResourceStatsInDom } from "../lib/stats-client";
 import type { PublicDownload, PublicResource } from "../lib/types";
 
 const PAGE_SIZE = 48;
@@ -181,6 +182,7 @@ async function initializeGallery(root: HTMLElement): Promise<void> {
     loadMore!.hidden = visible.length >= filtered.length;
     updateActiveFilters();
     updateBatchBar();
+    void updateResourceStatsInDom(grid!);
   }
 
   function updateActiveFilters(): void {
@@ -263,6 +265,8 @@ async function initializeGallery(root: HTMLElement): Promise<void> {
       const blob = new Blob([archive.buffer as ArrayBuffer], { type: "application/zip" });
       const url = URL.createObjectURL(blob);
       triggerDownload(url, `rhythm-archive-${root.dataset.game ?? "resources"}.zip`);
+      const statsClient = getBrowserStatsClient();
+      for (const item of items) void statsClient.trackResourceDownload(item.resource.resourceId);
       window.setTimeout(() => URL.revokeObjectURL(url), 1000);
       if (status) status.textContent = "";
     } catch (error) {
@@ -406,6 +410,7 @@ function createCard(resource: PublicResource, index: number, isSelected: boolean
     label.textContent = variant.label;
     body.append(label);
   }
+  appendResourceViews(body);
   anchor.append(media, body);
   article.append(anchor);
   return article;

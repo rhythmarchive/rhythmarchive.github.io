@@ -37,6 +37,7 @@ jobs:
           PUBLIC_SITE_ORIGIN: https://rhythmarchive.github.io
           PUBLIC_BASE_PATH: /
           PUBLIC_ROS_BASE_URL: https://rhythm-assets.cn-nb1.rains3.com
+          PUBLIC_STATS_API_URL: ${{ vars.PUBLIC_STATS_API_URL }}
       - name: Site smoke
         run: npm run site:smoke
       - name: Browse projection check
@@ -59,4 +60,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-

@@ -580,6 +580,8 @@ async function initialize(root: HTMLElement): Promise<void> {
       if (resource.download) {
         const download = document.createElement("a");
         download.className = "story-dialog-download";
+        download.dataset.statsDownload = "true";
+        download.dataset.resourceId = resource.resourceId;
         download.href = resource.download;
         download.textContent = "下载原图";
         download.target = "_blank";

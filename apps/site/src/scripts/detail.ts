@@ -1,7 +1,21 @@
 import { downloadRendition } from "./download";
+import { getBrowserStatsClient, updateResourceStatsInDom } from "../lib/stats-client";
 
 const root = document.querySelector<HTMLElement>("[data-detail-root]");
 if (root) {
+  const resourceId = root.dataset.resourceId;
+  const statsClient = getBrowserStatsClient();
+  if (resourceId) {
+    void statsClient.trackResourceDetail(resourceId).then((stats) => {
+      if (!stats) return;
+      const node = root.querySelector<HTMLElement>("[data-detail-resource-stats]");
+      const value = root.querySelector<HTMLElement>("[data-detail-resource-views]");
+      if (!node || !value) return;
+      value.textContent = stats.views.toLocaleString("zh-CN");
+      node.hidden = false;
+    });
+  }
+  void updateResourceStatsInDom(root);
   const lightbox = root.querySelector<HTMLElement>("[data-detail-lightbox]");
   const lightboxImage = root.querySelector<HTMLImageElement>("[data-lightbox-image]");
   const lightboxCloseButton = root.querySelector<HTMLButtonElement>(".detail-lightbox-close");

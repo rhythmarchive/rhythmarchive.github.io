@@ -4,10 +4,11 @@ import { formatBytes, formatImageDimensions } from "../lib/format";
 
 interface Props {
   variant: PublicVariant;
+  resourceId?: string;
   active?: boolean;
 }
 
-const { variant, active = true } = Astro.props;
+const { variant, resourceId, active = true } = Astro.props;
 const originals = variant.originals ?? (variant.original ? [variant.original] : []);
 const originalOptions = originals.map((original, index) => ({ original, index, dimensions: formatImageDimensions(original.width, original.height) }));
 const upscaled = variant.upscaled;
@@ -21,12 +22,12 @@ const upscaledDimensions = upscaled ? formatImageDimensions(upscaled.width, upsc
   </div>
   <div class="download-actions">
     {originalOptions.map(({ original, index, dimensions }) => (
-      <button class="download-button" type="button" data-download-kind="original" data-download-url={original.url} data-download-filename={original.downloadFilename}>
+      <button class="download-button" type="button" data-download-kind="original" data-resource-id={resourceId} data-download-url={original.url} data-download-filename={original.downloadFilename}>
         <span>{originals.length > 1 ? "原图 " + (index + 1) : "原图"}{dimensions ? <em class="download-dimensions">{dimensions}</em> : null}</span><small>{formatBytes(original.sizeBytes)}</small>
       </button>
     ))}
     {upscaled ? (
-      <button class="download-button" type="button" data-download-kind="upscaled" data-download-url={upscaled.url} data-download-filename={upscaled.downloadFilename}>
+      <button class="download-button" type="button" data-download-kind="upscaled" data-resource-id={resourceId} data-download-url={upscaled.url} data-download-filename={upscaled.downloadFilename}>
         <span>超分版{upscaledDimensions ? <em class="download-dimensions">{upscaledDimensions}</em> : null}</span><small>{formatBytes(upscaled.sizeBytes)}</small>
       </button>
     ) : null}

@@ -1,5 +1,6 @@
 import { rankSearchEntries } from "../lib/search";
 import { cardMediaRatio } from "../lib/media-config";
+import { appendResourceViews, updateResourceStatsInDom } from "../lib/stats-client";
 import type { PublicResource, PublicSearchEntry } from "../lib/types";
 
 const root = document.querySelector<HTMLElement>("[data-search-page]");
@@ -49,6 +50,7 @@ async function initializeSearch(root: HTMLElement): Promise<void> {
     await resourcesPromise;
     const matches = ranked.map((entry) => resourceMap.get(entry.resourceId)).filter((resource): resource is PublicResource => Boolean(resource));
     results.replaceChildren(...matches.map((resource) => createResultCard(resource)));
+    await updateResourceStatsInDom(results);
     status.textContent = `找到 ${matches.length.toLocaleString("zh-CN")} 项资源`;
   };
 
@@ -67,6 +69,7 @@ function createResultCard(resource: PublicResource): HTMLElement {
   const article = document.createElement("article");
   article.className = "resource-card";
   article.dataset.resourceCard = "";
+  article.dataset.resourceId = resource.resourceId;
   article.dataset.game = resource.game;
   article.dataset.resourceType = resource.resourceType;
   article.dataset.mediaRatio = cardMediaRatio(resource.game, resource.resourceType);
@@ -112,6 +115,7 @@ function createResultCard(resource: PublicResource): HTMLElement {
     artist.textContent = resource.artist;
     body.append(artist);
   }
+  appendResourceViews(body);
   anchor.append(media, body);
   article.append(anchor);
   return article;

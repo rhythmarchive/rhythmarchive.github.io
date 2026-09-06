@@ -76,7 +76,7 @@ const description = `${resource.displayTitle}${resource.artist ? ` · ${resource
 ---
 
 <BaseLayout title={`${resource.displayTitle} - ${GAME_CONFIG[resource.game].displayName} | Rhythm Archive`} description={description} canonicalPath={resource.route} ogImage={preview} bodyClass="detail-page">
-  <div class="page-container detail-shell" data-detail-root>
+  <div class="page-container detail-shell" data-detail-root data-resource-id={resource.resourceId}>
     <div class="detail-breadcrumb"><a href={urls.sitePath(`/${resource.game}/${primaryCategorySlug(resource.game)}/`)}>{GAME_CONFIG[resource.game].displayName}</a><span>/</span><span>{resource.categoryLabel}</span></div>
     <div class="detail-layout">
       <div class="detail-visual">
@@ -94,6 +94,10 @@ const description = `${resource.displayTitle}${resource.artist ? ` · ${resource
         <h1>{resource.displayTitle}</h1>
         {resource.artist ? <p class="detail-artist">{resource.artist}</p> : null}
         {resource.subtitle ? <p class="detail-subtitle">{resource.subtitle}</p> : null}
+        <div class="detail-resource-stats" data-detail-resource-stats hidden aria-live="polite" aria-label="浏览量">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 12s3.5-5.5 9.5-5.5 9.5 5.5 9.5 5.5-3.5 5.5-9.5 5.5S2.5 12 2.5 12Z"></path><circle cx="12" cy="12" r="2.5"></circle></svg>
+          <span data-detail-resource-views>0</span> 次浏览
+        </div>
         {resource.badges && resource.badges.length > 0 ? <div class="detail-badges" aria-label="资源标签">{resource.badges.map((badge) => <span class="detail-badge">{badge}</span>)}</div> : null}
         <dl class="detail-meta">
           <div><dt>游戏</dt><dd>{GAME_CONFIG[resource.game].displayName}</dd></div>
@@ -123,7 +127,7 @@ const description = `${resource.displayTitle}${resource.artist ? ` · ${resource
           </section>
         ) : null}
         <div class="detail-downloads">
-          {resource.variants.map((variant, index) => <DownloadActions variant={variant} active={index === activeVariantIndex} />)}
+          {resource.variants.map((variant, index) => <DownloadActions variant={variant} resourceId={resource.resourceId} active={index === activeVariantIndex} />)}
         </div>
       </aside>
     </div>

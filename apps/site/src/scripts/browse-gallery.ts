@@ -20,6 +20,7 @@ import {
 import { cardMediaFit, cardMediaRatio } from "../lib/media-config";
 import { displayFilterDifficultyLabel } from "../lib/game-config";
 import { formatArcaeaAddedVersion } from "../lib/public-display";
+import { appendResourceViews, getBrowserStatsClient, updateResourceStatsInDom } from "../lib/stats-client";
 import type { PublicDownload } from "../lib/types";
 
 type BrowseDifficultyRange = {
@@ -240,6 +241,7 @@ async function initializeBrowseGallery(root: HTMLElement): Promise<void> {
     if (empty) empty.hidden = filtered.length !== 0;
     updateActiveFilters(root, state);
     updateBatchBar();
+    void updateResourceStatsInDom(grid!);
   }
 
   function updateBatchBar(): void {
@@ -288,6 +290,8 @@ async function initializeBrowseGallery(root: HTMLElement): Promise<void> {
       const archive = zipSync(entries, { level: 0 });
       const url = URL.createObjectURL(new Blob([archive.buffer as ArrayBuffer], { type: "application/zip" }));
       triggerDownload(url, "rhythm-archive-" + game + ".zip");
+      const statsClient = getBrowserStatsClient();
+      for (const item of entriesToDownload) void statsClient.trackResourceDownload(item.resource.resourceId);
       window.setTimeout(() => URL.revokeObjectURL(url), 1000);
       if (status) status.textContent = "";
     } catch (error) {
@@ -551,6 +555,7 @@ function createCard(item: BrowseGalleryItem, index: number, isSelected: boolean)
     label.textContent = value;
     body.append(label);
   }
+  appendResourceViews(body);
   anchor.append(media, body);
   article.append(anchor);
   return article;

@@ -1,9 +1,13 @@
+import { getBrowserStatsClient } from "../lib/stats-client";
+
 export async function downloadRendition(button: HTMLButtonElement): Promise<void> {
   const url = button.dataset.downloadUrl;
   const filename = button.dataset.downloadFilename;
   const panel = button.closest<HTMLElement>("[data-download-panel]");
   const status = panel?.querySelector<HTMLElement>("[data-download-status]");
   if (!url || !filename) return;
+  const resourceId = button.dataset.resourceId ?? button.closest<HTMLElement>("[data-detail-root]")?.dataset.resourceId;
+  if (resourceId) void getBrowserStatsClient().trackResourceDownload(resourceId);
 
   const originalLabel = button.innerHTML;
   button.disabled = true;

@@ -29,6 +29,9 @@ const arcaeaApkManifestUrl = `${ROS_BASE_URL}/apk/arcaea/latest.json`;
       <p>收录音游曲绘、立绘、CG 等图片资源</p>
       <p class="home-stats" aria-label={`${formatCount(games.length)} 款游戏，${formatCount(resourceCount)} 项资源`}>
         <strong>{formatCount(games.length)} 款游戏</strong><span aria-hidden="true">·</span><strong>{formatCount(resourceCount)} 项资源</strong>
+        <span class="home-stats-runtime" data-site-stats hidden aria-live="polite">
+          <span aria-hidden="true">·</span><strong><span data-site-total-visits>0</span> 次来访</strong><strong>今日 <span data-site-today-visits>0</span></strong>
+        </span>
       </p>
       <div class="home-search-block">
         <SearchBox label="搜索音游图片资源" />

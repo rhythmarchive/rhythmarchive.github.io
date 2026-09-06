@@ -52,6 +52,7 @@ const variantLabel = resource.variants.find((variant) => variant.label !== "默�
       {resource.subtitle ? <p class="resource-card-subtitle">{resource.subtitle}</p> : null}
       {(resource.badges ?? []).map((badge) => <span class="resource-card-variant">{badge}</span>)}
       {resource.badges?.length ? null : (variantLabel ? <span class="resource-card-variant">{variantLabel}</span> : null)}
+      <span class="resource-card-views" data-resource-views hidden aria-label="浏览量"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 12s3.5-5.5 9.5-5.5 9.5 5.5 9.5 5.5-3.5 5.5-9.5 5.5S2.5 12 2.5 12Z"></path><circle cx="12" cy="12" r="2.5"></circle></svg><span data-resource-views-value>0</span></span>
     </div>
   </a>
 </article>
