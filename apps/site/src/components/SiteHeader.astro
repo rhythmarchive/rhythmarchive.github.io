@@ -8,14 +8,32 @@ import { createUrlHelpers } from "../lib/url";
 
 const urls = createUrlHelpers({ basePath: BASE_PATH, origin: SITE_ORIGIN, rosBaseUrl: ROS_BASE_URL });
 const games = getPublicNavigationGames();
+const normalizePath = (pathname: string): string => {
+  const normalized = pathname.replace(/\/+$/u, "");
+  return normalized || "/";
+};
+const currentPath = normalizePath(Astro.url.pathname);
+const isWithin = (pathname: string): boolean => {
+  const target = normalizePath(pathname);
+  return currentPath === target || currentPath.startsWith(`${target}/`);
+};
+const isHome = currentPath === normalizePath(urls.sitePath("/"));
+const isSearch = isWithin(urls.sitePath("/search/"));
+const isFeedback = isWithin(urls.sitePath("/feedback/"));
+const isGameLibrary = isWithin(urls.sitePath("/games/"))
+  || isWithin(urls.sitePath("/r/"))
+  || games.some((game) => isWithin(urls.sitePath(`/${game.slug}/`)));
 ---
 
 <header class="site-header">
   <div class="site-header-inner">
-    <BrandMark />
+    <div class="site-header-brand">
+      <BrandMark />
+    </div>
     <nav class="site-nav" aria-label="主要导航">
-      <details class="nav-game-library">
-        <summary class="nav-library-trigger">游戏库<span class="nav-library-chevron" aria-hidden="true">⌄</span></summary>
+      <a class:list={{ "is-active": isHome }} href={urls.sitePath("/")} aria-current={isHome ? "page" : undefined}>首页</a>
+      <details class:list={{ "nav-game-library": true, "is-active": isGameLibrary }}>
+        <summary class:list={{ "nav-library-trigger": true, "is-active": isGameLibrary }}>游戏库<span class="nav-library-chevron" aria-hidden="true">⌄</span></summary>
         <div class="nav-library-popover">
           <div class="nav-library-heading">
             <strong>游戏库</strong>
@@ -31,8 +49,11 @@ const games = getPublicNavigationGames();
           </div>
         </div>
       </details>
-      <a class="nav-feedback" href={urls.sitePath("/feedback/")}>反馈</a>
-      <a class="nav-search" href={urls.sitePath("/search/")} aria-label="搜索">
+      <a class:list={{ "nav-resources": true, "is-active": isSearch }} href={urls.sitePath("/search/")} aria-current={isSearch ? "page" : undefined}>资源库</a>
+      <a class:list={{ "nav-feedback": true, "is-active": isFeedback }} href={urls.sitePath("/feedback/")} aria-current={isFeedback ? "page" : undefined}>反馈</a>
+    </nav>
+    <div class="site-header-actions">
+      <a class="nav-search" href={urls.sitePath("/search/")} aria-label="搜索资源">
         <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.3"/><path d="m16 16 4.5 4.5"/></svg>
       </a>
       <button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题" title="切换主题">
@@ -40,7 +61,7 @@ const games = getPublicNavigationGames();
         <svg class="theme-icon theme-icon-light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
         <svg class="theme-icon theme-icon-dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 15.5A8.5 8.5 0 0 1 8.5 4 8.5 8.5 0 1 0 20 15.5Z"/></svg>
       </button>
-    </nav>
+    </div>
   </div>
 </header>
 

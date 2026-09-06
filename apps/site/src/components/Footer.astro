@@ -1,11 +1,9 @@
 ---
-import { getPublicNavigationGames } from "../lib/site-data";
-import { BASE_PATH, BILIBILI_URL, ROS_BASE_URL, SITE_ORIGIN } from "../lib/site-config";
+import { BASE_PATH, BILIBILI_URL, GITHUB_REPOSITORY_URL, ROS_BASE_URL, SITE_ORIGIN } from "../lib/site-config";
 import { createUrlHelpers } from "../lib/url";
-import { primaryCategorySlug } from "../lib/game-config";
 
 const urls = createUrlHelpers({ basePath: BASE_PATH, origin: SITE_ORIGIN, rosBaseUrl: ROS_BASE_URL });
-const games = getPublicNavigationGames();
+const currentYear = new Date().getFullYear();
 ---
 
 <footer class="site-footer">
@@ -15,10 +13,28 @@ const games = getPublicNavigationGames();
       <span>把节奏游戏里的图像，整理成容易找到的收藏。</span>
     </div>
     <nav class="site-footer-links" aria-label="页脚导航">
+      <a href={urls.sitePath("/")}>首页</a>
       <a href={urls.sitePath("/games/")}>游戏库</a>
-      {games.map((game) => <a href={urls.sitePath(`/${game.slug}/${primaryCategorySlug(game.slug)}/`)}>{game.displayName}</a>)}
-      <a href={urls.sitePath("/feedback/")}>意见反馈</a>
-      <a href={BILIBILI_URL} target="_blank" rel="noopener noreferrer">B站主页</a>
+      <a href={urls.sitePath("/search/")}>资源库</a>
+      <a href={urls.sitePath("/feedback/")}>反馈</a>
     </nav>
+    <div class="site-footer-meta">
+      <div class="site-footer-social" aria-label="社交链接">
+        <a class="site-footer-social-link" href={GITHUB_REPOSITORY_URL} target="_blank" rel="noopener noreferrer" aria-label="GitHub 项目仓库" title="GitHub 项目仓库">
+          <svg class="social-icon social-icon-github" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5a9.5 9.5 0 0 0-3 18.5c.5.1.7-.2.7-.5v-1.8c-2.8.6-3.4-1.2-3.4-1.2-.5-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.6 1 1.6 1 .9 1.6 2.4 1.1 3 .9.1-.7.4-1.1.7-1.4-2.2-.3-4.5-1.1-4.5-4.9 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.7 0 0 .8-.3 2.8 1a9.6 9.6 0 0 1 5 0c1.9-1.3 2.8-1 2.8-1 .5 1.4.2 2.4.1 2.7.6.7 1 1.6 1 2.7 0 3.8-2.3 4.6-4.5 4.9.4.3.7 1 .7 1.9v2.8c0 .3.2.6.7.5A9.5 9.5 0 0 0 12 2.5Z"/></svg>
+        </a>
+        <a class="site-footer-social-link" href={BILIBILI_URL} target="_blank" rel="noopener noreferrer" aria-label="Bilibili 主页" title="Bilibili 主页">
+          <svg class="social-icon social-icon-bilibili" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M8 5 6 2.8M16 5l2-2.2"/>
+            <rect x="3" y="5" width="18" height="15" rx="3"/>
+            <path d="M8 11v3M12 11v3M16 11v3"/>
+          </svg>
+        </a>
+      </div>
+      <div class="site-footer-copy">
+        <span>© {currentYear} Rhythm Archive</span>
+        <span>Made with <span aria-hidden="true">♥</span> for rhythm games.</span>
+      </div>
+    </div>
   </div>
 </footer>

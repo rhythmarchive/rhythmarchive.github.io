@@ -12,7 +12,7 @@ import { formatContentVersion, formatGameUpdatedAt, isRecentlyUpdated, sortPubli
 import { rankRelatedResources } from "../src/lib/related.js";
 import { buildSearchQuickLinks } from "../src/lib/search-quick-links.js";
 import { getCategoryBrowseConfig } from "../src/lib/category-browse.js";
-import { GISCUS_CONFIG, GITHUB_DISCUSSIONS_URL } from "../src/lib/site-config.js";
+import { GISCUS_CONFIG, GITHUB_DISCUSSIONS_URL, GITHUB_REPOSITORY_URL } from "../src/lib/site-config.js";
 import { compareNaturalText, rankSearchEntries } from "../src/lib/search.js";
 import { createUrlHelpers } from "../src/lib/url.js";
 import { getPublicNavigationGames, getSiteData, loadCategoryBrowseProjections, loadFormalCatalog } from "../src/lib/site-data.js";
@@ -210,6 +210,7 @@ test("formal Giscus config is centralized and has a public Discussions fallback 
   assert.equal(GISCUS_CONFIG.repo, "rhythmarchive/rhythmarchive.github.io");
   assert.equal(GISCUS_CONFIG.repoId, "R_kgDOT4hyIQ");
   assert.equal(GISCUS_CONFIG.categoryId, "DIC_kwDOT4hyIc4DDbnK");
+  assert.equal(GITHUB_REPOSITORY_URL, "https://github.com/rhythmarchive/rhythmarchive.github.io");
   assert.match(GITHUB_DISCUSSIONS_URL, /github\.com\/rhythmarchive\/rhythmarchive\.github\.io\/discussions/u);
 });
 
@@ -364,16 +365,68 @@ test("games library covers every public game with shared cards and two sort mode
   assert.match(card, /formatGameUpdatedAt/u);
 });
 
-test("header keeps a single extensible game-library entry on mobile and desktop", () => {
+test("header uses a centered three-column primary nav and retains the extensible game-library entry", () => {
   const header = fs.readFileSync(path.join(siteRoot, "src", "components", "SiteHeader.astro"), "utf8");
   const styles = fs.readFileSync(path.join(siteRoot, "src", "styles", "global.css"), "utf8");
+  assert.match(header, /<div class="site-header-brand">[\s\S]*<BrandMark \/>/u);
+  assert.match(header, /<nav class="site-nav"/u);
+  assert.match(header, /<div class="site-header-actions">/u);
+  assert.match(header, />首页<\/a>/u);
   assert.match(header, /nav-game-library/u);
   assert.match(header, /getPublicNavigationGames\(\)/u);
   assert.match(header, /查看全部游戏/u);
+  assert.match(header, /urls\.sitePath\("\/games\/"\)/u);
+  assert.match(header, />资源库<\/a>/u);
+  assert.match(header, />反馈<\/a>/u);
+  assert.match(header, /Astro\.url\.pathname/u);
+  assert.match(header, /isGameLibrary/u);
+  assert.match(header, /aria-current=/u);
   assert.doesNotMatch(header, /GAME_CONFIG|Object\.values\(GAME_CONFIG\)/u);
   assert.match(styles, /\.nav-library-popover/u);
   assert.match(styles, /\.nav-game-list/u);
+  assert.match(styles, /\.site-header-inner \{ display: grid; grid-template-columns: minmax\(0, 1fr\) auto minmax\(0, 1fr\);/u);
+  assert.match(styles, /\.site-header-actions/u);
+  assert.match(styles, /\.site-nav > a\.is-active/u);
   assert.doesNotMatch(styles, /site-nav > a:not\(\.nav-search\)/u);
+});
+
+test("footer keeps first-level links and accessible external social/copyright regions", () => {
+  const footer = fs.readFileSync(path.join(siteRoot, "src", "components", "Footer.astro"), "utf8");
+  const styles = fs.readFileSync(path.join(siteRoot, "src", "styles", "global.css"), "utf8");
+  assert.match(footer, /Rhythm Archive/u);
+  assert.match(footer, /把节奏游戏里的图像，整理成容易找到的收藏。/u);
+  assert.match(footer, />首页<\/a>/u);
+  assert.match(footer, />游戏库<\/a>/u);
+  assert.match(footer, />资源库<\/a>/u);
+  assert.match(footer, />反馈<\/a>/u);
+  assert.match(footer, /GITHUB_REPOSITORY_URL/u);
+  assert.match(footer, /BILIBILI_URL/u);
+  assert.match(footer, /social-icon-github/u);
+  assert.match(footer, /social-icon-bilibili/u);
+  assert.match(footer, /aria-label="GitHub 项目仓库"/u);
+  assert.match(footer, /aria-label="Bilibili 主页"/u);
+  assert.equal((footer.match(/target="_blank" rel="noopener noreferrer"/gu) ?? []).length, 2);
+  assert.match(footer, /new Date\(\)\.getFullYear\(\)/u);
+  assert.match(footer, /© \{currentYear\} Rhythm Archive/u);
+  assert.match(footer, /Made with[\s\S]*for rhythm games\./u);
+  assert.doesNotMatch(footer, /getPublicNavigationGames|primaryCategorySlug|B站主页/u);
+  assert.match(styles, /\.site-footer-inner \{ display: grid; grid-template-columns:/u);
+  assert.match(styles, /\.site-footer-meta/u);
+});
+
+test("shared visual tokens keep rounded cards, restrained shadows, and theme-safe background", () => {
+  const styles = fs.readFileSync(path.join(siteRoot, "src", "styles", "global.css"), "utf8");
+  assert.match(styles, /--radius-sm: 9px;/u);
+  assert.match(styles, /--radius-md: 14px;/u);
+  assert.match(styles, /--radius-lg: 20px;/u);
+  assert.match(styles, /--shadow: 0 8px 24px rgba\(42, 93, 137, 0\.055\);/u);
+  assert.match(styles, /--shadow-hover: 0 14px 34px rgba\(42, 93, 137, 0\.10\);/u);
+  assert.match(styles, /background: radial-gradient\(ellipse 72% 32rem at 50% -10%/u);
+  assert.doesNotMatch(styles, /body::before/u);
+  assert.match(styles, /\.resource-card \{[\s\S]*border-radius: var\(--radius-md\);[\s\S]*box-shadow: var\(--shadow\)/u);
+  assert.match(styles, /\.resource-card:hover[\s\S]*translateY\(-2px\)/u);
+  assert.match(styles, /\.nav-library-popover \{[\s\S]*border-radius: var\(--radius-lg\);[\s\S]*box-shadow: var\(--shadow-hover\)/u);
+  assert.match(styles, /\.site-header-brand \.brand-wordmark \{ display: none; \}/u);
 });
 
 test("Story Atlas UX contract keeps authored maps, direct dialog reading and player-facing copy", () => {
@@ -557,12 +610,13 @@ test("game roots redirect to primary category pages while category navigation ke
 test("internal game entries link directly to each game's primary category", () => {
   const sources = [
     fs.readFileSync(path.join(siteRoot, "src", "components", "GameCard.astro"), "utf8"),
-    fs.readFileSync(path.join(siteRoot, "src", "components", "SiteHeader.astro"), "utf8"),
-    fs.readFileSync(path.join(siteRoot, "src", "components", "Footer.astro"), "utf8"),
     fs.readFileSync(path.join(siteRoot, "src", "pages", "[game]", "[category]", "index.astro"), "utf8"),
     fs.readFileSync(path.join(siteRoot, "src", "pages", "r", "[id]", "index.astro"), "utf8"),
   ];
+  const footer = fs.readFileSync(path.join(siteRoot, "src", "components", "Footer.astro"), "utf8");
   assert.ok(sources.every((source) => source.includes("primaryCategorySlug")));
+  assert.match(footer, /urls\.sitePath\("\/games\/"\)/u);
+  assert.doesNotMatch(footer, /getPublicNavigationGames|primaryCategorySlug/u);
   assert.ok(sources.every((source) => !/sitePath\(`\/\$\{(?:game\.slug|resource\.game)\}\/`\)/u.test(source)));
   const quickLinks = buildSearchQuickLinks({ games: getPublicNavigationGames() });
   assert.ok(quickLinks.filter((entry) => ["Arcaea", "Phigros", "Rizline", "In Falsus", "Rotaeno"].includes(entry.label)).every((entry) => entry.href.endsWith("/jacket/")));

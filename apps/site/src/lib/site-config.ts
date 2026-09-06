@@ -6,8 +6,9 @@ export const ROS_BASE_URL = stripTrailingSlash(runtimeEnv.PUBLIC_ROS_BASE_URL ||
 export const PUBLIC_STATS_API_URL = optionalUrl(runtimeEnv.PUBLIC_STATS_API_URL);
 
 export const BILIBILI_URL = "https://space.bilibili.com/385607044";
-export const GITHUB_DISCUSSIONS_URL = "https://github.com/rhythmarchive/rhythmarchive.github.io/discussions";
-export const GITHUB_FEEDBACK_CATEGORY_URL = "https://github.com/rhythmarchive/rhythmarchive.github.io/discussions/categories/问题反馈-提出建议";
+export const GITHUB_REPOSITORY_URL = "https://github.com/rhythmarchive/rhythmarchive.github.io";
+export const GITHUB_DISCUSSIONS_URL = `${GITHUB_REPOSITORY_URL}/discussions`;
+export const GITHUB_FEEDBACK_CATEGORY_URL = `${GITHUB_DISCUSSIONS_URL}/categories/问题反馈-提出建议`;
 
 export const GISCUS_CONFIG = {
   repo: "rhythmarchive/rhythmarchive.github.io",
