@@ -12,7 +12,7 @@ async function loadManifest(cardElement: HTMLElement, stateElement: HTMLElement,
     if (!response.ok) throw new Error("manifest unavailable");
     const manifest = parsePublicArcaeaApkManifest(await response.json());
     if (!manifest) throw new Error("manifest invalid");
-    renderManifest(cardElement, stateElement, manifest.latest, manifest.previous);
+    renderManifest(cardElement, stateElement, manifest.latest);
   } catch {
     stateElement.replaceChildren();
     const message = document.createElement("p");
@@ -27,7 +27,7 @@ async function loadManifest(cardElement: HTMLElement, stateElement: HTMLElement,
   }
 }
 
-function renderManifest(cardElement: HTMLElement, stateElement: HTMLElement, latest: PublicArcaeaApkEntry, previous: PublicArcaeaApkEntry | null): void {
+function renderManifest(cardElement: HTMLElement, stateElement: HTMLElement, latest: PublicArcaeaApkEntry): void {
   cardElement.classList.add("is-ready");
   stateElement.replaceChildren();
 
@@ -58,8 +58,7 @@ function renderManifest(cardElement: HTMLElement, stateElement: HTMLElement, lat
   if (latest.downloads.official) actions.append(createDownloadLink(latest.downloads.official, latest.fileName, "button apk-official-button", "官方下载链接"));
   actions.append(createDownloadLink(latest.downloads.github, latest.fileName, "button apk-download-button", "下载APK"));
 
-  stateElement.append(main, actions, createDigest(latest.sha256));
-  if (previous) stateElement.append(createPreviousVersion(previous));
+  stateElement.append(main, actions);
 }
 
 function createMetaItem(label: string, value: string): HTMLDivElement {
@@ -70,53 +69,6 @@ function createMetaItem(label: string, value: string): HTMLDivElement {
   description.textContent = value;
   item.append(term, description);
   return item;
-}
-
-function createDigest(sha256: string): HTMLDetailsElement {
-  const details = document.createElement("details");
-  details.className = "apk-digest";
-  const summary = document.createElement("summary");
-  summary.textContent = "校验信息";
-  const row = document.createElement("div");
-  row.className = "apk-digest-row";
-  const label = document.createElement("span");
-  label.textContent = "SHA-256";
-  const value = document.createElement("code");
-  value.textContent = sha256;
-  const copy = document.createElement("button");
-  copy.className = "text-button";
-  copy.type = "button";
-  copy.textContent = "复制";
-  copy.addEventListener("click", async () => {
-    try {
-      await navigator.clipboard.writeText(sha256);
-      copy.textContent = "已复制";
-      window.setTimeout(() => { copy.textContent = "复制"; }, 1600);
-    } catch {
-      copy.textContent = "复制失败";
-    }
-  });
-  row.append(label, value, copy);
-  details.append(summary, row);
-  return details;
-}
-
-function createPreviousVersion(previous: PublicArcaeaApkEntry): HTMLDetailsElement {
-  const details = document.createElement("details");
-  details.className = "apk-previous";
-  const summary = document.createElement("summary");
-  summary.textContent = `上一版本 ${previous.version}`;
-  const row = document.createElement("div");
-  row.className = "apk-previous-row";
-  const metadata = document.createElement("span");
-  metadata.textContent = `${formatPublicApkBytes(previous.fileSize)} · ${formatDate(previous.publishedAt)}`;
-  const actions = document.createElement("span");
-  actions.className = "apk-previous-actions";
-  actions.append(createDownloadLink(previous.downloads.github, previous.fileName, "", "下载APK"));
-  if (previous.downloads.official) actions.append(" · ", createDownloadLink(previous.downloads.official, previous.fileName, "", "官方下载链接"));
-  row.append(metadata, actions);
-  details.append(summary, row);
-  return details;
 }
 
 function createDownloadLink(href: string, fileName: string, className: string, label: string): HTMLAnchorElement {
