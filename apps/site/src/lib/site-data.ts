@@ -147,7 +147,7 @@ function enrichFormalBrowseMetadata(siteData: PublicSiteData, browse: FormalBrow
     if (resource.game === "paradigm-reboot" && updateDate) metadata.updateDate = updateDate;
     const formalCharts = chartsByResource.get(resource.resourceId);
     const charts = resource.game === "phigros" && formalCharts
-      ? mergePhigrosCharts(resource.charts ?? [], formalCharts)
+      ? mergePhigrosCharts(resource.charts ?? [], formalCharts, resource.metadata.charter)
       : formalCharts ?? resource.charts ?? (resource.resourceType === "jacket" ? [] : undefined);
     const availableCharts = (charts ?? [])
       .filter((chart) => chart.available !== false && chart.status !== "error" && chart.status !== "legacy");
@@ -257,13 +257,30 @@ function chartKey(chart: PublicChart): string {
   return [chart.difficulty, chart.level ?? "", chart.notes ?? "", chart.constant ?? "", chart.title ?? "", chart.artist ?? "", chart.noter ?? "", chart.source ?? "", chart.status ?? ""].join("|");
 }
 
-function mergePhigrosCharts(base: PublicChart[], overlay: PublicChart[]): PublicChart[] {
+function mergePhigrosCharts(base: PublicChart[], overlay: PublicChart[], charterValue: unknown): PublicChart[] {
   const merged = new Map<string, PublicChart>();
   for (const chart of base) merged.set(chart.difficulty, chart);
   for (const chart of overlay) {
     merged.set(chart.difficulty, { ...(merged.get(chart.difficulty) ?? {}), ...chart });
   }
-  return [...merged.values()];
+  const charters = parsePhigrosCharters(charterValue);
+  return [...merged.values()].map((chart) => {
+    const noter = charters.get(chart.difficulty);
+    return noter && !chart.noter ? { ...chart, noter } : chart;
+  });
+}
+
+function parsePhigrosCharters(value: unknown): Map<string, string> {
+  if (typeof value !== "string") return new Map();
+  const charters = new Map<string, string>();
+  for (const part of value.split(/\s*\/\s*(?=(?:EZ|HD|IN|AT|Legacy)\s*:)/u)) {
+    const separator = part.indexOf(":");
+    if (separator <= 0) continue;
+    const difficulty = part.slice(0, separator).trim();
+    const noter = part.slice(separator + 1).trim();
+    if (noter) charters.set(difficulty, noter);
+  }
+  return charters;
 }
 
 export function loadCategoryBrowseProjections(): CategoryBrowseProjections {

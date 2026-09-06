@@ -45,6 +45,8 @@ test("jacket details expose the unified chart field and user-facing identity met
   }
   const infalsusJacket = siteData.resources.find((resource) => resource.game === "infalsus" && resource.resourceType === "jacket");
   assert.deepEqual(infalsusJacket?.charts?.map((chart) => [chart.difficulty, chart.level]), [["MIN", "1"], ["EVO", "5"], ["ULT", "9"], ["FBD", "11"]]);
+  const phigrosJacket = siteData.resources.find((resource) => resource.game === "phigros" && resource.resourceType === "jacket" && resource.metadata.songName === "000 -Ain Soph Aur-");
+  assert.deepEqual(phigrosJacket?.charts?.map((chart) => [chart.difficulty, chart.level, chart.noter]), [["EZ", "2.5", "Magazet"], ["HD", "8.4", "Magazet"], ["IN", "14.4", "啊0哒0咔0哟 & Dilated"]]);
   const rotaenoJacket = siteData.resources.find((resource) => resource.game === "rotaeno" && resource.resourceType === "jacket" && resource.metadata.songId === "abstruse-dilemma");
   assert.deepEqual(rotaenoJacket?.charts?.map((chart) => [chart.difficulty, chart.level, chart.constant]), [["I", "3", "3.0"], ["II", "7", "7.0"], ["III", "12", "12.3"], ["IV", "14", "14.0"]]);
   assert.ok(rotaenoJacket?.charts?.every((chart) => chart.status === "available"));

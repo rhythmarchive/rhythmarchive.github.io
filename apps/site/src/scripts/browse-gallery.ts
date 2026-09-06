@@ -22,6 +22,17 @@ import { displayFilterDifficultyLabel } from "../lib/game-config";
 import { formatArcaeaAddedVersion } from "../lib/public-display";
 import type { PublicDownload } from "../lib/types";
 
+type BrowseDifficultyRange = {
+  root: HTMLElement;
+  min: number;
+  max: number;
+  step: number;
+  minInput: HTMLInputElement;
+  maxInput: HTMLInputElement;
+  minSlider: HTMLInputElement;
+  maxSlider: HTMLInputElement;
+};
+
 const root = document.querySelector<HTMLElement>("[data-browse-gallery-root]");
 if (root) void initializeBrowseGallery(root);
 
@@ -36,6 +47,8 @@ async function initializeBrowseGallery(root: HTMLElement): Promise<void> {
   const reset = root.querySelector<HTMLButtonElement>("[data-gallery-reset]");
   const emptyReset = root.querySelector<HTMLButtonElement>("[data-browse-empty-reset]");
   const activeChips = root.querySelector<HTMLElement>("[data-browse-active-chips]");
+  const levelSelect = root.querySelector<HTMLSelectElement>("[data-browse-level]");
+  const difficultyRange = createBrowseDifficultyRange(root);
   if (!grid || !loadMore || !count || !search || !sort) return;
 
   const game: BrowseGame = root.dataset.game === "infalsus" ? "infalsus" : root.dataset.game === "rizline" ? "rizline" : root.dataset.game === "phigros" ? "phigros" : "arcaea";
@@ -62,6 +75,13 @@ async function initializeBrowseGallery(root: HTMLElement): Promise<void> {
 
   search.addEventListener("input", () => commitState("replace"));
   sort.addEventListener("change", () => commitState("push"));
+  levelSelect?.addEventListener("change", () => commitState("push"));
+  if (difficultyRange) {
+    difficultyRange.minInput.addEventListener("change", () => { syncBrowseDifficultyRange(difficultyRange); commitState("replace"); });
+    difficultyRange.maxInput.addEventListener("change", () => { syncBrowseDifficultyRange(difficultyRange); commitState("replace"); });
+    difficultyRange.minSlider.addEventListener("input", () => { syncBrowseDifficultyRange(difficultyRange, Number(difficultyRange.minSlider.value), Number(difficultyRange.maxSlider.value)); commitState("replace"); });
+    difficultyRange.maxSlider.addEventListener("input", () => { syncBrowseDifficultyRange(difficultyRange, Number(difficultyRange.minSlider.value), Number(difficultyRange.maxSlider.value)); commitState("replace"); });
+  }
   root.querySelectorAll<HTMLInputElement>("[data-browse-filter-check]").forEach((input) => input.addEventListener("change", () => commitState("push")));
   root.querySelectorAll<HTMLButtonElement>("[data-browse-filter-toggle]").forEach((button) => button.addEventListener("click", () => {
     button.setAttribute("aria-pressed", String(button.getAttribute("aria-pressed") !== "true"));
@@ -81,6 +101,10 @@ async function initializeBrowseGallery(root: HTMLElement): Promise<void> {
       if (ai) ai.checked = false;
     } else if (name === "chart") {
       root.querySelector<HTMLButtonElement>(`[data-browse-filter-toggle="${name}"][data-value="${CSS.escape(value ?? "")}"]`)?.setAttribute("aria-pressed", "false");
+    } else if (name === "level") {
+      if (levelSelect) levelSelect.value = "";
+    } else if (name === "difficulty") {
+      if (difficultyRange) syncBrowseDifficultyRange(difficultyRange);
     } else {
       const input = [...root.querySelectorAll<HTMLInputElement>(`[data-browse-filter-check="${name}"]`)].find((candidate) => checkboxValues(candidate).includes(value ?? ""));
       if (input) {
@@ -138,7 +162,18 @@ async function initializeBrowseGallery(root: HTMLElement): Promise<void> {
         ai: ai?.checked ?? false,
       };
     }
-    if (game === "phigros") return { game, q: search!.value, sort: sort!.value as Extract<BrowseUrlState, { game: "phigros" }>["sort"], pack: selectedValues(root, "pack"), chart: selectedValues(root, "chart") as Extract<BrowseUrlState, { game: "phigros" }>["chart"], level: selectedValues(root, "level") };
+    if (game === "phigros") {
+      const difficulty = difficultyRange ? readBrowseDifficultyRange(difficultyRange) : undefined;
+      return {
+        game,
+        q: search!.value,
+        sort: sort!.value as Extract<BrowseUrlState, { game: "phigros" }>["sort"],
+        pack: selectedValues(root, "pack"),
+        chart: selectedValues(root, "chart") as Extract<BrowseUrlState, { game: "phigros" }>["chart"],
+        level: levelSelect?.value ? [levelSelect.value] : [],
+        ...(difficulty ? { difficulty } : {}),
+      };
+    }
     if (game === "infalsus") return { game, q: search!.value, sort: sort!.value as Extract<BrowseUrlState, { game: "infalsus" }>["sort"], chart: selectedValues(root, "chart") as Extract<BrowseUrlState, { game: "infalsus" }>["chart"] };
     return {
       game,
@@ -181,7 +216,8 @@ async function initializeBrowseGallery(root: HTMLElement): Promise<void> {
       if (ai) ai.checked = nextState.ai;
     } else if (nextState.game === "phigros") {
       setSelectedValues(root, "pack", nextState.pack);
-      setSelectedValues(root, "level", nextState.level);
+      if (levelSelect) levelSelect.value = nextState.level[0] ?? "";
+      if (difficultyRange) syncBrowseDifficultyRange(difficultyRange, nextState.difficulty?.min ?? difficultyRange.min, nextState.difficulty?.max ?? difficultyRange.max);
     } else if (nextState.game === "rizline") {
       setSelectedValues(root, "disc", nextState.disc);
       setSelectedValues(root, "series", nextState.series);
@@ -255,6 +291,45 @@ async function initializeBrowseGallery(root: HTMLElement): Promise<void> {
   }
 }
 
+function createBrowseDifficultyRange(root: HTMLElement): BrowseDifficultyRange | undefined {
+  const rangeRoot = root.querySelector<HTMLElement>('[data-browse-range="difficulty"]');
+  const minInput = rangeRoot?.querySelector<HTMLInputElement>("[data-browse-range-min-input]");
+  const maxInput = rangeRoot?.querySelector<HTMLInputElement>("[data-browse-range-max-input]");
+  const minSlider = rangeRoot?.querySelector<HTMLInputElement>("[data-browse-range-min-slider]");
+  const maxSlider = rangeRoot?.querySelector<HTMLInputElement>("[data-browse-range-max-slider]");
+  const min = Number(rangeRoot?.dataset.rangeMin);
+  const max = Number(rangeRoot?.dataset.rangeMax);
+  const step = Number(rangeRoot?.dataset.rangeStep);
+  if (!rangeRoot || !minInput || !maxInput || !minSlider || !maxSlider || !Number.isFinite(min) || !Number.isFinite(max) || !Number.isFinite(step)) return undefined;
+  return { root: rangeRoot, min, max, step, minInput, maxInput, minSlider, maxSlider };
+}
+
+function syncBrowseDifficultyRange(range: BrowseDifficultyRange, requestedMin = Number(range.minInput.value), requestedMax = Number(range.maxInput.value)): void {
+  const minValue = Number.isFinite(requestedMin) ? requestedMin : range.min;
+  const maxValue = Number.isFinite(requestedMax) ? requestedMax : range.max;
+  const min = Math.max(range.min, Math.min(Math.min(minValue, maxValue), range.max));
+  const max = Math.min(range.max, Math.max(Math.max(minValue, maxValue), range.min));
+  range.minInput.value = formatBrowseDifficulty(min);
+  range.maxInput.value = formatBrowseDifficulty(max);
+  range.minSlider.value = String(min);
+  range.maxSlider.value = String(max);
+  const span = range.max - range.min || 1;
+  range.root.style.setProperty("--range-start", `${((min - range.min) / span) * 100}%`);
+  range.root.style.setProperty("--range-end", `${((max - range.min) / span) * 100}%`);
+}
+
+function readBrowseDifficultyRange(range: BrowseDifficultyRange): { min: number; max: number } | undefined {
+  syncBrowseDifficultyRange(range);
+  const min = Number(range.minInput.value);
+  const max = Number(range.maxInput.value);
+  if (min <= range.min && max >= range.max) return undefined;
+  return { min, max };
+}
+
+function formatBrowseDifficulty(value: number): string {
+  return value.toFixed(1);
+}
+
 function populateFacetOptions(data: BrowseGalleryData, root: HTMLElement): void {
   const options = getBrowseFacetOptions(data);
   const setToggles = (name: string, values: string[], formatValue: (value: string) => string = (value) => value) => {
@@ -299,9 +374,7 @@ function populateFacetOptions(data: BrowseGalleryData, root: HTMLElement): void 
   }
   if (data.game === "phigros") {
     const phigrosOptions = options as PhigrosFacetOptions;
-    setToggles("chart", phigrosOptions.charts);
     setCheckboxes("pack", phigrosOptions.packs);
-    setCheckboxes("level", phigrosOptions.levels);
     return;
   }
   if (data.game === "infalsus") setToggles("chart", options.charts);
@@ -365,6 +438,7 @@ function updateActiveFilters(root: HTMLElement, state: BrowseUrlState): void {
     for (const value of state.pack) entries.push({ name: "pack", value, label: value });
     for (const value of state.chart) entries.push({ name: "chart", value, label: value });
     for (const value of state.level) entries.push({ name: "level", value, label: value });
+    if (state.difficulty) entries.push({ name: "difficulty", value: "range", label: `难度 ${formatBrowseDifficulty(state.difficulty.min)}～${formatBrowseDifficulty(state.difficulty.max)}` });
   } else if (state.game === "rizline") {
     for (const value of state.chart) entries.push({ name: "chart", value, label: value });
     for (const value of state.disc) entries.push({ name: "disc", value, label: value });

@@ -23,7 +23,7 @@ const { resource } = Astro.props;
 const firstVariant = resource.variants.find((variant) => variant.preferred) ?? resource.variants[0];
 const activeVariantIndex = Math.max(0, firstVariant ? resource.variants.findIndex((variant) => variant.variantId === firstVariant.variantId) : 0);
 const related = rankRelatedResources(resource, data.resources);
-const hiddenDetailMetadata = new Set(["artist", "bpmSource", "gameVersion", "metadataStatus", "songId", "wikiBpm"]);
+const hiddenDetailMetadata = new Set(["artist", "bpmSource", "charter", "gameVersion", "metadataStatus", "songId", "wikiBpm"]);
 const metadata = Object.entries(resource.metadata).filter(([key]) => !hiddenDetailMetadata.has(key) && GAME_CONFIG[resource.game].metadataLabels[key]);
 const facetLabels: Record<string, string> = {
   path: "剧情路径",

@@ -138,6 +138,7 @@ export type PhigrosBrowseUrlState = {
   pack: string[];
   chart: PhigrosDifficulty[];
   level: string[];
+  difficulty?: { min: number; max: number };
 };
 
 export type RizlineBrowseUrlState = {
@@ -180,6 +181,7 @@ export type PhigrosFacetOptions = {
   packs: string[];
   charts: PhigrosDifficulty[];
   levels: string[];
+  difficultyRange?: { min: number; max: number; step: number };
 };
 
 export type RizlineFacetOptions = {
@@ -622,8 +624,12 @@ export function getBrowseFacetOptions(data: BrowseGalleryData): BrowseFacetOptio
     const packs = unique(data.items.flatMap((item) => item.recordKind === "track" && item.pack ? [item.pack] : []), compareText);
     const phigrosCharts = data.items.flatMap((item) => item.recordKind === "track" ? item.charts.filter(isPhigrosChart).filter(isFilterablePhigrosChart) : []);
     const charts = PHIGROS_DIFFICULTIES.filter((difficulty) => phigrosCharts.some((chart) => chart.difficultyClass === difficulty));
-    const levels = unique(phigrosCharts.map((chart) => chart.level).filter((level): level is string => Boolean(level)), comparePhigrosLevels);
-    return { packs, charts, levels };
+    const numericLevels = phigrosCharts.map((chart) => Number(chart.level)).filter(Number.isFinite);
+    const levels = unique(numericLevels.map((level) => String(Math.floor(level))), comparePhigrosLevels);
+    const difficultyRange = numericLevels.length > 0
+      ? { min: Math.min(...numericLevels), max: Math.max(...numericLevels), step: 0.1 }
+      : undefined;
+    return { packs, charts, levels, ...(difficultyRange ? { difficultyRange } : {}) };
   }
   if (data.game === "infalsus") {
     const charts = INFALSUS_DIFFICULTIES.filter((difficulty) => data.items.some((item) => item.recordKind === "song" && item.charts.some((chart) => isPublicChart(chart) && chart.difficulty === difficulty && isFilterablePublicChart(chart))));
@@ -689,7 +695,7 @@ export function filterBrowseItems(items: BrowseGalleryItem[], state: BrowseUrlSt
       if (state.ai && !displayBrowseItem(item, state.chart).hasUpscaled) return false;
     } else if (state.game === "phigros") {
       if (state.pack.length > 0 && !state.pack.includes(item.pack ?? "")) return false;
-      if (!matchesPhigrosCharts(item, state.chart, state.level)) return false;
+      if (!matchesPhigrosCharts(item, state.chart, state.level, state.difficulty)) return false;
     } else if (state.game === "infalsus") {
       if (!matchesPublicCharts(item, state.chart)) return false;
     } else if (state.game === "rizline") {
@@ -725,13 +731,14 @@ function matchesArcaeaCharts(item: BrowseGalleryItem, selectedDifficulties: Arca
   });
 }
 
-function matchesPhigrosCharts(item: BrowseGalleryItem, selectedDifficulties: PhigrosDifficulty[], selectedLevels: string[]): boolean {
-  if (selectedDifficulties.length === 0 && selectedLevels.length === 0) return true;
+function matchesPhigrosCharts(item: BrowseGalleryItem, selectedDifficulties: PhigrosDifficulty[], selectedLevels: string[], difficultyRange?: { min: number; max: number }): boolean {
+  if (selectedDifficulties.length === 0 && selectedLevels.length === 0 && !difficultyRange) return true;
   if (item.recordKind !== "track") return false;
   return item.charts.some((chart) => isPhigrosChart(chart)
     && isFilterablePhigrosChart(chart)
     && (selectedDifficulties.length === 0 || selectedDifficulties.includes(chart.difficultyClass as PhigrosDifficulty))
-    && (selectedLevels.length === 0 || (chart.level !== undefined && selectedLevels.includes(chart.level))));
+    && (selectedLevels.length === 0 || (chart.level !== undefined && selectedLevels.includes(String(Math.floor(Number(chart.level))))))
+    && (!difficultyRange || (Number(chart.level) >= difficultyRange.min && Number(chart.level) <= difficultyRange.max)));
 }
 
 function isFilterablePhigrosChart(chart: BrowsePhigrosChart): boolean {
@@ -890,7 +897,8 @@ export function parseBrowseUrlState(game: BrowseGame, input: URLSearchParams | s
   if (game === "phigros") {
     const sort: PhigrosBrowseSort = isPhigrosSort(sortValue) ? sortValue : "default";
     const phigrosOptions = options as PhigrosFacetOptions;
-    return { game, q, sort, pack: readFacetValues(params, "pack", phigrosOptions.packs), chart: readFacetValues(params, "chart", phigrosOptions.charts) as PhigrosDifficulty[], level: readFacetValues(params, "level", phigrosOptions.levels) };
+    const difficulty = readPhigrosDifficultyRange(params, phigrosOptions.difficultyRange);
+    return { game, q, sort, pack: readFacetValues(params, "pack", phigrosOptions.packs), chart: readFacetValues(params, "chart", phigrosOptions.charts) as PhigrosDifficulty[], level: readFacetValues(params, "level", phigrosOptions.levels), ...(difficulty ? { difficulty } : {}) };
   }
   if (game === "infalsus") {
     const sort: InfalsusBrowseSort = isInfalsusSort(sortValue) ? sortValue : "default";
@@ -929,6 +937,10 @@ export function serializeBrowseUrlState(state: BrowseUrlState): URLSearchParams 
     if (packs.length > 0) params.set("pack", packs.join(","));
     if (charts.length > 0) params.set("chart", charts.join(","));
     if (levels.length > 0) params.set("level", levels.join(","));
+    if (state.difficulty) {
+      params.set("difficulty-min", formatPhigrosDifficulty(state.difficulty.min));
+      params.set("difficulty-max", formatPhigrosDifficulty(state.difficulty.max));
+    }
   } else if (state.game === "infalsus") {
     const charts = stableValues(state.chart, (left, right) => INFALSUS_DIFFICULTIES.indexOf(left as InfalsusDifficulty) - INFALSUS_DIFFICULTIES.indexOf(right as InfalsusDifficulty));
     if (charts.length > 0) params.set("chart", charts.join(","));
@@ -949,6 +961,23 @@ function readFacetValues(params: URLSearchParams, name: string, allowed: string[
   if (allowed.length === 0) return uniqueValues;
   const selected = new Set(uniqueValues);
   return allowed.filter((value) => selected.has(value));
+}
+
+function readPhigrosDifficultyRange(params: URLSearchParams, range: PhigrosFacetOptions["difficultyRange"]): { min: number; max: number } | undefined {
+  if (!range) return undefined;
+  const rawMin = params.get("difficulty-min");
+  const rawMax = params.get("difficulty-max");
+  const minValue = rawMin === null ? Number.NaN : Number(rawMin);
+  const maxValue = rawMax === null ? Number.NaN : Number(rawMax);
+  if (!Number.isFinite(minValue) && !Number.isFinite(maxValue)) return undefined;
+  const min = Math.max(range.min, Math.min(Number.isFinite(minValue) ? minValue : range.min, range.max));
+  const max = Math.min(range.max, Math.max(Number.isFinite(maxValue) ? maxValue : range.max, range.min));
+  if (min >= range.min && max <= range.max && min <= range.min && max >= range.max) return undefined;
+  return min <= max ? { min, max } : { min: max, max: min };
+}
+
+function formatPhigrosDifficulty(value: number): string {
+  return value.toFixed(1);
 }
 
 function isArcaeaSort(value: string | null): value is ArcaeaBrowseSort {

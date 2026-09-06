@@ -238,19 +238,23 @@ test("Phigros primary difficulty facets use structural charts and exclude Legacy
 
 
 test("Phigros exposes APK-backed pack facets, URL state, and highest-level sorting", () => {
-  const options = getBrowseFacetOptions(formalBrowse.phigros) as { packs: string[]; charts: string[]; levels: string[] };
+  const options = getBrowseFacetOptions(formalBrowse.phigros) as { packs: string[]; charts: string[]; levels: string[]; difficultyRange?: { min: number; max: number; step: number } };
   assert.ok(options.packs.includes("Single"));
-  assert.ok(options.levels.includes("14.4"));
+  assert.ok(options.levels.includes("14"));
+  assert.equal(options.difficultyRange?.step, 0.1);
   const single = filterBrowseItems(formalBrowse.phigros.items, phigrosStateFor({ pack: ["Single"] }));
   assert.ok(single.length > 0);
   assert.ok(single.every((item) => item.pack === "Single"));
-  const state = phigrosStateFor({ pack: ["Single"], level: ["14.4"], sort: "level-desc" });
+  const state = phigrosStateFor({ pack: ["Single"], level: ["14"], difficulty: { min: 14.4, max: 14.4 }, sort: "level-desc" });
   const serialized = serializeBrowseUrlState(state).toString();
-  assert.equal(serialized, "sort=level-desc&pack=Single&level=14.4");
+  assert.equal(serialized, "sort=level-desc&pack=Single&level=14&difficulty-min=14.4&difficulty-max=14.4");
   assert.deepEqual(parseBrowseUrlState("phigros", serialized, formalBrowse.phigros.items), state);
-  const levelFiltered = filterBrowseItems(formalBrowse.phigros.items, phigrosStateFor({ level: ["14.4"] }));
+  const levelFiltered = filterBrowseItems(formalBrowse.phigros.items, phigrosStateFor({ level: ["14"] }));
   assert.ok(levelFiltered.length > 0);
-  assert.ok(levelFiltered.every((item) => item.charts.some((chart) => "level" in chart && chart.level === "14.4")));
+  assert.ok(levelFiltered.every((item) => item.charts.some((chart) => "level" in chart && Math.floor(Number(chart.level)) === 14)));
+  const difficultyFiltered = filterBrowseItems(formalBrowse.phigros.items, phigrosStateFor({ difficulty: { min: 14.4, max: 14.4 } }));
+  assert.ok(difficultyFiltered.length > 0);
+  assert.ok(difficultyFiltered.every((item) => item.charts.some((chart) => "level" in chart && chart.level === "14.4")));
   const sorted = filterBrowseItems(formalBrowse.phigros.items.filter((item) => item.pack === "Single"), phigrosStateFor({ sort: "level-desc" }));
   const maxLevel = (item: BrowseGalleryItem): number => Math.max(...item.charts.filter((chart) => "structurallyPresent" in chart && chart.available !== false && chart.status !== "legacy" && !chart.errorVariant).map((chart) => Number("level" in chart ? chart.level : undefined)).filter(Number.isFinite));
   assert.ok(maxLevel(sorted[0]!) >= maxLevel(sorted.at(-1)!));
@@ -339,10 +343,18 @@ test("jacket Gallery has its own browse path and no longer filters by Resource V
 test("Phigros chart selections are retained by the client state bridge", () => {
   const browseScript = fs.readFileSync(path.join(process.cwd(), "apps", "site", "src", "scripts", "browse-gallery.ts"), "utf8");
   assert.doesNotMatch(browseScript, /gameId === "phigros" \? \{\.\.\.parsed, chart: \[\] \}/u);
-  assert.match(browseScript, /game === "phigros"\).*selectedValues\(root, "chart"\)/u);
+  assert.match(browseScript, /game === "phigros"/u);
+  assert.match(browseScript, /selectedValues\(root, "chart"\)/u);
   assert.match(browseScript, /if \(data\.game === "phigros"\)/u);
   assert.match(browseScript, /if \(data\.game === "infalsus"\) setToggles\("chart"/u);
   assert.match(browseScript, /if \(data\.game === "rizline"\)/u);
+});
+
+test("Phigros Browse replaces chart-class toggles with level controls", () => {
+  const browseComponent = fs.readFileSync(path.join(process.cwd(), "apps", "site", "src", "components", "BrowseGallery.astro"), "utf8");
+  assert.match(browseComponent, /data-browse-range="difficulty"/u);
+  assert.match(browseComponent, /data-browse-level/gu);
+  assert.doesNotMatch(browseComponent, /data-browse-toggle-options="chart"[\s\S]*data-game="phigros"/u);
 });
 
 function makeResource(resourceId: string, hasUpscaled = false): BrowseResolvedResource {

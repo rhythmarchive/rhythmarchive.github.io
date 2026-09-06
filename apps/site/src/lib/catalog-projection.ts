@@ -326,6 +326,7 @@ function publicChartsFromMetadata(resource: Resource): PublicChart[] {
   const rawCharts = resource.metadata.charts;
   if (!Array.isArray(rawCharts)) return [];
   if (resource.game === "phigros") {
+    const charters = parsePhigrosCharters(resource.metadata.charter);
     return rawCharts
       .flatMap((candidate) => {
         if (!candidate || typeof candidate !== "object") return [];
@@ -335,8 +336,9 @@ function publicChartsFromMetadata(resource: Resource): PublicChart[] {
         const available = typeof chart.available === "boolean" ? chart.available : true;
         if (!available) return [];
         const level = typeof chart.level === "number" || typeof chart.level === "string" ? String(chart.level).trim() : undefined;
+        const noter = charters.get(difficulty);
         const status = chart.status === "legacy" ? "legacy" as const : "available" as const;
-        return [{ difficulty, ...(level ? { level } : {}), source: "apk" as const, available: true, status } satisfies PublicChart];
+        return [{ difficulty, ...(level ? { level } : {}), ...(noter ? { noter } : {}), source: "apk" as const, available: true, status } satisfies PublicChart];
       })
       .sort((left, right) => PHIGROS_CHART_DIFFICULTIES.indexOf(left.difficulty as typeof PHIGROS_CHART_DIFFICULTIES[number]) - PHIGROS_CHART_DIFFICULTIES.indexOf(right.difficulty as typeof PHIGROS_CHART_DIFFICULTIES[number]));
   }
@@ -407,6 +409,19 @@ function publicChartsFromMetadata(resource: Resource): PublicChart[] {
       } satisfies PublicChart];
     })
     .sort((left, right) => (Object.values(INFALSUS_CHART_DIFFICULTIES).indexOf(left.difficulty) - Object.values(INFALSUS_CHART_DIFFICULTIES).indexOf(right.difficulty)) || left.difficulty.localeCompare(right.difficulty));
+}
+
+function parsePhigrosCharters(value: unknown): Map<string, string> {
+  if (typeof value !== "string") return new Map();
+  const charters = new Map<string, string>();
+  for (const part of value.split(/\s*\/\s*(?=(?:EZ|HD|IN|AT|Legacy)\s*:)/u)) {
+    const separator = part.indexOf(":");
+    if (separator <= 0) continue;
+    const difficulty = part.slice(0, separator).trim();
+    const noter = part.slice(separator + 1).trim();
+    if ((PHIGROS_CHART_DIFFICULTIES as readonly string[]).includes(difficulty) && noter) charters.set(difficulty, noter);
+  }
+  return charters;
 }
 
 function publicSpecialChartsFromMetadata(resource: Resource): PublicChart[] {

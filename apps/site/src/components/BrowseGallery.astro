@@ -19,6 +19,19 @@ const chartOptions = browseOptions.charts;
 const phigrosOptions = data.game === "phigros" ? browseOptions as PhigrosFacetOptions : undefined;
 const phigrosPackOptions = phigrosOptions?.packs ?? [];
 const phigrosLevelOptions = phigrosOptions?.levels ?? [];
+const phigrosDifficultyRange = phigrosOptions?.difficultyRange;
+
+function rangeTicks(min: number, max: number, step: number): number[] {
+  const tickStep = Math.max(step, Math.ceil(((max - min) / 7) / step) * step);
+  const values = [min];
+  for (let value = min + tickStep; value < max - step / 2; value += tickStep) values.push(Number(value.toFixed(1)));
+  if (values[values.length - 1] !== max) values.push(max);
+  return values;
+}
+
+function formatRangeValue(value: number): string {
+  return value.toFixed(1);
+}
 ---
 
 <section class="gallery-shell browse-gallery-shell" data-browse-gallery-root data-gallery-url={galleryUrl} data-base-path={BASE_PATH} data-game={data.game} data-category="jacket" data-total={data.items.length}>
@@ -90,13 +103,37 @@ const phigrosLevelOptions = phigrosOptions?.levels ?? [];
     </div>
   ) : null}
 
-  {data.game !== "arcaea" && chartOptions.length > 0 ? (
+  {data.game === "phigros" ? (
     <div class="browse-filter-row">
-      <div class="filter-toggle-group" aria-label="谱面难度">
-        <span class="filter-group-label">谱面难度</span>
-        <div class="filter-toggles" data-browse-toggle-options="chart"></div>
-      </div>
-      {data.game === "phigros" && phigrosPackOptions.length > 0 ? (
+      {phigrosDifficultyRange ? (
+        <div class="filter-range-control" data-browse-range="difficulty" data-range-label="难度" data-range-min={phigrosDifficultyRange.min} data-range-max={phigrosDifficultyRange.max} data-range-step={phigrosDifficultyRange.step}>
+          <div class="filter-range-header">
+            <span class="filter-range-label">难度</span>
+            <div class="filter-range-values" role="group" aria-label="难度范围">
+              <label class="filter-range-input"><span class="sr-only">难度最小值</span><input type="number" data-browse-range-min-input min={phigrosDifficultyRange.min} max={phigrosDifficultyRange.max} step={phigrosDifficultyRange.step} value={phigrosDifficultyRange.min} inputmode="decimal" /></label>
+              <span aria-hidden="true">～</span>
+              <label class="filter-range-input"><span class="sr-only">难度最大值</span><input type="number" data-browse-range-max-input min={phigrosDifficultyRange.min} max={phigrosDifficultyRange.max} step={phigrosDifficultyRange.step} value={phigrosDifficultyRange.max} inputmode="decimal" /></label>
+            </div>
+          </div>
+          <div class="filter-range-slider" data-browse-range-slider>
+            <div class="filter-range-track" aria-hidden="true"></div>
+            <div class="filter-range-fill" aria-hidden="true"></div>
+            <input type="range" data-browse-range-min-slider min={phigrosDifficultyRange.min} max={phigrosDifficultyRange.max} step={phigrosDifficultyRange.step} value={phigrosDifficultyRange.min} aria-label="难度最小值" />
+            <input type="range" data-browse-range-max-slider min={phigrosDifficultyRange.min} max={phigrosDifficultyRange.max} step={phigrosDifficultyRange.step} value={phigrosDifficultyRange.max} aria-label="难度最大值" />
+          </div>
+          <div class="filter-range-ticks" aria-hidden="true">{rangeTicks(phigrosDifficultyRange.min, phigrosDifficultyRange.max, phigrosDifficultyRange.step).map((value) => <span>{formatRangeValue(value)}</span>)}</div>
+        </div>
+      ) : null}
+      {phigrosLevelOptions.length > 0 ? (
+        <label class="filter-control">
+          <span>难度等级</span>
+          <select data-browse-level aria-label="难度等级">
+            <option value="">全部</option>
+            {phigrosLevelOptions.map((level) => <option value={level}>{level}</option>)}
+          </select>
+        </label>
+      ) : null}
+      {phigrosPackOptions.length > 0 ? (
         <details class="filter-popover">
           <summary data-browse-summary="pack">曲包</summary>
           <div class="filter-popover-body">
@@ -105,14 +142,13 @@ const phigrosLevelOptions = phigrosOptions?.levels ?? [];
           </div>
         </details>
       ) : null}
-      {data.game === "phigros" && phigrosLevelOptions.length > 0 ? (
-        <details class="filter-popover">
-          <summary data-browse-summary="level">难度等级</summary>
-          <div class="filter-popover-body">
-            <div class="filter-options compact-options" data-browse-options="level"></div>
-          </div>
-        </details>
-      ) : null}
+    </div>
+  ) : data.game !== "arcaea" && chartOptions.length > 0 ? (
+    <div class="browse-filter-row">
+      <div class="filter-toggle-group" aria-label="谱面难度">
+        <span class="filter-group-label">谱面难度</span>
+        <div class="filter-toggles" data-browse-toggle-options="chart"></div>
+      </div>
     </div>
   ) : null}
 
