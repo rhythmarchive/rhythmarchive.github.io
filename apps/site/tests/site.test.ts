@@ -410,7 +410,8 @@ test("footer keeps first-level links and accessible external social/copyright re
   assert.match(footer, /© \{currentYear\} Rhythm Archive/u);
   assert.match(footer, /Made with[\s\S]*for rhythm games\./u);
   assert.doesNotMatch(footer, /getPublicNavigationGames|primaryCategorySlug|B站主页/u);
-  assert.match(styles, /\.site-footer-inner \{ display: grid; grid-template-columns:/u);
+  assert.match(styles, /\.site-footer-inner \{ display: grid; grid-template-columns: minmax\(0, 1fr\) auto minmax\(0, 1fr\);/u);
+  assert.match(styles, /@media \(max-width: 760px\) \{[\s\S]*\.site-footer-links \{ justify-content: center;/u);
   assert.match(styles, /\.site-footer-meta/u);
 });
 
