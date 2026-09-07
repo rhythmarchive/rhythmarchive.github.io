@@ -674,7 +674,10 @@ test("game icons use real assets with a non-breaking fallback", () => {
   assert.equal(fs.existsSync(path.join(siteRoot, "public", "game-icons", "rizline.png")), true);
   assert.equal(fs.existsSync(path.join(siteRoot, "public", "game-icons", "rotaeno.png")), true);
   assert.equal(fs.existsSync(path.join(siteRoot, "public", "game-icons", "paradigm-reboot.png")), true);
-  assert.match(styles, /\.game-icon-paradigm-reboot \.game-icon-image \{[^}]*object-fit: contain/u);
+  assert.match(styles, /\.game-icon-paradigm-reboot \.game-icon-image,\s*\.game-icon-rizline \.game-icon-image \{[^}]*object-fit: cover[^}]*padding: 0[^}]*object-position: center/u);
+  assert.match(styles, /\.game-card-media > \.game-icon\.game-icon-paradigm-reboot::before,\s*\.game-card-media > \.game-icon\.game-icon-rizline::before \{ display: none; \}/u);
+  assert.match(styles, /\.game-icon-paradigm-reboot \.game-icon-image \{ background: #fff; \}/u);
+  assert.match(styles, /\.game-icon-rizline \.game-icon-image \{ background: #d6ffff; \}/u);
   assert.match(source, /rizline/u);
   assert.match(source, /rotaeno/u);
 });

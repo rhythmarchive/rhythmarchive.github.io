@@ -158,6 +158,8 @@ img { display: block; max-width: 100%; }
 .game-card-media { position: relative; min-height: 144px; overflow: hidden; background: var(--surface-muted); }
 .game-card-media > .game-icon { position: absolute; inset: 0; width: auto; height: auto; min-height: 0; transform: none; clip-path: none; box-shadow: none; }
 .game-card-media .game-icon-image { inset: 0; width: 100%; height: 100%; border-radius: 0; object-fit: cover; background: var(--surface-muted); }
+.game-card-media > .game-icon.game-icon-paradigm-reboot::before,
+.game-card-media > .game-icon.game-icon-rizline::before { display: none; }
 .game-card-body { display: grid; align-content: center; gap: 9px; min-width: 0; padding: 16px 15px; }
 .game-card-heading { display: flex; align-items: flex-start; gap: 8px; min-width: 0; }
 .game-card-heading h3 { min-width: 0; margin: 0; font-family: var(--display-font); font-size: 1.1rem; line-height: 1.2; letter-spacing: -0.02em; font-kerning: normal; overflow-wrap: anywhere; }
@@ -174,7 +176,10 @@ img { display: block; max-width: 100%; }
 .game-icon-wave { position: absolute; left: 18px; bottom: 25px; width: 29px; height: 8px; border-top: 2px solid var(--cyan); border-bottom: 1px solid rgba(255, 255, 255, 0.7); transform: skewX(-26deg); }
 .game-icon-phigros { background: #4c91e8; }
 .game-icon-phigros .game-icon-mark { font-size: 3.5rem; }
-.game-icon-paradigm-reboot .game-icon-image { object-fit: contain; padding: 10px; background: #1d2b4a; }
+.game-icon-paradigm-reboot .game-icon-image,
+.game-icon-rizline .game-icon-image { object-fit: cover; padding: 0; object-position: center; }
+.game-icon-paradigm-reboot .game-icon-image { background: #fff; }
+.game-icon-rizline .game-icon-image { background: #d6ffff; }
 .section-link { flex: 0 0 auto; color: var(--accent); font-size: 0.76rem; font-weight: 720; }
 .section-link:hover { color: var(--accent-strong); text-decoration: underline; text-underline-offset: 3px; }
 .apk-card-state { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 17px 24px; min-height: 116px; padding: 21px 22px; border: 1px solid var(--line); border-radius: var(--radius-md); background: var(--surface); box-shadow: var(--shadow); color: var(--text-muted); }
