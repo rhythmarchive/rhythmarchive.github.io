@@ -51,3 +51,23 @@ Thumbs.db
 
 # Local archive for superseded, non-runtime material; contents may be deleted.
 lagacy/
+# Internal curation, extraction, agent and deployment material kept outside the website repository
+.agents/
+AGENTS.md
+docs/
+fixtures/
+tools/
+workers/
+packages/admin/
+packages/domain/tests/
+packages/domain/src/*
+!packages/domain/src/schema.ts
+!packages/domain/src/validation.ts
+!packages/domain/src/browse.ts
+.github/workflows/arcaea-apk-update.yml
+tsconfig.json
+catalog/curation/
+catalog/releases/
+catalog/resources/
+apps/site/tests/arcaea-story-explorer.test.ts
+apps/site/tests/rotaeno-display.test.ts

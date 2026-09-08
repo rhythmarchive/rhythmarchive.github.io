@@ -1,22 +1,18 @@
 # Rhythm Archive
 
-Rhythm Archive 是一个面向玩家的音游图片资源归档与下载站，使用 Astro 静态站点、共享 Catalog/PublicSiteData 投影和按游戏注册的适配器。网站提供游戏分类、曲绘与其他图片浏览、搜索、预览、原图/超分版本下载，以及必要的资源反馈入口。
+Rhythm Archive 是一个面向玩家的音游图片归档与下载网站。网站按游戏和资源类型整理曲绘、角色图片、剧情插画及其他视觉内容，支持搜索、分类浏览、图片预览、原图与高清版本下载，以及资源反馈。
 
-## 开发入口
+## 本地预览
 
-```text
 npm ci
 npm run site:dev
-```
 
-质量门禁：`npm run ci:check`。它覆盖类型检查、测试、站点检查与构建、smoke 和 Browse projection 校验。
+构建检查使用 npm run ci:check，本地构建产物可使用 npm run site:preview 查看。
 
-## 文档入口
+## 网站入口
 
-- [项目规则](docs/project-rules.md)
-- [工作流](docs/workflows.md)
-- [架构边界](docs/architecture.md)
-- [站点设计](docs/site-design.md)
-- [rhythmctl](docs/rhythmctl.md)
-
-外部包体、候选资源和发布状态遵循仓库规则；源 APK、AssetBundle、Addressables 与用户原始资源始终只读。网站只消费经过验证的 Catalog 和公开投影，生产发布与远端对象写入不属于本地开发命令的默认副作用。
+- 首页：搜索资源并查看最近收录的游戏
+- 游戏库：按游戏进入对应资源分类
+- 资源库：跨游戏搜索并按分类浏览
+- 详情页：查看图片、尺寸、版本和下载选项
+- 意见反馈：提交资源错误和使用建议
