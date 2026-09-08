@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="360" viewBox="0 0 1200 360" role="img" aria-labelledby="title desc">
+  <title id="title">Rhythm Archive</title>
+  <desc id="desc">Rhythm Archive 音游图片归档与下载站横幅</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="360" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F7FAFD"/>
+      <stop offset="1" stop-color="#EAF3FB"/>
+    </linearGradient>
+    <linearGradient id="cardA" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#2F80ED"/>
+      <stop offset="1" stop-color="#79B5F6"/>
+    </linearGradient>
+    <linearGradient id="cardB" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#63D8DF"/>
+      <stop offset="1" stop-color="#C8F3F4"/>
+    </linearGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="12" stdDeviation="18" flood-color="#2A5D89" flood-opacity=".12"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="360" rx="28" fill="url(#bg)"/>
+  <circle cx="1120" cy="-8" r="220" fill="#2F80ED" opacity=".055"/>
+  <circle cx="1030" cy="340" r="180" fill="#63D8DF" opacity=".09"/>
+  <path d="M0 295C210 270 355 330 548 306S902 238 1200 274" fill="none" stroke="#D5E2EE" stroke-width="2"/>
+  <path d="M0 311C210 286 355 346 548 322S902 254 1200 290" fill="none" stroke="#63D8DF" stroke-width="2" opacity=".65"/>
+
+  <g transform="translate(88 72) scale(1.9)">
+    <path d="M3 1h31l5 5v20l-5 5H3l-2-2V3Z" fill="#2F80ED"/>
+    <path d="M8 23V9h5.1c3.3 0 5.2 1.5 5.2 4.1s-1.9 4-5.2 4H8m5.1 0 5.1 5.9M22 23l3.8-14L30 23m-6.3-4h4" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"/>
+    <path d="M7 25.5h5l2-3 2.2 3 2-2.3 2.6 2.3" fill="none" stroke="#63D8DF" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4"/>
+  </g>
+
+  <text x="182" y="115" font-family="Avenir Next, Segoe UI, PingFang SC, Microsoft YaHei, sans-serif" font-size="18" font-weight="800" letter-spacing="2.6" fill="#2F80ED">RHYTHM ARCHIVE</text>
+  <text x="88" y="185" font-family="Avenir Next, Segoe UI, PingFang SC, Microsoft YaHei, sans-serif" font-size="56" font-weight="760" letter-spacing="-1.5" fill="#17283E">音游图片归档与下载站</text>
+  <text x="90" y="228" font-family="Avenir Next, Segoe UI, PingFang SC, Microsoft YaHei, sans-serif" font-size="21" fill="#65778E">本站整理并收录各类音游图片资源，方便搜索、浏览与下载。</text>
+
+  <g font-family="Avenir Next, Segoe UI, PingFang SC, Microsoft YaHei, sans-serif" font-size="15" font-weight="700">
+    <rect x="88" y="263" width="76" height="34" rx="17" fill="#fff" stroke="#D5E2EE"/>
+    <text x="126" y="285" text-anchor="middle" fill="#2F80ED">曲绘</text>
+    <rect x="174" y="263" width="76" height="34" rx="17" fill="#fff" stroke="#D5E2EE"/>
+    <text x="212" y="285" text-anchor="middle" fill="#2F80ED">立绘</text>
+    <rect x="260" y="263" width="76" height="34" rx="17" fill="#fff" stroke="#D5E2EE"/>
+    <text x="298" y="285" text-anchor="middle" fill="#2F80ED">剧情 CG</text>
+    <rect x="346" y="263" width="92" height="34" rx="17" fill="#fff" stroke="#D5E2EE"/>
+    <text x="392" y="285" text-anchor="middle" fill="#2F80ED">原图下载</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <g transform="translate(820 58) rotate(-8 100 100)">
+      <rect width="196" height="196" rx="24" fill="#fff"/>
+      <rect x="10" y="10" width="176" height="176" rx="18" fill="url(#cardB)"/>
+      <circle cx="62" cy="63" r="34" fill="#fff" opacity=".44"/>
+      <path d="M35 145C66 104 103 97 158 54" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round" opacity=".7"/>
+      <path d="M42 158h42l17-26 19 26 17-20 22 20" fill="none" stroke="#2F80ED" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" opacity=".75"/>
+    </g>
+    <g transform="translate(948 74) rotate(7 100 100)">
+      <rect width="196" height="196" rx="24" fill="#fff"/>
+      <rect x="10" y="10" width="176" height="176" rx="18" fill="url(#cardA)"/>
+      <path d="M28 132C72 148 117 117 169 45" fill="none" stroke="#fff" stroke-width="8" stroke-linecap="round" opacity=".62"/>
+      <circle cx="127" cy="79" r="45" fill="#fff" opacity=".14"/>
+      <circle cx="127" cy="79" r="25" fill="#63D8DF" opacity=".88"/>
+      <circle cx="127" cy="79" r="8" fill="#fff"/>
+    </g>
+    <g transform="translate(864 178) rotate(2 82 64)">
+      <rect width="176" height="118" rx="22" fill="#fff"/>
+      <rect x="9" y="9" width="158" height="100" rx="16" fill="#17283E"/>
+      <path d="M30 73h20l10-18 12 33 12-47 14 32 11-17 15 17h22" fill="none" stroke="#63D8DF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="31" cy="32" r="5" fill="#2F80ED"/>
+      <circle cx="47" cy="32" r="5" fill="#63D8DF"/>
+    </g>
+  </g>
+
+  <text x="792" y="325" font-family="Avenir Next, Segoe UI, PingFang SC, Microsoft YaHei, sans-serif" font-size="13" font-weight="700" fill="#65778E">多款音游资源持续收录</text>
+</svg>
