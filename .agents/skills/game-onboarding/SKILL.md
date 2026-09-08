@@ -7,7 +7,7 @@ description: Use when a reconnaissance-complete candidate should become a delibe
 
 ## Trigger and boundary
 
-Use after game-reconnaissance has produced a DraftGameProfile. Do not treat discovery as publication, and do not expand Rotaeno or another analysis-only candidate automatically.
+Use after game-reconnaissance has produced a DraftGameProfile. Do not treat discovery as publication or add a candidate to the formal registry without an explicit scope decision.
 
 ## Ordered workflow
 

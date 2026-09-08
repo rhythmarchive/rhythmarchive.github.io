@@ -29,7 +29,7 @@ Manual file, official resource, metadata correction, new category, new variant, 
 
 ## State and resume
 
-Each run stores state at temp/rhythmctl/<game-or-candidate>/<version>/state.json. It records candidate/game, version, source path and snapshot, phase, completed steps, artifact paths, manifest/delta/review/release paths, statuses, blockers, errors, and timestamps.
+Each new run stores state at temp/rhythmctl/<game-or-candidate>/<version>/state.json. The Admin compatibility runtime uses .runtime/ and approved canonical projection updates use their documented Catalog/docs paths. State records candidate/game, version, source path and snapshot, phase, completed steps, artifact paths, manifest/delta/review/release paths, statuses, blockers, errors, and timestamps.
 
 Use status with an explicit state path:
 

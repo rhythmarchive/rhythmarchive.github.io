@@ -7,7 +7,7 @@ description: Use when preparing a local release, storage diff, publish plan, or 
 
 ## Trigger and authorization
 
-Use for release preparation and publication gates. Analysis and onboarding never publish. In this repository, this task may run only through local dry-run; ROS writes, ROS deletes, production deploys, and git push are disabled.
+Use for release preparation and publication gates. Analysis and onboarding never publish. Agent work in this repository stops at a verified local dry-run; ROS writes, ROS deletes, production deploys, and git push remain outside the agent workflow and require their own explicitly authorized executor.
 
 ## Inputs and preflight
 

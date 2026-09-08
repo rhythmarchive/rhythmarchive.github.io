@@ -7,7 +7,7 @@ description: Use when changing the gallery site's visual language, information a
 
 ## Current baseline
 
-The existing light/dark/system behavior and current visual language are the DEFAULT / CANONICAL THEME. This turn must not add a visible theme, theme selector, large recolor, new font system, dashboard styling, or a page-by-page redesign.
+The existing light/dark/system behavior and current visual language are the DEFAULT / CANONICAL THEME. The skill must not add a visible theme, theme selector, large recolor, new font system, dashboard styling, or a page-by-page redesign.
 
 This is an image resource download site: image discovery, search, category, preview, metadata, and download outrank decoration. Keep the UI simple, readable, restrained, and shared across games.
 

@@ -28,6 +28,7 @@ const required = [
   "robots.txt",
   "sitemap.xml",
   "data/search-index.json",
+  "data/search-cards.json",
 ];
 const missing = required.filter((file) => !files.includes(file));
 if (missing.length > 0) throw new Error("Missing required dist files: " + missing.join(", "));

@@ -5,6 +5,7 @@
 ## 不可违反的边界
 
 - APK、AAB、安装目录、AssetBundle、Addressables 和用户原始资源永久只读；分析、候选、报告、截图、workflow state 和 scratch 只写仓库 temp/。
+- 新分析和候选产物写 temp；Admin 兼容运行时使用 .runtime/，经批准的 Catalog、投影和文档修正只更新各自明确的 canonical 文件。
 - 无人值守任务不执行 git push、生产发布、DNS/凭据修改、reset 或 clean。REMOTE WRITE 不是本地完成条件。
 - Catalog、公开 URL、remote key 和 Object identity 是兼容边界；REMOVED 只进 Review/Storage Diff，不自动删除。
 
@@ -23,6 +24,8 @@
 
 先读 canonical docs 和对应 Skill，再检查 git status、现有 state、Profile、上一正式 Manifest 和真实测试。不要复制 per-game 页面，不要为了整洁重建 Catalog，不要把未知候选强行加入正式 Game registry。
 
-修改后至少运行 npm run test:all、npm run site:check、npm run site:build、npm run site:smoke、git diff --check，并报告完整 git status。显式处理本次文件，禁止用 git add . 掩盖未知修改。
+修改后至少运行 npm run ci:check 和 git diff --check，并报告完整 git status。显式处理本次文件，禁止用 git add . 掩盖未知修改。
 
 当前规则入口：docs/project-rules.md、docs/workflows.md、docs/architecture.md、docs/site-design.md 和 .agents/skills/。
+
+AGENTS.md 只负责边界和任务路由；长期不变量、阶段流程、源码边界、产品设计和游戏事实分别维护在上述 canonical 文档、Game Profile 与对应 Skill 中。

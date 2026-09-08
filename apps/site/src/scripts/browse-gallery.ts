@@ -48,6 +48,8 @@ async function initializeBrowseGallery(root: HTMLElement): Promise<void> {
   const reset = root.querySelector<HTMLButtonElement>("[data-gallery-reset]");
   const emptyReset = root.querySelector<HTMLButtonElement>("[data-browse-empty-reset]");
   const activeChips = root.querySelector<HTMLElement>("[data-browse-active-chips]");
+  const batchClear = root.querySelector<HTMLButtonElement>("[data-batch-clear]");
+  const batchButtons = [...root.querySelectorAll<HTMLButtonElement>("[data-batch-download]")];
   const levelSelect = root.querySelector<HTMLSelectElement>("[data-browse-level]");
   const difficultyRange = createBrowseDifficultyRange(root);
   if (!grid || !loadMore || !count || !search || !sort) return;
@@ -57,6 +59,7 @@ async function initializeBrowseGallery(root: HTMLElement): Promise<void> {
   let state: BrowseUrlState = defaultBrowseUrlState(game);
   let visibleCount = BROWSE_PAGE_SIZE;
   const selected = new Set<string>();
+  let batchDownloadInFlight = false;
 
   try {
     const response = await fetch(root.dataset.galleryUrl ?? "", { credentials: "omit" });
@@ -99,25 +102,14 @@ async function initializeBrowseGallery(root: HTMLElement): Promise<void> {
     const name = button.dataset.removeFilter;
     const value = button.dataset.removeValue;
     if (!name) return;
-    if (name === "ai") {
+    if (name === "q") {
+      search.value = "";
+    } else if (name === "ai") {
       if (ai) ai.checked = false;
-    } else if (name === "chart") {
-      root.querySelector<HTMLButtonElement>(`[data-browse-filter-toggle="${name}"][data-value="${CSS.escape(value ?? "")}"]`)?.setAttribute("aria-pressed", "false");
-    } else if (name === "level") {
-      if (levelSelect) levelSelect.value = "";
     } else if (name === "difficulty") {
       if (difficultyRange) syncBrowseDifficultyRange(difficultyRange);
     } else {
-      const select = root.querySelector<HTMLSelectElement>(`[data-browse-filter-select="${name}"]`);
-      if (select) {
-        select.value = "";
-      } else {
-        const input = [...root.querySelectorAll<HTMLInputElement>(`[data-browse-filter-check="${name}"]`)].find((candidate) => checkboxValues(candidate).includes(value ?? ""));
-        if (input) {
-          input.checked = false;
-          input.indeterminate = false;
-        }
-      }
+      setSelectedValues(root, name, selectedValues(root, name).filter((candidate) => candidate !== value));
     }
     commitState("push");
   });
@@ -146,11 +138,17 @@ async function initializeBrowseGallery(root: HTMLElement): Promise<void> {
     const id = button.dataset.selectResource;
     if (!id) return;
     if (selected.has(id)) selected.delete(id); else selected.add(id);
+    root.classList.toggle("has-selection", selected.size > 0);
     updateBatchBar();
     render();
   });
 
-  for (const button of root.querySelectorAll<HTMLButtonElement>("[data-batch-download]")) button.addEventListener("click", () => void downloadBatch(button.dataset.batchDownload === "upscaled"));
+  for (const button of batchButtons) button.addEventListener("click", () => void downloadBatch(button.dataset.batchDownload === "upscaled"));
+  batchClear?.addEventListener("click", () => {
+    selected.clear();
+    root.classList.remove("has-selection");
+    render();
+  });
 
   function readState(gameId: BrowseGame, browseItems: BrowseGalleryItem[]): BrowseUrlState {
     return parseBrowseUrlState(gameId, window.location.search, browseItems);
@@ -249,10 +247,16 @@ async function initializeBrowseGallery(root: HTMLElement): Promise<void> {
     const countNode = root.querySelector<HTMLElement>("[data-batch-count]");
     if (!bar || !countNode) return;
     bar.hidden = selected.size === 0;
-    countNode.textContent = "已选择 " + selected.size.toLocaleString("zh-CN") + " 项";
+    countNode.textContent = "已选择 " + selected.size.toLocaleString("zh-CN") + " / " + MAX_BATCH_FILES + " 项";
+  }
+
+  function setBatchBusy(busy: boolean): void {
+    for (const button of batchButtons) button.disabled = busy;
+    if (batchClear) batchClear.disabled = busy;
   }
 
   async function downloadBatch(preferUpscaled: boolean): Promise<void> {
+    if (batchDownloadInFlight) return;
     const resources = new Map<string, BrowseResolvedResource>();
     for (const item of items) {
       resources.set(item.resourceId, item);
@@ -275,6 +279,8 @@ async function initializeBrowseGallery(root: HTMLElement): Promise<void> {
       if (status) status.textContent = "一次选择的文件较多，请减少后再下载。";
       return;
     }
+    batchDownloadInFlight = true;
+    setBatchBusy(true);
     const entries: Record<string, Uint8Array> = {};
     const usedNames = new Set<string>();
     let completed = 0;
@@ -297,6 +303,9 @@ async function initializeBrowseGallery(root: HTMLElement): Promise<void> {
     } catch (error) {
       console.error("Browse batch download failed", error);
       if (status) status.textContent = "下载失败，请重试";
+    } finally {
+      batchDownloadInFlight = false;
+      setBatchBusy(false);
     }
   }
 }
@@ -470,6 +479,8 @@ function updateActiveFilters(root: HTMLElement, state: BrowseUrlState): void {
     return chip;
   }));
   row.hidden = entries.length === 0;
+  const summary = root.querySelector<HTMLElement>("[data-filter-summary]");
+  if (summary) summary.textContent = entries.length > 0 ? `（已选 ${entries.length}）` : "";
   updatePopoverSummaries(root);
 }
 

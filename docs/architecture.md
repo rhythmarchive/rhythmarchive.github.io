@@ -26,7 +26,7 @@ The core CLI resolves a registry entry and invokes standard capabilities: probe,
 
 ## Lifecycle separation
 
-An unregistered candidate is identified by a safe slug and can be reconnaissance-complete without being a formal Game. A published Game requires a deliberate profile, selection policy, adapter, Catalog projection, and shared-site registration. Rotaeno is intentionally analysis-only/onboarding until a separate decision.
+An unregistered candidate is identified by a safe slug and can be reconnaissance-complete without being a formal Game. A published Game requires a deliberate profile, selection policy, adapter, Catalog projection, and shared-site registration. Published game lifecycle and scope facts belong in the corresponding Game Profile and docs/games entry; this document describes the boundary rather than a temporary per-game status.
 
 ## Site boundary
 

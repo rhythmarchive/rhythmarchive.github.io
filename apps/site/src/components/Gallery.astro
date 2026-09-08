@@ -56,6 +56,9 @@ function formatRangeValue(value: number): string {
   </div>
 
   {hasFacets ? (
+    <details class="gallery-filter-disclosure" data-filter-disclosure open>
+      <summary>筛选 <span data-filter-summary></span></summary>
+
     <div class="gallery-filter-row" data-gallery-filter-row>
       {config.facets.map((facet) => (
         facet.range ? (
@@ -95,6 +98,7 @@ function formatRangeValue(value: number): string {
         )
       ))}
     </div>
+    </details>
   ) : null}
 
   <div class="active-filter-row" data-gallery-active hidden>
@@ -117,6 +121,7 @@ function formatRangeValue(value: number): string {
       <span data-batch-status aria-live="polite"></span>
     </div>
     <div class="batch-actions">
+      <button class="text-link batch-clear" type="button" data-batch-clear>清空选择</button>
       <button class="button button-secondary" type="button" data-batch-download="original">下载原图</button>
       <button class="button button-primary" type="button" data-batch-download="upscaled">优先超分版</button>
     </div>
@@ -124,3 +129,9 @@ function formatRangeValue(value: number): string {
 </section>
 
 <script src="../scripts/gallery.ts"></script>
+
+<script is:inline>
+  for (const disclosure of document.querySelectorAll("[data-filter-disclosure]")) {
+    if (disclosure instanceof HTMLDetailsElement && window.matchMedia("(max-width: 760px)").matches) disclosure.open = false;
+  }
+</script>

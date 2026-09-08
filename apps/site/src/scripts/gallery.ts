@@ -1,6 +1,7 @@
 import { zipSync } from "fflate";
 import { DOWNLOAD_CONCURRENCY, MAX_BATCH_BYTES, MAX_BATCH_FILES, uniqueZipFilename } from "../lib/batch";
 import { cardMediaFit, cardMediaRatio } from "../lib/media-config";
+import { matchesChartFilters } from "../lib/chart-filters";
 import { compareNaturalText, normalizeSearchText } from "../lib/search";
 import { appendResourceViews, getBrowserStatsClient, updateResourceStatsInDom } from "../lib/stats-client";
 import type { PublicDownload, PublicResource } from "../lib/types";
@@ -55,11 +56,14 @@ async function initializeGallery(root: HTMLElement): Promise<void> {
   const reset = root.querySelector<HTMLButtonElement>("[data-gallery-reset]");
   const active = root.querySelector<HTMLElement>("[data-gallery-active]");
   const activeChips = root.querySelector<HTMLElement>("[data-gallery-active-chips]");
+  const batchClear = root.querySelector<HTMLButtonElement>("[data-batch-clear]");
+  const batchButtons = [...root.querySelectorAll<HTMLButtonElement>("[data-batch-download]")];
   if (!grid || !loadMore || !count) return;
 
   let resources: PublicResource[] = [];
   let visibleCount = PAGE_SIZE;
   const selected = new Set<string>();
+  let batchDownloadInFlight = false;
 
   try {
     const response = await fetch(root.dataset.galleryUrl ?? "", { credentials: "omit" });
@@ -120,20 +124,61 @@ async function initializeGallery(root: HTMLElement): Promise<void> {
     button.closest<HTMLElement>("[data-resource-card]")?.classList.toggle("is-selected", selected.has(id));
   });
 
-  for (const button of root.querySelectorAll<HTMLButtonElement>("[data-batch-download]")) {
+  for (const button of batchButtons) {
     button.addEventListener("click", () => void downloadBatch(button.dataset.batchDownload === "upscaled"));
   }
+  batchClear?.addEventListener("click", () => {
+    selected.clear();
+    root.classList.remove("has-selection");
+    render();
+  });
+  activeChips?.addEventListener("click", (event) => {
+    const target = event.target;
+    if (!(target instanceof Element)) return;
+    const button = target.closest<HTMLButtonElement>("[data-remove-filter]");
+    if (!button) return;
+    const key = button.dataset.removeFilter ?? "";
+    if (key === "q") {
+      if (search) search.value = "";
+    } else if (key.startsWith("range:")) {
+      const range = ranges.find((candidate) => candidate.key === key.slice("range:".length));
+      if (range) setRange(range, range.min, range.max);
+    } else {
+      const facet = facets.find((candidate) => candidate.dataset.galleryFacet === key);
+      if (facet) facet.value = "";
+    }
+    applyFilter();
+  });
 
   function currentResources(): PublicResource[] {
     const query = normalizeSearchText(search?.value ?? "");
     const sortValue = sort?.value ?? "default";
+    const chartDifficulty = facets.find((facet) => facet.dataset.galleryFacet === "chart")?.value;
+    const chartLevel = facets.find((facet) => facet.dataset.galleryFacet === "level")?.value;
+    const chartConstant = facets.find((facet) => facet.dataset.galleryFacet === "constant")?.value;
+    const constantRange = ranges.find((range) => range.key === "constant");
+    const selectedConstantRange = constantRange
+      && (readRangeValue(constantRange, "min") > constantRange.min || readRangeValue(constantRange, "max") < constantRange.max)
+      ? { min: readRangeValue(constantRange, "min"), max: readRangeValue(constantRange, "max") }
+      : undefined;
+    const chartCriteria = {
+      ...(chartDifficulty ? { difficulties: [chartDifficulty] } : {}),
+      ...(chartLevel ? { levels: [chartLevel] } : {}),
+      ...(chartConstant ? { constants: [chartConstant] } : {}),
+      ...(selectedConstantRange ? { constantRange: selectedConstantRange } : {}),
+    };
     const filtered = resources.filter((resource) => {
       const text = [resource.displayTitle, resource.artist, resource.subtitle, ...(resource.badges ?? []), ...(resource.searchTerms ?? []), ...Object.values(resource.facets ?? {}).flat(), ...Object.values(resource.metadata).map(String)].filter(Boolean).join(" ");
       if (query && !normalizeSearchText(text).includes(query)) return false;
-      return facets.every((facet) => {
-        const value = facet.value;
-        return !value || (resource.facets?.[facet.dataset.galleryFacet ?? ""] ?? []).includes(value);
-      }) && ranges.every((range) => matchesRange(resource, range));
+      const resourceFacetsMatch = facets
+        .filter((facet) => !["chart", "level", "constant"].includes(facet.dataset.galleryFacet ?? ""))
+        .every((facet) => {
+          const value = facet.value;
+          return !value || (resource.facets?.[facet.dataset.galleryFacet ?? ""] ?? []).includes(value);
+        });
+      return resourceFacetsMatch
+        && matchesChartFilters(resource, chartCriteria)
+        && ranges.filter((range) => range.key !== "constant").every((range) => matchesRange(resource, range));
     });
     if (sortValue === "default") return filtered;
     return [...filtered].sort((left, right) => {
@@ -187,24 +232,28 @@ async function initializeGallery(root: HTMLElement): Promise<void> {
 
   function updateActiveFilters(): void {
     if (!active || !activeChips) return;
-    const labels: string[] = [];
-    if (search?.value) labels.push(`搜索：${search.value}`);
+    const entries: Array<{ key: string; label: string }> = [];
+    if (search?.value) entries.push({ key: "q", label: `搜索：${search.value}` });
     for (const facet of facets) {
       if (!facet.value) continue;
-      labels.push(facet.options[facet.selectedIndex]?.textContent ?? facet.value);
+      entries.push({ key: facet.dataset.galleryFacet ?? "", label: facet.options[facet.selectedIndex]?.textContent ?? facet.value });
     }
     for (const range of ranges) {
       const min = readRangeValue(range, "min");
       const max = readRangeValue(range, "max");
-      if (min > range.min || max < range.max) labels.push(`${range.root.dataset.rangeLabel ?? range.key}：${formatRangeValue(min)}～${formatRangeValue(max)}`);
+      if (min > range.min || max < range.max) entries.push({ key: `range:${range.key}`, label: `${range.root.dataset.rangeLabel ?? range.key}：${formatRangeValue(min)}～${formatRangeValue(max)}` });
     }
-    activeChips.replaceChildren(...labels.map((label) => {
-      const chip = document.createElement("span");
+    activeChips.replaceChildren(...entries.map(({ key, label }) => {
+      const chip = document.createElement("button");
+      chip.type = "button";
       chip.className = "active-filter-chip";
-      chip.textContent = label;
+      chip.dataset.removeFilter = key;
+      chip.textContent = `${label} ×`;
       return chip;
     }));
-    active.hidden = labels.length === 0;
+    active.hidden = entries.length === 0;
+    const summary = root.querySelector<HTMLElement>("[data-filter-summary]");
+    if (summary) summary.textContent = entries.length > 0 ? `（已选 ${entries.length}）` : "";
   }
 
   function updateBatchBar(): void {
@@ -212,7 +261,12 @@ async function initializeGallery(root: HTMLElement): Promise<void> {
     const countNode = root.querySelector<HTMLElement>("[data-batch-count]");
     if (!bar || !countNode) return;
     bar.hidden = selected.size === 0;
-    countNode.textContent = `已选择 ${selected.size.toLocaleString("zh-CN")} 项`;
+    countNode.textContent = `已选择 ${selected.size.toLocaleString("zh-CN")} / ${MAX_BATCH_FILES} 项`;
+  }
+
+  function setBatchBusy(busy: boolean): void {
+    for (const button of batchButtons) button.disabled = busy;
+    if (batchClear) batchClear.disabled = busy;
   }
 
   function updateRangeFromInput(range: GalleryRange, side: "min" | "max"): void {
@@ -232,6 +286,7 @@ async function initializeGallery(root: HTMLElement): Promise<void> {
   }
 
   async function downloadBatch(preferUpscaled: boolean): Promise<void> {
+    if (batchDownloadInFlight) return;
     const batch = resources.filter((resource) => selected.has(resource.resourceId));
     const status = root.querySelector<HTMLElement>("[data-batch-status]");
     if (batch.length === 0) return;
@@ -249,6 +304,8 @@ async function initializeGallery(root: HTMLElement): Promise<void> {
       if (status) status.textContent = "一次选择的文件较多，请减少后再下载。";
       return;
     }
+    batchDownloadInFlight = true;
+    setBatchBusy(true);
     const entries: Record<string, Uint8Array> = {};
     const usedNames = new Set<string>();
     let completed = 0;
@@ -272,6 +329,9 @@ async function initializeGallery(root: HTMLElement): Promise<void> {
     } catch (error) {
       console.error("Batch download failed", error);
       if (status) status.textContent = "下载失败，请重试";
+    } finally {
+      batchDownloadInFlight = false;
+      setBatchBusy(false);
     }
   }
 }

@@ -35,6 +35,26 @@ export type PublicDownload = {
   height?: number;
 };
 
+export type PublicSearchImage = {
+  url: string;
+  width?: number;
+  height?: number;
+};
+
+export type PublicSearchCard = {
+  resourceId: string;
+  route: string;
+  game: GameId;
+  resourceType: ResourceTypeId;
+  displayTitle: string;
+  categoryLabel: string;
+  artist?: string;
+  image: PublicSearchImage | null;
+  fallback: PublicSearchImage | null;
+  upscaled: boolean;
+  variantLabels: string[];
+};
+
 export type PublicVariant = {
   variantId: string;
   label: string;

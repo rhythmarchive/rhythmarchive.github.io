@@ -16,17 +16,17 @@ const useOriginalSource = sourceToggle && Boolean(variant.original);
 const canToggleSource = useOriginalSource && Boolean(variant.upscaled);
 ---
 
-<section class="variant-panel" data-variant-panel={variant.variantId} hidden={!active}>
+<section class="variant-panel" id={`variant-panel-${variant.variantId}`} data-variant-panel={variant.variantId} role="tabpanel" tabindex="0" hidden={!active}>
   {useOriginalSource ? (
     <>
       {canToggleSource ? (
         <div class="variant-tabs detail-source-tabs" role="tablist" aria-label="预览版本">
-          <button type="button" class="is-active" data-detail-source-select="original" role="tab" aria-selected="true">原图</button>
-          <button type="button" data-detail-source-select="upscaled" role="tab" aria-selected="false">超分版</button>
+          <button type="button" class="is-active" data-detail-source-select="original" role="tab" aria-selected="true" aria-controls={`detail-source-${variant.variantId}-original`}>原图</button>
+          <button type="button" data-detail-source-select="upscaled" role="tab" aria-selected="false" aria-controls={`detail-source-${variant.variantId}-upscaled`}>超分版</button>
         </div>
       ) : null}
       <div class="detail-source-panels">
-        <div class="detail-source-panel" data-detail-source-panel="original">
+        <div class="detail-source-panel" id={`detail-source-${variant.variantId}-original`} data-detail-source-panel="original" role="tabpanel">
           <div class="detail-preview-frame">
             <button class="detail-preview-trigger" type="button" data-lightbox-open data-lightbox-preview-url={variant.original!.url} data-lightbox-preview-width={variant.original!.width} data-lightbox-preview-height={variant.original!.height} data-lightbox-preview-alt={alt} aria-label={"点击查看" + alt + "原图"}>
               <img data-detail-image data-fallback-src={large?.url ?? fallback?.url} data-fallback-width={large?.width ?? fallback?.width} data-fallback-height={large?.height ?? fallback?.height} src={variant.original!.url} sizes="(max-width: 760px) 100vw, 66vw" alt={alt} width={variant.original!.width} height={variant.original!.height} loading={active ? "eager" : "lazy"} decoding="async" />
@@ -35,7 +35,7 @@ const canToggleSource = useOriginalSource && Boolean(variant.upscaled);
           </div>
         </div>
         {canToggleSource ? (
-          <div class="detail-source-panel" data-detail-source-panel="upscaled" hidden>
+          <div class="detail-source-panel" id={`detail-source-${variant.variantId}-upscaled`} data-detail-source-panel="upscaled" role="tabpanel" hidden>
             <div class="detail-preview-frame">
               <button class="detail-preview-trigger" type="button" data-lightbox-open data-lightbox-preview-url={variant.upscaled!.url} data-lightbox-preview-width={variant.upscaled!.width} data-lightbox-preview-height={variant.upscaled!.height} data-lightbox-preview-alt={alt} aria-label={"点击查看" + alt + "超分版大图"}>
                 <img data-detail-image data-fallback-src={variant.original!.url} data-fallback-width={variant.original!.width} data-fallback-height={variant.original!.height} src={variant.upscaled!.url} sizes="(max-width: 760px) 100vw, 66vw" alt={alt} width={variant.upscaled!.width} height={variant.upscaled!.height} loading="lazy" decoding="async" />

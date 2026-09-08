@@ -48,7 +48,7 @@ const browseGroups = games.map((game) => ({
     </div>
   </section>
   <section class="page-container search-results" data-search-page data-search-query={query}>
-    <div class="search-results-heading"><span data-search-status aria-live="polite">输入关键词搜索资源</span></div>
+    <div class="search-results-heading"><span data-search-status aria-live="polite">输入关键词搜索资源</span><button class="text-link search-retry" type="button" data-search-retry hidden>重试</button></div>
     <div class="resource-grid" data-search-results></div>
   </section>
   <script src="../../scripts/search-page.ts"></script>

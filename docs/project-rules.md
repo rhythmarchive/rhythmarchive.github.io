@@ -2,7 +2,7 @@
 
 ## Safety
 
-Source APKs, installation directories, AssetBundles, Addressables files, and user originals are read-only. All analysis, extraction, candidate data, reports, screenshots, state, and temporary conversions belong in repository temp. Never write caches or metadata into a source directory.
+Source APKs, installation directories, AssetBundles, Addressables files, and user originals are read-only. New analysis, extraction, candidate data, reports, screenshots, state, and temporary conversions belong in repository temp. The Admin compatibility runtime remains under .runtime/; approved Catalog, projection, and audit corrections may update their explicitly documented canonical files. Never write caches or metadata into a source directory.
 
 Unattended local work does not push, publish production, upload/delete ROS objects, change DNS or credentials, or use reset/clean. External actions are outside COMPLETE_LOCAL.
 

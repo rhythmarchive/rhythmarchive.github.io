@@ -1,7 +1,8 @@
 import { rankSearchEntries } from "../lib/search";
-import { cardMediaRatio } from "../lib/media-config";
+import { cardMediaFit, cardMediaRatio } from "../lib/media-config";
+import { GAME_CONFIG } from "../lib/game-config";
 import { appendResourceViews, updateResourceStatsInDom } from "../lib/stats-client";
-import type { PublicResource, PublicSearchEntry } from "../lib/types";
+import type { PublicSearchCard, PublicSearchEntry } from "../lib/types";
 
 const root = document.querySelector<HTMLElement>("[data-search-page]");
 if (root) void initializeSearch(root);
@@ -10,88 +11,130 @@ async function initializeSearch(root: HTMLElement): Promise<void> {
   const input = root.previousElementSibling?.querySelector<HTMLInputElement>("input[name=q]") ?? document.querySelector<HTMLInputElement>(".search-page input[name=q]");
   const results = root.querySelector<HTMLElement>("[data-search-results]");
   const status = root.querySelector<HTMLElement>("[data-search-status]");
+  const retry = root.querySelector<HTMLButtonElement>("[data-search-retry]");
   if (!input || !results || !status) return;
 
   const queryFromUrl = new URLSearchParams(window.location.search).get("q");
   if (queryFromUrl !== null) input.value = queryFromUrl;
 
-  let entries: PublicSearchEntry[] = [];
-  let resourceMap = new Map<string, PublicResource>();
-  let resourcesPromise: Promise<void> | undefined;
+  let entriesPromise: Promise<PublicSearchEntry[]> | undefined;
+  let searchCardsPromise: Promise<Map<string, PublicSearchCard>> | undefined;
+  let runToken = 0;
 
-  try {
-    const response = await fetch(resolveSitePath("data/search-index.json"), { credentials: "omit" });
-    if (!response.ok) throw new Error(`search index failed with ${response.status}`);
-    entries = await response.json() as PublicSearchEntry[];
-  } catch (error) {
-    console.error("Search index failed", error);
-    status.textContent = "搜索暂时不可用";
-    return;
-  }
+  const syncQueryUrl = (value: string): void => {
+    const url = new URL(window.location.href);
+    const query = value.trim();
+    if (query) url.searchParams.set("q", query); else url.searchParams.delete("q");
+    window.history.replaceState({}, "", url);
+  };
 
-  const run = async () => {
-    const query = input.value;
-    const ranked = rankSearchEntries(entries, query);
-    if (!query.trim()) {
-      root.closest(".search-page")?.classList.remove("has-search-query");
-      root.previousElementSibling?.classList.remove("is-results");
+  const loadSearchIndex = async (): Promise<PublicSearchEntry[]> => {
+    if (!entriesPromise) {
+      entriesPromise = fetch(resolveSitePath("data/search-index.json"), { credentials: "omit" }).then(async (response) => {
+        if (!response.ok) throw new Error(`search index failed with ${response.status}`);
+        return await response.json() as PublicSearchEntry[];
+      });
+    }
+    try {
+      return await entriesPromise;
+    } catch (error) {
+      entriesPromise = undefined;
+      throw error;
+    }
+  };
+
+  const loadSearchCards = async (): Promise<Map<string, PublicSearchCard>> => {
+    if (!searchCardsPromise) {
+      searchCardsPromise = fetch(resolveSitePath("data/search-cards.json"), { credentials: "omit" }).then(async (response) => {
+        if (!response.ok) throw new Error(`search cards failed with ${response.status}`);
+        const cards = await response.json() as PublicSearchCard[];
+        return new Map(cards.map((card) => [card.resourceId, card]));
+      });
+    }
+    try {
+      return await searchCardsPromise;
+    } catch (error) {
+      searchCardsPromise = undefined;
+      throw error;
+    }
+  };
+  const run = async (): Promise<void> => {
+    const token = ++runToken;
+    const rawQuery = input.value;
+    const query = rawQuery.trim();
+    syncQueryUrl(rawQuery);
+    const page = root.closest(".search-page");
+    const head = root.previousElementSibling;
+    if (!query) {
+      page?.classList.remove("has-search-query");
+      head?.classList.remove("is-results");
       results.replaceChildren();
       status.textContent = "输入关键词搜索资源";
+      if (retry) retry.hidden = true;
       return;
     }
-    root.closest(".search-page")?.classList.add("has-search-query");
-    root.previousElementSibling?.classList.add("is-results");
-    if (ranked.length === 0) {
+
+    page?.classList.add("has-search-query");
+    head?.classList.add("is-results");
+    results.replaceChildren();
+    status.textContent = "正在搜索…";
+    if (retry) retry.hidden = true;
+    try {
+      const entries = await loadSearchIndex();
+      if (token !== runToken) return;
+      const ranked = rankSearchEntries(entries, query);
+      if (ranked.length === 0) {
+        status.textContent = "没有找到相关资源。";
+        return;
+      }
+      const cardMap = await loadSearchCards();
+      if (token !== runToken) return;
+      const matches = ranked.map((entry) => cardMap.get(entry.resourceId)).filter((card): card is PublicSearchCard => Boolean(card));
+      results.replaceChildren(...matches.map((card) => createResultCard(card)));
+      void updateResourceStatsInDom(results);
+      status.textContent = `找到 ${matches.length.toLocaleString("zh-CN")} 项资源`;
+    } catch (error) {
+      if (token !== runToken) return;
+      console.error("Search data failed", error);
       results.replaceChildren();
-      status.textContent = "没有找到相关资源。";
-      return;
+      status.textContent = "搜索暂时不可用，请重试";
+      if (retry) retry.hidden = false;
     }
-    resourcesPromise ??= loadResources();
-    await resourcesPromise;
-    const matches = ranked.map((entry) => resourceMap.get(entry.resourceId)).filter((resource): resource is PublicResource => Boolean(resource));
-    results.replaceChildren(...matches.map((resource) => createResultCard(resource)));
-    await updateResourceStatsInDom(results);
-    status.textContent = `找到 ${matches.length.toLocaleString("zh-CN")} 项资源`;
   };
 
   input.addEventListener("input", () => void run());
+  retry?.addEventListener("click", () => void run());
   void run();
-
-  async function loadResources(): Promise<void> {
-    const response = await fetch(resolveSitePath("data/resources.json"), { credentials: "omit" });
-    if (!response.ok) throw new Error(`public resources failed with ${response.status}`);
-    const resources = await response.json() as PublicResource[];
-    resourceMap = new Map(resources.map((resource) => [resource.resourceId, resource]));
-  }
 }
 
-function createResultCard(resource: PublicResource): HTMLElement {
+function createResultCard(card: PublicSearchCard): HTMLElement {
   const article = document.createElement("article");
   article.className = "resource-card";
   article.dataset.resourceCard = "";
-  article.dataset.resourceId = resource.resourceId;
-  article.dataset.game = resource.game;
-  article.dataset.resourceType = resource.resourceType;
-  article.dataset.mediaRatio = cardMediaRatio(resource.game, resource.resourceType);
+  article.dataset.resourceId = card.resourceId;
+  article.dataset.game = card.game;
+  article.dataset.resourceType = card.resourceType;
+  article.dataset.mediaRatio = cardMediaRatio(card.game, card.resourceType);
+  article.dataset.mediaFit = cardMediaFit(card.game, card.resourceType);
   const anchor = document.createElement("a");
   anchor.className = "resource-card-link";
-  anchor.href = resolveSitePath(resource.route);
+  anchor.href = resolveSitePath(card.route);
   const media = document.createElement("div");
   media.className = "resource-card-media";
-  const image = resource.preview.small ?? resource.preview.medium ?? resource.preview.large;
-  if (image) {
+  if (card.image) {
     const img = document.createElement("img");
-    img.src = image.url;
-    img.alt = resource.displayTitle;
-    img.width = image.width;
-    img.height = image.height;
+    img.src = card.image.url;
+    img.alt = card.displayTitle;
+    if (card.image.width) img.width = card.image.width;
+    if (card.image.height) img.height = card.image.height;
     img.loading = "lazy";
     img.decoding = "async";
-    if (resource.original?.url) {
-      img.dataset.fallbackSrc = resource.original.url;
-      if (resource.original.width) img.dataset.fallbackWidth = String(resource.original.width);
-      if (resource.original.height) img.dataset.fallbackHeight = String(resource.original.height);
+    if (card.fallback?.url) {
+      img.dataset.fallbackSrc = card.fallback.url;
+      if (card.fallback.width) img.dataset.fallbackWidth = String(card.fallback.width);
+      if (card.fallback.height) img.dataset.fallbackHeight = String(card.fallback.height);
     }
+    img.sizes = "(max-width: 640px) 50vw, (max-width: 1280px) 20vw, 210px";
     media.append(img);
   } else {
     const placeholder = document.createElement("div");
@@ -99,7 +142,7 @@ function createResultCard(resource: PublicResource): HTMLElement {
     placeholder.textContent = "图片暂不可用";
     media.append(placeholder);
   }
-  if (resource.upscaled) {
+  if (card.upscaled) {
     const badge = document.createElement("span");
     badge.className = "resource-badge is-upscaled";
     badge.textContent = "含超分版";
@@ -108,19 +151,28 @@ function createResultCard(resource: PublicResource): HTMLElement {
   const body = document.createElement("div");
   body.className = "resource-card-body";
   const title = document.createElement("h3");
-  title.textContent = resource.displayTitle;
+  title.textContent = card.displayTitle;
   body.append(title);
-  if (resource.artist) {
+  if (card.artist) {
     const artist = document.createElement("p");
-    artist.textContent = resource.artist;
+    artist.textContent = card.artist;
     body.append(artist);
+  }
+  const context = document.createElement("p");
+  context.className = "resource-card-context";
+  context.textContent = `${GAME_CONFIG[card.game].displayName} · ${card.categoryLabel}`;
+  body.append(context);
+  for (const labelValue of card.variantLabels) {
+    const label = document.createElement("span");
+    label.className = "resource-card-variant";
+    label.textContent = labelValue;
+    body.append(label);
   }
   appendResourceViews(body);
   anchor.append(media, body);
   article.append(anchor);
   return article;
 }
-
 function resolveSitePath(path: string): string {
   const base = document.documentElement.dataset.basePath ?? "/";
   const clean = path.startsWith("/") ? path : `/${path}`;

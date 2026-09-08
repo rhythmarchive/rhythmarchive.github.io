@@ -57,7 +57,7 @@ export const GAME_CONFIG: Record<GameId, GameConfig> = {
       artist: "曲师",
       pack: "曲包",
       packName: "曲包",
-      side: "Side (APK)",
+      side: "Side",
       version: "加入版本",
       releaseDate: "加入日期",
       bpm: "BPM",

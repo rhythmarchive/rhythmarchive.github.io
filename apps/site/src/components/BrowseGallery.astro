@@ -76,6 +76,9 @@ function formatRangeValue(value: number): string {
     </div>
   </div>
 
+  {(data.game === "arcaea" && arcaeaOptions) || data.game === "phigros" || (data.game === "rizline" && rizlineOptions) || (data.game === "infalsus" && infalsusOptions) ? (
+    <details class="gallery-filter-disclosure" data-filter-disclosure open>
+      <summary>筛选 <span data-filter-summary></span></summary>
   {data.game === "arcaea" && arcaeaOptions ? (
     <div class="gallery-filter-row" data-gallery-filter-row>
       <label class="filter-control"><span>难度</span><select data-browse-filter-select="chart" aria-label="难度"><option value="">全部</option>{arcaeaOptions.charts.map((value) => <option value={value}>{displayFilterDifficultyLabel(value, "arcaea")}</option>)}</select></label>
@@ -128,6 +131,9 @@ function formatRangeValue(value: number): string {
     </div>
   ) : null}
 
+    </details>
+  ) : null}
+
   <div class="active-filter-row" data-browse-active hidden>
     <span class="active-filter-label">当前筛选</span>
     <div class="active-filter-chips" data-browse-active-chips></div>
@@ -152,6 +158,7 @@ function formatRangeValue(value: number): string {
       <span data-batch-status aria-live="polite"></span>
     </div>
     <div class="batch-actions">
+      <button class="text-link batch-clear" type="button" data-batch-clear>清空选择</button>
       <button class="button button-secondary" type="button" data-batch-download="original">下载原图</button>
       <button class="button button-primary" type="button" data-batch-download="upscaled">优先超分版</button>
     </div>
@@ -159,3 +166,9 @@ function formatRangeValue(value: number): string {
 </section>
 
 <script src="../scripts/browse-gallery.ts"></script>
+
+<script is:inline>
+  for (const disclosure of document.querySelectorAll("[data-filter-disclosure]")) {
+    if (disclosure instanceof HTMLDetailsElement && window.matchMedia("(max-width: 760px)").matches) disclosure.open = false;
+  }
+</script>

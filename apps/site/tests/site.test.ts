@@ -12,6 +12,7 @@ import { formatContentVersion, formatGameUpdatedAt, isRecentlyUpdated, sortPubli
 import { rankRelatedResources } from "../src/lib/related.js";
 import { buildSearchQuickLinks } from "../src/lib/search-quick-links.js";
 import { getCategoryBrowseConfig } from "../src/lib/category-browse.js";
+import { matchesChartFilters } from "../src/lib/chart-filters.js";
 import { GISCUS_CONFIG, GITHUB_DISCUSSIONS_URL, GITHUB_REPOSITORY_URL } from "../src/lib/site-config.js";
 import { compareNaturalText, rankSearchEntries } from "../src/lib/search.js";
 import { createUrlHelpers } from "../src/lib/url.js";
@@ -27,6 +28,17 @@ test("Arcaea added-version labels keep only major and minor components", () => {
   assert.equal(formatArcaeaAddedVersion("6.13.10"), "6.13");
   assert.equal(formatArcaeaAddedVersion("3.5.3"), "3.5");
   assert.equal(formatArcaeaAddedVersion("6.13"), "6.13");
+});
+
+test("generic gallery chart filters keep difficulty, level, and constant on one chart", () => {
+  const resource = testResource({
+    charts: [
+      { difficulty: "I", level: "3", constant: "3.0" },
+      { difficulty: "IV", level: "13", constant: "13.2" },
+    ],
+  });
+  assert.equal(matchesChartFilters(resource, { difficulties: ["I"], constantRange: { min: 12, max: 14 } }), false);
+  assert.equal(matchesChartFilters(resource, { difficulties: ["IV"], levels: ["13"], constantRange: { min: 12, max: 14 } }), true);
 });
 
 test("jacket details expose the unified chart field and user-facing identity metadata", () => {
@@ -615,12 +627,14 @@ test("internal game entries link directly to each game's primary category", () =
     fs.readFileSync(path.join(siteRoot, "src", "pages", "r", "[id]", "index.astro"), "utf8"),
   ];
   const footer = fs.readFileSync(path.join(siteRoot, "src", "components", "Footer.astro"), "utf8");
-  assert.ok(sources.every((source) => source.includes("primaryCategorySlug")));
+  assert.ok(sources.slice(0, 2).every((source) => source.includes("primaryCategorySlug")));
+  assert.match(sources[2]!, /resource\.category/u);
   assert.match(footer, /urls\.sitePath\("\/games\/"\)/u);
   assert.doesNotMatch(footer, /getPublicNavigationGames|primaryCategorySlug/u);
   assert.ok(sources.every((source) => !/sitePath\(`\/\$\{(?:game\.slug|resource\.game)\}\/`\)/u.test(source)));
   const quickLinks = buildSearchQuickLinks({ games: getPublicNavigationGames() });
-  assert.ok(quickLinks.filter((entry) => ["Arcaea", "Phigros", "Rizline", "In Falsus", "Rotaeno"].includes(entry.label)).every((entry) => entry.href.endsWith("/jacket/")));
+  assert.ok(quickLinks.filter((entry) => ["Arcaea", "Phigros", "Rizline", "In Falsus", "范式：起源", "Rotaeno"].includes(entry.label)).every((entry) => entry.href.endsWith("/jacket/")));
+  assert.ok(quickLinks.some((entry) => entry.label === "范式：起源" && entry.href === "/paradigm-reboot/jacket/"));
   assert.equal(primaryCategorySlug("arcaea"), "jacket");
   assert.equal(primaryCategorySlug("paradigm-reboot"), "jacket");
 });
@@ -711,10 +725,10 @@ test("search quick links are explicit, count-gated, and game-scoped", () => {
   const data = projectCatalog(catalog, rosBaseUrl);
   const quickLinks = buildSearchQuickLinks(data);
   assert.ok(quickLinks.every((entry) => entry.count > 0));
-  assert.ok(quickLinks.some((entry) => entry.label === "Arcaea 曲绘" && entry.href === "/arcaea/jacket/"));
-  assert.ok(quickLinks.some((entry) => entry.label === "Phigros 曲绘" && entry.href === "/phigros/jacket/"));
-  assert.ok(quickLinks.some((entry) => entry.label === "Rizline 曲绘" && entry.href === "/rizline/jacket/"));
+  assert.ok(quickLinks.some((entry) => entry.label === "Arcaea" && entry.href === "/arcaea/jacket/"));
+  assert.ok(quickLinks.some((entry) => entry.label === "范式：起源" && entry.href === "/paradigm-reboot/jacket/"));
   assert.ok(quickLinks.some((entry) => entry.label === "Rizline 精选集" && entry.href === "/rizline/track-series/"));
+  assert.equal(quickLinks.filter((entry) => entry.href === "/arcaea/jacket/").length, 1);
   assert.ok(quickLinks.some((entry) => entry.label === "Rizline Rizcard" && entry.href === "/rizline/rizcard/"));
   assert.ok(quickLinks.some((entry) => entry.label === "Rizline 角色头像" && entry.href === "/rizline/character-avatar/"));
   assert.ok(quickLinks.every((entry) => entry.label !== "曲绘"));
@@ -761,17 +775,22 @@ test("detail lightbox opens only an existing preview rendition", () => {
   assert.match(styles, /\.detail-lightbox\[hidden\] \{ display: none; \}/u);
   assert.match(panel, /const useOriginalSource = sourceToggle && Boolean\(variant\.original\)/u);
   assert.match(page, /sourceToggle=\{resource\.resourceType === "jacket" &&/u);
+  assert.match(page, /aria-controls=\{`variant-panel-\$\{variant\.variantId\}`\}/u);
 });
 
 test("client gallery rerenders preserve original jacket sources", () => {
   const gallery = fs.readFileSync(path.join(siteRoot, "src", "scripts", "gallery.ts"), "utf8");
   const browse = fs.readFileSync(path.join(siteRoot, "src", "scripts", "browse-gallery.ts"), "utf8");
+  const search = fs.readFileSync(path.join(siteRoot, "src", "scripts", "search-page.ts"), "utf8");
   assert.match(gallery, /const useOriginalGallerySource = \["arcaea", "paradigm-reboot"\]\.includes\(resource\.game\) && resource\.resourceType === "jacket"/u);
   assert.match(gallery, /const image = useOriginalGallerySource \? resource\.original :/u);
   assert.match(gallery, /const srcset = useOriginalGallerySource \? "" :/u);
   assert.match(browse, /const useOriginalGallerySource = item\.game === "arcaea" && item\.resourceType === "jacket"/u);
   assert.match(browse, /const image = useOriginalGallerySource \? item\.original :/u);
   assert.match(browse, /const srcset = useOriginalGallerySource \? "" :/u);
+  assert.match(search, /data-search-retry/u);
+  assert.match(search, /syncQueryUrl/u);
+  assert.match(search, /runToken/u);
 });
 test("detail downloads show image dimensions without the recommendation label", () => {
   const page = fs.readFileSync(path.join(siteRoot, "src", "pages", "r", "[id]", "index.astro"), "utf8");
