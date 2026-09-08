@@ -65,7 +65,6 @@ packages/domain/src/*
 !packages/domain/src/schema.ts
 !packages/domain/src/validation.ts
 !packages/domain/src/browse.ts
-.github/workflows/arcaea-apk-update.yml
 tsconfig.json
 catalog/curation/
 catalog/releases/
