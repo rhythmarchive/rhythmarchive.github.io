@@ -595,7 +595,7 @@ test("natural text comparison keeps numeric ordering without folding accents", (
 test("homepage navigation uses the generated jacket browse counts", () => {
   const games = getPublicNavigationGames();
   assert.equal(games.find((game) => game.slug === "arcaea")?.categories.find((category) => category.slug === "jacket")?.count, 566);
-  assert.equal(games.find((game) => game.slug === "phigros")?.categories.find((category) => category.slug === "jacket")?.count, 355);
+  assert.equal(games.find((game) => game.slug === "phigros")?.categories.find((category) => category.slug === "jacket")?.count, 348);
   const rizline = games.find((game) => game.slug === "rizline");
   assert.equal(rizline?.categories.find((category) => category.slug === "jacket")?.count, 143);
   assert.equal(rizline?.categories.find((category) => category.slug === "rizcard")?.count, 44);

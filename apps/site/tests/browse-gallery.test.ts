@@ -206,9 +206,14 @@ test("Browse pagination starts at 48 and reset state is empty without changing s
 
 test("Phigros projection keeps current, special, archive, and source-only boundaries", () => {
   const kinds = countKinds(formalBrowse.phigros.items);
-  assert.deepEqual(kinds, { track: 315, special: 33, "archive-extra": 7 });
-  assert.equal(formalBrowse.diagnostics.phigros.skipped.length, 6);
-  assert.ok(formalBrowse.diagnostics.phigros.skipped.every((item) => item.identity.includes("Random.SobremSilentroom")));
+  assert.deepEqual(kinds, { track: 315, special: 26, "archive-extra": 7 });
+  const skippedTracks = formalBrowse.diagnostics.phigros.skipped.filter((item) => item.recordKind === "track");
+  const skippedSpecials = formalBrowse.diagnostics.phigros.skipped.filter((item) => item.recordKind === "special");
+  assert.equal(skippedTracks.length, 6);
+  assert.ok(skippedTracks.every((item) => item.identity.includes("Random.SobremSilentroom")));
+  assert.equal(skippedSpecials.length, 7);
+  assert.ok(skippedSpecials.every((item) => item.reason === "non-jacket-april-fools-artwork"));
+  assert.ok(formalBrowse.phigros.items.filter((item) => item.recordKind === "special").every((item) => item.original?.width === 2048 && item.original?.height === 1080));
   assert.equal(formalBrowse.phigros.items.some((item) => item.sourceIdentityCandidate?.endsWith("Random.SobremSilentroom.1/")), false);
   assert.equal(formalBrowse.phigros.items.some((item) => item.sourceIdentityCandidate?.endsWith("Random.SobremSilentroom.6/")), false);
   assert.equal(formalBrowse.phigros.items.some((item) => item.displayTitle === "Random"), true);

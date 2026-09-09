@@ -449,9 +449,14 @@ function buildPhigrosItems(
       diagnostics.skipped.push({ recordKind: "special", identity: special.specialId, displayTitle: special.displayTitle, reason: "no-resolved-artwork-resource" });
       continue;
     }
-    const artwork = { ...toResolvedResource(resource), role: special.specialType } satisfies BrowseArtwork;
+    const resolvedResource = toResolvedResource(resource);
+    if (resource.resourceType === "phigros-april-fools" && !isPhigrosAprilFoolsJacket(resolvedResource)) {
+      diagnostics.skipped.push({ recordKind: "special", identity: special.specialId, displayTitle: special.displayTitle, reason: "non-jacket-april-fools-artwork" });
+      continue;
+    }
+    const artwork = { ...resolvedResource, role: special.specialType } satisfies BrowseArtwork;
     items.push({
-      ...toResolvedResource(resource),
+      ...resolvedResource,
       key: `special:${special.specialId}`,
       game: "phigros",
       recordKind: "special",
@@ -582,6 +587,11 @@ function buildInfalsusItems(
     });
   }
   return items;
+}
+
+function isPhigrosAprilFoolsJacket(resource: BrowseResolvedResource): boolean {
+  const assets = [resource.original, resource.preview.large, resource.preview.medium, resource.preview.small];
+  return assets.some((asset) => asset?.width === 2048 && asset.height === 1080);
 }
 
 function resolveResource(resources: GalleryResourceIndex, resourceId: string, game: BrowseGame, allowedTypes: ResourceTypeId[]): (PublicResource & { game: GameId }) | undefined {
