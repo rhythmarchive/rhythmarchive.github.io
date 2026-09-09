@@ -13,7 +13,7 @@ import { rankRelatedResources } from "../src/lib/related.js";
 import { buildSearchQuickLinks } from "../src/lib/search-quick-links.js";
 import { getCategoryBrowseConfig } from "../src/lib/category-browse.js";
 import { matchesChartFilters } from "../src/lib/chart-filters.js";
-import { GISCUS_CONFIG, GITHUB_DISCUSSIONS_URL, GITHUB_REPOSITORY_URL } from "../src/lib/site-config.js";
+import { GISCUS_CONFIG, GITHUB_DISCUSSIONS_URL, GITHUB_RELEASES_URL, GITHUB_REPOSITORY_URL } from "../src/lib/site-config.js";
 import { compareNaturalText, rankSearchEntries } from "../src/lib/search.js";
 import { createUrlHelpers } from "../src/lib/url.js";
 import { getPublicNavigationGames, getSiteData, loadCategoryBrowseProjections, loadFormalCatalog } from "../src/lib/site-data.js";
@@ -223,6 +223,7 @@ test("formal Giscus config is centralized and has a public Discussions fallback 
   assert.equal(GISCUS_CONFIG.repoId, "R_kgDOT4hyIQ");
   assert.equal(GISCUS_CONFIG.categoryId, "DIC_kwDOT4hyIc4DDbnK");
   assert.equal(GITHUB_REPOSITORY_URL, "https://github.com/rhythmarchive/rhythmarchive.github.io");
+  assert.equal(GITHUB_RELEASES_URL, "https://github.com/rhythmarchive/rhythmarchive.github.io/releases");
   assert.match(GITHUB_DISCUSSIONS_URL, /github\.com\/rhythmarchive\/rhythmarchive\.github\.io\/discussions/u);
 });
 
@@ -353,6 +354,7 @@ test("homepage uses the search-first entry architecture and a stable social imag
   assert.match(source, /formatCount\(games\.length\)/u);
   assert.match(source, /formatCount\(resourceCount\)/u);
   assert.match(source, /data-arcaea-apk-card/u);
+  assert.match(source, /版本信息来自官网首页/u);
   assert.match(source, /game-card-grid/u);
   assert.doesNotMatch(source, /home-categories|featuredCategories|games\.map\(\(game\) => game\.displayName\)\.join/u);
   assert.ok(source.indexOf("home-apk") < source.indexOf("home-games"));
@@ -406,7 +408,7 @@ test("footer keeps first-level links and accessible external social/copyright re
   const footer = fs.readFileSync(path.join(siteRoot, "src", "components", "Footer.astro"), "utf8");
   const styles = fs.readFileSync(path.join(siteRoot, "src", "styles", "global.css"), "utf8");
   assert.match(footer, /Rhythm Archive/u);
-  assert.match(footer, /把节奏游戏里的图像，整理成容易找到的收藏。/u);
+  assert.match(footer, />音游档案馆<\/span>/u);
   assert.match(footer, />首页<\/a>/u);
   assert.match(footer, />游戏库<\/a>/u);
   assert.match(footer, />资源库<\/a>/u);
@@ -820,11 +822,14 @@ test("APK card omits digest and previous-version disclosures while preserving pr
   const source = fs.readFileSync(path.join(siteRoot, "src", "scripts", "apk-card.ts"), "utf8");
   const styles = fs.readFileSync(path.join(siteRoot, "src", "styles", "global.css"), "utf8");
   assert.match(source, /renderManifest\(cardElement, stateElement, manifest\.latest\)/u);
-  assert.match(source, /"官方下载链接"/u);
+  assert.match(source, /GITHUB_RELEASES_URL/u);
+  assert.match(source, /createExternalLink\(GITHUB_RELEASES_URL, "button apk-official-button", "前往 GitHub Releases"\)/u);
   assert.match(source, /"下载APK"/u);
   assert.doesNotMatch(source, /校验信息|上一版本|createDigest|createPreviousVersion|manifest\.previous|apk-digest|apk-previous/u);
   assert.doesNotMatch(styles, /apk-digest|apk-previous|text-button/u);
-  assert.doesNotMatch(source, /前往Releases|GitHub 下载/u);
+  assert.doesNotMatch(source, /官方下载链接|前往Releases|GitHub 下载/u);
+  assert.match(source, /target = "_blank"/u);
+  assert.match(source, /rel = "noopener noreferrer"/u);
   assert.doesNotMatch(source, /sha256\.slice\(/u);
   assert.doesNotMatch(source, /previousRow\.className/u);
 });

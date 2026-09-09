@@ -1,4 +1,5 @@
 import { formatPublicApkBytes, parsePublicArcaeaApkManifest, type PublicArcaeaApkEntry } from "../lib/apk";
+import { GITHUB_RELEASES_URL } from "../lib/site-config";
 
 const card = document.querySelector<HTMLElement>("[data-arcaea-apk-card]");
 const state = card?.querySelector<HTMLElement>("[data-arcaea-apk-state]");
@@ -55,7 +56,7 @@ function renderManifest(cardElement: HTMLElement, stateElement: HTMLElement, lat
 
   const actions = document.createElement("div");
   actions.className = "apk-download-actions";
-  if (latest.downloads.official) actions.append(createDownloadLink(latest.downloads.official, latest.fileName, "button apk-official-button", "官方下载链接"));
+  actions.append(createExternalLink(GITHUB_RELEASES_URL, "button apk-official-button", "前往 GitHub Releases"));
   actions.append(createDownloadLink(latest.downloads.github, latest.fileName, "button apk-download-button", "下载APK"));
 
   stateElement.append(main, actions);
@@ -76,6 +77,16 @@ function createDownloadLink(href: string, fileName: string, className: string, l
   if (className) link.className = className;
   link.href = href;
   link.setAttribute("download", fileName);
+  link.textContent = label;
+  return link;
+}
+
+function createExternalLink(href: string, className: string, label: string): HTMLAnchorElement {
+  const link = document.createElement("a");
+  if (className) link.className = className;
+  link.href = href;
+  link.target = "_blank";
+  link.rel = "noopener noreferrer";
   link.textContent = label;
   return link;
 }
