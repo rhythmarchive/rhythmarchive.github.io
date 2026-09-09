@@ -57,7 +57,12 @@ lagacy/
 AGENTS.md
 docs/
 fixtures/
-tools/
+tools/*
+!tools/arcaea-apk-update.ts
+!tools/arcaea-apk-updater/
+tools/arcaea-apk-updater/*
+!tools/arcaea-apk-updater/package.json
+!tools/arcaea-apk-updater/package-lock.json
 workers/
 packages/admin/
 packages/domain/tests/
@@ -65,6 +70,9 @@ packages/domain/src/*
 !packages/domain/src/schema.ts
 !packages/domain/src/validation.ts
 !packages/domain/src/browse.ts
+!packages/domain/src/arcaea-apk.ts
+!packages/domain/src/github-release.ts
+!packages/domain/src/storage.ts
 tsconfig.json
 catalog/curation/
 catalog/releases/
