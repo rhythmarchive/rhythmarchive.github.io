@@ -123,12 +123,53 @@ export type PublicSearchEntry = {
   keywords: string[];
 };
 
+
+export type PublicUpdateChange = "added" | "supplemented" | "replaced";
+
+export type PublicUpdateItem = {
+  resourceId: string;
+  route: string;
+  game: GameId;
+  resourceType: ResourceTypeId;
+  category: string;
+  categoryLabel: string;
+  displayTitle: string;
+  image: PublicSearchImage | null;
+  fallback: PublicSearchImage | null;
+  change: PublicUpdateChange;
+};
+
+export type PublicUpdateSummary = {
+  added: number;
+  supplemented: number;
+  replaced: number;
+};
+
+export type PublicUpdateCategory = {
+  slug: string;
+  label: string;
+  count: number;
+};
+
+export type PublicUpdate = {
+  id: string;
+  game: GameId;
+  displayName: string;
+  publishedAt: string;
+  contentVersion?: string;
+  totalItemCount: number;
+  availableItemCount: number;
+  summary: PublicUpdateSummary;
+  categories: PublicUpdateCategory[];
+  items: PublicUpdateItem[];
+};
 export type PublicSiteData = {
   generatedAt: string;
   resources: PublicResource[];
   games: PublicGameIndex[];
   searchIndex: PublicSearchEntry[];
   galleries: Record<string, PublicResource[]>;
+  updates: PublicUpdate[];
   storyUi: {
     arcaea: PublicStoryUi;
   };

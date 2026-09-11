@@ -1,0 +1,51 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import ResourceCard from "../../../components/ResourceCard.astro";
+import { formatCount } from "../../../lib/format";
+import { getSiteData } from "../../../lib/site-data";
+import { BASE_PATH, ROS_BASE_URL, SITE_ORIGIN } from "../../../lib/site-config";
+import { createUrlHelpers } from "../../../lib/url";
+import type { PublicResource, PublicUpdate } from "../../../lib/types";
+
+export function getStaticPaths() {
+  const siteData = getSiteData();
+  return siteData.updates.map((update) => ({ params: { id: update.id }, props: { update } }));
+}
+
+interface Props { update: PublicUpdate; }
+const { update } = Astro.props;
+const siteData = getSiteData();
+const resourcesById = new Map(siteData.resources.map((resource) => [resource.resourceId, resource]));
+const resources = update.items.map((item) => resourcesById.get(item.resourceId)).filter((resource): resource is PublicResource => Boolean(resource));
+const urls = createUrlHelpers({ basePath: BASE_PATH, origin: SITE_ORIGIN, rosBaseUrl: ROS_BASE_URL });
+const dateLabel = new Intl.DateTimeFormat("zh-CN", { timeZone: "Asia/Shanghai", year: "numeric", month: "2-digit", day: "2-digit" }).format(new Date(update.publishedAt));
+---
+
+<BaseLayout title={update.displayName + " 更新记录 | Rhythm Archive"} description={update.displayName + " 于 " + dateLabel + " 的资源更新记录。"} canonicalPath={"/updates/" + update.id + "/"} bodyClass="update-detail-page">
+  <section class="page-container update-detail-head" aria-labelledby="update-detail-heading">
+    <a class="back-link" href={urls.sitePath("/updates/")}>返回更新记录</a>
+    <span class="archive-kicker">更新记录</span>
+    <h1 id="update-detail-heading">{update.displayName} 更新</h1>
+    <p><time datetime={update.publishedAt}>{dateLabel}</time>{update.contentVersion ? " · 收录 " + update.contentVersion : ""}</p>
+    <div class="update-detail-summary">
+      {update.summary.added > 0 && <span>新增 {formatCount(update.summary.added)} 项</span>}
+      {update.summary.supplemented > 0 && <span>补充 {formatCount(update.summary.supplemented)} 项</span>}
+      {update.summary.replaced > 0 && <span>替换 {formatCount(update.summary.replaced)} 项</span>}
+    </div>
+    <nav class="update-detail-categories" aria-label="本次更新的资源类型">
+      <a href={urls.sitePath("/updates/" + update.id + "/")} class="is-active">全部</a>
+      {update.categories.map((category) => <a href={urls.sitePath("/updates/" + update.id + "/") + "?type=" + encodeURIComponent(category.slug)}>{category.label} <small>{formatCount(category.count)}</small></a>)}
+    </nav>
+  </section>
+  <section class="page-container update-detail-body" aria-label="本次更新的资源">
+    <p class="update-detail-status" data-update-detail-status>{formatCount(resources.length)} 项资源</p>
+    <div class="resource-grid update-detail-grid" data-update-detail-grid>
+      {update.items.map((item) => {
+        const resource = resourcesById.get(item.resourceId);
+        return resource ? <div data-update-detail-item data-update-detail-category={item.category}><ResourceCard resource={resource} /></div> : null;
+      })}
+    </div>
+    {resources.length === 0 && <p class="updates-empty">本次更新的资源目前均不可用。</p>}
+  </section>
+  <script src="../../../scripts/update-detail.ts"></script>
+</BaseLayout>

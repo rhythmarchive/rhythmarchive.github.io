@@ -8,6 +8,7 @@ import type { Catalog } from "../../../../packages/domain/src/schema.js";
 import { buildBrowseGalleryData } from "./browse-gallery";
 import { applyCategoryBrowseSemantics, type CategoryBrowseProjections } from "./category-browse";
 import { projectCatalog } from "./catalog-projection";
+import { projectUpdates } from "./update-history";
 import { formatArcaeaAddedVersion } from "./public-display";
 import { GAME_CONFIG, type GameId } from "./game-config";
 import { sortPublicGames } from "./game-index";
@@ -41,7 +42,8 @@ export function getSiteData(rosBaseUrl = ROS_BASE_URL): PublicSiteData {
   if (!cachedSiteData) {
     const catalog = loadFormalCatalog();
     const projected = enrichFormalBrowseMetadata(projectCatalog(catalog, rosBaseUrl), loadFormalBrowseProjections());
-    cachedSiteData = applyCategoryBrowseSemantics(projected, loadCategoryBrowseProjections());
+    const publicData = applyCategoryBrowseSemantics(projected, loadCategoryBrowseProjections());
+    cachedSiteData = { ...publicData, updates: projectUpdates(publicData, findWorkspaceRoot()) };
   }
   return cachedSiteData;
 }

@@ -1,0 +1,22 @@
+---
+import UpdateCard from "./UpdateCard.astro";
+import { getSiteData } from "../lib/site-data";
+import { BASE_PATH, ROS_BASE_URL, SITE_ORIGIN } from "../lib/site-config";
+import { createUrlHelpers } from "../lib/url";
+
+const siteData = getSiteData();
+const updates = siteData.updates.slice(0, 3);
+const urls = createUrlHelpers({ basePath: BASE_PATH, origin: SITE_ORIGIN, rosBaseUrl: ROS_BASE_URL });
+---
+
+{updates.length > 0 && (
+  <section class="page-container home-recent-updates" aria-labelledby="recent-updates-heading">
+    <div class="section-heading">
+      <div><span class="section-kicker">Archive</span><h2 id="recent-updates-heading">最近更新</h2></div>
+      <a class="section-link" href={urls.sitePath("/updates/")}>全部更新</a>
+    </div>
+    <div class="recent-update-list">
+      {updates.map((update) => <UpdateCard update={update} compact />)}
+    </div>
+  </section>
+)}

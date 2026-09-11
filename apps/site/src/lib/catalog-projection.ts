@@ -195,6 +195,7 @@ export function projectCatalog(catalog: Catalog, rosBaseUrl: string): PublicSite
     games,
     searchIndex,
     galleries,
+    updates: [],
     storyUi: {
       arcaea: projectArcaeaStoryUi(catalog, variantsByResource, renditionsByVariant, objectsById, rosBaseUrl, phigrosAprilFoolsYear),
     },

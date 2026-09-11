@@ -2,6 +2,7 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import GameCard from "../components/GameCard.astro";
 import SearchBox from "../components/SearchBox.astro";
+import RecentUpdates from "../components/RecentUpdates.astro";
 import { buildSearchQuickLinks } from "../lib/search-quick-links";
 import { formatCount } from "../lib/format";
 import { BASE_PATH, ROS_BASE_URL, SITE_ORIGIN } from "../lib/site-config";
@@ -53,6 +54,8 @@ const arcaeaApkManifestUrl = `${ROS_BASE_URL}/apk/arcaea/latest.json`;
     <div class="apk-card-state" data-arcaea-apk-state><span>正在获取版本信息…</span></div>
   </section>
   <script src="../scripts/apk-card.ts"></script>
+
+  <RecentUpdates />
 
   <section class="page-container home-games" aria-labelledby="games-heading">
     <div class="section-heading">

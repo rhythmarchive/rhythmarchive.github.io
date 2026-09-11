@@ -1,0 +1,45 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import UpdateCard from "../../components/UpdateCard.astro";
+import { formatCount } from "../../lib/format";
+import { getPublicNavigationGames, getSiteData } from "../../lib/site-data";
+
+const siteData = getSiteData();
+const games = getPublicNavigationGames();
+const updates = siteData.updates;
+const categories = [...new Map(updates.flatMap((update) => update.categories).map((category) => [category.slug, category])).values()]
+  .sort((left, right) => left.label.localeCompare(right.label, "zh-CN") || left.slug.localeCompare(right.slug, "en"));
+const payload = JSON.stringify(updates).replace(/</gu, "\\u003c");
+---
+
+<BaseLayout title="更新记录 | Rhythm Archive" description="查看 Rhythm Archive 最近收录和补充的图片资源。" canonicalPath="/updates/" bodyClass="updates-page">
+  <section class="page-container updates-page-head" aria-labelledby="updates-heading">
+    <span class="archive-kicker">Rhythm Archive</span>
+    <h1 id="updates-heading">更新记录</h1>
+    <p>最近收录和补充的图片资源。</p>
+    <form class="updates-filters" data-update-filters>
+      <label>游戏<select data-update-game aria-label="按游戏筛选">
+        <option value="">全部游戏</option>
+        {games.map((game) => <option value={game.slug}>{game.displayName}</option>)}
+      </select></label>
+      <label>类型<select data-update-type aria-label="按资源类型筛选">
+        <option value="">全部类型</option>
+        {categories.map((category) => <option value={category.slug}>{category.label}</option>)}
+      </select></label>
+      <button class="text-link" type="button" data-update-clear hidden>清除筛选</button>
+    </form>
+    <p class="updates-status" data-update-status aria-live="polite">{updates.length > 0 ? "共 " + formatCount(updates.length) + " 批更新" : "暂时还没有更新记录。"}</p>
+  </section>
+
+  <section class="page-container updates-timeline" aria-label="更新记录列表">
+    <div data-updates-list>
+      {updates.slice(0, 20).map((update) => <UpdateCard update={update} />)}
+      {updates.length === 0 && <div class="updates-empty"><p>暂时还没有更新记录。</p></div>}
+    </div>
+    <div class="updates-empty" data-update-no-results hidden><p>没有找到这类更新。</p><button class="text-link" type="button" data-update-empty-clear>清除筛选</button></div>
+    <div class="updates-more"><button class="button button-secondary" type="button" data-update-more hidden>加载更多</button></div>
+  </section>
+
+  <script is:inline type="application/json" id="updates-data" set:html={payload}></script>
+  <script src="../../scripts/updates-page.ts"></script>
+</BaseLayout>

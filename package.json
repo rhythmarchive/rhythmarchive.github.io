@@ -7,7 +7,7 @@
     "node": ">=22.12.0"
   },
   "scripts": {
-    "test": "tsx --test apps/site/tests/site.test.ts apps/site/tests/browse-gallery.test.ts apps/site/tests/stats-client.test.ts",
+    "test": "tsx --test apps/site/tests/site.test.ts apps/site/tests/browse-gallery.test.ts apps/site/tests/stats-client.test.ts apps/site/tests/update-history.test.ts",
     "typecheck": "tsc -p apps/site/tsconfig.json --noEmit",
     "site:dev": "tsx apps/site/scripts/generate-public-data.ts && astro dev --root apps/site",
     "site:check": "tsx apps/site/scripts/generate-public-data.ts && astro check --root apps/site",

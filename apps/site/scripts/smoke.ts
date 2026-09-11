@@ -1,6 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
-import { findWorkspaceRoot, loadFormalCatalog } from "../src/lib/site-data.js";
+import { findWorkspaceRoot, getSiteData, loadFormalCatalog } from "../src/lib/site-data.js";
 import { projectCatalog } from "../src/lib/catalog-projection.js";
 
 const root = findWorkspaceRoot();
@@ -20,6 +20,7 @@ const required = [
   "rizline/index.html",
   "infalsus/index.html",
   "search/index.html",
+  "updates/index.html",
   "feedback/index.html",
   "arcaea/jacket/index.html",
   "phigros/jacket/index.html",
@@ -32,6 +33,10 @@ const required = [
 ];
 const missing = required.filter((file) => !files.includes(file));
 if (missing.length > 0) throw new Error("Missing required dist files: " + missing.join(", "));
+
+const updateHistory = getSiteData().updates;
+const updateDetailFiles = htmlFiles.filter((file) => /^updates\/[^/]+\/index\.html$/u.test(file));
+if (updateDetailFiles.length !== updateHistory.length) throw new Error("Expected " + updateHistory.length + " update detail pages, found " + updateDetailFiles.length + ".");
 
 const detailFiles = htmlFiles.filter((file) => /^r\/[^/]+\/index\.html$/u.test(file));
 if (detailFiles.length !== projection.resources.length) throw new Error("Expected " + projection.resources.length + " detail pages, found " + detailFiles.length + ".");

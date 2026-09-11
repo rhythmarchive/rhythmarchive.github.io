@@ -1,0 +1,58 @@
+---
+import type { PublicUpdate, PublicUpdateItem } from "../lib/types";
+import { BASE_PATH, ROS_BASE_URL, SITE_ORIGIN } from "../lib/site-config";
+import { formatCount } from "../lib/format";
+import { createUrlHelpers } from "../lib/url";
+
+interface Props {
+  update: PublicUpdate;
+  compact?: boolean;
+  items?: PublicUpdateItem[];
+}
+
+const { update, compact = false, items = update.items } = Astro.props;
+const urls = createUrlHelpers({ basePath: BASE_PATH, origin: SITE_ORIGIN, rosBaseUrl: ROS_BASE_URL });
+const previewItems = items.slice(0, compact ? 2 : 4);
+const summaryParts = [
+  update.summary.added > 0 ? "新增 " + formatCount(update.summary.added) + " 项" : "",
+  update.summary.supplemented > 0 ? "补充 " + formatCount(update.summary.supplemented) + " 项" : "",
+  update.summary.replaced > 0 ? "替换 " + formatCount(update.summary.replaced) + " 项" : "",
+].filter(Boolean);
+const dateLabel = new Intl.DateTimeFormat("zh-CN", { timeZone: "Asia/Shanghai", year: "numeric", month: "2-digit", day: "2-digit" }).format(new Date(update.publishedAt));
+const detailUrl = urls.sitePath("/updates/" + encodeURIComponent(update.id) + "/");
+const changeLabel: Record<PublicUpdateItem["change"], string> = { added: "新增", supplemented: "补充", replaced: "替换" };
+---
+
+<article class:list={["update-card", compact && "update-card-compact"]} data-update-card data-update-id={update.id} data-game={update.game}>
+  <div class="update-card-date">
+    <time datetime={update.publishedAt}>{dateLabel}</time>
+    <span>{update.displayName}</span>
+  </div>
+  <div class="update-card-body">
+    <div class="update-card-heading">
+      <div>
+        <h3><a href={detailUrl}>{update.displayName} 更新</a></h3>
+        <p class="update-card-meta">
+          {update.contentVersion ? "收录 " + update.contentVersion + " · " : ""}{summaryParts.join("，")}
+          {update.availableItemCount < update.totalItemCount ? " · 当前可见 " + formatCount(update.availableItemCount) + " 项" : ""}
+        </p>
+      </div>
+      {!compact && <a class="update-card-link" href={detailUrl}>查看本次更新</a>}
+    </div>
+    <div class="update-card-summary" aria-label="更新类型">
+      {summaryParts.map((part) => <span>{part}</span>)}
+    </div>
+    {previewItems.length > 0 && (
+      <div class="update-card-previews">
+        {previewItems.map((item) => (
+          <a class="update-preview" href={urls.sitePath(item.route)} title={item.displayTitle}>
+            {item.image ? (
+              <img src={item.image.url} data-fallback-src={item.fallback?.url} alt={item.displayTitle} width={item.image.width} height={item.image.height} loading="lazy" decoding="async" />
+            ) : <span class="update-preview-placeholder">图片暂不可用</span>}
+            <span class="update-preview-caption"><strong>{item.categoryLabel}</strong><em>{changeLabel[item.change]}</em></span>
+          </a>
+        ))}
+      </div>
+    )}
+  </div>
+</article>
