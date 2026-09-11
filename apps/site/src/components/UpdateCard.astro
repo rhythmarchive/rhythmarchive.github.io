@@ -2,6 +2,7 @@
 import type { PublicUpdate, PublicUpdateItem } from "../lib/types";
 import { BASE_PATH, ROS_BASE_URL, SITE_ORIGIN } from "../lib/site-config";
 import { formatCount } from "../lib/format";
+import { publicContentVersion } from "../lib/game-index";
 import { createUrlHelpers } from "../lib/url";
 
 interface Props {
@@ -14,6 +15,7 @@ const { update, compact = false, items = update.items } = Astro.props;
 const urls = createUrlHelpers({ basePath: BASE_PATH, origin: SITE_ORIGIN, rosBaseUrl: ROS_BASE_URL });
 const previewItems = items.slice(0, compact ? 2 : 4);
 const summaryLabel = "更新 " + formatCount(update.summary.count) + " 项";
+const contentVersion = publicContentVersion(update.contentVersion);
 const dateLabel = new Intl.DateTimeFormat("zh-CN", { timeZone: "Asia/Shanghai", year: "numeric", month: "2-digit", day: "2-digit" }).format(new Date(update.publishedAt));
 const detailUrl = urls.sitePath("/updates/" + encodeURIComponent(update.id) + "/");
 ---
@@ -28,7 +30,7 @@ const detailUrl = urls.sitePath("/updates/" + encodeURIComponent(update.id) + "/
       <div>
         <h3><a href={detailUrl}>{update.displayName} 更新</a></h3>
         <p class="update-card-meta">
-          {update.contentVersion ? "收录 " + update.contentVersion + " · " : ""}{summaryLabel}
+          {contentVersion ? "收录 " + contentVersion + " · " : ""}{summaryLabel}
           {update.availableItemCount < update.totalItemCount ? " · 当前可见 " + formatCount(update.availableItemCount) + " 项" : ""}
         </p>
       </div>

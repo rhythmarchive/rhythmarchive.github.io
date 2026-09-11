@@ -23,8 +23,16 @@ export function formatGameUpdatedAt(value?: string): string {
   return month && day ? `${month}-${day} 更新` : "";
 }
 
-export function formatContentVersion(value?: string): string {
+const INTERNAL_CONTENT_VERSION = /^v\d+_\d+_\d+_\d+_[0-9a-f]+P$/iu;
+
+export function publicContentVersion(value?: string): string {
   const version = value?.trim();
+  if (!version || INTERNAL_CONTENT_VERSION.test(version)) return "";
+  return version;
+}
+
+export function formatContentVersion(value?: string): string {
+  const version = publicContentVersion(value);
   if (!version) return "";
   return /^v/iu.test(version) || /^\D/iu.test(version) ? version : `v${version}`;
 }

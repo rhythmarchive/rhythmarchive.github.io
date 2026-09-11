@@ -2,6 +2,7 @@
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 import ResourceCard from "../../../components/ResourceCard.astro";
 import { formatCount } from "../../../lib/format";
+import { publicContentVersion } from "../../../lib/game-index";
 import { getSiteData } from "../../../lib/site-data";
 import { BASE_PATH, ROS_BASE_URL, SITE_ORIGIN } from "../../../lib/site-config";
 import { createUrlHelpers } from "../../../lib/url";
@@ -19,6 +20,7 @@ const resourcesById = new Map(siteData.resources.map((resource) => [resource.res
 const resources = update.items.map((item) => resourcesById.get(item.resourceId)).filter((resource): resource is PublicResource => Boolean(resource));
 const urls = createUrlHelpers({ basePath: BASE_PATH, origin: SITE_ORIGIN, rosBaseUrl: ROS_BASE_URL });
 const dateLabel = new Intl.DateTimeFormat("zh-CN", { timeZone: "Asia/Shanghai", year: "numeric", month: "2-digit", day: "2-digit" }).format(new Date(update.publishedAt));
+const contentVersion = publicContentVersion(update.contentVersion);
 ---
 
 <BaseLayout title={update.displayName + " 更新记录 | Rhythm Archive"} description={update.displayName + " 于 " + dateLabel + " 的资源更新记录。"} canonicalPath={"/updates/" + update.id + "/"} bodyClass="update-detail-page">
@@ -26,7 +28,7 @@ const dateLabel = new Intl.DateTimeFormat("zh-CN", { timeZone: "Asia/Shanghai", 
     <a class="back-link" href={urls.sitePath("/updates/")}>返回更新记录</a>
     <span class="archive-kicker">更新记录</span>
     <h1 id="update-detail-heading">{update.displayName} 更新</h1>
-    <p><time datetime={update.publishedAt}>{dateLabel}</time>{update.contentVersion ? " · 收录 " + update.contentVersion : ""}</p>
+    <p><time datetime={update.publishedAt}>{dateLabel}</time>{contentVersion ? " · 收录 " + contentVersion : ""}</p>
     <div class="update-detail-summary">
       <span>更新 {formatCount(update.summary.count)} 项</span>
     </div>

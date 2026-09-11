@@ -2,7 +2,7 @@ import type { AssetObject, Catalog, Rendition, Resource, Variant } from "../../.
 import { categoryOrderIndex, displayVariantLabel, gameCategoryLabel, GAME_CONFIG, type GameId, type ResourceTypeId } from "./game-config";
 import { formatArcaeaAddedVersion, normalizePublicDisplay } from "./public-display";
 import { normalizeSearchText } from "./search";
-import { sortPublicGames } from "./game-index";
+import { publicContentVersion, sortPublicGames } from "./game-index";
 import type { PublicAsset, PublicCategory, PublicChart, PublicDownload, PublicGameIndex, PublicPreview, PublicResource, PublicSearchEntry, PublicSiteData, PublicVariant } from "./types";
 import { objectUrl } from "./url";
 
@@ -258,9 +258,10 @@ function projectGameActivity(resources: Resource[]): Pick<PublicGameIndex, "cont
     }
   }
   const [contentVersion] = versions;
+  const publicVersion = publicContentVersion(contentVersion);
   return {
     lastUpdatedAt,
-    ...(versions.size === 1 && contentVersion ? { contentVersion } : {}),
+    ...(versions.size === 1 && publicVersion ? { contentVersion: publicVersion } : {}),
   };
 }
 

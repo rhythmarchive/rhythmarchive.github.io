@@ -2,6 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { z } from "zod";
 import { categoryLabel, gameCategoryLabel, GAME_CONFIG, type GameId, type ResourceTypeId } from "./game-config";
+import { publicContentVersion } from "./game-index";
 import type { PublicGameIndex, PublicResource, PublicSearchImage, PublicSiteData, PublicUpdate, PublicUpdateChange, PublicUpdateItem } from "./types";
 
 const UpdateChange = z.enum(["added", "supplemented", "replaced"]);
@@ -96,12 +97,13 @@ export function projectUpdates(siteData: Omit<PublicSiteData, "updates">, root: 
     }
     const items: PublicUpdateItem[] = projectedItems.map(({ change: _change, ...item }) => item);
     const gameEntry: PublicGameIndex | undefined = gamesById.get(game);
+    const contentVersion = publicContentVersion(record.contentVersion);
     updates.push({
       id: record.id,
       game,
       displayName: gameEntry?.displayName ?? GAME_CONFIG[game].displayName,
       publishedAt: record.publishedAt,
-      ...(record.contentVersion ? { contentVersion: record.contentVersion } : {}),
+      ...(contentVersion ? { contentVersion } : {}),
       totalItemCount: mergedItems.size,
       availableItemCount: items.length,
       summary,

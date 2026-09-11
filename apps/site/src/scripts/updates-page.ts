@@ -1,3 +1,4 @@
+import { publicContentVersion } from "../lib/game-index";
 import type { PublicUpdate, PublicUpdateItem } from "../lib/types";
 
 const dataElement = document.querySelector<HTMLScriptElement>("#updates-data");
@@ -30,7 +31,8 @@ const renderCard = (update: PublicUpdate, items: PublicUpdateItem[]): string => 
   const itemCount = items.length;
   const previews = items.slice(0, 4);
   const detailUrl = sitePath("/updates/" + encodeURIComponent(update.id) + "/");
-  const version = update.contentVersion ? "收录 " + escapeHtml(update.contentVersion) + " · " : "";
+  const contentVersion = publicContentVersion(update.contentVersion);
+  const version = contentVersion ? "收录 " + escapeHtml(contentVersion) + " · " : "";
   const visibleSuffix = items.length < update.totalItemCount ? " · 当前可见 " + items.length + " 项" : "";
   const summaryHtml = "<span>更新 " + itemCount + " 项</span>";
   const previewHtml = previews.map((item) => {

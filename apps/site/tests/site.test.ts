@@ -8,7 +8,7 @@ import { formatPublicApkBytes, parsePublicArcaeaApkManifest } from "../src/lib/a
 import { uniqueZipFilename } from "../src/lib/batch.js";
 import { displayDifficultyLabel, displayFilterDifficultyLabel, displayVariantLabel, GAME_CONFIG, primaryCategorySlug } from "../src/lib/game-config.js";
 import { formatImageDimensions } from "../src/lib/format.js";
-import { formatContentVersion, formatGameUpdatedAt, isRecentlyUpdated, sortPublicGames } from "../src/lib/game-index.js";
+import { formatContentVersion, formatGameUpdatedAt, isRecentlyUpdated, publicContentVersion, sortPublicGames } from "../src/lib/game-index.js";
 import { rankRelatedResources } from "../src/lib/related.js";
 import { buildSearchQuickLinks } from "../src/lib/search-quick-links.js";
 import { getCategoryBrowseConfig } from "../src/lib/category-browse.js";
@@ -339,11 +339,25 @@ test("game index formatting and recent labels degrade safely when version or dat
   assert.equal(formatContentVersion("6.16.0"), "v6.16.0");
   assert.equal(formatContentVersion("In Falsus Demo"), "In Falsus Demo");
   assert.equal(formatContentVersion(undefined), "");
+  assert.equal(publicContentVersion("v141_2_7_1_3c13bbff2bP"), "");
+  assert.equal(publicContentVersion(" 2.7.1 "), "2.7.1");
   assert.equal(formatGameUpdatedAt("2026-08-26T00:00:00Z"), "08-26 更新");
   const now = Date.parse("2026-08-26T00:00:00Z");
   assert.equal(isRecentlyUpdated("2026-08-20T00:00:00Z", now), true);
   assert.equal(isRecentlyUpdated("2026-08-17T00:00:00Z", now), false);
   assert.equal(isRecentlyUpdated(undefined, now), false);
+});
+
+test("public update surfaces filter internal content versions consistently", () => {
+  const card = fs.readFileSync(path.join(siteRoot, "src", "components", "UpdateCard.astro"), "utf8");
+  const detail = fs.readFileSync(path.join(siteRoot, "src", "pages", "updates", "[id]", "index.astro"), "utf8");
+  const client = fs.readFileSync(path.join(siteRoot, "src", "scripts", "updates-page.ts"), "utf8");
+  assert.match(card, /publicContentVersion\(update\.contentVersion\)/u);
+  assert.match(detail, /publicContentVersion\(update\.contentVersion\)/u);
+  assert.match(client, /publicContentVersion\(update\.contentVersion\)/u);
+  assert.doesNotMatch(card, /update\.contentVersion \?/u);
+  assert.doesNotMatch(detail, /update\.contentVersion \?/u);
+  assert.doesNotMatch(client, /update\.contentVersion \?/u);
 });
 
 test("homepage uses the search-first entry architecture and a stable social image", () => {

@@ -31,3 +31,13 @@ test("public updates are sorted, deduplicated and limited to current public reso
     assert.ok(!("sourcePath" in update.items[0]!));
   }
 });
+
+test("public update projection omits Rizline internal resource versions", () => {
+  const root = findWorkspaceRoot();
+  const raw = loadRawUpdateHistory(root);
+  const internalRecord = raw.records.find((record) => record.game === "rizline" && record.contentVersion === "v141_2_7_1_3c13bbff2bP");
+  assert.ok(internalRecord);
+  const publicUpdate = getSiteData().updates.find((update) => update.id === internalRecord.id);
+  assert.ok(publicUpdate);
+  assert.equal(publicUpdate.contentVersion, undefined);
+});
