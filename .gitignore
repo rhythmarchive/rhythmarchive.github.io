@@ -54,8 +54,17 @@ Thumbs.db
 lagacy/
 # Internal curation, extraction, agent and deployment material kept outside the website repository
 .agents/
+!.agents/
+.agents/*
+!.agents/skills/
+.agents/skills/*
+!.agents/skills/update-timeline/
+!.agents/skills/update-timeline/SKILL.md
 AGENTS.md
 docs/
+!docs/
+docs/*
+!docs/update-timeline.md
 fixtures/
 tools/*
 !tools/arcaea-apk-update.ts
