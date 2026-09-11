@@ -1,0 +1,125 @@
+{
+  "releaseSchemaVersion": "1.0",
+  "id": "d9faf30c-222c-7f8a-9f1b-7d5706ecd039",
+  "updateBatchId": "7a16e9eb-6eef-7f9f-a38c-eed4e532d711",
+  "game": "rizline",
+  "baseVersion": "2.7.1",
+  "targetVersion": "v141_2_7_1_3c13bbff2bP",
+  "createdAt": "2026-09-11T13:07:47.881Z",
+  "status": "published",
+  "changes": [
+    {
+      "changeType": "added-resource",
+      "resourceId": "66cef037-a3ef-701b-85bc-229b523384b3",
+      "detail": "Rizline v141 source-derived jacket content addition."
+    },
+    {
+      "changeType": "added-resource",
+      "resourceId": "ad93bdb0-533b-731b-8b93-457f996a7f94",
+      "detail": "Rizline v141 source-derived jacket content addition."
+    },
+    {
+      "changeType": "added-variant",
+      "resourceId": "66cef037-a3ef-701b-85bc-229b523384b3",
+      "variantId": "3462c9d1-2e1b-7461-8815-a3312b7dff14",
+      "detail": "Stable default jacket Variant for a new Rizline song."
+    },
+    {
+      "changeType": "added-variant",
+      "resourceId": "ad93bdb0-533b-731b-8b93-457f996a7f94",
+      "variantId": "34126a74-2ae5-7b9c-8a87-2b9c20b08de5",
+      "detail": "Stable default jacket Variant for a new Rizline song."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "66cef037-a3ef-701b-85bc-229b523384b3",
+      "variantId": "3462c9d1-2e1b-7461-8815-a3312b7dff14",
+      "renditionId": "2e243386-7d46-707e-8dc8-ba98d9070b5f",
+      "objectId": "sha256:dfe3597eda1d0a73c641e644f7e9668ac81eb16736e6c7e9aa850a86b563f61e",
+      "detail": "Canonical PNG or derived thumbnail for the approved v141 jacket."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "66cef037-a3ef-701b-85bc-229b523384b3",
+      "variantId": "3462c9d1-2e1b-7461-8815-a3312b7dff14",
+      "renditionId": "92e9053d-a924-7769-9c0f-7017f60e4f15",
+      "objectId": "sha256:cb2d9799b20ccc54172c8a6db5d9176fb5d143b02f2545f3ff83582eeb6f5290",
+      "detail": "Canonical PNG or derived thumbnail for the approved v141 jacket."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "66cef037-a3ef-701b-85bc-229b523384b3",
+      "variantId": "3462c9d1-2e1b-7461-8815-a3312b7dff14",
+      "renditionId": "b89be22f-4ace-716b-ad5d-80f299cc0d6b",
+      "objectId": "sha256:2f2f27f3b13a7e9e8e93b19993309cbe3c3489f64aaba46685e1525d8a5f9e95",
+      "detail": "Canonical PNG or derived thumbnail for the approved v141 jacket."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "66cef037-a3ef-701b-85bc-229b523384b3",
+      "variantId": "3462c9d1-2e1b-7461-8815-a3312b7dff14",
+      "renditionId": "c5c86b06-38b0-7686-8411-870effb78a65",
+      "objectId": "sha256:8b5e4726fad4984d4b4600fb425a57f9f6d53a22ca5b91622858e0a2f91a7f53",
+      "detail": "Canonical PNG or derived thumbnail for the approved v141 jacket."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "ad93bdb0-533b-731b-8b93-457f996a7f94",
+      "variantId": "34126a74-2ae5-7b9c-8a87-2b9c20b08de5",
+      "renditionId": "9d639638-ac61-7677-8248-20517f1957ca",
+      "objectId": "sha256:e52e6556c7e9695dbb4be330ff1516d344a57cca51b7dbfc2b513134be38224a",
+      "detail": "Canonical PNG or derived thumbnail for the approved v141 jacket."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "ad93bdb0-533b-731b-8b93-457f996a7f94",
+      "variantId": "34126a74-2ae5-7b9c-8a87-2b9c20b08de5",
+      "renditionId": "d3c6337c-ffd6-72a1-9567-18d72365b131",
+      "objectId": "sha256:c2e0ed61eb9e7a68c4d95f6adf271784d9e0f3d7885906887057ddfa38720191",
+      "detail": "Canonical PNG or derived thumbnail for the approved v141 jacket."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "ad93bdb0-533b-731b-8b93-457f996a7f94",
+      "variantId": "34126a74-2ae5-7b9c-8a87-2b9c20b08de5",
+      "renditionId": "f6e7c8cd-5f95-708f-b279-0b3513b3e7d0",
+      "objectId": "sha256:bed3adf4db4611081e0ea90ccd6c54d568d203dfb4b8a315133a8745909d09f2",
+      "detail": "Canonical PNG or derived thumbnail for the approved v141 jacket."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "ad93bdb0-533b-731b-8b93-457f996a7f94",
+      "variantId": "34126a74-2ae5-7b9c-8a87-2b9c20b08de5",
+      "renditionId": "13590b5c-f838-7094-ba0c-6c9ccaf90961",
+      "objectId": "sha256:7e7250ef84030cc4fc6c363b81ee64f77c32e12b011c7c12b8f9631667f2fc0d",
+      "detail": "Canonical PNG or derived thumbnail for the approved v141 jacket."
+    }
+  ],
+  "affectedResourceIds": [
+    "66cef037-a3ef-701b-85bc-229b523384b3",
+    "ad93bdb0-533b-731b-8b93-457f996a7f94"
+  ],
+  "publishedRenditions": [
+    {
+      "resourceId": "66cef037-a3ef-701b-85bc-229b523384b3",
+      "variantId": "3462c9d1-2e1b-7461-8815-a3312b7dff14",
+      "renditionId": "2e243386-7d46-707e-8dc8-ba98d9070b5f",
+      "objectId": "sha256:dfe3597eda1d0a73c641e644f7e9668ac81eb16736e6c7e9aa850a86b563f61e",
+      "downloadFilename": "rizline-illustration-ST.TrinaLydia.0-0d9edef8d1__hires.png"
+    },
+    {
+      "resourceId": "ad93bdb0-533b-731b-8b93-457f996a7f94",
+      "variantId": "34126a74-2ae5-7b9c-8a87-2b9c20b08de5",
+      "renditionId": "9d639638-ac61-7677-8248-20517f1957ca",
+      "objectId": "sha256:e52e6556c7e9695dbb4be330ff1516d344a57cca51b7dbfc2b513134be38224a",
+      "downloadFilename": "rizline-illustration-.Jehezukiel.0-d80adf3ca0__hires.png"
+    }
+  ],
+  "removedFromCurrentSource": [],
+  "notes": [
+    "Source-derived content addition from official Rizline remote resource v141.",
+    "APK remains version 2.7.1/code 83; no APK resource identity was changed.",
+    "Exactly two new EX - Single jackets are included; no existing resource is changed or removed.",
+    "ROS objects are immutable and are uploaded only after size/hash verification."
+  ]
+}

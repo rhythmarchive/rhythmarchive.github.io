@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
   "game": "rizline",
-  "generatedAt": "2026-08-31T10:40:50.486Z",
+  "generatedAt": "2026-09-11T13:07:47.881Z",
   "source": {
-    "snapshot": "rizline.publish.v1:2.7.1",
-    "sha256": "74e6967166b3cf494eae76be244ee9d344e3ce29691c96b5cd08ec59f8ecac89"
+    "snapshot": "rizline.remote-canonical:v141_2_7_1_3c13bbff2bP:2026-09-11",
+    "sha256": "2550df5e2d7bf5bada1402bb76b4f02ee50926b32632c6a48b7356989eb4fdc7"
   },
   "resources": [
     {
@@ -3680,6 +3680,54 @@
       "facets": {}
     },
     {
+      "resourceId": "66cef037-a3ef-701b-85bc-229b523384b3",
+      "resourceType": "jacket",
+      "displayTitle": "直 -ST.-",
+      "subtitle": "Trina Lydia",
+      "metadata": {
+        "gameVersion": "2.7.1",
+        "songId": "直ST.TrinaLydia.0",
+        "musicArtist": "Trina Lydia",
+        "illustrator": "Transendium",
+        "disc": "EX - Single"
+      },
+      "badges": [],
+      "searchTerms": [
+        "直 -ST.-",
+        "2.7.1",
+        "直ST.TrinaLydia.0",
+        "Trina Lydia",
+        "Transendium",
+        "EX - Single"
+      ],
+      "sortOrder": 143,
+      "facets": {}
+    },
+    {
+      "resourceId": "ad93bdb0-533b-731b-8b93-457f996a7f94",
+      "resourceType": "jacket",
+      "displayTitle": "ヘーブンリー・スカイ",
+      "subtitle": "Jehezukiel",
+      "metadata": {
+        "gameVersion": "2.7.1",
+        "songId": "ヘーブンリースカイ.Jehezukiel.0",
+        "musicArtist": "Jehezukiel",
+        "illustrator": "群青kurara",
+        "disc": "EX - Single"
+      },
+      "badges": [],
+      "searchTerms": [
+        "ヘーブンリー・スカイ",
+        "2.7.1",
+        "ヘーブンリースカイ.Jehezukiel.0",
+        "Jehezukiel",
+        "群青kurara",
+        "EX - Single"
+      ],
+      "sortOrder": 144,
+      "facets": {}
+    },
+    {
       "resourceId": "2e3de8be-f28e-7fb5-af01-7afa984f3971",
       "resourceType": "special-art",
       "displayTitle": "2nd Anniversary Art",
@@ -3695,7 +3743,7 @@
         "rizline:special-art:2ndAnniversaryArt.0",
         "群青kurara"
       ],
-      "sortOrder": 143,
+      "sortOrder": 145,
       "facets": {}
     },
     {
@@ -3718,7 +3766,7 @@
         "Afterdark",
         "T.S. #4 — Tone Sphere"
       ],
-      "sortOrder": 144,
+      "sortOrder": 146,
       "facets": {}
     },
     {
@@ -3741,7 +3789,7 @@
         "Conway's Child",
         "T.S. #4 — Tone Sphere"
       ],
-      "sortOrder": 145,
+      "sortOrder": 147,
       "facets": {}
     },
     {
@@ -3762,7 +3810,7 @@
         "山山奇",
         "MilK"
       ],
-      "sortOrder": 146,
+      "sortOrder": 148,
       "facets": {}
     },
     {
@@ -3785,7 +3833,7 @@
         "T.S. #6 — Cytus II × Muse Dash",
         "Muse Dash / Cytus II"
       ],
-      "sortOrder": 147,
+      "sortOrder": 149,
       "facets": {}
     },
     {
@@ -3808,7 +3856,7 @@
         "T.S. #6 — Cytus II × Muse Dash",
         "Muse Dash / Cytus II"
       ],
-      "sortOrder": 148,
+      "sortOrder": 150,
       "facets": {}
     },
     {
@@ -3827,7 +3875,7 @@
         "layout.00002",
         "Layout 00002"
       ],
-      "sortOrder": 149,
+      "sortOrder": 151,
       "facets": {}
     },
     {
@@ -3846,7 +3894,7 @@
         "layout.00005",
         "Layout 00005"
       ],
-      "sortOrder": 150,
+      "sortOrder": 152,
       "facets": {}
     },
     {
@@ -3865,7 +3913,7 @@
         "layout.00006",
         "Layout 00006"
       ],
-      "sortOrder": 151,
+      "sortOrder": 153,
       "facets": {}
     },
     {
@@ -3884,7 +3932,7 @@
         "layout.00007",
         "Layout 00007"
       ],
-      "sortOrder": 152,
+      "sortOrder": 154,
       "facets": {}
     },
     {
@@ -3903,7 +3951,7 @@
         "layout.00008",
         "Layout 00008"
       ],
-      "sortOrder": 153,
+      "sortOrder": 155,
       "facets": {}
     },
     {
@@ -3922,7 +3970,7 @@
         "layout.00010",
         "Layout 00010"
       ],
-      "sortOrder": 154,
+      "sortOrder": 156,
       "facets": {}
     },
     {
@@ -3941,7 +3989,7 @@
         "layout.00013",
         "Layout 00013"
       ],
-      "sortOrder": 155,
+      "sortOrder": 157,
       "facets": {}
     },
     {
@@ -3960,7 +4008,7 @@
         "layout.00014",
         "Layout 00014"
       ],
-      "sortOrder": 156,
+      "sortOrder": 158,
       "facets": {}
     },
     {
@@ -3979,7 +4027,7 @@
         "layout.00021",
         "Layout 00021"
       ],
-      "sortOrder": 157,
+      "sortOrder": 159,
       "facets": {}
     },
     {
@@ -3998,7 +4046,7 @@
         "layout.00022",
         "Layout 00022"
       ],
-      "sortOrder": 158,
+      "sortOrder": 160,
       "facets": {}
     },
     {
@@ -4017,7 +4065,7 @@
         "layout.00023",
         "Layout 00023"
       ],
-      "sortOrder": 159,
+      "sortOrder": 161,
       "facets": {}
     },
     {
@@ -4036,7 +4084,7 @@
         "layout.00024",
         "Layout 00024"
       ],
-      "sortOrder": 160,
+      "sortOrder": 162,
       "facets": {}
     },
     {
@@ -4055,7 +4103,7 @@
         "layout.00030",
         "Layout 00030"
       ],
-      "sortOrder": 161,
+      "sortOrder": 163,
       "facets": {}
     },
     {
@@ -4074,7 +4122,7 @@
         "layout.00032",
         "Layout 00032"
       ],
-      "sortOrder": 162,
+      "sortOrder": 164,
       "facets": {}
     },
     {
@@ -4093,7 +4141,7 @@
         "layout.00033",
         "Layout 00033"
       ],
-      "sortOrder": 163,
+      "sortOrder": 165,
       "facets": {}
     },
     {
@@ -4112,7 +4160,7 @@
         "layout.00034",
         "Layout 00034"
       ],
-      "sortOrder": 164,
+      "sortOrder": 166,
       "facets": {}
     },
     {
@@ -4131,7 +4179,7 @@
         "layout.00037",
         "Layout 00037"
       ],
-      "sortOrder": 165,
+      "sortOrder": 167,
       "facets": {}
     },
     {
@@ -4150,7 +4198,7 @@
         "layout.00038",
         "Layout 00038"
       ],
-      "sortOrder": 166,
+      "sortOrder": 168,
       "facets": {}
     },
     {
@@ -4169,7 +4217,7 @@
         "layout.00039",
         "Layout 00039"
       ],
-      "sortOrder": 167,
+      "sortOrder": 169,
       "facets": {}
     },
     {
@@ -4188,7 +4236,7 @@
         "layout.00040",
         "Layout 00040"
       ],
-      "sortOrder": 168,
+      "sortOrder": 170,
       "facets": {}
     },
     {
@@ -4207,7 +4255,7 @@
         "layout.00044",
         "Layout 00044"
       ],
-      "sortOrder": 169,
+      "sortOrder": 171,
       "facets": {}
     },
     {
@@ -4226,7 +4274,7 @@
         "layout.00045",
         "Layout 00045"
       ],
-      "sortOrder": 170,
+      "sortOrder": 172,
       "facets": {}
     },
     {
@@ -4245,7 +4293,7 @@
         "layout.00050",
         "Layout 00050"
       ],
-      "sortOrder": 171,
+      "sortOrder": 173,
       "facets": {}
     },
     {
@@ -4264,7 +4312,7 @@
         "layout.00051",
         "Layout 00051"
       ],
-      "sortOrder": 172,
+      "sortOrder": 174,
       "facets": {}
     },
     {
@@ -4283,7 +4331,7 @@
         "layout.00053",
         "Layout 00053"
       ],
-      "sortOrder": 173,
+      "sortOrder": 175,
       "facets": {}
     },
     {
@@ -4302,7 +4350,7 @@
         "layout.00055",
         "Layout 00055"
       ],
-      "sortOrder": 174,
+      "sortOrder": 176,
       "facets": {}
     },
     {
@@ -4321,7 +4369,7 @@
         "Static0000CN",
         "Layout Static0000CN"
       ],
-      "sortOrder": 175,
+      "sortOrder": 177,
       "facets": {}
     },
     {
@@ -4340,7 +4388,7 @@
         "Static0000EN",
         "Layout Static0000EN"
       ],
-      "sortOrder": 176,
+      "sortOrder": 178,
       "facets": {}
     },
     {
@@ -4359,7 +4407,7 @@
         "Static0001CN",
         "Layout Static0001CN"
       ],
-      "sortOrder": 177,
+      "sortOrder": 179,
       "facets": {}
     },
     {
@@ -4378,7 +4426,7 @@
         "Static0001EN",
         "Layout Static0001EN"
       ],
-      "sortOrder": 178,
+      "sortOrder": 180,
       "facets": {}
     },
     {
@@ -4397,7 +4445,7 @@
         "Static0002CN",
         "Layout Static0002CN"
       ],
-      "sortOrder": 179,
+      "sortOrder": 181,
       "facets": {}
     },
     {
@@ -4416,7 +4464,7 @@
         "Static0002EN",
         "Layout Static0002EN"
       ],
-      "sortOrder": 180,
+      "sortOrder": 182,
       "facets": {}
     },
     {
@@ -4435,7 +4483,7 @@
         "Static0003CN",
         "Layout Static0003CN"
       ],
-      "sortOrder": 181,
+      "sortOrder": 183,
       "facets": {}
     },
     {
@@ -4454,7 +4502,7 @@
         "Static0003EN",
         "Layout Static0003EN"
       ],
-      "sortOrder": 182,
+      "sortOrder": 184,
       "facets": {}
     },
     {
@@ -4473,7 +4521,7 @@
         "Static0004CN",
         "Layout Static0004CN"
       ],
-      "sortOrder": 183,
+      "sortOrder": 185,
       "facets": {}
     },
     {
@@ -4492,7 +4540,7 @@
         "Static0004EN",
         "Layout Static0004EN"
       ],
-      "sortOrder": 184,
+      "sortOrder": 186,
       "facets": {}
     },
     {
@@ -4511,7 +4559,7 @@
         "Static0005CN",
         "Layout Static0005CN"
       ],
-      "sortOrder": 185,
+      "sortOrder": 187,
       "facets": {}
     },
     {
@@ -4530,7 +4578,7 @@
         "Static0005EN",
         "Layout Static0005EN"
       ],
-      "sortOrder": 186,
+      "sortOrder": 188,
       "facets": {}
     },
     {
@@ -4549,7 +4597,7 @@
         "Static0006CN",
         "Layout Static0006CN"
       ],
-      "sortOrder": 187,
+      "sortOrder": 189,
       "facets": {}
     },
     {
@@ -4568,7 +4616,7 @@
         "Static0006EN",
         "Layout Static0006EN"
       ],
-      "sortOrder": 188,
+      "sortOrder": 190,
       "facets": {}
     },
     {
@@ -4587,7 +4635,7 @@
         "Static0007CN",
         "Layout Static0007CN"
       ],
-      "sortOrder": 189,
+      "sortOrder": 191,
       "facets": {}
     },
     {
@@ -4606,7 +4654,7 @@
         "Static0007EN",
         "Layout Static0007EN"
       ],
-      "sortOrder": 190,
+      "sortOrder": 192,
       "facets": {}
     },
     {
@@ -4625,7 +4673,7 @@
         "Static0008CN",
         "Layout Static0008CN"
       ],
-      "sortOrder": 191,
+      "sortOrder": 193,
       "facets": {}
     },
     {
@@ -4644,7 +4692,7 @@
         "Static0008EN",
         "Layout Static0008EN"
       ],
-      "sortOrder": 192,
+      "sortOrder": 194,
       "facets": {}
     },
     {
@@ -4671,7 +4719,7 @@
         "characters: Bayees · songs: Pastel Lines · component: Bayees · component: Pastel Lines",
         "Rizcard is a runtime-composed game object; only confirmed component relations are shown."
       ],
-      "sortOrder": 193,
+      "sortOrder": 195,
       "facets": {}
     },
     {
@@ -4698,7 +4746,7 @@
         "characters: Carmen · songs: Pastel Lines · component: Carmen · component: Pastel Lines",
         "Rizcard is a runtime-composed game object; only confirmed component relations are shown."
       ],
-      "sortOrder": 194,
+      "sortOrder": 196,
       "facets": {}
     },
     {
@@ -4725,7 +4773,7 @@
         "characters: Kiwi · songs: Pastel Lines · component: Kiwi · component: Pastel Lines",
         "Rizcard is a runtime-composed game object; only confirmed component relations are shown."
       ],
-      "sortOrder": 195,
+      "sortOrder": 197,
       "facets": {}
     },
     {
@@ -4752,7 +4800,7 @@
         "characters: Moutlush · songs: Pastel Lines · component: Moutlush · component: Pastel Lines",
         "Rizcard is a runtime-composed game object; only confirmed component relations are shown."
       ],
-      "sortOrder": 196,
+      "sortOrder": 198,
       "facets": {}
     },
     {
@@ -4779,7 +4827,7 @@
         "characters: Nami · songs: Pastel Lines · component: Nami · component: Pastel Lines",
         "Rizcard is a runtime-composed game object; only confirmed component relations are shown."
       ],
-      "sortOrder": 197,
+      "sortOrder": 199,
       "facets": {}
     },
     {
@@ -4804,7 +4852,7 @@
         "songs: BRAVE：ROAD · component: BRAVE：ROAD",
         "Rizcard is a runtime-composed game object; only confirmed component relations are shown."
       ],
-      "sortOrder": 198,
+      "sortOrder": 200,
       "facets": {}
     },
     {
@@ -4831,7 +4879,7 @@
         "layouts: Layout 00026 · songs: D-Birth · component: D-Birth · component: Layout 00026",
         "Rizcard is a runtime-composed game object; only confirmed component relations are shown."
       ],
-      "sortOrder": 199,
+      "sortOrder": 201,
       "facets": {}
     },
     {
@@ -4858,7 +4906,7 @@
         "layouts: Layout 00010 · songs: Kaguya · component: Kaguya · component: Layout 00010",
         "Rizcard is a runtime-composed game object; only confirmed component relations are shown."
       ],
-      "sortOrder": 200,
+      "sortOrder": 202,
       "facets": {}
     },
     {
@@ -4885,7 +4933,7 @@
         "layouts: Layout 00017 · songs: Giselle · component: Giselle · component: Layout 00017",
         "Rizcard is a runtime-composed game object; only confirmed component relations are shown."
       ],
-      "sortOrder": 201,
+      "sortOrder": 203,
       "facets": {}
     },
     {
@@ -4912,7 +4960,7 @@
         "layouts: Layout 00030 · songs: Kaguya · component: Kaguya · component: Layout 00030",
         "Rizcard is a runtime-composed game object; only confirmed component relations are shown."
       ],
-      "sortOrder": 202,
+      "sortOrder": 204,
       "facets": {}
     },
     {
@@ -4939,7 +4987,7 @@
         "layouts: Layout 00017 · songs: F℟IEND · component: F℟IEND · component: Layout 00017",
         "Rizcard is a runtime-composed game object; only confirmed component relations are shown."
       ],
-      "sortOrder": 203,
+      "sortOrder": 205,
       "facets": {}
     },
     {
@@ -4964,7 +5012,7 @@
         "component: Afterdark",
         "Rizcard is a runtime-composed game object; only confirmed component relations are shown."
       ],
-      "sortOrder": 204,
+      "sortOrder": 206,
       "facets": {}
     },
     {
@@ -4989,7 +5037,7 @@
         "songs: slic.hertz · component: slic.hertz",
         "Rizcard is a runtime-composed game object; only confirmed component relations are shown."
       ],
-      "sortOrder": 205,
+      "sortOrder": 207,
       "facets": {}
     },
     {
@@ -5016,7 +5064,7 @@
         "layouts: Layout 00023 · songs: 蒼天 (Sta's Key-Kai mix) · component: 蒼天 (Sta's Key-Kai mix) · component: Layout 00023",
         "Rizcard is a runtime-composed game object; only confirmed component relations are shown."
       ],
-      "sortOrder": 206,
+      "sortOrder": 208,
       "facets": {}
     },
     {
@@ -5043,7 +5091,7 @@
         "layouts: Layout 00017 · songs: Grimheart · component: Grimheart · component: Layout 00017",
         "Rizcard is a runtime-composed game object; only confirmed component relations are shown."
       ],
-      "sortOrder": 207,
+      "sortOrder": 209,
       "facets": {}
     },
     {
@@ -5070,7 +5118,7 @@
         "layouts: Layout 00035 · songs: Clock Paradox · component: Clock Paradox · component: Layout 00035",
         "Rizcard is a runtime-composed game object; only confirmed component relations are shown."
       ],
-      "sortOrder": 208,
+      "sortOrder": 210,
       "facets": {}
     },
     {
@@ -5097,7 +5145,7 @@
         "layouts: Layout 00006 · songs: Kaguya · component: Kaguya · component: Layout 00006",
         "Rizcard is a runtime-composed game object; only confirmed component relations are shown."
       ],
-      "sortOrder": 209,
+      "sortOrder": 211,
       "facets": {}
     },
     {
@@ -5124,7 +5172,7 @@
         "layouts: Layout 00034 · songs: Grimheart · component: Grimheart · component: Layout 00034",
         "Rizcard is a runtime-composed game object; only confirmed component relations are shown."
       ],
-      "sortOrder": 210,
+      "sortOrder": 212,
       "facets": {}
     },
     {
@@ -5151,7 +5199,7 @@
         "layouts: Layout 00005 · songs: Conway's Child · component: Conway's Child · component: Layout 00005",
         "Rizcard is a runtime-composed game object; only confirmed component relations are shown."
       ],
-      "sortOrder": 211,
+      "sortOrder": 213,
       "facets": {}
     },
     {
@@ -5178,7 +5226,7 @@
         "characters: Pling · songs: Pastel Lines · component: Pling · component: Pastel Lines",
         "Rizcard is a runtime-composed game object; only confirmed component relations are shown."
       ],
-      "sortOrder": 212,
+      "sortOrder": 214,
       "facets": {}
     },
     {
@@ -5205,7 +5253,7 @@
         "layouts: Layout 00026 · songs: Antler · component: Antler · component: Layout 00026",
         "Rizcard is a runtime-composed game object; only confirmed component relations are shown."
       ],
-      "sortOrder": 213,
+      "sortOrder": 215,
       "facets": {}
     },
     {
@@ -5232,7 +5280,7 @@
         "layouts: Layout 00016 · songs: Puppet Show · component: Puppet Show · component: Layout 00016",
         "Rizcard is a runtime-composed game object; only confirmed component relations are shown."
       ],
-      "sortOrder": 214,
+      "sortOrder": 216,
       "facets": {}
     },
     {
@@ -5259,7 +5307,7 @@
         "layouts: Layout 00005 · songs: D-Birth · component: D-Birth · component: Layout 00005",
         "Rizcard is a runtime-composed game object; only confirmed component relations are shown."
       ],
-      "sortOrder": 215,
+      "sortOrder": 217,
       "facets": {}
     },
     {
@@ -5286,7 +5334,7 @@
         "layouts: Layout 00019 · songs: slic.hertz · component: slic.hertz · component: Layout 00019",
         "Rizcard is a runtime-composed game object; only confirmed component relations are shown."
       ],
-      "sortOrder": 216,
+      "sortOrder": 218,
       "facets": {}
     },
     {
@@ -5313,7 +5361,7 @@
         "layouts: Layout 00030 · songs: Colorful Flavor · component: Colorful Flavor · component: Layout 00030",
         "Rizcard is a runtime-composed game object; only confirmed component relations are shown."
       ],
-      "sortOrder": 217,
+      "sortOrder": 219,
       "facets": {}
     },
     {
@@ -5340,7 +5388,7 @@
         "characters: Tonebell · songs: Pastel Lines · component: Tonebell · component: Pastel Lines",
         "Rizcard is a runtime-composed game object; only confirmed component relations are shown."
       ],
-      "sortOrder": 218,
+      "sortOrder": 220,
       "facets": {}
     },
     {
@@ -5367,7 +5415,7 @@
         "characters: Yoso · songs: Pastel Lines · component: Yoso · component: Pastel Lines",
         "Rizcard is a runtime-composed game object; only confirmed component relations are shown."
       ],
-      "sortOrder": 219,
+      "sortOrder": 221,
       "facets": {}
     },
     {
@@ -5392,7 +5440,7 @@
         "songs: Pastel Lines · component: Pastel Lines",
         "Rizcard is a runtime-composed game object; only confirmed component relations are shown."
       ],
-      "sortOrder": 220,
+      "sortOrder": 222,
       "facets": {}
     },
     {
@@ -5417,7 +5465,7 @@
         "songs: Pastel Lines · component: Pastel Lines",
         "Rizcard is a runtime-composed game object; only confirmed component relations are shown."
       ],
-      "sortOrder": 221,
+      "sortOrder": 223,
       "facets": {}
     },
     {
@@ -5439,7 +5487,7 @@
         "Abiogenesis, Revenant, Antler",
         "Juggernaut collaboration"
       ],
-      "sortOrder": 222,
+      "sortOrder": 224,
       "facets": {}
     },
     {
@@ -5461,7 +5509,7 @@
         "Bring Me Back, Hullbreaker, D-Birth",
         "DIVERSE SYSTEM"
       ],
-      "sortOrder": 223,
+      "sortOrder": 225,
       "facets": {}
     },
     {
@@ -5483,7 +5531,7 @@
         "Encrux, slic.hertz, Giselle",
         "Sobrem"
       ],
-      "sortOrder": 224,
+      "sortOrder": 226,
       "facets": {}
     },
     {
@@ -5505,7 +5553,7 @@
         "Afterdark, 蒼天 (Sta's Key-Kai mix), Conway's Child",
         "Tone Sphere"
       ],
-      "sortOrder": 225,
+      "sortOrder": 227,
       "facets": {}
     },
     {
@@ -5527,7 +5575,7 @@
         "Crimsonate, Sthenno, Kaguya",
         "BlackY"
       ],
-      "sortOrder": 226,
+      "sortOrder": 228,
       "facets": {}
     },
     {
@@ -5549,7 +5597,7 @@
         "Alexandrite, Hydra, 漂流, Comet Coaster, DOMINATOR, 天灵灵地灵灵",
         "Cytus II / Muse Dash"
       ],
-      "sortOrder": 227,
+      "sortOrder": 229,
       "facets": {}
     },
     {
@@ -5571,7 +5619,7 @@
         "Psychometry, Electric Comet, Eschatology, 너를 그리는 밤하늘의 이야기\n(Planetarium) prod. Scarlette, Avataar ~Reincarnation of Kalpa~",
         "KALPA"
       ],
-      "sortOrder": 228,
+      "sortOrder": 230,
       "facets": {}
     },
     {
@@ -5593,7 +5641,7 @@
         "amethyst, Alfheim's faith, 翠杜",
         "Rotaeno"
       ],
-      "sortOrder": 229,
+      "sortOrder": 231,
       "facets": {}
     },
     {
@@ -5615,7 +5663,7 @@
         "Crazy Audiophile, 419kB, VICIOUS",
         "Cosmic Radio 2024"
       ],
-      "sortOrder": 230,
+      "sortOrder": 232,
       "facets": {}
     },
     {
@@ -5637,7 +5685,7 @@
         "Change the Game feat. 松永依織, T+ VS SHARK, Future Downloader",
         "HARDCORE TANO*C"
       ],
-      "sortOrder": 231,
+      "sortOrder": 233,
       "facets": {}
     },
     {
@@ -5659,7 +5707,7 @@
         "Echo over you..., Fairy's Crown, Graves -Ancient Memories-, Clouds clear and..., NLAMTA, Antikythera",
         "DEEMO II"
       ],
-      "sortOrder": 232,
+      "sortOrder": 234,
       "facets": {}
     },
     {
@@ -5681,7 +5729,7 @@
         "Speed Up!, Concvssion, Snow Desert",
         "Phigros"
       ],
-      "sortOrder": 233,
+      "sortOrder": 235,
       "facets": {}
     },
     {
@@ -5703,7 +5751,7 @@
         "天地開闢, 水槽に沈む街, Inevitability",
         "kuro"
       ],
-      "sortOrder": 234,
+      "sortOrder": 236,
       "facets": {}
     },
     {
@@ -5723,7 +5771,7 @@
         "T.S. #13 — 天地万象",
         "Vaelumir's Call, Greatness Earth, LAIGN"
       ],
-      "sortOrder": 235,
+      "sortOrder": 237,
       "facets": {}
     },
     {
@@ -5745,7 +5793,7 @@
         "Bursty Lollipop, ULTRA SYNERGY MATRIX, QUATTUORUX",
         "Tanchiky"
       ],
-      "sortOrder": 236,
+      "sortOrder": 238,
       "facets": {}
     },
     {
@@ -5767,7 +5815,7 @@
         "テウメッサ, ZEUS † 666, Pierrot Fixer",
         "ルゼ / LisicA"
       ],
-      "sortOrder": 237,
+      "sortOrder": 239,
       "facets": {}
     },
     {
@@ -5787,7 +5835,7 @@
         "T.S. #16 — 古韻今声 / Diachronic Resonance",
         "Tales of Delonix, Spiritworks, 地区 Shangri-LA"
       ],
-      "sortOrder": 238,
+      "sortOrder": 240,
       "facets": {}
     },
     {
@@ -5809,7 +5857,7 @@
         "Turning POINT, Reversed Zenith, Paradial Resonator, Restricted Access",
         "Paradigm: Reboot"
       ],
-      "sortOrder": 239,
+      "sortOrder": 241,
       "facets": {}
     },
     {
@@ -5831,7 +5879,7 @@
         "Relieve",
         "去远方"
       ],
-      "sortOrder": 240,
+      "sortOrder": 242,
       "facets": {}
     },
     {
@@ -5849,7 +5897,7 @@
         "2.7.0",
         "Bayees"
       ],
-      "sortOrder": 241,
+      "sortOrder": 243,
       "facets": {}
     },
     {
@@ -5867,7 +5915,7 @@
         "2.7.0",
         "Carmen"
       ],
-      "sortOrder": 242,
+      "sortOrder": 244,
       "facets": {}
     },
     {
@@ -5885,7 +5933,7 @@
         "2.7.0",
         "Kiwi"
       ],
-      "sortOrder": 243,
+      "sortOrder": 245,
       "facets": {}
     },
     {
@@ -5903,7 +5951,7 @@
         "2.7.0",
         "Moutlush"
       ],
-      "sortOrder": 244,
+      "sortOrder": 246,
       "facets": {}
     },
     {
@@ -5921,7 +5969,7 @@
         "2.7.0",
         "Nami"
       ],
-      "sortOrder": 245,
+      "sortOrder": 247,
       "facets": {}
     },
     {
@@ -5939,7 +5987,7 @@
         "2.7.0",
         "Pling"
       ],
-      "sortOrder": 246,
+      "sortOrder": 248,
       "facets": {}
     },
     {
@@ -5957,7 +6005,7 @@
         "2.7.0",
         "Tonebell"
       ],
-      "sortOrder": 247,
+      "sortOrder": 249,
       "facets": {}
     },
     {
@@ -5975,7 +6023,7 @@
         "2.7.0",
         "Yoso"
       ],
-      "sortOrder": 248,
+      "sortOrder": 250,
       "facets": {}
     }
   ]

@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
   "game": "rizline",
-  "generatedAt": "2026-08-31T10:40:50.486Z",
+  "generatedAt": "2026-09-11T13:07:47.881Z",
   "source": {
-    "version": "2.7.1",
-    "sha256": "74e6967166b3cf494eae76be244ee9d344e3ce29691c96b5cd08ec59f8ecac89"
+    "version": "v141_2_7_1_3c13bbff2bP",
+    "sha256": "2550df5e2d7bf5bada1402bb76b4f02ee50926b32632c6a48b7356989eb4fdc7"
   },
   "songs": [
     {
@@ -3839,10 +3839,58 @@
         "EX - T.S.",
         "T.S. SP — Phigros"
       ]
+    },
+    {
+      "songId": "直ST.TrinaLydia.0",
+      "displayTitle": "直 -ST.-",
+      "musicArtist": "Trina Lydia",
+      "illustrator": "Transendium",
+      "disc": "EX - Single",
+      "trackSeries": [],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:直ST.TrinaLydia.0__hires",
+          "resourceId": "66cef037-a3ef-701b-85bc-229b523384b3",
+          "variantId": "3462c9d1-2e1b-7461-8815-a3312b7dff14",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "直 -ST.-",
+        "直ST.TrinaLydia.0",
+        "Trina Lydia",
+        "Transendium",
+        "EX - Single"
+      ]
+    },
+    {
+      "songId": "ヘーブンリースカイ.Jehezukiel.0",
+      "displayTitle": "ヘーブンリー・スカイ",
+      "musicArtist": "Jehezukiel",
+      "illustrator": "群青kurara",
+      "disc": "EX - Single",
+      "trackSeries": [],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:ヘーブンリースカイ.Jehezukiel.0__hires",
+          "resourceId": "ad93bdb0-533b-731b-8b93-457f996a7f94",
+          "variantId": "34126a74-2ae5-7b9c-8a87-2b9c20b08de5",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "ヘーブンリー・スカイ",
+        "ヘーブンリースカイ.Jehezukiel.0",
+        "Jehezukiel",
+        "群青kurara",
+        "EX - Single"
+      ]
     }
   ],
   "recordCounts": {
-    "songs": 143,
-    "artworks": 146
+    "songs": 145,
+    "artworks": 148
   }
 }

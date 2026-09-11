@@ -29,12 +29,12 @@
       }
     },
     "rizline": {
-      "sourceVersion": "2.7.1",
-      "sourceSha256": "74e6967166b3cf494eae76be244ee9d344e3ce29691c96b5cd08ec59f8ecac89",
-      "fileSha256": "7be2903b3af30ea498f09f62376f19ca6ac862894bf9843007d678a41178729c",
+      "sourceVersion": "v141_2_7_1_3c13bbff2bP",
+      "sourceSha256": "2550df5e2d7bf5bada1402bb76b4f02ee50926b32632c6a48b7356989eb4fdc7",
+      "fileSha256": "73f62e19970fbc754009e0272ed17f6bcd49b6fc9ef9d2c754054baabb705080",
       "recordCounts": {
-        "songs": 143,
-        "artworks": 146
+        "songs": 145,
+        "artworks": 148
       }
     },
     "infalsus": {
@@ -49,8 +49,8 @@
   },
   "catalog": {
     "catalogId": "019fefd6-9c49-7ca0-a760-adc76811a511",
-    "catalogSha256": "49eea9982fabffc8cf3395d56de9234fc8e68658e3c149a0f353636c12d3d283",
-    "catalogGeneratedAt": "2026-09-06T05:24:31.038Z"
+    "catalogSha256": "25d651e46ff7b3fc8171d9499fd33dc39b000440195925d95c3a39f2e3dc42a9",
+    "catalogGeneratedAt": "2026-09-11T13:07:47.881Z"
   },
   "files": {
     "arcaea": "arcaea.json",

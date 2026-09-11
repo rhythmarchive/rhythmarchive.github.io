@@ -599,7 +599,7 @@ test("homepage navigation uses the generated jacket browse counts", () => {
   assert.equal(games.find((game) => game.slug === "arcaea")?.categories.find((category) => category.slug === "jacket")?.count, 566);
   assert.equal(games.find((game) => game.slug === "phigros")?.categories.find((category) => category.slug === "jacket")?.count, 348);
   const rizline = games.find((game) => game.slug === "rizline");
-  assert.equal(rizline?.categories.find((category) => category.slug === "jacket")?.count, 143);
+  assert.equal(rizline?.categories.find((category) => category.slug === "jacket")?.count, 145);
   assert.equal(rizline?.categories.find((category) => category.slug === "rizcard")?.count, 44);
   assert.equal(rizline?.categories.some((category) => category.slug === "rizcard-layout"), false);
   assert.deepEqual(rizline?.featuredCategories.map((category) => category.slug), ["jacket", "special-art", "track-series", "rizcard", "character-avatar"]);
@@ -644,22 +644,57 @@ test("internal game entries link directly to each game's primary category", () =
 test("Rizline Catalog and public projections preserve approved boundaries", () => {
   const rizlineResources = catalog.resources.filter((resource) => resource.game === "rizline");
   const published = rizlineResources.filter((resource) => resource.lifecycle.status === "published");
-  assert.equal(rizlineResources.length, 338);
-  assert.equal(published.filter((resource) => resource.resourceType === "jacket").length, 143);
+  assert.equal(rizlineResources.length, 340);
+  assert.equal(published.filter((resource) => resource.resourceType === "jacket").length, 145);
   assert.equal(published.filter((resource) => resource.resourceType === "special-art").length, 6);
   assert.equal(published.filter((resource) => resource.resourceType === "track-series").length, 19);
   assert.equal(published.filter((resource) => resource.resourceType === "rizcard-layout").length, 44);
   assert.equal(published.filter((resource) => resource.resourceType === "character-avatar").length, 8);
   assert.equal(published.filter((resource) => resource.resourceType === "rizcard").length, 29);
   assert.equal(rizlineResources.filter((resource) => resource.resourceType === "rizcard" && resource.lifecycle.status === "draft").length, 65);
-  assert.equal(catalog.variants.filter((variant) => rizlineResources.some((resource) => resource.id === variant.resourceId)).length, 330);
-  assert.equal(catalog.renditions.filter((rendition) => rizlineResources.some((resource) => catalog.variants.find((variant) => variant.id === rendition.variantId)?.resourceId === resource.id)).length, 1428);
+  assert.equal(catalog.variants.filter((variant) => rizlineResources.some((resource) => resource.id === variant.resourceId)).length, 332);
+  assert.equal(catalog.renditions.filter((rendition) => rizlineResources.some((resource) => catalog.variants.find((variant) => variant.id === rendition.variantId)?.resourceId === resource.id)).length, 1436);
   const siteData = getSiteData();
   const publicRizline = siteData.resources.filter((resource) => resource.game === "rizline");
-  assert.equal(publicRizline.length, 220);
+  assert.equal(publicRizline.length, 222);
   assert.equal(publicRizline.filter((resource) => resource.resourceType === "rizcard").length, 0);
   assert.equal(publicRizline.filter((resource) => resource.resourceType === "rizcard-layout").length, 44);
   assert.ok(publicRizline.filter((resource) => resource.resourceType === "rizcard-layout").every((resource) => resource.category === "rizcard" && resource.categoryLabel === "Rizcard" && resource.metadata.layoutId));
+});
+
+test("Rizline v141 jackets keep semantic order, rendition linkage, and release history", () => {
+  const expected = new Map([
+    ["直ST.TrinaLydia.0", { title: "直 -ST.-", artist: "Trina Lydia", illustrator: "Transendium" }],
+    ["ヘーブンリースカイ.Jehezukiel.0", { title: "ヘーブンリー・スカイ", artist: "Jehezukiel", illustrator: "群青kurara" }],
+  ]);
+  const resources = catalog.resources.filter((resource) => expected.has(String(resource.metadata.songId)));
+  assert.equal(resources.length, 2);
+  const semantics = loadCategoryBrowseProjections().rizline.resources.filter((resource) => resources.some((candidate) => candidate.id === resource.resourceId));
+  assert.deepEqual(semantics.map((resource) => resource.sortOrder), [143, 144]);
+  for (const resource of resources) {
+    const songId = String(resource.metadata.songId);
+    const details = expected.get(songId)!;
+    assert.equal(resource.title, details.title);
+    assert.equal(resource.metadata.musicArtist, details.artist);
+    assert.equal(resource.metadata.illustrator, details.illustrator);
+    assert.equal(resource.metadata.disc, "EX - Single");
+    const variant = catalog.variants.find((candidate) => candidate.resourceId === resource.id);
+    assert.ok(variant);
+    assert.equal(variant.variantKey, "default");
+    assert.equal(variant.preferred, true);
+    const renditions = catalog.renditions.filter((rendition) => rendition.variantId === variant.id);
+    assert.equal(renditions.filter((rendition) => rendition.renditionType === "original" && rendition.publishable).length, 1);
+    assert.equal(renditions.filter((rendition) => rendition.renditionType.startsWith("thumbnail-")).length, 3);
+    assert.ok(renditions.every((rendition) => catalog.objects.some((object) => object.id === rendition.objectId)));
+  }
+  const release = JSON.parse(fs.readFileSync(path.join(process.cwd(), "catalog", "releases", "d9faf30c-222c-7f8a-9f1b-7d5706ecd039.json"), "utf8")) as { id: string; affectedResourceIds: string[]; changes: Array<{ changeType: string }> };
+  assert.deepEqual(new Set(release.affectedResourceIds), new Set(resources.map((resource) => resource.id)));
+  assert.equal(release.changes.filter((change) => change.changeType === "added-resource").length, 2);
+  const timeline = JSON.parse(fs.readFileSync(path.join(process.cwd(), "catalog", "updates", "index.json"), "utf8")) as { records: Array<{ id: string; game: string; contentVersion: string; releaseIds: string[]; items: Array<{ resourceId: string }> }> };
+  const record = timeline.records.find((candidate) => candidate.game === "rizline" && candidate.contentVersion === "v141_2_7_1_3c13bbff2bP");
+  assert.ok(record);
+  assert.deepEqual(new Set(record.items.map((item) => item.resourceId)), new Set(resources.map((resource) => resource.id)));
+  assert.deepEqual(record.releaseIds, [release.id]);
 });
 
 test("site brand marks keep the accent rhythm line inside the mark", () => {
