@@ -12,8 +12,8 @@ const urls = createUrlHelpers({ basePath: BASE_PATH, origin: SITE_ORIGIN, rosBas
 {updates.length > 0 && (
   <section class="page-container home-recent-updates" aria-labelledby="recent-updates-heading">
     <div class="section-heading">
-      <div><span class="section-kicker">Archive</span><h2 id="recent-updates-heading">最近更新</h2></div>
-      <a class="section-link" href={urls.sitePath("/updates/")}>全部更新</a>
+      <div><span class="section-kicker">Updates</span><h2 id="recent-updates-heading">最近更新</h2></div>
+      <a class="section-link recent-updates-entry" href={urls.sitePath("/updates/")}>查看更新记录 <span aria-hidden="true">→</span></a>
     </div>
     <div class="recent-update-list">
       {updates.map((update) => <UpdateCard update={update} compact />)}

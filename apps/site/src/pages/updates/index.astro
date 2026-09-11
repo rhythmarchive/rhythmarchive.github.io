@@ -12,11 +12,11 @@ const categories = [...new Map(updates.flatMap((update) => update.categories).ma
 const payload = JSON.stringify(updates).replace(/</gu, "\\u003c");
 ---
 
-<BaseLayout title="更新记录 | Rhythm Archive" description="查看 Rhythm Archive 最近收录和补充的图片资源。" canonicalPath="/updates/" bodyClass="updates-page">
+<BaseLayout title="更新记录 | Rhythm Archive" description="查看 Rhythm Archive 最近收录和更新的图片资源。" canonicalPath="/updates/" bodyClass="updates-page">
   <section class="page-container updates-page-head" aria-labelledby="updates-heading">
     <span class="archive-kicker">Rhythm Archive</span>
     <h1 id="updates-heading">更新记录</h1>
-    <p>最近收录和补充的图片资源。</p>
+    <p>最近收录和更新的图片资源。</p>
     <form class="updates-filters" data-update-filters>
       <label>游戏<select data-update-game aria-label="按游戏筛选">
         <option value="">全部游戏</option>

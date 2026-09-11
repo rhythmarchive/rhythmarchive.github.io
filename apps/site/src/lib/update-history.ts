@@ -26,6 +26,7 @@ const RawUpdateHistory = z.object({ schemaVersion: z.literal(1), baselines: z.ar
 
 type RawUpdateRecord = z.infer<typeof RawUpdateRecord>;
 type RawUpdateHistory = z.infer<typeof RawUpdateHistory>;
+type ProjectedUpdateItem = PublicUpdateItem & { change: PublicUpdateChange };
 const CHANGE_PRIORITY: Record<PublicUpdateChange, number> = { added: 3, supplemented: 2, replaced: 1 };
 
 export function loadRawUpdateHistory(root: string): RawUpdateHistory {
@@ -66,12 +67,12 @@ export function projectUpdates(siteData: Omit<PublicSiteData, "updates">, root: 
     const game = gameId(record.game);
     if (!game) continue;
     const mergedItems = mergeRawItems(record);
-    const items: PublicUpdateItem[] = [];
+    const projectedItems: ProjectedUpdateItem[] = [];
     for (const [resourceId, change] of mergedItems) {
       const resource = resourcesById.get(resourceId);
       if (!resource || resource.game !== game) continue;
       const { image, fallback } = publicImage(resource);
-      items.push({
+      projectedItems.push({
         resourceId: resource.resourceId,
         route: resource.route,
         game,
@@ -84,16 +85,16 @@ export function projectUpdates(siteData: Omit<PublicSiteData, "updates">, root: 
         change,
       });
     }
-    if (items.length === 0) continue;
-    items.sort((left, right) => left.category.localeCompare(right.category, "en") || left.displayTitle.localeCompare(right.displayTitle, "zh-CN") || left.resourceId.localeCompare(right.resourceId, "en"));
-    const summary: PublicUpdate["summary"] = { added: 0, supplemented: 0, replaced: 0 };
+    if (projectedItems.length === 0) continue;
+    projectedItems.sort((left, right) => left.category.localeCompare(right.category, "en") || left.displayTitle.localeCompare(right.displayTitle, "zh-CN") || left.resourceId.localeCompare(right.resourceId, "en"));
+    const summary: PublicUpdate["summary"] = { count: projectedItems.length };
     const categoriesBySlug = new Map<string, PublicUpdate["categories"][number]>();
-    for (const item of items) {
-      summary[item.change] += 1;
+    for (const item of projectedItems) {
       const category = categoriesBySlug.get(item.category) ?? { slug: item.category, label: item.categoryLabel, count: 0 };
       category.count += 1;
       categoriesBySlug.set(item.category, category);
     }
+    const items: PublicUpdateItem[] = projectedItems.map(({ change: _change, ...item }) => item);
     const gameEntry: PublicGameIndex | undefined = gamesById.get(game);
     updates.push({
       id: record.id,

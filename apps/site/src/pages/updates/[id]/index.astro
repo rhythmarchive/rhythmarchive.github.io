@@ -28,9 +28,7 @@ const dateLabel = new Intl.DateTimeFormat("zh-CN", { timeZone: "Asia/Shanghai", 
     <h1 id="update-detail-heading">{update.displayName} 更新</h1>
     <p><time datetime={update.publishedAt}>{dateLabel}</time>{update.contentVersion ? " · 收录 " + update.contentVersion : ""}</p>
     <div class="update-detail-summary">
-      {update.summary.added > 0 && <span>新增 {formatCount(update.summary.added)} 项</span>}
-      {update.summary.supplemented > 0 && <span>补充 {formatCount(update.summary.supplemented)} 项</span>}
-      {update.summary.replaced > 0 && <span>替换 {formatCount(update.summary.replaced)} 项</span>}
+      <span>更新 {formatCount(update.summary.count)} 项</span>
     </div>
     <nav class="update-detail-categories" aria-label="本次更新的资源类型">
       <a href={urls.sitePath("/updates/" + update.id + "/")} class="is-active">全部</a>

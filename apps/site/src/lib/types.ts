@@ -136,13 +136,10 @@ export type PublicUpdateItem = {
   displayTitle: string;
   image: PublicSearchImage | null;
   fallback: PublicSearchImage | null;
-  change: PublicUpdateChange;
 };
 
 export type PublicUpdateSummary = {
-  added: number;
-  supplemented: number;
-  replaced: number;
+  count: number;
 };
 
 export type PublicUpdateCategory = {

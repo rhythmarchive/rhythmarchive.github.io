@@ -152,6 +152,8 @@ img { display: block; max-width: 100%; }
 .section-heading h2 { margin: 0; font-family: var(--display-font); font-size: 1.45rem; line-height: 1.15; letter-spacing: -0.02em; font-kerning: normal; }
 .section-heading-note { color: var(--text-soft); font-size: 0.76rem; }
 .home-recent-updates { padding-bottom: 4rem; }
+.home-recent-updates .recent-updates-entry { display: inline-flex; align-items: center; gap: 6px; padding: 7px 11px; border: 1px solid color-mix(in srgb, var(--accent) 38%, var(--line)); border-radius: var(--radius-sm); background: var(--cyan-soft); color: var(--accent-strong); font-weight: 760; }
+.home-recent-updates .recent-updates-entry:hover { border-color: var(--accent); background: color-mix(in srgb, var(--cyan-soft) 80%, var(--surface)); text-decoration: none; }
 .recent-update-list { display: grid; gap: 12px; }
 .update-card { display: grid; grid-template-columns: 126px minmax(0, 1fr); gap: 20px; min-width: 0; padding: 18px 20px; border: 1px solid var(--line); border-radius: var(--radius-md); background: var(--surface); box-shadow: var(--shadow); }
 .update-card-date { display: grid; align-content: start; gap: 3px; color: var(--text-soft); font-size: .74rem; }
