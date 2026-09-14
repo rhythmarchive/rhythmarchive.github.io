@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
   "game": "infalsus",
-  "generatedAt": "2026-08-24T16:34:59.757Z",
+  "generatedAt": "2026-09-14T12:02:04.154Z",
   "source": {
-    "snapshot": "infalsus-demo:91bb7e195cd5fe38c5d70234da6c418a02eb55196f91f6c89e4305a006f597c3",
-    "sha256": "91bb7e195cd5fe38c5d70234da6c418a02eb55196f91f6c89e4305a006f597c3"
+    "snapshot": "infalsus-formal:1.0.3:99ba34e685cc746b8125ce048db03cc949dd3d828de6ab2b3197c1e3924c0d5e",
+    "sha256": "99ba34e685cc746b8125ce048db03cc949dd3d828de6ab2b3197c1e3924c0d5e"
   },
   "resources": [
     {
@@ -15,7 +15,7 @@
         "songId": "2",
         "artist": "aran",
         "jacketIllustrator": "RYANE",
-        "gameVersion": "In Falsus Demo"
+        "gameVersion": "1.0.3"
       },
       "badges": [],
       "searchTerms": [
@@ -28,6 +28,146 @@
       "facets": {}
     },
     {
+      "resourceId": "eea4814d-6d6b-7a2b-b858-6d18238ed197",
+      "resourceType": "jacket",
+      "displayTitle": "Altered Edge",
+      "metadata": {
+        "songId": "3",
+        "artist": "satella",
+        "jacketIllustrator": "夏眠",
+        "gameVersion": "1.0.3"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Altered Edge",
+        "satella",
+        "3",
+        "alterededge"
+      ],
+      "sortOrder": 1,
+      "facets": {}
+    },
+    {
+      "resourceId": "90fd0d76-6803-7c21-bf79-7df33337b282",
+      "resourceType": "jacket",
+      "displayTitle": "Be There",
+      "metadata": {
+        "songId": "5",
+        "artist": "PSYQUI",
+        "jacketIllustrator": "hie",
+        "gameVersion": "1.0.3"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Be There",
+        "PSYQUI",
+        "5",
+        "bethere"
+      ],
+      "sortOrder": 2,
+      "facets": {}
+    },
+    {
+      "resourceId": "18573130-91b3-771a-a0b7-9027ee2ab792",
+      "resourceType": "jacket",
+      "displayTitle": "Chaoticism Legacy",
+      "metadata": {
+        "songId": "6",
+        "artist": "Nothing But Requiem",
+        "jacketIllustrator": "Osu",
+        "gameVersion": "1.0.3"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Chaoticism Legacy",
+        "Nothing But Requiem",
+        "6",
+        "chaoticismlegacy"
+      ],
+      "sortOrder": 3,
+      "facets": {}
+    },
+    {
+      "resourceId": "e715055d-8001-7fd1-b60a-6f4885848e57",
+      "resourceType": "jacket",
+      "displayTitle": "Chronomia",
+      "metadata": {
+        "songId": "7",
+        "artist": "Lime",
+        "jacketIllustrator": "inukoro",
+        "gameVersion": "1.0.3"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Chronomia",
+        "Lime",
+        "7",
+        "chronomia"
+      ],
+      "sortOrder": 4,
+      "facets": {}
+    },
+    {
+      "resourceId": "cc17aa4f-f2c0-70ba-b22f-82fd5f53b28b",
+      "resourceType": "jacket",
+      "displayTitle": "Chronophobia",
+      "metadata": {
+        "songId": "8",
+        "artist": "xi vs かねこちはる",
+        "jacketIllustrator": "久蒼穹",
+        "gameVersion": "1.0.3"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Chronophobia",
+        "xi vs かねこちはる",
+        "8",
+        "chronophobia"
+      ],
+      "sortOrder": 5,
+      "facets": {}
+    },
+    {
+      "resourceId": "2aaa3016-7819-73b0-8adc-c4fab569383d",
+      "resourceType": "jacket",
+      "displayTitle": "code:Leviathan",
+      "metadata": {
+        "songId": "9",
+        "artist": "kanone",
+        "jacketIllustrator": "NOMISAKI",
+        "gameVersion": "1.0.3"
+      },
+      "badges": [],
+      "searchTerms": [
+        "code:Leviathan",
+        "kanone",
+        "9",
+        "codeleviathan"
+      ],
+      "sortOrder": 6,
+      "facets": {}
+    },
+    {
+      "resourceId": "3ecfcb25-eecc-7ef2-9869-255212b09253",
+      "resourceType": "jacket",
+      "displayTitle": "Cold Sea",
+      "metadata": {
+        "songId": "10",
+        "artist": "Sakuzyo",
+        "jacketIllustrator": "fixro2n",
+        "gameVersion": "1.0.3"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Cold Sea",
+        "Sakuzyo",
+        "10",
+        "coldsea"
+      ],
+      "sortOrder": 7,
+      "facets": {}
+    },
+    {
       "resourceId": "93cefd1c-62d9-7d86-96ed-64ff584817fa",
       "resourceType": "jacket",
       "displayTitle": "Cryogenic",
@@ -35,7 +175,7 @@
         "songId": "11",
         "artist": "Camellia ft. Petra Gurin",
         "jacketIllustrator": "アオノアオ + Vormis.",
-        "gameVersion": "In Falsus Demo"
+        "gameVersion": "1.0.3"
       },
       "badges": [],
       "searchTerms": [
@@ -44,7 +184,227 @@
         "11",
         "cryogenic"
       ],
-      "sortOrder": 1,
+      "sortOrder": 8,
+      "facets": {}
+    },
+    {
+      "resourceId": "b24dbe6d-5ec2-736b-b395-cfd8acf3f432",
+      "resourceType": "jacket",
+      "displayTitle": "Cyaegha",
+      "metadata": {
+        "songId": "12",
+        "artist": "USAO",
+        "jacketIllustrator": "シエラ",
+        "gameVersion": "1.0.3"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Cyaegha",
+        "USAO",
+        "12",
+        "cyaegha"
+      ],
+      "sortOrder": 9,
+      "facets": {}
+    },
+    {
+      "resourceId": "467e41b6-454d-70c6-a6cb-ab7dea3c6d44",
+      "resourceType": "jacket",
+      "displayTitle": "Destr0yer",
+      "metadata": {
+        "songId": "13",
+        "artist": "Sakuzyo feat. Nikki Simmons",
+        "jacketIllustrator": "yoshimo & Radiosity",
+        "gameVersion": "1.0.3"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Destr0yer",
+        "Sakuzyo feat. Nikki Simmons",
+        "13",
+        "destroyer"
+      ],
+      "sortOrder": 10,
+      "facets": {}
+    },
+    {
+      "resourceId": "7a6439cf-ca22-7923-b01d-4a893c338acb",
+      "resourceType": "jacket",
+      "displayTitle": "Enigma",
+      "metadata": {
+        "songId": "14",
+        "artist": "sanmal",
+        "jacketIllustrator": "少女人",
+        "gameVersion": "1.0.3"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Enigma",
+        "sanmal",
+        "14",
+        "enigma"
+      ],
+      "sortOrder": 11,
+      "facets": {}
+    },
+    {
+      "resourceId": "048d4248-918c-71ba-aaa8-04c0acc216d9",
+      "resourceType": "jacket",
+      "displayTitle": "Everything",
+      "metadata": {
+        "songId": "15",
+        "artist": "Avans",
+        "jacketIllustrator": "猫山桜梨",
+        "gameVersion": "1.0.3"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Everything",
+        "Avans",
+        "15",
+        "everything"
+      ],
+      "sortOrder": 12,
+      "facets": {}
+    },
+    {
+      "resourceId": "59c59b99-2395-7a25-86da-fcfd576ac789",
+      "resourceType": "jacket",
+      "displayTitle": "EXCEED MIND LIMIT",
+      "metadata": {
+        "songId": "16",
+        "artist": "SOUND HOLIC feat. Nana Takahashi",
+        "jacketIllustrator": "のせさつき",
+        "gameVersion": "1.0.3"
+      },
+      "badges": [],
+      "searchTerms": [
+        "EXCEED MIND LIMIT",
+        "SOUND HOLIC feat. Nana Takahashi",
+        "16",
+        "exceedmind"
+      ],
+      "sortOrder": 13,
+      "facets": {}
+    },
+    {
+      "resourceId": "7c74b7eb-4b22-75a8-9f99-14148b2cf110",
+      "resourceType": "jacket",
+      "displayTitle": "Falling Shadow",
+      "metadata": {
+        "songId": "17",
+        "artist": "callasoiled",
+        "jacketIllustrator": "KIKI輝気",
+        "gameVersion": "1.0.3"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Falling Shadow",
+        "callasoiled",
+        "17",
+        "fallingshadow"
+      ],
+      "sortOrder": 14,
+      "facets": {}
+    },
+    {
+      "resourceId": "4f788132-cf45-76c9-a9c5-25abc9561693",
+      "resourceType": "jacket",
+      "displayTitle": "Falsequre",
+      "metadata": {
+        "songId": "18",
+        "artist": "Blacklolita",
+        "jacketIllustrator": "LENTAIN",
+        "gameVersion": "1.0.3"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Falsequre",
+        "Blacklolita",
+        "18",
+        "falsequre"
+      ],
+      "sortOrder": 15,
+      "facets": {}
+    },
+    {
+      "resourceId": "f83a7aab-e47d-70ca-bd3d-268034fab55b",
+      "resourceType": "jacket",
+      "displayTitle": "FFFF",
+      "metadata": {
+        "songId": "19",
+        "artist": "zts",
+        "jacketIllustrator": "U0",
+        "gameVersion": "1.0.3"
+      },
+      "badges": [],
+      "searchTerms": [
+        "FFFF",
+        "zts",
+        "19",
+        "ffff"
+      ],
+      "sortOrder": 16,
+      "facets": {}
+    },
+    {
+      "resourceId": "4ee2caf6-50be-7779-b33f-6c2598972a61",
+      "resourceType": "jacket",
+      "displayTitle": "F0 CHA0S",
+      "metadata": {
+        "songId": "20",
+        "artist": "Lamanya",
+        "jacketIllustrator": "Lamanya",
+        "gameVersion": "1.0.3"
+      },
+      "badges": [],
+      "searchTerms": [
+        "F0 CHA0S",
+        "Lamanya",
+        "20",
+        "fochaos"
+      ],
+      "sortOrder": 17,
+      "facets": {}
+    },
+    {
+      "resourceId": "fe77d356-0163-7e1a-a0fa-ecad712a3ed9",
+      "resourceType": "jacket",
+      "displayTitle": "Greyscale City",
+      "metadata": {
+        "songId": "21",
+        "artist": "litmus*",
+        "jacketIllustrator": "でいたく",
+        "gameVersion": "1.0.3"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Greyscale City",
+        "litmus*",
+        "21",
+        "greyscalecity"
+      ],
+      "sortOrder": 18,
+      "facets": {}
+    },
+    {
+      "resourceId": "4186536b-78f8-7f27-b469-d3a3d74afbc2",
+      "resourceType": "jacket",
+      "displayTitle": "Hanabi",
+      "metadata": {
+        "songId": "22",
+        "artist": "Snail's House",
+        "jacketIllustrator": "さんぱち",
+        "gameVersion": "1.0.3"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Hanabi",
+        "Snail's House",
+        "22",
+        "hanabi"
+      ],
+      "sortOrder": 19,
       "facets": {}
     },
     {
@@ -55,7 +415,7 @@
         "songId": "23",
         "artist": "ak+q",
         "jacketIllustrator": "アオノアオ",
-        "gameVersion": "In Falsus Demo"
+        "gameVersion": "1.0.3"
       },
       "badges": [],
       "searchTerms": [
@@ -64,7 +424,807 @@
         "23",
         "hyalouyne"
       ],
-      "sortOrder": 2,
+      "sortOrder": 20,
+      "facets": {}
+    },
+    {
+      "resourceId": "352ff1a4-31b1-757e-8b18-3c2dc008d6c6",
+      "resourceType": "jacket",
+      "displayTitle": "init()",
+      "metadata": {
+        "songId": "24",
+        "artist": "kamome sano",
+        "jacketIllustrator": "そゐち",
+        "gameVersion": "1.0.3"
+      },
+      "badges": [],
+      "searchTerms": [
+        "init()",
+        "kamome sano",
+        "24",
+        "init"
+      ],
+      "sortOrder": 21,
+      "facets": {}
+    },
+    {
+      "resourceId": "e7263444-017f-7e1b-a83e-63ca1f86ffa6",
+      "resourceType": "jacket",
+      "displayTitle": "Kirapico Riot: Kirapicorin",
+      "metadata": {
+        "songId": "25",
+        "artist": "立秋 feat. ちょこ",
+        "jacketIllustrator": "志月",
+        "gameVersion": "1.0.3"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Kirapico Riot: Kirapicorin",
+        "立秋 feat. ちょこ",
+        "25",
+        "kirapico"
+      ],
+      "sortOrder": 22,
+      "facets": {}
+    },
+    {
+      "resourceId": "9719ebe4-a782-7e48-9871-4950b6c6fac7",
+      "resourceType": "jacket",
+      "displayTitle": "KIRETSU",
+      "metadata": {
+        "songId": "26",
+        "artist": "Laur",
+        "jacketIllustrator": "フリッツ",
+        "gameVersion": "1.0.3"
+      },
+      "badges": [],
+      "searchTerms": [
+        "KIRETSU",
+        "Laur",
+        "26",
+        "kiretsu"
+      ],
+      "sortOrder": 23,
+      "facets": {}
+    },
+    {
+      "resourceId": "0499d14f-b77c-7bb6-97f7-e4d7f1d58393",
+      "resourceType": "jacket",
+      "displayTitle": "Latent Duality",
+      "metadata": {
+        "songId": "27",
+        "artist": "Palme",
+        "jacketIllustrator": "祝く月",
+        "gameVersion": "1.0.3"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Latent Duality",
+        "Palme",
+        "27",
+        "latentduality"
+      ],
+      "sortOrder": 24,
+      "facets": {}
+    },
+    {
+      "resourceId": "e7a6bd39-7b39-7db0-a963-d03d2095dc7a",
+      "resourceType": "jacket",
+      "displayTitle": "Live Fast Die Young",
+      "metadata": {
+        "songId": "28",
+        "artist": "anubasu-anubasu",
+        "jacketIllustrator": "シエラ",
+        "gameVersion": "1.0.3"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Live Fast Die Young",
+        "anubasu-anubasu",
+        "28",
+        "lfdy"
+      ],
+      "sortOrder": 25,
+      "facets": {}
+    },
+    {
+      "resourceId": "e80f12cd-e926-7c61-bd0e-19275df140e5",
+      "resourceType": "jacket",
+      "displayTitle": "Lights Out",
+      "metadata": {
+        "songId": "29",
+        "artist": "USAO",
+        "jacketIllustrator": "花澤明",
+        "gameVersion": "1.0.3"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Lights Out",
+        "USAO",
+        "29",
+        "lightsout"
+      ],
+      "sortOrder": 26,
+      "facets": {}
+    },
+    {
+      "resourceId": "1166b862-f11c-718a-b1cf-25b015f8bbea",
+      "resourceType": "jacket",
+      "displayTitle": "Mémoire",
+      "metadata": {
+        "songId": "30",
+        "artist": "Zekk",
+        "jacketIllustrator": "柚葉わさ",
+        "gameVersion": "1.0.3"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Mémoire",
+        "Zekk",
+        "30",
+        "memoire"
+      ],
+      "sortOrder": 27,
+      "facets": {}
+    },
+    {
+      "resourceId": "998e73e1-e3a9-7826-8c30-3384d4cf2dcc",
+      "resourceType": "jacket",
+      "displayTitle": "Minerva",
+      "metadata": {
+        "songId": "31",
+        "artist": "Hylen",
+        "jacketIllustrator": "Ao",
+        "gameVersion": "1.0.3"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Minerva",
+        "Hylen",
+        "31",
+        "minerva"
+      ],
+      "sortOrder": 28,
+      "facets": {}
+    },
+    {
+      "resourceId": "868341f0-dfdf-779c-9c50-97861e16952e",
+      "resourceType": "jacket",
+      "displayTitle": "MIRINAE",
+      "metadata": {
+        "songId": "32",
+        "artist": "TAK × Zekk",
+        "jacketIllustrator": "すずなし",
+        "gameVersion": "1.0.3"
+      },
+      "badges": [],
+      "searchTerms": [
+        "MIRINAE",
+        "TAK × Zekk",
+        "32",
+        "mirinae"
+      ],
+      "sortOrder": 29,
+      "facets": {}
+    },
+    {
+      "resourceId": "493a72e6-9c84-7b34-a6d5-b91926d52988",
+      "resourceType": "jacket",
+      "displayTitle": "M / O / O / N / D / I / V / E / R",
+      "metadata": {
+        "songId": "33",
+        "artist": "Bitplane",
+        "jacketIllustrator": "cyclia",
+        "gameVersion": "1.0.3"
+      },
+      "badges": [],
+      "searchTerms": [
+        "M / O / O / N / D / I / V / E / R",
+        "Bitplane",
+        "33",
+        "moondiver"
+      ],
+      "sortOrder": 30,
+      "facets": {}
+    },
+    {
+      "resourceId": "c2d2e23e-e159-7bf7-b1e9-3e7f562c4774",
+      "resourceType": "jacket",
+      "displayTitle": "Moonsliders",
+      "metadata": {
+        "songId": "34",
+        "artist": "DJ Noriken",
+        "jacketIllustrator": "sena",
+        "gameVersion": "1.0.3"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Moonsliders",
+        "DJ Noriken",
+        "34",
+        "moonsliders"
+      ],
+      "sortOrder": 31,
+      "facets": {}
+    },
+    {
+      "resourceId": "6a744056-eca1-79b0-954c-198582881575",
+      "resourceType": "jacket",
+      "displayTitle": "My Deadly Sins",
+      "metadata": {
+        "songId": "35",
+        "artist": "Sta",
+        "jacketIllustrator": "sta",
+        "gameVersion": "1.0.3"
+      },
+      "badges": [],
+      "searchTerms": [
+        "My Deadly Sins",
+        "Sta",
+        "35",
+        "mydeadlysins"
+      ],
+      "sortOrder": 32,
+      "facets": {}
+    },
+    {
+      "resourceId": "8f2c0532-060d-7a45-8d1a-ab9c1d87cf72",
+      "resourceType": "jacket",
+      "displayTitle": "New Vision",
+      "metadata": {
+        "songId": "36",
+        "artist": "ii/night feat. shizuki",
+        "jacketIllustrator": "茶野そめは",
+        "gameVersion": "1.0.3"
+      },
+      "badges": [],
+      "searchTerms": [
+        "New Vision",
+        "ii/night feat. shizuki",
+        "36",
+        "newvision"
+      ],
+      "sortOrder": 33,
+      "facets": {}
+    },
+    {
+      "resourceId": "45fd22f9-a8cd-76e1-8696-6831cd4a0c0a",
+      "resourceType": "jacket",
+      "displayTitle": "Noct Idea",
+      "metadata": {
+        "songId": "37",
+        "artist": "Juggernaut.",
+        "jacketIllustrator": "晴",
+        "gameVersion": "1.0.3"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Noct Idea",
+        "Juggernaut.",
+        "37",
+        "noctidea"
+      ],
+      "sortOrder": 34,
+      "facets": {}
+    },
+    {
+      "resourceId": "aa22fcd0-fa77-7ed9-b246-8f7afae54e9c",
+      "resourceType": "jacket",
+      "displayTitle": "Now I know",
+      "metadata": {
+        "songId": "38",
+        "artist": "lapix feat. RANASOL",
+        "jacketIllustrator": "fixro2n",
+        "gameVersion": "1.0.3"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Now I know",
+        "lapix feat. RANASOL",
+        "38",
+        "nowiknow"
+      ],
+      "sortOrder": 35,
+      "facets": {}
+    },
+    {
+      "resourceId": "a305f234-3f23-724d-9b71-c145688c1ea9",
+      "resourceType": "jacket",
+      "displayTitle": "Outer Justice",
+      "metadata": {
+        "songId": "39",
+        "artist": "Morrigan feat.Lily",
+        "jacketIllustrator": "左李",
+        "gameVersion": "1.0.3"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Outer Justice",
+        "Morrigan feat.Lily",
+        "39",
+        "outerjustice"
+      ],
+      "sortOrder": 36,
+      "facets": {}
+    },
+    {
+      "resourceId": "100b8848-15f6-760e-86e7-ef0483dcd058",
+      "resourceType": "jacket",
+      "displayTitle": "papillon blanc",
+      "metadata": {
+        "songId": "40",
+        "artist": "bermei.inazawa feat.乃花こより",
+        "jacketIllustrator": "伊藤らぼ",
+        "gameVersion": "1.0.3"
+      },
+      "badges": [],
+      "searchTerms": [
+        "papillon blanc",
+        "bermei.inazawa feat.乃花こより",
+        "40",
+        "papillonblanc"
+      ],
+      "sortOrder": 37,
+      "facets": {}
+    },
+    {
+      "resourceId": "3d6f44eb-c381-7331-8c74-bccb66f88474",
+      "resourceType": "jacket",
+      "displayTitle": "PhylaXron",
+      "metadata": {
+        "songId": "41",
+        "artist": "Taishi",
+        "jacketIllustrator": "春昼京芒",
+        "gameVersion": "1.0.3"
+      },
+      "badges": [],
+      "searchTerms": [
+        "PhylaXron",
+        "Taishi",
+        "41",
+        "phylaxron"
+      ],
+      "sortOrder": 38,
+      "facets": {}
+    },
+    {
+      "resourceId": "d357225e-60ea-73e6-abf4-fe2056cdfe1f",
+      "resourceType": "jacket",
+      "displayTitle": "Primeval Texture",
+      "metadata": {
+        "songId": "42",
+        "artist": "くるぶっこちゃん",
+        "jacketIllustrator": "LOWRISE",
+        "gameVersion": "1.0.3"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Primeval Texture",
+        "くるぶっこちゃん",
+        "42",
+        "primevaltexture"
+      ],
+      "sortOrder": 39,
+      "facets": {}
+    },
+    {
+      "resourceId": "7f20f279-dab1-7825-87d7-cbad5e83d002",
+      "resourceType": "jacket",
+      "displayTitle": "Reconnect",
+      "metadata": {
+        "songId": "43",
+        "artist": "BlackY feat. Risa Yuzuki",
+        "jacketIllustrator": "猫山桜梨",
+        "gameVersion": "1.0.3"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Reconnect",
+        "BlackY feat. Risa Yuzuki",
+        "43",
+        "reconnect"
+      ],
+      "sortOrder": 40,
+      "facets": {}
+    },
+    {
+      "resourceId": "3d3082a1-53fd-7b50-a343-6b43eb24cc4e",
+      "resourceType": "jacket",
+      "displayTitle": "Re:Flection",
+      "metadata": {
+        "songId": "44",
+        "artist": "t+pazolite",
+        "jacketIllustrator": "ヨ剤",
+        "gameVersion": "1.0.3"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Re:Flection",
+        "t+pazolite",
+        "44",
+        "reflection"
+      ],
+      "sortOrder": 41,
+      "facets": {}
+    },
+    {
+      "resourceId": "23d2d599-2a08-7314-8c89-046b8417a73f",
+      "resourceType": "jacket",
+      "displayTitle": "Scarlet Espada",
+      "metadata": {
+        "songId": "45",
+        "artist": "Yooh",
+        "jacketIllustrator": "こたろう",
+        "gameVersion": "1.0.3"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Scarlet Espada",
+        "Yooh",
+        "45",
+        "scarletespada"
+      ],
+      "sortOrder": 42,
+      "facets": {}
+    },
+    {
+      "resourceId": "4c60d801-f369-7c28-96ef-d473d7ce4428",
+      "resourceType": "jacket",
+      "displayTitle": "Self-confrontatioN",
+      "metadata": {
+        "songId": "46",
+        "artist": "s-don",
+        "jacketIllustrator": "辷",
+        "gameVersion": "1.0.3"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Self-confrontatioN",
+        "s-don",
+        "46",
+        "selfconfrontation"
+      ],
+      "sortOrder": 43,
+      "facets": {}
+    },
+    {
+      "resourceId": "20fdf923-cc72-7932-888c-b946f9a45ce2",
+      "resourceType": "jacket",
+      "displayTitle": "Shadows of Unknown",
+      "metadata": {
+        "songId": "47",
+        "artist": "Sad Keyboard Guy feat. vally.exe",
+        "jacketIllustrator": "Toriki",
+        "gameVersion": "1.0.3"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Shadows of Unknown",
+        "Sad Keyboard Guy feat. vally.exe",
+        "47",
+        "shadowsofunknown"
+      ],
+      "sortOrder": 44,
+      "facets": {}
+    },
+    {
+      "resourceId": "dee62b26-734b-782c-afbd-00330a3a6b6b",
+      "resourceType": "jacket",
+      "displayTitle": "should have been",
+      "metadata": {
+        "songId": "48",
+        "artist": "Frums",
+        "jacketIllustrator": "AT基調",
+        "gameVersion": "1.0.3"
+      },
+      "badges": [],
+      "searchTerms": [
+        "should have been",
+        "Frums",
+        "48",
+        "shouldhavebeen"
+      ],
+      "sortOrder": 45,
+      "facets": {}
+    },
+    {
+      "resourceId": "ad89b1f4-0dbb-7602-a359-8306c718cbcd",
+      "resourceType": "jacket",
+      "displayTitle": "Sin Utopia",
+      "metadata": {
+        "songId": "49",
+        "artist": "Kobaryo",
+        "jacketIllustrator": "しょくむら",
+        "gameVersion": "1.0.3"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Sin Utopia",
+        "Kobaryo",
+        "49",
+        "sinutopia"
+      ],
+      "sortOrder": 46,
+      "facets": {}
+    },
+    {
+      "resourceId": "ce8f2ace-19f4-7d88-9305-897e7442ede8",
+      "resourceType": "jacket",
+      "displayTitle": "Memories in Noise",
+      "metadata": {
+        "songId": "50",
+        "artist": "Nyolfen",
+        "jacketIllustrator": "Deep",
+        "gameVersion": "1.0.3"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Memories in Noise",
+        "Nyolfen",
+        "50",
+        "sunanokioku"
+      ],
+      "sortOrder": 47,
+      "facets": {}
+    },
+    {
+      "resourceId": "a3835ee3-f889-7ecd-920e-2dfe439d02ac",
+      "resourceType": "jacket",
+      "displayTitle": "TACTOM",
+      "metadata": {
+        "songId": "51",
+        "artist": "onoken",
+        "jacketIllustrator": "ET",
+        "gameVersion": "1.0.3"
+      },
+      "badges": [],
+      "searchTerms": [
+        "TACTOM",
+        "onoken",
+        "51",
+        "tactom"
+      ],
+      "sortOrder": 48,
+      "facets": {}
+    },
+    {
+      "resourceId": "2e6db785-e61d-70c0-8ce0-a511497f731b",
+      "resourceType": "jacket",
+      "displayTitle": "Things I Treasure",
+      "metadata": {
+        "songId": "52",
+        "artist": "黒沢ダイスケ feat. 濱田道子",
+        "jacketIllustrator": "花ヶ田",
+        "gameVersion": "1.0.3"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Things I Treasure",
+        "黒沢ダイスケ feat. 濱田道子",
+        "52",
+        "thingsitreasure"
+      ],
+      "sortOrder": 49,
+      "facets": {}
+    },
+    {
+      "resourceId": "5bbe15a1-c443-7df3-9cd0-ccf766f1d1e1",
+      "resourceType": "jacket",
+      "displayTitle": "Toccata Funebre",
+      "metadata": {
+        "songId": "53",
+        "artist": "Katali",
+        "jacketIllustrator": "メラー",
+        "gameVersion": "1.0.3"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Toccata Funebre",
+        "Katali",
+        "53",
+        "toccatafunebre"
+      ],
+      "sortOrder": 50,
+      "facets": {}
+    },
+    {
+      "resourceId": "9f8e0c7b-35e7-7e6b-b80e-af1ef73d0fc1",
+      "resourceType": "jacket",
+      "displayTitle": "▓",
+      "metadata": {
+        "songId": "54",
+        "artist": "∞",
+        "jacketIllustrator": "すずなし",
+        "gameVersion": "1.0.3"
+      },
+      "badges": [],
+      "searchTerms": [
+        "▓",
+        "∞",
+        "54",
+        "tokonagi"
+      ],
+      "sortOrder": 51,
+      "facets": {}
+    },
+    {
+      "resourceId": "0c3530c7-2b87-7e51-8403-8713099bfef5",
+      "resourceType": "jacket",
+      "displayTitle": "Trajectory of Hope",
+      "metadata": {
+        "songId": "55",
+        "artist": "TAG",
+        "jacketIllustrator": "あるてら",
+        "gameVersion": "1.0.3"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Trajectory of Hope",
+        "TAG",
+        "55",
+        "trajectoryofhope"
+      ],
+      "sortOrder": 52,
+      "facets": {}
+    },
+    {
+      "resourceId": "b316c1b1-0e94-7bde-8442-7898ac720f0c",
+      "resourceType": "jacket",
+      "displayTitle": "Transparency",
+      "metadata": {
+        "songId": "56",
+        "artist": "くるぶっこちゃん",
+        "jacketIllustrator": "cyawa",
+        "gameVersion": "1.0.3"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Transparency",
+        "くるぶっこちゃん",
+        "56",
+        "transparency"
+      ],
+      "sortOrder": 53,
+      "facets": {}
+    },
+    {
+      "resourceId": "295d9162-445f-7610-b8bf-dd6a97392b82",
+      "resourceType": "jacket",
+      "displayTitle": "Vesper",
+      "metadata": {
+        "songId": "57",
+        "artist": "Dustvoxx",
+        "jacketIllustrator": "キリ",
+        "gameVersion": "1.0.3"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Vesper",
+        "Dustvoxx",
+        "57",
+        "vesper"
+      ],
+      "sortOrder": 54,
+      "facets": {}
+    },
+    {
+      "resourceId": "70aa5d31-22ae-74ed-a8f4-8de93737d7e9",
+      "resourceType": "jacket",
+      "displayTitle": "With Truth",
+      "metadata": {
+        "songId": "58",
+        "artist": "ARForest feat.nayuta",
+        "jacketIllustrator": "からながれ",
+        "gameVersion": "1.0.3"
+      },
+      "badges": [],
+      "searchTerms": [
+        "With Truth",
+        "ARForest feat.nayuta",
+        "58",
+        "withtruth"
+      ],
+      "sortOrder": 55,
+      "facets": {}
+    },
+    {
+      "resourceId": "a9365d8b-e823-7d01-a0be-2f93f141d620",
+      "resourceType": "jacket",
+      "displayTitle": "World Ender",
+      "metadata": {
+        "songId": "59",
+        "artist": "sasakure.UK × TJ.hangneil",
+        "jacketIllustrator": "米室",
+        "gameVersion": "1.0.3"
+      },
+      "badges": [],
+      "searchTerms": [
+        "World Ender",
+        "sasakure.UK × TJ.hangneil",
+        "59",
+        "worldender"
+      ],
+      "sortOrder": 56,
+      "facets": {}
+    },
+    {
+      "resourceId": "69e49af0-8713-7577-a5b9-82337daab5aa",
+      "resourceType": "jacket",
+      "displayTitle": "yggthrasir",
+      "metadata": {
+        "songId": "60",
+        "artist": "ikaruga_nex",
+        "jacketIllustrator": "ｽｲﾐﾝ",
+        "gameVersion": "1.0.3"
+      },
+      "badges": [],
+      "searchTerms": [
+        "yggthrasir",
+        "ikaruga_nex",
+        "60",
+        "yggthrasir"
+      ],
+      "sortOrder": 57,
+      "facets": {}
+    },
+    {
+      "resourceId": "98171837-70a8-7ea1-a136-fa6bf6770e08",
+      "resourceType": "jacket",
+      "displayTitle": "Zetta",
+      "metadata": {
+        "songId": "61",
+        "artist": "Hommarju",
+        "jacketIllustrator": "Isobe",
+        "gameVersion": "1.0.3"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Zetta",
+        "Hommarju",
+        "61",
+        "zetta"
+      ],
+      "sortOrder": 58,
+      "facets": {}
+    },
+    {
+      "resourceId": "4d3e9b91-4d77-70ae-a86b-8bbad3252aaa",
+      "resourceType": "jacket",
+      "displayTitle": "ZFC",
+      "metadata": {
+        "songId": "62",
+        "artist": "cybermiso",
+        "jacketIllustrator": "梅之シイ",
+        "gameVersion": "1.0.3"
+      },
+      "badges": [],
+      "searchTerms": [
+        "ZFC",
+        "cybermiso",
+        "62",
+        "zfc"
+      ],
+      "sortOrder": 59,
+      "facets": {}
+    },
+    {
+      "resourceId": "3e7dc831-30ac-7461-945e-65bf0b247c53",
+      "resourceType": "jacket",
+      "displayTitle": "Forbidden Souls",
+      "metadata": {
+        "songId": "63",
+        "artist": "Nhato",
+        "jacketIllustrator": "Forbidden Souls",
+        "gameVersion": "1.0.3"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Forbidden Souls",
+        "Nhato",
+        "63",
+        "forbiddensouls"
+      ],
+      "sortOrder": 60,
       "facets": {}
     },
     {
@@ -75,7 +1235,7 @@
         "songId": "64",
         "artist": "Qlarabelle & crayvxn",
         "jacketIllustrator": "Ghost Ray",
-        "gameVersion": "In Falsus Demo"
+        "gameVersion": "1.0.3"
       },
       "badges": [],
       "searchTerms": [
@@ -84,7 +1244,27 @@
         "64",
         "ghostray"
       ],
-      "sortOrder": 3,
+      "sortOrder": 61,
+      "facets": {}
+    },
+    {
+      "resourceId": "3269944b-d3f6-734c-b703-0fbee2c16b16",
+      "resourceType": "jacket",
+      "displayTitle": "WonderRoom2.0",
+      "metadata": {
+        "songId": "65",
+        "artist": "virtual Nice dog workS",
+        "jacketIllustrator": "Rei Kurashima,りたお,すとろぼ",
+        "gameVersion": "1.0.3"
+      },
+      "badges": [],
+      "searchTerms": [
+        "WonderRoom2.0",
+        "virtual Nice dog workS",
+        "65",
+        "wonderroom"
+      ],
+      "sortOrder": 62,
       "facets": {}
     },
     {
@@ -95,7 +1275,7 @@
         "songId": "67",
         "artist": "rejection",
         "jacketIllustrator": "Poyoshi",
-        "gameVersion": "In Falsus Demo"
+        "gameVersion": "1.0.3"
       },
       "badges": [],
       "searchTerms": [
@@ -104,7 +1284,27 @@
         "67",
         "deepintothevibe"
       ],
-      "sortOrder": 4,
+      "sortOrder": 63,
+      "facets": {}
+    },
+    {
+      "resourceId": "4f57395d-d0b6-7f6d-9446-c0944e8e2ef0",
+      "resourceType": "jacket",
+      "displayTitle": "cylin",
+      "metadata": {
+        "songId": "68",
+        "artist": "kalsoer",
+        "jacketIllustrator": "atra + SARYN",
+        "gameVersion": "1.0.3"
+      },
+      "badges": [],
+      "searchTerms": [
+        "cylin",
+        "kalsoer",
+        "68",
+        "cylin"
+      ],
+      "sortOrder": 64,
       "facets": {}
     },
     {
@@ -115,7 +1315,7 @@
         "songId": "69",
         "artist": "Feryquitous",
         "jacketIllustrator": "Vormis.",
-        "gameVersion": "In Falsus Demo"
+        "gameVersion": "1.0.3"
       },
       "badges": [],
       "searchTerms": [
@@ -124,7 +1324,87 @@
         "69",
         "ordirehv"
       ],
-      "sortOrder": 5,
+      "sortOrder": 65,
+      "facets": {}
+    },
+    {
+      "resourceId": "b20c1c59-5ae1-7ade-b595-0c134bf1b778",
+      "resourceType": "jacket",
+      "displayTitle": "Rainshower",
+      "metadata": {
+        "songId": "70",
+        "artist": "Silentroom",
+        "jacketIllustrator": "shun yamaguchi",
+        "gameVersion": "1.0.3"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Rainshower",
+        "Silentroom",
+        "70",
+        "rainshower"
+      ],
+      "sortOrder": 66,
+      "facets": {}
+    },
+    {
+      "resourceId": "a0d7f1ed-0401-7858-b3a7-8691cf00d043",
+      "resourceType": "jacket",
+      "displayTitle": "Albedo",
+      "metadata": {
+        "songId": "72",
+        "artist": "void (Mournfinale)",
+        "jacketIllustrator": "辷",
+        "gameVersion": "1.0.3"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Albedo",
+        "void (Mournfinale)",
+        "72",
+        "albedo"
+      ],
+      "sortOrder": 67,
+      "facets": {}
+    },
+    {
+      "resourceId": "5fd58f6e-7bce-7b98-9281-c7ec62a8f082",
+      "resourceType": "jacket",
+      "displayTitle": "NEONViSION",
+      "metadata": {
+        "songId": "73",
+        "artist": "REDALiCE",
+        "jacketIllustrator": "びびすか",
+        "gameVersion": "1.0.3"
+      },
+      "badges": [],
+      "searchTerms": [
+        "NEONViSION",
+        "REDALiCE",
+        "73",
+        "neonvision"
+      ],
+      "sortOrder": 68,
+      "facets": {}
+    },
+    {
+      "resourceId": "90aacb25-b4ef-7ff9-87b1-00e6fc4f6af5",
+      "resourceType": "jacket",
+      "displayTitle": "Hollow",
+      "metadata": {
+        "songId": "82",
+        "artist": "Camellia feat. ナノ",
+        "jacketIllustrator": "すずなし",
+        "gameVersion": "1.0.3"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Hollow",
+        "Camellia feat. ナノ",
+        "82",
+        "kuukaku"
+      ],
+      "sortOrder": 69,
       "facets": {}
     }
   ]

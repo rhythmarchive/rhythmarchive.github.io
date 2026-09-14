@@ -38,19 +38,19 @@
       }
     },
     "infalsus": {
-      "sourceVersion": "In Falsus Demo",
-      "sourceSha256": "91bb7e195cd5fe38c5d70234da6c418a02eb55196f91f6c89e4305a006f597c3",
-      "fileSha256": "d0977f9e57bcc945a67734a5666ac9106e0f93ebda23df0196c0188110243f50",
+      "sourceVersion": "1.0.3",
+      "sourceSha256": "99ba34e685cc746b8125ce048db03cc949dd3d828de6ab2b3197c1e3924c0d5e",
+      "fileSha256": "fdd011dc06b79f055e1d21e28ac9c037656c368c6e9d74947e0575b5408161b0",
       "recordCounts": {
-        "songs": 6,
-        "artworks": 6
+        "songs": 70,
+        "artworks": 70
       }
     }
   },
   "catalog": {
     "catalogId": "019fefd6-9c49-7ca0-a760-adc76811a511",
-    "catalogSha256": "25d651e46ff7b3fc8171d9499fd33dc39b000440195925d95c3a39f2e3dc42a9",
-    "catalogGeneratedAt": "2026-09-11T13:07:47.881Z"
+    "catalogSha256": "c73cb44ed3258b989d862334ee43a951e8e0987b70f5336a4edd9835ea20745e",
+    "catalogGeneratedAt": "2026-09-14T12:02:04.154Z"
   },
   "files": {
     "arcaea": "arcaea.json",

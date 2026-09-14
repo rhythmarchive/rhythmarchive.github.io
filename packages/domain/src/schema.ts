@@ -56,7 +56,7 @@ export const ResourceType = z.enum([
   "phigros-april-fools",
   "other",
 ]);
-export const SourceType = z.enum(["legacy", "arcaea_apk", "phigros_apk", "rizline_remote", "infalsus_demo", "rotaeno_apk", "paradigm_apk", "manual"]);
+export const SourceType = z.enum(["legacy", "arcaea_apk", "phigros_apk", "rizline_remote", "infalsus_demo", "infalsus_formal", "rotaeno_apk", "paradigm_apk", "manual"]);
 export const Confidence = z.enum(["high", "medium", "low", "unknown"]);
 export const Difficulty = z.enum(["PST", "PRS", "FTR", "BYD", "ETR", "INSCRIBED"]);
 export const VariantKind = z.enum(["default", "difficulty", "event", "source-path", "manual", "unknown"]);
