@@ -117,7 +117,7 @@ export type BrowseGalleryBuildResult = {
 
 export type ArcaeaBrowseSort = "default" | "title-asc" | "title-desc" | "artist-asc" | "artist-desc" | "version-desc" | "version-asc";
 export type PhigrosBrowseSort = "default" | "title-asc" | "title-desc" | "artist-asc" | "artist-desc" | "pack-asc" | "pack-desc" | "level-desc" | "level-asc";
-export type InfalsusBrowseSort = "default" | "title-asc" | "title-desc" | "artist-asc" | "artist-desc";
+export type InfalsusBrowseSort = "default" | "title-asc" | "title-desc" | "artist-asc" | "artist-desc" | "level-desc" | "level-asc";
 export type RizlineBrowseSort = "default" | "title-asc" | "title-desc" | "artist-asc" | "artist-desc";
 
 export type ArcaeaBrowseUrlState = {
@@ -154,6 +154,7 @@ export type InfalsusBrowseUrlState = {
   q: string;
   sort: InfalsusBrowseSort;
   chart: InfalsusDifficulty[];
+  level: string[];
 };
 
 
@@ -191,6 +192,7 @@ export type RizlineFacetOptions = {
 };
 export type InfalsusFacetOptions = {
   charts: InfalsusDifficulty[];
+  levels: string[];
 };
 
 
@@ -643,7 +645,8 @@ export function getBrowseFacetOptions(data: BrowseGalleryData): BrowseFacetOptio
   }
   if (data.game === "infalsus") {
     const charts = INFALSUS_DIFFICULTIES.filter((difficulty) => data.items.some((item) => item.recordKind === "song" && item.charts.some((chart) => isPublicChart(chart) && chart.difficulty === difficulty && isFilterablePublicChart(chart))));
-    return { charts };
+    const levels = unique(data.items.flatMap((item) => item.recordKind === "song" ? item.charts.filter(isPublicChart).filter(isFilterablePublicChart).flatMap((chart) => chart.level ? [chart.level] : []) : []), compareDisplayLevels);
+    return { charts, levels };
   }
   const discs = unique(data.items.flatMap((item) => item.recordKind === "song" && item.disc ? [item.disc] : []), compareText);
   const trackSeries = unique(data.items.flatMap((item) => item.recordKind === "song" ? (item.trackSeries ?? []) : []), compareText);
@@ -707,7 +710,7 @@ export function filterBrowseItems(items: BrowseGalleryItem[], state: BrowseUrlSt
       if (state.pack.length > 0 && !state.pack.includes(item.pack ?? "")) return false;
       if (!matchesPhigrosCharts(item, state.chart, state.level, state.difficulty)) return false;
     } else if (state.game === "infalsus") {
-      if (!matchesPublicCharts(item, state.chart)) return false;
+      if (!matchesInfalsusCharts(item, state.chart, state.level)) return false;
     } else if (state.game === "rizline") {
       if (state.disc.length > 0 && !state.disc.includes(item.disc ?? "")) return false;
       if (state.series.length > 0 && !(item.trackSeries ?? []).some((value) => state.series.includes(value))) return false;
@@ -761,6 +764,15 @@ function matchesPublicCharts(item: BrowseGalleryItem, selectedDifficulties: stri
   return item.charts.some((chart) => isPublicChart(chart) && isFilterablePublicChart(chart) && selectedDifficulties.includes(chart.difficulty));
 }
 
+function matchesInfalsusCharts(item: BrowseGalleryItem, selectedDifficulties: InfalsusDifficulty[], selectedLevels: string[]): boolean {
+  if (selectedDifficulties.length === 0 && selectedLevels.length === 0) return true;
+  if (item.recordKind !== "song") return false;
+  return item.charts.some((chart) => isPublicChart(chart)
+    && isFilterablePublicChart(chart)
+    && (selectedDifficulties.length === 0 || selectedDifficulties.includes(chart.difficulty as InfalsusDifficulty))
+    && (selectedLevels.length === 0 || (chart.level !== undefined && selectedLevels.includes(chart.level))));
+}
+
 function isFilterablePublicChart(chart: PublicChart): boolean {
   return chart.available !== false && chart.status !== "error" && chart.status !== "legacy";
 }
@@ -773,6 +785,8 @@ export function compareBrowseItems(left: BrowseGalleryItem, right: BrowseGallery
   else if (sort === "title-desc") result = compareText(right.displayTitle, left.displayTitle);
   else if (sort === "artist-asc") result = compareNullableText(left.artist, right.artist) || compareText(left.displayTitle, right.displayTitle);
   else if (sort === "artist-desc") result = compareNullableText(right.artist, left.artist) || compareText(left.displayTitle, right.displayTitle);
+  else if (sort === "level-desc" && left.game === "infalsus" && right.game === "infalsus") result = compareInfalsusHighestLevel(right, left);
+  else if (sort === "level-asc" && left.game === "infalsus" && right.game === "infalsus") result = compareInfalsusHighestLevel(left, right);
   else if (sort === "pack-asc" && left.game === "phigros" && right.game === "phigros") result = compareNullableText(left.pack, right.pack) || compareText(left.displayTitle, right.displayTitle);
   else if (sort === "pack-desc" && left.game === "phigros" && right.game === "phigros") result = compareNullableText(right.pack, left.pack) || compareText(left.displayTitle, right.displayTitle);
   else if (sort === "level-desc" && left.game === "phigros" && right.game === "phigros") result = comparePhigrosHighestLevel(right, left);
@@ -786,6 +800,16 @@ export function compareBrowseItems(left: BrowseGalleryItem, right: BrowseGallery
 function comparePhigrosHighestLevel(left: BrowseGalleryItem, right: BrowseGalleryItem): number {
   const leftLevel = Math.max(...left.charts.filter(isPhigrosChart).filter(isFilterablePhigrosChart).map((chart) => Number(chart.level)).filter(Number.isFinite), Number.NEGATIVE_INFINITY);
   const rightLevel = Math.max(...right.charts.filter(isPhigrosChart).filter(isFilterablePhigrosChart).map((chart) => Number(chart.level)).filter(Number.isFinite), Number.NEGATIVE_INFINITY);
+  if (leftLevel === Number.NEGATIVE_INFINITY && rightLevel === Number.NEGATIVE_INFINITY) return 0;
+  if (leftLevel === Number.NEGATIVE_INFINITY) return 1;
+  if (rightLevel === Number.NEGATIVE_INFINITY) return -1;
+  return leftLevel - rightLevel || compareText(left.displayTitle, right.displayTitle);
+}
+
+function compareInfalsusHighestLevel(left: BrowseGalleryItem, right: BrowseGalleryItem): number {
+  const highest = (item: BrowseGalleryItem): number => Math.max(...item.charts.filter(isPublicChart).filter(isFilterablePublicChart).map((chart) => Number(chart.level)).filter(Number.isFinite), Number.NEGATIVE_INFINITY);
+  const leftLevel = highest(left);
+  const rightLevel = highest(right);
   if (leftLevel === Number.NEGATIVE_INFINITY && rightLevel === Number.NEGATIVE_INFINITY) return 0;
   if (leftLevel === Number.NEGATIVE_INFINITY) return 1;
   if (rightLevel === Number.NEGATIVE_INFINITY) return -1;
@@ -879,7 +903,7 @@ export function comparePhigrosLevels(left: string, right: string): number {
 export function defaultBrowseUrlState(game: BrowseGame): BrowseUrlState {
   if (game === "arcaea") return { game, q: "", sort: "default", pack: [], chart: [], level: [], version: [], ai: false };
   if (game === "phigros") return { game, q: "", sort: "default", pack: [], chart: [], level: [] };
-  if (game === "infalsus") return { game, q: "", sort: "default", chart: [] };
+  if (game === "infalsus") return { game, q: "", sort: "default", chart: [], level: [] };
   return { game, q: "", sort: "default", disc: [], series: [], chart: [] };
 }
 
@@ -912,7 +936,8 @@ export function parseBrowseUrlState(game: BrowseGame, input: URLSearchParams | s
   }
   if (game === "infalsus") {
     const sort: InfalsusBrowseSort = isInfalsusSort(sortValue) ? sortValue : "default";
-    return { game, q, sort, chart: readFacetValues(params, "chart", (options as InfalsusFacetOptions).charts) as InfalsusDifficulty[] };
+    const infalsusOptions = options as InfalsusFacetOptions;
+    return { game, q, sort, chart: readFacetValues(params, "chart", infalsusOptions.charts) as InfalsusDifficulty[], level: readFacetValues(params, "level", infalsusOptions.levels) };
   }
   const sort: RizlineBrowseSort = isRizlineSort(sortValue) ? sortValue : "default";
   const rizlineOptions = options as RizlineFacetOptions;
@@ -953,6 +978,9 @@ export function serializeBrowseUrlState(state: BrowseUrlState): URLSearchParams 
     }
   } else if (state.game === "infalsus") {
     const charts = stableValues(state.chart, (left, right) => INFALSUS_DIFFICULTIES.indexOf(left as InfalsusDifficulty) - INFALSUS_DIFFICULTIES.indexOf(right as InfalsusDifficulty));
+    const levels = stableValues(state.level, compareDisplayLevels);
+
+    if (levels.length > 0) params.set("level", levels.join(","));
     if (charts.length > 0) params.set("chart", charts.join(","));
   } else if (state.game === "rizline") {
     const discs = stableValues(state.disc, compareText);
@@ -999,7 +1027,7 @@ function isPhigrosSort(value: string | null): value is PhigrosBrowseSort {
 }
 
 function isInfalsusSort(value: string | null): value is InfalsusBrowseSort {
-  return value === "default" || value === "title-asc" || value === "title-desc" || value === "artist-asc" || value === "artist-desc";
+  return value === "default" || value === "title-asc" || value === "title-desc" || value === "artist-asc" || value === "artist-desc" || value === "level-desc" || value === "level-asc";
 }
 
 function isRizlineSort(value: string | null): value is RizlineBrowseSort {

@@ -69,6 +69,7 @@ function formatRangeValue(value: number): string {
               <option value="artist-asc">曲师 A-Z</option>
               <option value="artist-desc">曲师 Z-A</option>
               {data.game === "phigros" ? <><option value="pack-asc">曲包 A-Z</option><option value="pack-desc">曲包 Z-A</option><option value="level-desc">最高难度高 → 低</option><option value="level-asc">最高难度低 → 高</option></> : null}
+              {data.game === "infalsus" ? <><option value="level-desc">最高等级高 → 低</option><option value="level-asc">最高等级低 → 高</option></> : null}
             </>
           )}
         </select>
@@ -128,6 +129,7 @@ function formatRangeValue(value: number): string {
   ) : data.game === "infalsus" && infalsusOptions ? (
     <div class="gallery-filter-row" data-gallery-filter-row>
       <label class="filter-control"><span>谱面难度</span><select data-browse-filter-select="chart" aria-label="谱面难度"><option value="">全部</option>{infalsusOptions.charts.map((value) => <option value={value}>{value}</option>)}</select></label>
+      <label class="filter-control"><span>等级</span><select data-browse-filter-select="level" data-browse-level aria-label="等级"><option value="">全部</option>{infalsusOptions.levels.map((value) => <option value={value}>{value}</option>)}</select></label>
     </div>
   ) : null}
 

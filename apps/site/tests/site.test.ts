@@ -49,6 +49,7 @@ test("jacket details expose the unified chart field and user-facing identity met
   assert.equal(GAME_CONFIG.rotaeno.metadataLabels.gameVersion, undefined);
   assert.equal(GAME_CONFIG["paradigm-reboot"].metadataLabels.songId, undefined);
   assert.equal(GAME_CONFIG["paradigm-reboot"].metadataLabels.gameVersion, undefined);
+  assert.equal(GAME_CONFIG.infalsus.metadataLabels.gameVersion, "加入版本");
   const siteData = getSiteData();
   for (const game of ["arcaea", "phigros", "rizline", "infalsus", "rotaeno"] as const) {
     const jackets = siteData.resources.filter((resource) => resource.game === game && resource.resourceType === "jacket");
@@ -56,6 +57,7 @@ test("jacket details expose the unified chart field and user-facing identity met
     assert.ok(jackets.every((resource) => Array.isArray(resource.charts)));
   }
   const infalsusJacket = siteData.resources.find((resource) => resource.game === "infalsus" && resource.resourceType === "jacket" && resource.metadata.songId === "2");
+  assert.equal(infalsusJacket?.metadata.gameVersion, "1.0.3");
   assert.deepEqual(infalsusJacket?.charts?.map((chart) => [chart.difficulty, chart.level]), [["MIN", "1"], ["EVO", "5"], ["ULT", "9"], ["FBD", "11"]]);
   const phigrosJacket = siteData.resources.find((resource) => resource.game === "phigros" && resource.resourceType === "jacket" && resource.metadata.songName === "000 -Ain Soph Aur-");
   assert.deepEqual(phigrosJacket?.charts?.map((chart) => [chart.difficulty, chart.level, chart.noter]), [["EZ", "2.5", "Magazet"], ["HD", "8.4", "Magazet"], ["IN", "14.4", "啊0哒0咔0哟 & Dilated"]]);

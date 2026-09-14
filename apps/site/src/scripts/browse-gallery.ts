@@ -179,7 +179,7 @@ async function initializeBrowseGallery(root: HTMLElement): Promise<void> {
         ...(difficulty ? { difficulty } : {}),
       };
     }
-    if (game === "infalsus") return { game, q: search!.value, sort: sort!.value as Extract<BrowseUrlState, { game: "infalsus" }>["sort"], chart: selectedValues(root, "chart") as Extract<BrowseUrlState, { game: "infalsus" }>["chart"] };
+    if (game === "infalsus") return { game, q: search!.value, sort: sort!.value as Extract<BrowseUrlState, { game: "infalsus" }>["sort"], chart: selectedValues(root, "chart") as Extract<BrowseUrlState, { game: "infalsus" }>["chart"], level: levelSelect?.value ? [levelSelect.value] : [] };
     return {
       game,
       q: search!.value,
@@ -223,6 +223,8 @@ async function initializeBrowseGallery(root: HTMLElement): Promise<void> {
       setSelectedValues(root, "pack", nextState.pack);
       if (levelSelect) levelSelect.value = nextState.level[0] ?? "";
       if (difficultyRange) syncBrowseDifficultyRange(difficultyRange, nextState.difficulty?.min ?? difficultyRange.min, nextState.difficulty?.max ?? difficultyRange.max);
+    } else if (nextState.game === "infalsus") {
+      if (levelSelect) levelSelect.value = nextState.level[0] ?? "";
     } else if (nextState.game === "rizline") {
       setSelectedValues(root, "disc", nextState.disc);
       setSelectedValues(root, "series", nextState.series);

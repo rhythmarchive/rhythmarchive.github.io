@@ -138,6 +138,7 @@ export const GAME_CONFIG: Record<GameId, GameConfig> = {
     metadataLabels: {
       artist: "曲师",
       jacketIllustrator: "曲绘画师",
+      gameVersion: "加入版本",
     },
   },
   rotaeno: {

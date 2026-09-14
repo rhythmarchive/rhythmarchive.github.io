@@ -20,6 +20,7 @@ import {
   type BrowseGalleryItem,
   type BrowseResolvedResource,
   type InfalsusBrowseUrlState,
+  type InfalsusFacetOptions,
   type PhigrosBrowseUrlState,
   type RizlineBrowseUrlState,
   type RizlineFacetOptions,
@@ -274,15 +275,22 @@ test("Phigros special and archive records stay separate even with repeated title
 });
 
 test("In Falsus exposes chart difficulties and keeps the filter state shareable", () => {
-  const options = getBrowseFacetOptions(formalBrowse.infalsus);
+  const options = getBrowseFacetOptions(formalBrowse.infalsus) as InfalsusFacetOptions;
   assert.deepEqual(options.charts, ["MIN", "EVO", "ULT", "FBD"]);
-  const ultState: InfalsusBrowseUrlState = { game: "infalsus", q: "", sort: "default", chart: ["ULT"] };
+  assert.ok(options.levels.includes("1"));
+  assert.ok(options.levels.includes("15"));
+  const ultState: InfalsusBrowseUrlState = { game: "infalsus", q: "", sort: "default", chart: ["ULT"], level: [] };
   const filtered = filterBrowseItems(formalBrowse.infalsus.items, ultState);
   assert.equal(filtered.length, formalBrowse.infalsus.items.length);
   assert.ok(filtered.every((item) => item.charts.some((chart) => "difficulty" in chart && chart.difficulty === "ULT")));
   const serialized = serializeBrowseUrlState(ultState).toString();
   assert.equal(serialized, "chart=ULT");
   assert.deepEqual(parseBrowseUrlState("infalsus", serialized, formalBrowse.infalsus.items), ultState);
+  const levelState: InfalsusBrowseUrlState = { game: "infalsus", q: "", sort: "level-desc", chart: [], level: ["15"] };
+  assert.equal(serializeBrowseUrlState(levelState).toString(), "sort=level-desc&level=15");
+  assert.deepEqual(parseBrowseUrlState("infalsus", "sort=level-desc&level=15", formalBrowse.infalsus.items), levelState);
+  const levelFiltered = filterBrowseItems(formalBrowse.infalsus.items, levelState);
+  assert.ok(levelFiltered.every((item) => item.charts.some((chart) => "difficulty" in chart && chart.level === "15")));
 });
 
 test("Rizline Browse groups one card per Song and preserves all artwork variants", () => {
