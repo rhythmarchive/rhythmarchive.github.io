@@ -1,12 +1,14 @@
 ---
 import UpdateCard from "./UpdateCard.astro";
-import { getSiteData } from "../lib/site-data";
-import { BASE_PATH, ROS_BASE_URL, SITE_ORIGIN } from "../lib/site-config";
+import UpdateReminder from "./UpdateReminder.astro";
+import { getPublicNavigationGames, getSiteData } from "../lib/site-data";
+import { BASE_PATH, PUBLIC_STATS_API_URL, PUBLIC_UPDATE_REMINDERS_ENABLED, ROS_BASE_URL, SITE_ORIGIN } from "../lib/site-config";
 import { createUrlHelpers } from "../lib/url";
 
 const siteData = getSiteData();
 const updates = siteData.updates.slice(0, 3);
 const urls = createUrlHelpers({ basePath: BASE_PATH, origin: SITE_ORIGIN, rosBaseUrl: ROS_BASE_URL });
+const updateReminderGames = updates.length > 0 && PUBLIC_UPDATE_REMINDERS_ENABLED && PUBLIC_STATS_API_URL ? getPublicNavigationGames() : [];
 ---
 
 {updates.length > 0 && (
@@ -18,5 +20,6 @@ const urls = createUrlHelpers({ basePath: BASE_PATH, origin: SITE_ORIGIN, rosBas
     <div class="recent-update-list">
       {updates.map((update) => <UpdateCard update={update} compact />)}
     </div>
+    {updateReminderGames.length > 0 && <UpdateReminder games={updateReminderGames} />}
   </section>
 )}

@@ -1,0 +1,29 @@
+---
+import type { PublicGameIndex } from "../lib/types";
+
+interface Props {
+  games: readonly PublicGameIndex[];
+}
+
+const { games } = Astro.props;
+---
+
+<aside class="update-reminder" data-update-reminder aria-labelledby="update-reminder-heading">
+  <div class="update-reminder-copy">
+    <span class="section-kicker">Missed an update?</span>
+    <h3 id="update-reminder-heading">发现有游戏更新了？</h3>
+    <p id="update-reminder-description">如果这里还没看到，可以提醒我去检查一下。</p>
+  </div>
+  <form class="update-reminder-form" data-update-reminder-form aria-describedby="update-reminder-description update-reminder-status">
+    <label for="update-reminder-game">
+      选择游戏
+      <select id="update-reminder-game" name="game" required data-update-reminder-game>
+        <option value="" disabled selected>选择游戏</option>
+        {games.map((game) => <option value={game.slug}>{game.displayName}</option>)}
+      </select>
+    </label>
+    <button class="button button-primary" type="submit" data-update-reminder-submit>提醒一下</button>
+    <p class="update-reminder-status" data-update-reminder-status role="status" aria-live="polite" hidden></p>
+  </form>
+</aside>
+<script src="../scripts/update-reminder.ts"></script>

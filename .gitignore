@@ -25,7 +25,6 @@ output/
 apps/site/.astro/
 apps/site/src/generated/
 apps/site/public/data/
-workers/stats/.wrangler/
 
 # Local configuration and secrets
 .env
@@ -72,7 +71,22 @@ tools/*
 tools/arcaea-apk-updater/*
 !tools/arcaea-apk-updater/package.json
 !tools/arcaea-apk-updater/package-lock.json
-workers/
+!workers/
+workers/*/
+!workers/stats/
+workers/stats/.wrangler/
+workers/stats/.dev.vars
+workers/stats/*.dev.vars
+workers/stats/*.log
+!workers/stats/package.json
+!workers/stats/README.md
+!workers/stats/wrangler.toml
+!workers/stats/migrations/
+!workers/stats/migrations/*.sql
+!workers/stats/src/
+!workers/stats/src/*.ts
+!workers/stats/tests/
+!workers/stats/tests/*.test.ts
 packages/admin/
 packages/domain/tests/
 packages/domain/src/*
@@ -88,3 +102,4 @@ catalog/releases/
 catalog/resources/
 apps/site/tests/arcaea-story-explorer.test.ts
 apps/site/tests/rotaeno-display.test.ts
+!workers/stats/tsconfig.json

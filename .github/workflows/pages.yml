@@ -38,6 +38,7 @@ jobs:
           PUBLIC_BASE_PATH: /
           PUBLIC_ROS_BASE_URL: https://rhythm-assets.cn-nb1.rains3.com
           PUBLIC_STATS_API_URL: ${{ vars.PUBLIC_STATS_API_URL }}
+          PUBLIC_UPDATE_REMINDERS_ENABLED: ${{ vars.PUBLIC_UPDATE_REMINDERS_ENABLED }}
       - name: Site smoke
         run: npm run site:smoke
       - name: Upload Pages artifact

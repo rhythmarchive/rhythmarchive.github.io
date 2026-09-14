@@ -1,0 +1,13 @@
+{
+  "name": "rhythm-archive-stats-worker",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "tsx --test tests/*.test.ts",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "dev": "npx wrangler dev",
+    "deploy": "npx wrangler deploy",
+    "migrate:local": "npx wrangler d1 migrations apply rhythm-archive-stats --local",
+    "migrate:remote": "npx wrangler d1 migrations apply rhythm-archive-stats --remote"
+  }
+}
