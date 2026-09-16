@@ -29,7 +29,7 @@ export type CategoryBrowseFacet = {
 };
 
 export type CategoryBrowseSortOption = {
-  value: "default" | "title-asc" | "title-desc" | "artist-asc" | "artist-desc" | "updated-desc" | "updated-asc" | "bpm-desc" | "bpm-asc";
+  value: "default" | "title-asc" | "title-desc" | "artist-asc" | "artist-desc" | "updated-desc" | "updated-asc" | "bpm-desc" | "bpm-asc" | "level-desc" | "level-asc";
   label: string;
 };
 
@@ -86,7 +86,7 @@ export function getCategoryBrowseConfig(game: GameId, category: string, resource
     const chartOptions = facetOptions(resources, "chart", game);
     const listFacets: CategoryBrowseFacet[] = chartOptions.length > 0 ? [{ key: "chart", label: "谱面难度", options: chartOptions }] : [];
     const rangeFacets: CategoryBrowseFacet[] = [];
-    if (game === "rotaeno" || game === "paradigm-reboot") {
+    if (game === "rotaeno" || game === "paradigm-reboot" || game === "orzmic") {
       const levelOptions = facetOptions(resources, "level", game);
       const constantOptions = facetOptions(resources, "constant", game);
       if (levelOptions.length > 0) listFacets.push({ key: "level", label: "难度等级", options: levelOptions });
@@ -161,9 +161,13 @@ function baseSortOptions(): CategoryBrowseSortOption[] {
 }
 
 function jacketSortOptions(resources: PublicResource[]): CategoryBrowseSortOption[] {
+  const game = resources[0]?.game;
   const options = [...baseSortOptions(), { value: "artist-asc" as const, label: "曲师 A-Z" }, { value: "artist-desc" as const, label: "曲师 Z-A" }];
   if (resources.some((resource) => resourceDateValue(resource) !== undefined)) {
     options.push({ value: "updated-desc", label: "更新日期：新 → 旧" }, { value: "updated-asc", label: "更新日期：旧 → 新" });
+  }
+  if ((game === "paradigm-reboot" || game === "orzmic") && resources.some((resource) => numericFacetValue(resource, "constant") !== undefined)) {
+    options.push({ value: "level-desc", label: "最高定数高 → 低" }, { value: "level-asc", label: "最高定数低 → 高" });
   }
   if (resources.some((resource) => numericFacetValue(resource, "bpm") !== undefined)) {
     options.push({ value: "bpm-desc", label: "BPM：高 → 低" }, { value: "bpm-asc", label: "BPM：低 → 高" });

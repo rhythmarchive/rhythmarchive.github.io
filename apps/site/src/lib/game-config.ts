@@ -190,8 +190,6 @@ export const GAME_CONFIG: Record<GameId, GameConfig> = {
       artist: "曲师",
       coverPainter: "曲绘画师",
       bpmRange: "BPM",
-      musicId: "曲目 ID",
-      fileName: "游戏内文件名",
     },
   },
 };

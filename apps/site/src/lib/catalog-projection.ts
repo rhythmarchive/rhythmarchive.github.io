@@ -297,6 +297,7 @@ function projectResource(resource: Resource, variants: Variant[], renditionsByVa
       ? {
         ...(charts.length > 0 ? { chart: [...new Set(charts.map((chart) => chart.difficulty))] } : {}),
         ...(typeof metadata.bpm === "string" && metadata.bpm ? { bpm: [metadata.bpm] } : {}),
+        ...(charts.some((chart) => chart.constant) ? { constant: [...new Set(charts.flatMap((chart) => chart.constant ? [chart.constant] : []))] } : {}),
       }
     : undefined;
   const promotedArcaeaStoryCg = isPromotedArcaeaStoryCg(resource);
@@ -410,12 +411,13 @@ function publicChartsFromMetadata(resource: Resource): PublicChart[] {
         const chart = candidate as Record<string, unknown>;
         const difficulty = typeof chart.difficulty === "string" ? chart.difficulty.trim() : "";
         if (!difficulty) return [];
-        const level = typeof chart.level === "number" || typeof chart.level === "string" ? String(chart.level).trim() : undefined;
+        const rating = typeof chart.level === "number" || typeof chart.level === "string" ? String(chart.level).trim() : "";
+        const constant = rating && Number.isFinite(Number(rating)) && Number(rating) > 0 ? rating : undefined;
         const notes = typeof chart.notes === "number" && Number.isInteger(chart.notes) && chart.notes >= 0 ? chart.notes : undefined;
         const noter = typeof chart.noter === "string" && chart.noter.trim() ? chart.noter.trim() : undefined;
         const available = typeof chart.available === "boolean" ? chart.available : true;
         const source = chart.source === "apk" ? "apk" as const : undefined;
-        return [{ difficulty, ...(level ? { level } : {}), ...(notes !== undefined ? { notes } : {}), ...(noter ? { noter } : {}), ...(source ? { source } : {}), available, status: available ? "available" as const : "unavailable" as const } satisfies PublicChart];
+        return [{ difficulty, ...(constant ? { constant } : {}), ...(notes !== undefined ? { notes } : {}), ...(noter ? { noter } : {}), ...(source ? { source } : {}), available, status: available ? "available" as const : "unavailable" as const } satisfies PublicChart];
       });
   }
   if (resource.game !== "infalsus") return [];

@@ -49,6 +49,8 @@ test("jacket details expose the unified chart field and user-facing identity met
   assert.equal(GAME_CONFIG.rotaeno.metadataLabels.gameVersion, undefined);
   assert.equal(GAME_CONFIG["paradigm-reboot"].metadataLabels.songId, undefined);
   assert.equal(GAME_CONFIG["paradigm-reboot"].metadataLabels.gameVersion, undefined);
+  assert.equal(GAME_CONFIG.orzmic.metadataLabels.musicId, undefined);
+  assert.equal(GAME_CONFIG.orzmic.metadataLabels.fileName, undefined);
   assert.equal(GAME_CONFIG.infalsus.metadataLabels.gameVersion, "加入版本");
   const siteData = getSiteData();
   for (const game of ["arcaea", "phigros", "rizline", "infalsus", "rotaeno", "orzmic"] as const) {
@@ -68,10 +70,13 @@ test("jacket details expose the unified chart field and user-facing identity met
   assert.equal(orzmicJacket?.displayTitle, "雨霖铃");
   assert.equal(orzmicJacket?.artist, "Alan Mackin");
   assert.equal(orzmicJacket?.metadata.coverPainter, "镜璃");
-  assert.deepEqual(orzmicJacket?.charts?.map((chart) => [chart.difficulty, chart.level, chart.notes, chart.noter]), [["1", "1.0", 113, "尘云星白"], ["4", "4.5", 277, "尘云星白"], ["7", "7.8", 569, "尘云星白"]]);
-  const orzmicFacets = getCategoryBrowseConfig("orzmic", "jacket", siteData.galleries["orzmic/jacket"] ?? []).facets;
-  assert.ok(orzmicFacets.some((facet) => facet.key === "chart" && facet.options.some((option) => option.value === "7")));
-  assert.ok(orzmicFacets.some((facet) => facet.key === "bpm" && facet.range));
+  assert.deepEqual(orzmicJacket?.charts?.map((chart) => [chart.difficulty, chart.constant, chart.notes, chart.noter]), [["1", "1.0", 113, "尘云星白"], ["4", "4.5", 277, "尘云星白"], ["7", "7.8", 569, "尘云星白"]]);
+  assert.ok(orzmicJacket?.charts?.every((chart) => chart.level === undefined));
+  const orzmicFacets = getCategoryBrowseConfig("orzmic", "jacket", siteData.galleries["orzmic/jacket"] ?? []);
+  assert.deepEqual(orzmicFacets.facets.find((facet) => facet.key === "constant")?.range, { min: 1, max: 12.3, step: 0.1 });
+  assert.ok(orzmicFacets.sortOptions.some((option) => option.value === "level-desc"));
+  assert.ok(orzmicFacets.facets.some((facet) => facet.key === "chart" && facet.options.some((option) => option.value === "7")));
+  assert.ok(orzmicFacets.facets.some((facet) => facet.key === "bpm" && facet.range));
   assert.equal(displayDifficultyLabel("INSCRIBED", "arcaea"), "Inscribed");
   assert.equal(displayFilterDifficultyLabel("INSCRIBED", "arcaea"), "INS");
   const inscribed = siteData.resources

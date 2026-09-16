@@ -194,6 +194,10 @@ async function initializeGallery(root: HTMLElement): Promise<void> {
         const compared = compareNullableNumber(numericFacetValue(left, "bpm"), numericFacetValue(right, "bpm"), sortValue === "bpm-desc");
         return compared || compareNaturalText(left.displayTitle, right.displayTitle);
       }
+      if (sortValue === "level-desc" || sortValue === "level-asc") {
+        const compared = compareNullableNumber(highestChartConstant(left), highestChartConstant(right), sortValue === "level-desc");
+        return compared || compareNaturalText(left.displayTitle, right.displayTitle);
+      }
       const compared = compareNaturalText(left.displayTitle, right.displayTitle);
       return sortValue === "title-desc" ? -compared : compared;
     });
@@ -515,6 +519,13 @@ function numericFacetValue(resource: PublicResource, key: string): number | unde
 
 function numericFacetValues(value: string): number[] {
   return [...value.matchAll(/\d+(?:\.\d+)?/gu)].map((match) => Number(match[0])).filter((number) => Number.isFinite(number));
+}
+
+function highestChartConstant(resource: PublicResource): number | undefined {
+  const values = (resource.charts ?? [])
+    .map((chart) => chart.constant === undefined ? Number.NaN : Number(chart.constant))
+    .filter((value) => Number.isFinite(value));
+  return values.length > 0 ? Math.max(...values) : undefined;
 }
 
 function resourceDateValue(resource: PublicResource): number | undefined {
