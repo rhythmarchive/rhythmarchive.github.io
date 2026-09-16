@@ -1,3 +1,4 @@
+import { createHash } from "node:crypto";
 import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
@@ -769,6 +770,15 @@ test("Paradigm game icon keeps the APK app-icon square geometry", async () => {
   assert.equal(icon.format, "png");
   assert.equal(icon.width, 192);
   assert.equal(icon.height, 192);
+});
+
+test("Orzmic game icon keeps the APK app-icon square geometry and bytes", async () => {
+  const iconPath = path.join(siteRoot, "public", "game-icons", "orzmic.png");
+  const icon = await sharp(iconPath).metadata();
+  assert.equal(icon.format, "png");
+  assert.equal(icon.width, 192);
+  assert.equal(icon.height, 192);
+  assert.equal(createHash("sha256").update(fs.readFileSync(iconPath)).digest("hex"), "fa6c4a2330b3f7c30a2f0347b16880d7065b124769529f761bda4d5cbe065454");
 });
 
 test("Arcaea icon does not retain an extracted blank black/white edge", async () => {
