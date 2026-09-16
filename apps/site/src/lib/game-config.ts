@@ -180,6 +180,20 @@ export const GAME_CONFIG: Record<GameId, GameConfig> = {
       updateDate: "加入日期",
     },
   },
+  orzmic: {
+    slug: "orzmic",
+    displayName: "Orzmic",
+    categoryOrder: ["jacket"],
+    featuredCategories: ["jacket"],
+    filters: { difficulty: true, upscale: false },
+    metadataLabels: {
+      artist: "曲师",
+      coverPainter: "曲绘画师",
+      bpmRange: "BPM",
+      musicId: "曲目 ID",
+      fileName: "游戏内文件名",
+    },
+  },
 };
 
 export function categoryLabel(resourceType: ResourceTypeId): string {

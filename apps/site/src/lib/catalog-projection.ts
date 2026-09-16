@@ -8,6 +8,7 @@ import { objectUrl } from "./url";
 
 const PUBLIC_METADATA_KEYS = new Set([
   "artist",
+  "coverPainter",
   "pack",
   "packName",
   "packDisplayName",
@@ -17,6 +18,14 @@ const PUBLIC_METADATA_KEYS = new Set([
   "version",
   "releaseDate",
   "bpm",
+  "bpmRange",
+  "musicId",
+  "fileName",
+  "audioPreviewFrom",
+  "audioPreviewTo",
+  "initialUnlock",
+  "lockHint",
+  "watermark",
   "bpmSource",
   "genre",
   "length",
@@ -284,6 +293,11 @@ function projectResource(resource: Resource, variants: Variant[], renditionsByVa
       ...(charts.length > 0 ? { chart: [...new Set(charts.map((chart) => chart.difficulty))] } : {}),
       ...(charts.some((chart) => chart.level) ? { level: [...new Set(charts.flatMap((chart) => chart.level ? [chart.level] : []))] } : {}),
     }
+    : resource.game === "orzmic" && resource.resourceType === "jacket"
+      ? {
+        ...(charts.length > 0 ? { chart: [...new Set(charts.map((chart) => chart.difficulty))] } : {}),
+        ...(typeof metadata.bpm === "string" && metadata.bpm ? { bpm: [metadata.bpm] } : {}),
+      }
     : undefined;
   const promotedArcaeaStoryCg = isPromotedArcaeaStoryCg(resource);
 
@@ -388,6 +402,21 @@ function publicChartsFromMetadata(resource: Resource): PublicChart[] {
         return [{ difficulty, ...(level ? { level } : {}), ...(notes !== undefined ? { notes } : {}), ...(constant ? { constant } : {}), ...(artist ? { artist } : {}), ...(source ? { source } : {}), available, status: available ? "available" as const : "unavailable" as const } satisfies PublicChart];
       })
       .sort((left, right) => (ROTAENO_CHART_DIFFICULTIES.indexOf(left.difficulty as typeof ROTAENO_CHART_DIFFICULTIES[number]) - ROTAENO_CHART_DIFFICULTIES.indexOf(right.difficulty as typeof ROTAENO_CHART_DIFFICULTIES[number])) || (left.level ?? "").localeCompare(right.level ?? "") || (left.constant ?? "").localeCompare(right.constant ?? ""));
+  }
+  if (resource.game === "orzmic") {
+    return rawCharts
+      .flatMap((candidate) => {
+        if (!candidate || typeof candidate !== "object") return [];
+        const chart = candidate as Record<string, unknown>;
+        const difficulty = typeof chart.difficulty === "string" ? chart.difficulty.trim() : "";
+        if (!difficulty) return [];
+        const level = typeof chart.level === "number" || typeof chart.level === "string" ? String(chart.level).trim() : undefined;
+        const notes = typeof chart.notes === "number" && Number.isInteger(chart.notes) && chart.notes >= 0 ? chart.notes : undefined;
+        const noter = typeof chart.noter === "string" && chart.noter.trim() ? chart.noter.trim() : undefined;
+        const available = typeof chart.available === "boolean" ? chart.available : true;
+        const source = chart.source === "apk" ? "apk" as const : undefined;
+        return [{ difficulty, ...(level ? { level } : {}), ...(notes !== undefined ? { notes } : {}), ...(noter ? { noter } : {}), ...(source ? { source } : {}), available, status: available ? "available" as const : "unavailable" as const } satisfies PublicChart];
+      });
   }
   if (resource.game !== "infalsus") return [];
   return rawCharts
