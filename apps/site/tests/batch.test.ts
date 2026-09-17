@@ -37,11 +37,13 @@ test("Gallery and BrowseGallery share the fixed batch tray and client module", (
   assert.match(browseScript, /downloadSelectedBatch/u);
   assert.match(tray, /data-batch-view/u);
   assert.match(batchScript, /data-batch-remove/u);
+  assert.match(batchScript, /upscaledButton\.hidden = !\[\.\.\.selected\]/u);
   assert.match(tray, /aria-expanded="false"/u);
   assert.match(batchScript, /toggleBatchSelection/u);
   assert.match(batchScript, /Escape/u);
   assert.match(styles, /\.batch-tray \{ position: fixed/u);
   assert.match(styles, /safe-area-inset-bottom/u);
+  assert.match(styles, /batch-tray-utility-actions, \.batch-tray-download-actions \{ display: contents/u);
   assert.match(styles, /\.resource-select \{[\s\S]*pointer-events: auto/u);
   assert.match(styles, /prefers-reduced-motion/u);
 });

@@ -651,11 +651,9 @@ body.detail-lightbox-open { overflow: hidden; }
   .resource-select { opacity: 1; pointer-events: auto; }
   .batch-tray { right: 0; bottom: 0; width: 100%; max-width: none; padding: 9px 12px calc(9px + env(safe-area-inset-bottom)); border-radius: var(--radius-lg) var(--radius-lg) 0 0; }
   .batch-tray-main { display: grid; grid-template-columns: minmax(0, 1fr); gap: 8px; }
-  .batch-tray-actions { display: grid; gap: 7px; }
-  .batch-tray-utility-actions { justify-content: space-between; }
-  .batch-tray-download-actions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .batch-tray-actions .button { min-width: 0; min-height: 40px; padding-inline: 7px; }
-  .batch-tray-actions .batch-clear { min-height: 40px; padding-inline: 2px; }
+  .batch-tray-actions { display: flex; align-items: stretch; gap: 6px; flex-wrap: nowrap; }
+  .batch-tray-utility-actions, .batch-tray-download-actions { display: contents; }
+  .batch-tray-actions .button, .batch-tray-actions .batch-clear { flex: 1 1 0; min-width: 0; min-height: 40px; padding-inline: 6px; }
   .batch-selected-panel { position: fixed; right: 0; bottom: 0; left: 0; width: auto; max-height: min(78dvh, 620px); padding: 14px 14px calc(14px + env(safe-area-inset-bottom)); border-radius: var(--radius-lg) var(--radius-lg) 0 0; }
   .filter-panel, .browse-filter-row, .gallery-filter-row { flex-wrap: wrap; }
   .browse-filter-row, .gallery-filter-row { align-items: flex-start; }
