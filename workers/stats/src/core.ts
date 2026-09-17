@@ -576,7 +576,7 @@ export function isPublicResourceId(value: unknown): value is string {
 }
 
 export function isValidVisitorId(value: unknown): value is string {
-  return isUuidV7(value);
+  return normalizeUuid(value) !== undefined;
 }
 
 export function validateEventPayload(value: unknown): { event?: StatsEvent; error?: string } {

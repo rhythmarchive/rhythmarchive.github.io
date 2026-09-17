@@ -1,4 +1,4 @@
-import { isUuidV7 } from "../../../../packages/domain/src/identifiers.js";
+import { isUuidV7, normalizeUuid } from "../../../../packages/domain/src/identifiers.js";
 
 export const STATS_VISITOR_STORAGE_KEY = "rhythm-archive-anonymous-visitor-id";
 export const STATS_BATCH_SIZE = 100;
@@ -64,7 +64,7 @@ export function isValidResourceId(value: unknown): value is string {
 }
 
 export function isValidVisitorId(value: unknown): value is string {
-  return isUuidV7(value);
+  return normalizeUuid(value) !== undefined;
 }
 
 export function formatStatsCount(value: number): string {
@@ -111,13 +111,13 @@ export function createStatsClient(options: {
     if (cachedVisitorId) return cachedVisitorId;
     if (!storage) return undefined;
     try {
-      const stored = storage.getItem(STATS_VISITOR_STORAGE_KEY);
-      if (isValidVisitorId(stored)) {
+      const stored = normalizeUuid(storage.getItem(STATS_VISITOR_STORAGE_KEY));
+      if (stored) {
         cachedVisitorId = stored;
         return cachedVisitorId;
       }
-      const generated = visitorIdFactory();
-      if (!isValidVisitorId(generated)) return undefined;
+      const generated = normalizeUuid(visitorIdFactory());
+      if (!generated) return undefined;
       storage.setItem(STATS_VISITOR_STORAGE_KEY, generated);
       cachedVisitorId = generated;
       return cachedVisitorId;
