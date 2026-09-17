@@ -1,0 +1,28 @@
+<div class="batch-tray" data-batch-tray hidden>
+  <div class="batch-tray-main">
+    <div class="batch-tray-summary">
+      <div class="batch-tray-thumbs" data-batch-thumbs aria-hidden="true"></div>
+      <div class="batch-tray-copy">
+        <strong data-batch-count>已选择 0 / 30 项</strong>
+        <span data-batch-status aria-live="polite"></span>
+      </div>
+    </div>
+    <div class="batch-actions batch-tray-actions">
+      <div class="batch-tray-utility-actions">
+        <button class="text-link batch-clear" type="button" data-batch-clear>清空选择</button>
+        <button class="button button-secondary batch-view-selected" type="button" data-batch-view aria-expanded="false" aria-controls="batch-selected-panel">查看已选</button>
+      </div>
+      <div class="batch-tray-download-actions">
+        <button class="button button-secondary" type="button" data-batch-download="original">下载原图</button>
+        <button class="button button-primary" type="button" data-batch-download="upscaled">优先超分版</button>
+      </div>
+    </div>
+  </div>
+  <div class="batch-selected-panel" data-batch-selected-panel role="dialog" aria-modal="false" aria-labelledby="batch-selected-heading" hidden>
+    <div class="batch-selected-heading">
+      <strong id="batch-selected-heading">已选资源</strong>
+      <button class="batch-selected-close" type="button" data-batch-close aria-label="关闭已选资源">×</button>
+    </div>
+    <div class="batch-selected-list" data-batch-selected-list></div>
+  </div>
+</div>

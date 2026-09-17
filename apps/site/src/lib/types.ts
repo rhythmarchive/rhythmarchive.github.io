@@ -55,6 +55,18 @@ export type PublicSearchCard = {
   variantLabels: string[];
 };
 
+export type PublicRankingCard = {
+  resourceId: string;
+  route: string;
+  game: GameId;
+  resourceType: ResourceTypeId;
+  displayTitle: string;
+  categoryLabel: string;
+  artist?: string;
+  image: PublicSearchImage | null;
+  fallback: PublicSearchImage | null;
+};
+
 export type PublicVariant = {
   variantId: string;
   label: string;

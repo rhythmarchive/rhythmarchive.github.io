@@ -15,6 +15,19 @@ export type ResourceStats = {
   downloads: number;
 };
 
+export type ResourceRankingPeriod = "7d" | "all";
+
+export type ResourceRankingEntry = ResourceStats & {
+  resourceId: string;
+};
+
+export type ResourceRanking = {
+  period: ResourceRankingPeriod;
+  date: string;
+  startDate?: string;
+  entries: ResourceRankingEntry[];
+};
+
 export type StatsClient = {
   enabled: boolean;
   getVisitorId(): string | undefined;
@@ -22,6 +35,7 @@ export type StatsClient = {
   trackResourceDetail(resourceId: string): Promise<ResourceStats | undefined>;
   trackResourceDownload(resourceId: string): Promise<ResourceStats | undefined>;
   getResourceStats(resourceIds: readonly string[]): Promise<Map<string, ResourceStats>>;
+  getResourceRanking(period: ResourceRankingPeriod, limit: number): Promise<ResourceRanking | undefined>;
 };
 
 type StorageLike = Pick<Storage, "getItem" | "setItem">;
@@ -78,6 +92,8 @@ export function createStatsClient(options: {
   const visitorIdFactory = options.visitorIdFactory ?? createAnonymousId;
   const resourceCache = new Map<string, ResourceStats>();
   const pendingResourceRequests = new Map<string, Promise<void>>();
+  const rankingCache = new Map<string, ResourceRanking>();
+  const pendingRankingRequests = new Map<string, Promise<ResourceRanking | undefined>>();
   let cachedVisitorId: string | undefined;
 
   const client: StatsClient = {
@@ -87,6 +103,7 @@ export function createStatsClient(options: {
     trackResourceDetail,
     trackResourceDownload,
     getResourceStats,
+    getResourceRanking,
   };
 
   return client;
@@ -134,6 +151,20 @@ export function createStatsClient(options: {
     return stats;
   }
 
+  async function getResourceRanking(period: ResourceRankingPeriod, limit: number): Promise<ResourceRanking | undefined> {
+    if (!apiUrl || (period !== "7d" && period !== "all") || !Number.isSafeInteger(limit) || limit < 1 || limit > 50) return undefined;
+    const key = period + ":" + limit;
+    const cached = rankingCache.get(key);
+    if (cached) return cached;
+    const pending = pendingRankingRequests.get(key);
+    if (pending) return pending;
+    const request = requestResourceRanking(period, limit).finally(() => {
+      if (pendingRankingRequests.get(key) === request) pendingRankingRequests.delete(key);
+    });
+    pendingRankingRequests.set(key, request);
+    return request;
+  }
+
   async function getResourceStats(resourceIds: readonly string[]): Promise<Map<string, ResourceStats>> {
     const ids = [...new Set(resourceIds.filter(isValidResourceId))];
     if (ids.length === 0) return new Map();
@@ -162,6 +193,26 @@ export function createStatsClient(options: {
       const stats = resourceCache.get(id);
       return stats ? [[id, stats] as [string, ResourceStats]] : [];
     }));
+  }
+
+  async function requestResourceRanking(period: ResourceRankingPeriod, limit: number): Promise<ResourceRanking | undefined> {
+    if (!apiUrl) return undefined;
+    try {
+      const url = new URL(apiUrl + "/v1/resources/ranking");
+      url.searchParams.set("period", period);
+      url.searchParams.set("limit", String(limit));
+      const response = await fetchImpl(url.toString(), {
+        method: "GET",
+        credentials: "omit",
+      });
+      if (!response.ok) return undefined;
+      const ranking = parseResourceRanking(await response.json());
+      if (!ranking) return undefined;
+      rankingCache.set(period + ":" + limit, ranking);
+      return ranking;
+    } catch {
+      return undefined;
+    }
   }
 
   async function requestResourceStats(resourceIds: readonly string[]): Promise<void> {
@@ -273,6 +324,24 @@ function parseResourceStats(value: unknown): ResourceStats | undefined {
   if (!isRecord(value) || typeof value.views !== "number" || typeof value.downloads !== "number") return undefined;
   if (!Number.isSafeInteger(value.views) || !Number.isSafeInteger(value.downloads) || value.views < 0 || value.downloads < 0) return undefined;
   return { views: value.views, downloads: value.downloads };
+}
+
+function parseResourceRanking(value: unknown): ResourceRanking | undefined {
+  if (!isRecord(value) || (value.period !== "7d" && value.period !== "all") || typeof value.date !== "string" || !Array.isArray(value.entries)) return undefined;
+  const seen = new Set<string>();
+  const entries = value.entries.flatMap((entry) => {
+    if (!isRecord(entry) || !isValidResourceId(entry.resourceId) || seen.has(entry.resourceId)) return [];
+    const stats = parseResourceStats(entry);
+    if (!stats) return [];
+    seen.add(entry.resourceId);
+    return [{ resourceId: entry.resourceId, ...stats }];
+  });
+  return {
+    period: value.period,
+    date: value.date,
+    ...(typeof value.startDate === "string" ? { startDate: value.startDate } : {}),
+    entries,
+  };
 }
 
 function isRecord(value: unknown): value is Record<string, unknown> {

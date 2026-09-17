@@ -2,6 +2,8 @@ const DEFAULT_ALLOWED_ORIGIN = "https://rhythmarchive.github.io";
 export const SITE_SESSION_WINDOW_MS = 30 * 60 * 1000;
 export const DOWNLOAD_DEDUPE_WINDOW_MS = 10 * 1000;
 export const MAX_RESOURCE_IDS = 100;
+export const DEFAULT_RANKING_LIMIT = 12;
+export const MAX_RANKING_LIMIT = 50;
 export const MAX_EVENT_BODY_BYTES = 16 * 1024;
 export const UPDATE_REMINDER_DEDUPE_WINDOW_MS = 24 * 60 * 60 * 1000;
 export const UPDATE_REMINDER_RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000;
@@ -39,6 +41,12 @@ export type StatsEvent =
 export type ResourceStats = {
   views: number;
   downloads: number;
+};
+
+export type ResourceRankingPeriod = "7d" | "all";
+
+export type ResourceRankingEntry = ResourceStats & {
+  resourceId: string;
 };
 
 export type SiteStats = {
@@ -97,6 +105,7 @@ export interface StatsStore {
   markUpdateReminderNotificationFailed(cycleId: number, nowMs: number, nextNotificationAt: number | null, errorCode: string): Promise<void>;
   getSiteStats(date: string): Promise<SiteStats>;
   getResourceStats(resourceIds: readonly string[]): Promise<Map<string, ResourceStats>>;
+  getResourceRanking(period: ResourceRankingPeriod, date: string, limit: number): Promise<ResourceRankingEntry[]>;
 }
 export interface D1Result<T = unknown> {
   results?: T[];
@@ -197,12 +206,12 @@ export class D1StatsStore implements StatsStore {
     }
 
     const viewCounted = await this.claim(event.visitorId, "view", event.resourceId, nowMs + SITE_SESSION_WINDOW_MS);
-    if (viewCounted) await this.incrementResource(event.resourceId, "views", nowMs);
+    if (viewCounted) await this.incrementResource(event.resourceId, "views", nowMs, date);
 
     let downloadCounted = false;
     if (event.type === "resource_download") {
       downloadCounted = await this.claim(event.visitorId, "download", event.resourceId, nowMs + DOWNLOAD_DEDUPE_WINDOW_MS);
-      if (downloadCounted) await this.incrementResource(event.resourceId, "downloads", nowMs);
+      if (downloadCounted) await this.incrementResource(event.resourceId, "downloads", nowMs, date);
     }
 
     const resourceStats = (await this.getResourceStats([event.resourceId])).get(event.resourceId) ?? { views: 0, downloads: 0 };
@@ -232,6 +241,33 @@ export class D1StatsStore implements StatsStore {
       result.set(row.resource_id, { views: safeCounter(row.total_views), downloads: safeCounter(row.total_downloads) });
     }
     return result;
+  }
+
+  async getResourceRanking(period: ResourceRankingPeriod, date: string, limit: number): Promise<ResourceRankingEntry[]> {
+    const rows = period === "all"
+      ? await this.db.prepare(`
+          SELECT resource_id, total_views, total_downloads
+          FROM resource_stats
+          WHERE total_views > 0 OR total_downloads > 0
+          ORDER BY total_views DESC, total_downloads DESC, resource_id ASC
+          LIMIT ?
+        `).bind(limit).all<{ resource_id: string; total_views?: number; total_downloads?: number }>()
+      : await this.db.prepare(`
+          SELECT resource_id,
+                 SUM(daily_views) AS total_views,
+                 SUM(daily_downloads) AS total_downloads
+          FROM resource_daily_stats
+          WHERE stat_date BETWEEN ? AND ?
+          GROUP BY resource_id
+          HAVING SUM(daily_views) > 0 OR SUM(daily_downloads) > 0
+          ORDER BY total_views DESC, total_downloads DESC, resource_id ASC
+          LIMIT ?
+        `).bind(resourceRankingDateRange(date).startDate, date, limit).all<{ resource_id: string; total_views?: number; total_downloads?: number }>();
+    return (rows.results ?? []).map((row) => ({
+      resourceId: row.resource_id,
+      views: safeCounter(row.total_views),
+      downloads: safeCounter(row.total_downloads),
+    }));
   }
 
   private async recordUpdateReminderLegacy(visitorId: string, game: PublicGameSlug, nowMs: number): Promise<UpdateReminderResult> {
@@ -547,7 +583,7 @@ export class D1StatsStore implements StatsStore {
     return resultChanges(result) > 0;
   }
 
-  private async incrementResource(resourceId: string, field: "views" | "downloads", nowMs: number): Promise<void> {
+  private async incrementResource(resourceId: string, field: "views" | "downloads", nowMs: number, date: string): Promise<void> {
     if (field === "views") {
       await this.db.prepare(`
         INSERT INTO resource_stats (resource_id, total_views, total_downloads, updated_at)
@@ -556,15 +592,23 @@ export class D1StatsStore implements StatsStore {
           total_views = resource_stats.total_views + 1,
           updated_at = excluded.updated_at
       `).bind(resourceId, nowMs).run();
-      return;
+    } else {
+      await this.db.prepare(`
+        INSERT INTO resource_stats (resource_id, total_views, total_downloads, updated_at)
+        VALUES (?, 0, 1, ?)
+        ON CONFLICT(resource_id) DO UPDATE SET
+          total_downloads = resource_stats.total_downloads + 1,
+          updated_at = excluded.updated_at
+      `).bind(resourceId, nowMs).run();
     }
     await this.db.prepare(`
-      INSERT INTO resource_stats (resource_id, total_views, total_downloads, updated_at)
-      VALUES (?, 0, 1, ?)
-      ON CONFLICT(resource_id) DO UPDATE SET
-        total_downloads = resource_stats.total_downloads + 1,
+      INSERT INTO resource_daily_stats (resource_id, stat_date, daily_views, daily_downloads, updated_at)
+      VALUES (?, ?, ?, ?, ?)
+      ON CONFLICT(resource_id, stat_date) DO UPDATE SET
+        daily_views = resource_daily_stats.daily_views + excluded.daily_views,
+        daily_downloads = resource_daily_stats.daily_downloads + excluded.daily_downloads,
         updated_at = excluded.updated_at
-    `).bind(resourceId, nowMs).run();
+    `).bind(resourceId, date, field === "views" ? 1 : 0, field === "downloads" ? 1 : 0, nowMs).run();
   }
 }
 
@@ -601,6 +645,27 @@ export function validateResourceIds(value: unknown): { resourceIds?: string[]; e
   if (value.resourceIds.length === 0 || value.resourceIds.length > MAX_RESOURCE_IDS) return { error: "resource_id_batch_too_large" };
   if (!value.resourceIds.every(isValidResourceId)) return { error: "invalid_resource_id" };
   return { resourceIds: [...new Set(value.resourceIds)] };
+}
+
+export function validateResourceRankingQuery(searchParams: URLSearchParams): { period?: ResourceRankingPeriod; limit?: number; error?: string } {
+  const periodValue = searchParams.get("period") ?? "7d";
+  if (periodValue !== "7d" && periodValue !== "all") return { error: "invalid_ranking_period" };
+  const rawLimit = searchParams.get("limit");
+  if (rawLimit === null || rawLimit === "") return { period: periodValue, limit: DEFAULT_RANKING_LIMIT };
+  if (!/^\d+$/u.test(rawLimit)) return { error: "invalid_ranking_limit" };
+  const limit = Number(rawLimit);
+  if (!Number.isSafeInteger(limit) || limit < 1 || limit > MAX_RANKING_LIMIT) return { error: "invalid_ranking_limit" };
+  return { period: periodValue, limit };
+}
+
+export function resourceRankingDateRange(date: string): { startDate: string; endDate: string } {
+  const endDate = /^\d{4}-\d{2}-\d{2}$/u.test(date) ? date : "1970-01-01";
+  const timestamp = Date.parse(endDate + "T00:00:00Z");
+  if (!Number.isFinite(timestamp)) return { startDate: endDate, endDate };
+  return {
+    startDate: new Date(timestamp - 6 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10),
+    endDate,
+  };
 }
 
 export function siteDateKey(nowMs: number, timeZone = "Asia/Shanghai"): string {
@@ -660,6 +725,17 @@ export async function handleRequest(request: Request, env: Env, options: Handler
     }
     if (path === "/v1/site/stats" && request.method === "GET") {
       return json(await store.getSiteStats(date), 200, corsHeaders);
+    }
+    if (path === "/v1/resources/ranking" && request.method === "GET") {
+      const validation = validateResourceRankingQuery(url.searchParams);
+      if (!validation.period || !validation.limit) return json({ error: validation.error ?? "invalid_ranking_query" }, 400, corsHeaders);
+      const range = resourceRankingDateRange(date);
+      return json({
+        period: validation.period,
+        date: range.endDate,
+        ...(validation.period === "7d" ? { startDate: range.startDate } : {}),
+        entries: await store.getResourceRanking(validation.period, range.endDate, validation.limit),
+      }, 200, corsHeaders);
     }
     if (path === "/v1/update-reminders" && request.method === "POST") {
       const body = await readJsonBody(request);
@@ -721,8 +797,8 @@ export async function handleRequest(request: Request, env: Env, options: Handler
       for (const resourceId of validation.resourceIds) responseStats[resourceId] = stats.get(resourceId) ?? { views: 0, downloads: 0 };
       return json({ stats: responseStats }, 200, corsHeaders);
     }
-    if (path === "/v1/site/stats" || path === "/v1/events" || path === "/v1/resources/stats" || path === "/v1/update-reminders" || path === "/v1/admin/update-reminders" || path.startsWith("/v1/admin/update-reminders/")) {
-      return json({ error: "method_not_allowed" }, 405, { ...corsHeaders, Allow: path === "/v1/site/stats" ? "GET" : "POST" });
+    if (path === "/v1/site/stats" || path === "/v1/events" || path === "/v1/resources/stats" || path === "/v1/resources/ranking" || path === "/v1/update-reminders" || path === "/v1/admin/update-reminders" || path.startsWith("/v1/admin/update-reminders/")) {
+      return json({ error: "method_not_allowed" }, 405, { ...corsHeaders, Allow: path === "/v1/site/stats" || path === "/v1/resources/ranking" ? "GET" : "POST" });
     }
     return json({ error: "not_found" }, 404, corsHeaders);
   } catch (error) {

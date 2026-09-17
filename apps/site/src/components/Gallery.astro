@@ -1,5 +1,6 @@
 ---
 import ResourceCard from "./ResourceCard.astro";
+import BatchTray from "./BatchTray.astro";
 import { GAME_CONFIG, type GameId } from "../lib/game-config";
 import type { CategoryBrowseConfig } from "../lib/category-browse";
 import type { PublicResource } from "../lib/types";
@@ -115,17 +116,7 @@ function formatRangeValue(value: number): string {
     <button class="button button-secondary" type="button" data-load-more hidden={resources.length >= total}>加载更多</button>
   </div>
 
-  <div class="batch-bar" data-batch-bar hidden>
-    <div>
-      <strong data-batch-count>已选择 0 项</strong>
-      <span data-batch-status aria-live="polite"></span>
-    </div>
-    <div class="batch-actions">
-      <button class="text-link batch-clear" type="button" data-batch-clear>清空选择</button>
-      <button class="button button-secondary" type="button" data-batch-download="original">下载原图</button>
-      <button class="button button-primary" type="button" data-batch-download="upscaled">优先超分版</button>
-    </div>
-  </div>
+  <BatchTray />
 </section>
 
 <script src="../scripts/gallery.ts"></script>

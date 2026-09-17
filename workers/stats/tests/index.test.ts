@@ -3,6 +3,7 @@ import test from "node:test";
 import {
   DOWNLOAD_DEDUPE_WINDOW_MS,
   MAX_RESOURCE_IDS,
+  MAX_RANKING_LIMIT,
   SITE_SESSION_WINDOW_MS,
   UPDATE_REMINDER_DEDUPE_WINDOW_MS,
   UPDATE_REMINDER_MAX_REQUESTS_PER_WINDOW,
@@ -11,6 +12,8 @@ import {
   UPDATE_REMINDER_NOTIFICATION_LEASE_MS,
   type Env,
   type PublicGameSlug,
+  type ResourceRankingEntry,
+  type ResourceRankingPeriod,
   type ResourceStats,
   type SiteStats,
   type StatsEvent,
@@ -20,6 +23,8 @@ import {
   type UpdateReminderSummary,
   handleRequest,
   processPendingUpdateReminderNotifications,
+  resourceRankingDateRange,
+  validateResourceRankingQuery,
   isValidResourceId,
 } from "../src/core.js";
 
@@ -34,6 +39,7 @@ class MemoryStatsStore implements StatsStore {
   private totalVisits = 0;
   private readonly dailyVisits = new Map<string, number>();
   private readonly resources = new Map<string, ResourceStats>();
+  private readonly dailyResources = new Map<string, Map<string, ResourceStats>>();
   private readonly dedupe = new Map<string, number>();
   private readonly updateReminders = new Map<string, { firstReminderAt: number; lastReminderAt: number }>();
   private readonly updateReminderGames = new Map<PublicGameSlug, UpdateReminderSummary>();
@@ -57,11 +63,11 @@ class MemoryStatsStore implements StatsStore {
     }
 
     const viewCounted = this.claim(event.visitorId, "view", event.resourceId, nowMs + SITE_SESSION_WINDOW_MS);
-    if (viewCounted) this.increment(event.resourceId, "views");
+    if (viewCounted) this.increment(event.resourceId, "views", date);
     let downloadCounted = false;
     if (event.type === "resource_download") {
       downloadCounted = this.claim(event.visitorId, "download", event.resourceId, nowMs + DOWNLOAD_DEDUPE_WINDOW_MS);
-      if (downloadCounted) this.increment(event.resourceId, "downloads");
+      if (downloadCounted) this.increment(event.resourceId, "downloads", date);
     }
     const resource = (await this.getResourceStats([event.resourceId])).get(event.resourceId) ?? { views: 0, downloads: 0 };
     return {
@@ -78,6 +84,29 @@ class MemoryStatsStore implements StatsStore {
 
   async getResourceStats(ids: readonly string[]): Promise<Map<string, ResourceStats>> {
     return new Map(ids.map((id) => [id, this.resources.get(id) ?? { views: 0, downloads: 0 }]));
+  }
+
+  async getResourceRanking(period: ResourceRankingPeriod, date: string, limit: number): Promise<ResourceRankingEntry[]> {
+    const totals = new Map<string, ResourceStats>();
+    if (period === "all") {
+      for (const [id, stats] of this.resources) totals.set(id, { ...stats });
+    } else {
+      const range = resourceRankingDateRange(date);
+      for (const [day, dayResources] of this.dailyResources) {
+        if (day < range.startDate || day > range.endDate) continue;
+        for (const [id, stats] of dayResources) {
+          const current = totals.get(id) ?? { views: 0, downloads: 0 };
+          current.views += stats.views;
+          current.downloads += stats.downloads;
+          totals.set(id, current);
+        }
+      }
+    }
+    return [...totals.entries()]
+      .filter(([, stats]) => stats.views > 0 || stats.downloads > 0)
+      .map(([resourceId, stats]) => ({ resourceId, ...stats }))
+      .sort((left, right) => right.views - left.views || right.downloads - left.downloads || left.resourceId.localeCompare(right.resourceId, "en"))
+      .slice(0, limit);
   }
 
   async recordUpdateReminder(visitorId: string, game: PublicGameSlug, nowMs: number): Promise<UpdateReminderResult> {
@@ -213,10 +242,15 @@ class MemoryStatsStore implements StatsStore {
     return true;
   }
 
-  private increment(id: string, field: keyof ResourceStats): void {
+  private increment(id: string, field: keyof ResourceStats, date: string): void {
     const current = this.resources.get(id) ?? { views: 0, downloads: 0 };
     current[field] += 1;
     this.resources.set(id, current);
+    const dayResources = this.dailyResources.get(date) ?? new Map<string, ResourceStats>();
+    const dayStats = dayResources.get(id) ?? { views: 0, downloads: 0 };
+    dayStats[field] += 1;
+    dayResources.set(id, dayStats);
+    this.dailyResources.set(date, dayResources);
   }
 
   private purge(nowMs: number): void {
@@ -301,6 +335,44 @@ test("batch stats reads do not create views and return all requested IDs", async
   });
   const afterRead = await postEvent(store, { type: "resource_detail", visitorId, resourceId }, baseTime + 2_000);
   assert.equal(afterRead.counted.view, false);
+});
+
+test("resource rankings use seven natural dates and cumulative resource totals", async () => {
+  const store = new MemoryStatsStore();
+  const oldDate = Date.UTC(2026, 7, 30, 12, 0, 0);
+  await postEvent(store, { type: "resource_detail", visitorId, resourceId }, oldDate);
+  await postEvent(store, { type: "resource_download", visitorId: otherVisitorId, resourceId: secondResourceId }, baseTime);
+
+  const recent = await handleRequest(request("/v1/resources/ranking?period=7d&limit=10", "GET"), makeEnv(store), { store, now: () => baseTime });
+  const recentPayload = await responseJson(recent);
+  assert.equal(recent.status, 200);
+  assert.deepEqual(recentPayload.entries, [{ resourceId: secondResourceId, views: 1, downloads: 1 }]);
+  assert.equal(recentPayload.date, "2026-09-06");
+  assert.equal(recentPayload.startDate, "2026-08-31");
+
+  const cumulative = await handleRequest(request("/v1/resources/ranking?period=all&limit=10", "GET"), makeEnv(store), { store, now: () => baseTime });
+  const cumulativePayload = await responseJson(cumulative);
+  assert.deepEqual(cumulativePayload.entries, [
+    { resourceId: secondResourceId, views: 1, downloads: 1 },
+    { resourceId, views: 1, downloads: 0 },
+  ]);
+});
+
+test("resource ranking breaks equal view counts with downloads and rejects unbounded queries", async () => {
+  const store = new MemoryStatsStore();
+  await postEvent(store, { type: "resource_detail", visitorId, resourceId }, baseTime);
+  await postEvent(store, { type: "resource_detail", visitorId, resourceId: secondResourceId }, baseTime);
+  await postEvent(store, { type: "resource_download", visitorId, resourceId: secondResourceId }, baseTime + 1_000);
+
+  const ranked = await handleRequest(request("/v1/resources/ranking?period=7d&limit=2", "GET"), makeEnv(store), { store, now: () => baseTime + 1_000 });
+  assert.deepEqual((await responseJson(ranked)).entries, [
+    { resourceId: secondResourceId, views: 1, downloads: 1 },
+    { resourceId, views: 1, downloads: 0 },
+  ]);
+  assert.deepEqual(resourceRankingDateRange("2026-03-01"), { startDate: "2026-02-23", endDate: "2026-03-01" });
+  assert.deepEqual(validateResourceRankingQuery(new URLSearchParams()), { period: "7d", limit: 12 });
+  assert.equal(validateResourceRankingQuery(new URLSearchParams("period=month")).error, "invalid_ranking_period");
+  assert.equal(validateResourceRankingQuery(new URLSearchParams("limit=" + (MAX_RANKING_LIMIT + 1))).error, "invalid_ranking_limit");
 });
 
 test("invalid resource IDs and oversized batches are rejected", async () => {
@@ -669,6 +741,7 @@ test("database failures become stable 503 responses", async () => {
     markUpdateReminderNotificationFailed: async () => { throw new Error("database unavailable"); },
     getSiteStats: async () => { throw new Error("database unavailable"); },
     getResourceStats: async () => { throw new Error("database unavailable"); },
+    getResourceRanking: async () => { throw new Error("database unavailable"); },
   };
   const response = await handleRequest(
     request("/v1/update-reminders", "POST", { visitorId, game: "arcaea" }),

@@ -1,10 +1,9 @@
-import { zipSync } from "fflate";
-import { DOWNLOAD_CONCURRENCY, MAX_BATCH_BYTES, MAX_BATCH_FILES, uniqueZipFilename } from "../lib/batch";
+import { createBatchTray, downloadSelectedBatch } from "./batch-tray";
 import { cardMediaFit, cardMediaRatio } from "../lib/media-config";
 import { matchesChartFilters } from "../lib/chart-filters";
 import { compareNaturalText, normalizeSearchText } from "../lib/search";
-import { appendResourceViews, getBrowserStatsClient, updateResourceStatsInDom } from "../lib/stats-client";
-import type { PublicDownload, PublicResource } from "../lib/types";
+import { appendResourceViews, updateResourceStatsInDom } from "../lib/stats-client";
+import type { PublicResource } from "../lib/types";
 
 const PAGE_SIZE = 48;
 
@@ -56,14 +55,11 @@ async function initializeGallery(root: HTMLElement): Promise<void> {
   const reset = root.querySelector<HTMLButtonElement>("[data-gallery-reset]");
   const active = root.querySelector<HTMLElement>("[data-gallery-active]");
   const activeChips = root.querySelector<HTMLElement>("[data-gallery-active-chips]");
-  const batchClear = root.querySelector<HTMLButtonElement>("[data-batch-clear]");
-  const batchButtons = [...root.querySelectorAll<HTMLButtonElement>("[data-batch-download]")];
   if (!grid || !loadMore || !count) return;
 
   let resources: PublicResource[] = [];
   let visibleCount = PAGE_SIZE;
-  const selected = new Set<string>();
-  let batchDownloadInFlight = false;
+  let batchTray: ReturnType<typeof createBatchTray> | undefined;
 
   try {
     const response = await fetch(root.dataset.galleryUrl ?? "", { credentials: "omit" });
@@ -79,6 +75,19 @@ async function initializeGallery(root: HTMLElement): Promise<void> {
       const maxValue = params.get(`facet-${range.key}-max`) ?? legacyValue;
       setRange(range, parseRangeValue(minValue, range.min), parseRangeValue(maxValue, range.max));
     }
+    batchTray = createBatchTray({
+      root,
+      grid,
+      getResource: (resourceId) => resources.find((resource) => resource.resourceId === resourceId),
+      onSelectionChange: () => render(),
+      onDownload: (preferUpscaled, selectedIds, setStatus) => downloadSelectedBatch({
+        selectedIds,
+        getResource: (resourceId) => resources.find((resource) => resource.resourceId === resourceId),
+        preferUpscaled,
+        filename: "rhythm-archive-" + (root.dataset.game ?? "resources") + ".zip",
+        setStatus,
+      }),
+    });
     render();
   } catch (error) {
     console.error("Gallery data failed", error);
@@ -107,31 +116,9 @@ async function initializeGallery(root: HTMLElement): Promise<void> {
     visibleCount += PAGE_SIZE;
     render();
   });
-  grid.addEventListener("click", (event) => {
-    const target = event.target;
-    if (!(target instanceof Element)) return;
-    const button = target.closest<HTMLButtonElement>("[data-select-resource]");
-    if (!button) return;
-    event.preventDefault();
-    event.stopPropagation();
-    const id = button.dataset.selectResource;
-    if (!id) return;
-    if (selected.has(id)) selected.delete(id); else selected.add(id);
-    root.classList.toggle("has-selection", selected.size > 0);
-    updateBatchBar();
-    button.setAttribute("aria-pressed", String(selected.has(id)));
-    button.setAttribute("aria-label", `${selected.has(id) ? "取消选择" : "选择"} ${button.closest<HTMLElement>("[data-resource-card]")?.querySelector("h3")?.textContent ?? "资源"}`);
-    button.closest<HTMLElement>("[data-resource-card]")?.classList.toggle("is-selected", selected.has(id));
-  });
 
-  for (const button of batchButtons) {
-    button.addEventListener("click", () => void downloadBatch(button.dataset.batchDownload === "upscaled"));
-  }
-  batchClear?.addEventListener("click", () => {
-    selected.clear();
-    root.classList.remove("has-selection");
-    render();
-  });
+
+
   activeChips?.addEventListener("click", (event) => {
     const target = event.target;
     if (!(target instanceof Element)) return;
@@ -226,11 +213,11 @@ async function initializeGallery(root: HTMLElement): Promise<void> {
   function render(): void {
     const filtered = currentResources();
     const visible = filtered.slice(0, visibleCount);
-    grid!.replaceChildren(...visible.map((resource, index) => createCard(resource, index, selected.has(resource.resourceId))));
+    grid!.replaceChildren(...visible.map((resource, index) => createCard(resource, index, batchTray?.isSelected(resource.resourceId) ?? false)));
     count!.textContent = `${filtered.length.toLocaleString("zh-CN")} 项资源`;
     loadMore!.hidden = visible.length >= filtered.length;
     updateActiveFilters();
-    updateBatchBar();
+    batchTray?.syncCards();
     void updateResourceStatsInDom(grid!);
   }
 
@@ -260,18 +247,7 @@ async function initializeGallery(root: HTMLElement): Promise<void> {
     if (summary) summary.textContent = entries.length > 0 ? `（已选 ${entries.length}）` : "";
   }
 
-  function updateBatchBar(): void {
-    const bar = root.querySelector<HTMLElement>("[data-batch-bar]");
-    const countNode = root.querySelector<HTMLElement>("[data-batch-count]");
-    if (!bar || !countNode) return;
-    bar.hidden = selected.size === 0;
-    countNode.textContent = `已选择 ${selected.size.toLocaleString("zh-CN")} / ${MAX_BATCH_FILES} 项`;
-  }
 
-  function setBatchBusy(busy: boolean): void {
-    for (const button of batchButtons) button.disabled = busy;
-    if (batchClear) batchClear.disabled = busy;
-  }
 
   function updateRangeFromInput(range: GalleryRange, side: "min" | "max"): void {
     const input = side === "min" ? range.minInput : range.maxInput;
@@ -289,55 +265,6 @@ async function initializeGallery(root: HTMLElement): Promise<void> {
     applyFilter();
   }
 
-  async function downloadBatch(preferUpscaled: boolean): Promise<void> {
-    if (batchDownloadInFlight) return;
-    const batch = resources.filter((resource) => selected.has(resource.resourceId));
-    const status = root.querySelector<HTMLElement>("[data-batch-status]");
-    if (batch.length === 0) return;
-    if (batch.length > MAX_BATCH_FILES) {
-      if (status) status.textContent = "一次选择的文件较多，请减少后再下载。";
-      return;
-    }
-    const items = batch.map((resource) => ({ resource, download: chooseDownload(resource, preferUpscaled) }));
-    if (items.some((item) => !item.download)) {
-      if (status) status.textContent = "下载失败，请重试";
-      return;
-    }
-    const totalBytes = items.reduce((sum, item) => sum + (item.download?.sizeBytes ?? 0), 0);
-    if (totalBytes > MAX_BATCH_BYTES) {
-      if (status) status.textContent = "一次选择的文件较多，请减少后再下载。";
-      return;
-    }
-    batchDownloadInFlight = true;
-    setBatchBusy(true);
-    const entries: Record<string, Uint8Array> = {};
-    const usedNames = new Set<string>();
-    let completed = 0;
-    if (status) status.textContent = `正在准备 0 / ${items.length}`;
-    try {
-      await runWithConcurrency(items, DOWNLOAD_CONCURRENCY, async ({ download }) => {
-        const response = await fetch(download!.url, { credentials: "omit" });
-        if (!response.ok) throw new Error(`download failed with ${response.status}`);
-        entries[uniqueZipFilename(usedNames, download!.downloadFilename)] = new Uint8Array(await response.arrayBuffer());
-        completed += 1;
-        if (status) status.textContent = `正在准备 ${completed} / ${items.length}`;
-      });
-      const archive = zipSync(entries, { level: 0 });
-      const blob = new Blob([archive.buffer as ArrayBuffer], { type: "application/zip" });
-      const url = URL.createObjectURL(blob);
-      triggerDownload(url, `rhythm-archive-${root.dataset.game ?? "resources"}.zip`);
-      const statsClient = getBrowserStatsClient();
-      for (const item of items) void statsClient.trackResourceDownload(item.resource.resourceId);
-      window.setTimeout(() => URL.revokeObjectURL(url), 1000);
-      if (status) status.textContent = "";
-    } catch (error) {
-      console.error("Batch download failed", error);
-      if (status) status.textContent = "下载失败，请重试";
-    } finally {
-      batchDownloadInFlight = false;
-      setBatchBusy(false);
-    }
-  }
 }
 
 function parseRangeValue(value: string | null, fallback: number): number {
@@ -478,31 +405,6 @@ function createCard(resource: PublicResource, index: number, isSelected: boolean
   anchor.append(media, body);
   article.append(anchor);
   return article;
-}
-
-function chooseDownload(resource: PublicResource, preferUpscaled: boolean): PublicDownload | undefined {
-  return preferUpscaled ? resource.upscaled ?? resource.original : resource.original;
-}
-
-async function runWithConcurrency<T>(items: T[], concurrency: number, worker: (item: T) => Promise<void>): Promise<void> {
-  let next = 0;
-  const workers = Array.from({ length: Math.min(concurrency, items.length) }, async () => {
-    while (next < items.length) {
-      const item = items[next++];
-      if (item !== undefined) await worker(item);
-    }
-  });
-  await Promise.all(workers);
-}
-
-function triggerDownload(url: string, filename: string): void {
-  const anchor = document.createElement("a");
-  anchor.href = url;
-  anchor.download = filename;
-  anchor.rel = "noopener";
-  document.body.append(anchor);
-  anchor.click();
-  anchor.remove();
 }
 
 function resolveSitePath(path: string): string {

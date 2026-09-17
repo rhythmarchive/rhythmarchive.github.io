@@ -1,12 +1,11 @@
-import { zipSync } from "fflate";
-import { DOWNLOAD_CONCURRENCY, MAX_BATCH_BYTES, MAX_BATCH_FILES, uniqueZipFilename } from "../lib/batch";
+import { createBatchTray, downloadSelectedBatch } from "./batch-tray";
+import type { BatchResource } from "../lib/batch";
 import {
   BROWSE_PAGE_SIZE,
   type BrowseFacetOptions,
   type BrowseGame,
   type BrowseGalleryData,
   type BrowseGalleryItem,
-  type BrowseResolvedResource,
   type BrowseUrlState,
   type PhigrosFacetOptions,
   defaultBrowseUrlState,
@@ -20,8 +19,7 @@ import {
 import { cardMediaFit, cardMediaRatio } from "../lib/media-config";
 import { displayFilterDifficultyLabel } from "../lib/game-config";
 import { formatArcaeaAddedVersion } from "../lib/public-display";
-import { appendResourceViews, getBrowserStatsClient, updateResourceStatsInDom } from "../lib/stats-client";
-import type { PublicDownload } from "../lib/types";
+import { appendResourceViews, updateResourceStatsInDom } from "../lib/stats-client";
 
 type BrowseDifficultyRange = {
   root: HTMLElement;
@@ -48,8 +46,6 @@ async function initializeBrowseGallery(root: HTMLElement): Promise<void> {
   const reset = root.querySelector<HTMLButtonElement>("[data-gallery-reset]");
   const emptyReset = root.querySelector<HTMLButtonElement>("[data-browse-empty-reset]");
   const activeChips = root.querySelector<HTMLElement>("[data-browse-active-chips]");
-  const batchClear = root.querySelector<HTMLButtonElement>("[data-batch-clear]");
-  const batchButtons = [...root.querySelectorAll<HTMLButtonElement>("[data-batch-download]")];
   const levelSelect = root.querySelector<HTMLSelectElement>("[data-browse-level]");
   const difficultyRange = createBrowseDifficultyRange(root);
   if (!grid || !loadMore || !count || !search || !sort) return;
@@ -58,8 +54,8 @@ async function initializeBrowseGallery(root: HTMLElement): Promise<void> {
   let items: BrowseGalleryItem[] = [];
   let state: BrowseUrlState = defaultBrowseUrlState(game);
   let visibleCount = BROWSE_PAGE_SIZE;
-  const selected = new Set<string>();
-  let batchDownloadInFlight = false;
+  const batchResources = new Map<string, BatchResource>();
+  let batchTray: ReturnType<typeof createBatchTray> | undefined;
 
   try {
     const response = await fetch(root.dataset.galleryUrl ?? "", { credentials: "omit" });
@@ -67,6 +63,25 @@ async function initializeBrowseGallery(root: HTMLElement): Promise<void> {
     const data = await response.json() as BrowseGalleryData;
     if (data.schemaVersion !== 1 || data.game !== game || data.category !== "jacket" || !Array.isArray(data.items)) throw new Error("browse gallery data has an invalid shape");
     items = data.items;
+    for (const item of items) {
+      batchResources.set(item.resourceId, item);
+      for (const artwork of item.artworks) {
+        batchResources.set(artwork.resourceId, { ...artwork, displayTitle: item.displayTitle });
+      }
+    }
+    batchTray = createBatchTray({
+      root,
+      grid,
+      getResource: (resourceId) => batchResources.get(resourceId),
+      onSelectionChange: () => render(),
+      onDownload: (preferUpscaled, selectedIds, setStatus) => downloadSelectedBatch({
+        selectedIds,
+        getResource: (resourceId) => batchResources.get(resourceId),
+        preferUpscaled,
+        filename: "rhythm-archive-" + game + ".zip",
+        setStatus,
+      }),
+    });
     populateFacetOptions(data, root);
     state = readState(game, items);
     applyStateToControls(state);
@@ -128,27 +143,9 @@ async function initializeBrowseGallery(root: HTMLElement): Promise<void> {
     visibleCount = BROWSE_PAGE_SIZE;
     render();
   });
-  grid.addEventListener("click", (event) => {
-    const target = event.target;
-    if (!(target instanceof Element)) return;
-    const button = target.closest<HTMLButtonElement>("[data-select-resource]");
-    if (!button) return;
-    event.preventDefault();
-    event.stopPropagation();
-    const id = button.dataset.selectResource;
-    if (!id) return;
-    if (selected.has(id)) selected.delete(id); else selected.add(id);
-    root.classList.toggle("has-selection", selected.size > 0);
-    updateBatchBar();
-    render();
-  });
 
-  for (const button of batchButtons) button.addEventListener("click", () => void downloadBatch(button.dataset.batchDownload === "upscaled"));
-  batchClear?.addEventListener("click", () => {
-    selected.clear();
-    root.classList.remove("has-selection");
-    render();
-  });
+
+
 
   function readState(gameId: BrowseGame, browseItems: BrowseGalleryItem[]): BrowseUrlState {
     return parseBrowseUrlState(gameId, window.location.search, browseItems);
@@ -235,81 +232,17 @@ async function initializeBrowseGallery(root: HTMLElement): Promise<void> {
   function render(): void {
     const filtered = filterBrowseItems(items, state);
     const visible = filtered.slice(0, visibleCount).map((item) => displayBrowseItem(item, state.chart));
-    grid!.replaceChildren(...visible.map((item, index) => createCard(item, index, selected.has(item.resourceId))));
+    grid!.replaceChildren(...visible.map((item, index) => createCard(item, index, batchTray?.isSelected(item.resourceId) ?? false)));
     count!.textContent = filtered.length.toLocaleString("zh-CN") + " 项资源";
     loadMore!.hidden = visible.length >= filtered.length;
     if (empty) empty.hidden = filtered.length !== 0;
     updateActiveFilters(root, state);
-    updateBatchBar();
+    batchTray?.syncCards();
     void updateResourceStatsInDom(grid!);
   }
 
-  function updateBatchBar(): void {
-    const bar = root.querySelector<HTMLElement>("[data-batch-bar]");
-    const countNode = root.querySelector<HTMLElement>("[data-batch-count]");
-    if (!bar || !countNode) return;
-    bar.hidden = selected.size === 0;
-    countNode.textContent = "已选择 " + selected.size.toLocaleString("zh-CN") + " / " + MAX_BATCH_FILES + " 项";
-  }
 
-  function setBatchBusy(busy: boolean): void {
-    for (const button of batchButtons) button.disabled = busy;
-    if (batchClear) batchClear.disabled = busy;
-  }
 
-  async function downloadBatch(preferUpscaled: boolean): Promise<void> {
-    if (batchDownloadInFlight) return;
-    const resources = new Map<string, BrowseResolvedResource>();
-    for (const item of items) {
-      resources.set(item.resourceId, item);
-      for (const artwork of item.artworks) resources.set(artwork.resourceId, artwork);
-    }
-    const selectedResources = [...selected].map((resourceId) => resources.get(resourceId)).filter((resource): resource is BrowseResolvedResource => Boolean(resource));
-    const status = root.querySelector<HTMLElement>("[data-batch-status]");
-    if (selectedResources.length === 0) return;
-    if (selectedResources.length > MAX_BATCH_FILES) {
-      if (status) status.textContent = "一次选择的文件较多，请减少后再下载。";
-      return;
-    }
-    const entriesToDownload = selectedResources.map((resource) => ({ resource, download: chooseDownload(resource, preferUpscaled) }));
-    if (entriesToDownload.some((item) => !item.download)) {
-      if (status) status.textContent = "下载失败，请重试";
-      return;
-    }
-    const totalBytes = entriesToDownload.reduce((sum, item) => sum + (item.download?.sizeBytes ?? 0), 0);
-    if (totalBytes > MAX_BATCH_BYTES) {
-      if (status) status.textContent = "一次选择的文件较多，请减少后再下载。";
-      return;
-    }
-    batchDownloadInFlight = true;
-    setBatchBusy(true);
-    const entries: Record<string, Uint8Array> = {};
-    const usedNames = new Set<string>();
-    let completed = 0;
-    if (status) status.textContent = "正在准备 0 / " + entriesToDownload.length;
-    try {
-      await runWithConcurrency(entriesToDownload, DOWNLOAD_CONCURRENCY, async ({ download }) => {
-        const response = await fetch(download!.url, { credentials: "omit" });
-        if (!response.ok) throw new Error("download failed with " + response.status);
-        entries[uniqueZipFilename(usedNames, download!.downloadFilename)] = new Uint8Array(await response.arrayBuffer());
-        completed += 1;
-        if (status) status.textContent = "正在准备 " + completed + " / " + entriesToDownload.length;
-      });
-      const archive = zipSync(entries, { level: 0 });
-      const url = URL.createObjectURL(new Blob([archive.buffer as ArrayBuffer], { type: "application/zip" }));
-      triggerDownload(url, "rhythm-archive-" + game + ".zip");
-      const statsClient = getBrowserStatsClient();
-      for (const item of entriesToDownload) void statsClient.trackResourceDownload(item.resource.resourceId);
-      window.setTimeout(() => URL.revokeObjectURL(url), 1000);
-      if (status) status.textContent = "";
-    } catch (error) {
-      console.error("Browse batch download failed", error);
-      if (status) status.textContent = "下载失败，请重试";
-    } finally {
-      batchDownloadInFlight = false;
-      setBatchBusy(false);
-    }
-  }
 }
 
 function createBrowseDifficultyRange(root: HTMLElement): BrowseDifficultyRange | undefined {
@@ -572,31 +505,6 @@ function createCard(item: BrowseGalleryItem, index: number, isSelected: boolean)
   anchor.append(media, body);
   article.append(anchor);
   return article;
-}
-
-function chooseDownload(resource: BrowseResolvedResource, preferUpscaled: boolean): PublicDownload | undefined {
-  return preferUpscaled ? resource.upscaled ?? resource.original : resource.original;
-}
-
-async function runWithConcurrency<T>(items: T[], concurrency: number, worker: (item: T) => Promise<void>): Promise<void> {
-  let next = 0;
-  const workers = Array.from({ length: Math.min(concurrency, items.length) }, async () => {
-    while (next < items.length) {
-      const item = items[next++];
-      if (item !== undefined) await worker(item);
-    }
-  });
-  await Promise.all(workers);
-}
-
-function triggerDownload(url: string, filename: string): void {
-  const anchor = document.createElement("a");
-  anchor.href = url;
-  anchor.download = filename;
-  anchor.rel = "noopener";
-  document.body.append(anchor);
-  anchor.click();
-  anchor.remove();
 }
 
 function resolveSitePath(path: string): string {

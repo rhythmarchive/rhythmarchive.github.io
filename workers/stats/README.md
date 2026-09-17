@@ -8,12 +8,13 @@
 - `GET /v1/site/stats`：返回 `{ totalVisits, todayVisits, date }`。
 - `POST /v1/events`：请求体为 `{ "type": "site_visit", "visitorId": "..." }`，或带 `resourceId` 的资源事件。`resourceId` 必须是 Catalog 的 UUID 形式稳定 ID。
 - `POST /v1/resources/stats`：请求体为 `{ "resourceIds": ["...", "..."] }`，最多 100 个 ID；返回一组 `{ views, downloads }`，没有记录的资源返回 0。
+- `GET /v1/resources/ranking?period=7d|all&limit=N`：只返回 `{ resourceId, views, downloads }`，默认 12 项，最多 50 项；`7d` 按 Worker 站点时区的当前自然日及前 6 日聚合，`all` 直接使用 `resource_stats` 累计值。Worker 不返回任何 Catalog 文本或图片字段。
 - `POST /v1/update-reminders`：请求体为 `{ "visitorId": "...", "game": "<公开游戏 slug>" }`；首次有效提醒返回 `202`，同一访客对同一游戏 24 小时内重复返回 `409`，访客在 10 分钟内超过 10 次请求返回 `429`。
 - `GET /v1/admin/update-reminders`：需要 `Authorization: Bearer <UPDATE_REMINDER_ADMIN_TOKEN>`，只返回当前 pending 游戏及通知状态。
 - `POST /v1/admin/update-reminders/:game/resolve`：鉴权后关闭当前 pending 周期但保留历史。
 - `POST /v1/admin/update-reminders/:game/retry-notification`：鉴权后重置当前通知重试状态。
 
-站点访问按匿名 visitor ID 的 30 分钟窗口去重。资源 detail 和直接下载共享同一个资源 view 去重键；下载另有 10 秒短窗口去重。过期的 `event_dedupe` 行在写入事件前按索引清理，数据库不记录 IP、UA、地理位置或页面轨迹。
+站点访问按匿名 visitor ID 的 30 分钟窗口去重。资源 detail 和直接下载共享同一个资源 view 去重键；下载另有 10 秒短窗口去重。每次有效 view/download 在更新 `resource_stats` 的同时写入 `resource_daily_stats`，因此 7 日榜沿用同一去重结果。过期的 `event_dedupe` 行在写入事件前按索引清理，数据库不记录 IP、UA、地理位置或页面轨迹。
 
 更新提醒当前只接受 arcaea、phigros、rizline、infalsus、rotaeno、paradigm-reboot 六个公开 slug。有效提醒写入 update_reminders，并按游戏建立可解析的 pending cycle，保留首次/最近提醒时间、累计有效提醒数、resolved_at 和通知状态。首次有效提醒会触发一封 Resend 邮件；同一 pending cycle 后续提醒只累计，不重复发信。邮件发送失败不会影响访客收到的 202，429、5xx、网络错误和超时按 5/10/20/40/80 分钟有限退避，最多尝试 5 次；其他 4xx 记录为不可重试失败。站长可通过管理接口查询、resolve 或手动重试。
 

@@ -27,6 +27,7 @@ await writeJson(path.join(publicDataDir, "resources.json"), data.resources);
 await writeJson(path.join(publicDataDir, "game-index.json"), data.games);
 await writeJson(path.join(publicDataDir, "search-index.json"), data.searchIndex);
 await writeJson(path.join(publicDataDir, "search-cards.json"), data.resources.map(toSearchCard));
+await writeJson(path.join(publicDataDir, "ranking-cards.json"), data.resources.map(toRankingCard));
 if (categoryBrowse.arcaea.storyAtlas) await writeJson(path.join(storyDataDir, "arcaea.json"), categoryBrowse.arcaea.storyAtlas);
 
 for (const [key, resources] of Object.entries(data.galleries)) {
@@ -75,6 +76,27 @@ function toSearchCard(resource: ReturnType<typeof getSiteData>["resources"][numb
     upscaled: Boolean(resource.upscaled),
     variantLabels,
   };
+}
+
+function toRankingCard(resource: ReturnType<typeof getSiteData>["resources"][number]) {
+  const previews = [resource.preview.small, resource.preview.medium, resource.preview.large].filter((asset): asset is NonNullable<typeof resource.preview.small> => Boolean(asset));
+  const primary = previews[0];
+  const fallback = previews[1];
+  return {
+    resourceId: resource.resourceId,
+    route: resource.route,
+    game: resource.game,
+    resourceType: resource.resourceType,
+    displayTitle: resource.displayTitle,
+    categoryLabel: resource.categoryLabel,
+    ...(resource.artist ? { artist: resource.artist } : {}),
+    image: primary ? toRankingImage(primary) : null,
+    fallback: fallback ? toRankingImage(fallback) : null,
+  };
+}
+
+function toRankingImage(asset: NonNullable<ReturnType<typeof getSiteData>["resources"][number]["preview"]["small"]>) {
+  return { url: asset.url, width: asset.width, height: asset.height };
 }
 
 async function writeJson(filePath: string, value: unknown, pretty = false): Promise<void> {

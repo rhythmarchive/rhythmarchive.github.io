@@ -3,6 +3,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import GameCard from "../components/GameCard.astro";
 import SearchBox from "../components/SearchBox.astro";
 import RecentUpdates from "../components/RecentUpdates.astro";
+import ResourceRanking from "../components/ResourceRanking.astro";
 import { buildSearchQuickLinks } from "../lib/search-quick-links";
 import { formatCount } from "../lib/format";
 import { BASE_PATH, ROS_BASE_URL, SITE_ORIGIN } from "../lib/site-config";
@@ -56,6 +57,8 @@ const arcaeaApkManifestUrl = `${ROS_BASE_URL}/apk/arcaea/latest.json`;
   <script src="../scripts/apk-card.ts"></script>
 
   <RecentUpdates />
+
+  <ResourceRanking compact limit={6} headingId="home-ranking-heading" />
 
   <section class="page-container home-games" aria-labelledby="games-heading">
     <div class="section-heading">

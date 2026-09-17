@@ -81,6 +81,46 @@ test("configured client persists one random visitor ID and reads resource stats 
   ]);
 });
 
+test("configured client reads and caches bounded resource rankings", async () => {
+  const calls: string[] = [];
+  const client = createStatsClient({
+    apiUrl: "https://stats.example.test",
+    storage: new MemoryStorage(),
+    visitorIdFactory: () => visitorId,
+    fetchImpl: async (input, init) => {
+      calls.push(String(input) + " " + String(init?.method));
+      return new Response(JSON.stringify({
+        period: "7d",
+        date: "2026-09-06",
+        startDate: "2026-08-31",
+        entries: [
+          { resourceId, views: 12, downloads: 3 },
+          { resourceId: secondResourceId, views: 4, downloads: 1 },
+        ],
+      }), { status: 200 });
+    },
+  });
+
+  assert.deepEqual(await client.getResourceRanking("7d", 6), {
+    period: "7d",
+    date: "2026-09-06",
+    startDate: "2026-08-31",
+    entries: [
+      { resourceId, views: 12, downloads: 3 },
+      { resourceId: secondResourceId, views: 4, downloads: 1 },
+    ],
+  });
+  assert.deepEqual(await client.getResourceRanking("7d", 6), {
+    period: "7d",
+    date: "2026-09-06",
+    startDate: "2026-08-31",
+    entries: [
+      { resourceId, views: 12, downloads: 3 },
+      { resourceId: secondResourceId, views: 4, downloads: 1 },
+    ],
+  });
+  assert.deepEqual(calls, ["https://stats.example.test/v1/resources/ranking?period=7d&limit=6 GET"]);
+});
 test("missing or unavailable stats API never blocks site behavior", async () => {
   let fetchCalls = 0;
   const disabled = createStatsClient({ storage: new MemoryStorage(), fetchImpl: async () => { fetchCalls += 1; return new Response("", { status: 500 }); } });
