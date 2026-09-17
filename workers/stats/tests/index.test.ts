@@ -27,12 +27,13 @@ import {
   resourceRankingDateRange,
   validateResourceRankingQuery,
   isValidResourceId,
+  isValidVisitorId,
 } from "../src/core.js";
 
 import { PUBLIC_RESOURCE_IDS } from "../src/public-resource-registry.js";
 
-const visitorId = "11111111-1111-7111-8111-111111111111";
-const otherVisitorId = "22222222-2222-7222-8222-222222222222";
+const visitorId = "11111111-1111-4111-8111-111111111111";
+const otherVisitorId = "22222222-2222-4222-8222-222222222222";
 const publicResourceIds = [...PUBLIC_RESOURCE_IDS];
 const resourceId = publicResourceIds[0]!;
 const secondResourceId = publicResourceIds[1]!;
@@ -409,6 +410,19 @@ test("invalid resource IDs and oversized batches are rejected", async () => {
   assert.equal(isValidResourceId("/r/not-a-resource/"), false);
 });
 
+test("visitor IDs accept UUIDv4 while resource IDs reject non-UUIDv7 values", async () => {
+  assert.equal(isValidVisitorId(visitorId), true);
+  assert.equal(isValidVisitorId("not-a-uuid"), false);
+  assert.equal(isValidResourceId("aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa"), false);
+
+  const store = new MemoryStatsStore();
+  const accepted = await handleRequest(request("/v1/events", "POST", { type: "site_visit", visitorId }), makeEnv(store), { store, now: () => baseTime });
+  const invalidVisitor = await handleRequest(request("/v1/events", "POST", { type: "site_visit", visitorId: "not-a-uuid" }), makeEnv(store), { store, now: () => baseTime });
+
+  assert.equal(accepted.status, 200);
+  assert.equal(invalidVisitor.status, 400);
+  assert.equal((await responseJson(invalidVisitor)).error, "invalid_visitor_id");
+});
 test("configured Turnstile is verified server-side before accepting a reminder", async () => {
   const acceptedStore = new MemoryStatsStore();
   let verificationBody = "";

@@ -7,7 +7,7 @@ import {
   submitUpdateReminder,
 } from "../src/lib/update-reminder-client";
 
-const visitorId = "11111111-1111-7111-8111-111111111111";
+const visitorId = "11111111-1111-4111-8111-111111111111";
 const siteRoot = path.resolve(process.cwd(), "apps", "site");
 
 test("update reminder posts the documented visitor/game payload to the future endpoint", async () => {
@@ -32,6 +32,41 @@ test("update reminder posts the documented visitor/game payload to the future en
   assert.deepEqual(JSON.parse(String(requestInit?.body)), { visitorId, game: "arcaea" });
 });
 
+test("a Turnstile token from the callback reaches fetch for a UUIDv4 visitor", async () => {
+  let fetchCalls = 0;
+  let requestBody: unknown;
+  const result = await submitUpdateReminder({
+    apiUrl: "https://stats.example.test",
+    visitorId,
+    game: "arcaea",
+    turnstileToken: "client-token",
+    fetchImpl: async (_input, init) => {
+      fetchCalls += 1;
+      requestBody = JSON.parse(String(init?.body));
+      return new Response(JSON.stringify({ ok: true, status: "accepted" }), { status: 202 });
+    },
+  });
+
+  assert.deepEqual(result, { status: "accepted" });
+  assert.equal(fetchCalls, 1);
+  assert.deepEqual(requestBody, { visitorId, game: "arcaea", turnstileToken: "client-token" });
+});
+
+test("an invalid visitor ID is rejected before the update reminder fetch", async () => {
+  let fetchCalls = 0;
+  const result = await submitUpdateReminder({
+    apiUrl: "https://stats.example.test",
+    visitorId: "not-a-uuid",
+    game: "arcaea",
+    fetchImpl: async () => {
+      fetchCalls += 1;
+      return new Response("", { status: 500 });
+    },
+  });
+
+  assert.deepEqual(result, { status: "failed", reason: "invalid-request" });
+  assert.equal(fetchCalls, 0);
+});
 test("update reminder response classification distinguishes accepted, duplicate, and failure", () => {
   assert.equal(classifyUpdateReminderResponse(202, { ok: true, status: "accepted" }), "accepted");
   assert.equal(classifyUpdateReminderResponse(409, { ok: false, status: "duplicate" }), "duplicate");
@@ -78,6 +113,8 @@ test("update reminder keeps markup, public game data, and client state in their 
   assert.match(component, /data-update-reminder-form/u);
   assert.doesNotMatch(component, /Arcaea|Phigros|Rizline|Rotaeno/u);
   assert.match(client, /getBrowserStatsClient/u);
+  assert.match(client, /callback: \(token\) => \{ turnstileToken = token;/u);
+  assert.match(client, /turnstileToken \? \{ turnstileToken \} : \{\}/u);
   assert.match(client, /submitting/u);
   assert.match(client, /已收到提醒/u);
   assert.match(client, /最近已经提醒过/u);

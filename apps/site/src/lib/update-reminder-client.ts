@@ -1,4 +1,5 @@
-import { isValidVisitorId, normalizeStatsApiUrl } from "./stats-client";
+import { normalizeUuid } from "../../../../packages/domain/src/identifiers.js";
+import { normalizeStatsApiUrl } from "./stats-client";
 
 export type UpdateReminderStatus = "accepted" | "duplicate" | "failed";
 export type UpdateReminderFailureReason = "not-configured" | "invalid-request" | "network" | "server";
@@ -38,10 +39,10 @@ export async function submitUpdateReminder(options: {
   fetchImpl?: UpdateReminderFetch | undefined;
 }): Promise<UpdateReminderResult> {
   const apiUrl = normalizeStatsApiUrl(options.apiUrl);
-  const visitorId = options.visitorId;
+  const visitorId = normalizeUuid(options.visitorId);
   const game = options.game.trim();
   if (!apiUrl) return { status: "failed", reason: "not-configured" };
-  if (!isValidVisitorId(visitorId) || !game) return { status: "failed", reason: "invalid-request" };
+  if (!visitorId || !game) return { status: "failed", reason: "invalid-request" };
 
   const fetchImpl = options.fetchImpl ?? ((input, init) => fetch(input, init));
   try {
