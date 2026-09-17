@@ -6,13 +6,12 @@ workers_dev = true
 [vars]
 ALLOWED_ORIGINS = "https://rhythmarchive.github.io,http://localhost:4321,http://127.0.0.1:4321"
 SITE_TIME_ZONE = "Asia/Shanghai"
-# Optional production binding. Use a unique positive namespace_id for this account.
-# [[ratelimits]]
-# name = "RATE_LIMITER"
-# namespace_id = "<unique-positive-integer>"
-# [ratelimits.simple]
-# limit = 120
-# period = 60
+[[ratelimits]]
+name = "RATE_LIMITER"
+namespace_id = "1334342177"
+[ratelimits.simple]
+limit = 120
+period = 60
 
 [[d1_databases]]
 binding = "DB"
