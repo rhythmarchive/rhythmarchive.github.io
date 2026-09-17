@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { UUID_PATTERN, UUID_V7_PATTERN } from "./identifiers.js";
 
 /**
  * These versions deliberately live next to each other instead of being one
@@ -13,8 +14,8 @@ export const PUBLISH_PLAN_SCHEMA_VERSION = "1.0" as const;
 /** Phase 2A compatibility name for callers that still inspect schemaVersion. */
 export const SCHEMA_VERSION = WORKSPACE_SCHEMA_VERSION;
 
-const UUID = z.string().regex(/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i, "must be a UUID");
-const UUIDV7 = z.string().regex(/^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i, "must be an RFC 9562 UUIDv7");
+const UUID = z.string().regex(UUID_PATTERN, "must be a UUID");
+const UUIDV7 = z.string().regex(UUID_V7_PATTERN, "must be an RFC 9562 UUIDv7");
 const SHA256 = z.string().regex(/^[0-9a-f]{64}$/i, "must be a SHA-256 hex digest");
 const ISO_DATE = z.string().refine((value) => !Number.isNaN(Date.parse(value)), "must be an ISO-like timestamp");
 const MIME = z.enum(["image/jpeg", "image/png", "image/webp", "image/avif", "image/gif", "audio/ogg", "application/octet-stream"]);

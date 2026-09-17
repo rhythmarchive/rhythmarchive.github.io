@@ -32,7 +32,8 @@ export function toggleBatchSelection(selected: readonly string[], resourceId: st
 }
 
 export function uniqueZipFilename(used: Set<string>, filename: string): string {
-  const safe = filename.replace(/[<>:"/\\|?*\u0000-\u001f]+/gu, "_").trim() || "resource.bin";
+  const normalized = filename.replace(/[<>:"/\\|?*\u0000-\u001f]+/gu, "_").trim();
+  const safe = (normalized && !/^\.+$/u.test(normalized) ? normalized : "resource.bin").slice(0, 240) || "resource.bin";
   if (!used.has(safe)) {
     used.add(safe);
     return safe;
@@ -44,5 +45,38 @@ export function uniqueZipFilename(used: Set<string>, filename: string): string {
   while (used.has(`${base} (${index})${extension}`)) index += 1;
   const result = `${base} (${index})${extension}`;
   used.add(result);
+  return result;
+}
+export async function readResponseBytesWithinLimit(response: Response, maxBytes: number, onBytes: (bytes: number) => void = () => undefined): Promise<Uint8Array> {
+  if (maxBytes < 0) throw new Error("response exceeds the maximum size");
+  const declaredLength = Number(response.headers.get("Content-Length"));
+  if (Number.isSafeInteger(declaredLength) && declaredLength > maxBytes) throw new Error("response is larger than the declared budget");
+  if (!response.body) throw new Error("response body is unavailable");
+  const reader = response.body.getReader();
+  const chunks: Uint8Array[] = [];
+  let totalBytes = 0;
+  while (true) {
+    const chunk = await reader.read();
+    if (chunk.done) break;
+    const nextTotal = totalBytes + chunk.value.byteLength;
+    if (nextTotal > maxBytes) {
+      await reader.cancel();
+      throw new Error("response exceeds the declared budget");
+    }
+    try {
+      onBytes(chunk.value.byteLength);
+    } catch (error) {
+      await reader.cancel();
+      throw error;
+    }
+    chunks.push(chunk.value);
+    totalBytes = nextTotal;
+  }
+  const result = new Uint8Array(totalBytes);
+  let offset = 0;
+  for (const chunk of chunks) {
+    result.set(chunk, offset);
+    offset += chunk.byteLength;
+  }
   return result;
 }

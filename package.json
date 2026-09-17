@@ -14,14 +14,20 @@
     "site:build": "tsx apps/site/scripts/generate-public-data.ts && astro build --root apps/site",
     "site:preview": "astro preview --root apps/site",
     "site:smoke": "tsx apps/site/scripts/smoke.ts",
+    "browse:check": "tsx tools/validate-browse-projection.ts",
+    "stats:registry": "tsx apps/site/scripts/generate-stats-resource-registry.ts",
+    "stats:registry:check": "tsx apps/site/scripts/generate-stats-resource-registry.ts --check",
+    "worker:typecheck": "tsc -p workers/stats/tsconfig.json --noEmit",
+    "worker:test": "tsx --test workers/stats/tests/*.test.ts",
+    "worker:check": "npm run worker:typecheck && npm run worker:test",
     "test:all": "npm run typecheck && npm test",
-    "ci:check": "npm run test:all && npm run site:check && npm run site:build && npm run site:smoke"
+    "ci:check": "npm run test:all && npm run stats:registry:check && npm run browse:check && npm run worker:check && npm run site:check && npm run site:build && npm run site:smoke"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
-    "astro": "^6.3.1",
+    "astro": "7.3.3",
     "fflate": "^0.8.2",
-    "sharp": "^0.34.5",
+    "sharp": "0.35.4",
     "zod": "^3.25.76"
   },
   "devDependencies": {

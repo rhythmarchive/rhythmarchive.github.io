@@ -5,9 +5,14 @@
   "scripts": {
     "test": "tsx --test tests/*.test.ts",
     "typecheck": "tsc -p tsconfig.json --noEmit",
-    "dev": "npx wrangler dev",
-    "deploy": "npx wrangler deploy",
-    "migrate:local": "npx wrangler d1 migrations apply rhythm-archive-stats --local",
-    "migrate:remote": "npx wrangler d1 migrations apply rhythm-archive-stats --remote"
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "migrate:local": "wrangler d1 migrations apply rhythm-archive-stats --local",
+    "migrate:remote": "wrangler d1 migrations apply rhythm-archive-stats --remote"
+  },
+  "devDependencies": {
+    "tsx": "4.23.13",
+    "typescript": "5.9.3",
+    "wrangler": "4.133.0"
   }
 }

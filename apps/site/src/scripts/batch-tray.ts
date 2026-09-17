@@ -1,5 +1,5 @@
 import { zipSync } from "fflate";
-import { DOWNLOAD_CONCURRENCY, MAX_BATCH_BYTES, MAX_BATCH_FILES, toggleBatchSelection, uniqueZipFilename, type BatchResource } from "../lib/batch";
+import { DOWNLOAD_CONCURRENCY, MAX_BATCH_BYTES, MAX_BATCH_FILES, readResponseBytesWithinLimit, toggleBatchSelection, uniqueZipFilename, type BatchResource } from "../lib/batch";
 import { getBrowserStatsClient } from "../lib/stats-client";
 import type { PublicDownload, PublicPreview } from "../lib/types";
 
@@ -281,18 +281,22 @@ export async function downloadSelectedBatch(options: {
 
   const entries: Record<string, Uint8Array> = {};
   const usedNames = new Set<string>();
+  let downloadedBytes = 0;
   let completed = 0;
   options.setStatus("正在准备 0 / " + items.length);
   try {
     await runWithConcurrency(items, DOWNLOAD_CONCURRENCY, async ({ download }) => {
       const response = await fetch(download.url, { credentials: "omit" });
       if (!response.ok) throw new Error("download failed with " + response.status);
-      entries[uniqueZipFilename(usedNames, download.downloadFilename)] = new Uint8Array(await response.arrayBuffer());
+      entries[uniqueZipFilename(usedNames, download.downloadFilename)] = await readResponseBytesWithinLimit(response, MAX_BATCH_BYTES - downloadedBytes, (bytes) => {
+        if (downloadedBytes + bytes > MAX_BATCH_BYTES) throw new Error("batch download exceeds the maximum size");
+        downloadedBytes += bytes;
+      });
       completed += 1;
       options.setStatus("正在准备 " + completed + " / " + items.length);
     });
     const archive = zipSync(entries, { level: 0 });
-    const objectUrl = URL.createObjectURL(new Blob([archive.buffer as ArrayBuffer], { type: "application/zip" }));
+    const objectUrl = URL.createObjectURL(new Blob([archive], { type: "application/zip" }));
     triggerDownload(objectUrl, options.filename);
     const statsClient = getBrowserStatsClient();
     for (const item of items) void statsClient.trackResourceDownload(item.resource.resourceId);

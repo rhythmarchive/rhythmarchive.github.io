@@ -67,6 +67,7 @@ docs/*
 fixtures/
 tools/*
 !tools/arcaea-apk-update.ts
+!tools/validate-browse-projection.ts
 !tools/arcaea-apk-updater/
 tools/arcaea-apk-updater/*
 !tools/arcaea-apk-updater/package.json
@@ -91,6 +92,7 @@ packages/admin/
 packages/domain/tests/
 packages/domain/src/*
 !packages/domain/src/schema.ts
+!packages/domain/src/identifiers.ts
 !packages/domain/src/validation.ts
 !packages/domain/src/browse.ts
 !packages/domain/src/arcaea-apk.ts

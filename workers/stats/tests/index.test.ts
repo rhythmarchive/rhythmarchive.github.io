@@ -3,6 +3,7 @@ import test from "node:test";
 import {
   DOWNLOAD_DEDUPE_WINDOW_MS,
   MAX_RESOURCE_IDS,
+  MAX_EVENT_BODY_BYTES,
   MAX_RANKING_LIMIT,
   SITE_SESSION_WINDOW_MS,
   UPDATE_REMINDER_DEDUPE_WINDOW_MS,
@@ -28,10 +29,13 @@ import {
   isValidResourceId,
 } from "../src/core.js";
 
+import { PUBLIC_RESOURCE_IDS } from "../src/public-resource-registry.js";
+
 const visitorId = "11111111-1111-7111-8111-111111111111";
 const otherVisitorId = "22222222-2222-7222-8222-222222222222";
-const resourceId = "aaaaaaaa-aaaa-7aaa-8aaa-aaaaaaaaaaaa";
-const secondResourceId = "bbbbbbbb-bbbb-7bbb-8bbb-bbbbbbbbbbbb";
+const publicResourceIds = [...PUBLIC_RESOURCE_IDS];
+const resourceId = publicResourceIds[0]!;
+const secondResourceId = publicResourceIds[1]!;
 const baseTime = Date.UTC(2026, 8, 6, 12, 0, 0);
 const testEmailConfig = { RESEND_API_KEY: "configured", UPDATE_REMINDER_EMAIL_TO: "recipient" };
 
@@ -44,7 +48,18 @@ class MemoryStatsStore implements StatsStore {
   private readonly updateReminders = new Map<string, { firstReminderAt: number; lastReminderAt: number }>();
   private readonly updateReminderGames = new Map<PublicGameSlug, UpdateReminderSummary>();
   private readonly updateReminderRates = new Map<string, { windowStartedAt: number; requestCount: number }>();
+  private readonly requestRates = new Map<string, { windowStartedAt: number; requestCount: number }>();
   private nextCycleId = 1;
+
+  async consumeRequestRateLimit(rateKey: string, scope: string, nowMs: number, windowMs: number, maxRequests: number): Promise<{ allowed: boolean; retryAfterSeconds: number }> {
+    const key = scope + ":" + rateKey;
+    const current = this.requestRates.get(key);
+    const rate = !current || current.windowStartedAt + windowMs <= nowMs ? { windowStartedAt: nowMs, requestCount: 0 } : current;
+    rate.requestCount += 1;
+    this.requestRates.set(key, rate);
+    if (rate.requestCount <= maxRequests) return { allowed: true, retryAfterSeconds: 0 };
+    return { allowed: false, retryAfterSeconds: Math.max(1, Math.ceil((rate.windowStartedAt + windowMs - nowMs) / 1000)) };
+  }
 
   async recordEvent(event: StatsEvent, nowMs: number, date: string) {
     this.purge(nowMs);
@@ -378,17 +393,46 @@ test("resource ranking breaks equal view counts with downloads and rejects unbou
 test("invalid resource IDs and oversized batches are rejected", async () => {
   const store = new MemoryStatsStore();
   const invalidEvent = await handleRequest(request("/v1/events", "POST", { type: "resource_detail", visitorId, resourceId: "not-a-resource" }), makeEnv(store), { store, now: () => baseTime });
+  const randomResourceEvent = await handleRequest(request("/v1/events", "POST", { type: "resource_detail", visitorId, resourceId: "ffffffff-ffff-7fff-8fff-ffffffffffff" }), makeEnv(store), { store, now: () => baseTime });
   const invalidBatch = await handleRequest(request("/v1/resources/stats", "POST", { resourceIds: ["not-a-resource"] }), makeEnv(store), { store, now: () => baseTime });
   const tooLarge = await handleRequest(request("/v1/resources/stats", "POST", { resourceIds: Array.from({ length: MAX_RESOURCE_IDS + 1 }, (_, index) => `${String(index).padStart(8, "0")}-1111-7111-8111-111111111111`) }), makeEnv(store), { store, now: () => baseTime });
 
   assert.equal(invalidEvent.status, 400);
   assert.equal((await responseJson(invalidEvent)).error, "invalid_resource_id");
+  assert.equal(randomResourceEvent.status, 400);
+  assert.equal((await responseJson(randomResourceEvent)).error, "resource_not_public");
   assert.equal(invalidBatch.status, 400);
   assert.equal((await responseJson(invalidBatch)).error, "invalid_resource_id");
   assert.equal(tooLarge.status, 400);
   assert.equal((await responseJson(tooLarge)).error, "resource_id_batch_too_large");
   assert.equal(isValidResourceId(resourceId), true);
   assert.equal(isValidResourceId("/r/not-a-resource/"), false);
+});
+
+test("configured Turnstile is verified server-side before accepting a reminder", async () => {
+  const acceptedStore = new MemoryStatsStore();
+  let verificationBody = "";
+  const acceptedEnv = { ...makeEnv(acceptedStore), TURNSTILE_SECRET_KEY: "turnstile-secret" };
+  const accepted = await handleRequest(request("/v1/update-reminders", "POST", { visitorId, game: "arcaea", turnstileToken: "client-token" }), acceptedEnv, {
+    store: acceptedStore,
+    now: () => baseTime,
+    fetchImpl: async (input, init) => {
+      assert.equal(String(input), "https://challenges.cloudflare.com/turnstile/v0/siteverify");
+      verificationBody = String(init?.body);
+      return new Response(JSON.stringify({ success: true }), { status: 200 });
+    },
+  });
+  assert.equal(accepted.status, 202);
+  assert.match(verificationBody, /secret=turnstile-secret/u);
+  assert.match(verificationBody, /response=client-token/u);
+  const rejectedStore = new MemoryStatsStore();
+  const rejected = await handleRequest(request("/v1/update-reminders", "POST", { visitorId, game: "arcaea", turnstileToken: "client-token" }), { ...makeEnv(rejectedStore), TURNSTILE_SECRET_KEY: "turnstile-secret" }, {
+    store: rejectedStore,
+    now: () => baseTime,
+    fetchImpl: async () => new Response(JSON.stringify({ success: false }), { status: 200 }),
+  });
+  assert.equal(rejected.status, 403);
+  assert.deepEqual(await rejectedStore.listPendingUpdateReminders(), []);
 });
 
 test("first valid update reminder is accepted, persisted as pending, and marked as first", async () => {
@@ -701,6 +745,13 @@ test("malformed JSON returns a stable 400 error", async () => {
 
   assert.equal(response.status, 400);
   assert.equal((await responseJson(response)).error, "invalid_json_body");
+});
+
+test("oversized JSON bodies are rejected before parsing", async () => {
+  const store = new MemoryStatsStore();
+  const response = await handleRequest(new Request("https://stats.example.test/v1/events", { method: "POST", headers: { Origin: "https://rhythmarchive.github.io", "Content-Type": "application/json" }, body: "x".repeat(MAX_EVENT_BODY_BYTES + 1) }), makeEnv(store), { store, now: () => baseTime });
+  assert.equal(response.status, 413);
+  assert.equal((await responseJson(response)).error, "request_too_large");
 });
 
 test("update reminder request frequency is limited per visitor", async () => {

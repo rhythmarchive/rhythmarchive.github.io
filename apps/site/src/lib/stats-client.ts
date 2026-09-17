@@ -1,8 +1,7 @@
+import { isUuidV7 } from "../../../../packages/domain/src/identifiers.js";
+
 export const STATS_VISITOR_STORAGE_KEY = "rhythm-archive-anonymous-visitor-id";
 export const STATS_BATCH_SIZE = 100;
-
-const RESOURCE_ID_PATTERN = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/iu;
-const VISITOR_ID_PATTERN = RESOURCE_ID_PATTERN;
 
 export type SiteStats = {
   totalVisits: number;
@@ -61,11 +60,11 @@ export function normalizeStatsApiUrl(value: string | undefined): string | undefi
 }
 
 export function isValidResourceId(value: unknown): value is string {
-  return typeof value === "string" && RESOURCE_ID_PATTERN.test(value);
+  return isUuidV7(value);
 }
 
 export function isValidVisitorId(value: unknown): value is string {
-  return typeof value === "string" && VISITOR_ID_PATTERN.test(value);
+  return isUuidV7(value);
 }
 
 export function formatStatsCount(value: number): string {

@@ -2,7 +2,7 @@ import { createHash } from "node:crypto";
 import { createReadStream, createWriteStream } from "node:fs";
 import { mkdir, mkdtemp, open, rename, rm, stat } from "node:fs/promises";
 import path from "node:path";
-import { Readable } from "node:stream";
+import { Readable, Transform } from "node:stream";
 import { pipeline } from "node:stream/promises";
 import { ReadableStream } from "node:stream/web";
 import {
@@ -25,6 +25,7 @@ export const ARCAEA_APK_CONTENT_TYPE = "application/vnd.android.package-archive"
 export const ARCAEA_APK_LATEST_KEY = "apk/arcaea/latest.json";
 export const ARCAEA_APK_MIN_SIZE_BYTES = 1024 * 1024;
 export const ARCAEA_APK_MAX_SIZE_BYTES = 2 * 1024 * 1024 * 1024;
+export const ARCAEA_APK_MAX_REDIRECTS = 3;
 export const ARCAEA_LATEST_CACHE_CONTROL = "public, max-age=300";
 export const ARCAEA_APK_GITHUB_REPOSITORY = ARCAEA_GITHUB_REPOSITORY;
 export const ARCAEA_GITHUB_RELEASE_TAG_PREFIX = MANAGED_ARCAEA_RELEASE_TAG_PREFIX;
@@ -214,19 +215,55 @@ async function bodyToText(body: unknown): Promise<string> {
   return (await bodyToBuffer(body)).toString("utf8");
 }
 
+async function fetchOfficialArcaeaApk(discovery: ArcaeaDiscovery, fetchImpl: FetchLike): Promise<Response> {
+  let currentUrl = assertOfficialArcaeaApkUrl(discovery.sourceUrl);
+  for (let redirectCount = 0; redirectCount <= ARCAEA_APK_MAX_REDIRECTS; redirectCount += 1) {
+    const response = await fetchImpl(currentUrl, { headers: { Accept: ARCAEA_APK_CONTENT_TYPE }, redirect: "manual", signal: AbortSignal.timeout(30_000) });
+    if (response.status >= 300 && response.status < 400) {
+      if (redirectCount === ARCAEA_APK_MAX_REDIRECTS) throw new Error("Official Arcaea APK redirect chain is too long.");
+      const location = response.headers.get("Location");
+      if (!location) throw new Error("Official Arcaea APK redirect is missing a Location header.");
+      currentUrl = assertOfficialArcaeaApkUrl(new URL(location, currentUrl).toString());
+      continue;
+    }
+    return response;
+  }
+  throw new Error("Official Arcaea APK redirect chain failed.");
+}
+
+function createSizeLimitTransform(maxBytes: number): Transform {
+  let bytes = 0;
+  return new Transform({
+    transform(chunk: unknown, _encoding, callback) {
+      const buffer = Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk as Uint8Array);
+      bytes += buffer.byteLength;
+      if (bytes > maxBytes) {
+        callback(new Error("Downloaded APK exceeds the maximum size."));
+        return;
+      }
+      callback(null, buffer);
+    },
+  });
+}
+
 export async function downloadOfficialArcaeaApk(discovery: ArcaeaDiscovery, directory: string, fetchImpl: FetchLike = fetch): Promise<string> {
-  const sourceUrl = assertOfficialArcaeaApkUrl(discovery.sourceUrl);
   const canonicalFilename = canonicalArcaeaApkFilename(discovery.version);
   const destination = path.resolve(directory, canonicalFilename);
   const partial = `${destination}.part`;
   await mkdir(directory, { recursive: true });
   await rm(partial, { force: true });
-  const response = await fetchImpl(sourceUrl, { redirect: "follow" });
+  const response = await fetchOfficialArcaeaApk(discovery, fetchImpl);
   if (!response.ok || !response.body) throw new Error(`Official Arcaea APK download failed: ${response.status} ${response.statusText}`);
-  const finalUrl = assertOfficialArcaeaApkUrl(response.url || sourceUrl.toString());
+  const finalUrl = assertOfficialArcaeaApkUrl(response.url || discovery.sourceUrl);
   if (finalUrl.hostname.toLowerCase() !== ARCAEA_OFFICIAL_CDN_HOST) throw new Error("Official Arcaea APK redirect left the allowed CDN.");
+  const contentLength = Number(response.headers.get("Content-Length"));
+  if (Number.isSafeInteger(contentLength) && contentLength > ARCAEA_APK_MAX_SIZE_BYTES) throw new Error("Official Arcaea APK exceeds the maximum size.");
   try {
-    await pipeline(Readable.fromWeb(response.body as unknown as ReadableStream<any>), createWriteStream(partial, { flags: "w" }));
+    await pipeline(
+      Readable.fromWeb(response.body as unknown as ReadableStream<any>),
+      createSizeLimitTransform(ARCAEA_APK_MAX_SIZE_BYTES),
+      createWriteStream(partial, { flags: "w" }),
+    );
     await rename(partial, destination);
     return destination;
   } catch (error) {
@@ -417,7 +454,7 @@ function createArcaeaApkManifest(input: { discovery: ArcaeaDiscovery; validation
 }
 
 function releaseAssetDigestMatches(asset: GitHubReleaseAsset, expectedSha256: string): boolean {
-  if (asset.digest === undefined || asset.digest === null) return true;
+  if (asset.digest === undefined || asset.digest === null) return false;
   const digest = asset.digest.toLowerCase().replace(/^sha256:/u, "");
   return SHA256_PATTERN.test(digest) && digest === expectedSha256.toLowerCase();
 }

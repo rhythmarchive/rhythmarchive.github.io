@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
 import test from "node:test";
-import { MAX_BATCH_FILES, toggleBatchSelection } from "../src/lib/batch.js";
+import { MAX_BATCH_FILES, readResponseBytesWithinLimit, toggleBatchSelection, uniqueZipFilename } from "../src/lib/batch.js";
 
 const siteRoot = path.resolve(process.cwd(), "apps", "site");
 
@@ -18,6 +18,16 @@ test("batch selection keeps the 30-file limit while allowing individual removal"
   assert.equal(removed.limited, false);
   assert.equal(removed.selected.includes(ids[4]!), false);
   assert.equal(removed.selected.length, MAX_BATCH_FILES - 1);
+});
+
+test("batch response reads enforce actual byte limits and safe ZIP names", async () => {
+  const bytes = await readResponseBytesWithinLimit(new Response(new Uint8Array([1, 2, 3])), 3);
+  assert.deepEqual([...bytes], [1, 2, 3]);
+  await assert.rejects(() => readResponseBytesWithinLimit(new Response(new Uint8Array([1, 2, 3, 4])), 3), /exceeds|larger/u);
+  await assert.rejects(() => readResponseBytesWithinLimit(new Response(new Uint8Array([1]), { headers: { "Content-Length": "4" } }), 3), /larger/u);
+  const used = new Set<string>();
+  assert.equal(uniqueZipFilename(used, ".."), "resource.bin");
+  assert.equal(uniqueZipFilename(used, ".."), "resource (2).bin");
 });
 
 test("Gallery and BrowseGallery share the fixed batch tray and client module", () => {

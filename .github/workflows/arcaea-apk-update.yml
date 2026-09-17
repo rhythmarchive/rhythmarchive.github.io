@@ -25,19 +25,15 @@ jobs:
   update:
     runs-on: ubuntu-latest
     timeout-minutes: 90
-    env:
-      GITHUB_TOKEN: ${{ github.token }}
-      ROS_ACCESS_KEY: ${{ secrets.ROS_ACCESS_KEY }}
-      ROS_SECRET_KEY: ${{ secrets.ROS_SECRET_KEY }}
-      ROS_ENDPOINT: ${{ secrets.ROS_ENDPOINT }}
-      ROS_BUCKET: ${{ secrets.ROS_BUCKET }}
-      ROS_PUBLIC_BASE_URL: ${{ secrets.ROS_PUBLIC_BASE_URL }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+        with:
+          fetch-depth: 1
+          persist-credentials: false
 
       - name: Set up Node.js
-        uses: actions/setup-node@v5
+        uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5.0.0
         with:
           node-version: 22
           cache: npm
@@ -51,3 +47,10 @@ jobs:
 
       - name: Run Arcaea APK updater
         run: npm --prefix tools/arcaea-apk-updater run check -- --mode "${{ inputs.mode || 'publish' }}"
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          ROS_ACCESS_KEY: ${{ secrets.ROS_ACCESS_KEY }}
+          ROS_SECRET_KEY: ${{ secrets.ROS_SECRET_KEY }}
+          ROS_ENDPOINT: ${{ secrets.ROS_ENDPOINT }}
+          ROS_BUCKET: ${{ secrets.ROS_BUCKET }}
+          ROS_PUBLIC_BASE_URL: ${{ secrets.ROS_PUBLIC_BASE_URL }}

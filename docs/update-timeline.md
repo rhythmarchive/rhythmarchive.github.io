@@ -119,4 +119,4 @@ git diff --check
 - 详情页数量、预览和筛选结果与公共资源一致。
 - 记录重跑后 ID、时间和资源项保持稳定。
 
-npm run browse:check 只有在 package.json 提供该脚本时才执行；不存在时记录为未配置，不把它当成已通过。
+npm run browse:check 现在是根 package.json 的正式门禁，必须执行并记录结果。

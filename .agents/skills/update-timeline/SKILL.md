@@ -20,4 +20,4 @@ For a new batch:
 5. Exclude metadata-only edits, thumbnail/storage churn, unchanged items and removals. Keep internal change values only for deterministic resource merging; the UI presents one total such as “更新 12 项”.
 6. Regenerate and validate. Check baseline exclusion, current public visibility, homepage recent updates, /updates/ filters, the batch detail page, and responsive navigation.
 
-Run npm run test:all, npm run site:check, npm run site:build, npm run site:smoke, and git diff --check. Stage only the exact timeline source and implementation files. Do not push, deploy, delete remote objects or edit generated output as part of this skill.
+Run npm run stats:registry, npm run ci:check, and git diff --check. The gate covers site typecheck/tests, registry consistency, Browse, Worker checks, site check/build and smoke. Stage only the exact timeline source and implementation files. Do not push, deploy, delete remote objects or edit generated output as part of this skill.

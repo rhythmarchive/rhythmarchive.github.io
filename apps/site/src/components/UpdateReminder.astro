@@ -1,4 +1,5 @@
 ---
+import { PUBLIC_UPDATE_REMINDERS_TURNSTILE_SITE_KEY } from "../lib/site-config";
 import type { PublicGameIndex } from "../lib/types";
 
 interface Props {
@@ -22,6 +23,7 @@ const { games } = Astro.props;
         {games.map((game) => <option value={game.slug}>{game.displayName}</option>)}
       </select>
     </label>
+    {PUBLIC_UPDATE_REMINDERS_TURNSTILE_SITE_KEY ? <div class="update-reminder-turnstile" data-update-reminder-turnstile data-site-key={PUBLIC_UPDATE_REMINDERS_TURNSTILE_SITE_KEY}></div> : null}
     <button class="button button-primary" type="submit" data-update-reminder-submit>提醒一下</button>
     <p class="update-reminder-status" data-update-reminder-status role="status" aria-live="polite" hidden></p>
   </form>

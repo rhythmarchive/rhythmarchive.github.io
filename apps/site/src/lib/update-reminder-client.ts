@@ -34,6 +34,7 @@ export async function submitUpdateReminder(options: {
   apiUrl?: string | undefined;
   visitorId?: string | undefined;
   game: string;
+  turnstileToken?: string | undefined;
   fetchImpl?: UpdateReminderFetch | undefined;
 }): Promise<UpdateReminderResult> {
   const apiUrl = normalizeStatsApiUrl(options.apiUrl);
@@ -47,7 +48,7 @@ export async function submitUpdateReminder(options: {
     const response = await fetchImpl(apiUrl + "/v1/update-reminders", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ visitorId, game }),
+      body: JSON.stringify({ visitorId, game, ...(options.turnstileToken?.trim() ? { turnstileToken: options.turnstileToken.trim() } : {}) }),
       credentials: "omit",
     });
     const body = await readResponseBody(response);

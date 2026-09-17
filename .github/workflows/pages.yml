@@ -15,34 +15,27 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      PUBLIC_SITE_ORIGIN: https://rhythmarchive.github.io
+      PUBLIC_BASE_PATH: /
+      PUBLIC_ROS_BASE_URL: https://rhythm-assets.cn-nb1.rains3.com
+      PUBLIC_STATS_API_URL: ${{ vars.PUBLIC_STATS_API_URL }}
+      PUBLIC_UPDATE_REMINDERS_ENABLED: ${{ vars.PUBLIC_UPDATE_REMINDERS_ENABLED }}
+      PUBLIC_UPDATE_REMINDERS_TURNSTILE_SITE_KEY: ${{ vars.PUBLIC_UPDATE_REMINDERS_TURNSTILE_SITE_KEY }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
       - name: Set up Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
         with:
           node-version: 22
           cache: npm
       - name: Install dependencies
         run: npm ci
-      - name: Git diff check
-        run: git diff --check
-      - name: Typecheck and tests
-        run: npm run test:all
-      - name: Site check
-        run: npm run site:check
-      - name: Build public site
-        run: npm run site:build
-        env:
-          PUBLIC_SITE_ORIGIN: https://rhythmarchive.github.io
-          PUBLIC_BASE_PATH: /
-          PUBLIC_ROS_BASE_URL: https://rhythm-assets.cn-nb1.rains3.com
-          PUBLIC_STATS_API_URL: ${{ vars.PUBLIC_STATS_API_URL }}
-          PUBLIC_UPDATE_REMINDERS_ENABLED: ${{ vars.PUBLIC_UPDATE_REMINDERS_ENABLED }}
-      - name: Site smoke
-        run: npm run site:smoke
+      - name: Quality gate
+        run: npm run ci:check
       - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa # v3.0.1
         with:
           path: apps/site/dist
 
@@ -58,4 +51,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4.0.5
