@@ -11,7 +11,8 @@ test("update history keeps explicit per-game baselines out of public records", (
   assert.equal(new Set(raw.records.map((record) => record.id)).size, raw.records.length);
   const baselineIds = new Set(raw.baselines.map((baseline) => baseline.id));
   assert.ok(raw.records.every((record) => !baselineIds.has(record.id)));
-  assert.ok(raw.records.every((record) => record.game !== "paradigm-reboot"));
+  assert.equal(raw.records.filter((record) => record.game === "paradigm-reboot").length, 1);
+  assert.equal(raw.records.find((record) => record.game === "paradigm-reboot")?.items.length, 11);
   assert.ok(raw.baselines.some((baseline) => baseline.game === "orzmic" && baseline.contentVersion === "3.17.0"));
   assert.equal(raw.records.filter((record) => record.game === "orzmic").length, 0);
 });
@@ -19,7 +20,7 @@ test("update history keeps explicit per-game baselines out of public records", (
 test("public updates are sorted, deduplicated and limited to current public resources", () => {
   const data = getSiteData();
   assert.ok(data.updates.length > 0);
-  assert.ok(data.updates.every((update) => update.game !== "paradigm-reboot"));
+  assert.equal(data.updates.find((update) => update.game === "paradigm-reboot")?.items.length, 11);
   for (let index = 1; index < data.updates.length; index += 1) {
     assert.ok(Date.parse(data.updates[index - 1]!.publishedAt) >= Date.parse(data.updates[index]!.publishedAt));
   }

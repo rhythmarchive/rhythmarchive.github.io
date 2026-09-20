@@ -1,0 +1,760 @@
+{
+  "releaseSchemaVersion": "1.0",
+  "id": "90233421-9dc3-7673-bebb-b859fc919015",
+  "updateBatchId": "54a36a45-f13b-7ec6-ba21-f20dfa3c90c7",
+  "game": "paradigm-reboot",
+  "baseVersion": "4.10",
+  "targetVersion": "4.11",
+  "createdAt": "2026-09-19T16:16:57.127Z",
+  "status": "published",
+  "changes": [
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "b87eaaa9-4711-7e01-9313-505765aa0bd7",
+      "detail": "Approved Paradigm 4.11 client chart metadata update for renegadeparadise."
+    },
+    {
+      "changeType": "metadata-changed",
+      "resourceId": "afbc5002-3cbe-7258-89f4-18495f726b48",
+      "detail": "Approved Paradigm 4.11 client chart metadata update for silentphobia."
+    },
+    {
+      "changeType": "added-resource",
+      "resourceId": "9a7b39fc-0a8c-7f58-bf16-3d2f6df144b4",
+      "detail": "Approved Paradigm 4.11 bang jacket Resource."
+    },
+    {
+      "changeType": "added-variant",
+      "resourceId": "9a7b39fc-0a8c-7f58-bf16-3d2f6df144b4",
+      "variantId": "c22fdd56-d213-7bc4-a4b9-ce6c995afd7f",
+      "detail": "Approved Paradigm 4.11 bang default Variant."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "9a7b39fc-0a8c-7f58-bf16-3d2f6df144b4",
+      "variantId": "c22fdd56-d213-7bc4-a4b9-ce6c995afd7f",
+      "renditionId": "eac86b37-03f4-75c0-b3ba-fffa0ff7b490",
+      "objectId": "sha256:58f74a97da34578f363d5678c8bc92543646eba8e7f2d0443e699a015a2c266c",
+      "detail": "Approved Paradigm 4.11 bang original jacket."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "9a7b39fc-0a8c-7f58-bf16-3d2f6df144b4",
+      "variantId": "c22fdd56-d213-7bc4-a4b9-ce6c995afd7f",
+      "renditionId": "12e51275-ea26-7479-8dc4-51602508a6a0",
+      "objectId": "sha256:d4be3c5f108be8c052957f7f201edec84e438bac40a960dfe6745db8f8898e01",
+      "detail": "Approved Paradigm 4.11 bang upscaled JPEG jacket."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "9a7b39fc-0a8c-7f58-bf16-3d2f6df144b4",
+      "variantId": "c22fdd56-d213-7bc4-a4b9-ce6c995afd7f",
+      "renditionId": "1b5c5176-b535-7bd1-9422-a26f6fa5ebac",
+      "objectId": "sha256:ba581dede4e28275e91a50cc30e4b6ee65537ced3258d45d9860fc83646efd29",
+      "detail": "Approved Paradigm 4.11 bang thumbnail-320."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "9a7b39fc-0a8c-7f58-bf16-3d2f6df144b4",
+      "variantId": "c22fdd56-d213-7bc4-a4b9-ce6c995afd7f",
+      "renditionId": "659b1a17-7a05-7e78-9253-9568643a72b7",
+      "objectId": "sha256:96c5724c06caf388c98ef49acf5790fb14967fa62bdc70ac3b68cd20a8a5e1ef",
+      "detail": "Approved Paradigm 4.11 bang thumbnail-640."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "9a7b39fc-0a8c-7f58-bf16-3d2f6df144b4",
+      "variantId": "c22fdd56-d213-7bc4-a4b9-ce6c995afd7f",
+      "renditionId": "13d8b3fa-c592-7c2f-8243-91ebeeb04fe9",
+      "objectId": "sha256:c565f5c765e19837314294ee7a705bf3cd69ceb117fa3c699529c1282132c1f4",
+      "detail": "Approved Paradigm 4.11 bang thumbnail-1280."
+    },
+    {
+      "changeType": "added-resource",
+      "resourceId": "ea385f25-3c45-7dec-a896-875d72722692",
+      "detail": "Approved Paradigm 4.11 beyondyourwords jacket Resource."
+    },
+    {
+      "changeType": "added-variant",
+      "resourceId": "ea385f25-3c45-7dec-a896-875d72722692",
+      "variantId": "0cf9ed90-a6b2-73e4-80d4-85c4c9e31aed",
+      "detail": "Approved Paradigm 4.11 beyondyourwords default Variant."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "ea385f25-3c45-7dec-a896-875d72722692",
+      "variantId": "0cf9ed90-a6b2-73e4-80d4-85c4c9e31aed",
+      "renditionId": "5eadf8a9-17f2-73a8-aea7-136cccfe9241",
+      "objectId": "sha256:1ff2f0beb0338a2b1f5c0bfb1863cc9687fadecaf59f8ae0296d44651f93764a",
+      "detail": "Approved Paradigm 4.11 beyondyourwords original jacket."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "ea385f25-3c45-7dec-a896-875d72722692",
+      "variantId": "0cf9ed90-a6b2-73e4-80d4-85c4c9e31aed",
+      "renditionId": "b64edcbe-2ad1-731f-abbe-38f7dffde3b4",
+      "objectId": "sha256:2c9b2a1c1a386ceb3bdfb079447810ae82054e9d6eeb41328145fe3778a1d0ec",
+      "detail": "Approved Paradigm 4.11 beyondyourwords upscaled JPEG jacket."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "ea385f25-3c45-7dec-a896-875d72722692",
+      "variantId": "0cf9ed90-a6b2-73e4-80d4-85c4c9e31aed",
+      "renditionId": "1b1c7431-98f0-736f-9768-ff8f1fcc5fc7",
+      "objectId": "sha256:4d975410f7f4cbeacd2ae3871afa06129ca0a64a11c1e2858a732701aa13a8a3",
+      "detail": "Approved Paradigm 4.11 beyondyourwords thumbnail-320."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "ea385f25-3c45-7dec-a896-875d72722692",
+      "variantId": "0cf9ed90-a6b2-73e4-80d4-85c4c9e31aed",
+      "renditionId": "053aa990-3276-71e6-b07d-0f341fd0786a",
+      "objectId": "sha256:d4980005f724ffd506c887ea5a5ce4accb02335ac4844ab35b5494d1bc1a4925",
+      "detail": "Approved Paradigm 4.11 beyondyourwords thumbnail-640."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "ea385f25-3c45-7dec-a896-875d72722692",
+      "variantId": "0cf9ed90-a6b2-73e4-80d4-85c4c9e31aed",
+      "renditionId": "5d289ee0-7be0-7740-b735-7432ac4f68b7",
+      "objectId": "sha256:4aeee19d63fdebc65e777e3146f28dc3ba7b6e8f6765d8319602137647005eba",
+      "detail": "Approved Paradigm 4.11 beyondyourwords thumbnail-1280."
+    },
+    {
+      "changeType": "added-resource",
+      "resourceId": "b0f7474b-c1f2-7842-9b7f-9fb00c39bebe",
+      "detail": "Approved Paradigm 4.11 cryogenic jacket Resource."
+    },
+    {
+      "changeType": "added-variant",
+      "resourceId": "b0f7474b-c1f2-7842-9b7f-9fb00c39bebe",
+      "variantId": "35fa2fa0-7403-7eac-8f12-ba268375ceb4",
+      "detail": "Approved Paradigm 4.11 cryogenic default Variant."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "b0f7474b-c1f2-7842-9b7f-9fb00c39bebe",
+      "variantId": "35fa2fa0-7403-7eac-8f12-ba268375ceb4",
+      "renditionId": "f001670b-de6a-7b79-8113-05c35bebd170",
+      "objectId": "sha256:9856bf8ee0222bdcaa3542b9c037d6212873c7382677c92404ccc6f6dde19d49",
+      "detail": "Approved Paradigm 4.11 cryogenic original jacket."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "b0f7474b-c1f2-7842-9b7f-9fb00c39bebe",
+      "variantId": "35fa2fa0-7403-7eac-8f12-ba268375ceb4",
+      "renditionId": "0ea1f35a-8f90-71ee-b0cd-070c7fb5226c",
+      "objectId": "sha256:4dc825d27edb052a20e494579d214668cd453e3a120c79dfb15cdb2b25b73d9a",
+      "detail": "Approved Paradigm 4.11 cryogenic upscaled JPEG jacket."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "b0f7474b-c1f2-7842-9b7f-9fb00c39bebe",
+      "variantId": "35fa2fa0-7403-7eac-8f12-ba268375ceb4",
+      "renditionId": "4de10c28-ad13-7cee-b508-5125f55859f3",
+      "objectId": "sha256:6c95c5eae2b85de80c3bcba5fdaef2b4fd8c8225b7fea7e413394385b7f54793",
+      "detail": "Approved Paradigm 4.11 cryogenic thumbnail-320."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "b0f7474b-c1f2-7842-9b7f-9fb00c39bebe",
+      "variantId": "35fa2fa0-7403-7eac-8f12-ba268375ceb4",
+      "renditionId": "9d8608b8-c31e-7654-b2a7-64fba801d5ea",
+      "objectId": "sha256:747bee9a9bf4238f3be8358db06b9bc71f4c1fbb0073dcb51b163417550340c3",
+      "detail": "Approved Paradigm 4.11 cryogenic thumbnail-640."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "b0f7474b-c1f2-7842-9b7f-9fb00c39bebe",
+      "variantId": "35fa2fa0-7403-7eac-8f12-ba268375ceb4",
+      "renditionId": "0a43e1c8-03e8-7811-9a9c-a038a2e67e7f",
+      "objectId": "sha256:4f4d235a608295e9c44a0565cf29caa8bd0aabe9a4d907afc8d927bca60d1101",
+      "detail": "Approved Paradigm 4.11 cryogenic thumbnail-1280."
+    },
+    {
+      "changeType": "added-resource",
+      "resourceId": "a17ce704-1423-7f23-8131-c33463df8dff",
+      "detail": "Approved Paradigm 4.11 dbirth jacket Resource."
+    },
+    {
+      "changeType": "added-variant",
+      "resourceId": "a17ce704-1423-7f23-8131-c33463df8dff",
+      "variantId": "c01bf05a-86a2-7a53-8567-b9ab687d7e7a",
+      "detail": "Approved Paradigm 4.11 dbirth default Variant."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "a17ce704-1423-7f23-8131-c33463df8dff",
+      "variantId": "c01bf05a-86a2-7a53-8567-b9ab687d7e7a",
+      "renditionId": "9534ac75-333a-7817-9b64-a5467f8a70f4",
+      "objectId": "sha256:1dd42c47c7eafdc7fb2befa61c547d11d6fe75b9639d476cecc6182dd23b0c2f",
+      "detail": "Approved Paradigm 4.11 dbirth original jacket."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "a17ce704-1423-7f23-8131-c33463df8dff",
+      "variantId": "c01bf05a-86a2-7a53-8567-b9ab687d7e7a",
+      "renditionId": "1984fb3d-3ec2-73fa-ba38-fdede292e6ca",
+      "objectId": "sha256:98ba1c70a5bb1ad60e74d65975522dde275d4c0445f1db5cc9915158755db3c9",
+      "detail": "Approved Paradigm 4.11 dbirth upscaled JPEG jacket."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "a17ce704-1423-7f23-8131-c33463df8dff",
+      "variantId": "c01bf05a-86a2-7a53-8567-b9ab687d7e7a",
+      "renditionId": "843f3dd4-f300-7881-a881-a22834132816",
+      "objectId": "sha256:61c7db1ad999f1ed355c38aabd7a583dc250f1d81e7fce9ad082a9b44bee697f",
+      "detail": "Approved Paradigm 4.11 dbirth thumbnail-320."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "a17ce704-1423-7f23-8131-c33463df8dff",
+      "variantId": "c01bf05a-86a2-7a53-8567-b9ab687d7e7a",
+      "renditionId": "a0a1c03d-8782-754c-a4eb-a9933b1b4e6b",
+      "objectId": "sha256:56bdc273b5cf1843d8fdede0bba2a7b3e1f5ef398abc7859c739a993b4e5d97a",
+      "detail": "Approved Paradigm 4.11 dbirth thumbnail-640."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "a17ce704-1423-7f23-8131-c33463df8dff",
+      "variantId": "c01bf05a-86a2-7a53-8567-b9ab687d7e7a",
+      "renditionId": "b0faa094-aa89-7439-84df-601ce730ff5b",
+      "objectId": "sha256:03b39f73ee7362fe490da9a4b2624880cc3b628ed4954633dc5e5b4ec32c7f99",
+      "detail": "Approved Paradigm 4.11 dbirth thumbnail-1280."
+    },
+    {
+      "changeType": "added-resource",
+      "resourceId": "9d4200e9-764c-7c69-af87-52b59b98f582",
+      "detail": "Approved Paradigm 4.11 lingeringsouls jacket Resource."
+    },
+    {
+      "changeType": "added-variant",
+      "resourceId": "9d4200e9-764c-7c69-af87-52b59b98f582",
+      "variantId": "2465afe6-9bb0-7f3a-a3f1-453f79ad078c",
+      "detail": "Approved Paradigm 4.11 lingeringsouls default Variant."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "9d4200e9-764c-7c69-af87-52b59b98f582",
+      "variantId": "2465afe6-9bb0-7f3a-a3f1-453f79ad078c",
+      "renditionId": "f9c661a4-6a22-791b-abdb-ef8474abc5df",
+      "objectId": "sha256:35d3992c42b42511834b5b3b1a9bbc83039bcf239e5cb05a9eb1bf11be2d5b7e",
+      "detail": "Approved Paradigm 4.11 lingeringsouls original jacket."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "9d4200e9-764c-7c69-af87-52b59b98f582",
+      "variantId": "2465afe6-9bb0-7f3a-a3f1-453f79ad078c",
+      "renditionId": "c2f57771-8b74-7ae4-a693-4780e9844e32",
+      "objectId": "sha256:308639eaaf755bc0a4f76d097d06535174e45646d6f7c827bccef50e548a19ef",
+      "detail": "Approved Paradigm 4.11 lingeringsouls upscaled JPEG jacket."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "9d4200e9-764c-7c69-af87-52b59b98f582",
+      "variantId": "2465afe6-9bb0-7f3a-a3f1-453f79ad078c",
+      "renditionId": "4deec676-c504-72a3-b292-3c91b36b8667",
+      "objectId": "sha256:5a6bbb33ef0ac21f12b57a0d75eacac554d1a4cc147e31fb25fb90f94875eed4",
+      "detail": "Approved Paradigm 4.11 lingeringsouls thumbnail-320."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "9d4200e9-764c-7c69-af87-52b59b98f582",
+      "variantId": "2465afe6-9bb0-7f3a-a3f1-453f79ad078c",
+      "renditionId": "1ee92d00-107f-76cd-a01a-d68117d7a090",
+      "objectId": "sha256:8db3bff5a1e823042566ab7aa41a935d8916e799ee934b7ad3e654fefcfbf878",
+      "detail": "Approved Paradigm 4.11 lingeringsouls thumbnail-640."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "9d4200e9-764c-7c69-af87-52b59b98f582",
+      "variantId": "2465afe6-9bb0-7f3a-a3f1-453f79ad078c",
+      "renditionId": "50095071-3526-7f56-9497-410f54884955",
+      "objectId": "sha256:390221500ef287937e30bedf2690a0d18442c8cc457f9a158e6ee0dc3e557e59",
+      "detail": "Approved Paradigm 4.11 lingeringsouls thumbnail-1280."
+    },
+    {
+      "changeType": "added-resource",
+      "resourceId": "abd3cc0d-6baf-7c0f-b15b-3fb0679da432",
+      "detail": "Approved Paradigm 4.11 noctiluca jacket Resource."
+    },
+    {
+      "changeType": "added-variant",
+      "resourceId": "abd3cc0d-6baf-7c0f-b15b-3fb0679da432",
+      "variantId": "a1938157-776d-7438-8e7f-e93b32786291",
+      "detail": "Approved Paradigm 4.11 noctiluca default Variant."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "abd3cc0d-6baf-7c0f-b15b-3fb0679da432",
+      "variantId": "a1938157-776d-7438-8e7f-e93b32786291",
+      "renditionId": "21bf4f35-611d-7d05-affe-6ef7d6314a69",
+      "objectId": "sha256:2b7f32d782c39a3fbe5216656716ecc8281d5ed209e78247e91cb21c780015d5",
+      "detail": "Approved Paradigm 4.11 noctiluca original jacket."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "abd3cc0d-6baf-7c0f-b15b-3fb0679da432",
+      "variantId": "a1938157-776d-7438-8e7f-e93b32786291",
+      "renditionId": "16bd1305-393f-7567-9dec-63ad93fb4224",
+      "objectId": "sha256:a129ced9b0224f27ea3e9ec1e090fb2a26dd33c7afcab521a0c0075b89280012",
+      "detail": "Approved Paradigm 4.11 noctiluca upscaled JPEG jacket."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "abd3cc0d-6baf-7c0f-b15b-3fb0679da432",
+      "variantId": "a1938157-776d-7438-8e7f-e93b32786291",
+      "renditionId": "9e52f6d4-81be-79ca-88e3-5d78973a872e",
+      "objectId": "sha256:b723c22088370a48e25656a972c601955f3c3ee7957fc62716eb2f05ab98bad9",
+      "detail": "Approved Paradigm 4.11 noctiluca thumbnail-320."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "abd3cc0d-6baf-7c0f-b15b-3fb0679da432",
+      "variantId": "a1938157-776d-7438-8e7f-e93b32786291",
+      "renditionId": "0134a407-deb2-7af0-b82f-fbe23c8f97b1",
+      "objectId": "sha256:dc466f31a152f663725cfb75cab577592bbc46995d8b475ce0ae015f7c88cd59",
+      "detail": "Approved Paradigm 4.11 noctiluca thumbnail-640."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "abd3cc0d-6baf-7c0f-b15b-3fb0679da432",
+      "variantId": "a1938157-776d-7438-8e7f-e93b32786291",
+      "renditionId": "a924d797-156a-7173-ad74-d66ec1990527",
+      "objectId": "sha256:09c2bbbb621417745f70c3e241196a611a9ff22e33e7f273c374b863b3ed1a8d",
+      "detail": "Approved Paradigm 4.11 noctiluca thumbnail-1280."
+    },
+    {
+      "changeType": "added-resource",
+      "resourceId": "0b2e39d0-17a7-7633-916d-4fe168939059",
+      "detail": "Approved Paradigm 4.11 oblivio jacket Resource."
+    },
+    {
+      "changeType": "added-variant",
+      "resourceId": "0b2e39d0-17a7-7633-916d-4fe168939059",
+      "variantId": "6348827b-4857-720f-8b76-854d7ac56ac3",
+      "detail": "Approved Paradigm 4.11 oblivio default Variant."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "0b2e39d0-17a7-7633-916d-4fe168939059",
+      "variantId": "6348827b-4857-720f-8b76-854d7ac56ac3",
+      "renditionId": "df2673ee-6ab6-71cd-8b77-ddaf8d35ab35",
+      "objectId": "sha256:f4321e3be658ac7e0408e1529776db6cc73fb3ab4572a96f86325fe45d2f9f9c",
+      "detail": "Approved Paradigm 4.11 oblivio original jacket."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "0b2e39d0-17a7-7633-916d-4fe168939059",
+      "variantId": "6348827b-4857-720f-8b76-854d7ac56ac3",
+      "renditionId": "ce54d669-b31f-7f80-a14a-da7d5e56a690",
+      "objectId": "sha256:1cf791f6fcfbf379d871bb98922cd3264f9a8475c3870d776ac7c633a27a2a64",
+      "detail": "Approved Paradigm 4.11 oblivio upscaled JPEG jacket."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "0b2e39d0-17a7-7633-916d-4fe168939059",
+      "variantId": "6348827b-4857-720f-8b76-854d7ac56ac3",
+      "renditionId": "7822ea4f-bd65-784c-9cdc-7cdfe615dbcf",
+      "objectId": "sha256:3ba0f1d46b37527b2923e4004d8bca23d04f5469cc07bb458dbd18888dc694dd",
+      "detail": "Approved Paradigm 4.11 oblivio thumbnail-320."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "0b2e39d0-17a7-7633-916d-4fe168939059",
+      "variantId": "6348827b-4857-720f-8b76-854d7ac56ac3",
+      "renditionId": "9b074943-be6d-7d2f-b0ca-2fffd0791f2c",
+      "objectId": "sha256:dfdae778f0a6ec94607c5c9782ddd002009e30782c0a78e9846f638dc99f3a56",
+      "detail": "Approved Paradigm 4.11 oblivio thumbnail-640."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "0b2e39d0-17a7-7633-916d-4fe168939059",
+      "variantId": "6348827b-4857-720f-8b76-854d7ac56ac3",
+      "renditionId": "65789faf-a0ea-7983-9afb-3936ca4044a1",
+      "objectId": "sha256:21f19727ec665df0244e745665f9183c6fae61081f5a7af960425a1bcb5bd50a",
+      "detail": "Approved Paradigm 4.11 oblivio thumbnail-1280."
+    },
+    {
+      "changeType": "added-resource",
+      "resourceId": "0c45deaf-0b3a-7a42-bb3b-feaf5be1735c",
+      "detail": "Approved Paradigm 4.11 oceanus jacket Resource."
+    },
+    {
+      "changeType": "added-variant",
+      "resourceId": "0c45deaf-0b3a-7a42-bb3b-feaf5be1735c",
+      "variantId": "b32e14ab-4ed8-7082-9c4c-f624739c89fe",
+      "detail": "Approved Paradigm 4.11 oceanus default Variant."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "0c45deaf-0b3a-7a42-bb3b-feaf5be1735c",
+      "variantId": "b32e14ab-4ed8-7082-9c4c-f624739c89fe",
+      "renditionId": "e3ca80bb-89d0-762d-b5c3-d9188c803df1",
+      "objectId": "sha256:616618271848881f38f1a5d5438e9b62227c66af739bfff1c1640cd853406dc7",
+      "detail": "Approved Paradigm 4.11 oceanus original jacket."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "0c45deaf-0b3a-7a42-bb3b-feaf5be1735c",
+      "variantId": "b32e14ab-4ed8-7082-9c4c-f624739c89fe",
+      "renditionId": "65879794-adfd-74e1-a800-f99a0bdf1196",
+      "objectId": "sha256:46d59175a77abe4309697acfe1788807a7671b6b9e1b3958b03d7f7629a64a74",
+      "detail": "Approved Paradigm 4.11 oceanus upscaled JPEG jacket."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "0c45deaf-0b3a-7a42-bb3b-feaf5be1735c",
+      "variantId": "b32e14ab-4ed8-7082-9c4c-f624739c89fe",
+      "renditionId": "08d318aa-42ed-70ea-b722-fc854a901c00",
+      "objectId": "sha256:05ab4b5437f98fd6fe3d61980dd0b66bcdcd531342ad91fb2e0ed7672747e967",
+      "detail": "Approved Paradigm 4.11 oceanus thumbnail-320."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "0c45deaf-0b3a-7a42-bb3b-feaf5be1735c",
+      "variantId": "b32e14ab-4ed8-7082-9c4c-f624739c89fe",
+      "renditionId": "28a88a39-f5e4-7bb2-aac4-5da1c3a01739",
+      "objectId": "sha256:1dd8c798a092201fafc42c551f0b5ce1bd606f4d50a86bc911851569bd845733",
+      "detail": "Approved Paradigm 4.11 oceanus thumbnail-640."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "0c45deaf-0b3a-7a42-bb3b-feaf5be1735c",
+      "variantId": "b32e14ab-4ed8-7082-9c4c-f624739c89fe",
+      "renditionId": "80ac1a2a-56c2-7d6b-a734-b9688434743d",
+      "objectId": "sha256:e93cd1d2b37cd6918f05fcbdefee37cb039a4e2814e3c5d596cdb95b989f3035",
+      "detail": "Approved Paradigm 4.11 oceanus thumbnail-1280."
+    },
+    {
+      "changeType": "added-resource",
+      "resourceId": "a371eef9-603a-7c50-a461-92d56a08516d",
+      "detail": "Approved Paradigm 4.11 tuneyourbasstoours jacket Resource."
+    },
+    {
+      "changeType": "added-variant",
+      "resourceId": "a371eef9-603a-7c50-a461-92d56a08516d",
+      "variantId": "538ab681-2ffa-7a2e-a4f4-7ce4ba3d06a2",
+      "detail": "Approved Paradigm 4.11 tuneyourbasstoours default Variant."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "a371eef9-603a-7c50-a461-92d56a08516d",
+      "variantId": "538ab681-2ffa-7a2e-a4f4-7ce4ba3d06a2",
+      "renditionId": "d13bfb52-04a8-7b9e-b9f5-583512aac7c6",
+      "objectId": "sha256:95e6bea00337779eb142f2e6cbeb00c72033ae8728fa1e9307ec2727557f4d23",
+      "detail": "Approved Paradigm 4.11 tuneyourbasstoours original jacket."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "a371eef9-603a-7c50-a461-92d56a08516d",
+      "variantId": "538ab681-2ffa-7a2e-a4f4-7ce4ba3d06a2",
+      "renditionId": "baed520d-5b32-71a2-9bcb-73f3fcf9aaaf",
+      "objectId": "sha256:99a30acdeb2389f8cf29a8e269b3894b1f8d4a34cf9f0301830f4cce57975d8b",
+      "detail": "Approved Paradigm 4.11 tuneyourbasstoours upscaled JPEG jacket."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "a371eef9-603a-7c50-a461-92d56a08516d",
+      "variantId": "538ab681-2ffa-7a2e-a4f4-7ce4ba3d06a2",
+      "renditionId": "e9e28892-14bb-762e-b5f0-583c03344bdb",
+      "objectId": "sha256:0ba392fda4697c586bb32f0c9c1b9694991071eb90a40a6e44cac1e2ff658364",
+      "detail": "Approved Paradigm 4.11 tuneyourbasstoours thumbnail-320."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "a371eef9-603a-7c50-a461-92d56a08516d",
+      "variantId": "538ab681-2ffa-7a2e-a4f4-7ce4ba3d06a2",
+      "renditionId": "fbb55da1-1573-77be-960b-bdf2c2593026",
+      "objectId": "sha256:5085bf34f2e4ab01f8c38f07cda985ecd1c6fa3feddef0fd63c30f8e1121953b",
+      "detail": "Approved Paradigm 4.11 tuneyourbasstoours thumbnail-640."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "a371eef9-603a-7c50-a461-92d56a08516d",
+      "variantId": "538ab681-2ffa-7a2e-a4f4-7ce4ba3d06a2",
+      "renditionId": "bb2cb757-e990-71c2-b5a4-e123543315cd",
+      "objectId": "sha256:0bacf2d6b68eadb15ce4a13c19bd11c4551c3c28eb2871634a775b90ca0136d1",
+      "detail": "Approved Paradigm 4.11 tuneyourbasstoours thumbnail-1280."
+    },
+    {
+      "changeType": "added-resource",
+      "resourceId": "71b8e522-238a-707b-bae6-340f36b2cb5c",
+      "detail": "Approved Paradigm 4.11 veritas jacket Resource."
+    },
+    {
+      "changeType": "added-variant",
+      "resourceId": "71b8e522-238a-707b-bae6-340f36b2cb5c",
+      "variantId": "f72fde04-f023-760d-abf9-5193d6d48647",
+      "detail": "Approved Paradigm 4.11 veritas default Variant."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "71b8e522-238a-707b-bae6-340f36b2cb5c",
+      "variantId": "f72fde04-f023-760d-abf9-5193d6d48647",
+      "renditionId": "54f77c3a-39e6-7b65-a2bc-3d8bdaff4486",
+      "objectId": "sha256:68e53e451ca47d923d62e69b82029b682a6cf428c208cc95a8b5fc81d01c7b92",
+      "detail": "Approved Paradigm 4.11 veritas original jacket."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "71b8e522-238a-707b-bae6-340f36b2cb5c",
+      "variantId": "f72fde04-f023-760d-abf9-5193d6d48647",
+      "renditionId": "f023b284-265a-7569-bee9-ef8e9a58f18f",
+      "objectId": "sha256:7b3700139e2c5b07a5b9998795a526213461a95019920db079d0491063259b9f",
+      "detail": "Approved Paradigm 4.11 veritas upscaled JPEG jacket."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "71b8e522-238a-707b-bae6-340f36b2cb5c",
+      "variantId": "f72fde04-f023-760d-abf9-5193d6d48647",
+      "renditionId": "d17b3cdf-072b-79f8-aace-5b1354e9f786",
+      "objectId": "sha256:71ca6acc3653bbea5dfafddcfae17f7e43fcf27a6cc319dc73710369f7c075e3",
+      "detail": "Approved Paradigm 4.11 veritas thumbnail-320."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "71b8e522-238a-707b-bae6-340f36b2cb5c",
+      "variantId": "f72fde04-f023-760d-abf9-5193d6d48647",
+      "renditionId": "29f448c6-38c3-7b07-ba79-998d4e95b1eb",
+      "objectId": "sha256:d80b91efd4b71da80ff57e180d45314e1cdd3f676960c49805fb48141a2f5804",
+      "detail": "Approved Paradigm 4.11 veritas thumbnail-640."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "71b8e522-238a-707b-bae6-340f36b2cb5c",
+      "variantId": "f72fde04-f023-760d-abf9-5193d6d48647",
+      "renditionId": "c45ac356-fb42-73e9-8759-b366b80d271a",
+      "objectId": "sha256:050d40badd40e3c61207940511eae3373e11556b09a9a1d67588a452e0355367",
+      "detail": "Approved Paradigm 4.11 veritas thumbnail-1280."
+    },
+    {
+      "changeType": "added-resource",
+      "resourceId": "b9cb7bcb-9fb4-7402-91fa-4a6c9688b324",
+      "detail": "Approved Paradigm 4.11 worlddevotion jacket Resource."
+    },
+    {
+      "changeType": "added-variant",
+      "resourceId": "b9cb7bcb-9fb4-7402-91fa-4a6c9688b324",
+      "variantId": "0aadc198-2e66-7936-a835-9e4c89e603f9",
+      "detail": "Approved Paradigm 4.11 worlddevotion default Variant."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "b9cb7bcb-9fb4-7402-91fa-4a6c9688b324",
+      "variantId": "0aadc198-2e66-7936-a835-9e4c89e603f9",
+      "renditionId": "5f805026-5b9c-7b13-a92a-45bc176ca628",
+      "objectId": "sha256:8d74de7be7932c256a43be3ac1b8f27c89a260dba8696ba4fdd858baa6fbe88e",
+      "detail": "Approved Paradigm 4.11 worlddevotion original jacket."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "b9cb7bcb-9fb4-7402-91fa-4a6c9688b324",
+      "variantId": "0aadc198-2e66-7936-a835-9e4c89e603f9",
+      "renditionId": "bf70a0ea-999d-78dd-8446-5d9e49159c0d",
+      "objectId": "sha256:80cb4789e822faf646d421946bd7941044a283e9306e12fe87de38032b294876",
+      "detail": "Approved Paradigm 4.11 worlddevotion upscaled JPEG jacket."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "b9cb7bcb-9fb4-7402-91fa-4a6c9688b324",
+      "variantId": "0aadc198-2e66-7936-a835-9e4c89e603f9",
+      "renditionId": "20e60616-f7c2-7102-bfe9-de08e4f4096b",
+      "objectId": "sha256:69f15f951f8759a260e6e4bb243d9aad0bbee6e8f1bf8310c00831516bdfa6f7",
+      "detail": "Approved Paradigm 4.11 worlddevotion thumbnail-320."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "b9cb7bcb-9fb4-7402-91fa-4a6c9688b324",
+      "variantId": "0aadc198-2e66-7936-a835-9e4c89e603f9",
+      "renditionId": "c1941750-69b3-7f91-8753-e5b8c503c339",
+      "objectId": "sha256:dfda6cabdcf6f04c9a817bb4d6e7140b435cd6bea20acf7f870c9dcf60927571",
+      "detail": "Approved Paradigm 4.11 worlddevotion thumbnail-640."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "b9cb7bcb-9fb4-7402-91fa-4a6c9688b324",
+      "variantId": "0aadc198-2e66-7936-a835-9e4c89e603f9",
+      "renditionId": "01578bec-ce7f-7ce7-982d-6f1914f23f33",
+      "objectId": "sha256:85f4982ae266288312f7fbb052ceaf7234a6b86671e6fe6209ae2d78f3d23a6a",
+      "detail": "Approved Paradigm 4.11 worlddevotion thumbnail-1280."
+    }
+  ],
+  "affectedResourceIds": [
+    "b87eaaa9-4711-7e01-9313-505765aa0bd7",
+    "afbc5002-3cbe-7258-89f4-18495f726b48",
+    "9a7b39fc-0a8c-7f58-bf16-3d2f6df144b4",
+    "ea385f25-3c45-7dec-a896-875d72722692",
+    "b0f7474b-c1f2-7842-9b7f-9fb00c39bebe",
+    "a17ce704-1423-7f23-8131-c33463df8dff",
+    "9d4200e9-764c-7c69-af87-52b59b98f582",
+    "abd3cc0d-6baf-7c0f-b15b-3fb0679da432",
+    "0b2e39d0-17a7-7633-916d-4fe168939059",
+    "0c45deaf-0b3a-7a42-bb3b-feaf5be1735c",
+    "a371eef9-603a-7c50-a461-92d56a08516d",
+    "71b8e522-238a-707b-bae6-340f36b2cb5c",
+    "b9cb7bcb-9fb4-7402-91fa-4a6c9688b324"
+  ],
+  "publishedRenditions": [
+    {
+      "resourceId": "9a7b39fc-0a8c-7f58-bf16-3d2f6df144b4",
+      "variantId": "c22fdd56-d213-7bc4-a4b9-ce6c995afd7f",
+      "renditionId": "eac86b37-03f4-75c0-b3ba-fffa0ff7b490",
+      "objectId": "sha256:58f74a97da34578f363d5678c8bc92543646eba8e7f2d0443e699a015a2c266c",
+      "downloadFilename": "paradigm-bang-default.png"
+    },
+    {
+      "resourceId": "9a7b39fc-0a8c-7f58-bf16-3d2f6df144b4",
+      "variantId": "c22fdd56-d213-7bc4-a4b9-ce6c995afd7f",
+      "renditionId": "12e51275-ea26-7479-8dc4-51602508a6a0",
+      "objectId": "sha256:d4be3c5f108be8c052957f7f201edec84e438bac40a960dfe6745db8f8898e01",
+      "downloadFilename": "paradigm-bang-default.jpg"
+    },
+    {
+      "resourceId": "ea385f25-3c45-7dec-a896-875d72722692",
+      "variantId": "0cf9ed90-a6b2-73e4-80d4-85c4c9e31aed",
+      "renditionId": "5eadf8a9-17f2-73a8-aea7-136cccfe9241",
+      "objectId": "sha256:1ff2f0beb0338a2b1f5c0bfb1863cc9687fadecaf59f8ae0296d44651f93764a",
+      "downloadFilename": "paradigm-beyondyourwords-default.png"
+    },
+    {
+      "resourceId": "ea385f25-3c45-7dec-a896-875d72722692",
+      "variantId": "0cf9ed90-a6b2-73e4-80d4-85c4c9e31aed",
+      "renditionId": "b64edcbe-2ad1-731f-abbe-38f7dffde3b4",
+      "objectId": "sha256:2c9b2a1c1a386ceb3bdfb079447810ae82054e9d6eeb41328145fe3778a1d0ec",
+      "downloadFilename": "paradigm-beyondyourwords-default.jpg"
+    },
+    {
+      "resourceId": "b0f7474b-c1f2-7842-9b7f-9fb00c39bebe",
+      "variantId": "35fa2fa0-7403-7eac-8f12-ba268375ceb4",
+      "renditionId": "f001670b-de6a-7b79-8113-05c35bebd170",
+      "objectId": "sha256:9856bf8ee0222bdcaa3542b9c037d6212873c7382677c92404ccc6f6dde19d49",
+      "downloadFilename": "paradigm-cryogenic-default.png"
+    },
+    {
+      "resourceId": "b0f7474b-c1f2-7842-9b7f-9fb00c39bebe",
+      "variantId": "35fa2fa0-7403-7eac-8f12-ba268375ceb4",
+      "renditionId": "0ea1f35a-8f90-71ee-b0cd-070c7fb5226c",
+      "objectId": "sha256:4dc825d27edb052a20e494579d214668cd453e3a120c79dfb15cdb2b25b73d9a",
+      "downloadFilename": "paradigm-cryogenic-default.jpg"
+    },
+    {
+      "resourceId": "a17ce704-1423-7f23-8131-c33463df8dff",
+      "variantId": "c01bf05a-86a2-7a53-8567-b9ab687d7e7a",
+      "renditionId": "9534ac75-333a-7817-9b64-a5467f8a70f4",
+      "objectId": "sha256:1dd42c47c7eafdc7fb2befa61c547d11d6fe75b9639d476cecc6182dd23b0c2f",
+      "downloadFilename": "paradigm-dbirth-default.png"
+    },
+    {
+      "resourceId": "a17ce704-1423-7f23-8131-c33463df8dff",
+      "variantId": "c01bf05a-86a2-7a53-8567-b9ab687d7e7a",
+      "renditionId": "1984fb3d-3ec2-73fa-ba38-fdede292e6ca",
+      "objectId": "sha256:98ba1c70a5bb1ad60e74d65975522dde275d4c0445f1db5cc9915158755db3c9",
+      "downloadFilename": "paradigm-dbirth-default.jpg"
+    },
+    {
+      "resourceId": "9d4200e9-764c-7c69-af87-52b59b98f582",
+      "variantId": "2465afe6-9bb0-7f3a-a3f1-453f79ad078c",
+      "renditionId": "f9c661a4-6a22-791b-abdb-ef8474abc5df",
+      "objectId": "sha256:35d3992c42b42511834b5b3b1a9bbc83039bcf239e5cb05a9eb1bf11be2d5b7e",
+      "downloadFilename": "paradigm-lingeringsouls-default.png"
+    },
+    {
+      "resourceId": "9d4200e9-764c-7c69-af87-52b59b98f582",
+      "variantId": "2465afe6-9bb0-7f3a-a3f1-453f79ad078c",
+      "renditionId": "c2f57771-8b74-7ae4-a693-4780e9844e32",
+      "objectId": "sha256:308639eaaf755bc0a4f76d097d06535174e45646d6f7c827bccef50e548a19ef",
+      "downloadFilename": "paradigm-lingeringsouls-default.jpg"
+    },
+    {
+      "resourceId": "abd3cc0d-6baf-7c0f-b15b-3fb0679da432",
+      "variantId": "a1938157-776d-7438-8e7f-e93b32786291",
+      "renditionId": "21bf4f35-611d-7d05-affe-6ef7d6314a69",
+      "objectId": "sha256:2b7f32d782c39a3fbe5216656716ecc8281d5ed209e78247e91cb21c780015d5",
+      "downloadFilename": "paradigm-noctiluca-default.png"
+    },
+    {
+      "resourceId": "abd3cc0d-6baf-7c0f-b15b-3fb0679da432",
+      "variantId": "a1938157-776d-7438-8e7f-e93b32786291",
+      "renditionId": "16bd1305-393f-7567-9dec-63ad93fb4224",
+      "objectId": "sha256:a129ced9b0224f27ea3e9ec1e090fb2a26dd33c7afcab521a0c0075b89280012",
+      "downloadFilename": "paradigm-noctiluca-default.jpg"
+    },
+    {
+      "resourceId": "0b2e39d0-17a7-7633-916d-4fe168939059",
+      "variantId": "6348827b-4857-720f-8b76-854d7ac56ac3",
+      "renditionId": "df2673ee-6ab6-71cd-8b77-ddaf8d35ab35",
+      "objectId": "sha256:f4321e3be658ac7e0408e1529776db6cc73fb3ab4572a96f86325fe45d2f9f9c",
+      "downloadFilename": "paradigm-oblivio-default.png"
+    },
+    {
+      "resourceId": "0b2e39d0-17a7-7633-916d-4fe168939059",
+      "variantId": "6348827b-4857-720f-8b76-854d7ac56ac3",
+      "renditionId": "ce54d669-b31f-7f80-a14a-da7d5e56a690",
+      "objectId": "sha256:1cf791f6fcfbf379d871bb98922cd3264f9a8475c3870d776ac7c633a27a2a64",
+      "downloadFilename": "paradigm-oblivio-default.jpg"
+    },
+    {
+      "resourceId": "0c45deaf-0b3a-7a42-bb3b-feaf5be1735c",
+      "variantId": "b32e14ab-4ed8-7082-9c4c-f624739c89fe",
+      "renditionId": "e3ca80bb-89d0-762d-b5c3-d9188c803df1",
+      "objectId": "sha256:616618271848881f38f1a5d5438e9b62227c66af739bfff1c1640cd853406dc7",
+      "downloadFilename": "paradigm-oceanus-default.png"
+    },
+    {
+      "resourceId": "0c45deaf-0b3a-7a42-bb3b-feaf5be1735c",
+      "variantId": "b32e14ab-4ed8-7082-9c4c-f624739c89fe",
+      "renditionId": "65879794-adfd-74e1-a800-f99a0bdf1196",
+      "objectId": "sha256:46d59175a77abe4309697acfe1788807a7671b6b9e1b3958b03d7f7629a64a74",
+      "downloadFilename": "paradigm-oceanus-default.jpg"
+    },
+    {
+      "resourceId": "a371eef9-603a-7c50-a461-92d56a08516d",
+      "variantId": "538ab681-2ffa-7a2e-a4f4-7ce4ba3d06a2",
+      "renditionId": "d13bfb52-04a8-7b9e-b9f5-583512aac7c6",
+      "objectId": "sha256:95e6bea00337779eb142f2e6cbeb00c72033ae8728fa1e9307ec2727557f4d23",
+      "downloadFilename": "paradigm-tuneyourbasstoours-default.png"
+    },
+    {
+      "resourceId": "a371eef9-603a-7c50-a461-92d56a08516d",
+      "variantId": "538ab681-2ffa-7a2e-a4f4-7ce4ba3d06a2",
+      "renditionId": "baed520d-5b32-71a2-9bcb-73f3fcf9aaaf",
+      "objectId": "sha256:99a30acdeb2389f8cf29a8e269b3894b1f8d4a34cf9f0301830f4cce57975d8b",
+      "downloadFilename": "paradigm-tuneyourbasstoours-default.jpg"
+    },
+    {
+      "resourceId": "71b8e522-238a-707b-bae6-340f36b2cb5c",
+      "variantId": "f72fde04-f023-760d-abf9-5193d6d48647",
+      "renditionId": "54f77c3a-39e6-7b65-a2bc-3d8bdaff4486",
+      "objectId": "sha256:68e53e451ca47d923d62e69b82029b682a6cf428c208cc95a8b5fc81d01c7b92",
+      "downloadFilename": "paradigm-veritas-default.png"
+    },
+    {
+      "resourceId": "71b8e522-238a-707b-bae6-340f36b2cb5c",
+      "variantId": "f72fde04-f023-760d-abf9-5193d6d48647",
+      "renditionId": "f023b284-265a-7569-bee9-ef8e9a58f18f",
+      "objectId": "sha256:7b3700139e2c5b07a5b9998795a526213461a95019920db079d0491063259b9f",
+      "downloadFilename": "paradigm-veritas-default.jpg"
+    },
+    {
+      "resourceId": "b9cb7bcb-9fb4-7402-91fa-4a6c9688b324",
+      "variantId": "0aadc198-2e66-7936-a835-9e4c89e603f9",
+      "renditionId": "5f805026-5b9c-7b13-a92a-45bc176ca628",
+      "objectId": "sha256:8d74de7be7932c256a43be3ac1b8f27c89a260dba8696ba4fdd858baa6fbe88e",
+      "downloadFilename": "paradigm-worlddevotion-default.png"
+    },
+    {
+      "resourceId": "b9cb7bcb-9fb4-7402-91fa-4a6c9688b324",
+      "variantId": "0aadc198-2e66-7936-a835-9e4c89e603f9",
+      "renditionId": "bf70a0ea-999d-78dd-8446-5d9e49159c0d",
+      "objectId": "sha256:80cb4789e822faf646d421946bd7941044a283e9306e12fe87de38032b294876",
+      "downloadFilename": "paradigm-worlddevotion-default.jpg"
+    }
+  ],
+  "removedFromCurrentSource": [],
+  "notes": [
+    "Paradigm 4.11 website update: 11 new client D154 songs, approved Chinese Wiki public metadata, and 2 approved client MSV chart changes.",
+    "Original PNG, JPEG web upscale, and thumbnail renditions are preserved as separate immutable Objects.",
+    "No audio/chart binaries were added to the public image website scope; no deletion was performed."
+  ]
+}

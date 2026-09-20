@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
   "game": "arcaea",
-  "generatedAt": "2026-09-06T06:11:09.420Z",
+  "generatedAt": "2026-09-20T00:00:00.000Z",
   "source": {
-    "version": "7.0.255c",
-    "sha256": "5aeb5edc425808605cc8a682cd9269aecae671fdab9573376b100d08ee3577c6"
+    "version": "7.0.260c",
+    "sha256": "2ccc879de95932d47ff62fc1bc18acbbeb43f43671302e4240498005f6e2b9e2"
   },
   "songs": [
     {
@@ -34958,6 +34958,11 @@
       "titleAliases": [
         "Riven Pilgrimage",
         "리벤 필그러메이지",
+        "りゔんぴるぐりみっじ",
+        "りゔんぴるぐりめーじ",
+        "りぶんぴるぐりみっじ",
+        "りぶんぴるぐりめーじ",
+        "りぶんぴるぐりめっじ",
         "りべんぴるぐりめーじ"
       ],
       "artist": "rejection & Supire feat. eili",
@@ -35018,7 +35023,12 @@
         "에일리",
         "えいり",
         "すぱいあ",
+        "りゔんぴるぐりみっじ",
+        "りゔんぴるぐりめーじ",
         "りじぇくしょん",
+        "りぶんぴるぐりみっじ",
+        "りぶんぴるぐりめーじ",
+        "りぶんぴるぐりめっじ",
         "りべんぴるぐりめーじ"
       ]
     },
@@ -35090,7 +35100,8 @@
       "titleAliases": [
         "DEINOS PHAINEIN",
         "에이노스 파이네인",
-        "えいのすふぁいねいん"
+        "えいのすふぁいねいん",
+        "でいのすふぁいねいん"
       ],
       "artist": "Blacklolita vs Juggernaut.",
       "artistAliases": [
@@ -35149,6 +35160,7 @@
         "저거넛",
         "えいのすふぁいねいん",
         "じゃがーのーと",
+        "でいのすふぁいねいん",
         "ぶらっくろりーた"
       ]
     },
@@ -35278,6 +35290,81 @@
         "かたぎり",
         "さいれんとるーむ",
         "さくろさんくと"
+      ]
+    },
+    {
+      "songId": "chateaudecartes",
+      "displayTitle": "Château de cartes",
+      "titleAliases": [
+        "Chateau",
+        "Chateau de cartes",
+        "Château de cartes",
+        "샤또 드 카뜨",
+        "샤또 드 카흐뜨",
+        "しゃとーどかると"
+      ],
+      "artist": "Inverted Silence ft. Pernelle",
+      "artistAliases": [
+        "인버티드 사일런스",
+        "페넬레",
+        "페르넬레",
+        "いんゔぁーてっどさいれんす",
+        "いんばーてっどさいれんす",
+        "ぺるねる"
+      ],
+      "pack": {
+        "packId": "single",
+        "displayName": null
+      },
+      "version": "7.0",
+      "date": 1789808400,
+      "sideRaw": 0,
+      "bpm": "126",
+      "orderHint": 554,
+      "charts": [
+        {
+          "difficultyClass": "ETR",
+          "displayLevel": "10"
+        },
+        {
+          "difficultyClass": "FTR",
+          "displayLevel": "9"
+        },
+        {
+          "difficultyClass": "PRS",
+          "displayLevel": "7+"
+        },
+        {
+          "difficultyClass": "PST",
+          "displayLevel": "4"
+        }
+      ],
+      "artworks": [
+        {
+          "role": "default",
+          "resourceId": "41be1a6c-08b7-7da3-9955-f12d5665d2f2",
+          "currentApkPresence": true,
+          "matchStatus": "confirmed",
+          "sourcePath": "assets/songs/dl_chateaudecartes/1080_base.jpg"
+        }
+      ],
+      "relatedSongs": [],
+      "searchTerms": [
+        "chateau",
+        "chateau de cartes",
+        "château de cartes",
+        "chateaudecartes",
+        "inverted silence ft. pernelle",
+        "single",
+        "샤또 드 카뜨",
+        "샤또 드 카흐뜨",
+        "인버티드 사일런스",
+        "페넬레",
+        "페르넬레",
+        "いんゔぁーてっどさいれんす",
+        "いんばーてっどさいれんす",
+        "しゃとーどかると",
+        "ぺるねる"
       ]
     }
   ],
@@ -35606,9 +35693,9 @@
     }
   ],
   "recordCounts": {
-    "regularSongs": 552,
-    "currentArtworkSlots": 611,
-    "currentArtworkResourceReferences": 610,
+    "regularSongs": 553,
+    "currentArtworkSlots": 612,
+    "currentArtworkResourceReferences": 611,
     "missingCurrentArtwork": 1,
     "specialRecords": 9,
     "archiveExtras": 3,

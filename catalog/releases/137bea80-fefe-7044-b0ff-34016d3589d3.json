@@ -1,0 +1,75 @@
+{
+  "releaseSchemaVersion": "1.0",
+  "id": "137bea80-fefe-7044-b0ff-34016d3589d3",
+  "updateBatchId": "1edc079c-fc6b-7171-84a0-b3b07d740bf4",
+  "game": "arcaea",
+  "baseVersion": "7.0.255c",
+  "targetVersion": "7.0.260c",
+  "createdAt": "2026-09-19T15:57:05.564Z",
+  "status": "published",
+  "changes": [
+    {
+      "changeType": "added-resource",
+      "resourceId": "41be1a6c-08b7-7da3-9955-f12d5665d2f2",
+      "detail": "Approved Arcaea 7.0.260c source resource."
+    },
+    {
+      "changeType": "added-variant",
+      "resourceId": "41be1a6c-08b7-7da3-9955-f12d5665d2f2",
+      "variantId": "987feb5a-5eea-756e-b36d-891d46d39202",
+      "detail": "Approved Arcaea 7.0.260c semantic variant."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "41be1a6c-08b7-7da3-9955-f12d5665d2f2",
+      "variantId": "987feb5a-5eea-756e-b36d-891d46d39202",
+      "renditionId": "b23988b9-7cb6-7659-8648-a9e6feb41a84",
+      "objectId": "sha256:32e46e0e8485e6a53202a12c93cb2c29df1c9c3ba7ec5727c7a7f375617100a3",
+      "detail": "Canonical or derived Arcaea 7.0.260c image rendition."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "41be1a6c-08b7-7da3-9955-f12d5665d2f2",
+      "variantId": "987feb5a-5eea-756e-b36d-891d46d39202",
+      "renditionId": "0534a2d9-19b4-791e-b4b1-adb3280ec749",
+      "objectId": "sha256:0fba762ddd8337e03fdcd6b326749c4a10064712037f92bf85365f0c34d7866b",
+      "detail": "Canonical or derived Arcaea 7.0.260c image rendition."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "41be1a6c-08b7-7da3-9955-f12d5665d2f2",
+      "variantId": "987feb5a-5eea-756e-b36d-891d46d39202",
+      "renditionId": "31e47196-0a9e-76b8-a809-564a9e7163cf",
+      "objectId": "sha256:9a89220346a065edbe1181a32d2d9768c4cba134692acf4bb76490a4154bb405",
+      "detail": "Canonical or derived Arcaea 7.0.260c image rendition."
+    },
+    {
+      "changeType": "added-rendition",
+      "resourceId": "41be1a6c-08b7-7da3-9955-f12d5665d2f2",
+      "variantId": "987feb5a-5eea-756e-b36d-891d46d39202",
+      "renditionId": "dc966402-fd79-7ac8-b6c0-f229d664622b",
+      "objectId": "sha256:5327066a6fcdc5c9f0dcdde623e18db3feecd2d945a45d2b80fc2d6efb891fef",
+      "detail": "Canonical or derived Arcaea 7.0.260c image rendition."
+    }
+  ],
+  "affectedResourceIds": [
+    "41be1a6c-08b7-7da3-9955-f12d5665d2f2"
+  ],
+  "publishedRenditions": [
+    {
+      "resourceId": "41be1a6c-08b7-7da3-9955-f12d5665d2f2",
+      "variantId": "987feb5a-5eea-756e-b36d-891d46d39202",
+      "renditionId": "b23988b9-7cb6-7659-8648-a9e6feb41a84",
+      "objectId": "sha256:32e46e0e8485e6a53202a12c93cb2c29df1c9c3ba7ec5727c7a7f375617100a3",
+      "downloadFilename": "Château de cartes_Inverted Silence ft. Pernelle_7.0_single_IDX 554_BPM 126_SIDE 0_alice_light_1080_base.jpg"
+    }
+  ],
+  "removedFromCurrentSource": [],
+  "notes": [
+    "Arcaea 7.0.260c Cocos2d-x APK update integrated from the approved local review package.",
+    "Scope includes 1 new non-sticker image resources; unchanged full-snapshot categories remain represented by the previous Catalog snapshot.",
+    "Browse metadata is updated separately from the package songlist, character, story and chart audit inputs.",
+    "REMOVED is empty; no Catalog or object deletion was performed.",
+    "Local Catalog and ReleaseManifest only; ROS/object-storage upload and production publication are disabled for this repository workflow."
+  ]
+}
