@@ -2466,6 +2466,79 @@
           "change": "added"
         }
       ]
+    },
+    {
+      "id": "9d9a15bb-e6f8-7652-9a4f-02f285175b9a",
+      "game": "arcaea",
+      "releaseIds": [
+        "137bea80-fefe-7044-b0ff-34016d3589d3",
+        "630ab030-8929-781f-800b-3c6d2deb0de1"
+      ],
+      "kind": "update",
+      "publishedAt": "2026-09-20T10:11:12+08:00",
+      "contentVersion": "7.0.260c",
+      "items": [
+        {
+          "resourceId": "41be1a6c-08b7-7da3-9955-f12d5665d2f2",
+          "change": "added"
+        }
+      ]
+    },
+    {
+      "id": "b4df1df0-82c7-7fde-9b7d-4e4f5e86e91a",
+      "game": "paradigm-reboot",
+      "releaseIds": [
+        "90233421-9dc3-7673-bebb-b859fc919015"
+      ],
+      "kind": "update",
+      "publishedAt": "2026-09-20T10:11:12+08:00",
+      "contentVersion": "4.11",
+      "items": [
+        {
+          "resourceId": "9a7b39fc-0a8c-7f58-bf16-3d2f6df144b4",
+          "change": "added"
+        },
+        {
+          "resourceId": "ea385f25-3c45-7dec-a896-875d72722692",
+          "change": "added"
+        },
+        {
+          "resourceId": "b0f7474b-c1f2-7842-9b7f-9fb00c39bebe",
+          "change": "added"
+        },
+        {
+          "resourceId": "a17ce704-1423-7f23-8131-c33463df8dff",
+          "change": "added"
+        },
+        {
+          "resourceId": "9d4200e9-764c-7c69-af87-52b59b98f582",
+          "change": "added"
+        },
+        {
+          "resourceId": "abd3cc0d-6baf-7c0f-b15b-3fb0679da432",
+          "change": "added"
+        },
+        {
+          "resourceId": "0b2e39d0-17a7-7633-916d-4fe168939059",
+          "change": "added"
+        },
+        {
+          "resourceId": "0c45deaf-0b3a-7a42-bb3b-feaf5be1735c",
+          "change": "added"
+        },
+        {
+          "resourceId": "a371eef9-603a-7c50-a461-92d56a08516d",
+          "change": "added"
+        },
+        {
+          "resourceId": "71b8e522-238a-707b-bae6-340f36b2cb5c",
+          "change": "added"
+        },
+        {
+          "resourceId": "b9cb7bcb-9fb4-7402-91fa-4a6c9688b324",
+          "change": "added"
+        }
+      ]
     }
   ]
 }
