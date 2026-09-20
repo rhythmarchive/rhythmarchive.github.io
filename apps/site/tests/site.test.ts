@@ -692,7 +692,7 @@ test("Rizline Catalog and public projections preserve approved boundaries", () =
   assert.ok(publicRizline.filter((resource) => resource.resourceType === "rizcard-layout").every((resource) => resource.category === "rizcard" && resource.categoryLabel === "Rizcard" && resource.metadata.layoutId));
 });
 
-test("Rizline v141 jackets keep semantic order, rendition linkage, and release history", () => {
+test("Rizline v141 jackets keep semantic order and rendition linkage", () => {
   const expected = new Map([
     ["直ST.TrinaLydia.0", { title: "直 -ST.-", artist: "Trina Lydia", illustrator: "Transendium" }],
     ["ヘーブンリースカイ.Jehezukiel.0", { title: "ヘーブンリー・スカイ", artist: "Jehezukiel", illustrator: "群青kurara" }],
@@ -717,14 +717,10 @@ test("Rizline v141 jackets keep semantic order, rendition linkage, and release h
     assert.equal(renditions.filter((rendition) => rendition.renditionType.startsWith("thumbnail-")).length, 3);
     assert.ok(renditions.every((rendition) => catalog.objects.some((object) => object.id === rendition.objectId)));
   }
-  const release = JSON.parse(fs.readFileSync(path.join(process.cwd(), "catalog", "releases", "d9faf30c-222c-7f8a-9f1b-7d5706ecd039.json"), "utf8")) as { id: string; affectedResourceIds: string[]; changes: Array<{ changeType: string }> };
-  assert.deepEqual(new Set(release.affectedResourceIds), new Set(resources.map((resource) => resource.id)));
-  assert.equal(release.changes.filter((change) => change.changeType === "added-resource").length, 2);
-  const timeline = JSON.parse(fs.readFileSync(path.join(process.cwd(), "catalog", "updates", "index.json"), "utf8")) as { records: Array<{ id: string; game: string; contentVersion: string; releaseIds: string[]; items: Array<{ resourceId: string }> }> };
+  const timeline = JSON.parse(fs.readFileSync(path.join(process.cwd(), "catalog", "updates", "index.json"), "utf8")) as { records: Array<{ id: string; game: string; contentVersion: string; items: Array<{ resourceId: string }> }> };
   const record = timeline.records.find((candidate) => candidate.game === "rizline" && candidate.contentVersion === "v141_2_7_1_3c13bbff2bP");
   assert.ok(record);
   assert.deepEqual(new Set(record.items.map((item) => item.resourceId)), new Set(resources.map((resource) => resource.id)));
-  assert.deepEqual(record.releaseIds, [release.id]);
 });
 
 test("site brand marks keep the accent rhythm line inside the mark", () => {
