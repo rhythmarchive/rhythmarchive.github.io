@@ -2539,6 +2539,62 @@
           "change": "added"
         }
       ]
+    },
+    {
+      "id": "c36f90f5-a874-73ba-a70a-b36c53e5861d",
+      "game": "rotaeno",
+      "releaseIds": [
+        "18c465a8-e90d-7f4e-bd8c-542c47e09287"
+      ],
+      "kind": "update",
+      "publishedAt": "2026-09-20T14:20:01+08:00",
+      "contentVersion": "2.27.0",
+      "items": [
+        {
+          "resourceId": "7ed6e8e4-52f9-70b2-92ff-ea9caed8e0f8",
+          "change": "added"
+        },
+        {
+          "resourceId": "451d1986-11f8-741e-b5fd-9b012c816eb0",
+          "change": "added"
+        },
+        {
+          "resourceId": "185e59ae-86ea-779e-a05a-f82e190222eb",
+          "change": "added"
+        },
+        {
+          "resourceId": "b3efc8ff-8848-73bf-a1ad-f7032b77d46a",
+          "change": "added"
+        },
+        {
+          "resourceId": "6003ab4c-e845-76a8-a72e-f56eb07af8f2",
+          "change": "added"
+        },
+        {
+          "resourceId": "d3ed976b-2da3-706f-b102-7015adf9e643",
+          "change": "added"
+        },
+        {
+          "resourceId": "10a57278-68aa-7c99-ba34-d75703b89895",
+          "change": "added"
+        },
+        {
+          "resourceId": "864cf6b8-a889-7760-a5aa-09e86dccb3ff",
+          "change": "added"
+        },
+        {
+          "resourceId": "618b653e-fcfe-7d93-9ecc-49052ed68871",
+          "change": "added"
+        },
+        {
+          "resourceId": "80c72a80-8475-734a-a33c-c7da4de3ca41",
+          "change": "added"
+        },
+        {
+          "resourceId": "236547db-3087-7927-9666-63d0a6b39871",
+          "change": "added"
+        }
+      ]
     }
   ]
 }
