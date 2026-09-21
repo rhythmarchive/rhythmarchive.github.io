@@ -64,6 +64,8 @@ docs/
 !docs/
 docs/*
 !docs/update-timeline.md
+!docs/admin-bootstrap-boundary.md
+!docs/release-evidence-audit.md
 fixtures/
 tools/*
 !tools/arcaea-apk-update.ts
