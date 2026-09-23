@@ -1,6 +1,7 @@
 ---
 import type { BrowseGalleryItem } from "../lib/browse-gallery";
 import { cardMediaFit, cardMediaRatio } from "../lib/media-config";
+import { selectCardPreview } from "../lib/card-preview";
 import { BASE_PATH } from "../lib/site-config";
 import { createUrlHelpers } from "../lib/url";
 
@@ -12,11 +13,7 @@ interface Props {
 
 const { item, selectable = false, eager = false } = Astro.props;
 const urls = createUrlHelpers({ basePath: BASE_PATH, origin: "https://rhythmarchive.github.io", rosBaseUrl: "https://rhythm-assets.cn-nb1.rains3.com" });
-const small = item.preview.small ?? item.preview.medium ?? item.preview.large;
-const useOriginalGallerySource = ["arcaea", "paradigm-reboot"].includes(item.game) && item.resourceType === "jacket" && Boolean(item.original);
-const gallerySource = useOriginalGallerySource ? item.original : small;
-const galleryFallback = useOriginalGallerySource ? small : item.original;
-const gallerySrcset = useOriginalGallerySource ? "" : [item.preview.small ? item.preview.small.url + " 320w" : "", item.preview.medium ? item.preview.medium.url + " 640w" : ""].filter(Boolean).join(", ");
+const { primary: gallerySource, fallback: galleryFallback, srcset: gallerySrcset } = selectCardPreview(item.preview);
 const metadata = [...(item.badges ?? []), item.badge, item.selectedArtworkDifficulty, item.selectedChartDifficulty, item.game === "arcaea" || item.game === "phigros" ? item.pack : undefined].filter((value): value is string => Boolean(value));
 ---
 
@@ -37,8 +34,8 @@ const metadata = [...(item.badges ?? []), item.badge, item.selectedArtworkDiffic
           data-fallback-height={galleryFallback?.height}
           sizes="(max-width: 640px) 50vw, (max-width: 1280px) 20vw, 210px"
           alt={item.displayTitle}
-          width={gallerySource.width ?? small?.width}
-          height={gallerySource.height ?? small?.height}
+          width={gallerySource.width}
+          height={gallerySource.height}
           loading={eager ? "eager" : "lazy"}
           decoding="async"
         />

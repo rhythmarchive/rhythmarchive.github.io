@@ -174,7 +174,7 @@ export function createBatchTray(options: BatchTrayOptions): BatchTrayController 
   function renderTray(): void {
     tray!.hidden = selected.size === 0;
     const upscaledButton = tray!.querySelector<HTMLButtonElement>('[data-batch-download="upscaled"]');
-    if (upscaledButton) upscaledButton.hidden = ![...selected].some((resourceId) => Boolean(options.getResource(resourceId)?.upscaled));
+    if (upscaledButton) upscaledButton.hidden = ![...selected].some((resourceId) => Boolean(options.getResource(resourceId)?.upscaled || options.getResource(resourceId)?.hasUpscaled));
     options.root.classList.toggle("has-selection", selected.size > 0);
     count!.textContent = "已选择 " + selected.size.toLocaleString("zh-CN") + " / " + MAX_BATCH_FILES + " 项";
     renderThumbnails();
@@ -249,6 +249,31 @@ export function createBatchTray(options: BatchTrayOptions): BatchTrayController 
     } finally {
       setBusy(false);
     }
+  }
+}
+
+export async function downloadSelectedBatchFromManifest(options: {
+  selectedIds: readonly string[];
+  getResource: (resourceId: string) => BatchResource | undefined;
+  manifestUrl: string;
+  preferUpscaled: boolean;
+  filename: string;
+  setStatus: (value: string) => void;
+}): Promise<void> {
+  try {
+    const response = await fetch(options.manifestUrl, { credentials: "omit" });
+    if (!response.ok) throw new Error(`batch manifest failed with ${response.status}`);
+    const downloads = await response.json() as Record<string, Pick<BatchResource, "original" | "upscaled">>;
+    await downloadSelectedBatch({
+      ...options,
+      getResource: (resourceId) => {
+        const card = options.getResource(resourceId);
+        return card ? { ...card, ...downloads[resourceId] } : undefined;
+      },
+    });
+  } catch (error) {
+    console.error("Batch manifest failed", error);
+    options.setStatus("下载失败，请重试");
   }
 }
 

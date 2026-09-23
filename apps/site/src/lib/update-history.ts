@@ -41,7 +41,8 @@ function publicImage(resource: PublicResource): { image: PublicSearchImage | nul
     ? { url: asset.url, ...(asset.width !== undefined ? { width: asset.width } : {}), ...(asset.height !== undefined ? { height: asset.height } : {}) }
     : null;
   const preview = resource.preview.small ?? resource.preview.medium ?? resource.preview.large;
-  return { image: toImage(preview), fallback: toImage(resource.original) };
+  const fallback = [resource.preview.small, resource.preview.medium, resource.preview.large].find((asset) => asset && asset !== preview);
+  return { image: toImage(preview), fallback: toImage(fallback) };
 }
 
 function gameId(value: string): GameId | undefined {

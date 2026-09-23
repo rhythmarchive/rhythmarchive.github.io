@@ -1,9 +1,10 @@
-import { createBatchTray, downloadSelectedBatch } from "./batch-tray";
+import { createBatchTray, downloadSelectedBatchFromManifest } from "./batch-tray";
+import { selectCardPreview } from "../lib/card-preview";
+import type { GalleryCard } from "../lib/gallery-projection";
 import { cardMediaFit, cardMediaRatio } from "../lib/media-config";
 import { matchesChartFilters } from "../lib/chart-filters";
 import { compareNaturalText, normalizeSearchText } from "../lib/search";
 import { appendResourceViews, updateResourceStatsInDom } from "../lib/stats-client";
-import type { PublicResource } from "../lib/types";
 
 const PAGE_SIZE = 48;
 
@@ -57,14 +58,14 @@ async function initializeGallery(root: HTMLElement): Promise<void> {
   const activeChips = root.querySelector<HTMLElement>("[data-gallery-active-chips]");
   if (!grid || !loadMore || !count) return;
 
-  let resources: PublicResource[] = [];
+  let resources: GalleryCard[] = [];
   let visibleCount = PAGE_SIZE;
   let batchTray: ReturnType<typeof createBatchTray> | undefined;
 
   try {
     const response = await fetch(root.dataset.galleryUrl ?? "", { credentials: "omit" });
     if (!response.ok) throw new Error(`gallery data failed with ${response.status}`);
-    resources = await response.json() as PublicResource[];
+    resources = await response.json() as GalleryCard[];
     const params = new URLSearchParams(window.location.search);
     if (search) search.value = params.get("q") ?? "";
     if (sort) sort.value = params.get("sort") ?? sort.options[0]?.value ?? "default";
@@ -80,7 +81,8 @@ async function initializeGallery(root: HTMLElement): Promise<void> {
       grid,
       getResource: (resourceId) => resources.find((resource) => resource.resourceId === resourceId),
       onSelectionChange: () => render(),
-      onDownload: (preferUpscaled, selectedIds, setStatus) => downloadSelectedBatch({
+      onDownload: (preferUpscaled, selectedIds, setStatus) => downloadSelectedBatchFromManifest({
+        manifestUrl: root.dataset.batchUrl ?? "",
         selectedIds,
         getResource: (resourceId) => resources.find((resource) => resource.resourceId === resourceId),
         preferUpscaled,
@@ -137,7 +139,7 @@ async function initializeGallery(root: HTMLElement): Promise<void> {
     applyFilter();
   });
 
-  function currentResources(): PublicResource[] {
+  function currentResources(): GalleryCard[] {
     const query = normalizeSearchText(search?.value ?? "");
     const sortValue = sort?.value ?? "default";
     const chartDifficulty = facets.find((facet) => facet.dataset.galleryFacet === "chart")?.value;
@@ -298,7 +300,7 @@ function setRange(range: GalleryRange, minValue: number, maxValue: number): void
   range.root.style.setProperty("--range-end", `${((max - range.min) / span) * 100}%`);
 }
 
-function matchesRange(resource: PublicResource, range: GalleryRange): boolean {
+function matchesRange(resource: GalleryCard, range: GalleryRange): boolean {
   const min = readRangeValue(range, "min");
   const max = readRangeValue(range, "max");
   if (min <= range.min && max >= range.max) return true;
@@ -315,7 +317,7 @@ function matchesRange(resource: PublicResource, range: GalleryRange): boolean {
   });
 }
 
-function createCard(resource: PublicResource, index: number, isSelected: boolean): HTMLElement {
+function createCard(resource: GalleryCard, index: number, isSelected: boolean): HTMLElement {
   const article = document.createElement("article");
   article.className = `resource-card${isSelected ? " is-selected" : ""}`;
   article.dataset.resourceCard = "";
@@ -338,9 +340,7 @@ function createCard(resource: PublicResource, index: number, isSelected: boolean
   anchor.href = resolveSitePath(resource.route);
   const media = document.createElement("div");
   media.className = "resource-card-media";
-  const useOriginalGallerySource = ["arcaea", "paradigm-reboot"].includes(resource.game) && resource.resourceType === "jacket" && Boolean(resource.original);
-  const image = useOriginalGallerySource ? resource.original : resource.preview.small ?? resource.preview.medium ?? resource.preview.large;
-  const fallbackImage = useOriginalGallerySource ? resource.preview.small ?? resource.preview.medium ?? resource.preview.large : resource.original;
+  const { primary: image, fallback: fallbackImage, srcset } = selectCardPreview(resource.preview);
   if (image) {
     const img = document.createElement("img");
     img.src = image.url;
@@ -351,7 +351,6 @@ function createCard(resource: PublicResource, index: number, isSelected: boolean
     if (imageHeight) img.height = imageHeight;
     img.loading = index < 6 ? "eager" : "lazy";
     img.decoding = "async";
-    const srcset = useOriginalGallerySource ? "" : [resource.preview.small ? resource.preview.small.url + " 320w" : "", resource.preview.medium ? resource.preview.medium.url + " 640w" : ""].filter(Boolean).join(", ");
     if (srcset) img.setAttribute("srcset", srcset);
     if (fallbackImage?.url) {
       img.dataset.fallbackSrc = fallbackImage.url;
@@ -366,7 +365,7 @@ function createCard(resource: PublicResource, index: number, isSelected: boolean
     placeholder.textContent = "图片暂不可用";
     media.append(placeholder);
   }
-  if (resource.upscaled) {
+  if (resource.hasUpscaled) {
     const badge = document.createElement("span");
     badge.className = "resource-badge is-upscaled";
     badge.textContent = "含超分版";
@@ -394,11 +393,11 @@ function createCard(resource: PublicResource, index: number, isSelected: boolean
     label.textContent = badge;
     body.append(label);
   }
-  const variant = resource.badges?.length ? undefined : resource.variants.find((item) => item.label !== "默认");
+  const variant = resource.badges?.length ? undefined : resource.variantLabel;
   if (variant) {
     const label = document.createElement("span");
     label.className = "resource-card-variant";
-    label.textContent = variant.label;
+    label.textContent = variant;
     body.append(label);
   }
   appendResourceViews(body);
@@ -413,7 +412,7 @@ function resolveSitePath(path: string): string {
   return base === "/" ? clean : `${base.replace(/\/+$/u, "")}${clean}`;
 }
 
-function numericFacetValue(resource: PublicResource, key: string): number | undefined {
+function numericFacetValue(resource: GalleryCard, key: string): number | undefined {
   const values = resource.facets?.[key] ?? (resource.metadata[key] === undefined ? [] : [String(resource.metadata[key])]);
   const numbers = values.flatMap((value) => numericFacetValues(value));
   return numbers.length > 0 ? Math.max(...numbers) : undefined;
@@ -423,14 +422,14 @@ function numericFacetValues(value: string): number[] {
   return [...value.matchAll(/\d+(?:\.\d+)?/gu)].map((match) => Number(match[0])).filter((number) => Number.isFinite(number));
 }
 
-function highestChartConstant(resource: PublicResource): number | undefined {
+function highestChartConstant(resource: GalleryCard): number | undefined {
   const values = (resource.charts ?? [])
     .map((chart) => chart.constant === undefined ? Number.NaN : Number(chart.constant))
     .filter((value) => Number.isFinite(value));
   return values.length > 0 ? Math.max(...values) : undefined;
 }
 
-function resourceDateValue(resource: PublicResource): number | undefined {
+function resourceDateValue(resource: GalleryCard): number | undefined {
   const value = resource.facets?.updateDate?.[0] ?? resource.metadata.updateDate;
   if (typeof value === "string") {
     const timestamp = Date.parse(value.replaceAll("/", "-"));

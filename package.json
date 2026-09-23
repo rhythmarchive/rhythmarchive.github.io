@@ -14,6 +14,7 @@
     "site:build": "tsx apps/site/scripts/generate-public-data.ts && astro build --root apps/site",
     "site:preview": "astro preview --root apps/site",
     "site:smoke": "tsx apps/site/scripts/smoke.ts",
+    "traffic:check": "tsx apps/site/scripts/traffic-check.ts",
     "browse:check": "tsx tools/validate-browse-projection.ts",
     "stats:registry": "tsx apps/site/scripts/generate-stats-resource-registry.ts",
     "stats:registry:check": "tsx apps/site/scripts/generate-stats-resource-registry.ts --check",
@@ -21,7 +22,7 @@
     "worker:test": "tsx --test workers/stats/tests/*.test.ts",
     "worker:check": "npm run worker:typecheck && npm run worker:test",
     "test:all": "npm run typecheck && npm test",
-    "ci:check": "npm run test:all && npm run stats:registry:check && npm run browse:check && npm run worker:check && npm run site:check && npm run site:build && npm run site:smoke"
+    "ci:check": "npm run test:all && npm run stats:registry:check && npm run browse:check && npm run worker:check && npm run site:check && npm run site:build && npm run traffic:check && npm run site:smoke"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",

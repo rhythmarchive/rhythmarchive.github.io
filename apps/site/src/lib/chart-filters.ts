@@ -8,7 +8,7 @@ export type ChartFilterCriteria = {
 };
 
 /** Match chart facets against one chart row, preserving chart relationships. */
-export function matchesChartFilters(resource: PublicResource, criteria: ChartFilterCriteria): boolean {
+export function matchesChartFilters(resource: Pick<PublicResource, "charts" | "specialCharts">, criteria: ChartFilterCriteria): boolean {
   const difficulties = criteria.difficulties ?? [];
   const levels = criteria.levels ?? [];
   const constants = criteria.constants ?? [];
