@@ -11,6 +11,7 @@ export type BatchResource = {
   preview: PublicPreview;
   original?: PublicDownload;
   upscaled?: PublicDownload;
+  hasUpscaled?: boolean;
 };
 
 export type BatchSelectionToggleResult = {

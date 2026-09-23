@@ -3,6 +3,7 @@ import type { PublicResource } from "../lib/types";
 import { BASE_PATH } from "../lib/site-config";
 import { createUrlHelpers } from "../lib/url";
 import { cardMediaFit, cardMediaRatio } from "../lib/media-config";
+import { selectCardPreview } from "../lib/card-preview";
 
 interface Props {
   resource: PublicResource;
@@ -13,11 +14,7 @@ interface Props {
 
 const { resource, selectable = false, eager = false } = Astro.props;
 const urls = createUrlHelpers({ basePath: BASE_PATH, origin: "https://rhythmarchive.github.io", rosBaseUrl: "https://rhythm-assets.cn-nb1.rains3.com" });
-const small = resource.preview.small ?? resource.preview.medium ?? resource.preview.large;
-const useOriginalGallerySource = ["arcaea", "paradigm-reboot"].includes(resource.game) && resource.resourceType === "jacket" && Boolean(resource.original);
-const gallerySource = useOriginalGallerySource ? resource.original : small;
-const galleryFallback = useOriginalGallerySource ? small : resource.original;
-const gallerySrcset = useOriginalGallerySource ? "" : [resource.preview.small ? resource.preview.small.url + " 320w" : "", resource.preview.medium ? resource.preview.medium.url + " 640w" : ""].filter(Boolean).join(", ");
+const { primary: gallerySource, fallback: galleryFallback, srcset: gallerySrcset } = selectCardPreview(resource.preview);
 const variantLabel = resource.variants.find((variant) => variant.label !== "默认")?.label;
 ---
 
@@ -38,8 +35,8 @@ const variantLabel = resource.variants.find((variant) => variant.label !== "默�
           data-fallback-height={galleryFallback?.height}
           sizes="(max-width: 640px) 50vw, (max-width: 1280px) 20vw, 210px"
           alt={resource.displayTitle}
-          width={gallerySource.width ?? small?.width}
-          height={gallerySource.height ?? small?.height}
+          width={gallerySource.width}
+          height={gallerySource.height}
           loading={eager ? "eager" : "lazy"}
           decoding="async"
         />

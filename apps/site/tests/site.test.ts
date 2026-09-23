@@ -7,6 +7,8 @@ import sharp from "sharp";
 import { projectCatalog, selectPreviewRendition } from "../src/lib/catalog-projection.js";
 import { formatPublicApkBytes, parsePublicArcaeaApkManifest } from "../src/lib/apk.js";
 import { uniqueZipFilename } from "../src/lib/batch.js";
+import { selectCardPreview } from "../src/lib/card-preview.js";
+import { galleryCard } from "../src/lib/gallery-projection.js";
 import { displayDifficultyLabel, displayFilterDifficultyLabel, displayVariantLabel, GAME_CONFIG, primaryCategorySlug } from "../src/lib/game-config.js";
 import { formatImageDimensions } from "../src/lib/format.js";
 import { formatContentVersion, formatGameUpdatedAt, isRecentlyUpdated, publicContentVersion, sortPublicGames } from "../src/lib/game-index.js";
@@ -851,19 +853,24 @@ test("detail lightbox opens only an existing preview rendition", () => {
   assert.match(page, /aria-controls=\{`variant-panel-\$\{variant\.variantId\}`\}/u);
 });
 
-test("client gallery rerenders preserve original jacket sources", () => {
+test("card previews stay separate from download renditions", () => {
+  const resource = getSiteData().galleries["arcaea/jacket"]?.[0];
+  assert.ok(resource);
+  const selected = selectCardPreview(resource.preview);
+  const card = galleryCard(resource);
+  assert.equal(selected.primary?.url, resource.preview.small?.url);
+  assert.equal(selected.fallback?.url, resource.preview.medium?.url);
+  assert.doesNotMatch(selected.srcset, /undefinedw/u);
+  assert.equal("original" in card, false);
+  assert.equal("upscaled" in card, false);
+  assert.equal("variants" in card, false);
+  assert.equal("sizeBytes" in card, false);
+  assert.equal(card.hasUpscaled, Boolean(resource.upscaled));
   const gallery = fs.readFileSync(path.join(siteRoot, "src", "scripts", "gallery.ts"), "utf8");
   const browse = fs.readFileSync(path.join(siteRoot, "src", "scripts", "browse-gallery.ts"), "utf8");
-  const search = fs.readFileSync(path.join(siteRoot, "src", "scripts", "search-page.ts"), "utf8");
-  assert.match(gallery, /const useOriginalGallerySource = \["arcaea", "paradigm-reboot"\]\.includes\(resource\.game\) && resource\.resourceType === "jacket"/u);
-  assert.match(gallery, /const image = useOriginalGallerySource \? resource\.original :/u);
-  assert.match(gallery, /const srcset = useOriginalGallerySource \? "" :/u);
-  assert.match(browse, /const useOriginalGallerySource = item\.game === "arcaea" && item\.resourceType === "jacket"/u);
-  assert.match(browse, /const image = useOriginalGallerySource \? item\.original :/u);
-  assert.match(browse, /const srcset = useOriginalGallerySource \? "" :/u);
-  assert.match(search, /data-search-retry/u);
-  assert.match(search, /syncQueryUrl/u);
-  assert.match(search, /runToken/u);
+  assert.match(gallery, /selectCardPreview\(resource\.preview\)/u);
+  assert.match(browse, /selectCardPreview\(item\.preview\)/u);
+  assert.doesNotMatch(gallery + browse, /useOriginalGallerySource/u);
 });
 test("detail downloads show image dimensions without the recommendation label", () => {
   const page = fs.readFileSync(path.join(siteRoot, "src", "pages", "r", "[id]", "index.astro"), "utf8");

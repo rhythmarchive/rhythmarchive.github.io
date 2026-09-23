@@ -34,7 +34,7 @@ function formatRangeValue(value: number): string {
 }
 ---
 
-<section class="gallery-shell" data-gallery-root data-gallery-defer={defer ? "true" : undefined} data-gallery-url={galleryUrl} data-base-path={BASE_PATH} data-game={game} data-category={category} data-total={total}>
+<section class="gallery-shell" data-gallery-root data-gallery-defer={defer ? "true" : undefined} data-gallery-url={galleryUrl} data-batch-url={galleryUrl.replace("/galleries/", "/batch/")} data-base-path={BASE_PATH} data-game={game} data-category={category} data-total={total}>
   <div class="gallery-toolbar">
     <div class="gallery-toolbar-copy">
       <span class="section-kicker">{category === "all" ? GAME_CONFIG[game].displayName : categoryLabel}</span>

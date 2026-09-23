@@ -1,4 +1,5 @@
-import { createBatchTray, downloadSelectedBatch } from "./batch-tray";
+import { createBatchTray, downloadSelectedBatchFromManifest } from "./batch-tray";
+import { selectCardPreview } from "../lib/card-preview";
 import type { BatchResource } from "../lib/batch";
 import {
   BROWSE_PAGE_SIZE,
@@ -74,7 +75,8 @@ async function initializeBrowseGallery(root: HTMLElement): Promise<void> {
       grid,
       getResource: (resourceId) => batchResources.get(resourceId),
       onSelectionChange: () => render(),
-      onDownload: (preferUpscaled, selectedIds, setStatus) => downloadSelectedBatch({
+      onDownload: (preferUpscaled, selectedIds, setStatus) => downloadSelectedBatchFromManifest({
+        manifestUrl: root.dataset.batchUrl ?? "",
         selectedIds,
         getResource: (resourceId) => batchResources.get(resourceId),
         preferUpscaled,
@@ -450,9 +452,7 @@ function createCard(item: BrowseGalleryItem, index: number, isSelected: boolean)
   anchor.href = resolveSitePath(item.route);
   const media = document.createElement("div");
   media.className = "resource-card-media";
-  const useOriginalGallerySource = item.game === "arcaea" && item.resourceType === "jacket" && Boolean(item.original);
-  const image = useOriginalGallerySource ? item.original : item.preview.small ?? item.preview.medium ?? item.preview.large;
-  const fallbackImage = useOriginalGallerySource ? item.preview.small ?? item.preview.medium ?? item.preview.large : item.original;
+  const { primary: image, fallback: fallbackImage, srcset } = selectCardPreview(item.preview);
   if (image) {
     const img = document.createElement("img");
     img.src = image.url;
@@ -463,7 +463,6 @@ function createCard(item: BrowseGalleryItem, index: number, isSelected: boolean)
     if (imageHeight) img.height = imageHeight;
     img.loading = index < 6 ? "eager" : "lazy";
     img.decoding = "async";
-    const srcset = useOriginalGallerySource ? "" : [item.preview.small ? item.preview.small.url + " 320w" : "", item.preview.medium ? item.preview.medium.url + " 640w" : ""].filter(Boolean).join(", ");
     if (srcset) img.setAttribute("srcset", srcset);
     if (fallbackImage?.url) {
       img.dataset.fallbackSrc = fallbackImage.url;

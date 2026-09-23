@@ -38,7 +38,7 @@ function formatRangeValue(value: number): string {
 }
 ---
 
-<section class="gallery-shell browse-gallery-shell" data-browse-gallery-root data-gallery-url={galleryUrl} data-base-path={BASE_PATH} data-game={data.game} data-category="jacket" data-total={data.items.length}>
+<section class="gallery-shell browse-gallery-shell" data-browse-gallery-root data-gallery-url={galleryUrl} data-batch-url={galleryUrl.replace("/browse/", "/batch/")} data-base-path={BASE_PATH} data-game={data.game} data-category="jacket" data-total={data.items.length}>
   <div class="gallery-toolbar browse-gallery-toolbar">
     <div class="gallery-toolbar-copy">
       <span class="section-kicker">{categoryLabel}</span>
