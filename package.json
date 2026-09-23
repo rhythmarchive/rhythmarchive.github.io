@@ -21,8 +21,9 @@
     "worker:typecheck": "tsc -p workers/stats/tsconfig.json --noEmit",
     "worker:test": "tsx --test workers/stats/tests/*.test.ts",
     "worker:check": "npm run worker:typecheck && npm run worker:test",
+    "operator:typecheck": "tsc -p apps/operator-center/tsconfig.json --noEmit",
     "test:all": "npm run typecheck && npm test",
-    "ci:check": "npm run test:all && npm run stats:registry:check && npm run browse:check && npm run worker:check && npm run site:check && npm run site:build && npm run traffic:check && npm run site:smoke"
+    "ci:check": "npm run test:all && npm run stats:registry:check && npm run browse:check && npm run worker:check && npm run operator:typecheck && npm run site:check && npm run site:build && npm run traffic:check && npm run site:smoke"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",

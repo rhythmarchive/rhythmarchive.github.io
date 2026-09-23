@@ -81,6 +81,7 @@ workers/stats/.wrangler/
 workers/stats/.dev.vars
 workers/stats/*.dev.vars
 workers/stats/*.log
+apps/operator-center/.dev.vars
 !workers/stats/package.json
 !workers/stats/README.md
 !workers/stats/wrangler.toml
@@ -101,6 +102,7 @@ packages/domain/src/*
 !packages/domain/src/github-release.ts
 !packages/domain/src/storage.ts
 tsconfig.json
+!apps/operator-center/tsconfig.json
 catalog/curation/
 catalog/releases/
 catalog/resources/
