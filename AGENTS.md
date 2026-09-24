@@ -9,3 +9,13 @@ Keep only the independent GitHub Pages/Astro product, public Catalog/schema/doma
 - Public Catalog and ReleaseManifest are canonical. Preserve object identity and publication evidence boundaries; a manifest `published` field alone does not prove ROS, Git or Pages deployment.
 - Before changing Pages, Stats or APK automation, check the corresponding workflow and test the full caller chain. Preserve the existing remote, protected-main PR process and Pages deployment method.
 - Never commit `.env`, `.dev.vars`, tokens, private paths or large runtime inputs. Check the exact Git repository, status, diff, generated data and Secret absence before committing. Deploy/push only through the existing authorized workflow.
+
+## Verification
+
+Follow the workspace-root AGENTS.md Verification Policy; this file supplies Public-specific command examples.
+
+- Level 1: npm run typecheck, npm run worker:typecheck, npm run stats:registry:check, and npm run browse:check.
+- Level 2: run only the affected gallery test, for example node --import tsx --test apps/site/tests/browse-gallery.test.ts; for one Stats Worker case use node --import tsx --test workers/stats/tests/index.test.ts.
+- Level 3: use the affected site, Worker, or APK-updater checks. Run site build/smoke only when generated site output or browser/runtime behavior is affected.
+- Level 4: npm run ci:check is the Public full gate. Catalog, shared domain/schema, generators, CI/build, release and publication changes use the full gate; Stats registry edits use the formal generator and then the full gate.
+- Documentation, AGENTS and ignore-only changes are Level 0 unless the workspace-root final-acceptance requirement explicitly asks for full gates.
