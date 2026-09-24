@@ -29,6 +29,8 @@ apps/site/public/data/
 # Local configuration and secrets
 .env
 .env.*
+.dev.vars
+.dev.vars.*
 *.local
 *.pem
 *.key
@@ -49,9 +51,7 @@ Thumbs.db
 .idea/
 .vscode/
 
-# Local archive for superseded, non-runtime material; contents may be deleted.
-lagacy/
-# Internal curation, extraction, agent and deployment material kept outside the website repository
+# Local public-site development skills; private resource-production skills live in Tooling.
 .agents/
 !.agents/
 .agents/*
@@ -59,53 +59,9 @@ lagacy/
 .agents/skills/*
 !.agents/skills/update-timeline/
 !.agents/skills/update-timeline/SKILL.md
-AGENTS.md
-docs/
-!docs/
-docs/*
-!docs/update-timeline.md
-!docs/admin-bootstrap-boundary.md
-!docs/release-evidence-audit.md
-fixtures/
-tools/*
-!tools/arcaea-apk-update.ts
-!tools/validate-browse-projection.ts
-!tools/arcaea-apk-updater/
-tools/arcaea-apk-updater/*
-!tools/arcaea-apk-updater/package.json
-!tools/arcaea-apk-updater/package-lock.json
-!workers/
-workers/*/
-!workers/stats/
+
+# Stats Worker local state. Source, configuration, migrations and tests are public.
 workers/stats/.wrangler/
 workers/stats/.dev.vars
 workers/stats/*.dev.vars
 workers/stats/*.log
-apps/operator-center/.dev.vars
-!workers/stats/package.json
-!workers/stats/README.md
-!workers/stats/wrangler.toml
-!workers/stats/migrations/
-!workers/stats/migrations/*.sql
-!workers/stats/src/
-!workers/stats/src/*.ts
-!workers/stats/tests/
-!workers/stats/tests/*.test.ts
-packages/admin/
-packages/domain/tests/
-packages/domain/src/*
-!packages/domain/src/schema.ts
-!packages/domain/src/identifiers.ts
-!packages/domain/src/validation.ts
-!packages/domain/src/browse.ts
-!packages/domain/src/arcaea-apk.ts
-!packages/domain/src/github-release.ts
-!packages/domain/src/storage.ts
-tsconfig.json
-!apps/operator-center/tsconfig.json
-catalog/curation/
-catalog/releases/
-catalog/resources/
-apps/site/tests/arcaea-story-explorer.test.ts
-apps/site/tests/rotaeno-display.test.ts
-!workers/stats/tsconfig.json
