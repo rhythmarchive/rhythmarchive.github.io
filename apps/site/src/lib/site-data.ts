@@ -75,12 +75,13 @@ function enrichFormalBrowseMetadata(siteData: PublicSiteData, browse: FormalBrow
     available: true,
     status: "available",
   }));
-  const phigrosCharts = (charts: PhigrosBrowseProjectionType["tracks"][number]["charts"]): PublicChart[] => charts.map((chart) => {
-    const available = chart.structurallyPresent && !chart.errorVariant;
+  const phigrosCharts = (charts: PhigrosBrowseProjectionType["tracks"][number]["charts"]): PublicChart[] => charts
+    .filter((chart) => chart.structurallyPresent && !chart.errorVariant)
+    .map((chart) => {
     return {
       difficulty: chart.difficultyClass,
-      available,
-      status: chart.errorVariant ? "error" : chart.difficultyClass === "Legacy" ? "legacy" : available ? "available" : "unavailable",
+      available: true,
+      status: chart.difficultyClass === "Legacy" ? "legacy" : "available",
     };
   });
 

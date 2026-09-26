@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
   "game": "phigros",
-  "generatedAt": "2026-09-20T00:00:00.000Z",
+  "generatedAt": "2026-09-26T05:40:54.304Z",
   "source": {
-    "version": "3.20.0",
-    "sha256": "15f410d39dc8189dd6295488c1f1607665bfa7971f5587cc61257924327ab82d"
+    "version": "4.0.0",
+    "sha256": "7afbe1635278aced85a7c215948aec2aefe06f2d24322ff49776626b3ad41d7f"
   },
   "tracks": [
     {
@@ -21,6 +21,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -62,6 +67,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -102,6 +112,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -124,6 +139,51 @@
         "996",
         "assets/tracks/996.李化禹.0/",
         "李化禹"
+      ]
+    },
+    {
+      "sourceIdentityCandidate": "Assets/Tracks/AboutTheUniverse.SOTUIMIssionary.0/",
+      "sourceTrackPath": "Assets/Tracks/AboutTheUniverse.SOTUIMIssionary.0/",
+      "displayTitle": "About The Universe",
+      "sourceTitle": "About The Universe",
+      "displayArtist": "SOTUIMIssionary",
+      "sourceArtist": "SOTUI & MIssionary",
+      "indexRaw": "0",
+      "artwork": {
+        "resourceId": "47f83115-c6e9-717a-b6b0-5609d938c34c",
+        "confidence": "confirmed",
+        "role": "current-track-artwork"
+      },
+      "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
+          "difficultyClass": "EZ",
+          "structurallyPresent": true,
+          "errorVariant": false
+        },
+        {
+          "difficultyClass": "HD",
+          "structurallyPresent": true,
+          "errorVariant": false
+        },
+        {
+          "difficultyClass": "IN",
+          "structurallyPresent": true,
+          "errorVariant": false
+        }
+      ],
+      "displayLevel": null,
+      "chapter": null,
+      "searchAliases": [],
+      "searchTerms": [
+        "about the universe",
+        "assets/tracks/abouttheuniverse.sotuimissionary.0/",
+        "sotui & missionary",
+        "sotuimissionary"
       ]
     },
     {
@@ -186,6 +246,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -227,6 +292,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -266,6 +336,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -307,6 +382,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -346,6 +426,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -387,6 +472,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -426,6 +516,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -437,6 +532,11 @@
         },
         {
           "difficultyClass": "IN",
+          "structurallyPresent": true,
+          "errorVariant": false
+        },
+        {
+          "difficultyClass": "Legacy",
           "structurallyPresent": true,
           "errorVariant": false
         },
@@ -470,6 +570,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -511,6 +616,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -551,6 +661,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -590,6 +705,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -675,6 +795,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -713,6 +838,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -754,6 +884,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -793,6 +928,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -831,6 +971,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": true,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -915,6 +1060,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -954,6 +1104,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -1039,6 +1194,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -1123,6 +1283,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -1210,6 +1375,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -1249,6 +1419,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -1290,6 +1465,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -1329,6 +1509,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -1367,6 +1552,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -1408,6 +1598,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -1446,6 +1641,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -1487,6 +1687,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -1526,6 +1731,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -1612,6 +1822,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -1623,6 +1838,11 @@
         },
         {
           "difficultyClass": "IN",
+          "structurallyPresent": true,
+          "errorVariant": false
+        },
+        {
+          "difficultyClass": "Legacy",
           "structurallyPresent": true,
           "errorVariant": false
         },
@@ -1656,6 +1876,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -1697,6 +1922,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -1735,6 +1965,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -1775,6 +2010,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -1813,6 +2053,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -1854,6 +2099,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -1893,6 +2143,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -1931,6 +2186,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -1973,6 +2233,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -2011,6 +2276,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -2052,6 +2322,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -2092,6 +2367,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -2130,6 +2410,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -2171,6 +2456,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -2210,6 +2500,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -2251,6 +2546,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -2291,6 +2591,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -2329,6 +2634,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -2414,6 +2724,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -2453,6 +2768,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -2494,6 +2814,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -2520,6 +2845,51 @@
       ]
     },
     {
+      "sourceIdentityCandidate": "Assets/Tracks/Cryogenic.CamelliaftPetraGurin.0/",
+      "sourceTrackPath": "Assets/Tracks/Cryogenic.CamelliaftPetraGurin.0/",
+      "displayTitle": "Cryogenic",
+      "sourceTitle": "Cryogenic",
+      "displayArtist": "CamelliaftPetraGurin",
+      "sourceArtist": "Camellia ft. Petra Gurin",
+      "indexRaw": "0",
+      "artwork": {
+        "resourceId": "b288c600-a089-70bc-acf6-b8e8d6da99bd",
+        "confidence": "confirmed",
+        "role": "current-track-artwork"
+      },
+      "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
+          "difficultyClass": "EZ",
+          "structurallyPresent": true,
+          "errorVariant": false
+        },
+        {
+          "difficultyClass": "HD",
+          "structurallyPresent": true,
+          "errorVariant": false
+        },
+        {
+          "difficultyClass": "IN",
+          "structurallyPresent": true,
+          "errorVariant": false
+        }
+      ],
+      "displayLevel": null,
+      "chapter": null,
+      "searchAliases": [],
+      "searchTerms": [
+        "assets/tracks/cryogenic.camelliaftpetragurin.0/",
+        "camellia ft. petra gurin",
+        "camelliaftpetragurin",
+        "cryogenic"
+      ]
+    },
+    {
       "sourceIdentityCandidate": "Assets/Tracks/cryout.JuE.0/",
       "sourceTrackPath": "Assets/Tracks/cryout.JuE.0/",
       "displayTitle": "cryout",
@@ -2533,6 +2903,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -2572,6 +2947,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -2702,6 +3082,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -2742,6 +3127,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -2780,6 +3170,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -2865,6 +3260,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -2905,6 +3305,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -2943,6 +3348,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -3118,6 +3528,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -3156,6 +3571,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -3196,6 +3616,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -3281,6 +3706,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -3320,6 +3750,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -3405,6 +3840,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -3443,6 +3883,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -3484,6 +3929,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -3523,6 +3973,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -3561,6 +4016,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -3602,6 +4062,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -3642,6 +4107,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -3681,6 +4151,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -3719,6 +4194,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -3760,6 +4240,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -3800,6 +4285,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -3811,6 +4301,11 @@
         },
         {
           "difficultyClass": "IN",
+          "structurallyPresent": true,
+          "errorVariant": false
+        },
+        {
+          "difficultyClass": "Legacy",
           "structurallyPresent": true,
           "errorVariant": false
         },
@@ -3844,6 +4339,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -3885,6 +4385,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -3908,6 +4413,51 @@
         "crossingsound",
         "engine x start!! (melody mix)",
         "enginexstartmelodymix"
+      ]
+    },
+    {
+      "sourceIdentityCandidate": "Assets/Tracks/EntrancetotheChaos.打打だいずvssiromaru.0/",
+      "sourceTrackPath": "Assets/Tracks/EntrancetotheChaos.打打だいずvssiromaru.0/",
+      "displayTitle": "Entrance to the Chaos",
+      "sourceTitle": "Entrance to the Chaos",
+      "displayArtist": "打打だいずvssiromaru",
+      "sourceArtist": "打打だいず vs. siromaru",
+      "indexRaw": "0",
+      "artwork": {
+        "resourceId": "15b698df-b581-7c4a-9a6c-a5096ad35ec4",
+        "confidence": "confirmed",
+        "role": "current-track-artwork"
+      },
+      "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": true,
+          "errorVariant": false
+        },
+        {
+          "difficultyClass": "EZ",
+          "structurallyPresent": true,
+          "errorVariant": false
+        },
+        {
+          "difficultyClass": "HD",
+          "structurallyPresent": true,
+          "errorVariant": false
+        },
+        {
+          "difficultyClass": "IN",
+          "structurallyPresent": true,
+          "errorVariant": false
+        }
+      ],
+      "displayLevel": null,
+      "chapter": null,
+      "searchAliases": [],
+      "searchTerms": [
+        "assets/tracks/entrancetothechaos.打打だいずvssiromaru.0/",
+        "entrance to the chaos",
+        "打打だいず vs. siromaru",
+        "打打だいずvssiromaru"
       ]
     },
     {
@@ -3970,6 +4520,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -4010,6 +4565,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -4036,6 +4596,94 @@
       ]
     },
     {
+      "sourceIdentityCandidate": "Assets/Tracks/Evanescent.LeaF.0/",
+      "sourceTrackPath": "Assets/Tracks/Evanescent.LeaF.0/",
+      "displayTitle": "Evanescent",
+      "sourceTitle": "Evanescent",
+      "displayArtist": "LeaF",
+      "sourceArtist": "LeaF",
+      "indexRaw": "0",
+      "artwork": {
+        "resourceId": "0eec195c-de01-71f3-952b-14670e8b1d77",
+        "confidence": "confirmed",
+        "role": "current-track-artwork"
+      },
+      "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
+          "difficultyClass": "EZ",
+          "structurallyPresent": true,
+          "errorVariant": false
+        },
+        {
+          "difficultyClass": "HD",
+          "structurallyPresent": true,
+          "errorVariant": false
+        },
+        {
+          "difficultyClass": "IN",
+          "structurallyPresent": true,
+          "errorVariant": false
+        }
+      ],
+      "displayLevel": null,
+      "chapter": null,
+      "searchAliases": [],
+      "searchTerms": [
+        "assets/tracks/evanescent.leaf.0/",
+        "evanescent",
+        "leaf"
+      ]
+    },
+    {
+      "sourceIdentityCandidate": "Assets/Tracks/ExoplanetaryMirage.かめりあ.0/",
+      "sourceTrackPath": "Assets/Tracks/ExoplanetaryMirage.かめりあ.0/",
+      "displayTitle": "Exoplanetary Mirage",
+      "sourceTitle": "Exoplanetary Mirage",
+      "displayArtist": "かめりあ",
+      "sourceArtist": "かめりあ",
+      "indexRaw": "0",
+      "artwork": {
+        "resourceId": "b0876d15-cf86-7986-8276-9ddbe6ddaead",
+        "confidence": "confirmed",
+        "role": "current-track-artwork"
+      },
+      "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": true,
+          "errorVariant": false
+        },
+        {
+          "difficultyClass": "EZ",
+          "structurallyPresent": true,
+          "errorVariant": false
+        },
+        {
+          "difficultyClass": "HD",
+          "structurallyPresent": true,
+          "errorVariant": false
+        },
+        {
+          "difficultyClass": "IN",
+          "structurallyPresent": true,
+          "errorVariant": false
+        }
+      ],
+      "displayLevel": null,
+      "chapter": null,
+      "searchAliases": [],
+      "searchTerms": [
+        "assets/tracks/exoplanetarymirage.かめりあ.0/",
+        "exoplanetary mirage",
+        "かめりあ"
+      ]
+    },
+    {
       "sourceIdentityCandidate": "Assets/Tracks/Feast远东之宴.茶鸣拾贰律.0/",
       "sourceTrackPath": "Assets/Tracks/Feast远东之宴.茶鸣拾贰律.0/",
       "displayTitle": "Feast远东之宴",
@@ -4049,6 +4697,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -4088,6 +4741,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -4129,6 +4787,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -4168,6 +4831,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -4209,6 +4877,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -4248,6 +4921,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -4289,6 +4967,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -4328,6 +5011,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -4369,6 +5057,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -4408,6 +5101,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -4449,6 +5147,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -4488,6 +5191,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -4529,6 +5237,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -4569,6 +5282,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -4607,6 +5325,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -4647,6 +5370,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -4685,6 +5413,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -4725,6 +5458,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -4763,6 +5501,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -4803,6 +5546,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -4841,6 +5589,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -4883,6 +5636,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -4922,6 +5680,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -4963,6 +5726,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -5001,6 +5769,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -5041,6 +5814,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -5080,6 +5858,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -5209,6 +5992,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -5235,6 +6023,51 @@
       ]
     },
     {
+      "sourceIdentityCandidate": "Assets/Tracks/Implexrough.Silentroommommy.0/",
+      "sourceTrackPath": "Assets/Tracks/Implexrough.Silentroommommy.0/",
+      "displayTitle": "Implexrough",
+      "sourceTitle": "Implexrough",
+      "displayArtist": "Silentroommommy",
+      "sourceArtist": "Silentroom × mommy",
+      "indexRaw": "0",
+      "artwork": {
+        "resourceId": "33af763f-1b2f-7f54-a6bc-3e04a47780c9",
+        "confidence": "confirmed",
+        "role": "current-track-artwork"
+      },
+      "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
+          "difficultyClass": "EZ",
+          "structurallyPresent": true,
+          "errorVariant": false
+        },
+        {
+          "difficultyClass": "HD",
+          "structurallyPresent": true,
+          "errorVariant": false
+        },
+        {
+          "difficultyClass": "IN",
+          "structurallyPresent": true,
+          "errorVariant": false
+        }
+      ],
+      "displayLevel": null,
+      "chapter": null,
+      "searchAliases": [],
+      "searchTerms": [
+        "assets/tracks/implexrough.silentroommommy.0/",
+        "implexrough",
+        "silentroom × mommy",
+        "silentroommommy"
+      ]
+    },
+    {
       "sourceIdentityCandidate": "Assets/Tracks/IMustSayNo.TangJuan.0/",
       "sourceTrackPath": "Assets/Tracks/IMustSayNo.TangJuan.0/",
       "displayTitle": "I Must Say No",
@@ -5248,6 +6081,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -5288,6 +6126,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -5373,6 +6216,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -5457,6 +6305,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -5497,6 +6350,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -5528,7 +6386,7 @@
       "sourceTitle": "Introduction",
       "displayArtist": null,
       "sourceArtist": null,
-      "indexRaw": null,
+      "indexRaw": "Introduction",
       "artwork": {
         "resourceId": "01a00093-46f9-765b-870b-55fbb8056f49",
         "confidence": "high",
@@ -5536,8 +6394,23 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
+          "errorVariant": false
+        },
+        {
+          "difficultyClass": "HD",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
+          "difficultyClass": "IN",
+          "structurallyPresent": false,
           "errorVariant": false
         }
       ],
@@ -5563,6 +6436,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -5604,6 +6482,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -5643,6 +6526,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -5684,6 +6572,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -5723,6 +6616,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -5761,6 +6659,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -5802,6 +6705,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -5841,6 +6749,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -5882,6 +6795,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -5922,6 +6840,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -5960,6 +6883,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -6001,6 +6929,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -6040,6 +6973,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -6081,6 +7019,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -6120,6 +7063,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -6161,6 +7109,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -6200,6 +7153,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -6238,6 +7196,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -6302,6 +7265,11 @@
           "difficultyClass": "Legacy",
           "structurallyPresent": true,
           "errorVariant": false
+        },
+        {
+          "difficultyClass": "Legacy",
+          "structurallyPresent": true,
+          "errorVariant": false
         }
       ],
       "displayLevel": null,
@@ -6328,6 +7296,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -6369,6 +7342,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -6409,6 +7387,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -6448,6 +7431,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -6486,6 +7474,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -6527,6 +7520,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -6567,6 +7565,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -6606,6 +7609,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -6644,6 +7652,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -6685,6 +7698,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -6723,6 +7741,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -6764,6 +7787,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -6802,6 +7830,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -6843,6 +7876,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -6882,6 +7920,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -6923,6 +7966,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -6963,6 +8011,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -7001,6 +8054,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -7042,6 +8100,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -7082,6 +8145,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -7120,6 +8188,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -7160,6 +8233,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -7198,6 +8276,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -7283,6 +8366,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -7322,6 +8410,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -7363,6 +8456,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -7403,6 +8501,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -7442,6 +8545,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -7573,6 +8681,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -7613,6 +8726,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -7651,6 +8769,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -7781,6 +8904,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -7820,6 +8948,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -7861,6 +8994,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -7900,6 +9038,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -7938,6 +9081,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -7979,6 +9127,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -8017,6 +9170,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -8103,6 +9261,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -8141,6 +9304,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -8181,6 +9349,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -8219,6 +9392,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -8259,6 +9437,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -8298,6 +9481,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -8382,6 +9570,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -8468,6 +9661,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -8506,6 +9704,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -8546,6 +9749,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -8630,6 +9838,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -8668,6 +9881,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -8709,6 +9927,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -8747,6 +9970,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -8833,6 +10061,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -8872,6 +10105,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -8913,6 +10151,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -8952,6 +10195,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -9037,6 +10285,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -9077,6 +10330,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -9115,6 +10373,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -9244,6 +10507,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -9284,6 +10552,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -9323,6 +10596,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -9409,6 +10687,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -9448,6 +10731,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -9489,6 +10777,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -9528,6 +10821,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -9569,6 +10867,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -9608,6 +10911,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -9649,6 +10957,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -9688,6 +11001,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -9729,6 +11047,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -9767,6 +11090,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -9808,6 +11136,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -9847,6 +11180,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -9885,6 +11223,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -9970,6 +11313,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -10009,6 +11357,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -10047,6 +11400,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -10088,6 +11446,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -10128,6 +11491,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -10166,6 +11534,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -10206,6 +11579,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -10245,6 +11623,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -10330,6 +11713,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -10368,6 +11756,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -10409,6 +11802,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -10448,6 +11846,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -10486,6 +11889,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -10527,6 +11935,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -10567,6 +11980,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -10606,6 +12024,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -10690,6 +12113,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -10728,6 +12156,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -10768,6 +12201,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -10810,6 +12248,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -10848,6 +12291,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -10888,6 +12336,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -10926,6 +12379,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -10966,6 +12424,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -11004,6 +12467,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -11045,6 +12513,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -11085,6 +12558,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -11123,6 +12601,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -11164,6 +12647,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -11203,6 +12691,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -11289,6 +12782,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -11328,6 +12826,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -11366,6 +12869,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -11407,6 +12915,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -11447,6 +12960,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -11485,6 +13003,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -11525,6 +13048,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -11563,6 +13091,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -11604,6 +13137,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -11643,6 +13181,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -11727,6 +13270,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -11781,6 +13329,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -11819,6 +13372,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -11859,6 +13417,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -11989,6 +13552,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -12028,6 +13596,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -12066,6 +13639,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -12107,6 +13685,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -12192,6 +13775,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -12230,6 +13818,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -12270,6 +13863,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -12309,6 +13907,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -12347,6 +13950,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -12388,6 +13996,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -12428,6 +14041,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -12466,6 +14084,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -12552,6 +14175,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -12591,6 +14219,11 @@
       },
       "charts": [
         {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
           "errorVariant": false
@@ -12629,6 +14262,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -12712,6 +14350,11 @@
         "role": "current-track-artwork"
       },
       "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
         {
           "difficultyClass": "EZ",
           "structurallyPresent": true,
@@ -13462,8 +15105,8 @@
     }
   ],
   "recordCounts": {
-    "sourceTrackRecords": 321,
-    "currentTrackArtworkEntries": 315,
+    "sourceTrackRecords": 327,
+    "currentTrackArtworkEntries": 321,
     "specialRecords": 33,
     "archiveExtras": 7,
     "sourceOnlyTracks": 6
