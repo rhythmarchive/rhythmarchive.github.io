@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-20T00:00:00.000Z",
+  "generatedAt": "2026-09-26T05:40:54.304Z",
   "games": {
     "arcaea": {
       "sourceVersion": "7.0.260c",
       "sourceSha256": "2ccc879de95932d47ff62fc1bc18acbbeb43f43671302e4240498005f6e2b9e2",
-      "fileSha256": "274fcfc91c621ff19b16f8d801d6d53bbd1fd586eb01aa90c3f77826e7e8d589",
+      "fileSha256": "304028867317dae0083925588cc3fa7a56a7c56bd1a856df14b6048b6f871977",
       "recordCounts": {
         "regularSongs": 553,
         "currentArtworkSlots": 612,
@@ -17,12 +17,12 @@
       }
     },
     "phigros": {
-      "sourceVersion": "3.20.0",
-      "sourceSha256": "15f410d39dc8189dd6295488c1f1607665bfa7971f5587cc61257924327ab82d",
-      "fileSha256": "eb338aec019d9a138128050dbe1371913df766f9c4efa549357ec1216dacf8a8",
+      "sourceVersion": "4.0.0",
+      "sourceSha256": "7afbe1635278aced85a7c215948aec2aefe06f2d24322ff49776626b3ad41d7f",
+      "fileSha256": "4f08905617309a689a230af6cb26e14ab7a4bb7e356b9ee13c0535e49664d228",
       "recordCounts": {
-        "sourceTrackRecords": 321,
-        "currentTrackArtworkEntries": 315,
+        "sourceTrackRecords": 327,
+        "currentTrackArtworkEntries": 321,
         "specialRecords": 33,
         "archiveExtras": 7,
         "sourceOnlyTracks": 6
@@ -49,8 +49,8 @@
   },
   "catalog": {
     "catalogId": "019fefd6-9c49-7ca0-a760-adc76811a511",
-    "catalogSha256": "18f967ea8e24a5fd6a24c498711f0f15039f4877c30585338159b269bac1cdce",
-    "catalogGeneratedAt": "2026-09-20T06:51:45.888Z"
+    "catalogSha256": "4738f94d63b19fb3870e524a00c3c1bba2ed4889d35c500ad24ffd77c5db45f5",
+    "catalogGeneratedAt": "2026-09-26T04:55:50.765Z"
   },
   "files": {
     "arcaea": "arcaea.json",

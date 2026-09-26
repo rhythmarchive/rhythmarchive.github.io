@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
   "game": "phigros",
-  "generatedAt": "2026-09-06T05:24:31.038Z",
+  "generatedAt": "2026-09-26T04:55:50.765Z",
   "source": {
-    "snapshot": "Phigros APK 3.19.5",
-    "sha256": "51e04a2582fd65d0a0fbfcb24b8f70bbf396fb05116674ec3d3c21f03ed0c3af"
+    "snapshot": "Phigros APK 4.0.0",
+    "sha256": "07f6541219d4a67635d2b7a0847c546eeacd28d79fb7ea00ae7cee6eec3af398"
   },
   "resources": [
     {
@@ -767,6 +767,25 @@
       "facets": {
         "kind": [
           "其他曲包"
+        ]
+      }
+    },
+    {
+      "resourceId": "96d6b854-f8fa-7f2e-95df-56493313dc48",
+      "resourceType": "pack-cover",
+      "displayTitle": "主线 · 第9章",
+      "subtitle": "主线章节封面",
+      "metadata": {},
+      "badges": [],
+      "searchTerms": [
+        "MainStory9",
+        "Main Story 9",
+        "主线 第9章"
+      ],
+      "sortOrder": 90,
+      "facets": {
+        "kind": [
+          "主线"
         ]
       }
     }
