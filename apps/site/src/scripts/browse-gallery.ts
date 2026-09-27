@@ -17,7 +17,6 @@ import {
   parseBrowseUrlState,
   serializeBrowseUrlState,
 } from "../lib/browse-gallery";
-import { cardMediaFit, cardMediaRatio } from "../lib/media-config";
 import { displayFilterDifficultyLabel } from "../lib/game-config";
 import { formatArcaeaAddedVersion } from "../lib/public-display";
 import { appendResourceViews, updateResourceStatsInDom } from "../lib/stats-client";
@@ -435,8 +434,6 @@ function createCard(item: BrowseGalleryItem, index: number, isSelected: boolean)
   article.dataset.resourceId = item.resourceId;
   article.dataset.game = item.game;
   article.dataset.resourceType = item.resourceType;
-  article.dataset.mediaRatio = cardMediaRatio(item.game, item.resourceType);
-  article.dataset.mediaFit = cardMediaFit(item.game, item.resourceType);
 
   const select = document.createElement("button");
   select.className = "resource-select";

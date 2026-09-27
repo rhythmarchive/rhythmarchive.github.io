@@ -1,5 +1,4 @@
 import { rankSearchEntries } from "../lib/search";
-import { cardMediaFit, cardMediaRatio } from "../lib/media-config";
 import { GAME_CONFIG } from "../lib/game-config";
 import { appendResourceViews, updateResourceStatsInDom } from "../lib/stats-client";
 import type { PublicSearchCard, PublicSearchEntry } from "../lib/types";
@@ -114,8 +113,6 @@ function createResultCard(card: PublicSearchCard): HTMLElement {
   article.dataset.resourceId = card.resourceId;
   article.dataset.game = card.game;
   article.dataset.resourceType = card.resourceType;
-  article.dataset.mediaRatio = cardMediaRatio(card.game, card.resourceType);
-  article.dataset.mediaFit = cardMediaFit(card.game, card.resourceType);
   const anchor = document.createElement("a");
   anchor.className = "resource-card-link";
   anchor.href = resolveSitePath(card.route);
