@@ -31,6 +31,7 @@ const QUICK_LINK_DEFINITIONS: QuickLinkDefinition[] = [
   { game: "rizline", category: "character-avatar", label: "Rizline 角色头像" },
   { game: "arcaea", category: "character-portrait", label: "Arcaea 角色立绘" },
   { game: "arcaea", category: "story-cg", label: "Arcaea 剧情 CG" },
+  { game: "phigros", category: "story-cg", label: "Phigros 剧情 CG" },
 ];
 
 export function buildSearchQuickLinks(data: Pick<PublicSiteData, "games">): SearchQuickLink[] {

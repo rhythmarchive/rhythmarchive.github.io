@@ -1,7 +1,6 @@
 import { createBatchTray, downloadSelectedBatchFromManifest } from "./batch-tray";
 import { selectCardPreview } from "../lib/card-preview";
 import type { GalleryCard } from "../lib/gallery-projection";
-import { cardMediaFit, cardMediaRatio } from "../lib/media-config";
 import { matchesChartFilters } from "../lib/chart-filters";
 import { compareNaturalText, normalizeSearchText } from "../lib/search";
 import { appendResourceViews, updateResourceStatsInDom } from "../lib/stats-client";
@@ -324,8 +323,6 @@ function createCard(resource: GalleryCard, index: number, isSelected: boolean): 
   article.dataset.resourceId = resource.resourceId;
   article.dataset.game = resource.game;
   article.dataset.resourceType = resource.resourceType;
-  article.dataset.mediaRatio = cardMediaRatio(resource.game, resource.resourceType);
-  article.dataset.mediaFit = cardMediaFit(resource.game, resource.resourceType);
   const select = document.createElement("button");
   select.className = "resource-select";
   select.type = "button";

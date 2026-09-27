@@ -135,6 +135,7 @@ export function getCategoryBrowseConfig(game: GameId, category: string, resource
     : game === "phigros"
       ? ({
         "character-avatar": "搜索头像名称",
+        "story-cg": "搜索剧情 Entry 或资源名",
         "pack-cover": "搜索曲包或分类",
         "phigros-april-fools": "搜索特殊资源",
       } as Record<string, string>)[category] ?? "搜索资源"

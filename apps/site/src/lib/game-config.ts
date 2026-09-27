@@ -81,8 +81,8 @@ export const GAME_CONFIG: Record<GameId, GameConfig> = {
   phigros: {
     slug: "phigros",
     displayName: "Phigros",
-    categoryOrder: ["jacket", "character-avatar", "pack-cover", "phigros-april-fools", "other"],
-    featuredCategories: ["jacket", "pack-cover", "character-avatar", "phigros-april-fools"],
+    categoryOrder: ["jacket", "story-cg", "character-avatar", "pack-cover", "phigros-april-fools", "other"],
+    featuredCategories: ["jacket", "story-cg", "pack-cover", "character-avatar", "phigros-april-fools"],
     filters: { difficulty: true, upscale: false },
     metadataLabels: {
       artist: "曲师",
@@ -97,6 +97,8 @@ export const GAME_CONFIG: Record<GameId, GameConfig> = {
       characterEnglishName: "英文名",
       characterKoreanName: "韩文名",
       characterVariant: "角色变体",
+      storyChapter: "剧情章节",
+      storyEntry: "剧情 Entry",
       specialYear: "资源年份",
     },
   },
