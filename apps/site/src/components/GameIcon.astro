@@ -1,7 +1,7 @@
 ---
 import type { GameId } from "../lib/game-config";
-import { BASE_PATH, ROS_BASE_URL, SITE_ORIGIN } from "../lib/site-config";
-import { createUrlHelpers } from "../lib/url";
+
+import { urls } from "../lib/site-urls";
 
 interface Props {
   game: GameId;
@@ -11,7 +11,7 @@ const { game } = Astro.props;
 const labels: Record<GameId, string> = { arcaea: "A", phigros: "P", rizline: "R", infalsus: "F", rotaeno: "R", "paradigm-reboot": "范", orzmic: "O" };
 const label = labels[game] ?? "R";
 const name = game;
-const urls = createUrlHelpers({ basePath: BASE_PATH, origin: SITE_ORIGIN, rosBaseUrl: ROS_BASE_URL });
+
 ---
 
 <span class={`game-icon game-icon-${game}`} aria-hidden="true">

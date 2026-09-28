@@ -1,6 +1,7 @@
 ---
 import BrowseCard from "./BrowseCard.astro";
 import BatchTray from "./BatchTray.astro";
+import GalleryLoadError from "./GalleryLoadError.astro";
 import { getBrowseFacetOptions, type ArcaeaFacetOptions, type BrowseGalleryData, type InfalsusFacetOptions, type PhigrosFacetOptions, type RizlineFacetOptions } from "../lib/browse-gallery";
 import { formatCount } from "../lib/format";
 import { displayFilterDifficultyLabel } from "../lib/game-config";
@@ -42,7 +43,7 @@ function formatRangeValue(value: number): string {
   <div class="gallery-toolbar browse-gallery-toolbar">
     <div class="gallery-toolbar-copy">
       <span class="section-kicker">{categoryLabel}</span>
-      <p data-gallery-count>{formatCount(data.items.length)} 项资源</p>
+      <p data-gallery-count role="status" aria-live="polite" aria-atomic="true">{formatCount(data.items.length)} 项资源</p>
     </div>
     <div class="gallery-toolbar-controls">
       <label class="gallery-search">
@@ -143,6 +144,7 @@ function formatRangeValue(value: number): string {
     <button class="text-link" type="button" data-gallery-reset>清除全部</button>
   </div>
 
+  <GalleryLoadError />
   <div class="gallery-grid" data-gallery-grid>
     {initialItems.map((item, index) => <BrowseCard item={item} selectable eager={index < 6} />)}
   </div>

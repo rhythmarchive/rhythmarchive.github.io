@@ -23,8 +23,8 @@ export async function downloadRendition(button: HTMLButtonElement): Promise<void
     if (status) status.textContent = "";
   } catch (error) {
     console.error("Resource download failed", error);
-    if (status) status.textContent = "下载失败，请重试";
     triggerDirectDownload(url, filename);
+    if (status) status.textContent = "已尝试打开原始文件地址。如未开始下载，请检查网络后重试。";
   } finally {
     button.disabled = false;
     button.innerHTML = originalLabel;

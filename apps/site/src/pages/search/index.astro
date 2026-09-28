@@ -2,14 +2,13 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import SearchBox from "../../components/SearchBox.astro";
 import { formatCount } from "../../lib/format";
-import { BASE_PATH, ROS_BASE_URL, SITE_ORIGIN } from "../../lib/site-config";
 import { buildSearchQuickLinks } from "../../lib/search-quick-links";
 import { getPublicNavigationGames } from "../../lib/site-data";
-import { createUrlHelpers } from "../../lib/url";
+import { urls } from "../../lib/site-urls";
 
 const query = Astro.url.searchParams.get("q") ?? "";
 const description = `搜索${getPublicNavigationGames().map((game) => game.displayName).join("、")}的曲绘、角色头像、特殊插画和其他图片资源。`;
-const urls = createUrlHelpers({ basePath: BASE_PATH, origin: SITE_ORIGIN, rosBaseUrl: ROS_BASE_URL });
+
 const games = getPublicNavigationGames();
 const quickLinks = buildSearchQuickLinks({ games });
 const browseGroups = games.map((game) => ({
@@ -49,6 +48,10 @@ const browseGroups = games.map((game) => ({
   </section>
   <section class="page-container search-results" data-search-page data-search-query={query}>
     <div class="search-results-heading"><span data-search-status aria-live="polite">输入关键词搜索资源</span><button class="text-link search-retry" type="button" data-search-retry hidden>重试</button></div>
+    <div class="search-empty" data-search-empty hidden>
+      <p>试试更短的关键词，或从游戏库按分类查找。</p>
+      <div><a class="button button-secondary" href={urls.sitePath("/games/")}>浏览游戏库</a><a class="text-link" href={urls.sitePath("/feedback/")}>反馈缺少的资源</a></div>
+    </div>
     <div class="resource-grid" data-search-results></div>
   </section>
   <script src="../../scripts/search-page.ts"></script>

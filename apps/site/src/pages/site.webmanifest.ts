@@ -1,9 +1,8 @@
-import { BASE_PATH, ROS_BASE_URL, SITE_ORIGIN } from "../lib/site-config";
 import { getPublicNavigationGames } from "../lib/site-data";
-import { createUrlHelpers } from "../lib/url";
+import { urls } from "../lib/site-urls";
 
 export function GET(): Response {
-  const urls = createUrlHelpers({ basePath: BASE_PATH, origin: SITE_ORIGIN, rosBaseUrl: ROS_BASE_URL });
+
   const gameNames = getPublicNavigationGames().map((game) => game.displayName).join("、");
   const manifest = {
     name: "Rhythm Archive",

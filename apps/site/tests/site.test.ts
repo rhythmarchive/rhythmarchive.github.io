@@ -8,6 +8,7 @@ import { projectCatalog, selectPreviewRendition } from "../src/lib/catalog-proje
 import { formatPublicApkBytes, parsePublicArcaeaApkManifest } from "../src/lib/apk.js";
 import { uniqueZipFilename } from "../src/lib/batch.js";
 import { selectCardPreview } from "../src/lib/card-preview.js";
+import { galleryCardView, publicResourceCardView } from "../src/lib/card-view-model.js";
 import { galleryCard } from "../src/lib/gallery-projection.js";
 import { displayDifficultyLabel, displayFilterDifficultyLabel, displayVariantLabel, GAME_CONFIG, primaryCategorySlug } from "../src/lib/game-config.js";
 import { formatImageDimensions } from "../src/lib/format.js";
@@ -18,7 +19,7 @@ import { getCategoryBrowseConfig } from "../src/lib/category-browse.js";
 import { matchesChartFilters } from "../src/lib/chart-filters.js";
 import { GISCUS_CONFIG, GITHUB_DISCUSSIONS_URL, GITHUB_RELEASES_URL, GITHUB_REPOSITORY_URL } from "../src/lib/site-config.js";
 import { compareNaturalText, rankSearchEntries } from "../src/lib/search.js";
-import { createUrlHelpers } from "../src/lib/url.js";
+import { createUrlHelpers, sitePath } from "../src/lib/url.js";
 import { getPublicNavigationGames, getSiteData, loadCategoryBrowseProjections, loadFormalCatalog } from "../src/lib/site-data.js";
 import { formatArcaeaAddedVersion } from "../src/lib/public-display.js";
 import type { PublicResource, PublicSearchEntry } from "../src/lib/types.js";
@@ -282,6 +283,10 @@ test("base path and object URL helpers support Organization Pages and project pa
   assert.equal(urls.objectUrl("objects/abc/image.jpg"), `${rosBaseUrl}/objects/abc/image.jpg`);
   const projectUrls = createUrlHelpers({ basePath: "/archive/", origin: "https://example.test", rosBaseUrl });
   assert.equal(projectUrls.sitePath("/r/id/"), "/archive/r/id/");
+  assert.equal(projectUrls.sitePath("/"), "/archive/");
+  assert.equal(projectUrls.absoluteUrl("/r/id/"), "https://example.test/archive/r/id/");
+  assert.equal(sitePath("search/", "archive///"), "/archive/search/");
+  assert.equal(projectUrls.objectUrl("objects/曲 绘/image #1.png"), `${rosBaseUrl}/objects/%E6%9B%B2%20%E7%BB%98/image%20%231.png`);
 });
 
 test("ZIP duplicate naming uses human-safe numbered suffixes", () => {
@@ -433,11 +438,13 @@ test("header uses a centered three-column primary nav and retains the extensible
   assert.match(header, /Astro\.url\.pathname/u);
   assert.match(header, /isGameLibrary/u);
   assert.match(header, /aria-current=/u);
+  assert.match(header, /<noscript>[\s\S]*site-noscript-nav[\s\S]*urls\.sitePath\("\/games\/"\)/u);
   assert.doesNotMatch(header, /GAME_CONFIG|Object\.values\(GAME_CONFIG\)/u);
   assert.match(styles, /\.nav-library-popover/u);
   assert.match(styles, /\.nav-game-list/u);
   assert.match(styles, /\.site-header-inner \{ display: grid; grid-template-columns: minmax\(0, 1fr\) auto minmax\(0, 1fr\);/u);
   assert.match(styles, /\.site-header-actions/u);
+  assert.match(styles, /\.has-js \.site-menu-toggle \{ display: grid; \}/u);
   assert.match(styles, /\.site-nav > a\.is-active/u);
   assert.doesNotMatch(styles, /site-nav > a:not\(\.nav-search\)/u);
 });
@@ -485,7 +492,7 @@ test("shared visual tokens keep rounded cards, restrained shadows, and theme-saf
 test("Story Atlas UX contract keeps authored maps, direct dialog reading and player-facing copy", () => {
   const component = fs.readFileSync(path.join(siteRoot, "src", "components", "ArcaeaStoryAtlas.astro"), "utf8");
   const script = fs.readFileSync(path.join(siteRoot, "src", "scripts", "arcaea-story-atlas.ts"), "utf8");
-  const styles = fs.readFileSync(path.join(siteRoot, "src", "styles", "global.css"), "utf8");
+  const styles = fs.readFileSync(path.join(siteRoot, "src", "styles", "story-atlas.css"), "utf8");
   assert.match(component, /data-story-link-path-ids/u);
   assert.match(component, /data-story-subworld-panel="final-verdict"/u);
   assert.match(component, /data-story-subworld-node/u);
@@ -872,11 +879,15 @@ test("card previews stay separate from download renditions", () => {
   assert.equal("variants" in card, false);
   assert.equal("sizeBytes" in card, false);
   assert.equal(card.hasUpscaled, Boolean(resource.upscaled));
-  const gallery = fs.readFileSync(path.join(siteRoot, "src", "scripts", "gallery.ts"), "utf8");
-  const browse = fs.readFileSync(path.join(siteRoot, "src", "scripts", "browse-gallery.ts"), "utf8");
-  assert.match(gallery, /selectCardPreview\(resource\.preview\)/u);
-  assert.match(browse, /selectCardPreview\(item\.preview\)/u);
-  assert.doesNotMatch(gallery + browse, /useOriginalGallerySource/u);
+  const dynamicView = galleryCardView(card);
+  const initialView = publicResourceCardView(resource);
+  assert.equal(dynamicView.preview.primary?.url, selected.primary?.url);
+  assert.deepEqual(dynamicView.labels, initialView.labels);
+  assert.equal("original" in dynamicView || "upscaled" in dynamicView, false);
+  const astroCard = fs.readFileSync(path.join(siteRoot, "src", "components", "CardShell.astro"), "utf8");
+  const dynamicCard = fs.readFileSync(path.join(siteRoot, "src", "scripts", "render-resource-card.ts"), "utf8");
+  assert.doesNotMatch(astroCard, /set:html/u);
+  assert.doesNotMatch(dynamicCard, /innerHTML|insertAdjacentHTML/u);
 });
 test("detail downloads show image dimensions without the recommendation label", () => {
   const page = fs.readFileSync(path.join(siteRoot, "src", "pages", "r", "[id]", "index.astro"), "utf8");

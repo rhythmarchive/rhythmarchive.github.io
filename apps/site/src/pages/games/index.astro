@@ -2,10 +2,9 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import GameCard from "../../components/GameCard.astro";
 import { getPublicNavigationGames } from "../../lib/site-data";
-import { BASE_PATH, ROS_BASE_URL, SITE_ORIGIN } from "../../lib/site-config";
-import { createUrlHelpers } from "../../lib/url";
 
-const urls = createUrlHelpers({ basePath: BASE_PATH, origin: SITE_ORIGIN, rosBaseUrl: ROS_BASE_URL });
+import { urls } from "../../lib/site-urls";
+
 const games = getPublicNavigationGames();
 const description = "浏览 Rhythm Archive 收录的全部公开音游图片资源。";
 ---

@@ -1,9 +1,11 @@
 import { createBatchTray, downloadSelectedBatchFromManifest } from "./batch-tray";
-import { selectCardPreview } from "../lib/card-preview";
+import { showGalleryLoadError } from "./gallery-load-error";
+import { renderResourceCard } from "./render-resource-card";
+import { galleryCardView } from "../lib/card-view-model";
 import type { GalleryCard } from "../lib/gallery-projection";
 import { matchesChartFilters } from "../lib/chart-filters";
 import { compareNaturalText, normalizeSearchText } from "../lib/search";
-import { appendResourceViews, updateResourceStatsInDom } from "../lib/stats-client";
+import { updateResourceStatsInDom } from "../lib/stats-client";
 
 const PAGE_SIZE = 48;
 
@@ -92,7 +94,7 @@ async function initializeGallery(root: HTMLElement): Promise<void> {
     render();
   } catch (error) {
     console.error("Gallery data failed", error);
-    count.textContent = "图片加载失败";
+    showGalleryLoadError(root, count);
     return;
   }
 
@@ -214,7 +216,7 @@ async function initializeGallery(root: HTMLElement): Promise<void> {
   function render(): void {
     const filtered = currentResources();
     const visible = filtered.slice(0, visibleCount);
-    grid!.replaceChildren(...visible.map((resource, index) => createCard(resource, index, batchTray?.isSelected(resource.resourceId) ?? false)));
+    grid!.replaceChildren(...visible.map((resource, index) => renderResourceCard(galleryCardView(resource), { basePath: root.dataset.basePath ?? "/", index, isSelected: batchTray?.isSelected(resource.resourceId) ?? false })));
     count!.textContent = `${filtered.length.toLocaleString("zh-CN")} 项资源`;
     loadMore!.hidden = visible.length >= filtered.length;
     updateActiveFilters();
@@ -316,98 +318,8 @@ function matchesRange(resource: GalleryCard, range: GalleryRange): boolean {
   });
 }
 
-function createCard(resource: GalleryCard, index: number, isSelected: boolean): HTMLElement {
-  const article = document.createElement("article");
-  article.className = `resource-card${isSelected ? " is-selected" : ""}`;
-  article.dataset.resourceCard = "";
-  article.dataset.resourceId = resource.resourceId;
-  article.dataset.game = resource.game;
-  article.dataset.resourceType = resource.resourceType;
-  const select = document.createElement("button");
-  select.className = "resource-select";
-  select.type = "button";
-  select.dataset.selectResource = resource.resourceId;
-  select.setAttribute("aria-pressed", String(isSelected));
-  select.setAttribute("aria-label", `${isSelected ? "取消选择" : "选择"} ${resource.displayTitle}`);
-  select.innerHTML = "<span aria-hidden=\"true\">✓</span>";
-  article.append(select);
 
-  const anchor = document.createElement("a");
-  anchor.className = "resource-card-link";
-  anchor.href = resolveSitePath(resource.route);
-  const media = document.createElement("div");
-  media.className = "resource-card-media";
-  const { primary: image, fallback: fallbackImage, srcset } = selectCardPreview(resource.preview);
-  if (image) {
-    const img = document.createElement("img");
-    img.src = image.url;
-    img.alt = resource.displayTitle;
-    const imageWidth = image.width ?? fallbackImage?.width;
-    const imageHeight = image.height ?? fallbackImage?.height;
-    if (imageWidth) img.width = imageWidth;
-    if (imageHeight) img.height = imageHeight;
-    img.loading = index < 6 ? "eager" : "lazy";
-    img.decoding = "async";
-    if (srcset) img.setAttribute("srcset", srcset);
-    if (fallbackImage?.url) {
-      img.dataset.fallbackSrc = fallbackImage.url;
-      if (fallbackImage.width) img.dataset.fallbackWidth = String(fallbackImage.width);
-      if (fallbackImage.height) img.dataset.fallbackHeight = String(fallbackImage.height);
-    }
-    img.sizes = "(max-width: 640px) 50vw, (max-width: 1280px) 20vw, 210px";
-    media.append(img);
-  } else {
-    const placeholder = document.createElement("div");
-    placeholder.className = "resource-card-placeholder";
-    placeholder.textContent = "图片暂不可用";
-    media.append(placeholder);
-  }
-  if (resource.hasUpscaled) {
-    const badge = document.createElement("span");
-    badge.className = "resource-badge is-upscaled";
-    badge.textContent = "含超分版";
-    media.append(badge);
-  }
-  const body = document.createElement("div");
-  body.className = "resource-card-body";
-  const title = document.createElement("h3");
-  title.textContent = resource.displayTitle;
-  body.append(title);
-  if (resource.artist) {
-    const artist = document.createElement("p");
-    artist.textContent = resource.artist;
-    body.append(artist);
-  }
-  if (resource.subtitle) {
-    const subtitle = document.createElement("p");
-    subtitle.className = "resource-card-subtitle";
-    subtitle.textContent = resource.subtitle;
-    body.append(subtitle);
-  }
-  for (const badge of resource.badges ?? []) {
-    const label = document.createElement("span");
-    label.className = "resource-card-variant";
-    label.textContent = badge;
-    body.append(label);
-  }
-  const variant = resource.badges?.length ? undefined : resource.variantLabel;
-  if (variant) {
-    const label = document.createElement("span");
-    label.className = "resource-card-variant";
-    label.textContent = variant;
-    body.append(label);
-  }
-  appendResourceViews(body);
-  anchor.append(media, body);
-  article.append(anchor);
-  return article;
-}
 
-function resolveSitePath(path: string): string {
-  const base = document.querySelector<HTMLElement>("[data-gallery-root]")?.dataset.basePath ?? "/";
-  const clean = path.startsWith("/") ? path : `/${path}`;
-  return base === "/" ? clean : `${base.replace(/\/+$/u, "")}${clean}`;
-}
 
 function numericFacetValue(resource: GalleryCard, key: string): number | undefined {
   const values = resource.facets?.[key] ?? (resource.metadata[key] === undefined ? [] : [String(resource.metadata[key])]);

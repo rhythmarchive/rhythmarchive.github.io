@@ -1,4 +1,5 @@
 import { publicContentVersion } from "../lib/game-index";
+import { sitePath as withBasePath } from "../lib/url";
 import type { PublicUpdate, PublicUpdateItem } from "../lib/types";
 
 const dataElement = document.querySelector<HTMLScriptElement>("#updates-data");
@@ -15,10 +16,7 @@ if (!dataElement || !list || !gameSelect || !typeSelect || !clearButton || !empt
 const updates = JSON.parse(dataElement.textContent || "[]") as PublicUpdate[];
 let visibleLimit = 20;
 const basePath = document.documentElement.dataset.basePath || "/";
-const sitePath = (pathname: string): string => {
-  const normalizedBase = basePath === "/" ? "" : basePath.replace(/\/+$/u, "");
-  return (normalizedBase + pathname).replace(/\/{2,}/gu, "/") || "/";
-};
+const sitePath = (pathname: string): string => withBasePath(pathname, basePath);
 const escapeHtml = (value: string): string => value.replace(/[&<>"']/gu, (character) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[character] ?? character));
 const imageHtml = (item: PublicUpdateItem): string => {
   if (!item.image) return "<span class=\"update-preview-placeholder\">图片暂不可用</span>";

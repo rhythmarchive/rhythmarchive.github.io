@@ -1,9 +1,10 @@
 ---
 import Footer from "../components/Footer.astro";
 import SiteHeader from "../components/SiteHeader.astro";
-import { BASE_PATH, PUBLIC_STATS_API_URL, ROS_BASE_URL, SITE_ORIGIN } from "../lib/site-config";
-import { createUrlHelpers } from "../lib/url";
+import { BASE_PATH, PUBLIC_STATS_API_URL, ROS_BASE_URL } from "../lib/site-config";
+import { urls } from "../lib/site-urls";
 import "../styles/global.css";
+import "../styles/story-atlas.css";
 
 interface Props {
   title: string;
@@ -14,7 +15,7 @@ interface Props {
 }
 
 const { title, description, canonicalPath, ogImage, bodyClass = "" } = Astro.props;
-const urls = createUrlHelpers({ basePath: BASE_PATH, origin: SITE_ORIGIN, rosBaseUrl: ROS_BASE_URL });
+
 const canonical = urls.absoluteUrl(canonicalPath);
 const socialImage = ogImage ?? urls.absoluteUrl("/brand-mark.svg");
 const rosOrigin = new URL(ROS_BASE_URL).origin;

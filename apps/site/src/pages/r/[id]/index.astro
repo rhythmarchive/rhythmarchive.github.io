@@ -5,14 +5,13 @@ import VariantPanel from "../../../components/VariantPanel.astro";
 import ResourceCard from "../../../components/ResourceCard.astro";
 import { displayDifficultyLabel, GAME_CONFIG } from "../../../lib/game-config";
 import { formatImageDimensions } from "../../../lib/format";
-import { BASE_PATH, ROS_BASE_URL } from "../../../lib/site-config";
+
 import { getSiteData } from "../../../lib/site-data";
 import { rankRelatedResources } from "../../../lib/related";
-import { createUrlHelpers } from "../../../lib/url";
+import { urls } from "../../../lib/site-urls";
 import type { PublicResource } from "../../../lib/types";
 
 const data = getSiteData();
-const urls = createUrlHelpers({ basePath: BASE_PATH, origin: "https://rhythmarchive.github.io", rosBaseUrl: ROS_BASE_URL });
 
 export function getStaticPaths() {
   const siteData = getSiteData();

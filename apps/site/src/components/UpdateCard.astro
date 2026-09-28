@@ -1,9 +1,9 @@
 ---
 import type { PublicUpdate, PublicUpdateItem } from "../lib/types";
-import { BASE_PATH, ROS_BASE_URL, SITE_ORIGIN } from "../lib/site-config";
+
 import { formatCount } from "../lib/format";
 import { publicContentVersion } from "../lib/game-index";
-import { createUrlHelpers } from "../lib/url";
+import { urls } from "../lib/site-urls";
 
 interface Props {
   update: PublicUpdate;
@@ -12,7 +12,7 @@ interface Props {
 }
 
 const { update, compact = false, items = update.items } = Astro.props;
-const urls = createUrlHelpers({ basePath: BASE_PATH, origin: SITE_ORIGIN, rosBaseUrl: ROS_BASE_URL });
+
 const previewItems = items.slice(0, compact ? 2 : 4);
 const summaryLabel = "更新 " + formatCount(update.summary.count) + " 项";
 const contentVersion = publicContentVersion(update.contentVersion);
