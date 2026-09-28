@@ -66,6 +66,12 @@ test("jacket details expose the unified chart field and user-facing identity met
   assert.deepEqual(infalsusJacket?.charts?.map((chart) => [chart.difficulty, chart.level]), [["MIN", "1"], ["EVO", "5"], ["ULT", "9"], ["FBD", "11"]]);
   const phigrosJacket = siteData.resources.find((resource) => resource.game === "phigros" && resource.resourceType === "jacket" && resource.metadata.songName === "000 -Ain Soph Aur-");
   assert.deepEqual(phigrosJacket?.charts?.map((chart) => [chart.difficulty, chart.level, chart.noter]), [["EZ", "2.5", "Magazet"], ["HD", "8.4", "Magazet"], ["IN", "14.4", "啊0哒0咔0哟 & Dilated"]]);
+  const mainStory9Song = siteData.resources.find((resource) => resource.game === "phigros" && resource.resourceType === "jacket" && resource.metadata.songName === "Entrance to the Chaos");
+  assert.equal(mainStory9Song?.metadata.pack, "Chapter 9");
+  assert.deepEqual(mainStory9Song?.charts?.map((chart) => [chart.difficulty, chart.level]), [["EZ", "8.8"], ["HD", "13.7"], ["IN", "16.8"], ["AT", "17.6"]]);
+  const unavailableAtSong = siteData.resources.find((resource) => resource.game === "phigros" && resource.resourceType === "jacket" && resource.metadata.songName === "About The Universe");
+  assert.equal(unavailableAtSong?.metadata.pack, "Chapter 9");
+  assert.deepEqual(unavailableAtSong?.charts?.map((chart) => [chart.difficulty, chart.level]), [["EZ", "4.5"], ["HD", "9.7"], ["IN", "14.4"]]);
   const rotaenoJacket = siteData.resources.find((resource) => resource.game === "rotaeno" && resource.resourceType === "jacket" && resource.metadata.songId === "abstruse-dilemma");
   assert.deepEqual(rotaenoJacket?.charts?.map((chart) => [chart.difficulty, chart.level, chart.constant]), [["I", "3", "3.0"], ["II", "7", "7.0"], ["III", "12", "12.3"], ["IV", "14", "14.0"]]);
   assert.ok(rotaenoJacket?.charts?.every((chart) => chart.status === "available"));
@@ -330,7 +336,7 @@ test("public game index projects activity only from final public resources", () 
     .sort()
     .at(-1);
   assert.equal(rizline?.lastUpdatedAt, rizlineUpdatedAt);
-  assert.equal(phigros?.contentVersion, "3.20.0");
+  assert.equal(phigros?.contentVersion, "4.0.0");
   const phigrosUpdatedAt = catalog.resources
     .filter((resource) => resource.game === "phigros" && resource.lifecycle.status === "published")
     .map((resource) => resource.lifecycle.updatedAt)
@@ -629,7 +635,7 @@ test("natural text comparison keeps numeric ordering without folding accents", (
 test("homepage navigation uses the generated jacket browse counts", () => {
   const games = getPublicNavigationGames();
   assert.equal(games.find((game) => game.slug === "arcaea")?.categories.find((category) => category.slug === "jacket")?.count, 567);
-  assert.equal(games.find((game) => game.slug === "phigros")?.categories.find((category) => category.slug === "jacket")?.count, 348);
+  assert.equal(games.find((game) => game.slug === "phigros")?.categories.find((category) => category.slug === "jacket")?.count, 354);
   const rizline = games.find((game) => game.slug === "rizline");
   assert.equal(rizline?.categories.find((category) => category.slug === "jacket")?.count, 145);
   assert.equal(rizline?.categories.find((category) => category.slug === "rizcard")?.count, 44);

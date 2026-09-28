@@ -150,7 +150,13 @@ function isPublicHiddenResource(resource: Resource): boolean {
 }
 
 function isPublicCatalogResource(resource: Resource): boolean {
-  return resource.lifecycle.status === "published" && !isPublicHiddenResource(resource);
+  const previewingPhigrosStoryDrafts = process.env.NODE_ENV === "development"
+    && process.env.RHYTHM_ARCHIVE_PREVIEW_STORY_CG === "true"
+    && resource.game === "phigros"
+    && resource.resourceType === "story-cg";
+  const isVisible = resource.lifecycle.status === "published"
+    || (previewingPhigrosStoryDrafts && resource.lifecycle.status === "draft");
+  return isVisible && !isPublicHiddenResource(resource);
 }
 const PREVIEW_TYPES = {
   small: "thumbnail-320",

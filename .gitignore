@@ -25,6 +25,8 @@ output/
 apps/site/.astro/
 apps/site/src/generated/
 apps/site/public/data/
+# Local Astro preview runtime when a nested root is launched from the repo root.
+apps/site/apps/site/.astro/
 
 # Local configuration and secrets
 .env

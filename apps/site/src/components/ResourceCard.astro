@@ -2,7 +2,6 @@
 import type { PublicResource } from "../lib/types";
 import { BASE_PATH } from "../lib/site-config";
 import { createUrlHelpers } from "../lib/url";
-import { cardMediaFit, cardMediaRatio } from "../lib/media-config";
 import { selectCardPreview } from "../lib/card-preview";
 
 interface Props {
@@ -18,7 +17,7 @@ const { primary: gallerySource, fallback: galleryFallback, srcset: gallerySrcset
 const variantLabel = resource.variants.find((variant) => variant.label !== "默认")?.label;
 ---
 
-<article class="resource-card" data-resource-card data-resource-id={resource.resourceId} data-game={resource.game} data-resource-type={resource.resourceType} data-media-ratio={cardMediaRatio(resource.game, resource.resourceType)} data-media-fit={cardMediaFit(resource.game, resource.resourceType)}>
+<article class="resource-card" data-resource-card data-resource-id={resource.resourceId} data-game={resource.game} data-resource-type={resource.resourceType}>
   {selectable ? (
     <button class="resource-select" type="button" data-select-resource={resource.resourceId} aria-pressed="false" aria-label={`选择 ${resource.displayTitle}`}>
       <span aria-hidden="true">✓</span>
