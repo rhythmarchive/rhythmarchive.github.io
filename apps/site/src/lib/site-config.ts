@@ -1,3 +1,5 @@
+import { normalizeBasePath, stripTrailingSlash } from "./url";
+
 const runtimeEnv = (import.meta as ImportMeta & { env?: Record<string, string | undefined> }).env ?? (typeof process === "undefined" ? {} : process.env);
 
 export const SITE_ORIGIN = stripTrailingSlash(runtimeEnv.PUBLIC_SITE_ORIGIN || "https://rhythmarchive.github.io");
@@ -26,17 +28,6 @@ export const GISCUS_CONFIG = {
   lang: "zh-CN",
   theme: "preferred_color_scheme",
 } as const;
-
-export function normalizeBasePath(value: string): string {
-  const trimmed = value.trim();
-  if (!trimmed || trimmed === "/") return "/";
-  const withLeadingSlash = trimmed.startsWith("/") ? trimmed : `/${trimmed}`;
-  return `${withLeadingSlash.replace(/\/+$/u, "")}/`;
-}
-
-export function stripTrailingSlash(value: string): string {
-  return value.replace(/\/+$/u, "");
-}
 
 function optionalUrl(value: string | undefined): string | undefined {
   const trimmed = value?.trim();

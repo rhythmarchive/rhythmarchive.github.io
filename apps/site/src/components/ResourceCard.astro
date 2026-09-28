@@ -1,8 +1,7 @@
 ---
+import CardShell from "./CardShell.astro";
+import { publicResourceCardView } from "../lib/card-view-model";
 import type { PublicResource } from "../lib/types";
-import { BASE_PATH } from "../lib/site-config";
-import { createUrlHelpers } from "../lib/url";
-import { selectCardPreview } from "../lib/card-preview";
 
 interface Props {
   resource: PublicResource;
@@ -12,43 +11,7 @@ interface Props {
 }
 
 const { resource, selectable = false, eager = false } = Astro.props;
-const urls = createUrlHelpers({ basePath: BASE_PATH, origin: "https://rhythmarchive.github.io", rosBaseUrl: "https://rhythm-assets.cn-nb1.rains3.com" });
-const { primary: gallerySource, fallback: galleryFallback, srcset: gallerySrcset } = selectCardPreview(resource.preview);
-const variantLabel = resource.variants.find((variant) => variant.label !== "默认")?.label;
+const view = publicResourceCardView(resource);
 ---
 
-<article class="resource-card" data-resource-card data-resource-id={resource.resourceId} data-game={resource.game} data-resource-type={resource.resourceType}>
-  {selectable ? (
-    <button class="resource-select" type="button" data-select-resource={resource.resourceId} aria-pressed="false" aria-label={`选择 ${resource.displayTitle}`}>
-      <span aria-hidden="true">✓</span>
-    </button>
-  ) : null}
-  <a class="resource-card-link" href={urls.sitePath(resource.route)}>
-    <div class="resource-card-media">
-      {gallerySource ? (
-        <img
-          src={gallerySource.url}
-          srcset={gallerySrcset || undefined}
-          data-fallback-src={galleryFallback?.url}
-          data-fallback-width={galleryFallback?.width}
-          data-fallback-height={galleryFallback?.height}
-          sizes="(max-width: 640px) 50vw, (max-width: 1280px) 20vw, 210px"
-          alt={resource.displayTitle}
-          width={gallerySource.width}
-          height={gallerySource.height}
-          loading={eager ? "eager" : "lazy"}
-          decoding="async"
-        />
-      ) : <div class="resource-card-placeholder" aria-label="图片加载失败">图片暂不可用</div>}
-      {resource.upscaled ? <span class="resource-badge is-upscaled">含超分版</span> : null}
-    </div>
-    <div class="resource-card-body">
-      <h3>{resource.displayTitle}</h3>
-      {resource.artist ? <p>{resource.artist}</p> : null}
-      {resource.subtitle ? <p class="resource-card-subtitle">{resource.subtitle}</p> : null}
-      {(resource.badges ?? []).map((badge) => <span class="resource-card-variant">{badge}</span>)}
-      {resource.badges?.length ? null : (variantLabel ? <span class="resource-card-variant">{variantLabel}</span> : null)}
-      <span class="resource-card-views" data-resource-views hidden aria-label="浏览量"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 12s3.5-5.5 9.5-5.5 9.5 5.5 9.5 5.5-3.5 5.5-9.5 5.5S2.5 12 2.5 12Z"></path><circle cx="12" cy="12" r="2.5"></circle></svg><span data-resource-views-value>0</span></span>
-    </div>
-  </a>
-</article>
+<CardShell view={view} selectable={selectable} eager={eager} />

@@ -3,16 +3,16 @@ import GameIcon from "./GameIcon.astro";
 import { formatContentVersion, formatGameUpdatedAt, isRecentlyUpdated } from "../lib/game-index";
 import { primaryCategorySlug } from "../lib/game-config";
 import { formatCount } from "../lib/format";
-import { BASE_PATH, ROS_BASE_URL, SITE_ORIGIN } from "../lib/site-config";
+
 import type { PublicGameIndex } from "../lib/types";
-import { createUrlHelpers } from "../lib/url";
+import { urls } from "../lib/site-urls";
 
 interface Props {
   game: PublicGameIndex;
 }
 
 const { game } = Astro.props;
-const urls = createUrlHelpers({ basePath: BASE_PATH, origin: SITE_ORIGIN, rosBaseUrl: ROS_BASE_URL });
+
 const updatedLabel = formatGameUpdatedAt(game.lastUpdatedAt);
 const versionLabel = formatContentVersion(game.contentVersion);
 const primaryCategory = primaryCategorySlug(game.slug);

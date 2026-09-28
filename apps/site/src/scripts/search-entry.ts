@@ -1,3 +1,5 @@
+import { sitePath } from "../lib/url";
+
 const searchDataUrl = "data/search-index.json";
 let searchWarmup: Promise<unknown> | undefined;
 
@@ -10,5 +12,5 @@ for (const form of document.querySelectorAll<HTMLFormElement>("[data-search-entr
 
 function resolveSitePath(path: string): string {
   const base = document.documentElement.dataset.basePath ?? document.querySelector<HTMLElement>("[data-site-base]")?.dataset.siteBaseValue ?? "/";
-  return base === "/" ? `/${path.replace(/^\/+/, "")}` : `${base.replace(/\/+$/u, "")}/${path.replace(/^\/+/, "")}`;
+  return sitePath(path, base);
 }

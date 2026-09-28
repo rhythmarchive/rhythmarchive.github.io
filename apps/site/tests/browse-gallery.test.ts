@@ -26,9 +26,23 @@ import {
   type RizlineFacetOptions,
 } from "../src/lib/browse-gallery";
 import { getBrowseGalleryBuild } from "../src/lib/site-data";
+import { browseCardView } from "../src/lib/card-view-model";
 import { formatArcaeaAddedVersion } from "../src/lib/public-display";
 
 const formalBrowse = getBrowseGalleryBuild();
+
+test("Browse card model keeps selected artwork identity and Phigros pack labels", () => {
+  const phigros = formalBrowse.phigros.items.find((item) => item.pack);
+  assert.ok(phigros);
+  const view = browseCardView(phigros);
+  assert.equal(view.resourceId, phigros.resourceId);
+  assert.equal(view.route, phigros.route);
+  assert.ok(view.labels.includes(phigros.pack!));
+  assert.equal("original" in view || "upscaled" in view, false);
+  const rizline = formalBrowse.rizline.items.find((item) => item.subtitle);
+  assert.ok(rizline);
+  assert.equal(browseCardView(rizline).subtitle, undefined);
+});
 
 test("Arcaea regular Songs are one card each and the unresolved artwork stays diagnostic-only", () => {
   const songs = formalBrowse.arcaea.items.filter((item) => item.recordKind === "song");

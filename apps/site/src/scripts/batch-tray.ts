@@ -1,6 +1,7 @@
 import { zipSync } from "fflate";
 import { DOWNLOAD_CONCURRENCY, MAX_BATCH_BYTES, MAX_BATCH_FILES, readResponseBytesWithinLimit, toggleBatchSelection, uniqueZipFilename, type BatchResource } from "../lib/batch";
 import { getBrowserStatsClient } from "../lib/stats-client";
+import { sitePath } from "../lib/url";
 import type { PublicDownload, PublicPreview } from "../lib/types";
 
 type BatchTrayOptions = {
@@ -372,8 +373,7 @@ function getFocusable(scope: HTMLElement): HTMLElement[] {
 
 function resolveSitePath(root: HTMLElement, route: string): string {
   const base = root.dataset.basePath ?? document.documentElement.dataset.basePath ?? "/";
-  const clean = route.startsWith("/") ? route : "/" + route;
-  return base === "/" ? clean : base.replace(/\/+$/u, "") + clean;
+  return sitePath(route, base);
 }
 
 async function runWithConcurrency<T>(items: T[], concurrency: number, worker: (item: T) => Promise<void>): Promise<void> {

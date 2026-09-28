@@ -14,7 +14,7 @@ Avoid meaningless gradients, decorative icons, excessive animation, SaaS dashboa
 
 The home page is an entry point rather than a complete category catalog. Its order is:
 
-    Header -> centered hero and search -> optional quick links -> Arcaea APK -> recent games -> Footer
+    Header -> centered hero and search -> optional quick links -> Arcaea APK -> recent updates -> resource ranking -> collected games -> Footer
 
 The hero keeps the Rhythm Archive brand, uses the single title “音游图片下载站”, shows a short resource description, and derives game/resource totals from PublicSiteData. It does not list every game name and does not repeat per-game category tiles. Categories remain on game pages and existing category routes.
 
@@ -28,11 +28,11 @@ The Arcaea APK card is a prominent secondary entry. It reads the existing public
 
 The home game section and `/games/` use the same compact responsive game card. Cards link to each game primary category (the game root remains a compatibility redirect) and show the game image, name, optional collected content version, public resource count, and public content update date. The default order is `lastUpdatedAt DESC`, with deterministic name/slug ties. A positive “最近更新” label is allowed for a recent public content update; no stale, outdated, or official-version status is inferred. The home may cap the list at a small future-safe limit and always provides a “查看全部游戏” entry.
 
-`/games/` is the complete public game library. It reuses the home card semantics and provides recent-update and name sorting without a heavyweight client framework. The header exposes one extensible “游戏库” popover with the public game list and a link to `/games/`; it must not flatten one permanent top-level link per game. The same library entry remains available at narrow/mobile widths, alongside feedback, search, and theme controls.
+`/games/` is the complete public game library. It reuses the home card semantics and provides recent-update and name sorting without a heavyweight client framework. The header exposes one extensible “游戏库” popover with the public game list and a link to `/games/`; it must not flatten one permanent top-level link per game. At narrow/mobile widths, the primary navigation moves into a menu while search and theme controls remain directly available.
 
 ## Responsive and interaction rules
 
-Desktop game cards use three columns at wide widths and two at medium widths; mobile uses one column. Home order remains hero, search, APK, and game cards. Touch targets, `:focus-visible`, keyboard behavior, light/dark/system tokens, and `prefers-reduced-motion` remain part of the shared implementation contract. Hover feedback is limited to a small border, shadow, or position change.
+Desktop game cards use three columns at wide widths and two at medium widths; mobile uses one column. Home order follows the information architecture above; search remains the primary action. Touch targets, `:focus-visible`, keyboard behavior, light/dark/system tokens, and `prefers-reduced-motion` remain part of the shared implementation contract. Hover feedback is limited to a small border, shadow, or position change.
 
 English display headings use normal kerning and restrained tracking so names such as Rhythm Archive, Arcaea, Phigros, Rizline, In Falsus, and Rotaeno remain readable. Chinese headings must not be loosened by a global positive letter-spacing rule.
 

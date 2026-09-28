@@ -1,6 +1,7 @@
 ---
 import ResourceCard from "./ResourceCard.astro";
 import BatchTray from "./BatchTray.astro";
+import GalleryLoadError from "./GalleryLoadError.astro";
 import { GAME_CONFIG, type GameId } from "../lib/game-config";
 import type { CategoryBrowseConfig } from "../lib/category-browse";
 import type { PublicResource } from "../lib/types";
@@ -38,7 +39,7 @@ function formatRangeValue(value: number): string {
   <div class="gallery-toolbar">
     <div class="gallery-toolbar-copy">
       <span class="section-kicker">{category === "all" ? GAME_CONFIG[game].displayName : categoryLabel}</span>
-      <p data-gallery-count>{formatCount(total)} 项资源</p>
+      <p data-gallery-count role="status" aria-live="polite" aria-atomic="true">{formatCount(total)} 项资源</p>
     </div>
     <div class="gallery-toolbar-controls">
       <label class="gallery-search">
@@ -108,6 +109,7 @@ function formatRangeValue(value: number): string {
     <button class="text-link" type="button" data-gallery-reset>清除全部</button>
   </div>
 
+  <GalleryLoadError />
   <div class="gallery-grid" data-gallery-grid>
     {resources.map((resource, index) => <ResourceCard resource={resource} index={index} selectable eager={index < 6} />)}
   </div>

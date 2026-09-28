@@ -1,5 +1,7 @@
 import { createBatchTray, downloadSelectedBatchFromManifest } from "./batch-tray";
-import { selectCardPreview } from "../lib/card-preview";
+import { showGalleryLoadError } from "./gallery-load-error";
+import { renderResourceCard } from "./render-resource-card";
+import { browseCardView } from "../lib/card-view-model";
 import type { BatchResource } from "../lib/batch";
 import {
   BROWSE_PAGE_SIZE,
@@ -19,7 +21,7 @@ import {
 } from "../lib/browse-gallery";
 import { displayFilterDifficultyLabel } from "../lib/game-config";
 import { formatArcaeaAddedVersion } from "../lib/public-display";
-import { appendResourceViews, updateResourceStatsInDom } from "../lib/stats-client";
+import { updateResourceStatsInDom } from "../lib/stats-client";
 
 type BrowseDifficultyRange = {
   root: HTMLElement;
@@ -89,7 +91,7 @@ async function initializeBrowseGallery(root: HTMLElement): Promise<void> {
     render();
   } catch (error) {
     console.error("Browse gallery data failed", error);
-    count.textContent = "图片加载失败";
+    showGalleryLoadError(root, count);
     return;
   }
 
@@ -233,7 +235,7 @@ async function initializeBrowseGallery(root: HTMLElement): Promise<void> {
   function render(): void {
     const filtered = filterBrowseItems(items, state);
     const visible = filtered.slice(0, visibleCount).map((item) => displayBrowseItem(item, state.chart));
-    grid!.replaceChildren(...visible.map((item, index) => createCard(item, index, batchTray?.isSelected(item.resourceId) ?? false)));
+    grid!.replaceChildren(...visible.map((item, index) => renderResourceCard(browseCardView(item), { basePath: root.dataset.basePath ?? "/", index, isSelected: batchTray?.isSelected(item.resourceId) ?? false, browse: true })));
     count!.textContent = filtered.length.toLocaleString("zh-CN") + " 项资源";
     loadMore!.hidden = visible.length >= filtered.length;
     if (empty) empty.hidden = filtered.length !== 0;
@@ -424,87 +426,4 @@ function filterPopoverOptions(input: HTMLInputElement): void {
   const name = input.dataset.browseOptionSearch ?? "";
   const query = input.value.toLocaleLowerCase("zh-CN");
   document.querySelectorAll<HTMLElement>(`[data-browse-options="${name}"] .filter-option`).forEach((option) => { option.hidden = Boolean(query) && !(option.dataset.filterText ?? "").includes(query); });
-}
-
-function createCard(item: BrowseGalleryItem, index: number, isSelected: boolean): HTMLElement {
-  const article = document.createElement("article");
-  article.className = "resource-card" + (isSelected ? " is-selected" : "");
-  article.dataset.browseCard = "";
-  article.dataset.resourceCard = "";
-  article.dataset.resourceId = item.resourceId;
-  article.dataset.game = item.game;
-  article.dataset.resourceType = item.resourceType;
-
-  const select = document.createElement("button");
-  select.className = "resource-select";
-  select.type = "button";
-  select.dataset.selectResource = item.resourceId;
-  select.setAttribute("aria-pressed", String(isSelected));
-  select.setAttribute("aria-label", (isSelected ? "取消选择 " : "选择 ") + item.displayTitle);
-  select.innerHTML = "<span aria-hidden=\"true\">✓</span>";
-  article.append(select);
-
-  const anchor = document.createElement("a");
-  anchor.className = "resource-card-link";
-  anchor.href = resolveSitePath(item.route);
-  const media = document.createElement("div");
-  media.className = "resource-card-media";
-  const { primary: image, fallback: fallbackImage, srcset } = selectCardPreview(item.preview);
-  if (image) {
-    const img = document.createElement("img");
-    img.src = image.url;
-    img.alt = item.displayTitle;
-    const imageWidth = image.width ?? fallbackImage?.width;
-    const imageHeight = image.height ?? fallbackImage?.height;
-    if (imageWidth) img.width = imageWidth;
-    if (imageHeight) img.height = imageHeight;
-    img.loading = index < 6 ? "eager" : "lazy";
-    img.decoding = "async";
-    if (srcset) img.setAttribute("srcset", srcset);
-    if (fallbackImage?.url) {
-      img.dataset.fallbackSrc = fallbackImage.url;
-      if (fallbackImage.width) img.dataset.fallbackWidth = String(fallbackImage.width);
-      if (fallbackImage.height) img.dataset.fallbackHeight = String(fallbackImage.height);
-    }
-    img.sizes = "(max-width: 640px) 50vw, (max-width: 1280px) 20vw, 210px";
-    media.append(img);
-  } else {
-    const placeholder = document.createElement("div");
-    placeholder.className = "resource-card-placeholder";
-    placeholder.textContent = "图片暂不可用";
-    media.append(placeholder);
-  }
-  if (item.hasUpscaled) {
-    const badge = document.createElement("span");
-    badge.className = "resource-badge is-upscaled";
-    badge.textContent = "含超分版";
-    media.append(badge);
-  }
-  const body = document.createElement("div");
-  body.className = "resource-card-body";
-  const title = document.createElement("h3");
-  title.textContent = item.displayTitle;
-  body.append(title);
-  if (item.artist) {
-    const artist = document.createElement("p");
-    artist.textContent = item.artist;
-    body.append(artist);
-  }
-  const metadata = [ ...(item.badges ?? []), item.badge, item.selectedArtworkDifficulty, item.selectedChartDifficulty, item.game === "arcaea" ? item.pack : undefined ].filter((value): value is string => Boolean(value));
-  for (const value of metadata) {
-    const label = document.createElement("span");
-    label.className = "resource-card-variant";
-    label.textContent = value;
-    body.append(label);
-  }
-  appendResourceViews(body);
-  anchor.append(media, body);
-  article.append(anchor);
-  return article;
-}
-
-function resolveSitePath(path: string): string {
-  const base = document.querySelector<HTMLElement>("[data-browse-gallery-root]")?.dataset.basePath ?? "/";
-  const clean = path.startsWith("/") ? path : "/" + path;
-  return base === "/" ? clean : base.replace(/\/+$/u, "") + clean;
 }

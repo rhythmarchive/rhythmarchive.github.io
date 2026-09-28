@@ -7,11 +7,9 @@ import type { GameId, ResourceTypeId } from "../../../lib/game-config";
 import { primaryCategorySlug } from "../../../lib/game-config";
 import { getCategoryBrowseConfig } from "../../../lib/category-browse";
 import { formatCount } from "../../../lib/format";
-import { BASE_PATH, ROS_BASE_URL } from "../../../lib/site-config";
-import { getBrowseGalleryBuild, getPublicNavigationGames, getSiteData, loadCategoryBrowseProjections } from "../../../lib/site-data";
-import { createUrlHelpers } from "../../../lib/url";
 
-const urls = createUrlHelpers({ basePath: BASE_PATH, origin: "https://rhythmarchive.github.io", rosBaseUrl: ROS_BASE_URL });
+import { getBrowseGalleryBuild, getPublicNavigationGames, getSiteData, loadCategoryBrowseProjections } from "../../../lib/site-data";
+import { urls } from "../../../lib/site-urls";
 
 export function getStaticPaths() {
   const siteData = getSiteData();

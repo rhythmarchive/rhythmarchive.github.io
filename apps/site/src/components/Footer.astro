@@ -1,8 +1,7 @@
 ---
-import { BASE_PATH, BILIBILI_URL, GITHUB_REPOSITORY_URL, ROS_BASE_URL, SITE_ORIGIN } from "../lib/site-config";
-import { createUrlHelpers } from "../lib/url";
+import { BILIBILI_URL, GITHUB_REPOSITORY_URL } from "../lib/site-config";
+import { urls } from "../lib/site-urls";
 
-const urls = createUrlHelpers({ basePath: BASE_PATH, origin: SITE_ORIGIN, rosBaseUrl: ROS_BASE_URL });
 const currentYear = new Date().getFullYear();
 ---
 

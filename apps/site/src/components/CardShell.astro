@@ -1,0 +1,49 @@
+---
+import type { CardViewModel } from "../lib/card-view-model";
+import { urls } from "../lib/site-urls";
+
+interface Props {
+  view: CardViewModel;
+  selectable?: boolean;
+  eager?: boolean;
+  browse?: boolean;
+}
+
+const { view, selectable = false, eager = false, browse = false } = Astro.props;
+const { primary, fallback, srcset } = view.preview;
+---
+
+<article class="resource-card" data-browse-card={browse ? "" : undefined} data-resource-card data-resource-id={view.resourceId} data-game={view.game} data-resource-type={view.resourceType}>
+  {selectable ? (
+    <button class="resource-select" type="button" data-select-resource={view.resourceId} aria-pressed="false" aria-label={`选择 ${view.displayTitle}`}>
+      <span aria-hidden="true">✓</span>
+    </button>
+  ) : null}
+  <a class="resource-card-link" href={urls.sitePath(view.route)}>
+    <div class="resource-card-media">
+      {primary ? (
+        <img
+          src={primary.url}
+          srcset={srcset || undefined}
+          data-fallback-src={fallback?.url}
+          data-fallback-width={fallback?.width}
+          data-fallback-height={fallback?.height}
+          sizes="(max-width: 640px) 50vw, (max-width: 1280px) 20vw, 210px"
+          alt={view.displayTitle}
+          width={primary.width}
+          height={primary.height}
+          loading={eager ? "eager" : "lazy"}
+          decoding="async"
+        />
+      ) : <div class="resource-card-placeholder" aria-label="图片加载失败">图片暂不可用</div>}
+      {view.hasUpscaled ? <span class="resource-badge is-upscaled">含超分版</span> : null}
+    </div>
+    <div class="resource-card-body">
+      <h3>{view.displayTitle}</h3>
+      {view.artist ? <p>{view.artist}</p> : null}
+      {view.subtitle ? <p class="resource-card-subtitle">{view.subtitle}</p> : null}
+      {view.labels.map((label) => <span class="resource-card-variant">{label}</span>)}
+      <span class="resource-card-views" data-resource-views hidden aria-label="浏览量"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 12s3.5-5.5 9.5-5.5 9.5 5.5 9.5 5.5-3.5 5.5-9.5 5.5S2.5 12 2.5 12Z"></path><circle cx="12" cy="12" r="2.5"></circle></svg><span data-resource-views-value>0</span></span>
+    </div>
+  </a>
+</article>

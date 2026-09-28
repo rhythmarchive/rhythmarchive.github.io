@@ -4,8 +4,8 @@ import ResourceCard from "../../../components/ResourceCard.astro";
 import { formatCount } from "../../../lib/format";
 import { publicContentVersion } from "../../../lib/game-index";
 import { getSiteData } from "../../../lib/site-data";
-import { BASE_PATH, ROS_BASE_URL, SITE_ORIGIN } from "../../../lib/site-config";
-import { createUrlHelpers } from "../../../lib/url";
+
+import { urls } from "../../../lib/site-urls";
 import type { PublicResource, PublicUpdate } from "../../../lib/types";
 
 export function getStaticPaths() {
@@ -18,7 +18,7 @@ const { update } = Astro.props;
 const siteData = getSiteData();
 const resourcesById = new Map(siteData.resources.map((resource) => [resource.resourceId, resource]));
 const resources = update.items.map((item) => resourcesById.get(item.resourceId)).filter((resource): resource is PublicResource => Boolean(resource));
-const urls = createUrlHelpers({ basePath: BASE_PATH, origin: SITE_ORIGIN, rosBaseUrl: ROS_BASE_URL });
+
 const dateLabel = new Intl.DateTimeFormat("zh-CN", { timeZone: "Asia/Shanghai", year: "numeric", month: "2-digit", day: "2-digit" }).format(new Date(update.publishedAt));
 const contentVersion = publicContentVersion(update.contentVersion);
 ---

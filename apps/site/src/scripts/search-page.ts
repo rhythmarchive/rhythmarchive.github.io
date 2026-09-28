@@ -1,4 +1,5 @@
 import { rankSearchEntries } from "../lib/search";
+import { sitePath } from "../lib/url";
 import { GAME_CONFIG } from "../lib/game-config";
 import { appendResourceViews, updateResourceStatsInDom } from "../lib/stats-client";
 import type { PublicSearchCard, PublicSearchEntry } from "../lib/types";
@@ -10,6 +11,7 @@ async function initializeSearch(root: HTMLElement): Promise<void> {
   const input = root.previousElementSibling?.querySelector<HTMLInputElement>("input[name=q]") ?? document.querySelector<HTMLInputElement>(".search-page input[name=q]");
   const results = root.querySelector<HTMLElement>("[data-search-results]");
   const status = root.querySelector<HTMLElement>("[data-search-status]");
+  const empty = root.querySelector<HTMLElement>("[data-search-empty]");
   const retry = root.querySelector<HTMLButtonElement>("[data-search-retry]");
   if (!input || !results || !status) return;
 
@@ -68,6 +70,7 @@ async function initializeSearch(root: HTMLElement): Promise<void> {
       page?.classList.remove("has-search-query");
       head?.classList.remove("is-results");
       results.replaceChildren();
+      if (empty) empty.hidden = true;
       status.textContent = "输入关键词搜索资源";
       if (retry) retry.hidden = true;
       return;
@@ -76,6 +79,7 @@ async function initializeSearch(root: HTMLElement): Promise<void> {
     page?.classList.add("has-search-query");
     head?.classList.add("is-results");
     results.replaceChildren();
+    if (empty) empty.hidden = true;
     status.textContent = "正在搜索…";
     if (retry) retry.hidden = true;
     try {
@@ -84,18 +88,21 @@ async function initializeSearch(root: HTMLElement): Promise<void> {
       const ranked = rankSearchEntries(entries, query);
       if (ranked.length === 0) {
         status.textContent = "没有找到相关资源。";
+        if (empty) empty.hidden = false;
         return;
       }
       const cardMap = await loadSearchCards();
       if (token !== runToken) return;
       const matches = ranked.map((entry) => cardMap.get(entry.resourceId)).filter((card): card is PublicSearchCard => Boolean(card));
       results.replaceChildren(...matches.map((card) => createResultCard(card)));
+      if (empty) empty.hidden = matches.length > 0;
       void updateResourceStatsInDom(results);
       status.textContent = `找到 ${matches.length.toLocaleString("zh-CN")} 项资源`;
     } catch (error) {
       if (token !== runToken) return;
       console.error("Search data failed", error);
       results.replaceChildren();
+      if (empty) empty.hidden = true;
       status.textContent = "搜索暂时不可用，请重试";
       if (retry) retry.hidden = false;
     }
@@ -172,6 +179,5 @@ function createResultCard(card: PublicSearchCard): HTMLElement {
 }
 function resolveSitePath(path: string): string {
   const base = document.documentElement.dataset.basePath ?? "/";
-  const clean = path.startsWith("/") ? path : `/${path}`;
-  return base === "/" ? clean : `${base.replace(/\/+$/u, "")}${clean}`;
+  return sitePath(path, base);
 }

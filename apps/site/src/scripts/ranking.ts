@@ -1,4 +1,5 @@
 import { GAME_CONFIG } from "../lib/game-config";
+import { sitePath } from "../lib/url";
 import { mapResourceRankingEntries } from "../lib/ranking";
 import { formatStatsCount, getBrowserStatsClient, isValidResourceId, type ResourceRankingPeriod } from "../lib/stats-client";
 import type { PublicRankingCard } from "../lib/types";
@@ -169,6 +170,5 @@ function isRecord(value: unknown): value is Record<string, unknown> {
 
 function resolveSitePath(route: string): string {
   const base = document.documentElement.dataset.basePath ?? "/";
-  const clean = route.startsWith("/") ? route : "/" + route;
-  return base === "/" ? clean : base.replace(/\/+$/u, "") + clean;
+  return sitePath(route, base);
 }
