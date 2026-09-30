@@ -3,6 +3,10 @@ main = "src/index.ts"
 compatibility_date = "2026-09-06"
 workers_dev = true
 
+[[routes]]
+pattern = "api.rhythmarchive.top"
+custom_domain = true
+
 [vars]
 ALLOWED_ORIGINS = "https://rhythmarchive.github.io,http://localhost:4321,http://127.0.0.1:4321"
 SITE_TIME_ZONE = "Asia/Shanghai"
