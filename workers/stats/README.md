@@ -58,6 +58,12 @@ npm --prefix workers/stats exec -- wrangler secret put UPDATE_REMINDER_EMAIL_TO
 npm --prefix workers/stats exec -- wrangler secret put TURNSTILE_SECRET_KEY
 ~~~
 
+## Catalog 发布和自动部署
+
+主分支的 Pages 工作流会先运行完整质量门。推送包含 `catalog/`、生成的资源注册表、共享 UUID 校验、注册表生成器或 Pages 工作流的更改时，它会先部署 Stats Worker，再发布 Pages。部署后，工作流会检查 `/health` 返回的 `catalogGeneratedAt` 是否与本次生成的 `public-resource-registry.ts` 一致；部署凭据缺失或线上注册表未更新会阻止 Pages 发布。
+
+GitHub Actions 需要配置 `CLOUDFLARE_API_TOKEN` Secret，以及 `CLOUDFLARE_ACCOUNT_ID` 和 `PUBLIC_STATS_API_URL` Variables。要在 Pages 工作流手动重发 Worker，可在 `workflow_dispatch` 中勾选 `deploy_stats_worker`。
+
 ## 本地开发
 
 wrangler.toml 明确允许 rhythmarchive.github.io、localhost 和 127.0.0.1，没有开放通配 Origin。运行本地 D1 和 Worker：
