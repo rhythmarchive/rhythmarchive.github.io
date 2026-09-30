@@ -64,6 +64,8 @@ npm run ci:check
 npm run site:preview
 ```
 
+查看[贡献与 Git 工作流](CONTRIBUTING.md)，了解日常开发、检查和提交规则。
+
 ## 📌 说明
 
 Rhythm Archive 是非官方玩家项目。

@@ -97,19 +97,16 @@ catalog/updates/index.json 的结构如下：
 4. 在 catalog/updates/index.json 中显式追加或修正记录。
 5. 运行公共数据生成和站点验证。
 6. 检查 /updates/、对应批次详情、首页“最近更新”和游戏/类型筛选。
-7. 显式暂存时间线源数据及代码变更，保留其他工作区修改；不自动 push、部署或删除远端对象。
+7. 显式暂存本轮时间线源数据及代码变更，保留其他工作区修改；按改动风险检查后制作一个范围清晰的 commit。普通低风险更新默认在 `main` 上 push 到 `origin/main`（远端规则允许时）。Pages 的检查和部署由现有 workflow 处理；不要手动部署或删除远端对象。
 
 ## 验证
 
-最少运行：
+按改动范围选择必要检查；普通 commit 或 push 本身不要求运行全量套件。
 
-~~~text
-npm run test:all
-npm run site:check
-npm run site:build
-npm run site:smoke
-git diff --check
-~~~
+- 只改维护文档：检查准确 diff/status，并运行 `git diff --check`。
+- 只改时间线数据：运行 `node --import tsx --test apps/site/tests/update-history.test.ts`；数据影响 Browse projection 时再运行 `npm run browse:check`。
+- Catalog/resource 更新可能改变 Stats registry 时，运行 `npm run stats:registry:check`；公共数据或路由输出受影响时运行 `npm run site:check`、`npm run site:build`，交互或路由行为变化时再运行 `npm run site:smoke`。
+- 只有共享 Catalog/domain/schema 合约、生成器实现、CI/build/deploy/release 链路、大范围或高风险发布、目标检查不足以覆盖风险、最终验收或用户明确要求时，才运行 `npm run ci:check`。
 
 检查结果还应确认：
 
@@ -119,4 +116,4 @@ git diff --check
 - 详情页数量、预览和筛选结果与公共资源一致。
 - 记录重跑后 ID、时间和资源项保持稳定。
 
-npm run browse:check 现在是根 package.json 的正式门禁，必须执行并记录结果。
+`npm run browse:check` 是正式的 projection 检查；仅当本轮改动影响 Browse projection 时执行并记录。
