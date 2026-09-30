@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
   "game": "infalsus",
-  "generatedAt": "2026-09-14T12:02:04.154Z",
+  "generatedAt": "2026-09-30T13:02:44.621Z",
   "source": {
-    "snapshot": "infalsus-formal:1.0.3:99ba34e685cc746b8125ce048db03cc949dd3d828de6ab2b3197c1e3924c0d5e",
-    "sha256": "99ba34e685cc746b8125ce048db03cc949dd3d828de6ab2b3197c1e3924c0d5e"
+    "snapshot": "infalsus-formal:VSingers DLC:4e70d2d9e97727ff178d67de0be4f88a9f15fa40f6238a3d90575d31c8bf52d8",
+    "sha256": "4e70d2d9e97727ff178d67de0be4f88a9f15fa40f6238a3d90575d31c8bf52d8"
   },
   "resources": [
     {
@@ -1405,6 +1405,106 @@
         "kuukaku"
       ],
       "sortOrder": 69,
+      "facets": {}
+    },
+    {
+      "resourceId": "f8281c28-d943-7185-aa39-2746e64d51ce",
+      "resourceType": "jacket",
+      "displayTitle": "Monitoring",
+      "metadata": {
+        "songId": "84",
+        "artist": "DECO*27",
+        "jacketIllustrator": "VIBU",
+        "gameVersion": "VSingers DLC"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Monitoring",
+        "DECO*27",
+        "84",
+        "monitoring"
+      ],
+      "sortOrder": 70,
+      "facets": {}
+    },
+    {
+      "resourceId": "0da821d6-eaa2-7ebe-8945-e0f735a99278",
+      "resourceType": "jacket",
+      "displayTitle": "Roki",
+      "metadata": {
+        "songId": "86",
+        "artist": "mikitoP",
+        "jacketIllustrator": "Roki",
+        "gameVersion": "VSingers DLC"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Roki",
+        "mikitoP",
+        "86",
+        "roki"
+      ],
+      "sortOrder": 71,
+      "facets": {}
+    },
+    {
+      "resourceId": "729a38af-2aab-7ea8-9f03-509fea548204",
+      "resourceType": "jacket",
+      "displayTitle": "Lost One's Weeping",
+      "metadata": {
+        "songId": "87",
+        "artist": "Neru",
+        "jacketIllustrator": "Lost One's Weeping",
+        "gameVersion": "VSingers DLC"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Lost One's Weeping",
+        "Neru",
+        "87",
+        "lostonesweeping"
+      ],
+      "sortOrder": 72,
+      "facets": {}
+    },
+    {
+      "resourceId": "14a71c3d-e5a0-7f49-b72a-78c121de7008",
+      "resourceType": "jacket",
+      "displayTitle": "Non-breath oblige",
+      "metadata": {
+        "songId": "88",
+        "artist": "PinocchioP",
+        "jacketIllustrator": "Non-breath oblige",
+        "gameVersion": "VSingers DLC"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Non-breath oblige",
+        "PinocchioP",
+        "88",
+        "nonbreathoblige"
+      ],
+      "sortOrder": 73,
+      "facets": {}
+    },
+    {
+      "resourceId": "0a1cda9b-782d-75d0-a70f-d506d55c4625",
+      "resourceType": "jacket",
+      "displayTitle": "Apparently there's a cheat code to happiness",
+      "metadata": {
+        "songId": "89",
+        "artist": "UtataP",
+        "jacketIllustrator": "辷",
+        "gameVersion": "VSingers DLC"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Apparently there's a cheat code to happiness",
+        "UtataP",
+        "89",
+        "kakushicommand"
+      ],
+      "sortOrder": 74,
       "facets": {}
     }
   ]
