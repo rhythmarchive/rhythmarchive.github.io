@@ -60,9 +60,9 @@ npm --prefix workers/stats exec -- wrangler secret put TURNSTILE_SECRET_KEY
 
 ## Catalog 发布和自动部署
 
-主分支的 Pages 工作流会先运行完整质量门。推送包含 `catalog/`、生成的资源注册表、共享 UUID 校验、注册表生成器或 Pages 工作流的更改时，它会先部署 Stats Worker，再发布 Pages。部署后，工作流会检查 `/health` 返回的 `catalogGeneratedAt` 是否与本次生成的 `public-resource-registry.ts` 一致；部署凭据缺失或线上注册表未更新会阻止 Pages 发布。
+主分支的 Pages 工作流会先运行完整质量门。推送包含 `catalog/`、生成的资源注册表、Worker 部署配置、共享 UUID 校验、注册表生成器或 Pages 工作流的更改时，它会先部署 Stats Worker，再发布 Pages。部署后，工作流会检查 `/health` 返回的 `catalogGeneratedAt` 是否与本次生成的 `public-resource-registry.ts` 一致；部署凭据缺失或线上注册表未更新会阻止 Pages 发布。
 
-GitHub Actions 需要配置 `CLOUDFLARE_API_TOKEN` Secret，以及 `CLOUDFLARE_ACCOUNT_ID` 和 `PUBLIC_STATS_API_URL` Variables。要在 Pages 工作流手动重发 Worker，可在 `workflow_dispatch` 中勾选 `deploy_stats_worker`。
+Pages 工作流的 build job 使用 `stats-production` Environment。请将该 Environment 的部署分支限制为 `main`，并把 `CLOUDFLARE_API_TOKEN` 保存为 Environment Secret；不要保留仓库级同名 Secret。Token 需能编辑 Stats Worker，并管理 `rhythmarchive.top` 区域中的 `api.rhythmarchive.top` Custom Domain。将 `CLOUDFLARE_ACCOUNT_ID` 和 `PUBLIC_STATS_API_URL` 保存为仓库 Variables。手动重发 Worker 时，只允许从 `main` 的 `workflow_dispatch` 勾选 `deploy_stats_worker`。
 
 ## 本地开发
 

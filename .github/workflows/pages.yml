@@ -23,6 +23,8 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    environment:
+      name: stats-production
     env:
       PUBLIC_SITE_ORIGIN: https://rhythmarchive.github.io
       PUBLIC_BASE_PATH: /
@@ -70,6 +72,7 @@ jobs:
           git diff --quiet "$BEFORE" "$SHA" -- \
             catalog \
             workers/stats/src/public-resource-registry.ts \
+            workers/stats/wrangler.toml \
             packages/domain/src/identifiers.ts \
             apps/site/scripts/generate-stats-resource-registry.ts \
             .github/workflows/pages.yml
@@ -85,13 +88,13 @@ jobs:
             echo "deploy=false" >> "$GITHUB_OUTPUT"
           fi
       - name: Deploy Stats Worker and verify its Catalog registry
-        if: steps.stats-worker.outputs.deploy == 'true'
+        if: github.ref == 'refs/heads/main' && steps.stats-worker.outputs.deploy == 'true'
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
           PUBLIC_STATS_API_URL: ${{ vars.PUBLIC_STATS_API_URL }}
         run: |
-          : "${CLOUDFLARE_API_TOKEN:?Configure the CLOUDFLARE_API_TOKEN Actions secret}"
+          : "${CLOUDFLARE_API_TOKEN:?Configure the CLOUDFLARE_API_TOKEN secret in the stats-production environment}"
           : "${CLOUDFLARE_ACCOUNT_ID:?Configure the CLOUDFLARE_ACCOUNT_ID Actions variable}"
           : "${PUBLIC_STATS_API_URL:?Configure the PUBLIC_STATS_API_URL Actions variable}"
 
