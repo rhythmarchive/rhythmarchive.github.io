@@ -2687,6 +2687,38 @@
           "change": "added"
         }
       ]
+    },
+    {
+      "id": "d996b72f-08fb-7411-9922-0ec495802e9f",
+      "game": "infalsus",
+      "releaseIds": [
+        "e8f0c9f4-e23a-722b-8b14-f2fab38df4f8"
+      ],
+      "kind": "update",
+      "publishedAt": "2026-09-30T14:54:13.321Z",
+      "contentVersion": "VSingers DLC",
+      "items": [
+        {
+          "resourceId": "f8281c28-d943-7185-aa39-2746e64d51ce",
+          "change": "added"
+        },
+        {
+          "resourceId": "0da821d6-eaa2-7ebe-8945-e0f735a99278",
+          "change": "added"
+        },
+        {
+          "resourceId": "729a38af-2aab-7ea8-9f03-509fea548204",
+          "change": "added"
+        },
+        {
+          "resourceId": "14a71c3d-e5a0-7f49-b72a-78c121de7008",
+          "change": "added"
+        },
+        {
+          "resourceId": "0a1cda9b-782d-75d0-a70f-d506d55c4625",
+          "change": "added"
+        }
+      ]
     }
   ]
 }

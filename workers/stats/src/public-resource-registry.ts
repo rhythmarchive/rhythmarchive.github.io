@@ -1,5 +1,5 @@
 /* GENERATED FILE. Run npm run stats:registry after a public Catalog change. */
-export const PUBLIC_RESOURCE_CATALOG_GENERATED_AT = "2026-09-27T11:59:16.726Z" as const;
+export const PUBLIC_RESOURCE_CATALOG_GENERATED_AT = "2026-09-30T14:54:13.321Z" as const;
 export const PUBLIC_RESOURCE_ID_LIST = [
   "0008cc8e-0f13-798c-9e3a-93168d5f8d6e",
   "00495e71-9b2e-7a25-9147-bdf661b5b7c4",
@@ -2332,6 +2332,7 @@ export const PUBLIC_RESOURCE_ID_LIST = [
   "09cbbddf-f943-7d4d-974a-d1340f917df1",
   "0a0216fa-98c5-7d1a-af4d-4554b6455188",
   "0a0caf10-2ef5-7668-be95-ffe28780fb06",
+  "0a1cda9b-782d-75d0-a70f-d506d55c4625",
   "0a61d83a-f2bb-78fb-a032-552dcada3220",
   "0a7735da-cd84-7af0-8e0f-03cc1f08cefb",
   "0aa53eac-2641-7259-8919-4f621076c126",
@@ -2359,6 +2360,7 @@ export const PUBLIC_RESOURCE_ID_LIST = [
   "0d37a5c1-2e3f-7da4-a6be-31aa2c9ce410",
   "0d531cc6-59fc-7043-9852-c26789f226bf",
   "0d560efd-3435-7abf-8814-4bc0fb10d10e",
+  "0da821d6-eaa2-7ebe-8945-e0f735a99278",
   "0dcbe072-63ff-7abc-a5ca-8ee633606cda",
   "0dedf3ee-5382-7b0b-b443-3b46554f2f39",
   "0df81315-41c6-7362-a6ff-0a7dc44b70d9",
@@ -2405,6 +2407,7 @@ export const PUBLIC_RESOURCE_ID_LIST = [
   "13fcfb5f-6fbb-7104-8abb-2967a22d6da7",
   "140a5b97-626e-7e06-a3c1-96889f51556d",
   "14a47319-3463-7617-aaf1-b05aa513ae39",
+  "14a71c3d-e5a0-7f49-b72a-78c121de7008",
   "15035e2d-60ff-7d1a-9243-c018ae8d0229",
   "1521de66-17a7-7b25-902a-cabe57a0507e",
   "1543f3f4-0ddd-7fab-afc5-8eb5c9430956",
@@ -3041,6 +3044,7 @@ export const PUBLIC_RESOURCE_ID_LIST = [
   "71fa120b-bc4e-7e2f-9a20-371615326558",
   "7221713c-3dda-7680-ab4a-10b576e2772b",
   "728a8cb0-5b6c-7e53-9c9d-de9caa85552d",
+  "729a38af-2aab-7ea8-9f03-509fea548204",
   "729c0c21-c637-7649-be32-b9b10012109a",
   "72bd4f55-50fa-7339-903c-200590c1bb95",
   "72c64d5b-7ccc-7291-8772-f39d38551a6e",
@@ -3912,6 +3916,7 @@ export const PUBLIC_RESOURCE_ID_LIST = [
   "f7bbb3b8-2855-7565-81db-7b4c83cd8ec3",
   "f7e0340a-0ded-7d18-a165-bfbad905d71b",
   "f8153b4d-d7f6-7652-bd6e-86748d61379a",
+  "f8281c28-d943-7185-aa39-2746e64d51ce",
   "f83a7aab-e47d-70ca-bd3d-268034fab55b",
   "f84b1c79-982d-7e08-bdb6-dc05cc50a883",
   "f84b9fbf-d07b-762b-a5fb-ae65a40109f6",

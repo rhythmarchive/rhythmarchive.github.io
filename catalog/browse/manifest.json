@@ -38,19 +38,19 @@
       }
     },
     "infalsus": {
-      "sourceVersion": "1.0.3",
-      "sourceSha256": "99ba34e685cc746b8125ce048db03cc949dd3d828de6ab2b3197c1e3924c0d5e",
-      "fileSha256": "fdd011dc06b79f055e1d21e28ac9c037656c368c6e9d74947e0575b5408161b0",
+      "sourceVersion": "VSingers DLC",
+      "sourceSha256": "4e70d2d9e97727ff178d67de0be4f88a9f15fa40f6238a3d90575d31c8bf52d8",
+      "fileSha256": "9f980c5bc79938770d8c3ddafb17c69b88dcd24a7874121fd67086ea6d7e5e54",
       "recordCounts": {
-        "songs": 70,
-        "artworks": 70
+        "songs": 75,
+        "artworks": 75
       }
     }
   },
   "catalog": {
     "catalogId": "019fefd6-9c49-7ca0-a760-adc76811a511",
-    "catalogSha256": "b8482c64c8bbfb23cbef13373c53ba51b47ae09a933d6394e3bc2b84eb464c4c",
-    "catalogGeneratedAt": "2026-09-27T11:59:16.726Z"
+    "catalogSha256": "036086504a9a63e342cc634e2d1b45080bad8938add8043b477bb44cbe152eec",
+    "catalogGeneratedAt": "2026-09-30T14:54:13.321Z"
   },
   "files": {
     "arcaea": "arcaea.json",
