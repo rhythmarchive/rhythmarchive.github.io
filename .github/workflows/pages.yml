@@ -6,6 +6,12 @@ on:
     paths-ignore:
       - AGENTS.md
   workflow_dispatch:
+    inputs:
+      deploy_stats_worker:
+        description: Deploy the current Stats Worker registry before Pages
+        required: false
+        default: false
+        type: boolean
 
 permissions:
   contents: read
@@ -17,6 +23,8 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    environment:
+      name: stats-production
     env:
       PUBLIC_SITE_ORIGIN: https://rhythmarchive.github.io
       PUBLIC_BASE_PATH: /
@@ -36,6 +44,93 @@ jobs:
         run: npm ci
       - name: Quality gate
         run: npm run ci:check
+      - name: Detect Stats Worker deployment requirement
+        id: stats-worker
+        shell: bash
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          BEFORE: ${{ github.event.before }}
+          SHA: ${{ github.sha }}
+          MANUAL_DEPLOY: ${{ github.event.inputs.deploy_stats_worker }}
+        run: |
+          if [[ "$EVENT_NAME" == "workflow_dispatch" ]]; then
+            if [[ "$MANUAL_DEPLOY" == "true" ]]; then
+              echo "deploy=true" >> "$GITHUB_OUTPUT"
+            else
+              echo "deploy=false" >> "$GITHUB_OUTPUT"
+            fi
+            exit 0
+          fi
+
+          if [[ "$BEFORE" =~ ^0+$ ]]; then
+            echo "deploy=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          git fetch --no-tags --depth=1 origin "$BEFORE"
+          set +e
+          git diff --quiet "$BEFORE" "$SHA" -- \
+            catalog \
+            workers/stats/src/public-resource-registry.ts \
+            workers/stats/wrangler.toml \
+            packages/domain/src/identifiers.ts \
+            apps/site/scripts/generate-stats-resource-registry.ts \
+            .github/workflows/pages.yml
+          diff_status=$?
+          set -e
+
+          if [[ "$diff_status" -gt 1 ]]; then
+            exit "$diff_status"
+          fi
+          if [[ "$diff_status" -eq 1 ]]; then
+            echo "deploy=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "deploy=false" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Deploy Stats Worker and verify its Catalog registry
+        if: github.ref == 'refs/heads/main' && steps.stats-worker.outputs.deploy == 'true'
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
+          PUBLIC_STATS_API_URL: ${{ vars.PUBLIC_STATS_API_URL }}
+        run: |
+          : "${CLOUDFLARE_API_TOKEN:?Configure the CLOUDFLARE_API_TOKEN secret in the stats-production environment}"
+          : "${CLOUDFLARE_ACCOUNT_ID:?Configure the CLOUDFLARE_ACCOUNT_ID Actions variable}"
+          : "${PUBLIC_STATS_API_URL:?Configure the PUBLIC_STATS_API_URL Actions variable}"
+
+          npm ci --prefix workers/stats
+          npm --prefix workers/stats run deploy
+
+          node --input-type=module <<'NODE'
+          import { readFile } from "node:fs/promises";
+
+          const source = await readFile("workers/stats/src/public-resource-registry.ts", "utf8");
+          const expected = source.match(/PUBLIC_RESOURCE_CATALOG_GENERATED_AT = "([^"]+)"/u)?.[1];
+          if (!expected) throw new Error("Could not read the generated Catalog timestamp from the Stats Worker registry.");
+
+          const healthUrl = new URL("/health", process.env.PUBLIC_STATS_API_URL);
+          let lastResult = "no response";
+          for (let attempt = 1; attempt <= 20; attempt += 1) {
+            try {
+              const response = await fetch(healthUrl, { signal: AbortSignal.timeout(5000) });
+              if (response.ok) {
+                const body = await response.json();
+                if (body.catalogGeneratedAt === expected) {
+                  console.log(`Stats Worker registry is current: ${expected}`);
+                  process.exit(0);
+                }
+                lastResult = `catalogGeneratedAt=${body.catalogGeneratedAt ?? "missing"}`;
+              } else {
+                lastResult = `HTTP ${response.status}`;
+              }
+            } catch (error) {
+              lastResult = error instanceof Error ? error.message : String(error);
+            }
+            console.log(`Waiting for Stats Worker registry ${expected} (attempt ${attempt}/20; ${lastResult}).`);
+            await new Promise((resolve) => setTimeout(resolve, 3000));
+          }
+          throw new Error(`Stats Worker did not report Catalog registry ${expected}: ${lastResult}`);
+          NODE
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa # v3.0.1
         with:
