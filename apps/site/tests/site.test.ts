@@ -112,29 +112,50 @@ test("jacket details expose the unified chart field and user-facing identity met
   assert.equal(typeof rizlineJacket?.metadata.gameVersion, "string");
 });
 
-test("Paradigm updates publish one song Resource with catalog-aligned charts and image-only public downloads", () => {
+test("Paradigm updates publish song Resources with client chart metadata and image-only public downloads", () => {
   const paradigmResources = catalog.resources.filter((resource) => resource.game === "paradigm-reboot" && resource.lifecycle.status === "published");
-  assert.equal(paradigmResources.length, 430);
-  assert.equal(new Set(paradigmResources.map((resource) => resource.metadata.songId)).size, 430);
+  assert.equal(paradigmResources.length, 434);
+  assert.equal(new Set(paradigmResources.map((resource) => resource.metadata.songId)).size, 434);
   const resourceIds = new Set(paradigmResources.map((resource) => resource.id));
   const paradigmVariants = catalog.variants.filter((variant) => resourceIds.has(variant.resourceId));
   const paradigmRenditions = catalog.renditions.filter((rendition) => paradigmVariants.some((variant) => variant.id === rendition.variantId));
-  assert.equal(paradigmVariants.length, 432);
-  assert.equal(paradigmRenditions.filter((rendition) => rendition.renditionType === "original").length, 432);
+  assert.equal(paradigmVariants.length, 436);
+  assert.equal(paradigmRenditions.filter((rendition) => rendition.renditionType === "original").length, 436);
   assert.equal(paradigmRenditions.filter((rendition) => rendition.renditionType === "music").length, 419);
   assert.equal(paradigmRenditions.filter((rendition) => rendition.renditionType === "preview-audio").length, 419);
   assert.equal(paradigmRenditions.filter((rendition) => rendition.renditionType === "chart").length, 1335);
-  assert.equal(paradigmRenditions.filter((rendition) => rendition.renditionType === "thumbnail-320").length, 432);
-  assert.equal(paradigmRenditions.filter((rendition) => rendition.renditionType === "thumbnail-640").length, 432);
-  assert.equal(paradigmRenditions.filter((rendition) => rendition.renditionType === "thumbnail-1280").length, 432);
+  assert.equal(paradigmRenditions.filter((rendition) => rendition.renditionType === "thumbnail-320").length, 436);
+  assert.equal(paradigmRenditions.filter((rendition) => rendition.renditionType === "thumbnail-640").length, 436);
+  assert.equal(paradigmRenditions.filter((rendition) => rendition.renditionType === "thumbnail-1280").length, 436);
   const paradigmObjects = new Set(paradigmRenditions.map((rendition) => rendition.objectId));
   assert.equal([...paradigmObjects].filter((objectId) => catalog.objects.find((object) => object.id === objectId)?.mime === "audio/ogg").length, 838);
   assert.equal([...paradigmObjects].filter((objectId) => catalog.objects.find((object) => object.id === objectId)?.mime === "application/octet-stream").length, 1335);
 
   const siteData = getSiteData();
   const projected = siteData.resources.filter((resource) => resource.game === "paradigm-reboot");
-  assert.equal(projected.length, 430);
-  assert.ok(projected.every((resource) => resource.resourceType === "jacket" && resource.charts?.length === paradigmRenditions.filter((rendition) => rendition.variantId === resource.variants.find((variant) => variant.preferred)?.variantId && rendition.renditionType === "chart").length));
+  assert.equal(projected.length, 434);
+  assert.ok(projected.every((resource) => resource.resourceType === "jacket"));
+  const chartRenditionCount = (resource: (typeof projected)[number]) => paradigmRenditions.filter((rendition) => rendition.variantId === resource.variants.find((variant) => variant.preferred)?.variantId && rendition.renditionType === "chart").length;
+  const d166AffectedSongIds = new Set(["beyondthetimeline", "shishunkiaisyndrome", "singaloud", "yumenomamono", "encore", "indeliblescar"]);
+  assert.ok(projected.filter((resource) => !d166AffectedSongIds.has(String(resource.metadata.songId))).every((resource) => resource.charts?.length === chartRenditionCount(resource)));
+  const d166NewSongChartCounts = { beyondthetimeline: 4, shishunkiaisyndrome: 3, singaloud: 3, yumenomamono: 3 };
+  for (const [songId, count] of Object.entries(d166NewSongChartCounts)) {
+    const resource = projected.find((candidate) => candidate.metadata.songId === songId);
+    assert.ok(resource);
+    assert.equal(resource.charts?.length, count);
+    assert.equal(chartRenditionCount(resource), 0);
+    assert.ok(resource.charts?.every((chart) => chart.available && chart.level === undefined && chart.constant === undefined && chart.notes === undefined && chart.noter === undefined));
+  }
+  for (const songId of ["encore", "indeliblescar"]) {
+    const resource = projected.find((candidate) => candidate.metadata.songId === songId);
+    const reboot = resource?.charts?.find((chart) => chart.difficulty === "RBT");
+    assert.ok(reboot?.available);
+    assert.equal(reboot.level, undefined);
+    assert.equal(reboot.constant, undefined);
+    assert.equal(reboot.notes, undefined);
+    assert.equal(reboot.noter, undefined);
+    assert.equal(chartRenditionCount(resource!), 3);
+  }
   const phasebreak = projected.find((resource) => resource.metadata.songId === "phasebreak");
   assert.equal(phasebreak?.displayTitle, "PHASEBREAK");
   assert.equal(phasebreak?.artist, "Zekk");
@@ -201,7 +222,7 @@ test("preview selection never falls back to original or upscaled", () => {
 test("every catalog Resource shares one preview set across original and optional upscale", () => {
   const projection = projectCatalog(catalog, rosBaseUrl);
   const upscaled = projection.resources.filter((resource) => resource.upscaled);
-  assert.equal(upscaled.length, 1056);
+  assert.equal(upscaled.length, 1060);
   const arcaea70Upscaled = projection.resources.filter((resource) =>
     resource.game === "arcaea" &&
     resource.resourceType === "jacket" &&
@@ -223,7 +244,7 @@ test("every catalog Resource shares one preview set across original and optional
   assert.ok(upscaled.every((resource) => ["arcaea", "paradigm-reboot"].includes(resource.game) && resource.resourceType === "jacket"));
   assert.ok(upscaled.every((resource) => resource.variants.every((variant) => Boolean(variant.preview.small) && Boolean(variant.preview.medium) && Boolean(variant.preview.large))));
   const paradigmUpscaled = upscaled.filter((resource) => resource.game === "paradigm-reboot");
-  assert.equal(paradigmUpscaled.length, 430);
+  assert.equal(paradigmUpscaled.length, 434);
   assert.ok(paradigmUpscaled.every((resource) => resource.upscaled?.width === (resource.original?.width ?? 0) * 4 && resource.upscaled?.height === (resource.original?.height ?? 0) * 4));
   assert.ok(paradigmUpscaled.every((resource) => resource.variants.every((variant) => Boolean(variant.upscaled))));
 });
