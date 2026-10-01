@@ -1,5 +1,6 @@
 /* GENERATED FILE. Run npm run stats:registry after a public Catalog change. */
 export const PUBLIC_RESOURCE_CATALOG_GENERATED_AT = "2026-10-01T11:57:35.906Z" as const;
+export const PUBLIC_RESOURCE_REGISTRY_SHA256 = "4d924f8e9e0e5e1e753cf65bfc3818d94a6392139518a22c85f2f86df0d81c42" as const;
 export const PUBLIC_RESOURCE_ID_LIST = [
   "0008cc8e-0f13-798c-9e3a-93168d5f8d6e",
   "00495e71-9b2e-7a25-9147-bdf661b5b7c4",

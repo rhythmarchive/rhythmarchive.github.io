@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
+import { PUBLIC_RESOURCE_REGISTRY_SHA256 } from "../src/public-resource-registry.js";
 import {
   DOWNLOAD_DEDUPE_WINDOW_MS,
   MAX_RESOURCE_IDS,
@@ -824,6 +825,7 @@ test("CORS only exposes configured origins", async () => {
   const rejected = await handleRequest(request("/health", "GET", undefined, "https://evil.example.test"), makeEnv(store));
 
   assert.equal(allowed.status, 200);
+  assert.equal((await responseJson(allowed)).registryHash, PUBLIC_RESOURCE_REGISTRY_SHA256);
   assert.equal(allowed.headers.get("Access-Control-Allow-Origin"), "https://rhythmarchive.github.io");
   assert.equal(preflight.status, 204);
   assert.equal(preflight.headers.get("Access-Control-Allow-Origin"), "https://rhythmarchive.github.io");

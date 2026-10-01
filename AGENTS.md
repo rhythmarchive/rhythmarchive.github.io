@@ -1,33 +1,22 @@
-# Public Rhythm Archive product repository
+# Public Rhythm Archive repository
 
-Keep only the independent GitHub Pages/Astro product, public Catalog/schema/domain/browse projections, public Stats Worker, Arcaea APK automated update workflow, and the tools/tests/configuration actually required by those flows. A file under `tools/` may be essential to CI or Actions; trace its callers before moving it.
+Owns Pages/Astro, public Catalog/schema/domain/Browse, Stats Worker and Arcaea APK automation. Private extraction/ROS tooling belongs in Tooling; operator controls/evidence belong in Admin. Never copy them into Public.
+Follow workspace-root AGENTS.md for risk, boundaries, Git and scratch. Preserve unrelated changes and stage exact paths.
 
-- `npm run ci:check` is the full local quality gate. Pages and quality workflows call it. `apps/site/scripts/generate-public-data.ts` generates the public search, gallery, detail, ranking and batch data; `apps/site/scripts/generate-stats-resource-registry.ts` updates the Stats Worker registry from the public Catalog. Use the generator and full gate for registry changes.
-- Keep `tools/validate-browse-projection.ts` for `browse:check`. Keep `tools/arcaea-apk-update.ts` and `tools/arcaea-apk-updater/` for `.github/workflows/arcaea-apk-update.yml`. Keep their imported `packages/domain/src` modules and Worker tests/configuration. Do not infer that every non-UI file is private.
-- The Arcaea updater loads optional local credentials from the sibling Workspace `config/.dev.vars`, through `node --env-file-if-exists` in `tools/arcaea-apk-updater/package.json`, which resolves that path from the package's own working directory. A missing file is normal: `check-only` needs no credentials and CI supplies Secrets through the environment instead, while `publish` fails fast with exit 1 when ROS credentials are absent. Never put those values in this repository.
-- `tools/arcaea-apk-updater/` holds only its package manifest and lockfile; the implementation is `packages/domain/src/arcaea-apk.ts`, invoked by `tools/arcaea-apk-update.ts`. Nothing in `npm run ci:check` covers it, so change that surface only with the updater's own `--mode check-only` run, which contacts the official API and performs no ROS write.
-- The site is player-facing and public-safe. No Admin/Operator Center implementation, internal game extractors, private ROS operations, Cloudflare inventory, source APKs, extraction output, credentials, secrets or local cache belongs here.
-- Public Catalog and ReleaseManifest are canonical. Preserve object identity and publication evidence boundaries; a manifest `published` field alone does not prove ROS, Git or Pages deployment.
-- Before changing Pages, Stats or APK automation, check the corresponding workflow and test the full caller chain. Preserve the existing Pages deployment method.
-- Never commit `.env`, `.dev.vars`, tokens, private paths or large runtime inputs. Check the exact Git repository, status, diff, generated data and Secret absence before committing. Stage exact paths and preserve unrelated work.
-- Local public-site development skills live in `.agents/skills/`. Read the matching skill (`site-development`, `site-design`, `validation-ci`, `repository-maintenance`, `update-timeline`) before changing that surface. `.gitignore` deliberately keeps most of them local and tracks only `update-timeline`; `site-unification` is a legacy alias for `site-design` plus `site-development`.
+## Executable defaults
 
-## Git workflow
+- Ordinary content: prepare Catalog/Browse/Updates together, run npm run update:fast. This generates the Stats registry and validates schema/references, timeline invariants, Browse and registry. No Worker business tests or local full site build.
+- Ordinary pages/styles/small bugfix: npm run check:fast; choose one affected test for behavior changes. No resource/ROS/Admin work.
+- Worker code: npm run worker:check. Registry-only data: npm run stats:registry:check.
+- Docs: git diff --check and status.
+- Explicit shared contracts/generators/build/Actions/infrastructure/major data changes: npm run ci:check once. Never use final acceptance or publication consistency as an escalation reason.
+- check:changed -- --ci --base <commit> is the remote change-aware gate: content checks when needed, Worker gate only for Worker code, one Pages build/traffic/smoke. FULL includes its own build, never builds twice.
 
-Routine low-risk work uses `main` directly by default. Before editing, verify the repository root and `git status --short --branch`. If `main` is behind `origin/main` and synchronization is safe, run `git pull --rebase origin main` before editing. If the checkout is on another branch, keep that branch intact and switch only when the worktree is clean and no local work would be lost.
+Stats registry uses public resource IDs plus game identity/display names. Catalog generatedAt alone is not registry change. /health registryHash verifies a changed deployment. A display/Browse/Updates change does not deploy Worker. Worker core/config/shared UUID runtime changes do.
+Generate formal outputs; never hand-edit registry, public/data or src/generated. Public cards stay preview-only; originals/upscales are explicit detail/download paths.
 
-After risk-matched checks, review the exact staged diff, make one scoped commit, and push with `git push origin main` when GitHub rules allow it. Do not create a branch, PR or merge commit only for formality. Pages builds and deploys through `.github/workflows/pages.yml` after eligible pushes to `main`; do not perform a separate manual deployment for an ordinary site change.
+Catalog is public source of truth. ReleaseManifest is optional private production input, not an Admin synchronization or ordinary publication blocker. Prepare publishedAt before first commit; never replace it with Pages success time afterward.
+Routine Git: confirm child root/status -> standard fetch/pull --rebase -> one commit on main -> git push origin main. No gh/plugin/browser/PR for routine publish. If protection rejects push, report it; never bypass or silently create PR.
 
-Use an independent branch and PR when appropriate for large refactors across core modules; major GitHub Actions, deployment or release changes; important Worker/backend, permission or security changes; potentially irreversible or large data changes; uncertain experiments; or an explicit user request. File count alone is not a reason to use a PR.
-
-Never bypass a ruleset or branch protection. If a rule requires a PR and blocks a direct push, stop and tell the user which rule and Settings page to change; do not silently create a PR as a workaround. Check the active remote rule each time because GitHub settings can change.
-
-## Verification
-
-Follow the workspace-root AGENTS.md Verification Policy; this file supplies Public-specific command examples.
-
-- Level 1: npm run typecheck, npm run worker:typecheck, npm run stats:registry:check, npm run browse:check, and git diff --check.
-- Level 2: run only the affected gallery test, for example node --import tsx --test apps/site/tests/browse-gallery.test.ts; for one Stats Worker case use node --import tsx --test workers/stats/tests/index.test.ts.
-- Level 3: use the affected site or Worker checks. npm run site:build is the prerequisite for npm run traffic:check and npm run site:smoke; site:smoke is a static assertion over apps/site/dist and needs no browser.
-- Level 4: npm run ci:check is the Public full gate. Use it for shared Catalog/domain/schema contracts, generator implementation, CI/build/deployment/release changes, broad or high-risk publication batches, final acceptance, or when targeted evidence cannot cover the risk. Routine resource or Catalog content/metadata updates use their required generators and targeted consistency/contract checks; a push by itself does not trigger the full gate. Stats registry contract or generator changes still use the formal generator and full gate.
-- Documentation, AGENTS and ignore-only changes are Level 0 unless the workspace-root final-acceptance requirement explicitly asks for full gates.
+Repository skills are in .agents/skills. update-timeline is tracked; other development skills are local. Read only the skill needed by the task.
+Arcaea APK updater is independent: tools/arcaea-apk-updater package and tools/arcaea-apk-update.ts remain public; its check-only mode is read-only. Credentials come from Workspace config/.dev.vars or CI Secrets, never public files.

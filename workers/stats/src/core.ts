@@ -1,5 +1,5 @@
 import { isUuidV7, normalizeUuid } from "../../../packages/domain/src/identifiers.js";
-import { PUBLIC_GAME_DISPLAY_NAMES, PUBLIC_GAME_SLUGS, PUBLIC_RESOURCE_CATALOG_GENERATED_AT, PUBLIC_RESOURCE_IDS, type PublicGameSlug } from "./public-resource-registry.js";
+import { PUBLIC_GAME_DISPLAY_NAMES, PUBLIC_GAME_SLUGS, PUBLIC_RESOURCE_CATALOG_GENERATED_AT, PUBLIC_RESOURCE_REGISTRY_SHA256, PUBLIC_RESOURCE_IDS, type PublicGameSlug } from "./public-resource-registry.js";
 export type { PublicGameSlug } from "./public-resource-registry.js";
 
 const DEFAULT_ALLOWED_ORIGIN = "https://rhythmarchive.github.io";
@@ -701,7 +701,7 @@ export async function handleRequest(request: Request, env: Env, options: Handler
 
   const url = new URL(request.url);
   const path = url.pathname.replace(/\/+$/u, "") || "/";
-  if (path === "/health" && request.method === "GET") return json({ ok: true, catalogGeneratedAt: PUBLIC_RESOURCE_CATALOG_GENERATED_AT }, 200, corsHeaders);
+  if (path === "/health" && request.method === "GET") return json({ ok: true, catalogGeneratedAt: PUBLIC_RESOURCE_CATALOG_GENERATED_AT, registryHash: PUBLIC_RESOURCE_REGISTRY_SHA256 }, 200, corsHeaders);
 
   const store = options.store ?? (env.DB ? new D1StatsStore(env.DB) : undefined);
   if (!store) return json({ error: "stats_unavailable" }, 503, corsHeaders);

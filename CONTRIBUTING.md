@@ -1,26 +1,22 @@
-# 贡献与 Git 工作流
+# 日常维护
 
-日常低风险改动默认在 `main` 上完成，不必为了形式创建功能分支或 Pull Request。适用范围包括常规资源与 Catalog/元数据更新、页面样式、小功能、普通 bugfix、文档和脚本维护。
+默认直接维护 main：确认子仓库和状态 → 标准 Git 同步 → 集中修改 → 必要检查 → 一个 commit → 一次 git push origin main。
+普通更新不调用 gh、GitHub 插件或浏览器，不创建临时分支、PR 或 Review/Merge。Git 凭据独立于这些工具；Git 正常时不要调查它们的认证。
 
-## 日常流程
+| 任务 | 本地入口 | main push 后 |
+| --- | --- | --- |
+| 页面/样式/普通 bugfix | npm run check:fast，行为变化补一个目标测试 | Pages 构建、traffic/smoke、部署 |
+| 1～10 个资源/元数据/Browse/Updates | Tooling ros:delta 只验证新增对象；Public npm run update:fast | 内容不变量检查、Pages；registry 文件真实变化才部署 Worker |
+| Stats Worker 逻辑/配置/D1 | worker:check | Worker 完整检查与部署、Pages |
+| 共享 schema/domain、生成器/构建、Actions、基础设施、ROS/发布机制、大规模数据、明确全面审计 | ci:check 一次 | change-aware FULL CI（含一次构建） |
+| 文档 | diff --check | 必要 Pages 构建；AGENTS-only 跳过 |
 
-1. 用 `git rev-parse --show-toplevel` 确认仓库，再用 `git status --short --branch` 查看分支和工作区。保留已有的无关改动，不要重置、清理或纳入本轮提交。
-2. 在干净的 `main` 上工作。若本地 `main` 落后于 `origin/main`，且同步不会影响用户改动，先运行 `git pull --rebase origin main`。当前处于其他分支时，保留该分支；只有确认工作区干净且没有本地工作会丢失时才切回 `main`。
-3. 按改动风险运行必要检查。文档改动通常只需检查 diff；代码、Catalog 和资源更新运行相关生成器、目标测试或受影响子系统检查。不要仅因即将 commit 或 push 就运行全量套件。
-4. 用 `git add -- <明确路径>` 暂存本轮文件，检查 staged diff、敏感值、临时文件、大型中间产物和未跟踪文件，再制作一个清晰、范围单一的 commit。
-5. 规则允许时运行 `git push origin main`。普通站点更改由 `.github/workflows/pages.yml` 在 push 后完成完整检查和 Pages 部署；不需要另行手动部署。`.github/workflows/quality.yml` 为 Pull Request 提供 `check` 状态检查。
+风险决定深度。最终验收、完整证据、更安全、发布一致性不是 FULL 触发条件。无关历史问题只记录；可靠验证已经成功时，不继续排查辅助 HTTP 客户端。
 
-直接 push 必须遵守 GitHub ruleset 和 branch protection。若规则拒绝更新 `main`，不要绕过规则，也不要为了让 push 成功而自动改走 PR；报告触发的规则及 `Settings → Rules → Rulesets` 中需要由仓库所有者调整的设置，然后停止远端写入。
+Catalog、Browse、Updates、publishedAt 必须在首次提交前完成。publishedAt 表示内容更新时间；Pages 成功时间只用于确认，不写回源码。普通成功更新不补发布记录、审计字段或 Admin 副本而第二次 push。第二次 push 只限真实失败、线上内容错误或用户明确要求。
 
-## 应使用分支和 PR 的改动
+Stats registry 用生成器维护，元数据时间戳不触发 Worker 部署。registry-only 不跑 Worker 的 D1、提醒、Turnstile、限流和排行逻辑测试。保持源输入只读，不重新证明旧 ROS 对象存在。
 
-以下情况优先使用独立分支，并在合适时通过 PR 合入 `main`：
+保留未提交改动；暂存明确路径，检查秘密/临时产物及 diff。不要 force push 或绕过保护；被拒绝时报告实际错误与 Settings → Rules → Rulesets，不自动改走 PR。高风险评审或用户明确要求时才选择 branch/PR。
 
-- 大规模重构或跨多个核心模块的架构修改。
-- GitHub Actions、部署链路或发布机制的重大修改。
-- Cloudflare Worker、后端、权限或安全方面的重要修改。
-- 可能造成大量数据变化或不可逆影响的操作。
-- 实验性且结果明显不确定的修改。
-- 用户明确要求使用 branch 或 PR。
-
-根据风险、影响范围和可回滚性判断；仅仅文件较多不构成必须使用 PR 的理由。高风险改动仍须运行与其风险相称的检查；普通 commit 或 push 本身不触发全量测试。
+复用依赖与共享 cache；正常成功只输出摘要。临时文件使用 marked Workspace runtime；完成调用 Tooling workspace-runtime finish，失败诊断七天过期，--keep/--debug 可明确保留。普通更新不生成永久 review/approval/evidence bundle。

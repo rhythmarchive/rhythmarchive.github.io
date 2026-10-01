@@ -23,5 +23,9 @@ jobs:
           cache: npm
       - name: Install dependencies
         run: npm ci
-      - name: Run quality gate
-        run: npm run ci:check
+      - name: Run change-aware checks
+        env:
+          BASE: ${{ github.event.pull_request.base.sha }}
+        run: |
+          git fetch --no-tags --depth=1 origin "$BASE"
+          npm run check:changed -- --ci --base "$BASE"

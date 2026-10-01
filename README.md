@@ -48,14 +48,15 @@ Rhythm Archive 按游戏与资源类型整理图片内容，提供统一的浏�
 需要 **Node.js 22.12+**。
 
 ```bash
-npm ci
+npm install # only when dependencies are absent/changed
 npm run site:dev
 ```
 
-完整检查：
+日常检查（默认 FAST）：
 
 ```bash
-npm run ci:check
+npm run update:fast # Catalog/Browse/Updates
+npm run check:fast  # 页面修改
 ```
 
 构建产物预览：

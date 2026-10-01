@@ -42,53 +42,36 @@ jobs:
           cache: npm
       - name: Install dependencies
         run: npm ci
-      - name: Quality gate
-        run: npm run ci:check
-      - name: Detect Stats Worker deployment requirement
-        id: stats-worker
+      - name: Detect change scope
+        id: scope
         shell: bash
         env:
-          EVENT_NAME: ${{ github.event_name }}
           BEFORE: ${{ github.event.before }}
-          SHA: ${{ github.sha }}
-          MANUAL_DEPLOY: ${{ github.event.inputs.deploy_stats_worker }}
+          EVENT_NAME: ${{ github.event_name }}
         run: |
-          if [[ "$EVENT_NAME" == "workflow_dispatch" ]]; then
-            if [[ "$MANUAL_DEPLOY" == "true" ]]; then
-              echo "deploy=true" >> "$GITHUB_OUTPUT"
-            else
-              echo "deploy=false" >> "$GITHUB_OUTPUT"
-            fi
-            exit 0
-          fi
-
-          if [[ "$BEFORE" =~ ^0+$ ]]; then
-            echo "deploy=true" >> "$GITHUB_OUTPUT"
-            exit 0
-          fi
-
-          git fetch --no-tags --depth=1 origin "$BEFORE"
-          set +e
-          git diff --quiet "$BEFORE" "$SHA" -- \
-            catalog \
-            workers/stats/src/public-resource-registry.ts \
-            workers/stats/wrangler.toml \
-            packages/domain/src/identifiers.ts \
-            apps/site/scripts/generate-stats-resource-registry.ts \
-            .github/workflows/pages.yml
-          diff_status=$?
-          set -e
-
-          if [[ "$diff_status" -gt 1 ]]; then
-            exit "$diff_status"
-          fi
-          if [[ "$diff_status" -eq 1 ]]; then
-            echo "deploy=true" >> "$GITHUB_OUTPUT"
+          if [[ -n "$BEFORE" && ! "$BEFORE" =~ ^0+$ ]]; then
+            git fetch --no-tags --depth=1 origin "$BEFORE"
+            echo "base=$BEFORE" >> "$GITHUB_OUTPUT"
+            node scripts/maintenance-check.mjs --base "$BEFORE" --plan
           else
-            echo "deploy=false" >> "$GITHUB_OUTPUT"
+            echo "mode=FULL" >> "$GITHUB_OUTPUT"
+            if [[ "$EVENT_NAME" == "workflow_dispatch" ]]; then
+              echo "deploy_worker=false" >> "$GITHUB_OUTPUT"
+            else
+              echo "deploy_worker=true" >> "$GITHUB_OUTPUT"
+            fi
+          fi
+      - name: Change-aware validation and Pages build
+        env:
+          BASE: ${{ steps.scope.outputs.base }}
+        run: |
+          if [ -n "$BASE" ]; then
+            npm run check:changed -- --ci --base "$BASE"
+          else
+            npm run check:full
           fi
       - name: Deploy Stats Worker and verify its Catalog registry
-        if: github.ref == 'refs/heads/main' && steps.stats-worker.outputs.deploy == 'true'
+        if: github.ref == 'refs/heads/main' && (steps.scope.outputs.deploy_worker == 'true' || inputs.deploy_stats_worker == true)
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
@@ -105,8 +88,8 @@ jobs:
           import { readFile } from "node:fs/promises";
 
           const source = await readFile("workers/stats/src/public-resource-registry.ts", "utf8");
-          const expected = source.match(/PUBLIC_RESOURCE_CATALOG_GENERATED_AT = "([^"]+)"/u)?.[1];
-          if (!expected) throw new Error("Could not read the generated Catalog timestamp from the Stats Worker registry.");
+          const expected = source.match(/PUBLIC_RESOURCE_REGISTRY_SHA256 = "([^"]+)"/u)?.[1];
+          if (!expected) throw new Error("Could not read the generated Stats registry hash.");
 
           const healthUrl = new URL("/health", process.env.PUBLIC_STATS_API_URL);
           let lastResult = "no response";
@@ -115,11 +98,11 @@ jobs:
               const response = await fetch(healthUrl, { signal: AbortSignal.timeout(5000) });
               if (response.ok) {
                 const body = await response.json();
-                if (body.catalogGeneratedAt === expected) {
+                if (body.registryHash === expected) {
                   console.log(`Stats Worker registry is current: ${expected}`);
                   process.exit(0);
                 }
-                lastResult = `catalogGeneratedAt=${body.catalogGeneratedAt ?? "missing"}`;
+                lastResult = `registryHash=${body.registryHash ?? "missing"}`;
               } else {
                 lastResult = `HTTP ${response.status}`;
               }

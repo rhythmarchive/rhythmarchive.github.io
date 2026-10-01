@@ -29,6 +29,7 @@ apps/site/public/data/
 apps/site/apps/site/.astro/
 
 # Local configuration and secrets
+.npmrc
 .env
 .env.*
 .dev.vars
