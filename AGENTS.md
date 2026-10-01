@@ -4,11 +4,13 @@ Keep only the independent GitHub Pages/Astro product, public Catalog/schema/doma
 
 - `npm run ci:check` is the full local quality gate. Pages and quality workflows call it. `apps/site/scripts/generate-public-data.ts` generates the public search, gallery, detail, ranking and batch data; `apps/site/scripts/generate-stats-resource-registry.ts` updates the Stats Worker registry from the public Catalog. Use the generator and full gate for registry changes.
 - Keep `tools/validate-browse-projection.ts` for `browse:check`. Keep `tools/arcaea-apk-update.ts` and `tools/arcaea-apk-updater/` for `.github/workflows/arcaea-apk-update.yml`. Keep their imported `packages/domain/src` modules and Worker tests/configuration. Do not infer that every non-UI file is private.
-- The local Arcaea updater reads optional ignored credentials from the sibling Workspace `config/public-updater.dev.vars`; GitHub Actions supplies Secrets through its environment. Never put those values in this repository.
+- The Arcaea updater loads optional local credentials from the sibling Workspace `config/.dev.vars`, through `node --env-file-if-exists` in `tools/arcaea-apk-updater/package.json`, which resolves that path from the package's own working directory. A missing file is normal: `check-only` needs no credentials and CI supplies Secrets through the environment instead, while `publish` fails fast with exit 1 when ROS credentials are absent. Never put those values in this repository.
+- `tools/arcaea-apk-updater/` holds only its package manifest and lockfile; the implementation is `packages/domain/src/arcaea-apk.ts`, invoked by `tools/arcaea-apk-update.ts`. Nothing in `npm run ci:check` covers it, so change that surface only with the updater's own `--mode check-only` run, which contacts the official API and performs no ROS write.
 - The site is player-facing and public-safe. No Admin/Operator Center implementation, internal game extractors, private ROS operations, Cloudflare inventory, source APKs, extraction output, credentials, secrets or local cache belongs here.
 - Public Catalog and ReleaseManifest are canonical. Preserve object identity and publication evidence boundaries; a manifest `published` field alone does not prove ROS, Git or Pages deployment.
 - Before changing Pages, Stats or APK automation, check the corresponding workflow and test the full caller chain. Preserve the existing Pages deployment method.
 - Never commit `.env`, `.dev.vars`, tokens, private paths or large runtime inputs. Check the exact Git repository, status, diff, generated data and Secret absence before committing. Stage exact paths and preserve unrelated work.
+- Local public-site development skills live in `.agents/skills/`. Read the matching skill (`site-development`, `site-design`, `validation-ci`, `repository-maintenance`, `update-timeline`) before changing that surface. `.gitignore` deliberately keeps most of them local and tracks only `update-timeline`; `site-unification` is a legacy alias for `site-design` plus `site-development`.
 
 ## Git workflow
 
@@ -24,8 +26,8 @@ Never bypass a ruleset or branch protection. If a rule requires a PR and blocks 
 
 Follow the workspace-root AGENTS.md Verification Policy; this file supplies Public-specific command examples.
 
-- Level 1: npm run typecheck, npm run worker:typecheck, npm run stats:registry:check, and npm run browse:check.
+- Level 1: npm run typecheck, npm run worker:typecheck, npm run stats:registry:check, npm run browse:check, and git diff --check.
 - Level 2: run only the affected gallery test, for example node --import tsx --test apps/site/tests/browse-gallery.test.ts; for one Stats Worker case use node --import tsx --test workers/stats/tests/index.test.ts.
-- Level 3: use the affected site, Worker, or APK-updater checks. Run site build/smoke only when generated site output or browser/runtime behavior is affected.
+- Level 3: use the affected site or Worker checks. npm run site:build is the prerequisite for npm run traffic:check and npm run site:smoke; site:smoke is a static assertion over apps/site/dist and needs no browser.
 - Level 4: npm run ci:check is the Public full gate. Use it for shared Catalog/domain/schema contracts, generator implementation, CI/build/deployment/release changes, broad or high-risk publication batches, final acceptance, or when targeted evidence cannot cover the risk. Routine resource or Catalog content/metadata updates use their required generators and targeted consistency/contract checks; a push by itself does not trigger the full gate. Stats registry contract or generator changes still use the formal generator and full gate.
 - Documentation, AGENTS and ignore-only changes are Level 0 unless the workspace-root final-acceptance requirement explicitly asks for full gates.
