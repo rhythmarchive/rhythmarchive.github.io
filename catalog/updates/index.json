@@ -2719,6 +2719,34 @@
           "change": "added"
         }
       ]
+    },
+    {
+      "id": "72ff7c5a-72c0-706b-b4f6-1cedc1fd1bd6",
+      "game": "paradigm-reboot",
+      "releaseIds": [
+        "403073df-99ca-7c80-8fba-1816c143dea8"
+      ],
+      "kind": "update",
+      "publishedAt": "2026-10-01T12:43:19.103Z",
+      "contentVersion": "4.12",
+      "items": [
+        {
+          "resourceId": "4d546982-7a98-7e83-b2c4-bc06fb9713a4",
+          "change": "added"
+        },
+        {
+          "resourceId": "4008f590-98bb-71ae-b9b2-aef2ca0424af",
+          "change": "added"
+        },
+        {
+          "resourceId": "9f4c3c2d-e306-79d0-8bfe-4490cc915ae8",
+          "change": "added"
+        },
+        {
+          "resourceId": "3679cd79-e9b9-70c1-b4f7-d938d8f5fe65",
+          "change": "added"
+        }
+      ]
     }
   ]
 }
