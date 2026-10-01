@@ -4,6 +4,7 @@ import { renderResourceCard } from "./render-resource-card";
 import { galleryCardView } from "../lib/card-view-model";
 import type { GalleryCard } from "../lib/gallery-projection";
 import { matchesChartFilters } from "../lib/chart-filters";
+import { compareGalleryBpm, compareGalleryHighestConstant, compareNullableNumber, numericFacetValues } from "../lib/gallery-sort";
 import { compareNaturalText, normalizeSearchText } from "../lib/search";
 import { updateResourceStatsInDom } from "../lib/stats-client";
 
@@ -181,12 +182,10 @@ async function initializeGallery(root: HTMLElement): Promise<void> {
         return compared || compareNaturalText(left.displayTitle, right.displayTitle);
       }
       if (sortValue === "bpm-desc" || sortValue === "bpm-asc") {
-        const compared = compareNullableNumber(numericFacetValue(left, "bpm"), numericFacetValue(right, "bpm"), sortValue === "bpm-desc");
-        return compared || compareNaturalText(left.displayTitle, right.displayTitle);
+        return compareGalleryBpm(left, right, sortValue === "bpm-desc");
       }
       if (sortValue === "level-desc" || sortValue === "level-asc") {
-        const compared = compareNullableNumber(highestChartConstant(left), highestChartConstant(right), sortValue === "level-desc");
-        return compared || compareNaturalText(left.displayTitle, right.displayTitle);
+        return compareGalleryHighestConstant(left, right, sortValue === "level-desc");
       }
       const compared = compareNaturalText(left.displayTitle, right.displayTitle);
       return sortValue === "title-desc" ? -compared : compared;
@@ -318,26 +317,6 @@ function matchesRange(resource: GalleryCard, range: GalleryRange): boolean {
   });
 }
 
-
-
-
-function numericFacetValue(resource: GalleryCard, key: string): number | undefined {
-  const values = resource.facets?.[key] ?? (resource.metadata[key] === undefined ? [] : [String(resource.metadata[key])]);
-  const numbers = values.flatMap((value) => numericFacetValues(value));
-  return numbers.length > 0 ? Math.max(...numbers) : undefined;
-}
-
-function numericFacetValues(value: string): number[] {
-  return [...value.matchAll(/\d+(?:\.\d+)?/gu)].map((match) => Number(match[0])).filter((number) => Number.isFinite(number));
-}
-
-function highestChartConstant(resource: GalleryCard): number | undefined {
-  const values = (resource.charts ?? [])
-    .map((chart) => chart.constant === undefined ? Number.NaN : Number(chart.constant))
-    .filter((value) => Number.isFinite(value));
-  return values.length > 0 ? Math.max(...values) : undefined;
-}
-
 function resourceDateValue(resource: GalleryCard): number | undefined {
   const value = resource.facets?.updateDate?.[0] ?? resource.metadata.updateDate;
   if (typeof value === "string") {
@@ -350,11 +329,4 @@ function resourceDateValue(resource: GalleryCard): number | undefined {
     if (match) return Date.UTC(Number(match[1]), Number(match[2]) - 1, Number(match[3]));
   }
   return undefined;
-}
-
-function compareNullableNumber(left: number | undefined, right: number | undefined, descending: boolean): number {
-  if (left === undefined && right === undefined) return 0;
-  if (left === undefined) return 1;
-  if (right === undefined) return -1;
-  return descending ? right - left : left - right;
 }

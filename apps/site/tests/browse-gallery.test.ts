@@ -288,6 +288,41 @@ test("Phigros special and archive records stay separate even with repeated title
   assert.equal(formalBrowse.phigros.items.filter((item) => item.recordKind === "archive-extra").length, 7);
 });
 
+test("Phigros level sorting keeps records without a level at the end in both directions", () => {
+  const dataLess = (item: BrowseGalleryItem): boolean => !item.charts.some((chart) => "structurallyPresent" in chart
+    && chart.structurallyPresent
+    && chart.available !== false
+    && chart.status !== "legacy"
+    && !chart.errorVariant
+    && Number.isFinite(Number(chart.level)));
+  const levels = (item: BrowseGalleryItem): number[] => item.charts
+    .filter((chart) => "structurallyPresent" in chart && chart.structurallyPresent && chart.available !== false && chart.status !== "legacy" && !chart.errorVariant)
+    .map((chart) => Number("level" in chart ? chart.level : undefined))
+    .filter(Number.isFinite);
+
+  // The April Fools specials and archive extras carry no level at all.
+  assert.ok(formalBrowse.phigros.items.some(dataLess));
+
+  for (const sort of ["level-desc", "level-asc"] as const) {
+    const sorted = filterBrowseItems(formalBrowse.phigros.items, phigrosStateFor({ sort }));
+    const firstDataLess = sorted.findIndex(dataLess);
+    assert.ok(firstDataLess > 0, `${sort} must start with records that actually have a level`);
+    assert.ok(sorted.slice(firstDataLess).every(dataLess), `${sort} must keep every data-less record at the tail`);
+
+    const ordered = sorted.map((item) => Math.max(...levels(item))).filter(Number.isFinite);
+    assert.deepEqual(ordered, [...ordered].sort((left, right) => sort === "level-desc" ? right - left : left - right));
+  }
+});
+
+test("Infalsus level sorting stays monotonic because every Song publishes a level", () => {
+  for (const sort of ["level-desc", "level-asc"] as const) {
+    const sorted = filterBrowseItems(formalBrowse.infalsus.items, { game: "infalsus", q: "", sort, chart: [], level: [] } as InfalsusBrowseUrlState);
+    const values = sorted.map((item) => Math.max(...item.charts.filter((chart) => "difficulty" in chart).map((chart) => Number(chart.level)).filter(Number.isFinite)));
+    assert.ok(values.every(Number.isFinite), `${sort} must not contain records without a level`);
+    assert.deepEqual(values, [...values].sort((left, right) => sort === "level-desc" ? right - left : left - right));
+  }
+});
+
 test("In Falsus exposes chart difficulties and keeps the filter state shareable", () => {
   const options = getBrowseFacetOptions(formalBrowse.infalsus) as InfalsusFacetOptions;
   assert.deepEqual(options.charts, ["MIN", "EVO", "ULT", "FBD"]);

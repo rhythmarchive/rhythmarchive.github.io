@@ -785,35 +785,36 @@ export function compareBrowseItems(left: BrowseGalleryItem, right: BrowseGallery
   else if (sort === "title-desc") result = compareText(right.displayTitle, left.displayTitle);
   else if (sort === "artist-asc") result = compareNullableText(left.artist, right.artist) || compareText(left.displayTitle, right.displayTitle);
   else if (sort === "artist-desc") result = compareNullableText(right.artist, left.artist) || compareText(left.displayTitle, right.displayTitle);
-  else if (sort === "level-desc" && left.game === "infalsus" && right.game === "infalsus") result = compareInfalsusHighestLevel(right, left);
-  else if (sort === "level-asc" && left.game === "infalsus" && right.game === "infalsus") result = compareInfalsusHighestLevel(left, right);
+  else if (sort === "level-desc" && left.game === "infalsus" && right.game === "infalsus") result = compareInfalsusHighestLevel(left, right, true);
+  else if (sort === "level-asc" && left.game === "infalsus" && right.game === "infalsus") result = compareInfalsusHighestLevel(left, right, false);
   else if (sort === "pack-asc" && left.game === "phigros" && right.game === "phigros") result = compareNullableText(left.pack, right.pack) || compareText(left.displayTitle, right.displayTitle);
   else if (sort === "pack-desc" && left.game === "phigros" && right.game === "phigros") result = compareNullableText(right.pack, left.pack) || compareText(left.displayTitle, right.displayTitle);
-  else if (sort === "level-desc" && left.game === "phigros" && right.game === "phigros") result = comparePhigrosHighestLevel(right, left);
-  else if (sort === "level-asc" && left.game === "phigros" && right.game === "phigros") result = comparePhigrosHighestLevel(left, right);
+  else if (sort === "level-desc" && left.game === "phigros" && right.game === "phigros") result = comparePhigrosHighestLevel(left, right, true);
+  else if (sort === "level-asc" && left.game === "phigros" && right.game === "phigros") result = comparePhigrosHighestLevel(left, right, false);
   else if (sort === "version-desc" && left.game === "arcaea" && right.game === "arcaea") result = compareNullableVersion(right.version, left.version);
   else if (sort === "version-asc" && left.game === "arcaea" && right.game === "arcaea") result = compareNullableVersion(left.version, right.version);
   if (result !== 0) return result;
   return compareBrowseOrder(left, right);
 }
 
-function comparePhigrosHighestLevel(left: BrowseGalleryItem, right: BrowseGalleryItem): number {
+function comparePhigrosHighestLevel(left: BrowseGalleryItem, right: BrowseGalleryItem, descending: boolean): number {
   const leftLevel = Math.max(...left.charts.filter(isPhigrosChart).filter(isFilterablePhigrosChart).map((chart) => Number(chart.level)).filter(Number.isFinite), Number.NEGATIVE_INFINITY);
   const rightLevel = Math.max(...right.charts.filter(isPhigrosChart).filter(isFilterablePhigrosChart).map((chart) => Number(chart.level)).filter(Number.isFinite), Number.NEGATIVE_INFINITY);
   if (leftLevel === Number.NEGATIVE_INFINITY && rightLevel === Number.NEGATIVE_INFINITY) return 0;
+  // Records without a level always sort last, whichever direction is requested.
   if (leftLevel === Number.NEGATIVE_INFINITY) return 1;
   if (rightLevel === Number.NEGATIVE_INFINITY) return -1;
-  return leftLevel - rightLevel || compareText(left.displayTitle, right.displayTitle);
+  return (descending ? rightLevel - leftLevel : leftLevel - rightLevel) || compareText(left.displayTitle, right.displayTitle);
 }
 
-function compareInfalsusHighestLevel(left: BrowseGalleryItem, right: BrowseGalleryItem): number {
+function compareInfalsusHighestLevel(left: BrowseGalleryItem, right: BrowseGalleryItem, descending: boolean): number {
   const highest = (item: BrowseGalleryItem): number => Math.max(...item.charts.filter(isPublicChart).filter(isFilterablePublicChart).map((chart) => Number(chart.level)).filter(Number.isFinite), Number.NEGATIVE_INFINITY);
   const leftLevel = highest(left);
   const rightLevel = highest(right);
   if (leftLevel === Number.NEGATIVE_INFINITY && rightLevel === Number.NEGATIVE_INFINITY) return 0;
   if (leftLevel === Number.NEGATIVE_INFINITY) return 1;
   if (rightLevel === Number.NEGATIVE_INFINITY) return -1;
-  return leftLevel - rightLevel || compareText(left.displayTitle, right.displayTitle);
+  return (descending ? rightLevel - leftLevel : leftLevel - rightLevel) || compareText(left.displayTitle, right.displayTitle);
 }
 
 function compareBrowseTail(left: BrowseGalleryItem, right: BrowseGalleryItem): number {
