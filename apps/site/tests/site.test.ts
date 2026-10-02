@@ -20,7 +20,7 @@ import { matchesChartFilters } from "../src/lib/chart-filters.js";
 import { GISCUS_CONFIG, GITHUB_DISCUSSIONS_URL, GITHUB_RELEASES_URL, GITHUB_REPOSITORY_URL } from "../src/lib/site-config.js";
 import { compareNaturalText, rankSearchEntries } from "../src/lib/search.js";
 import { createUrlHelpers, sitePath } from "../src/lib/url.js";
-import { getPublicNavigationGames, getSiteData, loadCategoryBrowseProjections, loadFormalCatalog } from "../src/lib/site-data.js";
+import { getBrowseGalleryBuild, getPublicNavigationGames, getSiteData, loadCategoryBrowseProjections, loadFormalCatalog } from "../src/lib/site-data.js";
 import { formatArcaeaAddedVersion } from "../src/lib/public-display.js";
 import type { PublicResource, PublicSearchEntry } from "../src/lib/types.js";
 
@@ -331,25 +331,33 @@ test("homepage APK parser accepts GitHub/official downloads and rejects unsafe U
 });
 
 test("public game index projects activity only from final public resources", () => {
-  const projection = projectCatalog(catalog, rosBaseUrl);
+  const fixtureVersions: Record<string, string> = { arcaea: "test-arcaea-version", phigros: "test-phigros-version", rizline: "test-rizline-version" };
+  const activityCatalog = {
+    ...catalog,
+    resources: catalog.resources.map((resource) => ({
+      ...resource,
+      provenance: resource.provenance.map((provenance) => ({ ...provenance, gameVersion: fixtureVersions[resource.game] ?? provenance.gameVersion })),
+    })),
+  };
+  const projection = projectCatalog(activityCatalog, rosBaseUrl);
   const arcaea = projection.games.find((game) => game.slug === "arcaea");
   const phigros = projection.games.find((game) => game.slug === "phigros");
   const rizline = projection.games.find((game) => game.slug === "rizline");
-  assert.equal(arcaea?.contentVersion, "7.0.255c");
+  assert.equal(arcaea?.contentVersion, fixtureVersions.arcaea);
   const arcaeaUpdatedAt = catalog.resources
     .filter((resource) => resource.game === "arcaea" && resource.lifecycle.status === "published")
     .map((resource) => resource.lifecycle.updatedAt)
     .sort()
     .at(-1);
   assert.equal(arcaea?.lastUpdatedAt, arcaeaUpdatedAt);
-  assert.equal(rizline?.contentVersion, "2.7.1");
+  assert.equal(rizline?.contentVersion, fixtureVersions.rizline);
   const rizlineUpdatedAt = catalog.resources
     .filter((resource) => resource.game === "rizline" && resource.lifecycle.status === "published")
     .map((resource) => resource.lifecycle.updatedAt)
     .sort()
     .at(-1);
   assert.equal(rizline?.lastUpdatedAt, rizlineUpdatedAt);
-  assert.equal(phigros?.contentVersion, "4.0.0");
+  assert.equal(phigros?.contentVersion, fixtureVersions.phigros);
   const phigrosUpdatedAt = catalog.resources
     .filter((resource) => resource.game === "phigros" && resource.lifecycle.status === "published")
     .map((resource) => resource.lifecycle.updatedAt)
@@ -358,7 +366,7 @@ test("public game index projects activity only from final public resources", () 
   assert.equal(phigros?.lastUpdatedAt, phigrosUpdatedAt);
   assert.deepEqual(projection.games.map((game) => game.slug), sortPublicGames(projection.games).map((game) => game.slug));
 
-  const mutated = structuredClone(catalog);
+  const mutated = structuredClone(activityCatalog);
   const draft = structuredClone(mutated.resources[0]);
   const hidden = structuredClone(mutated.resources[0]);
   assert.ok(draft && hidden);
@@ -646,8 +654,11 @@ test("natural text comparison keeps numeric ordering without folding accents", (
 
 test("homepage navigation uses the generated jacket browse counts", () => {
   const games = getPublicNavigationGames();
-  assert.equal(games.find((game) => game.slug === "arcaea")?.categories.find((category) => category.slug === "jacket")?.count, 567);
-  assert.equal(games.find((game) => game.slug === "phigros")?.categories.find((category) => category.slug === "jacket")?.count, 354);
+  const browse = getBrowseGalleryBuild();
+  for (const game of ["arcaea", "phigros"] as const) {
+    assert.ok(browse[game].items.length > 0);
+    assert.equal(games.find((entry) => entry.slug === game)?.categories.find((category) => category.slug === "jacket")?.count, browse[game].items.length);
+  }
   const rizline = games.find((game) => game.slug === "rizline");
   assert.equal(rizline?.categories.find((category) => category.slug === "jacket")?.count, 145);
   assert.equal(rizline?.categories.find((category) => category.slug === "rizcard")?.count, 44);
