@@ -2747,6 +2747,70 @@
           "change": "added"
         }
       ]
+    },
+    {
+      "id": "phigros-4.0.1-resources",
+      "game": "phigros",
+      "releaseIds": [
+        "f0c4f3f4-2b14-7365-a5e1-116c701cf078"
+      ],
+      "kind": "update",
+      "publishedAt": "2026-10-02T09:42:15.224Z",
+      "contentVersion": "4.0.1",
+      "items": [
+        {
+          "resourceId": "eb5d1c96-ec73-7149-a786-a82a3068c908",
+          "change": "added"
+        },
+        {
+          "resourceId": "f0169402-9e95-7867-abe2-e39269da43c5",
+          "change": "added"
+        },
+        {
+          "resourceId": "05c1e71f-db1c-79fc-80f1-f6f56cba7e25",
+          "change": "added"
+        },
+        {
+          "resourceId": "6f2f29e7-d6bd-7751-b1c9-fc8524d83051",
+          "change": "added"
+        },
+        {
+          "resourceId": "673068cc-e3b4-78a9-8380-8dfe1f0fb6f8",
+          "change": "added"
+        },
+        {
+          "resourceId": "043ed71d-b97b-7828-b546-69e2ba53003a",
+          "change": "added"
+        },
+        {
+          "resourceId": "12ebf164-3649-737c-bfa9-e159de8f6c54",
+          "change": "added"
+        },
+        {
+          "resourceId": "6e36bb71-31f4-776a-8f45-06742af78fa6",
+          "change": "added"
+        },
+        {
+          "resourceId": "d5a881dd-a3c1-73a1-9bc6-2b7d88b37410",
+          "change": "added"
+        },
+        {
+          "resourceId": "1ff9675a-4f77-791f-9863-f4b81f10c129",
+          "change": "added"
+        },
+        {
+          "resourceId": "80ff5cda-84c8-79ef-9076-298c33c79f35",
+          "change": "added"
+        },
+        {
+          "resourceId": "e503cbe9-275a-7f3d-b739-05dbaf30ab9c",
+          "change": "added"
+        },
+        {
+          "resourceId": "11743082-897f-7efe-9056-a69519a55dd7",
+          "change": "added"
+        }
+      ]
     }
   ]
 }

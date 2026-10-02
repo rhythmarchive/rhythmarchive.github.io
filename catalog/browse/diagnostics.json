@@ -26,14 +26,14 @@
   },
   "phigros": {
     "ok": true,
-    "catalogResourceCount": 361,
-    "referencedResourceCount": 361,
+    "catalogResourceCount": 368,
+    "referencedResourceCount": 368,
     "unreferencedResourceIds": [],
     "danglingResourceIds": [],
     "warnings": [],
     "counts": {
-      "sourceTrackRecords": 327,
-      "currentTrackArtworkEntries": 321,
+      "sourceTrackRecords": 334,
+      "currentTrackArtworkEntries": 328,
       "specialRecords": 33,
       "archiveExtras": 7,
       "sourceOnlyTracks": 6

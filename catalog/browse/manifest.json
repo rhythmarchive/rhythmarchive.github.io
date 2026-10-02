@@ -17,12 +17,12 @@
       }
     },
     "phigros": {
-      "sourceVersion": "4.0.0",
-      "sourceSha256": "7afbe1635278aced85a7c215948aec2aefe06f2d24322ff49776626b3ad41d7f",
-      "fileSha256": "166d800798b3f79aacbbecf82dbf3a77e400241bb6ba8fa0f93c1f5fa0984768",
+      "sourceVersion": "4.0.1",
+      "sourceSha256": "f59a041f5bc02d0f3eb51a67739ec0271590ac412e68cf6cc6b43621cdf08985",
+      "fileSha256": "c6a3dad5f6758cef38d7c08c218f1f8f00bff9769a02ed4ac6e23e0f4dfd38d1",
       "recordCounts": {
-        "sourceTrackRecords": 327,
-        "currentTrackArtworkEntries": 321,
+        "sourceTrackRecords": 334,
+        "currentTrackArtworkEntries": 328,
         "specialRecords": 33,
         "archiveExtras": 7,
         "sourceOnlyTracks": 6
@@ -49,8 +49,8 @@
   },
   "catalog": {
     "catalogId": "019fefd6-9c49-7ca0-a760-adc76811a511",
-    "catalogSha256": "199d27467a71f71d18db987a4ac7acc1440a6319c6b12a2f44baa7c311f7b21e",
-    "catalogGeneratedAt": "2026-10-02T03:05:40.176Z"
+    "catalogSha256": "66ca6d83e74b47ffeae7ebe9b7e502e65d9cb3559a4f3130c4972a0ed3c45308",
+    "catalogGeneratedAt": "2026-10-02T09:42:15.224Z"
   },
   "files": {
     "arcaea": "arcaea.json",

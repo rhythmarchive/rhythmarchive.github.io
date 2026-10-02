@@ -3,8 +3,8 @@
   "game": "phigros",
   "generatedAt": "2026-10-01T12:12:07.609Z",
   "source": {
-    "version": "4.0.0",
-    "sha256": "7afbe1635278aced85a7c215948aec2aefe06f2d24322ff49776626b3ad41d7f"
+    "version": "4.0.1",
+    "sha256": "f59a041f5bc02d0f3eb51a67739ec0271590ac412e68cf6cc6b43621cdf08985"
   },
   "tracks": [
     {
@@ -599,6 +599,50 @@
         "aliceinaxxxxxxxx",
         "assets/tracks/aliceinaxxxxxxxx.nagiha.0/",
         "nagiha"
+      ]
+    },
+    {
+      "sourceIdentityCandidate": "Assets/Tracks/Ametrine.GRYSCLMIssionary.0/",
+      "sourceTrackPath": "Assets/Tracks/Ametrine.GRYSCLMIssionary.0/",
+      "displayTitle": "Ametrine",
+      "sourceTitle": "Ametrine",
+      "displayArtist": "GRYSCL & MIssionary",
+      "sourceArtist": "GRYSCL & MIssionary",
+      "indexRaw": "0",
+      "artwork": {
+        "resourceId": "12ebf164-3649-737c-bfa9-e159de8f6c54",
+        "confidence": "confirmed",
+        "role": "current-track-artwork"
+      },
+      "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": true,
+          "errorVariant": false
+        },
+        {
+          "difficultyClass": "EZ",
+          "structurallyPresent": true,
+          "errorVariant": false
+        },
+        {
+          "difficultyClass": "HD",
+          "structurallyPresent": true,
+          "errorVariant": false
+        },
+        {
+          "difficultyClass": "IN",
+          "structurallyPresent": true,
+          "errorVariant": false
+        }
+      ],
+      "displayLevel": null,
+      "chapter": null,
+      "searchAliases": [],
+      "searchTerms": [
+        "ametrine",
+        "assets/tracks/ametrine.grysclmissionary.0/",
+        "gryscl & missionary"
       ]
     },
     {
@@ -3511,6 +3555,50 @@
         "destruction 3,2,1",
         "destruction321",
         "normal1zervsbrokennerdz"
+      ]
+    },
+    {
+      "sourceIdentityCandidate": "Assets/Tracks/DesultorySignals.technoplanet.0/",
+      "sourceTrackPath": "Assets/Tracks/DesultorySignals.technoplanet.0/",
+      "displayTitle": "Desultory Signals",
+      "sourceTitle": "Desultory Signals",
+      "displayArtist": "technoplanet",
+      "sourceArtist": "technoplanet",
+      "indexRaw": "0",
+      "artwork": {
+        "resourceId": "6e36bb71-31f4-776a-8f45-06742af78fa6",
+        "confidence": "confirmed",
+        "role": "current-track-artwork"
+      },
+      "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": true,
+          "errorVariant": false
+        },
+        {
+          "difficultyClass": "EZ",
+          "structurallyPresent": true,
+          "errorVariant": false
+        },
+        {
+          "difficultyClass": "HD",
+          "structurallyPresent": true,
+          "errorVariant": false
+        },
+        {
+          "difficultyClass": "IN",
+          "structurallyPresent": true,
+          "errorVariant": false
+        }
+      ],
+      "displayLevel": null,
+      "chapter": null,
+      "searchAliases": [],
+      "searchTerms": [
+        "assets/tracks/desultorysignals.technoplanet.0/",
+        "desultory signals",
+        "technoplanet"
       ]
     },
     {
@@ -6930,7 +7018,7 @@
       "charts": [
         {
           "difficultyClass": "AT",
-          "structurallyPresent": false,
+          "structurallyPresent": true,
           "errorVariant": false
         },
         {
@@ -7458,6 +7546,50 @@
         "assets/tracks/mechanted.rareguy.0/",
         "mechanted",
         "rareguy"
+      ]
+    },
+    {
+      "sourceIdentityCandidate": "Assets/Tracks/Message.くるぶっこちゃん.0/",
+      "sourceTrackPath": "Assets/Tracks/Message.くるぶっこちゃん.0/",
+      "displayTitle": "Message",
+      "sourceTitle": "Message",
+      "displayArtist": "くるぶっこちゃん",
+      "sourceArtist": "くるぶっこちゃん",
+      "indexRaw": "0",
+      "artwork": {
+        "resourceId": "d5a881dd-a3c1-73a1-9bc6-2b7d88b37410",
+        "confidence": "confirmed",
+        "role": "current-track-artwork"
+      },
+      "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": true,
+          "errorVariant": false
+        },
+        {
+          "difficultyClass": "EZ",
+          "structurallyPresent": true,
+          "errorVariant": false
+        },
+        {
+          "difficultyClass": "HD",
+          "structurallyPresent": true,
+          "errorVariant": false
+        },
+        {
+          "difficultyClass": "IN",
+          "structurallyPresent": true,
+          "errorVariant": false
+        }
+      ],
+      "displayLevel": null,
+      "chapter": null,
+      "searchAliases": [],
+      "searchTerms": [
+        "assets/tracks/message.くるぶっこちゃん.0/",
+        "message",
+        "くるぶっこちゃん"
       ]
     },
     {
@@ -8439,6 +8571,50 @@
         "parsey",
         "siqlo",
         "ρarsey"
+      ]
+    },
+    {
+      "sourceIdentityCandidate": "Assets/Tracks/Petrichor.voidMournfinale.0/",
+      "sourceTrackPath": "Assets/Tracks/Petrichor.voidMournfinale.0/",
+      "displayTitle": "Petrichor",
+      "sourceTitle": "Petrichor",
+      "displayArtist": "void (Mournfinale)",
+      "sourceArtist": "void (Mournfinale)",
+      "indexRaw": "0",
+      "artwork": {
+        "resourceId": "1ff9675a-4f77-791f-9863-f4b81f10c129",
+        "confidence": "confirmed",
+        "role": "current-track-artwork"
+      },
+      "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": true,
+          "errorVariant": false
+        },
+        {
+          "difficultyClass": "EZ",
+          "structurallyPresent": true,
+          "errorVariant": false
+        },
+        {
+          "difficultyClass": "HD",
+          "structurallyPresent": true,
+          "errorVariant": false
+        },
+        {
+          "difficultyClass": "IN",
+          "structurallyPresent": true,
+          "errorVariant": false
+        }
+      ],
+      "displayLevel": null,
+      "chapter": null,
+      "searchAliases": [],
+      "searchTerms": [
+        "assets/tracks/petrichor.voidmournfinale.0/",
+        "petrichor",
+        "void (mournfinale)"
       ]
     },
     {
@@ -11077,6 +11253,50 @@
       ]
     },
     {
+      "sourceIdentityCandidate": "Assets/Tracks/TrueHomeTrueWorldRework.816ThreeNumbers.0/",
+      "sourceTrackPath": "Assets/Tracks/TrueHomeTrueWorldRework.816ThreeNumbers.0/",
+      "displayTitle": "True Home, True World (Rework)",
+      "sourceTitle": "True Home, True World (Rework)",
+      "displayArtist": "816ThreeNumbers",
+      "sourceArtist": "816ThreeNumbers",
+      "indexRaw": "0",
+      "artwork": {
+        "resourceId": "80ff5cda-84c8-79ef-9076-298c33c79f35",
+        "confidence": "confirmed",
+        "role": "current-track-artwork"
+      },
+      "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
+          "difficultyClass": "EZ",
+          "structurallyPresent": true,
+          "errorVariant": false
+        },
+        {
+          "difficultyClass": "HD",
+          "structurallyPresent": true,
+          "errorVariant": false
+        },
+        {
+          "difficultyClass": "IN",
+          "structurallyPresent": true,
+          "errorVariant": false
+        }
+      ],
+      "displayLevel": null,
+      "chapter": null,
+      "searchAliases": [],
+      "searchTerms": [
+        "816threenumbers",
+        "assets/tracks/truehometrueworldrework.816threenumbers.0/",
+        "true home, true world (rework)"
+      ]
+    },
+    {
       "sourceIdentityCandidate": "Assets/Tracks/UnorthodoxThoughts.Joulez.0/",
       "sourceTrackPath": "Assets/Tracks/UnorthodoxThoughts.Joulez.0/",
       "displayTitle": "Unorthodox Thoughts",
@@ -11384,6 +11604,50 @@
         "assets/tracks/wavetapper.frums.0/",
         "frums",
         "wavetapper"
+      ]
+    },
+    {
+      "sourceIdentityCandidate": "Assets/Tracks/WhatdoyouwantmorethanaHappyending.Apo11oHALOprogramft安月名莉子大瀬良あい.0/",
+      "sourceTrackPath": "Assets/Tracks/WhatdoyouwantmorethanaHappyending.Apo11oHALOprogramft安月名莉子大瀬良あい.0/",
+      "displayTitle": "What do you want more than a Happy ending?",
+      "sourceTitle": "What do you want more than a Happy ending?",
+      "displayArtist": "Apo11o\"HALO\"program ft. 安月名 莉子×大瀬良あい",
+      "sourceArtist": "Apo11o\"HALO\"program ft. 安月名 莉子×大瀬良あい",
+      "indexRaw": "0",
+      "artwork": {
+        "resourceId": "11743082-897f-7efe-9056-a69519a55dd7",
+        "confidence": "confirmed",
+        "role": "current-track-artwork"
+      },
+      "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": true,
+          "errorVariant": false
+        },
+        {
+          "difficultyClass": "EZ",
+          "structurallyPresent": true,
+          "errorVariant": false
+        },
+        {
+          "difficultyClass": "HD",
+          "structurallyPresent": true,
+          "errorVariant": false
+        },
+        {
+          "difficultyClass": "IN",
+          "structurallyPresent": true,
+          "errorVariant": false
+        }
+      ],
+      "displayLevel": null,
+      "chapter": null,
+      "searchAliases": [],
+      "searchTerms": [
+        "apo11o\"halo\"program ft. 安月名 莉子×大瀬良あい",
+        "assets/tracks/whatdoyouwantmorethanahappyending.apo11ohaloprogramft安月名莉子大瀬良あい.0/",
+        "what do you want more than a happy ending?"
       ]
     },
     {
@@ -12008,6 +12272,50 @@
         "roopfromstr",
         "ニライカナイ (niraica_nai mix)",
         "ニライカナイniraica_naimix"
+      ]
+    },
+    {
+      "sourceIdentityCandidate": "Assets/Tracks/ハテ.rNFrums.0/",
+      "sourceTrackPath": "Assets/Tracks/ハテ.rNFrums.0/",
+      "displayTitle": "ハテ",
+      "sourceTitle": "ハテ",
+      "displayArtist": "rN || Frums",
+      "sourceArtist": "rN || Frums",
+      "indexRaw": "0",
+      "artwork": {
+        "resourceId": "e503cbe9-275a-7f3d-b739-05dbaf30ab9c",
+        "confidence": "confirmed",
+        "role": "current-track-artwork"
+      },
+      "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": true,
+          "errorVariant": false
+        },
+        {
+          "difficultyClass": "EZ",
+          "structurallyPresent": true,
+          "errorVariant": false
+        },
+        {
+          "difficultyClass": "HD",
+          "structurallyPresent": true,
+          "errorVariant": false
+        },
+        {
+          "difficultyClass": "IN",
+          "structurallyPresent": true,
+          "errorVariant": false
+        }
+      ],
+      "displayLevel": null,
+      "chapter": null,
+      "searchAliases": [],
+      "searchTerms": [
+        "assets/tracks/ハテ.rnfrums.0/",
+        "rn || frums",
+        "ハテ"
       ]
     },
     {
@@ -15105,8 +15413,8 @@
     }
   ],
   "recordCounts": {
-    "sourceTrackRecords": 327,
-    "currentTrackArtworkEntries": 321,
+    "sourceTrackRecords": 334,
+    "currentTrackArtworkEntries": 328,
     "specialRecords": 33,
     "archiveExtras": 7,
     "sourceOnlyTracks": 6
