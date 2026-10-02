@@ -3,6 +3,7 @@ import BaseLayout from "../../../layouts/BaseLayout.astro";
 import DownloadActions from "../../../components/DownloadActions.astro";
 import VariantPanel from "../../../components/VariantPanel.astro";
 import ResourceCard from "../../../components/ResourceCard.astro";
+import ArtworkSwitcher from "../../../components/ArtworkSwitcher.astro";
 import { displayDifficultyLabel, GAME_CONFIG } from "../../../lib/game-config";
 import { formatImageDimensions } from "../../../lib/format";
 
@@ -19,8 +20,11 @@ export function getStaticPaths() {
 }
 
 const { resource } = Astro.props;
-const firstVariant = resource.variants.find((variant) => variant.preferred) ?? resource.variants[0];
-const activeVariantIndex = Math.max(0, firstVariant ? resource.variants.findIndex((variant) => variant.variantId === firstVariant.variantId) : 0);
+const phigrosDifficultyOrder = ["EZ", "HD", "IN", "AT"];
+const hasDifficultyArtwork = resource.game === "phigros" && resource.resourceType === "jacket" && resource.variants.length > 1 && resource.variants.every((variant) => phigrosDifficultyOrder.includes(variant.variantKey ?? "") && variant.label === variant.variantKey);
+const variants = hasDifficultyArtwork ? [...resource.variants].sort((left, right) => phigrosDifficultyOrder.indexOf(left.variantKey!) - phigrosDifficultyOrder.indexOf(right.variantKey!)) : resource.variants;
+const firstVariant = variants.find((variant) => variant.preferred) ?? variants[0];
+const activeVariantIndex = Math.max(0, firstVariant ? variants.findIndex((variant) => variant.variantId === firstVariant.variantId) : 0);
 const related = rankRelatedResources(resource, data.resources);
 const hiddenDetailMetadata = new Set(["artist", "bpmSource", "charter", "gameVersion", "metadataStatus", "songId", "wikiBpm"]);
 const metadata = Object.entries(resource.metadata).filter(([key]) => (!hiddenDetailMetadata.has(key) || (resource.game === "infalsus" && key === "gameVersion")) && GAME_CONFIG[resource.game].metadataLabels[key]);
@@ -79,13 +83,13 @@ const description = `${resource.displayTitle}${resource.artist ? ` · ${resource
     <div class="detail-breadcrumb"><a href={urls.sitePath("/games/")}>游戏库</a><span>/</span><a href={urls.sitePath(`/${resource.game}/${resource.category}/`)}>{GAME_CONFIG[resource.game].displayName}</a><span>/</span><span>{resource.categoryLabel}</span></div>
     <div class="detail-layout">
       <div class="detail-visual">
-        {resource.variants.length > 1 ? (
+        {hasDifficultyArtwork && firstVariant ? <ArtworkSwitcher variants={variants} activeVariantId={firstVariant.variantId} /> : variants.length > 1 ? (
           <div class="variant-tabs" role="tablist" aria-label="资源版本">
-            {resource.variants.map((variant, index) => <button class:list={{ "is-active": index === activeVariantIndex }} type="button" data-variant-select={variant.variantId} role="tab" aria-selected={index === activeVariantIndex ? "true" : "false"} aria-controls={`variant-panel-${variant.variantId}`}>{variant.label}</button>)}
+            {variants.map((variant, index) => <button class:list={{ "is-active": index === activeVariantIndex }} type="button" id={`variant-tab-${variant.variantId}`} data-variant-select={variant.variantId} data-variant-label={variant.label} role="tab" tabindex={index === activeVariantIndex ? 0 : -1} aria-selected={index === activeVariantIndex ? "true" : "false"} aria-controls={`variant-panel-${variant.variantId}`}>{variant.label}</button>)}
           </div>
         ) : null}
         <div class="variant-panels">
-          {resource.variants.map((variant, index) => <VariantPanel variant={variant} fallback={variant.original} active={index === activeVariantIndex} alt={resource.displayTitle} sourceToggle={resource.resourceType === "jacket" && (resource.game === "arcaea" || resource.game === "paradigm-reboot")} />)}
+          {variants.map((variant, index) => <VariantPanel variant={variant} fallback={variant.original} active={index === activeVariantIndex} labelledBy={variants.length > 1 ? `variant-tab-${variant.variantId}` : undefined} alt={hasDifficultyArtwork ? `${resource.displayTitle} · ${variant.label} 曲绘` : resource.displayTitle} sourceToggle={resource.resourceType === "jacket" && (resource.game === "arcaea" || resource.game === "paradigm-reboot")} />)}
         </div>
       </div>
       <aside class="detail-info">
@@ -93,8 +97,9 @@ const description = `${resource.displayTitle}${resource.artist ? ` · ${resource
         <h1>{resource.displayTitle}</h1>
         {resource.artist ? <p class="detail-artist">{resource.artist}</p> : null}
         {resource.subtitle ? <p class="detail-subtitle">{resource.subtitle}</p> : null}
+        {hasDifficultyArtwork ? <a class="detail-artwork-entry" href="#artwork-variants"><span>{variants.length} 张难度差分曲绘</span><strong>切换曲绘 <span aria-hidden="true">↗</span></strong></a> : null}
         <div class="detail-downloads">
-          {resource.variants.map((variant, index) => <DownloadActions variant={variant} resourceId={resource.resourceId} active={index === activeVariantIndex} />)}
+          {variants.map((variant, index) => <DownloadActions variant={variant} resourceId={resource.resourceId} active={index === activeVariantIndex} artworkLabel={hasDifficultyArtwork ? `${variant.label} 曲绘` : undefined} />)}
         </div>
         <div class="detail-resource-stats" data-detail-resource-stats hidden aria-live="polite" aria-label="浏览量">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 12s3.5-5.5 9.5-5.5 9.5 5.5 9.5 5.5-3.5 5.5-9.5 5.5S2.5 12 2.5 12Z"></path><circle cx="12" cy="12" r="2.5"></circle></svg>

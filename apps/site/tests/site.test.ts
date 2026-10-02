@@ -266,6 +266,21 @@ test("unresolved variants never render as a difficulty", () => {
   assert.equal(displayVariantLabel({ variantKey: "default", semanticStatus: "resolved" }), "默认");
 });
 
+test("Phigros difficulty artwork labels preserve four distinct previews and downloads", () => {
+  const resource = getSiteData().resources.find((resource) => resource.game === "phigros" && resource.displayTitle === "What do you want more than a Happy ending?");
+  assert.ok(resource);
+  const variants = [...resource.variants].sort((left, right) => ["EZ", "HD", "IN", "AT"].indexOf(left.label) - ["EZ", "HD", "IN", "AT"].indexOf(right.label));
+  assert.deepEqual(variants.map((variant) => variant.label), ["EZ", "HD", "IN", "AT"]);
+  assert.equal(new Set(variants.map((variant) => variant.preview.small?.url)).size, 4);
+  assert.equal(new Set(variants.map((variant) => variant.original?.url)).size, 4);
+  for (const variant of variants) {
+    assert.ok(variant.preview.small);
+    assert.ok(variant.original?.downloadFilename.endsWith(` - ${variant.label}.png`));
+    assert.equal(displayVariantLabel({ variantKey: variant.label, semanticStatus: "unresolved" }), "其他版本");
+  }
+  assert.equal(resource.variants.find((variant) => variant.preferred)?.label, "AT");
+});
+
 test("download filenames are preserved from Catalog Renditions", () => {
   const projection = projectCatalog(catalog, rosBaseUrl);
   const source = catalog.renditions.find((rendition) => rendition.renditionType === "original");

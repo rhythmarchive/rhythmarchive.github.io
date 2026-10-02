@@ -6,9 +6,10 @@ interface Props {
   variant: PublicVariant;
   resourceId?: string;
   active?: boolean;
+  artworkLabel?: string | undefined;
 }
 
-const { variant, resourceId, active = true } = Astro.props;
+const { variant, resourceId, active = true, artworkLabel } = Astro.props;
 const originals = variant.originals ?? (variant.original ? [variant.original] : []);
 const originalOptions = originals.map((original, index) => ({ original, index, dimensions: formatImageDimensions(original.width, original.height) }));
 const upscaled = variant.upscaled;
@@ -17,7 +18,7 @@ const upscaledDimensions = upscaled ? formatImageDimensions(upscaled.width, upsc
 
 <div class="download-panel" data-download-panel data-download-variant={variant.variantId} hidden={!active}>
   <div class="download-panel-heading">
-    <span class="section-kicker">下载</span>
+    <span class="section-kicker">下载{artworkLabel ? ` · ${artworkLabel}` : ""}</span>
     <span data-download-status aria-live="polite"></span>
   </div>
   <div class="download-actions">

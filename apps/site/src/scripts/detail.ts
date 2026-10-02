@@ -45,18 +45,36 @@ if (root) {
     lightboxCloseButton?.focus();
   };
 
-  for (const button of root.querySelectorAll<HTMLButtonElement>("[data-variant-select]")) {
-    button.addEventListener("click", () => {
-      const variantId = button.dataset.variantSelect;
-      if (!variantId) return;
-      closeLightbox();
-      for (const panel of root.querySelectorAll<HTMLElement>("[data-variant-panel]")) panel.hidden = panel.dataset.variantPanel !== variantId;
-      for (const panel of root.querySelectorAll<HTMLElement>("[data-download-variant]")) panel.hidden = panel.dataset.downloadVariant !== variantId;
-      for (const item of root.querySelectorAll<HTMLButtonElement>("[data-variant-select]")) {
-        const active = item.dataset.variantSelect === variantId;
-        item.classList.toggle("is-active", active);
-        item.setAttribute("aria-selected", String(active));
-      }
+  const variantButtons = Array.from(root.querySelectorAll<HTMLButtonElement>("[data-variant-select]"));
+  const selectVariant = (button: HTMLButtonElement): void => {
+    const variantId = button.dataset.variantSelect;
+    if (!variantId) return;
+    closeLightbox();
+    for (const panel of root.querySelectorAll<HTMLElement>("[data-variant-panel]")) panel.hidden = panel.dataset.variantPanel !== variantId;
+    for (const panel of root.querySelectorAll<HTMLElement>("[data-download-variant]")) panel.hidden = panel.dataset.downloadVariant !== variantId;
+    for (const item of variantButtons) {
+      const active = item.dataset.variantSelect === variantId;
+      item.classList.toggle("is-active", active);
+      item.setAttribute("aria-selected", String(active));
+      item.tabIndex = active ? 0 : -1;
+    }
+    const currentLabel = root.querySelector<HTMLElement>("[data-variant-current]");
+    if (currentLabel) currentLabel.textContent = button.dataset.variantLabel ?? "";
+  };
+  for (const [index, button] of variantButtons.entries()) {
+    button.addEventListener("click", () => selectVariant(button));
+    button.addEventListener("keydown", (event) => {
+      let nextIndex: number;
+      if (event.key === "ArrowRight") nextIndex = (index + 1) % variantButtons.length;
+      else if (event.key === "ArrowLeft") nextIndex = (index - 1 + variantButtons.length) % variantButtons.length;
+      else if (event.key === "Home") nextIndex = 0;
+      else if (event.key === "End") nextIndex = variantButtons.length - 1;
+      else return;
+      event.preventDefault();
+      const next = variantButtons[nextIndex];
+      if (!next) return;
+      selectVariant(next);
+      next.focus();
     });
   }
 

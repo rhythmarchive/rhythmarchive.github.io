@@ -235,6 +235,10 @@ export function displayVariantLabel(variant: { variantKey: string; difficulty?: 
   if (variant.difficulty) return displayDifficultyLabel(variant.difficulty);
   if (variant.semanticStatus === "unresolved" || variant.variantKey.includes("256")) return "其他版本";
   const labels: Record<string, string> = {
+    EZ: "EZ",
+    HD: "HD",
+    IN: "IN",
+    AT: "AT",
     default: "默认",
     normal: "Normal",
     hires: "HiRes",

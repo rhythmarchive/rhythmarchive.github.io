@@ -1,0 +1,31 @@
+---
+import type { PublicVariant } from "../lib/types";
+
+interface Props {
+  variants: PublicVariant[];
+  activeVariantId: string;
+}
+
+const { variants, activeVariantId } = Astro.props;
+const active = variants.find((variant) => variant.variantId === activeVariantId);
+---
+
+<section class="artwork-switcher" id="artwork-variants" aria-labelledby="artwork-switcher-heading">
+  <div class="artwork-switcher-heading">
+    <h2 id="artwork-switcher-heading">难度差分曲绘 <span>{variants.length} 张</span></h2>
+    <span class="artwork-current" aria-live="polite">当前：<strong data-variant-current>{active?.label}</strong></span>
+  </div>
+  <p>选择难度，切换对应曲绘与下载。</p>
+  <div class="artwork-variant-tabs" role="tablist" aria-label="难度差分曲绘">
+    {variants.map((variant) => {
+      const preview = variant.preview.small ?? variant.preview.medium ?? variant.preview.large;
+      const selected = variant.variantId === activeVariantId;
+      return (
+        <button class:list={{ "is-active": selected }} type="button" id={`variant-tab-${variant.variantId}`} data-variant-select={variant.variantId} data-variant-label={variant.label} role="tab" aria-label={`${variant.label} 曲绘`} aria-selected={selected ? "true" : "false"} aria-controls={`variant-panel-${variant.variantId}`} tabindex={selected ? 0 : -1}>
+          {preview ? <img src={preview.url} alt="" width={preview.width} height={preview.height} loading="lazy" decoding="async" /> : null}
+          <span class="artwork-variant-caption"><strong>{variant.label}</strong><span>曲绘</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m3 8 3 3 7-7" /></svg></span>
+        </button>
+      );
+    })}
+  </div>
+</section>

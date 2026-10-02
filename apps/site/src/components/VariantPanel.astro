@@ -7,16 +7,17 @@ interface Props {
   active?: boolean;
   alt?: string;
   sourceToggle?: boolean;
+  labelledBy?: string | undefined;
 }
 
-const { variant, fallback, active = false, alt = "资源预览", sourceToggle = false } = Astro.props;
+const { variant, fallback, active = false, alt = "资源预览", sourceToggle = false, labelledBy } = Astro.props;
 const large = variant.preview.large ?? variant.preview.medium ?? variant.preview.small;
 const srcset = [variant.preview.medium ? variant.preview.medium.url + " 640w" : "", variant.preview.large ? variant.preview.large.url + " 1280w" : ""].filter(Boolean).join(", ");
 const useOriginalSource = sourceToggle && Boolean(variant.original);
 const canToggleSource = useOriginalSource && Boolean(variant.upscaled);
 ---
 
-<section class="variant-panel" id={`variant-panel-${variant.variantId}`} data-variant-panel={variant.variantId} role="tabpanel" tabindex="0" hidden={!active}>
+<section class="variant-panel" id={`variant-panel-${variant.variantId}`} data-variant-panel={variant.variantId} role="tabpanel" aria-labelledby={labelledBy} tabindex="0" hidden={!active}>
   {useOriginalSource ? (
     <>
       {canToggleSource ? (
