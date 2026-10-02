@@ -81,6 +81,11 @@ const description = `${resource.displayTitle}${resource.artist ? ` · ${resource
 <BaseLayout title={`${resource.displayTitle} - ${GAME_CONFIG[resource.game].displayName} | Rhythm Archive`} description={description} canonicalPath={resource.route} ogImage={preview} bodyClass="detail-page">
   <div class="page-container detail-shell" data-detail-root data-resource-id={resource.resourceId}>
     <div class="detail-breadcrumb"><a href={urls.sitePath("/games/")}>游戏库</a><span>/</span><a href={urls.sitePath(`/${resource.game}/${resource.category}/`)}>{GAME_CONFIG[resource.game].displayName}</a><span>/</span><span>{resource.categoryLabel}</span></div>
+    <nav class="detail-navigation" data-detail-navigation hidden aria-label="浏览来源列表中的资源">
+      <a class="button button-secondary" data-detail-previous aria-label="上一项">← 上一项</a>
+      <div class="detail-navigation-source"><a class="back-link" data-detail-return>返回列表</a><span data-detail-position></span></div>
+      <a class="button button-secondary" data-detail-next aria-label="下一项">下一项 →</a>
+    </nav>
     <div class="detail-layout">
       <div class="detail-visual">
         {hasDifficultyArtwork && firstVariant ? <ArtworkSwitcher variants={variants} activeVariantId={firstVariant.variantId} /> : variants.length > 1 ? (

@@ -256,15 +256,19 @@ export function createBatchTray(options: BatchTrayOptions): BatchTrayController 
 export async function downloadSelectedBatchFromManifest(options: {
   selectedIds: readonly string[];
   getResource: (resourceId: string) => BatchResource | undefined;
-  manifestUrl: string;
+  manifestUrl: string | string[];
   preferUpscaled: boolean;
   filename: string;
   setStatus: (value: string) => void;
 }): Promise<void> {
   try {
-    const response = await fetch(options.manifestUrl, { credentials: "omit" });
-    if (!response.ok) throw new Error(`batch manifest failed with ${response.status}`);
-    const downloads = await response.json() as Record<string, Pick<BatchResource, "original" | "upscaled">>;
+    const urls = typeof options.manifestUrl === "string" ? [options.manifestUrl] : options.manifestUrl;
+    const manifests = await Promise.all(urls.map(async (url) => {
+      const response = await fetch(url, { credentials: "omit" });
+      if (!response.ok) throw new Error(`batch manifest failed with ${response.status}`);
+      return await response.json() as Record<string, Pick<BatchResource, "original" | "upscaled">>;
+    }));
+    const downloads = Object.assign({}, ...manifests) as Record<string, Pick<BatchResource, "original" | "upscaled">>;
     await downloadSelectedBatch({
       ...options,
       getResource: (resourceId) => {

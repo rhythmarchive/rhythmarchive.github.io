@@ -1,6 +1,9 @@
 ---
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 import ResourceCard from "../../../components/ResourceCard.astro";
+import BatchTray from "../../../components/BatchTray.astro";
+import { galleryCard } from "../../../lib/gallery-projection";
+import { BASE_PATH } from "../../../lib/site-config";
 import { formatCount } from "../../../lib/format";
 import { publicContentVersion } from "../../../lib/game-index";
 import { getSiteData } from "../../../lib/site-data";
@@ -18,6 +21,10 @@ const { update } = Astro.props;
 const siteData = getSiteData();
 const resourcesById = new Map(siteData.resources.map((resource) => [resource.resourceId, resource]));
 const resources = update.items.map((item) => resourcesById.get(item.resourceId)).filter((resource): resource is PublicResource => Boolean(resource));
+const batchCards = resources.map((resource) => {
+  const card = galleryCard(resource);
+  return { resourceId: card.resourceId, route: card.route, displayTitle: card.displayTitle, preview: card.preview, hasUpscaled: card.hasUpscaled, manifestUrl: urls.sitePath(`/data/batch/${resource.game}/${resource.category}.json`) };
+});
 
 const dateLabel = new Intl.DateTimeFormat("zh-CN", { timeZone: "Asia/Shanghai", year: "numeric", month: "2-digit", day: "2-digit" }).format(new Date(update.publishedAt));
 const contentVersion = publicContentVersion(update.contentVersion);
@@ -37,15 +44,17 @@ const contentVersion = publicContentVersion(update.contentVersion);
       {update.categories.map((category) => <a href={urls.sitePath("/updates/" + update.id + "/") + "?type=" + encodeURIComponent(category.slug)}>{category.label} <small>{formatCount(category.count)}</small></a>)}
     </nav>
   </section>
-  <section class="page-container update-detail-body" aria-label="本次更新的资源">
+  <section class="page-container gallery-shell update-detail-body" data-update-detail-root data-base-path={BASE_PATH} data-update-id={update.id} aria-label="本次更新的资源">
     <p class="update-detail-status" data-update-detail-status>{formatCount(resources.length)} 项资源</p>
     <div class="resource-grid update-detail-grid" data-update-detail-grid>
       {update.items.map((item) => {
         const resource = resourcesById.get(item.resourceId);
-        return resource ? <div data-update-detail-item data-update-detail-category={item.category}><ResourceCard resource={resource} /></div> : null;
+        return resource ? <div data-update-detail-item data-update-detail-category={item.category}><ResourceCard resource={resource} selectable /></div> : null;
       })}
     </div>
     {resources.length === 0 && <p class="updates-empty">本次更新的资源目前均不可用。</p>}
+    <BatchTray />
+    <script is:inline type="application/json" data-update-batch-cards set:html={JSON.stringify(batchCards).replaceAll("<", "\\u003c")} />
   </section>
   <script src="../../../scripts/update-detail.ts"></script>
 </BaseLayout>

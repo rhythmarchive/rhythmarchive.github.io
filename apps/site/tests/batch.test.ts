@@ -3,8 +3,53 @@ import fs from "node:fs";
 import path from "node:path";
 import test from "node:test";
 import { MAX_BATCH_FILES, readResponseBytesWithinLimit, toggleBatchSelection, uniqueZipFilename } from "../src/lib/batch.js";
+import { downloadSelectedBatchFromManifest } from "../src/scripts/batch-tray.js";
+import { unzipSync } from "fflate";
 
 const siteRoot = path.resolve(process.cwd(), "apps", "site");
+
+test("update selection downloads originals from multiple existing category manifests into one ZIP", async (t) => {
+  const originalFetch = globalThis.fetch;
+  const descriptors = ["window", "document"].map((key) => [key, Object.getOwnPropertyDescriptor(globalThis, key)] as const);
+  let archiveUrl = "";
+  const tracked: string[] = [];
+  const requested: string[] = [];
+  const statuses: string[] = [];
+  t.after(() => {
+    if (archiveUrl) URL.revokeObjectURL(archiveUrl);
+    for (const [key, descriptor] of descriptors) {
+      if (descriptor) Object.defineProperty(globalThis, key, descriptor);
+      else Reflect.deleteProperty(globalThis, key);
+    }
+  });
+  const download = (id: string) => ({ url: `https://assets.test/${id}`, downloadFilename: `${id}.png`, mime: "image/png", sizeBytes: 2 });
+  t.mock.method(globalThis, "fetch", async (input: string) => {
+    requested.push(input);
+    if (input === "/batch/jacket.json") return Response.json({ jacket: { original: download("jacket") } });
+    if (input === "/batch/cg.json") return Response.json({ cg: { original: download("cg") } });
+    assert.match(input, /^https:\/\/assets.test\//u);
+    return new Response(new Uint8Array([1, 2]));
+  });
+  Object.defineProperty(globalThis, "document", { configurable: true, value: {
+    body: { append: () => undefined },
+    createElement: () => ({ href: "", click() { archiveUrl = this.href; }, remove: () => undefined }),
+  } });
+  Object.defineProperty(globalThis, "window", { configurable: true, value: {
+    setTimeout: () => undefined,
+    __rhythmArchiveStatsClient: { trackResourceDownload: async (id: string) => { tracked.push(id); } },
+  } });
+  await downloadSelectedBatchFromManifest({
+    selectedIds: ["jacket", "cg"], manifestUrl: ["/batch/jacket.json", "/batch/cg.json"],
+    getResource: (id) => ({ resourceId: id, route: `/r/${id}/`, displayTitle: id, preview: { small: null, medium: null, large: null } }),
+    preferUpscaled: false, filename: "update.zip", setStatus: (value) => statuses.push(value),
+  });
+  assert.deepEqual(requested, ["/batch/jacket.json", "/batch/cg.json", "https://assets.test/jacket", "https://assets.test/cg"]);
+  assert.deepEqual(tracked, ["jacket", "cg"]);
+  assert.equal(statuses.at(-1), "");
+  const archive = unzipSync(new Uint8Array(await (await originalFetch(archiveUrl)).arrayBuffer()));
+  assert.deepEqual(Object.keys(archive).sort(), ["cg.png", "jacket.png"]);
+  assert.deepEqual([...archive["cg.png"]!], [1, 2]);
+});
 
 test("batch selection keeps the 30-file limit while allowing individual removal", () => {
   const ids = Array.from({ length: MAX_BATCH_FILES }, (_, index) => "resource-" + index);

@@ -1,4 +1,5 @@
 import { createBatchTray, downloadSelectedBatchFromManifest } from "./batch-tray";
+import { setupListNavigation } from "./list-navigation";
 import { showGalleryLoadError } from "./gallery-load-error";
 import { renderResourceCard } from "./render-resource-card";
 import { galleryCardView } from "../lib/card-view-model";
@@ -61,7 +62,8 @@ async function initializeGallery(root: HTMLElement): Promise<void> {
   if (!grid || !loadMore || !count) return;
 
   let resources: GalleryCard[] = [];
-  let visibleCount = PAGE_SIZE;
+  const navigation = setupListNavigation(grid, root.dataset.galleryUrl ?? "gallery");
+  let visibleCount = navigation.visibleCount(PAGE_SIZE);
   let batchTray: ReturnType<typeof createBatchTray> | undefined;
 
   try {
@@ -93,6 +95,7 @@ async function initializeGallery(root: HTMLElement): Promise<void> {
       }),
     });
     render();
+    navigation.restore();
   } catch (error) {
     console.error("Gallery data failed", error);
     showGalleryLoadError(root, count);

@@ -1,4 +1,5 @@
 import { rankSearchEntries } from "../lib/search";
+import { setupListNavigation } from "./list-navigation";
 import { sitePath } from "../lib/url";
 import { GAME_CONFIG } from "../lib/game-config";
 import { updateResourceStatsInDom } from "../lib/stats-client";
@@ -18,6 +19,8 @@ async function initializeSearch(root: HTMLElement): Promise<void> {
   const game = document.querySelector<HTMLSelectElement>("[data-search-game]");
   const category = document.querySelector<HTMLSelectElement>("[data-search-category]");
   if (!input || !results || !status || !more || !game || !category) return;
+  const navigation = setupListNavigation(results, "search");
+  let initialRun = true;
 
   const queryFromUrl = new URLSearchParams(window.location.search).get("q");
   if (queryFromUrl !== null) input.value = queryFromUrl;
@@ -85,7 +88,8 @@ async function initializeSearch(root: HTMLElement): Promise<void> {
   const run = async (): Promise<void> => {
     window.clearTimeout(timer);
     const token = ++runToken;
-    visibleCount = 48;
+    visibleCount = initialRun ? navigation.visibleCount(48) : 48;
+    initialRun = false;
     more.hidden = true;
     matches = [];
     const rawQuery = input.value;
@@ -120,6 +124,7 @@ async function initializeSearch(root: HTMLElement): Promise<void> {
       }
       matches = ranked.map((entry) => cardMap.get(entry.resourceId)).filter((card): card is PublicSearchCard => Boolean(card));
       render();
+      navigation.restore();
     } catch (error) {
       if (token !== runToken) return;
       console.error("Search data failed", error);

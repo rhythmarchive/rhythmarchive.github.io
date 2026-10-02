@@ -1,4 +1,5 @@
 import { createBatchTray, downloadSelectedBatchFromManifest } from "./batch-tray";
+import { setupListNavigation } from "./list-navigation";
 import { showGalleryLoadError } from "./gallery-load-error";
 import { renderResourceCard } from "./render-resource-card";
 import { browseCardView } from "../lib/card-view-model";
@@ -55,7 +56,8 @@ async function initializeBrowseGallery(root: HTMLElement): Promise<void> {
   const game: BrowseGame = root.dataset.game === "infalsus" ? "infalsus" : root.dataset.game === "rizline" ? "rizline" : root.dataset.game === "phigros" ? "phigros" : "arcaea";
   let items: BrowseGalleryItem[] = [];
   let state: BrowseUrlState = defaultBrowseUrlState(game);
-  let visibleCount = BROWSE_PAGE_SIZE;
+  const navigation = setupListNavigation(grid, root.dataset.galleryUrl ?? "browse");
+  let visibleCount = navigation.visibleCount(BROWSE_PAGE_SIZE);
   const batchResources = new Map<string, BatchResource>();
   let batchTray: ReturnType<typeof createBatchTray> | undefined;
 
@@ -89,6 +91,7 @@ async function initializeBrowseGallery(root: HTMLElement): Promise<void> {
     state = readState(game, items);
     applyStateToControls(state);
     render();
+    navigation.restore();
   } catch (error) {
     console.error("Browse gallery data failed", error);
     showGalleryLoadError(root, count);

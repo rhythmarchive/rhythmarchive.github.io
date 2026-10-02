@@ -1,8 +1,10 @@
 import { downloadRendition } from "./download";
+import { setupDetailNavigation } from "./list-navigation";
 import { getBrowserStatsClient, updateResourceStatsInDom } from "../lib/stats-client";
 
 const root = document.querySelector<HTMLElement>("[data-detail-root]");
 if (root) {
+  setupDetailNavigation(root);
   const resourceId = root.dataset.resourceId;
   const statsClient = getBrowserStatsClient();
   if (resourceId) {
