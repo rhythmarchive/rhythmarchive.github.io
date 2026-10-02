@@ -28,13 +28,13 @@ const dateText = (value: string): string => new Intl.DateTimeFormat("zh-CN", { t
 const renderCard = (update: PublicUpdate, items: PublicUpdateItem[]): string => {
   const itemCount = items.length;
   const previews = items.slice(0, 4);
-  const detailUrl = sitePath("/updates/" + encodeURIComponent(update.id) + "/");
+  const detailUrl = escapeHtml(sitePath("/updates/" + encodeURIComponent(update.id) + "/"));
   const contentVersion = publicContentVersion(update.contentVersion);
   const version = contentVersion ? "收录 " + escapeHtml(contentVersion) + " · " : "";
   const visibleSuffix = items.length < update.totalItemCount ? " · 当前可见 " + items.length + " 项" : "";
   const summaryHtml = "<span>更新 " + itemCount + " 项</span>";
   const previewHtml = previews.map((item) => {
-    return "<a class=\"update-preview\" href=\"" + sitePath(item.route) + "\" title=\"" + escapeHtml(item.displayTitle) + "\">" + imageHtml(item) + "<span class=\"update-preview-caption\"><strong>" + escapeHtml(item.categoryLabel) + "</strong></span></a>";
+    return "<a class=\"update-preview\" href=\"" + escapeHtml(sitePath(item.route)) + "\" title=\"" + escapeHtml(item.displayTitle) + "\">" + imageHtml(item) + "<span class=\"update-preview-caption\"><strong>" + escapeHtml(item.categoryLabel) + "</strong></span></a>";
   }).join("");
   return "<article class=\"update-card\" data-update-card data-update-id=\"" + escapeHtml(update.id) + "\" data-game=\"" + escapeHtml(update.game) + "\">"
     + "<div class=\"update-card-date\"><time datetime=\"" + escapeHtml(update.publishedAt) + "\">" + dateText(update.publishedAt) + "</time><span>" + escapeHtml(update.displayName) + "</span></div>"
