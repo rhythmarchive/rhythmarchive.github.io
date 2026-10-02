@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "game": "infalsus",
-  "generatedAt": "2026-09-30T14:54:13.321Z",
+  "generatedAt": "2026-10-02T03:05:40.176Z",
   "source": {
     "snapshot": "infalsus-formal:VSingers DLC:4e70d2d9e97727ff178d67de0be4f88a9f15fa40f6238a3d90575d31c8bf52d8",
     "sha256": "4e70d2d9e97727ff178d67de0be4f88a9f15fa40f6238a3d90575d31c8bf52d8"
@@ -450,7 +450,7 @@
     {
       "resourceId": "e7263444-017f-7e1b-a83e-63ca1f86ffa6",
       "resourceType": "jacket",
-      "displayTitle": "Kirapico Riot: Kirapicorin",
+      "displayTitle": "キラピコ繚乱キラピコリン",
       "metadata": {
         "songId": "25",
         "artist": "立秋 feat. ちょこ",
@@ -462,7 +462,8 @@
         "Kirapico Riot: Kirapicorin",
         "立秋 feat. ちょこ",
         "25",
-        "kirapico"
+        "kirapico",
+        "キラピコ繚乱キラピコリン"
       ],
       "sortOrder": 22,
       "facets": {}
@@ -470,7 +471,7 @@
     {
       "resourceId": "9719ebe4-a782-7e48-9871-4950b6c6fac7",
       "resourceType": "jacket",
-      "displayTitle": "KIRETSU",
+      "displayTitle": "綺劣",
       "metadata": {
         "songId": "26",
         "artist": "Laur",
@@ -482,7 +483,8 @@
         "KIRETSU",
         "Laur",
         "26",
-        "kiretsu"
+        "kiretsu",
+        "綺劣"
       ],
       "sortOrder": 23,
       "facets": {}
@@ -950,7 +952,7 @@
     {
       "resourceId": "ce8f2ace-19f4-7d88-9305-897e7442ede8",
       "resourceType": "jacket",
-      "displayTitle": "Memories in Noise",
+      "displayTitle": "砂の記憶",
       "metadata": {
         "songId": "50",
         "artist": "Nyolfen",
@@ -962,7 +964,8 @@
         "Memories in Noise",
         "Nyolfen",
         "50",
-        "sunanokioku"
+        "sunanokioku",
+        "砂の記憶"
       ],
       "sortOrder": 47,
       "facets": {}
@@ -1130,7 +1133,7 @@
     {
       "resourceId": "a9365d8b-e823-7d01-a0be-2f93f141d620",
       "resourceType": "jacket",
-      "displayTitle": "World Ender",
+      "displayTitle": "魔王",
       "metadata": {
         "songId": "59",
         "artist": "sasakure.UK × TJ.hangneil",
@@ -1142,7 +1145,8 @@
         "World Ender",
         "sasakure.UK × TJ.hangneil",
         "59",
-        "worldender"
+        "worldender",
+        "魔王"
       ],
       "sortOrder": 56,
       "facets": {}
@@ -1330,7 +1334,7 @@
     {
       "resourceId": "b20c1c59-5ae1-7ade-b595-0c134bf1b778",
       "resourceType": "jacket",
-      "displayTitle": "Rainshower",
+      "displayTitle": "驟雨の狭間",
       "metadata": {
         "songId": "70",
         "artist": "Silentroom",
@@ -1342,7 +1346,8 @@
         "Rainshower",
         "Silentroom",
         "70",
-        "rainshower"
+        "rainshower",
+        "驟雨の狭間"
       ],
       "sortOrder": 66,
       "facets": {}
@@ -1390,7 +1395,7 @@
     {
       "resourceId": "90aacb25-b4ef-7ff9-87b1-00e6fc4f6af5",
       "resourceType": "jacket",
-      "displayTitle": "Hollow",
+      "displayTitle": "空殻",
       "metadata": {
         "songId": "82",
         "artist": "Camellia feat. ナノ",
@@ -1402,7 +1407,8 @@
         "Hollow",
         "Camellia feat. ナノ",
         "82",
-        "kuukaku"
+        "kuukaku",
+        "空殻"
       ],
       "sortOrder": 69,
       "facets": {}
@@ -1410,7 +1416,7 @@
     {
       "resourceId": "f8281c28-d943-7185-aa39-2746e64d51ce",
       "resourceType": "jacket",
-      "displayTitle": "Monitoring",
+      "displayTitle": "モニタリング",
       "metadata": {
         "songId": "84",
         "artist": "DECO*27",
@@ -1422,7 +1428,8 @@
         "Monitoring",
         "DECO*27",
         "84",
-        "monitoring"
+        "monitoring",
+        "モニタリング"
       ],
       "sortOrder": 70,
       "facets": {}
@@ -1430,7 +1437,7 @@
     {
       "resourceId": "0da821d6-eaa2-7ebe-8945-e0f735a99278",
       "resourceType": "jacket",
-      "displayTitle": "Roki",
+      "displayTitle": "ロキ",
       "metadata": {
         "songId": "86",
         "artist": "mikitoP",
@@ -1442,7 +1449,8 @@
         "Roki",
         "mikitoP",
         "86",
-        "roki"
+        "roki",
+        "ロキ"
       ],
       "sortOrder": 71,
       "facets": {}
@@ -1450,7 +1458,7 @@
     {
       "resourceId": "729a38af-2aab-7ea8-9f03-509fea548204",
       "resourceType": "jacket",
-      "displayTitle": "Lost One's Weeping",
+      "displayTitle": "ロストワンの号哭",
       "metadata": {
         "songId": "87",
         "artist": "Neru",
@@ -1462,7 +1470,8 @@
         "Lost One's Weeping",
         "Neru",
         "87",
-        "lostonesweeping"
+        "lostonesweeping",
+        "ロストワンの号哭"
       ],
       "sortOrder": 72,
       "facets": {}
@@ -1470,7 +1479,7 @@
     {
       "resourceId": "14a71c3d-e5a0-7f49-b72a-78c121de7008",
       "resourceType": "jacket",
-      "displayTitle": "Non-breath oblige",
+      "displayTitle": "ノンブレス・オブリージュ",
       "metadata": {
         "songId": "88",
         "artist": "PinocchioP",
@@ -1482,7 +1491,8 @@
         "Non-breath oblige",
         "PinocchioP",
         "88",
-        "nonbreathoblige"
+        "nonbreathoblige",
+        "ノンブレス・オブリージュ"
       ],
       "sortOrder": 73,
       "facets": {}
@@ -1490,7 +1500,7 @@
     {
       "resourceId": "0a1cda9b-782d-75d0-a70f-d506d55c4625",
       "resourceType": "jacket",
-      "displayTitle": "Apparently there's a cheat code to happiness",
+      "displayTitle": "幸せになれる隠しコマンドがあるらしい",
       "metadata": {
         "songId": "89",
         "artist": "UtataP",
@@ -1502,7 +1512,8 @@
         "Apparently there's a cheat code to happiness",
         "UtataP",
         "89",
-        "kakushicommand"
+        "kakushicommand",
+        "幸せになれる隠しコマンドがあるらしい"
       ],
       "sortOrder": 74,
       "facets": {}

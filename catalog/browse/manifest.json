@@ -40,7 +40,7 @@
     "infalsus": {
       "sourceVersion": "VSingers DLC",
       "sourceSha256": "4e70d2d9e97727ff178d67de0be4f88a9f15fa40f6238a3d90575d31c8bf52d8",
-      "fileSha256": "9f980c5bc79938770d8c3ddafb17c69b88dcd24a7874121fd67086ea6d7e5e54",
+      "fileSha256": "c59524639e93ffdaa76b27da196e41fd2060b056d0c54613697ded9f6f9b0196",
       "recordCounts": {
         "songs": 75,
         "artworks": 75
@@ -49,8 +49,8 @@
   },
   "catalog": {
     "catalogId": "019fefd6-9c49-7ca0-a760-adc76811a511",
-    "catalogSha256": "779752a924f519f197941d0840508ae46733c72b1b6407da3abfe4753b060a3f",
-    "catalogGeneratedAt": "2026-10-01T11:57:35.906Z"
+    "catalogSha256": "199d27467a71f71d18db987a4ac7acc1440a6319c6b12a2f44baa7c311f7b21e",
+    "catalogGeneratedAt": "2026-10-02T03:05:40.176Z"
   },
   "files": {
     "arcaea": "arcaea.json",
