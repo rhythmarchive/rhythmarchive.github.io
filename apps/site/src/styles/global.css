@@ -497,10 +497,11 @@ img { display: block; max-width: 100%; }
 .search-empty > div, .error-card-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 10px 16px; }
 
 .detail-shell { padding-top: 1.6rem; }
-.detail-navigation { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 1.25rem; }
+.detail-navigation { display: flex; align-items: center; gap: 12px; margin-bottom: 1.25rem; }
 .detail-navigation[hidden] { display: none; }
 .detail-navigation [aria-disabled="true"] { opacity: .4; cursor: default; }
 .detail-navigation-source { display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: .75rem; color: var(--text-muted); }
+.detail-navigation-source .back-link { margin-bottom: 0; }
 .detail-breadcrumb { display: flex; gap: 8px; align-items: center; margin-bottom: 1.1rem; color: var(--text-soft); font-size: 0.76rem; }
 .detail-breadcrumb a { color: var(--accent); font-weight: 680; }
 .detail-layout { display: grid; grid-template-columns: minmax(0, 1.18fr) minmax(300px, 0.82fr); gap: clamp(28px, 5vw, 64px); align-items: start; }
