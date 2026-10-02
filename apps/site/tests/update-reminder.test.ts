@@ -113,6 +113,7 @@ test("update reminder keeps markup, public game data, and client state in their 
   assert.match(component, /data-update-reminder-form/u);
   assert.doesNotMatch(component, /Arcaea|Phigros|Rizline|Rotaeno/u);
   assert.match(client, /getBrowserStatsClient/u);
+  assert.match(client, /action: "update-reminder"/u);
   assert.match(client, /callback: \(token\) => \{ turnstileToken = token;/u);
   assert.match(client, /turnstileToken \? \{ turnstileToken \} : \{\}/u);
   assert.match(client, /submitting/u);

@@ -2,7 +2,7 @@ import { getBrowserStatsClient } from "../lib/stats-client";
 import { submitUpdateReminder, type UpdateReminderResult } from "../lib/update-reminder-client";
 
 type TurnstileApi = {
-  render(element: HTMLElement, options: { sitekey: string; callback: (token: string) => void; "expired-callback": () => void; "error-callback": () => void }): string | number;
+  render(element: HTMLElement, options: { sitekey: string; action: string; callback: (token: string) => void; "expired-callback": () => void; "error-callback": () => void }): string | number;
   reset(widgetId: string | number): void;
 };
 
@@ -92,6 +92,7 @@ function initializeUpdateReminder(): void {
       const api = await loadTurnstile();
       turnstileWidgetId = api.render(turnstileContainer, {
         sitekey: turnstileSiteKey,
+        action: "update-reminder",
         callback: (token) => { turnstileToken = token; renderStatus(""); renderControls(); },
         "expired-callback": () => { turnstileToken = ""; renderControls(); },
         "error-callback": () => { turnstileToken = ""; renderStatus("验证组件暂时不可用，请稍后再试。", "error"); renderControls(); },

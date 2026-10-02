@@ -10,6 +10,9 @@ custom_domain = true
 [vars]
 ALLOWED_ORIGINS = "https://rhythmarchive.github.io,http://localhost:4321,http://127.0.0.1:4321"
 SITE_TIME_ZONE = "Asia/Shanghai"
+TURNSTILE_REQUIRED = "true"
+TURNSTILE_EXPECTED_HOSTNAME = "rhythmarchive.github.io"
+TURNSTILE_EXPECTED_ACTION = "update-reminder"
 [[ratelimits]]
 name = "RATE_LIMITER"
 namespace_id = "1334342177"

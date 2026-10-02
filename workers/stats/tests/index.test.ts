@@ -276,7 +276,13 @@ class MemoryStatsStore implements StatsStore {
 }
 
 function makeEnv(store: StatsStore): Env & { store: StatsStore } {
-  return { ALLOWED_ORIGINS: "https://rhythmarchive.github.io,http://localhost:4321", SITE_TIME_ZONE: "UTC", store };
+  return {
+    ALLOWED_ORIGINS: "https://rhythmarchive.github.io,http://localhost:4321", SITE_TIME_ZONE: "UTC", store,
+    // Explicit opt-out for local store tests; production requires Turnstile.
+    TURNSTILE_REQUIRED: "false",
+    TURNSTILE_EXPECTED_HOSTNAME: "rhythmarchive.github.io",
+    TURNSTILE_EXPECTED_ACTION: "update-reminder",
+  };
 }
 
 function request(path: string, method: "GET" | "POST" | "OPTIONS", body?: unknown, origin = "https://rhythmarchive.github.io"): Request {
@@ -427,14 +433,14 @@ test("visitor IDs accept UUIDv4 while resource IDs reject non-UUIDv7 values", as
 test("configured Turnstile is verified server-side before accepting a reminder", async () => {
   const acceptedStore = new MemoryStatsStore();
   let verificationBody = "";
-  const acceptedEnv = { ...makeEnv(acceptedStore), TURNSTILE_SECRET_KEY: "turnstile-secret" };
+  const acceptedEnv = { ...makeEnv(acceptedStore), TURNSTILE_REQUIRED: "true", TURNSTILE_SECRET_KEY: "turnstile-secret" };
   const accepted = await handleRequest(request("/v1/update-reminders", "POST", { visitorId, game: "arcaea", turnstileToken: "client-token" }), acceptedEnv, {
     store: acceptedStore,
     now: () => baseTime,
     fetchImpl: async (input, init) => {
       assert.equal(String(input), "https://challenges.cloudflare.com/turnstile/v0/siteverify");
       verificationBody = String(init?.body);
-      return new Response(JSON.stringify({ success: true }), { status: 200 });
+      return new Response(JSON.stringify({ success: true, hostname: "rhythmarchive.github.io", action: "update-reminder" }), { status: 200 });
     },
   });
   assert.equal(accepted.status, 202);
@@ -448,6 +454,113 @@ test("configured Turnstile is verified server-side before accepting a reminder",
   });
   assert.equal(rejected.status, 403);
   assert.deepEqual(await rejectedStore.listPendingUpdateReminders(), []);
+});
+
+test("Turnstile rejects missing or mismatched claims and failed verification before reminder writes", async () => {
+  const responses = [
+    { success: true },
+    { success: true, hostname: "evil.example.test", action: "update-reminder" },
+    { success: true, hostname: "rhythmarchive.github.io", action: "other-form" },
+    { success: false, hostname: "rhythmarchive.github.io", action: "update-reminder" },
+  ];
+  for (const claims of responses) {
+    const store = new MemoryStatsStore();
+    const response = await handleRequest(request("/v1/update-reminders", "POST", { visitorId, game: "arcaea", turnstileToken: "client-token" }), {
+      ...makeEnv(store), TURNSTILE_REQUIRED: "true", TURNSTILE_SECRET_KEY: "turnstile-secret",
+    }, { store, now: () => baseTime, fetchImpl: async () => new Response(JSON.stringify(claims)) });
+    assert.equal(response.status, 403);
+    assert.equal((await responseJson(response)).error, "turnstile_failed");
+    assert.deepEqual(await store.listPendingUpdateReminders(), []);
+  }
+});
+
+test("required Turnstile fails closed on missing configuration, token and verification errors", async () => {
+  const configured: Env = {
+    TURNSTILE_REQUIRED: "true", TURNSTILE_SECRET_KEY: "turnstile-secret",
+    TURNSTILE_EXPECTED_HOSTNAME: "rhythmarchive.github.io", TURNSTILE_EXPECTED_ACTION: "update-reminder",
+  };
+  for (const missing of ["TURNSTILE_SECRET_KEY", "TURNSTILE_EXPECTED_HOSTNAME", "TURNSTILE_EXPECTED_ACTION"] as const) {
+    for (const required of ["true", undefined]) {
+      const store = new MemoryStatsStore();
+      let fetched = false;
+      const env: Env = { ...makeEnv(store), ...configured, [missing]: " " };
+      if (required === undefined) delete env.TURNSTILE_REQUIRED;
+      else env.TURNSTILE_REQUIRED = required;
+      const response = await handleRequest(request("/v1/update-reminders", "POST", { visitorId, game: "arcaea", turnstileToken: "client-token" }), env,
+        { store, now: () => baseTime, fetchImpl: async () => { fetched = true; throw new Error("must not fetch"); } });
+      assert.equal(response.status, 503);
+      assert.equal((await responseJson(response)).error, "turnstile_unavailable");
+      assert.equal(fetched, false);
+      assert.deepEqual(await store.listPendingUpdateReminders(), []);
+    }
+  }
+  for (const failure of ["missing-token", "network", "invalid-json", "http-error"]) {
+    const store = new MemoryStatsStore();
+    let fetched = false;
+    const response = await handleRequest(request("/v1/update-reminders", "POST", {
+      visitorId, game: "arcaea", ...(failure === "missing-token" ? {} : { turnstileToken: "client-token" }),
+    }), { ...makeEnv(store), ...configured }, {
+      store, now: () => baseTime, fetchImpl: async (_input, init) => {
+        fetched = true;
+        assert.ok(init?.signal);
+        if (failure === "network") throw new Error("verification unavailable");
+        if (failure === "http-error") return new Response("unavailable", { status: 503 });
+        return new Response("not JSON");
+      },
+    });
+    assert.equal(response.status, 403);
+    assert.equal((await responseJson(response)).error, "turnstile_failed");
+    assert.equal(fetched, failure !== "missing-token");
+    assert.deepEqual(await store.listPendingUpdateReminders(), []);
+  }
+});
+
+test("native burst guard retains independent durable limits and reset windows", async () => {
+  const store = new MemoryStatsStore();
+  const keys: string[] = [];
+  const env = { ...makeEnv(store), RATE_LIMITER: { limit: async ({ key }: { key: string }) => { keys.push(key); return { success: true }; } } };
+  const cases = [
+    { path: "/v1/events", limit: 60, window: 60_000, body: () => ({ type: "site_visit", visitorId: crypto.randomUUID() }) },
+    { path: "/v1/resources/stats", limit: 60, window: 60_000, body: () => ({ resourceIds: [resourceId] }) },
+    { path: "/v1/site/stats", limit: 120, window: 60_000, body: () => undefined },
+    { path: "/v1/update-reminders", limit: 20, window: 600_000, body: () => ({ visitorId: crypto.randomUUID(), game: "arcaea" }) },
+  ];
+  for (const scenario of cases) {
+    const invoke = (nowMs: number, path = scenario.path) => {
+      const body = scenario.body();
+      return handleRequest(request(path, body === undefined ? "GET" : "POST", body), env, { store, now: () => nowMs });
+    };
+    for (let count = 0; count < scenario.limit; count += 1) {
+      const path = scenario.path === "/v1/site/stats" && count % 2 === 1 ? "/v1/resources/ranking" : scenario.path;
+      assert.ok((await invoke(baseTime, path)).ok, scenario.path);
+    }
+    const limited = await invoke(baseTime);
+    assert.equal(limited.status, 429, scenario.path);
+    assert.equal(limited.headers.get("Retry-After"), String(scenario.window / 1000));
+    assert.equal(limited.headers.get("Access-Control-Allow-Origin"), "https://rhythmarchive.github.io");
+    assert.equal((await invoke(baseTime + scenario.window - 1)).status, 429);
+    assert.ok((await invoke(baseTime + scenario.window)).ok);
+  }
+  // Ranking and site totals shared the read budget above; writes have separate keys.
+  assert.deepEqual(new Set(keys.map((key) => key.split(":")[0])), new Set(["events", "resource-stats", "stats-read", "update-reminders"]));
+});
+
+test("native rejection skips durable work and limiter failures return stable service errors", async () => {
+  for (const outcome of ["reject", "native-error", "durable-error"]) {
+    const store = new MemoryStatsStore();
+    let durableCalls = 0;
+    store.consumeRequestRateLimit = async () => { durableCalls += 1; throw new Error("durable limit unavailable"); };
+    const env = { ...makeEnv(store), RATE_LIMITER: { limit: async () => {
+      if (outcome === "native-error") throw new Error("native limit unavailable");
+      return { success: outcome !== "reject" };
+    } } };
+    const response = await handleRequest(request("/v1/events", "POST", { type: "site_visit", visitorId }), env, { store, now: () => baseTime });
+    assert.equal(response.status, outcome === "reject" ? 429 : 503);
+    assert.equal((await responseJson(response)).error, outcome === "reject" ? "rate_limited" : "stats_unavailable");
+    assert.equal(durableCalls, outcome === "durable-error" ? 1 : 0);
+    if (outcome === "reject") assert.equal(response.headers.get("Retry-After"), "60");
+    assert.equal((await store.getSiteStats("2026-09-06")).totalVisits, 0);
+  }
 });
 
 test("first valid update reminder is accepted, persisted as pending, and marked as first", async () => {

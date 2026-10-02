@@ -133,6 +133,9 @@ export interface Env {
   RATE_LIMITER?: RateLimitBinding;
   RATE_LIMIT_HASH_SECRET?: string;
   TURNSTILE_SECRET_KEY?: string;
+  TURNSTILE_REQUIRED?: string;
+  TURNSTILE_EXPECTED_HOSTNAME?: string;
+  TURNSTILE_EXPECTED_ACTION?: string;
   RESEND_API_KEY?: string;
   UPDATE_REMINDER_EMAIL_TO?: string;
   UPDATE_REMINDER_ADMIN_TOKEN?: string;
@@ -680,7 +683,9 @@ async function checkRequestRateLimit(request: Request, env: Env, store: StatsSto
   const clientKey = clientKeyOverride ?? await rateLimitClientKey(request, env, nowMs);
   if (env.RATE_LIMITER) {
     const result = await env.RATE_LIMITER.limit({ key: config.scope + ":" + clientKey });
-    return result.success ? { allowed: true, retryAfterSeconds: 0 } : { allowed: false, retryAfterSeconds: Math.ceil(config.windowMs / 1000) };
+    // The binding is a coarse burst guard; it cannot enforce each route's
+    // independent window (including the reminder's ten-minute window).
+    if (!result.success) return { allowed: false, retryAfterSeconds: 60 };
   }
   if (store.consumeRequestRateLimit) return store.consumeRequestRateLimit(clientKey, config.scope, nowMs, config.windowMs, config.maxRequests);
   const key = config.scope + ":" + clientKey;
@@ -707,14 +712,15 @@ export async function handleRequest(request: Request, env: Env, options: Handler
   if (!store) return json({ error: "stats_unavailable" }, 503, corsHeaders);
   const nowMs = options.now?.() ?? Date.now();
   const date = siteDateKey(nowMs, env.SITE_TIME_ZONE || "Asia/Shanghai");
-  const rateLimitConfig = requestRateLimitConfig(path, request.method);
-  const publicRateLimitKey = rateLimitConfig ? await rateLimitClientKey(request, env, nowMs) : undefined;
-  if (rateLimitConfig) {
-    const rateLimit = await checkRequestRateLimit(request, env, store, rateLimitConfig, nowMs, publicRateLimitKey);
-    if (!rateLimit.allowed) return json({ error: "rate_limited", retryAfterSeconds: rateLimit.retryAfterSeconds }, 429, { ...corsHeaders, "Retry-After": String(rateLimit.retryAfterSeconds) });
-  }
-
   try {
+    const rateLimitConfig = requestRateLimitConfig(path, request.method);
+    if (rateLimitConfig) {
+      const rateLimit = await checkRequestRateLimit(request, env, store, rateLimitConfig, nowMs);
+      if (!rateLimit.allowed) {
+        corsHeaders.set("Retry-After", String(rateLimit.retryAfterSeconds));
+        return json({ error: "rate_limited", retryAfterSeconds: rateLimit.retryAfterSeconds }, 429, corsHeaders);
+      }
+    }
     const adminResolveMatch = /^\/v1\/admin\/update-reminders\/([^/]+)\/resolve$/u.exec(path);
     const adminRetryMatch = /^\/v1\/admin\/update-reminders\/([^/]+)\/retry-notification$/u.exec(path);
     if (path === "/v1/admin/update-reminders" && request.method === "GET") {
@@ -760,8 +766,13 @@ export async function handleRequest(request: Request, env: Env, options: Handler
       const validation = validateUpdateReminderPayload(body);
       const reminder = validation.reminder;
       if (!reminder) return json({ error: validation.error ?? "invalid_update_reminder" }, 400, corsHeaders);
-      if (env.TURNSTILE_SECRET_KEY?.trim()) {
-        if (!reminder.turnstileToken || !(await verifyTurnstileToken(env.TURNSTILE_SECRET_KEY, reminder.turnstileToken, options.fetchImpl))) return json({ error: "turnstile_failed" }, 403, corsHeaders);
+      const secret = env.TURNSTILE_SECRET_KEY?.trim();
+      const requiresTurnstile = env.TURNSTILE_REQUIRED?.trim().toLowerCase() !== "false" || Boolean(secret);
+      if (requiresTurnstile) {
+        const hostname = env.TURNSTILE_EXPECTED_HOSTNAME?.trim().toLowerCase();
+        const action = env.TURNSTILE_EXPECTED_ACTION?.trim();
+        if (!secret || !hostname || !action) return json({ error: "turnstile_unavailable" }, 503, corsHeaders);
+        if (!reminder.turnstileToken || !(await verifyTurnstileToken(secret, reminder.turnstileToken, { hostname, action }, options.fetchImpl))) return json({ error: "turnstile_failed" }, 403, corsHeaders);
       }
       const recorded = await store.recordUpdateReminder(reminder.visitorId, reminder.game, nowMs);
       if (recorded.status === "rate_limited") {
@@ -867,7 +878,7 @@ export async function processPendingUpdateReminderNotifications(env: Env, option
   }
 }
 
-async function verifyTurnstileToken(secret: string, token: string, fetchImpl: NotificationFetch = (input, init) => fetch(input, init)): Promise<boolean> {
+async function verifyTurnstileToken(secret: string, token: string, expected: { hostname: string; action: string }, fetchImpl: NotificationFetch = (input, init) => fetch(input, init)): Promise<boolean> {
   const controller = new AbortController();
   const timeoutId = setTimeout(() => controller.abort(), 5_000);
   try {
@@ -879,7 +890,8 @@ async function verifyTurnstileToken(secret: string, token: string, fetchImpl: No
     });
     if (!response.ok) return false;
     const value = await response.json() as unknown;
-    return isRecord(value) && value.success === true;
+    return isRecord(value) && value.success === true
+      && value.hostname === expected.hostname && value.action === expected.action;
   } catch {
     return false;
   } finally {
