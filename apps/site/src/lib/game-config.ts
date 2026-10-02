@@ -6,6 +6,7 @@ export type ResourceTypeId = Resource["resourceType"];
 export type GameConfig = {
   slug: GameId;
   displayName: string;
+  searchAliases?: string[];
   categoryOrder: ResourceTypeId[];
   featuredCategories: ResourceTypeId[];
   filters: {
@@ -39,6 +40,7 @@ export const GAME_CONFIG: Record<GameId, GameConfig> = {
   arcaea: {
     slug: "arcaea",
     displayName: "Arcaea",
+    searchAliases: ["韵律源点"],
     categoryOrder: [
       "jacket",
       "pack-cover",
@@ -146,6 +148,7 @@ export const GAME_CONFIG: Record<GameId, GameConfig> = {
   rotaeno: {
     slug: "rotaeno",
     displayName: "Rotaeno",
+    searchAliases: ["旋转音律"],
     categoryOrder: ["jacket", "pack-cover", "character-portrait", "story-cg", "startup"],
     featuredCategories: ["jacket", "pack-cover", "character-portrait", "story-cg", "startup"],
     filters: { difficulty: true, upscale: false },
@@ -168,6 +171,7 @@ export const GAME_CONFIG: Record<GameId, GameConfig> = {
   "paradigm-reboot": {
     slug: "paradigm-reboot",
     displayName: "范式：起源",
+    searchAliases: ["Paradigm Reboot", "范式起源"],
     categoryOrder: ["jacket", "pack-cover", "character-avatar", "background"],
     featuredCategories: ["jacket", "pack-cover", "character-avatar", "background"],
     filters: { difficulty: true, upscale: true },

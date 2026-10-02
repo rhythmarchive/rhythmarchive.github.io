@@ -3,9 +3,13 @@ import { execFileSync } from 'node:child_process';
 import { loadFormalCatalog, getSiteData, findWorkspaceRoot } from '../src/lib/site-data.js';
 import { loadRawUpdateHistory } from '../src/lib/update-history.js';
 import { PUBLIC_RESOURCE_ID_LIST } from '../../../workers/stats/src/public-resource-registry.js';
+import { validateBrowseFiles } from '../../../tools/validate-browse-projection.js';
+import { generateStatsResourceRegistry } from './generate-stats-resource-registry.js';
 
 const catalog = loadFormalCatalog(); // Schema, unique identities and Object/Variant/Rendition references.
 const data = getSiteData();
+await validateBrowseFiles();
+await generateStatsResourceRegistry(true);
 const history = loadRawUpdateHistory(findWorkspaceRoot());
 const publicIds = new Set(data.resources.map(r => r.resourceId));
 assert.deepEqual(publicIds, new Set<string>(PUBLIC_RESOURCE_ID_LIST), 'Stats registry must match the actual public Resource collection');

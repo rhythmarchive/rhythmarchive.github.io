@@ -7,6 +7,7 @@ type CardRenderOptions = {
   index: number;
   isSelected: boolean;
   browse?: boolean;
+  selectable?: boolean;
 };
 
 export function renderResourceCard(view: CardViewModel, options: CardRenderOptions): HTMLElement {
@@ -28,7 +29,7 @@ export function renderResourceCard(view: CardViewModel, options: CardRenderOptio
   check.setAttribute("aria-hidden", "true");
   check.textContent = "✓";
   select.append(check);
-  article.append(select);
+  if (options.selectable !== false) article.append(select);
 
   const anchor = document.createElement("a");
   anchor.className = "resource-card-link";

@@ -33,7 +33,7 @@ export function runQuiet(command) {
 export function commandsFor(plan, ci = false) {
   if (plan.mode === 'FULL') return ['npm run ci:check'];
   const commands = [];
-  if (plan.content) commands.push('node --import tsx apps/site/scripts/check-content-fast.ts', 'npm run browse:check', 'npm run stats:registry:check');
+  if (plan.content) commands.push('node --import tsx apps/site/scripts/check-content-fast.ts');
   if (plan.registry && !plan.content) commands.push('npm run stats:registry:check');
   if (plan.worker) commands.push('npm run worker:check');
   if (plan.site && !ci) commands.push('npm run typecheck', 'npm run site:check');
@@ -55,8 +55,13 @@ function main(args) {
   if (plan.mode === 'FULL' && !args.includes('--allow-full') && !args.includes('--full')) throw new Error(`FULL MAINTENANCE required by explicit paths: ${plan.reasons.join(', ')}. Use npm run ci:check once.`);
   if (args.includes('--update')) runQuiet('npm run stats:registry');
   if (args.includes('--update')) plan.content = true;
-  for (const command of commandsFor(plan, args.includes('--ci'))) runQuiet(command);
+  const commands = commandsFor(plan, args.includes('--ci'));
+  for (const command of commands) runQuiet(command);
   git(['diff', '--check']);
+  if (commands.length === 0) {
+    console.log('No affected checks: content / registry / Pages NOT_RUN; diff check passed.');
+    return;
+  }
   console.log(`${plan.mode} CHECK PASS: content=${plan.content} / Stats registry ${plan.content ? 'valid' : 'unchanged'} / ${args.includes('--ci') ? 'Pages build valid' : 'target checks valid'}`);
 }
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {

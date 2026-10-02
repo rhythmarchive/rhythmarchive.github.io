@@ -1,4 +1,5 @@
 import type { PublicSearchEntry } from "./types";
+import { GAME_CONFIG } from "./game-config";
 
 const naturalTextCollators = new Map<string, Intl.Collator>([
   ["zh-CN", new Intl.Collator("zh-CN", { numeric: true, sensitivity: "variant" })],
@@ -28,15 +29,22 @@ export function splitSearchQuery(value: string): string[] {
   return normalizeSearchText(value).split(" ").filter(Boolean);
 }
 
-export function rankSearchEntries(entries: PublicSearchEntry[], query: string): PublicSearchEntry[] {
+const searchFields = new WeakMap<PublicSearchEntry, { title: string; artist: string; keywords: string[] }>();
+
+export function rankSearchEntries(entries: PublicSearchEntry[], query: string, scope: { game?: string; category?: string } = {}): PublicSearchEntry[] {
   const terms = splitSearchQuery(query);
-  if (terms.length === 0) return [];
+  if (terms.length === 0 && !scope.game && !scope.category) return [];
 
   const scored = entries.flatMap((entry) => {
-    const title = normalizeSearchText(entry.title);
-    const artist = normalizeSearchText(entry.artist ?? "");
-    const keywords = entry.keywords.map(normalizeSearchText);
-    const score = scoreEntry(title, artist, keywords, terms);
+    if ((scope.game && scope.game !== entry.game) || (scope.category && scope.category !== entry.category)) return [];
+    let fields = searchFields.get(entry);
+    if (!fields) {
+      const game = GAME_CONFIG[entry.game];
+      fields = { title: normalizeSearchText(entry.title), artist: normalizeSearchText(entry.artist ?? ""),
+        keywords: [...entry.keywords, entry.game, game.displayName, ...(game.searchAliases ?? []), entry.category, entry.categoryLabel].map(normalizeSearchText) };
+      searchFields.set(entry, fields);
+    }
+    const score = terms.length ? scoreEntry(fields.title, fields.artist, fields.keywords, terms) : 1;
     return score === 0 ? [] : [{ entry, score }];
   });
 

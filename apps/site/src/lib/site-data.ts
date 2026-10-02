@@ -2,7 +2,6 @@ import fs from "node:fs";
 import path from "node:path";
 import { ArcaeaBrowseProjection, ArcaeaCategoryBrowseProjection, BrowseDiagnostics, BrowseManifest, PhigrosBrowseProjection, PhigrosCategoryBrowseProjection, RizlineBrowseProjection, RizlineCategoryBrowseProjection, validateBrowseProjectionSet, validateBrowsePublicData, validateCategoryBrowseProjection, validateRizlineBrowseProjection, type ArcaeaBrowseProjectionType, type PhigrosBrowseProjectionType, type RizlineBrowseProjectionType } from "../../../../packages/domain/src/browse.js";
 import { InfalsusCategoryBrowseProjection } from "../../../../packages/domain/src/browse.js";
-import type { CategoryBrowseProjectionType } from "../../../../packages/domain/src/browse.js";
 import { validateCatalog } from "../../../../packages/domain/src/validation.js";
 import type { Catalog } from "../../../../packages/domain/src/schema.js";
 import { buildBrowseGalleryData } from "./browse-gallery";
@@ -12,6 +11,7 @@ import { projectUpdates } from "./update-history";
 import { formatArcaeaAddedVersion } from "./public-display";
 import { GAME_CONFIG, type GameId } from "./game-config";
 import { sortPublicGames } from "./game-index";
+import { publicContentVersion } from "./game-index";
 import { ROS_BASE_URL } from "./site-config";
 import type { PublicChart, PublicGameIndex, PublicSiteData } from "./types";
 
@@ -19,15 +19,40 @@ let cachedSiteData: PublicSiteData | undefined;
 let cachedBrowseProjections: FormalBrowseProjections | undefined;
 let cachedCategoryBrowseProjections: CategoryBrowseProjections | undefined;
 let cachedBrowseGalleryBuild: ReturnType<typeof buildBrowseGalleryData> | undefined;
+let cachedCatalog: Catalog | undefined;
+let cachedManifest: ReturnType<typeof BrowseManifest.parse> | undefined;
+let sourceStamp = "";
+let cachedRosBaseUrl = "";
+
+// One validated snapshot per source revision, shared by all projections.
+function refreshSources(): void {
+  const root = findWorkspaceRoot();
+  if (process.env.NODE_ENV === "production" && sourceStamp.startsWith(`${root}|`)) return;
+  const files = ["index.json", "updates/index.json", "browse/manifest.json", "browse/diagnostics.json", "browse/arcaea.json", "browse/phigros.json", "browse/rizline.json", "browse/infalsus.json", "browse/arcaea-semantics.json", "browse/phigros-semantics.json", "browse/rizline-semantics.json"];
+  const stamp = `${root}|${files.map((file) => {
+    const stat = fs.statSync(path.join(root, "catalog", file), { throwIfNoEntry: false });
+    return stat ? `${stat.mtimeMs}:${stat.ctimeMs}:${stat.size}` : "missing";
+  }).join("|")}|${process.env.RHYTHM_ARCHIVE_PREVIEW_STORY_CG ?? ""}`;
+  if (stamp === sourceStamp) return;
+  cachedCatalog = undefined;
+  cachedSiteData = undefined;
+  cachedBrowseProjections = undefined;
+  cachedCategoryBrowseProjections = undefined;
+  cachedBrowseGalleryBuild = undefined;
+  cachedManifest = undefined;
+  sourceStamp = stamp;
+}
 
 export type FormalBrowseProjections = {
   arcaea: ArcaeaBrowseProjectionType;
-  infalsus: CategoryBrowseProjectionType;
+  infalsus: ReturnType<typeof InfalsusCategoryBrowseProjection.parse>;
   phigros: PhigrosBrowseProjectionType;
   rizline: RizlineBrowseProjectionType;
 };
 
 export function loadFormalCatalog(): Catalog {
+  refreshSources();
+  if (cachedCatalog) return cachedCatalog;
   const catalogPath = findWorkspaceFile("catalog", "index.json");
   const parsed = JSON.parse(fs.readFileSync(catalogPath, "utf8")) as unknown;
   const validation = validateCatalog(parsed);
@@ -35,15 +60,31 @@ export function loadFormalCatalog(): Catalog {
     const details = validation.issues.slice(0, 3).map((issue) => `${issue.path}: ${issue.message}`).join("; ");
     throw new Error(`Formal Catalog failed runtime validation: ${details}`);
   }
-  return validation.data;
+  cachedCatalog = validation.data;
+  return cachedCatalog;
 }
 
 export function getSiteData(rosBaseUrl = ROS_BASE_URL): PublicSiteData {
+  refreshSources();
+  if (cachedRosBaseUrl !== rosBaseUrl) {
+    cachedSiteData = undefined;
+    cachedBrowseGalleryBuild = undefined;
+    cachedRosBaseUrl = rosBaseUrl;
+  }
   if (!cachedSiteData) {
     const catalog = loadFormalCatalog();
     const projected = enrichFormalBrowseMetadata(projectCatalog(catalog, rosBaseUrl), loadFormalBrowseProjections());
     const publicData = applyCategoryBrowseSemantics(projected, loadCategoryBrowseProjections());
-    cachedSiteData = { ...publicData, updates: projectUpdates(publicData, findWorkspaceRoot()) };
+    const updates = projectUpdates(publicData, findWorkspaceRoot());
+    const sourceVersions: Partial<Record<GameId, { sourceVersion: string } | undefined>> = cachedManifest?.games ?? {};
+    const games = publicData.games.map((game) => {
+      const { contentVersion: _inferredVersion, ...entry } = game;
+      // Source adoption and content batches own versions; a title/upscale edit does not.
+      const contentVersion = publicContentVersion(sourceVersions[game.slug]?.sourceVersion
+        ?? updates.find((update) => update.game === game.slug && publicContentVersion(update.contentVersion))?.contentVersion);
+      return { ...entry, ...(contentVersion ? { contentVersion } : {}) };
+    });
+    cachedSiteData = { ...publicData, games, updates };
   }
   return cachedSiteData;
 }
@@ -287,10 +328,11 @@ function parsePhigrosCharters(value: unknown): Map<string, string> {
 }
 
 export function loadCategoryBrowseProjections(): CategoryBrowseProjections {
+  refreshSources();
   if (cachedCategoryBrowseProjections) return cachedCategoryBrowseProjections;
   const catalog = loadFormalCatalog();
   const arcaea = parseCategoryBrowseFile("arcaea-semantics.json", ArcaeaCategoryBrowseProjection);
-  const infalsus = parseCategoryBrowseFile("infalsus-semantics.json", InfalsusCategoryBrowseProjection);
+  const infalsus = loadFormalBrowseProjections().infalsus;
   const phigros = parseCategoryBrowseFile("phigros-semantics.json", PhigrosCategoryBrowseProjection);
   const rizline = parseCategoryBrowseFile("rizline-semantics.json", RizlineCategoryBrowseProjection);
   const arcaeaValidation = validateCategoryBrowseProjection(arcaea, catalog);
@@ -310,6 +352,7 @@ export function loadCategoryBrowseProjections(): CategoryBrowseProjections {
 }
 
 export function loadFormalBrowseProjections(): FormalBrowseProjections {
+  refreshSources();
   if (cachedBrowseProjections) return cachedBrowseProjections;
 
   const catalog = loadFormalCatalog();
@@ -331,10 +374,12 @@ export function loadFormalBrowseProjections(): FormalBrowseProjections {
   if (publicDataIssues.length > 0) throw new Error(`Formal Browse Projection contains local or sensitive data: ${publicDataIssues.slice(0, 5).join("; ")}`);
 
   cachedBrowseProjections = { arcaea: result.arcaea, phigros: result.phigros, rizline: result.rizline, infalsus: result.infalsus };
+  cachedManifest = result.manifest;
   return cachedBrowseProjections;
 }
 
 export function getBrowseGalleryBuild(): ReturnType<typeof buildBrowseGalleryData> {
+  refreshSources();
   cachedBrowseGalleryBuild ??= buildBrowseGalleryData(getSiteData(), loadFormalBrowseProjections());
   return cachedBrowseGalleryBuild;
 }

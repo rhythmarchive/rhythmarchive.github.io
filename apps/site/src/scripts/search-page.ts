@@ -1,7 +1,8 @@
 import { rankSearchEntries } from "../lib/search";
 import { sitePath } from "../lib/url";
 import { GAME_CONFIG } from "../lib/game-config";
-import { appendResourceViews, updateResourceStatsInDom } from "../lib/stats-client";
+import { updateResourceStatsInDom } from "../lib/stats-client";
+import { renderResourceCard } from "./render-resource-card";
 import type { PublicSearchCard, PublicSearchEntry } from "../lib/types";
 
 const root = document.querySelector<HTMLElement>("[data-search-page]");
@@ -13,19 +14,41 @@ async function initializeSearch(root: HTMLElement): Promise<void> {
   const status = root.querySelector<HTMLElement>("[data-search-status]");
   const empty = root.querySelector<HTMLElement>("[data-search-empty]");
   const retry = root.querySelector<HTMLButtonElement>("[data-search-retry]");
-  if (!input || !results || !status) return;
+  const more = root.querySelector<HTMLButtonElement>("[data-search-more]");
+  const game = document.querySelector<HTMLSelectElement>("[data-search-game]");
+  const category = document.querySelector<HTMLSelectElement>("[data-search-category]");
+  if (!input || !results || !status || !more || !game || !category) return;
 
   const queryFromUrl = new URLSearchParams(window.location.search).get("q");
   if (queryFromUrl !== null) input.value = queryFromUrl;
+  const params = new URLSearchParams(window.location.search);
+  game.value = params.get("game") ?? "";
+  category.value = params.get("category") ?? "";
 
   let entriesPromise: Promise<PublicSearchEntry[]> | undefined;
   let searchCardsPromise: Promise<Map<string, PublicSearchCard>> | undefined;
   let runToken = 0;
+  let matches: PublicSearchCard[] = [];
+  let visibleCount = 48;
+  let timer: number | undefined;
+  let composing = false;
+
+  const render = (): void => {
+    const visible = matches.slice(0, visibleCount);
+    results.replaceChildren(...visible.map((card, index) => createResultCard(card, index)));
+    more.hidden = visible.length >= matches.length;
+    if (empty) empty.hidden = matches.length > 0;
+    status.textContent = `找到 ${matches.length.toLocaleString("zh-CN")} 项资源`;
+    void updateResourceStatsInDom(results);
+  };
 
   const syncQueryUrl = (value: string): void => {
     const url = new URL(window.location.href);
     const query = value.trim();
     if (query) url.searchParams.set("q", query); else url.searchParams.delete("q");
+    for (const [key, value] of [["game", game.value], ["category", category.value]]) {
+      if (value) url.searchParams.set(key!, value); else url.searchParams.delete(key!);
+    }
     window.history.replaceState({}, "", url);
   };
 
@@ -60,18 +83,22 @@ async function initializeSearch(root: HTMLElement): Promise<void> {
     }
   };
   const run = async (): Promise<void> => {
+    window.clearTimeout(timer);
     const token = ++runToken;
+    visibleCount = 48;
+    more.hidden = true;
+    matches = [];
     const rawQuery = input.value;
     const query = rawQuery.trim();
     syncQueryUrl(rawQuery);
     const page = root.closest(".search-page");
     const head = root.previousElementSibling;
-    if (!query) {
+    if (!query && !game.value && !category.value) {
       page?.classList.remove("has-search-query");
       head?.classList.remove("is-results");
       results.replaceChildren();
       if (empty) empty.hidden = true;
-      status.textContent = "输入关键词搜索资源";
+      status.textContent = "输入关键词或选择游戏、分类";
       if (retry) retry.hidden = true;
       return;
     }
@@ -83,21 +110,16 @@ async function initializeSearch(root: HTMLElement): Promise<void> {
     status.textContent = "正在搜索…";
     if (retry) retry.hidden = true;
     try {
-      const entries = await loadSearchIndex();
+      const [entries, cardMap] = await Promise.all([loadSearchIndex(), loadSearchCards()]);
       if (token !== runToken) return;
-      const ranked = rankSearchEntries(entries, query);
+      const ranked = rankSearchEntries(entries, query, { game: game.value, category: category.value });
       if (ranked.length === 0) {
         status.textContent = "没有找到相关资源。";
         if (empty) empty.hidden = false;
         return;
       }
-      const cardMap = await loadSearchCards();
-      if (token !== runToken) return;
-      const matches = ranked.map((entry) => cardMap.get(entry.resourceId)).filter((card): card is PublicSearchCard => Boolean(card));
-      results.replaceChildren(...matches.map((card) => createResultCard(card)));
-      if (empty) empty.hidden = matches.length > 0;
-      void updateResourceStatsInDom(results);
-      status.textContent = `找到 ${matches.length.toLocaleString("zh-CN")} 项资源`;
+      matches = ranked.map((entry) => cardMap.get(entry.resourceId)).filter((card): card is PublicSearchCard => Boolean(card));
+      render();
     } catch (error) {
       if (token !== runToken) return;
       console.error("Search data failed", error);
@@ -108,74 +130,30 @@ async function initializeSearch(root: HTMLElement): Promise<void> {
     }
   };
 
-  input.addEventListener("input", () => void run());
+  const schedule = (): void => {
+    ++runToken;
+    window.clearTimeout(timer);
+    if (!composing) timer = window.setTimeout(() => void run(), 150);
+  };
+  input.addEventListener("compositionstart", () => { composing = true; schedule(); });
+  input.addEventListener("compositionend", () => { composing = false; schedule(); });
+  input.addEventListener("input", schedule);
+  input.closest("form")?.addEventListener("submit", (event) => { event.preventDefault(); void run(); });
+  game.addEventListener("change", () => void run());
+  category.addEventListener("change", () => void run());
+  more.addEventListener("click", () => { visibleCount += 48; render(); });
   retry?.addEventListener("click", () => void run());
   void run();
 }
 
-function createResultCard(card: PublicSearchCard): HTMLElement {
-  const article = document.createElement("article");
-  article.className = "resource-card";
-  article.dataset.resourceCard = "";
-  article.dataset.resourceId = card.resourceId;
-  article.dataset.game = card.game;
-  article.dataset.resourceType = card.resourceType;
-  const anchor = document.createElement("a");
-  anchor.className = "resource-card-link";
-  anchor.href = resolveSitePath(card.route);
-  const media = document.createElement("div");
-  media.className = "resource-card-media";
-  if (card.image) {
-    const img = document.createElement("img");
-    img.src = card.image.url;
-    img.alt = card.displayTitle;
-    if (card.image.width) img.width = card.image.width;
-    if (card.image.height) img.height = card.image.height;
-    img.loading = "lazy";
-    img.decoding = "async";
-    if (card.fallback?.url) {
-      img.dataset.fallbackSrc = card.fallback.url;
-      if (card.fallback.width) img.dataset.fallbackWidth = String(card.fallback.width);
-      if (card.fallback.height) img.dataset.fallbackHeight = String(card.fallback.height);
-    }
-    img.sizes = "(max-width: 640px) 50vw, (max-width: 1280px) 20vw, 210px";
-    media.append(img);
-  } else {
-    const placeholder = document.createElement("div");
-    placeholder.className = "resource-card-placeholder";
-    placeholder.textContent = "图片暂不可用";
-    media.append(placeholder);
-  }
-  if (card.upscaled) {
-    const badge = document.createElement("span");
-    badge.className = "resource-badge is-upscaled";
-    badge.textContent = "含超分版";
-    media.append(badge);
-  }
-  const body = document.createElement("div");
-  body.className = "resource-card-body";
-  const title = document.createElement("h3");
-  title.textContent = card.displayTitle;
-  body.append(title);
-  if (card.artist) {
-    const artist = document.createElement("p");
-    artist.textContent = card.artist;
-    body.append(artist);
-  }
-  const context = document.createElement("p");
-  context.className = "resource-card-context";
-  context.textContent = `${GAME_CONFIG[card.game].displayName} · ${card.categoryLabel}`;
-  body.append(context);
-  for (const labelValue of card.variantLabels) {
-    const label = document.createElement("span");
-    label.className = "resource-card-variant";
-    label.textContent = labelValue;
-    body.append(label);
-  }
-  appendResourceViews(body);
-  anchor.append(media, body);
-  article.append(anchor);
-  return article;
+function createResultCard(card: PublicSearchCard, index: number): HTMLElement {
+  return renderResourceCard({
+    resourceId: card.resourceId, route: card.route, game: card.game, resourceType: card.resourceType,
+    displayTitle: card.displayTitle, ...(card.artist ? { artist: card.artist } : {}),
+    subtitle: `${GAME_CONFIG[card.game].displayName} · ${card.categoryLabel}`,
+    preview: { primary: card.image, fallback: card.fallback, srcset: "" },
+    hasUpscaled: card.upscaled, labels: card.variantLabels,
+  }, { basePath: document.documentElement.dataset.basePath ?? "/", index, isSelected: false, selectable: false });
 }
 function resolveSitePath(path: string): string {
   const base = document.documentElement.dataset.basePath ?? "/";

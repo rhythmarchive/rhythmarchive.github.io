@@ -1,7 +1,7 @@
 import type { BrowseGalleryItem } from "./browse-gallery";
 import { selectCardPreview } from "./card-preview";
 import type { GalleryCard } from "./gallery-projection";
-import type { PublicPreview, PublicResource } from "./types";
+import type { PublicPreview, PublicResource, PublicSearchImage } from "./types";
 
 export type CardViewModel = {
   resourceId: string;
@@ -11,7 +11,7 @@ export type CardViewModel = {
   displayTitle: string;
   artist?: string;
   subtitle?: string;
-  preview: ReturnType<typeof selectCardPreview>;
+  preview: { primary: PublicSearchImage | null; fallback: PublicSearchImage | null; srcset: string };
   hasUpscaled: boolean;
   labels: string[];
 };

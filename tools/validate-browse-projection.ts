@@ -20,6 +20,8 @@ import {
 } from "../packages/domain/src/browse.js";
 import { validateCatalog } from "../packages/domain/src/validation.js";
 import type { Catalog } from "../packages/domain/src/schema.js";
+import { loadFormalCatalog } from "../apps/site/src/lib/site-data.js";
+import { fileURLToPath } from "node:url";
 
 function argument(argv: string[], name: string, fallback: string): string {
   const index = argv.indexOf(name);
@@ -31,12 +33,13 @@ async function json(filePath: string): Promise<unknown> {
 }
 
 async function loadCatalogFile(filePath: string): Promise<Catalog> {
+  if (filePath === path.resolve("catalog/index.json")) return loadFormalCatalog();
   const validation = validateCatalog(await json(filePath));
   if (!validation.success) throw new Error("Catalog could not be read or validated: " + validation.issues.slice(0, 3).join("; "));
   return validation.data;
 }
 
-async function main(): Promise<void> {
+export async function validateBrowseFiles(): Promise<void> {
   const argv = process.argv.slice(2);
   const catalogPath = path.resolve(argument(argv, "--catalog", "catalog/index.json"));
   const outputDirectory = path.resolve(argument(argv, "--output", "catalog/browse"));
@@ -95,4 +98,4 @@ async function main(): Promise<void> {
   }, null, 2));
 }
 
-await main();
+if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) await validateBrowseFiles();

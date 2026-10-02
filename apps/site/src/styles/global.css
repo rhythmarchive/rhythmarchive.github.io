@@ -466,6 +466,9 @@ img { display: block; max-width: 100%; }
 .search-head-copy h1 { margin: 0.45rem 0 0; font-family: var(--display-font); font-size: clamp(2.3rem, 5vw, 3.8rem); line-height: 1; letter-spacing: -0.02em; font-kerning: normal; }
 .search-head-copy p { margin: 0.8rem 0 0; color: var(--text-muted); }
 .search-page-head .search-box { width: min(720px, 100%); margin-top: 1.45rem; }
+.search-filters { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 16px; }
+.search-filters label { display: flex; align-items: center; gap: 8px; color: var(--text-muted); font-size: 0.8rem; }
+.search-filters select { max-width: 100%; padding: 8px; border: 1px solid var(--line); border-radius: var(--radius-sm); background: var(--surface); color: var(--text); }
 .search-quick-links { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 8px; margin-top: 1.25rem; }
 .search-quick-links > span { margin-right: 4px; color: var(--text-soft); font-size: 0.73rem; }
 .search-quick-links a { display: inline-flex; align-items: center; gap: 6px; padding: 6px 10px; border: 1px solid var(--line); border-radius: var(--radius-sm); color: var(--text-muted); font-size: 0.75rem; }

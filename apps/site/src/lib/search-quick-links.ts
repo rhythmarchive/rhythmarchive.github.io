@@ -38,7 +38,10 @@ export function buildSearchQuickLinks(data: Pick<PublicSiteData, "games">): Sear
   return QUICK_LINK_DEFINITIONS.flatMap((definition) => {
     const game = data.games.find((candidate) => candidate.slug === definition.game);
     if (!game || game.count <= 0) return [];
-    if (!definition.category) return [{ label: definition.label, href: `/${game.slug}/jacket/`, count: game.count }];
+    if (!definition.category) {
+      const jackets = game.categories.find((category) => category.slug === "jacket");
+      return jackets && jackets.count > 0 ? [{ label: `${definition.label} 曲绘`, href: `/${game.slug}/jacket/`, count: jackets.count }] : [];
+    }
 
     const category = game.categories.find((candidate) => candidate.slug === definition.category);
     if (!category || category.count <= 0) return [];

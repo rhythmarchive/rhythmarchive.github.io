@@ -4,10 +4,11 @@ import path from "node:path";
 import { loadFormalCatalog } from "../src/lib/site-data.js";
 import { projectCatalog } from "../src/lib/catalog-projection.js";
 import { ROS_BASE_URL } from "../src/lib/site-config.js";
+import { fileURLToPath } from "node:url";
 
+export async function generateStatsResourceRegistry(checkOnly = false): Promise<void> {
 const workspaceRoot = path.resolve(process.cwd());
 const outputPath = path.join(workspaceRoot, "workers", "stats", "src", "public-resource-registry.ts");
-const checkOnly = process.argv.includes("--check");
 
 const catalog = loadFormalCatalog();
 // Membership needs only the canonical public projection, never Browse/Updates timestamps.
@@ -39,4 +40,9 @@ if (checkOnly) {
 } else {
   if (current !== output) await writeFile(outputPath, output, "utf8");
   console.log(`Public stats resource registry generated: ${resourceIds.length} resources, ${games.length} games.`);
+}
+}
+
+if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+  await generateStatsResourceRegistry(process.argv.includes("--check"));
 }

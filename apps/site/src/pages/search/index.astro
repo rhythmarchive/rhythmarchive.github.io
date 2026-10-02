@@ -5,6 +5,7 @@ import { formatCount } from "../../lib/format";
 import { buildSearchQuickLinks } from "../../lib/search-quick-links";
 import { getPublicNavigationGames } from "../../lib/site-data";
 import { urls } from "../../lib/site-urls";
+import { CATEGORY_LABELS } from "../../lib/game-config";
 
 const query = Astro.url.searchParams.get("q") ?? "";
 const description = `搜索${getPublicNavigationGames().map((game) => game.displayName).join("、")}的曲绘、角色头像、特殊插画和其他图片资源。`;
@@ -24,6 +25,10 @@ const browseGroups = games.map((game) => ({
       <h1>搜索资源</h1>
     </div>
     <SearchBox initialQuery={query} />
+    <div class="search-filters">
+      <label>游戏 <select data-search-game><option value="">全部游戏</option>{games.map((game) => <option value={game.slug}>{game.displayName}</option>)}</select></label>
+      <label>分类 <select data-search-category><option value="">全部分类</option>{Object.entries(CATEGORY_LABELS).filter(([slug]) => games.some((game) => game.categories.some((category) => category.slug === slug))).map(([slug, label]) => <option value={slug}>{label}</option>)}</select></label>
+    </div>
     <div class="search-quick-links" data-search-landing>
       <span>快捷入口</span>
       {quickLinks.map((entry) => <a href={urls.sitePath(entry.href)}>{entry.label}<small>{formatCount(entry.count)}</small></a>)}
@@ -53,6 +58,7 @@ const browseGroups = games.map((game) => ({
       <div><a class="button button-secondary" href={urls.sitePath("/games/")}>浏览游戏库</a><a class="text-link" href={urls.sitePath("/feedback/")}>反馈缺少的资源</a></div>
     </div>
     <div class="resource-grid" data-search-results></div>
+    <div class="gallery-more"><button class="button button-secondary" type="button" data-search-more hidden>加载更多</button></div>
   </section>
   <script src="../../scripts/search-page.ts"></script>
 </BaseLayout>
