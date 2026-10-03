@@ -2855,6 +2855,54 @@
           "change": "added"
         }
       ]
+    },
+    {
+      "id": "phigros-4.0.1-other-videos-avatars",
+      "game": "phigros",
+      "releaseIds": [
+        "38a30e2a-dce7-767b-8b7d-25219c6af795"
+      ],
+      "kind": "update",
+      "publishedAt": "2026-10-03T10:47:45.731314Z",
+      "contentVersion": "4.0.1",
+      "items": [
+        {
+          "resourceId": "82686251-c7fa-76f7-ac0c-f2ea440f24c1",
+          "change": "added"
+        },
+        {
+          "resourceId": "9eca829a-1b4c-7ad7-931d-a3007f38a77b",
+          "change": "added"
+        },
+        {
+          "resourceId": "aef85ed0-cd6e-7752-90fb-ea1461cabdcc",
+          "change": "added"
+        },
+        {
+          "resourceId": "7df5d169-06ab-7c6b-bc31-2aec8b767c77",
+          "change": "added"
+        },
+        {
+          "resourceId": "c12467f9-c286-7203-8118-50bedf176ac9",
+          "change": "added"
+        },
+        {
+          "resourceId": "28b3e643-9a50-7723-b64a-ba72e4dc6396",
+          "change": "added"
+        },
+        {
+          "resourceId": "c81f9ff1-caab-7cf3-9785-c09bb9e77d48",
+          "change": "added"
+        },
+        {
+          "resourceId": "780e4077-0c58-73ec-8141-6e44ed1b69a7",
+          "change": "added"
+        },
+        {
+          "resourceId": "f65a865b-1a45-79aa-99b7-c69478994bd4",
+          "change": "added"
+        }
+      ]
     }
   ]
 }
