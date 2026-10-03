@@ -1,29 +1,53 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { mediaItems, PREVIEW_MEDIA_ORIGIN } from "../../lib/phigros-media-preview";
+import { getPublicNavigationGames } from "../../lib/site-data";
 import { urls } from "../../lib/site-urls";
 import "../../styles/phigros-media-preview.css";
-// Development review only; production returns to the formal archive.
 if (!import.meta.env.DEV) return Astro.redirect(urls.sitePath("/phigros/"));
-const first = mediaItems[0], clip = first.clips[0];
+const clip = mediaItems[0].clips[0];
+const categories = getPublicNavigationGames().find(game => game.slug === "phigros")!.categories;
 const mib = (bytes: number) => `${(bytes / 1048576).toFixed(2)} MiB`;
 const duration = (seconds: number) => `${Math.floor(seconds / 60)}:${String(Math.round(seconds % 60)).padStart(2, "0")}`;
 ---
-<BaseLayout title="第九章 · 剧情与演出 - Phigros - Rhythm Archive" description="第九章剧情图、解锁演出与动态背景的本地预览。" canonicalPath="/preview/phigros-media/" bodyClass="phigros-media-preview">
+<BaseLayout title="Phigros 视频演出 | Rhythm Archive" description="Phigros 视频演出" canonicalPath="/preview/phigros-media/" bodyClass="phigros-media-preview">
   <div class="page-container media-archive" data-media-archive>
-    <nav class="media-breadcrumb" aria-label="面包屑"><a href={urls.sitePath("/games/")}>游戏库</a><span>/</span><a href={urls.sitePath("/phigros/")}>Phigros</a><span>/</span><span>第九章</span></nav>
-    <header class="media-heading"><div><p class="media-eyebrow">PHIGROS 4.0.1 <span>内容档案</span></p><h1>第九章 <span>剧情与演出</span></h1><p class="media-intro">穹顶孤舟。沿剧情阶段，查看原画、解锁演出与动态背景。</p></div><div class="media-heading-note"><span class="local-preview-label">本地预览</span><span>6 组演出 · 11 段视频</span></div></header>
-    <div class="media-view-bar"><div class="media-view-tabs" role="tablist" aria-label="资源类型"><button id="video-tab" type="button" role="tab" aria-selected="true" aria-controls="video-panel" data-view="video">视频演出 <span>11</span></button><button id="cg-tab" type="button" role="tab" aria-selected="false" aria-controls="cg-panel" tabindex="-1" data-view="cg">剧情图像 <span>2 组</span></button></div><span class="media-loading-note"><i aria-hidden="true"></i>静态封面 · 点击后加载视频</span></div>
-    <section id="video-panel" class="video-workspace" role="tabpanel" aria-labelledby="video-tab">
+    <nav class="media-breadcrumb" aria-label="面包屑"><a href={urls.sitePath("/games/")}>游戏库</a><span>/</span><a href={urls.sitePath("/phigros/")}>Phigros</a><span>/</span><span>视频演出</span></nav>
+    <header class="media-heading"><div><p class="media-eyebrow">Phigros</p><h1>视频演出</h1></div></header>
+    <nav class="category-nav media-category-nav" aria-label="Phigros 分类">
+      <span class="category-nav-label">资源类型</span>
+      {categories.map(category => <>
+        <a href={urls.sitePath(`/phigros/${category.slug}/`)}>{category.label}</a>
+        {category.slug === "story-cg" ? <a class="is-active" href={urls.sitePath("/preview/phigros-media/")}>视频演出</a> : null}
+      </>)}
+    </nav>
+    <section class="video-workspace">
       <div class="media-main">
-        <div class="media-screen"><video data-player controls playsinline preload="none" hidden aria-label="视频演出播放器"></video><div class="media-cover" data-cover><img data-poster src={`${PREVIEW_MEDIA_ORIGIN}/posters/${clip.poster}`} alt={`${first.title} 演出封面`} width="640" height="360" /><div class="media-cover-shade"></div><div class="media-spoiler" data-spoiler hidden><span class="spoiler-symbol" aria-hidden="true">◇</span><strong>包含第九章后续剧情</strong><p>查看画面后，仍需点击播放才会加载视频。</p><button type="button" class="button button-secondary" data-reveal>查看剧情画面</button></div><button type="button" class="media-play-button" data-play><span class="media-play-icon" aria-hidden="true">▶</span><span>播放演出<small data-cover-quality>480p · 省流预览</small></span></button><span class="media-screen-duration" data-screen-duration>{duration(clip.duration)}</span></div><p class="media-player-error" data-player-error role="alert" hidden>视频暂时无法加载。请稍后重试或下载原始视频。</p></div>
-        <div class="media-player-toolbar"><label>清晰度 <select data-quality aria-label="播放清晰度"><option value="480p">480p · 省流</option><option value="720p">720p · 清晰</option></select></label><label data-clip-label hidden>片段 <select data-clip aria-label="演出片段"></select></label><span data-size>{mib(clip.sources["480p"].bytes)}</span><button type="button" class="media-stop" data-stop hidden>停止加载</button></div>
-        <div class="media-resource-info"><div class="media-resource-title"><div><p data-category>{first.category}</p><h2 data-title>{first.title}</h2></div><a class="button button-secondary media-download" data-download href={`${PREVIEW_MEDIA_ORIGIN}/originals/${clip.originalFile}?download=1`}>下载原始视频 <span data-original-size>{mib(clip.originalBytes)}</span></a></div><p class="media-resource-description" data-description>{first.description}</p><div class="media-resource-facts"><span data-duration>{duration(clip.duration)}</span><span data-audio>含音轨</span><span>不自动连播</span><span data-savings>省流版约减少 74% 文件体积</span></div><p class="media-status" data-status aria-live="polite">尚未加载视频。选择清晰度后，点击画面开始播放。</p><details class="media-source-details"><summary>资源来源与文件信息</summary><dl><div><dt>来源</dt><dd>Phigros 4.0.1 APK</dd></div><div><dt>资源键 / 源路径</dt><dd data-asset-key>{clip.assetKey}</dd></div><div><dt>原始规格</dt><dd data-original-spec>1920 × 1080 · 30 fps · {duration(clip.originalDuration)}</dd></div></dl></details></div>
+        <div class="media-screen">
+          <video data-player controls playsinline preload="none" hidden aria-label="视频演出播放器"></video>
+          <div class="media-cover" data-cover>
+            <img data-poster src={`${PREVIEW_MEDIA_ORIGIN}/posters/${clip.poster}`} alt="Exoplanetary Mirage 演出封面" width="640" height="360" />
+            <div class="media-cover-shade"></div>
+            <div class="media-spoiler" data-spoiler hidden><strong>剧情内容</strong><button type="button" class="button button-secondary" data-reveal>查看</button></div>
+            <button type="button" class="media-play-button" data-play aria-label="播放视频"><span class="media-play-icon" aria-hidden="true">▶</span><span>播放</span></button>
+            <span class="media-screen-duration" data-screen-duration>{duration(clip.duration)}</span>
+          </div>
+          <p class="media-player-error" data-player-error role="alert" hidden>视频无法播放，请稍后重试。</p>
+        </div>
+        <div class="media-player-toolbar"><label data-clip-label hidden>片段 <select data-clip aria-label="演出片段"></select></label><button type="button" class="media-stop" data-stop hidden>停止播放</button></div>
+        <div class="media-resource-title media-video-title"><h2 data-title>Exoplanetary Mirage</h2><a class="button button-secondary media-download" data-download href={`${PREVIEW_MEDIA_ORIGIN}/originals/${clip.originalFile}?download=1`}>下载视频 <span data-original-size>{mib(clip.originalBytes)}</span></a></div>
+        <p class="sr-only" data-status aria-live="polite"></p>
       </div>
-      <aside class="media-playlist" aria-label="第九章演出目录"><div class="media-playlist-heading"><h2>演出目录</h2><label class="sr-only" for="media-filter">筛选演出类型</label><select id="media-filter" data-filter><option value="all">全部演出</option><option value="unlock">曲目解锁</option><option value="story">剧情过场</option><option value="background">动态背景</option></select></div><div class="media-playlist-items">{mediaItems.map((item, index) => <button type="button" class:list={{ "media-playlist-item": true, "is-selected": index === 0 }} data-item={index} data-kind={item.kind} aria-pressed={index === 0}><div class="media-list-image">{item.spoiler ? <span class="media-list-spoiler">◇<small>剧情内容</small></span> : <img src={`${PREVIEW_MEDIA_ORIGIN}/posters/${item.clips[0].poster}`} alt="" loading="lazy" width="160" height="90" />}<span>{duration(item.clips[0].duration)}</span></div><div><span class="media-item-category">{item.category}</span><strong>{item.title}</strong><small>{item.clips.length > 1 ? `${item.clips.length} 个片段 · 可切换难度` : "480p / 720p"}</small></div></button>)}</div><div class="media-data-note"><strong>按需观看</strong><p>浏览目录不会加载视频。原始文件仅在主动下载时传输。</p></div></aside>
+      <aside class="media-playlist" aria-label="演出目录">
+        <div class="media-playlist-heading"><h2>演出目录</h2><label class="sr-only" for="media-filter">筛选演出类型</label><select id="media-filter" data-filter><option value="all">全部演出</option><option value="unlock">曲目解锁</option><option value="story">剧情过场</option><option value="background">动态背景</option></select></div>
+        <div class="media-playlist-items">
+          {mediaItems.map((item, index) => <button type="button" class:list={{ "media-playlist-item": true, "is-selected": index === 0 }} data-item={index} data-kind={item.kind} aria-pressed={index === 0}>
+            <div class="media-list-image">{item.spoiler ? <span class="media-list-spoiler">◇<small>剧情内容</small></span> : <img src={`${PREVIEW_MEDIA_ORIGIN}/posters/${item.clips[0].poster}`} alt="" loading="lazy" width="160" height="90" />}<span>{duration(item.clips[0].duration)}</span></div>
+            <div><span class="media-item-category">{item.category}</span><strong>{item.title}</strong>{item.clips.length > 1 ? <small>{item.clips.length} 个片段</small> : null}</div>
+          </button>)}
+        </div>
+      </aside>
     </section>
-    <section id="cg-panel" role="tabpanel" aria-labelledby="cg-tab" hidden><div class="cg-heading"><div><p class="media-eyebrow">剧情图像</p><h2 data-cg-title>秘密剧情 · 鸠与 Gino</h2></div><label>剧情场景 <select data-cg-scene aria-label="剧情场景"><option value="secret">秘密剧情 · 鸠与 Gino</option><option value="deduction">推演 · 重逢</option></select></label></div><div class="cg-stage"><img class="cg-base" data-cg-base alt="推演场景背景" hidden /><img class="cg-layer" data-cg-layer alt="当前剧情画面" hidden /><div class="media-spoiler" data-cg-spoiler><span class="spoiler-symbol" aria-hidden="true">◇</span><strong>包含第九章剧情画面</strong><p>原始图像与剧情组件预览。</p><button class="button button-secondary" type="button" data-cg-reveal>查看剧情图像</button></div></div><div class="cg-controls" data-cg-controls hidden><div class="cg-frame-buttons" data-cg-frames aria-label="推演剧情状态" hidden></div><div class="cg-download-row"><label data-cg-background-label hidden><input type="checkbox" data-cg-background checked /> 显示场景背景</label><span data-cg-caption>2048 × 1152 · 完整原画</span><a class="button button-secondary" data-cg-download>下载原图</a></div></div><p class="cg-footnote" data-cg-footnote>完整原画包含左右角色与斜向分隔线；游戏字幕和渐变叠层不包含在图片中。</p><a class="media-existing-cg" href={urls.sitePath("/phigros/story-cg/")}>浏览已收录的 15 张第九章剧情 CG <span aria-hidden="true">→</span></a></section>
-    <noscript><p>视频播放与剧情图像切换需要 JavaScript。你仍可使用原始视频下载链接。</p></noscript>
   </div>
   <script src="../../scripts/phigros-media-preview.ts"></script>
 </BaseLayout>
