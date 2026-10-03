@@ -291,7 +291,7 @@ export async function downloadSelectedBatch(options: {
 }): Promise<void> {
   if (options.selectedIds.length === 0) return;
   if (options.selectedIds.length > MAX_BATCH_FILES) {
-    options.setStatus("一次选择的文件较多，请减少后再下载。");
+    options.setStatus("最多选择 " + MAX_BATCH_FILES + " 项，请减少选择。");
     return;
   }
   const resolved = options.selectedIds.map((resourceId) => {
@@ -305,7 +305,7 @@ export async function downloadSelectedBatch(options: {
   const items = resolved as Array<{ resource: BatchResource; download: PublicDownload }>;
   const totalBytes = items.reduce((sum, item) => sum + item.download.sizeBytes, 0);
   if (totalBytes > MAX_BATCH_BYTES) {
-    options.setStatus("一次选择的文件较多，请减少后再下载。");
+    options.setStatus("所选文件总大小超过 " + MAX_BATCH_BYTES / (1024 * 1024) + " MB，请减少选择。");
     return;
   }
 

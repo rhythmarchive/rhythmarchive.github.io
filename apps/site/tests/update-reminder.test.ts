@@ -117,9 +117,9 @@ test("update reminder keeps markup, public game data, and client state in their 
   assert.match(client, /callback: \(token\) => \{ turnstileToken = token;/u);
   assert.match(client, /turnstileToken \? \{ turnstileToken \} : \{\}/u);
   assert.match(client, /submitting/u);
-  assert.match(client, /已收到提醒/u);
-  assert.match(client, /最近已经提醒过/u);
-  assert.match(client, /暂时没能送出提醒/u);
+  assert.match(client, /提醒已提交/u);
+  assert.match(client, /近期已收到提醒/u);
+  assert.match(client, /提醒提交失败/u);
   assert.match(config, /PUBLIC_UPDATE_REMINDERS_ENABLED/u);
   assert.match(styles, /\.update-reminder/u);
 });

@@ -28,13 +28,13 @@ const payload = JSON.stringify(updates).replace(/</gu, "\\u003c");
       </select></label>
       <button class="text-link" type="button" data-update-clear hidden>清除筛选</button>
     </form>
-    <p class="updates-status" data-update-status aria-live="polite">{updates.length > 0 ? "共 " + formatCount(updates.length) + " 批更新" : "暂时还没有更新记录。"}</p>
+    <p class="updates-status" data-update-status aria-live="polite">{updates.length > 0 ? "共 " + formatCount(updates.length) + " 批更新" : "暂无更新记录。"}</p>
   </section>
 
   <section class="page-container updates-timeline" aria-label="更新记录列表">
     <div data-updates-list>
       {updates.slice(0, 20).map((update) => <UpdateCard update={update} />)}
-      {updates.length === 0 && <div class="updates-empty"><p>暂时还没有更新记录。</p></div>}
+      {updates.length === 0 && <div class="updates-empty"><p>暂无更新记录。</p></div>}
     </div>
     <div class="updates-empty" data-update-no-results hidden><p>没有找到这类更新。</p><button class="text-link" type="button" data-update-empty-clear>清除筛选</button></div>
     <div class="updates-more"><button class="button button-secondary" type="button" data-update-more hidden>加载更多</button></div>

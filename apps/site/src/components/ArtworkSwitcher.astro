@@ -15,7 +15,7 @@ const active = variants.find((variant) => variant.variantId === activeVariantId)
     <h2 id="artwork-switcher-heading">难度差分曲绘 <span>{variants.length} 张</span></h2>
     <span class="artwork-current" aria-live="polite">当前：<strong data-variant-current>{active?.label}</strong></span>
   </div>
-  <p>选择难度，切换对应曲绘与下载。</p>
+  <p>选择难度，查看和下载对应曲绘。</p>
   <div class="artwork-variant-tabs" role="tablist" aria-label="难度差分曲绘">
     {variants.map((variant) => {
       const preview = variant.preview.small ?? variant.preview.medium ?? variant.preview.large;

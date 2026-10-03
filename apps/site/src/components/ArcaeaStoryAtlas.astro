@@ -227,7 +227,7 @@ function authoredLabelStyle(point: { x: number; y: number }, label: StoryAtlasNo
       const parts = sectionParts(section.label);
       return <button class:list={{ "story-atlas-part-tab": true, "is-active": index === 0 }} type="button" role="tab" data-story-section={section.act} aria-selected={index === 0} aria-controls={"story-atlas-section-" + section.act}>
         {artwork ? <img {...imageAttributes(artwork, true)} alt="" decoding="async" /> : null}
-        <span><small>{parts.act}</small><strong>{parts.part}</strong>{section.resourceCount > 0 ? <em>{section.resourceCount} 个视觉资源</em> : null}</span>
+        <span><small>{parts.act}</small><strong>{parts.part}</strong>{section.resourceCount > 0 ? <em>{section.resourceCount} 项资源</em> : null}</span>
       </button>;
     })}
   </nav>
@@ -324,7 +324,7 @@ function authoredLabelStyle(point: { x: number; y: number }, label: StoryAtlasNo
       <div>
         <span class="story-atlas-section-act">Act I · Part III</span>
         <h3>Final Verdict</h3>
-        <p>探索最终章节的连续路径。</p>
+        <p>最终章节的连续剧情路径。</p>
       </div>
       <div class="story-camera-controls">
         <button type="button" class="icon-button" data-story-camera="zoom-out" aria-label="缩小">−</button>

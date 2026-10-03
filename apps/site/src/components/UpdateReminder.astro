@@ -12,8 +12,8 @@ const { games } = Astro.props;
 <aside class="update-reminder" data-update-reminder aria-labelledby="update-reminder-heading">
   <div class="update-reminder-copy">
     <span class="section-kicker">Missed an update?</span>
-    <h3 id="update-reminder-heading">发现有游戏更新了？</h3>
-    <p id="update-reminder-description">如果这里还没看到，可以提醒我去检查一下。</p>
+    <h3 id="update-reminder-heading">提醒更新</h3>
+    <p id="update-reminder-description">游戏已更新但本站还未收录时，可发送提醒。</p>
   </div>
   <form class="update-reminder-form" data-update-reminder-form aria-describedby="update-reminder-description update-reminder-status">
     <label for="update-reminder-game">
@@ -24,7 +24,7 @@ const { games } = Astro.props;
       </select>
     </label>
     {PUBLIC_UPDATE_REMINDERS_TURNSTILE_SITE_KEY ? <div class="update-reminder-turnstile" data-update-reminder-turnstile data-site-key={PUBLIC_UPDATE_REMINDERS_TURNSTILE_SITE_KEY}></div> : null}
-    <button class="button button-primary" type="submit" data-update-reminder-submit>提醒一下</button>
+    <button class="button button-primary" type="submit" data-update-reminder-submit>提醒更新</button>
     <p class="update-reminder-status" data-update-reminder-status role="status" aria-live="polite" hidden></p>
   </form>
 </aside>

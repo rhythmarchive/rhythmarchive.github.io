@@ -75,13 +75,13 @@ function initializeUpdateReminder(): void {
     turnstileToken = "";
     if (result.status === "accepted") {
       uiState = "success";
-      renderStatus("已收到提醒，我会去检查一下。", "success");
+      renderStatus("提醒已提交。", "success");
     } else if (result.status === "duplicate") {
       uiState = "duplicate";
-      renderStatus("这个游戏最近已经提醒过了，谢谢提醒。", "duplicate");
+      renderStatus("该游戏近期已收到提醒。", "duplicate");
     } else {
       uiState = "error";
-      renderStatus("暂时没能送出提醒，请稍后再试。", "error");
+      renderStatus("提醒提交失败，请稍后重试。", "error");
     }
     renderControls();
   }
@@ -124,7 +124,7 @@ function initializeUpdateReminder(): void {
     reminderGameSelect.disabled = submitting;
     reminderSubmitButton.disabled = submitting || waitingForTurnstile;
     reminderForm.setAttribute("aria-busy", String(submitting));
-    reminderSubmitButton.textContent = submitting ? "提交中…" : waitingForTurnstile ? "完成验证后提交" : uiState === "error" ? "重试提醒" : "提醒一下";
+    reminderSubmitButton.textContent = submitting ? "提交中…" : waitingForTurnstile ? "完成验证后提交" : uiState === "error" ? "重试提醒" : "提醒更新";
   }
 
   function renderStatus(message: string, state?: Exclude<ReminderUiState, "idle">): void {

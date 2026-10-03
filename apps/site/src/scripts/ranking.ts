@@ -59,7 +59,7 @@ async function initializeRanking(root: HTMLElement): Promise<void> {
       list!.replaceChildren(...rows.map((row, index) => createRankingRow(row, index + 1)));
       status!.textContent = rows.length > 0
         ? (period === "7d" ? "近 7 天" : "累计") + " · " + formatStatsCount(rows.length) + " 项"
-        : "暂时没有可展示的热门资源。";
+        : "暂无热门资源。";
     } catch (error) {
       if (token !== runToken) return;
       console.error("Ranking data failed", error);

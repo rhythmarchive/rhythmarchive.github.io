@@ -559,7 +559,7 @@ async function initialize(root: HTMLElement): Promise<void> {
     const items = resourcesForIds([...new Set(resourceIds)]);
     if (items.length === 0) return undefined;
     const section = element("section", compact ? "story-dialog-resources is-compact" : "story-dialog-resources");
-    section.append(textNode("div", compact ? "相关视觉资源" : "相关视觉", "story-detail-section-label"));
+    section.append(textNode("div", "相关资源", "story-detail-section-label"));
     const grid = element("div", compact ? "story-dialog-resource-strip" : "story-dialog-resource-grid");
     for (const resource of items) {
       const card = element("article", "story-dialog-resource-card");
@@ -636,7 +636,7 @@ async function initialize(root: HTMLElement): Promise<void> {
       if (article.childElementCount > 0) flow.append(article);
     }
     if (flow.childElementCount === 0 && (!textEntry || !choice || segments.length === 0)) {
-      flow.append(textNode("p", resourceIds.length > 0 ? "该节点仅包含游戏内插画，包体未提供对白正文。" : "这条剧情暂时没有可显示的正文。", "story-dialog-empty"));
+      flow.append(textNode("p", resourceIds.length > 0 ? "此节点暂无剧情正文，可查看相关图片。" : "暂无剧情正文。", "story-dialog-empty"));
     }
     if (flow.childElementCount > 0) section.append(flow);
     if (hasInlineVisual) {
