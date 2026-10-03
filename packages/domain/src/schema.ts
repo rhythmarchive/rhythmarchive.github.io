@@ -18,8 +18,8 @@ const UUID = z.string().regex(UUID_PATTERN, "must be a UUID");
 const UUIDV7 = z.string().regex(UUID_V7_PATTERN, "must be an RFC 9562 UUIDv7");
 const SHA256 = z.string().regex(/^[0-9a-f]{64}$/i, "must be a SHA-256 hex digest");
 const ISO_DATE = z.string().refine((value) => !Number.isNaN(Date.parse(value)), "must be an ISO-like timestamp");
-const MIME = z.enum(["image/jpeg", "image/png", "image/webp", "image/avif", "image/gif", "audio/ogg", "application/octet-stream"]);
-const EXTENSION = z.enum(["jpg", "jpeg", "png", "webp", "avif", "gif", "ogg", "bin"]);
+const MIME = z.enum(["image/jpeg", "image/png", "image/webp", "image/avif", "image/gif", "video/mp4", "audio/ogg", "application/octet-stream"]);
+const EXTENSION = z.enum(["jpg", "jpeg", "png", "webp", "avif", "gif", "mp4", "ogg", "bin"]);
 const FILE_NAME = z.string().min(1).refine((value) => !/[\\/\0]/.test(value), "must be a file name, not a path");
 const PORTABLE_RELATIVE_PATH = z.string().min(1).refine((value) => {
   if (value.includes("\0")) return false;
@@ -51,6 +51,7 @@ export const ResourceType = z.enum([
   "linkplay-preview",
   "sticker",
   "story-cg",
+  "video",
   "story-texture",
   "startup",
   "world-mode",
@@ -166,6 +167,8 @@ export const Variant = z.object({
   id: UUIDV7,
   resourceId: UUIDV7,
   variantKey: z.string().min(1).refine((value) => !/[\\/]/.test(value), "must not be a path"),
+  label: z.string().min(1).optional(),
+  sortOrder: z.number().int().nonnegative().optional(),
   kind: VariantKind,
   semanticStatus: VariantSemanticStatus,
   /** Explicit default selection for galleries whose labels are not enough. */
@@ -199,6 +202,13 @@ export const AssetObject = z.object({
   width: z.number().int().positive().optional(),
   height: z.number().int().positive().optional(),
   alpha: z.enum(["none", "opaque", "translucent", "unknown"]),
+  media: z.object({
+    durationSeconds: z.number().finite().positive(),
+    fps: z.number().finite().positive(),
+    hasAudio: z.boolean(),
+    videoCodec: z.string().min(1).optional(),
+    audioCodec: z.string().min(1).optional(),
+  }).optional(),
   objectKey: z.string().regex(/^(objects|assets)\/[0-9a-f]{64}\/[a-z0-9]+$/i, "objectKey must be immutable and portable"),
   createdAt: ISO_DATE,
   provenance: z.array(ObjectProvenance).min(1),

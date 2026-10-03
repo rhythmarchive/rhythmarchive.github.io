@@ -25,6 +25,7 @@ export const CATEGORY_LABELS: Record<ResourceTypeId, string> = {
   "character-portrait": "角色立绘",
   "character-avatar": "头像",
   "story-cg": "剧情 CG",
+  video: "视频演出",
   "story-texture": "剧情贴图",
   "pack-cover": "曲包封面",
   background: "游玩背景",
@@ -83,7 +84,7 @@ export const GAME_CONFIG: Record<GameId, GameConfig> = {
   phigros: {
     slug: "phigros",
     displayName: "Phigros",
-    categoryOrder: ["jacket", "story-cg", "character-avatar", "pack-cover", "phigros-april-fools", "other"],
+    categoryOrder: ["jacket", "story-cg", "video", "character-avatar", "pack-cover", "phigros-april-fools", "other"],
     featuredCategories: ["jacket", "story-cg", "pack-cover", "character-avatar", "phigros-april-fools"],
     filters: { difficulty: true, upscale: false },
     metadataLabels: {
@@ -231,7 +232,8 @@ export function displayFilterDifficultyLabel(value: string, game?: GameId): stri
   return displayDifficultyLabel(value, game);
 }
 
-export function displayVariantLabel(variant: { variantKey: string; difficulty?: string | undefined; semanticStatus: string }): string {
+export function displayVariantLabel(variant: { variantKey: string; label?: string | undefined; difficulty?: string | undefined; semanticStatus: string }): string {
+  if (variant.label) return variant.label;
   if (variant.difficulty) return displayDifficultyLabel(variant.difficulty);
   if (variant.semanticStatus === "unresolved" || variant.variantKey.includes("256")) return "其他版本";
   const labels: Record<string, string> = {

@@ -1,20 +1,8 @@
 ---
-import BaseLayout from "../../../layouts/BaseLayout.astro";
-import { PREVIEW_MEDIA_ORIGIN } from "../../../lib/phigros-media-preview";
+import { getSiteData } from "../../../lib/site-data";
 import { urls } from "../../../lib/site-urls";
-import "../../../styles/phigros-media-preview.css";
 export function getStaticPaths() { return ["secret", "deduction"].map(scene => ({ params: { scene } })); }
-if (!import.meta.env.DEV) return Astro.redirect(urls.sitePath("/phigros/story-cg/"));
-const secret = Astro.params.scene === "secret";
-const title = secret ? "秘密剧情 · 鸠与 Gino" : "推演 · 重逢";
-const file = secret ? "CollectionHeader.png" : "1.png";
+const title = Astro.params.scene === "secret" ? "秘密剧情 · 鸠与 Gino" : "推演 · 重逢";
+const resource = getSiteData().resources.find(resource => resource.game === "phigros" && resource.resourceType === "story-cg" && resource.displayTitle === title);
+return Astro.redirect(urls.sitePath(resource?.route ?? "/phigros/story-cg/"));
 ---
-<BaseLayout title={`${title} | Rhythm Archive`} description={title} canonicalPath={`/preview/phigros-cg/${Astro.params.scene}/`} bodyClass="phigros-media-preview">
-  <div class="page-container media-archive" data-cg-viewer data-cg-scene={Astro.params.scene}>
-    <nav class="media-breadcrumb" aria-label="面包屑"><a href={urls.sitePath("/phigros/")}>Phigros</a><span>/</span><a href={urls.sitePath("/phigros/story-cg/")}>剧情 CG</a><span>/</span><span>{title}</span></nav>
-    <header class="media-heading"><h1>{title}</h1><a class="button button-secondary" data-cg-download href={`${PREVIEW_MEDIA_ORIGIN}/cg/${file}?download=1`}>下载原图</a></header>
-    <div class="cg-stage"><img class="cg-base" data-cg-base alt="场景背景" hidden /><img class="cg-layer" data-cg-layer src={`${PREVIEW_MEDIA_ORIGIN}/cg/${file}`} alt={title} /></div>
-    {!secret ? <div class="cg-controls"><div class="cg-frame-buttons" data-cg-frames aria-label="剧情画面"></div><div class="cg-download-row"><label data-cg-background-label hidden><input type="checkbox" data-cg-background checked /> 背景</label></div></div> : null}
-  </div>
-  <script src="../../../scripts/phigros-cg-preview.ts"></script>
-</BaseLayout>

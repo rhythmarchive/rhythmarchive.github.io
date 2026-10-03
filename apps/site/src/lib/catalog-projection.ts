@@ -90,6 +90,9 @@ const PUBLIC_METADATA_KEYS = new Set([
   "isRuntimeComposite",
   "componentRelations",
   "description",
+  "mediaKind",
+  "mediaOrder",
+  "spoiler",
   "rizcardId",
 ]);
 
@@ -283,7 +286,7 @@ function projectGameActivity(resources: Resource[]): Pick<PublicGameIndex, "cont
 function projectResource(resource: Resource, variants: Variant[], renditionsByVariant: Map<string, Rendition[]>, objectsById: Map<string, AssetObject>, rosBaseUrl: string, phigrosAprilFoolsYear?: number): PublicResource {
   const projectedVariants = variants
     .map((variant) => projectVariant(variant, renditionsByVariant.get(variant.id) ?? [], objectsById, rosBaseUrl))
-    .sort((a, b) => Number(Boolean(b.preferred)) - Number(Boolean(a.preferred)) || a.label.localeCompare(b.label, "en") || a.variantId.localeCompare(b.variantId));
+    .sort((a, b) => Number(Boolean(b.preferred)) - Number(Boolean(a.preferred)) || (a.sortOrder ?? Number.MAX_SAFE_INTEGER) - (b.sortOrder ?? Number.MAX_SAFE_INTEGER) || a.label.localeCompare(b.label, "en") || a.variantId.localeCompare(b.variantId));
   const active = projectedVariants.find((variant) => variant.preferred) ?? projectedVariants[0];
   const original = active?.original;
   const upscaled = active?.upscaled;
@@ -307,6 +310,11 @@ function projectResource(resource: Resource, variants: Variant[], renditionsByVa
       }
     : undefined;
   const promotedArcaeaStoryCg = isPromotedArcaeaStoryCg(resource);
+  const compositionInput = resource.metadata.composition;
+  const compositionConfig = compositionInput && typeof compositionInput === "object" && !Array.isArray(compositionInput) ? compositionInput as Record<string, unknown> : undefined;
+  const backgroundKey = compositionConfig?.backgroundVariantKey;
+  const background = typeof backgroundKey === "string" ? projectedVariants.find(variant => variant.variantKey === backgroundKey)?.original : undefined;
+  const overlayKeys = Array.isArray(compositionConfig?.overlayVariantKeys) ? compositionConfig.overlayVariantKeys : [];
 
   return {
     resourceId: resource.id,
@@ -327,6 +335,7 @@ function projectResource(resource: Resource, variants: Variant[], renditionsByVa
     } : {}),
     variants: projectedVariants,
     preview: active?.preview ?? emptyPreview(),
+    ...(background ? { composition: { background, overlayVariantIds: projectedVariants.filter(variant => overlayKeys.includes(variant.variantKey ?? "")).map(variant => variant.variantId) } } : {}),
     ...(original ? { original, downloadFilename: original.downloadFilename, mime: original.mime, sizeBytes: original.sizeBytes } : {}),
     ...(upscaled ? { upscaled } : {}),
   };
@@ -510,6 +519,7 @@ function projectVariant(variant: Variant, renditions: Rendition[], objectsById: 
     preview,
     ...(variant.variantKey ? { variantKey: variant.variantKey } : {}),
     ...(variant.preferred ? { preferred: true } : {}),
+    ...(variant.sortOrder !== undefined ? { sortOrder: variant.sortOrder } : {}),
     ...(variant.difficulty ? { difficulty: variant.difficulty } : {}),
     ...(original ? { original } : {}),
     ...(originals.length > 0 ? { originals } : {}),
@@ -523,7 +533,7 @@ function projectPreview(renditions: Rendition[], size: keyof typeof PREVIEW_TYPE
   if (!rendition) return null;
   const object = objectsById.get(rendition.objectId);
   if (!object) return null;
-  if (object.width === undefined || object.height === undefined) return null;
+  if (object.width === undefined || object.height === undefined || !object.mime.startsWith("image/")) return null;
   return { url: objectUrl(object.objectKey, rosBaseUrl), width: object.width, height: object.height, mime: object.mime };
 }
 
@@ -535,6 +545,7 @@ function projectDownload(rendition: Rendition, objectsById: Map<string, AssetObj
     downloadFilename: rendition.downloadFilename,
     mime: object.mime,
     sizeBytes: object.sizeBytes,
+    ...(object.media ? { media: object.media } : {}),
     ...(object.width !== undefined ? { width: object.width } : {}),
     ...(object.height !== undefined ? { height: object.height } : {}),
   };

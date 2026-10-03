@@ -33,6 +33,7 @@ export type PublicDownload = {
   sizeBytes: number;
   width?: number;
   height?: number;
+  media?: { durationSeconds: number; fps: number; hasAudio: boolean; videoCodec?: string | undefined; audioCodec?: string | undefined };
 };
 
 export type PublicSearchImage = {
@@ -74,6 +75,7 @@ export type PublicVariant = {
   preview: PublicPreview;
   variantKey?: string;
   preferred?: boolean;
+  sortOrder?: number;
   original?: PublicDownload;
   originals?: PublicDownload[];
   upscaled?: PublicDownload;
@@ -104,6 +106,7 @@ export type PublicResource = {
   downloadFilename?: string;
   mime?: string;
   sizeBytes?: number;
+  composition?: { background: PublicDownload; overlayVariantIds: string[] };
 };
 
 export type PublicStoryUi = Record<string, PublicResource>;

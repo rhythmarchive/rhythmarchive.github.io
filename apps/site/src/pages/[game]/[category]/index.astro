@@ -10,7 +10,7 @@ import { formatCount } from "../../../lib/format";
 
 import { getBrowseGalleryBuild, getPublicNavigationGames, getSiteData, loadCategoryBrowseProjections } from "../../../lib/site-data";
 import { urls } from "../../../lib/site-urls";
-import { phigrosCgPreviewResources } from "../../../lib/phigros-cg-preview";
+import VideoGallery from "../../../components/VideoGallery.astro";
 
 export function getStaticPaths() {
   const siteData = getSiteData();
@@ -33,36 +33,33 @@ export function getStaticPaths() {
   })));
 }
 
-const { game, category, resources: formalResources, browseData, storyStructure, storyAtlas, storyUi, storyAvatars } = Astro.props;
+const { game, category, resources, browseData, storyStructure, storyAtlas, storyUi, storyAvatars } = Astro.props;
 const gameId = game.slug as GameId;
 const categoryId = category.slug as ResourceTypeId;
-const hasLocalCg = import.meta.env.DEV && gameId === "phigros" && categoryId === "story-cg";
-const resources = hasLocalCg ? [...phigrosCgPreviewResources(), ...formalResources] : formalResources;
 const browseConfig = getCategoryBrowseConfig(gameId, categoryId, resources);
 const firstImage = browseData?.items.find((item) => item.preview.large)?.preview.large?.url ?? resources.find((resource) => resource.preview.large)?.preview.large?.url;
-const categoryCount = browseData?.items.length ?? (hasLocalCg ? resources.length : category.count);
-const description = `浏览并下载 ${game.displayName} ${category.label} 图片资源。`;
+const categoryCount = browseData?.items.length ?? category.count;
+const description = `浏览并下载 ${game.displayName} ${category.label}${categoryId === "video" ? "视频" : "图片"}资源。`;
 ---
 
-<BaseLayout title={`${game.displayName} ${category.label}图片 | Rhythm Archive`} description={description} canonicalPath={`/${game.slug}/${category.slug}/`} ogImage={firstImage} bodyClass="gallery-page">
+<BaseLayout title={`${game.displayName} ${category.label} | Rhythm Archive`} description={description} canonicalPath={`/${game.slug}/${category.slug}/`} ogImage={firstImage} bodyClass="gallery-page">
   <section class="page-container category-hero">
-    <div><span class="archive-kicker">{game.displayName}</span><h1>{category.label}</h1><p>{formatCount(categoryCount)} 项资源</p></div>
+    <div><span class="archive-kicker">{game.displayName}</span><h1>{category.label}</h1>{categoryId !== "video" ? <p>{formatCount(categoryCount)} 项资源</p> : null}</div>
     <a class="text-link" href={urls.sitePath(`/${game.slug}/${primaryCategorySlug(game.slug)}/`)}>返回 {game.displayName}</a>
   </section>
   <nav class="page-container category-nav" aria-label={`${game.displayName} 分类`}>
     <span class="category-nav-label">资源类型</span>
     {game.categories.map((item) => <>
-      <a class:list={{ "is-active": item.slug === category.slug }} href={urls.sitePath(`/${game.slug}/${item.slug}/`)}>{item.label} <span>{formatCount(import.meta.env.DEV && gameId === "phigros" && item.slug === "story-cg" ? item.count + 2 : item.slug === category.slug ? categoryCount : item.count)}</span></a>
-      {import.meta.env.DEV && gameId === "phigros" && item.slug === "story-cg" ? <a href={urls.sitePath("/preview/phigros-media/")}>视频演出</a> : null}
+      <a class:list={{ "is-active": item.slug === category.slug }} href={urls.sitePath(`/${game.slug}/${item.slug}/`)}>{item.label} <span>{formatCount(item.slug === category.slug ? categoryCount : item.count)}</span></a>
     </>)}
   </nav>
   <div class="page-container">
-    {browseData ? (
+    {categoryId === "video" ? <VideoGallery resources={resources} /> : browseData ? (
       <BrowseGallery data={browseData} categoryLabel={category.label} galleryUrl={urls.sitePath(`/data/browse/${game.slug}/jacket.json`)} />
     ) : (
       <>
         {storyStructure ? <ArcaeaStoryAtlas resources={resources} storyStructure={storyStructure} {...(storyAtlas ? { storyAtlas } : {})} {...(storyUi ? { storyUi } : {})} {...(storyAvatars ? { storyAvatars } : {})} /> : null}
-        <Gallery resources={storyStructure ? [] : resources.slice(0, 48)} total={resources.length} game={gameId} category={categoryId} categoryLabel={category.label} galleryUrl={urls.sitePath(`${hasLocalCg ? "/preview" : "/data"}/galleries/${game.slug}/${category.slug}.json`)} config={browseConfig} {...(storyStructure ? { defer: true } : {})} />
+        <Gallery resources={storyStructure ? [] : resources.slice(0, 48)} total={resources.length} game={gameId} category={categoryId} categoryLabel={category.label} galleryUrl={urls.sitePath(`/data/galleries/${game.slug}/${category.slug}.json`)} config={browseConfig} {...(storyStructure ? { defer: true } : {})} />
       </>
     )}
   </div>

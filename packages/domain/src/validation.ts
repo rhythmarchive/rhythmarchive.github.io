@@ -252,6 +252,7 @@ export function validateCatalog(value: unknown): ValidationResult<CatalogType> {
     if (object.id.toLowerCase() !== `sha256:${object.sha256.toLowerCase()}`) issues.push(issue(`objects.${object.id}.id`, "Object id must equal sha256"));
     const objectKeyDigest = object.objectKey.split("/")[1]?.toLowerCase();
     if (objectKeyDigest !== object.sha256.toLowerCase()) issues.push(issue(`objects.${object.id}.objectKey`, "objectKey must contain the Object sha256"));
+    if (object.mime === "video/mp4" && (object.extension !== "mp4" || !object.media || !object.width || !object.height)) issues.push(issue(`objects.${object.id}`, "MP4 Object requires mp4 extension, media metadata and dimensions"));
   }
   for (const rendition of catalog.renditions) {
     if (!objectIds.has(rendition.objectId)) issues.push(issue(`renditions.${rendition.id}.objectId`, "must reference an Object declared in the catalog"));

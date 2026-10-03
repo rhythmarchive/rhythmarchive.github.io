@@ -1,6 +1,8 @@
 ---
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 import DownloadActions from "../../../components/DownloadActions.astro";
+import VideoGallery from "../../../components/VideoGallery.astro";
+import StoryComposition from "../../../components/StoryComposition.astro";
 import VariantPanel from "../../../components/VariantPanel.astro";
 import ResourceCard from "../../../components/ResourceCard.astro";
 import ArtworkSwitcher from "../../../components/ArtworkSwitcher.astro";
@@ -75,22 +77,22 @@ function chartStatusLabel(status: NonNullable<PublicResource["charts"]>[number][
 function chartDifficultyLabel(difficulty: string): string {
   return displayDifficultyLabel(difficulty, resource.game);
 }
-const description = `${resource.displayTitle}${resource.artist ? ` · ${resource.artist}` : ""} - ${GAME_CONFIG[resource.game].displayName} 图片资源。`;
+const description = `${resource.displayTitle}${resource.artist ? ` · ${resource.artist}` : ""} - ${GAME_CONFIG[resource.game].displayName} ${resource.resourceType === "video" ? "视频" : "图片"}资源。`;
 ---
 
 <BaseLayout title={`${resource.displayTitle} - ${GAME_CONFIG[resource.game].displayName} | Rhythm Archive`} description={description} canonicalPath={resource.route} ogImage={preview} bodyClass="detail-page">
   <div class="page-container detail-shell" data-detail-root data-resource-id={resource.resourceId}>
     <div class="detail-breadcrumb"><a href={urls.sitePath("/games/")}>游戏库</a><span>/</span><a href={urls.sitePath(`/${resource.game}/${resource.category}/`)}>{GAME_CONFIG[resource.game].displayName}</a><span>/</span><span>{resource.categoryLabel}</span></div>
-    <div class="detail-layout">
+    {resource.resourceType === "video" ? <><h1 class="sr-only">{resource.displayTitle}</h1><VideoGallery resources={[resource]} /></> : <div class="detail-layout">
       <div class="detail-visual">
-        {hasDifficultyArtwork && firstVariant ? <ArtworkSwitcher variants={variants} activeVariantId={firstVariant.variantId} /> : variants.length > 1 ? (
+        {resource.composition ? <StoryComposition resource={resource} /> : hasDifficultyArtwork && firstVariant ? <ArtworkSwitcher variants={variants} activeVariantId={firstVariant.variantId} /> : variants.length > 1 ? (
           <div class="variant-tabs" role="tablist" aria-label="资源版本">
             {variants.map((variant, index) => <button class:list={{ "is-active": index === activeVariantIndex }} type="button" id={`variant-tab-${variant.variantId}`} data-variant-select={variant.variantId} data-variant-label={variant.label} role="tab" tabindex={index === activeVariantIndex ? 0 : -1} aria-selected={index === activeVariantIndex ? "true" : "false"} aria-controls={`variant-panel-${variant.variantId}`}>{variant.label}</button>)}
           </div>
         ) : null}
-        <div class="variant-panels">
+        {!resource.composition ? <div class="variant-panels">
           {variants.map((variant, index) => <VariantPanel variant={variant} fallback={variant.original} active={index === activeVariantIndex} labelledBy={variants.length > 1 ? `variant-tab-${variant.variantId}` : undefined} alt={hasDifficultyArtwork ? `${resource.displayTitle} · ${variant.label} 曲绘` : resource.displayTitle} sourceToggle={resource.resourceType === "jacket" && (resource.game === "arcaea" || resource.game === "paradigm-reboot")} />)}
-        </div>
+        </div> : null}
       </div>
       <aside class="detail-info">
         <nav class="detail-navigation" data-detail-navigation hidden aria-label="浏览来源列表中的资源">
@@ -140,7 +142,7 @@ const description = `${resource.displayTitle}${resource.artist ? ` · ${resource
         ) : null}
 
       </aside>
-    </div>
+    </div>}
     {related.length > 0 ? (
       <section class="related-section" aria-labelledby="related-heading">
         <div class="section-heading"><div><h2 id="related-heading">相关资源</h2></div></div>

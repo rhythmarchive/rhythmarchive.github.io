@@ -2811,6 +2811,50 @@
           "change": "added"
         }
       ]
+    },
+    {
+      "id": "phigros-4.0.1-chapter9-media",
+      "game": "phigros",
+      "releaseIds": [
+        "9f98927e-dea2-7f62-9b0a-8dc48ad92b4c"
+      ],
+      "kind": "update",
+      "publishedAt": "2026-10-03T08:06:08.322Z",
+      "contentVersion": "4.0.1",
+      "items": [
+        {
+          "resourceId": "f4958f5d-cd23-71b5-917e-f1ef18b0076c",
+          "change": "added"
+        },
+        {
+          "resourceId": "4991740c-0505-7b60-ae26-248088cc40a0",
+          "change": "added"
+        },
+        {
+          "resourceId": "4fa8b66c-c650-7900-b16e-eafe321b9e79",
+          "change": "added"
+        },
+        {
+          "resourceId": "2aa97509-84d2-7a31-ba1b-b191811bbbeb",
+          "change": "added"
+        },
+        {
+          "resourceId": "0be320c9-f97a-7c07-bf75-57146bfa2dc6",
+          "change": "added"
+        },
+        {
+          "resourceId": "612c93f1-5969-7d66-8dfe-da101782f870",
+          "change": "added"
+        },
+        {
+          "resourceId": "3025417b-1386-734b-ac18-a0b951ef18db",
+          "change": "added"
+        },
+        {
+          "resourceId": "6d580c15-bc0b-7597-ac4a-be54247a8dbf",
+          "change": "added"
+        }
+      ]
     }
   ]
 }

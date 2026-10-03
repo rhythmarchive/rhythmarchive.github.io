@@ -1,9 +1,3 @@
 import type { APIRoute } from "astro";
-import { getSiteData } from "../../../../lib/site-data";
-import { galleryCard } from "../../../../lib/gallery-projection";
-import { phigrosCgPreviewResources } from "../../../../lib/phigros-cg-preview";
-
-export const GET: APIRoute = () => new Response(JSON.stringify([
-  ...(import.meta.env.DEV ? phigrosCgPreviewResources() : []),
-  ...(getSiteData().galleries["phigros/story-cg"] ?? []),
-].map(galleryCard)), { headers: { "Content-Type": "application/json" } });
+import { urls } from "../../../../lib/site-urls";
+export const GET: APIRoute = () => Response.redirect(urls.absoluteUrl("/data/galleries/phigros/story-cg.json"), 301);

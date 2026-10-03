@@ -1,0 +1,13 @@
+---
+import type { PublicResource } from "../lib/types";
+import "../styles/media-gallery.css";
+interface Props { resource: PublicResource }
+const { resource } = Astro.props;
+const first = resource.variants.find(variant => variant.preferred) ?? resource.variants[0]!;
+const variants = resource.variants.map(variant => ({ id: variant.variantId, label: variant.label, original: variant.original!, preview: (variant.preview.large ?? variant.preview.medium ?? variant.preview.small)!.url, overlay: resource.composition!.overlayVariantIds.includes(variant.variantId) }));
+---
+<section data-story-composition data-variants={JSON.stringify(variants)} data-background-url={resource.composition!.background.url}>
+  <div class="cg-stage"><img class="cg-base" data-cg-base alt="场景背景" hidden /><img class="cg-layer" data-cg-layer src={(first.preview.large ?? first.preview.medium ?? first.preview.small)!.url} alt={resource.displayTitle} /></div>
+  <div class="cg-controls"><div class="cg-frame-buttons" data-cg-frames aria-label="剧情画面"></div><div class="cg-download-row"><label data-cg-background-label hidden><input type="checkbox" data-cg-background checked /> 背景</label><button type="button" class="button button-secondary" data-cg-download data-resource-id={resource.resourceId} data-download-url={first.original!.url} data-download-filename={first.original!.downloadFilename}>下载原图</button></div></div>
+</section>
+<script src="../scripts/story-composition.ts"></script>
