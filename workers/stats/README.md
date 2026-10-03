@@ -13,9 +13,13 @@
 - POST /v1/admin/update-reminders/:game/resolve：鉴权后关闭当前 pending 周期但保留历史。
 - POST /v1/admin/update-reminders/:game/retry-notification：鉴权后重置当前通知重试状态。
 
-公开接口有 body 上限和短期限流。限流键是 Cloudflare edge client 的短期哈希，不保存原始 IP、UA、地理位置或页面轨迹。visitorId 只用于普通去重，不能绕过服务端限流。RATE_LIMITER binding 是每个 scope 的前置 120 次/60 秒突发拦截；通过后仍使用现有 D1 短期桶执行接口额度：events 和 resource-stats 各 60 次/分钟，update-reminders 20 次/10 分钟，site stats 与 ranking 共用 stats-read 120 次/分钟。未配置绑定也执行同样的 D1 规则；无持久化适配器的本地测试保留 isolate 内存后备。绑定拒绝时不访问 D1；绑定或 D1 限流失败返回 503，不放行。通过原生检查的请求增加现有 D1 限流操作（当前为清理、计数、读取三条语句），需关注 D1 用量。
+公开接口有 body 上限和短期限流。限流键是 Cloudflare edge client 的短期哈希，不保存原始 IP、UA、地理位置或页面轨迹。visitorId 只用于普通去重，不能绕过服务端限流。RATE_LIMITER binding 是每个 scope 的前置 120 次/60 秒突发拦截；通过后仍使用现有 D1 短期桶执行接口额度：events 和 resource-stats 各 60 次/分钟，update-reminders 20 次/10 分钟，site stats 与 ranking 共用 stats-read 120 次/分钟。未配置绑定也执行同样的 D1 规则；无持久化适配器的本地测试保留 isolate 内存后备。绑定拒绝时不访问 D1；绑定或 D1 限流失败返回 503，不放行。每个通过原生检查的请求只做限流计数 UPSERT 和主键读取两条 D1 SQL；过期限流桶由 Cron 按 window_started_at 索引清理，读取失败或状态缺失仍返回 503。
 
 站点访问按匿名 visitor ID 的 30 分钟窗口去重。资源 detail 和直接下载共享一个资源 view 去重键；下载另有 10 秒短窗口。有效 view/download 同时写入 resource_stats 和 resource_daily_stats，因此 7 日榜使用同一去重结果。累计 resource_stats 保留，日统计、event dedupe、限流桶和过期 reminder visitor 由 5 分钟 cron 清理。
+
+事件热路径用条件 UPSERT claim：仅旧 expires_at <= 当前时刻时更新过期时间，不再全局 DELETE。重复事件不续期；即使 Cron 延迟，30 分钟/10 秒窗口仍在准确边界恢复计数。
+
+7d/all 榜单使用现有 Workers Cache API 缓存 60 秒，无新绑定或迁移。缓存键包含 host、registry hash、统计日期、period 和 limit；每个请求在查缓存前仍执行原生与 D1 限流。缓存只存榜单 entries，不存 CORS 或限流响应，API 对浏览器仍返回 no-store。冷缓存请求在同一 isolate 合并聚合；成功空榜也可缓存，缓存故障回源，D1 故障返回 503且不缓存错误。榜单最多短暂滞后 60 秒；跨日期/registry 不复用。Cache API 按 Cloudflare 地点独立，命中率取决于实际路由和缓存存活，不能宣称全世界每分钟只查一次。详见 [D1 用量优化与验证](D1_USAGE.md)。
 
 更新提醒按游戏建立 pending cycle，保留首次/最近提醒时间、累计有效提醒数、resolved_at 和通知状态。首次有效提醒触发一封 Resend 邮件；同一 pending cycle 后续提醒只累计，不重复发信。Turnstile 默认必需：写入提醒前服务端调用 siteverify，要求 success、hostname 和 action 均符合配置。Secret 或预期 hostname/action 缺失返回 503 turnstile_unavailable；无 token、验证失败或 claims 不符返回 403 turnstile_failed。Pages 同时需要公开的 PUBLIC_UPDATE_REMINDERS_TURNSTILE_SITE_KEY；客户端 action 固定为 update-reminder。邮件失败按有限退避重试，最多 5 次；管理接口可查询、resolve 或手动重试。
 

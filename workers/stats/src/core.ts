@@ -1,4 +1,5 @@
 import { isUuidV7, normalizeUuid } from "../../../packages/domain/src/identifiers.js";
+import { getResourceRankingWithCache, type RankingCache } from "./ranking-cache.js";
 import { PUBLIC_GAME_DISPLAY_NAMES, PUBLIC_GAME_SLUGS, PUBLIC_RESOURCE_CATALOG_GENERATED_AT, PUBLIC_RESOURCE_REGISTRY_SHA256, PUBLIC_RESOURCE_IDS, type PublicGameSlug } from "./public-resource-registry.js";
 export type { PublicGameSlug } from "./public-resource-registry.js";
 
@@ -144,6 +145,7 @@ export interface Env {
 export type NotificationFetch = (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 
 type HandlerOptions = {
+  rankingCache?: RankingCache;
   store?: StatsStore;
   now?: () => number;
   waitUntil?: (promise: Promise<unknown>) => void;
@@ -179,19 +181,18 @@ type UpdateReminderCycleRow = {
 };
 
 const CLAIM_DEDUPE_SQL = `
-  INSERT OR IGNORE INTO event_dedupe
+  INSERT INTO event_dedupe
     (visitor_id, dedupe_kind, resource_id, expires_at)
   VALUES (?, ?, ?, ?)
+  ON CONFLICT(visitor_id, dedupe_kind, resource_id) DO UPDATE SET
+    expires_at = excluded.expires_at
+  WHERE event_dedupe.expires_at <= ?
 `;
 
 export class D1StatsStore implements StatsStore {
   constructor(private readonly db: D1Database) {}
 
   async consumeRequestRateLimit(rateKey: string, scope: string, nowMs: number, windowMs: number, maxRequests: number): Promise<RequestRateLimitResult> {
-    await this.db.prepare(`
-      DELETE FROM request_rate_limits
-      WHERE window_started_at + ? <= ?
-    `).bind(24 * 60 * 60 * 1000, nowMs).run();
     await this.db.prepare(`
       INSERT INTO request_rate_limits (rate_key, scope, window_started_at, request_count)
       VALUES (?, ?, ?, 1)
@@ -210,8 +211,11 @@ export class D1StatsStore implements StatsStore {
       FROM request_rate_limits
       WHERE rate_key = ? AND scope = ?
     `).bind(rateKey, scope).first<{ window_started_at?: number; request_count?: number }>();
-    const windowStartedAt = typeof row?.window_started_at === "number" ? row.window_started_at : nowMs;
-    const requestCount = safeCounter(row?.request_count);
+    if (!row || !Number.isSafeInteger(row.window_started_at) || !Number.isSafeInteger(row.request_count) || row.request_count! < 1) {
+      throw new Error("request rate limit state unavailable");
+    }
+    const windowStartedAt = row.window_started_at!;
+    const requestCount = row.request_count!;
     if (requestCount <= maxRequests) return { allowed: true, retryAfterSeconds: 0 };
     return {
       allowed: false,
@@ -220,10 +224,8 @@ export class D1StatsStore implements StatsStore {
   }
   async recordEvent(event: StatsEvent, nowMs: number, date: string): Promise<RecordedEvent> {
     if (event.type !== "site_visit" && !isPublicResourceId(event.resourceId)) throw new Error("resource is not in the public Catalog");
-    await this.db.prepare("DELETE FROM event_dedupe WHERE expires_at <= ?").bind(nowMs).run();
-
     if (event.type === "site_visit") {
-      const counted = await this.claim(event.visitorId, "site", "", nowMs + SITE_SESSION_WINDOW_MS);
+      const counted = await this.claim(event.visitorId, "site", "", nowMs, nowMs + SITE_SESSION_WINDOW_MS);
       if (counted) {
         await this.db.prepare(`
           UPDATE site_totals
@@ -241,12 +243,12 @@ export class D1StatsStore implements StatsStore {
       return { siteVisitCounted: counted, viewCounted: false, downloadCounted: false, site: await this.getSiteStats(date) };
     }
 
-    const viewCounted = await this.claim(event.visitorId, "view", event.resourceId, nowMs + SITE_SESSION_WINDOW_MS);
+    const viewCounted = await this.claim(event.visitorId, "view", event.resourceId, nowMs, nowMs + SITE_SESSION_WINDOW_MS);
     if (viewCounted) await this.incrementResource(event.resourceId, "views", nowMs, date);
 
     let downloadCounted = false;
     if (event.type === "resource_download") {
-      downloadCounted = await this.claim(event.visitorId, "download", event.resourceId, nowMs + DOWNLOAD_DEDUPE_WINDOW_MS);
+      downloadCounted = await this.claim(event.visitorId, "download", event.resourceId, nowMs, nowMs + DOWNLOAD_DEDUPE_WINDOW_MS);
       if (downloadCounted) await this.incrementResource(event.resourceId, "downloads", nowMs, date);
     }
 
@@ -256,7 +258,7 @@ export class D1StatsStore implements StatsStore {
 
   async cleanup(nowMs: number, date: string): Promise<void> {
     await this.db.prepare("DELETE FROM event_dedupe WHERE expires_at <= ?").bind(nowMs).run();
-    await this.db.prepare("DELETE FROM request_rate_limits WHERE window_started_at + ? <= ?").bind(24 * 60 * 60 * 1000, nowMs).run();
+    await this.db.prepare("DELETE FROM request_rate_limits WHERE window_started_at <= ?").bind(nowMs - 24 * 60 * 60 * 1000).run();
     await this.db.prepare("DELETE FROM site_daily WHERE visit_date < ?").bind(dateOffset(date, -SITE_DAILY_STATS_RETENTION_DAYS)).run();
     await this.db.prepare("DELETE FROM resource_daily_stats WHERE stat_date < ?").bind(dateOffset(date, -RESOURCE_DAILY_STATS_RETENTION_DAYS)).run();
     await this.db.prepare(`
@@ -536,8 +538,8 @@ export class D1StatsStore implements StatsStore {
       resolvedAt: nullableTimestamp(cycle?.resolved_at),
     };
   }
-  private async claim(visitorId: string, kind: string, resourceId: string, expiresAt: number): Promise<boolean> {
-    const result = await this.db.prepare(CLAIM_DEDUPE_SQL).bind(visitorId, kind, resourceId, expiresAt).run();
+  private async claim(visitorId: string, kind: string, resourceId: string, nowMs: number, expiresAt: number): Promise<boolean> {
+    const result = await this.db.prepare(CLAIM_DEDUPE_SQL).bind(visitorId, kind, resourceId, expiresAt, nowMs).run();
     return resultChanges(result) > 0;
   }
 
@@ -758,7 +760,7 @@ export async function handleRequest(request: Request, env: Env, options: Handler
         period: validation.period,
         date: range.endDate,
         ...(validation.period === "7d" ? { startDate: range.startDate } : {}),
-        entries: await store.getResourceRanking(validation.period, range.endDate, validation.limit),
+        entries: await getResourceRankingWithCache(store, options.rankingCache, url.origin, validation.period, range.endDate, validation.limit, nowMs),
       }, 200, corsHeaders);
     }
     if (path === "/v1/update-reminders" && request.method === "POST") {

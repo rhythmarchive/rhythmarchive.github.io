@@ -1,5 +1,6 @@
 import { D1StatsStore, handleRequest, processPendingUpdateReminderNotifications, siteDateKey } from "./core.js";
 import type { Env } from "./core.js";
+import type { RankingCache } from "./ranking-cache.js";
 
 type WorkerExecutionContext = {
   waitUntil(promise: Promise<unknown>): void;
@@ -7,7 +8,10 @@ type WorkerExecutionContext = {
 
 export default {
   fetch(request: Request, env: Env, ctx: WorkerExecutionContext): Promise<Response> {
-    return handleRequest(request, env, { waitUntil: (promise) => ctx.waitUntil(promise) });
+    let rankingCache: RankingCache | undefined;
+    try { rankingCache = (globalThis.caches as (CacheStorage & { default?: RankingCache }) | undefined)?.default; }
+    catch { /* Cache API availability must not affect statistics or limiting. */ }
+    return handleRequest(request, env, { ...(rankingCache ? { rankingCache } : {}), waitUntil: (promise) => ctx.waitUntil(promise) });
   },
   scheduled(_controller: unknown, env: Env, ctx: WorkerExecutionContext): void {
     const nowMs = Date.now();
