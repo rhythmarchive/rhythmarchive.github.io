@@ -26,6 +26,7 @@ export const UPDATE_REMINDER_NOTIFICATION_RETRY_BASE_MS = 5 * 60 * 1000;
 export const UPDATE_REMINDER_NOTIFICATION_LEASE_MS = 5 * 60 * 1000;
 export const UPDATE_REMINDER_NOTIFICATION_MAX_ATTEMPTS = 5;
 export const UPDATE_REMINDER_NOTIFICATION_MAX_BACKOFF_MS = 6 * 60 * 60 * 1000;
+export const UPDATE_REMINDER_DAILY_EMAIL_LIMIT = 80;
 
 export type StatsEvent =
   | { type: "site_visit"; visitorId: string }
@@ -74,6 +75,9 @@ export type UpdateReminderResult =
   | { status: "rate_limited"; retryAfterSeconds: number };
 
 export type UpdateReminderNotificationClaim = {
+  notificationId: string;
+  reminderCount: number;
+  remindedAt: number;
   cycleId: number;
   game: PublicGameSlug;
   cycleNumber: number;
@@ -100,8 +104,9 @@ export interface StatsStore {
   resolveUpdateReminder(game: PublicGameSlug, nowMs: number): Promise<UpdateReminderSummary | undefined>;
   retryUpdateReminderNotification(game: PublicGameSlug, nowMs: number): Promise<UpdateReminderSummary | undefined>;
   claimDueUpdateReminderNotifications(nowMs: number): Promise<UpdateReminderNotificationClaim[]>;
-  markUpdateReminderNotificationSent(cycleId: number, game: PublicGameSlug, nowMs: number): Promise<void>;
-  markUpdateReminderNotificationFailed(cycleId: number, nowMs: number, nextNotificationAt: number | null, errorCode: string): Promise<void>;
+  consumeUpdateReminderEmailBudget(nowMs: number): Promise<boolean>;
+  markUpdateReminderNotificationSent(claim: UpdateReminderNotificationClaim, nowMs: number): Promise<void>;
+  markUpdateReminderNotificationFailed(claim: UpdateReminderNotificationClaim, nowMs: number, nextNotificationAt: number | null, errorCode: string): Promise<void>;
   getSiteStats(date: string): Promise<SiteStats>;
   getResourceStats(resourceIds: readonly string[]): Promise<Map<string, ResourceStats>>;
   getResourceRanking(period: ResourceRankingPeriod, date: string, limit: number): Promise<ResourceRankingEntry[]>;
@@ -125,6 +130,7 @@ export interface D1PreparedStatement {
 
 export interface D1Database {
   prepare(query: string): D1PreparedStatement;
+  batch(statements: D1PreparedStatement[]): Promise<D1Result[]>;
 }
 
 export interface Env {
@@ -372,24 +378,34 @@ export class D1StatsStore implements StatsStore {
       return { status: "duplicate", nextAllowedAt: existing.last_reminded_at + UPDATE_REMINDER_DEDUPE_WINDOW_MS, summary: await this.getUpdateReminderSummaryV2(game) };
     }
     const firstRemindedAt = typeof existing?.first_reminded_at === "number" ? existing.first_reminded_at : nowMs;
-    await this.db.prepare(`
+    const visitorClaim = await this.db.prepare(`
       INSERT INTO update_reminder_cycle_visitors (cycle_id, visitor_id, game, first_reminded_at, last_reminded_at)
       VALUES (?, ?, ?, ?, ?)
       ON CONFLICT(cycle_id, visitor_id, game) DO UPDATE SET last_reminded_at = excluded.last_reminded_at
-    `).bind(cycle.id, visitorId, game, firstRemindedAt, nowMs).run();
-    await this.db.prepare(`
+      WHERE last_reminded_at + ? <= ?
+    `).bind(cycle.id, visitorId, game, firstRemindedAt, nowMs, UPDATE_REMINDER_DEDUPE_WINDOW_MS, nowMs).run();
+    if (resultChanges(visitorClaim) <= 0) {
+      const summary = await this.getUpdateReminderSummaryV2(game);
+      return { status: "duplicate", nextAllowedAt: (summary.lastReminderAt ?? nowMs) + UPDATE_REMINDER_DEDUPE_WINDOW_MS, summary };
+    }
+    await this.db.batch([this.db.prepare(`
       UPDATE update_reminder_cycles
-      SET last_reminded_at = ?, effective_reminder_count = effective_reminder_count + 1
+      SET last_reminded_at = ?, effective_reminder_count = effective_reminder_count + 1,
+          notification_status = 'pending', notification_attempts = 0,
+          last_notification_attempt_at = NULL, next_notification_at = NULL, last_notification_error = NULL
       WHERE id = ? AND pending = 1 AND resolved_at IS NULL
-    `).bind(nowMs, cycle.id).run();
-    await this.db.prepare(`
+    `).bind(nowMs, cycle.id), this.db.prepare(`
       UPDATE update_reminder_games
       SET pending = 1,
           first_reminded_at = CASE WHEN pending = 0 THEN ? ELSE COALESCE(first_reminded_at, ?) END,
           last_reminded_at = ?,
           effective_reminder_count = effective_reminder_count + 1
       WHERE game = ?
-    `).bind(nowMs, nowMs, nowMs, game).run();
+    `).bind(nowMs, nowMs, nowMs, game), this.db.prepare(`
+      INSERT INTO update_reminder_notifications (id, cycle_id, reminder_count, reminded_at)
+      SELECT ?, id, effective_reminder_count, ? FROM update_reminder_cycles
+      WHERE id = ? AND pending = 1 AND resolved_at IS NULL
+    `).bind(crypto.randomUUID(), nowMs, cycle.id)]);
     const summary = await this.getUpdateReminderSummaryV2(game);
     return { status: "accepted", firstReminder: summary.cycleEffectiveReminderCount === 1, summary };
   }
@@ -417,60 +433,101 @@ export class D1StatsStore implements StatsStore {
   async retryUpdateReminderNotification(game: PublicGameSlug, nowMs: number): Promise<UpdateReminderSummary | undefined> {
     const cycle = await this.getPendingUpdateReminderCycleV2(game);
     if (!cycle) return undefined;
-    if (normalizeNotificationStatus(cycle.notification_status) === "sent") return this.getUpdateReminderSummaryV2(game);
+    const failed = await this.db.prepare(`
+      SELECT id FROM update_reminder_notifications WHERE cycle_id = ? AND notification_status = 'failed'
+        AND COALESCE(last_notification_error, '') <> 'daily_limit_reached' LIMIT 1
+    `).bind(cycle.id).first<{ id: string }>();
+    if (!failed) return this.getUpdateReminderSummaryV2(game);
+    await this.db.prepare(`
+      UPDATE update_reminder_notifications
+      SET notification_status = 'pending', notification_attempts = 0,
+          last_notification_attempt_at = NULL, next_notification_at = ?, last_notification_error = NULL
+      WHERE cycle_id = ? AND notification_status = 'failed'
+        AND COALESCE(last_notification_error, '') <> 'daily_limit_reached'
+    `).bind(nowMs, cycle.id).run();
     await this.db.prepare(`
       UPDATE update_reminder_cycles
       SET notification_status = 'pending', notification_attempts = 0,
           last_notification_attempt_at = NULL, next_notification_at = ?, last_notification_error = NULL
-      WHERE id = ? AND pending = 1 AND resolved_at IS NULL
+      WHERE id = ? AND last_notification_error IS NOT 'daily_limit_reached'
     `).bind(nowMs, cycle.id).run();
     return this.getUpdateReminderSummaryV2(game);
   }
   async claimDueUpdateReminderNotifications(nowMs: number): Promise<UpdateReminderNotificationClaim[]> {
     const rows = await this.db.prepare(`
-      SELECT id, game FROM update_reminder_cycles
-      WHERE pending = 1 AND resolved_at IS NULL AND notification_status <> 'sent'
-        AND notification_attempts < ? AND (
-            (next_notification_at IS NULL AND notification_status = 'pending')
-            OR (next_notification_at IS NOT NULL AND next_notification_at <= ?)
-          )
-      ORDER BY COALESCE(next_notification_at, 0) ASC, last_reminded_at ASC
-    `).bind(UPDATE_REMINDER_NOTIFICATION_MAX_ATTEMPTS, nowMs).all<{ id: number; game: string }>();
+      SELECT n.id, n.cycle_id, n.reminder_count, n.reminded_at, c.game, c.cycle_number
+      FROM update_reminder_notifications n JOIN update_reminder_cycles c ON c.id = n.cycle_id
+      WHERE c.pending = 1 AND c.resolved_at IS NULL AND n.notification_status <> 'sent'
+        AND n.notification_attempts < ? AND (
+          (n.next_notification_at IS NULL AND n.notification_status = 'pending')
+          OR (n.next_notification_at IS NOT NULL AND n.next_notification_at <= ?))
+      ORDER BY n.reminded_at, n.id LIMIT 80
+    `).bind(UPDATE_REMINDER_NOTIFICATION_MAX_ATTEMPTS, nowMs).all<{
+      id: string; cycle_id: number; reminder_count: number; reminded_at: number; game: string; cycle_number: number;
+    }>();
     const claims: UpdateReminderNotificationClaim[] = [];
     for (const row of rows.results ?? []) {
       if (!isValidPublicGameSlug(row.game)) continue;
-      const changed = await this.db.prepare(`
-        UPDATE update_reminder_cycles
+      const claimed = await this.db.prepare(`
+        UPDATE update_reminder_notifications
         SET notification_status = 'pending', notification_attempts = notification_attempts + 1,
             last_notification_attempt_at = ?, next_notification_at = ?
-        WHERE id = ? AND pending = 1 AND resolved_at IS NULL
-          AND notification_status <> 'sent' AND notification_attempts < ? AND (
-            (next_notification_at IS NULL AND notification_status = 'pending')
-            OR (next_notification_at IS NOT NULL AND next_notification_at <= ?)
-          )
-      `).bind(nowMs, nowMs + UPDATE_REMINDER_NOTIFICATION_LEASE_MS, row.id, UPDATE_REMINDER_NOTIFICATION_MAX_ATTEMPTS, nowMs).run();
-      if (resultChanges(changed) <= 0) continue;
-      const cycle = await this.getUpdateReminderCycleByIdV2(row.id);
-      if (!cycle || !isValidPublicGameSlug(cycle.game)) continue;
-      claims.push({ cycleId: cycle.id, game: cycle.game, cycleNumber: cycle.cycle_number, attempt: cycle.notification_attempts, summary: await this.getUpdateReminderSummaryV2(cycle.game) });
+        WHERE id = ? AND notification_status <> 'sent' AND notification_attempts < ?
+          AND EXISTS (SELECT 1 FROM update_reminder_cycles WHERE id = cycle_id AND pending = 1 AND resolved_at IS NULL)
+          AND ((next_notification_at IS NULL AND notification_status = 'pending')
+            OR (next_notification_at IS NOT NULL AND next_notification_at <= ?))
+        RETURNING notification_attempts
+      `).bind(nowMs, nowMs + UPDATE_REMINDER_NOTIFICATION_LEASE_MS, row.id,
+        UPDATE_REMINDER_NOTIFICATION_MAX_ATTEMPTS, nowMs).first<{ notification_attempts: number }>();
+      if (!claimed) continue;
+      await this.db.prepare(`
+        UPDATE update_reminder_cycles SET notification_status = 'pending', notification_attempts = ?,
+          last_notification_attempt_at = ?, next_notification_at = ?
+        WHERE id = ? AND effective_reminder_count = ? AND pending = 1 AND resolved_at IS NULL
+      `).bind(claimed.notification_attempts, nowMs, nowMs + UPDATE_REMINDER_NOTIFICATION_LEASE_MS,
+        row.cycle_id, row.reminder_count).run();
+      claims.push({ notificationId: row.id, reminderCount: row.reminder_count, remindedAt: row.reminded_at,
+        cycleId: row.cycle_id, game: row.game, cycleNumber: row.cycle_number,
+        attempt: claimed.notification_attempts, summary: await this.getUpdateReminderSummaryV2(row.game) });
     }
     return claims;
   }
 
-  async markUpdateReminderNotificationSent(cycleId: number, game: PublicGameSlug, nowMs: number): Promise<void> {
-    await this.db.prepare(`
-      UPDATE update_reminder_cycles
-      SET last_notified_at = ?, notification_status = 'sent', next_notification_at = NULL, last_notification_error = NULL
-      WHERE id = ? AND pending = 1 AND resolved_at IS NULL
-    `).bind(nowMs, cycleId).run();
-    await this.db.prepare("UPDATE update_reminder_games SET last_notified_at = ? WHERE game = ?").bind(nowMs, game).run();
+  async consumeUpdateReminderEmailBudget(nowMs: number): Promise<boolean> {
+    // A single conditional UPSERT enforces the cap across isolates and Cron.
+    // Failed/uncertain requests consume a slot too, so we never undercount sends.
+    const changed = await this.db.prepare(`
+      INSERT INTO update_reminder_email_daily (send_date, attempts) VALUES (?, 1)
+      ON CONFLICT(send_date) DO UPDATE SET attempts = attempts + 1 WHERE attempts < ?
+    `).bind(new Date(nowMs).toISOString().slice(0, 10), UPDATE_REMINDER_DAILY_EMAIL_LIMIT).run();
+    return resultChanges(changed) > 0;
   }
 
-  async markUpdateReminderNotificationFailed(cycleId: number, nowMs: number, nextNotificationAt: number | null, errorCode: string): Promise<void> {
-    await this.db.prepare(`
+  async markUpdateReminderNotificationSent(claim: UpdateReminderNotificationClaim, nowMs: number): Promise<void> {
+    await this.db.batch([this.db.prepare(`
+      UPDATE update_reminder_notifications
+      SET last_notified_at = ?, notification_status = 'sent', next_notification_at = NULL, last_notification_error = NULL
+      WHERE id = ?
+    `).bind(nowMs, claim.notificationId), this.db.prepare(`
+      UPDATE update_reminder_cycles
+      SET last_notified_at = MAX(COALESCE(last_notified_at, 0), ?),
+          notification_status = CASE WHEN effective_reminder_count = ? THEN 'sent' ELSE notification_status END,
+          next_notification_at = CASE WHEN effective_reminder_count = ? THEN NULL ELSE next_notification_at END,
+          last_notification_error = CASE WHEN effective_reminder_count = ? THEN NULL ELSE last_notification_error END
+      WHERE id = ?
+    `).bind(nowMs, claim.reminderCount, claim.reminderCount, claim.reminderCount, claim.cycleId),
+      this.db.prepare('UPDATE update_reminder_games SET last_notified_at = MAX(COALESCE(last_notified_at, 0), ?) WHERE game = ?')
+        .bind(nowMs, claim.game)]);
+  }
+
+  async markUpdateReminderNotificationFailed(claim: UpdateReminderNotificationClaim, _nowMs: number, nextNotificationAt: number | null, errorCode: string): Promise<void> {
+    await this.db.batch([this.db.prepare(`
+      UPDATE update_reminder_notifications SET notification_status = 'failed', next_notification_at = ?, last_notification_error = ?
+      WHERE id = ?
+    `).bind(nextNotificationAt, errorCode, claim.notificationId), this.db.prepare(`
       UPDATE update_reminder_cycles SET notification_status = 'failed', next_notification_at = ?, last_notification_error = ?
-      WHERE id = ? AND pending = 1 AND resolved_at IS NULL
-    `).bind(nextNotificationAt, errorCode, cycleId).run();
+      WHERE id = ? AND effective_reminder_count = ? AND pending = 1 AND resolved_at IS NULL
+    `).bind(nextNotificationAt, errorCode, claim.cycleId, claim.reminderCount)]);
   }
   private async createUpdateReminderCycleV2(game: PublicGameSlug, nowMs: number): Promise<UpdateReminderCycleRow> {
     const row = await this.db.prepare(`
@@ -791,9 +848,7 @@ export async function handleRequest(request: Request, env: Env, options: Handler
           nextAllowedAt: recorded.nextAllowedAt,
         }, 409, corsHeaders);
       }
-      const notificationTask = recorded.firstReminder
-        ? processPendingUpdateReminderNotifications(env, { store, now: nowMs, fetchImpl: options.fetchImpl })
-        : Promise.resolve({ attempted: 0, sent: 0, failed: 0 });
+      const notificationTask = processPendingUpdateReminderNotifications(env, { store, ...(options.now ? { now: nowMs } : {}), fetchImpl: options.fetchImpl });
       if (options.waitUntil) options.waitUntil(notificationTask);
       else await notificationTask;
       return json({
@@ -859,21 +914,27 @@ export async function processPendingUpdateReminderNotifications(env: Env, option
   const fetchImpl = options.fetchImpl ?? ((input, init) => fetch(input, init));
   try {
     const claims = await store.claimDueUpdateReminderNotifications(nowMs);
+    let attempted = 0;
     let sent = 0;
     let failed = 0;
     for (const claim of claims) {
+      if (!(await store.consumeUpdateReminderEmailBudget(options.now ?? Date.now()))) {
+        await store.markUpdateReminderNotificationFailed(claim, nowMs, null, "daily_limit_reached");
+        continue;
+      }
+      attempted += 1;
       const delivery = await sendUpdateReminderNotification(env, claim, fetchImpl);
       if (delivery.ok) {
-        await store.markUpdateReminderNotificationSent(claim.cycleId, claim.game, nowMs);
+        await store.markUpdateReminderNotificationSent(claim, nowMs);
         sent += 1;
         continue;
       }
       const retryable = delivery.retryable && claim.attempt < UPDATE_REMINDER_NOTIFICATION_MAX_ATTEMPTS;
       const next = retryable ? nowMs + notificationRetryDelayMs(claim.attempt) : null;
-      await store.markUpdateReminderNotificationFailed(claim.cycleId, nowMs, next, delivery.errorCode ?? "notification_failed");
+      await store.markUpdateReminderNotificationFailed(claim, nowMs, next, delivery.errorCode ?? "notification_failed");
       failed += 1;
     }
-    return { attempted: claims.length, sent, failed };
+    return { attempted, sent, failed };
   } catch (error) {
     console.error("Update reminder notification processing failed", error instanceof Error ? error.message : String(error));
     return { attempted: 0, sent: 0, failed: 1 };
@@ -911,6 +972,7 @@ export async function sendUpdateReminderNotification(env: Env, claim: UpdateRemi
     "Content-Type": "application/json",
     Accept: "application/json",
     Authorization: "Bearer " + apiKey,
+    "Idempotency-Key": "update-reminder-" + claim.notificationId,
   };
   const displayName = PUBLIC_GAME_DISPLAY_NAMES[claim.game];
   try {
@@ -925,9 +987,9 @@ export async function sendUpdateReminderNotification(env: Env, claim: UpdateRemi
           "Rhythm Archive 更新提醒",
           "游戏：" + displayName,
           "game slug：" + claim.game,
-          "当前 cycle 有效提醒数量：" + claim.summary.cycleEffectiveReminderCount,
+          "当前 cycle 有效提醒数量：" + claim.reminderCount,
           "首次提醒时间：" + formatNotificationTime(claim.summary.firstReminderAt),
-          "最近提醒时间：" + formatNotificationTime(claim.summary.lastReminderAt),
+          "最近提醒时间：" + formatNotificationTime(claim.remindedAt),
           "当前 pending 状态：是",
         ].join("\n"),
       }),

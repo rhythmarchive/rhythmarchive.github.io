@@ -52,6 +52,8 @@ class MemoryStatsStore implements StatsStore {
   private readonly updateReminderRates = new Map<string, { windowStartedAt: number; requestCount: number }>();
   private readonly requestRates = new Map<string, { windowStartedAt: number; requestCount: number }>();
   private nextCycleId = 1;
+  private readonly notifications = new Map<string, { claim: UpdateReminderNotificationClaim; status: string; next: number | null; error: string | null }>();
+  private readonly emailDaily = new Map<string, number>();
 
   async consumeRequestRateLimit(rateKey: string, scope: string, nowMs: number, windowMs: number, maxRequests: number): Promise<{ allowed: boolean; retryAfterSeconds: number }> {
     const key = scope + ":" + rateKey;
@@ -188,6 +190,14 @@ class MemoryStatsStore implements StatsStore {
     summary.lastReminderAt = nowMs;
     summary.effectiveReminderCount += 1;
     summary.cycleEffectiveReminderCount += 1;
+    summary.notificationStatus = "pending";
+    summary.notificationAttempts = 0;
+    summary.nextNotificationAt = null;
+    summary.lastNotificationError = null;
+    const notificationId = crypto.randomUUID();
+    this.notifications.set(notificationId, { claim: { notificationId, reminderCount: summary.cycleEffectiveReminderCount,
+      remindedAt: nowMs, cycleId: summary.cycleId!, game, cycleNumber: summary.cycleNumber, attempt: 0, summary: { ...summary } },
+      status: "pending", next: null, error: null });
     return {
       status: "accepted",
       firstReminder: summary.cycleEffectiveReminderCount === 1,
@@ -220,33 +230,45 @@ class MemoryStatsStore implements StatsStore {
 
   async claimDueUpdateReminderNotifications(nowMs: number): Promise<UpdateReminderNotificationClaim[]> {
     const claims: UpdateReminderNotificationClaim[] = [];
-    for (const summary of this.updateReminderGames.values()) {
-      if (!summary.pending || summary.notificationStatus === "sent" || summary.notificationAttempts >= UPDATE_REMINDER_NOTIFICATION_MAX_ATTEMPTS) continue;
-      const due = summary.nextNotificationAt === null
-        ? summary.notificationStatus === "pending"
-        : summary.nextNotificationAt <= nowMs;
-      if (!due) continue;
-      summary.notificationStatus = "pending";
-      summary.notificationAttempts += 1;
-      summary.nextNotificationAt = nowMs + UPDATE_REMINDER_NOTIFICATION_LEASE_MS;
-      if (summary.cycleId === null) continue;
-      claims.push({ cycleId: summary.cycleId, game: summary.game, cycleNumber: summary.cycleNumber, attempt: summary.notificationAttempts, summary: { ...summary } });
+    for (const row of this.notifications.values()) {
+      const summary = this.updateReminderGames.get(row.claim.game)!;
+      if (!summary.pending || summary.cycleId !== row.claim.cycleId || row.status === "sent" || row.claim.attempt >= UPDATE_REMINDER_NOTIFICATION_MAX_ATTEMPTS) continue;
+      if (!(row.next === null ? row.status === "pending" : row.next <= nowMs)) continue;
+      row.status = "pending";
+      row.claim.attempt += 1;
+      row.next = nowMs + UPDATE_REMINDER_NOTIFICATION_LEASE_MS;
+      if (summary.cycleEffectiveReminderCount === row.claim.reminderCount) {
+        summary.notificationStatus = "pending";
+        summary.notificationAttempts = row.claim.attempt;
+        summary.nextNotificationAt = row.next;
+      }
+      claims.push({ ...row.claim });
     }
     return claims;
   }
-
-  async markUpdateReminderNotificationSent(cycleId: number, game: PublicGameSlug, nowMs: number): Promise<void> {
-    const summary = this.updateReminderGames.get(game);
-    if (!summary || summary.cycleId !== cycleId || !summary.pending) return;
-    summary.notificationStatus = "sent";
-    summary.lastNotifiedAt = nowMs;
-    summary.nextNotificationAt = null;
-    summary.lastNotificationError = null;
+  async consumeUpdateReminderEmailBudget(nowMs: number): Promise<boolean> {
+    const day = new Date(nowMs).toISOString().slice(0, 10);
+    const count = this.emailDaily.get(day) ?? 0;
+    if (count >= 80) return false;
+    this.emailDaily.set(day, count + 1);
+    return true;
   }
-
-  async markUpdateReminderNotificationFailed(cycleId: number, _nowMs: number, nextNotificationAt: number | null, errorCode: string): Promise<void> {
-    for (const summary of this.updateReminderGames.values()) {
-      if (summary.cycleId !== cycleId || !summary.pending) continue;
+  async markUpdateReminderNotificationSent(claim: UpdateReminderNotificationClaim, nowMs: number): Promise<void> {
+    const row = this.notifications.get(claim.notificationId)!;
+    row.status = "sent"; row.next = null; row.error = null;
+    const summary = this.updateReminderGames.get(claim.game)!;
+    summary.lastNotifiedAt = nowMs;
+    if (summary.cycleId === claim.cycleId && summary.cycleEffectiveReminderCount === claim.reminderCount) {
+      summary.notificationStatus = "sent";
+      summary.nextNotificationAt = null;
+      summary.lastNotificationError = null;
+    }
+  }
+  async markUpdateReminderNotificationFailed(claim: UpdateReminderNotificationClaim, _nowMs: number, nextNotificationAt: number | null, errorCode: string): Promise<void> {
+    const row = this.notifications.get(claim.notificationId)!;
+    row.status = "failed"; row.next = nextNotificationAt; row.error = errorCode;
+    const summary = this.updateReminderGames.get(claim.game)!;
+    if (summary.cycleId === claim.cycleId && summary.cycleEffectiveReminderCount === claim.reminderCount) {
       summary.notificationStatus = "failed";
       summary.nextNotificationAt = nextNotificationAt;
       summary.lastNotificationError = errorCode;
@@ -668,7 +690,7 @@ test("first reminder email succeeds without exposing visitor identity", async ()
   assert.equal(pending[0]?.lastNotifiedAt, baseTime);
 });
 
-test("later reminders in one pending cycle do not send another email", async () => {
+test("each accepted reminder in one pending cycle sends its own email", async () => {
   const store = new MemoryStatsStore();
   const env = { ...makeEnv(store), ...testEmailConfig };
   let calls = 0;
@@ -689,7 +711,7 @@ test("later reminders in one pending cycle do not send another email", async () 
 
   assert.equal(first.status, 202);
   assert.equal(later.status, 202);
-  assert.equal(calls, 1);
+  assert.equal(calls, 2);
   assert.equal((await responseJson(later)).reminder.cycleEffectiveReminderCount, 2);
 });
 test("notification failure keeps accepted reminder recoverable and scheduled retry can succeed", async () => {
@@ -916,6 +938,7 @@ test("database failures become stable 503 responses", async () => {
     resolveUpdateReminder: async () => { throw new Error("database unavailable"); },
     retryUpdateReminderNotification: async () => { throw new Error("database unavailable"); },
     claimDueUpdateReminderNotifications: async () => { throw new Error("database unavailable"); },
+    consumeUpdateReminderEmailBudget: async () => { throw new Error("database unavailable"); },
     markUpdateReminderNotificationSent: async () => { throw new Error("database unavailable"); },
     markUpdateReminderNotificationFailed: async () => { throw new Error("database unavailable"); },
     getSiteStats: async () => { throw new Error("database unavailable"); },

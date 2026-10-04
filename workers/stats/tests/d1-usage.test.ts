@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import { readFileSync, readdirSync } from "node:fs";
 import { DatabaseSync, type SQLInputValue } from "node:sqlite";
 import test from "node:test";
-import { D1StatsStore, handleRequest, type D1Database, type D1PreparedStatement, type D1Result, type StatsEvent } from "../src/core.js";
+import { D1StatsStore, handleRequest, processPendingUpdateReminderNotifications, UPDATE_REMINDER_DAILY_EMAIL_LIMIT, type D1Database, type D1PreparedStatement, type D1Result, type StatsEvent } from "../src/core.js";
 import { RANKING_CACHE_TTL_MS, type RankingCache } from "../src/ranking-cache.js";
 import { PUBLIC_RESOURCE_IDS } from "../src/public-resource-registry.js";
 
@@ -13,9 +13,9 @@ class SqliteD1 implements D1Database {
   missingRateRow = false;
   failRateRead = false;
   failRanking = false;
-  constructor() {
+  constructor(through = "9999") {
     const directory = new URL("../migrations/", import.meta.url);
-    for (const file of readdirSync(directory).filter((name) => name.endsWith(".sql")).sort()) {
+    for (const file of readdirSync(directory).filter((name) => name.endsWith(".sql") && name.slice(0, 4) <= through).sort()) {
       this.sqlite.exec(readFileSync(new URL(file, directory), "utf8"));
     }
   }
@@ -42,6 +42,15 @@ class SqliteD1 implements D1Database {
       };
     }
     return statement();
+  }
+  async batch(statements: D1PreparedStatement[]): Promise<D1Result[]> {
+    this.sqlite.exec("BEGIN");
+    try {
+      const results: D1Result[] = [];
+      for (const statement of statements) results.push(await statement.run());
+      this.sqlite.exec("COMMIT");
+      return results;
+    } catch (error) { this.sqlite.exec("ROLLBACK"); throw error; }
   }
   plan(sql: string, ...args: SQLInputValue[]): string {
     return this.sqlite.prepare("EXPLAIN QUERY PLAN " + sql).all(...args).map((row) => row.detail).join(" | ");
@@ -242,4 +251,117 @@ test("scheduled rate cleanup is an indexed range and ranking date index is retai
   db.sqlite.prepare("INSERT INTO request_rate_limits VALUES ('expired','events',?,1),('active','events',?,1)").run(now - 86_400_000, now);
   await new D1StatsStore(db).cleanup(now, date);
   assert.deepEqual(db.sqlite.prepare("SELECT rate_key FROM request_rate_limits").all().map((row) => row.rate_key), ["active"]);
+});
+
+
+const emailConfig = { RESEND_API_KEY: "test-key", UPDATE_REMINDER_EMAIL_TO: "owner", TURNSTILE_REQUIRED: "false" };
+function reminderRequest(visitor: string) {
+  return new Request("https://stats.example.test/v1/update-reminders", {
+    method: "POST", headers: { Origin: "https://rhythmarchive.github.io", "Content-Type": "application/json" },
+    body: JSON.stringify({ visitorId: visitor, game: "arcaea" }),
+  });
+}
+
+test("real D1 sends each counted reminder and atomically deduplicates concurrent visitors", async () => {
+  const db = new SqliteD1();
+  const store = new D1StatsStore(db);
+  let calls = 0;
+  const fetchImpl = async () => { calls++; return new Response(null, { status: 204 }); };
+  const env = { DB: db, ...emailConfig };
+  assert.equal((await handleRequest(reminderRequest(visitorId), env, { now: () => now, fetchImpl })).status, 202);
+  assert.equal((await handleRequest(reminderRequest(crypto.randomUUID()), env, { now: () => now + 1, fetchImpl })).status, 202);
+  assert.equal((await handleRequest(reminderRequest(visitorId), env, { now: () => now + 2, fetchImpl })).status, 409);
+  assert.equal(calls, 2);
+  const concurrentVisitor = crypto.randomUUID();
+  const results = await Promise.all([store.recordUpdateReminder(concurrentVisitor, "arcaea", now + 3), store.recordUpdateReminder(concurrentVisitor, "arcaea", now + 3)]);
+  assert.deepEqual(results.map(r => r.status).sort(), ["accepted", "duplicate"]);
+  assert.equal((await store.listPendingUpdateReminders())[0]!.cycleEffectiveReminderCount, 3);
+  assert.equal(db.sqlite.prepare("SELECT COUNT(*) AS n FROM update_reminder_notifications").get()!.n, 3);
+  const limited = await handleRequest(reminderRequest(crypto.randomUUID()), { ...env, RATE_LIMITER: { limit: async () => ({ success: false }) } }, { now: () => now + 4, fetchImpl });
+  assert.equal(limited.status, 429);
+  assert.equal(calls, 2);
+  assert.equal(db.sqlite.prepare("SELECT COUNT(*) AS n FROM update_reminder_notifications").get()!.n, 3);
+});
+
+test("D1 daily budget is shared, atomic, conservative, and resets at UTC midnight", async () => {
+  const db = new SqliteD1();
+  const stores = [new D1StatsStore(db), new D1StatsStore(db)];
+  const results = await Promise.all(Array.from({ length: 120 }, (_, i) => stores[i % 2]!.consumeUpdateReminderEmailBudget(now)));
+  assert.equal(results.filter(Boolean).length, UPDATE_REMINDER_DAILY_EMAIL_LIMIT);
+  assert.equal(await stores[0]!.consumeUpdateReminderEmailBudget(Date.UTC(2026, 9, 3, 23, 59, 59)), false);
+  assert.equal(await stores[1]!.consumeUpdateReminderEmailBudget(Date.UTC(2026, 9, 4)), true);
+});
+
+test("81st reminder stays counted but is never sent or replayed tomorrow", async () => {
+  const db = new SqliteD1();
+  const store = new D1StatsStore(db);
+  const env = { DB: db, ...emailConfig };
+  let calls = 0;
+  const fetchImpl = async () => { calls++; return new Response(null, { status: 204 }); };
+  for (let i = 0; i < 80; i++) {
+    await store.recordUpdateReminder(crypto.randomUUID(), "arcaea", now + i);
+    await processPendingUpdateReminderNotifications(env, { store, now: now + i, fetchImpl });
+  }
+  const capped = await handleRequest(reminderRequest(crypto.randomUUID()), env, { store, now: () => now + 80, fetchImpl });
+  assert.equal(capped.status, 202);
+  assert.equal(calls, 80);
+  const summary = (await store.listPendingUpdateReminders())[0]!;
+  assert.equal(summary.cycleEffectiveReminderCount, 81);
+  assert.equal(summary.lastNotificationError, "daily_limit_reached");
+  assert.equal(summary.nextNotificationAt, null);
+  await store.retryUpdateReminderNotification("arcaea", now + 86_400_000);
+  await processPendingUpdateReminderNotifications(env, { store, now: now + 86_400_000, fetchImpl });
+  assert.equal(calls, 80);
+  await store.recordUpdateReminder(crypto.randomUUID(), "arcaea", now + 86_400_001);
+  await processPendingUpdateReminderNotifications(env, { store, now: now + 86_400_001, fetchImpl });
+  assert.equal(calls, 81);
+  assert.equal((await store.listPendingUpdateReminders())[0]!.cycleEffectiveReminderCount, 82);
+});
+
+test("each failed email retries independently with stable Resend payload and key", async () => {
+  const db = new SqliteD1();
+  const store = new D1StatsStore(db);
+  const env = { DB: db, ...emailConfig };
+  const calls: { body: string; key: string | null }[] = [];
+  const fetchImpl = async (_input: RequestInfo | URL, init?: RequestInit) => {
+    calls.push({ body: String(init?.body), key: new Headers(init?.headers).get("Idempotency-Key") });
+    return new Response(null, { status: calls.length === 1 ? 503 : 204 });
+  };
+  await store.recordUpdateReminder(visitorId, "arcaea", now);
+  await processPendingUpdateReminderNotifications(env, { store, now, fetchImpl });
+  await store.recordUpdateReminder(crypto.randomUUID(), "arcaea", now + 1000);
+  await processPendingUpdateReminderNotifications(env, { store, now: now + 1000, fetchImpl });
+  await processPendingUpdateReminderNotifications(env, { store, now: now + 300_000, fetchImpl });
+  assert.equal(calls.length, 3);
+  assert.deepEqual(calls[0], calls[2]);
+  assert.notEqual(calls[0]!.key, calls[1]!.key);
+  assert.equal(db.sqlite.prepare("SELECT attempts FROM update_reminder_email_daily WHERE send_date = ?").get(date)!.attempts, 3);
+  const summary = (await store.listPendingUpdateReminders())[0]!;
+  assert.equal(summary.notificationStatus, "sent");
+  assert.equal(summary.notificationAttempts, 1);
+  assert.equal(summary.lastNotificationError, null);
+});
+
+test("budget storage failure keeps the reminder accepted and sends no email", async () => {
+  const db = new SqliteD1();
+  const store = new D1StatsStore(db);
+  store.consumeUpdateReminderEmailBudget = async () => { throw new Error("budget unavailable"); };
+  let calls = 0;
+  const result = await handleRequest(reminderRequest(visitorId), { DB: db, ...emailConfig }, {
+    store, now: () => now, fetchImpl: async () => { calls++; return new Response(null, { status: 204 }); },
+  });
+  assert.equal(result.status, 202);
+  assert.equal(calls, 0);
+  assert.equal((await store.listPendingUpdateReminders())[0]!.effectiveReminderCount, 1);
+});
+
+test("migration preserves legacy history without replaying sent cycles", () => {
+  const db = new SqliteD1("0005");
+  db.sqlite.exec(`INSERT INTO update_reminder_cycles
+    (game, cycle_number, first_reminded_at, last_reminded_at, effective_reminder_count, notification_status, notification_attempts)
+    VALUES ('arcaea', 1, 1, 2, 22, 'sent', 1), ('phigros', 1, 1, 2, 3, 'failed', 2)`);
+  db.sqlite.exec(readFileSync(new URL("../migrations/0006_update_reminder_emails.sql", import.meta.url), "utf8"));
+  assert.equal(db.sqlite.prepare("SELECT COUNT(*) AS n FROM update_reminder_cycles").get()!.n, 2);
+  assert.deepEqual({ ...db.sqlite.prepare("SELECT id, reminder_count, notification_status, notification_attempts FROM update_reminder_notifications").get()! },
+    { id: "legacy-2", reminder_count: 3, notification_status: "failed", notification_attempts: 2 });
 });
