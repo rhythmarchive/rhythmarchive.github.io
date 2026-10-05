@@ -20,8 +20,6 @@ export const UPDATE_REMINDER_IP_RATE_LIMIT_MAX_REQUESTS = 20;
 export const SITE_DAILY_STATS_RETENTION_DAYS = 35;
 export const RESOURCE_DAILY_STATS_RETENTION_DAYS = 35;
 export const UPDATE_REMINDER_DEDUPE_WINDOW_MS = 10 * 60 * 1000;
-export const UPDATE_REMINDER_RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000;
-export const UPDATE_REMINDER_MAX_REQUESTS_PER_WINDOW = 10;
 export const UPDATE_REMINDER_NOTIFICATION_RETRY_BASE_MS = 5 * 60 * 1000;
 export const UPDATE_REMINDER_NOTIFICATION_LEASE_MS = 5 * 60 * 1000;
 export const UPDATE_REMINDER_NOTIFICATION_MAX_ATTEMPTS = 5;
@@ -71,8 +69,7 @@ export type UpdateReminderSummary = {
 
 export type UpdateReminderResult =
   | { status: "accepted"; firstReminder: boolean; summary: UpdateReminderSummary }
-  | { status: "duplicate"; nextAllowedAt: number; summary: UpdateReminderSummary }
-  | { status: "rate_limited"; retryAfterSeconds: number };
+  | { status: "duplicate"; nextAllowedAt: number; summary: UpdateReminderSummary };
 
 export type UpdateReminderNotificationClaim = {
   notificationId: string;
@@ -199,7 +196,9 @@ export class D1StatsStore implements StatsStore {
   constructor(private readonly db: D1Database) {}
 
   async consumeRequestRateLimit(rateKey: string, scope: string, nowMs: number, windowMs: number, maxRequests: number): Promise<RequestRateLimitResult> {
-    await this.db.prepare(`
+    // One statement both advances the window and returns the new state; a separate
+    // SELECT would double D1 round trips on every rate-limited route.
+    const row = await this.db.prepare(`
       INSERT INTO request_rate_limits (rate_key, scope, window_started_at, request_count)
       VALUES (?, ?, ?, 1)
       ON CONFLICT(rate_key, scope) DO UPDATE SET
@@ -211,12 +210,8 @@ export class D1StatsStore implements StatsStore {
           WHEN request_rate_limits.window_started_at + ? <= ? THEN 1
           ELSE request_rate_limits.request_count + 1
         END
-    `).bind(rateKey, scope, nowMs, windowMs, nowMs, windowMs, nowMs).run();
-    const row = await this.db.prepare(`
-      SELECT window_started_at, request_count
-      FROM request_rate_limits
-      WHERE rate_key = ? AND scope = ?
-    `).bind(rateKey, scope).first<{ window_started_at?: number; request_count?: number }>();
+      RETURNING window_started_at, request_count
+    `).bind(rateKey, scope, nowMs, windowMs, nowMs, windowMs, nowMs).first<{ window_started_at?: number; request_count?: number }>();
     if (!row || !Number.isSafeInteger(row.window_started_at) || !Number.isSafeInteger(row.request_count) || row.request_count! < 1) {
       throw new Error("request rate limit state unavailable");
     }
@@ -332,37 +327,6 @@ export class D1StatsStore implements StatsStore {
         (game, pending, first_reminded_at, last_reminded_at, effective_reminder_count, last_notified_at)
       VALUES (?, 0, NULL, NULL, 0, NULL)
     `).bind(game).run();
-  }
-
-  private async getUpdateReminderSummary(game: PublicGameSlug): Promise<UpdateReminderSummary> {
-    const row = await this.db.prepare(`
-      SELECT game, pending, first_reminded_at, last_reminded_at, effective_reminder_count, last_notified_at
-      FROM update_reminder_games
-      WHERE game = ?
-    `).bind(game).first<{
-      game?: string;
-      pending?: number;
-      first_reminded_at?: number | null;
-      last_reminded_at?: number | null;
-      effective_reminder_count?: number;
-      last_notified_at?: number | null;
-    }>();
-    return {
-      game,
-      pending: row?.pending === 1,
-      firstReminderAt: nullableTimestamp(row?.first_reminded_at),
-      lastReminderAt: nullableTimestamp(row?.last_reminded_at),
-      effectiveReminderCount: safeCounter(row?.effective_reminder_count),
-      lastNotifiedAt: nullableTimestamp(row?.last_notified_at),
-      cycleId: null,
-      cycleNumber: 0,
-      cycleEffectiveReminderCount: 0,
-      notificationStatus: "none",
-      notificationAttempts: 0,
-      nextNotificationAt: null,
-      lastNotificationError: null,
-      resolvedAt: null,
-    };
   }
 
   async recordUpdateReminder(visitorId: string, game: PublicGameSlug, nowMs: number): Promise<UpdateReminderResult> {
@@ -564,15 +528,6 @@ export class D1StatsStore implements StatsStore {
       FROM update_reminder_cycles WHERE game = ? AND pending = 1 AND resolved_at IS NULL
       ORDER BY cycle_number DESC LIMIT 1
     `).bind(game).first<UpdateReminderCycleRow>()) ?? undefined;
-  }
-
-  private async getUpdateReminderCycleByIdV2(id: number): Promise<UpdateReminderCycleRow | undefined> {
-    return (await this.db.prepare(`
-      SELECT id, game, cycle_number, pending, first_reminded_at, last_reminded_at, effective_reminder_count,
-             last_notified_at, notification_status, notification_attempts, last_notification_attempt_at,
-             next_notification_at, last_notification_error, resolved_at
-      FROM update_reminder_cycles WHERE id = ?
-    `).bind(id).first<UpdateReminderCycleRow>()) ?? undefined;
   }
 
   private async getUpdateReminderSummaryV2(game: PublicGameSlug): Promise<UpdateReminderSummary> {
@@ -844,12 +799,6 @@ export async function handleRequest(request: Request, env: Env, options: Handler
         if (!reminder.turnstileToken || !(await verifyTurnstileToken(secret, reminder.turnstileToken, { hostname, action }, options.fetchImpl))) return json({ error: "turnstile_failed" }, 403, corsHeaders);
       }
       const recorded = await store.recordUpdateReminder(reminder.visitorId, reminder.game, nowMs);
-      if (recorded.status === "rate_limited") {
-        return json({ error: "rate_limited", retryAfterSeconds: recorded.retryAfterSeconds }, 429, {
-          ...corsHeaders,
-          "Retry-After": String(recorded.retryAfterSeconds),
-        });
-      }
       if (recorded.status === "duplicate") {
         return json({
           ok: false,

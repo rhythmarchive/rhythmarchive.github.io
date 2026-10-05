@@ -8,8 +8,6 @@ import {
   MAX_RANKING_LIMIT,
   SITE_SESSION_WINDOW_MS,
   UPDATE_REMINDER_DEDUPE_WINDOW_MS,
-  UPDATE_REMINDER_MAX_REQUESTS_PER_WINDOW,
-  UPDATE_REMINDER_RATE_LIMIT_WINDOW_MS,
   UPDATE_REMINDER_NOTIFICATION_MAX_ATTEMPTS,
   UPDATE_REMINDER_NOTIFICATION_LEASE_MS,
   type Env,
@@ -49,7 +47,6 @@ class MemoryStatsStore implements StatsStore {
   private readonly dedupe = new Map<string, number>();
   private readonly updateReminders = new Map<string, { firstReminderAt: number; lastReminderAt: number }>();
   private readonly updateReminderGames = new Map<PublicGameSlug, UpdateReminderSummary>();
-  private readonly updateReminderRates = new Map<string, { windowStartedAt: number; requestCount: number }>();
   private readonly requestRates = new Map<string, { windowStartedAt: number; requestCount: number }>();
   private nextCycleId = 1;
   private readonly notifications = new Map<string, { claim: UpdateReminderNotificationClaim; status: string; next: number | null; error: string | null }>();
@@ -129,19 +126,6 @@ class MemoryStatsStore implements StatsStore {
   }
 
   async recordUpdateReminder(visitorId: string, game: PublicGameSlug, nowMs: number): Promise<UpdateReminderResult> {
-    const currentRate = this.updateReminderRates.get(visitorId);
-    const rate = !currentRate || currentRate.windowStartedAt + UPDATE_REMINDER_RATE_LIMIT_WINDOW_MS <= nowMs
-      ? { windowStartedAt: nowMs, requestCount: 0 }
-      : currentRate;
-    rate.requestCount += 1;
-    this.updateReminderRates.set(visitorId, rate);
-    if (rate.requestCount > UPDATE_REMINDER_MAX_REQUESTS_PER_WINDOW) {
-      return {
-        status: "rate_limited",
-        retryAfterSeconds: Math.max(1, Math.ceil((rate.windowStartedAt + UPDATE_REMINDER_RATE_LIMIT_WINDOW_MS - nowMs) / 1000)),
-      };
-    }
-
     const summary = this.updateReminderGames.get(game) ?? {
       game,
       pending: false,
@@ -902,20 +886,6 @@ test("oversized JSON bodies are rejected before parsing", async () => {
   const response = await handleRequest(new Request("https://stats.example.test/v1/events", { method: "POST", headers: { Origin: "https://rhythmarchive.github.io", "Content-Type": "application/json" }, body: "x".repeat(MAX_EVENT_BODY_BYTES + 1) }), makeEnv(store), { store, now: () => baseTime });
   assert.equal(response.status, 413);
   assert.equal((await responseJson(response)).error, "request_too_large");
-});
-
-test("update reminder request frequency is limited per visitor", async () => {
-  const store = new MemoryStatsStore();
-  for (let index = 0; index < UPDATE_REMINDER_MAX_REQUESTS_PER_WINDOW; index += 1) {
-    const result = await postReminder(store, { visitorId, game: "arcaea" }, baseTime + index * 1_000);
-    assert.notEqual(result.response.status, 429);
-  }
-  const limited = await postReminder(store, { visitorId, game: "arcaea" }, baseTime + UPDATE_REMINDER_MAX_REQUESTS_PER_WINDOW * 1_000);
-
-  assert.equal(limited.response.status, 429);
-  assert.equal(limited.payload.error, "rate_limited");
-  assert.ok(Number(limited.payload.retryAfterSeconds) > 0);
-  assert.ok(Number(limited.response.headers.get("Retry-After")) > 0);
 });
 
 test("update reminder CORS follows the configured origin policy", async () => {

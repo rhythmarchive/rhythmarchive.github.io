@@ -24,7 +24,7 @@ class SqliteD1 implements D1Database {
     function statement(values: SQLInputValue[] = []): D1PreparedStatement {
       function execute() {
         db.queries.push(sql);
-        if (db.failRateRead && sql.includes("SELECT window_started_at")) throw new Error("rate read failed");
+        if (db.failRateRead && sql.includes("request_rate_limits")) throw new Error("rate read failed");
         if (db.failRanking && sql.includes("SUM(daily_views) AS total_views")) throw new Error("ranking failed");
         return db.sqlite.prepare(sql);
       }
@@ -35,7 +35,7 @@ class SqliteD1 implements D1Database {
         },
         async first<T>(): Promise<T | null> {
           const prepared = execute();
-          if (db.missingRateRow && sql.includes("SELECT window_started_at")) return null;
+          if (db.missingRateRow && sql.includes("request_rate_limits")) return null;
           return (prepared.get(...values) as T | undefined) ?? null;
         },
         async all<T>(): Promise<D1Result<T>> { return { results: execute().all(...values) as T[] }; },
@@ -117,7 +117,7 @@ test("real SQLite dedupe expires exactly without Cron and preserves view/downloa
   assert.equal(db.sqlite.prepare("SELECT count(*) AS n FROM event_dedupe WHERE dedupe_kind='download'").get()!.n, 0);
 });
 
-test("real D1 rate limits preserve scope, thresholds and exact window reset without hot cleanup", async () => {
+test("one statement preserves scope, thresholds and exact window reset for real D1 rate limits", async () => {
   for (const [scope, window, max] of [["events", 60_000, 60], ["resource-stats", 60_000, 60], ["stats-read", 60_000, 120], ["update-reminders", 600_000, 20]] as const) {
     const db = new SqliteD1();
     const store = new D1StatsStore(db);
@@ -126,7 +126,8 @@ test("real D1 rate limits preserve scope, thresholds and exact window reset with
     assert.equal((await store.consumeRequestRateLimit("ip", "other", now, window, max)).allowed, true);
     assert.equal((await store.consumeRequestRateLimit("ip", scope, now + window, window, max)).allowed, true);
     assert.equal(db.queries.some((sql) => /DELETE FROM request_rate_limits/u.test(sql)), false);
-    assert.equal(db.queries.length, 2 * (max + 3));
+    // The counter UPSERT returns the new state, so each call is one statement.
+    assert.equal(db.queries.length, max + 3);
   }
 });
 
@@ -142,7 +143,7 @@ test("missing or failing durable rate state fails closed even with a cached rank
   }
 });
 
-test("real endpoint SQL counts fall without changing event counters", async () => {
+test("real endpoint SQL counts drop by one statement per limited request without changing event counters", async () => {
   const db = new SqliteD1();
   async function event(type: StatsEvent["type"], expected: number, at = now) {
     db.queries.length = 0;
@@ -151,13 +152,13 @@ test("real endpoint SQL counts fall without changing event counters", async () =
     assert.equal(db.queries.length, expected, type);
     assert.equal(db.queries.some((sql) => sql.includes("DELETE")), false);
   }
-  await event("site_visit", 7);
-  await event("site_visit", 5);
-  await event("resource_detail", 6);
-  await event("resource_detail", 4);
-  await event("resource_download", 7);
-  await event("resource_download", 5);
-  await event("resource_download", 9, now + 1_800_000);
+  await event("site_visit", 6);
+  await event("site_visit", 4);
+  await event("resource_detail", 5);
+  await event("resource_detail", 3);
+  await event("resource_download", 6);
+  await event("resource_download", 4);
+  await event("resource_download", 8, now + 1_800_000);
 });
 
 test("ranking cache reuses data for 60s, separates date/period/limit and keeps per-request CORS", async () => {
@@ -166,13 +167,13 @@ test("ranking cache reuses data for 60s, separates date/period/limit and keeps p
   await seed(db);
   const first = await api(db, req(rankingPath), now, cache);
   const payload = await first.json();
-  assert.equal(db.queries.length, 3);
+  assert.equal(db.queries.length, 2);
   db.queries.length = 0;
   const hit = await api(db, req("/v1/resources/ranking?limit=6&period=7d&ignored=value", undefined, "http://localhost:4321"), now + 1, cache);
   assert.deepEqual(await hit.json(), payload);
   assert.equal(hit.headers.get("Access-Control-Allow-Origin"), "http://localhost:4321");
   assert.equal(hit.headers.get("Cache-Control"), "no-store");
-  assert.equal(db.queries.length, 2);
+  assert.equal(db.queries.length, 1);
   db.sqlite.exec("UPDATE resource_daily_stats SET daily_views=20");
   assert.deepEqual(await (await api(db, req(rankingPath), now + RANKING_CACHE_TTL_MS - 1, cache)).json(), payload);
   const refreshed = await (await api(db, req(rankingPath), now + RANKING_CACHE_TTL_MS, cache)).json() as { entries: { views: number }[] };
@@ -180,7 +181,7 @@ test("ranking cache reuses data for 60s, separates date/period/limit and keeps p
   for (const [path, at] of [["/v1/resources/ranking?period=all&limit=6", now], ["/v1/resources/ranking?period=7d&limit=30", now], [rankingPath, now + 86_400_000]] as const) {
     db.queries.length = 0;
     assert.equal((await api(db, req(path), at, cache)).status, 200);
-    assert.equal(db.queries.length, 3);
+    assert.equal(db.queries.length, 2);
   }
   assert.equal(cache.values.size, 4);
 });
@@ -192,7 +193,7 @@ test("concurrent ranking misses share one aggregation; failures are never cached
   const responses = await Promise.all([api(db, req(rankingPath), now, cache), api(db, req(rankingPath), now, cache)]);
   assert.ok(responses.every((response) => response.status === 200));
   assert.equal(db.queries.filter((sql) => sql.includes("SUM(daily_views) AS total_views")).length, 1);
-  assert.equal(db.queries.length, 5);
+  assert.equal(db.queries.length, 3);
   cache.values.clear();
   db.failRanking = true;
   assert.equal((await api(db, req(rankingPath), now, cache)).status, 503);
@@ -212,7 +213,7 @@ test("concurrent ranking misses share one aggregation; failures are never cached
     }
     db.queries.length = 0;
     assert.equal((await api(db, req(rankingPath), now, cache)).status, 200);
-    assert.equal(db.queries.length, 3);
+    assert.equal(db.queries.length, 2);
   }
 });
 
@@ -223,7 +224,7 @@ test("cached rankings still enforce durable/native limits and origin validation"
   for (let i = 0; i < 120; i++) assert.equal((await api(db, req(rankingPath), now, cache)).status, 200);
   db.queries.length = 0;
   assert.equal((await api(db, req(rankingPath), now, cache)).status, 429);
-  assert.equal(db.queries.length, 2);
+  assert.equal(db.queries.length, 1);
   for (const mode of ["reject", "throw"]) {
     db.queries.length = 0;
     const response = await handleRequest(req(rankingPath), { DB: db, RATE_LIMITER: { limit: async () => {
