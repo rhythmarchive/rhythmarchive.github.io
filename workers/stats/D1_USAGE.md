@@ -6,7 +6,7 @@
 
 - `ranking-cache.ts` 用现有 `caches.default` 存储 60 秒榜单数据。缓存键按 host、registry hash、日期、period、limit 隔离；不把 50 项榜单切片为各 limit，以保留 SQL LIMIT 后过滤公开 registry 的现有结果。缓存内部记录 expiresAt，在日期边界或 TTL 到期时回源。同 isolate 同键并发 miss 合并；错误不缓存，不返回过期数据。
 - 每次请求先执行原生限流和 D1 限流，随后才查榜单缓存。缓存不含客户端 CORS、429 或 503；浏览器响应仍是 no-store。缓存 API 不可用时查询 D1，D1 限流故障/缺失状态仍 fail closed。计数与统计写入立即生效，榜单展示最多滞后 60 秒。
-- 请求限流删除逐请求清理 SQL，只保留原有 UPSERT/SELECT。Cron 用 `window_started_at <= now - 24h`，利用已有索引。
+- 请求限流删除逐请求清理 SQL，计数本身只用一条 UPSERT ... RETURNING 完成（不再跟随一条 SELECT）。Cron 用 `window_started_at <= now - 24h`，利用已有索引。
 - 事件不再逐请求清理全表。claim 的 `ON CONFLICT ... DO UPDATE ... WHERE expires_at <= now` 原子续建已过期键；未过期键不写、不续期。因此无需等下次 Cron，去重仍严格为 30 分钟或 10 秒。Cron 保留物理清理职责。
 
 ## SQL 数量对比
@@ -57,4 +57,4 @@
 
 本地内存 SQLite 不能提供Cloudflare精确meta.rows_read/rows_written，也不能证明生产命中率；线上用量改善须在实际部署后比较同窗Insights。本次仅本地实现和验证，未push或部署。
 
-2026-10-03 本地结果：Worker 类型检查通过，41/41 测试通过。额外将实际入口打包后在本地 workerd/Miniflare 中初始化 D1，确认首次榜单计算后修改本地日计数，原键命中仍返回缓存数据，另一 limit 键读取新计数；两次不同 Origin 的 CORS 正确，三次榜单请求的持久限流计数为3。该运行时检查只操作本地临时数据库，任务脚本和日志在完成后清理。
+2026-10-03 本地结果：Worker 类型检查通过，41/41 测试通过（该次为当日快照；当前测试数为 48/48）。额外将实际入口打包后在本地 workerd/Miniflare 中初始化 D1，确认首次榜单计算后修改本地日计数，原键命中仍返回缓存数据，另一 limit 键读取新计数；两次不同 Origin 的 CORS 正确，三次榜单请求的持久限流计数为3。该运行时检查只操作本地临时数据库，任务脚本和日志在完成后清理。

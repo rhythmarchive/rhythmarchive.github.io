@@ -13,7 +13,7 @@
 - POST /v1/admin/update-reminders/:game/resolve：鉴权后关闭当前 pending 周期但保留历史。可带 JSON `{ "createdBefore": "带时区 ISO 时间" }`，仅结束在此时间之前已存在的周期；无符合条件的周期返回 404 pending_not_found，防止发布收尾重跑误关新周期。
 - POST /v1/admin/update-reminders/:game/retry-notification：鉴权后重置当前通知重试状态。
 
-公开接口有 body 上限和短期限流。限流键是 Cloudflare edge client 的短期哈希，不保存原始 IP、UA、地理位置或页面轨迹。visitorId 只用于普通去重，不能绕过服务端限流。RATE_LIMITER binding 是每个 scope 的前置 120 次/60 秒突发拦截；通过后仍使用现有 D1 短期桶执行接口额度：events 和 resource-stats 各 60 次/分钟，update-reminders 20 次/10 分钟，site stats 与 ranking 共用 stats-read 120 次/分钟。未配置绑定也执行同样的 D1 规则；无持久化适配器的本地测试保留 isolate 内存后备。绑定拒绝时不访问 D1；绑定或 D1 限流失败返回 503，不放行。每个通过原生检查的请求只做限流计数 UPSERT 和主键读取两条 D1 SQL；过期限流桶由 Cron 按 window_started_at 索引清理，读取失败或状态缺失仍返回 503。
+公开接口有 body 上限和短期限流。限流键是 Cloudflare edge client 的短期哈希，不保存原始 IP、UA、地理位置或页面轨迹。visitorId 只用于普通去重，不能绕过服务端限流。RATE_LIMITER binding 是每个 scope 的前置 120 次/60 秒突发拦截；通过后仍使用现有 D1 短期桶执行接口额度：events 和 resource-stats 各 60 次/分钟，update-reminders 20 次/10 分钟，site stats 与 ranking 共用 stats-read 120 次/分钟。未配置绑定也执行同样的 D1 规则；无持久化适配器的本地测试保留 isolate 内存后备。绑定拒绝时不访问 D1；绑定或 D1 限流失败返回 503，不放行。每个通过原生检查的请求只用一条 D1 SQL 完成限流计数（UPSERT ... RETURNING 同时返回新的窗口状态，不再额外 SELECT）；过期限流桶由 Cron 按 window_started_at 索引清理，读取失败或状态缺失仍返回 503。
 
 站点访问按匿名 visitor ID 的 30 分钟窗口去重。资源 detail 和直接下载共享一个资源 view 去重键；下载另有 10 秒短窗口。有效 view/download 同时写入 resource_stats 和 resource_daily_stats，因此 7 日榜使用同一去重结果。累计 resource_stats 保留，日统计、event dedupe、限流桶和过期 reminder visitor 由 5 分钟 cron 清理。
 
