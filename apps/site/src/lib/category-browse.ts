@@ -47,7 +47,23 @@ export type CategoryBrowseProjections = {
   infalsus: InfalsusCategoryBrowseProjectionType;
 };
 
-export function applyCategoryBrowseSemantics(siteData: PublicSiteData, projections: CategoryBrowseProjections): PublicSiteData {
+/** Public song titles and artist names from the formal Browse records, keyed by Resource. */
+export function publicSearchNamesByResource(browse: { arcaea: { songs: ReadonlyArray<{ titleAliases: readonly string[]; artistAliases: readonly string[]; artworks: ReadonlyArray<{ resourceId?: string | null }> }> } }): Map<string, string[]> {
+  const merged = new Map<string, Set<string>>();
+  for (const song of browse.arcaea.songs) {
+    const names = new Set([...song.titleAliases, ...song.artistAliases]);
+    if (names.size === 0) continue;
+    for (const artwork of song.artworks) {
+      if (!artwork.resourceId) continue;
+      const existing = merged.get(artwork.resourceId) ?? new Set<string>();
+      for (const name of names) existing.add(name);
+      merged.set(artwork.resourceId, existing);
+    }
+  }
+  return new Map([...merged].map(([resourceId, names]) => [resourceId, [...names]]));
+}
+
+export function applyCategoryBrowseSemantics(siteData: PublicSiteData, projections: CategoryBrowseProjections, publicNames: PublicSearchNames = new Map()): PublicSiteData {
   const semanticById = new Map([
     ...projections.arcaea.resources.map((resource) => [resource.resourceId, resource] as const),
     ...projections.phigros.resources.map((resource) => [resource.resourceId, resource] as const),
@@ -76,7 +92,7 @@ export function applyCategoryBrowseSemantics(siteData: PublicSiteData, projectio
     galleries[key] = category === "all" ? nextResources : sortSemanticResources(nextResources);
     if (game && category) galleries[galleryKey(game, category)] = galleries[key];
   }
-  const searchIndex = resources.map(toSemanticSearchEntry);
+  const searchIndex = resources.map((resource) => toSemanticSearchEntry(resource, publicNames));
   return { ...siteData, resources, searchIndex, galleries };
 }
 
@@ -292,8 +308,13 @@ function sortSemanticResources(resources: PublicResource[]): PublicResource[] {
   });
 }
 
-function toSemanticSearchEntry(resource: PublicResource): PublicSearchEntry {
+type PublicSearchNames = ReadonlyMap<string, readonly string[]>;
+
+function toSemanticSearchEntry(resource: PublicResource, publicNames: PublicSearchNames = new Map()): PublicSearchEntry {
   const keywords = new Set<string>(resourceSearchTerms(resource));
+  // Titles and artist names the public Browse records carry for this Resource; they are not
+  // copied into the Resource itself, so the search index is where they become searchable.
+  for (const value of publicNames.get(resource.resourceId) ?? []) keywords.add(value);
   // Semantic projections and display fields that only the final stage can contribute.
   for (const value of resource.searchTerms ?? []) keywords.add(value);
   if (resource.subtitle) keywords.add(resource.subtitle);

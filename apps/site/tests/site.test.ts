@@ -20,7 +20,7 @@ import { matchesChartFilters } from "../src/lib/chart-filters.js";
 import { GISCUS_CONFIG, GITHUB_DISCUSSIONS_URL, GITHUB_RELEASES_URL, GITHUB_REPOSITORY_URL } from "../src/lib/site-config.js";
 import { compareNaturalText, rankSearchEntries } from "../src/lib/search.js";
 import { createUrlHelpers, sitePath } from "../src/lib/url.js";
-import { getBrowseGalleryBuild, getPublicNavigationGames, getSiteData, loadCategoryBrowseProjections, loadFormalCatalog } from "../src/lib/site-data.js";
+import { getBrowseGalleryBuild, getPublicNavigationGames, getSiteData, loadCategoryBrowseProjections, loadFormalBrowseProjections, loadFormalCatalog } from "../src/lib/site-data.js";
 import { formatArcaeaAddedVersion } from "../src/lib/public-display.js";
 import type { PublicResource, PublicSearchEntry } from "../src/lib/types.js";
 
@@ -183,6 +183,32 @@ test("Paradigm updates publish song Resources with client chart metadata and ima
       && entry.keywords.includes(resource.displayTitle)
       && (!resource.artist || entry.keywords.includes(resource.artist));
   }));
+});
+
+test("search carries every public Browse title and artist name but no internal file names", () => {
+  const data = getSiteData();
+  const resourceById = new Map(data.resources.map((resource) => [resource.resourceId, resource]));
+  const findable = (resource: { resourceId: string; game: string }, query: string): boolean =>
+    rankSearchEntries(data.searchIndex, query, { game: resource.game }).some((hit) => hit.resourceId === resource.resourceId);
+
+  let checked = 0;
+  for (const song of loadFormalBrowseProjections().arcaea.songs) {
+    for (const name of [...song.titleAliases, ...song.artistAliases]) {
+      if (name.length < 2) continue;
+      for (const artwork of song.artworks) {
+        const resource = artwork.resourceId ? resourceById.get(artwork.resourceId) : undefined;
+        if (!resource) continue;
+        checked += 1;
+        assert.ok(findable(resource, name), `public Browse name not searchable: ${name}`);
+      }
+    }
+  }
+  assert.ok(checked > 1000, `expected the Arcaea Browse aliases to be sizable, saw ${checked}`);
+
+  // An internal provenance file name must never become a search keyword.
+  const sourceFilename = catalog.resources.flatMap((resource) => resource.provenance ?? []).map((entry) => entry.sourceFilename).find((name) => name && name.endsWith(".jpg"));
+  assert.ok(sourceFilename);
+  for (const entry of data.searchIndex) assert.ok(!entry.keywords.includes(sourceFilename), "internal source file name leaked into search");
 });
 
 test("public projection excludes local paths, credentials, and internal provenance", () => {

@@ -5,7 +5,7 @@ import { InfalsusCategoryBrowseProjection } from "../../../../packages/domain/sr
 import { validateCatalog } from "../../../../packages/domain/src/validation.js";
 import type { Catalog } from "../../../../packages/domain/src/schema.js";
 import { buildBrowseGalleryData } from "./browse-gallery";
-import { applyCategoryBrowseSemantics, type CategoryBrowseProjections } from "./category-browse";
+import { applyCategoryBrowseSemantics, publicSearchNamesByResource, type CategoryBrowseProjections } from "./category-browse";
 import { projectCatalog } from "./catalog-projection";
 import { projectUpdates } from "./update-history";
 import { formatArcaeaAddedVersion } from "./public-display";
@@ -73,8 +73,9 @@ export function getSiteData(rosBaseUrl = ROS_BASE_URL): PublicSiteData {
   }
   if (!cachedSiteData) {
     const catalog = loadFormalCatalog();
-    const projected = enrichFormalBrowseMetadata(projectCatalog(catalog, rosBaseUrl), loadFormalBrowseProjections());
-    const publicData = applyCategoryBrowseSemantics(projected, loadCategoryBrowseProjections());
+    const browse = loadFormalBrowseProjections();
+    const projected = enrichFormalBrowseMetadata(projectCatalog(catalog, rosBaseUrl), browse);
+    const publicData = applyCategoryBrowseSemantics(projected, loadCategoryBrowseProjections(), publicSearchNamesByResource(browse));
     const updates = projectUpdates(publicData, findWorkspaceRoot());
     const sourceVersions: Partial<Record<GameId, { sourceVersion: string } | undefined>> = cachedManifest?.games ?? {};
     const games = publicData.games.map((game) => {
