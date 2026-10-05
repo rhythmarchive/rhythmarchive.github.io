@@ -8,6 +8,8 @@
 
 事件用条件 UPSERT claim：只有已有键的 `expires_at <= now` 时才续建；重复事件不写入、不延长去重窗口。资源 view 为 30 分钟，download 为 10 秒，Cron 延迟不会延迟去重窗口恢复。Cron 负责物理清理；限流清理使用 `window_started_at <= now - 24h` 以利用已有索引。
 
+有效 view/download 同时写入 `resource_stats` 和 `resource_daily_stats`。累计计数保留；日统计、event dedupe、限流桶和过期 reminder visitor 由 5 分钟 Cron 清理。
+
 ## 榜单缓存
 
 `ranking-cache.ts` 使用 Workers Cache API 缓存 60 秒。键包含 host、registry hash、日期、period 和 limit；各 limit 独立缓存，保留 SQL LIMIT 后过滤公开 registry 的结果。缓存内部 `expiresAt` 控制 TTL，同 isolate 同键并发 miss 合并。

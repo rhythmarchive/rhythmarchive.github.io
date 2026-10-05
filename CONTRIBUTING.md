@@ -1,6 +1,6 @@
 # 参与贡献
 
-欢迎报告资源信息错误、改进页面体验、修复问题或补充文档。网站使用问题和资源纠错可以通过[意见反馈](https://rhythmarchive.github.io/feedback/)提交；代码问题和改进建议也可以在 GitHub Issues 中讨论。
+欢迎报告资源信息错误、改进页面体验、修复问题或补充文档。网站使用问题和资源纠错可以通过[意见反馈](https://rhythmarchive.github.io/feedback/)提交；代码问题和改进建议也可以在 [GitHub Issues](https://github.com/rhythmarchive/rhythmarchive.github.io/issues) 中讨论。
 
 ## 开始之前
 
@@ -17,7 +17,7 @@ npm ci
 npm run site:dev
 ```
 
-开发命令会从 Catalog 生成站点数据，再启动 Astro。默认图片来自公开对象存储，浏览器需要网络才能读取图片。统计服务不是运行静态站点的前提；本地 Worker 的启动方法见 [Stats Worker README](workers/stats/README.md)。
+开发命令会从 Catalog 生成站点数据，再启动 Astro。默认图片来自公开对象存储，浏览器需要网络才能读取图片。统计服务不是运行静态站点的前提；Worker 有独立 npm 依赖，需要单独安装，详见 [Stats Worker README](workers/stats/README.md)。
 
 构建和预览：
 
@@ -55,6 +55,6 @@ npm run site:preview
 
 ## 提交 Pull Request
 
-在自己的分支上完成修改，向本仓库的 `main` 提交 PR。说明解决的问题、最终行为及已执行的验证；涉及界面时附上必要截图，涉及资源时附上来源。让每个 PR 聚焦一个问题，避免混入格式化、缓存或无关数据变动。
+先 fork 本仓库，在自己的 fork 中创建分支并完成修改，再向本仓库的 `main` 提交 PR。说明解决的问题、最终行为及已执行的验证；涉及界面时附上必要截图，涉及资源时附上来源。让每个 PR 聚焦一个问题，避免混入格式化、缓存或无关数据变动。
 
 贡献者不需要生产部署权限或维护者的私有工作区。合并后的发布由维护者负责，参见[维护者文档](docs/maintainers/README.md)。Coding Agent 使用 [AGENTS.md](AGENTS.md) 和已跟踪的 [Agent 技能](.agents/skills/update-timeline/SKILL.md)。

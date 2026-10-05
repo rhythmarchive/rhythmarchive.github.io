@@ -19,6 +19,16 @@
 
 `catalog/browse/` 补充游戏特有的曲目、分类、排序及展示语义。站点在构建时把这些数据与 Catalog 结合成 `PublicSiteData`、搜索索引、图库和下载投影，入口见 [`site-data.ts`](../apps/site/src/lib/site-data.ts)。浏览器消费投影，不直接消费提取器输出。
 
+几个常见的玩家侧名称对应如下；这些值用于 schema 的 `resourceType`，也用于站点分类 `category`：
+
+| 玩家侧名称 | 代码值 |
+| --- | --- |
+| 曲绘 | `jacket` |
+| 角色立绘 | `character-portrait` |
+| 剧情 CG | `story-cg` |
+
+分类显示名由 [`game-config.ts`](../apps/site/src/lib/game-config.ts) 定义，个别游戏会使用专属名称，例如 Rotaeno 的 `character-portrait` 显示为“驾驶员立绘”。
+
 公共投影只包含可展示的资源、名称、别名、预览、下载和经确认的元数据。生成目录 `apps/site/public/data/` 与 `apps/site/dist/` 可以重建；数据纠错发生在源数据或投影逻辑中。
 
 页面隐藏不等于保密：Git 中的 Catalog 本身公开，已知对象键也不能充当访问控制。绝对本机路径、凭据、私人输入和内部存储诊断不属于公开数据。真正私密的输入和对象位于公开仓库之外。
@@ -26,5 +36,7 @@
 ## 数据变更
 
 元数据纠错尽量保留资源、变体及文件身份。新增资源需要可核对的出处和完整引用，避免为清理名称重新生成 UUID 或移动不可变对象键。现有检查覆盖 schema、稳定详情路由、Object/Rendition 引用、公共 URL、下载文件名与 Browse 投影。
+
+常见数据类贡献可以从已有资源的标题、别名、出处纠错或 Browse 分类与排序问题开始：先定位对应 `resourceId`，附上游戏版本和可核对证据，再提交 Issue 或聚焦的 PR。正式新增游戏由维护者协调契约适配、来源整理与发布；第三方可以提出建议和证据，无须执行私有提取、ROS 上传或生产凭据操作。
 
 Catalog/Browse/更新记录改动使用 `npm run update:fast`；仅检查公开 registry 使用 `npm run stats:registry:check`。时间线的批次语义见[更新记录](update-timeline.md)，上传和正式发布见[维护者发布说明](maintainers/publishing.md)。

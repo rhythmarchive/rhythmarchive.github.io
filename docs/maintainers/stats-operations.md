@@ -27,7 +27,9 @@ npm --prefix workers/stats run deploy
 
 registry 文件必须和这次公开 Catalog 一起提交。部署后用返回的 Worker URL 作为站点构建环境的 PUBLIC_STATS_API_URL。D1 管理凭据、Resend、Turnstile 和限流哈希 secret 只通过 Wrangler secret 配置，不写入站点或 Git。
 
-已有数据库也须在使用新表的 Worker 部署前应用所需迁移；Pages 工作流不自动迁移 D1。`0006_update_reminder_emails.sql` 为每次有效提醒增加独立邮件历史和每日尝试计数，保留旧 pending 周期尚未发送的单次通知，不回放已发送历史，并在迁移当日保守计入既有发送尝试。旧表的清理需要备份和确认，不由本地代码自动删除。
+已有数据库也须在使用新表的 Worker 部署前应用所需迁移；Pages 工作流不自动迁移 D1。`0006_update_reminder_emails.sql` 为每次有效提醒增加独立邮件历史表 `update_reminder_notifications` 和每日尝试计数表 `update_reminder_email_daily`，保留旧 pending 周期尚未发送的单次通知，不回放已发送历史，并在迁移当日保守计入既有发送尝试。周期中的通知字段作为最近有效提醒的摘要；独立记录保存各封邮件的重试状态，旧记录重试不覆盖较新提醒的摘要。
+
+旧表 `update_reminders` 和 `update_reminder_rate_limits` 已停止写入；清理前需要维护者备份并确认，不由本地代码自动删除。日常清理和查询成本见 [D1 热路径与用量](d1-usage.md)。
 
 wrangler.toml 已有 RATE_LIMITER binding，保留其 namespace_id，simple limit=120、period=60；它不再代替各接口的 D1 窗口。RATE_LIMIT_HASH_SECRET 应通过以下命令配置：
 

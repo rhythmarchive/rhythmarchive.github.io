@@ -44,9 +44,9 @@ Home, search, game routes, category routes, gallery cards, detail pages, navigat
 
 Whole-site and in-game search use the same search core. Public data comes from Catalog projections and never exposes local source paths, credentials, or internal workflow state.
 
-## Future theme boundary
+## Theme consistency
 
-A future theme can use a small ThemeDefinition, token/CSS-variable boundary, and registry. A theme may change visual expression only. It must reuse the same routes, information architecture, SearchIndex, Gallery, ResourceCard and shared game-card semantics, responsive behavior, and functional state. No theme-specific page tree or theme switcher is part of the current product contract.
+Visual changes share the existing routes, search and gallery semantics, responsive behavior, and functional state. Theme tokens and shared components keep these behaviors consistent across pages.
 
 ## Change review
 
