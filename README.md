@@ -43,29 +43,18 @@ Rhythm Archive 按游戏与资源类型整理图片内容，提供统一的浏�
 - [资源搜索](https://rhythmarchive.github.io/search/) — 跨游戏查找图片
 - [意见反馈](https://rhythmarchive.github.io/feedback/) — 提交资源错误、下载问题或功能建议
 
-## 🛠️ 本地开发
+## 🛠️ 开发与贡献
 
-需要 **Node.js 22.12+**。
+本仓库包含 Astro 静态网站、公开资源 Catalog、统计 Worker 和 Arcaea APK 自动更新器。图片由公开对象存储提供。
+
+需要 **Node.js 22.12+**；在仓库根目录运行：
 
 ```bash
-npm install # only when dependencies are absent/changed
+npm ci
 npm run site:dev
 ```
 
-日常检查（默认 FAST）：
-
-```bash
-npm run update:fast # Catalog/Browse/Updates
-npm run check:fast  # 页面修改
-```
-
-构建产物预览：
-
-```bash
-npm run site:preview
-```
-
-查看[贡献与 Git 工作流](CONTRIBUTING.md)，了解日常开发、检查和提交规则。
+[贡献指南](CONTRIBUTING.md)介绍本地运行、验证和 Pull Request；[开发文档](docs/README.md)介绍架构、数据模型与界面设计。资源错误和下载问题也欢迎通过[意见反馈](https://rhythmarchive.github.io/feedback/)报告。
 
 ## 📌 说明
 

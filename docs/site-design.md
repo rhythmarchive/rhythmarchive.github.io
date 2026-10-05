@@ -1,8 +1,10 @@
 # Site design
 
-## Canonical theme
+This document describes the shared interface and the design principles for contributors. Local development and checks are covered in [CONTRIBUTING](../CONTRIBUTING.md).
 
-The current repository implementation is the DEFAULT / CANONICAL THEME. Existing light, dark, and system behavior, the blue accent, restrained cards, current font stack, and image-first resource styling remain unchanged. The current implementation refines the home information architecture and shared navigation; it does not introduce a visible theme, a new color direction, or a separate page family.
+## Theme and visual language
+
+The site shares light, dark, and system modes, a blue accent, restrained cards, and an image-first layout. Theme tokens and shared components keep pages consistent across games.
 
 ## Product principles
 
@@ -44,8 +46,8 @@ Whole-site and in-game search use the same search core. Public data comes from C
 
 ## Future theme boundary
 
-Future themes may be introduced through a small ThemeDefinition, token/CSS-variable boundary, and registry. A theme may change visual expression only. It must reuse the same routes, information architecture, SearchIndex, Gallery, ResourceCard and shared game-card semantics, responsive behavior, and functional state. No theme-specific page tree or theme switcher is part of the current product contract.
+A future theme can use a small ThemeDefinition, token/CSS-variable boundary, and registry. A theme may change visual expression only. It must reuse the same routes, information architecture, SearchIndex, Gallery, ResourceCard and shared game-card semantics, responsive behavior, and functional state. No theme-specific page tree or theme switcher is part of the current product contract.
 
 ## Change review
 
-Before a visual change, compare home, the game library, search, at least two games, detail, and mobile/narrow layout against the current implementation. Prefer a token extraction or consistency fix over broad visual changes. If a request would add a visible theme or a different product direction, stop at the design decision gate.
+Before a visual change, compare home, the game library, search, at least two games, detail, and mobile/narrow layout against the current implementation. Prefer a token extraction or consistency fix over broad visual changes. Proposals for a new theme or product direction should be discussed with maintainers before implementation.
