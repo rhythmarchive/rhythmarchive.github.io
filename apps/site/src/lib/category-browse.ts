@@ -7,6 +7,7 @@ import type {
 import { categoryLabel, displayFilterDifficultyLabel, gameCategoryLabel, type GameId, type ResourceTypeId } from "./game-config";
 import { galleryKey } from "./catalog-projection";
 import { compareNaturalText, normalizeSearchText } from "./search";
+import { resourceSearchTerms } from "./search-terms";
 import type { PublicResource, PublicSearchEntry, PublicSiteData } from "./types";
 
 const ROTAENO_CHART_ORDER = ["I", "II", "III", "IV", "IV_Alpha"] as const;
@@ -75,8 +76,7 @@ export function applyCategoryBrowseSemantics(siteData: PublicSiteData, projectio
     galleries[key] = category === "all" ? nextResources : sortSemanticResources(nextResources);
     if (game && category) galleries[galleryKey(game, category)] = galleries[key];
   }
-  const previousSearch = new Map(siteData.searchIndex.map((entry) => [entry.resourceId, entry]));
-  const searchIndex = resources.map((resource) => toSemanticSearchEntry(resource, previousSearch.get(resource.resourceId)));
+  const searchIndex = resources.map(toSemanticSearchEntry);
   return { ...siteData, resources, searchIndex, galleries };
 }
 
@@ -292,21 +292,13 @@ function sortSemanticResources(resources: PublicResource[]): PublicResource[] {
   });
 }
 
-function toSemanticSearchEntry(resource: PublicResource, previous?: PublicSearchEntry): PublicSearchEntry {
-  const keywords = new Set(previous?.keywords ?? []);
+function toSemanticSearchEntry(resource: PublicResource): PublicSearchEntry {
+  const keywords = new Set<string>(resourceSearchTerms(resource));
+  // Semantic projections and display fields that only the final stage can contribute.
   for (const value of resource.searchTerms ?? []) keywords.add(value);
   if (resource.subtitle) keywords.add(resource.subtitle);
   for (const badge of resource.badges ?? []) keywords.add(badge);
-  for (const value of Object.values(resource.metadata)) keywords.add(String(value));
   for (const values of Object.values(resource.facets ?? {})) for (const value of values) keywords.add(value);
-  for (const chart of resource.charts ?? []) {
-    keywords.add(chart.difficulty);
-    if (chart.level) keywords.add(chart.level);
-    if (chart.constant) keywords.add(chart.constant);
-    if (chart.title) keywords.add(chart.title);
-    if (chart.artist) keywords.add(chart.artist);
-    if (chart.noter) keywords.add(chart.noter);
-  }
   return {
     resourceId: resource.resourceId,
     route: resource.route,

@@ -2,6 +2,7 @@ import type { AssetObject, Catalog, Rendition, Resource, Variant } from "../../.
 import { categoryOrderIndex, displayVariantLabel, gameCategoryLabel, GAME_CONFIG, type GameId, type ResourceTypeId } from "./game-config";
 import { formatArcaeaAddedVersion, normalizePublicDisplay } from "./public-display";
 import { normalizeSearchText } from "./search";
+import { resourceSearchTerms } from "./search-terms";
 import { publicContentVersion, sortPublicGames } from "./game-index";
 import type { PublicAsset, PublicCategory, PublicChart, PublicDownload, PublicGameIndex, PublicPreview, PublicResource, PublicSearchEntry, PublicSiteData, PublicVariant } from "./types";
 import { objectUrl } from "./url";
@@ -596,21 +597,7 @@ function publicCategorySlug(game: GameId, resourceType: ResourceTypeId): string 
 }
 
 function toSearchEntry(resource: PublicResource, sourceResource?: Resource): PublicSearchEntry {
-  const keywordSet = new Set<string>();
-  for (const [key, value] of Object.entries(resource.metadata)) {
-    if (resource.game === "rotaeno" && ["songId", "packId", "relatedSongId"].includes(key)) continue;
-    keywordSet.add(String(value));
-  }
-  for (const variant of resource.variants) keywordSet.add(variant.label);
-  for (const chart of [...(resource.charts ?? []), ...(resource.specialCharts ?? [])]) {
-    keywordSet.add(chart.difficulty);
-    if (chart.level) keywordSet.add(chart.level);
-    if (chart.notes !== undefined) keywordSet.add(String(chart.notes));
-    if (chart.constant) keywordSet.add(chart.constant);
-    if (chart.title) keywordSet.add(chart.title);
-    if (chart.artist) keywordSet.add(chart.artist);
-    if (chart.noter) keywordSet.add(chart.noter);
-  }
+  const keywordSet = new Set<string>(resourceSearchTerms(resource));
   const provenanceKeywords: Array<string | undefined> = sourceResource?.game === "rizline" || sourceResource?.game === "rotaeno" ? [] : (sourceResource?.provenance ?? []).map((entry) => entry.sourceFilename);
   const sourceMetadataKeywords = sourceResource?.game === "rotaeno" ? [] : [sourceResource?.title, ...(sourceResource?.aliases ?? []).map((alias) => alias.value)];
   for (const value of [...sourceMetadataKeywords, ...provenanceKeywords]) {

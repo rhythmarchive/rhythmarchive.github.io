@@ -243,34 +243,9 @@ function enrichFormalBrowseMetadata(siteData: PublicSiteData, browse: FormalBrow
   });
   const resourcesById = new Map(resources.map((resource) => [resource.resourceId, resource]));
   const galleries = Object.fromEntries(Object.entries(siteData.galleries).map(([key, items]) => [key, items.map((item) => resourcesById.get(item.resourceId) ?? item)]));
-  const previousSearch = new Map(siteData.searchIndex.map((entry) => [entry.resourceId, entry]));
-  const searchIndex = resources.map((resource) => {
-    const previous = previousSearch.get(resource.resourceId);
-    const keywords = new Set(previous?.keywords ?? []);
-    keywords.add(resource.displayTitle);
-    if (resource.artist) keywords.add(resource.artist);
-    for (const value of Object.values(resource.metadata)) keywords.add(String(value));
-    for (const chart of [...(resource.charts ?? []), ...(resource.specialCharts ?? [])]) {
-      keywords.add(chart.difficulty);
-      if (chart.level) keywords.add(chart.level);
-      if (chart.notes !== undefined) keywords.add(String(chart.notes));
-      if (chart.constant) keywords.add(chart.constant);
-      if (chart.title) keywords.add(chart.title);
-      if (chart.artist) keywords.add(chart.artist);
-      if (chart.noter) keywords.add(chart.noter);
-    }
-    return {
-      resourceId: resource.resourceId,
-      route: resource.route,
-      title: resource.displayTitle,
-      game: resource.game,
-      category: resource.category,
-      categoryLabel: resource.categoryLabel,
-      ...(resource.artist ? { artist: resource.artist } : {}),
-      keywords: [...keywords].filter((value) => value.trim().length > 0).sort((left, right) => left.localeCompare(right, "zh-CN")),
-    };
-  });
-  return { ...siteData, resources, searchIndex, galleries };
+  // Search entries are produced once from the final Resources by applyCategoryBrowseSemantics.
+  // Rebuilding them here as well would be a second implementation of the same keyword rule.
+  return { ...siteData, resources, galleries };
 }
 
 function extractDateFromVersion(value: unknown): string | undefined {

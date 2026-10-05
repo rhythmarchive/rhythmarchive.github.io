@@ -174,6 +174,15 @@ test("Paradigm updates publish song Resources with client chart metadata and ima
   assert.ok(config.sortOptions.some((option) => option.value === "bpm-desc"));
   assert.ok(config.sortOptions.some((option) => option.value === "artist-desc" && option.label === "曲师 Z-A"));
   assert.ok(siteData.searchIndex.some((entry) => entry.game === "paradigm-reboot" && entry.keywords.includes("SCREWCAT")));
+  // The search index is built from the final Resources, so everything the card and detail
+  // surfaces display stays searchable for every entry of every game.
+  const resourcesById = new Map(siteData.resources.map((resource) => [resource.resourceId, resource]));
+  assert.ok(siteData.searchIndex.every((entry) => {
+    const resource = resourcesById.get(entry.resourceId);
+    return !!resource
+      && entry.keywords.includes(resource.displayTitle)
+      && (!resource.artist || entry.keywords.includes(resource.artist));
+  }));
 });
 
 test("public projection excludes local paths, credentials, and internal provenance", () => {
