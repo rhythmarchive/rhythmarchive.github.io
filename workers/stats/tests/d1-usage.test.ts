@@ -283,6 +283,29 @@ test("real D1 sends each counted reminder and atomically deduplicates concurrent
   assert.equal(db.sqlite.prepare("SELECT COUNT(*) AS n FROM update_reminder_notifications").get()!.n, 3);
 });
 
+test("same visitor sends again exactly after 10 minutes without Cron or duplicate window extension", async () => {
+  const db = new SqliteD1();
+  const env = { DB: db, ...emailConfig };
+  let calls = 0;
+  const fetchImpl = async () => { calls++; return new Response(null, { status: 204 }); };
+  const submit = (at: number) => handleRequest(reminderRequest(visitorId), env, { now: () => at, fetchImpl });
+  assert.equal((await submit(now)).status, 202);
+  const duplicate = await submit(now + 599_999);
+  assert.equal(duplicate.status, 409);
+  const duplicateBody = await duplicate.json() as { status: string; nextAllowedAt: number };
+  assert.equal(duplicateBody.status, "duplicate");
+  assert.equal(duplicateBody.nextAllowedAt, now + 600_000);
+  assert.equal(calls, 1);
+  assert.equal((await submit(now + 600_000)).status, 202);
+  assert.equal(calls, 2);
+  assert.equal((await submit(now + 600_001)).status, 409);
+  assert.equal(calls, 2);
+  const summary = (await new D1StatsStore(db).listPendingUpdateReminders())[0]!;
+  assert.equal(summary.cycleNumber, 1);
+  assert.equal(summary.cycleEffectiveReminderCount, 2);
+  assert.equal(summary.notificationStatus, "sent");
+});
+
 test("D1 daily budget is shared, atomic, conservative, and resets at UTC midnight", async () => {
   const db = new SqliteD1();
   const stores = [new D1StatsStore(db), new D1StatsStore(db)];

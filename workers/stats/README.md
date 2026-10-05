@@ -8,7 +8,7 @@
 - POST /v1/events：接受 site_visit、resource_detail、resource_download。resourceId 必须是当前公开 Catalog 投影中的 UUIDv7；格式正确但不在 registry 中的 ID 会以 resource_not_public 拒绝。
 - POST /v1/resources/stats：最多 100 个当前公开资源 ID；只读，不创建统计行。
 - GET /v1/resources/ranking?period=7d|all&limit=N：默认 12 项，最多 50 项；只返回 resourceId、views、downloads，历史/随机 ID 不会进入结果。
-- POST /v1/update-reminders：接受当前公共投影中的游戏。首次有效提醒返回 202，同一 visitorId 对同一游戏 24 小时内重复返回 409。
+- POST /v1/update-reminders：接受当前公共投影中的游戏。每次有效提醒返回 202，同一 visitorId 对同一游戏 10 分钟内重复返回 409；满 10 分钟后可再次有效累计并发送邮件（仍受 Turnstile、IP 限流和每日邮件上限约束）。重复请求不延长去重窗口。
 - GET /v1/admin/update-reminders：需要 Authorization: Bearer UPDATE_REMINDER_ADMIN_TOKEN。
 - POST /v1/admin/update-reminders/:game/resolve：鉴权后关闭当前 pending 周期但保留历史。
 - POST /v1/admin/update-reminders/:game/retry-notification：鉴权后重置当前通知重试状态。

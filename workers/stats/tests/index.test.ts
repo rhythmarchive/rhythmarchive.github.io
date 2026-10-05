@@ -611,7 +611,7 @@ test("first valid update reminder is accepted, persisted as pending, and marked 
   });
 });
 
-test("same visitor and game are deduplicated for 24 hours", async () => {
+test("same visitor and game are deduplicated for 10 minutes", async () => {
   const store = new MemoryStatsStore();
   await postReminder(store, { visitorId, game: "arcaea" }, baseTime);
   const repeated = await postReminder(store, { visitorId, game: "arcaea" }, baseTime + UPDATE_REMINDER_DEDUPE_WINDOW_MS - 1);
