@@ -132,3 +132,31 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4.0.5
+
+  resolve-reminders:
+    needs: [build, deploy]
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      actions: read
+    environment:
+      name: stats-production
+    steps:
+      - name: Checkout published commit
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - name: Set up Node.js
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: 22
+      - name: Resolve cycles for newly published game updates
+        env:
+          REMINDER_BASE: ${{ github.event.before }}
+          PUBLIC_STATS_API_URL: ${{ vars.PUBLIC_STATS_API_URL }}
+          UPDATE_REMINDER_ADMIN_TOKEN: ${{ secrets.UPDATE_REMINDER_ADMIN_TOKEN }}
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          if [[ -n "$REMINDER_BASE" && ! "$REMINDER_BASE" =~ ^0+$ ]]; then
+            git fetch --no-tags --depth=1 origin "$REMINDER_BASE"
+          fi
+          node scripts/resolve-published-reminders.mjs

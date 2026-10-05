@@ -101,7 +101,7 @@ export interface StatsStore {
   consumeRequestRateLimit?(rateKey: string, scope: string, nowMs: number, windowMs: number, maxRequests: number): Promise<RequestRateLimitResult>;
   cleanup?(nowMs: number, date: string): Promise<void>;
   listPendingUpdateReminders(): Promise<UpdateReminderSummary[]>;
-  resolveUpdateReminder(game: PublicGameSlug, nowMs: number): Promise<UpdateReminderSummary | undefined>;
+  resolveUpdateReminder(game: PublicGameSlug, nowMs: number, createdBeforeMs?: number): Promise<UpdateReminderSummary | undefined>;
   retryUpdateReminderNotification(game: PublicGameSlug, nowMs: number): Promise<UpdateReminderSummary | undefined>;
   claimDueUpdateReminderNotifications(nowMs: number): Promise<UpdateReminderNotificationClaim[]>;
   consumeUpdateReminderEmailBudget(nowMs: number): Promise<boolean>;
@@ -418,15 +418,18 @@ export class D1StatsStore implements StatsStore {
     return Promise.all((rows.results ?? []).flatMap((row) => isValidPublicGameSlug(row.game) ? [this.getUpdateReminderSummaryV2(row.game)] : []));
   }
 
-  async resolveUpdateReminder(game: PublicGameSlug, nowMs: number): Promise<UpdateReminderSummary | undefined> {
+  async resolveUpdateReminder(game: PublicGameSlug, nowMs: number, createdBeforeMs = nowMs): Promise<UpdateReminderSummary | undefined> {
     const cycle = await this.getPendingUpdateReminderCycleV2(game);
-    if (!cycle) return undefined;
+    if (!cycle || cycle.first_reminded_at > createdBeforeMs) return undefined;
     const summary = await this.getUpdateReminderSummaryV2(game);
-    await this.db.prepare(`
+    await this.db.batch([this.db.prepare(`
       UPDATE update_reminder_cycles SET pending = 0, resolved_at = ?, next_notification_at = NULL
-      WHERE id = ? AND pending = 1 AND resolved_at IS NULL
-    `).bind(nowMs, cycle.id).run();
-    await this.db.prepare("UPDATE update_reminder_games SET pending = 0 WHERE game = ?").bind(game).run();
+      WHERE id = ? AND pending = 1 AND resolved_at IS NULL AND first_reminded_at <= ?
+    `).bind(nowMs, cycle.id, createdBeforeMs), this.db.prepare(`
+      UPDATE update_reminder_games SET pending = CASE WHEN EXISTS (
+        SELECT 1 FROM update_reminder_cycles WHERE game = ? AND pending = 1 AND resolved_at IS NULL
+      ) THEN 1 ELSE 0 END WHERE game = ?
+    `).bind(game, game)]);
     return { ...summary, pending: false, resolvedAt: nowMs };
   }
 
@@ -790,7 +793,14 @@ export async function handleRequest(request: Request, env: Env, options: Handler
       if (!isAdminAuthorized(request, env)) return json({ error: "unauthorized" }, 401, corsHeaders);
       const game = decodeAdminGame(adminResolveMatch[1]);
       if (!game) return json({ error: "invalid_game" }, 400, corsHeaders);
-      const resolved = await store.resolveUpdateReminder(game, nowMs);
+      let createdBeforeMs: number | undefined;
+      if (request.body !== null) {
+        const body = await readJsonBody(request);
+        if (!isRecord(body) || typeof body.createdBefore !== "string") return json({ error: "invalid_resolve_cutoff" }, 400, corsHeaders);
+        createdBeforeMs = Date.parse(body.createdBefore);
+        if (!Number.isFinite(createdBeforeMs) || createdBeforeMs <= 0 || createdBeforeMs > nowMs) return json({ error: "invalid_resolve_cutoff" }, 400, corsHeaders);
+      }
+      const resolved = await store.resolveUpdateReminder(game, nowMs, createdBeforeMs);
       if (!resolved) return json({ error: "pending_not_found" }, 404, corsHeaders);
       return json({ ok: true, status: "resolved", reminder: resolved }, 200, corsHeaders);
     }

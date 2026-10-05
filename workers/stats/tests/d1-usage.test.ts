@@ -378,6 +378,35 @@ test("budget storage failure keeps the reminder accepted and sends no email", as
   assert.equal((await store.listPendingUpdateReminders())[0]!.effectiveReminderCount, 1);
 });
 
+test("publication resolve preserves history and reruns cannot close the next cycle or another game", async () => {
+  const db = new SqliteD1();
+  const store = new D1StatsStore(db);
+  await store.recordUpdateReminder(visitorId, "arcaea", now);
+  await store.recordUpdateReminder(visitorId, "phigros", now);
+  const env = { DB: db, UPDATE_REMINDER_ADMIN_TOKEN: "test-token" };
+  const resolve = (cutoff: unknown, at: number) => handleRequest(new Request("https://stats.example.test/v1/admin/update-reminders/arcaea/resolve", {
+    method: "POST", headers: { Authorization: "Bearer test-token", "Content-Type": "application/json" },
+    body: JSON.stringify({ createdBefore: cutoff }),
+  }), env, { now: () => at });
+  const cutoff = new Date(now + 1).toISOString();
+  assert.equal((await resolve("invalid", now + 2)).status, 400);
+  assert.equal((await resolve(new Date(now + 100).toISOString(), now + 2)).status, 400);
+  assert.equal((await resolve(cutoff, now + 2)).status, 200);
+  assert.equal(db.sqlite.prepare("SELECT pending FROM update_reminder_games WHERE game='arcaea'").get()!.pending, 0);
+  const next = await store.recordUpdateReminder(visitorId, "arcaea", now + 3);
+  assert.equal(next.status, "accepted");
+  if (next.status !== "accepted") throw new Error("expected next cycle");
+  assert.equal(next.summary.cycleNumber, 2);
+  assert.equal(next.summary.cycleEffectiveReminderCount, 1);
+  assert.equal(next.summary.effectiveReminderCount, 2);
+  assert.equal((await resolve(cutoff, now + 4)).status, 404);
+  const pending = await store.listPendingUpdateReminders();
+  assert.equal(pending.find(r => r.game === "arcaea")!.cycleNumber, 2);
+  assert.equal(pending.find(r => r.game === "phigros")!.cycleNumber, 1);
+  assert.equal(db.sqlite.prepare("SELECT COUNT(*) AS n FROM update_reminder_cycles WHERE game='arcaea'").get()!.n, 2);
+  assert.equal(db.sqlite.prepare("SELECT COUNT(*) AS n FROM update_reminder_notifications").get()!.n, 3);
+});
+
 test("migration preserves legacy history without replaying sent cycles", () => {
   const db = new SqliteD1("0005");
   db.sqlite.exec(`INSERT INTO update_reminder_cycles

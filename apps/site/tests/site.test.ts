@@ -540,7 +540,7 @@ test("Story Atlas UX contract keeps authored maps, direct dialog reading and pla
   assert.match(script, /const interactiveSelector = "button, a, input, select, textarea/u);
   assert.match(script, /DRAG_THRESHOLD = 5/u);
   assert.match(script, /function renderStoryFlow/u);
-  assert.match(script, /包体未提供对白正文/u);
+  assert.match(script, /此节点暂无剧情正文，可查看相关图片。/u);
   assert.match(script, /function buildStorySegments/u);
   assert.match(script, /Object\.values\(payload\.resources\)\.find/u);
   assert.match(script, /flowResourceIds/u);

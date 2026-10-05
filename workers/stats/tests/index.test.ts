@@ -209,9 +209,9 @@ class MemoryStatsStore implements StatsStore {
     return [...this.updateReminderGames.values()].filter((summary) => summary.pending).map((summary) => ({ ...summary }));
   }
 
-  async resolveUpdateReminder(game: PublicGameSlug, nowMs: number): Promise<UpdateReminderSummary | undefined> {
+  async resolveUpdateReminder(game: PublicGameSlug, nowMs: number, createdBeforeMs = nowMs): Promise<UpdateReminderSummary | undefined> {
     const summary = this.updateReminderGames.get(game);
-    if (!summary || !summary.pending) return undefined;
+    if (!summary || !summary.pending || (summary.firstReminderAt ?? nowMs) > createdBeforeMs) return undefined;
     summary.pending = false;
     summary.resolvedAt = nowMs;
     return { ...summary };
