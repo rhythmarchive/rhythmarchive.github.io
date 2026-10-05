@@ -13,7 +13,7 @@ Follow workspace-root AGENTS.md for risk, boundaries, Git and scratch. Preserve 
 - check:changed -- --ci --base <commit> is the remote change-aware gate: content checks when needed, Worker gate only for Worker code, one Pages build/traffic/smoke. FULL includes its own build, never builds twice.
 
 Stats registry uses public resource IDs plus game identity/display names. Catalog generatedAt alone is not registry change. /health registryHash verifies a changed deployment. A display/Browse/Updates change does not deploy Worker. Worker core/config/shared UUID runtime changes do.
-Generate formal outputs; never hand-edit registry, public/data or src/generated. Public cards stay preview-only; originals/upscales are explicit detail/download paths.
+Generate formal outputs; never hand-edit registry or public/data. Public cards stay preview-only; originals/upscales are explicit detail/download paths.
 
 Catalog is public source of truth. ReleaseManifest is optional private production input, not an Admin synchronization or ordinary publication blocker. Prepare publishedAt before first commit; never replace it with Pages success time afterward.
 Routine Git: confirm child root/status -> standard fetch/pull --rebase -> one commit on main -> git push origin main. No gh/plugin/browser/PR for routine publish. If protection rejects push, report it; never bypass or silently create PR.

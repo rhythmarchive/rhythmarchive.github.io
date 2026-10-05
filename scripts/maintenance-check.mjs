@@ -5,7 +5,8 @@ import { fileURLToPath } from 'node:url';
 
 export const registryPath = 'workers/stats/src/public-resource-registry.ts';
 export function classifyChanges(files) {
-  const full = files.filter(f => /^(packages\/domain\/|\.github\/(?:workflows|actions)\/|scripts\/|apps\/site\/scripts\/|apps\/site\/src\/lib\/(?:catalog-projection|types)\.ts$|tools\/arcaea-apk-updat|package(?:-lock)?\.json$|.*(?:tsconfig[^/]*\.json|astro\.config\.[^/]+)$)/u.test(f));
+  // Site build scripts own generation only; their own tests plus typecheck/site:check cover them.
+  const full = files.filter(f => /^(packages\/domain\/|\.github\/(?:workflows|actions)\/|scripts\/|apps\/site\/src\/lib\/(?:catalog-projection|types)\.ts$|tools\/arcaea-apk-updat|package(?:-lock)?\.json$|.*(?:tsconfig[^/]*\.json|astro\.config\.[^/]+)$)/u.test(f));
   const worker = files.some(f => f.startsWith('workers/stats/') && f !== registryPath && !f.endsWith('.md'));
   const content = files.some(f => f.startsWith('catalog/') || f === registryPath || f === 'apps/site/src/lib/site-data.ts');
   const site = files.some(f => f.startsWith('apps/site/') && !f.endsWith('.md'));
@@ -51,6 +52,9 @@ function main(args) {
   if (args.includes('--plan')) {
     if (process.env.GITHUB_OUTPUT) fs.appendFileSync(process.env.GITHUB_OUTPUT, `mode=${plan.mode}\ndeploy_worker=${plan.deployWorker}\n`);
     return;
+  }
+  if (files.length === 0 && !args.includes('--update') && !args.includes('--full')) {
+    throw new Error('No changed paths to check; a clean tree proves nothing. Change files first, or pass --base <revision> to check committed work.');
   }
   if (plan.mode === 'FULL' && !args.includes('--allow-full') && !args.includes('--full')) throw new Error(`FULL MAINTENANCE required by explicit paths: ${plan.reasons.join(', ')}. Use npm run ci:check once.`);
   if (args.includes('--update')) runQuiet('npm run stats:registry');

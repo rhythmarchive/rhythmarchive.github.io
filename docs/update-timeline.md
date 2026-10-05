@@ -1,6 +1,6 @@
 # 更新记录
 
-唯一来源是 catalog/updates/index.json，投影由 apps/site/src/lib/update-history.ts 生成。不要编辑 public/data、src/generated 或 dist。
+唯一来源是 catalog/updates/index.json，投影由 apps/site/src/lib/update-history.ts 生成。不要编辑 public/data 或 dist。
 
 准备本次 Catalog、Browse 和 Updates 时一起完成时间线，随后 update:fast、一个 commit、一次 push main。资源上传并验证本次新增对象即可准备公开记录，不需要等 Pages 部署成功。publishedAt 是本次内容更新时间，在首次提交前选择带时区 ISO 时间并固定；部署成功时间只用于验证，绝不写回源码。
 

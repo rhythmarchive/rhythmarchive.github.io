@@ -1,11 +1,11 @@
 import fs from "node:fs";
 import path from "node:path";
 import { gzipSync } from "node:zlib";
-import type { PublicSiteData } from "../src/lib/types.js";
+import { getSiteData } from "../src/lib/site-data.js";
 
 const siteRoot = path.resolve(process.cwd(), "apps/site");
 const dist = path.join(siteRoot, "dist");
-const source = JSON.parse(fs.readFileSync(path.join(siteRoot, "src/generated/public-site-data.json"), "utf8")) as PublicSiteData;
+const source = getSiteData();
 const originalUrls = new Set(source.resources.flatMap((resource) => [
   resource.original?.url, resource.upscaled?.url,
   ...resource.variants.flatMap((variant) => [variant.original?.url, variant.upscaled?.url]),

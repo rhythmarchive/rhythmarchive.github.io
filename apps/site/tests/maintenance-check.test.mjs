@@ -12,7 +12,12 @@ test('registry only deployment does not test Worker logic', () => {
 });
 test('Worker logic gets its own gate; shared contracts and infrastructure get FULL', () => {
   const p = classifyChanges(['workers/stats/src/core.ts']); assert.equal(p.worker, true); assert.equal(p.deployWorker, true); assert.deepEqual(commandsFor(p), ['npm run worker:check']);
-  for (const file of ['packages/domain/src/schema.ts', 'apps/site/src/lib/catalog-projection.ts', '.github/workflows/pages.yml', 'apps/site/scripts/generate-public-data.ts', 'package-lock.json', 'tools/arcaea-apk-update.ts']) assert.equal(classifyChanges([file]).mode, 'FULL');
+  for (const file of ['packages/domain/src/schema.ts', 'apps/site/src/lib/catalog-projection.ts', '.github/workflows/pages.yml', 'package-lock.json', 'tools/arcaea-apk-update.ts']) assert.equal(classifyChanges([file]).mode, 'FULL');
+});
+test('site build scripts stay FAST and use the site gate', () => {
+  const p = classifyChanges(['apps/site/scripts/generate-public-data.ts']);
+  assert.equal(p.mode, 'FAST'); assert.equal(p.site, true);
+  assert.deepEqual(commandsFor(p), ['npm run typecheck', 'npm run site:check']);
 });
 test('Worker tests alone run checks without redeployment', () => {
   const p = classifyChanges(['workers/stats/tests/index.test.ts']);

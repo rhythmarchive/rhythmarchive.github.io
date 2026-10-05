@@ -11,7 +11,6 @@ const rosBaseUrl = process.env.PUBLIC_ROS_BASE_URL?.trim() || "https://rhythm-as
 const data = getSiteData(rosBaseUrl);
 const categoryBrowse = loadCategoryBrowseProjections();
 const browseBuild = buildBrowseGalleryData(data, loadFormalBrowseProjections());
-const generatedSourceDir = path.join(root, "apps", "site", "src", "generated");
 const publicDataDir = path.join(root, "apps", "site", "public", "data");
 const galleryDir = path.join(publicDataDir, "galleries");
 const batchDir = path.join(publicDataDir, "batch");
@@ -19,7 +18,6 @@ const browseGalleryDir = path.join(publicDataDir, "browse");
 const storyDataDir = path.join(publicDataDir, "story");
 const hiddenArcaeaCategories = ["startup", "story-texture"];
 
-await mkdir(generatedSourceDir, { recursive: true });
 const relativePublicDataDir = path.relative(path.resolve(root), path.resolve(publicDataDir));
 if (relativePublicDataDir !== path.join("apps", "site", "public", "data")) throw new Error("Unexpected generated public data path");
 await rm(publicDataDir, { recursive: true, force: true });
@@ -29,7 +27,6 @@ await mkdir(storyDataDir, { recursive: true });
 for (const category of hiddenArcaeaCategories) {
   await rm(path.join(galleryDir, "arcaea", `${category}.json`), { force: true });
 }
-await writeJson(path.join(generatedSourceDir, "public-site-data.json"), data, true);
 await writeJson(path.join(publicDataDir, "game-index.json"), data.games);
 await writeJson(path.join(publicDataDir, "search-index.json"), data.searchIndex);
 await writeJson(path.join(publicDataDir, "search-cards.json"), data.resources.map(toSearchCard));
@@ -104,6 +101,6 @@ function toRankingImage(asset: NonNullable<ReturnType<typeof getSiteData>["resou
   return { url: asset.url, width: asset.width, height: asset.height };
 }
 
-async function writeJson(filePath: string, value: unknown, pretty = false): Promise<void> {
-  await writeFile(filePath, `${JSON.stringify(value, null, pretty ? 2 : 0)}\n`, "utf8");
+async function writeJson(filePath: string, value: unknown): Promise<void> {
+  await writeFile(filePath, `${JSON.stringify(value)}\n`, "utf8");
 }
