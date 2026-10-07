@@ -1,3 +1,4 @@
+import { observeImage } from "./viewport-images";
 import type { CardViewModel } from "../lib/card-view-model";
 import { appendResourceViews } from "../lib/stats-client";
 import { sitePath } from "../lib/url";
@@ -39,7 +40,7 @@ export function renderResourceCard(view: CardViewModel, options: CardRenderOptio
   const { primary, fallback, srcset } = view.preview;
   if (primary) {
     const image = document.createElement("img");
-    image.src = primary.url;
+    image.dataset.viewportSrc = primary.url;
     image.alt = view.displayTitle;
     const width = primary.width ?? fallback?.width;
     const height = primary.height ?? fallback?.height;
@@ -47,13 +48,14 @@ export function renderResourceCard(view: CardViewModel, options: CardRenderOptio
     if (height) image.height = height;
     image.loading = options.index < 6 ? "eager" : "lazy";
     image.decoding = "async";
-    if (srcset) image.setAttribute("srcset", srcset);
+    if (srcset) image.dataset.viewportSrcset = srcset;
     if (fallback?.url) {
       image.dataset.fallbackSrc = fallback.url;
       if (fallback.width) image.dataset.fallbackWidth = String(fallback.width);
       if (fallback.height) image.dataset.fallbackHeight = String(fallback.height);
     }
     image.sizes = "(max-width: 640px) 50vw, (max-width: 1280px) 20vw, 210px";
+    observeImage(image);
     media.append(image);
   } else {
     const placeholder = document.createElement("div");

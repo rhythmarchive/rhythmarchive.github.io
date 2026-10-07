@@ -1,3 +1,4 @@
+import { loadSelectedDetailImages } from "./viewport-images";
 import { downloadRendition } from "./download";
 import { setupDetailNavigation } from "./list-navigation";
 import { getBrowserStatsClient, updateResourceStatsInDom } from "../lib/stats-client";
@@ -60,6 +61,7 @@ if (root) {
       item.setAttribute("aria-selected", String(active));
       item.tabIndex = active ? 0 : -1;
     }
+    loadSelectedDetailImages(root);
     const currentLabel = root.querySelector<HTMLElement>("[data-variant-current]");
     if (currentLabel) currentLabel.textContent = button.dataset.variantLabel ?? "";
   };
@@ -87,6 +89,7 @@ if (root) {
       if (!source || !panelRoot) return;
       closeLightbox();
       for (const panel of panelRoot.querySelectorAll<HTMLElement>("[data-detail-source-panel]")) panel.hidden = panel.dataset.detailSourcePanel !== source;
+      loadSelectedDetailImages(root);
       for (const item of panelRoot.querySelectorAll<HTMLButtonElement>("[data-detail-source-select]")) {
         const active = item.dataset.detailSourceSelect === source;
         item.classList.toggle("is-active", active);

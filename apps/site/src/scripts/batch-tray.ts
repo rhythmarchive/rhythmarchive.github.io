@@ -1,3 +1,4 @@
+import { observeImage } from "./viewport-images";
 import { zipSync } from "fflate";
 import { DOWNLOAD_CONCURRENCY, MAX_BATCH_BYTES, MAX_BATCH_FILES, readResponseBytesWithinLimit, toggleBatchSelection, uniqueZipFilename, type BatchResource } from "../lib/batch";
 import { getBrowserStatsClient } from "../lib/stats-client";
@@ -160,6 +161,7 @@ export function createBatchTray(options: BatchTrayOptions): BatchTrayController 
     panelOpen = true;
     panel!.hidden = false;
     viewButton?.setAttribute("aria-expanded", "true");
+    renderSelectedList();
     closeButton?.focus();
   }
 
@@ -179,7 +181,7 @@ export function createBatchTray(options: BatchTrayOptions): BatchTrayController 
     options.root.classList.toggle("has-selection", selected.size > 0);
     count!.textContent = "已选择 " + selected.size.toLocaleString("zh-CN") + " / " + MAX_BATCH_FILES + " 项";
     renderThumbnails();
-    renderSelectedList();
+    if (panelOpen) renderSelectedList(); else list!.replaceChildren();
     syncCards();
     if (selected.size === 0 && panelOpen) closePanel(false);
   }
@@ -313,15 +315,25 @@ export async function downloadSelectedBatch(options: {
   const usedNames = new Set<string>();
   let downloadedBytes = 0;
   let completed = 0;
+  const controller = new AbortController();
+  const objects = new Map<string, Promise<Uint8Array>>();
   options.setStatus("正在准备 0 / " + items.length);
   try {
     await runWithConcurrency(items, DOWNLOAD_CONCURRENCY, async ({ download }) => {
-      const response = await fetch(download.url, { credentials: "omit" });
-      if (!response.ok) throw new Error("download failed with " + response.status);
-      entries[uniqueZipFilename(usedNames, download.downloadFilename)] = await readResponseBytesWithinLimit(response, MAX_BATCH_BYTES - downloadedBytes, (bytes) => {
-        if (downloadedBytes + bytes > MAX_BATCH_BYTES) throw new Error("batch download exceeds the maximum size");
-        downloadedBytes += bytes;
-      });
+      controller.signal.throwIfAborted();
+      let bytes = objects.get(download.url);
+      if (!bytes) {
+        bytes = (async () => {
+          const response = await fetch(download.url, { credentials: "omit", referrerPolicy: "strict-origin-when-cross-origin", signal: controller.signal });
+          if (!response.ok) throw new Error("download failed with " + response.status);
+          return await readResponseBytesWithinLimit(response, MAX_BATCH_BYTES - downloadedBytes, (size) => {
+            if (downloadedBytes + size > MAX_BATCH_BYTES) throw new Error("batch download exceeds the maximum size");
+            downloadedBytes += size;
+          });
+        })().catch((error) => { controller.abort(); throw error; });
+        objects.set(download.url, bytes);
+      }
+      entries[uniqueZipFilename(usedNames, download.downloadFilename)] = await bytes;
       completed += 1;
       options.setStatus("正在准备 " + completed + " / " + items.length);
     });
@@ -350,7 +362,7 @@ function createThumbnail(resource: BatchResource, className = "batch-tray-thumb"
     image.alt = "";
     return image;
   }
-  image.src = preview.primary.url;
+  image.dataset.viewportSrc = preview.primary.url;
   image.width = preview.primary.width;
   image.height = preview.primary.height;
   image.alt = resource.displayTitle;
@@ -361,6 +373,7 @@ function createThumbnail(resource: BatchResource, className = "batch-tray-thumb"
   }
   image.loading = "lazy";
   image.decoding = "async";
+  observeImage(image);
   return image;
 }
 
@@ -388,7 +401,9 @@ async function runWithConcurrency<T>(items: T[], concurrency: number, worker: (i
       if (item !== undefined) await worker(item);
     }
   });
-  await Promise.all(workers);
+  const results = await Promise.allSettled(workers);
+  const failure = results.find((result) => result.status === "rejected");
+  if (failure?.status === "rejected") throw failure.reason;
 }
 
 function triggerDownload(url: string, filename: string): void {

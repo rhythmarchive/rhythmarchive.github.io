@@ -585,7 +585,8 @@ async function initialize(root: HTMLElement): Promise<void> {
         download.href = resource.download;
         download.textContent = "下载原图";
         download.target = "_blank";
-        download.rel = "noreferrer";
+        download.rel = "noopener";
+        download.referrerPolicy = "strict-origin-when-cross-origin";
         if (resource.downloadFilename) download.download = resource.downloadFilename;
         card.append(download);
       }

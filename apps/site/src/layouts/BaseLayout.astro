@@ -26,6 +26,7 @@ const rosOrigin = new URL(ROS_BASE_URL).origin;
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <noscript><style is:inline>img[data-viewport-src] { display: none; }</style></noscript>
     <meta name="description" content={description} />
     <meta name="theme-color" content="#2d77d9" />
     <link rel="icon" type="image/svg+xml" href={urls.sitePath("/favicon.svg")} />
@@ -65,6 +66,10 @@ const rosOrigin = new URL(ROS_BASE_URL).origin;
           if (image.dataset.fallbackHeight) lightboxTrigger.dataset.lightboxPreviewHeight = image.dataset.fallbackHeight;
         }
       }, true);
+    </script>
+    <script>
+      import { observeImages } from "../scripts/viewport-images";
+      observeImages(document);
     </script>
     <script src="../scripts/stats.ts"></script>
   </head>

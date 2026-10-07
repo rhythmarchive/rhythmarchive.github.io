@@ -28,7 +28,7 @@ const size = (bytes: number) => `${(bytes / 1048576).toFixed(2)} MiB`;
   {items.length > 1 ? <aside class="media-playlist" aria-label="演出目录">
     <div class="media-playlist-heading"><h2>演出目录</h2><label class="sr-only" for="media-filter">筛选演出类型</label><select id="media-filter" data-filter><option value="all">全部演出</option><option value="unlock">曲目解锁</option><option value="story">剧情过场</option><option value="background">动态背景</option></select></div>
     <div class="media-playlist-items">{items.map((item, index) => <button type="button" class:list={{ "media-playlist-item": true, "is-selected": index === 0 }} data-item={index} data-kind={item.kind} aria-pressed={index === 0}>
-      <div class="media-list-image">{item.spoiler ? <span class="media-list-spoiler">◇<small>剧情内容</small></span> : <img src={item.clips[0]!.poster} alt="" loading="lazy" />}<span>{duration(item.clips[0]!.duration)}</span></div>
+      <div class="media-list-image">{item.spoiler ? <span class="media-list-spoiler">◇<small>剧情内容</small></span> : <><img data-viewport-src={item.clips[0]!.poster} alt="" loading="lazy" /><noscript><img src={item.clips[0]!.poster} alt="" loading="lazy" /></noscript></>}<span>{duration(item.clips[0]!.duration)}</span></div>
       <div><span class="media-item-category">{item.category}</span><strong>{item.title}</strong>{item.clips.length > 1 ? <small>{item.clips.length} 个片段</small> : null}</div>
     </button>)}</div>
   </aside> : null}

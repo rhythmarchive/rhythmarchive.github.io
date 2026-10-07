@@ -1,3 +1,4 @@
+import { observeImages } from "./viewport-images";
 import { publicContentVersion } from "../lib/game-index";
 import { sitePath as withBasePath } from "../lib/url";
 import type { PublicUpdate, PublicUpdateItem } from "../lib/types";
@@ -21,7 +22,7 @@ const escapeHtml = (value: string): string => value.replace(/[&<>"']/gu, (charac
 const imageHtml = (item: PublicUpdateItem): string => {
   if (!item.image) return "<span class=\"update-preview-placeholder\">图片暂不可用</span>";
   const fallback = item.fallback ? " data-fallback-src=\"" + escapeHtml(item.fallback.url) + "\"" : "";
-  return "<img src=\"" + escapeHtml(item.image.url) + "\"" + fallback + " alt=\"" + escapeHtml(item.displayTitle) + "\" width=\"" + (item.image.width ?? "") + "\" height=\"" + (item.image.height ?? "") + "\" loading=\"lazy\" decoding=\"async\">";
+  return "<img data-viewport-src=\"" + escapeHtml(item.image.url) + "\"" + fallback + " alt=\"" + escapeHtml(item.displayTitle) + "\" width=\"" + (item.image.width ?? "") + "\" height=\"" + (item.image.height ?? "") + "\" loading=\"lazy\" decoding=\"async\">";
 };
 const summaryText = (count: number): string => "更新 " + count + " 项";
 const dateText = (value: string): string => new Intl.DateTimeFormat("zh-CN", { timeZone: "Asia/Shanghai", year: "numeric", month: "2-digit", day: "2-digit" }).format(new Date(value));
@@ -51,6 +52,7 @@ const render = (syncUrl = true): void => {
   const type = typeSelect.value;
   const filtered = updates.filter((update) => (!game || update.game === game) && update.items.some((item) => !type || item.category === type));
   list.innerHTML = filtered.slice(0, visibleLimit).map((update) => renderCard(update, update.items.filter((item) => !type || item.category === type))).join("");
+  observeImages(list);
   moreButton.hidden = filtered.length <= visibleLimit;
   noResults.hidden = filtered.length > 0;
   status.textContent = filtered.length > 0 ? "共 " + filtered.length + " 批更新" : "没有找到这类更新";

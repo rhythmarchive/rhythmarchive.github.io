@@ -44,7 +44,10 @@ const detailUrl = urls.sitePath("/updates/" + encodeURIComponent(update.id) + "/
         {previewItems.map((item) => (
           <a class="update-preview" href={urls.sitePath(item.route)} title={item.displayTitle}>
             {item.image ? (
-              <img src={item.image.url} data-fallback-src={item.fallback?.url} alt={item.displayTitle} width={item.image.width} height={item.image.height} loading="lazy" decoding="async" />
+              <>
+              <img data-viewport-src={item.image.url} data-fallback-src={item.fallback?.url} alt={item.displayTitle} width={item.image.width} height={item.image.height} loading="lazy" decoding="async" />
+              <noscript><img src={item.image.url} alt={item.displayTitle} width={item.image.width} height={item.image.height} loading="lazy" /></noscript>
+              </>
             ) : <span class="update-preview-placeholder">图片暂不可用</span>}
             <span class="update-preview-caption"><strong>{item.categoryLabel}</strong></span>
           </a>
