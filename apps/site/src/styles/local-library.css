@@ -1,7 +1,11 @@
 .library-shell { padding-top: 2rem; padding-bottom: 3rem; }
 .library-shell h1 { margin: 0; font-size: clamp(1.4rem, 4vw, 1.9rem); }
 .library-tabs { margin: 1.25rem 0 1rem; }
-.library-tabs button { min-height: 44px; }
+.library-tabs button { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; }
+.library-tab-count { min-width: 1.5em; padding: 1px 5px; border-radius: var(--radius-sm); background: var(--surface-muted); font-variant-numeric: tabular-nums; }
+.library-storage-note { margin-top: 1.5rem; color: var(--text-muted); font-size: 0.78rem; }
+.library-storage-note summary { width: fit-content; cursor: pointer; }
+.library-storage-note p { max-width: 48rem; line-height: 1.7; }
 .library-entry { min-width: 0; }
 .library-entry > .resource-card { margin-bottom: 0; }
 .library-entry-footer { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 8px 2px 14px; }
@@ -11,8 +15,9 @@
 .library-unavailable h3 { margin: 0 0 0.5rem; overflow-wrap: anywhere; font-size: 0.88rem; }
 .library-unavailable p { margin: 0; color: var(--text-muted); font-size: 0.78rem; }
 .library-shell [data-library-warning]:empty { display: none; }
-.detail-library-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 14px; margin-bottom: 1rem; }
-.detail-library-actions button { min-height: 44px; }
-.detail-library-actions [aria-pressed="true"] { border-color: var(--accent); color: var(--accent-strong); background: var(--cyan-soft); }
-.detail-library-actions .detail-note { flex-basis: 100%; margin: 0; }
-.detail-library-actions .detail-note:empty { display: none; }
+.detail-resource-heading { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 0.75rem; }
+.detail-resource-heading .section-kicker { min-width: 0; overflow-wrap: anywhere; }
+.detail-resource-heading button { flex-shrink: 0; min-height: 44px; }
+.detail-resource-heading [aria-pressed="true"] { border-color: var(--accent); color: var(--accent-strong); background: var(--cyan-soft); }
+.detail-library-status { margin: 0 0 0.75rem; }
+.detail-library-status:empty { display: none; }

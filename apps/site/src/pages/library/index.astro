@@ -7,13 +7,13 @@ import "../../styles/local-library.css";
 
 const categories = getPublicNavigationGames().flatMap((game) => game.categories.map((category) => `${game.slug}/${category.slug}`));
 ---
-<BaseLayout title="收藏夹与浏览历史 | Rhythm Archive" description="查看本机收藏的资源和最近浏览历史。" canonicalPath="/library/" bodyClass="library-page">
+<BaseLayout title="收藏与历史 | Rhythm Archive" description="查看收藏的资源与自动记录的最近浏览。" canonicalPath="/library/" bodyClass="library-page">
   <section class="page-container gallery-shell library-shell" data-library-root data-categories={JSON.stringify(categories)}>
-    <div class="section-heading"><h1>收藏夹与浏览历史</h1></div>
-    <p class="detail-note">仅保存在当前浏览器，清除网站数据后会丢失。浏览历史保留最近 90 天的 200 项资源。</p>
+    <div class="section-heading"><h1>收藏与历史</h1></div>
+    <p class="detail-note">收藏喜欢的资源，浏览详情会自动记录在“最近浏览”。</p>
     <div class="variant-tabs library-tabs" role="tablist" aria-label="本地资源列表">
-      <button type="button" role="tab" id="favorites-tab" data-library-tab="favorites" aria-controls="library-panel" aria-selected="true">收藏夹</button>
-      <button type="button" role="tab" id="history-tab" data-library-tab="history" aria-controls="library-panel" aria-selected="false" tabindex="-1">浏览历史</button>
+      <button type="button" role="tab" id="favorites-tab" data-library-tab="favorites" aria-controls="library-panel" aria-selected="true"><span>收藏夹</span><span class="library-tab-count" data-library-tab-count>0</span></button>
+      <button type="button" role="tab" id="history-tab" data-library-tab="history" aria-controls="library-panel" aria-selected="false" tabindex="-1"><span>最近浏览</span><span class="library-tab-count" data-library-tab-count>0</span></button>
     </div>
     <p class="detail-note" data-library-warning role="status"></p>
     <div id="library-panel" role="tabpanel" aria-labelledby="favorites-tab" tabindex="0">
@@ -24,10 +24,18 @@ const categories = getPublicNavigationGames().flatMap((game) => game.categories.
           <button type="button" class="text-link" data-clear-history hidden>清空历史</button>
         </div>
       </div>
-      <div class="search-empty" data-library-empty hidden><p data-library-empty-copy></p><a class="button button-secondary" href={urls.sitePath("/games/")}>浏览游戏库</a></div>
+      <div class="search-empty" data-library-empty hidden>
+        <p data-library-empty-copy></p>
+        <button class="button button-secondary" type="button" data-library-view-history hidden>查看最近浏览</button>
+        <a class="button button-secondary" data-library-empty-games href={urls.sitePath("/games/")}>浏览游戏库</a>
+      </div>
       <div class="gallery-grid" data-library-grid></div>
       <div class="gallery-more"><button class="button button-secondary" type="button" data-library-more hidden>加载更多</button></div>
     </div>
+    <details class="library-storage-note">
+      <summary>本地保存说明</summary>
+      <p>收藏与最近浏览仅保存在当前浏览器，清除网站数据后会丢失。最近浏览保留最近 90 天的 200 项资源。</p>
+    </details>
     <BatchTray />
     <noscript><p>请启用 JavaScript 以查看本地收藏和浏览历史。</p></noscript>
   </section>

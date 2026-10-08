@@ -19,6 +19,8 @@ function initialize(root: HTMLElement): void {
   const retry = root.querySelector<HTMLButtonElement>("[data-library-retry]")!;
   const clear = root.querySelector<HTMLButtonElement>("[data-clear-history]")!;
   const panel = root.querySelector<HTMLElement>('[role="tabpanel"]')!;
+  const viewHistory = root.querySelector<HTMLButtonElement>("[data-library-view-history]")!;
+  const emptyGames = root.querySelector<HTMLAnchorElement>("[data-library-empty-games]")!;
   const tabs = [...root.querySelectorAll<HTMLButtonElement>("[data-library-tab]")];
   const categories = new Set<string>(JSON.parse(root.dataset.categories ?? "[]"));
   const library = createLocalLibrary();
@@ -88,6 +90,8 @@ function initialize(root: HTMLElement): void {
     const entries = data[tab];
     for (const button of tabs) {
       const active = button.dataset.libraryTab === tab;
+      const key = button.dataset.libraryTab as LibraryTab;
+      button.querySelector<HTMLElement>("[data-library-tab-count]")!.textContent = state.writable ? String(data[key].length) : "—";
       button.classList.toggle("is-active", active);
       button.setAttribute("aria-selected", String(active));
       button.tabIndex = active ? 0 : -1;
@@ -95,7 +99,12 @@ function initialize(root: HTMLElement): void {
     panel.setAttribute("aria-labelledby", `${tab}-tab`);
     clear.hidden = tab !== "history" || !entries.length;
     empty.hidden = entries.length > 0;
-    root.querySelector<HTMLElement>("[data-library-empty-copy]")!.textContent = tab === "favorites" ? "暂无收藏。在资源详情页点击“收藏”即可添加。" : "暂无浏览历史。浏览资源详情后会自动记录。";
+    const hasRecent = tab === "favorites" && data.history.length > 0;
+    viewHistory.hidden = !hasRecent;
+    emptyGames.hidden = hasRecent;
+    root.querySelector<HTMLElement>("[data-library-empty-copy]")!.textContent = tab === "favorites"
+      ? hasRecent ? "暂无收藏。可以从最近浏览中打开资源详情并收藏。" : "暂无收藏。在资源详情页点击“收藏”即可添加。"
+      : "暂无最近浏览。打开资源详情后会自动记录。";
     more.hidden = true;
     retry.hidden = true;
     count.textContent = entries.length ? "加载中…" : "0 项资源";
@@ -191,6 +200,10 @@ function initialize(root: HTMLElement): void {
     if (busy) return;
     if (tray.selectedIds().length) { warning.textContent = "请先清空选择，再清空历史。"; return; }
     if (confirm("清空全部浏览历史？收藏夹不受影响。")) void refresh(library.clearHistory());
+  });
+  viewHistory.addEventListener("click", () => {
+    switchTab("history");
+    tabs.find((button) => button.dataset.libraryTab === "history")?.focus();
   });
   more.addEventListener("click", () => { if (!busy) { visibleCount += 48; void refresh(); } });
   retry.addEventListener("click", () => { if (!busy) void refresh(); });
