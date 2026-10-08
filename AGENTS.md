@@ -7,6 +7,8 @@ Follow workspace-root AGENTS.md for risk, boundaries, Git and scratch. Preserve 
 
 - Ordinary content: prepare Catalog/Browse/Updates together, run npm run update:fast. This generates the Stats registry and validates schema/references, timeline invariants, Browse and registry. No Worker business tests or local full site build.
 - Ordinary pages/styles/small bugfix: npm run check:fast; choose one affected test for behavior changes. No resource/ROS/Admin work.
+- Reuse existing components, lib projections and generated public data before adding a page, script or parallel data path. Defer non-essential reads until needed and keep the change off the runtime path of unrelated pages; adding a runtime dependency, an eager global script or a blocking third-party request needs a concrete reason.
+- First-screen load, mobile behavior, request count and ROS/Cloudflare consumption are part of the change. Use the existing shared, lazy and per-page/classification loading paths; the existing traffic and site behavior checks cover the boundary, so do not add new budgets or measurement frameworks.
 - Worker code: npm run worker:check. Registry-only data: npm run stats:registry:check.
 - Docs: git diff --check and status.
 - Explicit shared contracts/generators/build/Actions/infrastructure/major data changes: npm run ci:check once. Never use final acceptance or publication consistency as an escalation reason.
