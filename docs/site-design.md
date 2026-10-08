@@ -44,6 +44,12 @@ Home, search, game routes, category routes, gallery cards, detail pages, navigat
 
 Whole-site and in-game search use the same search core. Public data comes from Catalog projections and never exposes local source paths, credentials, or internal workflow state.
 
+## Local favorites and history
+
+`/library/` shares one page for favorites and browsing history. Resource details record visits and provide a favorite toggle; no account or server storage is involved. Records remain in the current browser only. Favorites are capped at 500 without automatic eviction; history is deduplicated, capped at 200, and expires after 90 days. Clearing history preserves favorites.
+
+Local records store resource identity, category, title, and time rather than image or download URLs. The page reads existing category card indices only for its visible slice, keeps only saved resources, and uses the shared viewport image loader, card renderer, list navigation, and batch tray. Download manifests are read only when downloading selected resources. Unavailable resources retain a removal action; failed category reads offer retry. Storage errors are visible and never claim a successful save. Collection scripts are confined to this page and resource details.
+
 ## Theme consistency
 
 Visual changes share the existing routes, search and gallery semantics, responsive behavior, and functional state. Theme tokens and shared components keep these behaviors consistent across pages.

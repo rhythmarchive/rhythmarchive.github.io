@@ -13,6 +13,7 @@ import { getSiteData } from "../../../lib/site-data";
 import { rankRelatedResources } from "../../../lib/related";
 import { urls } from "../../../lib/site-urls";
 import type { PublicResource } from "../../../lib/types";
+import "../../../styles/local-library.css";
 
 const data = getSiteData();
 
@@ -81,8 +82,13 @@ const description = `${resource.displayTitle}${resource.artist ? ` · ${resource
 ---
 
 <BaseLayout title={`${resource.displayTitle} - ${GAME_CONFIG[resource.game].displayName} | Rhythm Archive`} description={description} canonicalPath={resource.route} ogImage={preview} bodyClass="detail-page">
-  <div class="page-container detail-shell" data-detail-root data-resource-id={resource.resourceId}>
+  <div class="page-container detail-shell" data-detail-root data-resource-id={resource.resourceId} data-game={resource.game} data-category={resource.category} data-resource-title={resource.displayTitle}>
     <div class="detail-breadcrumb"><a href={urls.sitePath("/games/")}>游戏库</a><span>/</span><a href={urls.sitePath(`/${resource.game}/${resource.category}/`)}>{GAME_CONFIG[resource.game].displayName}</a><span>/</span><span>{resource.categoryLabel}</span></div>
+    <div class="detail-library-actions">
+      <button class="button button-secondary" type="button" data-favorite-toggle aria-pressed="false" hidden>收藏</button>
+      <a class="text-link" href={urls.sitePath("/library/")}>收藏夹与浏览历史</a>
+      <p class="detail-note" data-library-status role="status"></p>
+    </div>
     {resource.resourceType === "video" ? <><h1 class="sr-only">{resource.displayTitle}</h1><VideoGallery resources={[resource]} /></> : <div class="detail-layout">
       <div class="detail-visual">
         {resource.composition ? <StoryComposition resource={resource} /> : hasDifficultyArtwork && firstVariant ? <ArtworkSwitcher variants={variants} activeVariantId={firstVariant.variantId} /> : variants.length > 1 ? (

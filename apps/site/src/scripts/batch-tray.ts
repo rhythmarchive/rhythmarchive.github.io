@@ -14,6 +14,7 @@ type BatchTrayOptions = {
 };
 
 export type BatchTrayController = {
+  clearSelection(): void;
   isSelected(resourceId: string): boolean;
   selectedIds(): string[];
   syncCards(): void;
@@ -37,6 +38,7 @@ export function createBatchTray(options: BatchTrayOptions): BatchTrayController 
 
   if (!tray || !panel || !list || !thumbs || !count) {
     return {
+      clearSelection: () => undefined,
       isSelected: () => false,
       selectedIds: () => [],
       syncCards: () => undefined,
@@ -46,6 +48,7 @@ export function createBatchTray(options: BatchTrayOptions): BatchTrayController 
   }
 
   const controller: BatchTrayController = {
+    clearSelection,
     isSelected: (resourceId) => selected.has(resourceId),
     selectedIds: () => [...selected],
     syncCards,

@@ -1,11 +1,13 @@
 import { loadSelectedDetailImages } from "./viewport-images";
 import { downloadRendition } from "./download";
 import { setupDetailNavigation } from "./list-navigation";
+import { setupDetailLibrary } from "./detail-library";
 import { getBrowserStatsClient, updateResourceStatsInDom } from "../lib/stats-client";
 
 const root = document.querySelector<HTMLElement>("[data-detail-root]");
 if (root) {
   setupDetailNavigation(root);
+  setupDetailLibrary(root);
   const resourceId = root.dataset.resourceId;
   const statsClient = getBrowserStatsClient();
   if (resourceId) {
