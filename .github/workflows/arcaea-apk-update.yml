@@ -49,6 +49,7 @@ jobs:
         run: npm --prefix tools/arcaea-apk-updater run check -- --mode "${{ inputs.mode || 'publish' }}"
         env:
           GITHUB_TOKEN: ${{ github.token }}
+          ROS_REFERER: https://rhythmarchive.github.io/
           ROS_ACCESS_KEY: ${{ secrets.ROS_ACCESS_KEY }}
           ROS_SECRET_KEY: ${{ secrets.ROS_SECRET_KEY }}
           ROS_ENDPOINT: ${{ secrets.ROS_ENDPOINT }}

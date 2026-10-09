@@ -24,6 +24,7 @@ export type RosStorageConfig = {
   publicBaseUrl: string;
   region: string;
   forcePathStyle: boolean;
+  referer?: string;
   accessKey?: string;
   secretKey?: string;
 };
@@ -109,6 +110,8 @@ export function loadRosStorageConfig(env: NodeJS.ProcessEnv = process.env): RosS
     region: nonEmpty(env.ROS_REGION) ?? "us-east-1",
     forcePathStyle: booleanEnv(env.ROS_FORCE_PATH_STYLE),
   };
+  const referer = nonEmpty(env.ROS_REFERER);
+  if (referer) config.referer = referer;
   const accessKey = nonEmpty(env.ROS_ACCESS_KEY);
   const secretKey = nonEmpty(env.ROS_SECRET_KEY);
   if (accessKey) config.accessKey = accessKey;
@@ -192,6 +195,12 @@ export class S3StorageClient implements StorageClient {
           forcePathStyle: config.forcePathStyle,
           credentials: { accessKeyId: config.accessKey!, secretAccessKey: config.secretKey! },
         });
+      if (config.referer) {
+        this.client.middlewareStack.add((next) => async (args) => {
+          (args.request as { headers: Record<string, string> }).headers.referer = config.referer!;
+          return next(args);
+        }, { step: "build", name: "rosRefererMiddleware", override: true });
+      }
     }
   }
 
