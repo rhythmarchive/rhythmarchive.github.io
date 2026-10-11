@@ -15,16 +15,18 @@ const { resourceId, name, route } = Astro.props;
     <button type="submit" class="button button-secondary" disabled>完成验证后发送邮件</button>
     <p role="status" data-feedback-status></p>
   </form> : <p class="detail-note">邮件反馈暂不可用，请使用 GitHub 反馈。</p>}
-  <a href={GITHUB_FEEDBACK_CATEGORY_URL} target="_blank" rel="noopener noreferrer">GitHub 反馈</a>
-  <a href={urls.sitePath('/feedback/')}>前往反馈区</a>
+  <div class="resource-feedback-links">
+    <a class="text-link" href={GITHUB_FEEDBACK_CATEGORY_URL} target="_blank" rel="noopener noreferrer">GitHub 反馈</a>
+    <a class="text-link" href={urls.sitePath('/feedback/')}>前往反馈区</a>
+  </div>
 </details>
 <style>
   .resource-feedback { margin-block: 1rem; }
-  summary { cursor: pointer; width: fit-content; }
+  summary { cursor: pointer; width: fit-content; min-height: var(--control-compact); color: var(--accent-strong); }
   form { display: grid; gap: .75rem; max-width: 36rem; margin-block: .75rem; }
   label { display: grid; gap: .35rem; }
-  select, textarea { font: inherit; width: 100%; color: inherit; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-sm); padding: .5rem; }
+  select, textarea { width: 100%; }
   textarea { resize: vertical; }
-  a + a { margin-left: 1rem; }
+  .resource-feedback-links { display: flex; flex-wrap: wrap; gap: 8px 16px; }
 </style>
 <script src="../scripts/resource-feedback.ts"></script>

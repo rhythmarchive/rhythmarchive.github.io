@@ -9,8 +9,11 @@ const categories = getPublicNavigationGames().flatMap((game) => game.categories.
 ---
 <BaseLayout title="收藏与历史 | Rhythm Archive" description="查看收藏的资源与自动记录的最近浏览。" canonicalPath="/library/" bodyClass="library-page">
   <section class="page-container gallery-shell library-shell" data-library-root data-categories={JSON.stringify(categories)}>
-    <div class="section-heading"><h1>收藏与历史</h1></div>
-    <p class="detail-note">收藏喜欢的资源，浏览详情会自动记录在“最近浏览”。</p>
+    <div class="page-heading library-heading">
+      <span class="archive-kicker">Rhythm Archive</span>
+      <h1>收藏与历史</h1>
+      <p>收藏喜欢的资源，浏览详情会自动记录在“最近浏览”。</p>
+    </div>
     <div class="variant-tabs library-tabs" role="tablist" aria-label="本地资源列表">
       <button type="button" role="tab" id="favorites-tab" data-library-tab="favorites" aria-controls="library-panel" aria-selected="true"><span>收藏夹</span><span class="library-tab-count" data-library-tab-count>0</span></button>
       <button type="button" role="tab" id="history-tab" data-library-tab="history" aria-controls="library-panel" aria-selected="false" tabindex="-1"><span>最近浏览</span><span class="library-tab-count" data-library-tab-count>0</span></button>

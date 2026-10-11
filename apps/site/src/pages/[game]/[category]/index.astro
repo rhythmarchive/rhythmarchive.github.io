@@ -50,7 +50,7 @@ const description = `浏览并下载 ${game.displayName} ${category.label}${cate
   <nav class="page-container category-nav" aria-label={`${game.displayName} 分类`}>
     <span class="category-nav-label">资源类型</span>
     {game.categories.map((item) => <>
-      <a class:list={{ "is-active": item.slug === category.slug }} href={urls.sitePath(`/${game.slug}/${item.slug}/`)}>{item.label} <span>{formatCount(item.slug === category.slug ? categoryCount : item.count)}</span></a>
+      <a class:list={{ "is-active": item.slug === category.slug }} aria-current={item.slug === category.slug ? "page" : undefined} href={urls.sitePath(`/${game.slug}/${item.slug}/`)}>{item.label} <span>{formatCount(item.slug === category.slug ? categoryCount : item.count)}</span></a>
     </>)}
   </nav>
   <div class="page-container">

@@ -1,6 +1,5 @@
-.library-shell { padding-top: 2rem; padding-bottom: 3rem; }
-.library-shell h1 { margin: 0; font-size: clamp(1.4rem, 4vw, 1.9rem); }
-.library-tabs { margin: 1.25rem 0 1rem; }
+.library-shell { padding-top: 0; padding-bottom: 3rem; }
+.library-tabs { margin: 0 0 1rem; }
 .library-tabs button { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; }
 .library-tab-count { min-width: 1.5em; padding: 1px 5px; border-radius: var(--radius-sm); background: var(--surface-muted); font-variant-numeric: tabular-nums; }
 .library-storage-note { margin-top: 1.5rem; color: var(--text-muted); font-size: 0.78rem; }

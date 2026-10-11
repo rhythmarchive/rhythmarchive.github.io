@@ -31,7 +31,7 @@ const contentVersion = publicContentVersion(update.contentVersion);
 ---
 
 <BaseLayout title={update.displayName + " 更新记录 | Rhythm Archive"} description={update.displayName + " 于 " + dateLabel + " 的资源更新记录。"} canonicalPath={"/updates/" + update.id + "/"} bodyClass="update-detail-page">
-  <section class="page-container update-detail-head" aria-labelledby="update-detail-heading">
+  <section class="page-container update-detail-head page-heading" aria-labelledby="update-detail-heading">
     <a class="back-link" href={urls.sitePath("/updates/")}>返回更新记录</a>
     <span class="archive-kicker">更新记录</span>
     <h1 id="update-detail-heading">{update.displayName} 更新</h1>

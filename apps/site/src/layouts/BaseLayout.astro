@@ -74,8 +74,9 @@ const rosOrigin = new URL(ROS_BASE_URL).origin;
     <script src="../scripts/stats.ts"></script>
   </head>
   <body class={bodyClass}>
+    <a class="skip-link" href="#main-content">跳到主要内容</a>
     <SiteHeader />
-    <main class="site-main"><slot /></main>
+    <main class="site-main" id="main-content" tabindex="-1"><slot /></main>
     <Footer />
   </body>
 </html>
