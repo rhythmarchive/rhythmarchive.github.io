@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
   "game": "rizline",
-  "generatedAt": "2026-09-11T13:07:47.881Z",
+  "generatedAt": "2026-10-11T06:18:21.213Z",
   "source": {
-    "version": "v141_2_7_1_3c13bbff2bP",
-    "sha256": "2550df5e2d7bf5bada1402bb76b4f02ee50926b32632c6a48b7356989eb4fdc7"
+    "version": "v144_2_7_1_346654b724P",
+    "sha256": "f88ef39a889739d33ad04ebeb49735f1ac2217eff67e3054064cc0a91fc0d097"
   },
   "songs": [
     {
@@ -3887,10 +3887,100 @@
         "群青kurara",
         "EX - Single"
       ]
+    },
+    {
+      "songId": "Astral.TitanChaos.0",
+      "displayTitle": "Astral",
+      "musicArtist": "Titan Chaos",
+      "illustrator": "群青kurara feat. Jimwaz",
+      "disc": "EX - T.S.",
+      "trackSeries": [
+        {
+          "id": "rizline:track-series:00018",
+          "name": "T.S. #18"
+        }
+      ],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:Astral.TitanChaos.0__hires",
+          "resourceId": "b974e785-1b27-7469-89c2-8e8ef7f3e567",
+          "variantId": "c2b6719c-16be-7da6-9876-46bae76291a6",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "Astral",
+        "Astral.TitanChaos.0",
+        "Titan Chaos",
+        "群青kurara feat. Jimwaz",
+        "EX - T.S.",
+        "T.S. #18"
+      ]
+    },
+    {
+      "songId": "Quaoar.Camellia.0",
+      "displayTitle": "Quaoar",
+      "musicArtist": "Camellia",
+      "illustrator": "群青kurara feat. Jimwaz",
+      "disc": "EX - T.S.",
+      "trackSeries": [
+        {
+          "id": "rizline:track-series:00018",
+          "name": "T.S. #18"
+        }
+      ],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:Quaoar.Camellia.0__hires",
+          "resourceId": "c679d875-2662-7b32-af09-2de644be313b",
+          "variantId": "ab693473-980f-72cb-ab40-31449fdd19bb",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "Quaoar",
+        "Quaoar.Camellia.0",
+        "Camellia",
+        "群青kurara feat. Jimwaz",
+        "EX - T.S.",
+        "T.S. #18"
+      ]
+    },
+    {
+      "songId": "千星光輪依頼症.KNYORGft無機ビョウ.0",
+      "displayTitle": "千星光輪依頼症",
+      "musicArtist": "KNYORG ft. 無機ビョウ",
+      "illustrator": "群青kurara feat. Jimwaz",
+      "disc": "EX - T.S.",
+      "trackSeries": [
+        {
+          "id": "rizline:track-series:00018",
+          "name": "T.S. #18"
+        }
+      ],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:千星光輪依頼症.KNYORGft無機ビョウ.0__hires",
+          "resourceId": "775cff8c-9617-73c4-8446-cdb735eb60da",
+          "variantId": "9a74ba96-9cea-79f6-bd91-361ded65c36b",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "千星光輪依頼症",
+        "千星光輪依頼症.KNYORGft無機ビョウ.0",
+        "KNYORG ft. 無機ビョウ",
+        "群青kurara feat. Jimwaz",
+        "EX - T.S.",
+        "T.S. #18"
+      ]
     }
   ],
   "recordCounts": {
-    "songs": 145,
-    "artworks": 148
+    "songs": 148,
+    "artworks": 151
   }
 }

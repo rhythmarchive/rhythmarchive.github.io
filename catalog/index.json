@@ -1,7 +1,7 @@
 {
   "catalogSchemaVersion": "1.0",
   "catalogId": "019fefd6-9c49-7ca0-a760-adc76811a511",
-  "generatedAt": "2026-10-03T10:47:45.731314Z",
+  "generatedAt": "2026-10-11T06:18:21.213Z",
   "resources": [
     {
       "catalogSchemaVersion": "1.0",
@@ -335830,6 +335830,180 @@
         "updatedAt": "2026-10-03T10:47:45.731314Z",
         "publishedAt": "2026-10-03T10:47:45.731314Z"
       }
+    },
+    {
+      "catalogSchemaVersion": "1.0",
+      "id": "b974e785-1b27-7469-89c2-8e8ef7f3e567",
+      "game": "rizline",
+      "resourceType": "jacket",
+      "title": "Astral",
+      "aliases": [
+        {
+          "value": "Astral",
+          "kind": "title"
+        },
+        {
+          "value": "Astral.TitanChaos.0",
+          "kind": "filename"
+        }
+      ],
+      "externalIdentities": [
+        {
+          "namespace": "rizline-semantic",
+          "key": "id",
+          "value": "rizline:song:Astral.TitanChaos.0",
+          "source": "remote-canonical",
+          "confidence": "high"
+        }
+      ],
+      "metadata": {
+        "gameVersion": "2.7.1",
+        "songId": "Astral.TitanChaos.0",
+        "musicArtist": "Titan Chaos",
+        "illustrator": "群青kurara feat. Jimwaz",
+        "disc": "EX - T.S.",
+        "trackSeries": "T.S. #18"
+      },
+      "relations": [],
+      "provenance": [
+        {
+          "sourceType": "rizline_remote",
+          "sourceSnapshot": "rizline.remote-canonical:v144_2_7_1_346654b724P",
+          "gameVersion": "v144_2_7_1_346654b724P",
+          "sourceRelativePath": "provenance/rizline/v144_2_7_1_346654b724P/metadata.json",
+          "sourceFilename": "metadata.json",
+          "sourceSha256": "f88ef39a889739d33ad04ebeb49735f1ac2217eff67e3054064cc0a91fc0d097",
+          "evidence": [
+            {
+              "kind": "metadata",
+              "detail": "Official Addressables and AssetList; track series index 18.",
+              "confidence": "high"
+            }
+          ]
+        }
+      ],
+      "lifecycle": {
+        "status": "published",
+        "createdAt": "2026-10-11T06:18:21.213Z",
+        "updatedAt": "2026-10-11T06:18:21.213Z",
+        "publishedAt": "2026-10-11T06:18:21.213Z"
+      }
+    },
+    {
+      "catalogSchemaVersion": "1.0",
+      "id": "c679d875-2662-7b32-af09-2de644be313b",
+      "game": "rizline",
+      "resourceType": "jacket",
+      "title": "Quaoar",
+      "aliases": [
+        {
+          "value": "Quaoar",
+          "kind": "title"
+        },
+        {
+          "value": "Quaoar.Camellia.0",
+          "kind": "filename"
+        }
+      ],
+      "externalIdentities": [
+        {
+          "namespace": "rizline-semantic",
+          "key": "id",
+          "value": "rizline:song:Quaoar.Camellia.0",
+          "source": "remote-canonical",
+          "confidence": "high"
+        }
+      ],
+      "metadata": {
+        "gameVersion": "2.7.1",
+        "songId": "Quaoar.Camellia.0",
+        "musicArtist": "Camellia",
+        "illustrator": "群青kurara feat. Jimwaz",
+        "disc": "EX - T.S.",
+        "trackSeries": "T.S. #18"
+      },
+      "relations": [],
+      "provenance": [
+        {
+          "sourceType": "rizline_remote",
+          "sourceSnapshot": "rizline.remote-canonical:v144_2_7_1_346654b724P",
+          "gameVersion": "v144_2_7_1_346654b724P",
+          "sourceRelativePath": "provenance/rizline/v144_2_7_1_346654b724P/metadata.json",
+          "sourceFilename": "metadata.json",
+          "sourceSha256": "f88ef39a889739d33ad04ebeb49735f1ac2217eff67e3054064cc0a91fc0d097",
+          "evidence": [
+            {
+              "kind": "metadata",
+              "detail": "Official Addressables and AssetList; track series index 18.",
+              "confidence": "high"
+            }
+          ]
+        }
+      ],
+      "lifecycle": {
+        "status": "published",
+        "createdAt": "2026-10-11T06:18:21.213Z",
+        "updatedAt": "2026-10-11T06:18:21.213Z",
+        "publishedAt": "2026-10-11T06:18:21.213Z"
+      }
+    },
+    {
+      "catalogSchemaVersion": "1.0",
+      "id": "775cff8c-9617-73c4-8446-cdb735eb60da",
+      "game": "rizline",
+      "resourceType": "jacket",
+      "title": "千星光輪依頼症",
+      "aliases": [
+        {
+          "value": "千星光輪依頼症",
+          "kind": "title"
+        },
+        {
+          "value": "千星光輪依頼症.KNYORGft無機ビョウ.0",
+          "kind": "filename"
+        }
+      ],
+      "externalIdentities": [
+        {
+          "namespace": "rizline-semantic",
+          "key": "id",
+          "value": "rizline:song:千星光輪依頼症.KNYORGft無機ビョウ.0",
+          "source": "remote-canonical",
+          "confidence": "high"
+        }
+      ],
+      "metadata": {
+        "gameVersion": "2.7.1",
+        "songId": "千星光輪依頼症.KNYORGft無機ビョウ.0",
+        "musicArtist": "KNYORG ft. 無機ビョウ",
+        "illustrator": "群青kurara feat. Jimwaz",
+        "disc": "EX - T.S.",
+        "trackSeries": "T.S. #18"
+      },
+      "relations": [],
+      "provenance": [
+        {
+          "sourceType": "rizline_remote",
+          "sourceSnapshot": "rizline.remote-canonical:v144_2_7_1_346654b724P",
+          "gameVersion": "v144_2_7_1_346654b724P",
+          "sourceRelativePath": "provenance/rizline/v144_2_7_1_346654b724P/metadata.json",
+          "sourceFilename": "metadata.json",
+          "sourceSha256": "f88ef39a889739d33ad04ebeb49735f1ac2217eff67e3054064cc0a91fc0d097",
+          "evidence": [
+            {
+              "kind": "metadata",
+              "detail": "Official Addressables and AssetList; track series index 18.",
+              "confidence": "high"
+            }
+          ]
+        }
+      ],
+      "lifecycle": {
+        "status": "published",
+        "createdAt": "2026-10-11T06:18:21.213Z",
+        "updatedAt": "2026-10-11T06:18:21.213Z",
+        "publishedAt": "2026-10-11T06:18:21.213Z"
+      }
     }
   ],
   "variants": [
@@ -387515,6 +387689,42 @@
       "variantKey": "default",
       "label": "默认",
       "sortOrder": 0,
+      "kind": "default",
+      "semanticStatus": "confirmed",
+      "preferred": true,
+      "markers": {
+        "unresolved": []
+      }
+    },
+    {
+      "catalogSchemaVersion": "1.0",
+      "id": "c2b6719c-16be-7da6-9876-46bae76291a6",
+      "resourceId": "b974e785-1b27-7469-89c2-8e8ef7f3e567",
+      "variantKey": "default",
+      "kind": "default",
+      "semanticStatus": "confirmed",
+      "preferred": true,
+      "markers": {
+        "unresolved": []
+      }
+    },
+    {
+      "catalogSchemaVersion": "1.0",
+      "id": "ab693473-980f-72cb-ab40-31449fdd19bb",
+      "resourceId": "c679d875-2662-7b32-af09-2de644be313b",
+      "variantKey": "default",
+      "kind": "default",
+      "semanticStatus": "confirmed",
+      "preferred": true,
+      "markers": {
+        "unresolved": []
+      }
+    },
+    {
+      "catalogSchemaVersion": "1.0",
+      "id": "9a74ba96-9cea-79f6-bd91-361ded65c36b",
+      "resourceId": "775cff8c-9617-73c4-8446-cdb735eb60da",
+      "variantKey": "default",
       "kind": "default",
       "semanticStatus": "confirmed",
       "preferred": true,
@@ -681286,6 +681496,171 @@
       "sourceRenditionId": "6048d7c0-7ed0-74c7-92f7-7e20a94bfa20",
       "generatedBy": "thumbnailer",
       "createdAt": "2026-10-03T10:47:45.731314Z",
+      "metadata": {}
+    },
+    {
+      "catalogSchemaVersion": "1.0",
+      "id": "040eaebb-06ad-7ef5-a03e-8cddc6181ba5",
+      "variantId": "c2b6719c-16be-7da6-9876-46bae76291a6",
+      "renditionType": "original",
+      "origin": "source",
+      "publishable": true,
+      "objectId": "sha256:9537092c55a92216b9f65e2bf410683b01efb0263396452cacb12f89a993ab10",
+      "downloadFilename": "rizline-illustration-Astral.TitanChaos.0__hires.png",
+      "generatedBy": "extractor",
+      "createdAt": "2026-10-11T06:18:21.213Z",
+      "metadata": {}
+    },
+    {
+      "catalogSchemaVersion": "1.0",
+      "id": "a598b8b4-9f11-7ba9-b839-6a0dc830bb11",
+      "variantId": "c2b6719c-16be-7da6-9876-46bae76291a6",
+      "renditionType": "thumbnail-320",
+      "origin": "derived",
+      "publishable": false,
+      "objectId": "sha256:781d58ed7be64174b8a6ee55622bb6246824b2d08f8ac26b954da29cc6ec74db",
+      "downloadFilename": "rizline-illustration-Astral.TitanChaos.0__hires_320.webp",
+      "sourceRenditionId": "040eaebb-06ad-7ef5-a03e-8cddc6181ba5",
+      "generatedBy": "thumbnailer",
+      "createdAt": "2026-10-11T06:18:21.213Z",
+      "metadata": {}
+    },
+    {
+      "catalogSchemaVersion": "1.0",
+      "id": "a3b0b03f-b27a-7025-a511-af1ab6155cf9",
+      "variantId": "c2b6719c-16be-7da6-9876-46bae76291a6",
+      "renditionType": "thumbnail-640",
+      "origin": "derived",
+      "publishable": false,
+      "objectId": "sha256:f196d5b136d12ac0e2811157ed51202d0b383a8fcf729b7cdea42931dfbaffa2",
+      "downloadFilename": "rizline-illustration-Astral.TitanChaos.0__hires_640.webp",
+      "sourceRenditionId": "040eaebb-06ad-7ef5-a03e-8cddc6181ba5",
+      "generatedBy": "thumbnailer",
+      "createdAt": "2026-10-11T06:18:21.213Z",
+      "metadata": {}
+    },
+    {
+      "catalogSchemaVersion": "1.0",
+      "id": "f6f8e3e8-3794-734f-9d55-c094ba9731d6",
+      "variantId": "c2b6719c-16be-7da6-9876-46bae76291a6",
+      "renditionType": "thumbnail-1280",
+      "origin": "derived",
+      "publishable": false,
+      "objectId": "sha256:3e9d4bea10843c5af3a76481ff32a039d84c0c4c8aa3e45086b17ed3825f1da5",
+      "downloadFilename": "rizline-illustration-Astral.TitanChaos.0__hires_1280.webp",
+      "sourceRenditionId": "040eaebb-06ad-7ef5-a03e-8cddc6181ba5",
+      "generatedBy": "thumbnailer",
+      "createdAt": "2026-10-11T06:18:21.213Z",
+      "metadata": {}
+    },
+    {
+      "catalogSchemaVersion": "1.0",
+      "id": "cd46124e-0e9f-7499-b271-64037554fc49",
+      "variantId": "ab693473-980f-72cb-ab40-31449fdd19bb",
+      "renditionType": "original",
+      "origin": "source",
+      "publishable": true,
+      "objectId": "sha256:0424118f192bb0891d4159da974baacf3c36ef70fec3c83d13f37380f09a879f",
+      "downloadFilename": "rizline-illustration-Quaoar.Camellia.0__hires.png",
+      "generatedBy": "extractor",
+      "createdAt": "2026-10-11T06:18:21.213Z",
+      "metadata": {}
+    },
+    {
+      "catalogSchemaVersion": "1.0",
+      "id": "df5b4d23-5b0e-738e-a3c9-7a823a7c6cb2",
+      "variantId": "ab693473-980f-72cb-ab40-31449fdd19bb",
+      "renditionType": "thumbnail-320",
+      "origin": "derived",
+      "publishable": false,
+      "objectId": "sha256:1cf014d948eb9373d7293f7048555192ce30f2d30b4083f6cb92038b0eeae06f",
+      "downloadFilename": "rizline-illustration-Quaoar.Camellia.0__hires_320.webp",
+      "sourceRenditionId": "cd46124e-0e9f-7499-b271-64037554fc49",
+      "generatedBy": "thumbnailer",
+      "createdAt": "2026-10-11T06:18:21.213Z",
+      "metadata": {}
+    },
+    {
+      "catalogSchemaVersion": "1.0",
+      "id": "e9b7d40f-a70c-74fb-940e-7738db2b5849",
+      "variantId": "ab693473-980f-72cb-ab40-31449fdd19bb",
+      "renditionType": "thumbnail-640",
+      "origin": "derived",
+      "publishable": false,
+      "objectId": "sha256:19fde2ffe5cbb8147572fa760f803a4ff9bf8a349e7f037773132365ca2a218f",
+      "downloadFilename": "rizline-illustration-Quaoar.Camellia.0__hires_640.webp",
+      "sourceRenditionId": "cd46124e-0e9f-7499-b271-64037554fc49",
+      "generatedBy": "thumbnailer",
+      "createdAt": "2026-10-11T06:18:21.213Z",
+      "metadata": {}
+    },
+    {
+      "catalogSchemaVersion": "1.0",
+      "id": "a056ddfc-6f57-76f5-9c1b-aee294e822cb",
+      "variantId": "ab693473-980f-72cb-ab40-31449fdd19bb",
+      "renditionType": "thumbnail-1280",
+      "origin": "derived",
+      "publishable": false,
+      "objectId": "sha256:929b880ac33cc01ebf5f915c9180b014e6a3ee06b9c5902ada52824343ded826",
+      "downloadFilename": "rizline-illustration-Quaoar.Camellia.0__hires_1280.webp",
+      "sourceRenditionId": "cd46124e-0e9f-7499-b271-64037554fc49",
+      "generatedBy": "thumbnailer",
+      "createdAt": "2026-10-11T06:18:21.213Z",
+      "metadata": {}
+    },
+    {
+      "catalogSchemaVersion": "1.0",
+      "id": "abf364a6-ed3e-7166-a42b-fbff455c09a2",
+      "variantId": "9a74ba96-9cea-79f6-bd91-361ded65c36b",
+      "renditionType": "original",
+      "origin": "source",
+      "publishable": true,
+      "objectId": "sha256:5f458736c9ff9c690098dc1693ec971e6b8a58894f28bff6001e721823cd18d1",
+      "downloadFilename": "rizline-illustration-.KNYORGft-.0-b0559fff83__hires.png",
+      "generatedBy": "extractor",
+      "createdAt": "2026-10-11T06:18:21.213Z",
+      "metadata": {}
+    },
+    {
+      "catalogSchemaVersion": "1.0",
+      "id": "914ad75c-e345-7e75-8b7e-71797d05e288",
+      "variantId": "9a74ba96-9cea-79f6-bd91-361ded65c36b",
+      "renditionType": "thumbnail-320",
+      "origin": "derived",
+      "publishable": false,
+      "objectId": "sha256:bb9f2d860d8e0f788375d20e693aac586c6eff6ae4479270dd9079fb54247d30",
+      "downloadFilename": "rizline-illustration-.KNYORGft-.0-b0559fff83__hires_320.webp",
+      "sourceRenditionId": "abf364a6-ed3e-7166-a42b-fbff455c09a2",
+      "generatedBy": "thumbnailer",
+      "createdAt": "2026-10-11T06:18:21.213Z",
+      "metadata": {}
+    },
+    {
+      "catalogSchemaVersion": "1.0",
+      "id": "91bc76dd-726c-7383-bae3-4682331d81fd",
+      "variantId": "9a74ba96-9cea-79f6-bd91-361ded65c36b",
+      "renditionType": "thumbnail-640",
+      "origin": "derived",
+      "publishable": false,
+      "objectId": "sha256:1b469081ea0a26945e3c8a1026afedf5dbf555c6aec65f37915a954492d6af1a",
+      "downloadFilename": "rizline-illustration-.KNYORGft-.0-b0559fff83__hires_640.webp",
+      "sourceRenditionId": "abf364a6-ed3e-7166-a42b-fbff455c09a2",
+      "generatedBy": "thumbnailer",
+      "createdAt": "2026-10-11T06:18:21.213Z",
+      "metadata": {}
+    },
+    {
+      "catalogSchemaVersion": "1.0",
+      "id": "a23fd0c8-6355-7089-ba09-1dd3dcb964c0",
+      "variantId": "9a74ba96-9cea-79f6-bd91-361ded65c36b",
+      "renditionType": "thumbnail-1280",
+      "origin": "derived",
+      "publishable": false,
+      "objectId": "sha256:8af1afb9ff67c7935f57b50ea15118664de96df08f00944bb1bff5f7aecce1fe",
+      "downloadFilename": "rizline-illustration-.KNYORGft-.0-b0559fff83__hires_1280.webp",
+      "sourceRenditionId": "abf364a6-ed3e-7166-a42b-fbff455c09a2",
+      "generatedBy": "thumbnailer",
+      "createdAt": "2026-10-11T06:18:21.213Z",
       "metadata": {}
     }
   ],
@@ -1326075,6 +1326450,354 @@
           ]
         }
       ]
+    },
+    {
+      "catalogSchemaVersion": "1.0",
+      "id": "sha256:9537092c55a92216b9f65e2bf410683b01efb0263396452cacb12f89a993ab10",
+      "sha256": "9537092c55a92216b9f65e2bf410683b01efb0263396452cacb12f89a993ab10",
+      "mime": "image/png",
+      "extension": "png",
+      "sizeBytes": 3779274,
+      "width": 2048,
+      "height": 2048,
+      "alpha": "unknown",
+      "objectKey": "objects/9537092c55a92216b9f65e2bf410683b01efb0263396452cacb12f89a993ab10/png",
+      "createdAt": "2026-10-11T06:18:21.213Z",
+      "provenance": [
+        {
+          "sourceType": "rizline_remote",
+          "sourceRelativePath": "provenance/rizline/v144_2_7_1_346654b724P/rizline-illustration-Astral.TitanChaos.0__hires.png",
+          "sourceFilename": "rizline-illustration-Astral.TitanChaos.0__hires.png",
+          "sourceSha256": "9537092c55a92216b9f65e2bf410683b01efb0263396452cacb12f89a993ab10",
+          "gameVersion": "v144_2_7_1_346654b724P",
+          "evidence": [
+            {
+              "kind": "metadata",
+              "detail": "Official remote canonical HiRes PNG.",
+              "confidence": "high"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "catalogSchemaVersion": "1.0",
+      "id": "sha256:781d58ed7be64174b8a6ee55622bb6246824b2d08f8ac26b954da29cc6ec74db",
+      "sha256": "781d58ed7be64174b8a6ee55622bb6246824b2d08f8ac26b954da29cc6ec74db",
+      "mime": "image/webp",
+      "extension": "webp",
+      "sizeBytes": 18336,
+      "width": 320,
+      "height": 320,
+      "alpha": "unknown",
+      "objectKey": "objects/781d58ed7be64174b8a6ee55622bb6246824b2d08f8ac26b954da29cc6ec74db/webp",
+      "createdAt": "2026-10-11T06:18:21.213Z",
+      "provenance": [
+        {
+          "sourceType": "rizline_remote",
+          "sourceRelativePath": "cache/rizline-thumbnails/v144_2_7_1_346654b724P/rizline-illustration-Astral.TitanChaos.0__hires_320.webp",
+          "sourceFilename": "rizline-illustration-Astral.TitanChaos.0__hires_320.webp",
+          "sourceSha256": "781d58ed7be64174b8a6ee55622bb6246824b2d08f8ac26b954da29cc6ec74db",
+          "gameVersion": "v144_2_7_1_346654b724P",
+          "evidence": [
+            {
+              "kind": "metadata",
+              "detail": "Domain thumbnailer derived from official HiRes PNG.",
+              "confidence": "high"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "catalogSchemaVersion": "1.0",
+      "id": "sha256:f196d5b136d12ac0e2811157ed51202d0b383a8fcf729b7cdea42931dfbaffa2",
+      "sha256": "f196d5b136d12ac0e2811157ed51202d0b383a8fcf729b7cdea42931dfbaffa2",
+      "mime": "image/webp",
+      "extension": "webp",
+      "sizeBytes": 49038,
+      "width": 640,
+      "height": 640,
+      "alpha": "unknown",
+      "objectKey": "objects/f196d5b136d12ac0e2811157ed51202d0b383a8fcf729b7cdea42931dfbaffa2/webp",
+      "createdAt": "2026-10-11T06:18:21.213Z",
+      "provenance": [
+        {
+          "sourceType": "rizline_remote",
+          "sourceRelativePath": "cache/rizline-thumbnails/v144_2_7_1_346654b724P/rizline-illustration-Astral.TitanChaos.0__hires_640.webp",
+          "sourceFilename": "rizline-illustration-Astral.TitanChaos.0__hires_640.webp",
+          "sourceSha256": "f196d5b136d12ac0e2811157ed51202d0b383a8fcf729b7cdea42931dfbaffa2",
+          "gameVersion": "v144_2_7_1_346654b724P",
+          "evidence": [
+            {
+              "kind": "metadata",
+              "detail": "Domain thumbnailer derived from official HiRes PNG.",
+              "confidence": "high"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "catalogSchemaVersion": "1.0",
+      "id": "sha256:3e9d4bea10843c5af3a76481ff32a039d84c0c4c8aa3e45086b17ed3825f1da5",
+      "sha256": "3e9d4bea10843c5af3a76481ff32a039d84c0c4c8aa3e45086b17ed3825f1da5",
+      "mime": "image/webp",
+      "extension": "webp",
+      "sizeBytes": 128008,
+      "width": 1280,
+      "height": 1280,
+      "alpha": "unknown",
+      "objectKey": "objects/3e9d4bea10843c5af3a76481ff32a039d84c0c4c8aa3e45086b17ed3825f1da5/webp",
+      "createdAt": "2026-10-11T06:18:21.213Z",
+      "provenance": [
+        {
+          "sourceType": "rizline_remote",
+          "sourceRelativePath": "cache/rizline-thumbnails/v144_2_7_1_346654b724P/rizline-illustration-Astral.TitanChaos.0__hires_1280.webp",
+          "sourceFilename": "rizline-illustration-Astral.TitanChaos.0__hires_1280.webp",
+          "sourceSha256": "3e9d4bea10843c5af3a76481ff32a039d84c0c4c8aa3e45086b17ed3825f1da5",
+          "gameVersion": "v144_2_7_1_346654b724P",
+          "evidence": [
+            {
+              "kind": "metadata",
+              "detail": "Domain thumbnailer derived from official HiRes PNG.",
+              "confidence": "high"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "catalogSchemaVersion": "1.0",
+      "id": "sha256:0424118f192bb0891d4159da974baacf3c36ef70fec3c83d13f37380f09a879f",
+      "sha256": "0424118f192bb0891d4159da974baacf3c36ef70fec3c83d13f37380f09a879f",
+      "mime": "image/png",
+      "extension": "png",
+      "sizeBytes": 2178216,
+      "width": 2048,
+      "height": 2048,
+      "alpha": "unknown",
+      "objectKey": "objects/0424118f192bb0891d4159da974baacf3c36ef70fec3c83d13f37380f09a879f/png",
+      "createdAt": "2026-10-11T06:18:21.213Z",
+      "provenance": [
+        {
+          "sourceType": "rizline_remote",
+          "sourceRelativePath": "provenance/rizline/v144_2_7_1_346654b724P/rizline-illustration-Quaoar.Camellia.0__hires.png",
+          "sourceFilename": "rizline-illustration-Quaoar.Camellia.0__hires.png",
+          "sourceSha256": "0424118f192bb0891d4159da974baacf3c36ef70fec3c83d13f37380f09a879f",
+          "gameVersion": "v144_2_7_1_346654b724P",
+          "evidence": [
+            {
+              "kind": "metadata",
+              "detail": "Official remote canonical HiRes PNG.",
+              "confidence": "high"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "catalogSchemaVersion": "1.0",
+      "id": "sha256:1cf014d948eb9373d7293f7048555192ce30f2d30b4083f6cb92038b0eeae06f",
+      "sha256": "1cf014d948eb9373d7293f7048555192ce30f2d30b4083f6cb92038b0eeae06f",
+      "mime": "image/webp",
+      "extension": "webp",
+      "sizeBytes": 17998,
+      "width": 320,
+      "height": 320,
+      "alpha": "unknown",
+      "objectKey": "objects/1cf014d948eb9373d7293f7048555192ce30f2d30b4083f6cb92038b0eeae06f/webp",
+      "createdAt": "2026-10-11T06:18:21.213Z",
+      "provenance": [
+        {
+          "sourceType": "rizline_remote",
+          "sourceRelativePath": "cache/rizline-thumbnails/v144_2_7_1_346654b724P/rizline-illustration-Quaoar.Camellia.0__hires_320.webp",
+          "sourceFilename": "rizline-illustration-Quaoar.Camellia.0__hires_320.webp",
+          "sourceSha256": "1cf014d948eb9373d7293f7048555192ce30f2d30b4083f6cb92038b0eeae06f",
+          "gameVersion": "v144_2_7_1_346654b724P",
+          "evidence": [
+            {
+              "kind": "metadata",
+              "detail": "Domain thumbnailer derived from official HiRes PNG.",
+              "confidence": "high"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "catalogSchemaVersion": "1.0",
+      "id": "sha256:19fde2ffe5cbb8147572fa760f803a4ff9bf8a349e7f037773132365ca2a218f",
+      "sha256": "19fde2ffe5cbb8147572fa760f803a4ff9bf8a349e7f037773132365ca2a218f",
+      "mime": "image/webp",
+      "extension": "webp",
+      "sizeBytes": 47524,
+      "width": 640,
+      "height": 640,
+      "alpha": "unknown",
+      "objectKey": "objects/19fde2ffe5cbb8147572fa760f803a4ff9bf8a349e7f037773132365ca2a218f/webp",
+      "createdAt": "2026-10-11T06:18:21.213Z",
+      "provenance": [
+        {
+          "sourceType": "rizline_remote",
+          "sourceRelativePath": "cache/rizline-thumbnails/v144_2_7_1_346654b724P/rizline-illustration-Quaoar.Camellia.0__hires_640.webp",
+          "sourceFilename": "rizline-illustration-Quaoar.Camellia.0__hires_640.webp",
+          "sourceSha256": "19fde2ffe5cbb8147572fa760f803a4ff9bf8a349e7f037773132365ca2a218f",
+          "gameVersion": "v144_2_7_1_346654b724P",
+          "evidence": [
+            {
+              "kind": "metadata",
+              "detail": "Domain thumbnailer derived from official HiRes PNG.",
+              "confidence": "high"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "catalogSchemaVersion": "1.0",
+      "id": "sha256:929b880ac33cc01ebf5f915c9180b014e6a3ee06b9c5902ada52824343ded826",
+      "sha256": "929b880ac33cc01ebf5f915c9180b014e6a3ee06b9c5902ada52824343ded826",
+      "mime": "image/webp",
+      "extension": "webp",
+      "sizeBytes": 123192,
+      "width": 1280,
+      "height": 1280,
+      "alpha": "unknown",
+      "objectKey": "objects/929b880ac33cc01ebf5f915c9180b014e6a3ee06b9c5902ada52824343ded826/webp",
+      "createdAt": "2026-10-11T06:18:21.213Z",
+      "provenance": [
+        {
+          "sourceType": "rizline_remote",
+          "sourceRelativePath": "cache/rizline-thumbnails/v144_2_7_1_346654b724P/rizline-illustration-Quaoar.Camellia.0__hires_1280.webp",
+          "sourceFilename": "rizline-illustration-Quaoar.Camellia.0__hires_1280.webp",
+          "sourceSha256": "929b880ac33cc01ebf5f915c9180b014e6a3ee06b9c5902ada52824343ded826",
+          "gameVersion": "v144_2_7_1_346654b724P",
+          "evidence": [
+            {
+              "kind": "metadata",
+              "detail": "Domain thumbnailer derived from official HiRes PNG.",
+              "confidence": "high"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "catalogSchemaVersion": "1.0",
+      "id": "sha256:5f458736c9ff9c690098dc1693ec971e6b8a58894f28bff6001e721823cd18d1",
+      "sha256": "5f458736c9ff9c690098dc1693ec971e6b8a58894f28bff6001e721823cd18d1",
+      "mime": "image/png",
+      "extension": "png",
+      "sizeBytes": 2520515,
+      "width": 2048,
+      "height": 2048,
+      "alpha": "unknown",
+      "objectKey": "objects/5f458736c9ff9c690098dc1693ec971e6b8a58894f28bff6001e721823cd18d1/png",
+      "createdAt": "2026-10-11T06:18:21.213Z",
+      "provenance": [
+        {
+          "sourceType": "rizline_remote",
+          "sourceRelativePath": "provenance/rizline/v144_2_7_1_346654b724P/rizline-illustration-.KNYORGft-.0-b0559fff83__hires.png",
+          "sourceFilename": "rizline-illustration-.KNYORGft-.0-b0559fff83__hires.png",
+          "sourceSha256": "5f458736c9ff9c690098dc1693ec971e6b8a58894f28bff6001e721823cd18d1",
+          "gameVersion": "v144_2_7_1_346654b724P",
+          "evidence": [
+            {
+              "kind": "metadata",
+              "detail": "Official remote canonical HiRes PNG.",
+              "confidence": "high"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "catalogSchemaVersion": "1.0",
+      "id": "sha256:bb9f2d860d8e0f788375d20e693aac586c6eff6ae4479270dd9079fb54247d30",
+      "sha256": "bb9f2d860d8e0f788375d20e693aac586c6eff6ae4479270dd9079fb54247d30",
+      "mime": "image/webp",
+      "extension": "webp",
+      "sizeBytes": 20294,
+      "width": 320,
+      "height": 320,
+      "alpha": "unknown",
+      "objectKey": "objects/bb9f2d860d8e0f788375d20e693aac586c6eff6ae4479270dd9079fb54247d30/webp",
+      "createdAt": "2026-10-11T06:18:21.213Z",
+      "provenance": [
+        {
+          "sourceType": "rizline_remote",
+          "sourceRelativePath": "cache/rizline-thumbnails/v144_2_7_1_346654b724P/rizline-illustration-.KNYORGft-.0-b0559fff83__hires_320.webp",
+          "sourceFilename": "rizline-illustration-.KNYORGft-.0-b0559fff83__hires_320.webp",
+          "sourceSha256": "bb9f2d860d8e0f788375d20e693aac586c6eff6ae4479270dd9079fb54247d30",
+          "gameVersion": "v144_2_7_1_346654b724P",
+          "evidence": [
+            {
+              "kind": "metadata",
+              "detail": "Domain thumbnailer derived from official HiRes PNG.",
+              "confidence": "high"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "catalogSchemaVersion": "1.0",
+      "id": "sha256:1b469081ea0a26945e3c8a1026afedf5dbf555c6aec65f37915a954492d6af1a",
+      "sha256": "1b469081ea0a26945e3c8a1026afedf5dbf555c6aec65f37915a954492d6af1a",
+      "mime": "image/webp",
+      "extension": "webp",
+      "sizeBytes": 56682,
+      "width": 640,
+      "height": 640,
+      "alpha": "unknown",
+      "objectKey": "objects/1b469081ea0a26945e3c8a1026afedf5dbf555c6aec65f37915a954492d6af1a/webp",
+      "createdAt": "2026-10-11T06:18:21.213Z",
+      "provenance": [
+        {
+          "sourceType": "rizline_remote",
+          "sourceRelativePath": "cache/rizline-thumbnails/v144_2_7_1_346654b724P/rizline-illustration-.KNYORGft-.0-b0559fff83__hires_640.webp",
+          "sourceFilename": "rizline-illustration-.KNYORGft-.0-b0559fff83__hires_640.webp",
+          "sourceSha256": "1b469081ea0a26945e3c8a1026afedf5dbf555c6aec65f37915a954492d6af1a",
+          "gameVersion": "v144_2_7_1_346654b724P",
+          "evidence": [
+            {
+              "kind": "metadata",
+              "detail": "Domain thumbnailer derived from official HiRes PNG.",
+              "confidence": "high"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "catalogSchemaVersion": "1.0",
+      "id": "sha256:8af1afb9ff67c7935f57b50ea15118664de96df08f00944bb1bff5f7aecce1fe",
+      "sha256": "8af1afb9ff67c7935f57b50ea15118664de96df08f00944bb1bff5f7aecce1fe",
+      "mime": "image/webp",
+      "extension": "webp",
+      "sizeBytes": 153374,
+      "width": 1280,
+      "height": 1280,
+      "alpha": "unknown",
+      "objectKey": "objects/8af1afb9ff67c7935f57b50ea15118664de96df08f00944bb1bff5f7aecce1fe/webp",
+      "createdAt": "2026-10-11T06:18:21.213Z",
+      "provenance": [
+        {
+          "sourceType": "rizline_remote",
+          "sourceRelativePath": "cache/rizline-thumbnails/v144_2_7_1_346654b724P/rizline-illustration-.KNYORGft-.0-b0559fff83__hires_1280.webp",
+          "sourceFilename": "rizline-illustration-.KNYORGft-.0-b0559fff83__hires_1280.webp",
+          "sourceSha256": "8af1afb9ff67c7935f57b50ea15118664de96df08f00944bb1bff5f7aecce1fe",
+          "gameVersion": "v144_2_7_1_346654b724P",
+          "evidence": [
+            {
+              "kind": "metadata",
+              "detail": "Domain thumbnailer derived from official HiRes PNG.",
+              "confidence": "high"
+            }
+          ]
+        }
+      ]
     }
   ],
   "releaseManifestIds": [
@@ -1326113,6 +1326836,7 @@
     "76a7f3e0-7f51-78ae-9d8c-345f5051fc54",
     "01a0e2bb-d8f8-741a-93bb-364acb88223f",
     "e8f0c9f4-e23a-722b-8b14-f2fab38df4f8",
-    "403073df-99ca-7c80-8fba-1816c143dea8"
+    "403073df-99ca-7c80-8fba-1816c143dea8",
+    "ff6d1e18-28c5-7aa6-a9c4-36c1760eb895"
   ]
 }

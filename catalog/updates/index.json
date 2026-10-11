@@ -2903,6 +2903,30 @@
           "change": "added"
         }
       ]
+    },
+    {
+      "id": "b4fb1cae-6597-78a9-b332-20f2c2aba487",
+      "game": "rizline",
+      "releaseIds": [
+        "ff6d1e18-28c5-7aa6-a9c4-36c1760eb895"
+      ],
+      "kind": "update",
+      "publishedAt": "2026-10-11T06:18:21.213Z",
+      "contentVersion": "v144_2_7_1_346654b724P",
+      "items": [
+        {
+          "resourceId": "b974e785-1b27-7469-89c2-8e8ef7f3e567",
+          "change": "added"
+        },
+        {
+          "resourceId": "c679d875-2662-7b32-af09-2de644be313b",
+          "change": "added"
+        },
+        {
+          "resourceId": "775cff8c-9617-73c4-8446-cdb735eb60da",
+          "change": "added"
+        }
+      ]
     }
   ]
 }
