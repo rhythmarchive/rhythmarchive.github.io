@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 import DownloadActions from "../../../components/DownloadActions.astro";
+import ResourceFeedback from "../../../components/ResourceFeedback.astro";
 import VideoGallery from "../../../components/VideoGallery.astro";
 import StoryComposition from "../../../components/StoryComposition.astro";
 import VariantPanel from "../../../components/VariantPanel.astro";
@@ -84,6 +85,7 @@ const description = `${resource.displayTitle}${resource.artist ? ` · ${resource
 <BaseLayout title={`${resource.displayTitle} - ${GAME_CONFIG[resource.game].displayName} | Rhythm Archive`} description={description} canonicalPath={resource.route} ogImage={preview} bodyClass="detail-page">
   <div class="page-container detail-shell" data-detail-root data-resource-id={resource.resourceId} data-game={resource.game} data-category={resource.category} data-resource-title={resource.displayTitle}>
     <div class="detail-breadcrumb"><a href={urls.sitePath("/games/")}>游戏库</a><span>/</span><a href={urls.sitePath(`/${resource.game}/${resource.category}/`)}>{GAME_CONFIG[resource.game].displayName}</a><span>/</span><span>{resource.categoryLabel}</span></div>
+    <ResourceFeedback resourceId={resource.resourceId} name={resource.displayTitle} route={resource.route} />
     {resource.resourceType === "video" ? <><h1 class="sr-only">{resource.displayTitle}</h1><VideoGallery resources={[resource]}>
       <div slot="resource-info">
         <div class="detail-resource-heading"><span class="section-kicker">{resource.categoryLabel}</span><button class="button button-secondary" type="button" data-favorite-toggle aria-pressed="false" hidden>收藏</button></div>

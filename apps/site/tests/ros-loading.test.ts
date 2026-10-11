@@ -4,6 +4,7 @@ import { loadSelectedDetailImages, observeImage } from "../src/scripts/viewport-
 import { downloadRendition } from "../src/scripts/download.js";
 import { downloadSelectedBatch } from "../src/scripts/batch-tray.js";
 import { unzipSync } from "fflate";
+import { classifyDownloadFailure, DownloadHttpError } from '../src/lib/resource-reports-client.js';
 
 test("offscreen and hidden images stay inert; visible responsive images bind candidates before src", async (t) => {
   let notify: (entries: unknown[]) => void = () => undefined;
@@ -69,19 +70,20 @@ test("detail images retain full resolution and hydrate only the selected source 
 });
 
 function browser(t: TestContext) {
+  const tracked: string[] = [];
   let archiveUrl = "";
   const anchors: Array<{ href: string; rel: string; referrerPolicy: string }> = [];
   for (const key of ["window", "document"] as const) {
     const previous = Object.getOwnPropertyDescriptor(globalThis, key);
     t.after(() => { if (previous) Object.defineProperty(globalThis, key, previous); else Reflect.deleteProperty(globalThis, key); });
   }
-  Object.defineProperty(globalThis, "window", { configurable: true, value: { setTimeout: () => undefined, __rhythmArchiveStatsClient: { trackResourceDownload: async () => undefined } } });
+  Object.defineProperty(globalThis, "window", { configurable: true, value: { setTimeout: () => undefined, __rhythmArchiveStatsClient: { trackResourceDownload: async (id: string) => { tracked.push(id); } } } });
   Object.defineProperty(globalThis, "document", { configurable: true, value: {
     body: { append: () => undefined },
     createElement: () => { const anchor = { href: "", rel: "", referrerPolicy: "", click() { archiveUrl = this.href; }, remove() {} }; anchors.push(anchor); return anchor; },
   } });
   t.after(() => { if (archiveUrl.startsWith("blob:")) URL.revokeObjectURL(archiveUrl); });
-  return { anchors, archiveUrl: () => archiveUrl };
+  return { anchors, tracked, archiveUrl: () => archiveUrl };
 }
 
 test("batch fetches a shared ROS object once while preserving both ZIP filenames", async (t) => {
@@ -137,4 +139,55 @@ test("download HTTP failures are not retried as direct links; network fallback p
   assert.equal(ui.anchors[0]!.rel, "noopener");
   assert.equal(ui.anchors[0]!.referrerPolicy, "strict-origin-when-cross-origin");
   assert.equal(button.disabled, false);
+  assert.deepEqual(ui.tracked, []);
+  fetchMock.mock.mockImplementation(async () => new Response(new Uint8Array([1])));
+  await downloadRendition(button);
+  assert.deepEqual(ui.tracked, ['a']);
+});
+
+test('download failures classify HTTP/network only; cancellation and local limits stay silent', () => {
+  assert.equal(classifyDownloadFailure(new DownloadHttpError(404)), 'http_404');
+  assert.equal(classifyDownloadFailure(new TypeError('Failed to fetch')), 'network');
+  assert.equal(classifyDownloadFailure(new DOMException('cancelled', 'AbortError')), undefined);
+  assert.equal(classifyDownloadFailure(new Error('batch download exceeds the maximum size')), undefined);
+  assert.equal(classifyDownloadFailure(new DownloadHttpError(200)), undefined);
+});
+
+test('single HTTP failures report once, keep downloads zero, and cancellation does not report', async (t) => {
+  const ui = browser(t);
+  const doc = document as unknown as { documentElement: unknown };
+  doc.documentElement = { dataset: { statsApiUrl: 'https://api.test' } };
+  const resourceId = '0008cc8e-0f13-798c-9e3a-93168d5f8d6e';
+  const button = { dataset: { downloadUrl: 'https://assets.test/fail', downloadFilename: 'file.png', resourceId },
+    innerHTML: '下载', disabled: false, closest: () => null } as unknown as HTMLButtonElement;
+  const reports: unknown[] = [];
+  t.mock.method(console, 'error', () => undefined);
+  const mocked = t.mock.method(globalThis, 'fetch', async (input: RequestInfo | URL, init?: RequestInit) => {
+    if (String(input).startsWith('https://api.test')) { reports.push(JSON.parse(init!.body as string)); return Response.json({ ok: true }); }
+    return new Response(null, { status: 404 });
+  });
+  await downloadRendition(button); await downloadRendition(button);
+  assert.deepEqual(reports, [{ resourceId, kind: 'http_404' }]);
+  assert.deepEqual(ui.tracked, []);
+  mocked.mock.mockImplementation(async () => { throw new DOMException('cancelled', 'AbortError'); });
+  await downloadRendition(button);
+  assert.equal(reports.length, 1);
+});
+
+test('batch attributes its triggering HTTP failure and suppresses aborted siblings and success stats', async (t) => {
+  const ui = browser(t);
+  (document as unknown as { documentElement: unknown }).documentElement = { dataset: { statsApiUrl: 'https://api.test' } };
+  const ids = ['00495e71-9b2e-7a25-9147-bdf661b5b7c4', '007eb8d6-55f8-75c2-b119-23ce1f06c0d1'];
+  const reports: unknown[] = [];
+  t.mock.method(console, 'error', () => undefined);
+  t.mock.method(globalThis, 'fetch', async (input: RequestInfo | URL, init?: RequestInit) => {
+    if (String(input).startsWith('https://api.test')) { reports.push(JSON.parse(init!.body as string)); return Response.json({ ok: true }); }
+    if (String(input).endsWith(ids[0]!)) return new Response(null, { status: 403 });
+    return new Promise<Response>((_, reject) => init!.signal!.addEventListener('abort', () => reject(new DOMException('cancel', 'AbortError')), { once: true }));
+  });
+  await downloadSelectedBatch({ selectedIds: ids, getResource: id => ({ resourceId: id, route: `/r/${id}/`, displayTitle: id,
+    preview: { small: null, medium: null, large: null }, original: { url: `https://assets.test/${id}`, downloadFilename: `${id}.png`, mime: 'image/png', sizeBytes: 1 } }),
+    preferUpscaled: false, filename: 'test.zip', setStatus: () => undefined });
+  assert.deepEqual(reports, [{ resourceId: ids[0], kind: 'http_403' }]);
+  assert.deepEqual(ui.tracked, []);
 });

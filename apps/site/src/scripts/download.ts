@@ -1,4 +1,5 @@
 import { getBrowserStatsClient } from "../lib/stats-client";
+import { DownloadHttpError, reportDownloadFailure } from "../lib/resource-reports-client";
 
 export async function downloadRendition(button: HTMLButtonElement): Promise<void> {
   const url = button.dataset.downloadUrl;
@@ -7,25 +8,28 @@ export async function downloadRendition(button: HTMLButtonElement): Promise<void
   const status = panel?.querySelector<HTMLElement>("[data-download-status]");
   if (!url || !filename || button.disabled) return;
   const resourceId = button.dataset.resourceId ?? button.closest<HTMLElement>("[data-detail-root]")?.dataset.resourceId;
-  if (resourceId) void getBrowserStatsClient().trackResourceDownload(resourceId);
 
   const originalLabel = button.innerHTML;
   button.disabled = true;
   button.innerHTML = "<span>下载中…</span>";
   if (status) status.textContent = "下载中…";
   let canOpenDirectly = true;
+  let fetched = false;
   try {
     const response = await fetch(url, { credentials: "omit", referrerPolicy: "strict-origin-when-cross-origin" });
     if (!response.ok) {
       canOpenDirectly = false;
-      throw new Error(`download failed with ${response.status}`);
+      throw new DownloadHttpError(response.status);
     }
     const blob = await response.blob();
+    fetched = true;
     const objectUrl = URL.createObjectURL(blob);
     triggerDownload(objectUrl, filename);
+    if (resourceId) void getBrowserStatsClient().trackResourceDownload(resourceId);
     window.setTimeout(() => URL.revokeObjectURL(objectUrl), 1000);
     if (status) status.textContent = "";
   } catch (error) {
+    if (resourceId && !fetched) reportDownloadFailure(resourceId, error);
     console.error("Resource download failed", error);
     if (canOpenDirectly) triggerDirectDownload(url, filename);
     if (status) status.textContent = canOpenDirectly

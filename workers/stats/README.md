@@ -41,3 +41,6 @@ wrangler.toml 允许 rhythmarchive.github.io、localhost 和 127.0.0.1，没有�
 
 本地 Astro 使用 PUBLIC_STATS_API_URL=http://127.0.0.1:8787；没有配置时静态站点仍可构建，统计展示保持隐藏。提醒入口还需要 Pages 构建变量 PUBLIC_UPDATE_REMINDERS_ENABLED=true；若启用 Turnstile，还要设置 PUBLIC_UPDATE_REMINDERS_TURNSTILE_SITE_KEY。
 本地明确不测试验证码时，可在被忽略的 workers/stats/.dev.vars 中设置 TURNSTILE_REQUIRED=false 且不配置 TURNSTILE_SECRET_KEY；这不会改动生产 wrangler.toml。
+## 资源反馈与下载异常
+
+本地实现与手动启用步骤见 [RESOURCE_REPORTS.md](RESOURCE_REPORTS.md)。默认关闭，生产迁移与部署需要手动执行。

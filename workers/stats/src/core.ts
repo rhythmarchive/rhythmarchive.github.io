@@ -1,5 +1,6 @@
 import { isUuidV7, normalizeUuid } from "../../../packages/domain/src/identifiers.js";
 import { getResourceRankingWithCache, type RankingCache } from "./ranking-cache.js";
+import { acceptResourceReport } from "./resource-reports.js";
 import { PUBLIC_GAME_DISPLAY_NAMES, PUBLIC_GAME_SLUGS, PUBLIC_RESOURCE_CATALOG_GENERATED_AT, PUBLIC_RESOURCE_REGISTRY_SHA256, PUBLIC_RESOURCE_IDS, type PublicGameSlug } from "./public-resource-registry.js";
 export type { PublicGameSlug } from "./public-resource-registry.js";
 
@@ -143,6 +144,9 @@ export interface Env {
   RESEND_API_KEY?: string;
   UPDATE_REMINDER_EMAIL_TO?: string;
   UPDATE_REMINDER_ADMIN_TOKEN?: string;
+  RESOURCE_REPORTS_ENABLED?: string;
+  RESOURCE_REPORT_EMAIL_TO?: string;
+  RESOURCE_REPORT_EMAIL_FROM?: string;
 }
 
 export type NotificationFetch = (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
@@ -682,6 +686,7 @@ const localRateLimitBuckets = new Map<string, { windowStartedAt: number; request
 function requestRateLimitConfig(path: string, method: string): RequestRateLimitConfig | undefined {
   if (method === "POST" && path === "/v1/events") return { scope: "events", windowMs: PUBLIC_EVENT_RATE_LIMIT_WINDOW_MS, maxRequests: PUBLIC_EVENT_RATE_LIMIT_MAX_REQUESTS };
   if (method === "POST" && path === "/v1/update-reminders") return { scope: "update-reminders", windowMs: UPDATE_REMINDER_IP_RATE_LIMIT_WINDOW_MS, maxRequests: UPDATE_REMINDER_IP_RATE_LIMIT_MAX_REQUESTS };
+  if (method === "POST" && (path === "/v1/resource-feedback" || path === "/v1/download-failures")) return { scope: path.slice(4), windowMs: UPDATE_REMINDER_IP_RATE_LIMIT_WINDOW_MS, maxRequests: 20 };
   if (method === "POST" && path === "/v1/resources/stats") return { scope: "resource-stats", windowMs: PUBLIC_EVENT_RATE_LIMIT_WINDOW_MS, maxRequests: PUBLIC_EVENT_RATE_LIMIT_MAX_REQUESTS };
   if (method === "GET" && (path === "/v1/site/stats" || path === "/v1/resources/ranking")) return { scope: "stats-read", windowMs: PUBLIC_READ_RATE_LIMIT_WINDOW_MS, maxRequests: PUBLIC_READ_RATE_LIMIT_MAX_REQUESTS };
   return undefined;
@@ -739,6 +744,12 @@ export async function handleRequest(request: Request, env: Env, options: Handler
       }
     }
     const adminResolveMatch = /^\/v1\/admin\/update-reminders\/([^/]+)\/resolve$/u.exec(path);
+    if (request.method === "POST" && (path === "/v1/resource-feedback" || path === "/v1/download-failures")) {
+      if (!origin || !allowedOrigins.has(origin)) return json({ error: "origin_required" }, 403, corsHeaders);
+      const result = await acceptResourceReport(await readJsonBody(request), path === "/v1/resource-feedback", env,
+        await rateLimitClientKey(request, env, nowMs), nowMs, options.fetchImpl);
+      return json(result.body, result.status, corsHeaders);
+    }
     const adminRetryMatch = /^\/v1\/admin\/update-reminders\/([^/]+)\/retry-notification$/u.exec(path);
     if (path === "/v1/admin/update-reminders" && request.method === "GET") {
       if (!isAdminAuthorized(request, env)) return json({ error: "unauthorized" }, 401, corsHeaders);
@@ -900,7 +911,7 @@ export async function processPendingUpdateReminderNotifications(env: Env, option
   }
 }
 
-async function verifyTurnstileToken(secret: string, token: string, expected: { hostname: string; action: string }, fetchImpl: NotificationFetch = (input, init) => fetch(input, init)): Promise<boolean> {
+export async function verifyTurnstileToken(secret: string, token: string, expected: { hostname: string; action: string }, fetchImpl: NotificationFetch = (input, init) => fetch(input, init)): Promise<boolean> {
   const controller = new AbortController();
   const timeoutId = setTimeout(() => controller.abort(), 5_000);
   try {

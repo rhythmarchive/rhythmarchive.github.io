@@ -1,0 +1,30 @@
+---
+import { PUBLIC_STATS_API_URL, PUBLIC_UPDATE_REMINDERS_TURNSTILE_SITE_KEY, GITHUB_FEEDBACK_CATEGORY_URL } from '../lib/site-config';
+import { urls } from '../lib/site-urls';
+interface Props { resourceId: string; name: string; route: string }
+const { resourceId, name, route } = Astro.props;
+---
+<details class="resource-feedback" data-resource-feedback data-resource-id={resourceId} data-name={name} data-site-key={PUBLIC_UPDATE_REMINDERS_TURNSTILE_SITE_KEY}>
+  <summary>反馈问题</summary>
+  <p class="detail-note">{name} · <a href={urls.sitePath(route)}>资源详情</a></p>
+  {PUBLIC_STATS_API_URL && PUBLIC_UPDATE_REMINDERS_TURNSTILE_SITE_KEY ? <form>
+    <label>问题类型<select name="kind" required><option value="download">下载异常</option><option value="wrong-resource">资源有误</option><option value="metadata">信息有误</option><option value="other">其他问题</option></select></label>
+    <label>问题描述<textarea name="description" required minlength="5" maxlength="2000" rows="4" placeholder="请描述遇到的问题。"></textarea></label>
+    <p class="detail-note">提交时会附带资源 ID、名称和详情链接，请勿填写密码等隐私信息。</p>
+    <div data-feedback-turnstile></div>
+    <button type="submit" class="button button-secondary" disabled>完成验证后发送邮件</button>
+    <p role="status" data-feedback-status></p>
+  </form> : <p class="detail-note">邮件反馈暂不可用，请使用 GitHub 反馈。</p>}
+  <a href={GITHUB_FEEDBACK_CATEGORY_URL} target="_blank" rel="noopener noreferrer">GitHub 反馈</a>
+  <a href={urls.sitePath('/feedback/')}>前往反馈区</a>
+</details>
+<style>
+  .resource-feedback { margin-block: 1rem; }
+  summary { cursor: pointer; width: fit-content; }
+  form { display: grid; gap: .75rem; max-width: 36rem; margin-block: .75rem; }
+  label { display: grid; gap: .35rem; }
+  select, textarea { font: inherit; width: 100%; color: inherit; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-sm); padding: .5rem; }
+  textarea { resize: vertical; }
+  a + a { margin-left: 1rem; }
+</style>
+<script src="../scripts/resource-feedback.ts"></script>

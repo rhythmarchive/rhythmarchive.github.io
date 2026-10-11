@@ -5,6 +5,7 @@ import test from "node:test";
 import { D1StatsStore, handleRequest, processPendingUpdateReminderNotifications, UPDATE_REMINDER_DAILY_EMAIL_LIMIT, type D1Database, type D1PreparedStatement, type D1Result, type StatsEvent } from "../src/core.js";
 import { RANKING_CACHE_TTL_MS, type RankingCache } from "../src/ranking-cache.js";
 import { PUBLIC_RESOURCE_IDS } from "../src/public-resource-registry.js";
+import { acceptResourceReport, processResourceReports, validateResourceReport } from '../src/resource-reports.js';
 
 class SqliteD1 implements D1Database {
   // Existing D1 migrations use SQLite's legacy double-quoted string literals.
@@ -406,6 +407,90 @@ test("publication resolve preserves history and reruns cannot close the next cyc
   assert.equal(pending.find(r => r.game === "phigros")!.cycleNumber, 1);
   assert.equal(db.sqlite.prepare("SELECT COUNT(*) AS n FROM update_reminder_cycles WHERE game='arcaea'").get()!.n, 2);
   assert.equal(db.sqlite.prepare("SELECT COUNT(*) AS n FROM update_reminder_notifications").get()!.n, 3);
+});
+
+test('resource reports validate only public resources, bounded manual text and detectable failures', () => {
+  const db = new SqliteD1();
+  assert.match(db.plan("SELECT * FROM resource_reports WHERE delivery = 'pending' AND due_at <= ? AND (kind GLOB 'manual:*' OR count >= 3) ORDER BY due_at LIMIT 10", 1), /resource_reports_due/u);
+  const resourceId = [...PUBLIC_RESOURCE_IDS][0]!;
+  assert.equal(validateResourceReport({ resourceId, kind: 'http_403' }, false), true);
+  for (const kind of ['http_200', 'http_600', 'abort', 'save', 'network-url']) assert.equal(validateResourceReport({ resourceId, kind }, false), false);
+  assert.equal(validateResourceReport({ resourceId: 'unknown', kind: 'network' }, false), false);
+  assert.equal(validateResourceReport({ resourceId, kind: 'other', name: '曲绘', description: '资源显示有问题', turnstileToken: 'token' }, true), true);
+  assert.equal(validateResourceReport({ resourceId, kind: 'other', name: '曲绘', description: 'x'.repeat(2001), turnstileToken: 'token' }, true), false);
+});
+
+test('automatic reports dedupe networks, wait for the hour and threshold, send once and expire', async () => {
+  const db = new SqliteD1(), resourceId = [...PUBLIC_RESOURCE_IDS][0]!;
+  const env = { DB: db, RESOURCE_REPORTS_ENABLED: 'true', RESEND_API_KEY: 'test', RESOURCE_REPORT_EMAIL_TO: 'test@example.com' };
+  const now = 3_600_000 * 100;
+  const report = { resourceId, kind: 'http_403' };
+  assert.equal((await acceptResourceReport(report, false, env, 'a', now)).status, 202);
+  assert.equal((await acceptResourceReport(report, false, env, 'a', now + 1)).body.status, 'duplicate');
+  const sent: Record<string, unknown>[] = [];
+  const send = async (_input: RequestInfo | URL, init?: RequestInit) => { sent.push(JSON.parse(init!.body as string)); return Response.json({ id: 'mail' }); };
+  await processResourceReports(env, now + 3_600_000, send);
+  assert.equal(sent.length, 0);
+  await acceptResourceReport(report, false, env, 'b', now + 2);
+  await acceptResourceReport(report, false, env, 'c', now + 3);
+  await processResourceReports(env, now + 10, send);
+  assert.equal(sent.length, 0);
+  await processResourceReports(env, now + 3_600_000, send);
+  await processResourceReports(env, now + 3_600_001, send);
+  assert.equal(sent.length, 1);
+  assert.match(sent[0]!.text as string, /报告数量：3/u);
+  assert.match(sent[0]!.text as string, new RegExp(`/r/${resourceId}/`));
+  assert.equal(db.sqlite.prepare("SELECT attempts FROM update_reminder_email_daily WHERE send_date = '1970-01-05'").get()!.attempts, 1);
+  await processResourceReports(env, now + 8 * 24 * 3_600_000, send);
+  assert.equal(db.sqlite.prepare('SELECT COUNT(*) AS n FROM resource_reports').get()!.n, 0);
+  assert.equal(db.sqlite.prepare('SELECT COUNT(*) AS n FROM resource_report_dedupe').get()!.n, 0);
+});
+
+test('manual report requires independent Turnstile action and hostname even when reminders disable it', async () => {
+  const db = new SqliteD1(), resourceId = [...PUBLIC_RESOURCE_IDS][0]!;
+  const env = { DB: db, RESOURCE_REPORTS_ENABLED: 'true', RESEND_API_KEY: 'test', RESOURCE_REPORT_EMAIL_TO: 'test@example.com',
+    TURNSTILE_REQUIRED: 'false', TURNSTILE_SECRET_KEY: 'test', TURNSTILE_EXPECTED_HOSTNAME: 'rhythmarchive.github.io' };
+  const report = { resourceId, kind: 'other', name: '资源名称', description: '请检查这张图片', turnstileToken: 'token' };
+  const verify = (action: string, hostname = 'rhythmarchive.github.io') => async () => Response.json({ success: true, action, hostname });
+  assert.equal((await acceptResourceReport(report, true, env, 'a', 1, verify('update-reminder'))).status, 403);
+  assert.equal((await acceptResourceReport(report, true, env, 'a', 1, verify('resource-feedback', 'evil.test'))).status, 403);
+  assert.equal((await acceptResourceReport(report, true, env, 'a', 1, verify('resource-feedback'))).status, 202);
+  assert.equal((await acceptResourceReport(report, true, env, 'a', 2, verify('resource-feedback'))).body.status, 'duplicate');
+  await processResourceReports(env, 3, async () => Response.json({ id: 'mail' }));
+  assert.equal(db.sqlite.prepare('SELECT delivery FROM resource_reports').get()!.delivery, 'sent');
+});
+
+test('failed report insert rolls back its dedupe claim', async () => {
+  const db = new SqliteD1(), resourceId = [...PUBLIC_RESOURCE_IDS][0]!;
+  db.sqlite.exec("CREATE TRIGGER fail_report BEFORE INSERT ON resource_reports BEGIN SELECT RAISE(ABORT, 'test failure'); END");
+  const env = { DB: db, RESOURCE_REPORTS_ENABLED: 'true', RESEND_API_KEY: 'test', RESOURCE_REPORT_EMAIL_TO: 'test@example.com' };
+  await assert.rejects(acceptResourceReport({ resourceId, kind: 'network' }, false, env, 'a', 1));
+  assert.equal(db.sqlite.prepare('SELECT COUNT(*) AS n FROM resource_report_dedupe').get()!.n, 0);
+});
+
+test('report emails obey the shared daily cap and never replay uncertain delivery', async () => {
+  const db = new SqliteD1();
+  const env = { DB: db, RESOURCE_REPORTS_ENABLED: 'true', RESEND_API_KEY: 'test', RESOURCE_REPORT_EMAIL_TO: 'test@example.com' };
+  db.sqlite.exec("INSERT INTO resource_reports (id, resource_id, kind, count, created_at, due_at, expires_at) VALUES ('a', 'id', 'network', 3, 1, 1, 999999), ('b', 'id', 'http_403', 3, 2, 2, 999999)");
+  db.sqlite.prepare('INSERT INTO update_reminder_email_daily VALUES (?, ?)').run('1970-01-01', 79);
+  let calls = 0;
+  const fail = async () => { calls++; throw new TypeError('network'); };
+  await processResourceReports(env, 3, fail);
+  await processResourceReports(env, 4, fail);
+  assert.equal(calls, 1);
+  assert.equal(db.sqlite.prepare("SELECT attempts FROM update_reminder_email_daily WHERE send_date = '1970-01-01'").get()!.attempts, 80);
+  assert.deepEqual(db.sqlite.prepare('SELECT delivery FROM resource_reports ORDER BY id').all().map(r => r.delivery), ['uncertain', 'daily_limit_reached']);
+});
+
+test('report routes require allowed Origin and retain native plus D1 IP limits', async () => {
+  const db = new SqliteD1(), resourceId = [...PUBLIC_RESOURCE_IDS][0]!;
+  const env = { DB: db, RESOURCE_REPORTS_ENABLED: 'true', RESEND_API_KEY: 'test', RESOURCE_REPORT_EMAIL_TO: 'test@example.com', RATE_LIMITER: { limit: async () => ({ success: true }) } };
+  const request = (origin?: string) => new Request('https://api.test/v1/download-failures', { method: 'POST', headers: {
+    'Content-Type': 'application/json', 'CF-Connecting-IP': '192.0.2.1', ...(origin ? { Origin: origin } : {}) }, body: JSON.stringify({ resourceId, kind: 'network' }) });
+  assert.equal((await handleRequest(request('https://evil.test'), env)).status, 403);
+  assert.equal((await handleRequest(request(), env)).status, 403);
+  for (let i = 0; i < 19; i++) assert.ok((await handleRequest(request('https://rhythmarchive.github.io'), env)).ok);
+  assert.equal((await handleRequest(request('https://rhythmarchive.github.io'), env)).status, 429);
 });
 
 test("migration preserves legacy history without replaying sent cycles", () => {

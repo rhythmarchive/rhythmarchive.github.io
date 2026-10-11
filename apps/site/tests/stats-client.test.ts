@@ -218,7 +218,7 @@ test("site wiring keeps the original data fallback and only marks real resource 
   assert.match(gallery, /updateResourceStatsInDom\(grid!/u);
   assert.match(browse, /updateResourceStatsInDom\(grid!/u);
   assert.match(download, /trackResourceDownload/u);
-  assert.match(stats, /data-stats-download/u);
+  assert.doesNotMatch(stats, /trackResourceDownload/u);
   assert.doesNotMatch(gallery, /IntersectionObserver/u);
   assert.doesNotMatch(browse, /IntersectionObserver/u);
 });

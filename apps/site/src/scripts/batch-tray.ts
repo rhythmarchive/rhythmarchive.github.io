@@ -1,5 +1,6 @@
 import { observeImage } from "./viewport-images";
 import { zipSync } from "fflate";
+import { DownloadHttpError, reportDownloadFailure } from "../lib/resource-reports-client";
 import { DOWNLOAD_CONCURRENCY, MAX_BATCH_BYTES, MAX_BATCH_FILES, readResponseBytesWithinLimit, toggleBatchSelection, uniqueZipFilename, type BatchResource } from "../lib/batch";
 import { getBrowserStatsClient } from "../lib/stats-client";
 import { sitePath } from "../lib/url";
@@ -322,18 +323,21 @@ export async function downloadSelectedBatch(options: {
   const objects = new Map<string, Promise<Uint8Array>>();
   options.setStatus("正在准备 0 / " + items.length);
   try {
-    await runWithConcurrency(items, DOWNLOAD_CONCURRENCY, async ({ download }) => {
+    await runWithConcurrency(items, DOWNLOAD_CONCURRENCY, async ({ download, resource }) => {
       controller.signal.throwIfAborted();
       let bytes = objects.get(download.url);
       if (!bytes) {
         bytes = (async () => {
           const response = await fetch(download.url, { credentials: "omit", referrerPolicy: "strict-origin-when-cross-origin", signal: controller.signal });
-          if (!response.ok) throw new Error("download failed with " + response.status);
+          if (!response.ok) throw new DownloadHttpError(response.status);
           return await readResponseBytesWithinLimit(response, MAX_BATCH_BYTES - downloadedBytes, (size) => {
             if (downloadedBytes + size > MAX_BATCH_BYTES) throw new Error("batch download exceeds the maximum size");
             downloadedBytes += size;
           });
-        })().catch((error) => { controller.abort(); throw error; });
+        })().catch((error) => {
+          if (!controller.signal.aborted) reportDownloadFailure(resource.resourceId, error);
+          controller.abort(); throw error;
+        });
         objects.set(download.url, bytes);
       }
       entries[uniqueZipFilename(usedNames, download.downloadFilename)] = await bytes;

@@ -13,6 +13,7 @@ SITE_TIME_ZONE = "Asia/Shanghai"
 TURNSTILE_REQUIRED = "true"
 TURNSTILE_EXPECTED_HOSTNAME = "rhythmarchive.github.io"
 TURNSTILE_EXPECTED_ACTION = "update-reminder"
+RESOURCE_REPORTS_ENABLED = "false"
 [[ratelimits]]
 name = "RATE_LIMITER"
 namespace_id = "1334342177"
