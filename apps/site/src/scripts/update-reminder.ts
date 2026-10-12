@@ -27,12 +27,14 @@ function initializeUpdateReminder(): void {
   const turnstileSiteKey = turnstileContainer?.dataset.siteKey;
   let turnstileToken = "";
   let turnstileWidgetId: string | number | undefined;
+  let turnstileLoading = false;
   onPageCleanup(() => { if (turnstileWidgetId !== undefined) window.turnstile?.remove(turnstileWidgetId); });
 
   reminderForm.addEventListener("submit", (event) => {
     event.preventDefault();
     if (submitting || !reminderForm.reportValidity()) return;
     if (turnstileContainer && !turnstileToken) {
+      void initializeTurnstile();
       renderStatus("请先完成验证。", "error");
       return;
     }
@@ -41,17 +43,19 @@ function initializeUpdateReminder(): void {
     submitting = true;
     renderControls();
     void submit(game);
-  });
+  }, { signal });
+
+  reminderForm.addEventListener("focusin", () => { void initializeTurnstile(); }, { signal });
+  reminderForm.addEventListener("pointerdown", () => { void initializeTurnstile(); }, { signal });
 
   reminderGameSelect.addEventListener("change", () => {
     if (submitting) return;
     uiState = "idle";
     renderStatus("");
     renderControls();
-  });
+  }, { signal });
 
   renderControls();
-  if (turnstileContainer && turnstileSiteKey) void initializeTurnstile();
 
   async function submit(game: string): Promise<void> {
     let result: UpdateReminderResult;
@@ -80,7 +84,8 @@ function initializeUpdateReminder(): void {
   }
 
   async function initializeTurnstile(): Promise<void> {
-    if (!turnstileContainer || !turnstileSiteKey) return;
+    if (!turnstileContainer || !turnstileSiteKey || turnstileLoading || turnstileWidgetId !== undefined || signal.aborted) return;
+    turnstileLoading = true;
     try {
       const api = await loadTurnstile();
       if (signal.aborted) return;
@@ -93,7 +98,10 @@ function initializeUpdateReminder(): void {
       });
       renderControls();
     } catch {
+      if (signal.aborted) return;
       renderStatus("验证组件加载失败，请稍后再试。", "error");
+    } finally {
+      turnstileLoading = false;
     }
   }
 
@@ -101,7 +109,7 @@ function initializeUpdateReminder(): void {
   function renderControls(): void {
     const waitingForTurnstile = Boolean(turnstileContainer && !turnstileToken);
     reminderGameSelect.disabled = submitting;
-    reminderSubmitButton.disabled = submitting || waitingForTurnstile;
+    reminderSubmitButton.disabled = submitting;
     reminderForm.setAttribute("aria-busy", String(submitting));
     reminderSubmitButton.textContent = submitting ? "提交中…" : waitingForTurnstile ? "完成验证后提交" : uiState === "error" ? "重试提醒" : "提醒更新";
   }

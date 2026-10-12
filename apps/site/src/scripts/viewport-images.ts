@@ -25,6 +25,7 @@ export function settleImage(image: HTMLImageElement, loaded: boolean): void {
     const trigger = image.closest<HTMLElement>("[data-lightbox-open]");
     if (trigger) {
       trigger.dataset.lightboxPreviewUrl = fallback;
+      trigger.setAttribute("aria-label", `查看${image.alt}大图预览`);
       if (image.dataset.fallbackWidth) trigger.dataset.lightboxPreviewWidth = image.dataset.fallbackWidth;
       if (image.dataset.fallbackHeight) trigger.dataset.lightboxPreviewHeight = image.dataset.fallbackHeight;
     }

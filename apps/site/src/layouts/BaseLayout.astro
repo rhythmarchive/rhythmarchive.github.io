@@ -46,6 +46,7 @@ const rosOrigin = new URL(ROS_BASE_URL).origin;
     <ClientRouter fallback="swap" />
     <script is:inline data-astro-rerun>
       (() => {
+        document.documentElement.classList.add("has-gallery-js");
         try {
           const saved = localStorage.getItem("rhythm-archive-theme");
           if (saved === "light" || saved === "dark" || saved === "system") document.documentElement.dataset.theme = saved;

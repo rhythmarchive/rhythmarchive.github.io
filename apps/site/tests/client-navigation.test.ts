@@ -6,10 +6,10 @@ import { loadImage, prepareImage, settleImage } from "../src/scripts/viewport-im
 test("image loading preserves responsive assignment order and settles cached/fallback states without extra requests", () => {
   const writes: string[] = [];
   let src = "", srcset = "";
-  const trigger = { dataset: {} as Record<string, string> };
+  const trigger = { dataset: {} as Record<string, string>, label: "查看原图", setAttribute: (_key: string, value: string) => { trigger.label = value; } };
   const image = {
     dataset: { viewportSrc: "/preview.webp", viewportSrcset: "/small.webp 320w, /preview.webp 640w", fallbackSrc: "/fallback.webp", fallbackWidth: "640", fallbackHeight: "480" } as Record<string, string>,
-    complete: false, naturalWidth: 0,
+    complete: false, naturalWidth: 0, alt: "测试曲绘",
     get src() { return src; }, set src(value: string) { writes.push("src"); src = value; },
     get srcset() { return srcset; }, set srcset(value: string) { writes.push("srcset"); srcset = value; },
     removeAttribute: (key: string) => { if (key === "srcset") srcset = ""; },
@@ -23,6 +23,7 @@ test("image loading preserves responsive assignment order and settles cached/fal
   assert.equal(image.src, "/fallback.webp");
   assert.equal(image.srcset, "");
   assert.equal(trigger.dataset.lightboxPreviewWidth, "640");
+  assert.equal(trigger.label, "查看测试曲绘大图预览");
   assert.equal(image.dataset.imageState, "loading");
   settleImage(image, true);
   assert.equal(image.dataset.imageState, "ready");

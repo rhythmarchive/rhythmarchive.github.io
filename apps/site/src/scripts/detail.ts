@@ -23,7 +23,8 @@ onPageLoad(() => {
         const value = root.querySelector<HTMLElement>("[data-detail-resource-views]");
         if (!node || !value) return;
         value.textContent = stats.views.toLocaleString("zh-CN");
-        node.hidden = false;
+        node.removeAttribute("data-stats-pending");
+        node.removeAttribute("aria-hidden");
       });
     }
     void updateResourceStatsInDom(root);

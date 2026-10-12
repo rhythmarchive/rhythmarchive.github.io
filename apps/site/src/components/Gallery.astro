@@ -36,6 +36,12 @@ function formatRangeValue(value: number): string {
 ---
 
 <section class="gallery-shell" data-gallery-root data-gallery-defer={defer ? "true" : undefined} data-gallery-url={galleryUrl} data-batch-url={galleryUrl.replace("/galleries/", "/batch/")} data-base-path={BASE_PATH} data-game={game} data-category={category} data-total={total}>
+  <script is:inline data-astro-rerun>
+    (() => {
+      const galleryRoot = document.currentScript?.closest("[data-gallery-root]");
+      if (galleryRoot && galleryRoot.getAttribute("data-gallery-defer") !== "true") galleryRoot.setAttribute("aria-busy", "true");
+    })();
+  </script>
   <div class="gallery-toolbar">
     <div class="gallery-toolbar-copy">
       <span class="section-kicker">{category === "all" ? GAME_CONFIG[game].displayName : categoryLabel}</span>
