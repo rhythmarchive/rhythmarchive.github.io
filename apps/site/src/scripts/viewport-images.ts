@@ -4,10 +4,38 @@ let observer: IntersectionObserver | undefined;
 const watched = new Set<HTMLImageElement>();
 let cleanupQueued = false;
 
+// The same image handles cached loads, responsive candidates and fallback retries.
+// Loading decoration starts only after a real URL is assigned, never offscreen.
+export function prepareImage(image: HTMLImageElement): void {
+  image.dataset.imageState = "loading";
+  if (image.complete && image.src && !image.dataset.viewportSrc && !image.dataset.detailSrc) settleImage(image, image.naturalWidth > 0);
+}
+
+export function settleImage(image: HTMLImageElement, loaded: boolean): void {
+  if (loaded) {
+    if (image.dataset.imageState) image.dataset.imageState = "ready";
+    return;
+  }
+  const fallback = image.dataset.fallbackSrc;
+  if (fallback && image.dataset.fallbackApplied !== "true") {
+    image.dataset.fallbackApplied = "true";
+    image.removeAttribute("srcset");
+    image.dataset.imageState = "loading";
+    image.src = fallback;
+    const trigger = image.closest<HTMLElement>("[data-lightbox-open]");
+    if (trigger) {
+      trigger.dataset.lightboxPreviewUrl = fallback;
+      if (image.dataset.fallbackWidth) trigger.dataset.lightboxPreviewWidth = image.dataset.fallbackWidth;
+      if (image.dataset.fallbackHeight) trigger.dataset.lightboxPreviewHeight = image.dataset.fallbackHeight;
+    }
+  } else if (image.dataset.imageState) image.dataset.imageState = "error";
+}
+
 export function loadImage(image: HTMLImageElement): void {
   const src = image.dataset.viewportSrc;
   if (!src) return;
   const srcset = image.dataset.viewportSrcset;
+  prepareImage(image);
   // Configure responsive candidates before src to avoid an intermediate fetch.
   if (srcset) image.srcset = srcset;
   image.src = src;
@@ -30,7 +58,7 @@ export function observeImage(image: HTMLImageElement): void {
         continue;
       }
       if (!entry.isIntersecting) continue;
-      if (target.closest("[hidden]")) continue;
+      if (target.closest('[hidden], [data-gallery-root][aria-busy="true"], [data-browse-gallery-root][aria-busy="true"]')) continue;
       loadImage(target);
       observer!.unobserve(target);
       watched.delete(target);
@@ -55,6 +83,7 @@ export function observeImage(image: HTMLImageElement): void {
 
 export function observeImages(scope: ParentNode): void {
   for (const image of scope.querySelectorAll<HTMLImageElement>("img[data-viewport-src]")) observeImage(image);
+  for (const image of scope.querySelectorAll<HTMLImageElement>("img[data-detail-image]:not([data-detail-src])")) prepareImage(image);
 }
 
 export function resetImageObserver(): void {
@@ -65,6 +94,7 @@ export function resetImageObserver(): void {
 export function loadSelectedDetailImages(scope: ParentNode): void {
   for (const image of scope.querySelectorAll<HTMLImageElement>("img[data-detail-src]")) {
     if (image.closest("[hidden]")) continue;
+    prepareImage(image);
     if (image.dataset.detailSrcset) image.srcset = image.dataset.detailSrcset;
     image.src = image.dataset.detailSrc!;
     delete image.dataset.detailSrc;

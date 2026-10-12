@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import CardSkeleton from "../../components/CardSkeleton.astro";
 import BatchTray from "../../components/BatchTray.astro";
 import { getPublicNavigationGames } from "../../lib/site-data";
 import { urls } from "../../lib/site-urls";
@@ -33,6 +34,7 @@ const categories = getPublicNavigationGames().flatMap((game) => game.categories.
         <a class="button button-secondary" data-library-empty-games href={urls.sitePath("/games/")}>浏览游戏库</a>
       </div>
       <div class="gallery-grid" data-library-grid></div>
+      <div data-library-loading hidden><CardSkeleton /></div>
       <div class="gallery-more"><button class="button button-secondary" type="button" data-library-more hidden>加载更多</button></div>
     </div>
     <details class="library-storage-note">

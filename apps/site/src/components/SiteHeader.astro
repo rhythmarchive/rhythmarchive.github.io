@@ -33,10 +33,9 @@ const isGameLibrary = isWithin(urls.sitePath("/games/"))
     <nav class="site-nav" id="site-primary-nav" aria-label="主要导航" data-mobile-open="false">
       <a class:list={{ "is-active": isHome }} href={urls.sitePath("/")} aria-current={isHome ? "page" : undefined}>首页</a>
       <details class:list={{ "nav-game-library": true, "is-active": isGameLibrary }}>
-        <summary class:list={{ "nav-library-trigger": true, "is-active": isGameLibrary }}>游戏库<span class="nav-library-chevron" aria-hidden="true">⌄</span></summary>
-        <div class="nav-library-popover">
+        <summary class:list={{ "nav-library-trigger": true, "is-active": isGameLibrary }} aria-controls="nav-game-links">游戏库<span class="nav-library-chevron" aria-hidden="true">⌄</span></summary>
+        <div class="nav-library-popover" id="nav-game-links">
           <div class="nav-library-heading">
-            <strong>游戏库</strong>
             <a href={urls.sitePath("/games/")}>查看全部游戏</a>
           </div>
           <div class="nav-game-list">
@@ -64,7 +63,7 @@ const isGameLibrary = isWithin(urls.sitePath("/games/"))
         <svg class="theme-icon theme-icon-dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 15.5A8.5 8.5 0 0 1 8.5 4 8.5 8.5 0 1 0 20 15.5Z"/></svg>
       </button>
       <button class="site-menu-toggle" type="button" data-menu-toggle aria-controls="site-primary-nav" aria-expanded="false" aria-label="打开导航菜单">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" /></svg>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16" /><path d="M4 12h16" /><path d="M4 17h16" /></svg>
       </button>
     </div>
   </div>

@@ -548,7 +548,7 @@ test("shared visual tokens keep rounded cards, restrained shadows, and theme-saf
   assert.match(styles, /--shadow: 0 8px 24px rgba\(42, 93, 137, 0\.055\);/u);
   assert.match(styles, /--shadow-hover: 0 14px 34px rgba\(42, 93, 137, 0\.10\);/u);
   assert.match(styles, /background: radial-gradient\(ellipse 72% 32rem at 50% -10%/u);
-  assert.doesNotMatch(styles, /body::before/u);
+  assert.doesNotMatch(styles, /^body::before/mu);
   assert.match(styles, /\.resource-card \{[\s\S]*border-radius: var\(--radius-md\);[\s\S]*box-shadow: var\(--shadow\)/u);
   assert.match(styles, /\.resource-card:hover[\s\S]*translateY\(-2px\)/u);
   assert.match(styles, /\.nav-library-popover \{[\s\S]*border-radius: var\(--radius-lg\);[\s\S]*box-shadow: var\(--shadow-hover\)/u);

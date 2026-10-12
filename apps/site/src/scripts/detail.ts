@@ -1,6 +1,6 @@
 import { onPageLoad, pageSignal, onPageCleanup } from "./page-lifecycle";
 import { navigate } from "astro:transitions/client";
-import { loadSelectedDetailImages } from "./viewport-images";
+import { loadSelectedDetailImages, prepareImage } from "./viewport-images";
 import { downloadRendition } from "./download";
 import { setupDetailNavigation } from "./list-navigation";
 import { setupDetailLibrary } from "./detail-library";
@@ -54,6 +54,7 @@ onPageLoad(() => {
       if (!lightbox || !lightboxImage || !url) return;
       lastLightboxTrigger = trigger;
       lightboxImage.src = url;
+      prepareImage(lightboxImage);
       lightboxImage.alt = trigger.dataset.lightboxPreviewAlt ?? "资源大图";
       const width = Number(trigger.dataset.lightboxPreviewWidth);
       const height = Number(trigger.dataset.lightboxPreviewHeight);

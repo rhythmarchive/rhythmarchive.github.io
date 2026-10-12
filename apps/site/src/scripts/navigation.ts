@@ -1,6 +1,13 @@
 import type { TransitionBeforePreparationEvent, TransitionBeforeSwapEvent } from "astro:transitions/client";
 import { onPageLoad } from "./page-lifecycle";
-import { observeImages, resetImageObserver } from "./viewport-images";
+import { observeImages, resetImageObserver, settleImage } from "./viewport-images";
+
+document.addEventListener("load", (event) => {
+  if (event.target instanceof HTMLImageElement) settleImage(event.target, true);
+}, true);
+document.addEventListener("error", (event) => {
+  if (event.target instanceof HTMLImageElement) settleImage(event.target, false);
+}, true);
 
 let loadingTimer: number | undefined;
 let loadingSignal: AbortSignal | undefined;

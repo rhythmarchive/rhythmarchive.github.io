@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import CardSkeleton from "../../components/CardSkeleton.astro";
 import SearchBox from "../../components/SearchBox.astro";
 import { formatCount } from "../../lib/format";
 import { buildSearchQuickLinks } from "../../lib/search-quick-links";
@@ -58,6 +59,7 @@ const browseGroups = games.map((game) => ({
       <div><a class="button button-secondary" href={urls.sitePath("/games/")}>浏览游戏库</a><a class="text-link" href={urls.sitePath("/feedback/")}>反馈缺少的资源</a></div>
     </div>
     <div class="resource-grid" data-search-results></div>
+    <div data-search-loading hidden><CardSkeleton /></div>
     <div class="gallery-more"><button class="button button-secondary" type="button" data-search-more hidden>加载更多</button></div>
   </section>
   <script src="../../scripts/search-page.ts"></script>

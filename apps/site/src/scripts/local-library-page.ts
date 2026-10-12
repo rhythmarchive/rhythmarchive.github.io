@@ -18,6 +18,7 @@ onPageLoad(() => {
 function initialize(root: HTMLElement): void {
   const signal = pageSignal();
   const grid = root.querySelector<HTMLElement>("[data-library-grid]")!;
+  const loading = root.querySelector<HTMLElement>("[data-library-loading]");
   const count = root.querySelector<HTMLElement>("[data-library-count]")!;
   const warning = root.querySelector<HTMLElement>("[data-library-warning]")!;
   const empty = root.querySelector<HTMLElement>("[data-library-empty]")!;
@@ -115,6 +116,8 @@ function initialize(root: HTMLElement): void {
     retry.hidden = true;
     count.textContent = entries.length ? "加载中…" : "0 项资源";
     const visible = entries.slice(0, visibleCount);
+    if (loading) loading.hidden = !visible.length || grid.childElementCount > 0;
+    grid.setAttribute("aria-busy", "true");
     const keys = [...new Set(visible.map(categoryKey))];
     const failed = new Set<string>();
     let next = 0;
@@ -125,6 +128,8 @@ function initialize(root: HTMLElement): void {
       }
     }));
     if (signal.aborted || token !== runToken) return;
+    if (loading) loading.hidden = true;
+    grid.removeAttribute("aria-busy");
     grid.replaceChildren(...visible.map((entry, index) => renderEntry(entry, index, failed.has(categoryKey(entry)))));
     navigation.remember(visibleCount);
     revealContent(grid);

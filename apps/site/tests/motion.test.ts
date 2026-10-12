@@ -58,6 +58,19 @@ test("repeated selection does not restart an already visible tray", async (t) =>
   assert.equal(node.hidden, true);
 });
 
+test("a breakpoint reset cancels a pending mobile exit and restores desktop navigation", async (t) => {
+  const { node, animations } = fixture(t);
+  const opened = setSurfaceVisible(node, true);
+  animations[0]!.resolve();
+  await opened;
+  const closing = setSurfaceVisible(node, false);
+  assert.equal(await setSurfaceVisible(node, true, "instant"), true);
+  assert.equal(await closing, false);
+  assert.equal(animations[1]!.cancelled, true);
+  assert.equal(node.hidden, false);
+  assert.equal(node.inert, false);
+});
+
 test("reduced motion and missing Web Animations settle immediately", async (t) => {
   const { node, animations } = fixture(t, true);
   await setSurfaceVisible(node, true);

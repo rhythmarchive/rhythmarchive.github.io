@@ -18,6 +18,7 @@ async function initializeSearch(root: HTMLElement): Promise<void> {
   const signal = pageSignal();
   const input = root.previousElementSibling?.querySelector<HTMLInputElement>("input[name=q]") ?? document.querySelector<HTMLInputElement>(".search-page input[name=q]");
   const results = root.querySelector<HTMLElement>("[data-search-results]");
+  const loading = root.querySelector<HTMLElement>("[data-search-loading]");
   const status = root.querySelector<HTMLElement>("[data-search-status]");
   const empty = root.querySelector<HTMLElement>("[data-search-empty]");
   const retry = root.querySelector<HTMLButtonElement>("[data-search-retry]");
@@ -98,6 +99,8 @@ async function initializeSearch(root: HTMLElement): Promise<void> {
     matches = [];
     const rawQuery = input.value;
     const query = rawQuery.trim();
+    if (loading) loading.hidden = true;
+    results.removeAttribute("aria-busy");
     syncQueryUrl(rawQuery);
     const page = root.closest(".search-page");
     const head = root.previousElementSibling;
@@ -113,7 +116,9 @@ async function initializeSearch(root: HTMLElement): Promise<void> {
 
     page?.classList.add("has-search-query");
     head?.classList.add("is-results");
-    results.replaceChildren();
+    // Retain previous results while searching; only the first query needs placeholders.
+    results.setAttribute("aria-busy", "true");
+    if (loading) loading.hidden = results.childElementCount > 0;
     if (empty) empty.hidden = true;
     status.textContent = "正在搜索…";
     if (retry) retry.hidden = true;
@@ -122,6 +127,7 @@ async function initializeSearch(root: HTMLElement): Promise<void> {
       if (signal.aborted || token !== runToken) return;
       const ranked = rankSearchEntries(entries, query, { game: game.value, category: category.value });
       if (ranked.length === 0) {
+        results.replaceChildren();
         status.textContent = "没有找到相关资源。";
         if (empty) empty.hidden = false;
         return;
@@ -136,6 +142,11 @@ async function initializeSearch(root: HTMLElement): Promise<void> {
       if (empty) empty.hidden = true;
       status.textContent = "搜索暂时不可用，请重试";
       if (retry) retry.hidden = false;
+    } finally {
+      if (!signal.aborted && token === runToken) {
+        if (loading) loading.hidden = true;
+        results.removeAttribute("aria-busy");
+      }
     }
   };
 

@@ -33,15 +33,15 @@ export function revealContent(node: HTMLElement): void {
 
 // Latest action wins: closing surfaces become inert immediately, but stay painted
 // through the exit. Reopening cancels that exit without a stale hidden write.
-export function setSurfaceVisible(node: HTMLElement, visible: boolean, mode: "surface" | "fade" = "surface"): Promise<boolean> {
+export function setSurfaceVisible(node: HTMLElement, visible: boolean, mode: "surface" | "fade" | "instant" = "surface"): Promise<boolean> {
   const previous = surfaces.get(node);
-  if (previous?.visible === visible) return previous.finished;
+  if (previous?.visible === visible && mode !== "instant") return previous.finished;
   const current = currentFrame(node, previous?.animation);
   previous?.animation?.cancel();
   const wasHidden = node.hidden;
   node.inert = !visible;
   if (visible) node.hidden = false;
-  if (!enabled(node) || (!visible && wasHidden)) {
+  if (mode === "instant" || !enabled(node) || (!visible && wasHidden)) {
     node.hidden = !visible;
     const state = { visible, finished: Promise.resolve(true) };
     surfaces.set(node, state);

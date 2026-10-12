@@ -1,6 +1,44 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import { loadStaticData } from "../src/scripts/static-data";
+import { loadImage, prepareImage, settleImage } from "../src/scripts/viewport-images";
+
+test("image loading preserves responsive assignment order and settles cached/fallback states without extra requests", () => {
+  const writes: string[] = [];
+  let src = "", srcset = "";
+  const trigger = { dataset: {} as Record<string, string> };
+  const image = {
+    dataset: { viewportSrc: "/preview.webp", viewportSrcset: "/small.webp 320w, /preview.webp 640w", fallbackSrc: "/fallback.webp", fallbackWidth: "640", fallbackHeight: "480" } as Record<string, string>,
+    complete: false, naturalWidth: 0,
+    get src() { return src; }, set src(value: string) { writes.push("src"); src = value; },
+    get srcset() { return srcset; }, set srcset(value: string) { writes.push("srcset"); srcset = value; },
+    removeAttribute: (key: string) => { if (key === "srcset") srcset = ""; },
+    closest: () => trigger,
+  } as unknown as HTMLImageElement;
+  loadImage(image);
+  assert.deepEqual(writes, ["srcset", "src"]);
+  assert.equal(image.dataset.imageState, "loading");
+  assert.equal(image.dataset.viewportSrc, undefined);
+  settleImage(image, false);
+  assert.equal(image.src, "/fallback.webp");
+  assert.equal(image.srcset, "");
+  assert.equal(trigger.dataset.lightboxPreviewWidth, "640");
+  assert.equal(image.dataset.imageState, "loading");
+  settleImage(image, true);
+  assert.equal(image.dataset.imageState, "ready");
+  settleImage(image, false);
+  assert.equal(image.dataset.imageState, "error");
+  assert.equal(writes.filter((write) => write === "src").length, 2);
+  Object.assign(image, { complete: true, naturalWidth: 640 });
+  prepareImage(image);
+  assert.equal(image.dataset.imageState, "ready");
+  loadImage(image);
+  assert.equal(writes.length, 3);
+  Object.assign(image, { naturalWidth: 0 });
+  prepareImage(image);
+  assert.equal(image.dataset.imageState, "error");
+  assert.equal(writes.length, 3);
+});
 
 test("public projection requests deduplicate pending work, reuse parsed data and retry failures", async (t) => {
   let calls = 0;
