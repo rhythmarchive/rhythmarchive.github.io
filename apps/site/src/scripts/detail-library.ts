@@ -1,4 +1,5 @@
 import { createLocalLibrary, LIBRARY_KEY } from "../lib/local-library";
+import { revealContent } from "./motion";
 
 export function setupDetailLibrary(root: HTMLElement): void {
   const button = root.querySelector<HTMLButtonElement>("[data-favorite-toggle]");
@@ -21,6 +22,7 @@ export function setupDetailLibrary(root: HTMLElement): void {
     const wasFavorite = button.getAttribute("aria-pressed") === "true";
     const warning = library.toggleFavorite(entry);
     sync(warning || (wasFavorite ? "已取消收藏" : "已收藏"));
+    revealContent(status);
   });
   window.addEventListener("storage", (event) => { if (event.key === LIBRARY_KEY || event.key === null) sync(); });
   window.addEventListener("pageshow", (event) => { if (event.persisted) sync(library.visit(entry)); });

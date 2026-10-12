@@ -31,7 +31,11 @@
   --focus-ring: color-mix(in srgb, var(--accent) 55%, transparent);
   --page-title: clamp(2.25rem, 5vw, 3.5rem);
   --page-head-space: 4.2rem;
-  --transition-ui: 180ms ease;
+  --motion-fast: 140ms;
+  --motion-ui: 180ms;
+  --motion-surface: 220ms;
+  --motion-ease: cubic-bezier(.22, 1, .36, 1);
+  --transition-ui: var(--motion-ui) var(--motion-ease);
   --content: 1320px;
 }
 
@@ -94,6 +98,18 @@ img { display: block; max-width: 100%; }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
 
 .site-main { position: relative; z-index: 1; min-height: calc(100vh - 150px); padding-bottom: 4.5rem; }
+/* Keep full document navigation: no router, prefetch or script reinitialization. */
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition { navigation: auto; }
+  .site-header { view-transition-name: site-header; }
+  ::view-transition-group(root) { animation-duration: var(--motion-ui); animation-timing-function: var(--motion-ease); }
+  ::view-transition-old(root) { animation: archive-page-out var(--motion-fast) ease-out both; }
+  ::view-transition-new(root) { animation: archive-page-in var(--motion-ui) var(--motion-ease) both; }
+  ::view-transition-group(site-header), ::view-transition-new(site-header) { animation: none; }
+  ::view-transition-old(site-header) { display: none; }
+}
+@keyframes archive-page-out { to { opacity: 0; } }
+@keyframes archive-page-in { from { opacity: 0; } }
 .page-container { width: min(var(--content), calc(100% - 48px)); margin-inline: auto; }
 .page-heading { padding-top: var(--page-head-space); padding-bottom: 1.5rem; }
 .page-heading h1 { margin: .55rem 0 0; font-family: var(--display-font); font-size: var(--page-title); line-height: 1.12; letter-spacing: -.02em; overflow-wrap: anywhere; }
@@ -444,6 +460,19 @@ img { display: block; max-width: 100%; }
 .button-primary:hover:not(:disabled) { background: var(--action-bg-hover); }
 .button-secondary { border-color: var(--line-strong); background: var(--surface); color: var(--text); }
 .button-secondary:hover:not(:disabled) { border-color: var(--accent); color: var(--accent-strong); }
+:is(.button, .download-button, .resource-select, .variant-tabs button, .artwork-variant-tabs button, .filter-toggle-chip, .games-sort button, .ranking-period-switch button) { transition: background-color var(--transition-ui), border-color var(--transition-ui), color var(--transition-ui), opacity var(--transition-ui), transform var(--transition-ui); }
+:is(.button, .download-button, .resource-select, .variant-tabs button, .artwork-variant-tabs button, .filter-toggle-chip, .games-sort button, .ranking-period-switch button):active:not(:disabled) { transform: scale(.98); }
+.resource-select span { transition: transform var(--transition-ui); }
+.resource-select[aria-pressed="true"] span { transform: scale(1.12); }
+.resource-card.is-selected { transform: none; }
+.download-button[aria-busy="true"] { border-color: var(--accent); background: var(--control-selected); }
+@media (hover: none) {
+  .resource-card:hover, .resource-card:focus-within, .game-card:hover, .ranking-item:hover, .button:hover:not(:disabled) { transform: none; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  :is(.filter-popover[open] > .filter-popover-body, .nav-game-library[open] > .nav-library-popover, .gallery-filter-disclosure[open] > .gallery-filter-row) { animation: archive-surface-in var(--motion-ui) var(--motion-ease); }
+}
+@keyframes archive-surface-in { from { opacity: 0; transform: translateY(4px); } }
 .gallery-shell.has-selection { padding-bottom: 96px; }
 .batch-tray { position: fixed; right: max(14px, calc((100vw - var(--content)) / 2)); bottom: calc(12px + env(safe-area-inset-bottom)); z-index: 30; width: min(540px, calc(100vw - 28px)); padding: 10px 12px; border: 1px solid color-mix(in srgb, var(--accent) 42%, var(--line)); border-radius: var(--radius-md); background: color-mix(in srgb, var(--surface) 94%, transparent); box-shadow: var(--shadow-hover); backdrop-filter: blur(10px); }
 .batch-tray-main { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-width: 0; }
@@ -753,4 +782,5 @@ body.detail-lightbox-open { overflow: hidden; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+  :is(.button, .download-button, .resource-select, .resource-card, .game-card, .ranking-item, .variant-tabs button, .artwork-variant-tabs button, .filter-toggle-chip, .games-sort button, .ranking-period-switch button), .resource-select span { transform: none !important; }
 }

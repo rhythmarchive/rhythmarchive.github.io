@@ -1,4 +1,5 @@
 import { observeImage } from "./viewport-images";
+import { setSurfaceVisible } from "./motion";
 import { zipSync } from "fflate";
 import { DownloadHttpError, reportDownloadFailure } from "../lib/resource-reports-client";
 import { DOWNLOAD_CONCURRENCY, MAX_BATCH_BYTES, MAX_BATCH_FILES, readResponseBytesWithinLimit, toggleBatchSelection, uniqueZipFilename, type BatchResource } from "../lib/batch";
@@ -163,7 +164,7 @@ export function createBatchTray(options: BatchTrayOptions): BatchTrayController 
     if (selected.size === 0 || busy) return;
     lastTrigger = trigger;
     panelOpen = true;
-    panel!.hidden = false;
+    void setSurfaceVisible(panel!, true);
     viewButton?.setAttribute("aria-expanded", "true");
     renderSelectedList();
     closeButton?.focus();
@@ -171,7 +172,7 @@ export function createBatchTray(options: BatchTrayOptions): BatchTrayController 
 
   function closePanel(returnFocus: boolean): void {
     panelOpen = false;
-    panel!.hidden = true;
+    void setSurfaceVisible(panel!, false);
     viewButton?.setAttribute("aria-expanded", "false");
     const trigger = lastTrigger;
     lastTrigger = null;
@@ -179,7 +180,7 @@ export function createBatchTray(options: BatchTrayOptions): BatchTrayController 
   }
 
   function renderTray(): void {
-    tray!.hidden = selected.size === 0;
+    void setSurfaceVisible(tray!, selected.size > 0);
     const upscaledButton = tray!.querySelector<HTMLButtonElement>('[data-batch-download="upscaled"]');
     if (upscaledButton) upscaledButton.hidden = ![...selected].some((resourceId) => Boolean(options.getResource(resourceId)?.upscaled || options.getResource(resourceId)?.hasUpscaled));
     options.root.classList.toggle("has-selection", selected.size > 0);

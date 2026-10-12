@@ -11,6 +11,7 @@ export async function downloadRendition(button: HTMLButtonElement): Promise<void
 
   const originalLabel = button.innerHTML;
   button.disabled = true;
+  button.ariaBusy = "true";
   button.innerHTML = "<span>下载中…</span>";
   if (status) status.textContent = "下载中…";
   let canOpenDirectly = true;
@@ -37,6 +38,7 @@ export async function downloadRendition(button: HTMLButtonElement): Promise<void
       : "下载失败，请稍后重试。";
   } finally {
     button.disabled = false;
+    button.ariaBusy = null;
     button.innerHTML = originalLabel;
   }
 }

@@ -6,6 +6,7 @@ import { sitePath } from "../lib/url";
 import { renderResourceCard } from "./render-resource-card";
 import { createBatchTray, downloadSelectedBatchFromManifest } from "./batch-tray";
 import { setupListNavigation } from "./list-navigation";
+import { revealContent } from "./motion";
 
 const root = document.querySelector<HTMLElement>("[data-library-root]");
 if (root) initialize(root);
@@ -120,6 +121,7 @@ function initialize(root: HTMLElement): void {
     }));
     if (token !== runToken) return;
     grid.replaceChildren(...visible.map((entry, index) => renderEntry(entry, index, failed.has(categoryKey(entry)))));
+    revealContent(grid);
     count.textContent = `${entries.length} 项资源`;
     retry.hidden = failed.size === 0;
     if (failed.size) warning.textContent = [warning.textContent, "部分资源加载失败，请重试。"].filter(Boolean).join(" ");

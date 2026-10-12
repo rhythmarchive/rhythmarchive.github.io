@@ -1,5 +1,6 @@
 import { createBatchTray, downloadSelectedBatchFromManifest } from "./batch-tray";
 import { setupListNavigation } from "./list-navigation";
+import { revealContent } from "./motion";
 import { showGalleryLoadError } from "./gallery-load-error";
 import { renderResourceCard } from "./render-resource-card";
 import { browseCardView } from "../lib/card-view-model";
@@ -77,7 +78,6 @@ async function initializeBrowseGallery(root: HTMLElement): Promise<void> {
       root,
       grid,
       getResource: (resourceId) => batchResources.get(resourceId),
-      onSelectionChange: () => render(),
       onDownload: (preferUpscaled, selectedIds, setStatus) => downloadSelectedBatchFromManifest({
         manifestUrl: root.dataset.batchUrl ?? "",
         selectedIds,
@@ -239,6 +239,7 @@ async function initializeBrowseGallery(root: HTMLElement): Promise<void> {
     const filtered = filterBrowseItems(items, state);
     const visible = filtered.slice(0, visibleCount).map((item) => displayBrowseItem(item, state.chart));
     grid!.replaceChildren(...visible.map((item, index) => renderResourceCard(browseCardView(item), { basePath: root.dataset.basePath ?? "/", index, isSelected: batchTray?.isSelected(item.resourceId) ?? false, browse: true })));
+    revealContent(grid!);
     count!.textContent = filtered.length.toLocaleString("zh-CN") + " 项资源";
     loadMore!.hidden = visible.length >= filtered.length;
     if (empty) empty.hidden = filtered.length !== 0;

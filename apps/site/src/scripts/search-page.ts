@@ -1,5 +1,6 @@
 import { rankSearchEntries } from "../lib/search";
 import { setupListNavigation } from "./list-navigation";
+import { revealContent } from "./motion";
 import { sitePath } from "../lib/url";
 import { GAME_CONFIG } from "../lib/game-config";
 import { updateResourceStatsInDom } from "../lib/stats-client";
@@ -39,6 +40,7 @@ async function initializeSearch(root: HTMLElement): Promise<void> {
   const render = (): void => {
     const visible = matches.slice(0, visibleCount);
     results.replaceChildren(...visible.map((card, index) => createResultCard(card, index)));
+    revealContent(results);
     more.hidden = visible.length >= matches.length;
     if (empty) empty.hidden = matches.length > 0;
     status.textContent = `找到 ${matches.length.toLocaleString("zh-CN")} 项资源`;

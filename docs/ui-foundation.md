@@ -33,4 +33,21 @@
 
 移动端保留横向分类导航、折叠筛选、两列资源卡片和底部批量工具栏。筛选标签可换行，长标题可断行；根容器不再强制 320px 最小宽度，避免 320px 视口存在滚动条时裁切右侧内容。图片、视频和地图可以有各自的内容布局，普通控件仍遵守共享规格。
 
-本基础只增加静态 CSS 与语义标记，不增加客户端依赖、全局脚本、额外网络请求或动画。验证 UI 时覆盖桌面、平板和窄屏，以及浅色、深色、焦点、选中和空状态；业务验证沿用现有相关测试。
+视觉基础不增加客户端依赖、全局脚本或额外网络请求。验证 UI 时覆盖桌面、平板和窄屏，以及浅色、深色、焦点、选中和空状态；业务验证沿用现有相关测试。
+
+## 动效与过渡
+
+共用 `--motion-fast: 140ms`、`--motion-ui: 180ms`、`--motion-surface: 220ms` 和 `--motion-ease: cubic-bezier(.22, 1, .36, 1)`。普通反馈最快，页面过渡其次，偶尔出现的浮层稍长；交互结果立即更新，不等待动画。
+
+| 场景 | 行为与边界 |
+| --- | --- |
+| 页面导航 | 原生跨文档 View Transition，页面短淡化、页头稳定。不改为客户端路由，不预取页面或图片；浏览器不支持时正常导航 |
+| 图片详情 | 只对实际加载的可见图片及主动切换的面板短淡化；原图、超分与难度差分仍沿用既有按需加载和错误回退 |
+| 大图开合 | 桌面从当前预览几何位置展开并回收，保持图片比例；触屏只淡化。使用已请求的当前图片，不克隆预览或预取邻图 |
+| 浮层与多选栏 | `motion.ts` 统一显隐；退出期间立即 inert，完成后 hidden。快速反向操作从当前状态继续，旧回调不能隐藏重新打开的浮层 |
+| 列表内容 | 客户端数据更新后只对容器短淡化，不逐卡片错峰。触屏长列表跳过整体动画。多选使用既有 syncCards，保持卡片节点和焦点 |
+| 按钮与下载 | 统一颜色、边界和轻微按压反馈；下载期间 disabled 与 aria-busy。触屏不保留悬浮抬升，选中卡片不位移 |
+
+`prefers-reduced-motion: reduce` 不启用页面过渡，JavaScript 动效直接完成状态更新；原有 CSS 减少动态效果规则继续生效。只动画 opacity 和 transform，不动画布局尺寸、滤镜或模糊，不常驻 will-change、滚动监听、动画循环或图片观察器。
+
+参考了 [ADX 的页面过渡实现](https://github.com/AdingApkgg/adx-dl/blob/main/apps/web/src/app/page-transition.tsx)及其[共享样式](https://github.com/AdingApkgg/adx-dl/blob/main/apps/web/src/app/globals.css)中稳定页头、统一短过渡和渐进增强的做法。本项目保留 Astro 多页面结构，采用更短的淡化，不引入其 React 路由、视差、倾斜或主题扩散效果。原生跨文档行为参见 [Chrome View Transitions 文档](https://developer.chrome.com/docs/web-platform/view-transitions/cross-document)。

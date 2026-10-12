@@ -2,6 +2,7 @@ import { loadSelectedDetailImages } from "./viewport-images";
 import { downloadRendition } from "./download";
 import { setupDetailNavigation } from "./list-navigation";
 import { setupDetailLibrary } from "./detail-library";
+import { animateLightboxImage, revealContent, setSurfaceVisible } from "./motion";
 import { getBrowserStatsClient, updateResourceStatsInDom } from "../lib/stats-client";
 
 const root = document.querySelector<HTMLElement>("[data-detail-root]");
@@ -21,15 +22,22 @@ if (root) {
     });
   }
   void updateResourceStatsInDom(root);
+  // Fade only the image that actually loaded; hidden originals stay inert.
+  for (const image of root.querySelectorAll<HTMLImageElement>("[data-detail-image]")) {
+    image.addEventListener("load", () => { if (!image.closest("[hidden]")) revealContent(image); });
+  }
   const lightbox = root.querySelector<HTMLElement>("[data-detail-lightbox]");
   const lightboxImage = root.querySelector<HTMLImageElement>("[data-lightbox-image]");
   const lightboxCloseButton = root.querySelector<HTMLButtonElement>(".detail-lightbox-close");
   let lastLightboxTrigger: HTMLButtonElement | null = null;
 
   const closeLightbox = (): void => {
-    if (!lightbox || lightbox.hidden) return;
-    lightbox.hidden = true;
-    lightboxImage?.removeAttribute("src");
+    if (!lightbox || lightbox.hidden || lightbox.inert) return;
+    const trigger = lastLightboxTrigger;
+    if (lightboxImage && trigger) animateLightboxImage(lightboxImage, trigger, false);
+    void setSurfaceVisible(lightbox, false, "fade").then((closed) => {
+      if (closed && lightbox.hidden) lightboxImage?.removeAttribute("src");
+    });
     document.body.classList.remove("detail-lightbox-open");
     lastLightboxTrigger?.focus();
     lastLightboxTrigger = null;
@@ -45,7 +53,8 @@ if (root) {
     const height = Number(trigger.dataset.lightboxPreviewHeight);
     if (Number.isFinite(width) && width > 0) lightboxImage.width = width;
     if (Number.isFinite(height) && height > 0) lightboxImage.height = height;
-    lightbox.hidden = false;
+    void setSurfaceVisible(lightbox, true, "fade");
+    animateLightboxImage(lightboxImage, trigger, true);
     document.body.classList.add("detail-lightbox-open");
     lightboxCloseButton?.focus();
   };
@@ -64,6 +73,8 @@ if (root) {
       item.tabIndex = active ? 0 : -1;
     }
     loadSelectedDetailImages(root);
+    const selectedPanel = root.querySelector<HTMLElement>(`[data-variant-panel]:not([hidden])`);
+    if (selectedPanel) revealContent(selectedPanel);
     const currentLabel = root.querySelector<HTMLElement>("[data-variant-current]");
     if (currentLabel) currentLabel.textContent = button.dataset.variantLabel ?? "";
   };
@@ -92,6 +103,8 @@ if (root) {
       closeLightbox();
       for (const panel of panelRoot.querySelectorAll<HTMLElement>("[data-detail-source-panel]")) panel.hidden = panel.dataset.detailSourcePanel !== source;
       loadSelectedDetailImages(root);
+      const selectedSource = panelRoot.querySelector<HTMLElement>("[data-detail-source-panel]:not([hidden])");
+      if (selectedSource) revealContent(selectedSource);
       for (const item of panelRoot.querySelectorAll<HTMLButtonElement>("[data-detail-source-select]")) {
         const active = item.dataset.detailSourceSelect === source;
         item.classList.toggle("is-active", active);
@@ -107,7 +120,7 @@ if (root) {
     button.addEventListener("click", closeLightbox);
   }
   document.addEventListener("keydown", (event) => {
-    if (!lightbox || lightbox.hidden) return;
+    if (!lightbox || lightbox.hidden || lightbox.inert) return;
     if (event.key === "Escape") {
       closeLightbox();
       return;
