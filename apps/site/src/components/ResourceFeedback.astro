@@ -1,32 +1,59 @@
 ---
 import { PUBLIC_STATS_API_URL, PUBLIC_UPDATE_REMINDERS_TURNSTILE_SITE_KEY, GITHUB_FEEDBACK_CATEGORY_URL } from '../lib/site-config';
-import { urls } from '../lib/site-urls';
-interface Props { resourceId: string; name: string; route: string }
-const { resourceId, name, route } = Astro.props;
+interface Props { resourceId: string; name: string }
+const { resourceId, name } = Astro.props;
+const dialogId = `resource-feedback-${resourceId}`;
 ---
-<details class="resource-feedback" data-resource-feedback data-resource-id={resourceId} data-name={name} data-site-key={PUBLIC_UPDATE_REMINDERS_TURNSTILE_SITE_KEY}>
-  <summary>反馈问题</summary>
-  <p class="detail-note">{name} · <a href={urls.sitePath(route)}>资源详情</a></p>
-  {PUBLIC_STATS_API_URL && PUBLIC_UPDATE_REMINDERS_TURNSTILE_SITE_KEY ? <form>
-    <label>问题类型<select name="kind" required><option value="download">下载异常</option><option value="wrong-resource">资源有误</option><option value="metadata">信息有误</option><option value="other">其他问题</option></select></label>
-    <label>问题描述<textarea name="description" required minlength="5" maxlength="2000" rows="4" placeholder="请描述遇到的问题。"></textarea></label>
-    <p class="detail-note">提交时会附带资源 ID、名称和详情链接，请勿填写密码等隐私信息。</p>
-    <div data-feedback-turnstile></div>
-    <button type="submit" class="button button-secondary" disabled>完成验证后发送邮件</button>
-    <p role="status" data-feedback-status></p>
-  </form> : <p class="detail-note">邮件反馈暂不可用，请使用 GitHub 反馈。</p>}
-  <div class="resource-feedback-links">
-    <a class="text-link" href={GITHUB_FEEDBACK_CATEGORY_URL} target="_blank" rel="noopener noreferrer">GitHub 反馈</a>
-    <a class="text-link" href={urls.sitePath('/feedback/')}>前往反馈区</a>
-  </div>
-</details>
+<div class="resource-feedback" data-resource-feedback data-resource-id={resourceId} data-name={name} data-site-key={PUBLIC_UPDATE_REMINDERS_TURNSTILE_SITE_KEY}>
+  <button class="button button-secondary feedback-trigger" type="button" data-feedback-open aria-haspopup="dialog" aria-controls={dialogId}>反馈问题</button>
+  <dialog id={dialogId} aria-labelledby={`${dialogId}-title`}>
+    <div class="feedback-sheet" data-feedback-sheet hidden>
+      <header class="feedback-header">
+        <h2 id={`${dialogId}-title`}>反馈问题</h2>
+        <button class="button button-secondary feedback-close" type="button" data-feedback-close aria-label="关闭反馈" autofocus>×</button>
+      </header>
+      <div class="feedback-body">
+        {PUBLIC_STATS_API_URL && PUBLIC_UPDATE_REMINDERS_TURNSTILE_SITE_KEY ? <form>
+          <label>问题类型<select name="kind" required><option value="download">下载异常</option><option value="wrong-resource">资源有误</option><option value="metadata">信息有误</option><option value="other">其他问题</option></select></label>
+          <label>问题描述<textarea name="description" required minlength="5" maxlength="2000" rows="4" placeholder="请描述遇到的问题。"></textarea></label>
+          <p class="detail-note">自动附带当前资源信息，请勿填写密码等隐私信息。</p>
+          <div data-feedback-turnstile></div>
+          <button type="submit" class="button button-primary" disabled>完成验证后发送邮件</button>
+          <p role="status" data-feedback-status aria-live="polite" aria-atomic="true"></p>
+        </form> : <p class="detail-note">邮件反馈暂不可用，请使用 GitHub 反馈。</p>}
+      </div>
+      <footer class="resource-feedback-links">
+        <a class="text-link" href={GITHUB_FEEDBACK_CATEGORY_URL} target="_blank" rel="noopener noreferrer">GitHub 反馈</a>
+      </footer>
+    </div>
+  </dialog>
+</div>
 <style>
-  .resource-feedback { margin-block: 1rem; }
-  summary { cursor: pointer; width: fit-content; min-height: var(--control-compact); color: var(--accent-strong); }
-  form { display: grid; gap: .75rem; max-width: 36rem; margin-block: .75rem; }
+  .feedback-trigger { color: var(--text-muted); }
+  dialog { width: min(32rem, calc(100% - 32px)); max-width: none; max-height: calc(100dvh - 48px); padding: 0; border: 1px solid var(--line); border-radius: var(--radius-lg); background: var(--surface); color: var(--text); box-shadow: var(--shadow-hover); overflow: hidden; }
+  dialog::backdrop { background: rgb(0 0 0 / .42); }
+  .feedback-sheet { display: flex; flex-direction: column; max-height: calc(100dvh - 50px); }
+  .feedback-header { display: flex; flex-shrink: 0; align-items: center; justify-content: space-between; gap: 16px; padding: 16px 20px; border-bottom: 1px solid var(--line); }
+  h2 { margin: 0; font-size: 1.15rem; }
+  .feedback-close { min-width: 44px; min-height: 44px; padding: 0; font-size: 1.5rem; }
+  .feedback-body { min-height: 0; overflow-y: auto; overscroll-behavior: contain; padding: 20px; }
+  form { display: grid; gap: 16px; }
   label { display: grid; gap: .35rem; }
   select, textarea { width: 100%; }
-  textarea { resize: vertical; }
-  .resource-feedback-links { display: flex; flex-wrap: wrap; gap: 8px 16px; }
+  textarea { resize: vertical; min-height: 7rem; }
+  .detail-note { margin: 0; }
+  [data-feedback-status] { margin: 0; font-size: .85rem; overflow-wrap: anywhere; }
+  [data-feedback-status]:empty { display: none; }
+  .resource-feedback-links { flex-shrink: 0; padding: 8px 20px; border-top: 1px solid var(--line); }
+  .resource-feedback-links a { display: inline-flex; align-items: center; min-height: 44px; font-size: .82rem; }
+  @media (max-width: 640px) {
+    dialog { position: fixed; inset: auto 0 0; width: 100%; margin: 0; max-height: 88dvh; border-radius: var(--radius-lg) var(--radius-lg) 0 0; border-bottom: 0; }
+    .feedback-sheet { max-height: 88dvh; }
+    .feedback-body select, .feedback-body textarea { font-size: 1rem; }
+    .resource-feedback-links { padding-bottom: max(8px, env(safe-area-inset-bottom)); }
+  }
+  @media (max-width: 360px) {
+    .feedback-body { padding-inline: 8px; }
+  }
 </style>
 <script src="../scripts/resource-feedback.ts"></script>
