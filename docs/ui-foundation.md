@@ -41,7 +41,7 @@
 
 | 场景 | 行为与边界 |
 | --- | --- |
-| 页面导航 | 原生跨文档 View Transition，页面短淡化、页头稳定。不改为客户端路由，不预取页面或图片；浏览器不支持时正常导航 |
+| 页面导航 | Astro ClientRouter 在当前文档内切换静态页面，保留页头节点，只淡化主要内容；不预取页面或邻图。不支持 View Transition 时仍用客户端切换，无 JavaScript 时保留独立页面链接 |
 | 图片详情 | 只对实际加载的可见图片及主动切换的面板短淡化；原图、超分与难度差分仍沿用既有按需加载和错误回退 |
 | 大图开合 | 桌面从当前预览几何位置展开并回收，保持图片比例；触屏只淡化。使用已请求的当前图片，不克隆预览或预取邻图 |
 | 浮层与多选栏 | `motion.ts` 统一显隐；退出期间立即 inert，完成后 hidden。快速反向操作从当前状态继续，旧回调不能隐藏重新打开的浮层 |
@@ -50,4 +50,8 @@
 
 `prefers-reduced-motion: reduce` 不启用页面过渡，JavaScript 动效直接完成状态更新；原有 CSS 减少动态效果规则继续生效。只动画 opacity 和 transform，不动画布局尺寸、滤镜或模糊，不常驻 will-change、滚动监听、动画循环或图片观察器。
 
-参考了 [ADX 的页面过渡实现](https://github.com/AdingApkgg/adx-dl/blob/main/apps/web/src/app/page-transition.tsx)及其[共享样式](https://github.com/AdingApkgg/adx-dl/blob/main/apps/web/src/app/globals.css)中稳定页头、统一短过渡和渐进增强的做法。本项目保留 Astro 多页面结构，采用更短的淡化，不引入其 React 路由、视差、倾斜或主题扩散效果。原生跨文档行为参见 [Chrome View Transitions 文档](https://developer.chrome.com/docs/web-platform/view-transitions/cross-document)。
+页面仍由 Astro 静态生成，客户端导航使用 [Astro ClientRouter](https://docs.astro.build/en/guides/view-transitions/)。页面脚本通过 `page-lifecycle.ts` 在 `astro:page-load` 初始化，在 `astro:before-swap` 中止页面监听、清理计时器、观察器和验证组件。页头持久化，活动导航标记从新页面同步。
+
+图库和搜索沿用 URL 筛选、排序及 `list-navigation.ts` 的列表快照；返回时恢复已加载数量，浏览器遍历优先使用 Astro 保存的滚动位置。连续详情替换当前历史项，Back 回到原列表；大图模式随详情切换保留，支持方向键、按钮和单指水平滑动，不预取相邻原图。原图、超分和视频仍按明确操作加载。
+
+`static-data.ts` 按需复用最多六份公开静态投影及正在进行的请求，失败后可重试；不会全局加载 Catalog，也不缓存动态 Stats/提醒响应。主题和移动菜单绑定在持久化页头，普通页面绑定只活到下一次切换。新增页面脚本需沿用这些生命周期和历史字段，不能清空 `history.state` 的路由信息。

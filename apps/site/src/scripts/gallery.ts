@@ -1,3 +1,5 @@
+import { loadStaticData } from "./static-data";
+import { onPageLoad, pageSignal } from "./page-lifecycle";
 import { createBatchTray, downloadSelectedBatchFromManifest } from "./batch-tray";
 import { setupListNavigation } from "./list-navigation";
 import { revealContent } from "./motion";
@@ -24,18 +26,23 @@ type GalleryRange = {
   maxSlider: HTMLInputElement;
 };
 
-for (const root of document.querySelectorAll<HTMLElement>("[data-gallery-root]")) {
-  if (root.dataset.galleryDefer === "true") {
-    root.addEventListener("gallery:activate", () => {
-      root.dataset.galleryDefer = "false";
-      if (root.dataset.galleryInitialized !== "true") void initializeGallery(root);
-    }, { once: true });
-  } else {
-    void initializeGallery(root);
+onPageLoad(() => {
+  for (const root of document.querySelectorAll<HTMLElement>("[data-gallery-root]")) {
+    if (root.dataset.galleryDefer === "true") {
+      root.addEventListener("gallery:activate", () => {
+        root.dataset.galleryDefer = "false";
+        if (root.dataset.galleryInitialized !== "true") void initializeGallery(root);
+      }, { once: true });
+    } else {
+      void initializeGallery(root);
+    }
   }
-}
+});
 
 async function initializeGallery(root: HTMLElement): Promise<void> {
+  const signal = pageSignal();
+  root.inert = true;
+  root.setAttribute("aria-busy", "true");
   if (root.dataset.galleryInitialized === "true") return;
   root.dataset.galleryInitialized = "true";
   const grid = root.querySelector<HTMLElement>("[data-gallery-grid]");
@@ -68,9 +75,8 @@ async function initializeGallery(root: HTMLElement): Promise<void> {
   let batchTray: ReturnType<typeof createBatchTray> | undefined;
 
   try {
-    const response = await fetch(root.dataset.galleryUrl ?? "", { credentials: "omit" });
-    if (!response.ok) throw new Error(`gallery data failed with ${response.status}`);
-    resources = await response.json() as GalleryCard[];
+    resources = await loadStaticData<GalleryCard[]>(root.dataset.galleryUrl ?? "");
+    if (signal.aborted) return;
     const params = new URLSearchParams(window.location.search);
     if (search) search.value = params.get("q") ?? "";
     if (sort) sort.value = params.get("sort") ?? sort.options[0]?.value ?? "default";
@@ -97,7 +103,10 @@ async function initializeGallery(root: HTMLElement): Promise<void> {
     render();
     navigation.restore();
   } catch (error) {
+    if (signal.aborted) return;
     console.error("Gallery data failed", error);
+    root.inert = false;
+    root.removeAttribute("aria-busy");
     showGalleryLoadError(root, count);
     return;
   }
@@ -143,6 +152,10 @@ async function initializeGallery(root: HTMLElement): Promise<void> {
     }
     applyFilter();
   });
+
+  root.inert = false;
+  root.removeAttribute("aria-busy");
+  root.dataset.ready = "true";
 
   function currentResources(): GalleryCard[] {
     const query = normalizeSearchText(search?.value ?? "");
@@ -211,7 +224,7 @@ async function initializeGallery(root: HTMLElement): Promise<void> {
       if (min > range.min) url.searchParams.set(`facet-${range.key}-min`, formatRangeValue(min)); else url.searchParams.delete(`facet-${range.key}-min`);
       if (max < range.max) url.searchParams.set(`facet-${range.key}-max`, formatRangeValue(max)); else url.searchParams.delete(`facet-${range.key}-max`);
     }
-    window.history.replaceState({}, "", url);
+    window.history.replaceState({ ...history.state }, "", url);
     render();
   }
 
@@ -219,6 +232,7 @@ async function initializeGallery(root: HTMLElement): Promise<void> {
     const filtered = currentResources();
     const visible = filtered.slice(0, visibleCount);
     grid!.replaceChildren(...visible.map((resource, index) => renderResourceCard(galleryCardView(resource), { basePath: root.dataset.basePath ?? "/", index, isSelected: batchTray?.isSelected(resource.resourceId) ?? false })));
+    navigation.remember(visibleCount);
     revealContent(grid!);
     count!.textContent = `${filtered.length.toLocaleString("zh-CN")} 项资源`;
     loadMore!.hidden = visible.length >= filtered.length;

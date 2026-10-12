@@ -166,6 +166,10 @@ const description = `${resource.displayTitle}${resource.artist ? ` · ${resource
       <div class="detail-lightbox-content">
         <img data-lightbox-image alt="" decoding="async" />
         <button class="detail-lightbox-close" type="button" data-lightbox-close aria-label="关闭大图预览">×</button>
+        <div class="detail-lightbox-navigation" data-lightbox-navigation hidden>
+          <button type="button" data-lightbox-step="previous" aria-label="查看上一张">← 上一张</button>
+          <button type="button" data-lightbox-step="next" aria-label="查看下一张">下一张 →</button>
+        </div>
       </div>
     </div>
   </div>

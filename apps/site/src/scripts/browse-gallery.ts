@@ -1,3 +1,5 @@
+import { loadStaticData } from "./static-data";
+import { onPageLoad, pageSignal } from "./page-lifecycle";
 import { createBatchTray, downloadSelectedBatchFromManifest } from "./batch-tray";
 import { setupListNavigation } from "./list-navigation";
 import { revealContent } from "./motion";
@@ -36,10 +38,15 @@ type BrowseDifficultyRange = {
   maxSlider: HTMLInputElement;
 };
 
-const root = document.querySelector<HTMLElement>("[data-browse-gallery-root]");
-if (root) void initializeBrowseGallery(root);
+onPageLoad(() => {
+  const root = document.querySelector<HTMLElement>("[data-browse-gallery-root]");
+  if (root) void initializeBrowseGallery(root);
+});
 
 async function initializeBrowseGallery(root: HTMLElement): Promise<void> {
+  const signal = pageSignal();
+  root.inert = true;
+  root.setAttribute("aria-busy", "true");
   const grid = root.querySelector<HTMLElement>("[data-gallery-grid]");
   const loadMore = root.querySelector<HTMLButtonElement>("[data-load-more]");
   const count = root.querySelector<HTMLElement>("[data-gallery-count]");
@@ -63,9 +70,8 @@ async function initializeBrowseGallery(root: HTMLElement): Promise<void> {
   let batchTray: ReturnType<typeof createBatchTray> | undefined;
 
   try {
-    const response = await fetch(root.dataset.galleryUrl ?? "", { credentials: "omit" });
-    if (!response.ok) throw new Error("browse gallery data failed with " + response.status);
-    const data = await response.json() as BrowseGalleryData;
+    const data = await loadStaticData<BrowseGalleryData>(root.dataset.galleryUrl ?? "");
+    if (signal.aborted) return;
     if (data.schemaVersion !== 1 || data.game !== game || data.category !== "jacket" || !Array.isArray(data.items)) throw new Error("browse gallery data has an invalid shape");
     items = data.items;
     for (const item of items) {
@@ -93,7 +99,10 @@ async function initializeBrowseGallery(root: HTMLElement): Promise<void> {
     render();
     navigation.restore();
   } catch (error) {
+    if (signal.aborted) return;
     console.error("Browse gallery data failed", error);
+    root.inert = false;
+    root.removeAttribute("aria-busy");
     showGalleryLoadError(root, count);
     return;
   }
@@ -143,15 +152,28 @@ async function initializeBrowseGallery(root: HTMLElement): Promise<void> {
     visibleCount += BROWSE_PAGE_SIZE;
     render();
   });
+  // Filter entries use the native History API to avoid fetching the same HTML
+  // on each edit. Astro can treat a return to its last route URL as an in-page
+  // traversal, so restore controls here as well as on a full body swap.
+  const pathname = location.pathname;
   window.addEventListener("popstate", () => {
+    if (location.pathname !== pathname) return;
+    const entry = history.state;
     state = readState(game, items);
     applyStateToControls(state);
-    visibleCount = BROWSE_PAGE_SIZE;
+    visibleCount = entry?.resourceListPosition?.url === location.pathname + location.search
+      ? entry.resourceListPosition.count : BROWSE_PAGE_SIZE;
     render();
-  });
+    requestAnimationFrame(() => { if (!signal.aborted) window.scrollTo(0, entry?.scrollY ?? 0); });
+  }, { signal });
 
 
 
+
+
+  root.inert = false;
+  root.removeAttribute("aria-busy");
+  root.dataset.ready = "true";
 
   function readState(gameId: BrowseGame, browseItems: BrowseGalleryItem[]): BrowseUrlState {
     return parseBrowseUrlState(gameId, window.location.search, browseItems);
@@ -198,7 +220,7 @@ async function initializeBrowseGallery(root: HTMLElement): Promise<void> {
     const url = new URL(window.location.href);
     const serialized = serializeBrowseUrlState(state).toString();
     url.search = serialized ? "?" + serialized : "";
-    if (historyMode === "push") window.history.pushState(null, "", url); else window.history.replaceState(null, "", url);
+    if (historyMode === "push") window.history.pushState({ ...history.state }, "", url); else window.history.replaceState({ ...history.state }, "", url);
     visibleCount = BROWSE_PAGE_SIZE;
     render();
   }
@@ -208,7 +230,7 @@ async function initializeBrowseGallery(root: HTMLElement): Promise<void> {
     applyStateToControls(state);
     const url = new URL(window.location.href);
     url.search = "";
-    window.history.pushState(null, "", url);
+    window.history.pushState({ ...history.state }, "", url);
     visibleCount = BROWSE_PAGE_SIZE;
     render();
   }
@@ -239,6 +261,7 @@ async function initializeBrowseGallery(root: HTMLElement): Promise<void> {
     const filtered = filterBrowseItems(items, state);
     const visible = filtered.slice(0, visibleCount).map((item) => displayBrowseItem(item, state.chart));
     grid!.replaceChildren(...visible.map((item, index) => renderResourceCard(browseCardView(item), { basePath: root.dataset.basePath ?? "/", index, isSelected: batchTray?.isSelected(item.resourceId) ?? false, browse: true })));
+    navigation.remember(visibleCount);
     revealContent(grid!);
     count!.textContent = filtered.length.toLocaleString("zh-CN") + " 项资源";
     loadMore!.hidden = visible.length >= filtered.length;

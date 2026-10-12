@@ -1,10 +1,11 @@
+import { onPageLoad, pageSignal, onPageCleanup } from "./page-lifecycle";
 import { getBrowserStatsClient } from "../lib/stats-client";
 import { submitUpdateReminder, type UpdateReminderResult } from "../lib/update-reminder-client";
 import { loadTurnstile } from "../lib/turnstile";
 
 type ReminderUiState = "idle" | "success" | "duplicate" | "error";
 
-initializeUpdateReminder();
+onPageLoad(initializeUpdateReminder);
 
 function initializeUpdateReminder(): void {
   const reminder = document.querySelector<HTMLElement>("[data-update-reminder]");
@@ -18,6 +19,7 @@ function initializeUpdateReminder(): void {
   const reminderGameSelect = gameSelectElement;
   const reminderSubmitButton = submitButtonElement;
   const reminderStatus = statusElement;
+  const signal = pageSignal();
   const apiUrl = document.documentElement.dataset.statsApiUrl;
   let uiState: ReminderUiState = "idle";
   let submitting = false;
@@ -25,6 +27,7 @@ function initializeUpdateReminder(): void {
   const turnstileSiteKey = turnstileContainer?.dataset.siteKey;
   let turnstileToken = "";
   let turnstileWidgetId: string | number | undefined;
+  onPageCleanup(() => { if (turnstileWidgetId !== undefined) window.turnstile?.remove(turnstileWidgetId); });
 
   reminderForm.addEventListener("submit", (event) => {
     event.preventDefault();
@@ -59,6 +62,7 @@ function initializeUpdateReminder(): void {
       result = { status: "failed", reason: "network" };
     }
 
+    if (signal.aborted) return;
     submitting = false;
     if (turnstileWidgetId !== undefined) window.turnstile?.reset(turnstileWidgetId);
     turnstileToken = "";
@@ -79,6 +83,7 @@ function initializeUpdateReminder(): void {
     if (!turnstileContainer || !turnstileSiteKey) return;
     try {
       const api = await loadTurnstile();
+      if (signal.aborted) return;
       turnstileWidgetId = api.render(turnstileContainer, {
         sitekey: turnstileSiteKey,
         action: "update-reminder",

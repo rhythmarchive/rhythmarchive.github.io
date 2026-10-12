@@ -179,3 +179,4 @@
 @media (prefers-reduced-motion: reduce) {
   .story-map-path-cluster,.story-atlas-part-tab,.story-detail-sheet,.story-map-node-image,.story-map-avatar img { transition: none !important; }
 }
+.story-atlas-shell[data-story-mode="gallery"] :is(.story-atlas-search, .story-atlas-search-status, .story-atlas-search-results, .story-atlas-parts, .story-atlas-panels) { display: none; }

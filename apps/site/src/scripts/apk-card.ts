@@ -1,20 +1,25 @@
+import { onPageLoad, pageSignal } from "./page-lifecycle";
 import { formatPublicApkBytes, parsePublicArcaeaApkManifest, type PublicArcaeaApkEntry } from "../lib/apk";
 import { GITHUB_RELEASES_URL } from "../lib/site-config";
 
-const card = document.querySelector<HTMLElement>("[data-arcaea-apk-card]");
-const state = card?.querySelector<HTMLElement>("[data-arcaea-apk-state]");
-const manifestUrl = card?.dataset.manifestUrl;
+onPageLoad(() => {
+  const card = document.querySelector<HTMLElement>("[data-arcaea-apk-card]");
+  const state = card?.querySelector<HTMLElement>("[data-arcaea-apk-state]");
+  const manifestUrl = card?.dataset.manifestUrl;
 
-if (card && state && manifestUrl) void loadManifest(card, state, manifestUrl);
+  if (card && state && manifestUrl) void loadManifest(card, state, manifestUrl);
+});
 
 async function loadManifest(cardElement: HTMLElement, stateElement: HTMLElement, url: string): Promise<void> {
+  const signal = pageSignal();
   try {
-    const response = await fetch(url, { credentials: "omit", headers: { Accept: "application/json" } });
+    const response = await fetch(url, { credentials: "omit", signal, headers: { Accept: "application/json" } });
     if (!response.ok) throw new Error("manifest unavailable");
     const manifest = parsePublicArcaeaApkManifest(await response.json());
     if (!manifest) throw new Error("manifest invalid");
-    renderManifest(cardElement, stateElement, manifest.latest);
+    if (!signal.aborted) renderManifest(cardElement, stateElement, manifest.latest);
   } catch {
+    if (signal.aborted) return;
     stateElement.replaceChildren();
     const message = document.createElement("p");
     message.textContent = "暂时无法获取 APK 下载信息";

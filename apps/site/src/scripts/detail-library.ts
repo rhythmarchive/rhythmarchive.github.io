@@ -1,5 +1,6 @@
 import { createLocalLibrary, LIBRARY_KEY } from "../lib/local-library";
 import { revealContent } from "./motion";
+import { pageSignal } from "./page-lifecycle";
 
 export function setupDetailLibrary(root: HTMLElement): void {
   const button = root.querySelector<HTMLButtonElement>("[data-favorite-toggle]");
@@ -24,6 +25,6 @@ export function setupDetailLibrary(root: HTMLElement): void {
     sync(warning || (wasFavorite ? "已取消收藏" : "已收藏"));
     revealContent(status);
   });
-  window.addEventListener("storage", (event) => { if (event.key === LIBRARY_KEY || event.key === null) sync(); });
-  window.addEventListener("pageshow", (event) => { if (event.persisted) sync(library.visit(entry)); });
+  window.addEventListener("storage", (event) => { if (event.key === LIBRARY_KEY || event.key === null) sync(); }, { signal: pageSignal() });
+  window.addEventListener("pageshow", (event) => { if (event.persisted) sync(library.visit(entry)); }, { signal: pageSignal() });
 }

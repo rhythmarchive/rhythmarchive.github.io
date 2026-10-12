@@ -1,3 +1,5 @@
+import { loadStaticData } from "./static-data";
+import { onPageLoad, pageSignal } from "./page-lifecycle";
 import { createLocalLibrary, LIBRARY_KEY, type LibraryEntry, type LibraryTab } from "../lib/local-library";
 import { galleryCardView } from "../lib/card-view-model";
 import type { GalleryCard } from "../lib/gallery-projection";
@@ -8,10 +10,13 @@ import { createBatchTray, downloadSelectedBatchFromManifest } from "./batch-tray
 import { setupListNavigation } from "./list-navigation";
 import { revealContent } from "./motion";
 
-const root = document.querySelector<HTMLElement>("[data-library-root]");
-if (root) initialize(root);
+onPageLoad(() => {
+  const root = document.querySelector<HTMLElement>("[data-library-root]");
+  if (root) initialize(root);
+});
 
 function initialize(root: HTMLElement): void {
+  const signal = pageSignal();
   const grid = root.querySelector<HTMLElement>("[data-library-grid]")!;
   const count = root.querySelector<HTMLElement>("[data-library-count]")!;
   const warning = root.querySelector<HTMLElement>("[data-library-warning]")!;
@@ -68,9 +73,8 @@ function initialize(root: HTMLElement): void {
       const targetPending = pending;
       const wanted = new Set([...data.favorites, ...data.history].filter((entry) => categoryKey(entry) === key).map((entry) => entry.id));
       request = (async () => {
-        const response = await fetch(sitePath(`/data/galleries/${key}.json`, base), { credentials: "omit" });
-        if (!response.ok) throw new Error(`gallery failed with ${response.status}`);
-        const resources = await response.json() as GalleryCard[];
+        const resources = await loadStaticData<GalleryCard[]>(sitePath(`/data/galleries/${key}.json`, base));
+        if (signal.aborted) return;
         if (!Array.isArray(resources)) throw new Error("Invalid gallery data");
         for (const resource of resources) if (wanted.has(resource.resourceId)) targetCards.set(resource.resourceId, resource);
         targetLoaded.add(key);
@@ -81,6 +85,7 @@ function initialize(root: HTMLElement): void {
   }
 
   async function refresh(message = ""): Promise<void> {
+    if (signal.aborted) return;
     const token = ++runToken;
     const state = library.read();
     data = state.data;
@@ -114,13 +119,14 @@ function initialize(root: HTMLElement): void {
     const failed = new Set<string>();
     let next = 0;
     await Promise.all(Array.from({ length: Math.min(3, keys.length) }, async () => {
-      while (next < keys.length && token === runToken) {
+      while (!signal.aborted && next < keys.length && token === runToken) {
         const key = keys[next++]!;
         try { await loadCategory(key); } catch { failed.add(key); }
       }
     }));
-    if (token !== runToken) return;
+    if (signal.aborted || token !== runToken) return;
     grid.replaceChildren(...visible.map((entry, index) => renderEntry(entry, index, failed.has(categoryKey(entry)))));
+    navigation.remember(visibleCount);
     revealContent(grid);
     count.textContent = `${entries.length} 项资源`;
     retry.hidden = failed.size === 0;
@@ -178,7 +184,7 @@ function initialize(root: HTMLElement): void {
     visibleCount = 48;
     const url = new URL(location.href);
     url.searchParams.set("tab", tab);
-    history.replaceState({}, "", url);
+    history.replaceState({ ...history.state }, "", url);
     grid.replaceChildren();
     void refresh();
   }
@@ -216,7 +222,7 @@ function initialize(root: HTMLElement): void {
     cards = new Map(); loaded = new Set(); pending = new Map();
     void refresh();
   };
-  window.addEventListener("storage", (event) => { if (event.key === LIBRARY_KEY || event.key === null) reload(); });
-  window.addEventListener("pageshow", (event) => { if (event.persisted) reload(); });
+  window.addEventListener("storage", (event) => { if (event.key === LIBRARY_KEY || event.key === null) reload(); }, { signal });
+  window.addEventListener("pageshow", (event) => { if (event.persisted) reload(); }, { signal });
   void refresh();
 }

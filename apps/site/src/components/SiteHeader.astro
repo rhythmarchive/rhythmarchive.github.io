@@ -25,7 +25,7 @@ const isGameLibrary = isWithin(urls.sitePath("/games/"))
   || games.some((game) => isWithin(urls.sitePath(`/${game.slug}/`)));
 ---
 
-<header class="site-header">
+<header class="site-header" transition:persist="site-header" transition:name="site-header">
   <div class="site-header-inner">
     <div class="site-header-brand">
       <BrandMark />
@@ -81,72 +81,4 @@ const isGameLibrary = isWithin(urls.sitePath("/games/"))
   </nav>
 </noscript>
 
-<script is:inline>
-  (() => {
-    const key = "rhythm-archive-theme";
-    const root = document.documentElement;
-    const valid = new Set(["system", "light", "dark"]);
-    const descriptions = {
-      system: ["跟随系统", "浅色"],
-      light: ["浅色", "深色"],
-      dark: ["深色", "跟随系统"],
-    };
-    const read = () => {
-      try { return localStorage.getItem(key) || "system"; } catch { return "system"; }
-    };
-    const apply = (value) => {
-      const theme = valid.has(value) ? value : "system";
-      root.dataset.theme = theme;
-      root.style.colorScheme = theme === "system" ? "light dark" : theme;
-      const toggle = document.querySelector("[data-theme-toggle]");
-      if (toggle) {
-        const [current, next] = descriptions[theme];
-        toggle.setAttribute("data-theme-value", theme);
-        toggle.setAttribute("aria-label", `当前为${current}主题，下次切换为${next}主题`);
-        toggle.setAttribute("title", `当前为${current}主题，点击切换为${next}主题`);
-      }
-      window.dispatchEvent(new CustomEvent("rhythm-theme-change", { detail: theme }));
-    };
-    apply(read());
-    document.querySelector("[data-theme-toggle]")?.addEventListener("click", () => {
-      const current = root.dataset.theme || "system";
-      const next = current === "system" ? "light" : current === "light" ? "dark" : "system";
-      try { localStorage.setItem(key, next); } catch { /* theme still applies for this session */ }
-      apply(next);
-    });
-  })();
-</script>
-
-<script is:inline>
-  (() => {
-    const nav = document.querySelector("#site-primary-nav");
-    const toggle = document.querySelector("[data-menu-toggle]");
-    if (!nav || !toggle) return;
-    const mobile = matchMedia("(max-width: 760px)");
-    document.documentElement.classList.add("has-js");
-    const setOpen = (open) => {
-      nav.dataset.mobileOpen = String(open);
-      toggle.setAttribute("aria-expanded", String(open));
-      toggle.setAttribute("aria-label", open ? "关闭导航菜单" : "打开导航菜单");
-      if (!open) nav.querySelector(".nav-game-library")?.removeAttribute("open");
-    };
-    toggle.addEventListener("click", () => {
-      const open = toggle.getAttribute("aria-expanded") !== "true";
-      setOpen(open);
-      if (open) nav.querySelector("a")?.focus();
-    });
-    nav.addEventListener("click", (event) => {
-      if (event.target instanceof Element && event.target.closest("a")) setOpen(false);
-    });
-    document.addEventListener("pointerdown", (event) => {
-      if (mobile.matches && !nav.contains(event.target) && !toggle.contains(event.target)) setOpen(false);
-    });
-    document.addEventListener("keydown", (event) => {
-      if (event.key === "Escape" && toggle.getAttribute("aria-expanded") === "true") {
-        setOpen(false);
-        toggle.focus();
-      }
-    });
-    mobile.addEventListener("change", () => setOpen(false));
-  })();
-</script>
+<script src="../scripts/site-header.ts"></script>

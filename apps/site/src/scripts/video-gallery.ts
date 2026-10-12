@@ -1,8 +1,11 @@
+import { onPageLoad, onPageCleanup } from "./page-lifecycle";
 import type { MediaItem } from "../lib/media";
 import { downloadRendition } from "./download";
 
-const root = document.querySelector<HTMLElement>("[data-video-gallery]");
-if (root) initialize(root);
+onPageLoad(() => {
+  const root = document.querySelector<HTMLElement>("[data-video-gallery]");
+  if (root) initialize(root);
+});
 
 function initialize(root: HTMLElement) {
   const mediaItems = JSON.parse(root.dataset.mediaItems ?? "[]") as MediaItem[];
@@ -12,6 +15,7 @@ function initialize(root: HTMLElement) {
     return element;
   };
   const player = el<HTMLVideoElement>("[data-player]");
+  onPageCleanup(() => { player.pause(); player.removeAttribute("src"); player.load(); });
   const poster = el<HTMLImageElement>("[data-poster]");
   const clips = el<HTMLSelectElement>("[data-clip]");
   const cover = el("[data-cover]");

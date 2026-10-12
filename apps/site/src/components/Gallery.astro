@@ -122,9 +122,3 @@ function formatRangeValue(value: number): string {
 </section>
 
 <script src="../scripts/gallery.ts"></script>
-
-<script is:inline>
-  for (const disclosure of document.querySelectorAll("[data-filter-disclosure]")) {
-    if (disclosure instanceof HTMLDetailsElement && window.matchMedia("(max-width: 760px)").matches) disclosure.open = false;
-  }
-</script>

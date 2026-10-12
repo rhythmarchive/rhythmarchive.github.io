@@ -1,3 +1,5 @@
+import { loadStaticData } from "./static-data";
+import { onPageLoad, pageSignal, onPageCleanup } from "./page-lifecycle";
 import { rankSearchEntries } from "../lib/search";
 import { setupListNavigation } from "./list-navigation";
 import { revealContent } from "./motion";
@@ -7,10 +9,13 @@ import { updateResourceStatsInDom } from "../lib/stats-client";
 import { renderResourceCard } from "./render-resource-card";
 import type { PublicSearchCard, PublicSearchEntry } from "../lib/types";
 
-const root = document.querySelector<HTMLElement>("[data-search-page]");
-if (root) void initializeSearch(root);
+onPageLoad(() => {
+  const root = document.querySelector<HTMLElement>("[data-search-page]");
+  if (root) void initializeSearch(root);
+});
 
 async function initializeSearch(root: HTMLElement): Promise<void> {
+  const signal = pageSignal();
   const input = root.previousElementSibling?.querySelector<HTMLInputElement>("input[name=q]") ?? document.querySelector<HTMLInputElement>(".search-page input[name=q]");
   const results = root.querySelector<HTMLElement>("[data-search-results]");
   const status = root.querySelector<HTMLElement>("[data-search-status]");
@@ -40,6 +45,7 @@ async function initializeSearch(root: HTMLElement): Promise<void> {
   const render = (): void => {
     const visible = matches.slice(0, visibleCount);
     results.replaceChildren(...visible.map((card, index) => createResultCard(card, index)));
+    navigation.remember(visibleCount);
     revealContent(results);
     more.hidden = visible.length >= matches.length;
     if (empty) empty.hidden = matches.length > 0;
@@ -54,15 +60,12 @@ async function initializeSearch(root: HTMLElement): Promise<void> {
     for (const [key, value] of [["game", game.value], ["category", category.value]]) {
       if (value) url.searchParams.set(key!, value); else url.searchParams.delete(key!);
     }
-    window.history.replaceState({}, "", url);
+    window.history.replaceState({ ...history.state }, "", url);
   };
 
   const loadSearchIndex = async (): Promise<PublicSearchEntry[]> => {
     if (!entriesPromise) {
-      entriesPromise = fetch(resolveSitePath("data/search-index.json"), { credentials: "omit" }).then(async (response) => {
-        if (!response.ok) throw new Error(`search index failed with ${response.status}`);
-        return await response.json() as PublicSearchEntry[];
-      });
+      entriesPromise = loadStaticData<PublicSearchEntry[]>(resolveSitePath("data/search-index.json"));
     }
     try {
       return await entriesPromise;
@@ -74,11 +77,7 @@ async function initializeSearch(root: HTMLElement): Promise<void> {
 
   const loadSearchCards = async (): Promise<Map<string, PublicSearchCard>> => {
     if (!searchCardsPromise) {
-      searchCardsPromise = fetch(resolveSitePath("data/search-cards.json"), { credentials: "omit" }).then(async (response) => {
-        if (!response.ok) throw new Error(`search cards failed with ${response.status}`);
-        const cards = await response.json() as PublicSearchCard[];
-        return new Map(cards.map((card) => [card.resourceId, card]));
-      });
+      searchCardsPromise = loadStaticData<PublicSearchCard[]>(resolveSitePath("data/search-cards.json")).then((cards) => new Map(cards.map((card) => [card.resourceId, card])));
     }
     try {
       return await searchCardsPromise;
@@ -87,7 +86,10 @@ async function initializeSearch(root: HTMLElement): Promise<void> {
       throw error;
     }
   };
+  onPageCleanup(() => { ++runToken; window.clearTimeout(timer); });
+
   const run = async (): Promise<void> => {
+    if (signal.aborted) return;
     window.clearTimeout(timer);
     const token = ++runToken;
     visibleCount = initialRun ? navigation.visibleCount(48) : 48;
@@ -117,7 +119,7 @@ async function initializeSearch(root: HTMLElement): Promise<void> {
     if (retry) retry.hidden = true;
     try {
       const [entries, cardMap] = await Promise.all([loadSearchIndex(), loadSearchCards()]);
-      if (token !== runToken) return;
+      if (signal.aborted || token !== runToken) return;
       const ranked = rankSearchEntries(entries, query, { game: game.value, category: category.value });
       if (ranked.length === 0) {
         status.textContent = "没有找到相关资源。";
@@ -128,7 +130,7 @@ async function initializeSearch(root: HTMLElement): Promise<void> {
       render();
       navigation.restore();
     } catch (error) {
-      if (token !== runToken) return;
+      if (signal.aborted || token !== runToken) return;
       console.error("Search data failed", error);
       results.replaceChildren();
       if (empty) empty.hidden = true;

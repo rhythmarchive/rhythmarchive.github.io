@@ -98,18 +98,20 @@ img { display: block; max-width: 100%; }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
 
 .site-main { position: relative; z-index: 1; min-height: calc(100vh - 150px); padding-bottom: 4.5rem; }
-/* Keep full document navigation: no router, prefetch or script reinitialization. */
+/* The application shell stays painted; only the content participates. */
+::view-transition { pointer-events: none; }
+::view-transition-old(root), ::view-transition-new(root),
+::view-transition-group(site-header), ::view-transition-new(site-header) { animation: none; }
+::view-transition-old(site-header) { display: none; }
 @media (prefers-reduced-motion: no-preference) {
-  @view-transition { navigation: auto; }
-  .site-header { view-transition-name: site-header; }
-  ::view-transition-group(root) { animation-duration: var(--motion-ui); animation-timing-function: var(--motion-ease); }
-  ::view-transition-old(root) { animation: archive-page-out var(--motion-fast) ease-out both; }
-  ::view-transition-new(root) { animation: archive-page-in var(--motion-ui) var(--motion-ease) both; }
-  ::view-transition-group(site-header), ::view-transition-new(site-header) { animation: none; }
-  ::view-transition-old(site-header) { display: none; }
+  ::view-transition-old(main-content) { animation: archive-page-out var(--motion-fast) ease-out both; }
+  ::view-transition-new(main-content) { animation: archive-page-in var(--motion-ui) var(--motion-ease) both; }
 }
+html[data-viewer-navigation]::view-transition-old(main-content), html[data-viewer-navigation]::view-transition-new(main-content) { animation: none; }
 @keyframes archive-page-out { to { opacity: 0; } }
 @keyframes archive-page-in { from { opacity: 0; } }
+html[data-navigating] .site-header::after { content: ""; position: absolute; inset: auto 0 0; height: 2px; background: var(--accent); opacity: .75; }
+[data-gallery-root][aria-busy="true"] [data-gallery-grid], [data-browse-gallery-root][aria-busy="true"] [data-gallery-grid] { visibility: hidden; }
 .page-container { width: min(var(--content), calc(100% - 48px)); margin-inline: auto; }
 .page-heading { padding-top: var(--page-head-space); padding-bottom: 1.5rem; }
 .page-heading h1 { margin: .55rem 0 0; font-family: var(--display-font); font-size: var(--page-title); line-height: 1.12; letter-spacing: -.02em; overflow-wrap: anywhere; }
@@ -614,9 +616,13 @@ img { display: block; max-width: 100%; }
 .detail-lightbox[hidden] { display: none; }
 .detail-lightbox-backdrop { position: absolute; inset: 0; width: 100%; height: 100%; padding: 0; border: 0; background: transparent; cursor: zoom-out; }
 .detail-lightbox-content { position: relative; z-index: 1; display: grid; place-items: center; max-width: 94vw; max-height: 92vh; pointer-events: none; }
-.detail-lightbox-content img { max-width: 94vw; max-height: 92vh; width: auto; height: auto; border-radius: 6px; box-shadow: 0 18px 60px rgba(0, 0, 0, 0.38); object-fit: contain; pointer-events: auto; }
+.detail-lightbox-content img { max-width: 94vw; max-height: 92vh; width: auto; height: auto; border-radius: 6px; box-shadow: 0 18px 60px rgba(0, 0, 0, 0.38); object-fit: contain; pointer-events: auto; touch-action: pan-y pinch-zoom; }
 .detail-lightbox-close { position: absolute; top: -14px; right: -14px; z-index: 2; display: grid; place-items: center; width: 36px; height: 36px; padding: 0 0 3px; border: 1px solid rgba(255, 255, 255, 0.58); border-radius: 50%; background: var(--surface); color: var(--text); font-size: 1.45rem; line-height: 1; pointer-events: auto; }
 .detail-lightbox-close:hover { border-color: var(--accent); color: var(--accent-strong); }
+.detail-lightbox-navigation { display: flex; gap: 12px; padding-top: 12px; pointer-events: auto; }
+.detail-lightbox-navigation button { min-height: 44px; padding: 8px 16px; border: 1px solid var(--line); border-radius: var(--radius-sm); background: var(--surface); color: var(--text); }
+.detail-lightbox-navigation button:hover:not(:disabled) { border-color: var(--accent); }
+.detail-lightbox-content:has(.detail-lightbox-navigation:not([hidden])) img { max-height: 80vh; }
 body.detail-lightbox-open { overflow: hidden; }
 .related-section { padding-top: 4.5rem; }
 .related-grid { grid-template-columns: repeat(6, minmax(0, 1fr)); }

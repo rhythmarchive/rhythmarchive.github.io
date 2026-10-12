@@ -1,4 +1,6 @@
 // Capture the rendered list, never reconstruct its order from catalog data.
+import { pageSignal } from "./page-lifecycle";
+import type { TransitionBeforePreparationEvent } from "astro:transitions/client";
 const CONTEXT_KEY = "rhythm-archive-list-contexts";
 const CONTEXT_PARAM = "list";
 const RETURN_PARAM = "list-return";
@@ -64,13 +66,24 @@ export function setupListNavigation(grid: HTMLElement, key: string) {
   };
   grid.addEventListener("click", capture);
   grid.addEventListener("auxclick", capture);
+  document.addEventListener("astro:before-preparation", (event) => {
+    if ((event as TransitionBeforePreparationEvent).navigationType === "traverse") return;
+    const current = history.state?.resourceListPosition as ListPosition | undefined;
+    if (current?.key === key && current.url === currentUrl()) {
+      history.replaceState({ ...history.state, resourceListPosition: { ...current, scrollY: window.scrollY } }, "");
+    }
+  }, { signal: pageSignal() });
   let restored = false;
   return {
     visibleCount: (fallback: number) => Math.max(fallback, position?.count ?? 0),
+    remember: (count: number) => {
+      history.replaceState({ ...history.state, resourceListPosition: { url: currentUrl(), key, count, scrollY: window.scrollY } }, "");
+    },
     restore: () => {
       if (!position || restored) return;
       restored = true;
-      requestAnimationFrame(() => window.scrollTo(0, position.scrollY));
+      const scrollY = returnToken ? position.scrollY : history.state?.scrollY ?? position.scrollY;
+      requestAnimationFrame(() => { if (grid.isConnected) window.scrollTo(0, scrollY); });
     },
   };
 }
@@ -106,19 +119,7 @@ export function setupDetailNavigation(root: HTMLElement): void {
   const count = nav.querySelector<HTMLElement>("[data-detail-position]");
   if (count) count.textContent = `${index + 1} / ${context.items.length}`;
   nav.hidden = false;
-  document.addEventListener("keydown", (event) => {
-    if (event.defaultPrevented || event.altKey || event.ctrlKey || event.metaKey || event.shiftKey || event.repeat) return;
-    if (event.target instanceof Element && event.target.closest('input, textarea, select, button, [role="tab"], [contenteditable]:not([contenteditable="false"])')) return;
-    if (root.querySelector("[data-detail-lightbox]:not([hidden])")) return;
-    const link = event.key === "ArrowLeft" ? links[0] : event.key === "ArrowRight" ? links[1] : null;
-    if (!link?.hasAttribute("href")) return;
-    event.preventDefault();
-    // Replace consecutive detail entries so browser Back returns to the list.
-    location.replace(link.href);
-  });
-  for (const link of links) link?.addEventListener("click", (event) => {
-    if (!link.hasAttribute("href") || event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
-    event.preventDefault();
-    location.replace(link.href);
-  });
+  // Astro intercepts normal anchors; consecutive details replace their history
+  // entry, so Back still leads to the exact originating list.
+  for (const link of links) link?.setAttribute("data-astro-history", "replace");
 }

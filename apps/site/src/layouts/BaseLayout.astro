@@ -1,6 +1,7 @@
 ---
 import Footer from "../components/Footer.astro";
 import SiteHeader from "../components/SiteHeader.astro";
+import { ClientRouter } from "astro:transitions";
 import { BASE_PATH, PUBLIC_STATS_API_URL, ROS_BASE_URL } from "../lib/site-config";
 import { urls } from "../lib/site-urls";
 import "../styles/global.css";
@@ -42,7 +43,8 @@ const rosOrigin = new URL(ROS_BASE_URL).origin;
     <meta property="og:image" content={socialImage} />
     <meta name="twitter:card" content="summary_large_image" />
     <title>{title}</title>
-    <script is:inline>
+    <ClientRouter fallback="swap" />
+    <script is:inline data-astro-rerun>
       (() => {
         try {
           const saved = localStorage.getItem("rhythm-archive-theme");
@@ -50,7 +52,7 @@ const rosOrigin = new URL(ROS_BASE_URL).origin;
         } catch { /* system theme remains the default */ }
       })();
     </script>
-    <script is:inline>
+    <script>
       document.addEventListener("error", (event) => {
         const image = event.target;
         if (!(image instanceof HTMLImageElement)) return;
@@ -67,16 +69,13 @@ const rosOrigin = new URL(ROS_BASE_URL).origin;
         }
       }, true);
     </script>
-    <script>
-      import { observeImages } from "../scripts/viewport-images";
-      observeImages(document);
-    </script>
+    <script src="../scripts/navigation.ts"></script>
     <script src="../scripts/stats.ts"></script>
   </head>
   <body class={bodyClass}>
     <a class="skip-link" href="#main-content">跳到主要内容</a>
     <SiteHeader />
-    <main class="site-main" id="main-content" tabindex="-1"><slot /></main>
+    <main class="site-main" id="main-content" tabindex="-1" transition:name="main-content"><slot /></main>
     <Footer />
   </body>
 </html>

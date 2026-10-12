@@ -1,14 +1,19 @@
+import { loadStaticData } from "./static-data";
+import { onPageLoad, pageSignal } from "./page-lifecycle";
 import { GAME_CONFIG } from "../lib/game-config";
 import { sitePath } from "../lib/url";
 import { mapResourceRankingEntries } from "../lib/ranking";
 import { formatStatsCount, getBrowserStatsClient, isValidResourceId, type ResourceRankingPeriod } from "../lib/stats-client";
 import type { PublicRankingCard } from "../lib/types";
 
-for (const root of document.querySelectorAll<HTMLElement>("[data-ranking-root]")) {
-  void initializeRanking(root);
-}
+onPageLoad(() => {
+  for (const root of document.querySelectorAll<HTMLElement>("[data-ranking-root]")) {
+    void initializeRanking(root);
+  }
+});
 
 async function initializeRanking(root: HTMLElement): Promise<void> {
+  const signal = pageSignal();
   const list = root.querySelector<HTMLElement>("[data-ranking-list]");
   const status = root.querySelector<HTMLElement>("[data-ranking-status]");
   const retry = root.querySelector<HTMLButtonElement>("[data-ranking-retry]");
@@ -31,7 +36,7 @@ async function initializeRanking(root: HTMLElement): Promise<void> {
       period = next;
       const url = new URL(window.location.href);
       if (period === "7d") url.searchParams.delete("period"); else url.searchParams.set("period", period);
-      window.history.replaceState({}, "", url);
+      window.history.replaceState({ ...history.state }, "", url);
       void run();
     });
   }
@@ -53,7 +58,7 @@ async function initializeRanking(root: HTMLElement): Promise<void> {
     updatePeriodButtons();
     try {
       const [cards, ranking] = await Promise.all([loadCards(), client.getResourceRanking(period, limit)]);
-      if (token !== runToken) return;
+      if (signal.aborted || token !== runToken) return;
       if (!ranking) throw new Error("ranking request unavailable");
       const rows = mapResourceRankingEntries(cards, ranking.entries);
       list!.replaceChildren(...rows.map((row, index) => createRankingRow(row, index + 1)));
@@ -61,7 +66,7 @@ async function initializeRanking(root: HTMLElement): Promise<void> {
         ? (period === "7d" ? "近 7 天" : "累计") + " · " + formatStatsCount(rows.length) + " 项"
         : "暂无热门资源。";
     } catch (error) {
-      if (token !== runToken) return;
+      if (signal.aborted || token !== runToken) return;
       console.error("Ranking data failed", error);
       list!.replaceChildren();
       status!.textContent = "热榜暂时不可用，请重试。";
@@ -71,11 +76,7 @@ async function initializeRanking(root: HTMLElement): Promise<void> {
 
   async function loadCards(): Promise<PublicRankingCard[]> {
     if (!cardsPromise) {
-      cardsPromise = fetch(root.dataset.rankingCardsUrl ?? "", { credentials: "omit" }).then(async (response) => {
-        if (!response.ok) throw new Error("ranking cards failed with " + response.status);
-        const values = await response.json() as unknown;
-        return Array.isArray(values) ? values.filter(isRankingCard) : [];
-      });
+      cardsPromise = loadStaticData<unknown>(root.dataset.rankingCardsUrl ?? "").then((values) => Array.isArray(values) ? values.filter(isRankingCard) : []);
     }
     try {
       return await cardsPromise;

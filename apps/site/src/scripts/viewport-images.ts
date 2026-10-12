@@ -57,6 +57,11 @@ export function observeImages(scope: ParentNode): void {
   for (const image of scope.querySelectorAll<HTMLImageElement>("img[data-viewport-src]")) observeImage(image);
 }
 
+export function resetImageObserver(): void {
+  observer?.disconnect();
+  watched.clear();
+}
+
 export function loadSelectedDetailImages(scope: ParentNode): void {
   for (const image of scope.querySelectorAll<HTMLImageElement>("img[data-detail-src]")) {
     if (image.closest("[hidden]")) continue;

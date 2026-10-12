@@ -1,3 +1,5 @@
+import { loadStaticData } from "./static-data";
+import { onPageLoad, pageSignal, onPageCleanup } from "./page-lifecycle";
 import type { ArcaeaStoryAtlasType } from "../../../../packages/domain/src/browse.js";
 
 type CompactResource = {
@@ -66,10 +68,13 @@ type StorySegment =
   | { kind: "text"; text: string; pageStart: number; pageEnd: number }
   | { kind: "visual"; resource?: CompactResource; assetPath?: string; page: number };
 
-const root = document.querySelector<HTMLElement>("[data-story-atlas-root]");
-if (root) void initialize(root);
+onPageLoad(() => {
+  const root = document.querySelector<HTMLElement>("[data-story-atlas-root]");
+  if (root) void initialize(root);
+});
 
 async function initialize(root: HTMLElement): Promise<void> {
+  const signal = pageSignal();
   const payloadNode = root.querySelector<HTMLScriptElement>("[data-story-atlas-client-index]");
   if (!payloadNode?.textContent) return;
   const payload = JSON.parse(payloadNode.textContent) as ClientPayload;
@@ -362,7 +367,7 @@ async function initialize(root: HTMLElement): Promise<void> {
     for (const [key, value] of Object.entries(values)) {
       if (value) url.searchParams.set(key, value); else url.searchParams.delete(key);
     }
-    window.history.replaceState({}, "", url);
+    window.history.replaceState({ ...history.state }, "", url);
   }
 
   function focusElement(panel: HTMLElement, element: HTMLElement, scale?: number): void {
@@ -395,10 +400,7 @@ async function initialize(root: HTMLElement): Promise<void> {
   }
 
   function ensureAtlas(): Promise<ArcaeaStoryAtlasType> {
-    atlasPromise ??= fetch(root.dataset.storyAtlasUrl ?? "", { credentials: "omit" }).then(async (response) => {
-      if (!response.ok) throw new Error("Story Atlas data failed with " + response.status);
-      return await response.json() as ArcaeaStoryAtlasType;
-    });
+    atlasPromise ??= loadStaticData<ArcaeaStoryAtlasType>(root.dataset.storyAtlasUrl ?? "");
     return atlasPromise;
   }
 
@@ -689,6 +691,7 @@ async function initialize(root: HTMLElement): Promise<void> {
 
   async function renderEntryDetail(entry: CompactEntry): Promise<void> {
     const atlas = await ensureAtlas();
+    if (signal.aborted) return;
     if (openEntryId !== entry.id) return;
     const textEntry = atlas.text.entries.find((candidate) => candidate.nodeKey === entry.key);
     const scenes = atlas.scenes.filter((scene) => entry.sceneIds.includes(scene.sceneId));
@@ -719,6 +722,7 @@ async function initialize(root: HTMLElement): Promise<void> {
       return;
     }
     const atlas = await ensureAtlas();
+    if (signal.aborted) return;
     if (openSceneId !== scene.sceneId) return;
     const definition = atlas.scenes.find((candidate) => candidate.sceneId === scene.sceneId);
     const textEntry = definition?.nodeKey
@@ -779,13 +783,13 @@ async function initialize(root: HTMLElement): Promise<void> {
     if (openSceneId === scene.sceneId) root.querySelector<HTMLButtonElement>("button[data-story-detail-close]")?.focus();
   }
 
-  function closeDetail(): void {
+  function closeDetail(update = true): void {
     if (detailElement.hidden) return;
     detailElement.hidden = true;
     root.classList.remove("has-story-detail");
     openEntryId = undefined;
     openSceneId = undefined;
-    updateUrl({ "story-entry": undefined, "story-scene": undefined });
+    if (update) updateUrl({ "story-entry": undefined, "story-scene": undefined });
     const focusTarget = lastFocusedElement;
     lastFocusedElement = null;
     unlockBody();
@@ -794,7 +798,8 @@ async function initialize(root: HTMLElement): Promise<void> {
 
   function setMode(mode: "atlas" | "gallery", update = true): void {
     const atlasVisible = mode === "atlas";
-    root.hidden = !atlasVisible;
+    root.dataset.storyMode = mode;
+    if (!atlasVisible) closeDetail();
     if (gallery) {
       gallery.hidden = atlasVisible;
       if (!atlasVisible) {
@@ -1025,6 +1030,7 @@ async function initialize(root: HTMLElement): Promise<void> {
     searchStatus.textContent = "正在搜索…";
     try {
       const atlas = await ensureAtlas();
+      if (signal.aborted) return;
       const indexByNode = new Map(atlas.searchIndex.map((entry) => [entry.nodeKey, entry.terms.join(" ")]));
       const textByNode = new Map(atlas.text.entries.map((entry) => [
         entry.nodeKey,
@@ -1156,10 +1162,11 @@ async function initialize(root: HTMLElement): Promise<void> {
     }
   });
 
-  window.addEventListener("popstate", initializeFromUrl);
+
   window.addEventListener("resize", () => {
     for (const panel of allViewPanels) if (!panel.hidden) renderCamera(panel);
-  });
+  }, { signal });
 
+  onPageCleanup(() => { window.clearTimeout(searchTimer); closeDetail(false); });
   initializeFromUrl();
 }
