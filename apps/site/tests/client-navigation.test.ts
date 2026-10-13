@@ -1,7 +1,31 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import { loadStaticData } from "../src/scripts/static-data";
-import { loadImage, prepareImage, settleImage } from "../src/scripts/viewport-images";
+import { loadImage, prepareImage, settleImage, observeImage, resetImageObserver } from "../src/scripts/viewport-images";
+
+test("retained SSR images load when observed again after gallery initialization", (t) => {
+  const descriptor = Object.getOwnPropertyDescriptor(globalThis, "IntersectionObserver");
+  let intersect!: (entries: Array<{ target: HTMLImageElement; isIntersecting: boolean }>) => void;
+  let observations = 0;
+  let busy = true;
+  Object.defineProperty(globalThis, "IntersectionObserver", { configurable: true, value: class {
+    constructor(callback: typeof intersect) { intersect = callback; }
+    observe() { observations++; }
+    unobserve() {}
+    disconnect() {}
+  } });
+  t.after(() => { resetImageObserver(); if (descriptor) Object.defineProperty(globalThis, "IntersectionObserver", descriptor); else Reflect.deleteProperty(globalThis, "IntersectionObserver"); });
+  const image = { dataset: { viewportSrc: "/preview.webp" }, src: "", isConnected: true, complete: false, closest: () => busy ? {} : null } as unknown as HTMLImageElement;
+  observeImage(image);
+  intersect([{ target: image, isIntersecting: true }]);
+  assert.equal(image.src, "");
+  busy = false;
+  observeImage(image);
+  intersect([{ target: image, isIntersecting: true }]);
+  assert.equal(image.src, "/preview.webp");
+  observeImage(image);
+  assert.equal(observations, 2);
+});
 
 test("image loading preserves responsive assignment order and settles cached/fallback states without extra requests", () => {
   const writes: string[] = [];

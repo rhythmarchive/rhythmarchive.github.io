@@ -28,7 +28,7 @@ export async function downloadRendition(button: HTMLButtonElement): Promise<void
     triggerDownload(objectUrl, filename);
     if (resourceId) void getBrowserStatsClient().trackResourceDownload(resourceId);
     window.setTimeout(() => URL.revokeObjectURL(objectUrl), 1000);
-    if (status) status.textContent = "";
+    if (status) status.textContent = "已交给浏览器下载";
   } catch (error) {
     if (resourceId && !fetched) reportDownloadFailure(resourceId, error);
     console.error("Resource download failed", error);

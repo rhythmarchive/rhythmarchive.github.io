@@ -1,6 +1,6 @@
 import { onPageLoad } from "./page-lifecycle";
 import type { PublicDownload } from "../lib/types";
-import { downloadRendition } from "./download";
+import { prepareImage } from "./viewport-images";
 
 onPageLoad(() => {
   const root = document.querySelector<HTMLElement>("[data-story-composition]");
@@ -11,31 +11,29 @@ onPageLoad(() => {
     const frames = root.querySelector<HTMLElement>("[data-cg-frames]")!;
     const background = root.querySelector<HTMLInputElement>("[data-cg-background]")!;
     const backgroundLabel = root.querySelector<HTMLElement>("[data-cg-background-label]")!;
-    const download = root.querySelector<HTMLButtonElement>("[data-cg-download]")!;
-    let selected = 0;
+    let selected = Math.max(0, variants.findIndex((variant) => variant.id === root.dataset.initialVariant));
     let originalRequested = false;
     const buttons = variants.map((variant, index) => {
       const button = document.createElement("button");
       button.type = "button"; button.textContent = variant.label;
-      button.addEventListener("click", () => { selected = index; originalRequested = true; render(); });
+      button.addEventListener("click", () => { if (selected === index) return; selected = index; originalRequested = true; render(); });
       return button;
     });
     function render() {
       const variant = variants[selected]!;
-      layer.src = originalRequested ? variant.original.url : variant.preview;
+      const url = originalRequested ? variant.original.url : variant.preview;
+      if (layer.getAttribute("src") !== url) { layer.src = url; prepareImage(layer); }
       layer.alt = variant.label;
       backgroundLabel.hidden = !variant.overlay;
       base.hidden = !variant.overlay || !background.checked || !originalRequested;
-      if (!base.hidden) base.src = root!.dataset.backgroundUrl!;
-      else base.removeAttribute("src");
-      download.dataset.downloadUrl = variant.original.url;
-      download.dataset.downloadFilename = variant.original.downloadFilename;
+      if (!base.hidden) {
+        if (base.getAttribute("src") !== root!.dataset.backgroundUrl) { base.src = root!.dataset.backgroundUrl!; prepareImage(base); }
+      } else base.removeAttribute("src");
       buttons.forEach((button, index) => button.setAttribute("aria-pressed", String(index === selected)));
       root!.closest("[data-detail-root]")?.querySelectorAll<HTMLElement>("[data-download-panel]").forEach(panel => { panel.hidden = panel.dataset.downloadVariant !== variant.id; });
     }
     frames.append(...buttons);
     background.addEventListener("change", () => { originalRequested = true; render(); });
-    download.addEventListener("click", () => void downloadRendition(download));
     render();
   }
 });

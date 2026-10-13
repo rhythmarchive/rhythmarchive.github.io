@@ -9,6 +9,7 @@ type CardRenderOptions = {
   isSelected: boolean;
   browse?: boolean;
   selectable?: boolean;
+  sizes?: string;
 };
 
 export function renderResourceCard(view: CardViewModel, options: CardRenderOptions): HTMLElement {
@@ -54,7 +55,7 @@ export function renderResourceCard(view: CardViewModel, options: CardRenderOptio
       if (fallback.width) image.dataset.fallbackWidth = String(fallback.width);
       if (fallback.height) image.dataset.fallbackHeight = String(fallback.height);
     }
-    image.sizes = "(max-width: 640px) 50vw, (max-width: 1280px) 20vw, 210px";
+    image.sizes = options.sizes ?? "(max-width: 640px) 50vw, (max-width: 1280px) 20vw, 210px";
     observeImage(image);
     media.append(image);
   } else {
@@ -96,4 +97,37 @@ export function renderResourceCard(view: CardViewModel, options: CardRenderOptio
   anchor.append(media, body);
   article.append(anchor);
   return article;
+}
+
+// Keep common cards (and their loaded images/focus) when filtering or appending.
+// The cache contains at most the current rendered batch, never the whole catalog.
+export function createCardReconciler(grid: HTMLElement) {
+  let views = new Map<string, string>();
+  return (next: CardViewModel[], options: Omit<CardRenderOptions, "index" | "isSelected">): void => {
+    const cards = new Map([...grid.querySelectorAll<HTMLElement>(":scope > [data-resource-card]")].map((card) => [card.dataset.resourceId, card]));
+    const signatures = new Map<string, string>();
+    const nodes = next.map((view, index) => {
+      const signature = JSON.stringify(view);
+      signatures.set(view.resourceId, signature);
+      const existing = cards.get(view.resourceId);
+      if (existing && (views.get(view.resourceId) === signature || !views.has(view.resourceId) && matchesServerCard(existing, view, options.basePath))) return existing;
+      return renderResourceCard(view, { ...options, index, isSelected: false });
+    });
+    const retained = new Set(nodes);
+    for (const card of cards.values()) if (!retained.has(card)) card.remove();
+    nodes.forEach((node, index) => { if (grid.children[index] !== node) grid.insertBefore(node, grid.children[index] ?? null); });
+    views = signatures;
+  };
+}
+
+function matchesServerCard(card: HTMLElement, view: CardViewModel, base: string): boolean {
+  const image = card.querySelector<HTMLImageElement>(".resource-card-media > img");
+  const link = card.querySelector<HTMLAnchorElement>(".resource-card-link");
+  if (!link) return false;
+  const href = new URL(link.href); href.searchParams.delete("list");
+  return href.pathname + href.search === sitePath(view.route, base)
+    && card.querySelector("h3")?.textContent === view.displayTitle
+    && (image?.dataset.viewportSrc ?? image?.getAttribute("src") ?? null) === (view.preview.primary?.url ?? null)
+    && (card.querySelector(".resource-card-subtitle")?.textContent ?? "") === (view.subtitle ?? "")
+    && JSON.stringify([...card.querySelectorAll(".resource-card-variant")].map((node) => node.textContent)) === JSON.stringify(view.labels);
 }

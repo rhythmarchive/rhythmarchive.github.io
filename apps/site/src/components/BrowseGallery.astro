@@ -1,5 +1,6 @@
 ---
 import BrowseCard from "./BrowseCard.astro";
+import GalleryFilters from "./GalleryFilters.astro";
 import BatchTray from "./BatchTray.astro";
 import GalleryLoadError from "./GalleryLoadError.astro";
 import { getBrowseFacetOptions, type ArcaeaFacetOptions, type BrowseGalleryData, type InfalsusFacetOptions, type PhigrosFacetOptions, type RizlineFacetOptions } from "../lib/browse-gallery";
@@ -39,7 +40,7 @@ function formatRangeValue(value: number): string {
 }
 ---
 
-<section class="gallery-shell browse-gallery-shell" data-browse-gallery-root data-gallery-url={galleryUrl} data-batch-url={galleryUrl.replace("/browse/", "/batch/")} data-base-path={BASE_PATH} data-game={data.game} data-category="jacket" data-total={data.items.length}>
+<section class="gallery-shell browse-gallery-shell has-filters" data-browse-gallery-root data-gallery-url={galleryUrl} data-batch-url={galleryUrl.replace("/browse/", "/batch/")} data-base-path={BASE_PATH} data-game={data.game} data-category="jacket" data-total={data.items.length}>
   <script is:inline data-astro-rerun>
     document.currentScript?.closest("[data-browse-gallery-root]")?.setAttribute("aria-busy", "true");
   </script>
@@ -49,6 +50,7 @@ function formatRangeValue(value: number): string {
       <p data-gallery-count role="status" aria-live="polite" aria-atomic="true">{formatCount(data.items.length)} 项资源</p>
     </div>
     <div class="gallery-toolbar-controls">
+      {(data.game === "arcaea" && arcaeaOptions) || data.game === "phigros" || (data.game === "rizline" && rizlineOptions) || (data.game === "infalsus" && infalsusOptions) ? <button class="button button-secondary gallery-filter-open" type="button" data-filter-open aria-haspopup="dialog" aria-controls={`browse-filters-${data.game}`}>筛选 <span data-filter-summary></span></button> : null}
       <label class="gallery-search">
         <span class="sr-only">{searchPlaceholder}</span>
         <input type="search" data-browse-search placeholder={searchPlaceholder} autocomplete="off" />
@@ -83,8 +85,12 @@ function formatRangeValue(value: number): string {
   </div>
 
   {(data.game === "arcaea" && arcaeaOptions) || data.game === "phigros" || (data.game === "rizline" && rizlineOptions) || (data.game === "infalsus" && infalsusOptions) ? (
-    <details class="gallery-filter-disclosure" data-filter-disclosure open>
-      <summary>筛选 <span data-filter-summary></span></summary>
+    <GalleryFilters id={`browse-filters-${data.game}`}>
+  <div class="active-filter-row" data-browse-active hidden>
+    <span class="active-filter-label">当前筛选</span>
+    <div class="active-filter-chips" data-browse-active-chips></div>
+    <button class="text-link" type="button" data-gallery-reset>清除全部</button>
+  </div>
   {data.game === "arcaea" && arcaeaOptions ? (
     <div class="gallery-filter-row" data-gallery-filter-row>
       <label class="filter-control"><span>难度</span><select data-browse-filter-select="chart" aria-label="难度"><option value="">全部</option>{arcaeaOptions.charts.map((value) => <option value={value}>{displayFilterDifficultyLabel(value, "arcaea")}</option>)}</select></label>
@@ -127,7 +133,7 @@ function formatRangeValue(value: number): string {
     </div>
   ) : data.game === "rizline" && rizlineOptions ? (
     <div class="gallery-filter-row" data-gallery-filter-row>
-      <label class="filter-control"><span>谱面难度</span><select data-browse-filter-select="chart" aria-label="谱面难度"><option value="">全部</option>{rizlineOptions.charts.map((value) => <option value={value}>{value}</option>)}</select></label>
+      {rizlineOptions.charts.length > 0 ? <label class="filter-control"><span>谱面难度</span><select data-browse-filter-select="chart" aria-label="谱面难度"><option value="">全部</option>{rizlineOptions.charts.map((value) => <option value={value}>{value}</option>)}</select></label> : null}
       <label class="filter-control"><span>Disc</span><select data-browse-filter-select="disc" aria-label="Disc"><option value="">全部</option>{rizlineOptions.discs.map((value) => <option value={value}>{value}</option>)}</select></label>
       <label class="filter-control"><span>精选集</span><select data-browse-filter-select="series" aria-label="精选集"><option value="">全部</option>{rizlineOptions.trackSeries.map((value) => <option value={value}>{value}</option>)}</select></label>
     </div>
@@ -138,14 +144,10 @@ function formatRangeValue(value: number): string {
     </div>
   ) : null}
 
-    </details>
+    </GalleryFilters>
   ) : null}
 
-  <div class="active-filter-row" data-browse-active hidden>
-    <span class="active-filter-label">当前筛选</span>
-    <div class="active-filter-chips" data-browse-active-chips></div>
-    <button class="text-link" type="button" data-gallery-reset>清除全部</button>
-  </div>
+
 
   <GalleryLoadError />
   <div class="gallery-grid" data-gallery-grid>

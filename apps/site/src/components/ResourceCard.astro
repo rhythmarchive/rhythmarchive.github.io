@@ -8,10 +8,11 @@ interface Props {
   index?: number;
   selectable?: boolean;
   eager?: boolean;
+  sizes?: string;
 }
 
-const { resource, selectable = false, eager = false } = Astro.props;
+const { resource, selectable = false, eager = false, sizes } = Astro.props;
 const view = publicResourceCardView(resource);
 ---
 
-<CardShell view={view} selectable={selectable} eager={eager} />
+<CardShell view={view} selectable={selectable} eager={eager} {...(sizes ? { sizes } : {})} />

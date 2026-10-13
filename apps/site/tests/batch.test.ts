@@ -45,7 +45,8 @@ test("update selection downloads originals from multiple existing category manif
   });
   assert.deepEqual(requested, ["/batch/jacket.json", "/batch/cg.json", "https://assets.test/jacket", "https://assets.test/cg"]);
   assert.deepEqual(tracked, ["jacket", "cg"]);
-  assert.equal(statuses.at(-1), "");
+  assert.ok(statuses.includes("正在整理文件…"));
+  assert.equal(statuses.at(-1), "已交给浏览器下载");
   const archive = unzipSync(new Uint8Array(await (await originalFetch(archiveUrl)).arrayBuffer()));
   assert.deepEqual(Object.keys(archive).sort(), ["cg.png", "jacket.png"]);
   assert.deepEqual([...archive["cg.png"]!], [1, 2]);

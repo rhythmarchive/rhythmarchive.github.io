@@ -2,6 +2,7 @@
 import CardShell from "./CardShell.astro";
 import { browseCardView } from "../lib/card-view-model";
 import type { BrowseGalleryItem } from "../lib/browse-gallery";
+import { SIDEBAR_IMAGE_SIZES } from "../lib/card-preview";
 
 interface Props {
   item: BrowseGalleryItem;
@@ -13,4 +14,4 @@ const { item, selectable = false, eager = false } = Astro.props;
 const view = browseCardView(item);
 ---
 
-<CardShell view={view} selectable={selectable} eager={eager} browse />
+<CardShell view={view} selectable={selectable} eager={eager} browse sizes={SIDEBAR_IMAGE_SIZES} />

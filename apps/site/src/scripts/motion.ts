@@ -70,7 +70,6 @@ export function animateLightboxImage(image: HTMLImageElement, trigger: HTMLEleme
   feedback.get(image)?.cancel();
   if (!enabled(image)) return;
   if (window.matchMedia("(pointer: coarse)").matches) {
-    if (opening) revealContent(image);
     return;
   }
   const source = trigger.querySelector("img")?.getBoundingClientRect();
@@ -80,7 +79,8 @@ export function animateLightboxImage(image: HTMLImageElement, trigger: HTMLEleme
   const y = source.y + source.height / 2 - target.y - target.height / 2;
   // Preserve aspect ratio; do not stretch an original to fit its card thumbnail.
   const scale = Math.min(source.width / target.width, source.height / target.height);
-  const from = { opacity: .6, transform: `translate(${x}px, ${y}px) scale(${scale})` };
+  // The viewer surface owns opacity. Geometry must not fade the image again.
+  const from = { opacity: 1, transform: `translate(${x}px, ${y}px) scale(${scale})` };
   const to = { opacity: 1, transform: "none" };
   const animation = image.animate([current ?? (opening ? from : to), opening ? to : from], {
     duration: duration(image, opening ? "--motion-surface" : "--motion-fast", opening ? 220 : 140),

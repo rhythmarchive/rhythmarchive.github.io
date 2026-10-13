@@ -52,7 +52,7 @@ async function initializeRanking(root: HTMLElement): Promise<void> {
   async function run(): Promise<void> {
     const token = ++runToken;
     root.hidden = false;
-    list!.replaceChildren();
+    list!.setAttribute("aria-busy", "true");
     status!.textContent = "正在获取热榜…";
     if (retry) retry.hidden = true;
     updatePeriodButtons();
@@ -68,9 +68,10 @@ async function initializeRanking(root: HTMLElement): Promise<void> {
     } catch (error) {
       if (signal.aborted || token !== runToken) return;
       console.error("Ranking data failed", error);
-      list!.replaceChildren();
-      status!.textContent = "热榜暂时不可用，请重试。";
+      status!.textContent = list!.childElementCount ? "更新失败，仍显示上次热榜。请重试。" : "热榜暂时不可用，请重试。";
       if (retry) retry.hidden = false;
+    } finally {
+      if (!signal.aborted && token === runToken) list!.removeAttribute("aria-busy");
     }
   }
 

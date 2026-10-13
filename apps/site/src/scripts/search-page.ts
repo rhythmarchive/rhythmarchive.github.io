@@ -2,11 +2,11 @@ import { loadStaticData } from "./static-data";
 import { onPageLoad, pageSignal, onPageCleanup } from "./page-lifecycle";
 import { rankSearchEntries } from "../lib/search";
 import { setupListNavigation } from "./list-navigation";
-import { revealContent } from "./motion";
 import { sitePath } from "../lib/url";
 import { GAME_CONFIG } from "../lib/game-config";
 import { updateResourceStatsInDom } from "../lib/stats-client";
-import { renderResourceCard } from "./render-resource-card";
+import { createCardReconciler } from "./render-resource-card";
+import type { CardViewModel } from "../lib/card-view-model";
 import type { PublicSearchCard, PublicSearchEntry } from "../lib/types";
 
 onPageLoad(() => {
@@ -27,6 +27,7 @@ async function initializeSearch(root: HTMLElement): Promise<void> {
   const category = document.querySelector<HTMLSelectElement>("[data-search-category]");
   if (!input || !results || !status || !more || !game || !category) return;
   const navigation = setupListNavigation(results, "search");
+  const reconcile = createCardReconciler(results);
   let initialRun = true;
 
   const queryFromUrl = new URLSearchParams(window.location.search).get("q");
@@ -45,9 +46,8 @@ async function initializeSearch(root: HTMLElement): Promise<void> {
 
   const render = (): void => {
     const visible = matches.slice(0, visibleCount);
-    results.replaceChildren(...visible.map((card, index) => createResultCard(card, index)));
+    reconcile(visible.map(resultCardView), { basePath: document.documentElement.dataset.basePath ?? "/", selectable: false });
     navigation.remember(visibleCount);
-    revealContent(results);
     more.hidden = visible.length >= matches.length;
     if (empty) empty.hidden = matches.length > 0;
     status.textContent = `找到 ${matches.length.toLocaleString("zh-CN")} 项资源`;
@@ -166,14 +166,14 @@ async function initializeSearch(root: HTMLElement): Promise<void> {
   void run();
 }
 
-function createResultCard(card: PublicSearchCard, index: number): HTMLElement {
-  return renderResourceCard({
+function resultCardView(card: PublicSearchCard): CardViewModel {
+  return {
     resourceId: card.resourceId, route: card.route, game: card.game, resourceType: card.resourceType,
     displayTitle: card.displayTitle, ...(card.artist ? { artist: card.artist } : {}),
     subtitle: `${GAME_CONFIG[card.game].displayName} · ${card.categoryLabel}`,
     preview: { primary: card.image, fallback: card.fallback, srcset: "" },
     hasUpscaled: card.upscaled, labels: card.variantLabels,
-  }, { basePath: document.documentElement.dataset.basePath ?? "/", index, isSelected: false, selectable: false });
+  };
 }
 function resolveSitePath(path: string): string {
   const base = document.documentElement.dataset.basePath ?? "/";

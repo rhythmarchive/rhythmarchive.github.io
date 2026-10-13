@@ -1,0 +1,15 @@
+---
+interface Props { id: string }
+const { id } = Astro.props;
+---
+<aside class="gallery-filters" data-filters-inline aria-label="筛选资源">
+  <div class="gallery-filter-content" data-filter-content>
+    <div class="gallery-filter-heading"><h2>筛选</h2><button class="text-link" type="button" data-filter-clear>清除</button></div>
+    <slot />
+  </div>
+</aside>
+<dialog class="gallery-filter-dialog" id={id} data-filters-dialog aria-labelledby={`${id}-title`}>
+  <header><h2 id={`${id}-title`}>筛选资源</h2><button class="button button-secondary" type="button" data-filter-close aria-label="关闭筛选">×</button></header>
+  <div class="gallery-filter-mount" data-filter-mount></div>
+  <footer><button class="button button-secondary" type="button" data-filter-draft-clear>清除</button><button class="button button-primary" type="button" data-filter-apply>查看结果</button></footer>
+</dialog>

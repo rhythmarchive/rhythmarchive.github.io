@@ -4,7 +4,7 @@ import { loadSelectedDetailImages, prepareImage } from "./viewport-images";
 import { downloadRendition } from "./download";
 import { setupDetailNavigation } from "./list-navigation";
 import { setupDetailLibrary } from "./detail-library";
-import { animateLightboxImage, revealContent, setSurfaceVisible } from "./motion";
+import { animateLightboxImage, setSurfaceVisible } from "./motion";
 import { getBrowserStatsClient, updateResourceStatsInDom } from "../lib/stats-client";
 
 onPageLoad(() => {
@@ -28,34 +28,40 @@ onPageLoad(() => {
       });
     }
     void updateResourceStatsInDom(root);
-    // Fade only the image that actually loaded; hidden originals stay inert.
-    for (const image of root.querySelectorAll<HTMLImageElement>("[data-detail-image]")) {
-      image.addEventListener("load", () => { if (!image.closest("[hidden]")) revealContent(image); });
-    }
     const lightbox = root.querySelector<HTMLElement>("[data-detail-lightbox]");
     const lightboxImage = root.querySelector<HTMLImageElement>("[data-lightbox-image]");
     const lightboxCloseButton = root.querySelector<HTMLButtonElement>(".detail-lightbox-close");
+    const compositionStage = root.querySelector<HTMLElement>("[data-cg-stage]");
+    const compositionParent = compositionStage?.parentElement;
     let lastLightboxTrigger: HTMLButtonElement | null = null;
 
     const closeLightbox = (): void => {
       if (!lightbox || lightbox.hidden || lightbox.inert) return;
       const trigger = lastLightboxTrigger;
-      if (lightboxImage && trigger) animateLightboxImage(lightboxImage, trigger, false);
+      if (lightboxImage && trigger && !compositionStage) animateLightboxImage(lightboxImage, trigger, false);
       void setSurfaceVisible(lightbox, false, "fade").then((closed) => {
-        if (closed && lightbox.hidden) lightboxImage?.removeAttribute("src");
+        if (!closed || !lightbox.hidden || signal.aborted) return;
+        lightboxImage?.removeAttribute("src");
+        if (compositionStage && compositionParent) compositionParent.prepend(compositionStage);
+        document.body.classList.remove("detail-lightbox-open");
+        trigger?.focus({ preventScroll: true });
+        lastLightboxTrigger = null;
       });
-      document.body.classList.remove("detail-lightbox-open");
       history.replaceState({ ...history.state, detailViewer: false }, "");
-      lastLightboxTrigger?.focus();
-      lastLightboxTrigger = null;
     };
 
     const openLightbox = (trigger: HTMLButtonElement, animate = true): void => {
       const url = trigger.dataset.lightboxPreviewUrl;
       if (!lightbox || !lightboxImage || !url) return;
       lastLightboxTrigger = trigger;
-      lightboxImage.src = url;
-      prepareImage(lightboxImage);
+      if (compositionStage && trigger.hasAttribute("data-lightbox-composition")) {
+        lightboxImage.hidden = true;
+        lightboxImage.parentElement?.prepend(compositionStage);
+      } else {
+        lightboxImage.hidden = false;
+        lightboxImage.src = url;
+        prepareImage(lightboxImage);
+      }
       lightboxImage.alt = trigger.dataset.lightboxPreviewAlt ?? "资源大图";
       const width = Number(trigger.dataset.lightboxPreviewWidth);
       const height = Number(trigger.dataset.lightboxPreviewHeight);
@@ -63,7 +69,7 @@ onPageLoad(() => {
       if (Number.isFinite(height) && height > 0) lightboxImage.height = height;
       if (animate) {
         void setSurfaceVisible(lightbox, true, "fade");
-        animateLightboxImage(lightboxImage, trigger, true);
+        if (!compositionStage) animateLightboxImage(lightboxImage, trigger, true);
       } else {
         lightbox.hidden = false;
         lightbox.inert = false;
@@ -76,7 +82,7 @@ onPageLoad(() => {
     const variantButtons = Array.from(root.querySelectorAll<HTMLButtonElement>("[data-variant-select]"));
     const selectVariant = (button: HTMLButtonElement): void => {
       const variantId = button.dataset.variantSelect;
-      if (!variantId) return;
+      if (!variantId || button.getAttribute("aria-selected") === "true") return;
       closeLightbox();
       for (const panel of root.querySelectorAll<HTMLElement>("[data-variant-panel]")) panel.hidden = panel.dataset.variantPanel !== variantId;
       for (const panel of root.querySelectorAll<HTMLElement>("[data-download-variant]")) panel.hidden = panel.dataset.downloadVariant !== variantId;
@@ -87,8 +93,6 @@ onPageLoad(() => {
         item.tabIndex = active ? 0 : -1;
       }
       loadSelectedDetailImages(root);
-      const selectedPanel = root.querySelector<HTMLElement>(`[data-variant-panel]:not([hidden])`);
-      if (selectedPanel) revealContent(selectedPanel);
       const currentLabel = root.querySelector<HTMLElement>("[data-variant-current]");
       if (currentLabel) currentLabel.textContent = button.dataset.variantLabel ?? "";
     };
@@ -113,17 +117,24 @@ onPageLoad(() => {
       button.addEventListener("click", () => {
         const source = button.dataset.detailSourceSelect;
         const panelRoot = button.closest<HTMLElement>("[data-variant-panel]");
-        if (!source || !panelRoot) return;
+        if (!source || !panelRoot || button.getAttribute("aria-selected") === "true") return;
         closeLightbox();
         for (const panel of panelRoot.querySelectorAll<HTMLElement>("[data-detail-source-panel]")) panel.hidden = panel.dataset.detailSourcePanel !== source;
         loadSelectedDetailImages(root);
-        const selectedSource = panelRoot.querySelector<HTMLElement>("[data-detail-source-panel]:not([hidden])");
-        if (selectedSource) revealContent(selectedSource);
         for (const item of panelRoot.querySelectorAll<HTMLButtonElement>("[data-detail-source-select]")) {
           const active = item.dataset.detailSourceSelect === source;
           item.classList.toggle("is-active", active);
           item.setAttribute("aria-selected", String(active));
+          item.tabIndex = active ? 0 : -1;
         }
+      });
+      button.tabIndex = button.getAttribute("aria-selected") === "true" ? 0 : -1;
+      button.addEventListener("keydown", (event) => {
+        const buttons = [...button.closest<HTMLElement>("[data-variant-panel]")!.querySelectorAll<HTMLButtonElement>("[data-detail-source-select]")];
+        const index = buttons.indexOf(button);
+        const next = event.key === "ArrowRight" ? (index + 1) % buttons.length : event.key === "ArrowLeft" ? (index + buttons.length - 1) % buttons.length : event.key === "Home" ? 0 : event.key === "End" ? buttons.length - 1 : -1;
+        if (next < 0) return;
+        event.preventDefault(); buttons[next]?.click(); buttons[next]?.focus();
       });
     }
 
@@ -165,11 +176,14 @@ onPageLoad(() => {
     const viewerNavigation = root.querySelector<HTMLElement>("[data-lightbox-navigation]");
     if (viewerNavigation) viewerNavigation.hidden = root.querySelector<HTMLElement>("[data-detail-navigation]")?.hidden !== false;
     let touchStart: { x: number; y: number } | undefined;
-    lightboxImage?.addEventListener("touchstart", (event) => {
+    const swipeTarget = compositionStage ?? lightboxImage;
+    swipeTarget?.addEventListener("touchstart", (event) => {
+      if (!lightbox || lightbox.hidden || lightbox.inert) return;
       const touch = event.touches.length === 1 ? event.touches[0] : undefined;
       touchStart = touch ? { x: touch.clientX, y: touch.clientY } : undefined;
     }, { passive: true });
-    lightboxImage?.addEventListener("touchend", (event) => {
+    swipeTarget?.addEventListener("touchend", (event) => {
+      if (!lightbox || lightbox.hidden || lightbox.inert) { touchStart = undefined; return; }
       const touch = event.changedTouches[0];
       if (touchStart && touch) {
         const x = touch.clientX - touchStart.x;
@@ -178,9 +192,11 @@ onPageLoad(() => {
       }
       touchStart = undefined;
     }, { passive: true });
-    lightboxImage?.addEventListener("touchcancel", () => { touchStart = undefined; }, { passive: true });
+    swipeTarget?.addEventListener("touchcancel", () => { touchStart = undefined; }, { passive: true });
     document.addEventListener("keydown", (event) => {
       if (event.defaultPrevented || event.altKey || event.ctrlKey || event.metaKey || event.shiftKey && event.key !== "Tab" || event.repeat) return;
+      // Native modals and an exiting viewer retain ownership of keyboard input.
+      if (document.querySelector('dialog[open], .site-nav[data-mobile-open="true"], .nav-game-library[open]') || lightbox && !lightbox.hidden && lightbox.inert) return;
       const viewer = Boolean(lightbox && !lightbox.hidden && !lightbox.inert);
       const editing = event.target instanceof Element && event.target.closest('input, textarea, select, [role="tab"], [contenteditable]:not([contenteditable="false"])');
       if (!editing && (event.key === "ArrowLeft" || event.key === "ArrowRight")) {

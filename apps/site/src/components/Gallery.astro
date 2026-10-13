@@ -1,5 +1,6 @@
 ---
 import ResourceCard from "./ResourceCard.astro";
+import GalleryFilters from "./GalleryFilters.astro";
 import BatchTray from "./BatchTray.astro";
 import GalleryLoadError from "./GalleryLoadError.astro";
 import { GAME_CONFIG, type GameId } from "../lib/game-config";
@@ -7,6 +8,7 @@ import type { CategoryBrowseConfig } from "../lib/category-browse";
 import type { PublicResource } from "../lib/types";
 import { BASE_PATH } from "../lib/site-config";
 import { formatCount } from "../lib/format";
+import { GALLERY_IMAGE_SIZES, SIDEBAR_IMAGE_SIZES } from "../lib/card-preview";
 
 interface Props {
   resources: PublicResource[];
@@ -35,7 +37,7 @@ function formatRangeValue(value: number): string {
 }
 ---
 
-<section class="gallery-shell" data-gallery-root data-gallery-defer={defer ? "true" : undefined} data-gallery-url={galleryUrl} data-batch-url={galleryUrl.replace("/galleries/", "/batch/")} data-base-path={BASE_PATH} data-game={game} data-category={category} data-total={total}>
+<section class:list={["gallery-shell", { "has-filters": hasFacets }]} data-gallery-root data-gallery-defer={defer ? "true" : undefined} data-gallery-url={galleryUrl} data-batch-url={galleryUrl.replace("/galleries/", "/batch/")} data-base-path={BASE_PATH} data-game={game} data-category={category} data-total={total}>
   <script is:inline data-astro-rerun>
     (() => {
       const galleryRoot = document.currentScript?.closest("[data-gallery-root]");
@@ -46,8 +48,13 @@ function formatRangeValue(value: number): string {
     <div class="gallery-toolbar-copy">
       <span class="section-kicker">{category === "all" ? GAME_CONFIG[game].displayName : categoryLabel}</span>
       <p data-gallery-count role="status" aria-live="polite" aria-atomic="true">{formatCount(total)} 项资源</p>
+      {!hasFacets ? <div class="active-filter-row" data-gallery-active hidden>
+        <div class="active-filter-chips" data-gallery-active-chips></div>
+        <button class="text-link" type="button" data-gallery-reset>清除</button>
+      </div> : null}
     </div>
     <div class="gallery-toolbar-controls">
+      {hasFacets ? <button class="button button-secondary gallery-filter-open" type="button" data-filter-open aria-haspopup="dialog" aria-controls={`gallery-filters-${game}-${category}`}>筛选 <span data-filter-summary></span></button> : null}
       <label class="gallery-search">
         <span class="sr-only">{config.searchPlaceholder}</span>
         <input type="search" data-gallery-search placeholder={config.searchPlaceholder} autocomplete="off" />
@@ -64,11 +71,15 @@ function formatRangeValue(value: number): string {
   </div>
 
   {hasFacets ? (
-    <details class="gallery-filter-disclosure" data-filter-disclosure open>
-      <summary>筛选 <span data-filter-summary></span></summary>
+    <GalleryFilters id={`gallery-filters-${game}-${category}`}>
+  <div class="active-filter-row" data-gallery-active hidden>
+    <span class="active-filter-label">当前筛选</span>
+    <div class="active-filter-chips" data-gallery-active-chips></div>
+    <button class="text-link" type="button" data-gallery-reset>清除全部</button>
+  </div>
 
     <div class="gallery-filter-row" data-gallery-filter-row>
-      {config.facets.map((facet) => (
+      {config.facets.filter((facet) => facet.range || facet.options.length > 0).map((facet) => (
         facet.range ? (
           <div class="filter-range-control" data-gallery-range={facet.key} data-range-label={facet.label} data-range-min={facet.range.min} data-range-max={facet.range.max} data-range-step={facet.range.step}>
             <div class="filter-range-header">
@@ -106,18 +117,12 @@ function formatRangeValue(value: number): string {
         )
       ))}
     </div>
-    </details>
+    </GalleryFilters>
   ) : null}
-
-  <div class="active-filter-row" data-gallery-active hidden>
-    <span class="active-filter-label">当前筛选</span>
-    <div class="active-filter-chips" data-gallery-active-chips></div>
-    <button class="text-link" type="button" data-gallery-reset>清除全部</button>
-  </div>
 
   <GalleryLoadError />
   <div class="gallery-grid" data-gallery-grid>
-    {resources.map((resource, index) => <ResourceCard resource={resource} index={index} selectable eager={index < 6} />)}
+    {resources.map((resource, index) => <ResourceCard resource={resource} index={index} selectable eager={index < 6} sizes={hasFacets ? SIDEBAR_IMAGE_SIZES : GALLERY_IMAGE_SIZES} />)}
   </div>
 
   <div class="gallery-more">

@@ -7,9 +7,10 @@ interface Props {
   selectable?: boolean;
   eager?: boolean;
   browse?: boolean;
+  sizes?: string;
 }
 
-const { view, selectable = false, eager = false, browse = false } = Astro.props;
+const { view, selectable = false, eager = false, browse = false, sizes = "(max-width: 640px) 50vw, (max-width: 1280px) 20vw, 210px" } = Astro.props;
 const { primary, fallback, srcset } = view.preview;
 ---
 
@@ -29,14 +30,14 @@ const { primary, fallback, srcset } = view.preview;
           data-fallback-src={fallback?.url}
           data-fallback-width={fallback?.width}
           data-fallback-height={fallback?.height}
-          sizes="(max-width: 640px) 50vw, (max-width: 1280px) 20vw, 210px"
+          sizes={sizes}
           alt={view.displayTitle}
           width={primary.width}
           height={primary.height}
           loading={eager ? "eager" : "lazy"}
           decoding="async"
         />
-        <noscript><img src={primary.url} srcset={srcset || undefined} sizes="(max-width: 640px) 50vw, (max-width: 1280px) 20vw, 210px" alt={view.displayTitle} width={primary.width} height={primary.height} loading="lazy" /></noscript>
+        <noscript><img src={primary.url} srcset={srcset || undefined} sizes={sizes} alt={view.displayTitle} width={primary.width} height={primary.height} loading="lazy" /></noscript>
         </>
       ) : <div class="resource-card-placeholder" aria-label="图片加载失败">图片暂不可用</div>}
       {view.hasUpscaled ? <span class="resource-badge is-upscaled">含超分版</span> : null}

@@ -65,6 +65,9 @@ export function observeImage(image: HTMLImageElement): void {
       watched.delete(target);
     }
   });
+  // A retained SSR node may have intersected while its gallery was busy. A
+  // fresh observation after initialization lets it load without scrolling.
+  if (watched.has(image)) observer.unobserve(image);
   observer.observe(image);
   watched.add(image);
   // Renderers register images before inserting them. Clean replaced nodes once

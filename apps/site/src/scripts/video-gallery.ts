@@ -97,8 +97,8 @@ function initialize(root: HTMLElement) {
   });
   stop.addEventListener("click", resetPlayer);
   el("[data-reveal]").addEventListener("click", () => { revealed.add(currentItem().id); renderSelection(); });
-  root.querySelectorAll<HTMLButtonElement>("[data-item]").forEach(button => button.addEventListener("click", () => { itemIndex = Number(button.dataset.item); clipIndex = 0; renderSelection(); }));
-  clips.addEventListener("change", () => { clipIndex = Number(clips.value); renderSelection(); });
+  root.querySelectorAll<HTMLButtonElement>("[data-item]").forEach(button => button.addEventListener("click", () => { const next = Number(button.dataset.item); if (next === itemIndex) return; itemIndex = next; clipIndex = 0; renderSelection(); }));
+  clips.addEventListener("change", () => { const next = Number(clips.value); if (next === clipIndex) return; clipIndex = next; renderSelection(); });
   player.addEventListener("playing", () => { status.textContent = `正在播放。`; });
   player.addEventListener("ended", () => { status.textContent = "播放结束。"; });
   player.addEventListener("error", () => { if (player.hasAttribute("src")) { error.hidden = false; status.textContent = "视频加载失败。"; } });

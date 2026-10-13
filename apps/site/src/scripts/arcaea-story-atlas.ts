@@ -760,12 +760,12 @@ async function initialize(root: HTMLElement): Promise<void> {
     openSceneId = undefined;
     detailElement.hidden = false;
     root.classList.add("has-story-detail");
+    root.querySelector<HTMLButtonElement>("button[data-story-detail-close]")?.focus({ preventScroll: true });
     try {
       await renderEntryDetail(entry);
     } catch {
       if (openEntryId === entry.id) renderError("剧情内容加载失败，请稍后再试。");
     }
-    if (openEntryId === entry.id) root.querySelector<HTMLButtonElement>("button[data-story-detail-close]")?.focus();
   }
 
   async function openScene(scene: CompactScene): Promise<void> {
@@ -775,12 +775,12 @@ async function initialize(root: HTMLElement): Promise<void> {
     openSceneId = scene.sceneId;
     detailElement.hidden = false;
     root.classList.add("has-story-detail");
+    root.querySelector<HTMLButtonElement>("button[data-story-detail-close]")?.focus({ preventScroll: true });
     try {
       await renderSceneDetail(scene);
     } catch {
       if (openSceneId === scene.sceneId) renderError("剧情场景加载失败，请稍后再试。");
     }
-    if (openSceneId === scene.sceneId) root.querySelector<HTMLButtonElement>("button[data-story-detail-close]")?.focus();
   }
 
   function closeDetail(update = true): void {

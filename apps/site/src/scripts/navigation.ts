@@ -49,6 +49,7 @@ document.addEventListener("astro:before-swap", (event) => {
   }
   next.documentElement.dataset.theme = document.documentElement.dataset.theme ?? "system";
   next.documentElement.classList.add("has-js");
+  next.documentElement.dataset.clientNavigation = "true";
   for (const root of next.querySelectorAll<HTMLElement>('[data-browse-gallery-root], [data-gallery-root]:not([data-gallery-defer="true"])')) {
     root.inert = true;
     root.setAttribute("aria-busy", "true");
@@ -75,7 +76,12 @@ document.addEventListener("astro:before-swap", (event) => {
 onPageLoad(() => {
   finishLoading();
   observeImages(document);
-  if (window.matchMedia("(max-width: 760px)").matches) {
-    for (const disclosure of document.querySelectorAll<HTMLDetailsElement>("[data-filter-disclosure]")) disclosure.open = false;
+  const active = document.querySelector<HTMLElement>(".category-nav [aria-current='page']");
+  const nav = active?.closest<HTMLElement>(".category-nav");
+  // Reveal the active category horizontally without moving a restored page.
+  if (active && nav && nav.scrollWidth > nav.clientWidth) {
+    const item = active.getBoundingClientRect(), strip = nav.getBoundingClientRect();
+    const delta = item.left < strip.left ? item.left - strip.left : item.right > strip.right ? item.right - strip.right : 0;
+    if (delta) nav.scrollBy({ left: delta, behavior: "instant" });
   }
 });

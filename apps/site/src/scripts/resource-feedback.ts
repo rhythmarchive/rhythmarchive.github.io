@@ -16,9 +16,10 @@ onPageLoad(() => {
     const dismiss = async () => {
       if (!dialog.open || closing) return;
       closing = true;
-      await setSurfaceVisible(sheet, false, 'fade');
+      await setSurfaceVisible(dialog, false, 'fade');
       if (signal.aborted) return;
       dialog.close();
+      dialog.hidden = false;
     };
     dialog.addEventListener('cancel', (event) => { event.preventDefault(); void dismiss(); }, { signal });
     dialog.addEventListener('keydown', (event) => {
@@ -64,12 +65,13 @@ onPageLoad(() => {
         window.scrollTo({ top: y, behavior: 'instant' });
       };
       dialog.showModal();
-      void setSurfaceVisible(sheet, true);
+      sheet.hidden = false;
+      void setSurfaceVisible(dialog, true, 'fade');
       close.focus({ preventScroll: true });
       void prepareVerification();
     }, { signal });
     onPageCleanup(() => {
-      void setSurfaceVisible(sheet, false, 'instant');
+      void setSurfaceVisible(dialog, false, 'instant');
       dialog.close(); unlock();
       if (widget !== undefined) window.turnstile?.remove(widget);
     });

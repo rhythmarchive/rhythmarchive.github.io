@@ -5,7 +5,7 @@ const CONTEXT_KEY = "rhythm-archive-list-contexts";
 const CONTEXT_PARAM = "list";
 const RETURN_PARAM = "list-return";
 
-type ListPosition = { url: string; key: string; count: number; scrollY: number };
+type ListPosition = { url: string; key: string; count: number; scrollY: number; focusId?: string };
 type ListContext = { position: ListPosition; items: Array<{ id: string; href: string }> };
 
 function readContexts(): Record<string, ListContext> {
@@ -45,13 +45,16 @@ export function setupListNavigation(grid: HTMLElement, key: string) {
     url.searchParams.delete(RETURN_PARAM);
     history.replaceState({ ...history.state, resourceListPosition: position }, "", url);
   }
-  const capture = (event: MouseEvent): void => {
-    if (event.defaultPrevented || (event.button !== 0 && event.button !== 1)) return;
-    const link = event.target instanceof Element ? event.target.closest<HTMLAnchorElement>(".resource-card-link") : null;
-    if (!link || !grid.contains(link)) return;
+  const captureLink = (link: HTMLAnchorElement): void => {
     const items = renderedListItems(grid);
+    const focusId = link.closest<HTMLElement>("[data-resource-id]")?.dataset.resourceId;
+    if (focusId && !items.some((item) => item.id === focusId)) {
+      const href = new URL(link.href);
+      href.searchParams.delete(CONTEXT_PARAM);
+      items.push({ id: focusId, href: href.pathname + href.search });
+    }
     if (!items.length) return;
-    const position: ListPosition = { url: currentUrl(), key, count: items.length, scrollY: window.scrollY };
+    const position: ListPosition = { url: currentUrl(), key, count: grid.childElementCount, scrollY: window.scrollY, ...(focusId ? { focusId } : {}) };
     try {
       const contexts = readContexts();
       const token = crypto.randomUUID();
@@ -64,6 +67,11 @@ export function setupListNavigation(grid: HTMLElement, key: string) {
       link.href = href.href;
     } catch { /* Navigation still works when browser storage is unavailable. */ }
   };
+  const capture = (event: MouseEvent): void => {
+    if (event.defaultPrevented || (event.button !== 0 && event.button !== 1)) return;
+    const link = event.target instanceof Element ? event.target.closest<HTMLAnchorElement>(".resource-card-link") : null;
+    if (link && grid.contains(link)) captureLink(link);
+  };
   grid.addEventListener("click", capture);
   grid.addEventListener("auxclick", capture);
   document.addEventListener("astro:before-preparation", (event) => {
@@ -75,6 +83,7 @@ export function setupListNavigation(grid: HTMLElement, key: string) {
   }, { signal: pageSignal() });
   let restored = false;
   return {
+    captureLink,
     visibleCount: (fallback: number) => Math.max(fallback, position?.count ?? 0),
     remember: (count: number) => {
       history.replaceState({ ...history.state, resourceListPosition: { url: currentUrl(), key, count, scrollY: window.scrollY } }, "");
@@ -83,7 +92,14 @@ export function setupListNavigation(grid: HTMLElement, key: string) {
       if (!position || restored) return;
       restored = true;
       const scrollY = returnToken ? position.scrollY : history.state?.scrollY ?? position.scrollY;
-      requestAnimationFrame(() => { if (grid.isConnected) window.scrollTo(0, scrollY); });
+      requestAnimationFrame(() => {
+        if (!grid.isConnected) return;
+        window.scrollTo({ top: scrollY, behavior: "instant" });
+        if (position.focusId) {
+          const card = [...grid.querySelectorAll<HTMLElement>("[data-resource-card]")].find((node) => node.dataset.resourceId === position.focusId);
+          card?.querySelector<HTMLAnchorElement>(".resource-card-link")?.focus({ preventScroll: true });
+        }
+      });
     },
   };
 }

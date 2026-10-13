@@ -2,11 +2,14 @@ import { loadStaticData } from "./static-data";
 import { onPageLoad, pageSignal } from "./page-lifecycle";
 import { createBatchTray, downloadSelectedBatchFromManifest } from "./batch-tray";
 import { setupListNavigation } from "./list-navigation";
-import { revealContent } from "./motion";
+import { setupGalleryFilters } from "./gallery-filters";
+import { galleryInputUpdates } from "./gallery-input";
+import { observeImages } from "./viewport-images";
 import { showGalleryLoadError } from "./gallery-load-error";
-import { renderResourceCard } from "./render-resource-card";
+import { createCardReconciler } from "./render-resource-card";
 import { browseCardView } from "../lib/card-view-model";
 import type { BatchResource } from "../lib/batch";
+import { SIDEBAR_IMAGE_SIZES } from "../lib/card-preview";
 import {
   BROWSE_PAGE_SIZE,
   type BrowseFacetOptions,
@@ -68,6 +71,14 @@ async function initializeBrowseGallery(root: HTMLElement): Promise<void> {
   let visibleCount = navigation.visibleCount(BROWSE_PAGE_SIZE);
   const batchResources = new Map<string, BatchResource>();
   let batchTray: ReturnType<typeof createBatchTray> | undefined;
+  const reconcile = createCardReconciler(grid);
+  const filters = setupGalleryFilters(root, {
+    apply: () => commitState("push"), reset: resetState,
+    count: () => filterBrowseItems(items, currentStateFromControls()).length,
+    restore: () => applyStateToControls(state),
+    beforeOpen: () => updates.flush(),
+  });
+  const updates = galleryInputUpdates(() => commitState("replace"));
 
   try {
     const data = await loadStaticData<BrowseGalleryData>(root.dataset.galleryUrl ?? "");
@@ -83,6 +94,8 @@ async function initializeBrowseGallery(root: HTMLElement): Promise<void> {
     batchTray = createBatchTray({
       root,
       grid,
+      onDetailLink: navigation.captureLink,
+      selectionScope: location.pathname,
       getResource: (resourceId) => batchResources.get(resourceId),
       onDownload: (preferUpscaled, selectedIds, setStatus) => downloadSelectedBatchFromManifest({
         manifestUrl: root.dataset.batchUrl ?? "",
@@ -107,14 +120,14 @@ async function initializeBrowseGallery(root: HTMLElement): Promise<void> {
     return;
   }
 
-  search.addEventListener("input", () => commitState("replace"));
+  updates.text(search);
   sort.addEventListener("change", () => commitState("push"));
   levelSelect?.addEventListener("change", () => commitState("push"));
   if (difficultyRange) {
     difficultyRange.minInput.addEventListener("change", () => { syncBrowseDifficultyRange(difficultyRange); commitState("replace"); });
     difficultyRange.maxInput.addEventListener("change", () => { syncBrowseDifficultyRange(difficultyRange); commitState("replace"); });
-    difficultyRange.minSlider.addEventListener("input", () => { syncBrowseDifficultyRange(difficultyRange, Number(difficultyRange.minSlider.value), Number(difficultyRange.maxSlider.value)); commitState("replace"); });
-    difficultyRange.maxSlider.addEventListener("input", () => { syncBrowseDifficultyRange(difficultyRange, Number(difficultyRange.minSlider.value), Number(difficultyRange.maxSlider.value)); commitState("replace"); });
+    difficultyRange.minSlider.addEventListener("input", () => { syncBrowseDifficultyRange(difficultyRange, Number(difficultyRange.minSlider.value), Number(difficultyRange.maxSlider.value)); updates.range(); });
+    difficultyRange.maxSlider.addEventListener("input", () => { syncBrowseDifficultyRange(difficultyRange, Number(difficultyRange.minSlider.value), Number(difficultyRange.maxSlider.value)); updates.range(); });
   }
   root.querySelectorAll<HTMLInputElement>("[data-browse-filter-check]").forEach((input) => input.addEventListener("change", () => commitState("push")));
   root.querySelectorAll<HTMLSelectElement>("[data-browse-filter-select]").forEach((select) => select.addEventListener("change", () => commitState("push")));
@@ -164,7 +177,7 @@ async function initializeBrowseGallery(root: HTMLElement): Promise<void> {
     visibleCount = entry?.resourceListPosition?.url === location.pathname + location.search
       ? entry.resourceListPosition.count : BROWSE_PAGE_SIZE;
     render();
-    requestAnimationFrame(() => { if (!signal.aborted) window.scrollTo(0, entry?.scrollY ?? 0); });
+    requestAnimationFrame(() => { if (!signal.aborted) window.scrollTo({ top: entry?.scrollY ?? 0, behavior: "instant" }); });
   }, { signal });
 
 
@@ -174,6 +187,7 @@ async function initializeBrowseGallery(root: HTMLElement): Promise<void> {
   root.inert = false;
   root.removeAttribute("aria-busy");
   root.dataset.ready = "true";
+  observeImages(grid);
 
   function readState(gameId: BrowseGame, browseItems: BrowseGalleryItem[]): BrowseUrlState {
     return parseBrowseUrlState(gameId, window.location.search, browseItems);
@@ -216,16 +230,20 @@ async function initializeBrowseGallery(root: HTMLElement): Promise<void> {
   }
 
   function commitState(historyMode: "push" | "replace"): void {
+    if (filters.draft()) { filters.preview(); return; }
     state = currentStateFromControls();
     const url = new URL(window.location.href);
     const serialized = serializeBrowseUrlState(state).toString();
     url.search = serialized ? "?" + serialized : "";
-    if (historyMode === "push") window.history.pushState({ ...history.state }, "", url); else window.history.replaceState({ ...history.state }, "", url);
+    if (url.href !== location.href) {
+      if (historyMode === "push") window.history.pushState({ ...history.state }, "", url); else window.history.replaceState({ ...history.state }, "", url);
+    }
     visibleCount = BROWSE_PAGE_SIZE;
     render();
   }
 
   function resetState(): void {
+    if (filters.draft()) { applyStateToControls(defaultBrowseUrlState(game)); filters.preview(); return; }
     state = defaultBrowseUrlState(game);
     applyStateToControls(state);
     const url = new URL(window.location.href);
@@ -260,9 +278,8 @@ async function initializeBrowseGallery(root: HTMLElement): Promise<void> {
   function render(): void {
     const filtered = filterBrowseItems(items, state);
     const visible = filtered.slice(0, visibleCount).map((item) => displayBrowseItem(item, state.chart));
-    grid!.replaceChildren(...visible.map((item, index) => renderResourceCard(browseCardView(item), { basePath: root.dataset.basePath ?? "/", index, isSelected: batchTray?.isSelected(item.resourceId) ?? false, browse: true })));
+    reconcile(visible.map(browseCardView), { basePath: root.dataset.basePath ?? "/", browse: true, sizes: SIDEBAR_IMAGE_SIZES });
     navigation.remember(visibleCount);
-    revealContent(grid!);
     count!.textContent = filtered.length.toLocaleString("zh-CN") + " 项资源";
     loadMore!.hidden = visible.length >= filtered.length;
     if (empty) empty.hidden = filtered.length !== 0;

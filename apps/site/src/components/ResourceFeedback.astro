@@ -31,7 +31,8 @@ const dialogId = `resource-feedback-${resourceId}`;
 <style>
   .feedback-trigger { color: var(--text-muted); }
   dialog { width: min(32rem, calc(100% - 32px)); max-width: none; max-height: calc(100dvh - 48px); padding: 0; border: 1px solid var(--line); border-radius: var(--radius-lg); background: var(--surface); color: var(--text); box-shadow: var(--shadow-hover); overflow: hidden; }
-  dialog::backdrop { background: rgb(0 0 0 / .42); }
+  dialog::backdrop { background: rgb(0 0 0 / .42); transition: opacity var(--motion-fast) var(--motion-ease); }
+  dialog[inert]::backdrop { opacity: 0; }
   .feedback-sheet { display: flex; flex-direction: column; max-height: calc(100dvh - 50px); }
   .feedback-header { display: flex; flex-shrink: 0; align-items: center; justify-content: space-between; gap: 16px; padding: 16px 20px; border-bottom: 1px solid var(--line); }
   h2 { margin: 0; font-size: 1.15rem; }

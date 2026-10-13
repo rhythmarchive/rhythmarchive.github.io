@@ -6,12 +6,15 @@ import { DOWNLOAD_CONCURRENCY, MAX_BATCH_BYTES, MAX_BATCH_FILES, readResponseByt
 import { getBrowserStatsClient } from "../lib/stats-client";
 import { sitePath } from "../lib/url";
 import type { PublicDownload, PublicPreview } from "../lib/types";
+import { pageSignal } from "./page-lifecycle";
 
 type BatchTrayOptions = {
   root: HTMLElement;
   grid: HTMLElement;
   getResource: (resourceId: string) => BatchResource | undefined;
   onSelectionChange?: (selectedIds: readonly string[]) => void;
+  onDetailLink?: (link: HTMLAnchorElement) => void;
+  selectionScope?: string;
   onDownload: (preferUpscaled: boolean, selectedIds: readonly string[], setStatus: (value: string) => void) => Promise<void>;
 };
 
@@ -25,6 +28,7 @@ export type BatchTrayController = {
 };
 
 export function createBatchTray(options: BatchTrayOptions): BatchTrayController {
+  const signal = pageSignal();
   const tray = options.root.querySelector<HTMLElement>("[data-batch-tray]");
   const panel = options.root.querySelector<HTMLElement>("[data-batch-selected-panel]");
   const viewButton = options.root.querySelector<HTMLButtonElement>("[data-batch-view]");
@@ -34,6 +38,13 @@ export function createBatchTray(options: BatchTrayOptions): BatchTrayController 
   const count = options.root.querySelector<HTMLElement>("[data-batch-count]");
   const status = options.root.querySelector<HTMLElement>("[data-batch-status]");
   const selected = new Set<string>();
+  const selectionKey = options.selectionScope ? "rhythm-archive-selection:" + options.selectionScope : undefined;
+  try {
+    const saved: unknown = JSON.parse(selectionKey ? sessionStorage.getItem(selectionKey) ?? "[]" : "[]");
+    if (Array.isArray(saved)) for (const id of saved.slice(0, MAX_BATCH_FILES)) {
+      if (typeof id === "string" && options.getResource(id)) selected.add(id);
+    }
+  } catch { /* In-memory selection still works without storage. */ }
   let panelOpen = false;
   let lastTrigger: HTMLButtonElement | null = null;
   let busy = false;
@@ -103,6 +114,10 @@ export function createBatchTray(options: BatchTrayOptions): BatchTrayController 
       void startDownload(download.dataset.batchDownload === "upscaled");
     }
   });
+  list.addEventListener("click", (event) => {
+    const link = event.target instanceof Element ? event.target.closest<HTMLAnchorElement>(".batch-selected-link") : null;
+    if (link && !event.defaultPrevented) options.onDetailLink?.(link);
+  });
 
   panel.addEventListener("keydown", (event) => {
     if (event.key === "Escape") {
@@ -132,6 +147,7 @@ export function createBatchTray(options: BatchTrayOptions): BatchTrayController 
   return controller;
 
   function toggle(resourceId: string): void {
+    if (busy) return;
     const result = toggleBatchSelection([...selected], resourceId, MAX_BATCH_FILES);
     if (result.limited) {
       controller.setStatus("最多选择 " + MAX_BATCH_FILES + " 项。");
@@ -145,18 +161,26 @@ export function createBatchTray(options: BatchTrayOptions): BatchTrayController 
   }
 
   function removeSelection(resourceId: string): void {
+    const buttons = [...list!.querySelectorAll<HTMLButtonElement>("[data-batch-remove]")];
+    const focusedIndex = buttons.findIndex((button) => button === document.activeElement && button.dataset.batchRemove === resourceId);
     if (busy || !selected.delete(resourceId)) return;
     controller.setStatus("");
     renderTray();
+    if (focusedIndex >= 0) {
+      const remaining = [...list!.querySelectorAll<HTMLButtonElement>("[data-batch-remove]")];
+      (remaining[Math.min(focusedIndex, remaining.length - 1)] ?? options.grid.querySelector<HTMLButtonElement>("[data-select-resource]") ?? options.root.querySelector<HTMLInputElement>('input[type="search"]'))?.focus({ preventScroll: true });
+    }
     options.onSelectionChange?.([...selected]);
   }
 
   function clearSelection(): void {
     if (busy) return;
+    const restoreFocus = tray!.contains(document.activeElement);
     selected.clear();
     controller.setStatus("");
     closePanel(false);
     renderTray();
+    if (restoreFocus) (options.grid.querySelector<HTMLButtonElement>("[data-select-resource]") ?? options.root.querySelector<HTMLInputElement>('input[type="search"]'))?.focus({ preventScroll: true });
     options.onSelectionChange?.([]);
   }
 
@@ -180,6 +204,12 @@ export function createBatchTray(options: BatchTrayOptions): BatchTrayController 
   }
 
   function renderTray(): void {
+    try {
+      if (selectionKey) {
+        if (selected.size) sessionStorage.setItem(selectionKey, JSON.stringify([...selected]));
+        else sessionStorage.removeItem(selectionKey);
+      }
+    } catch { /* Selection remains usable in this page. */ }
     void setSurfaceVisible(tray!, selected.size > 0);
     const upscaledButton = tray!.querySelector<HTMLButtonElement>('[data-batch-download="upscaled"]');
     if (upscaledButton) upscaledButton.hidden = ![...selected].some((resourceId) => Boolean(options.getResource(resourceId)?.upscaled || options.getResource(resourceId)?.hasUpscaled));
@@ -188,7 +218,7 @@ export function createBatchTray(options: BatchTrayOptions): BatchTrayController 
     renderThumbnails();
     if (panelOpen) renderSelectedList(); else list!.replaceChildren();
     syncCards();
-    if (selected.size === 0 && panelOpen) closePanel(false);
+    if (selected.size === 0 && panelOpen) closePanel(true);
   }
 
   function renderThumbnails(): void {
@@ -196,25 +226,33 @@ export function createBatchTray(options: BatchTrayOptions): BatchTrayController 
       .map((resourceId) => options.getResource(resourceId))
       .filter((resource): resource is BatchResource => Boolean(resource));
     const visible = resources.slice(0, 4);
-    thumbs!.replaceChildren(...visible.map((resource) => createThumbnail(resource)));
+    const existing = new Map([...thumbs!.querySelectorAll<HTMLImageElement>("img[data-resource-id]")].map((image) => [image.dataset.resourceId, image]));
+    const next: HTMLElement[] = visible.map((resource) => existing.get(resource.resourceId) ?? createThumbnail(resource));
     const remaining = selected.size - visible.length;
     if (remaining > 0) {
-      const more = document.createElement("span");
+      const more = thumbs!.querySelector<HTMLSpanElement>(".batch-tray-thumb-more") ?? document.createElement("span");
       more.className = "batch-tray-thumb-more";
       more.textContent = "+" + remaining;
-      thumbs!.append(more);
+      next.push(more);
     }
+    for (const node of [...thumbs!.children]) if (!next.includes(node as HTMLElement)) node.remove();
+    next.forEach((node, index) => { if (thumbs!.children[index] !== node) thumbs!.insertBefore(node, thumbs!.children[index] ?? null); });
   }
 
   function renderSelectedList(): void {
     const resources = [...selected]
       .map((resourceId) => ({ resourceId, resource: options.getResource(resourceId) }))
       .filter((entry): entry is { resourceId: string; resource: BatchResource } => Boolean(entry.resource));
-    list!.replaceChildren(...resources.map(({ resourceId, resource }) => {
+    const rows = new Map([...list!.children].map((row) => [(row as HTMLElement).dataset.resourceId, row]));
+    const next = resources.map(({ resourceId, resource }) => {
+      const existing = rows.get(resourceId);
+      if (existing) return existing;
       const row = document.createElement("div");
       row.className = "batch-selected-item";
+      row.dataset.resourceId = resourceId;
       const link = document.createElement("a");
       link.className = "batch-selected-link";
+      link.dataset.resourceId = resourceId;
       link.href = resolveSitePath(options.root, resource.route);
       const image = createThumbnail(resource, "batch-selected-image");
       image.alt = "";
@@ -227,9 +265,12 @@ export function createBatchTray(options: BatchTrayOptions): BatchTrayController 
       remove.dataset.batchRemove = resourceId;
       remove.setAttribute("aria-label", "取消选择 " + resource.displayTitle);
       remove.textContent = "×";
+      remove.disabled = busy;
       row.append(link, remove);
       return row;
-    }));
+    });
+    for (const row of rows.values()) if (!next.includes(row)) row.remove();
+    next.forEach((row, index) => { if (list!.children[index] !== row) list!.insertBefore(row, list!.children[index] ?? null); });
   }
 
   function syncCards(): void {
@@ -239,6 +280,7 @@ export function createBatchTray(options: BatchTrayOptions): BatchTrayController 
       const selectedState = selected.has(resourceId);
       const title = button.closest<HTMLElement>("[data-resource-card]")?.querySelector("h3")?.textContent?.trim() || "资源";
       button.setAttribute("aria-pressed", String(selectedState));
+      button.disabled = busy;
       button.setAttribute("aria-label", (selectedState ? "取消选择 " : "选择 ") + title);
       button.closest<HTMLElement>("[data-resource-card]")?.classList.toggle("is-selected", selectedState);
     }
@@ -246,16 +288,18 @@ export function createBatchTray(options: BatchTrayOptions): BatchTrayController 
 
   function setBusy(value: boolean): void {
     busy = value;
-    for (const button of tray!.querySelectorAll<HTMLButtonElement>("[data-batch-download], [data-batch-clear], [data-batch-view], [data-batch-close], [data-batch-remove]")) button.disabled = value;
+    for (const button of tray!.querySelectorAll<HTMLButtonElement>("[data-batch-download], [data-batch-clear], [data-batch-view], [data-batch-remove]")) button.disabled = value;
+    syncCards();
   }
 
   async function startDownload(preferUpscaled: boolean): Promise<void> {
     if (busy || selected.size === 0) return;
     setBusy(true);
+    controller.setStatus("正在读取下载信息…");
     try {
       await options.onDownload(preferUpscaled, [...selected], controller.setStatus);
     } finally {
-      setBusy(false);
+      if (!signal.aborted && options.root.isConnected) setBusy(false);
     }
   }
 }
@@ -268,13 +312,15 @@ export async function downloadSelectedBatchFromManifest(options: {
   filename: string;
   setStatus: (value: string) => void;
 }): Promise<void> {
+  const signal = pageSignal();
   try {
     const urls = typeof options.manifestUrl === "string" ? [options.manifestUrl] : options.manifestUrl;
     const manifests = await Promise.all(urls.map(async (url) => {
-      const response = await fetch(url, { credentials: "omit" });
+      const response = await fetch(url, { credentials: "omit", signal });
       if (!response.ok) throw new Error(`batch manifest failed with ${response.status}`);
       return await response.json() as Record<string, Pick<BatchResource, "original" | "upscaled">>;
     }));
+    signal.throwIfAborted();
     const downloads = Object.assign({}, ...manifests) as Record<string, Pick<BatchResource, "original" | "upscaled">>;
     await downloadSelectedBatch({
       ...options,
@@ -284,6 +330,7 @@ export async function downloadSelectedBatchFromManifest(options: {
       },
     });
   } catch (error) {
+    if (signal.aborted) return;
     console.error("Batch manifest failed", error);
     options.setStatus("下载失败，请重试");
   }
@@ -321,22 +368,23 @@ export async function downloadSelectedBatch(options: {
   let downloadedBytes = 0;
   let completed = 0;
   const controller = new AbortController();
+  const signal = AbortSignal.any([controller.signal, pageSignal()]);
   const objects = new Map<string, Promise<Uint8Array>>();
   options.setStatus("正在准备 0 / " + items.length);
   try {
     await runWithConcurrency(items, DOWNLOAD_CONCURRENCY, async ({ download, resource }) => {
-      controller.signal.throwIfAborted();
+      signal.throwIfAborted();
       let bytes = objects.get(download.url);
       if (!bytes) {
         bytes = (async () => {
-          const response = await fetch(download.url, { credentials: "omit", referrerPolicy: "strict-origin-when-cross-origin", signal: controller.signal });
+          const response = await fetch(download.url, { credentials: "omit", referrerPolicy: "strict-origin-when-cross-origin", signal });
           if (!response.ok) throw new DownloadHttpError(response.status);
           return await readResponseBytesWithinLimit(response, MAX_BATCH_BYTES - downloadedBytes, (size) => {
             if (downloadedBytes + size > MAX_BATCH_BYTES) throw new Error("batch download exceeds the maximum size");
             downloadedBytes += size;
           });
         })().catch((error) => {
-          if (!controller.signal.aborted) reportDownloadFailure(resource.resourceId, error);
+          if (!signal.aborted) reportDownloadFailure(resource.resourceId, error);
           controller.abort(); throw error;
         });
         objects.set(download.url, bytes);
@@ -345,14 +393,17 @@ export async function downloadSelectedBatch(options: {
       completed += 1;
       options.setStatus("正在准备 " + completed + " / " + items.length);
     });
+    signal.throwIfAborted();
+    options.setStatus("正在整理文件…");
     const archive = zipSync(entries, { level: 0 });
     const objectUrl = URL.createObjectURL(new Blob([archive], { type: "application/zip" }));
     triggerDownload(objectUrl, options.filename);
     const statsClient = getBrowserStatsClient();
     for (const item of items) void statsClient.trackResourceDownload(item.resource.resourceId);
     window.setTimeout(() => URL.revokeObjectURL(objectUrl), 1000);
-    options.setStatus("");
+    options.setStatus("已交给浏览器下载");
   } catch (error) {
+    if (signal.aborted && !controller.signal.aborted) return;
     console.error("Batch download failed", error);
     options.setStatus("下载失败，请重试");
   }
@@ -365,6 +416,7 @@ function chooseDownload(resource: BatchResource, preferUpscaled: boolean): Publi
 function createThumbnail(resource: BatchResource, className = "batch-tray-thumb"): HTMLImageElement {
   const image = document.createElement("img");
   image.className = className;
+  image.dataset.resourceId = resource.resourceId;
   const preview = pickPreview(resource.preview);
   if (!preview) {
     image.alt = "";

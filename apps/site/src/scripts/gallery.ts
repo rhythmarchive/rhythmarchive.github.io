@@ -2,11 +2,14 @@ import { loadStaticData } from "./static-data";
 import { onPageLoad, pageSignal } from "./page-lifecycle";
 import { createBatchTray, downloadSelectedBatchFromManifest } from "./batch-tray";
 import { setupListNavigation } from "./list-navigation";
-import { revealContent } from "./motion";
+import { setupGalleryFilters } from "./gallery-filters";
+import { galleryInputUpdates } from "./gallery-input";
+import { observeImages } from "./viewport-images";
 import { showGalleryLoadError } from "./gallery-load-error";
-import { renderResourceCard } from "./render-resource-card";
+import { createCardReconciler } from "./render-resource-card";
 import { galleryCardView } from "../lib/card-view-model";
 import type { GalleryCard } from "../lib/gallery-projection";
+import { GALLERY_IMAGE_SIZES, SIDEBAR_IMAGE_SIZES } from "../lib/card-preview";
 import { matchesChartFilters } from "../lib/chart-filters";
 import { compareGalleryBpm, compareGalleryHighestConstant, compareNullableNumber, numericFacetValues } from "../lib/gallery-sort";
 import { compareNaturalText, normalizeSearchText } from "../lib/search";
@@ -73,23 +76,29 @@ async function initializeGallery(root: HTMLElement): Promise<void> {
   const navigation = setupListNavigation(grid, root.dataset.galleryUrl ?? "gallery");
   let visibleCount = navigation.visibleCount(PAGE_SIZE);
   let batchTray: ReturnType<typeof createBatchTray> | undefined;
+  const reconcile = createCardReconciler(grid);
+  const filters = setupGalleryFilters(root, {
+    apply: () => applyFilter("push"),
+    reset: () => {
+      for (const facet of facets) facet.value = "";
+      for (const range of ranges) setRange(range, range.min, range.max);
+      if (filters.draft()) filters.preview(); else applyFilter("push");
+    },
+    count: () => currentResources().length,
+    restore: restoreControlsFromUrl,
+    beforeOpen: () => updates.flush(),
+  });
+  const updates = galleryInputUpdates(() => applyFilter());
 
   try {
     resources = await loadStaticData<GalleryCard[]>(root.dataset.galleryUrl ?? "");
     if (signal.aborted) return;
-    const params = new URLSearchParams(window.location.search);
-    if (search) search.value = params.get("q") ?? "";
-    if (sort) sort.value = params.get("sort") ?? sort.options[0]?.value ?? "default";
-    for (const facet of facets) facet.value = params.get(`facet-${facet.dataset.galleryFacet ?? ""}`) ?? "";
-    for (const range of ranges) {
-      const legacyValue = params.get(`facet-${range.key}`);
-      const minValue = params.get(`facet-${range.key}-min`) ?? legacyValue;
-      const maxValue = params.get(`facet-${range.key}-max`) ?? legacyValue;
-      setRange(range, parseRangeValue(minValue, range.min), parseRangeValue(maxValue, range.max));
-    }
+    restoreControlsFromUrl();
     batchTray = createBatchTray({
       root,
       grid,
+      onDetailLink: navigation.captureLink,
+      selectionScope: location.pathname,
       getResource: (resourceId) => resources.find((resource) => resource.resourceId === resourceId),
       onDownload: (preferUpscaled, selectedIds, setStatus) => downloadSelectedBatchFromManifest({
         manifestUrl: root.dataset.batchUrl ?? "",
@@ -111,9 +120,9 @@ async function initializeGallery(root: HTMLElement): Promise<void> {
     return;
   }
 
-  search?.addEventListener("input", applyFilter);
-  sort?.addEventListener("change", applyFilter);
-  facets.forEach((facet) => facet.addEventListener("change", applyFilter));
+  if (search) updates.text(search);
+  sort?.addEventListener("change", () => applyFilter("push"));
+  facets.forEach((facet) => facet.addEventListener("change", () => applyFilter("push")));
   for (const range of ranges) {
     range.minInput.addEventListener("change", () => updateRangeFromInput(range, "min"));
     range.maxInput.addEventListener("change", () => updateRangeFromInput(range, "max"));
@@ -126,7 +135,7 @@ async function initializeGallery(root: HTMLElement): Promise<void> {
     if (sort) sort.value = sort.options[0]?.value ?? "default";
     for (const facet of facets) facet.value = "";
     for (const range of ranges) setRange(range, range.min, range.max);
-    applyFilter();
+    applyFilter("push");
   });
   loadMore.addEventListener("click", () => {
     visibleCount += PAGE_SIZE;
@@ -156,6 +165,25 @@ async function initializeGallery(root: HTMLElement): Promise<void> {
   root.inert = false;
   root.removeAttribute("aria-busy");
   root.dataset.ready = "true";
+  observeImages(grid);
+  const pathname = location.pathname;
+  window.addEventListener("popstate", () => {
+    if (location.pathname !== pathname) return;
+    restoreControlsFromUrl();
+    visibleCount = history.state?.resourceListPosition?.url === location.pathname + location.search ? history.state.resourceListPosition.count : PAGE_SIZE;
+    render();
+  }, { signal });
+
+  function restoreControlsFromUrl(): void {
+    const params = new URLSearchParams(location.search);
+    if (search) search.value = params.get("q") ?? "";
+    if (sort) sort.value = params.get("sort") ?? sort.options[0]?.value ?? "default";
+    for (const facet of facets) facet.value = params.get(`facet-${facet.dataset.galleryFacet}`) ?? "";
+    for (const range of ranges) {
+      const legacy = params.get(`facet-${range.key}`);
+      setRange(range, parseRangeValue(params.get(`facet-${range.key}-min`) ?? legacy, range.min), parseRangeValue(params.get(`facet-${range.key}-max`) ?? legacy, range.max));
+    }
+  }
 
   function currentResources(): GalleryCard[] {
     const query = normalizeSearchText(search?.value ?? "");
@@ -208,7 +236,8 @@ async function initializeGallery(root: HTMLElement): Promise<void> {
     });
   }
 
-  function applyFilter(): void {
+  function applyFilter(historyMode: "push" | "replace" = "replace"): void {
+    if (filters.draft()) { filters.preview(); return; }
     visibleCount = PAGE_SIZE;
     const url = new URL(window.location.href);
     if (search?.value) url.searchParams.set("q", search.value); else url.searchParams.delete("q");
@@ -224,16 +253,18 @@ async function initializeGallery(root: HTMLElement): Promise<void> {
       if (min > range.min) url.searchParams.set(`facet-${range.key}-min`, formatRangeValue(min)); else url.searchParams.delete(`facet-${range.key}-min`);
       if (max < range.max) url.searchParams.set(`facet-${range.key}-max`, formatRangeValue(max)); else url.searchParams.delete(`facet-${range.key}-max`);
     }
-    window.history.replaceState({ ...history.state }, "", url);
+    if (url.href !== location.href) {
+      if (historyMode === "push") window.history.pushState({ ...history.state }, "", url);
+      else window.history.replaceState({ ...history.state }, "", url);
+    }
     render();
   }
 
   function render(): void {
     const filtered = currentResources();
     const visible = filtered.slice(0, visibleCount);
-    grid!.replaceChildren(...visible.map((resource, index) => renderResourceCard(galleryCardView(resource), { basePath: root.dataset.basePath ?? "/", index, isSelected: batchTray?.isSelected(resource.resourceId) ?? false })));
+    reconcile(visible.map(galleryCardView), { basePath: root.dataset.basePath ?? "/", sizes: root.classList.contains("has-filters") ? SIDEBAR_IMAGE_SIZES : GALLERY_IMAGE_SIZES });
     navigation.remember(visibleCount);
-    revealContent(grid!);
     count!.textContent = `${filtered.length.toLocaleString("zh-CN")} 项资源`;
     loadMore!.hidden = visible.length >= filtered.length;
     updateActiveFilters();
@@ -282,7 +313,7 @@ async function initializeGallery(root: HTMLElement): Promise<void> {
     const value = Number(side === "min" ? range.minSlider.value : range.maxSlider.value);
     const other = side === "min" ? readRangeValue(range, "max") : readRangeValue(range, "min");
     setRange(range, side === "min" ? Math.min(value, other) : other, side === "min" ? other : Math.max(value, other));
-    applyFilter();
+    updates.range();
   }
 
 }
