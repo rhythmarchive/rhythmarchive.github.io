@@ -3,6 +3,7 @@ import ResourceCard from "./ResourceCard.astro";
 import GalleryFilters from "./GalleryFilters.astro";
 import BatchTray from "./BatchTray.astro";
 import GalleryLoadError from "./GalleryLoadError.astro";
+import GalleryDownload from "./GalleryDownload.astro";
 import { GAME_CONFIG, type GameId } from "../lib/game-config";
 import type { CategoryBrowseConfig } from "../lib/category-browse";
 import type { PublicResource } from "../lib/types";
@@ -44,10 +45,11 @@ function formatRangeValue(value: number): string {
       if (galleryRoot && galleryRoot.getAttribute("data-gallery-defer") !== "true") galleryRoot.setAttribute("aria-busy", "true");
     })();
   </script>
+  {Astro.slots.has("heading") ? <div class="gallery-content-heading"><slot name="heading" /></div> : null}
   <div class="gallery-toolbar">
     <div class="gallery-toolbar-copy">
       <span class="section-kicker">{category === "all" ? GAME_CONFIG[game].displayName : categoryLabel}</span>
-      <p data-gallery-count role="status" aria-live="polite" aria-atomic="true">{formatCount(total)} 项资源</p>
+      <p data-gallery-count aria-hidden="true">{formatCount(total)} 项资源</p>
       {!hasFacets ? <div class="active-filter-row" data-gallery-active hidden>
         <div class="active-filter-chips" data-gallery-active-chips></div>
         <button class="text-link" type="button" data-gallery-reset>清除</button>
@@ -57,6 +59,7 @@ function formatRangeValue(value: number): string {
       {hasFacets ? <button class="button button-secondary gallery-filter-open" type="button" data-filter-open aria-haspopup="dialog" aria-controls={`gallery-filters-${game}-${category}`}>筛选 <span data-filter-summary></span></button> : null}
       <label class="gallery-search">
         <span class="sr-only">{config.searchPlaceholder}</span>
+        <svg class="gallery-search-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.3"/><path d="m16 16 4.5 4.5"/></svg>
         <input type="search" data-gallery-search placeholder={config.searchPlaceholder} autocomplete="off" />
       </label>
       {config.sortOptions.length > 1 ? (
@@ -69,6 +72,8 @@ function formatRangeValue(value: number): string {
       ) : null}
     </div>
   </div>
+
+  <div class="gallery-results-bar"><span data-gallery-result-count role="status" aria-live="polite" aria-atomic="true">{formatCount(total)} 项资源</span><GalleryDownload id={`gallery-download-${game}-${category}`} /></div>
 
   {hasFacets ? (
     <GalleryFilters id={`gallery-filters-${game}-${category}`}>

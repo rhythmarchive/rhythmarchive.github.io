@@ -3,6 +3,7 @@ import BrowseCard from "./BrowseCard.astro";
 import GalleryFilters from "./GalleryFilters.astro";
 import BatchTray from "./BatchTray.astro";
 import GalleryLoadError from "./GalleryLoadError.astro";
+import GalleryDownload from "./GalleryDownload.astro";
 import { getBrowseFacetOptions, type ArcaeaFacetOptions, type BrowseGalleryData, type InfalsusFacetOptions, type PhigrosFacetOptions, type RizlineFacetOptions } from "../lib/browse-gallery";
 import { formatCount } from "../lib/format";
 import { displayFilterDifficultyLabel } from "../lib/game-config";
@@ -44,15 +45,17 @@ function formatRangeValue(value: number): string {
   <script is:inline data-astro-rerun>
     document.currentScript?.closest("[data-browse-gallery-root]")?.setAttribute("aria-busy", "true");
   </script>
+  {Astro.slots.has("heading") ? <div class="gallery-content-heading"><slot name="heading" /></div> : null}
   <div class="gallery-toolbar browse-gallery-toolbar">
     <div class="gallery-toolbar-copy">
       <span class="section-kicker">{categoryLabel}</span>
-      <p data-gallery-count role="status" aria-live="polite" aria-atomic="true">{formatCount(data.items.length)} 项资源</p>
+      <p data-gallery-count aria-hidden="true">{formatCount(data.items.length)} 项资源</p>
     </div>
     <div class="gallery-toolbar-controls">
       {(data.game === "arcaea" && arcaeaOptions) || data.game === "phigros" || (data.game === "rizline" && rizlineOptions) || (data.game === "infalsus" && infalsusOptions) ? <button class="button button-secondary gallery-filter-open" type="button" data-filter-open aria-haspopup="dialog" aria-controls={`browse-filters-${data.game}`}>筛选 <span data-filter-summary></span></button> : null}
       <label class="gallery-search">
         <span class="sr-only">{searchPlaceholder}</span>
+        <svg class="gallery-search-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.3"/><path d="m16 16 4.5 4.5"/></svg>
         <input type="search" data-browse-search placeholder={searchPlaceholder} autocomplete="off" />
       </label>
       <label class="sort-control">
@@ -83,6 +86,8 @@ function formatRangeValue(value: number): string {
       </label>
     </div>
   </div>
+
+  <div class="gallery-results-bar"><span data-gallery-result-count role="status" aria-live="polite" aria-atomic="true">{formatCount(data.items.length)} 项资源</span><GalleryDownload id={`browse-download-${data.game}`} /></div>
 
   {(data.game === "arcaea" && arcaeaOptions) || data.game === "phigros" || (data.game === "rizline" && rizlineOptions) || (data.game === "infalsus" && infalsusOptions) ? (
     <GalleryFilters id={`browse-filters-${data.game}`}>

@@ -5,6 +5,9 @@ import { setupListNavigation } from "./list-navigation";
 import { setupGalleryFilters } from "./gallery-filters";
 import { galleryInputUpdates } from "./gallery-input";
 import { observeImages } from "./viewport-images";
+import { setupGalleryDownload } from "./gallery-download";
+import { setupSearchableFilters } from "./searchable-filters";
+import { MAX_BATCH_FILES } from "../lib/batch";
 import { showGalleryLoadError } from "./gallery-load-error";
 import { createCardReconciler } from "./render-resource-card";
 import { browseCardView } from "../lib/card-view-model";
@@ -71,7 +74,10 @@ async function initializeBrowseGallery(root: HTMLElement): Promise<void> {
   let visibleCount = navigation.visibleCount(BROWSE_PAGE_SIZE);
   const batchResources = new Map<string, BatchResource>();
   let batchTray: ReturnType<typeof createBatchTray> | undefined;
+  let matchingResults: BrowseGalleryItem[] = [];
+  let resultDownload: ReturnType<typeof setupGalleryDownload> | undefined;
   const reconcile = createCardReconciler(grid);
+  const searchable = setupSearchableFilters(root);
   const filters = setupGalleryFilters(root, {
     apply: () => commitState("push"), reset: resetState,
     count: () => filterBrowseItems(items, currentStateFromControls()).length,
@@ -97,15 +103,17 @@ async function initializeBrowseGallery(root: HTMLElement): Promise<void> {
       onDetailLink: navigation.captureLink,
       selectionScope: location.pathname,
       getResource: (resourceId) => batchResources.get(resourceId),
-      onDownload: (preferUpscaled, selectedIds, setStatus) => downloadSelectedBatchFromManifest({
+      onDownload: (preferUpscaled, selectedIds, setStatus, taskSignal) => downloadSelectedBatchFromManifest({
         manifestUrl: root.dataset.batchUrl ?? "",
         selectedIds,
         getResource: (resourceId) => batchResources.get(resourceId),
         preferUpscaled,
         filename: "rhythm-archive-" + game + ".zip",
         setStatus,
+        ...(taskSignal ? { signal: taskSignal } : {}),
       }),
     });
+    resultDownload = setupGalleryDownload(root, () => matchingResults.length > MAX_BATCH_FILES ? matchingResults : matchingResults.map((item) => displayBrowseItem(item, state.chart)), batchTray, () => updates.flush());
     populateFacetOptions(data, root);
     state = readState(game, items);
     applyStateToControls(state);
@@ -273,17 +281,22 @@ async function initializeBrowseGallery(root: HTMLElement): Promise<void> {
       setSelectedValues(root, "series", nextState.series);
     }
     updatePopoverSummaries(root);
+    searchable.sync();
   }
 
   function render(): void {
     const filtered = filterBrowseItems(items, state);
+    matchingResults = filtered;
     const visible = filtered.slice(0, visibleCount).map((item) => displayBrowseItem(item, state.chart));
     reconcile(visible.map(browseCardView), { basePath: root.dataset.basePath ?? "/", browse: true, sizes: SIDEBAR_IMAGE_SIZES });
     navigation.remember(visibleCount);
     count!.textContent = filtered.length.toLocaleString("zh-CN") + " 项资源";
+    root.querySelector<HTMLElement>("[data-gallery-result-count]")!.textContent = count!.textContent;
+    resultDownload?.update();
     loadMore!.hidden = visible.length >= filtered.length;
     if (empty) empty.hidden = filtered.length !== 0;
     updateActiveFilters(root, state);
+    searchable.sync();
     batchTray?.syncCards();
     void updateResourceStatsInDom(grid!);
   }

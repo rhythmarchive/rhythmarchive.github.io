@@ -15,7 +15,7 @@ type BatchTrayOptions = {
   onSelectionChange?: (selectedIds: readonly string[]) => void;
   onDetailLink?: (link: HTMLAnchorElement) => void;
   selectionScope?: string;
-  onDownload: (preferUpscaled: boolean, selectedIds: readonly string[], setStatus: (value: string) => void) => Promise<void>;
+  onDownload: (preferUpscaled: boolean, selectedIds: readonly string[], setStatus: (value: string) => void, signal?: AbortSignal) => Promise<void>;
 };
 
 export type BatchTrayController = {
@@ -25,6 +25,8 @@ export type BatchTrayController = {
   syncCards(): void;
   setBusy(busy: boolean): void;
   setStatus(value: string): void;
+  isBusy(): boolean;
+  downloadIds(ids: readonly string[], preferUpscaled: boolean, setStatus: (value: string) => void, signal: AbortSignal): Promise<void>;
 };
 
 export function createBatchTray(options: BatchTrayOptions): BatchTrayController {
@@ -57,6 +59,8 @@ export function createBatchTray(options: BatchTrayOptions): BatchTrayController 
       syncCards: () => undefined,
       setBusy: () => undefined,
       setStatus: () => undefined,
+      isBusy: () => false,
+      downloadIds: async () => undefined,
     };
   }
 
@@ -67,6 +71,8 @@ export function createBatchTray(options: BatchTrayOptions): BatchTrayController 
     syncCards,
     setBusy,
     setStatus: (value) => { if (status) status.textContent = value; },
+    isBusy: () => busy,
+    downloadIds: (ids, preferUpscaled, setStatus, taskSignal) => startDownload(preferUpscaled, ids, setStatus, taskSignal),
   };
 
   options.grid.addEventListener("click", (event) => {
@@ -290,14 +296,20 @@ export function createBatchTray(options: BatchTrayOptions): BatchTrayController 
     busy = value;
     for (const button of tray!.querySelectorAll<HTMLButtonElement>("[data-batch-download], [data-batch-clear], [data-batch-view], [data-batch-remove]")) button.disabled = value;
     syncCards();
+    options.root.dispatchEvent(new Event("batch:busy-change"));
   }
 
-  async function startDownload(preferUpscaled: boolean): Promise<void> {
-    if (busy || selected.size === 0) return;
+  async function startDownload(preferUpscaled: boolean, ids: readonly string[] = [...selected], setStatus = controller.setStatus, taskSignal?: AbortSignal): Promise<void> {
+    if (busy) return;
+    const snapshot = Object.freeze([...new Set(ids)]);
+    if (snapshot.length === 0 || snapshot.length > MAX_BATCH_FILES) {
+      setStatus(snapshot.length ? `最多选择 ${MAX_BATCH_FILES} 项，请减少选择。` : "没有符合条件的资源。");
+      return;
+    }
     setBusy(true);
-    controller.setStatus("正在读取下载信息…");
+    setStatus("正在读取下载信息…");
     try {
-      await options.onDownload(preferUpscaled, [...selected], controller.setStatus);
+      await options.onDownload(preferUpscaled, snapshot, setStatus, taskSignal);
     } finally {
       if (!signal.aborted && options.root.isConnected) setBusy(false);
     }
@@ -311,9 +323,16 @@ export async function downloadSelectedBatchFromManifest(options: {
   preferUpscaled: boolean;
   filename: string;
   setStatus: (value: string) => void;
+  signal?: AbortSignal;
 }): Promise<void> {
-  const signal = pageSignal();
+  const page = pageSignal();
+  const signal = options.signal ? AbortSignal.any([page, options.signal]) : page;
+  if (options.selectedIds.length === 0 || options.selectedIds.length > MAX_BATCH_FILES) {
+    options.setStatus(options.selectedIds.length ? `最多选择 ${MAX_BATCH_FILES} 项，请减少选择。` : "没有符合条件的资源。");
+    return;
+  }
   try {
+    signal.throwIfAborted();
     const urls = typeof options.manifestUrl === "string" ? [options.manifestUrl] : options.manifestUrl;
     const manifests = await Promise.all(urls.map(async (url) => {
       const response = await fetch(url, { credentials: "omit", signal });
@@ -330,7 +349,7 @@ export async function downloadSelectedBatchFromManifest(options: {
       },
     });
   } catch (error) {
-    if (signal.aborted) return;
+    if (signal.aborted) { if (!page.aborted) options.setStatus("下载已取消"); return; }
     console.error("Batch manifest failed", error);
     options.setStatus("下载失败，请重试");
   }
@@ -342,6 +361,7 @@ export async function downloadSelectedBatch(options: {
   preferUpscaled: boolean;
   filename: string;
   setStatus: (value: string) => void;
+  signal?: AbortSignal;
 }): Promise<void> {
   if (options.selectedIds.length === 0) return;
   if (options.selectedIds.length > MAX_BATCH_FILES) {
@@ -359,7 +379,7 @@ export async function downloadSelectedBatch(options: {
   const items = resolved as Array<{ resource: BatchResource; download: PublicDownload }>;
   const totalBytes = items.reduce((sum, item) => sum + item.download.sizeBytes, 0);
   if (totalBytes > MAX_BATCH_BYTES) {
-    options.setStatus("所选文件总大小超过 " + MAX_BATCH_BYTES / (1024 * 1024) + " MB，请减少选择。");
+    options.setStatus("所选文件总大小超过 " + MAX_BATCH_BYTES / (1024 * 1024) + " MiB，请减少选择。");
     return;
   }
 
@@ -368,7 +388,8 @@ export async function downloadSelectedBatch(options: {
   let downloadedBytes = 0;
   let completed = 0;
   const controller = new AbortController();
-  const signal = AbortSignal.any([controller.signal, pageSignal()]);
+  const page = pageSignal();
+  const signal = AbortSignal.any([controller.signal, page, ...(options.signal ? [options.signal] : [])]);
   const objects = new Map<string, Promise<Uint8Array>>();
   options.setStatus("正在准备 0 / " + items.length);
   try {
@@ -403,7 +424,8 @@ export async function downloadSelectedBatch(options: {
     window.setTimeout(() => URL.revokeObjectURL(objectUrl), 1000);
     options.setStatus("已交给浏览器下载");
   } catch (error) {
-    if (signal.aborted && !controller.signal.aborted) return;
+    if (page.aborted) return;
+    if (options.signal?.aborted) { options.setStatus("下载已取消"); return; }
     console.error("Batch download failed", error);
     options.setStatus("下载失败，请重试");
   }

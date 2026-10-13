@@ -5,6 +5,8 @@ import { setupListNavigation } from "./list-navigation";
 import { setupGalleryFilters } from "./gallery-filters";
 import { galleryInputUpdates } from "./gallery-input";
 import { observeImages } from "./viewport-images";
+import { setupGalleryDownload } from "./gallery-download";
+import { setupSearchableFilters } from "./searchable-filters";
 import { showGalleryLoadError } from "./gallery-load-error";
 import { createCardReconciler } from "./render-resource-card";
 import { galleryCardView } from "../lib/card-view-model";
@@ -76,7 +78,10 @@ async function initializeGallery(root: HTMLElement): Promise<void> {
   const navigation = setupListNavigation(grid, root.dataset.galleryUrl ?? "gallery");
   let visibleCount = navigation.visibleCount(PAGE_SIZE);
   let batchTray: ReturnType<typeof createBatchTray> | undefined;
+  let matchingResults: GalleryCard[] = [];
+  let resultDownload: ReturnType<typeof setupGalleryDownload> | undefined;
   const reconcile = createCardReconciler(grid);
+  const searchable = setupSearchableFilters(root);
   const filters = setupGalleryFilters(root, {
     apply: () => applyFilter("push"),
     reset: () => {
@@ -100,15 +105,17 @@ async function initializeGallery(root: HTMLElement): Promise<void> {
       onDetailLink: navigation.captureLink,
       selectionScope: location.pathname,
       getResource: (resourceId) => resources.find((resource) => resource.resourceId === resourceId),
-      onDownload: (preferUpscaled, selectedIds, setStatus) => downloadSelectedBatchFromManifest({
+      onDownload: (preferUpscaled, selectedIds, setStatus, taskSignal) => downloadSelectedBatchFromManifest({
         manifestUrl: root.dataset.batchUrl ?? "",
         selectedIds,
         getResource: (resourceId) => resources.find((resource) => resource.resourceId === resourceId),
         preferUpscaled,
         filename: "rhythm-archive-" + (root.dataset.game ?? "resources") + ".zip",
         setStatus,
+        ...(taskSignal ? { signal: taskSignal } : {}),
       }),
     });
+    resultDownload = setupGalleryDownload(root, () => matchingResults, batchTray, () => updates.flush());
     render();
     navigation.restore();
   } catch (error) {
@@ -183,6 +190,7 @@ async function initializeGallery(root: HTMLElement): Promise<void> {
       const legacy = params.get(`facet-${range.key}`);
       setRange(range, parseRangeValue(params.get(`facet-${range.key}-min`) ?? legacy, range.min), parseRangeValue(params.get(`facet-${range.key}-max`) ?? legacy, range.max));
     }
+    searchable.sync();
   }
 
   function currentResources(): GalleryCard[] {
@@ -262,12 +270,16 @@ async function initializeGallery(root: HTMLElement): Promise<void> {
 
   function render(): void {
     const filtered = currentResources();
+    matchingResults = filtered;
     const visible = filtered.slice(0, visibleCount);
     reconcile(visible.map(galleryCardView), { basePath: root.dataset.basePath ?? "/", sizes: root.classList.contains("has-filters") ? SIDEBAR_IMAGE_SIZES : GALLERY_IMAGE_SIZES });
     navigation.remember(visibleCount);
     count!.textContent = `${filtered.length.toLocaleString("zh-CN")} 项资源`;
+    root.querySelector<HTMLElement>("[data-gallery-result-count]")!.textContent = count!.textContent;
+    resultDownload?.update();
     loadMore!.hidden = visible.length >= filtered.length;
     updateActiveFilters();
+    searchable.sync();
     batchTray?.syncCards();
     void updateResourceStatsInDom(grid!);
   }

@@ -1,0 +1,19 @@
+---
+import { urls } from "../lib/site-urls";
+import { formatCount } from "../lib/format";
+interface Props {
+  game: { slug: string; displayName: string; categories: Array<{ slug: string; label: string; count: number }> };
+  category: { slug: string; label: string };
+  count: number;
+  standalone?: boolean;
+}
+const { game, category, count, standalone = false } = Astro.props;
+---
+<section class:list={["category-hero", { "page-container": standalone }]}>
+  <div><span class="archive-kicker">{game.displayName}</span><h1>{category.label}</h1></div>
+  <a class="text-link" href={urls.sitePath("/games/")}>全部游戏</a>
+</section>
+{game.categories.length > 1 ? <nav class:list={["category-nav", { "page-container": standalone }]} aria-label={`${game.displayName} 分类`}>
+  <span class="category-nav-label">资源类型</span>
+  {game.categories.map((item) => <a class:list={{ "is-active": item.slug === category.slug }} aria-current={item.slug === category.slug ? "page" : undefined} href={urls.sitePath(`/${game.slug}/${item.slug}/`)}>{item.label} <span>{formatCount(item.slug === category.slug ? count : item.count)}</span></a>)}
+</nav> : null}

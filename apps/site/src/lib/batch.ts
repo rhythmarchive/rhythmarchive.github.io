@@ -2,6 +2,12 @@ export const MAX_BATCH_FILES = 30;
 export const MAX_BATCH_BYTES = 300 * 1024 * 1024;
 export const DOWNLOAD_CONCURRENCY = 3;
 
+export function resultBatchLimitMessage(count: number): string | undefined {
+  if (!Number.isSafeInteger(count) || count <= 0) return "没有符合条件的资源。";
+  if (count > MAX_BATCH_FILES) return `当前匹配 ${count.toLocaleString("zh-CN")} 项，单次最多 ${MAX_BATCH_FILES} 项，请缩小筛选范围。`;
+  return undefined;
+}
+
 import type { PublicDownload, PublicPreview } from "./types";
 
 export type BatchResource = {
