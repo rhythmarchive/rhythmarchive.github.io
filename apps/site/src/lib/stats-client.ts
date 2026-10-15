@@ -289,14 +289,22 @@ export async function updateResourceStatsInDom(scope: ParentNode, resourceIds?: 
   }
 }
 
+// Parsed once and cloned per card, so client-rendered batches skip an HTML parse each.
+let resourceViewsTemplate: HTMLElement | undefined;
 export function appendResourceViews(parent: HTMLElement): HTMLElement {
+  if (!resourceViewsTemplate) resourceViewsTemplate = createResourceViewsTemplate();
+  const node = resourceViewsTemplate.cloneNode(true) as HTMLElement;
+  parent.append(node);
+  return node;
+}
+
+function createResourceViewsTemplate(): HTMLElement {
   const node = document.createElement("span");
   node.className = "resource-card-views";
   node.dataset.resourceViews = "";
   node.hidden = true;
   node.setAttribute("aria-label", "浏览量");
-  node.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 12s3.5-5.5 9.5-5.5 9.5 5.5 9.5 5.5-3.5 5.5-9.5 5.5S2.5 12 2.5 12Z"></path><circle cx="12" cy="12" r="2.5"></circle></svg><span data-resource-views-value></span>';
-  parent.append(node);
+  node.innerHTML ='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 12s3.5-5.5 9.5-5.5 9.5 5.5 9.5 5.5-3.5 5.5-9.5 5.5S2.5 12 2.5 12Z"></path><circle cx="12" cy="12" r="2.5"></circle></svg><span data-resource-views-value></span>';
   return node;
 }
 

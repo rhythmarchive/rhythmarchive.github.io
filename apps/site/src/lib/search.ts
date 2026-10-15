@@ -5,8 +5,14 @@ const naturalTextCollators = new Map<string, Intl.Collator>([
   ["zh-CN", new Intl.Collator("zh-CN", { numeric: true, sensitivity: "variant" })],
 ]);
 
+// Sorting compares the same titles hundreds of times; the result is pure, so a
+// bounded cache removes most of that cost without holding the whole catalog.
+const normalizedCache = new Map<string, string>();
+
 export function normalizeSearchText(value: string): string {
-  return value
+  const cached = normalizedCache.get(value);
+  if (cached !== undefined) return cached;
+  const normalized = value
     .normalize("NFKC")
     .toLocaleLowerCase("zh-CN")
     .trim()
@@ -14,6 +20,9 @@ export function normalizeSearchText(value: string): string {
     .replace(/[\u3001\u3002，。！？；：、“”‘’（）【】《》]/gu, " ")
     .replace(/[\s_-]+/gu, " ")
     .trim();
+  if (normalizedCache.size >= 8192) normalizedCache.clear();
+  normalizedCache.set(value, normalized);
+  return normalized;
 }
 
 export function compareNaturalText(left: string, right: string, locale = "zh-CN"): number {
