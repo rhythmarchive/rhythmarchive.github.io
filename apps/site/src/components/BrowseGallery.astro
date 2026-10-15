@@ -9,6 +9,7 @@ import { getBrowseFacetOptions, phigrosDifficultyHistogram, type ArcaeaFacetOpti
 import { formatCount } from "../lib/format";
 import { displayFilterDifficultyLabel } from "../lib/game-config";
 import { BASE_PATH } from "../lib/site-config";
+import { cardFrameForPreviews } from "../lib/card-frame";
 
 interface Props {
   data: BrowseGalleryData;
@@ -18,6 +19,7 @@ interface Props {
 
 const { data, categoryLabel, galleryUrl } = Astro.props;
 const initialItems = data.items.slice(0, 48);
+const cardFrame = cardFrameForPreviews(data.items.map((item) => item.preview));
 const hasUpscale = data.items.some((item) => item.hasUpscaled);
 const searchPlaceholder = data.game === "rizline" ? "搜索曲名、曲师或画师" : "搜索曲名或曲师";
 const browseOptions = getBrowseFacetOptions(data);
@@ -158,7 +160,7 @@ function formatRangeValue(value: number): string {
 
 
   <GalleryLoadError />
-  <div class="gallery-grid" data-gallery-grid>
+  <div class="gallery-grid" data-gallery-grid data-card-frame={cardFrame}>
     {initialItems.map((item, index) => <BrowseCard item={item} selectable eager={index < 6} />)}
   </div>
   <div class="gallery-empty" data-browse-empty hidden>

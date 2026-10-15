@@ -64,7 +64,7 @@ for (const game of fs.readdirSync(path.join(dist, "data/browse"))) {
   assert(isRecord(data) && Array.isArray(data.items), `${file}: expected browse items`);
   if (isRecord(data) && Array.isArray(data.items)) for (const card of data.items) checkCard(card, file);
 }
-for (const file of ["data/search-cards.json", "data/ranking-cards.json"]) {
+for (const file of ["data/search-cards.json", ...fs.readdirSync(path.join(dist, "data/ranking")).map((name) => `data/ranking/${name}`)]) {
   const cards = read(file).value;
   assert(Array.isArray(cards), `${file}: expected card array`);
   if (Array.isArray(cards)) for (const card of cards) {

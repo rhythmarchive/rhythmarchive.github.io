@@ -1,5 +1,6 @@
 ---
 import type { CardViewModel } from "../lib/card-view-model";
+import { cardRatioStyle } from "../lib/card-frame";
 import { urls } from "../lib/site-urls";
 
 interface Props {
@@ -12,6 +13,7 @@ interface Props {
 
 const { view, selectable = false, eager = false, browse = false, sizes = "(max-width: 640px) 50vw, (max-width: 1280px) 20vw, 210px" } = Astro.props;
 const { primary, fallback, srcset } = view.preview;
+const ratioStyle = cardRatioStyle(primary?.width ? primary : fallback);
 ---
 
 <article class="resource-card" data-browse-card={browse ? "" : undefined} data-resource-card data-resource-id={view.resourceId} data-game={view.game} data-resource-type={view.resourceType}>
@@ -21,7 +23,7 @@ const { primary, fallback, srcset } = view.preview;
     </button>
   ) : null}
   <a class="resource-card-link" href={urls.sitePath(view.route)}>
-    <div class="resource-card-media">
+    <div class="resource-card-media" style={ratioStyle}>
       {primary ? (
         <>
         <img

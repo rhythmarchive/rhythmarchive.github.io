@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
 import test from "node:test";
-import { mapResourceRankingEntries } from "../src/lib/ranking.js";
+import { mapResourceRankingEntries, RANKING_SHARD_COUNT, rankingShardKey } from "../src/lib/ranking.js";
 import type { ResourceRankingEntry } from "../src/lib/stats-client.js";
 import type { PublicRankingCard } from "../src/lib/types.js";
 
@@ -49,12 +49,23 @@ test("ranking page uses public card data while Stats Worker stays numeric-only",
 
   assert.ok(home.indexOf("<RecentUpdates />") < home.indexOf("<ResourceRanking"));
   assert.ok(home.indexOf("class=\"page-container home-games\"") < home.indexOf("<ResourceRanking"));
-  assert.match(component, /data-ranking-cards-url/u);
+  assert.match(component, /data-ranking-shards-url/u);
+  // Six home rows must not pull the whole search card projection.
+  assert.doesNotMatch(component + script, /search-cards/u);
   assert.match(component, /data-ranking-period="7d"/u);
   assert.match(component, /data-ranking-period="all"/u);
   assert.match(script, /mapResourceRankingEntries/u);
   assert.match(script, /暂时不可用/u);
   assert.match(stats, /\/v1\/resources\/ranking/u);
-  assert.match(generator, /ranking-cards\.json/u);
+  assert.match(generator, /rankingShardKey\(resource\.resourceId\)/u);
   assert.match(sitemap, /"\/ranking\/"/u);
+});
+
+test("ranking shards are stable, bounded and keyed by the random UUID tail", () => {
+  const keys = new Set<string>();
+  for (let index = 0; index < 512; index += 1) keys.add(rankingShardKey("01a00090-2a2d-70ad-8998-bf48655bc6" + index.toString(16).padStart(2, "0").slice(-2)));
+  assert.equal(keys.size, RANKING_SHARD_COUNT);
+  assert.ok([...keys].every((key) => /^[0-7][0-9a-f]$/u.test(key)));
+  assert.equal(rankingShardKey("6e36bb71-31f4-776a-8f45-06742af78fa6"), rankingShardKey("6e36bb71-31f4-776a-8f45-06742af78fa6"));
+  assert.equal(rankingShardKey("01a00090-2a2d-70ad-8998-bf48655bc6ff"), "7f");
 });

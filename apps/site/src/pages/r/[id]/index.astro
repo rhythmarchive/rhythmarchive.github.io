@@ -13,6 +13,7 @@ import { formatImageDimensions } from "../../../lib/format";
 import { getSiteData } from "../../../lib/site-data";
 import { rankRelatedResources } from "../../../lib/related";
 import { urls } from "../../../lib/site-urls";
+import { cardFrameForPreviews } from "../../../lib/card-frame";
 import type { PublicResource } from "../../../lib/types";
 import "../../../styles/local-library.css";
 
@@ -160,7 +161,7 @@ const description = `${resource.displayTitle}${resource.artist ? ` · ${resource
     {related.length > 0 ? (
       <section class="related-section" aria-labelledby="related-heading">
         <div class="section-heading"><div><h2 id="related-heading">相关资源</h2></div></div>
-        <div class="resource-grid related-grid">{related.map((item, index) => <ResourceCard resource={item} index={index} />)}</div>
+        <div class="resource-grid related-grid" data-card-frame={cardFrameForPreviews(related.map((item) => item.preview))}>{related.map((item, index) => <ResourceCard resource={item} index={index} />)}</div>
       </section>
     ) : null}
     <div class="detail-lightbox" data-detail-lightbox hidden role="dialog" aria-modal="true" aria-label="大图预览">

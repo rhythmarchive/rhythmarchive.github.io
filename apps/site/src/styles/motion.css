@@ -11,7 +11,6 @@
 .resource-card-body h3 { letter-spacing: .005em; }
 .archive-kicker, .section-kicker { font-family: var(--display-font); letter-spacing: .16em; }
 .home-hero h1, .page-heading h1, .category-hero h1, .game-hero h1, .detail-info h1 { letter-spacing: -.01em; }
-.home-hero .home-stats { width: fit-content; max-width: 100%; margin-inline: auto; padding: .45rem 1rem; border-radius: 999px; }
 
 /* Settings entry and panel ------------------------------------------------ */
 .site-settings { position: relative; }
@@ -89,15 +88,10 @@ html[data-theme-transition]::view-transition-old(site-header) { display: block; 
 /* Content revealed by scripts rises in once; it never replays on its own. */
 :is(.gallery-empty, .search-empty, [data-update-no-results], .gallery-load-error, .gallery-pack-progress, .update-reminder-status, .detail-library-status, .ranking-retry, [data-favorite-toggle], .detail-navigation, .giscus-fallback) { animation: archive-rise-in var(--motion-surface) var(--motion-ease) backwards; }
 .gallery-more .button, .updates-more .button { animation: archive-rise-in var(--motion-ui) var(--motion-ease) backwards; }
-.ranking-item { animation: archive-rise-in var(--motion-surface) var(--motion-ease) backwards; }
-.ranking-item:nth-child(2) { animation-delay: calc(var(--motion-stagger) * 1); }
-.ranking-item:nth-child(3) { animation-delay: calc(var(--motion-stagger) * 2); }
-.ranking-item:nth-child(4) { animation-delay: calc(var(--motion-stagger) * 3); }
-.ranking-item:nth-child(5) { animation-delay: calc(var(--motion-stagger) * 4); }
-.ranking-item:nth-child(6) { animation-delay: calc(var(--motion-stagger) * 5); }
-.ranking-item:nth-child(n+7) { animation-delay: calc(var(--motion-stagger) * 6); }
-.ranking-list[aria-busy="true"] { opacity: .55; transition: opacity var(--transition-ui); }
-.ranking-list { transition: opacity var(--transition-ui); }
+/* Ranking rows are owned by reconcileList (enter, exit ghost, rank moves); while
+   a period loads the previous rows dim and the heat bars settle to their new share. */
+.ranking-list > [data-ranking-resource-id] { transition: opacity var(--transition-ui); }
+.ranking-list[aria-busy="true"] > [data-ranking-resource-id] { opacity: .55; }
 :root[data-motion-level="rich"] .nav-library-popover:not([hidden]) .nav-game-list a,
 :root[data-motion-level="rich"] .site-nav[data-mobile-open="true"] > :is(a, details) { animation: archive-rise-in var(--motion-surface) var(--motion-ease) backwards; }
 :root[data-motion-level="rich"] .nav-library-popover:not([hidden]) .nav-game-list a:nth-child(n+2),

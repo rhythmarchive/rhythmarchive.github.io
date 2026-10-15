@@ -10,6 +10,7 @@ import GalleryHeading from "../../../components/GalleryHeading.astro";
 import { getBrowseGalleryBuild, getPublicNavigationGames, getSiteData, loadCategoryBrowseProjections } from "../../../lib/site-data";
 import { urls } from "../../../lib/site-urls";
 import VideoGallery from "../../../components/VideoGallery.astro";
+import { cardFrameForPreviews } from "../../../lib/card-frame";
 
 export function getStaticPaths() {
   const siteData = getSiteData();
@@ -38,6 +39,7 @@ const categoryId = category.slug as ResourceTypeId;
 const browseConfig = getCategoryBrowseConfig(gameId, categoryId, resources);
 const firstImage = browseData?.items.find((item) => item.preview.large)?.preview.large?.url ?? resources.find((resource) => resource.preview.large)?.preview.large?.url;
 const categoryCount = browseData?.items.length ?? category.count;
+const cardFrame = cardFrameForPreviews(resources.map((resource) => resource.preview));
 const description = `浏览并下载 ${game.displayName} ${category.label}${categoryId === "video" ? "视频" : "图片"}资源。`;
 ---
 
@@ -51,7 +53,7 @@ const description = `浏览并下载 ${game.displayName} ${category.label}${cate
     ) : (
       <>
         {storyStructure ? <ArcaeaStoryAtlas resources={resources} storyStructure={storyStructure} {...(storyAtlas ? { storyAtlas } : {})} {...(storyUi ? { storyUi } : {})} {...(storyAvatars ? { storyAvatars } : {})} /> : null}
-        <Gallery resources={storyStructure ? [] : resources.slice(0, 48)} total={resources.length} game={gameId} category={categoryId} categoryLabel={category.label} galleryUrl={urls.sitePath(`/data/galleries/${game.slug}/${category.slug}.json`)} config={browseConfig} {...(storyStructure ? { defer: true } : {})}>
+        <Gallery resources={storyStructure ? [] : resources.slice(0, 48)} total={resources.length} game={gameId} category={categoryId} categoryLabel={category.label} galleryUrl={urls.sitePath(`/data/galleries/${game.slug}/${category.slug}.json`)} config={browseConfig} cardFrame={cardFrame} {...(storyStructure ? { defer: true } : {})}>
           {!storyStructure ? <GalleryHeading slot="heading" game={game} category={category} count={categoryCount} /> : null}
         </Gallery>
       </>

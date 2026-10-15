@@ -11,6 +11,7 @@ import type { PublicResource } from "../lib/types";
 import { BASE_PATH } from "../lib/site-config";
 import { formatCount } from "../lib/format";
 import { GALLERY_IMAGE_SIZES, SIDEBAR_IMAGE_SIZES } from "../lib/card-preview";
+import { cardFrameForPreviews, type CardFrame } from "../lib/card-frame";
 
 interface Props {
   resources: PublicResource[];
@@ -21,9 +22,10 @@ interface Props {
   galleryUrl: string;
   config: CategoryBrowseConfig;
   defer?: boolean;
+  cardFrame?: CardFrame;
 }
 
-const { resources, total, game, category, categoryLabel, galleryUrl, config, defer = false } = Astro.props;
+const { resources, total, game, category, categoryLabel, galleryUrl, config, defer = false, cardFrame = cardFrameForPreviews(resources.map((resource) => resource.preview)) } = Astro.props;
 const hasFacets = config.facets.some((facet) => facet.options.length > 0 || facet.range);
 
 function rangeTicks(min: number, max: number, step: number): number[] {
@@ -128,7 +130,7 @@ function formatRangeValue(value: number): string {
   ) : null}
 
   <GalleryLoadError />
-  <div class="gallery-grid" data-gallery-grid>
+  <div class="gallery-grid" data-gallery-grid data-card-frame={cardFrame}>
     {resources.map((resource, index) => <ResourceCard resource={resource} index={index} selectable eager={index < 6} sizes={hasFacets ? SIDEBAR_IMAGE_SIZES : GALLERY_IMAGE_SIZES} />)}
   </div>
 

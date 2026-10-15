@@ -34,13 +34,20 @@ const arcaeaApkManifestUrl = `${ROS_BASE_URL}/apk/arcaea/latest.json`;
 
   <section class="page-container home-hero" aria-labelledby="home-heading">
     <div class="home-hero-content">
-      <span class="archive-kicker">Rhythm Archive</span>
+      <a class="home-apk-entry" href="#arcaea-apk">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M5 19.5h14"></path></svg>
+        <span>Arcaea 安卓安装包</span>
+        <strong data-apk-entry-version hidden></strong>
+        <span class="home-apk-entry-arrow" aria-hidden="true">→</span>
+      </a>
       <h1 id="home-heading">音游图片下载站</h1>
       <p class="home-hero-lead">收录音游曲绘、立绘、CG 等图片资源，原图与超分版都能直接下载。</p>
       <p class="home-stats" aria-label={`${formatCount(games.length)} 款游戏，${formatCount(resourceCount)} 项资源`}>
-        <strong>{formatCount(games.length)} 款游戏</strong><span aria-hidden="true">·</span><strong>{formatCount(resourceCount)} 项资源</strong>
+        <span class="home-stat"><strong>{formatCount(games.length)}</strong>款游戏</span>
+        <span class="home-stat"><strong>{formatCount(resourceCount)}</strong>项资源</span>
         <span class="home-stats-runtime" data-site-stats hidden aria-live="polite">
-          <span aria-hidden="true">·</span><strong><span data-site-total-visits>0</span> 次来访</strong><strong>今日 <span data-site-today-visits>0</span></strong>
+          <span class="home-stat"><strong data-site-total-visits>0</strong>次来访</span>
+          <span class="home-stat is-today">今日<strong data-site-today-visits>0</strong></span>
         </span>
       </p>
       <div class="home-search-block">
@@ -77,16 +84,19 @@ const arcaeaApkManifestUrl = `${ROS_BASE_URL}/apk/arcaea/latest.json`;
     </div>
   </section>
 
+  <section class="page-container home-apk" id="arcaea-apk" aria-labelledby="apk-heading" data-arcaea-apk-card data-manifest-url={arcaeaApkManifestUrl}>
+    <div class="section-heading">
+      <div><span class="section-kicker">Download</span><h2 id="apk-heading">Arcaea APK 下载</h2></div>
+      <span class="section-heading-note">版本信息来自官网首页</span>
+    </div>
+    <div class="apk-card">
+      <span class="apk-card-icon"><GameIcon game="arcaea" /></span>
+      <div class="apk-card-state" data-arcaea-apk-state><span>正在获取版本信息…</span></div>
+    </div>
+  </section>
+
   <RecentUpdates />
 
   <ResourceRanking compact limit={6} headingId="home-ranking-heading" />
-
-  <section class="page-container home-apk" aria-labelledby="apk-heading" data-arcaea-apk-card data-manifest-url={arcaeaApkManifestUrl}>
-    <div class="section-heading">
-      <div><span class="section-kicker">Download</span><h2 id="apk-heading">Arcaea APK</h2></div>
-      <span class="section-heading-note">版本信息来自官网首页</span>
-    </div>
-    <div class="apk-card-state" data-arcaea-apk-state><span>正在获取版本信息…</span></div>
-  </section>
   <script src="../scripts/apk-card.ts"></script>
 </BaseLayout>

@@ -16,3 +16,12 @@ export function mapResourceRankingEntries(cards: readonly PublicRankingCard[], e
     return [{ ...card, views: entry.views, downloads: entry.downloads }];
   });
 }
+// Ranking rows need card data for a handful of IDs, so the public projection is
+// split by the random tail of the UUIDv7 into small shards (data/ranking/xx.json)
+// instead of shipping every card to resolve six rows.
+export const RANKING_SHARD_COUNT = 128;
+
+export function rankingShardKey(resourceId: string): string {
+  const tail = Number.parseInt(resourceId.slice(-2), 16);
+  return ((Number.isFinite(tail) ? tail : 0) % RANKING_SHARD_COUNT).toString(16).padStart(2, "0");
+}

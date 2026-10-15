@@ -9,6 +9,7 @@ import { publicContentVersion } from "../../../lib/game-index";
 import { getSiteData } from "../../../lib/site-data";
 
 import { urls } from "../../../lib/site-urls";
+import { cardFrameForPreviews } from "../../../lib/card-frame";
 import type { PublicResource, PublicUpdate } from "../../../lib/types";
 
 export function getStaticPaths() {
@@ -46,7 +47,7 @@ const contentVersion = publicContentVersion(update.contentVersion);
   </section>
   <section class="page-container gallery-shell update-detail-body" data-update-detail-root data-base-path={BASE_PATH} data-update-id={update.id} aria-label="本次更新的资源">
     <p class="update-detail-status" data-update-detail-status>{formatCount(resources.length)} 项资源</p>
-    <div class="resource-grid update-detail-grid" data-update-detail-grid>
+    <div class="resource-grid update-detail-grid" data-update-detail-grid data-card-frame={cardFrameForPreviews(resources.map((resource) => resource.preview))}>
       {update.items.map((item) => {
         const resource = resourcesById.get(item.resourceId);
         return resource ? <div data-update-detail-item data-update-detail-category={item.category}><ResourceCard resource={resource} selectable /></div> : null;

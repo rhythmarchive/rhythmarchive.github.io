@@ -1,10 +1,14 @@
-import { loadStaticData } from "./static-data";
 import { onPageLoad, pageSignal } from "./page-lifecycle";
+import { reconcileList } from "./motion";
 import { GAME_CONFIG } from "../lib/game-config";
 import { sitePath } from "../lib/url";
-import { mapResourceRankingEntries } from "../lib/ranking";
-import { formatStatsCount, getBrowserStatsClient, isValidResourceId, type ResourceRankingPeriod } from "../lib/stats-client";
+import { mapResourceRankingEntries, rankingShardKey, type ResourceRankingRow } from "../lib/ranking";
+import { formatStatsCount, getBrowserStatsClient, isValidResourceId, type ResourceRanking, type ResourceRankingPeriod } from "../lib/stats-client";
 import type { PublicRankingCard } from "../lib/types";
+
+// Shards are small immutable public projections; keep them for the session so a
+// period switch or a return visit only fetches shards it has not seen yet.
+const shards = new Map<string, Promise<PublicRankingCard[]>>();
 
 onPageLoad(() => {
   for (const root of document.querySelectorAll<HTMLElement>("[data-ranking-root]")) {
@@ -20,13 +24,14 @@ async function initializeRanking(root: HTMLElement): Promise<void> {
   const periodButtons = [...root.querySelectorAll<HTMLButtonElement>("[data-ranking-period]")];
   const client = getBrowserStatsClient();
   const compact = root.dataset.rankingCompact === "true";
+  const shardsUrl = root.dataset.rankingShardsUrl ?? "";
   const limitValue = Number(root.dataset.rankingLimit);
   const limit = Number.isSafeInteger(limitValue) && limitValue > 0 && limitValue <= 50 ? limitValue : 30;
   if (!list || !status) return;
 
   let period = readInitialPeriod();
-  let cardsPromise: Promise<PublicRankingCard[]> | undefined;
   let runToken = 0;
+  const rows = new Map<string, HTMLAnchorElement>();
 
   for (const button of periodButtons) {
     button.addEventListener("click", () => {
@@ -44,7 +49,7 @@ async function initializeRanking(root: HTMLElement): Promise<void> {
 
   if (!client.enabled) {
     if (compact) root.hidden = true;
-    else status!.textContent = "热榜暂时不可用，请稍后再试。";
+    else showMessage("热榜暂时不可用，请稍后再试。");
     return;
   }
   await run();
@@ -57,34 +62,46 @@ async function initializeRanking(root: HTMLElement): Promise<void> {
     if (retry) retry.hidden = true;
     updatePeriodButtons();
     try {
-      const [cards, ranking] = await Promise.all([loadCards(), client.getResourceRanking(period, limit)]);
-      if (signal.aborted || token !== runToken) return;
+      const ranking = await client.getResourceRanking(period, limit);
       if (!ranking) throw new Error("ranking request unavailable");
-      const rows = mapResourceRankingEntries(cards, ranking.entries);
-      list!.replaceChildren(...rows.map((row, index) => createRankingRow(row, index + 1)));
-      status!.textContent = rows.length > 0
-        ? (period === "7d" ? "近 7 天" : "累计") + " · " + formatStatsCount(rows.length) + " 项"
-        : "暂无热门资源。";
+      const cards = await loadCards(ranking.entries.map((entry) => entry.resourceId));
+      if (signal.aborted || token !== runToken) return;
+      const mapped = mapResourceRankingEntries(cards, ranking.entries);
+      const top = mapped[0]?.views ?? 0;
+      reconcileList(list!, mapped.map((row, index) => syncRow(row, index + 1, top)), (node) => node.dataset.rankingResourceId ?? "placeholder:" + node.dataset.rank);
+      list!.removeAttribute("aria-busy");
+      status!.textContent = mapped.length > 0 ? describeRange(ranking) : (period === "7d" ? "近 7 天还没有浏览记录。" : "还没有浏览记录。");
     } catch (error) {
       if (signal.aborted || token !== runToken) return;
       console.error("Ranking data failed", error);
-      status!.textContent = list!.childElementCount ? "刷新失败，下面仍是上次的热榜，可以重试。" : "热榜暂时不可用，请重试。";
+      const hasRows = rows.size > 0 && list!.querySelector("[data-ranking-resource-id]");
+      if (!hasRows) list!.replaceChildren();
+      list!.removeAttribute("aria-busy");
+      status!.textContent = hasRows ? "刷新失败，下面仍是上次的热榜，可以重试。" : "热榜暂时不可用，请重试。";
       if (retry) retry.hidden = false;
-    } finally {
-      if (!signal.aborted && token === runToken) list!.removeAttribute("aria-busy");
     }
   }
 
-  async function loadCards(): Promise<PublicRankingCard[]> {
-    if (!cardsPromise) {
-      cardsPromise = loadStaticData<unknown>(root.dataset.rankingCardsUrl ?? "").then((values) => Array.isArray(values) ? values.filter(isRankingCard) : []);
-    }
-    try {
-      return await cardsPromise;
-    } catch (error) {
-      cardsPromise = undefined;
-      throw error;
-    }
+  function showMessage(message: string): void {
+    list!.replaceChildren();
+    list!.removeAttribute("aria-busy");
+    status!.textContent = message;
+  }
+
+  // One row node per resource for this list, so a period switch moves the rows
+  // that stay (and keeps their loaded thumbnails) instead of rebuilding them.
+  function syncRow(row: ResourceRankingRow, rank: number, top: number): HTMLAnchorElement {
+    const link = rows.get(row.resourceId) ?? createRankingRow(row, rank, compact);
+    rows.set(row.resourceId, link);
+    link.dataset.rank = String(rank);
+    link.style.setProperty("--share", String(top > 0 ? Math.max(.04, row.views / top) : 0));
+    link.querySelector<HTMLElement>(".ranking-position")!.textContent = String(rank);
+    link.querySelector<HTMLElement>("[data-ranking-views]")!.textContent = formatStatsCount(row.views);
+    const downloads = link.querySelector<HTMLElement>("[data-ranking-downloads]")!;
+    downloads.textContent = row.downloads > 0 ? "下载 " + formatStatsCount(row.downloads) : "";
+    downloads.hidden = row.downloads <= 0;
+    link.setAttribute("aria-label", `第 ${rank} 名 ${row.displayTitle}，${formatStatsCount(row.views)} 次浏览`);
+    return link;
   }
 
   function readInitialPeriod(): ResourceRankingPeriod {
@@ -94,9 +111,40 @@ async function initializeRanking(root: HTMLElement): Promise<void> {
   function updatePeriodButtons(): void {
     for (const button of periodButtons) button.setAttribute("aria-pressed", String(button.dataset.rankingPeriod === period));
   }
+
+  async function loadCards(resourceIds: readonly string[]): Promise<PublicRankingCard[]> {
+    const keys = [...new Set(resourceIds.filter(isValidResourceId).map(rankingShardKey))];
+    const loaded = await Promise.all(keys.map((key) => loadShard(shardsUrl + key + ".json")));
+    return loaded.flat();
+  }
 }
 
-function createRankingRow(row: ReturnType<typeof mapResourceRankingEntries>[number], rank: number): HTMLElement {
+function loadShard(url: string): Promise<PublicRankingCard[]> {
+  const existing = shards.get(url);
+  if (existing) return existing;
+  const request = fetch(url, { credentials: "omit" }).then(async (response) => {
+    if (!response.ok) throw new Error(`Ranking shard failed with ${response.status}`);
+    const values = await response.json() as unknown;
+    return Array.isArray(values) ? values.filter(isRankingCard) : [];
+  });
+  shards.set(url, request);
+  request.catch(() => { if (shards.get(url) === request) shards.delete(url); });
+  return request;
+}
+
+function describeRange(ranking: ResourceRanking): string {
+  const end = formatDay(ranking.date);
+  if (ranking.period === "all") return end ? `累计浏览量，统计到${end}` : "累计浏览量";
+  const start = ranking.startDate ? formatDay(ranking.startDate) : undefined;
+  return start && end ? `${start}至${end}的浏览量` : "近 7 天浏览量";
+}
+
+function formatDay(value: string): string | undefined {
+  const match = /^\d{4}-(\d{2})-(\d{2})$/u.exec(value);
+  return match ? `${Number(match[1])}月${Number(match[2])}日` : undefined;
+}
+
+function createRankingRow(row: ResourceRankingRow, rank: number, compact: boolean): HTMLAnchorElement {
   const link = document.createElement("a");
   link.className = "ranking-item";
   link.href = resolveSitePath(row.route);
@@ -104,15 +152,20 @@ function createRankingRow(row: ReturnType<typeof mapResourceRankingEntries>[numb
 
   const position = document.createElement("span");
   position.className = "ranking-position";
-  position.setAttribute("aria-label", "第 " + rank + " 名");
-  position.textContent = String(rank);
+  position.setAttribute("aria-hidden", "true");
 
   const thumb = document.createElement("span");
   thumb.className = "ranking-thumb";
   if (row.image) {
     const image = document.createElement("img");
     image.src = row.image.url;
-    image.alt = row.displayTitle;
+    // The full ranking shows its podium larger; let the browser pick the sharper
+    // existing preview there instead of stretching the small one.
+    if (!compact && rank <= 3 && row.fallback?.url && row.image.width && row.fallback.width) {
+      image.srcset = `${row.image.url} ${row.image.width}w, ${row.fallback.url} ${row.fallback.width}w`;
+      image.sizes = "(max-width: 760px) 92vw, 400px";
+    }
+    image.alt = "";
     if (row.image.width) image.width = row.image.width;
     if (row.image.height) image.height = row.image.height;
     image.loading = rank <= 3 ? "eager" : "lazy";
@@ -144,11 +197,15 @@ function createRankingRow(row: ReturnType<typeof mapResourceRankingEntries>[numb
 
   const stats = document.createElement("span");
   stats.className = "ranking-stats";
+  stats.setAttribute("aria-hidden", "true");
   const views = document.createElement("strong");
-  views.textContent = formatStatsCount(row.views);
+  views.dataset.rankingViews = "";
   const label = document.createElement("small");
-  label.textContent = "浏览";
-  stats.append(views, label);
+  label.textContent = "次浏览";
+  const downloads = document.createElement("small");
+  downloads.className = "ranking-downloads";
+  downloads.dataset.rankingDownloads = "";
+  stats.append(views, label, downloads);
 
   link.append(position, thumb, copy, stats);
   return link;

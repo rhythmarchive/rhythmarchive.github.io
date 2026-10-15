@@ -9,6 +9,8 @@ interface Props {
 }
 
 const { compact = false, limit = 30, headingId } = Astro.props;
+// Placeholders hold the list's height until the rows arrive (all of them on home).
+const placeholders = Math.min(limit, compact ? 6 : 10);
 
 ---
 
@@ -17,7 +19,7 @@ const { compact = false, limit = 30, headingId } = Astro.props;
   data-ranking-root
   data-ranking-compact={compact ? "true" : undefined}
   data-ranking-limit={limit}
-  data-ranking-cards-url={urls.sitePath("/data/search-cards.json")}
+  data-ranking-shards-url={urls.sitePath("/data/ranking/")}
   aria-labelledby={headingId}
 >
   {compact ? (
@@ -35,6 +37,7 @@ const { compact = false, limit = 30, headingId } = Astro.props;
     <div class="ranking-page-head page-heading">
       <span class="archive-kicker">Discovery</span>
       <h1 id={headingId}>资源热榜</h1>
+      <p class="ranking-page-lead">按详情页浏览量排序，点进去就能看原图和下载。</p>
       <div class="ranking-page-controls">
         <div class="ranking-period-switch" role="group" aria-label="热榜范围">
           <button type="button" data-ranking-period="7d" aria-pressed="true">近 7 天</button>
@@ -45,9 +48,18 @@ const { compact = false, limit = 30, headingId } = Astro.props;
     </div>
   )}
 
-  <div class="ranking-list" data-ranking-list></div>
-  <p class="ranking-status" data-ranking-status aria-live="polite">正在获取热榜…</p>
-  <button class="button button-secondary ranking-retry" type="button" data-ranking-retry hidden>重试</button>
+  <div class="ranking-list" data-ranking-list aria-busy="true">
+    {Array.from({ length: placeholders }, (_, index) => (
+      <div class="ranking-item is-placeholder" data-rank={index + 1} aria-hidden="true">
+        <span class="ranking-position">{index + 1}</span><span class="ranking-thumb"></span>
+        <span class="ranking-copy"><span></span><span></span></span>
+      </div>
+    ))}
+  </div>
+  <div class="ranking-footer">
+    <p class="ranking-status" data-ranking-status aria-live="polite">正在获取热榜…</p>
+    <button class="ranking-retry" type="button" data-ranking-retry hidden>重试</button>
+  </div>
 </section>
 
 <script src="../scripts/ranking.ts"></script>

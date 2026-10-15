@@ -4,6 +4,7 @@ import { buildBrowseGalleryData } from "../src/lib/browse-gallery.js";
 import { GAME_CONFIG } from "../src/lib/game-config.js";
 import { batchDownloads, browserBrowseData, galleryCard } from "../src/lib/gallery-projection.js";
 import { selectCardPreview, cardImage } from "../src/lib/card-preview.js";
+import { rankingShardKey } from "../src/lib/ranking.js";
 import { findWorkspaceRoot, getSiteData, loadCategoryBrowseProjections, loadFormalBrowseProjections } from "../src/lib/site-data.js";
 
 const root = findWorkspaceRoot();
@@ -16,6 +17,7 @@ const galleryDir = path.join(publicDataDir, "galleries");
 const batchDir = path.join(publicDataDir, "batch");
 const browseGalleryDir = path.join(publicDataDir, "browse");
 const storyDataDir = path.join(publicDataDir, "story");
+const rankingDir = path.join(publicDataDir, "ranking");
 const hiddenArcaeaCategories = ["startup", "story-texture"];
 
 const relativePublicDataDir = path.relative(path.resolve(root), path.resolve(publicDataDir));
@@ -24,13 +26,21 @@ await rm(publicDataDir, { recursive: true, force: true });
 await mkdir(galleryDir, { recursive: true });
 await mkdir(batchDir, { recursive: true });
 await mkdir(storyDataDir, { recursive: true });
+await mkdir(rankingDir, { recursive: true });
 for (const category of hiddenArcaeaCategories) {
   await rm(path.join(galleryDir, "arcaea", `${category}.json`), { force: true });
 }
 await writeJson(path.join(publicDataDir, "game-index.json"), data.games);
 await writeJson(path.join(publicDataDir, "search-index.json"), data.searchIndex);
 await writeJson(path.join(publicDataDir, "search-cards.json"), data.resources.map(toSearchCard));
-await writeJson(path.join(publicDataDir, "ranking-cards.json"), data.resources.map(toRankingCard));
+const rankingShards = new Map<string, ReturnType<typeof toRankingCard>[]>();
+for (const resource of data.resources) {
+  const key = rankingShardKey(resource.resourceId);
+  const shard = rankingShards.get(key) ?? [];
+  shard.push(toRankingCard(resource));
+  rankingShards.set(key, shard);
+}
+for (const [key, cards] of rankingShards) await writeJson(path.join(rankingDir, `${key}.json`), cards);
 if (categoryBrowse.arcaea.storyAtlas) await writeJson(path.join(storyDataDir, "arcaea.json"), categoryBrowse.arcaea.storyAtlas);
 
 for (const [key, resources] of Object.entries(data.galleries)) {

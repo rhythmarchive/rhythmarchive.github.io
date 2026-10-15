@@ -33,7 +33,7 @@ const required = [
   "sitemap.xml",
   "data/search-index.json",
   "data/search-cards.json",
-  "data/ranking-cards.json",
+  "data/ranking/00.json",
 ];
 const missing = required.filter((file) => !files.includes(file));
 if (missing.length > 0) throw new Error("Missing required dist files: " + missing.join(", "));
@@ -93,8 +93,9 @@ if (/<(?:script|link)\b[^>]+(?:src|href)="[^"]*search-index\.json/iu.test(homeHt
 
 const searchIndex = JSON.parse(fs.readFileSync(path.join(dist, "data", "search-index.json"), "utf8")) as unknown;
 if (!Array.isArray(searchIndex) || searchIndex.length !== projection.searchIndex.length) throw new Error("Search index is missing or has the wrong entry count.");
-const rankingCards = JSON.parse(fs.readFileSync(path.join(dist, "data", "ranking-cards.json"), "utf8")) as unknown;
-if (!Array.isArray(rankingCards) || rankingCards.length !== projection.resources.length) throw new Error("Ranking cards are missing or have the wrong entry count.");
+const rankingDir = path.join(dist, "data", "ranking");
+const rankingCards = fs.readdirSync(rankingDir).flatMap((file) => JSON.parse(fs.readFileSync(path.join(rankingDir, file), "utf8")) as unknown[]);
+if (rankingCards.length !== projection.resources.length) throw new Error("Ranking card shards are missing or have the wrong entry count.");
 const sizeBytes = files.reduce((sum, file) => sum + fs.statSync(path.join(dist, file)).size, 0);
 const html = htmlFiles.map((file) => fs.readFileSync(path.join(dist, file), "utf8")).join("\n");
 console.log(JSON.stringify({ status: "PASS", htmlPageCount: htmlFiles.length, resourceDetailCount: detailFiles.length, distFileCount: files.length, distSizeBytes: sizeBytes, searchEntries: searchIndex.length, ordinaryImageCount: html.match(/<img\b/giu)?.length ?? 0 }, null, 2));

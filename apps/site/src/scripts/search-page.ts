@@ -7,6 +7,7 @@ import { GAME_CONFIG } from "../lib/game-config";
 import { updateResourceStatsInDom } from "../lib/stats-client";
 import { createCardReconciler } from "./render-resource-card";
 import type { CardViewModel } from "../lib/card-view-model";
+import { cardFrameFor } from "../lib/card-frame";
 import type { PublicSearchCard, PublicSearchEntry } from "../lib/types";
 
 onPageLoad(() => {
@@ -133,6 +134,8 @@ async function initializeSearch(root: HTMLElement): Promise<void> {
         return;
       }
       matches = ranked.map((entry) => cardMap.get(entry.resourceId)).filter((card): card is PublicSearchCard => Boolean(card));
+      // One frame per result set (not per batch), so "load more" never reshapes rows.
+      results.dataset.cardFrame = cardFrameFor(matches.map((card) => card.image ?? card.fallback));
       render();
       navigation.restore();
     } catch (error) {

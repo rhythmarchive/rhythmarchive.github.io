@@ -467,9 +467,11 @@ test("homepage uses the search-first entry architecture and a stable social imag
   assert.match(source, /版本信息来自官网首页/u);
   assert.match(source, /game-card-grid/u);
   assert.doesNotMatch(source, /home-categories|featuredCategories|games\.map\(\(game\) => game\.displayName\)\.join/u);
-  // Games lead the page; the niche APK entry closes it.
+  // Games lead the page; the APK card follows them and the hero links to it.
   assert.ok(source.indexOf("home-games") < source.indexOf("<RecentUpdates />"));
-  assert.ok(source.indexOf("<ResourceRanking") < source.indexOf("class=\"page-container home-apk\""));
+  assert.ok(source.indexOf("home-games") < source.indexOf("class=\"page-container home-apk\""));
+  assert.ok(source.indexOf("class=\"page-container home-apk\"") < source.indexOf("<RecentUpdates />"));
+  assert.match(source, /class="home-apk-entry" href="#arcaea-apk"/u);
   assert.match(source, /ogImage=\{homeOgImage\}/u);
   assert.match(source, /\/og\/home\.png/u);
   assert.equal(fs.existsSync(path.join(siteRoot, "public", "og", "home.png")), true);
@@ -983,8 +985,8 @@ test("APK card omits digest and previous-version disclosures while preserving pr
   const styles = fs.readFileSync(path.join(siteRoot, "src", "styles", "global.css"), "utf8");
   assert.match(source, /renderManifest\(cardElement, stateElement, manifest\.latest\)/u);
   assert.match(source, /GITHUB_RELEASES_URL/u);
-  assert.match(source, /createExternalLink\(GITHUB_RELEASES_URL, "button apk-official-button", "前往 GitHub Releases"\)/u);
-  assert.match(source, /"下载APK"/u);
+  assert.match(source, /createExternalLink\(GITHUB_RELEASES_URL, "button apk-official-button", "历史版本"\)/u);
+  assert.match(source, /"下载 APK"/u);
   assert.doesNotMatch(source, /校验信息|上一版本|createDigest|createPreviousVersion|manifest\.previous|apk-digest|apk-previous/u);
   assert.doesNotMatch(styles, /apk-digest|apk-previous|text-button/u);
   assert.doesNotMatch(source, /官方下载链接|前往Releases|GitHub 下载/u);

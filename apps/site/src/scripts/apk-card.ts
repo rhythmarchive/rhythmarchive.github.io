@@ -1,4 +1,5 @@
 import { onPageLoad, pageSignal } from "./page-lifecycle";
+import { revealContent } from "./motion";
 import { formatPublicApkBytes, parsePublicArcaeaApkManifest, type PublicArcaeaApkEntry } from "../lib/apk";
 import { GITHUB_RELEASES_URL } from "../lib/site-config";
 
@@ -22,13 +23,13 @@ async function loadManifest(cardElement: HTMLElement, stateElement: HTMLElement,
     if (signal.aborted) return;
     stateElement.replaceChildren();
     const message = document.createElement("p");
-    message.textContent = "暂时无法获取 APK 下载信息";
+    message.textContent = "暂时没拿到安装包信息，可以先去官网下载。";
     const link = document.createElement("a");
     link.className = "text-link";
     link.href = "https://arcaea.lowiro.com/zh";
     link.target = "_blank";
     link.rel = "noopener noreferrer";
-    link.textContent = "访问 Arcaea 官网";
+    link.textContent = "Arcaea 官网";
     stateElement.append(message, link);
   }
 }
@@ -43,7 +44,7 @@ function renderManifest(cardElement: HTMLElement, stateElement: HTMLElement, lat
   identity.className = "apk-card-identity";
   const product = document.createElement("span");
   product.className = "apk-card-product";
-  product.textContent = "Arcaea APK";
+  product.textContent = "Arcaea · Android";
   const version = document.createElement("strong");
   version.textContent = latest.version;
   const tag = document.createElement("span");
@@ -55,16 +56,23 @@ function renderManifest(cardElement: HTMLElement, stateElement: HTMLElement, lat
   metadata.className = "apk-card-meta";
   metadata.append(
     createMetaItem("文件大小", formatPublicApkBytes(latest.fileSize)),
-    createMetaItem("发布时间 / 更新时间", formatDate(latest.publishedAt)),
+    createMetaItem("更新时间", formatDate(latest.publishedAt)),
   );
   main.append(identity, metadata);
 
   const actions = document.createElement("div");
   actions.className = "apk-download-actions";
-  actions.append(createExternalLink(GITHUB_RELEASES_URL, "button apk-official-button", "前往 GitHub Releases"));
-  actions.append(createDownloadLink(latest.downloads.github, latest.fileName, "button apk-download-button", "下载APK"));
+  actions.append(createExternalLink(GITHUB_RELEASES_URL, "button apk-official-button", "历史版本"));
+  actions.append(createDownloadLink(latest.downloads.github, latest.fileName, "button apk-download-button", "下载 APK"));
 
   stateElement.append(main, actions);
+  revealContent(stateElement);
+  // The hero entry points here; it shows the version once this one request has it.
+  const entryVersion = document.querySelector<HTMLElement>("[data-apk-entry-version]");
+  if (entryVersion) {
+    entryVersion.textContent = latest.version;
+    entryVersion.hidden = false;
+  }
 }
 
 function createMetaItem(label: string, value: string): HTMLDivElement {

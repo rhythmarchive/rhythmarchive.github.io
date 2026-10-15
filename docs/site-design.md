@@ -12,8 +12,14 @@ Animation explains origin, destination and changed state. Expressive motion is w
 
 - Palette: blue `--accent` / `--accent-strong`, cyan `--cyan`, and a sparing warm pink `--accent-warm` (hero glow, rhythm mark). Light archive background, deep navy dark theme; both from tokens on `:root`.
 - Brand mark: the three-bar rhythm mark on `.section-kicker::before` (blue · cyan · pink, slanted end). Reuse it for new section kickers instead of new ornaments.
-- Home stage: a dark tilted note highway built from the local game icons (`public/game-icons/*.webp`, PNG fallback) falling toward a judgement line. It is `aria-hidden`, paused offscreen and on hover, static under reduced motion, hidden at ≤900px.
+- Home stage: a tilted note highway built from the local game icons (`public/game-icons/*.webp`, PNG fallback) falling toward a judgement line. It has no box of its own: the lane floor, lane lines, glows, judgement line and note shadows come from the `--stage-*` tokens in `experience.css` (light and dark sets), and a vertical mask fades it into the page. It is `aria-hidden`, paused offscreen and on hover, static under reduced motion, hidden at ≤900px.
 - Cards: elevation on hover is a `::before` shadow layer whose opacity changes; a soft cursor spotlight (`--mx/--my`) appears on resource and game cards for fine pointers.
+
+## Resource card grids
+
+Every resource grid (`.gallery-grid`, `.resource-grid`: galleries, Browse, search, library, related, update detail) is a CSS grid whose cards stretch to the row height, and whose media boxes share one frame per list: `data-card-frame` = `tall` 3:4, `square`, `landscape` 4:3 (default) or `wide` 16:9. `lib/card-frame.ts` picks the frame whose typical image fills the most of it (geometric mean of the filled share over the list's preview sizes). Build-time lists compute it from the whole category, not the first batch; search sets it once per result set so “加载更多” never reshapes rows.
+
+Each card carries its preview ratio as `--r` on `.resource-card-media`. An image within `CARD_CROP_TOLERANCE` (1.18, mirrored in `global.css`) of the frame fills it with at most ~15% cropped; any other shape keeps most of itself on a quiet mat. Character portraits are always contained. No shadows on card images (many covers are transparent PNGs), no extra image request, and the masonry column layout is gone. When adding a card list, put it in one of the two grid classes and give it a frame; do not add per-page aspect rules.
 
 ## Typography
 
@@ -70,9 +76,17 @@ Difficulty, chart constant and BPM filters keep the two numeric fields and the d
 
 ## Home information architecture
 
-    Header -> hero (title, lead, totals, search, 热门分类 shortcuts | note stage) -> 收录游戏 -> 最近更新 -> 热榜 -> Arcaea APK -> Footer
+    Header -> hero (APK entry, title, lead, totals strip, search, 热门分类 shortcuts | note stage) -> 收录游戏 -> Arcaea APK -> 最近更新 -> 热榜 -> Footer
 
-The hero keeps “音游图片下载站”, a one-line description, totals from PublicSiteData and the shared SearchBox. Quick links are count-gated category entries, labeled as categories, never as search popularity. Recent updates are a three-column grid (two at ≤1080px, swipe carousel on phones). The APK card reads the existing public manifest through the existing parser; failure falls back to the official entry.
+The hero keeps “音游图片下载站”, a one-line description, totals from PublicSiteData and the shared SearchBox. The totals strip reads number-then-unit with thin separators; the visit counts (`renderSiteStats`) join it when the one site-visit response arrives and never replace the static totals. Quick links are count-gated category entries, labeled as categories, never as search popularity. Recent updates are a three-column grid (two at ≤1080px, swipe carousel on phones). On phones the game cards are two compact columns.
+
+Arcaea APK is discoverable from the first screen: the hero's small `.home-apk-entry` link (in the kicker position, quieter than search) jumps to `#arcaea-apk`, which follows the game list. The card reads the existing public manifest through the existing parser once; the same response fills the hero entry's version. Failure falls back to the official entry. A 2 GB file is never offered from the hero directly — the card shows size and date next to the download.
+
+## Stats and ranking
+
+Site totals: one `site_visit` request per page load (existing), rendered into the hero strip. Ranking (`ResourceRanking.astro` on home with 6 rows, `/ranking/` with 30): one `/v1/resources/ranking` request per period (the stats client caches it for the session), then only the card shards those IDs need from `data/ranking/<xx>.json` (128 shards by the UUID's random tail, `rankingShardKey`; ~4 KB gzip each). The ranking never loads `search-cards.json`.
+
+Rows are server-rendered as placeholders (all six on home, so the section does not jump) and replaced through `reconcileList`: rows that stay keep their node and thumbnail and glide to the new rank, new rows enter, dropped rows leave. A heat bar scales to the leader's views (`--share`, transform only). Top three get tinted rank badges; `/ranking/` shows them as a podium with the sharper existing preview via `srcset`. The status line names the period from the response dates (“10月10日至10月16日的浏览量”). Failure keeps the last rows with “刷新失败，下面仍是上次的热榜，可以重试。” and an inline 重试; with nothing to show it says so and offers 重试. When stats are not configured the home section hides.
 
 ## Shared game index and navigation
 

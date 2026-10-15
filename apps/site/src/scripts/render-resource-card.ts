@@ -1,6 +1,7 @@
 import { observeImage } from "./viewport-images";
 import { animateCards, captureCards } from "./motion";
 import type { CardViewModel } from "../lib/card-view-model";
+import { imageRatio } from "../lib/card-frame";
 import { appendResourceViews } from "../lib/stats-client";
 import { sitePath } from "../lib/url";
 
@@ -48,6 +49,8 @@ export function renderResourceCard(view: CardViewModel, options: CardRenderOptio
     const height = primary.height ?? fallback?.height;
     if (width) image.width = width;
     if (height) image.height = height;
+    const ratio = imageRatio({ width, height });
+    if (ratio) media.style.setProperty("--r", String(Number(ratio.toFixed(4))));
     image.loading = options.index < 6 ? "eager" : "lazy";
     image.decoding = "async";
     if (srcset) image.dataset.viewportSrcset = srcset;

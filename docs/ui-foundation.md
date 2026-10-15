@@ -7,7 +7,7 @@
 - `apps/site/src/styles/global.css` 管理主题、字体与动效变量、页面容器、标题、通用字段、按钮、筛选、卡片和状态面板。
 - `motion.css` 管理交互与动效层（浮层进出、列表反馈、按压、加载占位）；`experience.css` 管理品牌标记、首页构图、卡片悬浮层、指针效果、区间分布图和不可选中控件列表。两者在 `BaseLayout` 中按 global → 专用样式 → motion → experience 的顺序加载。
 - `local-library.css`、`media-gallery.css` 只管理收藏与媒体视图的专用布局；普通控件复用全局规格。
-- 资源卡片继续使用现有 `CardShell.astro`、`card-view-model.ts` 和 `render-resource-card.ts`，分别覆盖静态与动态渲染，不另建卡片实现。
+- 资源卡片继续使用现有 `CardShell.astro`、`card-view-model.ts` 和 `render-resource-card.ts`，分别覆盖静态与动态渲染，不另建卡片实现。卡片网格统一使用 `.gallery-grid` / `.resource-grid`，同一列表共用 `data-card-frame` 画框（由 `lib/card-frame.ts` 选择），规则见 [site-design.md](site-design.md#resource-card-grids)。
 - 剧情地图的深色画布、节点形状与摄影机控件保留在 `story-atlas.css`。其游戏内视觉语义不套用普通资源列表的样式。
 
 ## 视觉与布局规格
@@ -59,4 +59,4 @@
 
 ## 待专项评估
 
-移动端剧情图谱的初始相机沿用桌面标定，窄屏可能裁切节点；地图占屏较大且 `touch-action: none` 会接管图内触摸滚动。后续专项评估窄屏初始总览和地图高度，保留现有平移能力。本轮收尾不调整图谱、搜索瀑布流或详情标题位置；展示风格留到第三阶段统一评估。
+移动端剧情图谱的初始相机沿用桌面标定，窄屏可能裁切节点；地图占屏较大且 `touch-action: none` 会接管图内触摸滚动。后续专项评估窄屏初始总览和地图高度，保留现有平移能力。图谱与详情标题位置仍待评估；搜索与图库已改为统一画框网格。
