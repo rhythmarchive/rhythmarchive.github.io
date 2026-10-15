@@ -1,82 +1,91 @@
 # Site design
 
-This document describes the shared interface and the design principles for contributors. Local development and checks are covered in [CONTRIBUTING](../CONTRIBUTING.md).
-
-## Theme and visual language
-
-The site shares light, dark, and system themes, a blue/cyan accent, luminous layered cards, and an image-first layout. Preserve the anime and rhythm-game character: jacket art, game marks, chapter maps and CG compositions remain the visual signature. Shared type and motion make movement between these distinct surfaces coherent; they do not turn every page into the same template.
+This document is the design contract for the public site: what must stay, which shared mechanisms to reuse, and what may evolve. Layout tokens and control specs are in [ui-foundation.md](ui-foundation.md); local development and checks are in [CONTRIBUTING](../CONTRIBUTING.md).
 
 ## Product principles
 
-This is an image resource download site. Images are primary content. Search, category discovery, preview, metadata, and download are more important than decoration. The interface should be simple, clear, restrained, consistent, readable, and discoverable.
+This is an image resource download site. Images are primary content; search, category discovery, preview, metadata and download outrank decoration. The interface is clear, restrained where it carries information and expressive where it carries identity: the home stage, game marks, jacket art, chapter maps and CG compositions are the visual signature.
 
-Animation is part of the interface: it explains origin, destination and changed state. Appropriate expressive animation is welcome. Avoid unrelated decoration, competing entrances, SaaS dashboard language, marketing claims, and internal terms such as manifest, object key, or extractor in player-facing copy.
+Animation explains origin, destination and changed state. Expressive motion is welcome when it never delays an action, never requests extra images and always has a matching exit.
+
+## Visual identity
+
+- Palette: blue `--accent` / `--accent-strong`, cyan `--cyan`, and a sparing warm pink `--accent-warm` (hero glow, rhythm mark). Light archive background, deep navy dark theme; both from tokens on `:root`.
+- Brand mark: the three-bar rhythm mark on `.section-kicker::before` (blue · cyan · pink, slanted end). Reuse it for new section kickers instead of new ornaments.
+- Home stage: a dark tilted note highway built from the local game icons (`public/game-icons/*.webp`, PNG fallback) falling toward a judgement line. It is `aria-hidden`, paused offscreen and on hover, static under reduced motion, hidden at ≤900px.
+- Cards: elevation on hover is a `::before` shadow layer whose opacity changes; a soft cursor spotlight (`--mx/--my`) appears on resource and game cards for fine pointers.
 
 ## Typography
 
-Use local fonts without web-font requests: Avenir Next / Segoe UI for Latin, PingFang SC / Microsoft YaHei / Noto Sans CJK SC for Chinese. Display and reading roles share compatible metrics; never split a Chinese title into separately animated characters. Use weight 400 for reading, 500 for controls, 600 for resource titles and 700 for headings. Avoid arbitrary 720–850 weights that resolve inconsistently on installed fonts.
+Display text uses the bundled Outfit latin variable font (`src/assets/fonts`, OFL, preloaded, metric-matched `Outfit Fallback`) through `--display-font`. Reading text and all Chinese use local system fonts (`--font-reading`, `--font-cjk`); there are no CJK web-font requests. Weights: 400 reading, 500 controls, 600 resource titles, 700 headings. Tabular numbers for counts and dates; never split a Chinese title into animated characters; Chinese headings keep normal tracking.
 
-The shared scale is caption 12px, metadata 13px, control 14px, body 16px, lead 18px, section 24–32px, page 32–52px and home display 36–64px. Compact resource cards may use 13px titles on phones, while form inputs remain 16px to avoid mobile zoom. Reading line-height is 1.65, compact metadata 1.5, headings 1.2. Use normal Chinese tracking and balanced heading wrapping; long resource names must wrap without widening the viewport. Tabular numbers belong to counts and dates. Retain the home display, compact gallery heading, detail title and Story Atlas editorial hierarchy.
+Scale: caption 12px, meta 13px, control 14px, body 16px, lead 18px, sections 24–32px, page 32–52px, home display 36–69px. Form inputs stay 16px on phones.
+
+## Copy
+
+Write like a person who runs the site: short, concrete, polite without ceremony. State the result and the next possible action (“刷新失败，下面仍是上次的热榜，可以重试。”). Avoid marketing claims, “一站式/海量/极致”-style phrases, SaaS dashboard words and internal terms (manifest, object key, extractor, ROS). Status text that only confirms a visible change is announced to screen readers, not shown.
+
+## Selection
+
+Operational chrome (labels, toolbars, chips, segmented controls, tabs, badges, trays, kickers, stats) is `user-select: none` via the list in `experience.css`. Titles, artists, metadata values, update notes and body text stay selectable. Add new operational containers to that list rather than scattering rules.
 
 ## Motion system
 
-The header offers a labeled native selector, available on desktop and mobile. Save `rhythm-archive-motion` locally; apply it before first paint, preserve it across client navigation, synchronize tabs, and respond live to system changes. Storage failure leaves the current session functional. Motion never gates data or interaction.
+The settings panel in the header (theme + motion segmented radios) saves `rhythm-archive-theme` and `rhythm-archive-motion`; both apply before first paint, persist across client navigation, sync tabs and follow system changes. Storage failure leaves the session functional.
 
 | Setting | Effective behavior |
 | --- | --- |
 | 跟随系统 (system, default) | Standard normally; reduced when prefers-reduced-motion requests it |
-| 精简 (reduced) | Short opacity/color feedback; no spatial entrances, card travel, shimmer or smooth scroll |
-| 标准 (standard) | Content crossfades, compact anchored surfaces, short list feedback, desktop thumbnail-to-viewer continuity |
-| 丰富 (rich) | Directional page travel, visible-card entrance sequence and retained-card sorting movement, fuller anchored surfaces and thumbnail-to-viewer continuity on touch as well |
+| 精简 (reduced) | Short opacity/color feedback only; no travel, stagger, shimmer, smooth scroll, hero animation or tap rings |
+| 标准 (standard) | Crossfades, anchored surfaces, list enter/exit, desktop thumbnail-to-viewer continuity, tap ring |
+| 丰富 (rich) | Larger travel and stagger, directional page travel, retained-card sorting movement, tap sparks on non-touch |
 
-Tokens define fast feedback (120–160ms), UI (180–240ms) and surfaces (260–360ms); exits use fast feedback. Deceleration uses cubic-bezier(.22,1,.36,1), with a separate quick exit curve. Rich is more choreography and amplitude, not a longer wait before an action. Bound stagger to the visible portion of the current batch. No permanent compositor layers, scroll listeners, full-gallery transforms or additional image requests for motion.
+Tokens (`global.css`, overridden per level): `--motion-fast/ui/surface`, `--motion-ease` (decelerate), `--motion-spring`, `--motion-exit-ease`, `--motion-rise/travel/lift/stagger`. Rich means more amplitude and choreography, not longer waits.
 
-One owner per transition: ClientRouter owns page changes, the reconciler owns changed cards, the surface helper owns visibility, the viewer image owns its geometry, and CSS owns image readiness. Initial SSR/restore does not replay list entrance. Cached images do not repeatedly fade. A rapid reversal starts at the current frame; stale exit completion cannot hide a reopened surface. Changing motion level finishes active owned animations and settles visibility immediately. No per-card route snapshot names or original-image preload.
+### Shared mechanisms (reuse, do not duplicate)
 
-Loading reserves existing geometry and decorates only requested visible images. Reduced uses a static loading surface; standard/rich use bounded shimmer. Existing viewport loading, responsive high-resolution candidates, fallback and explicit download semantics remain unchanged. CSS transitions and Web Animations API extend the existing Astro ClientRouter; no animation framework is needed. Native view-transition absence falls back to a normal functional swap.
+| Need | Use |
+| --- | --- |
+| Show/hide a popover, sheet, tray, row | `setSurfaceVisible(node, visible, mode)` in `scripts/motion.ts`; the surface declares its entry transform with CSS `--surface-enter`. Exit makes it inert immediately and hidden at the end; a reversal continues from the current frame |
+| Chips, thumbs, small keyed lists | `reconcileList(container, nextNodes, key)` (keyed enter, exit ghost, FLIP for kept items); `chipKey` for filter chips |
+| Re-sorted / filtered card grid | `captureCards` + `animateCards` (bounded to visible cards) |
+| Status or panel text that changed | `revealContent(node)` |
+| Settling everything on level change | `finishMotion` |
+| Page lifecycle | `onPageLoad`, `pageSignal`, `onPageCleanup` in `page-lifecycle.ts` |
+| Pointer feedback | `scripts/pointer-effects.ts`: one pooled tap layer (add selectors to `TAP_TARGETS`), spotlight, `/` search shortcut, back-to-top, hero pause observer |
+
+One owner per transition: ClientRouter owns page changes, the reconciler owns changed cards and chips, the surface helper owns visibility, the viewer image owns its geometry, CSS owns image readiness. Initial SSR/restore never replays list entrances; cached images do not fade again.
+
+### Must keep
+
+- Every element that animates in has an exit (or an explicit instant hide under reduced). Removing an exit is a regression.
+- Rapid toggles and interrupted transitions start from the current visual frame; stale completions never hide a reopened surface.
+- Motion never gates data, focus or interaction.
+- No backdrop blur on scrolling or fixed chrome (header, batch tray, card badges); no animated `box-shadow`, `filter` or layout properties; no permanent `will-change` except on running loops; no scroll-driven animation work beyond one rAF-throttled check.
+- No image request is added for an effect. Effects reuse already loaded images or local static assets.
+
+## Range filters
+
+Difficulty, chart constant and BPM filters keep the two numeric fields and the dual slider as the source of truth (URL params, chips, clear). A build-time histogram (`lib/range-histogram.ts`, `RangeHistogram.astro`) sits on the same axis above the slider: tap a bar to select that bucket, drag across bars for a span, tap the only selected bucket again to reset. The histogram writes to the sliders and dispatches their normal events; it never filters on its own. Bars are `aria-hidden`; the keyboard path is the fields and sliders.
 
 ## Home information architecture
 
-The home page is an entry point rather than a complete category catalog. Its order is:
+    Header -> hero (title, lead, totals, search, 热门分类 shortcuts | note stage) -> 收录游戏 -> 最近更新 -> 热榜 -> Arcaea APK -> Footer
 
-    Header -> centered hero and search -> optional quick links -> Arcaea APK -> recent updates -> resource ranking -> collected games -> Footer
-
-The hero keeps the Rhythm Archive brand, uses the single title “音游图片下载站”, shows a short resource description, and derives game/resource totals from PublicSiteData. It does not list every game name and does not repeat per-game category tiles. Categories remain on game pages and existing category routes.
-
-The search box is the primary home action and uses the shared SearchBox and search core. Quick links, when present, are count-gated entries from the existing public game/category projection and are labeled as shortcuts; the site does not imply search popularity.
-
-The Arcaea APK card is a prominent secondary entry. It reads the existing public `/apk/arcaea/latest.json` manifest through the existing parser and URL validation boundary. GitHub and official downloads remain direct links. A manifest failure falls back to the Arcaea official entry.
+The hero keeps “音游图片下载站”, a one-line description, totals from PublicSiteData and the shared SearchBox. Quick links are count-gated category entries, labeled as categories, never as search popularity. Recent updates are a three-column grid (two at ≤1080px, swipe carousel on phones). The APK card reads the existing public manifest through the existing parser; failure falls back to the official entry.
 
 ## Shared game index and navigation
 
-`PublicGameIndex` may expose `contentVersion` and `lastUpdatedAt` as public projection fields. `lastUpdatedAt` means the maximum `lifecycle.updatedAt` among that game’s final public, published resources. `contentVersion` comes only from a unique `provenance.gameVersion` associated with that latest public update; missing or ambiguous source versions are omitted. It must never be interpreted as the official latest game version.
-
-The home game section and `/games/` use the same compact responsive game card. Cards link to each game primary category (the game root remains a compatibility redirect) and show the game image, name, optional collected content version, public resource count, and public content update date. The default order is `lastUpdatedAt DESC`, with deterministic name/slug ties. A positive “最近更新” label is allowed for a recent public content update; no stale, outdated, or official-version status is inferred. The home may cap the list at a small future-safe limit and always provides a “查看全部游戏” entry.
-
-`/games/` is the complete public game library. It reuses the home card semantics and provides recent-update and name sorting without a heavyweight client framework. The header exposes one extensible “游戏库” popover with the public game list and a link to `/games/`; it must not flatten one permanent top-level link per game. At narrow/mobile widths, the primary navigation moves into a menu while search and theme controls remain directly available.
-
-## Responsive and interaction rules
-
-Desktop game cards use three columns at wide widths and two at medium widths; mobile uses one column. Home order follows the information architecture above; search remains the primary action. Touch targets, `:focus-visible`, keyboard behavior, light/dark/system tokens, and the motion preference remain part of the shared implementation contract. Spatial hover feedback is confined to fine pointers and scales with the chosen motion level.
-
-English display headings use normal kerning and restrained tracking so names such as Rhythm Archive, Arcaea, Phigros, Rizline, In Falsus, and Rotaeno remain readable. Chinese headings must not be loosened by a global positive letter-spacing rule.
-
-## Shared information architecture
-
-Home, search, game routes, category routes, gallery cards, detail pages, navigation, and downloads use shared semantics. Games may have a logo, name, accent, supported categories, and richer metadata, but not a separate page family.
-
-Whole-site and in-game search use the same search core. Public data comes from Catalog projections and never exposes local source paths, credentials, or internal workflow state.
+`PublicGameIndex` may expose `contentVersion` and `lastUpdatedAt` (max public `lifecycle.updatedAt`; `contentVersion` only from a unique `provenance.gameVersion` of that update, never the official latest version). Home and `/games/` share the game card and link to each game's primary category; default order is `lastUpdatedAt DESC`. The header has one “游戏库” popover; at narrow widths primary nav moves into a menu while search and settings stay visible.
 
 ## Local favorites and history
 
-`/library/` shares one page for favorites and browsing history. Resource details record visits and provide a favorite toggle; no account or server storage is involved. Records remain in the current browser only. Favorites are capped at 500 without automatic eviction; history is deduplicated, capped at 200, and expires after 90 days. Clearing history preserves favorites.
+`/library/` holds favorites (cap 500, no eviction) and history (dedup, cap 200, 90 days), browser-only. Records store identity, category, title and time, not URLs. The page reads category card indices for its visible slice and reuses the viewport image loader, card renderer, list navigation and batch tray.
 
-Local records store resource identity, category, title, and time rather than image or download URLs. The page reads existing category card indices only for its visible slice, keeps only saved resources, and uses the shared viewport image loader, card renderer, list navigation, and batch tray. Download manifests are read only when downloading selected resources. Unavailable resources retain a removal action; failed category reads offer retry. Storage errors are visible and never claim a successful save. Collection scripts are confined to this page and resource details.
+## What may evolve
 
-## Theme consistency
-
-Visual changes share the existing routes, search and gallery semantics, responsive behavior, and functional state. Theme tokens and shared components keep these behaviors consistent across pages.
+Section compositions, the hero stage, card ornament, copy wording, breakpoints, color balance and motion amplitudes may change with a browser check. Routes, URL/filter state, search core, card semantics, download/original/upscale paths, lazy image loading, traffic boundaries and the mechanisms above are shared contracts.
 
 ## Change review
 
-Compare home, the game library, search, at least two games, detail, and mobile/narrow layout. Exercise all four preferences, system changes, reload/navigation persistence, rapid surface reversal, filtering/sorting, viewer/history continuity, cached and slow images, keyboard and no-JS fallback. Verify both themes and mobile overflow. Product direction for this revision explicitly authorizes a coordinated type and motion upgrade while preserving page identity and existing architecture.
+For a UI change, check in a real browser: home, game library, search, two games (one with range filters), detail, updates and a phone width; light and dark; reduced and rich; rapid open/close of one surface; filter/sort; viewer/back restore; no horizontal overflow; no console errors. Content-only updates (catalog, artwork, Browse, Updates) do not need this visual pass.

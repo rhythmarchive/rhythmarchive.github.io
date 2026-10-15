@@ -22,3 +22,10 @@ Routine Git: confirm child root/status -> standard fetch/pull --rebase -> one co
 
 Repository skills are in .agents/skills. update-timeline is tracked; other development skills are local. Read only the skill needed by the task.
 Arcaea APK updater is independent: tools/arcaea-apk-updater package and tools/arcaea-apk-update.ts remain public; its check-only mode is read-only. Credentials come from Workspace config/.dev.vars or CI Secrets, never public files.
+
+## Frontend UI changes
+
+Read docs/site-design.md (contract: must-keep, shared mechanisms, what may evolve) and docs/ui-foundation.md before changing pages, styles or motion.
+Reuse motion.ts (setSurfaceVisible, reconcileList, animateCards, revealContent), page-lifecycle.ts and pointer-effects.ts; do not add a parallel animation path or framework.
+Anything that animates in keeps an exit; rapid reversal continues from the current frame; reduced motion stays functional. No backdrop blur on scrolling/fixed chrome, no animated shadow/filter/layout, no effect that requests extra images.
+UI changes need a real browser check (desktop + phone width, light/dark, one reduced and one rich pass, no horizontal overflow, no console errors). Content-only updates skip this visual pass.

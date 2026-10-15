@@ -4,7 +4,8 @@
 
 ## 样式入口与复用
 
-- `apps/site/src/styles/global.css` 管理主题、页面容器、标题、通用字段、按钮、筛选、卡片和状态面板。
+- `apps/site/src/styles/global.css` 管理主题、字体与动效变量、页面容器、标题、通用字段、按钮、筛选、卡片和状态面板。
+- `motion.css` 管理交互与动效层（浮层进出、列表反馈、按压、加载占位）；`experience.css` 管理品牌标记、首页构图、卡片悬浮层、指针效果、区间分布图和不可选中控件列表。两者在 `BaseLayout` 中按 global → 专用样式 → motion → experience 的顺序加载。
 - `local-library.css`、`media-gallery.css` 只管理收藏与媒体视图的专用布局；普通控件复用全局规格。
 - 资源卡片继续使用现有 `CardShell.astro`、`card-view-model.ts` 和 `render-resource-card.ts`，分别覆盖静态与动态渲染，不另建卡片实现。
 - 剧情地图的深色画布、节点形状与摄影机控件保留在 `story-atlas.css`。其游戏内视觉语义不套用普通资源列表的样式。
@@ -37,7 +38,7 @@
 
 ## 动效与过渡
 
-共用 `--motion-fast: 140ms`、`--motion-ui: 180ms`、`--motion-surface: 220ms` 和 `--motion-ease: cubic-bezier(.22, 1, .36, 1)`。普通反馈最快，页面过渡其次，偶尔出现的浮层稍长；交互结果立即更新，不等待动画。
+标准档共用 `--motion-fast: 140ms`、`--motion-ui: 200ms`、`--motion-surface: 280ms`、`--motion-ease: cubic-bezier(.22, 1, .36, 1)`，另有 `--motion-spring`、`--motion-exit-ease` 与位移变量；丰富档和精简档在 `:root[data-motion-level]` 上覆盖这些值。普通反馈最快，页面过渡其次，浮层稍长；交互结果立即更新，不等待动画。档位语义与共享机制见 [site-design.md](site-design.md#motion-system)。
 
 | 场景 | 行为与边界 |
 | --- | --- |
@@ -45,10 +46,10 @@
 | 图片详情 | 只对实际加载的可见图片及主动切换的面板短淡化；原图、超分与难度差分仍沿用既有按需加载和错误回退 |
 | 大图开合 | 桌面从当前预览几何位置展开并回收，保持图片比例；触屏只淡化。使用已请求的当前图片，不克隆预览或预取邻图 |
 | 浮层与多选栏 | `motion.ts` 统一显隐；退出期间立即 inert，完成后 hidden。快速反向操作从当前状态继续，旧回调不能隐藏重新打开的浮层 |
-| 列表内容 | 客户端数据更新后只对容器短淡化，不逐卡片错峰。触屏长列表跳过整体动画。多选使用既有 syncCards，保持卡片节点和焦点 |
+| 列表内容 | 排序/筛选用 `captureCards` + `animateCards`，只动可见卡片；筛选标签、批量缩略图用 `reconcileList`，带进入、退出残影与位置过渡。多选使用既有 syncCards，保持卡片节点和焦点 |
 | 按钮与下载 | 统一颜色、边界和轻微按压反馈；下载期间 disabled 与 aria-busy。触屏不保留悬浮抬升，选中卡片不位移 |
 
-`prefers-reduced-motion: reduce` 不启用页面过渡，JavaScript 动效直接完成状态更新；原有 CSS 减少动态效果规则继续生效。只动画 opacity 和 transform，不动画布局尺寸、滤镜或模糊，不常驻 will-change、滚动监听、动画循环或图片观察器。
+`prefers-reduced-motion: reduce` 或“精简”档不启用页面过渡，JavaScript 动效直接完成状态更新。只动画 opacity 和 transform，不动画布局尺寸、阴影、滤镜或模糊；悬浮阴影放在伪元素上改 opacity。滚动区域和固定栏不使用 backdrop-filter。唯一常驻循环是首页音符轨道，离屏和悬停时暂停。
 
 页面仍由 Astro 静态生成，客户端导航使用 [Astro ClientRouter](https://docs.astro.build/en/guides/view-transitions/)。页面脚本通过 `page-lifecycle.ts` 在 `astro:page-load` 初始化，在 `astro:before-swap` 中止页面监听、清理计时器、观察器和验证组件。页头持久化，活动导航标记从新页面同步。
 
