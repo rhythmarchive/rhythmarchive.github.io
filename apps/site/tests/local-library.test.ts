@@ -83,7 +83,7 @@ test("detail visit/favorite controls persist, sync other tabs, and never claim f
     getAttribute: (key: string) => attrs.get(key),
     addEventListener: (_: string, fn: () => void) => { click = fn; },
   };
-  const status = { textContent: "" };
+  const status = { textContent: "", dataset: {} as Record<string, string> };
   for (const [name, value] of Object.entries({ localStorage: storage, window: { addEventListener: (key: string, fn: (event: { key?: string; persisted?: boolean }) => void) => windowEvents.set(key, fn) } })) {
     const original = Object.getOwnPropertyDescriptor(globalThis, name);
     Object.defineProperty(globalThis, name, { configurable: true, value });
@@ -100,6 +100,7 @@ test("detail visit/favorite controls persist, sync other tabs, and never claim f
   rejectWrites = true;
   click();
   assert.match(status.textContent, /保存失败/);
+  assert.equal(status.dataset.tone, "warning");
   assert.equal(attrs.get("aria-pressed"), "true");
   rejectWrites = false;
   library.remove("favorites", "A");

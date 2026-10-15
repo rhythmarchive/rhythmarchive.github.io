@@ -23,7 +23,7 @@ export function setupGalleryDownload(root: HTMLElement, getResults: () => readon
     trigger.disabled = Boolean(message) || tray.isBusy();
     trigger.title = message ?? "打包全部匹配结果";
     // The full count already sits beside the button; keep mobile guidance short.
-    limit.textContent = results.length === 0 ? "暂无可打包结果" : `单次最多 ${MAX_BATCH_FILES} 项${results.length > MAX_BATCH_FILES ? "，请缩小筛选范围" : ""}`;
+    limit.textContent = results.length === 0 ? "暂无可打包结果" : results.length > MAX_BATCH_FILES ? `超出单次 ${MAX_BATCH_FILES} 项上限，请缩小筛选范围` : `单次最多 ${MAX_BATCH_FILES} 项`;
     summary.textContent = message ?? `将下载当前全部 ${results.length.toLocaleString("zh-CN")} 项结果。`;
     confirm.disabled = Boolean(message) || tray.isBusy();
     const upscale = version.querySelector<HTMLOptionElement>('[value="upscaled"]')!;

@@ -14,7 +14,7 @@ const { id } = Astro.props;
     <p data-result-summary></p>
     <label class="filter-control"><span>下载版本</span><select data-result-version aria-label="下载版本"><option value="original">原图</option><option value="upscaled">优先使用超分版</option></select></label>
     <p class="detail-note" data-result-upscale-note hidden>没有超分版的资源使用原图。</p>
-    <p class="detail-note">单次最多 {MAX_BATCH_FILES} 项，总大小不超过 {MAX_BATCH_BYTES / 1048576} MiB。打包期间不会改变手动选择。</p>
+    <p class="detail-note">单次最多 {MAX_BATCH_FILES} 项，总大小不超过 {MAX_BATCH_BYTES / 1048576} MiB。打包不影响你手动勾选的项目。</p>
   </div>
   <footer><button class="button button-secondary" type="button" data-result-close>取消</button><button class="button button-primary" type="button" data-result-confirm>打包下载</button></footer>
 </dialog>

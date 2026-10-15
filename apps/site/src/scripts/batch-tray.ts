@@ -421,7 +421,7 @@ export async function downloadSelectedBatch(options: {
     const statsClient = getBrowserStatsClient();
     for (const item of items) void statsClient.trackResourceDownload(item.resource.resourceId);
     window.setTimeout(() => URL.revokeObjectURL(objectUrl), 1000);
-    options.setStatus("已交给浏览器下载");
+    options.setStatus("已开始下载");
   } catch (error) {
     if (page.aborted) return;
     if (options.signal?.aborted) { options.setStatus("下载已取消"); return; }

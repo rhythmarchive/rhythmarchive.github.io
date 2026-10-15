@@ -68,7 +68,7 @@ async function initializeRanking(root: HTMLElement): Promise<void> {
     } catch (error) {
       if (signal.aborted || token !== runToken) return;
       console.error("Ranking data failed", error);
-      status!.textContent = list!.childElementCount ? "更新失败，仍显示上次热榜。请重试。" : "热榜暂时不可用，请重试。";
+      status!.textContent = list!.childElementCount ? "刷新失败，下面仍是上次的热榜，可以重试。" : "热榜暂时不可用，请重试。";
       if (retry) retry.hidden = false;
     } finally {
       if (!signal.aborted && token === runToken) list!.removeAttribute("aria-busy");

@@ -117,7 +117,7 @@ const description = `${resource.displayTitle}${resource.artist ? ` · ${resource
         <p class="detail-note detail-library-status" data-library-status role="status"></p>
         <h1>{resource.displayTitle}</h1>
         {resource.artist ? <p class="detail-artist">{resource.artist}</p> : null}
-        {resource.subtitle ? <p class="detail-subtitle">{resource.subtitle}</p> : null}
+        {resource.subtitle && resource.subtitle !== resource.artist ? <p class="detail-subtitle">{resource.subtitle}</p> : null}
         {hasDifficultyArtwork ? <a class="detail-artwork-entry" href="#artwork-variants"><span>{variants.length} 张难度差分曲绘</span><strong>切换曲绘 <span aria-hidden="true">↗</span></strong></a> : null}
         <div class="detail-downloads">
           {variants.map((variant, index) => <DownloadActions variant={variant} resourceId={resource.resourceId} active={index === activeVariantIndex} artworkLabel={hasDifficultyArtwork ? `${variant.label} 曲绘` : undefined} />)}
