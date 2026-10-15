@@ -459,14 +459,17 @@ test("homepage uses the search-first entry architecture and a stable social imag
   const source = fs.readFileSync(path.join(siteRoot, "src", "pages", "index.astro"), "utf8");
   assert.doesNotMatch(source, /找到下一张|想保存的曲绘/u);
   assert.match(source, /<h1 id="home-heading">音游图片下载站<\/h1>/u);
-  assert.match(source, /收录音游曲绘、立绘、CG 等图片资源/u);
+  assert.match(source, /收录音游曲绘、立绘、CG 等图片资源，原图与超分版都能直接下载。/u);
+  assert.match(source, /class="home-hero-stage" aria-hidden="true"/u);
   assert.match(source, /formatCount\(games\.length\)/u);
   assert.match(source, /formatCount\(resourceCount\)/u);
   assert.match(source, /data-arcaea-apk-card/u);
   assert.match(source, /版本信息来自官网首页/u);
   assert.match(source, /game-card-grid/u);
   assert.doesNotMatch(source, /home-categories|featuredCategories|games\.map\(\(game\) => game\.displayName\)\.join/u);
-  assert.ok(source.indexOf("home-apk") < source.indexOf("home-games"));
+  // Games lead the page; the niche APK entry closes it.
+  assert.ok(source.indexOf("home-games") < source.indexOf("<RecentUpdates />"));
+  assert.ok(source.indexOf("<ResourceRanking") < source.indexOf("class=\"page-container home-apk\""));
   assert.match(source, /ogImage=\{homeOgImage\}/u);
   assert.match(source, /\/og\/home\.png/u);
   assert.equal(fs.existsSync(path.join(siteRoot, "public", "og", "home.png")), true);

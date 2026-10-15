@@ -36,9 +36,6 @@ const detailUrl = urls.sitePath("/updates/" + encodeURIComponent(update.id) + "/
       </div>
       {!compact && <a class="update-card-link" href={detailUrl}>查看本次更新</a>}
     </div>
-    <div class="update-card-summary" aria-label="更新类型">
-      <span>{summaryLabel}</span>
-    </div>
     {previewItems.length > 0 && (
       <div class="update-card-previews">
         {previewItems.map((item) => (

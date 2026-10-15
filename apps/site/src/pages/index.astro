@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import GameCard from "../components/GameCard.astro";
+import GameIcon from "../components/GameIcon.astro";
 import SearchBox from "../components/SearchBox.astro";
 import RecentUpdates from "../components/RecentUpdates.astro";
 import ResourceRanking from "../components/ResourceRanking.astro";
@@ -17,6 +18,14 @@ const quickLinks = buildSearchQuickLinks({ games }).slice(0, 6);
 const resourceCount = siteData.resources.length;
 const homeOgImage = urls.absoluteUrl("/og/home.png");
 const description = "收录音游曲绘、立绘、CG 等图片资源。";
+// Three falling lanes built from the local game icons. One loop holds six notes and
+// is doubled, so the track always covers the (tall, tilted) lane without gaps.
+const lanes = [0, 1, 2].map((lane) => {
+  const picks = games.filter((_, index) => index % 3 === lane);
+  const filled = picks.length >= 3 ? picks : [...picks, ...games.filter((game) => !picks.includes(game)).slice(lane, lane + 3 - picks.length)];
+  const loop = [...filled, ...filled];
+  return [...loop, ...loop];
+});
 const arcaeaApkManifestUrl = `${ROS_BASE_URL}/apk/arcaea/latest.json`;
 ---
 
@@ -27,7 +36,7 @@ const arcaeaApkManifestUrl = `${ROS_BASE_URL}/apk/arcaea/latest.json`;
     <div class="home-hero-content">
       <span class="archive-kicker">Rhythm Archive</span>
       <h1 id="home-heading">音游图片下载站</h1>
-      <p>收录音游曲绘、立绘、CG 等图片资源</p>
+      <p class="home-hero-lead">收录音游曲绘、立绘、CG 等图片资源，原图与超分版都能直接下载。</p>
       <p class="home-stats" aria-label={`${formatCount(games.length)} 款游戏，${formatCount(resourceCount)} 项资源`}>
         <strong>{formatCount(games.length)} 款游戏</strong><span aria-hidden="true">·</span><strong>{formatCount(resourceCount)} 项资源</strong>
         <span class="home-stats-runtime" data-site-stats hidden aria-live="polite">
@@ -38,34 +47,46 @@ const arcaeaApkManifestUrl = `${ROS_BASE_URL}/apk/arcaea/latest.json`;
         <SearchBox label="搜索音游图片资源" />
       </div>
       {quickLinks.length > 0 && (
-        <div class="home-quick-links" aria-label="快捷入口">
-          <span>快捷入口</span>
+        <div class="home-quick-links" aria-label="热门分类">
+          <span>热门分类</span>
           {quickLinks.map((entry) => <a href={urls.sitePath(entry.href)}>{entry.label}<small>{formatCount(entry.count)}</small></a>)}
         </div>
       )}
     </div>
-  </section>
-
-  <section class="page-container home-apk" aria-labelledby="apk-heading" data-arcaea-apk-card data-manifest-url={arcaeaApkManifestUrl}>
-    <div class="section-heading">
-      <div><span class="section-kicker">下载入口</span><h2 id="apk-heading">Arcaea APK</h2></div>
-      <span class="section-heading-note">版本信息来自官网首页</span>
+    <div class="home-hero-stage" aria-hidden="true">
+      <div class="hero-highway">
+        {lanes.map((lane, laneIndex) => (
+          <div class="hero-lane" style={`--lane: ${laneIndex}`}>
+            <div class="hero-lane-track">
+              {lane.map((game) => <span class="hero-note"><GameIcon game={game.slug} eager /></span>)}
+            </div>
+          </div>
+        ))}
+      </div>
+      <div class="hero-judge-line"><span></span></div>
     </div>
-    <div class="apk-card-state" data-arcaea-apk-state><span>正在获取版本信息…</span></div>
   </section>
-  <script src="../scripts/apk-card.ts"></script>
-
-  <RecentUpdates />
-
-  <ResourceRanking compact limit={6} headingId="home-ranking-heading" />
 
   <section class="page-container home-games" aria-labelledby="games-heading">
     <div class="section-heading">
-      <div><span class="section-kicker">Archive</span><h2 id="games-heading">收录游戏</h2></div>
-      <a class="section-link" href={urls.sitePath("/games/")}>查看全部游戏</a>
+      <div><span class="section-kicker">Games</span><h2 id="games-heading">收录游戏</h2></div>
+      <a class="section-link" href={urls.sitePath("/games/")}>全部游戏 <span aria-hidden="true">→</span></a>
     </div>
     <div class="game-card-grid">
       {visibleGames.map((game) => <GameCard game={game} />)}
     </div>
   </section>
+
+  <RecentUpdates />
+
+  <ResourceRanking compact limit={6} headingId="home-ranking-heading" />
+
+  <section class="page-container home-apk" aria-labelledby="apk-heading" data-arcaea-apk-card data-manifest-url={arcaeaApkManifestUrl}>
+    <div class="section-heading">
+      <div><span class="section-kicker">Download</span><h2 id="apk-heading">Arcaea APK</h2></div>
+      <span class="section-heading-note">版本信息来自官网首页</span>
+    </div>
+    <div class="apk-card-state" data-arcaea-apk-state><span>正在获取版本信息…</span></div>
+  </section>
+  <script src="../scripts/apk-card.ts"></script>
 </BaseLayout>

@@ -54,7 +54,7 @@ const isGameLibrary = isWithin(urls.sitePath("/games/"))
       <a class:list={{ "nav-feedback": true, "is-active": isFeedback }} href={urls.sitePath("/feedback/")} aria-current={isFeedback ? "page" : undefined}>反馈</a>
     </nav>
     <div class="site-header-actions">
-      <a class="nav-search header-icon-button" href={urls.sitePath("/search/")} aria-label="搜索资源" title="搜索资源">
+      <a class="nav-search header-icon-button" href={urls.sitePath("/search/")} aria-label="搜索资源" title="搜索资源（快捷键 /）" aria-keyshortcuts="/">
         <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.3"/><path d="m16 16 4.5 4.5"/></svg>
       </a>
       <div class="site-settings">

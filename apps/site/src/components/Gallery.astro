@@ -1,5 +1,6 @@
 ---
 import ResourceCard from "./ResourceCard.astro";
+import RangeHistogram from "./RangeHistogram.astro";
 import GalleryFilters from "./GalleryFilters.astro";
 import BatchTray from "./BatchTray.astro";
 import GalleryLoadError from "./GalleryLoadError.astro";
@@ -101,6 +102,7 @@ function formatRangeValue(value: number): string {
                 </label>
               </div>
             </div>
+            <RangeHistogram histogram={facet.histogram} min={facet.range.min} max={facet.range.max} label={facet.label} />
             <div class="filter-range-slider" data-gallery-range-slider>
               <div class="filter-range-track" aria-hidden="true"></div>
               <div class="filter-range-fill" aria-hidden="true"></div>

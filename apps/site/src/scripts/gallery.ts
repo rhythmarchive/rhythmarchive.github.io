@@ -17,6 +17,7 @@ import { compareGalleryBpm, compareGalleryHighestConstant, compareNullableNumber
 import { compareNaturalText, normalizeSearchText } from "../lib/search";
 import { updateResourceStatsInDom } from "../lib/stats-client";
 import { chipKey, reconcileList, setSurfaceVisible } from "./motion";
+import { enhanceRangeHistograms } from "./range-histogram";
 
 const PAGE_SIZE = 48;
 
@@ -137,6 +138,7 @@ async function initializeGallery(root: HTMLElement): Promise<void> {
     range.minSlider.addEventListener("input", () => updateRangeFromSlider(range, "min"));
     range.maxSlider.addEventListener("input", () => updateRangeFromSlider(range, "max"));
   }
+  enhanceRangeHistograms(root);
   reset?.addEventListener("click", (event) => {
     event.preventDefault();
     if (search) search.value = "";

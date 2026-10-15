@@ -8,6 +8,7 @@ import type {
 import type { GameId, ResourceTypeId } from "./game-config";
 import type { CategoryBrowseProjectionType } from "../../../../packages/domain/src/browse.js";
 import { compareNaturalText, normalizeSearchText } from "./search";
+import { buildRangeHistogram, type RangeHistogram } from "./range-histogram";
 import type { PublicChart, PublicDownload, PublicPreview, PublicResource, PublicSiteData } from "./types";
 
 export const BROWSE_GALLERY_SCHEMA_VERSION = 1 as const;
@@ -621,6 +622,12 @@ function toResolvedResource(resource: PublicResource, variantId?: string): Brows
 
 function searchTerms(values: Array<string | null | undefined>): string[] {
   return [...new Set(values.map((value) => value?.trim()).filter((value): value is string => Boolean(value)))].sort((left, right) => compareNaturalText(left, right, "en"));
+}
+
+// Build-time only: how many Phigros tracks have a filterable chart in each level bucket.
+export function phigrosDifficultyHistogram(data: BrowseGalleryData, range: { min: number; max: number }): RangeHistogram | undefined {
+  const tracks = data.items.flatMap((item) => item.recordKind === "track" ? [item.charts.filter(isPhigrosChart).filter(isFilterablePhigrosChart).map((chart) => Number(chart.level)).filter(Number.isFinite).map((level) => [level, level] as [number, number])] : []);
+  return buildRangeHistogram(tracks, range.min, range.max);
 }
 
 export function getBrowseFacetOptions(data: BrowseGalleryData): BrowseFacetOptions {

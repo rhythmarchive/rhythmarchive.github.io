@@ -1,10 +1,11 @@
 ---
 import BrowseCard from "./BrowseCard.astro";
+import RangeHistogram from "./RangeHistogram.astro";
 import GalleryFilters from "./GalleryFilters.astro";
 import BatchTray from "./BatchTray.astro";
 import GalleryLoadError from "./GalleryLoadError.astro";
 import GalleryDownload from "./GalleryDownload.astro";
-import { getBrowseFacetOptions, type ArcaeaFacetOptions, type BrowseGalleryData, type InfalsusFacetOptions, type PhigrosFacetOptions, type RizlineFacetOptions } from "../lib/browse-gallery";
+import { getBrowseFacetOptions, phigrosDifficultyHistogram, type ArcaeaFacetOptions, type BrowseGalleryData, type InfalsusFacetOptions, type PhigrosFacetOptions, type RizlineFacetOptions } from "../lib/browse-gallery";
 import { formatCount } from "../lib/format";
 import { displayFilterDifficultyLabel } from "../lib/game-config";
 import { BASE_PATH } from "../lib/site-config";
@@ -27,6 +28,7 @@ const infalsusOptions = data.game === "infalsus" ? browseOptions as InfalsusFace
 const phigrosPackOptions = phigrosOptions?.packs ?? [];
 const phigrosLevelOptions = phigrosOptions?.levels ?? [];
 const phigrosDifficultyRange = phigrosOptions?.difficultyRange;
+const phigrosHistogram = phigrosDifficultyRange ? phigrosDifficultyHistogram(data, phigrosDifficultyRange) : undefined;
 
 function rangeTicks(min: number, max: number, step: number): number[] {
   const tickStep = Math.max(step, Math.ceil(((max - min) / 7) / step) * step);
@@ -116,6 +118,7 @@ function formatRangeValue(value: number): string {
               <label class="filter-range-input"><span class="sr-only">难度最大值</span><input type="number" data-browse-range-max-input min={phigrosDifficultyRange.min} max={phigrosDifficultyRange.max} step={phigrosDifficultyRange.step} value={phigrosDifficultyRange.max} inputmode="decimal" /></label>
             </div>
           </div>
+          <RangeHistogram histogram={phigrosHistogram} min={phigrosDifficultyRange.min} max={phigrosDifficultyRange.max} label="难度" />
           <div class="filter-range-slider" data-browse-range-slider>
             <div class="filter-range-track" aria-hidden="true"></div>
             <div class="filter-range-fill" aria-hidden="true"></div>

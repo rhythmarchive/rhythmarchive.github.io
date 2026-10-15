@@ -5,9 +5,10 @@ import { urls } from "../lib/site-urls";
 
 interface Props {
   game: GameId;
+  eager?: boolean;
 }
 
-const { game } = Astro.props;
+const { game, eager = false } = Astro.props;
 const labels: Record<GameId, string> = { arcaea: "A", phigros: "P", rizline: "R", infalsus: "F", rotaeno: "R", "paradigm-reboot": "范", orzmic: "O" };
 const label = labels[game] ?? "R";
 const name = game;
@@ -15,7 +16,10 @@ const name = game;
 ---
 
 <span class={`game-icon game-icon-${game}`} aria-hidden="true">
-  <img class="game-icon-image" src={urls.sitePath(`/game-icons/${name}.png`)} alt="" width="192" height="192" loading="lazy" decoding="async" onerror="this.style.display = 'none'" />
+  <picture>
+    <source type="image/webp" srcset={urls.sitePath(`/game-icons/${name}.webp`)} />
+    <img class="game-icon-image" src={urls.sitePath(`/game-icons/${name}.png`)} alt="" width="192" height="192" loading={eager ? "eager" : "lazy"} decoding="async" onerror="this.style.display = 'none'" />
+  </picture>
   <span class="game-icon-fallback" aria-hidden="true">
     <span class="game-icon-mark">{label}</span>
     <span class="game-icon-name">{name}</span>

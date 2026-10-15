@@ -33,6 +33,7 @@ import { displayFilterDifficultyLabel } from "../lib/game-config";
 import { formatArcaeaAddedVersion } from "../lib/public-display";
 import { updateResourceStatsInDom } from "../lib/stats-client";
 import { chipKey, reconcileList, setSurfaceVisible } from "./motion";
+import { enhanceRangeHistograms } from "./range-histogram";
 
 type BrowseDifficultyRange = {
   root: HTMLElement;
@@ -137,6 +138,7 @@ async function initializeBrowseGallery(root: HTMLElement): Promise<void> {
     difficultyRange.maxInput.addEventListener("change", () => { syncBrowseDifficultyRange(difficultyRange); commitState("replace"); });
     difficultyRange.minSlider.addEventListener("input", () => { syncBrowseDifficultyRange(difficultyRange, Number(difficultyRange.minSlider.value), Number(difficultyRange.maxSlider.value)); updates.range(); });
     difficultyRange.maxSlider.addEventListener("input", () => { syncBrowseDifficultyRange(difficultyRange, Number(difficultyRange.minSlider.value), Number(difficultyRange.maxSlider.value)); updates.range(); });
+    enhanceRangeHistograms(root);
   }
   root.querySelectorAll<HTMLInputElement>("[data-browse-filter-check]").forEach((input) => input.addEventListener("change", () => commitState("push")));
   root.querySelectorAll<HTMLSelectElement>("[data-browse-filter-select]").forEach((select) => select.addEventListener("change", () => commitState("push")));

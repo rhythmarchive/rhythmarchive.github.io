@@ -9,6 +9,7 @@ import { galleryKey } from "./catalog-projection";
 import { compareNaturalText, normalizeSearchText } from "./search";
 import { resourceSearchTerms } from "./search-terms";
 import type { PublicResource, PublicSearchEntry, PublicSiteData } from "./types";
+import { buildRangeHistogram, numericIntervals, type RangeHistogram } from "./range-histogram";
 
 const ROTAENO_CHART_ORDER = ["I", "II", "III", "IV", "IV_Alpha"] as const;
 const PARADIGM_CHART_ORDER = ["DET", "IVD", "MSV", "RBT", "CTC"] as const;
@@ -27,6 +28,7 @@ export type CategoryBrowseFacet = {
   label: string;
   options: CategoryBrowseFacetOption[];
   range?: CategoryBrowseFacetRange;
+  histogram?: RangeHistogram;
 };
 
 export type CategoryBrowseSortOption = {
@@ -108,7 +110,7 @@ export function getCategoryBrowseConfig(game: GameId, category: string, resource
       if (levelOptions.length > 0) listFacets.push({ key: "level", label: "难度等级", options: levelOptions });
       const constantRange = facetRange(resources, "constant", 0.1);
       if (constantOptions.length > 0) {
-        const constantFacet = { key: "constant", label: "谱面定数", options: constantOptions, ...(constantRange ? { range: constantRange } : {}) };
+        const constantFacet = { key: "constant", label: "谱面定数", options: constantOptions, ...(constantRange ? { range: constantRange, ...facetHistogram(resources, "constant", constantRange) } : {}) };
         (constantRange ? rangeFacets : listFacets).push(constantFacet);
       }
     }
@@ -117,7 +119,7 @@ export function getCategoryBrowseConfig(game: GameId, category: string, resource
     const bpmOptions = facetOptions(resources, "bpm", game);
     const bpmRange = facetRange(resources, "bpm");
     if (bpmOptions.length > 0) {
-      const bpmFacet = { key: "bpm", label: "BPM", options: bpmOptions, ...(bpmRange ? { range: bpmRange } : {}) };
+      const bpmFacet = { key: "bpm", label: "BPM", options: bpmOptions, ...(bpmRange ? { range: bpmRange, ...facetHistogram(resources, "bpm", bpmRange) } : {}) };
       (bpmRange ? rangeFacets : listFacets).push(bpmFacet);
     }
     const versionOptions = facetOptions(resources, "version", game);
@@ -266,6 +268,11 @@ function facetRange(resources: PublicResource[], key: string, preferredStep?: nu
   const max = Number((Math.ceil(rawMax / step) * step).toFixed(4));
   if (min >= max) return undefined;
   return { min, max, step };
+}
+
+function facetHistogram(resources: PublicResource[], key: string, range: CategoryBrowseFacetRange): { histogram?: RangeHistogram } {
+  const histogram = buildRangeHistogram(resources.map((resource) => numericIntervals(resource.facets?.[key] ?? [])), range.min, range.max);
+  return histogram ? { histogram } : {};
 }
 
 function numericFacetValue(resource: PublicResource, key: string): number | undefined {

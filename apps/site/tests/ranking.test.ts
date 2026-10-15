@@ -48,7 +48,7 @@ test("ranking page uses public card data while Stats Worker stays numeric-only",
   const sitemap = fs.readFileSync(path.join(siteRoot, "src", "pages", "sitemap.xml.ts"), "utf8");
 
   assert.ok(home.indexOf("<RecentUpdates />") < home.indexOf("<ResourceRanking"));
-  assert.ok(home.indexOf("<ResourceRanking") < home.indexOf("class=\"page-container home-games\""));
+  assert.ok(home.indexOf("class=\"page-container home-games\"") < home.indexOf("<ResourceRanking"));
   assert.match(component, /data-ranking-cards-url/u);
   assert.match(component, /data-ranking-period="7d"/u);
   assert.match(component, /data-ranking-period="all"/u);
