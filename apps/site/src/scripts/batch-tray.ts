@@ -1,5 +1,5 @@
 import { observeImage } from "./viewport-images";
-import { setSurfaceVisible } from "./motion";
+import { reconcileList, setSurfaceVisible } from "./motion";
 import { zipSync } from "fflate";
 import { DownloadHttpError, reportDownloadFailure } from "../lib/resource-reports-client";
 import { DOWNLOAD_CONCURRENCY, MAX_BATCH_BYTES, MAX_BATCH_FILES, readResponseBytesWithinLimit, toggleBatchSelection, uniqueZipFilename, type BatchResource } from "../lib/batch";
@@ -173,7 +173,7 @@ export function createBatchTray(options: BatchTrayOptions): BatchTrayController 
     controller.setStatus("");
     renderTray();
     if (focusedIndex >= 0) {
-      const remaining = [...list!.querySelectorAll<HTMLButtonElement>("[data-batch-remove]")];
+      const remaining = [...list!.querySelectorAll<HTMLButtonElement>(":scope > :not([data-motion-ghost]) [data-batch-remove]")];
       (remaining[Math.min(focusedIndex, remaining.length - 1)] ?? options.grid.querySelector<HTMLButtonElement>("[data-select-resource]") ?? options.root.querySelector<HTMLInputElement>('input[type="search"]'))?.focus({ preventScroll: true });
     }
     options.onSelectionChange?.([...selected]);
@@ -202,7 +202,8 @@ export function createBatchTray(options: BatchTrayOptions): BatchTrayController 
 
   function closePanel(returnFocus: boolean): void {
     panelOpen = false;
-    void setSurfaceVisible(panel!, false);
+    // The list stays painted through the exit; it is emptied only once hidden.
+    void setSurfaceVisible(panel!, false).then((settled) => { if (settled && !panelOpen) list!.replaceChildren(); });
     viewButton?.setAttribute("aria-expanded", "false");
     const trigger = lastTrigger;
     lastTrigger = null;
@@ -222,7 +223,7 @@ export function createBatchTray(options: BatchTrayOptions): BatchTrayController 
     options.root.classList.toggle("has-selection", selected.size > 0);
     count!.textContent = "已选择 " + selected.size.toLocaleString("zh-CN") + " / " + MAX_BATCH_FILES + " 项";
     renderThumbnails();
-    if (panelOpen) renderSelectedList(); else list!.replaceChildren();
+    if (panelOpen || selected.size === 0) renderSelectedList();
     syncCards();
     if (selected.size === 0 && panelOpen) closePanel(true);
   }
@@ -232,24 +233,23 @@ export function createBatchTray(options: BatchTrayOptions): BatchTrayController 
       .map((resourceId) => options.getResource(resourceId))
       .filter((resource): resource is BatchResource => Boolean(resource));
     const visible = resources.slice(0, 4);
-    const existing = new Map([...thumbs!.querySelectorAll<HTMLImageElement>("img[data-resource-id]")].map((image) => [image.dataset.resourceId, image]));
+    const existing = new Map([...thumbs!.querySelectorAll<HTMLImageElement>("img[data-resource-id]:not([data-motion-ghost])")].map((image) => [image.dataset.resourceId, image]));
     const next: HTMLElement[] = visible.map((resource) => existing.get(resource.resourceId) ?? createThumbnail(resource));
     const remaining = selected.size - visible.length;
     if (remaining > 0) {
-      const more = thumbs!.querySelector<HTMLSpanElement>(".batch-tray-thumb-more") ?? document.createElement("span");
+      const more = thumbs!.querySelector<HTMLSpanElement>(".batch-tray-thumb-more:not([data-motion-ghost])") ?? document.createElement("span");
       more.className = "batch-tray-thumb-more";
       more.textContent = "+" + remaining;
       next.push(more);
     }
-    for (const node of [...thumbs!.children]) if (!next.includes(node as HTMLElement)) node.remove();
-    next.forEach((node, index) => { if (thumbs!.children[index] !== node) thumbs!.insertBefore(node, thumbs!.children[index] ?? null); });
+    reconcileList(thumbs!, next, (node) => node.dataset.resourceId ?? "more");
   }
 
   function renderSelectedList(): void {
     const resources = [...selected]
       .map((resourceId) => ({ resourceId, resource: options.getResource(resourceId) }))
       .filter((entry): entry is { resourceId: string; resource: BatchResource } => Boolean(entry.resource));
-    const rows = new Map([...list!.children].map((row) => [(row as HTMLElement).dataset.resourceId, row]));
+    const rows = new Map([...list!.children].filter((row) => !row.hasAttribute("data-motion-ghost")).map((row) => [(row as HTMLElement).dataset.resourceId, row]));
     const next = resources.map(({ resourceId, resource }) => {
       const existing = rows.get(resourceId);
       if (existing) return existing;
@@ -275,8 +275,7 @@ export function createBatchTray(options: BatchTrayOptions): BatchTrayController 
       row.append(link, remove);
       return row;
     });
-    for (const row of rows.values()) if (!next.includes(row)) row.remove();
-    next.forEach((row, index) => { if (list!.children[index] !== row) list!.insertBefore(row, list!.children[index] ?? null); });
+    reconcileList(list!, next as HTMLElement[], (row) => row.dataset.resourceId);
   }
 
   function syncCards(): void {

@@ -30,9 +30,10 @@ const dialogId = `resource-feedback-${resourceId}`;
 </div>
 <style>
   .feedback-trigger { color: var(--text-muted); }
-  dialog { width: min(32rem, calc(100% - 32px)); max-width: none; max-height: calc(100dvh - 48px); padding: 0; border: 1px solid var(--line); border-radius: var(--radius-lg); background: var(--surface); color: var(--text); box-shadow: var(--shadow-hover); overflow: hidden; }
-  dialog::backdrop { background: rgb(0 0 0 / .42); transition: opacity var(--motion-fast) var(--motion-ease); }
-  dialog[inert]::backdrop { opacity: 0; }
+  dialog { width: min(32rem, calc(100% - 32px)); max-width: none; max-height: calc(100dvh - 48px); padding: 0; border: 1px solid var(--line); border-radius: var(--radius-lg); background: var(--surface); color: var(--text); box-shadow: var(--shadow-hover); overflow: hidden; --surface-enter: translateY(14px) scale(.97); }
+  dialog::backdrop { background: rgb(0 0 0 / .42); transition: opacity var(--motion-surface) var(--motion-ease); }
+  dialog[inert]::backdrop { opacity: 0; transition-duration: var(--motion-fast); transition-timing-function: var(--motion-exit-ease); }
+  @starting-style { dialog[open]::backdrop { opacity: 0; } }
   .feedback-sheet { display: flex; flex-direction: column; max-height: calc(100dvh - 50px); }
   .feedback-header { display: flex; flex-shrink: 0; align-items: center; justify-content: space-between; gap: 16px; padding: 16px 20px; border-bottom: 1px solid var(--line); }
   h2 { margin: 0; font-size: 1.15rem; }
@@ -48,7 +49,7 @@ const dialogId = `resource-feedback-${resourceId}`;
   .resource-feedback-links { flex-shrink: 0; padding: 8px 20px; border-top: 1px solid var(--line); }
   .resource-feedback-links a { display: inline-flex; align-items: center; min-height: 44px; font-size: .82rem; }
   @media (max-width: 640px) {
-    dialog { position: fixed; inset: auto 0 0; width: 100%; margin: 0; max-height: 88dvh; border-radius: var(--radius-lg) var(--radius-lg) 0 0; border-bottom: 0; }
+    dialog { position: fixed; inset: auto 0 0; width: 100%; margin: 0; max-height: 88dvh; border-radius: var(--radius-lg) var(--radius-lg) 0 0; border-bottom: 0; --surface-enter: translateY(100%); }
     .feedback-sheet { max-height: 88dvh; }
     .feedback-body select, .feedback-body textarea { font-size: 1rem; }
     .resource-feedback-links { padding-bottom: max(8px, env(safe-area-inset-bottom)); }

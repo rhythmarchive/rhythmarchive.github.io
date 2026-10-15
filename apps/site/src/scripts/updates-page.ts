@@ -1,5 +1,6 @@
 import { onPageLoad } from "./page-lifecycle";
 import { observeImages } from "./viewport-images";
+import { revealContent } from "./motion";
 import { publicContentVersion } from "../lib/game-index";
 import { sitePath as withBasePath } from "../lib/url";
 import type { PublicUpdate, PublicUpdateItem } from "../lib/types";
@@ -55,6 +56,7 @@ onPageLoad(() => {
     const filtered = updates.filter((update) => (!game || update.game === game) && update.items.some((item) => !type || item.category === type));
     list.innerHTML = filtered.slice(0, visibleLimit).map((update) => renderCard(update, update.items.filter((item) => !type || item.category === type))).join("");
     observeImages(list);
+    if (syncUrl) revealContent(list);
     moreButton.hidden = filtered.length <= visibleLimit;
     noResults.hidden = filtered.length > 0;
     status.textContent = filtered.length > 0 ? "共 " + filtered.length + " 批更新" : "没有找到这类更新";

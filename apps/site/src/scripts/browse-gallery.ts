@@ -32,6 +32,7 @@ import {
 import { displayFilterDifficultyLabel } from "../lib/game-config";
 import { formatArcaeaAddedVersion } from "../lib/public-display";
 import { updateResourceStatsInDom } from "../lib/stats-client";
+import { chipKey, reconcileList, setSurfaceVisible } from "./motion";
 
 type BrowseDifficultyRange = {
   root: HTMLElement;
@@ -464,7 +465,7 @@ function updateActiveFilters(root: HTMLElement, state: BrowseUrlState): void {
   } else {
     for (const value of state.chart) entries.push({ name: "chart", value, label: value });
   }
-  chips.replaceChildren(...entries.map((entry) => {
+  reconcileList(chips, entries.map((entry) => {
     const chip = document.createElement("button");
     chip.type = "button";
     chip.className = "active-filter-chip";
@@ -472,8 +473,8 @@ function updateActiveFilters(root: HTMLElement, state: BrowseUrlState): void {
     chip.dataset.removeValue = entry.value;
     chip.textContent = entry.name === "q" ? entry.label : `${entry.label} ×`;
     return chip;
-  }));
-  row.hidden = entries.length === 0;
+  }), chipKey);
+  void setSurfaceVisible(row, entries.length > 0, "fade");
   const summary = root.querySelector<HTMLElement>("[data-filter-summary]");
   if (summary) summary.textContent = entries.length > 0 ? `（已选 ${entries.length}）` : "";
   updatePopoverSummaries(root);

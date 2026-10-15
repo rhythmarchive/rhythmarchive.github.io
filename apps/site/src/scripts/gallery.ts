@@ -16,6 +16,7 @@ import { matchesChartFilters } from "../lib/chart-filters";
 import { compareGalleryBpm, compareGalleryHighestConstant, compareNullableNumber, numericFacetValues } from "../lib/gallery-sort";
 import { compareNaturalText, normalizeSearchText } from "../lib/search";
 import { updateResourceStatsInDom } from "../lib/stats-client";
+import { chipKey, reconcileList, setSurfaceVisible } from "./motion";
 
 const PAGE_SIZE = 48;
 
@@ -297,15 +298,15 @@ async function initializeGallery(root: HTMLElement): Promise<void> {
       const max = readRangeValue(range, "max");
       if (min > range.min || max < range.max) entries.push({ key: `range:${range.key}`, label: `${range.root.dataset.rangeLabel ?? range.key}：${formatRangeValue(min)}～${formatRangeValue(max)}` });
     }
-    activeChips.replaceChildren(...entries.map(({ key, label }) => {
+    reconcileList(activeChips, entries.map(({ key, label }) => {
       const chip = document.createElement("button");
       chip.type = "button";
       chip.className = "active-filter-chip";
       chip.dataset.removeFilter = key;
       chip.textContent = `${label} ×`;
       return chip;
-    }));
-    active.hidden = entries.length === 0;
+    }), chipKey);
+    void setSurfaceVisible(active, entries.length > 0, "fade");
     const summary = root.querySelector<HTMLElement>("[data-filter-summary]");
     if (summary) summary.textContent = entries.length > 0 ? `（已选 ${entries.length}）` : "";
   }

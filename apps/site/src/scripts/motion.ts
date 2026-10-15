@@ -62,8 +62,11 @@ export function setSurfaceVisible(node: HTMLElement, visible: boolean, mode: "su
     return state.finished;
   }
   const level = motionLevel();
-  const compact = (mode === "fade" && node.tagName !== "DIALOG") || level === "reduced" || (level !== "rich" && window.matchMedia("(pointer: coarse)").matches);
-  const from = { opacity: 0, transform: compact ? "none" : level === "rich" ? "translateY(12px) scale(.97)" : "translateY(6px) scale(.985)" };
+  // A surface may author its own geometry (sheet, dropdown, tray) in CSS;
+  // otherwise touch and plain fades stay opacity-only.
+  const authored = getComputedStyle(node).getPropertyValue("--surface-enter").trim();
+  const compact = level === "reduced" || (!authored && ((mode === "fade" && node.tagName !== "DIALOG") || (level !== "rich" && window.matchMedia("(pointer: coarse)").matches)));
+  const from = { opacity: 0, transform: compact ? "none" : authored || (level === "rich" ? "translateY(12px) scale(.97)" : "translateY(6px) scale(.985)") };
   const to = { opacity: 1, transform: "none" };
   const animation = track(node.animate([current ?? (visible ? from : to), visible ? to : from], {
     duration: duration(node, visible ? "--motion-surface" : "--motion-fast", visible ? 220 : 140),
@@ -143,3 +146,66 @@ export function animateCards(grid: HTMLElement, before: Map<HTMLElement, DOMRect
     feedback.set(node, animation);
   });
 }
+
+// Keyed reconciliation for small, user-edited lists (filter chips, selections).
+// Unchanged items keep their node and never replay; new items enter, removed
+// items leave from where they were, and the rest glide into their new slots.
+export function reconcileList(container: HTMLElement, next: HTMLElement[], key: (node: HTMLElement) => string | undefined): void {
+  const current = [...container.children].filter((node): node is HTMLElement => node instanceof HTMLElement && !node.hasAttribute("data-motion-ghost"));
+  const byKey = new Map(current.map((node) => [key(node), node]));
+  const nodes = next.map((node) => {
+    const existing = byKey.get(key(node));
+    if (!existing) return node;
+    byKey.delete(key(node));
+    if (!existing.isEqualNode(node)) {
+      for (const { name, value } of node.attributes) existing.setAttribute(name, value);
+      existing.replaceChildren(...node.childNodes);
+    }
+    return existing;
+  });
+  const removed = [...byKey.values()];
+  const level = typeof window === "undefined" ? "reduced" : motionLevel();
+  const animated = level !== "reduced" && enabled(container) && container.isConnected && !container.closest("[hidden]") && nodes.length + removed.length <= 40;
+  // Interrupted items continue from where they visually are (center + scale).
+  const before = new Map<HTMLElement, { x: number; y: number }>();
+  const ghosts: Array<{ node: HTMLElement; left: number; top: number; width: number }> = [];
+  if (animated) {
+    for (const node of current) {
+      const rect = node.getBoundingClientRect();
+      before.set(node, { x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 });
+    }
+    for (const node of removed) ghosts.push({ node, left: node.offsetLeft, top: node.offsetTop, width: node.offsetWidth });
+  }
+  for (const node of removed) node.remove();
+  nodes.forEach((node, index) => { if (container.children[index] !== node) container.insertBefore(node, container.children[index] ?? null); });
+  if (!animated) return;
+  const timing = { duration: duration(container, "--motion-ui", 180), easing: getComputedStyle(container).getPropertyValue("--motion-ease").trim() || "ease-out" };
+  for (const { node, left, top, width } of ghosts) {
+    Object.assign(node.style, { position: "absolute", left: `${left}px`, top: `${top}px`, width: `${width}px`, margin: "0", pointerEvents: "none" });
+    node.setAttribute("data-motion-ghost", "");
+    node.setAttribute("aria-hidden", "true");
+    node.inert = true;
+    container.append(node);
+    const exit = track(node.animate([{ opacity: 1, transform: "none" }, { opacity: 0, transform: "scale(.86)" }], { duration: duration(container, "--motion-fast", 140), easing: "ease-in" }));
+    void exit.finished.finally(() => node.remove()).catch(() => undefined);
+  }
+  for (const node of nodes) {
+    const old = before.get(node);
+    const running = feedback.get(node);
+    const frame = currentFrame(node, running);
+    running?.cancel();
+    if (!old) {
+      const enter = track(node.animate([{ opacity: 0, transform: "scale(.86)" }, { opacity: 1, transform: "none" }], timing));
+      feedback.set(node, enter);
+      continue;
+    }
+    const rect = node.getBoundingClientRect();
+    const x = old.x - rect.left - rect.width / 2, y = old.y - rect.top - rect.height / 2;
+    const scale = frame?.transform && frame.transform !== "none" ? new DOMMatrix(String(frame.transform)).a : 1;
+    if (Math.abs(x) + Math.abs(y) < 1 && !frame) continue;
+    feedback.set(node, track(node.animate([{ opacity: frame?.opacity ?? 1, transform: `translate(${x}px, ${y}px) scale(${scale})` }, { opacity: 1, transform: "none" }], timing)));
+  }
+}
+
+// Search chips keep one identity while their text is typed; facet chips are per value.
+export const chipKey = (node: HTMLElement): string => node.dataset.removeFilter === "q" ? "q" : `${node.dataset.removeFilter}\u0000${node.dataset.removeValue ?? ""}`;

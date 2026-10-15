@@ -4,6 +4,7 @@ import SiteHeader from "../components/SiteHeader.astro";
 import { ClientRouter } from "astro:transitions";
 import { BASE_PATH, PUBLIC_STATS_API_URL, ROS_BASE_URL } from "../lib/site-config";
 import { urls } from "../lib/site-urls";
+import displayFontUrl from "../assets/fonts/outfit-latin-wght.woff2?url";
 import "../styles/global.css";
 import "../styles/story-atlas.css";
 
@@ -29,7 +30,8 @@ const rosOrigin = new URL(ROS_BASE_URL).origin;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <noscript><style is:inline>img[data-viewport-src] { display: none; }</style></noscript>
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#2d77d9" />
+    <meta name="theme-color" content="#f3f7fb" />
+    <link rel="preload" href={displayFontUrl} as="font" type="font/woff2" crossorigin="anonymous" />
     <link rel="icon" type="image/svg+xml" href={urls.sitePath("/favicon.svg")} />
     <link rel="manifest" href={urls.sitePath("/site.webmanifest")} />
     <link rel="preconnect" href={rosOrigin} crossorigin="anonymous" />
