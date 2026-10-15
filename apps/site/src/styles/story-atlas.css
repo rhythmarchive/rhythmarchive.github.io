@@ -176,7 +176,10 @@
   .story-atlas-subworld-heading .story-camera-controls { width: 100%; }
   .story-atlas-subworld-heading .story-camera-controls .button { width: auto; }
 }
+:root[data-motion-level="reduced"] :is(.story-map-path-cluster,.story-atlas-part-tab,.story-detail-sheet,.story-map-node-image,.story-map-avatar img) { transition-duration: var(--motion-fast); }
+:root[data-motion-level="reduced"] :is(.story-map-node:hover,.story-map-node:focus-visible) .story-map-node-image { transform: rotate(var(--story-node-rotation)); }
+:root[data-motion-level="reduced"] :is(.story-map-avatar:hover,.story-map-avatar:focus-visible,.story-map-avatar.is-cluster-focused) img { transform: none; }
 @media (prefers-reduced-motion: reduce) {
-  .story-map-path-cluster,.story-atlas-part-tab,.story-detail-sheet,.story-map-node-image,.story-map-avatar img { transition: none !important; }
+  :root:not([data-motion-level]) :is(.story-map-path-cluster,.story-atlas-part-tab,.story-detail-sheet,.story-map-node-image,.story-map-avatar img) { transition: none; }
 }
 .story-atlas-shell[data-story-mode="gallery"] :is(.story-atlas-search, .story-atlas-search-status, .story-atlas-search-results, .story-atlas-parts, .story-atlas-panels) { display: none; }

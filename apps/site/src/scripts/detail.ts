@@ -4,7 +4,7 @@ import { loadSelectedDetailImages, prepareImage } from "./viewport-images";
 import { downloadRendition } from "./download";
 import { setupDetailNavigation } from "./list-navigation";
 import { setupDetailLibrary } from "./detail-library";
-import { animateLightboxImage, setSurfaceVisible } from "./motion";
+import { animateLightboxImage, revealContent, setSurfaceVisible } from "./motion";
 import { getBrowserStatsClient, updateResourceStatsInDom } from "../lib/stats-client";
 
 onPageLoad(() => {
@@ -93,6 +93,8 @@ onPageLoad(() => {
         item.tabIndex = active ? 0 : -1;
       }
       loadSelectedDetailImages(root);
+      const preview = root.querySelector<HTMLElement>('[data-variant-panel]:not([hidden])');
+      if (preview) revealContent(preview);
       const currentLabel = root.querySelector<HTMLElement>("[data-variant-current]");
       if (currentLabel) currentLabel.textContent = button.dataset.variantLabel ?? "";
     };
@@ -121,6 +123,8 @@ onPageLoad(() => {
         closeLightbox();
         for (const panel of panelRoot.querySelectorAll<HTMLElement>("[data-detail-source-panel]")) panel.hidden = panel.dataset.detailSourcePanel !== source;
         loadSelectedDetailImages(root);
+        const preview = panelRoot.querySelector<HTMLElement>('[data-detail-source-panel]:not([hidden])');
+        if (preview) revealContent(preview);
         for (const item of panelRoot.querySelectorAll<HTMLButtonElement>("[data-detail-source-select]")) {
           const active = item.dataset.detailSourceSelect === source;
           item.classList.toggle("is-active", active);

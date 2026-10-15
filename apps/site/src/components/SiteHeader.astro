@@ -54,6 +54,15 @@ const isGameLibrary = isWithin(urls.sitePath("/games/"))
       <a class:list={{ "nav-feedback": true, "is-active": isFeedback }} href={urls.sitePath("/feedback/")} aria-current={isFeedback ? "page" : undefined}>反馈</a>
     </nav>
     <div class="site-header-actions">
+      <label class="motion-control">
+        <span>动效</span>
+        <select data-motion-select aria-label="动效等级" title="动效等级">
+          <option value="system">跟随系统</option>
+          <option value="reduced">精简</option>
+          <option value="standard">标准</option>
+          <option value="rich">丰富</option>
+        </select>
+      </label>
       <a class="nav-search" href={urls.sitePath("/search/")} aria-label="搜索资源">
         <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.3"/><path d="m16 16 4.5 4.5"/></svg>
       </a>

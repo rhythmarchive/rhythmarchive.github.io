@@ -1,6 +1,7 @@
 import type { TransitionBeforePreparationEvent, TransitionBeforeSwapEvent } from "astro:transitions/client";
 import { onPageLoad } from "./page-lifecycle";
 import { observeImages, resetImageObserver, settleImage } from "./viewport-images";
+import { finishMotion } from "./motion";
 
 document.addEventListener("load", (event) => {
   if (event.target instanceof HTMLImageElement) settleImage(event.target, true);
@@ -48,6 +49,9 @@ document.addEventListener("astro:before-swap", (event) => {
     });
   }
   next.documentElement.dataset.theme = document.documentElement.dataset.theme ?? "system";
+  next.documentElement.dataset.motion = document.documentElement.dataset.motion ?? "system";
+  next.documentElement.dataset.motionLevel = document.documentElement.dataset.motionLevel ?? "standard";
+  finishMotion();
   next.documentElement.classList.add("has-js");
   next.documentElement.dataset.clientNavigation = "true";
   for (const root of next.querySelectorAll<HTMLElement>('[data-browse-gallery-root], [data-gallery-root]:not([data-gallery-defer="true"])')) {

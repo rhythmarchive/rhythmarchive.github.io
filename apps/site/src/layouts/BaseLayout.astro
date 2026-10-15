@@ -23,7 +23,7 @@ const rosOrigin = new URL(ROS_BASE_URL).origin;
 ---
 
 <!doctype html>
-<html lang="zh-CN" data-theme="system" data-base-path={BASE_PATH} data-stats-api-url={PUBLIC_STATS_API_URL}>
+<html lang="zh-CN" data-theme="system" data-motion="system" data-base-path={BASE_PATH} data-stats-api-url={PUBLIC_STATS_API_URL}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -51,6 +51,15 @@ const rosOrigin = new URL(ROS_BASE_URL).origin;
           const saved = localStorage.getItem("rhythm-archive-theme");
           if (saved === "light" || saved === "dark" || saved === "system") document.documentElement.dataset.theme = saved;
         } catch { /* system theme remains the default */ }
+        let motion = "system";
+        try {
+          const saved = localStorage.getItem("rhythm-archive-motion");
+          if (["reduced", "standard", "rich"].includes(saved)) motion = saved;
+        } catch { /* Session preference survives client navigation. */ }
+        if (!document.documentElement.dataset.clientNavigation) document.documentElement.dataset.motion = motion;
+        document.documentElement.dataset.motionLevel = document.documentElement.dataset.motion === "system"
+          ? matchMedia("(prefers-reduced-motion: reduce)").matches ? "reduced" : "standard"
+          : document.documentElement.dataset.motion;
       })();
     </script>
     <script src="../scripts/navigation.ts"></script>

@@ -1,5 +1,6 @@
 import { onPageLoad } from "./page-lifecycle";
 import { compareNaturalText } from "../lib/search";
+import { animateCards, captureCards } from "./motion";
 
 onPageLoad(() => {
   const grid = document.querySelector<HTMLElement>("[data-games-grid]");
@@ -14,7 +15,7 @@ onPageLoad(() => {
     for (const control of controls) {
       control.addEventListener("click", () => {
         const sort = control.dataset.gamesSort === "name" ? "name" : "updated";
-        applySort(sort);
+        applySort(sort, true);
         const url = new URL(window.location.href);
         if (sort === "name") url.searchParams.set("sort", "name");
         else url.searchParams.delete("sort");
@@ -22,7 +23,8 @@ onPageLoad(() => {
       });
     }
 
-    function applySort(sort: "updated" | "name"): void {
+    function applySort(sort: "updated" | "name", animate = false): void {
+      const before = animate ? captureCards(gameGrid) : new Map<HTMLElement, DOMRect>();
       const ordered = [...cards].sort((left, right) => {
         if (sort === "name") return compareNaturalText(left.dataset.gameName ?? "", right.dataset.gameName ?? "");
         const rightUpdated = timestamp(right.dataset.gameUpdatedAt);
@@ -30,6 +32,7 @@ onPageLoad(() => {
         return rightUpdated - leftUpdated || compareNaturalText(left.dataset.gameName ?? "", right.dataset.gameName ?? "");
       });
       for (const card of ordered) gameGrid.append(card);
+      if (animate) animateCards(gameGrid, before, new Set());
       for (const control of controls) control.setAttribute("aria-pressed", String(control.dataset.gamesSort === sort));
     }
   }

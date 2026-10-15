@@ -1,4 +1,24 @@
-import { setSurfaceVisible } from "./motion";
+import { finishMotion, setSurfaceVisible } from "./motion";
+import { motionStorageKey, normalizeMotion, resolveMotion } from "./motion-preference";
+
+const motionQuery = matchMedia("(prefers-reduced-motion: reduce)");
+const motionSelect = document.querySelector<HTMLSelectElement>("[data-motion-select]")!;
+const applyMotion = (value: unknown) => {
+  finishMotion();
+  const preference = normalizeMotion(value);
+  document.documentElement.dataset.motion = preference;
+  document.documentElement.dataset.motionLevel = resolveMotion(preference, motionQuery.matches);
+  motionSelect.value = preference;
+};
+motionSelect.addEventListener("change", () => {
+  applyMotion(motionSelect.value);
+  try { localStorage.setItem(motionStorageKey, motionSelect.value); } catch { /* Session still works. */ }
+});
+motionQuery.addEventListener("change", () => applyMotion(document.documentElement.dataset.motion));
+window.addEventListener("storage", (event) => {
+  if (event.key === motionStorageKey || event.key === null) applyMotion(event.newValue);
+});
+applyMotion(document.documentElement.dataset.motion);
 
 const key = "rhythm-archive-theme";
 const descriptions = { system: ["跟随系统", "浅色"], light: ["浅色", "深色"], dark: ["深色", "跟随系统"] };
@@ -82,6 +102,7 @@ document.addEventListener("keydown", (event) => {
 });
 mobile.addEventListener("change", () => setOpen(false));
 document.addEventListener("astro:after-swap", () => {
+  applyMotion(document.documentElement.dataset.motion);
   setOpen(false);
   applyTheme(document.documentElement.dataset.theme ?? "system");
 });

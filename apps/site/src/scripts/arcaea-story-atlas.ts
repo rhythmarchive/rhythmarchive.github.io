@@ -1,5 +1,6 @@
 import { loadStaticData } from "./static-data";
 import { onPageLoad, pageSignal, onPageCleanup } from "./page-lifecycle";
+import { setSurfaceVisible } from "./motion";
 import type { ArcaeaStoryAtlasType } from "../../../../packages/domain/src/browse.js";
 
 type CompactResource = {
@@ -755,10 +756,10 @@ async function initialize(root: HTMLElement): Promise<void> {
 
   async function openEntry(entry: CompactEntry): Promise<void> {
     if (detailElement.hidden) lockBody();
-    lastFocusedElement = document.activeElement instanceof HTMLElement && !detailElement.contains(document.activeElement) ? document.activeElement : null;
+    if (document.activeElement instanceof HTMLElement && !detailElement.contains(document.activeElement)) lastFocusedElement = document.activeElement;
     openEntryId = entry.id;
     openSceneId = undefined;
-    detailElement.hidden = false;
+    void setSurfaceVisible(detailElement, true, "fade");
     root.classList.add("has-story-detail");
     root.querySelector<HTMLButtonElement>("button[data-story-detail-close]")?.focus({ preventScroll: true });
     try {
@@ -770,10 +771,10 @@ async function initialize(root: HTMLElement): Promise<void> {
 
   async function openScene(scene: CompactScene): Promise<void> {
     if (detailElement.hidden) lockBody();
-    lastFocusedElement = document.activeElement instanceof HTMLElement && !detailElement.contains(document.activeElement) ? document.activeElement : null;
+    if (document.activeElement instanceof HTMLElement && !detailElement.contains(document.activeElement)) lastFocusedElement = document.activeElement;
     openEntryId = undefined;
     openSceneId = scene.sceneId;
-    detailElement.hidden = false;
+    void setSurfaceVisible(detailElement, true, "fade");
     root.classList.add("has-story-detail");
     root.querySelector<HTMLButtonElement>("button[data-story-detail-close]")?.focus({ preventScroll: true });
     try {
@@ -784,16 +785,28 @@ async function initialize(root: HTMLElement): Promise<void> {
   }
 
   function closeDetail(update = true): void {
-    if (detailElement.hidden) return;
-    detailElement.hidden = true;
-    root.classList.remove("has-story-detail");
+    if (detailElement.hidden || detailElement.inert && !signal.aborted) return;
     openEntryId = undefined;
     openSceneId = undefined;
     if (update) updateUrl({ "story-entry": undefined, "story-scene": undefined });
-    const focusTarget = lastFocusedElement;
-    lastFocusedElement = null;
-    unlockBody();
-    if (focusTarget?.isConnected && !detailElement.contains(focusTarget)) focusTarget.focus();
+    const complete = () => {
+      root.classList.remove("has-story-detail");
+      const focusTarget = lastFocusedElement;
+      lastFocusedElement = null;
+      unlockBody();
+      // Search results collapse after opening; return to their search field
+      // instead of attempting to focus a now-hidden result.
+      const target = focusTarget?.isConnected && !focusTarget.closest("[hidden]") ? focusTarget : search;
+      if (!signal.aborted && target && !detailElement.contains(target)) target.focus({ preventScroll: true });
+    };
+    if (signal.aborted) {
+      void setSurfaceVisible(detailElement, false, "instant");
+      complete();
+    } else {
+      void setSurfaceVisible(detailElement, false, "fade").then((settled) => {
+        if (settled && !signal.aborted) complete();
+      });
+    }
   }
 
   function setMode(mode: "atlas" | "gallery", update = true): void {

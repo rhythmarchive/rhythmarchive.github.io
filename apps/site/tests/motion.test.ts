@@ -1,9 +1,10 @@
 import assert from "node:assert/strict";
 import test, { type TestContext } from "node:test";
-import { animateLightboxImage, revealContent, setSurfaceVisible } from "../src/scripts/motion";
+import { animateCards, animateLightboxImage, captureCards, finishMotion, revealContent, setSurfaceVisible } from "../src/scripts/motion";
+import { normalizeMotion, resolveMotion } from "../src/scripts/motion-preference";
 
 function fixture(t: TestContext, reduced = false, coarse = false) {
-  for (const key of ["window", "getComputedStyle"] as const) {
+  for (const key of ["window", "document", "getComputedStyle"] as const) {
     const original = Object.getOwnPropertyDescriptor(globalThis, key);
     t.after(() => { if (original) Object.defineProperty(globalThis, key, original); else Reflect.deleteProperty(globalThis, key); });
   }
@@ -20,7 +21,7 @@ function fixture(t: TestContext, reduced = false, coarse = false) {
       const finished = new Promise<void>((yes, no) => { resolve = yes; reject = () => no(new Error("cancelled")); });
       const state = { frames, resolve, reject, cancelled: false };
       animations.push(state);
-      return { finished, playState: "running", cancel: () => { state.cancelled = true; reject(); } };
+      return { finished, playState: "running", finish: resolve, cancel: () => { state.cancelled = true; reject(); } };
     },
   } as unknown as HTMLElement;
   return { node, animations };
@@ -43,6 +44,34 @@ test("an interrupted surface exit cannot hide a reopened dialog", async (t) => {
   assert.equal(await reopened, true);
   assert.equal(node.hidden, false);
   assert.equal(node.inert, false);
+});
+
+test("rich sorting preserves retained cards, ignores offscreen cards and does not replay unchanged positions", (t) => {
+  const { node, animations } = fixture(t);
+  Object.defineProperty(globalThis, "document", { configurable: true, value: { documentElement: { dataset: { motion: "rich" } } } });
+  let top = 100;
+  node.getBoundingClientRect = () => ({ left: 0, top, bottom: top + 200, width: 200, height: 200 }) as DOMRect;
+  const offscreen = { ...node, getBoundingClientRect: () => ({ top: 1600, bottom: 1800 }) } as unknown as HTMLElement;
+  const grid = { querySelectorAll: () => [node, offscreen] } as unknown as HTMLElement;
+  const before = captureCards(grid);
+  assert.equal(before.size, 1);
+  top = 180;
+  animateCards(grid, before, new Set());
+  assert.equal(animations.length, 1);
+  assert.match(String(animations[0]!.frames[0]!.transform), /-80px/);
+  finishMotion();
+  animateCards(grid, captureCards(grid), new Set());
+  assert.equal(animations.length, 1);
+});
+
+test("list choreography is bounded even for a large rendered gallery", (t) => {
+  const { node, animations } = fixture(t);
+  Object.defineProperty(globalThis, "document", { configurable: true, value: { documentElement: { dataset: { motion: "rich" } } } });
+  const cards = Array.from({ length: 48 }, () => ({ ...node, getBoundingClientRect: () => ({ left: 0, top: 100, bottom: 300 }) } as unknown as HTMLElement));
+  const grid = { querySelectorAll: () => cards } as unknown as HTMLElement;
+  animateCards(grid, new Map(), new Set(cards));
+  assert.equal(animations.length, 12);
+  finishMotion();
 });
 
 test("repeated selection does not restart an already visible tray", async (t) => {
@@ -71,16 +100,44 @@ test("a breakpoint reset cancels a pending mobile exit and restores desktop navi
   assert.equal(node.inert, false);
 });
 
-test("reduced motion and missing Web Animations settle immediately", async (t) => {
+test("reduced motion keeps short fades without spatial travel; missing API settles immediately", async (t) => {
   const { node, animations } = fixture(t, true);
-  await setSurfaceVisible(node, true);
+  const opened = setSurfaceVisible(node, true);
+  assert.equal(animations[0]!.frames[0]!.transform, "none");
+  finishMotion();
+  await opened;
   revealContent(node);
-  await setSurfaceVisible(node, false);
+  const closed = setSurfaceVisible(node, false);
+  finishMotion();
+  await closed;
   assert.equal(node.hidden, true);
-  assert.equal(animations.length, 0);
+  assert.equal(animations.length, 3);
   (node as unknown as { animate?: unknown }).animate = undefined;
   await setSurfaceVisible(node, true);
   assert.equal(node.hidden, false);
+});
+
+test("all explicit preferences override the system and invalid values fall back safely", () => {
+  assert.equal(resolveMotion("system", true), "reduced");
+  assert.equal(resolveMotion("system", false), "standard");
+  assert.equal(resolveMotion("rich", true), "rich");
+  assert.equal(resolveMotion("standard", true), "standard");
+  assert.equal(resolveMotion("reduced", false), "reduced");
+  assert.equal(normalizeMotion("invalid"), "system");
+  assert.equal(resolveMotion(null, true), "reduced");
+});
+
+test("changing level during an exit settles its hidden and inert state", async (t) => {
+  const { node, animations } = fixture(t);
+  const opening = setSurfaceVisible(node, true);
+  finishMotion();
+  await opening;
+  const closing = setSurfaceVisible(node, false);
+  finishMotion();
+  assert.equal(await closing, true);
+  assert.equal(node.hidden, true);
+  assert.equal(node.inert, true);
+  assert.equal(animations.length, 2);
 });
 
 test("touch surfaces fade without translation and long lists do not animate", async (t) => {

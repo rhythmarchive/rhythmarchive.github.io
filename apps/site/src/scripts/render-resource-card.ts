@@ -1,4 +1,5 @@
 import { observeImage } from "./viewport-images";
+import { animateCards, captureCards } from "./motion";
 import type { CardViewModel } from "../lib/card-view-model";
 import { appendResourceViews } from "../lib/stats-client";
 import { sitePath } from "../lib/url";
@@ -104,6 +105,8 @@ export function renderResourceCard(view: CardViewModel, options: CardRenderOptio
 export function createCardReconciler(grid: HTMLElement) {
   let views = new Map<string, string>();
   return (next: CardViewModel[], options: Omit<CardRenderOptions, "index" | "isSelected">): void => {
+    const animate = views.size > 0 && !grid.closest('[aria-busy="true"]');
+    const before = animate ? captureCards(grid) : new Map<HTMLElement, DOMRect>();
     const cards = new Map([...grid.querySelectorAll<HTMLElement>(":scope > [data-resource-card]")].map((card) => [card.dataset.resourceId, card]));
     const signatures = new Map<string, string>();
     const nodes = next.map((view, index) => {
@@ -116,6 +119,7 @@ export function createCardReconciler(grid: HTMLElement) {
     const retained = new Set(nodes);
     for (const card of cards.values()) if (!retained.has(card)) card.remove();
     nodes.forEach((node, index) => { if (grid.children[index] !== node) grid.insertBefore(node, grid.children[index] ?? null); });
+    if (animate) animateCards(grid, before, new Set(nodes.filter((node) => !cards.has(node.dataset.resourceId))));
     views = signatures;
   };
 }

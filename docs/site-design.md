@@ -4,13 +4,36 @@ This document describes the shared interface and the design principles for contr
 
 ## Theme and visual language
 
-The site shares light, dark, and system modes, a blue accent, restrained cards, and an image-first layout. Theme tokens and shared components keep pages consistent across games.
+The site shares light, dark, and system themes, a blue/cyan accent, luminous layered cards, and an image-first layout. Preserve the anime and rhythm-game character: jacket art, game marks, chapter maps and CG compositions remain the visual signature. Shared type and motion make movement between these distinct surfaces coherent; they do not turn every page into the same template.
 
 ## Product principles
 
 This is an image resource download site. Images are primary content. Search, category discovery, preview, metadata, and download are more important than decoration. The interface should be simple, clear, restrained, consistent, readable, and discoverable.
 
-Avoid meaningless gradients, decorative icons, excessive animation, SaaS dashboard language, marketing claims, and internal terms such as manifest, object key, or extractor in player-facing copy.
+Animation is part of the interface: it explains origin, destination and changed state. Appropriate expressive animation is welcome. Avoid unrelated decoration, competing entrances, SaaS dashboard language, marketing claims, and internal terms such as manifest, object key, or extractor in player-facing copy.
+
+## Typography
+
+Use local fonts without web-font requests: Avenir Next / Segoe UI for Latin, PingFang SC / Microsoft YaHei / Noto Sans CJK SC for Chinese. Display and reading roles share compatible metrics; never split a Chinese title into separately animated characters. Use weight 400 for reading, 500 for controls, 600 for resource titles and 700 for headings. Avoid arbitrary 720–850 weights that resolve inconsistently on installed fonts.
+
+The shared scale is caption 12px, metadata 13px, control 14px, body 16px, lead 18px, section 24–32px, page 32–52px and home display 36–64px. Compact resource cards may use 13px titles on phones, while form inputs remain 16px to avoid mobile zoom. Reading line-height is 1.65, compact metadata 1.5, headings 1.2. Use normal Chinese tracking and balanced heading wrapping; long resource names must wrap without widening the viewport. Tabular numbers belong to counts and dates. Retain the home display, compact gallery heading, detail title and Story Atlas editorial hierarchy.
+
+## Motion system
+
+The header offers a labeled native selector, available on desktop and mobile. Save `rhythm-archive-motion` locally; apply it before first paint, preserve it across client navigation, synchronize tabs, and respond live to system changes. Storage failure leaves the current session functional. Motion never gates data or interaction.
+
+| Setting | Effective behavior |
+| --- | --- |
+| 跟随系统 (system, default) | Standard normally; reduced when prefers-reduced-motion requests it |
+| 精简 (reduced) | Short opacity/color feedback; no spatial entrances, card travel, shimmer or smooth scroll |
+| 标准 (standard) | Content crossfades, compact anchored surfaces, short list feedback, desktop thumbnail-to-viewer continuity |
+| 丰富 (rich) | Directional page travel, visible-card entrance sequence and retained-card sorting movement, fuller anchored surfaces and thumbnail-to-viewer continuity on touch as well |
+
+Tokens define fast feedback (120–160ms), UI (180–240ms) and surfaces (260–360ms); exits use fast feedback. Deceleration uses cubic-bezier(.22,1,.36,1), with a separate quick exit curve. Rich is more choreography and amplitude, not a longer wait before an action. Bound stagger to the visible portion of the current batch. No permanent compositor layers, scroll listeners, full-gallery transforms or additional image requests for motion.
+
+One owner per transition: ClientRouter owns page changes, the reconciler owns changed cards, the surface helper owns visibility, the viewer image owns its geometry, and CSS owns image readiness. Initial SSR/restore does not replay list entrance. Cached images do not repeatedly fade. A rapid reversal starts at the current frame; stale exit completion cannot hide a reopened surface. Changing motion level finishes active owned animations and settles visibility immediately. No per-card route snapshot names or original-image preload.
+
+Loading reserves existing geometry and decorates only requested visible images. Reduced uses a static loading surface; standard/rich use bounded shimmer. Existing viewport loading, responsive high-resolution candidates, fallback and explicit download semantics remain unchanged. CSS transitions and Web Animations API extend the existing Astro ClientRouter; no animation framework is needed. Native view-transition absence falls back to a normal functional swap.
 
 ## Home information architecture
 
@@ -34,7 +57,7 @@ The home game section and `/games/` use the same compact responsive game card. C
 
 ## Responsive and interaction rules
 
-Desktop game cards use three columns at wide widths and two at medium widths; mobile uses one column. Home order follows the information architecture above; search remains the primary action. Touch targets, `:focus-visible`, keyboard behavior, light/dark/system tokens, and `prefers-reduced-motion` remain part of the shared implementation contract. Hover feedback is limited to a small border, shadow, or position change.
+Desktop game cards use three columns at wide widths and two at medium widths; mobile uses one column. Home order follows the information architecture above; search remains the primary action. Touch targets, `:focus-visible`, keyboard behavior, light/dark/system tokens, and the motion preference remain part of the shared implementation contract. Spatial hover feedback is confined to fine pointers and scales with the chosen motion level.
 
 English display headings use normal kerning and restrained tracking so names such as Rhythm Archive, Arcaea, Phigros, Rizline, In Falsus, and Rotaeno remain readable. Chinese headings must not be loosened by a global positive letter-spacing rule.
 
@@ -56,4 +79,4 @@ Visual changes share the existing routes, search and gallery semantics, responsi
 
 ## Change review
 
-Before a visual change, compare home, the game library, search, at least two games, detail, and mobile/narrow layout against the current implementation. Prefer a token extraction or consistency fix over broad visual changes. Proposals for a new theme or product direction should be discussed with maintainers before implementation.
+Compare home, the game library, search, at least two games, detail, and mobile/narrow layout. Exercise all four preferences, system changes, reload/navigation persistence, rapid surface reversal, filtering/sorting, viewer/history continuity, cached and slow images, keyboard and no-JS fallback. Verify both themes and mobile overflow. Product direction for this revision explicitly authorizes a coordinated type and motion upgrade while preserving page identity and existing architecture.
