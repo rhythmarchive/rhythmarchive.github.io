@@ -84,9 +84,14 @@ Arcaea APK is discoverable from the first screen: the hero's small `.home-apk-en
 
 ## Site announcements
 
-The persistent header's bell opens a non-modal notice panel through `setSurfaceVisible`. A new latest notice opens once without moving focus; read IDs persist in browser storage and sync across tabs. A blocked local store falls back to session storage, then in-memory state. Automatic opening defers while another header surface, modal or form control is in use. History is fetched through `loadStaticData` only when expanded.
+The persistent header's bell opens a non-modal notice panel through `setSurfaceVisible`. Only an unread latest notice with explicit `notify: true` opens automatically, once and without moving focus. Read IDs persist in browser storage and sync across tabs. A blocked local store falls back to session storage, then in-memory state. Automatic opening defers while another header surface, modal or form control is in use. Announcement history is fetched through `loadStaticData` only when expanded.
 
-Maintain `apps/site/src/data/announcements.ts`, newest first: add an `id`, date, title and plain-text paragraphs. Keep the ID for wording corrections; a new ID is a new notification. Only the latest entry is in page HTML; `/data/announcements.json` supplies older entries on demand. Do not put images or private maintenance details in announcements.
+Maintain `apps/site/src/data/announcements.ts`, newest first, with an `id`, date, title and plain-text paragraphs. Only the latest entry is in page HTML; `/data/announcements.json` supplies older announcements on demand. Do not put images or private maintenance details in announcements.
+
+- Publish a notice only for a significant release/upgrade, migration or access change, service disruption/important maintenance, or another matter users need to know promptly. Routine features, UI adjustments, fixes and game-resource additions do not create announcements.
+- To actively notify users, deliberately add a new stable ID and `notify: true`. Omitted/false `notify` keeps a notice available for manual reading without automatic opening. Keep the ID when correcting wording; changing Git commits, deployment metadata, a date or title does not reset read state.
+- Root `CHANGELOG.md` is the single website version history. At each formal version, summarize the main changes there; do not append every commit. Preserve known historical sources and leave unverified release dates unspecified. Never convert changelog entries into announcement data automatically.
+- The panel's “版本更新日志” link opens that exact file on GitHub. Do not maintain a second full changelog, add a separate changelog webpage or fetch version history on page load. An announcement is a short user-facing summary, not a duplicate version record.
 
 ## Stats and ranking
 

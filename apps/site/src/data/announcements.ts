@@ -3,18 +3,22 @@ export type Announcement = {
   date: string;
   title: string;
   paragraphs: string[];
+  notify?: boolean;
 };
 
-// Newest first. Keep an existing id when correcting wording; use a new id for
-// a new notice. Only the latest notice is included in the header's HTML.
+// Announcements are editorial decisions, not a feed of commits or features.
+// Newest first. Opt in with notify: true only for an important notice.
+// Keep the id for wording corrections; version history lives in CHANGELOG.md.
 export const announcements: Announcement[] = [
   {
-    id: "2026-10-16-site-polish",
+    id: "website-v4-0-0",
     date: "2026-10-16",
-    title: "公告入口与首页体验更新",
+    title: "Rhythm Archive v4.0.0 更新",
+    notify: true,
     paragraphs: [
-      "网站公告现在可以从右上角查看。新公告会展示一次，看过后不再自动展开，历史公告也会保留在这里。",
-      "首页的游戏卡片更紧凑了，访问统计和资源浏览量加载时也会保留位置，减少页面跳动。",
+      "v4.0.0 更新了界面、字体和动效，首页游戏卡片更紧凑，并调整了手机端布局与页面切换。主题和动效档位可在右上角设置。",
+      "图库卡片统一画框，区间筛选支持点选和拖动；从详情返回时保留筛选与浏览位置。统计和热榜加载更连贯，Arcaea APK 入口也放到了首页首屏。",
+      "以后可通过右上角查看重要公告，完整变化与历史版本见下方“版本更新日志”。",
     ],
   },
 ];

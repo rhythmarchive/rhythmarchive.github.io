@@ -15,6 +15,10 @@ export function createAnnouncementReadState(stores: ReadStorage[]) {
   };
   return {
     has(id: string) { sync(); return seen.has(id); },
+    shouldNotify(notice: { id: string; notify?: boolean } | undefined) {
+      sync();
+      return notice?.notify === true && !seen.has(notice.id);
+    },
     mark(id: string) {
       sync();
       seen.add(id);

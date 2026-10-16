@@ -42,6 +42,7 @@ Rhythm Archive 按游戏与资源类型整理图片内容，提供统一的浏�
 - [游戏库](https://rhythmarchive.github.io/games/) — 浏览当前收录内容
 - [资源搜索](https://rhythmarchive.github.io/search/) — 跨游戏查找图片
 - [意见反馈](https://rhythmarchive.github.io/feedback/) — 提交资源错误、下载问题或功能建议
+- [网站版本记录](CHANGELOG.md) — 查看网站正式版本的主要变化
 
 ## 🛠️ 开发与贡献
 

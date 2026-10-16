@@ -11,6 +11,7 @@ export function setupAnnouncements(beforeOpen: () => void, canAutoOpen: () => bo
   const closeButton = root.querySelector<HTMLButtonElement>("[data-announcements-close]")!;
   const dot = root.querySelector<HTMLElement>(".announcement-unread")!;
   const latest = root.dataset.latestId;
+  const notice = latest ? { id: latest, notify: root.dataset.notifyLatest === "true" } : undefined;
   const stores: Storage[] = [];
   for (const name of ["localStorage", "sessionStorage"] as const) {
     try { stores.push(window[name]); } catch { /* Storage can be disabled. */ }
@@ -44,9 +45,9 @@ export function setupAnnouncements(beforeOpen: () => void, canAutoOpen: () => bo
   };
   const schedule = () => {
     window.clearTimeout(autoTimer);
-    if (!latest || read.has(latest)) return;
+    if (!read.shouldNotify(notice)) return;
     autoTimer = window.setTimeout(() => {
-      if (document.hidden || read.has(latest) || !canAutoOpen() || document.querySelector("dialog[open]")) return;
+      if (document.hidden || !read.shouldNotify(notice) || !canAutoOpen() || document.querySelector("dialog[open]")) return;
       const active = document.activeElement;
       if (active instanceof HTMLElement && (active.isContentEditable || active.matches("input, textarea, select, button"))) return;
       open(true);
