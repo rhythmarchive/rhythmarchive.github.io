@@ -2,6 +2,7 @@
 import type { CardViewModel } from "../lib/card-view-model";
 import { cardRatioStyle } from "../lib/card-frame";
 import { urls } from "../lib/site-urls";
+import { resourceImageAlt } from "../lib/format";
 
 interface Props {
   view: CardViewModel;
@@ -33,13 +34,13 @@ const ratioStyle = cardRatioStyle(primary?.width ? primary : fallback);
           data-fallback-width={fallback?.width}
           data-fallback-height={fallback?.height}
           sizes={sizes}
-          alt={view.displayTitle}
+          alt={resourceImageAlt(view)}
           width={primary.width}
           height={primary.height}
           loading={eager ? "eager" : "lazy"}
           decoding="async"
         />
-        <noscript><img src={primary.url} srcset={srcset || undefined} sizes={sizes} alt={view.displayTitle} width={primary.width} height={primary.height} loading="lazy" /></noscript>
+        <noscript><img src={primary.url} srcset={srcset || undefined} sizes={sizes} alt={resourceImageAlt(view)} width={primary.width} height={primary.height} loading="lazy" /></noscript>
         </>
       ) : <div class="resource-card-placeholder" aria-label="图片加载失败">图片暂不可用</div>}
       {view.hasUpscaled ? <span class="resource-badge is-upscaled">含超分版</span> : null}

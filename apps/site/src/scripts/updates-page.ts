@@ -4,6 +4,7 @@ import { revealContent } from "./motion";
 import { publicContentVersion } from "../lib/game-index";
 import { sitePath as withBasePath } from "../lib/url";
 import type { PublicUpdate, PublicUpdateItem } from "../lib/types";
+import { resourceImageAlt } from "../lib/format";
 
 onPageLoad(() => {
   const dataElement = document.querySelector<HTMLScriptElement>("#updates-data");
@@ -25,7 +26,7 @@ onPageLoad(() => {
   const imageHtml = (item: PublicUpdateItem): string => {
     if (!item.image) return "<span class=\"update-preview-placeholder\">图片暂不可用</span>";
     const fallback = item.fallback ? " data-fallback-src=\"" + escapeHtml(item.fallback.url) + "\"" : "";
-    return "<img data-viewport-src=\"" + escapeHtml(item.image.url) + "\"" + fallback + " alt=\"" + escapeHtml(item.displayTitle) + "\" width=\"" + (item.image.width ?? "") + "\" height=\"" + (item.image.height ?? "") + "\" loading=\"lazy\" decoding=\"async\">";
+    return "<img data-viewport-src=\"" + escapeHtml(item.image.url) + "\"" + fallback + " alt=\"" + escapeHtml(resourceImageAlt(item)) + "\" width=\"" + (item.image.width ?? "") + "\" height=\"" + (item.image.height ?? "") + "\" loading=\"lazy\" decoding=\"async\">";
   };
   const summaryText = (count: number): string => "更新 " + count + " 项";
   const dateText = (value: string): string => new Intl.DateTimeFormat("zh-CN", { timeZone: "Asia/Shanghai", year: "numeric", month: "2-digit", day: "2-digit" }).format(new Date(value));

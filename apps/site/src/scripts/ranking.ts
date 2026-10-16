@@ -1,6 +1,7 @@
 import { onPageLoad, pageSignal } from "./page-lifecycle";
 import { reconcileList } from "./motion";
 import { GAME_CONFIG } from "../lib/game-config";
+import { resourceImageAlt } from "../lib/format";
 import { sitePath } from "../lib/url";
 import { mapResourceRankingEntries, rankingShardKey, type ResourceRankingRow } from "../lib/ranking";
 import { formatStatsCount, getBrowserStatsClient, isValidResourceId, type ResourceRanking, type ResourceRankingPeriod } from "../lib/stats-client";
@@ -165,7 +166,7 @@ function createRankingRow(row: ResourceRankingRow, rank: number, compact: boolea
       image.srcset = `${row.image.url} ${row.image.width}w, ${row.fallback.url} ${row.fallback.width}w`;
       image.sizes = "(max-width: 760px) 92vw, 400px";
     }
-    image.alt = "";
+    image.alt = resourceImageAlt(row);
     if (row.image.width) image.width = row.image.width;
     if (row.image.height) image.height = row.image.height;
     image.loading = rank <= 3 ? "eager" : "lazy";

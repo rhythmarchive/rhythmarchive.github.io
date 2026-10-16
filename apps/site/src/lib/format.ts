@@ -1,3 +1,11 @@
+import { CATEGORY_LABELS, GAME_CONFIG, type GameId, type ResourceTypeId } from "./game-config";
+
+export function resourceImageAlt(resource: { game: string; resourceType: string; displayTitle: string }): string {
+  const game = GAME_CONFIG[resource.game as GameId]?.displayName ?? resource.game;
+  const category = CATEGORY_LABELS[resource.resourceType as ResourceTypeId] ?? resource.resourceType;
+  return `${game} ${resource.displayTitle} · ${category}`;
+}
+
 export function formatCount(value: number): string {
   return new Intl.NumberFormat("zh-CN").format(value);
 }

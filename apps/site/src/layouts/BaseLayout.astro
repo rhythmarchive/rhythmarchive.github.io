@@ -19,6 +19,9 @@ interface Props {
 }
 
 const { title, description, canonicalPath, ogImage, bodyClass = "" } = Astro.props;
+// Keep long work/artist names from overflowing search snippets. Count Unicode characters.
+const descriptionCharacters = Array.from(description.replace(/\s+/gu, " ").trim());
+const metaDescription = descriptionCharacters.length > 160 ? `${descriptionCharacters.slice(0, 159).join("")}…` : descriptionCharacters.join("");
 
 const canonical = urls.absoluteUrl(canonicalPath);
 const socialImage = ogImage ?? urls.absoluteUrl("/brand-mark.svg");
@@ -31,7 +34,7 @@ const rosOrigin = new URL(ROS_BASE_URL).origin;
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <noscript><style is:inline>img[data-viewport-src] { display: none; }</style></noscript>
-    <meta name="description" content={description} />
+    <meta name="description" content={metaDescription} />
     <meta name="theme-color" content="#f3f7fb" />
     <link rel="preload" href={displayFontUrl} as="font" type="font/woff2" crossorigin="anonymous" />
     <link rel="icon" type="image/svg+xml" href={urls.sitePath("/favicon.svg")} />
@@ -42,7 +45,7 @@ const rosOrigin = new URL(ROS_BASE_URL).origin;
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Rhythm Archive" />
     <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
+    <meta property="og:description" content={metaDescription} />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={socialImage} />
     <meta name="twitter:card" content="summary_large_image" />

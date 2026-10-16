@@ -8,7 +8,7 @@ import VariantPanel from "../../../components/VariantPanel.astro";
 import ResourceCard from "../../../components/ResourceCard.astro";
 import ArtworkSwitcher from "../../../components/ArtworkSwitcher.astro";
 import { displayDifficultyLabel, GAME_CONFIG } from "../../../lib/game-config";
-import { formatImageDimensions } from "../../../lib/format";
+import { formatImageDimensions, resourceImageAlt } from "../../../lib/format";
 
 import { getSiteData } from "../../../lib/site-data";
 import { rankRelatedResources } from "../../../lib/related";
@@ -80,10 +80,13 @@ function chartStatusLabel(status: NonNullable<PublicResource["charts"]>[number][
 function chartDifficultyLabel(difficulty: string): string {
   return displayDifficultyLabel(difficulty, resource.game);
 }
-const description = `${resource.displayTitle}${resource.artist ? ` · ${resource.artist}` : ""} - ${GAME_CONFIG[resource.game].displayName} ${resource.resourceType === "video" ? "视频" : "图片"}资源。`;
+const resourceSubject = `${GAME_CONFIG[resource.game].displayName} ${resource.categoryLabel}`;
+const description = resource.resourceType === "video"
+  ? `在 Rhythm Archive 查看 ${resourceSubject}「${resource.displayTitle}」的演出封面、片段与视频内容，浏览相关资源；涉及剧情的内容可在确认后查看。`
+  : `在 Rhythm Archive 下载 ${resourceSubject}「${resource.displayTitle}」${resource.artist ? `（曲师：${resource.artist}）` : ""}。查看图片预览、尺寸与相关资源，支持原图下载${resource.upscaled || resource.variants.some((variant) => variant.upscaled) ? "，并提供超分版" : ""}。`;
 ---
 
-<BaseLayout title={`${resource.displayTitle} - ${GAME_CONFIG[resource.game].displayName} | Rhythm Archive`} description={description} canonicalPath={resource.route} ogImage={preview} bodyClass="detail-page">
+<BaseLayout title={`${resource.displayTitle} - ${resourceSubject}${resource.resourceType === "video" ? "" : "下载"} | Rhythm Archive`} description={description} canonicalPath={resource.route} ogImage={preview} bodyClass="detail-page">
   <div class="page-container detail-shell" data-detail-root data-resource-id={resource.resourceId} data-game={resource.game} data-category={resource.category} data-resource-title={resource.displayTitle}>
     <div class="detail-breadcrumb"><a href={urls.sitePath("/games/")}>游戏库</a><span>/</span><a href={urls.sitePath(`/${resource.game}/${resource.category}/`)}>{GAME_CONFIG[resource.game].displayName}</a><span>/</span><span>{resource.categoryLabel}</span></div>
     {resource.resourceType === "video" ? <><h1 class="sr-only">{resource.displayTitle}</h1><VideoGallery resources={[resource]}>
@@ -99,7 +102,7 @@ const description = `${resource.displayTitle}${resource.artist ? ` · ${resource
           </div>
         ) : null}
         {!resource.composition ? <div class="variant-panels">
-          {variants.map((variant, index) => <VariantPanel variant={variant} fallback={variant.original} active={index === activeVariantIndex} labelledBy={variants.length > 1 ? `variant-tab-${variant.variantId}` : undefined} alt={hasDifficultyArtwork ? `${resource.displayTitle} · ${variant.label} 曲绘` : resource.displayTitle} sourceToggle={resource.resourceType === "jacket" && (resource.game === "arcaea" || resource.game === "paradigm-reboot")} />)}
+          {variants.map((variant, index) => <VariantPanel variant={variant} fallback={variant.original} active={index === activeVariantIndex} labelledBy={variants.length > 1 ? `variant-tab-${variant.variantId}` : undefined} alt={`${resourceImageAlt(resource)}${variants.length > 1 ? ` · ${variant.label}` : ""}`} sourceToggle={resource.resourceType === "jacket" && (resource.game === "arcaea" || resource.game === "paradigm-reboot")} />)}
         </div> : null}
       </div>
       <aside class="detail-info">

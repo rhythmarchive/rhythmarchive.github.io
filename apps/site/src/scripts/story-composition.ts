@@ -5,7 +5,7 @@ import { prepareImage } from "./viewport-images";
 onPageLoad(() => {
   const root = document.querySelector<HTMLElement>("[data-story-composition]");
   if (root) {
-    const variants = JSON.parse(root.dataset.variants ?? "[]") as Array<{ id: string; label: string; original: PublicDownload; preview: string; overlay: boolean }>;
+    const variants = JSON.parse(root.dataset.variants ?? "[]") as Array<{ id: string; label: string; alt: string; original: PublicDownload; preview: string; overlay: boolean }>;
     const layer = root.querySelector<HTMLImageElement>("[data-cg-layer]")!;
     const base = root.querySelector<HTMLImageElement>("[data-cg-base]")!;
     const frames = root.querySelector<HTMLElement>("[data-cg-frames]")!;
@@ -23,7 +23,7 @@ onPageLoad(() => {
       const variant = variants[selected]!;
       const url = originalRequested ? variant.original.url : variant.preview;
       if (layer.getAttribute("src") !== url) { layer.src = url; prepareImage(layer); }
-      layer.alt = variant.label;
+      layer.alt = variant.alt;
       backgroundLabel.hidden = !variant.overlay;
       base.hidden = !variant.overlay || !background.checked || !originalRequested;
       if (!base.hidden) {

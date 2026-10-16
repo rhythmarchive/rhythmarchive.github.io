@@ -12,7 +12,7 @@ const categories = [...new Map(updates.flatMap((update) => update.categories).ma
 const payload = JSON.stringify(updates).replace(/</gu, "\\u003c");
 ---
 
-<BaseLayout title="更新记录 | Rhythm Archive" description="查看 Rhythm Archive 最近收录和更新的图片资源。" canonicalPath="/updates/" bodyClass="updates-page">
+<BaseLayout title="更新记录 | Rhythm Archive" description="查看 Rhythm Archive 音游曲绘与图片资源的更新记录，按游戏和资源类型查找新增、补充或替换的内容。进入每次更新了解收录范围，并查看对应作品的图片预览和下载详情。" canonicalPath="/updates/" bodyClass="updates-page">
   <section class="page-container updates-page-head page-heading" aria-labelledby="updates-heading">
     <span class="archive-kicker">Rhythm Archive</span>
     <h1 id="updates-heading">更新记录</h1>

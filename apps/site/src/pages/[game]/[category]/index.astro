@@ -40,10 +40,12 @@ const browseConfig = getCategoryBrowseConfig(gameId, categoryId, resources);
 const firstImage = browseData?.items.find((item) => item.preview.large)?.preview.large?.url ?? resources.find((resource) => resource.preview.large)?.preview.large?.url;
 const categoryCount = browseData?.items.length ?? category.count;
 const cardFrame = cardFrameForPreviews(resources.map((resource) => resource.preview));
-const description = `浏览并下载 ${game.displayName} ${category.label}${categoryId === "video" ? "视频" : "图片"}资源。`;
+const description = categoryId === "video"
+  ? `在 Rhythm Archive 浏览 ${game.displayName} 视频演出资源，查看演出封面、片段信息与视频内容。按资源选择演出，剧情内容可在确认后查看。`
+  : `在 Rhythm Archive 浏览与下载 ${game.displayName} ${category.label}，收录 ${categoryCount} 项资源。查看作品名称与图片信息，按分类查找${categoryId === "jacket" ? "音游曲绘" : "音游图片"}，进入详情预览并下载原图；提供超分版的资源可选择下载版本。`;
 ---
 
-<BaseLayout title={`${game.displayName} ${category.label} | Rhythm Archive`} description={description} canonicalPath={`/${game.slug}/${category.slug}/`} ogImage={firstImage} bodyClass="gallery-page">
+<BaseLayout title={`${game.displayName} ${category.label}${categoryId === "video" ? "" : "下载"} | Rhythm Archive`} description={description} canonicalPath={`/${game.slug}/${category.slug}/`} ogImage={firstImage} bodyClass="gallery-page">
   {storyStructure || categoryId === "video" ? <GalleryHeading game={game} category={category} count={categoryCount} standalone /> : null}
   <div class="page-container">
     {categoryId === "video" ? <VideoGallery resources={resources} /> : browseData ? (

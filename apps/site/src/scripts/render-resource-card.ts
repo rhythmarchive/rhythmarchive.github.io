@@ -4,6 +4,7 @@ import type { CardViewModel } from "../lib/card-view-model";
 import { imageRatio } from "../lib/card-frame";
 import { appendResourceViews } from "../lib/stats-client";
 import { sitePath } from "../lib/url";
+import { resourceImageAlt } from "../lib/format";
 
 type CardRenderOptions = {
   basePath: string;
@@ -44,7 +45,7 @@ export function renderResourceCard(view: CardViewModel, options: CardRenderOptio
   if (primary) {
     const image = document.createElement("img");
     image.dataset.viewportSrc = primary.url;
-    image.alt = view.displayTitle;
+    image.alt = resourceImageAlt(view);
     const width = primary.width ?? fallback?.width;
     const height = primary.height ?? fallback?.height;
     if (width) image.width = width;

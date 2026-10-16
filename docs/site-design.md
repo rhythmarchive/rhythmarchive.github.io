@@ -27,6 +27,14 @@ Display text uses the bundled Outfit latin variable font (`src/assets/fonts`, OF
 
 Scale: caption 12px, meta 13px, control 14px, body 16px, lead 18px, sections 24–32px, page 32–52px, home display 36–69px. Form inputs stay 16px on phones.
 
+## Search metadata and images
+
+Each indexable page describes its own game, resource category or work in Chinese. Home introduces Rhythm Archive as an 音游曲绘下载站; category and work titles include the actual resource type and download intent. `BaseLayout` reuses each description for search and Open Graph, normalizes whitespace and caps it at 160 Unicode characters. This is an editorial limit, not a guarantee about search snippet length or ranking. Do not pad descriptions or add keyword lists.
+
+Content previews use `resourceImageAlt` for game, work and resource type; variant details add the variant label. SSR, noscript and client-rendered cards keep the same semantics. Repeated decorative game icons, the brand mark beside its wordmark and thumbnails already named by their controls retain empty `alt`; an empty attribute is intentional and differs from a missing attribute.
+
+`src/pages/sitemap.xml.ts` already lists public category, resource and update URLs; `robots.txt.ts` advertises its absolute URL. Game root URLs redirect to their primary category and are deliberately omitted. Submit `/sitemap.xml` in search engine webmaster tools; do not invent `lastmod` from deployment time. IndexNow is not currently connected. It can notify participating engines about new/changed/deleted URLs, but needs a hosted ownership key and submission after successful deployment. If added later, reuse canonical URLs and the existing publication flow, submit only changed URLs, and keep it out of browser page loads. Sitemap remains useful for complete discovery; an IndexNow receipt does not prove indexing.
+
 ## Copy
 
 Write like a person who runs the site: short, concrete, polite without ceremony. State the result and the next possible action (“刷新失败，下面仍是上次的热榜，可以重试。”). Avoid marketing claims, “一站式/海量/极致”-style phrases, SaaS dashboard words and internal terms (manifest, object key, extractor, ROS). Status text that only confirms a visible change is announced to screen readers, not shown.

@@ -8,7 +8,7 @@ import "../../styles/local-library.css";
 
 const categories = getPublicNavigationGames().flatMap((game) => game.categories.map((category) => `${game.slug}/${category.slug}`));
 ---
-<BaseLayout title="收藏与历史 | Rhythm Archive" description="查看收藏的资源与自动记录的最近浏览。" canonicalPath="/library/" bodyClass="library-page">
+<BaseLayout title="收藏与历史 | Rhythm Archive" description="在 Rhythm Archive 查看收藏的音游曲绘与图片资源，继续浏览最近打开的资源详情。收藏与浏览历史保存在当前浏览器，方便再次查找作品、预览图片和下载原图。" canonicalPath="/library/" bodyClass="library-page">
   <section class="page-container gallery-shell library-shell" data-library-root data-categories={JSON.stringify(categories)}>
     <div class="page-heading library-heading">
       <span class="archive-kicker">Rhythm Archive</span>

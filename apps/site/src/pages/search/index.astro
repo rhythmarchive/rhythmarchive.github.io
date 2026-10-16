@@ -9,7 +9,7 @@ import { urls } from "../../lib/site-urls";
 import { CATEGORY_LABELS } from "../../lib/game-config";
 
 const query = Astro.url.searchParams.get("q") ?? "";
-const description = `搜索${getPublicNavigationGames().map((game) => game.displayName).join("、")}的曲绘、角色头像、特殊插画和其他图片资源。`;
+const description = "在 Rhythm Archive 搜索音游曲绘、角色立绘与剧情 CG，按作品名称、曲师和游戏筛选图片资源。找到对应曲绘后可进入详情预览，查看图片信息并选择下载原图或已有的超分版。";
 
 const games = getPublicNavigationGames();
 const quickLinks = buildSearchQuickLinks({ games });

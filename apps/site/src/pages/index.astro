@@ -17,7 +17,7 @@ const visibleGames = games.slice(0, 8);
 const quickLinks = buildSearchQuickLinks({ games }).slice(0, 6);
 const resourceCount = siteData.resources.length;
 const homeOgImage = urls.absoluteUrl("/og/home.png");
-const description = "收录音游曲绘、立绘、CG 等图片资源。";
+const description = "Rhythm Archive 是音游曲绘下载站，收录 Arcaea、Phigros、Rizline、In Falsus、Rotaeno、范式：起源与 Orzmic 的曲绘、角色立绘和剧情 CG。按游戏与分类浏览音游图片，查看作品信息并下载原图，部分资源提供超分版。";
 // Three falling lanes built from the local game icons. One loop holds six notes and
 // is doubled, so the track always covers the (tall, tilted) lane without gaps.
 const lanes = [0, 1, 2].map((lane) => {
@@ -29,7 +29,7 @@ const lanes = [0, 1, 2].map((lane) => {
 const arcaeaApkManifestUrl = `${ROS_BASE_URL}/apk/arcaea/latest.json`;
 ---
 
-<BaseLayout title="Rhythm Archive | 音游图片下载站" description={description} canonicalPath="/" ogImage={homeOgImage} bodyClass="home-page">
+<BaseLayout title="Rhythm Archive | 音游曲绘下载站" description={description} canonicalPath="/" ogImage={homeOgImage} bodyClass="home-page">
   <div data-site-base data-site-base-value={BASE_PATH}></div>
 
   <section class="page-container home-hero" aria-labelledby="home-heading">
