@@ -7,13 +7,13 @@ import RecentUpdates from "../components/RecentUpdates.astro";
 import ResourceRanking from "../components/ResourceRanking.astro";
 import { buildSearchQuickLinks } from "../lib/search-quick-links";
 import { formatCount } from "../lib/format";
-import { BASE_PATH, ROS_BASE_URL } from "../lib/site-config";
+import { BASE_PATH, PUBLIC_STATS_API_URL, ROS_BASE_URL } from "../lib/site-config";
 import { getPublicNavigationGames, getSiteData } from "../lib/site-data";
 import { urls } from "../lib/site-urls";
 
 const siteData = getSiteData();
 const games = getPublicNavigationGames();
-const visibleGames = games.slice(0, 9);
+const visibleGames = games.slice(0, 8);
 const quickLinks = buildSearchQuickLinks({ games }).slice(0, 6);
 const resourceCount = siteData.resources.length;
 const homeOgImage = urls.absoluteUrl("/og/home.png");
@@ -45,9 +45,9 @@ const arcaeaApkManifestUrl = `${ROS_BASE_URL}/apk/arcaea/latest.json`;
       <p class="home-stats" aria-label={`${formatCount(games.length)} 款游戏，${formatCount(resourceCount)} 项资源`}>
         <span class="home-stat"><strong>{formatCount(games.length)}</strong>款游戏</span>
         <span class="home-stat"><strong>{formatCount(resourceCount)}</strong>项资源</span>
-        <span class="home-stats-runtime" data-site-stats hidden aria-live="polite">
-          <span class="home-stat"><strong data-site-total-visits>0</strong>次来访</span>
-          <span class="home-stat is-today">今日<strong data-site-today-visits>0</strong></span>
+        <span class="home-stats-runtime" data-site-stats data-stats-state="loading" hidden={!PUBLIC_STATS_API_URL} aria-live="polite" aria-busy="true" aria-label="访问统计加载中">
+          <span class="home-stat"><strong data-site-total-visits>—</strong>次来访</span>
+          <span class="home-stat is-today">今日<strong data-site-today-visits>—</strong></span>
         </span>
       </p>
       <div class="home-search-block">
@@ -77,7 +77,7 @@ const arcaeaApkManifestUrl = `${ROS_BASE_URL}/apk/arcaea/latest.json`;
   <section class="page-container home-games" aria-labelledby="games-heading">
     <div class="section-heading">
       <div><span class="section-kicker">Games</span><h2 id="games-heading">收录游戏</h2></div>
-      <a class="section-link" href={urls.sitePath("/games/")}>全部游戏 <span aria-hidden="true">→</span></a>
+      <a class="section-link" href={urls.sitePath("/games/")}>全部游戏{games.length > visibleGames.length ? ` · ${games.length}` : ""} <span aria-hidden="true">→</span></a>
     </div>
     <div class="game-card-grid">
       {visibleGames.map((game) => <GameCard game={game} />)}
@@ -91,7 +91,14 @@ const arcaeaApkManifestUrl = `${ROS_BASE_URL}/apk/arcaea/latest.json`;
     </div>
     <div class="apk-card">
       <span class="apk-card-icon"><GameIcon game="arcaea" /></span>
-      <div class="apk-card-state" data-arcaea-apk-state><span>正在获取版本信息…</span></div>
+      <div class="apk-card-state" data-arcaea-apk-state aria-busy="true">
+        <div class="apk-card-main" aria-hidden="true">
+          <div class="apk-card-identity"><span class="apk-card-product">Arcaea · Android</span><strong class="async-placeholder">0.0.0</strong><span class="apk-version-tag">最新版本</span></div>
+          <dl class="apk-card-meta"><div><dt>文件大小</dt><dd class="async-placeholder">0.00 GB</dd></div><div><dt>更新时间</dt><dd class="async-placeholder">2026年10月16日 00:00</dd></div></dl>
+        </div>
+        <div class="apk-download-actions" aria-hidden="true"><span class="button apk-official-button async-placeholder">历史版本</span><span class="button apk-download-button async-placeholder">下载 APK</span></div>
+        <span class="sr-only">正在获取版本信息…</span>
+      </div>
     </div>
   </section>
 

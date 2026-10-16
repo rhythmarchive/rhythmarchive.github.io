@@ -229,8 +229,10 @@ html[data-navigating] .site-header::after { content: ""; position: absolute; ins
 .home-stat { display: inline-flex; align-items: baseline; gap: 4px; white-space: nowrap; }
 .home-stat + .home-stat, .home-stats-runtime > .home-stat:first-child { margin-left: 14px; padding-left: 14px; border-left: 1px solid var(--line-strong); }
 .home-stat strong { color: var(--text); font-size: 1.05rem; font-variant-numeric: tabular-nums; font-weight: var(--weight-heading); }
-.home-stats-runtime { display: contents; }
-.home-stats-runtime strong { color: var(--accent-strong); }
+.home-stats-runtime { display: inline-flex; align-items: baseline; flex-wrap: nowrap; }
+.home-stats-runtime strong { display: inline-block; width: 8ch; text-align: right; color: var(--accent-strong); }
+.home-stats-runtime .is-today strong { width: 6ch; }
+.home-stats-runtime .home-stat { white-space: nowrap; }
 .home-stat.is-today::before { content: ""; align-self: center; width: 6px; height: 6px; margin-right: 2px; border-radius: 50%; background: var(--cyan); box-shadow: 0 0 0 3px color-mix(in srgb, var(--cyan) 22%, transparent); }
 .home-search-block { width: min(100%, 760px); margin: 1.75rem auto 0; }
 .home-search-block .search-box { min-height: 64px; border-radius: var(--radius-md); }
@@ -667,7 +669,8 @@ img[data-image-state="loading"], img[data-image-state="error"],
 .detail-subtitle { margin: 0.35rem 0 0; color: var(--text-soft); font-size: 0.78rem; }
 .detail-resource-stats { display: inline-flex; align-items: center; gap: 6px; margin-top: .7rem; padding: .35rem .6rem; border: 1px solid color-mix(in srgb, var(--accent) 24%, var(--line)); border-radius: 999px; background: color-mix(in srgb, var(--cyan-soft) 72%, transparent); box-shadow: 0 5px 15px rgba(42, 93, 137, 0.045); color: var(--text-muted); font-size: .72rem; font-variant-numeric: tabular-nums; }
 .detail-resource-stats span { color: var(--accent-strong); font-weight: var(--weight-heading); }
-.detail-resource-stats[data-stats-pending] { visibility: hidden; }
+.detail-resource-stats[data-stats-pending], .resource-card-views[data-stats-pending] { opacity: 0; }
+:root[data-stats-api-url=""] .resource-card-views { display: none; }
 .detail-badges { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 0.85rem; }
 .detail-badge { padding: 4px 8px; border: 1px solid var(--line); border-radius: var(--radius-sm); background: var(--surface-muted); color: var(--text-muted); font-size: 0.68rem; }
 .detail-meta { display: grid; gap: 0; margin: 1.55rem 0 0; border-top: 1px solid var(--line); }

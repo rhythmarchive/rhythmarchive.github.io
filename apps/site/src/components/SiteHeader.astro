@@ -1,5 +1,6 @@
 ---
 import BrandMark from "./BrandMark.astro";
+import SiteAnnouncements from "./SiteAnnouncements.astro";
 import { formatCount } from "../lib/format";
 import { getPublicNavigationGames } from "../lib/site-data";
 import { primaryCategorySlug } from "../lib/game-config";
@@ -57,6 +58,7 @@ const isGameLibrary = isWithin(urls.sitePath("/games/"))
       <a class="nav-search header-icon-button" href={urls.sitePath("/search/")} aria-label="搜索资源" title="搜索资源（快捷键 /）" aria-keyshortcuts="/">
         <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.3"/><path d="m16 16 4.5 4.5"/></svg>
       </a>
+      <SiteAnnouncements />
       <div class="site-settings">
         <button class="settings-toggle header-icon-button" type="button" data-settings-toggle aria-haspopup="dialog" aria-controls="site-settings-panel" aria-expanded="false" aria-label="显示设置" title="显示设置">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7.5h8.5M17.5 7.5H20M4 16.5h2.5M11.5 16.5H20"/><circle cx="15" cy="7.5" r="2.4"/><circle cx="9" cy="16.5" r="2.4"/></svg>

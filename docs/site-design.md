@@ -82,13 +82,23 @@ The hero keeps “音游图片下载站”, a one-line description, totals from 
 
 Arcaea APK is discoverable from the first screen: the hero's small `.home-apk-entry` link (in the kicker position, quieter than search) jumps to `#arcaea-apk`, which follows the game list. The card reads the existing public manifest through the existing parser once; the same response fills the hero entry's version. Failure falls back to the official entry. A 2 GB file is never offered from the hero directly — the card shows size and date next to the download.
 
+## Site announcements
+
+The persistent header's bell opens a non-modal notice panel through `setSurfaceVisible`. A new latest notice opens once without moving focus; read IDs persist in browser storage and sync across tabs. A blocked local store falls back to session storage, then in-memory state. Automatic opening defers while another header surface, modal or form control is in use. History is fetched through `loadStaticData` only when expanded.
+
+Maintain `apps/site/src/data/announcements.ts`, newest first: add an `id`, date, title and plain-text paragraphs. Keep the ID for wording corrections; a new ID is a new notification. Only the latest entry is in page HTML; `/data/announcements.json` supplies older entries on demand. Do not put images or private maintenance details in announcements.
+
 ## Stats and ranking
+
+Async visit counts reserve their number slots from first paint when Stats is configured. Loading uses quiet placeholders; success fades the values in and failure keeps dashes in the same slots. Card and detail counts reserve their line while pending. APK loading uses the final card structure. Never add a second statistics request just for presentation.
 
 Site totals: one `site_visit` request per page load (existing), rendered into the hero strip. Ranking (`ResourceRanking.astro` on home with 6 rows, `/ranking/` with 30): one `/v1/resources/ranking` request per period (the stats client caches it for the session), then only the card shards those IDs need from `data/ranking/<xx>.json` (128 shards by the UUID's random tail, `rankingShardKey`; ~4 KB gzip each). The ranking never loads `search-cards.json`.
 
 Rows are server-rendered as placeholders (all six on home, so the section does not jump) and replaced through `reconcileList`: rows that stay keep their node and thumbnail and glide to the new rank, new rows enter, dropped rows leave. A heat bar scales to the leader's views (`--share`, transform only). Top three get tinted rank badges; `/ranking/` shows them as a podium with the sharper existing preview via `srcset`. The status line names the period from the response dates (“10月10日至10月16日的浏览量”). Failure keeps the last rows with “刷新失败，下面仍是上次的热榜，可以重试。” and an inline 重试; with nothing to show it says so and offers 重试. When stats are not configured the home section hides.
 
 ## Shared game index and navigation
+
+The homepage shows at most eight recent games in compact icon-and-text cards (four columns on wide screens, three on medium screens, two on phones); the complete library remains under “全部游戏”. Icons retain their square geometry.
 
 `PublicGameIndex` may expose `contentVersion` and `lastUpdatedAt` (max public `lifecycle.updatedAt`; `contentVersion` only from a unique `provenance.gameVersion` of that update, never the official latest version). Home and `/games/` share the game card and link to each game's primary category; default order is `lastUpdatedAt DESC`. The header has one “游戏库” popover; at narrow widths primary nav moves into a menu while search and settings stay visible.
 

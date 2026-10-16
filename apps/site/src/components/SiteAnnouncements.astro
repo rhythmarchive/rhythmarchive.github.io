@@ -1,0 +1,59 @@
+---
+import { announcements } from "../data/announcements";
+import { urls } from "../lib/site-urls";
+
+const latest = announcements[0];
+---
+
+<details class="site-announcements" data-announcements data-latest-id={latest?.id}>
+  <summary class="announcements-toggle header-icon-button" aria-label="站内公告" title="站内公告" aria-controls="site-announcements-panel" aria-haspopup="dialog">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 16.5h14l-1.5-2V9a5.5 5.5 0 0 0-11 0v5.5L5 16.5ZM10 20h4M12 2v1.5"/></svg>
+    <span class="announcement-unread" aria-hidden="true" hidden></span>
+  </summary>
+  <span class="sr-only" data-announcements-status role="status"></span>
+  <div class="settings-panel announcements-panel" id="site-announcements-panel" role="dialog" aria-labelledby="site-announcements-title" data-announcements-panel>
+    <div class="announcements-heading">
+      <strong id="site-announcements-title"><span class="section-kicker">站内公告</span></strong>
+      <button class="announcement-close header-icon-button" type="button" data-announcements-close aria-label="关闭公告"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
+    </div>
+    <div class="announcements-scroll">
+      {latest ? <article class="announcement-entry">
+        <time datetime={latest.date}>{latest.date.replaceAll("-", ".")}</time>
+        <h2>{latest.title}</h2>
+        {latest.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+      </article> : <p class="announcement-empty">暂无公告</p>}
+      <details class="announcement-history" data-announcements-history data-url={urls.sitePath("/data/announcements.json")}>
+        <summary>历史公告<span aria-hidden="true">⌄</span></summary>
+        <div data-announcements-history-content aria-live="polite"></div>
+      </details>
+    </div>
+  </div>
+</details>
+
+<style>
+  .site-announcements { position: relative; }
+  .announcements-toggle { position: relative; list-style: none; cursor: pointer; }
+  .announcements-toggle::-webkit-details-marker, .announcement-history > summary::-webkit-details-marker { display: none; }
+  .announcements-toggle[aria-expanded="true"] { color: var(--accent-strong); background: var(--surface); border-color: var(--accent); }
+  .announcement-unread { position: absolute; top: 4px; right: 4px; width: 7px; height: 7px; border-radius: 50%; background: var(--accent-warm); box-shadow: 0 0 0 2px var(--surface); }
+  .announcements-panel { width: 400px; padding: 0; overflow: hidden; }
+  .announcements-heading { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 14px 18px; border-bottom: 1px solid var(--line); }
+  .announcements-heading strong { font-size: var(--type-control); }
+  .announcement-close { width: 30px; height: 30px; border-color: transparent; }
+  :global(:root:not(.has-js)) :is(.announcement-close, .announcement-history) { display: none; }
+  .announcements-scroll { max-height: min(520px, calc(100dvh - 160px)); overflow-y: auto; overscroll-behavior: contain; padding: 18px; }
+  .announcement-entry time { color: var(--text-soft); font-size: var(--type-caption); font-variant-numeric: tabular-nums; }
+  .announcement-entry, [data-announcements-history-content] { user-select: text; }
+  .announcement-entry h2 { margin: 6px 0 12px; color: var(--text); font-size: var(--type-lead, 18px); line-height: 1.5; }
+  .announcement-entry p { margin: 8px 0 0; color: var(--text-muted); font-size: var(--type-control); line-height: 1.8; }
+  .announcement-history { margin-top: 18px; border-top: 1px solid var(--line); }
+  .announcement-history > summary { display: flex; justify-content: space-between; gap: 12px; padding: 14px 0 0; color: var(--accent-strong); font-size: var(--type-meta); font-weight: var(--weight-control); cursor: pointer; list-style: none; user-select: none; }
+  .announcement-history[open] > summary span { transform: rotate(180deg); }
+  [data-announcements-history-content] { padding-top: 14px; color: var(--text-soft); font-size: var(--type-meta); }
+  [data-announcements-history-content] :global(.announcement-entry + .announcement-entry) { margin-top: 18px; padding-top: 18px; border-top: 1px solid var(--line); }
+  [data-announcements-history-content] :global(time) { color: var(--text-soft); font-size: var(--type-caption); }
+  [data-announcements-history-content] :global(h3) { margin: 6px 0 10px; color: var(--text); font-size: var(--type-control); }
+  [data-announcements-history-content] :global(p) { margin: 8px 0; color: var(--text-muted); line-height: 1.8; }
+  [data-announcements-history-content] :global(button) { margin-left: 8px; color: var(--accent-strong); }
+  @media (max-width: 760px) { .announcements-panel { width: auto; } }
+</style>

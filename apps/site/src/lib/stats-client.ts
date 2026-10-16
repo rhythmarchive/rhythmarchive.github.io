@@ -286,6 +286,8 @@ export async function updateResourceStatsInDom(scope: ParentNode, resourceIds?: 
     if (!node || !value) continue;
     value.textContent = formatStatsCount(resourceStats.views);
     node.hidden = false;
+    node.removeAttribute("data-stats-pending");
+    node.removeAttribute("aria-hidden");
   }
 }
 
@@ -302,21 +304,30 @@ function createResourceViewsTemplate(): HTMLElement {
   const node = document.createElement("span");
   node.className = "resource-card-views";
   node.dataset.resourceViews = "";
-  node.hidden = true;
+  node.dataset.statsPending = "";
+  node.setAttribute("aria-hidden", "true");
   node.setAttribute("aria-label", "浏览量");
   node.innerHTML ='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 12s3.5-5.5 9.5-5.5 9.5 5.5 9.5 5.5-3.5 5.5-9.5 5.5S2.5 12 2.5 12Z"></path><circle cx="12" cy="12" r="2.5"></circle></svg><span data-resource-views-value></span>';
   return node;
 }
 
 export function renderSiteStats(stats: SiteStats | undefined, scope: ParentNode = document): void {
-  if (!stats || !Number.isSafeInteger(stats.totalVisits) || !Number.isSafeInteger(stats.todayVisits) || stats.totalVisits < 0 || stats.todayVisits < 0) return;
   const container = scope.querySelector<HTMLElement>("[data-site-stats]");
   const total = scope.querySelector<HTMLElement>("[data-site-total-visits]");
   const today = scope.querySelector<HTMLElement>("[data-site-today-visits]");
   if (!container || !total || !today) return;
+  container.removeAttribute("aria-busy");
+  if (!stats || !Number.isSafeInteger(stats.totalVisits) || !Number.isSafeInteger(stats.todayVisits) || stats.totalVisits < 0 || stats.todayVisits < 0) {
+    container.dataset.statsState = "unavailable";
+    container.setAttribute("aria-label", "访问统计暂不可用");
+    total.textContent = today.textContent = "—";
+    return;
+  }
   total.textContent = formatStatsCount(stats.totalVisits);
   today.textContent = formatStatsCount(stats.todayVisits);
   container.hidden = false;
+  container.dataset.statsState = "ready";
+  container.removeAttribute("aria-label");
 }
 
 function parseSiteStats(value: unknown): SiteStats | undefined {

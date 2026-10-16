@@ -1,4 +1,5 @@
 import { finishMotion, setSurfaceVisible } from "./motion";
+import { setupAnnouncements } from "./announcements";
 import { motionLevel, motionStorageKey, normalizeMotion, resolveMotion } from "./motion-preference";
 
 const root = document.documentElement;
@@ -65,6 +66,7 @@ const libraryTrigger = library.querySelector<HTMLElement>("summary")!;
 const libraryPanel = library.querySelector<HTMLElement>(".nav-library-popover")!;
 let libraryOpen = false;
 let settingsOpen = false;
+let announcements: ReturnType<typeof setupAnnouncements> | undefined;
 libraryPanel.hidden = true;
 libraryTrigger.setAttribute("aria-expanded", "false");
 const setLibraryOpen = (open: boolean) => {
@@ -72,6 +74,7 @@ const setLibraryOpen = (open: boolean) => {
   libraryOpen = open;
   libraryTrigger.setAttribute("aria-expanded", String(open));
   if (open) {
+    announcements?.close();
     library.open = true;
     setSettingsOpen(false);
   }
@@ -84,6 +87,7 @@ const setSettingsOpen = (open: boolean, returnFocus = false) => {
   settingsOpen = open;
   settingsToggle.setAttribute("aria-expanded", String(open));
   if (open) {
+    announcements?.close();
     setLibraryOpen(false);
     if (mobile.matches) setOpen(false);
   }
@@ -97,7 +101,7 @@ const setOpen = (open: boolean) => {
   nav.dataset.mobileOpen = String(open);
   toggle.setAttribute("aria-expanded", String(open));
   toggle.setAttribute("aria-label", open ? "关闭导航菜单" : "打开导航菜单");
-  if (open) setSettingsOpen(false);
+  if (open) { setSettingsOpen(false); announcements?.close(); }
   if (mobile.matches) {
     void setSurfaceVisible(nav, open).then((settled) => {
       if (settled && !open) setLibraryOpen(false);
@@ -108,6 +112,12 @@ const setOpen = (open: boolean) => {
     if (!open) setLibraryOpen(false);
   }
 };
+announcements = setupAnnouncements(() => {
+  setLibraryOpen(false);
+  setSettingsOpen(false);
+  if (mobile.matches) setOpen(false);
+}, () => !settingsOpen && !libraryOpen && toggle.getAttribute("aria-expanded") !== "true");
+
 libraryTrigger.addEventListener("click", (event) => {
   event.preventDefault();
   setLibraryOpen(!libraryOpen);
@@ -138,7 +148,9 @@ document.addEventListener("pointerdown", (event) => {
 });
 document.addEventListener("keydown", (event) => {
   if (event.key !== "Escape") return;
-  if (settingsOpen) {
+  if (announcements?.isOpen()) {
+    announcements.close(true);
+  } else if (settingsOpen) {
     setSettingsOpen(false, true);
   } else if (libraryOpen) {
     setLibraryOpen(false);
@@ -153,6 +165,7 @@ settings.addEventListener("focusout", (event) => {
 });
 mobile.addEventListener("change", () => setOpen(false));
 document.addEventListener("astro:after-swap", () => {
+  announcements?.close();
   applyMotion(root.dataset.motion);
   setOpen(false);
   setSettingsOpen(false);

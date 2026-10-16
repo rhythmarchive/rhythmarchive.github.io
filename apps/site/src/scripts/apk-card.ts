@@ -21,6 +21,7 @@ async function loadManifest(cardElement: HTMLElement, stateElement: HTMLElement,
     if (!signal.aborted) renderManifest(cardElement, stateElement, manifest.latest);
   } catch {
     if (signal.aborted) return;
+    stateElement.removeAttribute("aria-busy");
     stateElement.replaceChildren();
     const message = document.createElement("p");
     message.textContent = "暂时没拿到安装包信息，可以先去官网下载。";
@@ -31,10 +32,12 @@ async function loadManifest(cardElement: HTMLElement, stateElement: HTMLElement,
     link.rel = "noopener noreferrer";
     link.textContent = "Arcaea 官网";
     stateElement.append(message, link);
+    revealContent(stateElement);
   }
 }
 
 function renderManifest(cardElement: HTMLElement, stateElement: HTMLElement, latest: PublicArcaeaApkEntry): void {
+  stateElement.removeAttribute("aria-busy");
   cardElement.classList.add("is-ready");
   stateElement.replaceChildren();
 

@@ -60,6 +60,31 @@
 .home-hero .home-stats { justify-content: flex-start; margin: 1.1rem 0 0 !important; }
 .home-hero .home-search-block { width: min(100%, 620px); margin: 1.5rem 0 0; }
 .home-hero .home-quick-links { justify-content: flex-start; }
+/* The homepage stays a compact index as the game library grows. */
+.home-games .game-card-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+.home-games .game-card { grid-template-columns: 64px minmax(0, 1fr); align-items: center; gap: 12px; min-height: 108px; padding: 12px; }
+.home-games .game-card-media { width: 64px; height: 64px; min-height: 0; border-radius: var(--radius-sm); }
+.home-games .game-card-media .game-icon-image { object-fit: contain; }
+.home-games .game-card-body { gap: 5px; padding: 0; }
+.home-games .game-card-heading { flex-wrap: wrap; gap: 4px 6px; }
+.home-games .game-card-heading h3 { font-size: 1rem; line-height: 1.3; }
+.home-games .game-card-meta { gap: 2px; font-size: var(--type-caption); }
+@media (max-width: 1100px) {
+  .home-games .game-card-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (max-width: 760px) {
+  .home-stats-runtime { flex-basis: 100%; }
+  .home-stats-runtime > .home-stat:first-child { margin-left: 0; padding-left: 0; border-left: 0; }
+  .home-stats-runtime strong { text-align: left; }
+  .home-games .game-card-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  .home-games .game-card { grid-template-columns: 48px minmax(0, 1fr); gap: 9px; min-height: 90px; padding: 9px; }
+  .home-games .game-card-media { width: 48px; height: 48px; }
+  .home-games .game-card-heading h3 { font-size: .9rem; }
+}
+@media (max-width: 380px) {
+  .home-games .game-card { grid-template-columns: 36px minmax(0, 1fr); gap: 7px; padding: 8px; }
+  .home-games .game-card-media { width: 36px; height: 36px; }
+}
 /* The APK entry sits where a kicker would: visible on the first screen, never louder than search. */
 .home-apk-entry { display: inline-flex; align-items: center; gap: 8px; max-width: 100%; min-height: 34px; padding: 4px 12px 4px 6px; border: 1px solid color-mix(in srgb, var(--accent) 30%, var(--line)); border-radius: 999px; background: color-mix(in srgb, var(--surface) 82%, transparent); color: var(--text-muted); font-size: var(--type-meta); font-weight: var(--weight-control); transition: border-color var(--transition-ui), color var(--transition-ui), background-color var(--transition-ui); }
 .home-apk-entry svg { flex: none; width: 24px; height: 24px; padding: 4px; border-radius: 50%; background: var(--action-bg); fill: none; stroke: #fff; stroke-linecap: round; stroke-linejoin: round; stroke-width: 2; }
