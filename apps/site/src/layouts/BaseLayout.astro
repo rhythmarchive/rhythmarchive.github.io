@@ -24,6 +24,13 @@ const descriptionCharacters = Array.from(description.replace(/\s+/gu, " ").trim(
 const metaDescription = descriptionCharacters.length > 160 ? `${descriptionCharacters.slice(0, 159).join("")}…` : descriptionCharacters.join("");
 
 const canonical = urls.absoluteUrl(canonicalPath);
+const websiteStructuredData = canonicalPath === "/" ? JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "Rhythm Archive",
+  url: canonical,
+  description: metaDescription,
+}).replace(/</gu, "\\u003c") : undefined;
 const socialImage = ogImage ?? urls.absoluteUrl("/brand-mark.svg");
 const rosOrigin = new URL(ROS_BASE_URL).origin;
 ---
@@ -42,6 +49,7 @@ const rosOrigin = new URL(ROS_BASE_URL).origin;
     <link rel="preconnect" href={rosOrigin} crossorigin="anonymous" />
     <link rel="dns-prefetch" href={rosOrigin} />
     <link rel="canonical" href={canonical} />
+    {websiteStructuredData && <script is:inline type="application/ld+json" set:html={websiteStructuredData} />}
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Rhythm Archive" />
     <meta property="og:title" content={title} />
