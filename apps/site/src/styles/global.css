@@ -230,8 +230,9 @@ html[data-navigating] .site-header::after { content: ""; position: absolute; ins
 .home-stat + .home-stat, .home-stats-runtime > .home-stat:first-child { margin-left: 14px; padding-left: 14px; border-left: 1px solid var(--line-strong); }
 .home-stat strong { color: var(--text); font-size: 1.05rem; font-variant-numeric: tabular-nums; font-weight: var(--weight-heading); }
 .home-stats-runtime { display: inline-flex; align-items: baseline; flex-wrap: nowrap; }
-.home-stats-runtime strong { display: inline-block; width: 8ch; text-align: right; color: var(--accent-strong); }
-.home-stats-runtime .is-today strong { width: 6ch; }
+.home-stats-runtime strong { display: inline-block; text-align: left; color: var(--accent-strong); }
+.home-stats-runtime[data-stats-state="loading"] strong { min-width: 5ch; }
+.home-stats-runtime[data-stats-state="loading"] .is-today strong { min-width: 2ch; }
 .home-stats-runtime .home-stat { white-space: nowrap; }
 .home-stat.is-today::before { content: ""; align-self: center; width: 6px; height: 6px; margin-right: 2px; border-radius: 50%; background: var(--cyan); box-shadow: 0 0 0 3px color-mix(in srgb, var(--cyan) 22%, transparent); }
 .home-search-block { width: min(100%, 760px); margin: 1.75rem auto 0; }

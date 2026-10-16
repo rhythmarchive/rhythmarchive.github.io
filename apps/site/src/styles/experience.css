@@ -75,7 +75,6 @@
 @media (max-width: 760px) {
   .home-stats-runtime { flex-basis: 100%; }
   .home-stats-runtime > .home-stat:first-child { margin-left: 0; padding-left: 0; border-left: 0; }
-  .home-stats-runtime strong { text-align: left; }
   .home-games .game-card-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
   .home-games .game-card { grid-template-columns: 48px minmax(0, 1fr); gap: 9px; min-height: 90px; padding: 9px; }
   .home-games .game-card-media { width: 48px; height: 48px; }
