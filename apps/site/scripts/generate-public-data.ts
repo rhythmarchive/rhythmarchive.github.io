@@ -71,7 +71,7 @@ for (const [game, diagnostics] of Object.entries(browseBuild.diagnostics)) {
 function toSearchCard(resource: ReturnType<typeof getSiteData>["resources"][number]) {
   const { primary, fallback } = selectCardPreview(resource.preview);
   const image = cardImage(primary);
-  const fallbackImage = cardImage(fallback);
+  const fallbackImage = resource.game === "dynamix" && resource.resourceType === "character-portrait" ? null : cardImage(fallback);
   const variantLabels = resource.badges?.length
     ? resource.badges
     : resource.variants.filter((variant) => variant.label !== "默认").map((variant) => variant.label);

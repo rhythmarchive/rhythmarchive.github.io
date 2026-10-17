@@ -38,6 +38,12 @@ export const CATEGORY_LABELS: Record<ResourceTypeId, string> = {
 };
 
 export const GAME_CONFIG: Record<GameId, GameConfig> = {
+  dynamix: {
+    slug: "dynamix", displayName: "Dynamix", searchAliases: ["炫光动感"],
+    categoryOrder: ["jacket", "character-portrait"], featuredCategories: ["jacket", "character-portrait"],
+    filters: { difficulty: true, upscale: false },
+    metadataLabels: { artist: "曲师", pack: "曲包", bpm: "BPM", genre: "曲风", contentKind: "类型", skills: "技能类别", imageCount: "图片数量" },
+  },
   arcaea: {
     slug: "arcaea",
     displayName: "Arcaea",
@@ -206,6 +212,7 @@ export function categoryLabel(resourceType: ResourceTypeId): string {
 }
 
 export function gameCategoryLabel(game: GameId, resourceType: ResourceTypeId): string {
+  if (game === "dynamix" && resourceType === "character-portrait") return "角色";
   if (game === "rotaeno" && resourceType === "character-portrait") return "驾驶员立绘";
   if (game === "rizline" && resourceType === "character-avatar") return "角色头像";
   if (game === "paradigm-reboot" && resourceType === "character-avatar") return "角色头像";

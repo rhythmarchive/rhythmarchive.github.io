@@ -17,7 +17,7 @@ const useOriginalSource = sourceToggle && Boolean(variant.original);
 const canToggleSource = useOriginalSource && Boolean(variant.upscaled);
 ---
 
-<section class="variant-panel" id={`variant-panel-${variant.variantId}`} data-variant-panel={variant.variantId} role="tabpanel" aria-labelledby={labelledBy} tabindex="0" hidden={!active}>
+<section class="variant-panel" id={`variant-panel-${variant.variantId}`} data-variant-panel={variant.variantId} role="tabpanel" aria-labelledby={labelledBy} aria-label={labelledBy ? undefined : alt} tabindex="0" hidden={!active}>
   {useOriginalSource ? (
     <>
       {canToggleSource ? (

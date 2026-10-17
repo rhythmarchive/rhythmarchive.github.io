@@ -21,6 +21,7 @@ const QUICK_LINK_DEFINITIONS: QuickLinkDefinition[] = [
   { game: "paradigm-reboot", label: "范式：起源" },
   { game: "rotaeno", label: "Rotaeno" },
   { game: "orzmic", label: "Orzmic" },
+  { game: "dynamix", label: "Dynamix" },
   { game: "rotaeno", category: "pack-cover", label: "Rotaeno 曲包封面" },
   { game: "rotaeno", category: "character-portrait", label: "Rotaeno 驾驶员立绘" },
   { game: "rotaeno", category: "story-cg", label: "Rotaeno 剧情 CG" },

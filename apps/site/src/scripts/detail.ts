@@ -80,10 +80,16 @@ onPageLoad(() => {
     };
 
     const variantButtons = Array.from(root.querySelectorAll<HTMLButtonElement>("[data-variant-select]"));
+    const variantDropdown = root.querySelector<HTMLSelectElement>("[data-variant-dropdown]");
+    variantDropdown?.addEventListener("change", () => {
+      const button = variantButtons.find(b => b.dataset.variantSelect === variantDropdown.value);
+      if (button) selectVariant(button);
+    });
     const selectVariant = (button: HTMLButtonElement): void => {
       const variantId = button.dataset.variantSelect;
       if (!variantId || button.getAttribute("aria-selected") === "true") return;
       closeLightbox();
+      if (variantDropdown) variantDropdown.value = variantId;
       for (const panel of root.querySelectorAll<HTMLElement>("[data-variant-panel]")) panel.hidden = panel.dataset.variantPanel !== variantId;
       for (const panel of root.querySelectorAll<HTMLElement>("[data-download-variant]")) panel.hidden = panel.dataset.downloadVariant !== variantId;
       for (const item of variantButtons) {

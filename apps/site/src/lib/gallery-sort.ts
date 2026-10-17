@@ -10,7 +10,7 @@ export type GallerySortCard = {
   displayTitle: string;
   facets?: Record<string, string[]>;
   metadata?: Record<string, unknown>;
-  charts?: Array<{ constant?: string }>;
+  charts?: Array<{ constant?: string; level?: string }>;
 };
 
 function numericTokens(value: string): number[] {
@@ -60,4 +60,12 @@ export function compareGalleryBpm(left: GallerySortCard, right: GallerySortCard,
 export function compareGalleryHighestConstant(left: GallerySortCard, right: GallerySortCard, descending: boolean): number {
   return compareNullableNumber(highestChartConstant(left), highestChartConstant(right), descending)
     || compareNaturalText(left.displayTitle, right.displayTitle);
+}
+
+export function compareGalleryHighestLevel(left: GallerySortCard, right: GallerySortCard, descending: boolean): number {
+  const highest = (card: GallerySortCard): number | undefined => {
+    const levels = (card.charts ?? []).map(c => Number(c.level)).filter(n => Number.isFinite(n) && n > 0);
+    return levels.length ? Math.max(...levels) : undefined;
+  };
+  return compareNullableNumber(highest(left), highest(right), descending) || compareNaturalText(left.displayTitle, right.displayTitle);
 }

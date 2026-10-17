@@ -2,6 +2,15 @@
   "schemaVersion": 1,
   "baselines": [
     {
+      "id": "2648a532-5d83-7f8e-bc5c-0c078c722edc",
+      "game": "dynamix",
+      "releaseIds": [
+        "0cbbee86-113a-7a7d-946b-15307dcf26ff"
+      ],
+      "publishedAt": "2026-10-17T16:22:11.622Z",
+      "contentVersion": "3.20.01"
+    },
+    {
       "id": "b3509ffa-4beb-72ac-9d97-9a7c9fcb3691",
       "game": "orzmic",
       "releaseIds": [

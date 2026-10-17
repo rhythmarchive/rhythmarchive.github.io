@@ -205,7 +205,7 @@ function enrichFormalBrowseMetadata(siteData: PublicSiteData, browse: FormalBrow
       if (!text) return;
       facets[key] = [...new Set([...(facets[key] ?? []), text])];
     };
-    addFacetValue("pack", metadata.pack ?? metadata.packName);
+    if (resource.game !== "dynamix") addFacetValue("pack", metadata.pack ?? metadata.packName);
     if (resource.game === "paradigm-reboot") {
       const versionValues = [...(facets.version ?? []), metadata.updateVersion ?? metadata.version]
         .flatMap((value) => paradigmVersionFacetValues(value));

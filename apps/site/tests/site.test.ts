@@ -733,7 +733,9 @@ test("game roots redirect to primary category pages while category navigation ke
   const categoryPage = fs.readFileSync(path.join(siteRoot, "src", "pages", "[game]", "[category]", "index.astro"), "utf8");
   assert.match(gamePage, /return Astro\.redirect/u);
   assert.match(gamePage, /primaryCategorySlug\(game\.slug\)/u);
-  assert.match(categoryPage, /<span class="category-nav-label">资源类型<\/span>/u);
+  const heading = fs.readFileSync(path.join(siteRoot, "src", "components", "GalleryHeading.astro"), "utf8");
+  assert.match(categoryPage, /<GalleryHeading/u);
+  assert.match(heading, /<span class="category-nav-label">资源类型<\/span>/u);
   assert.doesNotMatch(categoryPage, /category-nav-all|>全部 <span>/u);
 });
 
@@ -744,7 +746,8 @@ test("internal game entries link directly to each game's primary category", () =
     fs.readFileSync(path.join(siteRoot, "src", "pages", "r", "[id]", "index.astro"), "utf8"),
   ];
   const footer = fs.readFileSync(path.join(siteRoot, "src", "components", "Footer.astro"), "utf8");
-  assert.ok(sources.slice(0, 2).every((source) => source.includes("primaryCategorySlug")));
+  assert.ok(sources[0]!.includes("primaryCategorySlug"));
+  assert.ok(sources[1]!.includes("GalleryHeading"));
   assert.match(sources[2]!, /resource\.category/u);
   assert.match(footer, /urls\.sitePath\("\/games\/"\)/u);
   assert.doesNotMatch(footer, /getPublicNavigationGames|primaryCategorySlug/u);
@@ -752,6 +755,7 @@ test("internal game entries link directly to each game's primary category", () =
   const quickLinks = buildSearchQuickLinks({ games: getPublicNavigationGames() });
   assert.ok(quickLinks.filter((entry) => ["Arcaea", "Phigros", "Rizline", "In Falsus", "范式：起源", "Rotaeno"].includes(entry.label)).every((entry) => entry.href.endsWith("/jacket/")));
   assert.ok(quickLinks.some((entry) => entry.label === "范式：起源 曲绘" && entry.href === "/paradigm-reboot/jacket/"));
+  assert.ok(quickLinks.some(entry => entry.label === "Dynamix 曲绘" && entry.href === "/dynamix/jacket/" && entry.count === 562));
   assert.equal(primaryCategorySlug("arcaea"), "jacket");
   assert.equal(primaryCategorySlug("paradigm-reboot"), "jacket");
 });

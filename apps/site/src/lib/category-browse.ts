@@ -104,7 +104,7 @@ export function getCategoryBrowseConfig(game: GameId, category: string, resource
     const chartOptions = facetOptions(resources, "chart", game);
     const listFacets: CategoryBrowseFacet[] = chartOptions.length > 0 ? [{ key: "chart", label: "谱面难度", options: chartOptions }] : [];
     const rangeFacets: CategoryBrowseFacet[] = [];
-    if (game === "rotaeno" || game === "paradigm-reboot" || game === "orzmic") {
+    if (game === "rotaeno" || game === "paradigm-reboot" || game === "orzmic" || game === "dynamix") {
       const levelOptions = facetOptions(resources, "level", game);
       const constantOptions = facetOptions(resources, "constant", game);
       if (levelOptions.length > 0) listFacets.push({ key: "level", label: "难度等级", options: levelOptions });
@@ -113,6 +113,10 @@ export function getCategoryBrowseConfig(game: GameId, category: string, resource
         const constantFacet = { key: "constant", label: "谱面定数", options: constantOptions, ...(constantRange ? { range: constantRange, ...facetHistogram(resources, "constant", constantRange) } : {}) };
         (constantRange ? rangeFacets : listFacets).push(constantFacet);
       }
+    }
+    if (game === "dynamix") {
+      listFacets.unshift({ key: "contentKind", label: "内容类型", options: facetOptions(resources, "contentKind", game) });
+      listFacets.push({ key: "genre", label: "曲风", options: facetOptions(resources, "genre", game) });
     }
     const packOptions = facetOptions(resources, "pack", game);
     if (packOptions.length > 0) listFacets.push({ key: "pack", label: "曲包", options: packOptions });
@@ -130,6 +134,10 @@ export function getCategoryBrowseConfig(game: GameId, category: string, resource
       facets: [...listFacets, ...rangeFacets],
     };
   }
+  if (game === "dynamix" && category === "character-portrait") return {
+    searchPlaceholder: "搜索角色名", sortOptions,
+    facets: [ { key: "pack", label: "曲包", options: facetOptions(resources, "pack", game) }, { key: "skill", label: "技能类别", options: facetOptions(resources, "skill", game) } ].filter(f => f.options.length > 0),
+  };
   if (category === "all") return { searchPlaceholder: "搜索资源", sortOptions, facets: [] };
 
   const placeholder = game === "arcaea"
@@ -185,6 +193,7 @@ function jacketSortOptions(resources: PublicResource[]): CategoryBrowseSortOptio
   if (resources.some((resource) => resourceDateValue(resource) !== undefined)) {
     options.push({ value: "updated-desc", label: "更新日期：新 → 旧" }, { value: "updated-asc", label: "更新日期：旧 → 新" });
   }
+  if (game === "dynamix" && resources.some(r => (r.charts ?? []).length > 0)) options.push({ value: "level-desc", label: "最高等级高 → 低" }, { value: "level-asc", label: "最高等级低 → 高" });
   if ((game === "paradigm-reboot" || game === "orzmic") && resources.some((resource) => numericFacetValue(resource, "constant") !== undefined)) {
     options.push({ value: "level-desc", label: "最高定数高 → 低" }, { value: "level-asc", label: "最高定数低 → 高" });
   }
@@ -219,6 +228,8 @@ function facetOptions(resources: PublicResource[], key: string, game?: GameId): 
 }
 
 function compareFacetValues(left: string, right: string, key: string, game?: GameId): number {
+  if (game === "dynamix" && key === "chart") return compareOrderedValues(left, right, ["BASIC", "NORMAL", "HARD", "MEGA", "GIGA", "TERA"]);
+  if (game === "dynamix" && key === "level") return compareNumericFacetValues(left, right);
   if (game === "rotaeno" && key === "chart") return compareOrderedValues(left, right, ROTAENO_CHART_ORDER);
   if (game === "paradigm-reboot" && key === "chart") return compareOrderedValues(left, right, PARADIGM_CHART_ORDER);
   if ((game === "rotaeno" || game === "paradigm-reboot") && key === "level") return compareRotaenoLevels(left, right);

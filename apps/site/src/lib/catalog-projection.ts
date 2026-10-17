@@ -10,6 +10,9 @@ import { objectUrl } from "./url";
 const PUBLIC_METADATA_KEYS = new Set([
   "artist",
   "coverPainter",
+  "contentKind",
+  "skills",
+  "imageCount",
   "pack",
   "packName",
   "packDisplayName",
@@ -297,7 +300,21 @@ function projectResource(resource: Resource, variants: Variant[], renditionsByVa
   const charts = publicChartsFromMetadata(resource);
   const specialCharts = publicSpecialChartsFromMetadata(resource);
   const chartSearchTerms = [...new Set([...charts, ...specialCharts].flatMap((chart) => [chart.difficulty, chart.level, chart.constant, chart.title, chart.artist, chart.noter].filter((value): value is string => typeof value === "string" && value.trim().length > 0)))].sort((left, right) => normalizeSearchText(left).localeCompare(normalizeSearchText(right), "zh-CN"));
-  const facets = resource.game === "phigros" && resource.resourceType === "jacket"
+  const dynamixPacks = Array.isArray(resource.metadata.packNames) ? resource.metadata.packNames.filter((v): v is string => typeof v === "string") : [];
+  const facets = resource.game === "dynamix"
+    ? {
+      pack: dynamixPacks.length ? dynamixPacks : ["未标注曲包"],
+      ...(resource.resourceType === "jacket" ? {
+        contentKind: [metadata.contentKind === "段位封面" ? "段位封面" : "歌曲曲绘"],
+        chart: [...new Set(charts.map(c => c.difficulty))],
+        level: [...new Set(charts.flatMap(c => c.level ? [c.level] : []))],
+        ...(metadata.bpm !== undefined && metadata.contentKind !== "段位封面" ? { bpm: [String(metadata.bpm)] } : {}),
+        ...(typeof metadata.genre === "string" && metadata.contentKind !== "段位封面" ? { genre: [metadata.genre] } : {}),
+      } : {
+        ...(Array.isArray(resource.metadata.skillTypes) ? { skill: resource.metadata.skillTypes.filter((v): v is string => typeof v === "string") } : {}),
+      }),
+    }
+    : resource.game === "phigros" && resource.resourceType === "jacket"
     ? {
       ...(typeof metadata.pack === "string" && metadata.pack ? { pack: [metadata.pack] } : {}),
       ...(charts.length > 0 ? { chart: [...new Set(charts.map((chart) => chart.difficulty))] } : {}),
@@ -324,6 +341,9 @@ function projectResource(resource: Resource, variants: Variant[], renditionsByVa
     resourceType: resource.resourceType,
     category: promotedArcaeaStoryCg ? "story-cg" : publicCategorySlug(resource.game, resource.resourceType),
     categoryLabel: promotedArcaeaStoryCg ? "剧情 CG" : publicCategoryLabel(resource.game, resource.resourceType, metadata),
+    ...(resource.game === "dynamix" && typeof resource.metadata.orderHint === "number" ? { sortOrder: resource.metadata.orderHint } : {}),
+    ...(resource.game === "dynamix" && metadata.contentKind === "段位封面" ? { badges: ["段位封面"] } : {}),
+    ...(resource.game === "dynamix" && resource.resourceType === "character-portrait" ? { badges: [`${projectedVariants.length} 张图片`] } : {}),
     displayTitle: display.title || (resource.game === "rotaeno" ? "Rotaeno \u56fe\u7247\u8d44\u6e90\uff08\u540d\u79f0\u5f85\u6838\u5b9e\uff09" : original?.downloadFilename || "\u672a\u547d\u540d\u8d44\u6e90"),
     ...(artist ? { artist } : {}),
     ...(chartSearchTerms.length > 0 ? { searchTerms: chartSearchTerms } : {}),
@@ -419,6 +439,17 @@ function publicChartsFromMetadata(resource: Resource): PublicChart[] {
         return [{ difficulty, ...(level ? { level } : {}), ...(notes !== undefined ? { notes } : {}), ...(constant ? { constant } : {}), ...(artist ? { artist } : {}), ...(source ? { source } : {}), available, status: available ? "available" as const : "unavailable" as const } satisfies PublicChart];
       })
       .sort((left, right) => (ROTAENO_CHART_DIFFICULTIES.indexOf(left.difficulty as typeof ROTAENO_CHART_DIFFICULTIES[number]) - ROTAENO_CHART_DIFFICULTIES.indexOf(right.difficulty as typeof ROTAENO_CHART_DIFFICULTIES[number])) || (left.level ?? "").localeCompare(right.level ?? "") || (left.constant ?? "").localeCompare(right.constant ?? ""));
+  }
+  if (resource.game === "dynamix") {
+    const order = ["BASIC", "NORMAL", "HARD", "MEGA", "GIGA", "TERA"];
+    return rawCharts.flatMap(candidate => {
+      if (!candidate || typeof candidate !== "object") return [];
+      const c = candidate as Record<string, unknown>;
+      if (typeof c.difficulty !== "string" || !order.includes(c.difficulty) || c.isPlaceholder === true) return [];
+      const level = Number(c.level);
+      if (!Number.isInteger(level) || level < 1 || level > 15) return [];
+      return [{ difficulty: c.difficulty, level: String(level), available: true, status: "available" as const }];
+    }).sort((a, b) => order.indexOf(a.difficulty) - order.indexOf(b.difficulty));
   }
   if (resource.game === "orzmic") {
     return rawCharts

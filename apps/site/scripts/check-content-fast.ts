@@ -28,7 +28,7 @@ for (const update of data.updates) assert.ok(update.items.every(i => publicIds.h
 let previous: typeof catalog | undefined;
 try {
   execFileSync('git', ['rev-parse', '--show-toplevel']);
-  previous = JSON.parse(execFileSync('git', ['show', `${process.env.RHYTHM_COMPARE_BASE ?? 'HEAD'}:catalog/index.json`], { encoding: 'utf8', maxBuffer: 64 * 1024 * 1024 }));
+  previous = JSON.parse(execFileSync('git', ['show', `${process.env.RHYTHM_COMPARE_BASE ?? 'HEAD'}:catalog/index.json`], { encoding: 'utf8', maxBuffer: 128 * 1024 * 1024 }));
 } catch { /* Initial Catalog has no baseline. */ }
 const oldResources = new Map(previous?.resources.map(r => [r.id, JSON.stringify(r)]));
 const oldObjects = new Set(previous?.objects.map(o => o.id));

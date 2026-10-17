@@ -13,7 +13,7 @@ import { galleryCardView } from "../lib/card-view-model";
 import type { GalleryCard } from "../lib/gallery-projection";
 import { GALLERY_IMAGE_SIZES, SIDEBAR_IMAGE_SIZES } from "../lib/card-preview";
 import { matchesChartFilters } from "../lib/chart-filters";
-import { compareGalleryBpm, compareGalleryHighestConstant, compareNullableNumber, numericFacetValues } from "../lib/gallery-sort";
+import { compareGalleryBpm, compareGalleryHighestConstant, compareGalleryHighestLevel, compareNullableNumber, numericFacetValues } from "../lib/gallery-sort";
 import { compareNaturalText, normalizeSearchText } from "../lib/search";
 import { updateResourceStatsInDom } from "../lib/stats-client";
 import { chipKey, reconcileList, setSurfaceVisible } from "./motion";
@@ -240,7 +240,7 @@ async function initializeGallery(root: HTMLElement): Promise<void> {
         return compareGalleryBpm(left, right, sortValue === "bpm-desc");
       }
       if (sortValue === "level-desc" || sortValue === "level-asc") {
-        return compareGalleryHighestConstant(left, right, sortValue === "level-desc");
+        return root.dataset.game === "dynamix" ? compareGalleryHighestLevel(left, right, sortValue === "level-desc") : compareGalleryHighestConstant(left, right, sortValue === "level-desc");
       }
       const compared = compareNaturalText(left.displayTitle, right.displayTitle);
       return sortValue === "title-desc" ? -compared : compared;

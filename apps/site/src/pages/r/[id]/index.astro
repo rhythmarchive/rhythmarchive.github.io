@@ -28,6 +28,7 @@ const { resource } = Astro.props;
 const phigrosDifficultyOrder = ["EZ", "HD", "IN", "AT"];
 const hasDifficultyArtwork = resource.game === "phigros" && resource.resourceType === "jacket" && resource.variants.length > 1 && resource.variants.every((variant) => phigrosDifficultyOrder.includes(variant.variantKey ?? "") && variant.label === variant.variantKey);
 const variants = hasDifficultyArtwork ? [...resource.variants].sort((left, right) => phigrosDifficultyOrder.indexOf(left.variantKey!) - phigrosDifficultyOrder.indexOf(right.variantKey!)) : resource.variants;
+const compactVariants = resource.game === "dynamix" && resource.resourceType === "character-portrait" && variants.length > 1;
 const firstVariant = variants.find((variant) => variant.preferred) ?? variants[0];
 const activeVariantIndex = Math.max(0, firstVariant ? variants.findIndex((variant) => variant.variantId === firstVariant.variantId) : 0);
 const related = rankRelatedResources(resource, data.resources);
@@ -97,12 +98,15 @@ const description = resource.resourceType === "video"
     </VideoGallery></> : <div class="detail-layout">
       <div class="detail-visual">
         {resource.composition ? <StoryComposition resource={resource} /> : hasDifficultyArtwork && firstVariant ? <ArtworkSwitcher variants={variants} activeVariantId={firstVariant.variantId} /> : variants.length > 1 ? (
-          <div class="variant-tabs" role="tablist" aria-label="资源版本">
+          <>
+          {compactVariants ? <label class="sort-control"><span>图片</span> <select data-variant-dropdown aria-label="选择角色图片">{variants.map((variant, index) => <option value={variant.variantId} selected={index === activeVariantIndex}>{variant.label}</option>)}</select></label> : null}
+          <div class="variant-tabs" role="tablist" aria-label="资源版本" hidden={compactVariants}>
             {variants.map((variant, index) => <button class:list={{ "is-active": index === activeVariantIndex }} type="button" id={`variant-tab-${variant.variantId}`} data-variant-select={variant.variantId} data-variant-label={variant.label} role="tab" tabindex={index === activeVariantIndex ? 0 : -1} aria-selected={index === activeVariantIndex ? "true" : "false"} aria-controls={`variant-panel-${variant.variantId}`}>{variant.label}</button>)}
           </div>
+          </>
         ) : null}
         {!resource.composition ? <div class="variant-panels">
-          {variants.map((variant, index) => <VariantPanel variant={variant} fallback={variant.original} active={index === activeVariantIndex} labelledBy={variants.length > 1 ? `variant-tab-${variant.variantId}` : undefined} alt={`${resourceImageAlt(resource)}${variants.length > 1 ? ` · ${variant.label}` : ""}`} sourceToggle={resource.resourceType === "jacket" && (resource.game === "arcaea" || resource.game === "paradigm-reboot")} />)}
+          {variants.map((variant, index) => <VariantPanel variant={variant} fallback={variant.original} active={index === activeVariantIndex} labelledBy={!compactVariants && variants.length > 1 ? `variant-tab-${variant.variantId}` : undefined} alt={`${resourceImageAlt(resource)}${variants.length > 1 ? ` · ${variant.label}` : ""}`} sourceToggle={resource.resourceType === "jacket" && (resource.game === "arcaea" || resource.game === "paradigm-reboot")} />)}
         </div> : null}
       </div>
       <aside class="detail-info">
@@ -138,7 +142,7 @@ const description = resource.resourceType === "video"
           {facetMetadata.map(([label, value]) => <div><dt>{label}</dt><dd>{value}</dd></div>)}
           {technicalMetadata.map(([key, value]) => <div><dt>{key}</dt><dd>{value}</dd></div>)}
         </dl>
-        {resource.resourceType === "jacket" ? (
+        {resource.resourceType === "jacket" && !(resource.game === "dynamix" && resource.metadata.contentKind === "段位封面") ? (
           <section class="detail-chart-section" aria-labelledby="detail-chart-heading">
             <div class="detail-section-heading"><h2 id="detail-chart-heading">谱面难度</h2><span>{allCharts.length > 0 ? `${allCharts.length} 个` : "暂无数据"}</span></div>
             {allCharts.length > 0 ? (
