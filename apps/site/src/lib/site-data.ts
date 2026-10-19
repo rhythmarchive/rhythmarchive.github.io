@@ -200,6 +200,8 @@ function enrichFormalBrowseMetadata(siteData: PublicSiteData, browse: FormalBrow
     const formalCharts = chartsByResource.get(resource.resourceId);
     const charts = resource.game === "phigros" && formalCharts
       ? mergePhigrosCharts(resource.charts ?? [], formalCharts, resource.metadata.charter)
+      : resource.game === "arcaea" && formalCharts
+        ? formalCharts.map((chart) => ({ ...(resource.charts ?? []).find((base) => base.difficulty === chart.difficulty), ...chart }))
       : formalCharts ?? resource.charts ?? (resource.resourceType === "jacket" ? [] : undefined);
     const availableCharts = (charts ?? [])
       .filter((chart) => chart.available !== false && chart.status !== "error" && chart.status !== "legacy");
@@ -222,7 +224,7 @@ function enrichFormalBrowseMetadata(siteData: PublicSiteData, browse: FormalBrow
     }
     addFacetValue("bpm", metadata.bpm);
     addFacetValue("updateDate", updateDate);
-    if (resource.game === "rotaeno" || resource.game === "paradigm-reboot") {
+    if (resource.resourceType === "jacket") {
       const levelFacetValues = [...new Set(availableCharts.map((chart) => chart.level).filter((value): value is string => Boolean(value)))];
       const constantFacetValues = [...new Set(availableCharts.map((chart) => chart.constant).filter((value): value is string => Boolean(value)))];
       if (levelFacetValues.length > 0) facets.level = levelFacetValues;

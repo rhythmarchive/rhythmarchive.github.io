@@ -48,6 +48,21 @@ test("publishing an MP4 without playback metadata is rejected", () => {
   assert.equal(validateCatalog(catalog).success, false);
 });
 
+test("exact client chart credits do not exempt filesystem paths or other metadata", () => {
+  const catalog = fixture();
+  for (const noter of ["/ERROR/ 絶滅", "//TAP to StaRt//", "R:kko (IMD)"]) {
+    catalog.resources[0]!.metadata.charts = [{ noter }];
+    assert.equal(validateCatalog(catalog).success, true);
+  }
+  for (const noter of ["C:\\Users\\operator\\private.txt", "C:private.txt", "/tmp/private.txt", "folder/.runtime/secret"]) {
+    catalog.resources[0]!.metadata.charts = [{ noter }];
+    assert.equal(validateCatalog(catalog).success, false);
+  }
+  catalog.resources[0]!.metadata.charts = [];
+  catalog.resources[0]!.metadata.sourcePath = "/ERROR/ 絶滅";
+  assert.equal(validateCatalog(catalog).success, false);
+});
+
 test("a video cannot use its movie bytes as a poster", () => {
   const catalog = fixture();
   catalog.renditions[1]!.objectId = catalog.objects[0]!.id;

@@ -91,6 +91,7 @@ function chartStatusLabel(status: NonNullable<PublicResource["charts"]>[number][
   return undefined;
 }
 function chartDifficultyLabel(difficulty: string): string {
+  if (resource.game === "orzmic") return "谱面";
   return displayDifficultyLabel(difficulty, resource.game);
 }
 const resourceSubject = `${GAME_CONFIG[resource.game].displayName} ${resource.categoryLabel}`;
@@ -162,11 +163,12 @@ const description = resource.resourceType === "video"
               <div class="detail-chart-list">
                 {panel.charts.map((chart) => (
                   <div class="detail-chart-row">
-                    <div class="detail-chart-main"><strong>{chartDifficultyLabel(chart.difficulty)}</strong>{chart.level ? <span>等级 {chart.level}</span> : null}{chart.notes !== undefined ? <span>Notes {chart.notes}</span> : null}{chart.constant ? <span>定数 {chart.constant}</span> : null}</div>
+                    <div class="detail-chart-main"><strong>{chartDifficultyLabel(chart.difficulty)}</strong><span>等级 {chart.level ?? "—"}</span><span>定数 {chart.constant && Number.isFinite(Number(chart.constant)) ? Number(chart.constant).toFixed(1) : "—"}</span><span>{resource.game === "rizline" ? "击打数" : "物量"} {chart.notes ?? "—"}</span>{chart.combo !== undefined ? <span>最大连击 {chart.combo}</span> : null}</div>
                     <div class="detail-chart-copy">
                       {chart.title ? <span>{chart.title}</span> : null}
-                      {chart.artist ? <span>{chart.artist}</span> : null}
-                      {chart.noter ? <span>谱师：{chart.noter}</span> : null}
+                      {chart.artist && resource.game !== "rotaeno" ? <span>{chart.artist}</span> : null}
+                      <span>谱师：{chart.noter ?? "—"}</span>
+                      {chart.sourceUrl ? <a href={chart.sourceUrl} target="_blank" rel="noopener noreferrer">资料来源</a> : null}
                       {chartStatusLabel(chart.status) ? <span class="detail-chart-status">{chartStatusLabel(chart.status)}</span> : null}
                     </div>
                   </div>

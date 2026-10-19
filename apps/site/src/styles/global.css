@@ -684,9 +684,9 @@ img[data-image-state="loading"], img[data-image-state="error"],
 .detail-section-heading h2 { margin: 0; font-family: var(--display-font); font-size: 1rem; }
 .detail-section-heading > span { color: var(--text-soft); font-size: 0.7rem; }
 .detail-chart-list { overflow: hidden; border-top: 1px solid var(--line); border-radius: var(--radius-sm); }
-.detail-chart-row { display: grid; grid-template-columns: 128px minmax(0, 1fr); gap: 12px; padding: 9px 10px; border-bottom: 1px solid var(--line); background: var(--surface-muted); }
+.detail-chart-row { display: grid; grid-template-columns: minmax(0, 1fr); gap: 6px; padding: 9px 10px; border-bottom: 1px solid var(--line); background: var(--surface-muted); }
 .detail-chart-row:last-child { border-bottom: 0; }
-.detail-chart-main { display: flex; align-items: baseline; gap: 6px; }
+.detail-chart-main { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 10px; }
 .detail-chart-main strong { color: var(--accent-strong); font-size: 0.78rem; }
 .detail-chart-main span { color: var(--text-muted); font-size: 0.72rem; }
 .detail-chart-copy { display: flex; flex-wrap: wrap; gap: 5px 10px; min-width: 0; color: var(--text-muted); font-size: 0.72rem; overflow-wrap: anywhere; }

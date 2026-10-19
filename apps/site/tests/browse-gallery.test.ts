@@ -28,6 +28,7 @@ import {
 import { getBrowseGalleryBuild, getSiteData, loadFormalBrowseProjections } from "../src/lib/site-data";
 import { browseCardView } from "../src/lib/card-view-model";
 import { formatArcaeaAddedVersion } from "../src/lib/public-display";
+import { browserBrowseData } from "../src/lib/gallery-projection";
 
 const formalBrowse = getBrowseGalleryBuild();
 const sourceBrowse = loadFormalBrowseProjections();
@@ -85,6 +86,37 @@ test("Arcaea keeps default artwork when a BYD chart has no BYD artwork", () => {
   });
   assert.equal(filterBrowseItems([item], arcaeaState({ chart: ["BYD"] })).length, 1);
   assert.equal(displayBrowseItem(item, ["BYD"]).resourceId, "default-resource");
+});
+
+test("Arcaea constant ranges select only a matching chart's artwork", () => {
+  const item = makeArcaeaItem({
+    charts: [{ difficultyClass: "FTR", displayLevel: "9", constant: "9.2" }, { difficultyClass: "BYD", displayLevel: "10+", constant: "10.8" }],
+    artworks: [makeArtwork("default-resource", "default"), makeArtwork("byd-resource", "difficulty", "BYD")],
+  });
+  const range = { min: 10.8, max: 10.8 };
+  assert.equal(filterBrowseItems([item], arcaeaState({ chart: ["FTR"], difficulty: range })).length, 0);
+  assert.equal(filterBrowseItems([item], arcaeaState({ difficulty: range })).length, 1);
+  assert.equal(displayBrowseItem(item, [], range).resourceId, "byd-resource");
+  assert.equal(displayBrowseItem(item, [], { min: 9, max: 11 }, ["9"]).resourceId, "default-resource");
+  assert.equal(filterBrowseItems([makeArcaeaItem()], arcaeaState({ difficulty: { min: 8, max: 10 } })).length, 0, "display grades do not substitute for unknown constants");
+});
+
+test("all Browse games restore, normalize and clear the shared constant range", () => {
+  for (const game of ["arcaea", "phigros", "rizline", "infalsus"] as const) {
+    const data = formalBrowse[game];
+    const range = getBrowseFacetOptions(data).difficultyRange;
+    assert.ok(range, game);
+    const min = range.min + 1, max = range.max - 1;
+    const state = { ...defaultBrowseUrlState(game), difficulty: { min, max } };
+    assert.deepEqual(parseBrowseUrlState(game, serializeBrowseUrlState(state), data.items), state);
+    assert.deepEqual(parseBrowseUrlState(game, `difficulty-min=${max}&difficulty-max=${min}`, data.items).difficulty, { min, max });
+    assert.equal(serializeBrowseUrlState(defaultBrowseUrlState(game)).has("difficulty-min"), false);
+    const filtered = filterBrowseItems(data.items, state);
+    assert.ok(filtered.length > 0);
+    assert.ok(filtered.every((item) => item.charts.some((c) => c.constant && Number(c.constant) >= min && Number(c.constant) <= max)));
+    const browser = browserBrowseData(data);
+    assert.ok(browser.items.every((item) => item.charts.every((c) => !["notes", "noter", "combo", "sourceUrl", "fieldSources"].some((key) => key in c))));
+  }
 });
 
 test("Arcaea difficulty and level filters require the same Chart object", () => {
@@ -277,7 +309,7 @@ test("Phigros exposes APK-backed pack facets, URL state, and highest-level sorti
   assert.ok(levelFiltered.every((item) => item.charts.some((chart) => "level" in chart && Math.floor(Number(chart.level)) === 14)));
   const difficultyFiltered = filterBrowseItems(formalBrowse.phigros.items, phigrosStateFor({ difficulty: { min: 14.4, max: 14.4 } }));
   assert.ok(difficultyFiltered.length > 0);
-  assert.ok(difficultyFiltered.every((item) => item.charts.some((chart) => "level" in chart && chart.level === "14.4")));
+  assert.ok(difficultyFiltered.every((item) => item.charts.some((chart) => chart.constant === "14.4")));
   const sorted = filterBrowseItems(formalBrowse.phigros.items.filter((item) => item.pack === "Single"), phigrosStateFor({ sort: "level-desc" }));
   const maxLevel = (item: BrowseGalleryItem): number => Math.max(...item.charts.filter((chart) => "structurallyPresent" in chart && chart.available !== false && chart.status !== "legacy" && !chart.errorVariant).map((chart) => Number("level" in chart ? chart.level : undefined)).filter(Number.isFinite));
   assert.ok(maxLevel(sorted[0]!) >= maxLevel(sorted.at(-1)!));

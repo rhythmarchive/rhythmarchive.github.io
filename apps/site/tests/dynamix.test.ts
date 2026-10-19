@@ -28,7 +28,11 @@ test('Dynamix preserves chart rows and excludes course placeholders, constants a
   const courses = jackets.filter(r => r.metadata.contentKind === '段位封面');
   assert.equal(courses.length, 12);
   assert.ok(courses.every(r => r.charts?.length === 0));
-  assert.ok(jackets.flatMap(r => r.charts ?? []).every(c => c.constant === undefined && c.notes === undefined));
+  assert.ok(jackets.flatMap(r => r.charts ?? []).every(c => c.constant === undefined));
+  assert.ok(cross.charts?.some(c => c.notes !== undefined && c.notes === c.combo));
+  const conflicted = jackets.find(r => r.displayTitle === 'Faithtival')!.charts!.find(c => c.difficulty === 'BASIC')!;
+  assert.equal(conflicted.notes, undefined);
+  assert.ok(conflicted.combo && conflicted.combo > 0);
 });
 
 test('Dynamix keeps multiple pack memberships independently filterable and orders integer levels', () => {
@@ -37,6 +41,7 @@ test('Dynamix keeps multiple pack memberships independently filterable and order
   const config = getCategoryBrowseConfig('dynamix', 'jacket', jackets);
   assert.deepEqual(config.facets.find(f => f.key === 'chart')?.options.map(o => o.value), ['BASIC','NORMAL','HARD','MEGA','GIGA']);
   assert.ok(config.facets.some(f => f.key === 'level'));
+  assert.equal(config.facets.find(f => f.key === 'level')?.range?.step, 1);
   assert.ok(!config.facets.some(f => f.key === 'constant' || f.key === 'version'));
   assert.ok(config.sortOptions.some(o => o.label === '最高等级高 → 低'));
   const a = { displayTitle: 'A', charts: [{ level: '9' }] };

@@ -5,7 +5,7 @@ import GalleryFilters from "./GalleryFilters.astro";
 import BatchTray from "./BatchTray.astro";
 import GalleryLoadError from "./GalleryLoadError.astro";
 import GalleryDownload from "./GalleryDownload.astro";
-import { getBrowseFacetOptions, phigrosDifficultyHistogram, type ArcaeaFacetOptions, type BrowseGalleryData, type InfalsusFacetOptions, type PhigrosFacetOptions, type RizlineFacetOptions } from "../lib/browse-gallery";
+import { getBrowseFacetOptions, browseDifficultyHistogram, type ArcaeaFacetOptions, type BrowseGalleryData, type InfalsusFacetOptions, type PhigrosFacetOptions, type RizlineFacetOptions } from "../lib/browse-gallery";
 import { formatCount } from "../lib/format";
 import { displayFilterDifficultyLabel } from "../lib/game-config";
 import { BASE_PATH } from "../lib/site-config";
@@ -29,8 +29,9 @@ const rizlineOptions = data.game === "rizline" ? browseOptions as RizlineFacetOp
 const infalsusOptions = data.game === "infalsus" ? browseOptions as InfalsusFacetOptions : undefined;
 const phigrosPackOptions = phigrosOptions?.packs ?? [];
 const phigrosLevelOptions = phigrosOptions?.levels ?? [];
-const phigrosDifficultyRange = phigrosOptions?.difficultyRange;
-const phigrosHistogram = phigrosDifficultyRange ? phigrosDifficultyHistogram(data, phigrosDifficultyRange) : undefined;
+const difficultyRange = browseOptions.difficultyRange;
+const difficultyLabel = "谱面定数";
+const difficultyHistogram = difficultyRange ? browseDifficultyHistogram(data, difficultyRange) : undefined;
 
 function rangeTicks(min: number, max: number, step: number): number[] {
   const tickStep = Math.max(step, Math.ceil(((max - min) / 7) / step) * step);
@@ -100,6 +101,28 @@ function formatRangeValue(value: number): string {
     <div class="active-filter-chips" data-browse-active-chips></div>
     <button class="text-link" type="button" data-gallery-reset>清除全部</button>
   </div>
+  {difficultyRange ? (
+    <div class="gallery-filter-row" data-gallery-filter-row>
+      <div class="filter-range-control" data-browse-range="difficulty" data-range-label={difficultyLabel} data-range-min={difficultyRange.min} data-range-max={difficultyRange.max} data-range-step={difficultyRange.step}>
+        <div class="filter-range-header">
+          <span class="filter-range-label">{difficultyLabel}</span>
+          <div class="filter-range-values" role="group" aria-label={`${difficultyLabel}范围`}>
+            <label class="filter-range-input"><span class="sr-only">{difficultyLabel}最小值</span><input type="number" data-browse-range-min-input min={difficultyRange.min} max={difficultyRange.max} step={difficultyRange.step} value={difficultyRange.min} inputmode="decimal" /></label>
+            <span aria-hidden="true">～</span>
+            <label class="filter-range-input"><span class="sr-only">{difficultyLabel}最大值</span><input type="number" data-browse-range-max-input min={difficultyRange.min} max={difficultyRange.max} step={difficultyRange.step} value={difficultyRange.max} inputmode="decimal" /></label>
+          </div>
+        </div>
+        <RangeHistogram histogram={difficultyHistogram} min={difficultyRange.min} max={difficultyRange.max} label={difficultyLabel} />
+        <div class="filter-range-slider" data-browse-range-slider>
+          <div class="filter-range-track" aria-hidden="true"></div>
+          <div class="filter-range-fill" aria-hidden="true"></div>
+          <input type="range" data-browse-range-min-slider min={difficultyRange.min} max={difficultyRange.max} step={difficultyRange.step} value={difficultyRange.min} aria-label={`${difficultyLabel}最小值`} />
+          <input type="range" data-browse-range-max-slider min={difficultyRange.min} max={difficultyRange.max} step={difficultyRange.step} value={difficultyRange.max} aria-label={`${difficultyLabel}最大值`} />
+        </div>
+        <div class="filter-range-ticks" aria-hidden="true">{rangeTicks(difficultyRange.min, difficultyRange.max, difficultyRange.step).map((value) => <span>{formatRangeValue(value)}</span>)}</div>
+      </div>
+    </div>
+  ) : null}
   {data.game === "arcaea" && arcaeaOptions ? (
     <div class="gallery-filter-row" data-gallery-filter-row>
       <label class="filter-control"><span>难度</span><select data-browse-filter-select="chart" aria-label="难度"><option value="">全部</option>{arcaeaOptions.charts.map((value) => <option value={value}>{displayFilterDifficultyLabel(value, "arcaea")}</option>)}</select></label>
@@ -110,26 +133,6 @@ function formatRangeValue(value: number): string {
     </div>
   ) : data.game === "phigros" ? (
     <div class="gallery-filter-row" data-gallery-filter-row>
-      {phigrosDifficultyRange ? (
-        <div class="filter-range-control" data-browse-range="difficulty" data-range-label="难度" data-range-min={phigrosDifficultyRange.min} data-range-max={phigrosDifficultyRange.max} data-range-step={phigrosDifficultyRange.step}>
-          <div class="filter-range-header">
-            <span class="filter-range-label">难度</span>
-            <div class="filter-range-values" role="group" aria-label="难度范围">
-              <label class="filter-range-input"><span class="sr-only">难度最小值</span><input type="number" data-browse-range-min-input min={phigrosDifficultyRange.min} max={phigrosDifficultyRange.max} step={phigrosDifficultyRange.step} value={phigrosDifficultyRange.min} inputmode="decimal" /></label>
-              <span aria-hidden="true">～</span>
-              <label class="filter-range-input"><span class="sr-only">难度最大值</span><input type="number" data-browse-range-max-input min={phigrosDifficultyRange.min} max={phigrosDifficultyRange.max} step={phigrosDifficultyRange.step} value={phigrosDifficultyRange.max} inputmode="decimal" /></label>
-            </div>
-          </div>
-          <RangeHistogram histogram={phigrosHistogram} min={phigrosDifficultyRange.min} max={phigrosDifficultyRange.max} label="难度" />
-          <div class="filter-range-slider" data-browse-range-slider>
-            <div class="filter-range-track" aria-hidden="true"></div>
-            <div class="filter-range-fill" aria-hidden="true"></div>
-            <input type="range" data-browse-range-min-slider min={phigrosDifficultyRange.min} max={phigrosDifficultyRange.max} step={phigrosDifficultyRange.step} value={phigrosDifficultyRange.min} aria-label="难度最小值" />
-            <input type="range" data-browse-range-max-slider min={phigrosDifficultyRange.min} max={phigrosDifficultyRange.max} step={phigrosDifficultyRange.step} value={phigrosDifficultyRange.max} aria-label="难度最大值" />
-          </div>
-          <div class="filter-range-ticks" aria-hidden="true">{rangeTicks(phigrosDifficultyRange.min, phigrosDifficultyRange.max, phigrosDifficultyRange.step).map((value) => <span>{formatRangeValue(value)}</span>)}</div>
-        </div>
-      ) : null}
       {phigrosLevelOptions.length > 0 ? (
         <label class="filter-control">
           <span>难度等级</span>

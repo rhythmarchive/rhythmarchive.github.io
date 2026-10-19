@@ -203,6 +203,7 @@ async function initializeGallery(root: HTMLElement): Promise<void> {
     const chartLevel = facets.find((facet) => facet.dataset.galleryFacet === "level")?.value;
     const chartConstant = facets.find((facet) => facet.dataset.galleryFacet === "constant")?.value;
     const constantRange = ranges.find((range) => range.key === "constant");
+    const levelRange = ranges.find((range) => range.key === "level");
     const selectedConstantRange = constantRange
       && (readRangeValue(constantRange, "min") > constantRange.min || readRangeValue(constantRange, "max") < constantRange.max)
       ? { min: readRangeValue(constantRange, "min"), max: readRangeValue(constantRange, "max") }
@@ -212,6 +213,8 @@ async function initializeGallery(root: HTMLElement): Promise<void> {
       ...(chartLevel ? { levels: [chartLevel] } : {}),
       ...(chartConstant ? { constants: [chartConstant] } : {}),
       ...(selectedConstantRange ? { constantRange: selectedConstantRange } : {}),
+      ...(levelRange && (readRangeValue(levelRange, "min") > levelRange.min || readRangeValue(levelRange, "max") < levelRange.max)
+        ? { levelRange: { min: readRangeValue(levelRange, "min"), max: readRangeValue(levelRange, "max") } } : {}),
     };
     const filtered = resources.filter((resource) => {
       const text = [resource.displayTitle, resource.artist, resource.subtitle, ...(resource.badges ?? []), ...(resource.searchTerms ?? []), ...Object.values(resource.facets ?? {}).flat(), ...Object.values(resource.metadata).map(String)].filter(Boolean).join(" ");
@@ -224,7 +227,7 @@ async function initializeGallery(root: HTMLElement): Promise<void> {
         });
       return resourceFacetsMatch
         && matchesChartFilters(resource, chartCriteria)
-        && ranges.filter((range) => range.key !== "constant").every((range) => matchesRange(resource, range));
+        && ranges.filter((range) => range.key !== "constant" && range.key !== "level").every((range) => matchesRange(resource, range));
     });
     if (sortValue === "default") return filtered;
     return [...filtered].sort((left, right) => {

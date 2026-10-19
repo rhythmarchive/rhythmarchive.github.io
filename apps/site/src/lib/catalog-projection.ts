@@ -100,6 +100,17 @@ const PUBLIC_METADATA_KEYS = new Set([
   "rizcardId",
 ]);
 
+/** Existing update/Browse versions own freshness; a recent fetch date does not. */
+export function chartDataVersionIssues(resources: readonly Resource[], versions: Readonly<Record<string, string>>): string[] {
+  const stale = new Map<string, number>();
+  for (const resource of resources) {
+    if (resource.resourceType !== "jacket" || resource.lifecycle.status !== "published") continue;
+    const current = versions[resource.game];
+    if (!current || resource.metadata.chartDataVersion !== current) stale.set(resource.game, (stale.get(resource.game) ?? 0) + 1);
+  }
+  return [...stale].map(([game, count]) => `${game}: ${count} jacket records need chart metadata review for ${versions[game] ?? "the current source version"}`);
+}
+
 const PUBLIC_HIDDEN_RESOURCE_TYPES = new Set<ResourceTypeId>(["story-texture", "rizcard"]);
 
 const ARCAEA_STORY_UI_EXACT_FILES = new Set([
@@ -374,10 +385,35 @@ const ROTAENO_CHART_SOURCES = ["apk", "wiki", "merged"] as const;
 const PARADIGM_CHART_DIFFICULTIES = ["DET", "IVD", "MSV", "RBT", "CTC"] as const;
 const PHIGROS_CHART_DIFFICULTIES = ["EZ", "HD", "IN", "AT", "Legacy"] as const;
 
+function supplementalChartFields(chart: Record<string, unknown>, game: string): Partial<PublicChart> {
+  const constant = chart.constant;
+  const noter = chart.noter ?? (game === "rotaeno" ? chart.artist : undefined);
+  return {
+    ...(typeof constant === "number" || typeof constant === "string"
+      ? /^\d+(?:\.\d)?$/u.test(String(constant)) ? { constant: Number(constant).toFixed(1) } : {} : {}),
+    ...(typeof chart.notes === "number" && Number.isInteger(chart.notes) && chart.notes >= 0 ? { notes: chart.notes } : {}),
+    ...(typeof chart.combo === "number" && Number.isInteger(chart.combo) && chart.combo >= 0 ? { combo: chart.combo } : {}),
+    ...(typeof noter === "string" && noter.trim() ? { noter: noter.trim() } : {}),
+    ...(typeof chart.sourceUrl === "string" && /^https:\/\//u.test(chart.sourceUrl) ? { sourceUrl: chart.sourceUrl } : {}),
+    ...(chart.source === "apk" || chart.source === "wiki" || chart.source === "merged" ? { source: chart.source } : {}),
+  };
+}
+
 function publicChartsFromMetadata(resource: Resource): PublicChart[] {
   if (resource.resourceType !== "jacket") return [];
   const rawCharts = resource.metadata.charts;
   if (!Array.isArray(rawCharts)) return [];
+  if (resource.game === "arcaea" || resource.game === "rizline") {
+    const order = resource.game === "arcaea" ? ["PST", "PRS", "FTR", "ETR", "BYD", "INSCRIBED"] : ["EZ", "HD", "IN", "AT"];
+    return rawCharts.flatMap((candidate) => {
+      if (!candidate || typeof candidate !== "object") return [];
+      const chart = candidate as Record<string, unknown>;
+      if (typeof chart.difficulty !== "string" || !order.includes(chart.difficulty)) return [];
+      const level = typeof chart.level === "string" || typeof chart.level === "number" ? String(chart.level) : undefined;
+      const available = chart.available !== false;
+      return [{ difficulty: chart.difficulty, ...(level ? { level } : {}), ...supplementalChartFields(chart, resource.game), available, status: available ? "available" as const : "unavailable" as const }];
+    }).sort((a, b) => order.indexOf(a.difficulty) - order.indexOf(b.difficulty));
+  }
   if (resource.game === "phigros") {
     const charters = parsePhigrosCharters(resource.metadata.charter);
     return rawCharts
@@ -388,10 +424,12 @@ function publicChartsFromMetadata(resource: Resource): PublicChart[] {
         if (!(PHIGROS_CHART_DIFFICULTIES as readonly string[]).includes(difficulty)) return [];
         const available = typeof chart.available === "boolean" ? chart.available : true;
         if (!available) return [];
-        const level = typeof chart.level === "number" || typeof chart.level === "string" ? String(chart.level).trim() : undefined;
+        const rawLevel = typeof chart.level === "number" || typeof chart.level === "string" ? String(chart.level).trim() : undefined;
+        const constant = chart.constant ?? rawLevel;
+        const level = rawLevel && Number.isFinite(Number(rawLevel)) ? String(Math.floor(Number(rawLevel))) : rawLevel;
         const noter = charters.get(difficulty);
         const status = chart.status === "legacy" ? "legacy" as const : "available" as const;
-        return [{ difficulty, ...(level ? { level } : {}), ...(noter ? { noter } : {}), source: "apk" as const, available: true, status } satisfies PublicChart];
+        return [{ difficulty, ...(level ? { level } : {}), ...(noter ? { noter } : {}), source: "apk" as const, ...supplementalChartFields({ ...chart, constant }, resource.game), available: true, status } satisfies PublicChart];
       })
       .sort((left, right) => PHIGROS_CHART_DIFFICULTIES.indexOf(left.difficulty as typeof PHIGROS_CHART_DIFFICULTIES[number]) - PHIGROS_CHART_DIFFICULTIES.indexOf(right.difficulty as typeof PHIGROS_CHART_DIFFICULTIES[number]));
   }
@@ -415,6 +453,7 @@ function publicChartsFromMetadata(resource: Resource): PublicChart[] {
           ...(constant ? { constant } : {}),
           ...(noter ? { noter } : {}),
           ...(source ? { source } : {}),
+          ...supplementalChartFields(chart, resource.game),
           available,
           status: available ? "available" as const : "unavailable" as const,
         } satisfies PublicChart];
@@ -436,7 +475,7 @@ function publicChartsFromMetadata(resource: Resource): PublicChart[] {
           ? chart.source.trim() as typeof ROTAENO_CHART_SOURCES[number]
           : undefined;
         const available = typeof chart.available === "boolean" ? chart.available : true;
-        return [{ difficulty, ...(level ? { level } : {}), ...(notes !== undefined ? { notes } : {}), ...(constant ? { constant } : {}), ...(artist ? { artist } : {}), ...(source ? { source } : {}), available, status: available ? "available" as const : "unavailable" as const } satisfies PublicChart];
+        return [{ difficulty, ...(level ? { level } : {}), ...(notes !== undefined ? { notes } : {}), ...(constant ? { constant } : {}), ...(artist ? { artist } : {}), ...(source ? { source } : {}), ...supplementalChartFields(chart, resource.game), available, status: available ? "available" as const : "unavailable" as const } satisfies PublicChart];
       })
       .sort((left, right) => (ROTAENO_CHART_DIFFICULTIES.indexOf(left.difficulty as typeof ROTAENO_CHART_DIFFICULTIES[number]) - ROTAENO_CHART_DIFFICULTIES.indexOf(right.difficulty as typeof ROTAENO_CHART_DIFFICULTIES[number])) || (left.level ?? "").localeCompare(right.level ?? "") || (left.constant ?? "").localeCompare(right.constant ?? ""));
   }
@@ -448,7 +487,7 @@ function publicChartsFromMetadata(resource: Resource): PublicChart[] {
       if (typeof c.difficulty !== "string" || !order.includes(c.difficulty) || c.isPlaceholder === true) return [];
       const level = Number(c.level);
       if (!Number.isInteger(level) || level < 1 || level > 15) return [];
-      return [{ difficulty: c.difficulty, level: String(level), available: true, status: "available" as const }];
+      return [{ difficulty: c.difficulty, level: String(level), ...supplementalChartFields(c, resource.game), available: true, status: "available" as const }];
     }).sort((a, b) => order.indexOf(a.difficulty) - order.indexOf(b.difficulty));
   }
   if (resource.game === "orzmic") {
@@ -459,12 +498,13 @@ function publicChartsFromMetadata(resource: Resource): PublicChart[] {
         const difficulty = typeof chart.difficulty === "string" ? chart.difficulty.trim() : "";
         if (!difficulty) return [];
         const rating = typeof chart.level === "number" || typeof chart.level === "string" ? String(chart.level).trim() : "";
+        const level = difficulty.normalize("NFKC");
         const constant = rating && Number.isFinite(Number(rating)) && Number(rating) > 0 ? rating : undefined;
         const notes = typeof chart.notes === "number" && Number.isInteger(chart.notes) && chart.notes >= 0 ? chart.notes : undefined;
         const noter = typeof chart.noter === "string" && chart.noter.trim() ? chart.noter.trim() : undefined;
         const available = typeof chart.available === "boolean" ? chart.available : true;
         const source = chart.source === "apk" ? "apk" as const : undefined;
-        return [{ difficulty, ...(constant ? { constant } : {}), ...(notes !== undefined ? { notes } : {}), ...(noter ? { noter } : {}), ...(source ? { source } : {}), available, status: available ? "available" as const : "unavailable" as const } satisfies PublicChart];
+        return [{ difficulty, level, ...(constant ? { constant } : {}), ...(notes !== undefined ? { notes } : {}), ...(noter ? { noter } : {}), ...(source ? { source } : {}), ...supplementalChartFields(chart, resource.game), available, status: available ? "available" as const : "unavailable" as const } satisfies PublicChart];
       });
   }
   if (resource.game !== "infalsus") return [];
@@ -484,6 +524,7 @@ function publicChartsFromMetadata(resource: Resource): PublicChart[] {
       return [{
         difficulty,
         ...(rating ? { level: rating } : {}),
+        ...supplementalChartFields(chart, resource.game),
         available,
         status: available ? "available" as const : "unavailable" as const,
       } satisfies PublicChart];
@@ -522,7 +563,7 @@ function publicSpecialChartsFromMetadata(resource: Resource): PublicChart[] {
         ? chart.source.trim() as typeof ROTAENO_CHART_SOURCES[number]
         : undefined;
       const available = typeof chart.available === "boolean" ? chart.available : true;
-      return [{ difficulty, ...(level ? { level } : {}), ...(notes !== undefined ? { notes } : {}), ...(constant ? { constant } : {}), ...(artist ? { artist } : {}), ...(source ? { source } : {}), available, status: available ? "available" as const : "unavailable" as const } satisfies PublicChart];
+      return [{ difficulty, ...(level ? { level } : {}), ...(notes !== undefined ? { notes } : {}), ...(constant ? { constant } : {}), ...(artist ? { artist } : {}), ...(source ? { source } : {}), ...supplementalChartFields(chart, resource.game), available, status: available ? "available" as const : "unavailable" as const } satisfies PublicChart];
     })
     .sort((left, right) => left.difficulty.localeCompare(right.difficulty) || (left.level ?? "").localeCompare(right.level ?? "") || (left.constant ?? "").localeCompare(right.constant ?? ""));
 }

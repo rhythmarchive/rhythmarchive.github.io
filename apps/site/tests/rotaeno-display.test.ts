@@ -62,8 +62,8 @@ test("Rotaeno chart metadata projects difficulty, v2 rating, and Alpha variants"
 test("Rotaeno preserves all requested song metadata and nonnumeric levels", () => {
   const stage = projectedFor("song-jacket:stage-5");
   assert.deepEqual(stage?.charts?.map((chart) => [chart.difficulty, chart.level, chart.notes, chart.constant]), [
-    ["I", "2", 396, "2.0"],
-    ["II", "5", 579, "5.0"],
+    ["I", "2", 396, undefined],
+    ["II", "5", 579, undefined],
     ["III", "8", 988, "8.6"],
     ["IV", "13", 1513, "13.1"],
     ["IV_Alpha", "Lv.4", 1920, "14.0"],

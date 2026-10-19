@@ -1,16 +1,26 @@
 import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import path from 'node:path';
 import { execFileSync } from 'node:child_process';
 import { loadFormalCatalog, getSiteData, findWorkspaceRoot } from '../src/lib/site-data.js';
 import { loadRawUpdateHistory } from '../src/lib/update-history.js';
 import { PUBLIC_RESOURCE_ID_LIST } from '../../../workers/stats/src/public-resource-registry.js';
 import { validateBrowseFiles } from '../../../tools/validate-browse-projection.js';
 import { generateStatsResourceRegistry } from './generate-stats-resource-registry.js';
+import { chartDataVersionIssues } from '../src/lib/catalog-projection.js';
 
 const catalog = loadFormalCatalog(); // Schema, unique identities and Object/Variant/Rendition references.
 const data = getSiteData();
 await validateBrowseFiles();
 await generateStatsResourceRegistry(true);
 const history = loadRawUpdateHistory(findWorkspaceRoot());
+const chartVersions: Record<string, string> = {};
+for (const batch of [...history.baselines, ...history.records].sort((a, b) => Date.parse(a.publishedAt) - Date.parse(b.publishedAt))) {
+  if (batch.contentVersion) chartVersions[batch.game] = batch.contentVersion;
+}
+const browseManifest = JSON.parse(fs.readFileSync(path.join(findWorkspaceRoot(), 'catalog/browse/manifest.json'), 'utf8'));
+for (const [game, source] of Object.entries(browseManifest.games) as Array<[string, { sourceVersion: string }]>) chartVersions[game] = source.sourceVersion;
+assert.deepEqual(chartDataVersionIssues(catalog.resources, chartVersions), [], 'Review existing constants on every game version change; see docs/chart-metadata.md');
 const publicIds = new Set(data.resources.map(r => r.resourceId));
 assert.deepEqual(publicIds, new Set<string>(PUBLIC_RESOURCE_ID_LIST), 'Stats registry must match the actual public Resource collection');
 assert.equal(publicIds.size, data.resources.length);

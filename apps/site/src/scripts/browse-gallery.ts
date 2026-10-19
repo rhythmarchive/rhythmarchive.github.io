@@ -115,7 +115,7 @@ async function initializeBrowseGallery(root: HTMLElement): Promise<void> {
         ...(taskSignal ? { signal: taskSignal } : {}),
       }),
     });
-    resultDownload = setupGalleryDownload(root, () => matchingResults.length > MAX_BATCH_FILES ? matchingResults : matchingResults.map((item) => displayBrowseItem(item, state.chart)), batchTray, () => updates.flush());
+    resultDownload = setupGalleryDownload(root, () => matchingResults.length > MAX_BATCH_FILES ? matchingResults : matchingResults.map((item) => displayBrowseItem(item, state.chart, state.difficulty, state.game === "arcaea" ? state.level : [])), batchTray, () => updates.flush());
     populateFacetOptions(data, root);
     state = readState(game, items);
     applyStateToControls(state);
@@ -161,7 +161,7 @@ async function initializeBrowseGallery(root: HTMLElement): Promise<void> {
     } else if (name === "ai") {
       if (ai) ai.checked = false;
     } else if (name === "difficulty") {
-      if (difficultyRange) syncBrowseDifficultyRange(difficultyRange);
+      if (difficultyRange) syncBrowseDifficultyRange(difficultyRange, difficultyRange.min, difficultyRange.max);
     } else {
       setSelectedValues(root, name, selectedValues(root, name).filter((candidate) => candidate !== value));
     }
@@ -205,6 +205,7 @@ async function initializeBrowseGallery(root: HTMLElement): Promise<void> {
   }
 
   function currentStateFromControls(): BrowseUrlState {
+    const difficulty = difficultyRange ? readBrowseDifficultyRange(difficultyRange) : undefined;
     if (game === "arcaea") {
       return {
         game,
@@ -215,10 +216,10 @@ async function initializeBrowseGallery(root: HTMLElement): Promise<void> {
         level: selectedValues(root, "level"),
         version: selectedValues(root, "version"),
         ai: ai?.checked ?? false,
+        ...(difficulty ? { difficulty } : {}),
       };
     }
     if (game === "phigros") {
-      const difficulty = difficultyRange ? readBrowseDifficultyRange(difficultyRange) : undefined;
       return {
         game,
         q: search!.value,
@@ -229,7 +230,7 @@ async function initializeBrowseGallery(root: HTMLElement): Promise<void> {
         ...(difficulty ? { difficulty } : {}),
       };
     }
-    if (game === "infalsus") return { game, q: search!.value, sort: sort!.value as Extract<BrowseUrlState, { game: "infalsus" }>["sort"], chart: selectedValues(root, "chart") as Extract<BrowseUrlState, { game: "infalsus" }>["chart"], level: levelSelect?.value ? [levelSelect.value] : [] };
+    if (game === "infalsus") return { game, q: search!.value, sort: sort!.value as Extract<BrowseUrlState, { game: "infalsus" }>["sort"], chart: selectedValues(root, "chart") as Extract<BrowseUrlState, { game: "infalsus" }>["chart"], level: levelSelect?.value ? [levelSelect.value] : [], ...(difficulty ? { difficulty } : {}) };
     return {
       game,
       q: search!.value,
@@ -237,6 +238,7 @@ async function initializeBrowseGallery(root: HTMLElement): Promise<void> {
       disc: selectedValues(root, "disc"),
       series: selectedValues(root, "series"),
       chart: selectedValues(root, "chart"),
+      ...(difficulty ? { difficulty } : {}),
     };
   }
 
@@ -268,6 +270,7 @@ async function initializeBrowseGallery(root: HTMLElement): Promise<void> {
     search!.value = nextState.q;
     sort!.value = nextState.sort;
     setSelectedValues(root, "chart", nextState.chart);
+    if (difficultyRange) syncBrowseDifficultyRange(difficultyRange, nextState.difficulty?.min ?? difficultyRange.min, nextState.difficulty?.max ?? difficultyRange.max);
     if (nextState.game === "arcaea") {
       setSelectedValues(root, "pack", nextState.pack);
       setSelectedValues(root, "level", nextState.level);
@@ -276,7 +279,6 @@ async function initializeBrowseGallery(root: HTMLElement): Promise<void> {
     } else if (nextState.game === "phigros") {
       setSelectedValues(root, "pack", nextState.pack);
       if (levelSelect) levelSelect.value = nextState.level[0] ?? "";
-      if (difficultyRange) syncBrowseDifficultyRange(difficultyRange, nextState.difficulty?.min ?? difficultyRange.min, nextState.difficulty?.max ?? difficultyRange.max);
     } else if (nextState.game === "infalsus") {
       if (levelSelect) levelSelect.value = nextState.level[0] ?? "";
     } else if (nextState.game === "rizline") {
@@ -290,7 +292,7 @@ async function initializeBrowseGallery(root: HTMLElement): Promise<void> {
   function render(): void {
     const filtered = filterBrowseItems(items, state);
     matchingResults = filtered;
-    const visible = filtered.slice(0, visibleCount).map((item) => displayBrowseItem(item, state.chart));
+    const visible = filtered.slice(0, visibleCount).map((item) => displayBrowseItem(item, state.chart, state.difficulty, state.game === "arcaea" ? state.level : []));
     reconcile(visible.map(browseCardView), { basePath: root.dataset.basePath ?? "/", browse: true, sizes: SIDEBAR_IMAGE_SIZES });
     navigation.remember(visibleCount);
     count!.textContent = filtered.length.toLocaleString("zh-CN") + " 项资源";
@@ -459,13 +461,16 @@ function updateActiveFilters(root: HTMLElement, state: BrowseUrlState): void {
     for (const value of state.pack) entries.push({ name: "pack", value, label: value });
     for (const value of state.chart) entries.push({ name: "chart", value, label: value });
     for (const value of state.level) entries.push({ name: "level", value, label: value });
-    if (state.difficulty) entries.push({ name: "difficulty", value: "range", label: `难度 ${formatBrowseDifficulty(state.difficulty.min)}～${formatBrowseDifficulty(state.difficulty.max)}` });
   } else if (state.game === "rizline") {
     for (const value of state.chart) entries.push({ name: "chart", value, label: value });
     for (const value of state.disc) entries.push({ name: "disc", value, label: value });
     for (const value of state.series) entries.push({ name: "series", value, label: value });
   } else {
     for (const value of state.chart) entries.push({ name: "chart", value, label: value });
+  }
+  if (state.difficulty) {
+    const label = root.querySelector<HTMLElement>("[data-browse-range]")?.dataset.rangeLabel ?? "谱面定数";
+    entries.push({ name: "difficulty", value: "range", label: `${label} ${formatBrowseDifficulty(state.difficulty.min)}～${formatBrowseDifficulty(state.difficulty.max)}` });
   }
   reconcileList(chips, entries.map((entry) => {
     const chip = document.createElement("button");

@@ -17,11 +17,13 @@ export type PublicChart = {
   difficulty: string;
   level?: string;
   notes?: number;
+  combo?: number;
   constant?: string;
   title?: string;
   artist?: string;
   noter?: string;
   source?: "apk" | "wiki" | "merged";
+  sourceUrl?: string;
   available?: boolean;
   status?: "available" | "legacy" | "error" | "unavailable";
 };

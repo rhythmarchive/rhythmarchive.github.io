@@ -18,6 +18,7 @@ Stats registry uses public resource IDs plus game identity/display names. Catalo
 Generate formal outputs; never hand-edit registry or public/data. Public cards stay preview-only; originals/upscales are explicit detail/download paths.
 
 Catalog is public source of truth. ReleaseManifest is optional private production input, not an Admin synchronization or ordinary publication blocker. Prepare publishedAt before first commit; never replace it with Pages success time afterward.
+On every game update, review existing chart constants as well as new charts against the adopted version, even when displayed levels are unchanged. Follow docs/chart-metadata.md; chartDataVersion must match the current Browse/Updates version. Never advance that marker without reviewing constants or removing unverified values. Keep original display levels, field sources, and unavailable values distinct.
 Routine Git: confirm child root/status -> standard fetch/pull --rebase -> one commit on main -> git push origin main. No gh/plugin/browser/PR for routine publish. If protection rejects push, report it; never bypass or silently create PR.
 
 Repository skills are in .agents/skills. update-timeline is tracked; other development skills are local. Read only the skill needed by the task.

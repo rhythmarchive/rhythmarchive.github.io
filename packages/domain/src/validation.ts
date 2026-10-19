@@ -195,6 +195,10 @@ function isForbiddenPublishedPath(value: unknown): boolean {
 }
 
 function scanForPublishedPathIssues(value: unknown, path = "$"): ValidationIssue[] {
+  // Exact client-authored credits that resemble paths. Scope the exception to
+  // chart credits; filenames, source paths and arbitrary metadata stay checked.
+  if (/\.metadata\.charts\.\d+\.noter$/u.test(path)
+    && (value === "/ERROR/ 絶滅" || value === "//TAP to StaRt//" || value === "R:kko (IMD)")) return [];
   if (typeof value === "string") return isForbiddenPublishedPath(value) ? [issue(path, "published data must not contain a local absolute/drive-relative path or .runtime path")] : [];
   if (Array.isArray(value)) return value.flatMap((child, index) => scanForPublishedPathIssues(child, `${path}.${index}`));
   if (value && typeof value === "object") return Object.entries(value).flatMap(([key, child]) => scanForPublishedPathIssues(child, `${path}.${key}`));

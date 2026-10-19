@@ -4,7 +4,7 @@ import fs from "node:fs";
 import path from "node:path";
 import test from "node:test";
 import sharp from "sharp";
-import { projectCatalog, selectPreviewRendition } from "../src/lib/catalog-projection.js";
+import { chartDataVersionIssues, projectCatalog, selectPreviewRendition } from "../src/lib/catalog-projection.js";
 import { formatPublicApkBytes, parsePublicArcaeaApkManifest } from "../src/lib/apk.js";
 import { uniqueZipFilename } from "../src/lib/batch.js";
 import { selectCardPreview } from "../src/lib/card-preview.js";
@@ -43,6 +43,32 @@ test("generic gallery chart filters keep difficulty, level, and constant on one 
   });
   assert.equal(matchesChartFilters(resource, { difficulties: ["I"], constantRange: { min: 12, max: 14 } }), false);
   assert.equal(matchesChartFilters(resource, { difficulties: ["IV"], levels: ["13"], constantRange: { min: 12, max: 14 } }), true);
+});
+
+test("game updates invalidate old chart metadata even with unchanged display grades", () => {
+  const resource = catalog.resources.find((r) => r.game === "rotaeno" && r.resourceType === "jacket" && r.lifecycle.status === "published")!;
+  assert.deepEqual(chartDataVersionIssues([resource], { rotaeno: "2.27.0" }), []);
+  assert.match(chartDataVersionIssues([resource], { rotaeno: "2.28.0" })[0]!, /need chart metadata review/u);
+  assert.equal(chartDataVersionIssues([{ ...resource, metadata: { ...resource.metadata, chartDataVersion: undefined } }], { rotaeno: "2.27.0" }).length, 1);
+  const unconfirmed = catalog.resources.find((r) => r.id === "01a00090-376c-79c6-8715-613b459b6f7c")!.metadata.charts as Array<{ difficulty: string; constant?: string }>;
+  assert.equal(unconfirmed.find((c) => c.difficulty === "PST")?.constant, undefined, "unconfirmed old low-level constants are withheld");
+  const updated = getSiteData().resources.find((r) => r.game === "rotaeno" && r.displayTitle === "Beat Rise");
+  assert.equal(updated?.charts?.find((c) => c.difficulty === "IV")?.constant, "12.9");
+  const conflict = getSiteData().resources.find((r) => r.resourceId === "fed833e2-2e77-7067-a6fe-06497db769d2");
+  assert.ok(conflict?.charts?.filter((c) => ["I", "II", "III"].includes(c.difficulty)).every((c) => c.constant === undefined));
+});
+
+test("every game's jacket gallery has a shared numeric range and keeps non-chart pages unaffected", () => {
+  const data = getSiteData();
+  for (const game of ["arcaea", "phigros", "rizline", "infalsus", "rotaeno", "paradigm-reboot", "orzmic", "dynamix"] as const) {
+    const config = getCategoryBrowseConfig(game, "jacket", data.galleries[`${game}/jacket`] ?? []);
+    const key = game === "dynamix" ? "level" : "constant";
+    assert.ok(config.facets.some((f) => f.key === key && f.range), `${game}: missing numeric range`);
+  }
+  assert.ok(!getCategoryBrowseConfig("arcaea", "character", data.galleries["arcaea/character"] ?? []).facets.some((f) => f.key === "constant"));
+  assert.equal(matchesChartFilters({ charts: [{ difficulty: "HARD", level: "12" }] }, { levelRange: { min: 12, max: 12 } }), true);
+  assert.equal(matchesChartFilters({ charts: [{ difficulty: "HARD", level: "12" }] }, { constantRange: { min: 0, max: 15 } }), false);
+  assert.equal(matchesChartFilters({ charts: [{ difficulty: "HARD", constant: "12.5", available: false }] }, { constantRange: { min: 0, max: 15 } }), false);
 });
 
 test("Arcaea jacket charts follow independent difficulty artwork and shared fallback", () => {
@@ -87,22 +113,23 @@ test("jacket details expose the unified chart field and user-facing identity met
   assert.equal(infalsusJacket?.metadata.gameVersion, "1.0.3");
   assert.deepEqual(infalsusJacket?.charts?.map((chart) => [chart.difficulty, chart.level]), [["MIN", "1"], ["EVO", "5"], ["ULT", "9"], ["FBD", "11"]]);
   const phigrosJacket = siteData.resources.find((resource) => resource.game === "phigros" && resource.resourceType === "jacket" && resource.metadata.songName === "000 -Ain Soph Aur-");
-  assert.deepEqual(phigrosJacket?.charts?.map((chart) => [chart.difficulty, chart.level, chart.noter]), [["EZ", "2.5", "Magazet"], ["HD", "8.4", "Magazet"], ["IN", "14.4", "啊0哒0咔0哟 & Dilated"]]);
+  assert.deepEqual(phigrosJacket?.charts?.map((chart) => [chart.difficulty, chart.level, chart.constant, chart.noter]), [["EZ", "2", "2.5", "Magazet"], ["HD", "8", "8.4", "Magazet"], ["IN", "14", "14.4", "啊0哒0咔0哟 & Dilated"]]);
   const mainStory9Song = siteData.resources.find((resource) => resource.game === "phigros" && resource.resourceType === "jacket" && resource.metadata.songName === "Entrance to the Chaos");
   assert.equal(mainStory9Song?.metadata.pack, "Chapter 9");
-  assert.deepEqual(mainStory9Song?.charts?.map((chart) => [chart.difficulty, chart.level]), [["EZ", "8.8"], ["HD", "13.7"], ["IN", "16.8"], ["AT", "17.6"]]);
+  assert.deepEqual(mainStory9Song?.charts?.map((chart) => [chart.difficulty, chart.level, chart.constant]), [["EZ", "8", "8.8"], ["HD", "13", "13.7"], ["IN", "16", "16.8"], ["AT", "17", "17.6"]]);
   const unavailableAtSong = siteData.resources.find((resource) => resource.game === "phigros" && resource.resourceType === "jacket" && resource.metadata.songName === "About The Universe");
   assert.equal(unavailableAtSong?.metadata.pack, "Chapter 9");
-  assert.deepEqual(unavailableAtSong?.charts?.map((chart) => [chart.difficulty, chart.level]), [["EZ", "4.5"], ["HD", "9.7"], ["IN", "14.4"]]);
+  assert.deepEqual(unavailableAtSong?.charts?.map((chart) => [chart.difficulty, chart.level]), [["EZ", "4"], ["HD", "9"], ["IN", "14"]]);
   const rotaenoJacket = siteData.resources.find((resource) => resource.game === "rotaeno" && resource.resourceType === "jacket" && resource.metadata.songId === "abstruse-dilemma");
   assert.deepEqual(rotaenoJacket?.charts?.map((chart) => [chart.difficulty, chart.level, chart.constant]), [["I", "3", "3.0"], ["II", "7", "7.0"], ["III", "12", "12.3"], ["IV", "14", "14.0"]]);
+  assert.equal(rotaenoJacket?.charts?.find((chart) => chart.difficulty === "I")?.noter, "AxEradaS");
   assert.ok(rotaenoJacket?.charts?.every((chart) => chart.status === "available"));
   const orzmicJacket = siteData.resources.find((resource) => resource.game === "orzmic" && resource.resourceType === "jacket" && resource.metadata.musicId === 0);
   assert.equal(orzmicJacket?.displayTitle, "雨霖铃");
   assert.equal(orzmicJacket?.artist, "Alan Mackin");
   assert.equal(orzmicJacket?.metadata.coverPainter, "镜璃");
   assert.deepEqual(orzmicJacket?.charts?.map((chart) => [chart.difficulty, chart.constant, chart.notes, chart.noter]), [["1", "1.0", 113, "尘云星白"], ["4", "4.5", 277, "尘云星白"], ["7", "7.8", 569, "尘云星白"]]);
-  assert.ok(orzmicJacket?.charts?.every((chart) => chart.level === undefined));
+  assert.ok(orzmicJacket?.charts?.every((chart) => chart.level === chart.difficulty));
   const orzmicFacets = getCategoryBrowseConfig("orzmic", "jacket", siteData.galleries["orzmic/jacket"] ?? []);
   const constants = siteData.galleries["orzmic/jacket"]!.flatMap(resource => resource.charts?.map(chart => Number(chart.constant)) ?? []).filter(Number.isFinite);
   assert.deepEqual(orzmicFacets.facets.find((facet) => facet.key === "constant")?.range, { min: Math.min(...constants), max: Math.max(...constants), step: 0.1 });
@@ -129,9 +156,29 @@ test("jacket details expose the unified chart field and user-facing identity met
   const rotaenoWithoutCharts = siteData.resources.find((resource) => resource.game === "rotaeno" && resource.resourceType === "jacket" && resource.chartDataStatus === "unavailable");
   assert.ok(rotaenoWithoutCharts);
   const rizlineJacket = siteData.resources.find((resource) => resource.game === "rizline" && resource.resourceType === "jacket");
-  assert.equal(rizlineJacket?.chartDataStatus, "unavailable");
+  assert.equal(rizlineJacket?.chartDataStatus, "available");
+  assert.ok(rizlineJacket?.charts?.every((chart) => chart.constant && chart.noter && chart.notes && chart.combo));
+  assert.ok(rizlineJacket?.charts?.some((chart) => chart.notes !== chart.combo));
   assert.equal(typeof rizlineJacket?.metadata.songId, "string");
   assert.equal(typeof rizlineJacket?.metadata.gameVersion, "string");
+});
+
+test("Rotaeno cover ownership follows native references instead of misleading filenames", () => {
+  const data = getSiteData();
+  const byId = new Map(data.resources.map((r) => [r.resourceId, r]));
+  const charts = (id: string) => byId.get(id)!.charts?.map((c) => c.difficulty);
+  assert.deepEqual(charts("71982ff4-5564-7e7d-b820-fc0e1521c896"), ["I", "II", "III"]);
+  assert.deepEqual(charts("da2dc38b-ff66-71cc-9992-c2ffbf54affd"), ["IV"]);
+  assert.deepEqual(charts("602048e0-917b-7754-9b38-5d058fa8dfa1"), ["I", "II", "III", "IV"]);
+  assert.deepEqual(charts("67a818a8-6135-76f7-9541-ddab39e1e988"), []);
+  const regular = byId.get("71982ff4-5564-7e7d-b820-fc0e1521c896")!;
+  assert.equal(matchesChartFilters(regular, { difficulties: ["IV"], constantRange: { min: 12, max: 13 } }), false);
+  const unresolved = catalog.resources.filter((r) => r.game === "rotaeno" && r.metadata.chartArtworkStatus === "unresolved");
+  assert.equal(unresolved.length, 9);
+  for (const r of unresolved) {
+    assert.deepEqual(charts(r.id), []);
+    assert.ok(byId.get(r.id)?.variants.length, "unknown chart ownership must not remove the artwork");
+  }
 });
 
 test("Paradigm updates publish song Resources with client chart metadata and image-only public downloads", () => {
@@ -993,7 +1040,8 @@ test("detail downloads show image dimensions without the recommendation label", 
   assert.doesNotMatch(component, /推荐|download-recommend/u);
   assert.doesNotMatch(component, /attachments|music|preview|chart/u);
   assert.doesNotMatch(page, /来源：|APK \+ Wiki|元数据状态|文件格式|歌曲 ID|游戏版本|Wiki BPM/u);
-  assert.doesNotMatch(page, /chartSourceLabel|chart\.source/u);
+  assert.doesNotMatch(page, /chartSourceLabel|chart\.source(?!Url)/u);
+  assert.match(page, /chart\.sourceUrl/u);
   assert.match(styles, /\.download-dimensions/u);
   assert.doesNotMatch(styles, /\.download-recommend/u);
 });
