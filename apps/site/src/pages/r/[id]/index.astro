@@ -49,6 +49,18 @@ const difficultyValues = [...new Set(resource.variants.map((variant) => variant.
 const charts = resource.charts ?? [];
 const specialCharts = resource.specialCharts ?? [];
 const allCharts = [...charts, ...specialCharts];
+const artworkDifficulties = new Map(variants.map((variant) => [variant.variantId,
+  variant.difficulty ?? (hasDifficultyArtwork ? variant.variantKey
+    : resource.game === "paradigm-reboot" && variant.variantKey === "chaotic" ? "CTC" : undefined),
+]));
+const chartPanels = variants.map((variant) => {
+  const difficulty = artworkDifficulties.get(variant.variantId);
+  return {
+    variantId: variant.variantId,
+    charts: allCharts.filter((chart) => difficulty ? chart.difficulty === difficulty
+      : ![...artworkDifficulties.values()].includes(chart.difficulty)),
+  };
+});
 const primaryDownload = resource.original ?? firstVariant?.original;
 const primaryPreview = firstVariant?.preview.large ?? firstVariant?.preview.medium ?? firstVariant?.preview.small;
 const dimensions = formatImageDimensions(primaryDownload?.width, primaryDownload?.height)
@@ -144,10 +156,11 @@ const description = resource.resourceType === "video"
         </dl>
         {resource.resourceType === "jacket" && !(resource.game === "dynamix" && resource.metadata.contentKind === "段位封面") ? (
           <section class="detail-chart-section" aria-labelledby="detail-chart-heading">
-            <div class="detail-section-heading"><h2 id="detail-chart-heading">谱面难度</h2><span>{allCharts.length > 0 ? `${allCharts.length} 个` : "暂无数据"}</span></div>
-            {allCharts.length > 0 ? (
+            <div class="detail-section-heading"><h2 id="detail-chart-heading">谱面难度</h2>{chartPanels.map((panel, index) => <span data-chart-variant={panel.variantId} hidden={index !== activeVariantIndex}>{panel.charts.length > 0 ? `${panel.charts.length} 个` : "暂无数据"}</span>)}</div>
+            {chartPanels.map((panel, index) => <div data-chart-variant={panel.variantId} hidden={index !== activeVariantIndex}>
+            {panel.charts.length > 0 ? (
               <div class="detail-chart-list">
-                {allCharts.map((chart) => (
+                {panel.charts.map((chart) => (
                   <div class="detail-chart-row">
                     <div class="detail-chart-main"><strong>{chartDifficultyLabel(chart.difficulty)}</strong>{chart.level ? <span>等级 {chart.level}</span> : null}{chart.notes !== undefined ? <span>Notes {chart.notes}</span> : null}{chart.constant ? <span>定数 {chart.constant}</span> : null}</div>
                     <div class="detail-chart-copy">
@@ -160,6 +173,7 @@ const description = resource.resourceType === "video"
                 ))}
               </div>
             ) : <p class="detail-note">暂无谱面难度数据。</p>}
+            </div>)}
           </section>
         ) : null}
 

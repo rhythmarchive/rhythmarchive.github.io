@@ -92,6 +92,7 @@ onPageLoad(() => {
       if (variantDropdown) variantDropdown.value = variantId;
       for (const panel of root.querySelectorAll<HTMLElement>("[data-variant-panel]")) panel.hidden = panel.dataset.variantPanel !== variantId;
       for (const panel of root.querySelectorAll<HTMLElement>("[data-download-variant]")) panel.hidden = panel.dataset.downloadVariant !== variantId;
+      for (const panel of root.querySelectorAll<HTMLElement>("[data-chart-variant]")) panel.hidden = panel.dataset.chartVariant !== variantId;
       for (const item of variantButtons) {
         const active = item.dataset.variantSelect === variantId;
         item.classList.toggle("is-active", active);

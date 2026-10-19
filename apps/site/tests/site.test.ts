@@ -45,6 +45,27 @@ test("generic gallery chart filters keep difficulty, level, and constant on one 
   assert.equal(matchesChartFilters(resource, { difficulties: ["IV"], levels: ["13"], constantRange: { min: 12, max: 14 } }), true);
 });
 
+test("Arcaea jacket charts follow independent difficulty artwork and shared fallback", () => {
+  const resources = getSiteData().resources;
+  const chartsFor = (resourceId: string) => resources.find((resource) => resource.resourceId === resourceId)?.charts?.map((chart) => [chart.difficulty, chart.level]);
+  assert.deepEqual(chartsFor("01a00090-376c-79c6-8715-613b459b6f7c"), [["PST", "4"]]);
+  assert.deepEqual(chartsFor("01a00090-388e-71ec-93e8-4c7433481491"), [["PRS", "8"]]);
+  assert.deepEqual(chartsFor("01a00090-39b8-7c9a-9f6e-daa351b4f56d"), [["FTR", "9+"]]);
+  assert.deepEqual(chartsFor("01a00091-7f10-7b3c-9977-8aaa7baef3f9"), [["BYD", "9+"]]);
+  assert.deepEqual(chartsFor("01a00091-8036-71fb-a250-a48656c9d12f"), [["FTR", "9"], ["PRS", "7"], ["PST", "4"]]);
+  assert.deepEqual(chartsFor("01a00091-2f1b-73ed-b138-02fd0bbd8de7"), [["FTR", "11"], ["PRS", "9"], ["PST", "6"]]);
+  const browse = loadFormalBrowseProjections();
+  for (const song of browse.arcaea.songs) {
+    for (const artwork of song.artworks.filter((artwork) => artwork.resourceId && artwork.difficultyClass)) {
+      const resource = resources.find((resource) => resource.resourceId === artwork.resourceId);
+      assert.ok(resource?.charts?.length, `${song.songId}: independent jacket retains its chart`);
+      assert.ok(resource.charts.every((chart) => chart.difficulty === artwork.difficultyClass), song.songId);
+    }
+  }
+  // Song-level Browse still filters and switches artwork using the full chart list.
+  assert.deepEqual(browse.arcaea.songs.find((song) => song.songId === "tothefurthestdream")?.charts.map((chart) => chart.difficultyClass), ["FTR", "PRS", "PST"]);
+});
+
 test("jacket details expose the unified chart field and user-facing identity metadata", () => {
   assert.equal(GAME_CONFIG.rizline.metadataLabels.songId, undefined);
   assert.equal(GAME_CONFIG.rizline.metadataLabels.gameVersion, undefined);

@@ -141,7 +141,14 @@ function enrichFormalBrowseMetadata(siteData: PublicSiteData, browse: FormalBrow
       add(artwork.resourceId, "difficulty", chart?.difficultyClass);
       add(artwork.resourceId, "difficultyTitle", chart?.title);
       add(artwork.resourceId, "difficultyArtist", chart?.artist);
-      addCharts(artwork.resourceId, arcaeaCharts(song.charts));
+      // A difficulty jacket owns only its chart; shared jackets exclude charts
+      // whose artwork resolves to another Resource. Missing artwork still falls back.
+      const artworkCharts = song.charts.filter((candidate) => artwork.difficultyClass
+        ? candidate.difficultyClass === artwork.difficultyClass
+        : !song.artworks.some((other) => other.role === "difficulty"
+          && other.resourceId && other.resourceId !== artwork.resourceId
+          && other.difficultyClass === candidate.difficultyClass));
+      addCharts(artwork.resourceId, arcaeaCharts(artworkCharts));
     }
   }
   for (const special of browse.arcaea.specials) {
