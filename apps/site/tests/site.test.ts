@@ -58,12 +58,14 @@ test("game updates invalidate old chart metadata even with unchanged display gra
   assert.ok(conflict?.charts?.filter((c) => ["I", "II", "III"].includes(c.difficulty)).every((c) => c.constant === undefined));
 });
 
-test("every game's jacket gallery has a shared numeric range and keeps non-chart pages unaffected", () => {
+test("jacket galleries remove level facets and retain verified constant histograms", () => {
   const data = getSiteData();
   for (const game of ["arcaea", "phigros", "rizline", "infalsus", "rotaeno", "paradigm-reboot", "orzmic", "dynamix"] as const) {
     const config = getCategoryBrowseConfig(game, "jacket", data.galleries[`${game}/jacket`] ?? []);
-    const key = game === "dynamix" ? "level" : "constant";
-    assert.ok(config.facets.some((f) => f.key === key && f.range), `${game}: missing numeric range`);
+    assert.ok(!config.facets.some((f) => f.key === "level"), `${game}: level filter remains`);
+    const constant = config.facets.find((f) => f.key === "constant");
+    if (game === "dynamix") assert.equal(constant, undefined, "unknown constants must not fall back to levels");
+    else assert.ok(constant?.range && constant.histogram, `${game}: missing constant histogram`);
   }
   assert.ok(!getCategoryBrowseConfig("arcaea", "character", data.galleries["arcaea/character"] ?? []).facets.some((f) => f.key === "constant"));
   assert.equal(matchesChartFilters({ charts: [{ difficulty: "HARD", level: "12" }] }, { levelRange: { min: 12, max: 12 } }), true);
@@ -143,7 +145,7 @@ test("jacket details expose the unified chart field and user-facing identity met
     .flatMap((resource) => (resource.charts ?? []).filter((chart) => chart.difficulty === "INSCRIBED").map(() => resource.metadata.songId));
   assert.deepEqual(new Set(inscribed), new Set(["dreadarea", "rivenpilgrim", "cataclysmcry", "deinosphainein"]));
   const rotaenoFacets = getCategoryBrowseConfig("rotaeno", "jacket", siteData.galleries["rotaeno/jacket"] ?? []).facets;
-  assert.deepEqual(rotaenoFacets.slice(0, 2).map((facet) => facet.label), ["\u8c31\u9762\u96be\u5ea6", "\u96be\u5ea6\u7b49\u7ea7"]);
+  assert.deepEqual(rotaenoFacets.slice(0, 2).map((facet) => facet.label), ["谱面难度", "曲包"]);
   assert.ok(rotaenoFacets.findIndex((facet) => facet.key === "pack") < rotaenoFacets.findIndex((facet) => facet.key === "constant"));
   assert.ok(rotaenoFacets.findIndex((facet) => facet.key === "version") < rotaenoFacets.findIndex((facet) => facet.key === "constant"));
   assert.ok(rotaenoFacets.some((facet) => facet.key === "pack"));
@@ -229,7 +231,7 @@ test("Paradigm updates publish song Resources with client chart metadata and ima
   assert.ok(config.facets.some((facet) => facet.key === "bpm" && facet.range));
   assert.ok(config.facets.some((facet) => facet.key === "version" && facet.options.length > 0));
   assert.ok(config.facets.some((facet) => facet.key === "constant" && facet.range));
-  assert.deepEqual(config.facets.filter((facet) => !facet.range).map((facet) => facet.key), ["chart", "level", "pack", "version"]);
+  assert.deepEqual(config.facets.filter((facet) => !facet.range).map((facet) => facet.key), ["chart", "pack", "version"]);
   assert.deepEqual(config.facets.filter((facet) => facet.range).map((facet) => facet.key), ["constant", "bpm"]);
   const versionFacet = config.facets.find((facet) => facet.key === "version");
   assert.ok(versionFacet?.options.every((option) => /^\d+(?:\.\d+)?$/u.test(option.value)));
@@ -752,9 +754,7 @@ test("category facet options use natural numeric and semantic ordering", () => {
   const rotaeno = getCategoryBrowseConfig("rotaeno", "jacket", siteData.galleries["rotaeno/jacket"] ?? []);
   const facetValues = (config: ReturnType<typeof getCategoryBrowseConfig>, key: string): string[] => config.facets.find((facet) => facet.key === key)?.options.map((option) => option.value) ?? [];
   assert.deepEqual(facetValues(rotaeno, "chart"), ["I", "II", "III", "IV", "IV_Alpha", "特殊", "Meow"]);
-  assert.deepEqual(facetValues(rotaeno, "level"), [
-    "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "10+", "11", "11+", "12", "12+", "13", "13+", "14", "Aleph 0", "Lv.4",
-  ]);
+  assert.deepEqual(facetValues(rotaeno, "level"), []);
   const constants = facetValues(rotaeno, "constant");
   assert.equal(constants[0], "1.0");
   assert.equal(constants.at(-1), "14.5");

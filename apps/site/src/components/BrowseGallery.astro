@@ -28,7 +28,6 @@ const phigrosOptions = data.game === "phigros" ? browseOptions as PhigrosFacetOp
 const rizlineOptions = data.game === "rizline" ? browseOptions as RizlineFacetOptions : undefined;
 const infalsusOptions = data.game === "infalsus" ? browseOptions as InfalsusFacetOptions : undefined;
 const phigrosPackOptions = phigrosOptions?.packs ?? [];
-const phigrosLevelOptions = phigrosOptions?.levels ?? [];
 const difficultyRange = browseOptions.difficultyRange;
 const difficultyLabel = "谱面定数";
 const difficultyHistogram = difficultyRange ? browseDifficultyHistogram(data, difficultyRange) : undefined;
@@ -127,21 +126,11 @@ function formatRangeValue(value: number): string {
     <div class="gallery-filter-row" data-gallery-filter-row>
       <label class="filter-control"><span>难度</span><select data-browse-filter-select="chart" aria-label="难度"><option value="">全部</option>{arcaeaOptions.charts.map((value) => <option value={value}>{displayFilterDifficultyLabel(value, "arcaea")}</option>)}</select></label>
       <label class="filter-control"><span>曲包</span><select data-browse-filter-select="pack" aria-label="曲包"><option value="">全部</option>{arcaeaOptions.packs.map((value) => <option value={value}>{value}</option>)}</select></label>
-      <label class="filter-control"><span>等级</span><select data-browse-filter-select="level" aria-label="等级"><option value="">全部</option>{arcaeaOptions.levels.map((value) => <option value={value}>{value}</option>)}</select></label>
       <label class="filter-control"><span>加入版本</span><select data-browse-filter-select="version" aria-label="加入版本"><option value="">全部</option>{arcaeaOptions.versions.map((value) => <option value={value}>{value}</option>)}</select></label>
       {hasUpscale ? <label class="filter-check"><input type="checkbox" data-filter-ai /> <span>含超分版</span></label> : null}
     </div>
   ) : data.game === "phigros" ? (
     <div class="gallery-filter-row" data-gallery-filter-row>
-      {phigrosLevelOptions.length > 0 ? (
-        <label class="filter-control">
-          <span>难度等级</span>
-          <select data-browse-filter-select="level" data-browse-level aria-label="难度等级">
-            <option value="">全部</option>
-            {phigrosLevelOptions.map((level) => <option value={level}>{level}</option>)}
-          </select>
-        </label>
-      ) : null}
       {phigrosPackOptions.length > 0 ? <label class="filter-control"><span>曲包</span><select data-browse-filter-select="pack" aria-label="曲包"><option value="">全部</option>{phigrosPackOptions.map((value) => <option value={value}>{value}</option>)}</select></label> : null}
     </div>
   ) : data.game === "rizline" && rizlineOptions ? (
@@ -153,7 +142,6 @@ function formatRangeValue(value: number): string {
   ) : data.game === "infalsus" && infalsusOptions ? (
     <div class="gallery-filter-row" data-gallery-filter-row>
       <label class="filter-control"><span>谱面难度</span><select data-browse-filter-select="chart" aria-label="谱面难度"><option value="">全部</option>{infalsusOptions.charts.map((value) => <option value={value}>{value}</option>)}</select></label>
-      <label class="filter-control"><span>等级</span><select data-browse-filter-select="level" data-browse-level aria-label="等级"><option value="">全部</option>{infalsusOptions.levels.map((value) => <option value={value}>{value}</option>)}</select></label>
     </div>
   ) : null}
 

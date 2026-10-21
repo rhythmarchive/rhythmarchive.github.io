@@ -119,6 +119,20 @@ test("all Browse games restore, normalize and clear the shared constant range", 
   }
 });
 
+test("legacy Browse level URLs cannot silently narrow results or override constant ranges", () => {
+  for (const game of ["arcaea", "phigros", "rizline", "infalsus"] as const) {
+    const data = formalBrowse[game];
+    const range = getBrowseFacetOptions(data).difficultyRange!;
+    const params = new URLSearchParams({ level: "14", "difficulty-min": String(range.max), "difficulty-max": String(range.max) });
+    const state = parseBrowseUrlState(game, params, data.items);
+    assert.deepEqual(state, { ...defaultBrowseUrlState(game), difficulty: { min: range.max, max: range.max } });
+    assert.equal(serializeBrowseUrlState(state).has("level"), false);
+    params.delete("difficulty-min");
+    params.delete("difficulty-max");
+    assert.equal(filterBrowseItems(data.items, parseBrowseUrlState(game, params, data.items)).length, data.items.length);
+  }
+});
+
 test("Arcaea difficulty and level filters require the same Chart object", () => {
   const item = makeArcaeaItem({
     charts: [
@@ -231,7 +245,7 @@ test("Browse URL state round-trips multi-select facets with stable encoding", ()
   assert.match(serialized, /chart=FTR%2CBYD/u);
   assert.match(serialized, /ai=1/u);
   const parsed = parseBrowseUrlState("arcaea", serialized, formalBrowse.arcaea.items);
-  assert.deepEqual(parsed, arcaeaState({ pack: ["Absolute Reason", "World Extend 4"], chart: ["FTR", "BYD"], level: ["9", "10+"], version: ["6.10", "6.9"], ai: true }));
+  assert.deepEqual(parsed, arcaeaState({ pack: ["Absolute Reason", "World Extend 4"], chart: ["FTR", "BYD"], version: ["6.10", "6.9"], ai: true }));
   assert.equal(serializeBrowseUrlState(parsed).toString(), serialized);
 
   const phigrosState = phigrosStateFor({ q: " After ", chart: ["AT", "EZ"], sort: "title-desc" });
@@ -300,9 +314,9 @@ test("Phigros exposes APK-backed pack facets, URL state, and highest-level sorti
   const single = filterBrowseItems(formalBrowse.phigros.items, phigrosStateFor({ pack: ["Single"] }));
   assert.ok(single.length > 0);
   assert.ok(single.every((item) => item.pack === "Single"));
-  const state = phigrosStateFor({ pack: ["Single"], level: ["14"], difficulty: { min: 14.4, max: 14.4 }, sort: "level-desc" });
+  const state = phigrosStateFor({ pack: ["Single"], difficulty: { min: 14.4, max: 14.4 }, sort: "level-desc" });
   const serialized = serializeBrowseUrlState(state).toString();
-  assert.equal(serialized, "sort=level-desc&pack=Single&level=14&difficulty-min=14.4&difficulty-max=14.4");
+  assert.equal(serialized, "sort=level-desc&pack=Single&difficulty-min=14.4&difficulty-max=14.4");
   assert.deepEqual(parseBrowseUrlState("phigros", serialized, formalBrowse.phigros.items), state);
   const levelFiltered = filterBrowseItems(formalBrowse.phigros.items, phigrosStateFor({ level: ["14"] }));
   assert.ok(levelFiltered.length > 0);
@@ -371,8 +385,8 @@ test("In Falsus exposes chart difficulties and keeps the filter state shareable"
   assert.equal(serialized, "chart=ULT");
   assert.deepEqual(parseBrowseUrlState("infalsus", serialized, formalBrowse.infalsus.items), ultState);
   const levelState: InfalsusBrowseUrlState = { game: "infalsus", q: "", sort: "level-desc", chart: [], level: ["15"] };
-  assert.equal(serializeBrowseUrlState(levelState).toString(), "sort=level-desc&level=15");
-  assert.deepEqual(parseBrowseUrlState("infalsus", "sort=level-desc&level=15", formalBrowse.infalsus.items), levelState);
+  assert.equal(serializeBrowseUrlState(levelState).toString(), "sort=level-desc");
+  assert.deepEqual(parseBrowseUrlState("infalsus", "sort=level-desc&level=15", formalBrowse.infalsus.items), { ...levelState, level: [] });
   const levelFiltered = filterBrowseItems(formalBrowse.infalsus.items, levelState);
   assert.ok(levelFiltered.every((item) => item.charts.some((chart) => "difficulty" in chart && chart.level === "15")));
 });
@@ -430,10 +444,10 @@ test("Phigros chart selections are retained by the client state bridge", () => {
   assert.match(browseScript, /if \(data\.game === "rizline"\)/u);
 });
 
-test("Phigros Browse replaces chart-class toggles with level controls", () => {
+test("Browse keeps constant ranges without level controls", () => {
   const browseComponent = fs.readFileSync(path.join(process.cwd(), "apps", "site", "src", "components", "BrowseGallery.astro"), "utf8");
   assert.match(browseComponent, /data-browse-range="difficulty"/u);
-  assert.match(browseComponent, /data-browse-level/gu);
+  assert.doesNotMatch(browseComponent, /data-browse-level|data-browse-filter-select="level"/u);
   assert.doesNotMatch(browseComponent, /data-browse-toggle-options="chart"[\s\S]*data-game="phigros"/u);
 });
 

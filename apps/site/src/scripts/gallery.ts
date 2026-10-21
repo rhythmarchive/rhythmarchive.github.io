@@ -200,21 +200,16 @@ async function initializeGallery(root: HTMLElement): Promise<void> {
     const query = normalizeSearchText(search?.value ?? "");
     const sortValue = sort?.value ?? "default";
     const chartDifficulty = facets.find((facet) => facet.dataset.galleryFacet === "chart")?.value;
-    const chartLevel = facets.find((facet) => facet.dataset.galleryFacet === "level")?.value;
     const chartConstant = facets.find((facet) => facet.dataset.galleryFacet === "constant")?.value;
     const constantRange = ranges.find((range) => range.key === "constant");
-    const levelRange = ranges.find((range) => range.key === "level");
     const selectedConstantRange = constantRange
       && (readRangeValue(constantRange, "min") > constantRange.min || readRangeValue(constantRange, "max") < constantRange.max)
       ? { min: readRangeValue(constantRange, "min"), max: readRangeValue(constantRange, "max") }
       : undefined;
     const chartCriteria = {
       ...(chartDifficulty ? { difficulties: [chartDifficulty] } : {}),
-      ...(chartLevel ? { levels: [chartLevel] } : {}),
       ...(chartConstant ? { constants: [chartConstant] } : {}),
       ...(selectedConstantRange ? { constantRange: selectedConstantRange } : {}),
-      ...(levelRange && (readRangeValue(levelRange, "min") > levelRange.min || readRangeValue(levelRange, "max") < levelRange.max)
-        ? { levelRange: { min: readRangeValue(levelRange, "min"), max: readRangeValue(levelRange, "max") } } : {}),
     };
     const filtered = resources.filter((resource) => {
       const text = [resource.displayTitle, resource.artist, resource.subtitle, ...(resource.badges ?? []), ...(resource.searchTerms ?? []), ...Object.values(resource.facets ?? {}).flat(), ...Object.values(resource.metadata).map(String)].filter(Boolean).join(" ");
@@ -254,6 +249,7 @@ async function initializeGallery(root: HTMLElement): Promise<void> {
     if (filters.draft()) { filters.preview(); return; }
     visibleCount = PAGE_SIZE;
     const url = new URL(window.location.href);
+    for (const key of ["facet-level", "facet-level-min", "facet-level-max"]) url.searchParams.delete(key);
     if (search?.value) url.searchParams.set("q", search.value); else url.searchParams.delete("q");
     if (sort?.value && sort.value !== sort.options[0]?.value) url.searchParams.set("sort", sort.value); else url.searchParams.delete("sort");
     for (const facet of facets) {

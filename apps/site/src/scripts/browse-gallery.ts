@@ -65,7 +65,6 @@ async function initializeBrowseGallery(root: HTMLElement): Promise<void> {
   const reset = root.querySelector<HTMLButtonElement>("[data-gallery-reset]");
   const emptyReset = root.querySelector<HTMLButtonElement>("[data-browse-empty-reset]");
   const activeChips = root.querySelector<HTMLElement>("[data-browse-active-chips]");
-  const levelSelect = root.querySelector<HTMLSelectElement>("[data-browse-level]");
   const difficultyRange = createBrowseDifficultyRange(root);
   if (!grid || !loadMore || !count || !search || !sort) return;
 
@@ -132,7 +131,6 @@ async function initializeBrowseGallery(root: HTMLElement): Promise<void> {
 
   updates.text(search);
   sort.addEventListener("change", () => commitState("push"));
-  levelSelect?.addEventListener("change", () => commitState("push"));
   if (difficultyRange) {
     difficultyRange.minInput.addEventListener("change", () => { syncBrowseDifficultyRange(difficultyRange); commitState("replace"); });
     difficultyRange.maxInput.addEventListener("change", () => { syncBrowseDifficultyRange(difficultyRange); commitState("replace"); });
@@ -213,7 +211,7 @@ async function initializeBrowseGallery(root: HTMLElement): Promise<void> {
         sort: sort!.value as Extract<BrowseUrlState, { game: "arcaea" }>["sort"],
         pack: selectedValues(root, "pack"),
         chart: selectedValues(root, "chart") as Extract<BrowseUrlState, { game: "arcaea" }>["chart"],
-        level: selectedValues(root, "level"),
+        level: [],
         version: selectedValues(root, "version"),
         ai: ai?.checked ?? false,
         ...(difficulty ? { difficulty } : {}),
@@ -226,11 +224,11 @@ async function initializeBrowseGallery(root: HTMLElement): Promise<void> {
         sort: sort!.value as Extract<BrowseUrlState, { game: "phigros" }>["sort"],
         pack: selectedValues(root, "pack"),
         chart: selectedValues(root, "chart") as Extract<BrowseUrlState, { game: "phigros" }>["chart"],
-        level: levelSelect?.value ? [levelSelect.value] : [],
+        level: [],
         ...(difficulty ? { difficulty } : {}),
       };
     }
-    if (game === "infalsus") return { game, q: search!.value, sort: sort!.value as Extract<BrowseUrlState, { game: "infalsus" }>["sort"], chart: selectedValues(root, "chart") as Extract<BrowseUrlState, { game: "infalsus" }>["chart"], level: levelSelect?.value ? [levelSelect.value] : [], ...(difficulty ? { difficulty } : {}) };
+    if (game === "infalsus") return { game, q: search!.value, sort: sort!.value as Extract<BrowseUrlState, { game: "infalsus" }>["sort"], chart: selectedValues(root, "chart") as Extract<BrowseUrlState, { game: "infalsus" }>["chart"], level: [], ...(difficulty ? { difficulty } : {}) };
     return {
       game,
       q: search!.value,
@@ -273,14 +271,10 @@ async function initializeBrowseGallery(root: HTMLElement): Promise<void> {
     if (difficultyRange) syncBrowseDifficultyRange(difficultyRange, nextState.difficulty?.min ?? difficultyRange.min, nextState.difficulty?.max ?? difficultyRange.max);
     if (nextState.game === "arcaea") {
       setSelectedValues(root, "pack", nextState.pack);
-      setSelectedValues(root, "level", nextState.level);
       setSelectedValues(root, "version", nextState.version);
       if (ai) ai.checked = nextState.ai;
     } else if (nextState.game === "phigros") {
       setSelectedValues(root, "pack", nextState.pack);
-      if (levelSelect) levelSelect.value = nextState.level[0] ?? "";
-    } else if (nextState.game === "infalsus") {
-      if (levelSelect) levelSelect.value = nextState.level[0] ?? "";
     } else if (nextState.game === "rizline") {
       setSelectedValues(root, "disc", nextState.disc);
       setSelectedValues(root, "series", nextState.series);
@@ -387,7 +381,6 @@ function populateFacetOptions(data: BrowseGalleryData, root: HTMLElement): void 
     const arcaeaOptions = options as Extract<BrowseFacetOptions, { levels: string[]; versions: string[] }>;
     setToggles("chart", arcaeaOptions.charts, (value) => displayFilterDifficultyLabel(value, "arcaea"));
     setCheckboxes("pack", arcaeaOptions.packs);
-    setCheckboxes("level", arcaeaOptions.levels);
     setCheckboxes("version", arcaeaOptions.versions, formatArcaeaAddedVersion);
     return;
   }
@@ -438,7 +431,7 @@ function updatePopoverSummaries(root: HTMLElement): void {
       : name === "chart" && root.dataset.game === "arcaea"
         ? rawValues.map((value) => displayFilterDifficultyLabel(value, "arcaea"))
         : rawValues;
-    const label = name === "pack" ? "曲包" : name === "level" ? "等级" : name === "disc" ? "Disc" : name === "series" ? "精选集" : "版本";
+    const label = name === "pack" ? "曲包" : name === "disc" ? "Disc" : name === "series" ? "精选集" : "版本";
     summary.textContent = values.length === 0 ? label : values.length === 1 ? values[0]! : `${label} ${values.length}`;
   }
 }
@@ -452,7 +445,6 @@ function updateActiveFilters(root: HTMLElement, state: BrowseUrlState): void {
   if (state.game === "arcaea") {
     for (const value of state.pack) entries.push({ name: "pack", value, label: value });
     for (const value of state.chart) entries.push({ name: "chart", value, label: displayFilterDifficultyLabel(value, "arcaea") });
-    for (const value of state.level) entries.push({ name: "level", value, label: value });
     const versionEntries = new Map<string, string>();
     for (const value of state.version) versionEntries.set(formatArcaeaAddedVersion(value), value);
     for (const [label, value] of versionEntries) entries.push({ name: "version", value, label });
@@ -460,7 +452,6 @@ function updateActiveFilters(root: HTMLElement, state: BrowseUrlState): void {
   } else if (state.game === "phigros") {
     for (const value of state.pack) entries.push({ name: "pack", value, label: value });
     for (const value of state.chart) entries.push({ name: "chart", value, label: value });
-    for (const value of state.level) entries.push({ name: "level", value, label: value });
   } else if (state.game === "rizline") {
     for (const value of state.chart) entries.push({ name: "chart", value, label: value });
     for (const value of state.disc) entries.push({ name: "disc", value, label: value });

@@ -973,7 +973,7 @@ export function parseBrowseUrlState(game: BrowseGame, input: URLSearchParams | s
       sort,
       pack: readFacetValues(params, "pack", arcaeaOptions.packs),
       chart: readFacetValues(params, "chart", arcaeaOptions.charts) as ArcaeaDifficulty[],
-      level: readFacetValues(params, "level", arcaeaOptions.levels),
+      level: [],
       version: readFacetValues(params, "version", arcaeaOptions.versions),
       ai: params.get("ai") === "1" || params.get("ai") === "true",
       ...(difficulty ? { difficulty } : {}),
@@ -984,12 +984,12 @@ export function parseBrowseUrlState(game: BrowseGame, input: URLSearchParams | s
   if (game === "phigros") {
     const sort: PhigrosBrowseSort = isPhigrosSort(sortValue) ? sortValue : "default";
     const phigrosOptions = options as PhigrosFacetOptions;
-    return { game, q, sort, pack: readFacetValues(params, "pack", phigrosOptions.packs), chart: readFacetValues(params, "chart", phigrosOptions.charts) as PhigrosDifficulty[], level: readFacetValues(params, "level", phigrosOptions.levels), ...(difficulty ? { difficulty } : {}) };
+    return { game, q, sort, pack: readFacetValues(params, "pack", phigrosOptions.packs), chart: readFacetValues(params, "chart", phigrosOptions.charts) as PhigrosDifficulty[], level: [], ...(difficulty ? { difficulty } : {}) };
   }
   if (game === "infalsus") {
     const sort: InfalsusBrowseSort = isInfalsusSort(sortValue) ? sortValue : "default";
     const infalsusOptions = options as InfalsusFacetOptions;
-    return { game, q, sort, chart: readFacetValues(params, "chart", infalsusOptions.charts) as InfalsusDifficulty[], level: readFacetValues(params, "level", infalsusOptions.levels), ...(difficulty ? { difficulty } : {}) };
+    return { game, q, sort, chart: readFacetValues(params, "chart", infalsusOptions.charts) as InfalsusDifficulty[], level: [], ...(difficulty ? { difficulty } : {}) };
   }
   const sort: RizlineBrowseSort = isRizlineSort(sortValue) ? sortValue : "default";
   const rizlineOptions = options as RizlineFacetOptions;
@@ -1011,25 +1011,19 @@ export function serializeBrowseUrlState(state: BrowseUrlState): URLSearchParams 
   if (state.game === "arcaea") {
     const packs = stableValues(state.pack, compareText);
     const charts = stableValues(state.chart, (left, right) => ARCAEA_DIFFICULTIES.indexOf(left as ArcaeaDifficulty) - ARCAEA_DIFFICULTIES.indexOf(right as ArcaeaDifficulty));
-    const levels = stableValues(state.level, compareDisplayLevels);
     const versions = stableValues(state.version, (left, right) => compareVersionStrings(left, right));
     if (packs.length > 0) params.set("pack", packs.join(","));
     if (charts.length > 0) params.set("chart", charts.join(","));
-    if (levels.length > 0) params.set("level", levels.join(","));
     if (versions.length > 0) params.set("version", versions.join(","));
     if (state.ai) params.set("ai", "1");
   } else if (state.game === "phigros") {
     const packs = stableValues(state.pack, compareText);
     const charts = stableValues(state.chart, (left, right) => PHIGROS_DIFFICULTIES.indexOf(left as PhigrosDifficulty) - PHIGROS_DIFFICULTIES.indexOf(right as PhigrosDifficulty));
-    const levels = stableValues(state.level, comparePhigrosLevels);
     if (packs.length > 0) params.set("pack", packs.join(","));
     if (charts.length > 0) params.set("chart", charts.join(","));
-    if (levels.length > 0) params.set("level", levels.join(","));
   } else if (state.game === "infalsus") {
     const charts = stableValues(state.chart, (left, right) => INFALSUS_DIFFICULTIES.indexOf(left as InfalsusDifficulty) - INFALSUS_DIFFICULTIES.indexOf(right as InfalsusDifficulty));
-    const levels = stableValues(state.level, compareDisplayLevels);
 
-    if (levels.length > 0) params.set("level", levels.join(","));
     if (charts.length > 0) params.set("chart", charts.join(","));
   } else if (state.game === "rizline") {
     const discs = stableValues(state.disc, compareText);
