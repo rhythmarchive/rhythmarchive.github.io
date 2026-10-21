@@ -19,7 +19,7 @@ export function enhanceRangeHistograms(root: HTMLElement): void {
     const snap = (value: number) => Number((Math.round(value / step) * step).toFixed(4));
     const low = (index: number) => Math.max(min, snap(start + index * size));
     const high = (index: number) => index >= last ? max : Math.min(max, snap(start + (index + 1) * size - step));
-    const format = (value: number) => Number.isInteger(step) ? String(value) : value.toFixed(1);
+    const format = (value: number) => control.dataset.rangeLabel === "谱面定数" || !Number.isInteger(step) ? value.toFixed(1) : String(value);
     const bucketAt = (clientX: number) => {
       const rect = histogram.getBoundingClientRect();
       const value = min + Math.min(1, Math.max(0, (clientX - rect.left) / rect.width)) * (max - min);

@@ -202,6 +202,7 @@ async function initializeGallery(root: HTMLElement): Promise<void> {
     const chartDifficulty = facets.find((facet) => facet.dataset.galleryFacet === "chart")?.value;
     const chartConstant = facets.find((facet) => facet.dataset.galleryFacet === "constant")?.value;
     const constantRange = ranges.find((range) => range.key === "constant");
+    const levelRange = ranges.find((range) => range.key === "level");
     const selectedConstantRange = constantRange
       && (readRangeValue(constantRange, "min") > constantRange.min || readRangeValue(constantRange, "max") < constantRange.max)
       ? { min: readRangeValue(constantRange, "min"), max: readRangeValue(constantRange, "max") }
@@ -210,6 +211,8 @@ async function initializeGallery(root: HTMLElement): Promise<void> {
       ...(chartDifficulty ? { difficulties: [chartDifficulty] } : {}),
       ...(chartConstant ? { constants: [chartConstant] } : {}),
       ...(selectedConstantRange ? { constantRange: selectedConstantRange } : {}),
+      ...(levelRange && (readRangeValue(levelRange, "min") > levelRange.min || readRangeValue(levelRange, "max") < levelRange.max)
+        ? { levelRange: { min: readRangeValue(levelRange, "min"), max: readRangeValue(levelRange, "max") } } : {}),
     };
     const filtered = resources.filter((resource) => {
       const text = [resource.displayTitle, resource.artist, resource.subtitle, ...(resource.badges ?? []), ...(resource.searchTerms ?? []), ...Object.values(resource.facets ?? {}).flat(), ...Object.values(resource.metadata).map(String)].filter(Boolean).join(" ");
@@ -249,7 +252,9 @@ async function initializeGallery(root: HTMLElement): Promise<void> {
     if (filters.draft()) { filters.preview(); return; }
     visibleCount = PAGE_SIZE;
     const url = new URL(window.location.href);
-    for (const key of ["facet-level", "facet-level-min", "facet-level-max"]) url.searchParams.delete(key);
+    if (!ranges.some((range) => range.key === "level")) {
+      for (const key of ["facet-level", "facet-level-min", "facet-level-max"]) url.searchParams.delete(key);
+    }
     if (search?.value) url.searchParams.set("q", search.value); else url.searchParams.delete("q");
     if (sort?.value && sort.value !== sort.options[0]?.value) url.searchParams.set("sort", sort.value); else url.searchParams.delete("sort");
     for (const facet of facets) {
@@ -260,8 +265,8 @@ async function initializeGallery(root: HTMLElement): Promise<void> {
       const min = readRangeValue(range, "min");
       const max = readRangeValue(range, "max");
       url.searchParams.delete(`facet-${range.key}`);
-      if (min > range.min) url.searchParams.set(`facet-${range.key}-min`, formatRangeValue(min)); else url.searchParams.delete(`facet-${range.key}-min`);
-      if (max < range.max) url.searchParams.set(`facet-${range.key}-max`, formatRangeValue(max)); else url.searchParams.delete(`facet-${range.key}-max`);
+      if (min > range.min) url.searchParams.set(`facet-${range.key}-min`, formatRangeValue(min, range.key)); else url.searchParams.delete(`facet-${range.key}-min`);
+      if (max < range.max) url.searchParams.set(`facet-${range.key}-max`, formatRangeValue(max, range.key)); else url.searchParams.delete(`facet-${range.key}-max`);
     }
     if (url.href !== location.href) {
       if (historyMode === "push") window.history.pushState({ ...history.state }, "", url);
@@ -297,7 +302,7 @@ async function initializeGallery(root: HTMLElement): Promise<void> {
     for (const range of ranges) {
       const min = readRangeValue(range, "min");
       const max = readRangeValue(range, "max");
-      if (min > range.min || max < range.max) entries.push({ key: `range:${range.key}`, label: `${range.root.dataset.rangeLabel ?? range.key}：${formatRangeValue(min)}～${formatRangeValue(max)}` });
+      if (min > range.min || max < range.max) entries.push({ key: `range:${range.key}`, label: `${range.root.dataset.rangeLabel ?? range.key}：${formatRangeValue(min, range.key)}～${formatRangeValue(max, range.key)}` });
     }
     reconcileList(activeChips, entries.map(({ key, label }) => {
       const chip = document.createElement("button");
@@ -337,7 +342,8 @@ function parseRangeValue(value: string | null, fallback: number): number {
   return Number.isFinite(parsed) ? parsed : fallback;
 }
 
-function formatRangeValue(value: number): string {
+function formatRangeValue(value: number, key: string): string {
+  if (key === "constant" || key === "level") return value.toFixed(1);
   return Number.isInteger(value) ? String(value) : String(Number(value.toFixed(2)));
 }
 
@@ -354,8 +360,8 @@ function setRange(range: GalleryRange, minValue: number, maxValue: number): void
   let min = snapRangeValue(minValue, range);
   let max = snapRangeValue(maxValue, range);
   if (min > max) [min, max] = [max, min];
-  range.minInput.value = formatRangeValue(min);
-  range.maxInput.value = formatRangeValue(max);
+  range.minInput.value = formatRangeValue(min, range.key);
+  range.maxInput.value = formatRangeValue(max, range.key);
   range.minSlider.value = String(min);
   range.maxSlider.value = String(max);
   const span = range.max - range.min || 1;

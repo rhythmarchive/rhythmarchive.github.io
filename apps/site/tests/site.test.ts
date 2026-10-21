@@ -17,6 +17,7 @@ import { rankRelatedResources } from "../src/lib/related.js";
 import { buildSearchQuickLinks } from "../src/lib/search-quick-links.js";
 import { getCategoryBrowseConfig } from "../src/lib/category-browse.js";
 import { matchesChartFilters } from "../src/lib/chart-filters.js";
+import { buildRangeHistogram } from "../src/lib/range-histogram.js";
 import { GISCUS_CONFIG, GITHUB_DISCUSSIONS_URL, GITHUB_RELEASES_URL, GITHUB_REPOSITORY_URL } from "../src/lib/site-config.js";
 import { compareNaturalText, rankSearchEntries } from "../src/lib/search.js";
 import { createUrlHelpers, sitePath } from "../src/lib/url.js";
@@ -50,27 +51,47 @@ test("game updates invalidate old chart metadata even with unchanged display gra
   assert.deepEqual(chartDataVersionIssues([resource], { rotaeno: "2.27.0" }), []);
   assert.match(chartDataVersionIssues([resource], { rotaeno: "2.28.0" })[0]!, /need chart metadata review/u);
   assert.equal(chartDataVersionIssues([{ ...resource, metadata: { ...resource.metadata, chartDataVersion: undefined } }], { rotaeno: "2.27.0" }).length, 1);
-  const unconfirmed = catalog.resources.find((r) => r.id === "01a00090-376c-79c6-8715-613b459b6f7c")!.metadata.charts as Array<{ difficulty: string; constant?: string }>;
-  assert.equal(unconfirmed.find((c) => c.difficulty === "PST")?.constant, undefined, "unconfirmed old low-level constants are withheld");
   const updated = getSiteData().resources.find((r) => r.game === "rotaeno" && r.displayTitle === "Beat Rise");
   assert.equal(updated?.charts?.find((c) => c.difficulty === "IV")?.constant, "12.9");
   const conflict = getSiteData().resources.find((r) => r.resourceId === "fed833e2-2e77-7067-a6fe-06497db769d2");
   assert.ok(conflict?.charts?.filter((c) => ["I", "II", "III"].includes(c.difficulty)).every((c) => c.constant === undefined));
 });
 
-test("jacket galleries remove level facets and retain verified constant histograms", () => {
+test("jacket galleries keep constant histograms and only verified integer-only games use level ranges", () => {
   const data = getSiteData();
   for (const game of ["arcaea", "phigros", "rizline", "infalsus", "rotaeno", "paradigm-reboot", "orzmic", "dynamix"] as const) {
     const config = getCategoryBrowseConfig(game, "jacket", data.galleries[`${game}/jacket`] ?? []);
-    assert.ok(!config.facets.some((f) => f.key === "level"), `${game}: level filter remains`);
+    assert.ok(!config.facets.some((f) => f.key === "level" && !f.range), `${game}: level dropdown remains`);
     const constant = config.facets.find((f) => f.key === "constant");
-    if (game === "dynamix") assert.equal(constant, undefined, "unknown constants must not fall back to levels");
+    if (game === "dynamix") {
+      assert.equal(constant, undefined, "integer fallback must not fabricate Catalog constants");
+      const integer = config.facets.find((f) => f.key === "level");
+      assert.ok(integer?.range && integer.histogram);
+      assert.equal(integer.label, "谱面定数");
+      assert.equal(integer.range.step, 1);
+    }
     else assert.ok(constant?.range && constant.histogram, `${game}: missing constant histogram`);
   }
   assert.ok(!getCategoryBrowseConfig("arcaea", "character", data.galleries["arcaea/character"] ?? []).facets.some((f) => f.key === "constant"));
   assert.equal(matchesChartFilters({ charts: [{ difficulty: "HARD", level: "12" }] }, { levelRange: { min: 12, max: 12 } }), true);
   assert.equal(matchesChartFilters({ charts: [{ difficulty: "HARD", level: "12" }] }, { constantRange: { min: 0, max: 15 } }), false);
   assert.equal(matchesChartFilters({ charts: [{ difficulty: "HARD", constant: "12.5", available: false }] }, { constantRange: { min: 0, max: 15 } }), false);
+});
+
+test("the last visible histogram bucket includes the maximum and counts each result once", () => {
+  const integer = buildRangeHistogram([[[14, 14], [15, 15]], [[15, 15]], [[13, 13]], [[16, 16]]], 1, 15)!;
+  assert.equal(integer.counts.at(-1), 2, "14–15 matches two resources, including the exact maximum");
+  assert.equal(integer.start + integer.size * integer.counts.length, 15, "no zero-width bucket beyond the axis");
+  const decimal = buildRangeHistogram([[[12, 12]], [[11.8, 11.8]], [[8.5, 8.5]]], 8, 12)!;
+  assert.equal(decimal.counts.at(-1), 2, "11.5–12.0 includes the exact maximum constant");
+});
+
+test("missing constants in other games never inherit the Dynamix level fallback", () => {
+  for (const game of ["arcaea", "phigros", "rizline", "infalsus", "rotaeno", "paradigm-reboot", "orzmic"] as const) {
+    const resources = getSiteData().galleries[`${game}/jacket`]!.map((r) => ({ ...r, facets: { ...r.facets, constant: [] } }));
+    const config = getCategoryBrowseConfig(game, "jacket", resources);
+    assert.ok(!config.facets.some((f) => f.key === "level" || f.key === "constant"), game);
+  }
 });
 
 test("Arcaea jacket charts follow independent difficulty artwork and shared fallback", () => {

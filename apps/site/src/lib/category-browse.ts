@@ -110,6 +110,9 @@ export function getCategoryBrowseConfig(game: GameId, category: string, resource
       if (constantOptions.length > 0) {
         const constantFacet = { key: "constant", label: "谱面定数", options: constantOptions, ...(constantRange ? { range: constantRange, ...facetHistogram(resources, "constant", constantRange) } : {}) };
         (constantRange ? rangeFacets : listFacets).push(constantFacet);
+      } else if (game === "dynamix") {
+        const levelRange = facetRange(resources, "level", 1);
+        if (levelRange) rangeFacets.push({ key: "level", label: "谱面定数", options: facetOptions(resources, "level", game), range: levelRange, ...facetHistogram(resources, "level", levelRange) });
       }
     }
     if (game === "dynamix") {

@@ -14,12 +14,13 @@ export function buildRangeHistogram(items: Array<Array<[number, number]>>, min: 
   if (!Number.isFinite(min) || !Number.isFinite(max) || max <= min) return undefined;
   const size = NICE_SIZES.find((candidate) => Math.ceil(max / candidate) - Math.floor(min / candidate) <= MAX_BUCKETS) ?? NICE_SIZES.at(-1)!;
   const start = Math.floor(min / size) * size;
-  const length = Math.max(1, Math.ceil((max - start) / size + 1e-9));
+  const length = Math.max(1, Math.ceil((max - start) / size));
   const counts = Array.from({ length }, () => 0);
   for (const intervals of items) {
     const hit = new Set<number>();
     for (const [low, high] of intervals) {
-      const first = Math.max(0, Math.floor((Math.min(low, high) - start) / size));
+      if (Math.min(low, high) > max) continue;
+      const first = Math.min(length - 1, Math.max(0, Math.floor((Math.min(low, high) - start) / size)));
       const last = Math.min(length - 1, Math.floor((Math.max(low, high) - start) / size));
       for (let index = first; index <= last; index++) hit.add(index);
     }

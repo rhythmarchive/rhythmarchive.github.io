@@ -36,7 +36,8 @@ function rangeTicks(min: number, max: number, step: number): number[] {
   return values;
 }
 
-function formatRangeValue(value: number): string {
+function formatRangeValue(value: number, key: string): string {
+  if (key === "constant" || key === "level") return value.toFixed(1);
   return Number.isInteger(value) ? String(value) : String(Number(value.toFixed(2)));
 }
 ---
@@ -95,12 +96,12 @@ function formatRangeValue(value: number): string {
               <div class="filter-range-values" role="group" aria-label={`${facet.label}范围`}>
                 <label class="filter-range-input">
                   <span class="sr-only">{facet.label}最小值</span>
-                  <input type="number" data-gallery-range-min-input min={facet.range.min} max={facet.range.max} step={facet.range.step} value={facet.range.min} inputmode="decimal" />
+                  <input type="number" data-gallery-range-min-input min={facet.range.min} max={facet.range.max} step={facet.range.step} value={formatRangeValue(facet.range.min, facet.key)} inputmode="decimal" />
                 </label>
                 <span aria-hidden="true">～</span>
                 <label class="filter-range-input">
                   <span class="sr-only">{facet.label}最大值</span>
-                  <input type="number" data-gallery-range-max-input min={facet.range.min} max={facet.range.max} step={facet.range.step} value={facet.range.max} inputmode="decimal" />
+                  <input type="number" data-gallery-range-max-input min={facet.range.min} max={facet.range.max} step={facet.range.step} value={formatRangeValue(facet.range.max, facet.key)} inputmode="decimal" />
                 </label>
               </div>
             </div>
@@ -112,7 +113,7 @@ function formatRangeValue(value: number): string {
               <input type="range" data-gallery-range-max-slider min={facet.range.min} max={facet.range.max} step={facet.range.step} value={facet.range.max} aria-label={`${facet.label}最大值`} />
             </div>
             <div class="filter-range-ticks" aria-hidden="true">
-              {rangeTicks(facet.range.min, facet.range.max, facet.range.step).map((value) => <span>{formatRangeValue(value)}</span>)}
+              {rangeTicks(facet.range.min, facet.range.max, facet.range.step).map((value) => <span>{formatRangeValue(value, facet.key)}</span>)}
             </div>
           </div>
         ) : (

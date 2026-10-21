@@ -9,9 +9,30 @@ Catalog 的 `metadata.charts` 是详情页和筛选的共同来源。继续使�
 - `noter` 是谱师，Rotaeno 旧字段 `artist` 的谱师语义在投影中归并。`fieldSources` 保存逐字段来源，`sourceUrl` 提供可访问的社区资料链接；一个社区链接不代表所有字段都由社区提供。
 - `metadata.chartDataVersion` 是**本次核对所针对的资源版本**，不是新增曲目的加入版本，也不是抓取日期。`chartDataUpdatedAt` 记录核对日期。`gameVersion` 等原有加入版本保留。
 - 每次游戏更新都重新核对**已有谱面**和新增谱面；比较完整的定数值，不以等级未变、物量相同、网页刚抓取或网页最近修改为“定数未变”的证据。注意区服、平台、重制/Legacy/特殊谱面以及同名不同曲师。
-- 优先采用目标版本客户端原生字段。社区来源需核对其适用版本、当前汇总表和改定数历史；旧页面不能优先于已更新的汇总表。无法证实现行、身份不唯一或来源冲突的定数留空，保留已确认的其他字段。不得从整数等级推导 `.0`，不得把未定级填成 0。
+- 优先采用目标版本客户端原生字段。社区来源需核对其适用版本、当前汇总表和改定数历史；旧页面不能优先于已更新的汇总表。无法证实现行、身份不唯一或来源冲突的定数留空，保留已确认的其他字段。存在精确定数的游戏不得用等级填补缺值，不得把未定级填成 0。经原生数据确认仅有整数等级的 Dynamix 使用等级数值生成“谱面定数”柱状图，按 `.0` 显示；这是筛选规则，不向 Catalog 写入虚构精确定数。
 - 内容检查将 `chartDataVersion` 与既有 Browse manifest 的 `sourceVersion` 对齐；没有正式 Browse 的游戏采用 Updates 的最新版本（含 baseline）。升级版本后，旧标记会使 `content:check` / `check:fast` 失败。完成上述复核或移除未确认定数后才能推进标记，不能只改版本字符串消除失败。
 - 定数变更写入 Catalog 后，详情、范围边界和直方图从同一快照生成。按现有流程刷新 Browse 的 Catalog 哈希绑定和公共投影；无需新增资源对象、ROS 上传或运行时请求。
+
+## 2026-10-21 定数类型复核
+
+“游戏实际使用小数数值”和“官方公开了完整定数表”是两个判断。客户端原生字段可证明小数值存在；社区表中的逆算值不是官方发布的表。不能把资料缺失判断为游戏没有小数定数。
+
+| 游戏 | 已核对的依据 | 筛选规则 |
+| --- | --- | --- |
+| Arcaea | 当前高、低等级定数表及漏项单曲页；低等级表虽然页头仍标 6.16.0，但已含 DREAD AREA、un、Riven Pilgrimage 等 7.0 曲目，不能整表弃用。定数与 APK 的 `rating` / `ratingPlus` 显示等级不同。 | 保留真实一位小数，PST/PRS 同样参与。 |
+| Phigros | 4.0.1 原生 `GameInformation.SongBase.difficultyRaw`，1,042 个正值中 817 个带小数。 | 保留原生定数。 |
+| Rizline | 当前官方资源版本 `v144_2_7_1_346654b724P` 的 `Default.charts[].difficulty`，444 个值中 256 个带小数；原生值包括 13.4 等，不只是 `+` 转换。 | 保留原生定数。 |
+| Rotaeno | 原生 `StandardChartDataSO.v2InnerDifficulty`。本次重读已有 APK 提取的 242 个值，其中 122 个带小数；这是对原生数值类型的复核，不以旧快照覆盖当前 2.27.0 数值。 | 保留已核实的精确定数。 |
+| Orzmic | 3.17.0 `assets/gamedatas` 的 `MusicDatas.Difficulties[].Rating`，623 个正值中 375 个带小数。原生 `Difficulty` 是显示等级。 | 保留原生定数。 |
+| Paradigm: Reboot | [全曲表维护者](https://wikiwiki.jp/paradigm_/全曲ソート表)明确区分 `.0` / `.5` 与高等级的 `.0`–`.9`；Rating [研究与计算实现](https://github.com/PRProber/paradigm-reboot-prober-backend#数据来源及计算方式参考)使用这些数值。这是社区测算依据，本次未获得官方公开的完整定数表或原生逐谱定数导出。 | 保留带来源的小数定数，不按整数替代；不宣称维护表由官方发布。 |
+| In Falsus | Steam build 25594228 原生 `ChartInfos.Rating` 的保留提取中，300 张可用谱面均为整数 1–15。提取器保留原始数值，不做取整；`LevelSectionIndicator` 另存为显示等级。 | 当前原生整数 Rating 显示为 `.0`；不声称未来版本永远没有小数。 |
+| Dynamix | 3.20.01 / CDN 03200101 官方 `_songlist` 的 1,818 个正等级均为整数；保留的原生类型证据声明 `CSongList.MapData.level` 为 `int`。未发现另一个可核实的小数定数字段。 | 恢复整数柱状图，`13` 按 `13.0` 筛选和显示，不新增等级下拉框。 |
+
+Arcaea 本次补入 1,049 个 Resource 谱面定数，562 项曲绘元数据受影响；源曲目清单按歌曲去重后，1,834 张常规谱面的精确定数全部具有明确来源。高等级表已有值与本次完整匹配结果没有差异。低等级表缺少的 `undefined` PST/PRS、`~_+` PST，以及 Château de cartes PRS/FTR/ETR 使用各自单曲页明确值；un PRS 的 7.8 由汇总表和单曲页交叉确认，保留原有显示等级字段。
+
+[Château de cartes 的中文单曲页](https://wiki.arcaea.cn/Ch%C3%A2teau_de_cartes)明确列出 PST/PRS/FTR/ETR 为 4.5/7.8/9.4/10.3。日文页仍将 PST 标为“未判明”，因此最后一项采用中文页的 4.5，并逐字段保存该来源；不是由等级 4 推导成 4.0。
+
+本次读取高等级表 HTML 的 SHA-256 为 `3d25a5e4eb4bcb295a4baa9c841c8e58395fe2b7526a9a6ef8cfca52b1039078`，低等级表为 `addd80ce7793477fc4a2028fbc26e767f510252b14bb71d8d0c9c04ee3b56b25`。来源链接保存在各谱面的 `fieldSources.constant`；下载副本为可清理的任务临时数据。
 
 ## 2026-10-19 采用来源
 

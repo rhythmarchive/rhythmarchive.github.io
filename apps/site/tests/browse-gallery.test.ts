@@ -119,6 +119,21 @@ test("all Browse games restore, normalize and clear the shared constant range", 
   }
 });
 
+test("Arcaea covers every regular chart including low-level decimals and documented table omissions", () => {
+  const songs = formalBrowse.arcaea.items.filter((item) => item.recordKind === "song");
+  const unknown = songs.flatMap((song) => song.charts.filter((c) => !c.constant).map((c) => `${song.songId}:${"difficultyClass" in c ? c.difficultyClass : ""}`));
+  assert.deepEqual(unknown, []);
+  const chateau = songs.find((song) => song.songId === "chateaudecartes")!;
+  assert.equal(chateau.charts.find((c) => "difficultyClass" in c && c.difficultyClass === "PST")?.constant, "4.5");
+  const range = getBrowseFacetOptions(formalBrowse.arcaea).difficultyRange!;
+  assert.equal(range.min, 1);
+  const low = filterBrowseItems(songs, arcaeaState({ chart: ["PST"], difficulty: { min: 3.5, max: 3.5 } }));
+  assert.ok(low.some((song) => song.songId === "undefined"));
+  assert.ok(low.every((song) => song.charts.some((c) => "difficultyClass" in c && c.difficultyClass === "PST" && c.constant === "3.5")));
+  const un = songs.find((song) => song.songId === "un")!;
+  assert.equal(un.charts.find((c) => "difficultyClass" in c && c.difficultyClass === "PRS")?.constant, "7.8");
+});
+
 test("legacy Browse level URLs cannot silently narrow results or override constant ranges", () => {
   for (const game of ["arcaea", "phigros", "rizline", "infalsus"] as const) {
     const data = formalBrowse[game];
