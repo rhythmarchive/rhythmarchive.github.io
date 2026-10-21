@@ -7,6 +7,7 @@ import RecentUpdates from "../components/RecentUpdates.astro";
 import ResourceRanking from "../components/ResourceRanking.astro";
 import { buildSearchQuickLinks } from "../lib/search-quick-links";
 import { formatCount } from "../lib/format";
+import { primaryCategorySlug } from "../lib/game-config";
 import { BASE_PATH, PUBLIC_STATS_API_URL, ROS_BASE_URL } from "../lib/site-config";
 import { getPublicNavigationGames, getSiteData } from "../lib/site-data";
 import { urls } from "../lib/site-urls";
@@ -65,7 +66,12 @@ const arcaeaApkManifestUrl = `${ROS_BASE_URL}/apk/arcaea/latest.json`;
         {lanes.map((lane, laneIndex) => (
           <div class="hero-lane" style={`--lane: ${laneIndex}`}>
             <div class="hero-lane-track">
-              {lane.map((game) => <span class="hero-note"><GameIcon game={game.slug} eager /></span>)}
+              {/* Repeated decorative shortcuts; keyboard navigation uses the game cards below. */}
+              {lane.map((game) => (
+                <a class="hero-note" href={urls.sitePath(`/${game.slug}/${primaryCategorySlug(game.slug)}/`)} tabindex="-1" title={game.displayName}>
+                  <GameIcon game={game.slug} eager />
+                </a>
+              ))}
             </div>
           </div>
         ))}
