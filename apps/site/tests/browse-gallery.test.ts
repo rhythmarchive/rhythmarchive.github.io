@@ -126,8 +126,9 @@ test("difficulty-linked Browse buckets count the same chart rows as the selected
     const options = getBrowseFacetOptions(data);
     const range = options.difficultyRange!;
     const baseline = browseDifficultyHistogram(data, range)!;
-    for (const name of [options.charts[0]!, options.charts.at(-1)!]) {
-      const histogram = browseDifficultyHistogram(data, range, [name])!;
+    for (const names of [[options.charts[0]!], [options.charts.at(-1)!], [options.charts[0]!, options.charts.at(-1)!]]) {
+      const name = names.join(",");
+      const histogram = browseDifficultyHistogram(data, range, names)!;
       assert.deepEqual([histogram.start, histogram.size, histogram.counts.length], [baseline.start, baseline.size, baseline.counts.length], `${game}: stable axis`);
       const state = parseBrowseUrlState(game, new URLSearchParams({ chart: name }), data.items);
       for (const [index, count] of histogram.counts.entries()) {

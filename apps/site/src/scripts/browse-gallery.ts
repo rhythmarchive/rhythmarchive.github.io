@@ -283,12 +283,11 @@ async function initializeBrowseGallery(root: HTMLElement): Promise<void> {
     }
     updatePopoverSummaries(root);
     searchable.sync();
-    syncDifficultyHistogram();
+    syncDifficultyHistogram(nextState.chart);
   }
 
-  function syncDifficultyHistogram(): void {
+  function syncDifficultyHistogram(charts = selectedValues(root, "chart")): void {
     if (!difficultyRange) return;
-    const charts = selectedValues(root, "chart");
     const key = charts.join(",");
     if (histogramChart === key) return;
     histogramChart = key;
@@ -296,7 +295,7 @@ async function initializeBrowseGallery(root: HTMLElement): Promise<void> {
   }
 
   function render(): void {
-    syncDifficultyHistogram();
+    syncDifficultyHistogram(state.chart);
     const filtered = filterBrowseItems(items, state);
     matchingResults = filtered;
     const visible = filtered.slice(0, visibleCount).map((item) => displayBrowseItem(item, state.chart, state.difficulty, state.game === "arcaea" ? state.level : []));
