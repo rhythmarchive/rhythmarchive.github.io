@@ -15,6 +15,7 @@ import type { BatchResource } from "../lib/batch";
 import { SIDEBAR_IMAGE_SIZES } from "../lib/card-preview";
 import {
   BROWSE_PAGE_SIZE,
+  browseDifficultyHistogram,
   type BrowseFacetOptions,
   type BrowseGame,
   type BrowseGalleryData,
@@ -33,7 +34,7 @@ import { displayFilterDifficultyLabel } from "../lib/game-config";
 import { formatArcaeaAddedVersion } from "../lib/public-display";
 import { updateResourceStatsInDom } from "../lib/stats-client";
 import { chipKey, reconcileList, setSurfaceVisible } from "./motion";
-import { enhanceRangeHistograms } from "./range-histogram";
+import { enhanceRangeHistograms, updateRangeHistogram } from "./range-histogram";
 
 type BrowseDifficultyRange = {
   root: HTMLElement;
@@ -71,6 +72,7 @@ async function initializeBrowseGallery(root: HTMLElement): Promise<void> {
   const game: BrowseGame = root.dataset.game === "infalsus" ? "infalsus" : root.dataset.game === "rizline" ? "rizline" : root.dataset.game === "phigros" ? "phigros" : "arcaea";
   let items: BrowseGalleryItem[] = [];
   let state: BrowseUrlState = defaultBrowseUrlState(game);
+  let histogramChart: string | undefined;
   const navigation = setupListNavigation(grid, root.dataset.galleryUrl ?? "browse");
   let visibleCount = navigation.visibleCount(BROWSE_PAGE_SIZE);
   const batchResources = new Map<string, BatchResource>();
@@ -81,7 +83,7 @@ async function initializeBrowseGallery(root: HTMLElement): Promise<void> {
   const searchable = setupSearchableFilters(root);
   const filters = setupGalleryFilters(root, {
     apply: () => commitState("push"), reset: resetState,
-    count: () => filterBrowseItems(items, currentStateFromControls()).length,
+    count: () => { syncDifficultyHistogram(); return filterBrowseItems(items, currentStateFromControls()).length; },
     restore: () => applyStateToControls(state),
     beforeOpen: () => updates.flush(),
   });
@@ -281,9 +283,20 @@ async function initializeBrowseGallery(root: HTMLElement): Promise<void> {
     }
     updatePopoverSummaries(root);
     searchable.sync();
+    syncDifficultyHistogram();
+  }
+
+  function syncDifficultyHistogram(): void {
+    if (!difficultyRange) return;
+    const charts = selectedValues(root, "chart");
+    const key = charts.join(",");
+    if (histogramChart === key) return;
+    histogramChart = key;
+    updateRangeHistogram(difficultyRange.root, browseDifficultyHistogram({ items }, difficultyRange, charts));
   }
 
   function render(): void {
+    syncDifficultyHistogram();
     const filtered = filterBrowseItems(items, state);
     matchingResults = filtered;
     const visible = filtered.slice(0, visibleCount).map((item) => displayBrowseItem(item, state.chart, state.difficulty, state.game === "arcaea" ? state.level : []));

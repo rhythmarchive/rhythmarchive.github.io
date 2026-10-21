@@ -12,12 +12,12 @@ import { createCardReconciler } from "./render-resource-card";
 import { galleryCardView } from "../lib/card-view-model";
 import type { GalleryCard } from "../lib/gallery-projection";
 import { GALLERY_IMAGE_SIZES, SIDEBAR_IMAGE_SIZES } from "../lib/card-preview";
-import { matchesChartFilters } from "../lib/chart-filters";
+import { chartDifficultyHistogram, matchesChartFilters } from "../lib/chart-filters";
 import { compareGalleryBpm, compareGalleryHighestConstant, compareGalleryHighestLevel, compareNullableNumber, numericFacetValues } from "../lib/gallery-sort";
 import { compareNaturalText, normalizeSearchText } from "../lib/search";
 import { updateResourceStatsInDom } from "../lib/stats-client";
 import { chipKey, reconcileList, setSurfaceVisible } from "./motion";
-import { enhanceRangeHistograms } from "./range-histogram";
+import { enhanceRangeHistograms, updateRangeHistogram } from "./range-histogram";
 
 const PAGE_SIZE = 48;
 
@@ -77,6 +77,8 @@ async function initializeGallery(root: HTMLElement): Promise<void> {
   if (!grid || !loadMore || !count) return;
 
   let resources: GalleryCard[] = [];
+  let histogramChart: string | undefined;
+  const chartSelect = facets.find((facet) => facet.dataset.galleryFacet === "chart");
   const navigation = setupListNavigation(grid, root.dataset.galleryUrl ?? "gallery");
   let visibleCount = navigation.visibleCount(PAGE_SIZE);
   let batchTray: ReturnType<typeof createBatchTray> | undefined;
@@ -91,7 +93,7 @@ async function initializeGallery(root: HTMLElement): Promise<void> {
       for (const range of ranges) setRange(range, range.min, range.max);
       if (filters.draft()) filters.preview(); else applyFilter("push");
     },
-    count: () => currentResources().length,
+    count: () => { syncDifficultyHistograms(); return currentResources().length; },
     restore: restoreControlsFromUrl,
     beforeOpen: () => updates.flush(),
   });
@@ -194,6 +196,17 @@ async function initializeGallery(root: HTMLElement): Promise<void> {
       setRange(range, parseRangeValue(params.get(`facet-${range.key}-min`) ?? legacy, range.min), parseRangeValue(params.get(`facet-${range.key}-max`) ?? legacy, range.max));
     }
     searchable.sync();
+    syncDifficultyHistograms();
+  }
+
+  function syncDifficultyHistograms(): void {
+    const chart = chartSelect?.value ?? "";
+    if (histogramChart === chart) return;
+    histogramChart = chart;
+    for (const range of ranges) {
+      if (range.key !== "constant" && range.key !== "level") continue;
+      updateRangeHistogram(range.root, chartDifficultyHistogram(resources, range, range.key, chart ? [chart] : []));
+    }
   }
 
   function currentResources(): GalleryCard[] {
@@ -276,6 +289,7 @@ async function initializeGallery(root: HTMLElement): Promise<void> {
   }
 
   function render(): void {
+    syncDifficultyHistograms();
     const filtered = currentResources();
     matchingResults = filtered;
     const visible = filtered.slice(0, visibleCount);

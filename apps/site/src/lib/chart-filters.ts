@@ -1,4 +1,5 @@
 import type { PublicResource } from "./types";
+import { buildRangeHistogram, type RangeHistogram } from "./range-histogram";
 
 export type ChartFilterCriteria = {
   difficulties?: readonly string[];
@@ -32,4 +33,17 @@ export function matchesChartFilters(resource: Pick<PublicResource, "charts" | "s
     }
     return true;
   });
+}
+
+/** Count resources by the selected chart names, using the existing fixed range axis. */
+export function chartDifficultyHistogram(resources: Pick<PublicResource, "charts" | "specialCharts">[], range: { min: number; max: number }, key: "constant" | "level", difficulties: readonly string[] = []): RangeHistogram | undefined {
+  const intervals = resources.map((resource) => [...(resource.charts ?? []), ...(resource.specialCharts ?? [])].flatMap((chart) => {
+    if (chart.available === false || chart.status === "error" || chart.status === "legacy") return [];
+    if (difficulties.length > 0 && !difficulties.includes(chart.difficulty)) return [];
+    const raw = chart[key];
+    if (!raw || !/^\d+(?:\.\d+)?$/u.test(raw)) return [];
+    const value = Number(raw);
+    return Number.isFinite(value) && value > 0 ? [[value, value] as [number, number]] : [];
+  }));
+  return buildRangeHistogram(intervals, range.min, range.max, true);
 }

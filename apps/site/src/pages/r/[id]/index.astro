@@ -91,7 +91,6 @@ function chartStatusLabel(status: NonNullable<PublicResource["charts"]>[number][
   return undefined;
 }
 function chartDifficultyLabel(difficulty: string): string {
-  if (resource.game === "orzmic") return "谱面";
   return displayDifficultyLabel(difficulty, resource.game);
 }
 const resourceSubject = `${GAME_CONFIG[resource.game].displayName} ${resource.categoryLabel}`;

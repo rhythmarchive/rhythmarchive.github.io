@@ -82,6 +82,8 @@ One owner per transition: ClientRouter owns page changes, the reconciler owns ch
 
 ## Range filters
 
+The chart difficulty selector (PST/PRS, EZ/HD/IN/AT, etc.) also updates the constant histogram from the chart rows already loaded by that gallery. Only the selected chart names contribute; each resource/song still counts once per bucket. Keep the full axis and current numeric selection, including when the selected name has no known constants. Mobile drafts preview the distribution; cancel, clear and URL restoration restore the corresponding distribution. Search, sorting and numeric-range edits do not recount unchanged difficulty names or request more data.
+
 Chart constant and BPM filters keep the two numeric fields and the dual slider as the source of truth (URL params, chips, clear). Chart levels have no separate dropdown. Dynamix's verified integer-only native levels supply its “谱面定数” histogram and render with `.0`; this does not create precise constants in Catalog. Other games keep sourced constants, including fractional values; missing constants never fall back to display levels. Constant fields, ticks and chips use one decimal place. A build-time histogram (`lib/range-histogram.ts`, `RangeHistogram.astro`) sits on the same axis above the slider: tap a bar to select that bucket, drag across bars for a span, tap the only selected bucket again to reset. The histogram writes to the sliders and dispatches their normal events; it never filters on its own. Bars are `aria-hidden`; the keyboard path is the fields and sliders.
 
 ## Home information architecture

@@ -652,13 +652,13 @@ function matchesBrowseDifficulty(chart: BrowseChart, range?: { min: number; max:
   return value !== undefined && value >= range.min && value <= range.max;
 }
 
-// Build-time only; the existing histogram counts each song once per bucket.
-export function browseDifficultyHistogram(data: BrowseGalleryData, range: { min: number; max: number }): RangeHistogram | undefined {
-  const tracks = data.items.map((item) => item.charts.filter(filterableBrowseChart).flatMap((chart) => {
+// Keep the full axis when a difficulty has only one bucket or no known constants.
+export function browseDifficultyHistogram(data: Pick<BrowseGalleryData, "items">, range: { min: number; max: number }, difficulties: readonly string[] = []): RangeHistogram | undefined {
+  const tracks = data.items.map((item) => item.charts.filter(filterableBrowseChart).filter((chart) => difficulties.length === 0 || difficulties.includes("difficultyClass" in chart ? chart.difficultyClass : chart.difficulty)).flatMap((chart) => {
     const value = browseNumericDifficulty(chart);
     return value === undefined ? [] : [[value, value] as [number, number]];
   }));
-  return buildRangeHistogram(tracks, range.min, range.max);
+  return buildRangeHistogram(tracks, range.min, range.max, difficulties.length > 0);
 }
 
 export function getBrowseFacetOptions(data: BrowseGalleryData): BrowseFacetOptions {

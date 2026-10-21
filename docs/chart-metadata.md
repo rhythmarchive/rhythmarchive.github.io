@@ -5,6 +5,7 @@ Catalog 的 `metadata.charts` 是详情页和筛选的共同来源。继续使�
 ## 字段与更新规则
 
 - `difficulty` 是谱面档位；`level` 是游戏显示等级；`constant` 是有来源的定数，显示一位小数。三者不能互相代替。Phigros 原始小数 `level` 来自原生定数，投影时分离显示等级和定数；Orzmic 原生 `difficulty` 是显示等级、`level` 是定数。
+- Orzmic 的原生 `MusicDatas.Difficulties` 四个槽位依次为 EASY、NORMAL、HARD、SPECIAL；Catalog 的 `difficultyName` 保留档位名，公共投影以它作为 `difficulty`，原有显示等级和定数保持独立。空槽位不会使后续档位前移；未知槽位阻止提取，不猜名称。本次为 223 项曲绘的 665 张谱面补齐名称，等级、定数及物量均与保留的 3.17.0 原生快照逐行核对。
 - `notes` 是来源声明的物量。Rizline 的击打数与 `combo` 最大连击分开；Dynamix 客户端 `CMap.combo` 记作最大连击，Wiki 物量与其不一致时不合并。
 - `noter` 是谱师，Rotaeno 旧字段 `artist` 的谱师语义在投影中归并。`fieldSources` 保存逐字段来源，`sourceUrl` 提供可访问的社区资料链接；一个社区链接不代表所有字段都由社区提供。
 - `metadata.chartDataVersion` 是**本次核对所针对的资源版本**，不是新增曲目的加入版本，也不是抓取日期。`chartDataUpdatedAt` 记录核对日期。`gameVersion` 等原有加入版本保留。

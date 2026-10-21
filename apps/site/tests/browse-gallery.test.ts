@@ -4,6 +4,7 @@ import path from "node:path";
 import test from "node:test";
 import {
   BROWSE_PAGE_SIZE,
+  browseDifficultyHistogram,
   compareDisplayLevels,
   compareVersionStrings,
   defaultBrowseUrlState,
@@ -117,6 +118,35 @@ test("all Browse games restore, normalize and clear the shared constant range", 
     const browser = browserBrowseData(data);
     assert.ok(browser.items.every((item) => item.charts.every((c) => !["notes", "noter", "combo", "sourceUrl", "fieldSources"].some((key) => key in c))));
   }
+});
+
+test("difficulty-linked Browse buckets count the same chart rows as the selected filters", () => {
+  for (const game of ["arcaea", "phigros", "rizline", "infalsus"] as const) {
+    const data = formalBrowse[game];
+    const options = getBrowseFacetOptions(data);
+    const range = options.difficultyRange!;
+    const baseline = browseDifficultyHistogram(data, range)!;
+    for (const name of [options.charts[0]!, options.charts.at(-1)!]) {
+      const histogram = browseDifficultyHistogram(data, range, [name])!;
+      assert.deepEqual([histogram.start, histogram.size, histogram.counts.length], [baseline.start, baseline.size, baseline.counts.length], `${game}: stable axis`);
+      const state = parseBrowseUrlState(game, new URLSearchParams({ chart: name }), data.items);
+      for (const [index, count] of histogram.counts.entries()) {
+        const min = Math.max(range.min, histogram.start + index * histogram.size);
+        const max = index === histogram.counts.length - 1 ? range.max : Number((histogram.start + (index + 1) * histogram.size - range.step).toFixed(1));
+        assert.equal(count, filterBrowseItems(data.items, { ...state, difficulty: { min, max } }).length, `${game} ${name}: bucket ${index}`);
+      }
+    }
+  }
+});
+
+test("a selected difficulty with one or no known constants keeps its histogram axis", () => {
+  const data = { items: [makeArcaeaItem({ charts: [{ difficultyClass: "PST", displayLevel: "3", constant: "3.5" }, { difficultyClass: "FTR", displayLevel: "9" }] })] };
+  const range = { min: 1, max: 12 };
+  const past = browseDifficultyHistogram(data, range, ["PST"])!;
+  const future = browseDifficultyHistogram(data, range, ["FTR"])!;
+  assert.equal(past.counts.reduce((sum, count) => sum + count, 0), 1);
+  assert.ok(future.counts.every((count) => count === 0));
+  assert.equal(past.counts.length, future.counts.length);
 });
 
 test("Arcaea covers every regular chart including low-level decimals and documented table omissions", () => {

@@ -10,7 +10,7 @@ export type RangeHistogram = {
 const NICE_SIZES = [0.5, 1, 2, 5, 10, 20, 25, 50, 100];
 const MAX_BUCKETS = 20;
 
-export function buildRangeHistogram(items: Array<Array<[number, number]>>, min: number, max: number): RangeHistogram | undefined {
+export function buildRangeHistogram(items: Array<Array<[number, number]>>, min: number, max: number, allowSparse = false): RangeHistogram | undefined {
   if (!Number.isFinite(min) || !Number.isFinite(max) || max <= min) return undefined;
   const size = NICE_SIZES.find((candidate) => Math.ceil(max / candidate) - Math.floor(min / candidate) <= MAX_BUCKETS) ?? NICE_SIZES.at(-1)!;
   const start = Math.floor(min / size) * size;
@@ -26,7 +26,7 @@ export function buildRangeHistogram(items: Array<Array<[number, number]>>, min: 
     }
     for (const index of hit) counts[index]! += 1;
   }
-  if (counts.filter((count) => count > 0).length < 2) return undefined;
+  if (!allowSparse && counts.filter((count) => count > 0).length < 2) return undefined;
   return { start, size, counts };
 }
 

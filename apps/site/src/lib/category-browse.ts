@@ -10,6 +10,7 @@ import { compareNaturalText, normalizeSearchText } from "./search";
 import { resourceSearchTerms } from "./search-terms";
 import type { PublicResource, PublicSearchEntry, PublicSiteData } from "./types";
 import { buildRangeHistogram, numericIntervals, type RangeHistogram } from "./range-histogram";
+import { chartDifficultyHistogram } from "./chart-filters";
 
 const ROTAENO_CHART_ORDER = ["I", "II", "III", "IV", "IV_Alpha"] as const;
 const PARADIGM_CHART_ORDER = ["DET", "IVD", "MSV", "RBT", "CTC"] as const;
@@ -230,6 +231,7 @@ function facetOptions(resources: PublicResource[], key: string, game?: GameId): 
 
 function compareFacetValues(left: string, right: string, key: string, game?: GameId): number {
   if (game === "dynamix" && key === "chart") return compareOrderedValues(left, right, ["BASIC", "NORMAL", "HARD", "MEGA", "GIGA", "TERA"]);
+  if (game === "orzmic" && key === "chart") return compareOrderedValues(left, right, ["EASY", "NORMAL", "HARD", "SPECIAL"]);
   if (game === "dynamix" && key === "level") return compareNumericFacetValues(left, right);
   if (game === "rotaeno" && key === "chart") return compareOrderedValues(left, right, ROTAENO_CHART_ORDER);
   if (game === "paradigm-reboot" && key === "chart") return compareOrderedValues(left, right, PARADIGM_CHART_ORDER);
@@ -283,7 +285,9 @@ function facetRange(resources: PublicResource[], key: string, preferredStep?: nu
 }
 
 function facetHistogram(resources: PublicResource[], key: string, range: CategoryBrowseFacetRange): { histogram?: RangeHistogram } {
-  const histogram = buildRangeHistogram(resources.map((resource) => numericIntervals(resource.facets?.[key] ?? [])), range.min, range.max);
+  const histogram = key === "constant" || key === "level"
+    ? chartDifficultyHistogram(resources, range, key)
+    : buildRangeHistogram(resources.map((resource) => numericIntervals(resource.facets?.[key] ?? [])), range.min, range.max);
   return histogram ? { histogram } : {};
 }
 

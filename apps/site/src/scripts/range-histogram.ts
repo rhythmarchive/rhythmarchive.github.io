@@ -1,4 +1,18 @@
 import { pageSignal } from "./page-lifecycle";
+import type { RangeHistogram } from "../lib/range-histogram";
+
+export function updateRangeHistogram(control: HTMLElement, data: RangeHistogram | undefined): void {
+  const histogram = control.querySelector<HTMLElement>("[data-range-histogram]");
+  if (!histogram) return;
+  const peak = Math.max(...(data?.counts ?? []), 1);
+  for (const bar of histogram.querySelectorAll<HTMLElement>("[data-index]")) {
+    const count = data?.counts[Number(bar.dataset.index)] ?? 0;
+    bar.dataset.count = String(count);
+    bar.style.setProperty("--h", Math.max(count / peak, count > 0 ? .08 : 0).toFixed(3));
+  }
+  const tip = histogram.querySelector<HTMLElement>(".range-histogram-tip");
+  if (tip) delete tip.dataset.visible;
+}
 
 // Tap a bar to pick that bucket, drag across bars to pick a span, tap the only
 // selected bar again to clear. Values are written to the existing range sliders

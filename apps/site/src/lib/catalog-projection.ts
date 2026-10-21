@@ -495,10 +495,11 @@ function publicChartsFromMetadata(resource: Resource): PublicChart[] {
       .flatMap((candidate) => {
         if (!candidate || typeof candidate !== "object") return [];
         const chart = candidate as Record<string, unknown>;
-        const difficulty = typeof chart.difficulty === "string" ? chart.difficulty.trim() : "";
-        if (!difficulty) return [];
+        const displayedDifficulty = typeof chart.difficulty === "string" ? chart.difficulty.trim() : "";
+        if (!displayedDifficulty) return [];
+        const difficulty = typeof chart.difficultyName === "string" && chart.difficultyName.trim() ? chart.difficultyName.trim() : displayedDifficulty;
         const rating = typeof chart.level === "number" || typeof chart.level === "string" ? String(chart.level).trim() : "";
-        const level = difficulty.normalize("NFKC");
+        const level = displayedDifficulty.normalize("NFKC");
         const constant = rating && Number.isFinite(Number(rating)) && Number(rating) > 0 ? rating : undefined;
         const notes = typeof chart.notes === "number" && Number.isInteger(chart.notes) && chart.notes >= 0 ? chart.notes : undefined;
         const noter = typeof chart.noter === "string" && chart.noter.trim() ? chart.noter.trim() : undefined;

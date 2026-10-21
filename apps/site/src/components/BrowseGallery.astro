@@ -131,6 +131,7 @@ function formatRangeValue(value: number): string {
     </div>
   ) : data.game === "phigros" ? (
     <div class="gallery-filter-row" data-gallery-filter-row>
+      {phigrosOptions?.charts.length ? <label class="filter-control"><span>谱面难度</span><select data-browse-filter-select="chart" aria-label="谱面难度"><option value="">全部</option>{phigrosOptions.charts.map((value) => <option value={value}>{displayFilterDifficultyLabel(value, "phigros")}</option>)}</select></label> : null}
       {phigrosPackOptions.length > 0 ? <label class="filter-control"><span>曲包</span><select data-browse-filter-select="pack" aria-label="曲包"><option value="">全部</option>{phigrosPackOptions.map((value) => <option value={value}>{value}</option>)}</select></label> : null}
     </div>
   ) : data.game === "rizline" && rizlineOptions ? (

@@ -16,7 +16,7 @@ import { formatContentVersion, formatGameUpdatedAt, isRecentlyUpdated, publicCon
 import { rankRelatedResources } from "../src/lib/related.js";
 import { buildSearchQuickLinks } from "../src/lib/search-quick-links.js";
 import { getCategoryBrowseConfig } from "../src/lib/category-browse.js";
-import { matchesChartFilters } from "../src/lib/chart-filters.js";
+import { chartDifficultyHistogram, matchesChartFilters } from "../src/lib/chart-filters.js";
 import { buildRangeHistogram } from "../src/lib/range-histogram.js";
 import { GISCUS_CONFIG, GITHUB_DISCUSSIONS_URL, GITHUB_RELEASES_URL, GITHUB_REPOSITORY_URL } from "../src/lib/site-config.js";
 import { compareNaturalText, rankSearchEntries } from "../src/lib/search.js";
@@ -86,6 +86,28 @@ test("the last visible histogram bucket includes the maximum and counts each res
   assert.equal(decimal.counts.at(-1), 2, "11.5–12.0 includes the exact maximum constant");
 });
 
+test("generic difficulty histograms match selected chart rows for decimal and integer games", () => {
+  const data = getSiteData();
+  for (const game of ["rotaeno", "paradigm-reboot", "orzmic", "dynamix"] as const) {
+    const resources = data.galleries[`${game}/jacket`]!;
+    const config = getCategoryBrowseConfig(game, "jacket", resources);
+    const key = game === "dynamix" ? "level" : "constant";
+    const range = config.facets.find((facet) => facet.key === key)!.range!;
+    const names = config.facets.find((facet) => facet.key === "chart")!.options;
+    for (const name of [names[0]!.value, names.at(-1)!.value]) {
+      const histogram = chartDifficultyHistogram(resources, range, key, [name])!;
+      for (const [index, count] of histogram.counts.entries()) {
+        const min = Math.max(range.min, histogram.start + index * histogram.size);
+        const max = index === histogram.counts.length - 1 ? range.max : Number((histogram.start + (index + 1) * histogram.size - range.step).toFixed(1));
+        const criteria = { difficulties: [name], ...(key === "level" ? { levelRange: { min, max } } : { constantRange: { min, max } }) };
+        assert.equal(count, resources.filter((resource) => matchesChartFilters(resource, criteria)).length, `${game} ${name}: bucket ${index}`);
+      }
+    }
+  }
+  const missing = chartDifficultyHistogram([{ charts: [{ difficulty: "HARD", level: "13" }] }], { min: 1, max: 15 }, "constant", ["HARD"])!;
+  assert.ok(missing.counts.every((count) => count === 0), "unknown constants never become displayed levels");
+});
+
 test("missing constants in other games never inherit the Dynamix level fallback", () => {
   for (const game of ["arcaea", "phigros", "rizline", "infalsus", "rotaeno", "paradigm-reboot", "orzmic"] as const) {
     const resources = getSiteData().galleries[`${game}/jacket`]!.map((r) => ({ ...r, facets: { ...r.facets, constant: [] } }));
@@ -151,13 +173,13 @@ test("jacket details expose the unified chart field and user-facing identity met
   assert.equal(orzmicJacket?.displayTitle, "雨霖铃");
   assert.equal(orzmicJacket?.artist, "Alan Mackin");
   assert.equal(orzmicJacket?.metadata.coverPainter, "镜璃");
-  assert.deepEqual(orzmicJacket?.charts?.map((chart) => [chart.difficulty, chart.constant, chart.notes, chart.noter]), [["1", "1.0", 113, "尘云星白"], ["4", "4.5", 277, "尘云星白"], ["7", "7.8", 569, "尘云星白"]]);
-  assert.ok(orzmicJacket?.charts?.every((chart) => chart.level === chart.difficulty));
+  assert.deepEqual(orzmicJacket?.charts?.map((chart) => [chart.difficulty, chart.constant, chart.notes, chart.noter]), [["EASY", "1.0", 113, "尘云星白"], ["NORMAL", "4.5", 277, "尘云星白"], ["HARD", "7.8", 569, "尘云星白"]]);
+  assert.deepEqual(orzmicJacket?.charts?.map((chart) => chart.level), ["1", "4", "7"]);
   const orzmicFacets = getCategoryBrowseConfig("orzmic", "jacket", siteData.galleries["orzmic/jacket"] ?? []);
   const constants = siteData.galleries["orzmic/jacket"]!.flatMap(resource => resource.charts?.map(chart => Number(chart.constant)) ?? []).filter(Number.isFinite);
   assert.deepEqual(orzmicFacets.facets.find((facet) => facet.key === "constant")?.range, { min: Math.min(...constants), max: Math.max(...constants), step: 0.1 });
   assert.ok(orzmicFacets.sortOptions.some((option) => option.value === "level-desc"));
-  assert.ok(orzmicFacets.facets.some((facet) => facet.key === "chart" && facet.options.some((option) => option.value === "7")));
+  assert.deepEqual(orzmicFacets.facets.find((facet) => facet.key === "chart")?.options.map((option) => option.value), ["EASY", "NORMAL", "HARD", "SPECIAL"]);
   assert.ok(orzmicFacets.facets.some((facet) => facet.key === "bpm" && facet.range));
   assert.equal(displayDifficultyLabel("INSCRIBED", "arcaea"), "Inscribed");
   assert.equal(displayFilterDifficultyLabel("INSCRIBED", "arcaea"), "INS");
