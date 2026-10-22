@@ -17,7 +17,8 @@ import { compareGalleryBpm, compareGalleryHighestConstant, compareGalleryHighest
 import { compareNaturalText, normalizeSearchText } from "../lib/search";
 import { updateResourceStatsInDom } from "../lib/stats-client";
 import { chipKey, reconcileList, setSurfaceVisible } from "./motion";
-import { enhanceRangeHistograms, updateRangeHistogram } from "./range-histogram";
+import { adaptHistogramRange, enhanceRangeHistograms, resetHistogramRange } from "./range-histogram";
+import { adaptiveRangeHistogram, numericIntervals } from "../lib/range-histogram";
 
 const PAGE_SIZE = 48;
 
@@ -77,7 +78,7 @@ async function initializeGallery(root: HTMLElement): Promise<void> {
   if (!grid || !loadMore || !count) return;
 
   let resources: GalleryCard[] = [];
-  let histogramChart: string | undefined;
+  const histogramKeys = new Map<string, string>();
   const chartSelect = facets.find((facet) => facet.dataset.galleryFacet === "chart");
   const navigation = setupListNavigation(grid, root.dataset.galleryUrl ?? "gallery");
   let visibleCount = navigation.visibleCount(PAGE_SIZE);
@@ -187,11 +188,13 @@ async function initializeGallery(root: HTMLElement): Promise<void> {
   }, { signal });
 
   function restoreControlsFromUrl(): void {
+    histogramKeys.clear();
     const params = new URLSearchParams(location.search);
     if (search) search.value = params.get("q") ?? "";
     if (sort) sort.value = params.get("sort") ?? sort.options[0]?.value ?? "default";
     for (const facet of facets) facet.value = params.get(`facet-${facet.dataset.galleryFacet}`) ?? "";
     for (const range of ranges) {
+      resetHistogramRange(range);
       const legacy = params.get(`facet-${range.key}`);
       setRange(range, parseRangeValue(params.get(`facet-${range.key}-min`) ?? legacy, range.min), parseRangeValue(params.get(`facet-${range.key}-max`) ?? legacy, range.max));
     }
@@ -201,22 +204,31 @@ async function initializeGallery(root: HTMLElement): Promise<void> {
 
   function syncDifficultyHistograms(): void {
     const chart = chartSelect?.value ?? "";
-    if (histogramChart === chart) return;
-    histogramChart = chart;
     for (const range of ranges) {
-      if (range.key !== "constant" && range.key !== "level") continue;
-      updateRangeHistogram(range.root, chartDifficultyHistogram(resources, range, range.key, chart ? [chart] : []));
+      const key = JSON.stringify([search?.value, facets.map((facet) => facet.value), ranges.filter((other) => other !== range).map((other) => {
+        const min = readRangeValue(other, "min"), max = readRangeValue(other, "max");
+        return min <= other.min && max >= other.max ? [other.key] : [other.key, min, max];
+      })]);
+      if (histogramKeys.get(range.key) === key) continue;
+      histogramKeys.set(range.key, key);
+      const candidates = currentResources(range.key);
+      const fallback = { min: Number(range.root.dataset.rangeFullMin ?? range.min), max: Number(range.root.dataset.rangeFullMax ?? range.max) };
+      const data = range.key === "constant" || range.key === "level"
+        ? chartDifficultyHistogram(candidates, fallback, range.key, chart ? [chart] : [], true)
+        : adaptiveRangeHistogram(candidates.map((resource) => numericIntervals(resource.facets?.[range.key] ?? [])), fallback, range.step);
+      adaptHistogramRange(range, data);
+      setRange(range, readRangeValue(range, "min"), readRangeValue(range, "max"));
     }
   }
 
-  function currentResources(): GalleryCard[] {
+  function currentResources(omitRange?: string): GalleryCard[] {
     const query = normalizeSearchText(search?.value ?? "");
     const sortValue = sort?.value ?? "default";
     const chartDifficulty = facets.find((facet) => facet.dataset.galleryFacet === "chart")?.value;
     const chartConstant = facets.find((facet) => facet.dataset.galleryFacet === "constant")?.value;
     const constantRange = ranges.find((range) => range.key === "constant");
     const levelRange = ranges.find((range) => range.key === "level");
-    const selectedConstantRange = constantRange
+    const selectedConstantRange = omitRange !== "constant" && constantRange
       && (readRangeValue(constantRange, "min") > constantRange.min || readRangeValue(constantRange, "max") < constantRange.max)
       ? { min: readRangeValue(constantRange, "min"), max: readRangeValue(constantRange, "max") }
       : undefined;
@@ -224,7 +236,7 @@ async function initializeGallery(root: HTMLElement): Promise<void> {
       ...(chartDifficulty ? { difficulties: [chartDifficulty] } : {}),
       ...(chartConstant ? { constants: [chartConstant] } : {}),
       ...(selectedConstantRange ? { constantRange: selectedConstantRange } : {}),
-      ...(levelRange && (readRangeValue(levelRange, "min") > levelRange.min || readRangeValue(levelRange, "max") < levelRange.max)
+      ...(omitRange !== "level" && levelRange && (readRangeValue(levelRange, "min") > levelRange.min || readRangeValue(levelRange, "max") < levelRange.max)
         ? { levelRange: { min: readRangeValue(levelRange, "min"), max: readRangeValue(levelRange, "max") } } : {}),
     };
     const filtered = resources.filter((resource) => {
@@ -238,9 +250,9 @@ async function initializeGallery(root: HTMLElement): Promise<void> {
         });
       return resourceFacetsMatch
         && matchesChartFilters(resource, chartCriteria)
-        && ranges.filter((range) => range.key !== "constant" && range.key !== "level").every((range) => matchesRange(resource, range));
+        && ranges.filter((range) => range.key !== omitRange && range.key !== "constant" && range.key !== "level").every((range) => matchesRange(resource, range));
     });
-    if (sortValue === "default") return filtered;
+    if (omitRange || sortValue === "default") return filtered;
     return [...filtered].sort((left, right) => {
       if (sortValue === "artist-asc" || sortValue === "artist-desc") {
         const artistCompared = compareNaturalText(left.artist ?? "", right.artist ?? "");
@@ -263,6 +275,7 @@ async function initializeGallery(root: HTMLElement): Promise<void> {
 
   function applyFilter(historyMode: "push" | "replace" = "replace"): void {
     if (filters.draft()) { filters.preview(); return; }
+    syncDifficultyHistograms();
     visibleCount = PAGE_SIZE;
     const url = new URL(window.location.href);
     if (!ranges.some((range) => range.key === "level")) {

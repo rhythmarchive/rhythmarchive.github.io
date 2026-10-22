@@ -34,7 +34,7 @@ import { displayFilterDifficultyLabel } from "../lib/game-config";
 import { formatArcaeaAddedVersion } from "../lib/public-display";
 import { updateResourceStatsInDom } from "../lib/stats-client";
 import { chipKey, reconcileList, setSurfaceVisible } from "./motion";
-import { enhanceRangeHistograms, updateRangeHistogram } from "./range-histogram";
+import { adaptHistogramRange, enhanceRangeHistograms, resetHistogramRange } from "./range-histogram";
 
 type BrowseDifficultyRange = {
   root: HTMLElement;
@@ -244,6 +244,7 @@ async function initializeBrowseGallery(root: HTMLElement): Promise<void> {
 
   function commitState(historyMode: "push" | "replace"): void {
     if (filters.draft()) { filters.preview(); return; }
+    syncDifficultyHistogram();
     state = currentStateFromControls();
     const url = new URL(window.location.href);
     const serialized = serializeBrowseUrlState(state).toString();
@@ -270,7 +271,11 @@ async function initializeBrowseGallery(root: HTMLElement): Promise<void> {
     search!.value = nextState.q;
     sort!.value = nextState.sort;
     setSelectedValues(root, "chart", nextState.chart);
-    if (difficultyRange) syncBrowseDifficultyRange(difficultyRange, nextState.difficulty?.min ?? difficultyRange.min, nextState.difficulty?.max ?? difficultyRange.max);
+    if (difficultyRange) {
+      resetHistogramRange(difficultyRange);
+      histogramChart = undefined;
+      syncBrowseDifficultyRange(difficultyRange, nextState.difficulty?.min ?? difficultyRange.min, nextState.difficulty?.max ?? difficultyRange.max);
+    }
     if (nextState.game === "arcaea") {
       setSelectedValues(root, "pack", nextState.pack);
       setSelectedValues(root, "version", nextState.version);
@@ -283,19 +288,26 @@ async function initializeBrowseGallery(root: HTMLElement): Promise<void> {
     }
     updatePopoverSummaries(root);
     searchable.sync();
-    syncDifficultyHistogram(nextState.chart);
+    syncDifficultyHistogram(nextState);
   }
 
-  function syncDifficultyHistogram(charts = selectedValues(root, "chart")): void {
+  function syncDifficultyHistogram(nextState = currentStateFromControls()): void {
     if (!difficultyRange) return;
-    const key = charts.join(",");
+    const context = { ...nextState, sort: "default" as const };
+    delete context.difficulty;
+    const key = JSON.stringify(context);
     if (histogramChart === key) return;
     histogramChart = key;
-    updateRangeHistogram(difficultyRange.root, browseDifficultyHistogram({ items }, difficultyRange, charts));
+    const candidates = filterBrowseItems(items, context);
+    const fallback = { min: Number(difficultyRange.root.dataset.rangeFullMin ?? difficultyRange.min), max: Number(difficultyRange.root.dataset.rangeFullMax ?? difficultyRange.max) };
+    adaptHistogramRange(difficultyRange, browseDifficultyHistogram({ items: candidates }, fallback, nextState.chart, true));
+    syncBrowseDifficultyRange(difficultyRange);
+    const selection = readBrowseDifficultyRange(difficultyRange);
+    if (selection) nextState.difficulty = selection; else delete nextState.difficulty;
   }
 
   function render(): void {
-    syncDifficultyHistogram(state.chart);
+    syncDifficultyHistogram(state);
     const filtered = filterBrowseItems(items, state);
     matchingResults = filtered;
     const visible = filtered.slice(0, visibleCount).map((item) => displayBrowseItem(item, state.chart, state.difficulty, state.game === "arcaea" ? state.level : []));

@@ -19,8 +19,10 @@ const bars = histogram && span > 0 ? histogram.counts.map((count, index) => {
 }).filter((bar) => bar.width > 0) : [];
 ---
 
-{bars.length > 1 ? (
+{histogram ? (
   <div class="range-histogram" data-range-histogram data-start={histogram!.start} data-size={histogram!.size} title={`点按或拖动柱条，快速选择${label}区间`} aria-hidden="true">
+    <div data-histogram-bars>
     {bars.map((bar, order) => <span style={`--i: ${order}; --l: ${bar.left.toFixed(3)}%; --w: ${bar.width.toFixed(3)}%; --h: ${Math.max(bar.count / peak, bar.count > 0 ? .08 : 0).toFixed(3)}`} data-index={bar.index} data-count={bar.count}></span>)}
+    </div>
   </div>
 ) : null}

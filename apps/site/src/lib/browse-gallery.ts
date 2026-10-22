@@ -8,7 +8,7 @@ import type {
 import type { GameId, ResourceTypeId } from "./game-config";
 import type { CategoryBrowseProjectionType } from "../../../../packages/domain/src/browse.js";
 import { compareNaturalText, normalizeSearchText } from "./search";
-import { buildRangeHistogram, type RangeHistogram } from "./range-histogram";
+import { adaptiveRangeHistogram, buildRangeHistogram, type RangeHistogram } from "./range-histogram";
 import type { PublicChart, PublicDownload, PublicPreview, PublicResource, PublicSiteData } from "./types";
 
 export const BROWSE_GALLERY_SCHEMA_VERSION = 1 as const;
@@ -652,13 +652,12 @@ function matchesBrowseDifficulty(chart: BrowseChart, range?: { min: number; max:
   return value !== undefined && value >= range.min && value <= range.max;
 }
 
-// Keep the full axis when a difficulty has only one bucket or no known constants.
-export function browseDifficultyHistogram(data: Pick<BrowseGalleryData, "items">, range: { min: number; max: number }, difficulties: readonly string[] = []): RangeHistogram | undefined {
+export function browseDifficultyHistogram(data: Pick<BrowseGalleryData, "items">, range: { min: number; max: number }, difficulties: readonly string[] = [], adaptive = false): RangeHistogram | undefined {
   const tracks = data.items.map((item) => item.charts.filter(filterableBrowseChart).filter((chart) => difficulties.length === 0 || difficulties.includes("difficultyClass" in chart ? chart.difficultyClass : chart.difficulty)).flatMap((chart) => {
     const value = browseNumericDifficulty(chart);
     return value === undefined ? [] : [[value, value] as [number, number]];
   }));
-  return buildRangeHistogram(tracks, range.min, range.max, difficulties.length > 0);
+  return adaptive ? adaptiveRangeHistogram(tracks, range) : buildRangeHistogram(tracks, range.min, range.max, difficulties.length > 0);
 }
 
 export function getBrowseFacetOptions(data: BrowseGalleryData): BrowseFacetOptions {

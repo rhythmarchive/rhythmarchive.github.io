@@ -17,7 +17,7 @@ import { rankRelatedResources } from "../src/lib/related.js";
 import { buildSearchQuickLinks } from "../src/lib/search-quick-links.js";
 import { getCategoryBrowseConfig } from "../src/lib/category-browse.js";
 import { chartDifficultyHistogram, matchesChartFilters } from "../src/lib/chart-filters.js";
-import { buildRangeHistogram } from "../src/lib/range-histogram.js";
+import { adaptiveRangeHistogram, buildRangeHistogram } from "../src/lib/range-histogram.js";
 import { GISCUS_CONFIG, GITHUB_DISCUSSIONS_URL, GITHUB_RELEASES_URL, GITHUB_REPOSITORY_URL } from "../src/lib/site-config.js";
 import { compareNaturalText, rankSearchEntries } from "../src/lib/search.js";
 import { createUrlHelpers, sitePath } from "../src/lib/url.js";
@@ -95,10 +95,10 @@ test("generic difficulty histograms match selected chart rows for decimal and in
     const range = config.facets.find((facet) => facet.key === key)!.range!;
     const names = config.facets.find((facet) => facet.key === "chart")!.options;
     for (const name of [names[0]!.value, names.at(-1)!.value]) {
-      const histogram = chartDifficultyHistogram(resources, range, key, [name])!;
+      const histogram = chartDifficultyHistogram(resources, range, key, [name], true)!;
       for (const [index, count] of histogram.counts.entries()) {
-        const min = Math.max(range.min, histogram.start + index * histogram.size);
-        const max = index === histogram.counts.length - 1 ? range.max : Number((histogram.start + (index + 1) * histogram.size - range.step).toFixed(1));
+        const min = Number(Math.max(histogram.min!, histogram.start + index * histogram.size).toFixed(1));
+        const max = index === histogram.counts.length - 1 ? histogram.max! : Number((histogram.start + (index + 1) * histogram.size - range.step).toFixed(1));
         const criteria = { difficulties: [name], ...(key === "level" ? { levelRange: { min, max } } : { constantRange: { min, max } }) };
         assert.equal(count, resources.filter((resource) => matchesChartFilters(resource, criteria)).length, `${game} ${name}: bucket ${index}`);
       }
@@ -106,6 +106,16 @@ test("generic difficulty histograms match selected chart rows for decimal and in
   }
   const missing = chartDifficultyHistogram([{ charts: [{ difficulty: "HARD", level: "13" }] }], { min: 1, max: 15 }, "constant", ["HARD"])!;
   assert.ok(missing.counts.every((count) => count === 0), "unknown constants never become displayed levels");
+});
+
+test("adaptive bins narrow with the data, retain decimal boundaries and respect integer steps", () => {
+  const wide = adaptiveRangeHistogram([[[1, 1]], [[15, 15]]], { min: 1, max: 15 })!;
+  const narrow = adaptiveRangeHistogram([[[8.1, 8.1], [8.3, 8.3]], [[8.2, 8.2]], [[8.3, 8.3]]], { min: 1, max: 15 })!;
+  assert.ok(narrow.size < wide.size);
+  assert.deepEqual([narrow.min, narrow.max, narrow.size, narrow.counts], [8.1, 8.3, .1, [1, 3]]);
+  const integer = adaptiveRangeHistogram([[[3, 3]], [[5, 5]]], { min: 1, max: 15 }, 1)!;
+  assert.equal(integer.size, 1);
+  assert.deepEqual(integer.counts, [1, 1]);
 });
 
 test("missing constants in other games never inherit the Dynamix level fallback", () => {

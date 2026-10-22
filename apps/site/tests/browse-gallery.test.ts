@@ -125,29 +125,29 @@ test("difficulty-linked Browse buckets count the same chart rows as the selected
     const data = formalBrowse[game];
     const options = getBrowseFacetOptions(data);
     const range = options.difficultyRange!;
-    const baseline = browseDifficultyHistogram(data, range)!;
     for (const names of [[options.charts[0]!], [options.charts.at(-1)!], [options.charts[0]!, options.charts.at(-1)!]]) {
       const name = names.join(",");
-      const histogram = browseDifficultyHistogram(data, range, names)!;
-      assert.deepEqual([histogram.start, histogram.size, histogram.counts.length], [baseline.start, baseline.size, baseline.counts.length], `${game}: stable axis`);
+      const histogram = browseDifficultyHistogram(data, range, names, true)!;
+      assert.ok(histogram.min! >= range.min && histogram.max! <= range.max);
       const state = parseBrowseUrlState(game, new URLSearchParams({ chart: name }), data.items);
       for (const [index, count] of histogram.counts.entries()) {
-        const min = Math.max(range.min, histogram.start + index * histogram.size);
-        const max = index === histogram.counts.length - 1 ? range.max : Number((histogram.start + (index + 1) * histogram.size - range.step).toFixed(1));
+        const min = Number(Math.max(histogram.min!, histogram.start + index * histogram.size).toFixed(1));
+        const max = index === histogram.counts.length - 1 ? histogram.max! : Number((histogram.start + (index + 1) * histogram.size - range.step).toFixed(1));
         assert.equal(count, filterBrowseItems(data.items, { ...state, difficulty: { min, max } }).length, `${game} ${name}: bucket ${index}`);
       }
     }
   }
 });
 
-test("a selected difficulty with one or no known constants keeps its histogram axis", () => {
+test("a single constant has a selectable bin and unknown constants keep the fallback axis", () => {
   const data = { items: [makeArcaeaItem({ charts: [{ difficultyClass: "PST", displayLevel: "3", constant: "3.5" }, { difficultyClass: "FTR", displayLevel: "9" }] })] };
   const range = { min: 1, max: 12 };
-  const past = browseDifficultyHistogram(data, range, ["PST"])!;
-  const future = browseDifficultyHistogram(data, range, ["FTR"])!;
+  const past = browseDifficultyHistogram(data, range, ["PST"], true)!;
+  const future = browseDifficultyHistogram(data, range, ["FTR"], true)!;
   assert.equal(past.counts.reduce((sum, count) => sum + count, 0), 1);
   assert.ok(future.counts.every((count) => count === 0));
-  assert.equal(past.counts.length, future.counts.length);
+  assert.deepEqual([past.min, past.max, past.counts.length], [3.5, 3.6, 1]);
+  assert.deepEqual([future.min, future.max], [1, 12]);
 });
 
 test("Arcaea covers every regular chart including low-level decimals and documented table omissions", () => {

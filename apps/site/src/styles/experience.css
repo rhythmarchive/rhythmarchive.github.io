@@ -148,16 +148,18 @@
 /* Range filter: distribution bars above the shared slider axis. ------------ */
 .filter-range-control { --thumb: 17px; }
 .range-histogram { position: relative; height: 38px; margin: 14px calc(3px + var(--thumb) / 2) -2px; cursor: pointer; touch-action: pan-y; }
-.range-histogram > span[data-index] { position: absolute; bottom: 0; left: calc(var(--l) + 1px); width: max(2px, calc(var(--w) - 2px)); height: max(calc(var(--h) * 100%), 0px); border-radius: 3px 3px 1px 1px; background: color-mix(in srgb, var(--accent) 42%, var(--surface-muted)); transform-origin: 50% 100%; transition: background-color var(--transition-ui), transform var(--motion-ui) var(--motion-spring), opacity var(--transition-ui); animation: archive-bar-grow var(--motion-surface) var(--motion-ease) backwards; animation-delay: calc(var(--i) * 14ms); }
-.range-histogram[data-filtered] > span[data-index] { background: var(--line-strong); opacity: .6; }
-.range-histogram[data-filtered] > span[data-active] { background: var(--accent); opacity: 1; }
-.range-histogram > span[data-index]:hover { transform: scaleY(1.1); background: var(--accent-strong); opacity: 1; }
+.range-histogram [data-histogram-bars] { position: absolute; inset: 0; }
+.range-histogram [data-index] { position: absolute; bottom: 0; left: calc(var(--l) + 1px); width: max(2px, calc(var(--w) - 2px)); height: max(calc(var(--h) * 100%), 0px); border-radius: 3px 3px 1px 1px; background: color-mix(in srgb, var(--accent) 42%, var(--surface-muted)); transform-origin: 50% 100%; transition: background-color var(--transition-ui), opacity var(--transition-ui); animation: archive-bar-grow var(--motion-surface) var(--motion-ease) backwards; animation-delay: calc(var(--i) * 14ms); }
+.range-histogram[data-updated] [data-index] { animation: none; transform-origin: center; }
+.range-histogram[data-filtered] [data-index] { background: var(--line-strong); opacity: .6; }
+.range-histogram[data-filtered] [data-active] { background: var(--accent); opacity: 1; }
+.range-histogram [data-index]:hover { background: var(--accent-strong); opacity: 1; }
 .range-histogram[data-dragging] { cursor: ew-resize; }
 @keyframes archive-bar-grow { from { transform: scaleY(0); } }
 .range-histogram-tip { position: absolute; bottom: calc(100% - 2px); left: var(--x, 50%); z-index: 3; padding: 2px 8px; border-radius: 999px; background: var(--text); color: var(--bg); font-size: var(--type-caption); font-variant-numeric: tabular-nums; line-height: 1.6; white-space: nowrap; pointer-events: none; opacity: 0; transform: translate(-50%, 4px); transition: opacity var(--motion-fast) var(--motion-ease), transform var(--motion-ui) var(--motion-ease); }
 .range-histogram-tip[data-visible] { opacity: 1; transform: translate(-50%, 0); }
 .filter-range-control .filter-range-slider { margin-top: 0; }
-:root[data-motion-level="reduced"] .range-histogram > span[data-index] { animation: none; transform: none; }
+:root[data-motion-level="reduced"] .range-histogram [data-index] { animation: none; transform: none; }
 @media (max-width: 760px) { .filter-range-control { --thumb: 26px; } .range-histogram { height: 48px; } }
 
 /* Tap feedback: one pooled ring layer, drawn above everything, never hit-tested. */

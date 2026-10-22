@@ -150,43 +150,54 @@ export function animateCards(grid: HTMLElement, before: Map<HTMLElement, DOMRect
 // Keyed reconciliation for small, user-edited lists (filter chips, selections).
 // Unchanged items keep their node and never replay; new items enter, removed
 // items leave from where they were, and the rest glide into their new slots.
-export function reconcileList(container: HTMLElement, next: HTMLElement[], key: (node: HTMLElement) => string | undefined): void {
+export function reconcileList(container: HTMLElement, next: HTMLElement[], key: (node: HTMLElement) => string | undefined, resize = false): void {
   const current = [...container.children].filter((node): node is HTMLElement => node instanceof HTMLElement && !node.hasAttribute("data-motion-ghost"));
   const byKey = new Map(current.map((node) => [key(node), node]));
   const nodes = next.map((node) => {
     const existing = byKey.get(key(node));
     if (!existing) return node;
     byKey.delete(key(node));
-    if (!existing.isEqualNode(node)) {
-      for (const { name, value } of node.attributes) existing.setAttribute(name, value);
-      existing.replaceChildren(...node.childNodes);
-    }
     return existing;
   });
   const removed = [...byKey.values()];
   const level = typeof window === "undefined" ? "reduced" : motionLevel();
   const animated = level !== "reduced" && enabled(container) && container.isConnected && !container.closest("[hidden]") && nodes.length + removed.length <= 40;
   // Interrupted items continue from where they visually are (center + scale).
-  const before = new Map<HTMLElement, { x: number; y: number }>();
-  const ghosts: Array<{ node: HTMLElement; left: number; top: number; width: number }> = [];
+  const before = new Map<HTMLElement, { x: number; y: number; width: number; height: number }>();
+  const ghosts: Array<{ node: HTMLElement; left: number; top: number; width: number; height?: number; opacity?: string }> = [];
   if (animated) {
     for (const node of current) {
       const rect = node.getBoundingClientRect();
-      before.set(node, { x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 });
+      before.set(node, { x: rect.left + rect.width / 2, y: rect.top + rect.height / 2, width: rect.width, height: rect.height });
     }
-    for (const node of removed) ghosts.push({ node, left: node.offsetLeft, top: node.offsetTop, width: node.offsetWidth });
+    for (const node of removed) {
+      const old = before.get(node)!;
+      const rect = container.getBoundingClientRect();
+      ghosts.push(resize
+        ? { node, left: old.x - old.width / 2 - rect.left, top: old.y - old.height / 2 - rect.top, width: old.width, height: old.height, opacity: getComputedStyle(node).opacity }
+        : { node, left: node.offsetLeft, top: node.offsetTop, width: node.offsetWidth });
+    }
   }
+  nodes.forEach((existing, index) => {
+    const node = next[index]!;
+    if (existing !== node && !existing.isEqualNode(node)) {
+      for (const { name, value } of node.attributes) existing.setAttribute(name, value);
+      existing.replaceChildren(...node.childNodes);
+    }
+  });
   for (const node of removed) node.remove();
   nodes.forEach((node, index) => { if (container.children[index] !== node) container.insertBefore(node, container.children[index] ?? null); });
   if (!animated) return;
   const timing = { duration: duration(container, "--motion-ui", 180), easing: getComputedStyle(container).getPropertyValue("--motion-ease").trim() || "ease-out" };
-  for (const { node, left, top, width } of ghosts) {
+  for (const { node, left, top, width, height, opacity } of ghosts) {
+    if (resize) feedback.get(node)?.cancel();
     Object.assign(node.style, { position: "absolute", left: `${left}px`, top: `${top}px`, width: `${width}px`, margin: "0", pointerEvents: "none" });
+    if (height !== undefined) node.style.height = `${height}px`;
     node.setAttribute("data-motion-ghost", "");
     node.setAttribute("aria-hidden", "true");
     node.inert = true;
     container.append(node);
-    const exit = track(node.animate([{ opacity: 1, transform: "none" }, { opacity: 0, transform: "scale(.86)" }], { duration: duration(container, "--motion-fast", 140), easing: "ease-in" }));
+    const exit = track(node.animate([{ opacity: opacity ?? 1, transform: "none" }, { opacity: 0, transform: "scale(.86)" }], { duration: duration(container, "--motion-fast", 140), easing: "ease-in" }));
     void exit.finished.finally(() => node.remove()).catch(() => undefined);
   }
   for (const node of nodes) {
@@ -202,8 +213,10 @@ export function reconcileList(container: HTMLElement, next: HTMLElement[], key: 
     const rect = node.getBoundingClientRect();
     const x = old.x - rect.left - rect.width / 2, y = old.y - rect.top - rect.height / 2;
     const scale = frame?.transform && frame.transform !== "none" ? new DOMMatrix(String(frame.transform)).a : 1;
-    if (Math.abs(x) + Math.abs(y) < 1 && !frame) continue;
-    feedback.set(node, track(node.animate([{ opacity: frame?.opacity ?? 1, transform: `translate(${x}px, ${y}px) scale(${scale})` }, { opacity: 1, transform: "none" }], timing)));
+    const sx = resize ? old.width / (rect.width || 1) : scale;
+    const sy = resize ? old.height / (rect.height || 1) : scale;
+    if (Math.abs(x) + Math.abs(y) < 1 && Math.abs(sx - 1) + Math.abs(sy - 1) < .01 && !frame) continue;
+    feedback.set(node, track(node.animate([{ opacity: frame?.opacity ?? 1, transform: `translate(${x}px, ${y}px) scale(${sx}, ${sy})` }, { opacity: 1, transform: "none" }], timing)));
   }
 }
 
