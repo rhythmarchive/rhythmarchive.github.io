@@ -7,7 +7,7 @@ import type { Catalog } from "../../../../packages/domain/src/schema.js";
 import { buildBrowseGalleryData } from "./browse-gallery";
 import { applyCategoryBrowseSemantics, publicSearchNamesByResource, type CategoryBrowseProjections } from "./category-browse";
 import { projectCatalog } from "./catalog-projection";
-import { projectUpdates } from "./update-history";
+import { loadRawUpdateHistory, projectUpdates } from "./update-history";
 import { formatArcaeaAddedVersion } from "./public-display";
 import { GAME_CONFIG, type GameId } from "./game-config";
 import { sortPublicGames } from "./game-index";
@@ -78,11 +78,20 @@ export function getSiteData(rosBaseUrl = ROS_BASE_URL): PublicSiteData {
     const publicData = applyCategoryBrowseSemantics(projected, loadCategoryBrowseProjections(), publicSearchNamesByResource(browse));
     const updates = projectUpdates(publicData, findWorkspaceRoot());
     const sourceVersions: Partial<Record<GameId, { sourceVersion: string } | undefined>> = cachedManifest?.games ?? {};
+    const history = loadRawUpdateHistory(findWorkspaceRoot());
+    const versionRecords = [...history.baselines, ...history.records]
+      .sort((left, right) => Date.parse(right.publishedAt) - Date.parse(left.publishedAt));
+    const infalsusVersions = [...new Set(browse.infalsus.resources.map((resource) => resource.metadata.gameVersion))];
     const games = publicData.games.map((game) => {
       const { contentVersion: _inferredVersion, ...entry } = game;
-      // Source adoption and content batches own versions; a title/upscale edit does not.
-      const contentVersion = publicContentVersion(sourceVersions[game.slug]?.sourceVersion
-        ?? updates.find((update) => update.game === game.slug && publicContentVersion(update.contentVersion))?.contentVersion);
+      // Prefer adopted sources, then dated content records (including initial baselines).
+      // Build IDs and batch labels remain provenance, not game versions.
+      const contentVersion = [
+        sourceVersions[game.slug]?.sourceVersion,
+        ...(game.slug === "infalsus" && infalsusVersions.length === 1 ? infalsusVersions : []),
+        ...versionRecords.filter((record) => record.game === game.slug).map((record) => record.contentVersion),
+      ].map((version) => publicContentVersion(typeof version === "string" ? version : undefined))
+        .find((version) => /^\d+(?:\.\d+)+(?:[a-z])?$/iu.test(version));
       return { ...entry, ...(contentVersion ? { contentVersion } : {}) };
     });
     cachedSiteData = { ...publicData, games, updates };
