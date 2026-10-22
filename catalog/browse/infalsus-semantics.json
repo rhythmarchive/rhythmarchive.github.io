@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
   "game": "infalsus",
-  "generatedAt": "2026-10-02T03:05:40.176Z",
+  "generatedAt": "2026-10-22T12:21:42.999Z",
   "source": {
-    "snapshot": "infalsus-formal:VSingers DLC:4e70d2d9e97727ff178d67de0be4f88a9f15fa40f6238a3d90575d31c8bf52d8",
-    "sha256": "4e70d2d9e97727ff178d67de0be4f88a9f15fa40f6238a3d90575d31c8bf52d8"
+    "snapshot": "infalsus-formal:Steam build 26126718:4db250eed51c0b7fe24b5e366667f1a64576c13e7335789b4b60f3dc8e5bfc4d",
+    "sha256": "4db250eed51c0b7fe24b5e366667f1a64576c13e7335789b4b60f3dc8e5bfc4d"
   },
   "resources": [
     {
@@ -1165,8 +1165,7 @@
       "searchTerms": [
         "yggthrasir",
         "ikaruga_nex",
-        "60",
-        "yggthrasir"
+        "60"
       ],
       "sortOrder": 57,
       "facets": {}
@@ -1305,8 +1304,7 @@
       "searchTerms": [
         "cylin",
         "kalsoer",
-        "68",
-        "cylin"
+        "68"
       ],
       "sortOrder": 64,
       "facets": {}
@@ -1516,6 +1514,107 @@
         "幸せになれる隠しコマンドがあるらしい"
       ],
       "sortOrder": 74,
+      "facets": {}
+    },
+    {
+      "resourceId": "cc36c5bb-27f6-77a0-8533-ad0f222ca290",
+      "resourceType": "jacket",
+      "displayTitle": "Disruptor Array",
+      "metadata": {
+        "songId": "77",
+        "artist": "Akira Complex vs kiraku",
+        "jacketIllustrator": "Disruptor Array",
+        "gameVersion": "Steam build 26126718"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Disruptor Array",
+        "Akira Complex vs kiraku",
+        "77",
+        "disruptorarray"
+      ],
+      "sortOrder": 75,
+      "facets": {}
+    },
+    {
+      "resourceId": "a9db0aaa-73d8-7434-a462-513a8a4a51e4",
+      "resourceType": "jacket",
+      "displayTitle": "空間創造理論",
+      "metadata": {
+        "songId": "78",
+        "artist": "Sound piercer",
+        "jacketIllustrator": "Space Creation Theory (TBC)",
+        "gameVersion": "Steam build 26126718"
+      },
+      "badges": [],
+      "searchTerms": [
+        "空間創造理論",
+        "Space Creation Theory",
+        "Sound piercer",
+        "78",
+        "kuukansouzou"
+      ],
+      "sortOrder": 76,
+      "facets": {}
+    },
+    {
+      "resourceId": "ca082460-ef2a-75d5-9e2a-eed6bd5bae52",
+      "resourceType": "jacket",
+      "displayTitle": "Megameteor",
+      "metadata": {
+        "songId": "79",
+        "artist": "削除",
+        "jacketIllustrator": "Megameteor",
+        "gameVersion": "Steam build 26126718"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Megameteor",
+        "削除",
+        "79",
+        "megameteor"
+      ],
+      "sortOrder": 77,
+      "facets": {}
+    },
+    {
+      "resourceId": "d988224c-8597-7ea7-98f9-d38c583fbf6e",
+      "resourceType": "jacket",
+      "displayTitle": "TECHNOPOLIS 2085",
+      "metadata": {
+        "songId": "80",
+        "artist": "PRASTIK DANCEFLOOR",
+        "jacketIllustrator": "TECHNOPOLIS 2085",
+        "gameVersion": "Steam build 26126718"
+      },
+      "badges": [],
+      "searchTerms": [
+        "TECHNOPOLIS 2085",
+        "PRASTIK DANCEFLOOR",
+        "80",
+        "technopolis"
+      ],
+      "sortOrder": 78,
+      "facets": {}
+    },
+    {
+      "resourceId": "accf98ef-c7a2-7560-a542-f87adb6212a4",
+      "resourceType": "jacket",
+      "displayTitle": "Yume no hajimari",
+      "metadata": {
+        "songId": "81",
+        "artist": "Virtual Cat",
+        "jacketIllustrator": "Yume no hajimari",
+        "gameVersion": "Steam build 26126718"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Yume no hajimari",
+        "Virtual Cat",
+        "81",
+        "yumenohajimari"
+      ],
+      "sortOrder": 79,
       "facets": {}
     }
   ]

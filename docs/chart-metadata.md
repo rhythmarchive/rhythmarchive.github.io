@@ -14,6 +14,12 @@ Catalog 的 `metadata.charts` 是详情页和筛选的共同来源。继续使�
 - 内容检查将 `chartDataVersion` 与既有 Browse manifest 的 `sourceVersion` 对齐；没有正式 Browse 的游戏采用 Updates 的最新版本（含 baseline）。升级版本后，旧标记会使 `content:check` / `check:fast` 失败。完成上述复核或移除未确认定数后才能推进标记，不能只改版本字符串消除失败。
 - 定数变更写入 Catalog 后，详情、范围边界和直方图从同一快照生成。按现有流程刷新 Browse 的 Catalog 哈希绑定和公共投影；无需新增资源对象、ROS 上传或运行时请求。
 
+## 2026-10-22 In Falsus 本地版本复核
+
+本批采用 Steam build `26126718`（Depot manifest `2074612446327118683`）的原生 `SongData.ChartInfos.Rating`，新增 Disruptor Array、空間創造理論、Megameteor、TECHNOPOLIS 2085、Yume no hajimari 五首曲目的曲绘与 20 张谱面资料。逐一核对已有 297 张公开可用谱面的完整定数，均未变化；原有公开可用性保持不变。当前客户端 320 张可用谱面的原生 Rating 均为整数，公开曲库中的 317 张可用谱面采用已核实的原生定数。谱师仅采用客户端已解析的实际署名，未解析的映射键与未知物量不补写。
+
+`chartDataVersion` 更新为 `Steam build 26126718`，已有资源的加入版本保持原值。原生 SongData 快照和完整歌曲语义清单留在私有 Workspace，供后续版本重新核对；公开字段记录本次原生定数来源。
+
 ## 2026-10-21 定数类型复核
 
 “游戏实际使用小数数值”和“官方公开了完整定数表”是两个判断。客户端原生字段可证明小数值存在；社区表中的逆算值不是官方发布的表。不能把资料缺失判断为游戏没有小数定数。

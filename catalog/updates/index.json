@@ -2945,6 +2945,38 @@
           "change": "added"
         }
       ]
+    },
+    {
+      "id": "058e3257-42dd-7b8d-898a-f2b1f05e460f",
+      "game": "infalsus",
+      "releaseIds": [
+        "f892a8da-3985-7d93-b0ae-4163f65acf62"
+      ],
+      "kind": "update",
+      "publishedAt": "2026-10-22T12:25:16.853Z",
+      "contentVersion": "Steam build 26126718",
+      "items": [
+        {
+          "resourceId": "cc36c5bb-27f6-77a0-8533-ad0f222ca290",
+          "change": "added"
+        },
+        {
+          "resourceId": "a9db0aaa-73d8-7434-a462-513a8a4a51e4",
+          "change": "added"
+        },
+        {
+          "resourceId": "ca082460-ef2a-75d5-9e2a-eed6bd5bae52",
+          "change": "added"
+        },
+        {
+          "resourceId": "d988224c-8597-7ea7-98f9-d38c583fbf6e",
+          "change": "added"
+        },
+        {
+          "resourceId": "accf98ef-c7a2-7560-a542-f87adb6212a4",
+          "change": "added"
+        }
+      ]
     }
   ]
 }
