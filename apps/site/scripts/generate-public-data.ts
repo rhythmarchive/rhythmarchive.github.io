@@ -86,7 +86,7 @@ function toSearchCard(resource: ReturnType<typeof getSiteData>["resources"][numb
     image,
     fallback: fallbackImage,
     upscaled: Boolean(resource.upscaled),
-    variantLabels,
+    ...(variantLabels.length > 0 ? { variantLabels } : {}),
   };
 }
 

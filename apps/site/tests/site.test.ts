@@ -1136,3 +1136,26 @@ test("APK card omits digest and previous-version disclosures while preserving pr
   assert.doesNotMatch(source, /sha256\.slice\(/u);
   assert.doesNotMatch(source, /previousRow\.className/u);
 });
+
+test('Milthm reuses game routes, previews, search and native chart metadata', () => {
+  const data = getSiteData();
+  const game = data.games.find(game => game.slug === 'milthm')!;
+  assert.equal(game.count, 123);
+  assert.deepEqual(game.categories.map(category => category.slug), ['jacket']);
+  const jackets = data.galleries['milthm/jacket']!;
+  assert.equal(jackets.length, 123);
+  assert.equal(jackets.flatMap(resource => resource.variants).length, 138);
+  assert.ok(jackets.every(resource => resource.preview?.small && resource.original && !resource.upscaled));
+  const lost = jackets.find(resource => resource.displayTitle === 'Lost Civilization')!;
+  assert.equal(lost.artist, 'Laur vs CK');
+  assert.equal(lost.metadata.jacketIllustrator, '水沐汐');
+  assert.deepEqual(lost.charts?.map(chart => [chart.difficulty, chart.level, chart.constant]), [
+    ['Drizzle', '2.0', '2.0'], ['Sprinkle', '4.2', '4.2'], ['Cloudburst', '11.3', '11.3'], ['Clear', '4.25*', undefined],
+  ]);
+  const facets = getCategoryBrowseConfig('milthm', 'jacket', jackets);
+  assert.ok(facets.facets.find(facet => facet.key === 'constant')?.histogram);
+  assert.ok(facets.facets.find(facet => facet.key === 'pack')?.options.length);
+  assert.ok(buildSearchQuickLinks(data).some(link => link.href === '/milthm/jacket/' && link.count === 123));
+  assert.ok(data.searchIndex.some(entry => entry.game === 'milthm' && entry.keywords.includes('Hoshifuru Yoruni')));
+  assert.ok(fs.existsSync('apps/site/public/game-icons/milthm.webp'));
+});

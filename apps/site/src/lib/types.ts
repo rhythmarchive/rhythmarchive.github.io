@@ -55,7 +55,7 @@ export type PublicSearchCard = {
   image: PublicSearchImage | null;
   fallback: PublicSearchImage | null;
   upscaled: boolean;
-  variantLabels: string[];
+  variantLabels?: string[];
 };
 
 export type PublicRankingCard = {

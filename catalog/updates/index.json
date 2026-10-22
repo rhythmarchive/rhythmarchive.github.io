@@ -2,6 +2,15 @@
   "schemaVersion": 1,
   "baselines": [
     {
+      "id": "1df22f8a-b025-7e4d-ac57-5d3a583da88c",
+      "game": "milthm",
+      "releaseIds": [
+        "1a2aa788-11dc-7bd5-84a7-e3f641874a7c"
+      ],
+      "publishedAt": "2026-10-22T05:42:25.972Z",
+      "contentVersion": "6.0.5"
+    },
+    {
       "id": "2648a532-5d83-7f8e-bc5c-0c078c722edc",
       "game": "dynamix",
       "releaseIds": [

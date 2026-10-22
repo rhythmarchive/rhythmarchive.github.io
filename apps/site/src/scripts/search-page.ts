@@ -175,7 +175,7 @@ function resultCardView(card: PublicSearchCard): CardViewModel {
     displayTitle: card.displayTitle, ...(card.artist ? { artist: card.artist } : {}),
     subtitle: `${GAME_CONFIG[card.game].displayName} · ${card.categoryLabel}`,
     preview: { primary: card.image, fallback: card.fallback, srcset: "" },
-    hasUpscaled: card.upscaled, labels: card.variantLabels,
+    hasUpscaled: card.upscaled, labels: card.variantLabels ?? [],
   };
 }
 function resolveSitePath(path: string): string {

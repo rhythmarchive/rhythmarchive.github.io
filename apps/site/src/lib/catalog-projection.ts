@@ -331,10 +331,11 @@ function projectResource(resource: Resource, variants: Variant[], renditionsByVa
       ...(charts.length > 0 ? { chart: [...new Set(charts.map((chart) => chart.difficulty))] } : {}),
       ...(charts.some((chart) => chart.level) ? { level: [...new Set(charts.flatMap((chart) => chart.level ? [chart.level] : []))] } : {}),
     }
-    : resource.game === "orzmic" && resource.resourceType === "jacket"
+    : (resource.game === "orzmic" || resource.game === "milthm") && resource.resourceType === "jacket"
       ? {
         ...(charts.length > 0 ? { chart: [...new Set(charts.map((chart) => chart.difficulty))] } : {}),
         ...(typeof metadata.bpm === "string" && metadata.bpm ? { bpm: [metadata.bpm] } : {}),
+        ...(resource.game === "milthm" && typeof metadata.pack === "string" && metadata.pack ? { pack: [metadata.pack] } : {}),
         ...(charts.some((chart) => chart.constant) ? { constant: [...new Set(charts.flatMap((chart) => chart.constant ? [chart.constant] : []))] } : {}),
       }
     : undefined;
@@ -352,12 +353,12 @@ function projectResource(resource: Resource, variants: Variant[], renditionsByVa
     resourceType: resource.resourceType,
     category: promotedArcaeaStoryCg ? "story-cg" : publicCategorySlug(resource.game, resource.resourceType),
     categoryLabel: promotedArcaeaStoryCg ? "剧情 CG" : publicCategoryLabel(resource.game, resource.resourceType, metadata),
-    ...(resource.game === "dynamix" && typeof resource.metadata.orderHint === "number" ? { sortOrder: resource.metadata.orderHint } : {}),
+    ...((resource.game === "dynamix" || resource.game === "milthm") && typeof resource.metadata.orderHint === "number" ? { sortOrder: resource.metadata.orderHint } : {}),
     ...(resource.game === "dynamix" && metadata.contentKind === "段位封面" ? { badges: ["段位封面"] } : {}),
     ...(resource.game === "dynamix" && resource.resourceType === "character-portrait" ? { badges: [`${projectedVariants.length} 张图片`] } : {}),
     displayTitle: display.title || (resource.game === "rotaeno" ? "Rotaeno \u56fe\u7247\u8d44\u6e90\uff08\u540d\u79f0\u5f85\u6838\u5b9e\uff09" : original?.downloadFilename || "\u672a\u547d\u540d\u8d44\u6e90"),
     ...(artist ? { artist } : {}),
-    ...(chartSearchTerms.length > 0 ? { searchTerms: chartSearchTerms } : {}),
+    ...(chartSearchTerms.length > 0 ? { searchTerms: [...chartSearchTerms, ...(resource.game === "milthm" ? resource.aliases.map(alias => alias.value) : [])] } : {}),
     metadata,
     ...(facets && Object.keys(facets).length > 0 ? { facets } : {}),
     ...(resource.resourceType === "jacket" ? {
@@ -489,6 +490,14 @@ function publicChartsFromMetadata(resource: Resource): PublicChart[] {
       if (!Number.isInteger(level) || level < 1 || level > 15) return [];
       return [{ difficulty: c.difficulty, level: String(level), ...supplementalChartFields(c, resource.game), available: true, status: "available" as const }];
     }).sort((a, b) => order.indexOf(a.difficulty) - order.indexOf(b.difficulty));
+  }
+  if (resource.game === "milthm") {
+    return rawCharts.flatMap(candidate => {
+      if (!candidate || typeof candidate !== "object") return [];
+      const chart = candidate as Record<string, unknown>;
+      if (typeof chart.difficulty !== "string" || typeof chart.level !== "string") return [];
+      return [{ difficulty: chart.difficulty, level: chart.level, ...supplementalChartFields(chart, resource.game), available: true, status: "available" as const }];
+    });
   }
   if (resource.game === "orzmic") {
     return rawCharts

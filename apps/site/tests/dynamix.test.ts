@@ -42,7 +42,7 @@ test('Dynamix keeps multiple pack memberships independently filterable and order
   assert.deepEqual(config.facets.find(f => f.key === 'chart')?.options.map(o => o.value), ['BASIC','NORMAL','HARD','MEGA','GIGA']);
   const numeric = config.facets.find(f => f.key === 'level');
   assert.equal(numeric?.label, '谱面定数');
-  assert.equal(numeric?.range?.step, 1);
+  assert.equal(numeric?.range?.step, .1);
   assert.ok(numeric?.histogram);
   assert.ok(!config.facets.some(f => f.key === 'constant' || f.key === 'version'));
   assert.ok(config.sortOptions.some(o => o.label === '最高等级高 → 低'));

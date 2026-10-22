@@ -38,6 +38,12 @@ export const CATEGORY_LABELS: Record<ResourceTypeId, string> = {
 };
 
 export const GAME_CONFIG: Record<GameId, GameConfig> = {
+  milthm: {
+    slug: "milthm", displayName: "Milthm",
+    categoryOrder: ["jacket"], featuredCategories: ["jacket"],
+    filters: { difficulty: true, upscale: false },
+    metadataLabels: { artist: "曲师", jacketIllustrator: "曲绘画师", pack: "曲包", bpm: "BPM" },
+  },
   dynamix: {
     slug: "dynamix", displayName: "Dynamix", searchAliases: ["炫光动感"],
     categoryOrder: ["jacket", "character-portrait"], featuredCategories: ["jacket", "character-portrait"],
