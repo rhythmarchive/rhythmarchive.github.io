@@ -16,6 +16,8 @@ Catalog 的 `metadata.charts` 是详情页和筛选的共同来源。继续使�
 
 ## 2026-10-22 In Falsus 本地版本复核
 
+游戏数字版本为 **1.0.7**。本机 Steam 的 `steamapps/appmanifest_3971950.acf` 记录 build `26126718`，与本批 Browse 来源一致；同一安装的 `infalsus_Data/globalgamemanagers` 中，`PlayerSettings`（path ID 1）对象内唯一的三段版本字符串为 `1.0.7`。游戏库和本批 Updates 使用这个数字版本，Browse 快照及 `chartDataVersion` 保留精确 build 标识。可执行文件的 `ProductVersion` 是 Unity 引擎版本，不能用作游戏版本；旧资源的 `gameVersion` 记录其加入版本，也不能代表当前客户端版本。后续导入应核对这两个本地来源，并通过现有 `--source-version` 参数传入已确认的游戏版本，不采用导入器的历史 `1.0.3` 默认值。
+
 本批采用 Steam build `26126718`（Depot manifest `2074612446327118683`）的原生 `SongData.ChartInfos.Rating`，新增 Disruptor Array、空間創造理論、Megameteor、TECHNOPOLIS 2085、Yume no hajimari 五首曲目的曲绘与 20 张谱面资料。逐一核对已有 297 张公开可用谱面的完整定数，均未变化；原有公开可用性保持不变。当前客户端 320 张可用谱面的原生 Rating 均为整数，公开曲库中的 317 张可用谱面采用已核实的原生定数。谱师仅采用客户端已解析的实际署名，未解析的映射键与未知物量不补写。
 
 `chartDataVersion` 更新为 `Steam build 26126718`，已有资源的加入版本保持原值。原生 SongData 快照和完整歌曲语义清单留在私有 Workspace，供后续版本重新核对；公开字段记录本次原生定数来源。

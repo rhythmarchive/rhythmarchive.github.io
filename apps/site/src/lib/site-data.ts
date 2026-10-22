@@ -81,14 +81,12 @@ export function getSiteData(rosBaseUrl = ROS_BASE_URL): PublicSiteData {
     const history = loadRawUpdateHistory(findWorkspaceRoot());
     const versionRecords = [...history.baselines, ...history.records]
       .sort((left, right) => Date.parse(right.publishedAt) - Date.parse(left.publishedAt));
-    const infalsusVersions = [...new Set(browse.infalsus.resources.map((resource) => resource.metadata.gameVersion))];
     const games = publicData.games.map((game) => {
       const { contentVersion: _inferredVersion, ...entry } = game;
       // Prefer adopted sources, then dated content records (including initial baselines).
       // Build IDs and batch labels remain provenance, not game versions.
       const contentVersion = [
         sourceVersions[game.slug]?.sourceVersion,
-        ...(game.slug === "infalsus" && infalsusVersions.length === 1 ? infalsusVersions : []),
         ...versionRecords.filter((record) => record.game === game.slug).map((record) => record.contentVersion),
       ].map((version) => publicContentVersion(typeof version === "string" ? version : undefined))
         .find((version) => /^\d+(?:\.\d+)+(?:[a-z])?$/iu.test(version));

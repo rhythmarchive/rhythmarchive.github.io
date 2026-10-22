@@ -63,7 +63,7 @@ test("all nine game cards expose adopted game versions, including baseline-only 
     arcaea: "7.0.260c",
     phigros: "4.0.1",
     rizline: "2.7.1",
-    infalsus: "1.0.3",
+    infalsus: "1.0.7",
     "paradigm-reboot": "4.12",
     rotaeno: "2.27.0",
     orzmic: "3.17.0",
