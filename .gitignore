@@ -52,6 +52,7 @@ pnpm-debug.log*
 Thumbs.db
 .idea/
 .vscode/
+.workbuddy-ai/
 
 # Local public-site development skills; private resource-production skills live in Tooling.
 .agents/
