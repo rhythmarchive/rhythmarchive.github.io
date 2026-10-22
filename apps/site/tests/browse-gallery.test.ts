@@ -35,6 +35,20 @@ const formalBrowse = getBrowseGalleryBuild();
 const sourceBrowse = loadFormalBrowseProjections();
 const publicIds = new Set(getSiteData().resources.map(resource => resource.resourceId));
 
+test("Phigros Hydra uses its native title in Browse, detail and search while keeping separate credits", () => {
+  const id = "01a00093-3e03-7b58-bed7-2139577cd83b";
+  const data = getSiteData();
+  const resource = data.resources.find((entry) => entry.resourceId === id);
+  const item = formalBrowse.phigros.items.find((entry) => entry.resourceId === id);
+  const search = data.searchIndex.find((entry) => entry.resourceId === id);
+  assert.equal(sourceBrowse.phigros.tracks.find((track) => track.artwork?.resourceId === id)?.displayTitle, "Hydra");
+  assert.equal(resource?.displayTitle, "Hydra");
+  assert.equal(item?.displayTitle, "Hydra");
+  assert.equal(search?.title, "Hydra");
+  assert.equal(resource?.metadata.composer, "James Landino X Akira Complex");
+  assert.equal(item?.artist, "James Landino X Akira Complex");
+});
+
 test("Browse card model keeps selected artwork identity and Phigros pack labels", () => {
   const phigros = formalBrowse.phigros.items.find((item) => item.pack);
   assert.ok(phigros);

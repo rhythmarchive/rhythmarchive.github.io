@@ -19,7 +19,7 @@
     "phigros": {
       "sourceVersion": "4.0.1",
       "sourceSha256": "f59a041f5bc02d0f3eb51a67739ec0271590ac412e68cf6cc6b43621cdf08985",
-      "fileSha256": "c6a3dad5f6758cef38d7c08c218f1f8f00bff9769a02ed4ac6e23e0f4dfd38d1",
+      "fileSha256": "b83c0e16e400eff4f79f0c36cd6f20fc0004b7ca0e53f360f4bf06c5d0012cac",
       "recordCounts": {
         "sourceTrackRecords": 334,
         "currentTrackArtworkEntries": 328,
@@ -49,8 +49,8 @@
   },
   "catalog": {
     "catalogId": "019fefd6-9c49-7ca0-a760-adc76811a511",
-    "catalogSha256": "c2344700a7b41cda4586c8ee8cb2746bddd65f9214f98cdfa911af6ac76998b7",
-    "catalogGeneratedAt": "2026-10-22T12:21:42.999Z"
+    "catalogSha256": "cb0d2beaa474d98da64370ed52115e901f021c831454f1e7b443751407c00f0b",
+    "catalogGeneratedAt": "2026-10-22T13:23:52.702Z"
   },
   "files": {
     "arcaea": "arcaea.json",

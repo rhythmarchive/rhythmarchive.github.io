@@ -37,6 +37,8 @@
 
 元数据纠错尽量保留资源、变体及文件身份。新增资源需要可核对的出处和完整引用，避免为清理名称重新生成 UUID 或移动不可变对象键。现有检查覆盖 schema、稳定详情路由、Object/Rendition 引用、公共 URL、下载文件名与 Browse 投影。
 
+Phigros 曲绘取得已核实的原生 `GameInformation.SongBase` 后，正式标题采用 `songName`，曲师保存在独立的 `composer` 字段；不通过切割连字符猜测曲名。历史图片文件名仅保留为来源或搜索别名。2026-10-22 修正 Hydra：旧迁移把 `Hydra-James Landino X Akira Complex.png` 的文件名主体当成标题，后续元数据补充虽写入 `songName: Hydra`，却未同步正式标题，Browse 又优先采用了该旧标题。元数据更新器现同步原生曲名并保留旧标题别名，Public 回归测试覆盖 Browse、详情和搜索，防止同类错误再次进入展示。
+
 常见数据类贡献可以从已有资源的标题、别名、出处纠错或 Browse 分类与排序问题开始：先定位对应 `resourceId`，附上游戏版本和可核对证据，再提交 Issue 或聚焦的 PR。正式新增游戏由维护者协调契约适配、来源整理与发布；第三方可以提出建议和证据，无须执行私有提取、ROS 上传或生产凭据操作。
 
 Catalog/Browse/更新记录改动使用 `npm run update:fast`；仅检查公开 registry 使用 `npm run stats:registry:check`。时间线的批次语义见[更新记录](update-timeline.md)，上传和正式发布见[维护者发布说明](maintainers/publishing.md)。

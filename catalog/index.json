@@ -1,7 +1,7 @@
 {
   "catalogSchemaVersion": "1.0",
   "catalogId": "019fefd6-9c49-7ca0-a760-adc76811a511",
-  "generatedAt": "2026-10-22T12:21:42.999Z",
+  "generatedAt": "2026-10-22T13:23:52.702Z",
   "resources": [
     {
       "catalogSchemaVersion": "1.0",
@@ -93085,11 +93085,16 @@
       "id": "01a00093-3e03-7b58-bed7-2139577cd83b",
       "game": "phigros",
       "resourceType": "jacket",
-      "title": "Hydra-James Landino X Akira Complex",
+      "title": "Hydra",
       "aliases": [
         {
           "value": "Hydra-James Landino X Akira Complex.png",
           "kind": "filename"
+        },
+        {
+          "value": "Hydra-James Landino X Akira Complex",
+          "kind": "title",
+          "note": "历史标题；正式曲名采用游戏内 SongBase.songName"
         }
       ],
       "externalIdentities": [],
@@ -93214,7 +93219,7 @@
       "lifecycle": {
         "status": "published",
         "createdAt": "2026-08-14T13:57:23.100Z",
-        "updatedAt": "2026-10-19T10:53:06.692Z",
+        "updatedAt": "2026-10-22T13:23:52.702Z",
         "publishedAt": "2026-08-14T13:57:23.100Z"
       }
     },
