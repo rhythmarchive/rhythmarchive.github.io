@@ -9,7 +9,7 @@ import { galleryKey } from "./catalog-projection";
 import { compareNaturalText, normalizeSearchText } from "./search";
 import { resourceSearchTerms } from "./search-terms";
 import type { PublicResource, PublicSearchEntry, PublicSiteData } from "./types";
-import { buildRangeHistogram, numericIntervals, type RangeHistogram } from "./range-histogram";
+import { buildRangeHistogram, chartRangeHistogram, numericIntervals, type RangeHistogram } from "./range-histogram";
 import { chartDifficultyHistogram } from "./chart-filters";
 
 const ROTAENO_CHART_ORDER = ["I", "II", "III", "IV", "IV_Alpha"] as const;
@@ -278,6 +278,10 @@ function facetRange(resources: PublicResource[], key: string, preferredStep?: nu
   const step = preferredStep ?? (values.every((value) => Number.isInteger(value)) ? 1 : 0.1);
   const rawMin = Math.min(...values);
   const rawMax = Math.max(...values);
+  if (key === "constant" || key === "level") {
+    const histogram = chartRangeHistogram([], { min: rawMin, max: rawMax }, false, key === "level");
+    return { min: histogram.min!, max: histogram.max!, step: .1 };
+  }
   const min = Number((Math.floor(rawMin / step) * step).toFixed(4));
   const max = Number((Math.ceil(rawMax / step) * step).toFixed(4));
   if (min >= max) return undefined;

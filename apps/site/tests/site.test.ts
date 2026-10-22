@@ -17,7 +17,7 @@ import { rankRelatedResources } from "../src/lib/related.js";
 import { buildSearchQuickLinks } from "../src/lib/search-quick-links.js";
 import { getCategoryBrowseConfig } from "../src/lib/category-browse.js";
 import { chartDifficultyHistogram, matchesChartFilters } from "../src/lib/chart-filters.js";
-import { adaptiveRangeHistogram, buildRangeHistogram } from "../src/lib/range-histogram.js";
+import { adaptiveRangeHistogram, buildRangeHistogram, chartRangeHistogram } from "../src/lib/range-histogram.js";
 import { GISCUS_CONFIG, GITHUB_DISCUSSIONS_URL, GITHUB_RELEASES_URL, GITHUB_REPOSITORY_URL } from "../src/lib/site-config.js";
 import { compareNaturalText, rankSearchEntries } from "../src/lib/search.js";
 import { createUrlHelpers, sitePath } from "../src/lib/url.js";
@@ -68,7 +68,8 @@ test("jacket galleries keep constant histograms and only verified integer-only g
       const integer = config.facets.find((f) => f.key === "level");
       assert.ok(integer?.range && integer.histogram);
       assert.equal(integer.label, "谱面定数");
-      assert.equal(integer.range.step, 1);
+      assert.equal(integer.range.step, .1, "range endpoints can select x.0–x.9 while source values stay integral");
+      assert.equal(integer.histogram.size, 1, "each integer level gets its own bar");
     }
     else assert.ok(constant?.range && constant.histogram, `${game}: missing constant histogram`);
   }
@@ -78,12 +79,26 @@ test("jacket galleries keep constant histograms and only verified integer-only g
   assert.equal(matchesChartFilters({ charts: [{ difficulty: "HARD", constant: "12.5", available: false }] }, { constantRange: { min: 0, max: 15 } }), false);
 });
 
-test("the last visible histogram bucket includes the maximum and counts each result once", () => {
+test("continuous numeric histograms include their maximum and count each result once", () => {
   const integer = buildRangeHistogram([[[14, 14], [15, 15]], [[15, 15]], [[13, 13]], [[16, 16]]], 1, 15)!;
   assert.equal(integer.counts.at(-1), 2, "14–15 matches two resources, including the exact maximum");
   assert.equal(integer.start + integer.size * integer.counts.length, 15, "no zero-width bucket beyond the axis");
   const decimal = buildRangeHistogram([[[12, 12]], [[11.8, 11.8]], [[8.5, 8.5]]], 8, 12)!;
   assert.equal(decimal.counts.at(-1), 2, "11.5–12.0 includes the exact maximum constant");
+});
+
+test("chart bins separate integer boundaries and never span more than one level", () => {
+  for (const integerOnly of [false, true]) {
+    const histogram = chartRangeHistogram([[[14, 14], [15, 15]], [[15, 15]], [[13, 13]], [[16, 16]]], { min: 1, max: 15 }, false, integerOnly);
+    assert.equal(histogram.size, 1);
+    assert.equal(histogram.max, 15.9);
+    assert.equal(histogram.counts[13], 1, "14.0–14.9 excludes 15.0");
+    assert.equal(histogram.counts[14], 2, "15.0–15.9 gets its own visible bar and excludes 16.0");
+  }
+  const decimal = chartRangeHistogram([[[11.9, 11.9]], [[12, 12]]], { min: 1, max: 12 }, true);
+  assert.deepEqual(decimal.counts, [1, 1], "a narrow range also separates the integer edge");
+  const wide = chartRangeHistogram([[[1, 1]], [[30, 30]]], { min: 1, max: 30 }, true);
+  assert.equal(wide.size, 1, "a wide range never widens chart bins beyond x.0–x.9");
 });
 
 test("generic difficulty histograms match selected chart rows for decimal and integer games", () => {
@@ -187,7 +202,7 @@ test("jacket details expose the unified chart field and user-facing identity met
   assert.deepEqual(orzmicJacket?.charts?.map((chart) => chart.level), ["1", "4", "7"]);
   const orzmicFacets = getCategoryBrowseConfig("orzmic", "jacket", siteData.galleries["orzmic/jacket"] ?? []);
   const constants = siteData.galleries["orzmic/jacket"]!.flatMap(resource => resource.charts?.map(chart => Number(chart.constant)) ?? []).filter(Number.isFinite);
-  assert.deepEqual(orzmicFacets.facets.find((facet) => facet.key === "constant")?.range, { min: Math.min(...constants), max: Math.max(...constants), step: 0.1 });
+  assert.deepEqual(orzmicFacets.facets.find((facet) => facet.key === "constant")?.range, { min: Math.floor(Math.min(...constants)), max: Math.floor(Math.max(...constants)) + .9, step: 0.1 });
   assert.ok(orzmicFacets.sortOptions.some((option) => option.value === "level-desc"));
   assert.deepEqual(orzmicFacets.facets.find((facet) => facet.key === "chart")?.options.map((option) => option.value), ["EASY", "NORMAL", "HARD", "SPECIAL"]);
   assert.ok(orzmicFacets.facets.some((facet) => facet.key === "bpm" && facet.range));
@@ -207,7 +222,7 @@ test("jacket details expose the unified chart field and user-facing identity met
   assert.equal(rotaenoFacets.find((facet) => facet.key === "chart")?.options.find((option) => option.value === "IV_Alpha")?.label, "Ⅳ-α");
   const rotaenoConstantFacet = rotaenoFacets.find((facet) => facet.key === "constant");
   assert.ok(rotaenoConstantFacet?.options.some((option) => option.value === "12.3"));
-  assert.deepEqual(rotaenoConstantFacet?.range, { min: 1, max: 14.5, step: 0.1 });
+  assert.deepEqual(rotaenoConstantFacet?.range, { min: 1, max: 14.9, step: 0.1 });
   const rotaenoWithoutCharts = siteData.resources.find((resource) => resource.game === "rotaeno" && resource.resourceType === "jacket" && resource.chartDataStatus === "unavailable");
   assert.ok(rotaenoWithoutCharts);
   const rizlineJacket = siteData.resources.find((resource) => resource.game === "rizline" && resource.resourceType === "jacket");

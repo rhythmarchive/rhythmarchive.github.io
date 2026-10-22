@@ -146,8 +146,8 @@ test("a single constant has a selectable bin and unknown constants keep the fall
   const future = browseDifficultyHistogram(data, range, ["FTR"], true)!;
   assert.equal(past.counts.reduce((sum, count) => sum + count, 0), 1);
   assert.ok(future.counts.every((count) => count === 0));
-  assert.deepEqual([past.min, past.max, past.counts.length], [3.5, 3.6, 1]);
-  assert.deepEqual([future.min, future.max], [1, 12]);
+  assert.deepEqual([past.min, past.max, past.counts.length], [3.4, 3.5, 1]);
+  assert.deepEqual([future.min, future.max], [1, 12.9]);
 });
 
 test("Arcaea covers every regular chart including low-level decimals and documented table omissions", () => {

@@ -12,9 +12,9 @@ export type RangeHistogram = {
 const NICE_SIZES = [0.1, 0.2, 0.5, 1, 2, 5, 10, 20, 25, 50, 100];
 const MAX_BUCKETS = 20;
 
-export function buildRangeHistogram(items: Array<Array<[number, number]>>, min: number, max: number, allowSparse = false, minimumSize = .1): RangeHistogram | undefined {
+export function buildRangeHistogram(items: Array<Array<[number, number]>>, min: number, max: number, allowSparse = false, minimumSize = .1, maximumSize = 100): RangeHistogram | undefined {
   if (!Number.isFinite(min) || !Number.isFinite(max) || max <= min) return undefined;
-  const size = NICE_SIZES.find((candidate) => candidate >= minimumSize && Math.ceil(max / candidate - 1e-8) - Math.floor(min / candidate + 1e-8) <= MAX_BUCKETS) ?? NICE_SIZES.at(-1)!;
+  const size = NICE_SIZES.find((candidate) => candidate >= minimumSize && candidate <= maximumSize && Math.ceil(max / candidate - 1e-8) - Math.floor(min / candidate + 1e-8) <= MAX_BUCKETS) ?? maximumSize;
   const start = Number((Math.floor(min / size + 1e-8) * size).toFixed(4));
   const length = Math.max(1, Math.ceil((max - start) / size - 1e-8));
   const counts = Array.from({ length }, () => 0);
@@ -30,6 +30,20 @@ export function buildRangeHistogram(items: Array<Array<[number, number]>>, min: 
   }
   if (!allowSparse && counts.filter((count) => count > 0).length < 2) return undefined;
   return { start, size, counts };
+}
+
+// Chart bins are inclusive decimal ranges, at most x.0–x.9. Extend the axis
+// to the last bin's .1-step endpoint instead of merging a maximum on its edge.
+// Two decimal steps keep even a single-value bin visible on the slider axis.
+export function chartRangeHistogram(items: Array<Array<[number, number]>>, fallback: { min: number; max: number }, adaptive = false, integerOnly = false): RangeHistogram {
+  const values = adaptive ? items.flat(2).filter(Number.isFinite) : [];
+  const min = values.length ? Math.min(...values) : fallback.min;
+  const max = values.length ? Math.max(...values) : fallback.max;
+  const size = buildRangeHistogram([], min, max + .1, true, integerOnly ? 1 : .2, 1)!.size;
+  const start = Number((Math.floor(min / size + 1e-8) * size).toFixed(4));
+  const end = Number(((Math.floor(max / size + 1e-8) + 1) * size).toFixed(4));
+  const histogram = buildRangeHistogram(items.map((intervals) => intervals.filter(([low, high]) => low <= max && high >= min)), start, end, true, size, size)!;
+  return { ...histogram, min: start, max: Number((end - .1).toFixed(4)) };
 }
 
 // Ignore the range's own selection: changing it must not move the drag axis.

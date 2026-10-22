@@ -8,7 +8,7 @@ import type {
 import type { GameId, ResourceTypeId } from "./game-config";
 import type { CategoryBrowseProjectionType } from "../../../../packages/domain/src/browse.js";
 import { compareNaturalText, normalizeSearchText } from "./search";
-import { adaptiveRangeHistogram, buildRangeHistogram, type RangeHistogram } from "./range-histogram";
+import { chartRangeHistogram, type RangeHistogram } from "./range-histogram";
 import type { PublicChart, PublicDownload, PublicPreview, PublicResource, PublicSiteData } from "./types";
 
 export const BROWSE_GALLERY_SCHEMA_VERSION = 1 as const;
@@ -657,7 +657,7 @@ export function browseDifficultyHistogram(data: Pick<BrowseGalleryData, "items">
     const value = browseNumericDifficulty(chart);
     return value === undefined ? [] : [[value, value] as [number, number]];
   }));
-  return adaptive ? adaptiveRangeHistogram(tracks, range) : buildRangeHistogram(tracks, range.min, range.max, difficulties.length > 0);
+  return chartRangeHistogram(tracks, range, adaptive);
 }
 
 export function getBrowseFacetOptions(data: BrowseGalleryData): BrowseFacetOptions {
@@ -665,8 +665,9 @@ export function getBrowseFacetOptions(data: BrowseGalleryData): BrowseFacetOptio
     const value = browseNumericDifficulty(chart);
     return value === undefined ? [] : [value];
   }));
-  const difficultyRange = values.length > 0 && Math.min(...values) < Math.max(...values)
-    ? { min: Math.min(...values), max: Math.max(...values), step: 0.1 } : undefined;
+  const histogram = values.length > 0 && Math.min(...values) < Math.max(...values)
+    ? chartRangeHistogram([], { min: Math.min(...values), max: Math.max(...values) }) : undefined;
+  const difficultyRange = histogram ? { min: histogram.min!, max: histogram.max!, step: .1 } : undefined;
   if (data.game === "arcaea") {
     const packs = unique(data.items.flatMap((item) => item.recordKind === "song" && item.pack ? [item.pack] : []), compareText);
     const charts = ARCAEA_DIFFICULTIES.filter((difficulty) => data.items.some((item) => item.recordKind === "song" && item.charts.some((chart) => isArcaeaChart(chart) && chart.difficultyClass === difficulty)));
