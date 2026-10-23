@@ -54,7 +54,7 @@ export type PublicSearchCard = {
   artist?: string;
   image: PublicSearchImage | null;
   fallback: PublicSearchImage | null;
-  upscaled: boolean;
+  upscaled?: boolean;
   variantLabels?: string[];
 };
 

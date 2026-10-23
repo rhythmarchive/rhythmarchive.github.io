@@ -85,7 +85,7 @@ function toSearchCard(resource: ReturnType<typeof getSiteData>["resources"][numb
     ...(resource.artist ? { artist: resource.artist } : {}),
     image,
     fallback: fallbackImage,
-    upscaled: Boolean(resource.upscaled),
+    ...(resource.upscaled ? { upscaled: true } : {}),
     ...(variantLabels.length > 0 ? { variantLabels } : {}),
   };
 }
