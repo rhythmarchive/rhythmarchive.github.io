@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
   "game": "rizline",
-  "generatedAt": "2026-10-11T06:18:21.213Z",
+  "generatedAt": "2026-10-23T10:47:50.402Z",
   "source": {
-    "version": "v144_2_7_1_346654b724P",
-    "sha256": "f88ef39a889739d33ad04ebeb49735f1ac2217eff67e3054064cc0a91fc0d097"
+    "version": "v145_2_7_1_3e1bee4b02P",
+    "sha256": "a40af8d2c1b2bdc5d634e3ea6ec95a988e9217c25d22914be750c223ebbc4540"
   },
   "songs": [
     {
@@ -3977,10 +3977,58 @@
         "EX - T.S.",
         "T.S. #18"
       ]
+    },
+    {
+      "songId": "DiVEFUTURE.SaladSaviorJMY.0",
+      "displayTitle": "DiVE↓FUTURE",
+      "musicArtist": "Salad Savior & JMY",
+      "illustrator": "23333喵 & X-Chalk & SiLENTORANGE",
+      "disc": "EX - Single",
+      "trackSeries": [],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:DiVEFUTURE.SaladSaviorJMY.0__hires",
+          "resourceId": "60af57bf-009f-7349-bd5c-ea225c4f2782",
+          "variantId": "4b8b8a6c-46c3-7579-9cd3-e39935578535",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "DiVE↓FUTURE",
+        "DiVEFUTURE.SaladSaviorJMY.0",
+        "Salad Savior & JMY",
+        "23333喵 & X-Chalk & SiLENTORANGE",
+        "EX - Single"
+      ]
+    },
+    {
+      "songId": "MindDisorder.Alkome.0",
+      "displayTitle": "Mind Disorder",
+      "musicArtist": "Alkome",
+      "illustrator": "zukutya & corok-Bb",
+      "disc": "EX - Single",
+      "trackSeries": [],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:MindDisorder.Alkome.0__hires",
+          "resourceId": "f9ee4569-2b4a-7855-a91b-79ae9b8ee12f",
+          "variantId": "9c4d5176-0c97-7dfc-b4b3-894c21e87a68",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "Mind Disorder",
+        "MindDisorder.Alkome.0",
+        "Alkome",
+        "zukutya & corok-Bb",
+        "EX - Single"
+      ]
     }
   ],
   "recordCounts": {
-    "songs": 148,
-    "artworks": 151
+    "songs": 150,
+    "artworks": 153
   }
 }

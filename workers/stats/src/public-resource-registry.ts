@@ -1,6 +1,6 @@
 /* GENERATED FILE. Run npm run stats:registry after a public Catalog change. */
-export const PUBLIC_RESOURCE_CATALOG_GENERATED_AT = "2026-10-22T12:21:42.999Z" as const;
-export const PUBLIC_RESOURCE_REGISTRY_SHA256 = "7c962772fa4be3fe16bc2d7d30147a5b02ec1c5f92eb0f5449eab12744639d75" as const;
+export const PUBLIC_RESOURCE_CATALOG_GENERATED_AT = "2026-10-23T10:47:50.402Z" as const;
+export const PUBLIC_RESOURCE_REGISTRY_SHA256 = "f72046ed69c337c6476d0cb5f4ed81b7548003ce8d229345f292d6c44730e6dd" as const;
 export const PUBLIC_RESOURCE_ID_LIST = [
   "0008cc8e-0f13-798c-9e3a-93168d5f8d6e",
   "00495e71-9b2e-7a25-9147-bdf661b5b7c4",
@@ -3309,6 +3309,7 @@ export const PUBLIC_RESOURCE_ID_LIST = [
   "608426f8-c063-7888-b6b5-260cb5b8f122",
   "609657c7-a350-705d-b405-70f3b884c779",
   "60aa8e94-2fac-7dcf-b222-b4ab9ba14be8",
+  "60af57bf-009f-7349-bd5c-ea225c4f2782",
   "60de6871-a9c0-7f48-9065-531d5f01bae7",
   "60fa9b98-e364-765e-bbcd-0fd861e4bed9",
   "61232460-2bdd-7344-905b-75dc30a86b4b",
@@ -4931,6 +4932,7 @@ export const PUBLIC_RESOURCE_ID_LIST = [
   "f9ae3e70-ee10-7b23-acbc-3dde61dfe928",
   "f9d67829-89b1-7725-87b6-75d64c1b52e7",
   "f9e813d7-a134-7a0b-94ec-e7f99c75b2eb",
+  "f9ee4569-2b4a-7855-a91b-79ae9b8ee12f",
   "fa133538-9c78-7deb-9782-8da8b844ab37",
   "fa1fcb52-7c2c-754f-962c-1d15fe7419a1",
   "fa67d175-0eb1-75de-827c-ce6d6c5235e6",

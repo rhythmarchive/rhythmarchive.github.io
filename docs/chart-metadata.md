@@ -14,6 +14,14 @@ Catalog 的 `metadata.charts` 是详情页和筛选的共同来源。继续使�
 - 内容检查将 `chartDataVersion` 与既有 Browse manifest 的 `sourceVersion` 对齐；没有正式 Browse 的游戏采用 Updates 的最新版本（含 baseline）。升级版本后，旧标记会使 `content:check` / `check:fast` 失败。完成上述复核或移除未确认定数后才能推进标记，不能只改版本字符串消除失败。
 - 定数变更写入 Catalog 后，详情、范围边界和直方图从同一快照生成。按现有流程刷新 Browse 的 Catalog 哈希绑定和公共投影；无需新增资源对象、ROS 上传或运行时请求。
 
+## 2026-10-23 Rizline CDN 版本复核
+
+官方配置确认客户端仍为 **2.7.1**，资源版本为 **v145_2_7_1_3e1bee4b02P**。本批从官方 CDN 的 Addressables 目录定位 `Default` AssetList，逐一核对全部 148 首旧曲的曲名、曲师、画师，以及 444 张旧谱面的完整 `difficulty` 和 `designer`；已有值均未变化。定数与谱师的逐字段来源及 `chartDataVersion` 推进至 v145，原有加入版本、显示等级和社区物量来源保留。
+
+新增 Mind Disorder、DiVE↓FUTURE 两首曲目及六张谱面，歌曲署名、谱师和精确定数均取自该版原生数据。六张谱面的定数依次为 4.0／8.0／13.9 和 5.5／9.0／14.1。击打数从对应 CDN 谱面 JSON 的 `lines[].notes` 计算：Tap、Catch 各计一次，Hold 首尾共计两次；最大连击采用现有 Rizkit 计数规则 `4 × 击打数 − 24`。使用 419kB 的 EZ／HD／IN 原生谱面交叉核对，得到 317／612／914 次击打和 1244／2424／3632 最大连击，均与已有资料一致；全部 444 张旧谱面的已有击打数与最大连击也符合该关系。
+
+当前公开曲库共 150 首、450 张常规谱面，每张都有显示等级、定数、谱师、击打数和最大连击。新曲物量来源标为客户端谱面计算，不采用尚未填写的 Wiki 占位值。AssetList 来源 bundle 的 SHA-256 为 `9378768f37cfc1f8edfa50f8c7edbcaaac9555fa053174e546433029be67404c`，Addressables 目录 SHA-256 为 `a40af8d2c1b2bdc5d634e3ea6ec95a988e9217c25d22914be750c223ebbc4540`；可复核原生清单、六张新谱面与高清曲绘保留在私有 Workspace 的本版 provenance，共享 bundle 缓存用于后续更新复用。
+
 ## 2026-10-22 In Falsus 本地版本复核
 
 游戏数字版本为 **1.0.7**。本机 Steam 的 `steamapps/appmanifest_3971950.acf` 记录 build `26126718`，与本批 Browse 来源一致；同一安装的 `infalsus_Data/globalgamemanagers` 中，`PlayerSettings`（path ID 1）对象内唯一的三段版本字符串为 `1.0.7`。游戏库和本批 Updates 使用这个数字版本，Browse 快照及 `chartDataVersion` 保留精确 build 标识。可执行文件的 `ProductVersion` 是 Unity 引擎版本，不能用作游戏版本；旧资源的 `gameVersion` 记录其加入版本，也不能代表当前客户端版本。后续导入应核对这两个本地来源，并通过现有 `--source-version` 参数传入已确认的游戏版本，不采用导入器的历史 `1.0.3` 默认值。
