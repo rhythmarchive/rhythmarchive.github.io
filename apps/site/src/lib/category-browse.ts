@@ -196,7 +196,7 @@ function jacketSortOptions(resources: PublicResource[]): CategoryBrowseSortOptio
     options.push({ value: "updated-desc", label: "更新日期：新 → 旧" }, { value: "updated-asc", label: "更新日期：旧 → 新" });
   }
   if (game === "dynamix" && resources.some(r => (r.charts ?? []).length > 0)) options.push({ value: "level-desc", label: "最高等级高 → 低" }, { value: "level-asc", label: "最高等级低 → 高" });
-  if ((game === "paradigm-reboot" || game === "orzmic" || game === "milthm") && resources.some((resource) => numericFacetValue(resource, "constant") !== undefined)) {
+  if ((game === "paradigm-reboot" || game === "orzmic" || game === "milthm" || game === "berrymelody") && resources.some((resource) => numericFacetValue(resource, "constant") !== undefined)) {
     options.push({ value: "level-desc", label: "最高定数高 → 低" }, { value: "level-asc", label: "最高定数低 → 高" });
   }
   if (resources.some((resource) => numericFacetValue(resource, "bpm") !== undefined)) {
@@ -233,6 +233,7 @@ function compareFacetValues(left: string, right: string, key: string, game?: Gam
   if (game === "dynamix" && key === "chart") return compareOrderedValues(left, right, ["BASIC", "NORMAL", "HARD", "MEGA", "GIGA", "TERA"]);
   if (game === "orzmic" && key === "chart") return compareOrderedValues(left, right, ["EASY", "NORMAL", "HARD", "SPECIAL"]);
   if (game === "milthm" && key === "chart") return compareOrderedValues(left, right, ["Drizzle", "Sprinkle", "Cloudburst", "Clear", "Special", "Drizzle_Story", "Sprinkle_Story", "Cloudburst_Story"]);
+  if (game === "berrymelody" && key === "chart") return compareOrderedValues(left, right, ["REALITY", "ILLUSION", "TWIST", "RUIN", "VOID", "DREAMY", "FOOL"]);
   if (game === "dynamix" && key === "level") return compareNumericFacetValues(left, right);
   if (game === "rotaeno" && key === "chart") return compareOrderedValues(left, right, ROTAENO_CHART_ORDER);
   if (game === "paradigm-reboot" && key === "chart") return compareOrderedValues(left, right, PARADIGM_CHART_ORDER);

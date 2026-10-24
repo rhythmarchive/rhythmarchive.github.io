@@ -9,7 +9,7 @@ interface Props {
 }
 
 const { game, eager = false } = Astro.props;
-const labels: Record<GameId, string> = { arcaea: "A", phigros: "P", rizline: "R", infalsus: "F", rotaeno: "R", "paradigm-reboot": "范", orzmic: "O", dynamix: "D", milthm: "M" };
+const labels: Record<GameId, string> = { arcaea: "A", phigros: "P", rizline: "R", infalsus: "F", rotaeno: "R", "paradigm-reboot": "范", orzmic: "O", dynamix: "D", milthm: "M", berrymelody: "B" };
 const label = labels[game] ?? "R";
 const name = game;
 

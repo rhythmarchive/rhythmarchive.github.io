@@ -31,8 +31,12 @@ for (const category of hiddenArcaeaCategories) {
   await rm(path.join(galleryDir, "arcaea", `${category}.json`), { force: true });
 }
 await writeJson(path.join(publicDataDir, "game-index.json"), data.games);
-await writeJson(path.join(publicDataDir, "search-index.json"), data.searchIndex);
-await writeJson(path.join(publicDataDir, "search-cards.json"), data.resources.map(toSearchCard));
+// The v1 search bundle predates Berry Melody and cannot resolve its GameConfig.
+await writeJson(path.join(publicDataDir, "search-index.json"), data.searchIndex.filter(entry => entry.game !== "berrymelody"));
+await writeJson(path.join(publicDataDir, "search-index-v2.json"), data.searchIndex);
+// Retain the unversioned contract for already-open predeployment search clients.
+await writeJson(path.join(publicDataDir, "search-cards.json"), data.resources.map(resource => ({ ...toSearchCard(resource), route: resource.route, displayTitle: resource.displayTitle })));
+await writeJson(path.join(publicDataDir, "search-cards-v2.json"), data.resources.map(toSearchCard));
 const rankingShards = new Map<string, ReturnType<typeof toRankingCard>[]>();
 for (const resource of data.resources) {
   const key = rankingShardKey(resource.resourceId);
@@ -77,10 +81,8 @@ function toSearchCard(resource: ReturnType<typeof getSiteData>["resources"][numb
     : resource.variants.filter((variant) => variant.label !== "默认").map((variant) => variant.label);
   return {
     resourceId: resource.resourceId,
-    route: resource.route,
     game: resource.game,
     resourceType: resource.resourceType,
-    displayTitle: resource.displayTitle,
     categoryLabel: resource.categoryLabel,
     ...(resource.artist ? { artist: resource.artist } : {}),
     image,

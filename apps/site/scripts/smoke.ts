@@ -33,6 +33,8 @@ const required = [
   "sitemap.xml",
   "data/search-index.json",
   "data/search-cards.json",
+  "data/search-index-v2.json",
+  "data/search-cards-v2.json",
   "data/ranking/00.json",
 ];
 const missing = required.filter((file) => !files.includes(file));
@@ -89,10 +91,18 @@ for (const file of htmlFiles) {
 if (ordinaryImageErrors.length > 0) throw new Error("An ordinary <img> points outside the public preview set:\n" + ordinaryImageErrors.slice(0, 12).join("\n"));
 
 const homeHtml = fs.readFileSync(path.join(dist, "index.html"), "utf8");
-if (/<(?:script|link)\b[^>]+(?:src|href)="[^"]*search-index\.json/iu.test(homeHtml)) throw new Error("Home HTML eagerly references search-index.json.");
+if (/<(?:script|link)\b[^>]+(?:src|href)="[^"]*search-index(?:-v2)?\.json/iu.test(homeHtml)) throw new Error("Home HTML eagerly references search-index.json.");
 
-const searchIndex = JSON.parse(fs.readFileSync(path.join(dist, "data", "search-index.json"), "utf8")) as unknown;
+const searchIndex = JSON.parse(fs.readFileSync(path.join(dist, "data", "search-index-v2.json"), "utf8")) as unknown;
 if (!Array.isArray(searchIndex) || searchIndex.length !== projection.searchIndex.length) throw new Error("Search index is missing or has the wrong entry count.");
+const legacyIndex = JSON.parse(fs.readFileSync(path.join(dist, "data/search-index.json"), "utf8")) as Array<{ game: string }>;
+const legacyCards = JSON.parse(fs.readFileSync(path.join(dist, "data/search-cards.json"), "utf8")) as Array<{ route?: string; displayTitle?: string }>;
+if (legacyIndex.some(entry => entry.game === "berrymelody") || legacyIndex.length !== projection.searchIndex.filter(entry => entry.game !== "berrymelody").length) throw new Error("Legacy search index is incompatible with pre-Berry clients.");
+if (legacyCards.length !== projection.resources.length || legacyCards.some(card => !card.route || !card.displayTitle)) throw new Error("Legacy search cards lost required fields.");
+const compactCards = JSON.parse(fs.readFileSync(path.join(dist, "data/search-cards-v2.json"), "utf8")) as Array<{ resourceId: string }>;
+const indexedIds = new Set((searchIndex as Array<{ resourceId: string }>).map(entry => entry.resourceId));
+if (compactCards.length !== projection.resources.length || compactCards.some(card => !indexedIds.has(card.resourceId))) throw new Error("Compact search cards cannot be resolved through the current index.");
+
 const rankingDir = path.join(dist, "data", "ranking");
 const rankingCards = fs.readdirSync(rankingDir).flatMap((file) => JSON.parse(fs.readFileSync(path.join(rankingDir, file), "utf8")) as unknown[]);
 if (rankingCards.length !== projection.resources.length) throw new Error("Ranking card shards are missing or have the wrong entry count.");

@@ -67,7 +67,7 @@ async function initializeSearch(root: HTMLElement): Promise<void> {
 
   const loadSearchIndex = async (): Promise<PublicSearchEntry[]> => {
     if (!entriesPromise) {
-      entriesPromise = loadStaticData<PublicSearchEntry[]>(resolveSitePath("data/search-index.json"));
+      entriesPromise = loadStaticData<PublicSearchEntry[]>(resolveSitePath("data/search-index-v2.json"));
     }
     try {
       return await entriesPromise;
@@ -79,7 +79,7 @@ async function initializeSearch(root: HTMLElement): Promise<void> {
 
   const loadSearchCards = async (): Promise<Map<string, PublicSearchCard>> => {
     if (!searchCardsPromise) {
-      searchCardsPromise = loadStaticData<PublicSearchCard[]>(resolveSitePath("data/search-cards.json")).then((cards) => new Map(cards.map((card) => [card.resourceId, card])));
+      searchCardsPromise = loadStaticData<PublicSearchCard[]>(resolveSitePath("data/search-cards-v2.json")).then((cards) => new Map(cards.map((card) => [card.resourceId, card])));
     }
     try {
       return await searchCardsPromise;
@@ -133,7 +133,10 @@ async function initializeSearch(root: HTMLElement): Promise<void> {
         if (empty) empty.hidden = false;
         return;
       }
-      matches = ranked.map((entry) => cardMap.get(entry.resourceId)).filter((card): card is PublicSearchCard => Boolean(card));
+      matches = ranked.flatMap((entry) => {
+        const card = cardMap.get(entry.resourceId);
+        return card ? [{ ...card, displayTitle: card.displayTitle ?? entry.title }] : [];
+      });
       // One frame per result set (not per batch), so "load more" never reshapes rows.
       results.dataset.cardFrame = cardFrameFor(matches.map((card) => card.image ?? card.fallback));
       render();
@@ -171,8 +174,8 @@ async function initializeSearch(root: HTMLElement): Promise<void> {
 
 function resultCardView(card: PublicSearchCard): CardViewModel {
   return {
-    resourceId: card.resourceId, route: card.route, game: card.game, resourceType: card.resourceType,
-    displayTitle: card.displayTitle, ...(card.artist ? { artist: card.artist } : {}),
+    resourceId: card.resourceId, route: card.route ?? `/r/${encodeURIComponent(card.resourceId)}/`, game: card.game, resourceType: card.resourceType,
+    displayTitle: card.displayTitle ?? "", ...(card.artist ? { artist: card.artist } : {}),
     subtitle: `${GAME_CONFIG[card.game].displayName} · ${card.categoryLabel}`,
     preview: { primary: card.image, fallback: card.fallback, srcset: "" },
     hasUpscaled: Boolean(card.upscaled), labels: card.variantLabels ?? [],

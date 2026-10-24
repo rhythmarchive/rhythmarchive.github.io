@@ -1,5 +1,7 @@
 # 谱面资料与版本复核
 
+Berry Melody 首次采用 3.3.7 分包内原生 `SongPackage/*/Info`：245 首、766 张谱面。`Level` 保留显示等级，常规难度及 VOID 的 `DLevel` 作为定数，署名来自 `Artist` / `Painter` / `Charter`。DREAMY / FOOL 的 0、0.001 不参与定数筛选；特殊显示等级照原文保留。原生 `/enter`、`/slash` 与 `/"` 转义在提取时解码。曲绘通过 Resources / Addressables 的精确 Header 引用关联，不采用谱面文件中的占位曲名。今后更新须重新核对全表。
+
 Catalog 的 `metadata.charts` 是详情页和筛选的共同来源。继续使用现有详情区块、Gallery/Browse 筛选和 RangeHistogram，不建立第二套组件或浏览器端第三方查询。卡片投影只携带筛选需要的字段；物量、署名、来源留在详情页。
 
 ## 字段与更新规则

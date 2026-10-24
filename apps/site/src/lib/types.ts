@@ -46,10 +46,10 @@ export type PublicSearchImage = {
 
 export type PublicSearchCard = {
   resourceId: string;
-  route: string;
+  route?: string;
   game: GameId;
   resourceType: ResourceTypeId;
-  displayTitle: string;
+  displayTitle?: string;
   categoryLabel: string;
   artist?: string;
   image: PublicSearchImage | null;

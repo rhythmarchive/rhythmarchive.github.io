@@ -1159,3 +1159,28 @@ test('Milthm reuses game routes, previews, search and native chart metadata', ()
   assert.ok(data.searchIndex.some(entry => entry.game === 'milthm' && entry.keywords.includes('Hoshifuru Yoruni')));
   assert.ok(fs.existsSync('apps/site/public/game-icons/milthm.webp'));
 });
+
+
+test('Berry Melody preserves native Header art, chart grades and precise constants', () => {
+  const data = getSiteData();
+  const jackets = data.galleries['berrymelody/jacket']!;
+  assert.equal(jackets.length, 245);
+  assert.equal(jackets.reduce((n, r) => n + (r.charts?.length ?? 0), 0), 766);
+  assert.ok(jackets.every(r => r.preview?.small && r.original && !r.upscaled));
+  const beta = jackets.find(r => r.displayTitle === 'βehexeη-δ')!;
+  assert.equal(beta.artist, 'GRAPEWiLD');
+  assert.equal(beta.metadata.jacketIllustrator, 'Co2');
+  assert.ok(jackets.some(r => r.charts?.some(c => c.level?.endsWith('+') && Number(c.constant) % 1 > 0)));
+  const special = jackets.flatMap(r => r.charts ?? []).filter(c => ['DREAMY', 'FOOL'].includes(c.difficulty));
+  assert.equal(special.length, 11);
+  assert.ok(special.every(c => c.constant === undefined));
+  assert.ok(special.some(c => c.level === '-45'));
+  assert.ok(jackets.flatMap(r => r.charts ?? []).some(c => c.difficulty === 'VOID' && c.constant === '13.2'));
+  const config = getCategoryBrowseConfig('berrymelody', 'jacket', jackets);
+  assert.ok(config.facets.find(f => f.key === 'constant')?.histogram);
+  assert.equal(config.facets.find(f => f.key === 'level'), undefined);
+  assert.equal(config.facets.find(f => f.key === 'pack')?.options.length, 33);
+  assert.ok(buildSearchQuickLinks(data).some(l => l.href === '/berrymelody/jacket/' && l.count === 245));
+  assert.ok(data.searchIndex.some(e => e.game === 'berrymelody' && e.keywords.includes('bexehendelta')));
+  assert.ok(fs.existsSync('apps/site/public/game-icons/berrymelody.webp'));
+});

@@ -57,7 +57,7 @@ test("site versions follow adopted sources and quick-link counts follow destinat
   assert.equal(link?.count, data.games.find((game) => game.slug === "arcaea")?.categories.find((category) => category.slug === "jacket")?.count);
 });
 
-test("all nine game cards expose adopted game versions, including baseline-only games", () => {
+test("all game cards expose adopted game versions, including baseline-only games", () => {
   const data = getSiteData();
   assert.deepEqual(Object.fromEntries(data.games.map((game) => [game.slug, game.contentVersion])), {
     arcaea: "7.0.260c",
@@ -69,5 +69,6 @@ test("all nine game cards expose adopted game versions, including baseline-only 
     orzmic: "3.17.0",
     dynamix: "3.20.01",
     milthm: "6.0.5",
+    berrymelody: "3.3.7",
   });
 });

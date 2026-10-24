@@ -45,7 +45,7 @@ const measured = [
   budget("data/browse/arcaea/jacket.json", 1_800_000, 280_000),
   budget("data/galleries/arcaea/jacket.json", 900_000, 160_000),
   budget("data/galleries/paradigm-reboot/jacket.json", 800_000, 130_000),
-  budget("data/search-cards.json", 2_800_000, 600_000),
+  budget("data/search-cards-v2.json", 2_800_000, 600_000),
 ];
 
 assert(!fs.existsSync(path.join(dist, "data/resources.json")), "full resources.json must not be published");
@@ -64,7 +64,7 @@ for (const game of fs.readdirSync(path.join(dist, "data/browse"))) {
   assert(isRecord(data) && Array.isArray(data.items), `${file}: expected browse items`);
   if (isRecord(data) && Array.isArray(data.items)) for (const card of data.items) checkCard(card, file);
 }
-for (const file of ["data/search-cards.json", ...fs.readdirSync(path.join(dist, "data/ranking")).map((name) => `data/ranking/${name}`)]) {
+for (const file of ["data/search-cards.json", "data/search-cards-v2.json", ...fs.readdirSync(path.join(dist, "data/ranking")).map((name) => `data/ranking/${name}`)]) {
   const cards = read(file).value;
   assert(Array.isArray(cards), `${file}: expected card array`);
   if (Array.isArray(cards)) for (const card of cards) {

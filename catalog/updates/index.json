@@ -2,6 +2,15 @@
   "schemaVersion": 1,
   "baselines": [
     {
+      "id": "77406e44-29a5-7631-9447-e7befa0af98f",
+      "game": "berrymelody",
+      "releaseIds": [
+        "aacdadaf-36f5-78be-a2c9-074309869257"
+      ],
+      "publishedAt": "2026-10-24T06:34:41.570Z",
+      "contentVersion": "3.3.7"
+    },
+    {
       "id": "1df22f8a-b025-7e4d-ac57-5d3a583da88c",
       "game": "milthm",
       "releaseIds": [

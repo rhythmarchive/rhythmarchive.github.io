@@ -38,6 +38,12 @@ export const CATEGORY_LABELS: Record<ResourceTypeId, string> = {
 };
 
 export const GAME_CONFIG: Record<GameId, GameConfig> = {
+  berrymelody: {
+    slug: "berrymelody", displayName: "Berry Melody",
+    categoryOrder: ["jacket"], featuredCategories: ["jacket"],
+    filters: { difficulty: true, upscale: false },
+    metadataLabels: { artist: "曲师", jacketIllustrator: "曲绘画师", pack: "曲包", bpm: "BPM" },
+  },
   milthm: {
     slug: "milthm", displayName: "Milthm",
     categoryOrder: ["jacket"], featuredCategories: ["jacket"],

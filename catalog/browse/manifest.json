@@ -45,12 +45,21 @@
         "songs": 80,
         "artworks": 80
       }
+    },
+    "berrymelody": {
+      "sourceVersion": "3.3.7",
+      "sourceSha256": "f70284fb47b79f088e405f834d01fc32d65291509bbdaae512ab178825857438",
+      "fileSha256": "7b3596610d51c3824937839d10e14679329a5954925f4bf1a7390036beb22c3a",
+      "recordCounts": {
+        "songs": 245,
+        "artworks": 245
+      }
     }
   },
   "catalog": {
     "catalogId": "019fefd6-9c49-7ca0-a760-adc76811a511",
-    "catalogSha256": "307ee8aedec0661f19379519a598c563664159d7f8ad77fb0327e8b274a7b3ac",
-    "catalogGeneratedAt": "2026-10-23T10:47:50.402Z"
+    "catalogSha256": "e2e6c5b7ab74a7ccdbbf6eab4515726848a25747be2c2804c159034a9cb5ce1b",
+    "catalogGeneratedAt": "2026-10-24T06:34:41.570Z"
   },
   "files": {
     "arcaea": "arcaea.json",
