@@ -5,7 +5,6 @@ import GameIcon from "../components/GameIcon.astro";
 import SearchBox from "../components/SearchBox.astro";
 import RecentUpdates from "../components/RecentUpdates.astro";
 import ResourceRanking from "../components/ResourceRanking.astro";
-import { buildSearchQuickLinks } from "../lib/search-quick-links";
 import { formatCount } from "../lib/format";
 import { primaryCategorySlug } from "../lib/game-config";
 import { BASE_PATH, PUBLIC_STATS_API_URL, ROS_BASE_URL } from "../lib/site-config";
@@ -15,7 +14,6 @@ import { urls } from "../lib/site-urls";
 const siteData = getSiteData();
 const games = getPublicNavigationGames();
 const visibleGames = games.slice(0, 8);
-const quickLinks = buildSearchQuickLinks({ games }).slice(0, 6);
 const resourceCount = siteData.resources.length;
 const homeOgImage = urls.absoluteUrl("/og/home.png");
 const description = "Rhythm Archive 是音游曲绘、角色立绘与剧情 CG 下载站，收录 Arcaea、Phigros、Rizline、In Falsus 等游戏的图片资源。按游戏或分类查找作品，预览图片并下载原图，部分资源提供超分版。";
@@ -54,12 +52,6 @@ const arcaeaApkManifestUrl = `${ROS_BASE_URL}/apk/arcaea/latest.json`;
       <div class="home-search-block">
         <SearchBox label="搜索音游图片资源" />
       </div>
-      {quickLinks.length > 0 && (
-        <div class="home-quick-links" aria-label="热门分类">
-          <span>热门分类</span>
-          {quickLinks.map((entry) => <a href={urls.sitePath(entry.href)}>{entry.label}<small>{formatCount(entry.count)}</small></a>)}
-        </div>
-      )}
     </div>
     <div class="home-hero-stage" aria-hidden="true">
       <div class="hero-highway">

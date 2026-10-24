@@ -176,8 +176,8 @@ html[data-theme-transition]::view-transition-old(site-header) { display: block; 
 .gallery-search input, .browse-search input, .popover-search { transition: border-color var(--transition-ui), background-color var(--transition-ui); }
 :is(.gallery-search, .browse-search) input:focus { background: var(--surface); }
 .text-link, .section-link, .back-link, .update-card-link { transition: color var(--transition-ui); }
-.home-quick-links a, .search-quick-links a, .search-browse-links a { transition: background-color var(--transition-ui), border-color var(--transition-ui), color var(--transition-ui), transform var(--motion-ui) var(--motion-spring); }
-@media (hover: hover) and (pointer: fine) { :is(.home-quick-links, .search-quick-links, .search-browse-links) a:hover { transform: translateY(-1px); } }
+.search-quick-links a, .search-browse-links a { transition: background-color var(--transition-ui), border-color var(--transition-ui), color var(--transition-ui), transform var(--motion-ui) var(--motion-spring); }
+@media (hover: hover) and (pointer: fine) { :is(.search-quick-links, .search-browse-links) a:hover { transform: translateY(-1px); } }
 .update-card { transition: border-color var(--transition-ui), box-shadow var(--transition-ui); }
 .update-card:hover { border-color: color-mix(in srgb, var(--accent) 40%, var(--line)); box-shadow: var(--shadow-hover); }
 .update-preview { isolation: isolate; }

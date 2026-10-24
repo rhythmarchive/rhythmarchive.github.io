@@ -6,7 +6,7 @@ import { onPageCleanup, onPageLoad } from "./page-lifecycle";
 
 const TAP_TARGETS = [
   "button:not(:disabled)", ".button", "[role='tab']", ".segmented label", ".site-nav > a", ".category-nav a", ".resource-card-link",
-  ".game-card", ".ranking-item", ".update-preview", ".home-apk-entry", ".nav-game-list a", ".home-quick-links a", ".search-quick-links a",
+  ".game-card", ".ranking-item", ".update-preview", ".home-apk-entry", ".nav-game-list a", ".search-quick-links a",
   ".search-browse-links a", ".range-histogram", ".download-button", ".header-icon-button", ".detail-artwork-entry", ".announcement-history > summary",
 ].join(",");
 const FILLED = ".button-primary, .search-box button, .apk-download-button, .resource-select[aria-pressed='true']";

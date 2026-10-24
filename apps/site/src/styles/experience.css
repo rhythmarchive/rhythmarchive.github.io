@@ -59,7 +59,6 @@
 .home-hero .home-hero-lead { max-width: 32em; font-size: 1.02rem; }
 .home-hero .home-stats { justify-content: flex-start; margin: 1.1rem 0 0 !important; }
 .home-hero .home-search-block { width: min(100%, 620px); margin: 1.5rem 0 0; }
-.home-hero .home-quick-links { justify-content: flex-start; }
 /* The homepage stays a compact index as the game library grows. */
 .home-games .game-card-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
 .home-games .game-card { grid-template-columns: 64px minmax(0, 1fr); align-items: center; gap: 12px; min-height: 108px; padding: 12px; }

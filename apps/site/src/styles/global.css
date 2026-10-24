@@ -239,11 +239,6 @@ html[data-navigating] .site-header::after { content: ""; position: absolute; ins
 .home-search-block .search-box { min-height: 64px; border-radius: var(--radius-md); }
 .home-search-block .search-box input { height: 62px; font-size: 1rem; }
 .home-search-block .search-box button { padding-inline: 26px; font-size: 0.88rem; }
-.home-quick-links { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 7px; margin-top: 1.2rem; }
-.home-quick-links > span { margin-right: 3px; color: var(--text-soft); font-size: 0.73rem; }
-.home-quick-links a { display: inline-flex; align-items: center; gap: 6px; padding: 5px 9px; border: 1px solid var(--line); border-radius: var(--radius-sm); color: var(--text-muted); font-size: 0.73rem; }
-.home-quick-links a:hover { border-color: var(--accent); background: var(--surface); color: var(--accent-strong); }
-.home-quick-links small { color: var(--text-soft); font-size: 0.62rem; }
 .search-box { display: flex; align-items: center; min-height: 54px; overflow: hidden; border: 1px solid var(--line-strong); border-radius: var(--radius-md); background: var(--surface); box-shadow: var(--shadow); }
 .search-box:focus-within { border-color: var(--accent); box-shadow: 0 0 0 3px var(--focus-ring); }
 .search-box-icon { flex: 0 0 auto; width: 19px; height: 19px; margin-left: 16px; fill: none; stroke: var(--text-soft); stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.8; }
@@ -914,7 +909,6 @@ body.detail-lightbox-open .site-main { z-index: 100; }
   .brand-mark img { width: 33px; height: 26px; }
   .search-box button { padding-inline: 13px; }
   .home-stat + .home-stat, .home-stats-runtime > .home-stat:first-child { margin-left: 10px; padding-left: 10px; }
-  .home-quick-links { justify-content: flex-start; }
   .download-actions { grid-template-columns: 1fr; }
   .feedback-links .button { flex: 1; padding-inline: 10px; }
 }
