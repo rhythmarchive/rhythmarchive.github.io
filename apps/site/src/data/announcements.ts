@@ -11,6 +11,17 @@ export type Announcement = {
 // Keep the id for wording corrections; version history lives in CHANGELOG.md.
 export const announcements: Announcement[] = [
   {
+    id: "website-v4-1-0",
+    date: "2026-10-24",
+    title: "Rhythm Archive v4.1.0 更新",
+    notify: true,
+    paragraphs: [
+      "v4.1.0 新增 Dynamix 曲绘与角色立绘、Milthm 和 Berry Melody 曲绘库，并收录 In Falsus、Rizline 的新曲资源。",
+      "完善多款游戏的谱面资料，切换曲绘时同步显示对应难度。定数分布图随难度、搜索和曲包筛选调整，修复分桶边界及返回列表后的同步；显示等级继续保留。",
+      "首页音符轨道中的游戏图标可直接进入资源库，移除了“热门分类”快捷入口，并完善游戏版本显示。完整变化见下方“版本更新日志”。",
+    ],
+  },
+  {
     id: "website-v4-0-0",
     date: "2026-10-16",
     title: "Rhythm Archive v4.0.0 更新",
