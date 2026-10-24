@@ -168,13 +168,13 @@ html[data-navigating] .site-header::after { content: ""; position: absolute; ins
 
 /* Native fields share one surface, size and focus treatment; layout stays with the caller. */
 :is(.update-reminder-form, .updates-filters, .sort-control, .filter-control, .search-filters, .media-archive, .video-workspace, .resource-feedback) select,
-.gallery-search input, .browse-search input, .popover-search, .filter-range-input input, .resource-feedback textarea {
+.gallery-search input, .browse-search input, .popover-search, .filter-range-input input, .filter-control input[type="date"], .resource-feedback textarea {
   min-height: var(--control-height); max-width: 100%; padding: 7px 10px; border: 1px solid var(--control-border); border-radius: var(--radius-sm); background: var(--control-bg); color: var(--text); font-size: var(--type-control);
 }
 .gallery-search input, .browse-search input, .popover-search { width: 100%; }
 :is(.update-reminder-form, .updates-filters, .sort-control, .filter-control, .search-filters, .media-archive, .video-workspace, .resource-feedback) select { padding-right: 28px; }
 :is(.update-reminder-form, .updates-filters, .sort-control, .filter-control, .search-filters, .media-archive, .video-workspace, .resource-feedback) select:focus-visible,
-.gallery-search input:focus-visible, .browse-search input:focus-visible, .popover-search:focus-visible, .filter-range-input input:focus-visible, .resource-feedback textarea:focus-visible { border-color: var(--accent); outline: 3px solid var(--focus-ring); outline-offset: 2px; }
+.gallery-search input:focus-visible, .browse-search input:focus-visible, .popover-search:focus-visible, .filter-range-input input:focus-visible, .filter-control input[type="date"]:focus-visible, .resource-feedback textarea:focus-visible { border-color: var(--accent); outline: 3px solid var(--focus-ring); outline-offset: 2px; }
 :is(.search-empty, .updates-empty) { display: grid; gap: 12px; padding: 24px; border: 1px solid var(--line); border-radius: var(--radius-md); background: var(--surface); color: var(--text-muted); }
 :is(.search-empty, .updates-empty) p { margin: 0; font-size: .88rem; }
 .site-header { position: sticky; top: 0; z-index: 20; height: 64px; border-bottom: 1px solid color-mix(in srgb, var(--line) 82%, transparent); background: color-mix(in srgb, var(--bg) 97%, transparent); }
@@ -1089,7 +1089,7 @@ html[data-motion-level="reduced"] { scroll-behavior: auto; }
 @media (max-width: 760px) {
   .resource-card-body h3 { font-size: var(--type-meta); }
   :is(.gallery-search, .browse-search) input, .searchable-filter-trigger,
-  :is(.sort-control, .filter-control, .search-filters, .updates-filters) select { font-size: 1rem; }
+  :is(.sort-control, .filter-control, .search-filters, .updates-filters) select, .filter-control input[type="date"] { font-size: 1rem; }
 }
 @media (max-width: 400px) {
   .site-header-inner { gap: 4px; }

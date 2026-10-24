@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import fs from "node:fs";
-import { createLocalLibrary, LIBRARY_KEY, FAVORITES_LIMIT, HISTORY_LIMIT, HISTORY_MAX_AGE, normalizeEntries } from "../src/lib/local-library";
+import { createLocalLibrary, LIBRARY_KEY, FAVORITES_LIMIT, HISTORY_LIMIT, HISTORY_MAX_AGE, normalizeEntries, matchesHistoryFilter } from "../src/lib/local-library";
 import { setupDetailLibrary } from "../src/scripts/detail-library";
 
 const now = Date.UTC(2026, 9, 8);
@@ -61,6 +61,38 @@ test("blocked reads/writes, corrupt data and future versions fail visibly withou
   assert.equal(f.values.get(LIBRARY_KEY), '{"version":2}');
   f.values.set(LIBRARY_KEY, "x".repeat(500_001));
   assert.equal(f.library.read().writable, false);
+});
+
+test("history deletion supports date, game and their intersection without touching favorites", () => {
+  const cutoff = now - 86400000;
+  const records = [entry("old", cutoff - 1), entry("boundary", cutoff), entry("new"), { ...entry("other", cutoff - 1), game: "phigros" }];
+  for (const [filter, remaining] of [
+    [{ before: cutoff }, ["new", "boundary"]],
+    [{ game: "arcaea" }, ["other"]],
+    [{ before: cutoff, game: "arcaea" }, ["new", "boundary", "other"]],
+    [{}, ["new", "boundary", "old", "other"]],
+    [{ before: NaN, game: "arcaea" }, ["new", "boundary", "old", "other"]],
+    [{ game: "unknown" }, ["new", "boundary", "old", "other"]],
+  ] as const) {
+    const f = fixture();
+    f.values.set(LIBRARY_KEY, JSON.stringify({ version: 1, favorites: [entry("old")], history: records }));
+    assert.equal(f.library.removeHistory(filter), "");
+    assert.deepEqual(f.library.read().data.history.map((r) => r.id), remaining);
+    assert.deepEqual(f.library.read().data.favorites, [entry("old")]);
+  }
+  assert.equal(matchesHistoryFilter(entry("at", cutoff), { before: cutoff }), false);
+});
+
+test("scoped deletion reads current records and reports failed storage writes", () => {
+  const f = fixture();
+  const other = createLocalLibrary(() => f.storage, () => now);
+  f.library.visit(entry("A"));
+  other.visit({ ...entry("B"), game: "phigros" });
+  assert.equal(f.library.removeHistory({ game: "arcaea" }), "");
+  assert.deepEqual(f.library.read().data.history.map((r) => r.id), ["B"]);
+  const blocked = createLocalLibrary(() => ({ getItem: f.storage.getItem, setItem: () => { throw new Error("QuotaExceededError"); } }), () => now);
+  assert.match(blocked.removeHistory({ game: "phigros" }), /保存失败/);
+  assert.deepEqual(f.library.read().data.history.map((r) => r.id), ["B"]);
 });
 test("invalid paths/timestamps are discarded and only identity metadata is stored", () => {
   const valid = { ...entry("safe"), original: "https://original.test/secret", preview: "stale.webp" };

@@ -6,6 +6,13 @@ export const HISTORY_MAX_AGE = 90 * 24 * 60 * 60 * 1000;
 export type LibraryTab = "favorites" | "history";
 export type LibraryEntry = { id: string; game: string; category: string; title: string; at: number };
 export type LibraryData = { version: 1; favorites: LibraryEntry[]; history: LibraryEntry[] };
+export type HistoryFilter = { before?: number; game?: string };
+export function matchesHistoryFilter(entry: LibraryEntry, filter: HistoryFilter): boolean {
+  // An empty or invalid filter must never turn a scoped deletion into clear-all.
+  if (!filter.game && filter.before === undefined) return false;
+  if (filter.before !== undefined && (!Number.isFinite(filter.before) || entry.at >= filter.before)) return false;
+  return !filter.game || entry.game === filter.game;
+}
 type StorageAccess = () => Pick<Storage, "getItem" | "setItem">;
 const empty = (): LibraryData => ({ version: 1, favorites: [], history: [] });
 
@@ -63,5 +70,6 @@ export function createLocalLibrary(access: StorageAccess = () => localStorage, c
     }),
     remove: (tab: LibraryTab, id: string) => change((data) => { data[tab] = data[tab].filter((item) => item.id !== id); }),
     clearHistory: () => change((data) => { data.history = []; }),
+    removeHistory: (filter: HistoryFilter) => change((data) => { data.history = data.history.filter((entry) => !matchesHistoryFilter(entry, filter)); }),
   };
 }

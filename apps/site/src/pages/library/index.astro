@@ -25,9 +25,22 @@ const categories = getPublicNavigationGames().flatMap((game) => game.categories.
         <span data-library-count aria-live="polite"></span>
         <div class="gallery-toolbar-actions">
           <button type="button" class="text-link" data-library-retry hidden>重试</button>
+          <button type="button" class="text-link" data-history-tools-toggle aria-expanded="false" aria-controls="library-history-tools" hidden>批量删除</button>
           <button type="button" class="text-link" data-clear-history hidden>清空历史</button>
         </div>
       </div>
+      <form id="library-history-tools" class="library-history-tools" data-history-tools aria-label="批量删除浏览记录" hidden>
+        <div class="library-history-fields">
+          <label class="filter-control"><span>删除此日期之前的记录</span><input type="date" data-history-before aria-describedby="library-history-note" /></label>
+          <label class="filter-control"><span>游戏</span><select data-history-game><option value="">全部游戏</option></select></label>
+        </div>
+        <p class="detail-note" id="library-history-note">不含所选日期当天；同时选择日期和游戏时，只删除符合两项条件的记录。收藏夹不受影响。</p>
+        <p class="detail-note" data-history-match role="status"></p>
+        <div class="library-history-actions">
+          <button type="button" class="button button-secondary" data-history-tools-close>取消</button>
+          <button type="submit" class="button button-primary" data-history-delete disabled>删除记录</button>
+        </div>
+      </form>
       <div class="search-empty" data-library-empty hidden>
         <p data-library-empty-copy></p>
         <button class="button button-secondary" type="button" data-library-view-history hidden>查看最近浏览</button>

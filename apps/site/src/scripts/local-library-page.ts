@@ -1,6 +1,6 @@
 import { loadStaticData } from "./static-data";
 import { onPageLoad, pageSignal } from "./page-lifecycle";
-import { createLocalLibrary, LIBRARY_KEY, type LibraryEntry, type LibraryTab } from "../lib/local-library";
+import { createLocalLibrary, LIBRARY_KEY, matchesHistoryFilter, type HistoryFilter, type LibraryEntry, type LibraryTab } from "../lib/local-library";
 import { galleryCardView } from "../lib/card-view-model";
 import type { GalleryCard } from "../lib/gallery-projection";
 import { GAME_CONFIG, CATEGORY_LABELS, type GameId, type ResourceTypeId } from "../lib/game-config";
@@ -8,7 +8,7 @@ import { sitePath } from "../lib/url";
 import { renderResourceCard } from "./render-resource-card";
 import { createBatchTray, downloadSelectedBatchFromManifest } from "./batch-tray";
 import { setupListNavigation } from "./list-navigation";
-import { revealContent } from "./motion";
+import { revealContent, setSurfaceVisible } from "./motion";
 
 onPageLoad(() => {
   const root = document.querySelector<HTMLElement>("[data-library-root]");
@@ -25,6 +25,12 @@ function initialize(root: HTMLElement): void {
   const more = root.querySelector<HTMLButtonElement>("[data-library-more]")!;
   const retry = root.querySelector<HTMLButtonElement>("[data-library-retry]")!;
   const clear = root.querySelector<HTMLButtonElement>("[data-clear-history]")!;
+  const toolsToggle = root.querySelector<HTMLButtonElement>("[data-history-tools-toggle]")!;
+  const tools = root.querySelector<HTMLFormElement>("[data-history-tools]")!;
+  const before = root.querySelector<HTMLInputElement>("[data-history-before]")!;
+  const game = root.querySelector<HTMLSelectElement>("[data-history-game]")!;
+  const match = root.querySelector<HTMLElement>("[data-history-match]")!;
+  const deleteHistory = root.querySelector<HTMLButtonElement>("[data-history-delete]")!;
   const panel = root.querySelector<HTMLElement>('[role="tabpanel"]')!;
   const viewHistory = root.querySelector<HTMLButtonElement>("[data-library-view-history]")!;
   const emptyGames = root.querySelector<HTMLAnchorElement>("[data-library-empty-games]")!;
@@ -105,6 +111,13 @@ function initialize(root: HTMLElement): void {
     }
     panel.setAttribute("aria-labelledby", `${tab}-tab`);
     clear.hidden = tab !== "history" || !entries.length;
+    toolsToggle.hidden = clear.hidden;
+    if (clear.hidden) toggleHistoryTools(false, false);
+    const selectedGame = game.value;
+    const games = new Set(data.history.map((entry) => entry.game));
+    if (selectedGame) games.add(selectedGame);
+    game.replaceChildren(new Option("全部游戏", ""), ...[...games].map((id) => new Option(GAME_CONFIG[id as GameId]?.displayName ?? id, id)));
+    game.value = selectedGame;
     empty.hidden = entries.length > 0;
     const hasRecent = tab === "favorites" && data.history.length > 0;
     viewHistory.hidden = !hasRecent;
@@ -176,11 +189,32 @@ function initialize(root: HTMLElement): void {
     return wrapper;
   }
   function setControls(): void {
-    for (const button of root.querySelectorAll<HTMLButtonElement>("[data-library-tab], [data-library-remove], [data-clear-history], [data-library-more], [data-library-retry], [data-select-resource]")) button.disabled = busy;
+    for (const button of root.querySelectorAll<HTMLButtonElement>("[data-library-tab], [data-library-remove], [data-clear-history], [data-history-tools-toggle], [data-library-more], [data-library-retry], [data-select-resource]")) button.disabled = busy;
+    before.disabled = game.disabled = busy || !writable;
+    updateHistoryMatch();
     if (!writable) {
-      clear.disabled = true;
+      clear.disabled = toolsToggle.disabled = true;
       for (const button of root.querySelectorAll<HTMLButtonElement>("[data-library-remove]")) button.disabled = true;
     }
+  }
+  function historyFilter(): HistoryFilter {
+    // Date inputs use calendar dates; interpret the cutoff in the browser's local
+    // timezone, matching the dates displayed on the records (not UTC parsing).
+    const parts = before.value.split("-").map(Number);
+    const cutoff = before.value ? new Date(parts[0]!, parts[1]! - 1, parts[2]!).getTime() : undefined;
+    return { ...(game.value ? { game: game.value } : {}), ...(cutoff === undefined ? {} : { before: cutoff }) };
+  }
+  function updateHistoryMatch(): void {
+    const filter = historyFilter();
+    const total = data.history.filter((entry) => matchesHistoryFilter(entry, filter)).length;
+    match.textContent = !filter.game && filter.before === undefined ? "请选择日期或游戏。" : `匹配 ${total} 条浏览记录`;
+    deleteHistory.textContent = total ? `删除 ${total} 条记录` : "删除记录";
+    deleteHistory.disabled = busy || !writable || !total || !before.validity.valid;
+  }
+  function toggleHistoryTools(visible: boolean, focus = true): void {
+    toolsToggle.setAttribute("aria-expanded", String(visible));
+    void setSurfaceVisible(tools, visible, "fade");
+    if (focus) (visible ? before : toolsToggle).focus();
   }
   function switchTab(next: LibraryTab): void {
     if (busy || next === tab) return;
@@ -213,6 +247,29 @@ function initialize(root: HTMLElement): void {
     if (busy) return;
     if (tray.selectedIds().length) { warning.textContent = "请先清空选择，再清空历史。"; return; }
     if (confirm("清空全部浏览历史？收藏夹不受影响。")) void refresh(library.clearHistory());
+  });
+  toolsToggle.addEventListener("click", () => {
+    if (busy) return;
+    updateHistoryMatch();
+    toggleHistoryTools(toolsToggle.getAttribute("aria-expanded") !== "true");
+  });
+  root.querySelector("[data-history-tools-close]")!.addEventListener("click", () => toggleHistoryTools(false));
+  tools.addEventListener("input", updateHistoryMatch);
+  tools.addEventListener("submit", (event) => {
+    event.preventDefault();
+    if (busy || !writable || tab !== "history") return;
+    if (tray.selectedIds().length) { warning.textContent = "请先清空选择，再批量删除记录。"; return; }
+    data = library.read().data;
+    updateHistoryMatch();
+    if (deleteHistory.disabled) return;
+    const filter = historyFilter();
+    const total = data.history.filter((entry) => matchesHistoryFilter(entry, filter)).length;
+    const scope = [filter.game ? game.selectedOptions[0]!.text : "全部游戏", before.value ? `${before.value} 之前（不含当天）` : "全部日期"].join("，");
+    if (confirm(`删除 ${total} 条浏览记录？\n${scope}。收藏夹不受影响，此操作无法撤销。`)) {
+      const message = library.removeHistory(filter);
+      if (!message) toggleHistoryTools(false);
+      void refresh(message);
+    }
   });
   viewHistory.addEventListener("click", () => {
     switchTab("history");
