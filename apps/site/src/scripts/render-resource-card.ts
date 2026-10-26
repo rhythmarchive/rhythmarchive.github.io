@@ -12,6 +12,7 @@ type CardRenderOptions = {
   isSelected: boolean;
   browse?: boolean;
   selectable?: boolean;
+  showViews?: boolean;
   sizes?: string;
 };
 
@@ -98,7 +99,7 @@ export function renderResourceCard(view: CardViewModel, options: CardRenderOptio
     badge.textContent = label;
     body.append(badge);
   }
-  appendResourceViews(body);
+  if (options.showViews !== false) appendResourceViews(body);
   anchor.append(media, body);
   article.append(anchor);
   return article;

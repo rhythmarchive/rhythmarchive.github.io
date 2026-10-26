@@ -13,6 +13,7 @@ onPageLoad(() => {
     createBatchTray({
       root,
       grid,
+      onDetailLink: navigation.captureLink,
       getResource: (id) => resources.get(id),
       onDownload: (preferUpscaled, selectedIds, setStatus) => downloadSelectedBatchFromManifest({
         manifestUrl: [...new Set(selectedIds.map((id) => resources.get(id)!.manifestUrl))],

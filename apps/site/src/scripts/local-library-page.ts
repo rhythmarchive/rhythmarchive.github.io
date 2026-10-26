@@ -52,6 +52,7 @@ function initialize(root: HTMLElement): void {
   const categoryKey = (entry: LibraryEntry) => `${entry.game}/${entry.category}`;
   const tray = createBatchTray({
     root, grid,
+    onDetailLink: navigation.captureLink,
     getResource: (id) => cards.get(id),
     onDownload: async (preferUpscaled, selectedIds, setStatus) => {
       busy = true;
@@ -162,7 +163,7 @@ function initialize(root: HTMLElement): void {
     if (resource) {
       const view = galleryCardView(resource);
       view.subtitle = `${GAME_CONFIG[entry.game as GameId]?.displayName ?? entry.game} · ${CATEGORY_LABELS[entry.category as ResourceTypeId] ?? entry.category}`;
-      wrapper.append(renderResourceCard(view, { basePath: base, index, isSelected: tray.isSelected(entry.id) }));
+      wrapper.append(renderResourceCard(view, { basePath: base, index, isSelected: tray.isSelected(entry.id), showViews: false }));
     } else {
       const placeholder = document.createElement("div");
       placeholder.className = "library-unavailable";

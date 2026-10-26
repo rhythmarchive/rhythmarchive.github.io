@@ -120,13 +120,13 @@ const description = resource.resourceType === "video"
         {!resource.composition ? <div class="variant-panels">
           {variants.map((variant, index) => <VariantPanel variant={variant} fallback={variant.original} active={index === activeVariantIndex} labelledBy={!compactVariants && variants.length > 1 ? `variant-tab-${variant.variantId}` : undefined} alt={`${resourceImageAlt(resource)}${variants.length > 1 ? ` · ${variant.label}` : ""}`} sourceToggle={resource.resourceType === "jacket" && (resource.game === "arcaea" || resource.game === "paradigm-reboot")} />)}
         </div> : null}
-      </div>
-      <aside class="detail-info">
         <nav class="detail-navigation" data-detail-navigation hidden aria-label="浏览来源列表中的资源">
           <a class="button button-secondary" data-detail-previous aria-label="上一项">← 上一项</a>
           <div class="detail-navigation-source"><a class="back-link" data-detail-return>返回列表</a><span data-detail-position></span></div>
           <a class="button button-secondary" data-detail-next aria-label="下一项">下一项 →</a>
         </nav>
+      </div>
+      <aside class="detail-info">
         <div class="detail-resource-heading">
           <span class="section-kicker">{resource.categoryLabel}</span>
           <div class="detail-resource-actions">

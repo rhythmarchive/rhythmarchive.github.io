@@ -2,7 +2,7 @@ import { loadStaticData } from "./static-data";
 import { onPageLoad } from "./page-lifecycle";
 import { sitePath } from "../lib/url";
 
-const searchDataUrl = "data/search-index.json";
+const searchDataUrl = "data/search-index-v2.json";
 
 onPageLoad(() => {
   for (const form of document.querySelectorAll<HTMLFormElement>("[data-search-entry]")) {
