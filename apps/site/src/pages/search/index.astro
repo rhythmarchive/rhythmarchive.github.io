@@ -27,9 +27,12 @@ const browseGroups = games.map((game) => ({
     </div>
     <SearchBox initialQuery={query} />
     <div class="search-filters">
-      <label>游戏 <select data-search-game><option value="">全部游戏</option>{games.map((game) => <option value={game.slug}>{game.displayName}</option>)}</select></label>
+      <label>游戏 <select data-search-game><option value="">全部游戏</option>{games.map((game) => <option value={game.slug} data-categories={game.categories.filter(category => category.count > 0).map(category => category.slug).join(",")}>{game.displayName}</option>)}</select></label>
       <label>分类 <select data-search-category><option value="">全部分类</option>{Object.entries(CATEGORY_LABELS).filter(([slug]) => games.some((game) => game.categories.some((category) => category.slug === slug))).map(([slug, label]) => <option value={slug}>{label}</option>)}</select></label>
+      <label><span class="sr-only">排序</span><select data-search-sort><option value="relevance">相关度</option><option value="title-asc">名称 A-Z</option><option value="title-desc">名称 Z-A</option></select></label>
+      <label class="filter-check"><input type="checkbox" data-search-upscaled />含超分版</label>
     </div>
+    <p class="detail-note" data-search-filter-note hidden>所选游戏没有此分类。</p>
     <div class="search-quick-links" data-search-landing>
       <span>快捷入口</span>
       {quickLinks.map((entry) => <a href={urls.sitePath(entry.href)}>{entry.label}<small>{formatCount(entry.count)}</small></a>)}
@@ -55,8 +58,8 @@ const browseGroups = games.map((game) => ({
   <section class="page-container search-results" data-search-page data-search-query={query}>
     <div class="search-results-heading"><span data-search-status aria-live="polite">输入关键词搜索资源</span><button class="text-link search-retry" type="button" data-search-retry hidden>重试</button></div>
     <div class="search-empty" data-search-empty hidden>
-      <p>试试更短的关键词，或从游戏库按分类查找。</p>
-      <div><a class="button button-secondary" href={urls.sitePath("/games/")}>浏览游戏库</a><a class="text-link" href={urls.sitePath("/feedback/")}>反馈缺少的资源</a></div>
+      <p data-search-empty-copy>试试其他关键词，或从游戏库按分类查找。</p>
+      <div><button class="button button-secondary" type="button" data-search-clear-category hidden>清除分类</button><button class="button button-secondary" type="button" data-search-clear-filters hidden>清除筛选</button><a class="button button-secondary" href={urls.sitePath("/games/")}>浏览游戏库</a><a class="text-link" href={urls.sitePath("/feedback/")}>反馈缺少的资源</a></div>
     </div>
     <div class="resource-grid" data-search-results></div>
     <div data-search-loading hidden><CardSkeleton /></div>
