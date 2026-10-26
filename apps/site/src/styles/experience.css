@@ -43,7 +43,7 @@
 :where(label, legend, .gallery-toolbar, .gallery-results-bar, .filter-range-control, .active-filter-row, .segmented, .settings-panel,
   .batch-tray, .resource-badge, .resource-card-variant, .resource-card-views, .ranking-period-switch, .variant-tabs, .artwork-variant-tabs, .library-tabs,
   .detail-navigation, .download-actions, .detail-preview-hint, .update-detail-categories, .games-sort, .gallery-more, .updates-more, .section-kicker,
-  .archive-kicker, .home-stats, .detail-breadcrumb, .detail-resource-stats, .ranking-position, .ranking-stats, .back-to-top, .gallery-filter-heading) { -webkit-user-select: none; user-select: none; }
+  .archive-kicker, .home-stats, .detail-breadcrumb, .detail-resource-stats, .ranking-position, .ranking-stats, .back-to-top, .gallery-filter-heading, .search-identity, .search-suggestions h2) { -webkit-user-select: none; user-select: none; }
 
 /* Section kicker carries the brand's three-bar rhythm mark. */
 .section-kicker { display: inline-flex; align-items: center; gap: 7px; }

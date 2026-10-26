@@ -614,7 +614,21 @@ img[data-image-state="loading"], img[data-image-state="error"],
 .batch-selected-remove:hover { background: color-mix(in srgb, var(--danger) 10%, transparent); color: var(--danger); }
 
 .search-page-head { position: relative; display: grid; justify-items: center; gap: 0; padding-bottom: 1.4rem; text-align: center; }
-.search-page-head .search-box { width: min(720px, 100%); margin-top: 1.45rem; }
+.search-page-head .search-entry { width: min(720px, 100%); margin-top: 1.45rem; }
+.search-entry { position: relative; min-width: 0; width: 100%; text-align: left; }
+.search-suggestions { --surface-enter: translateY(-4px); position: absolute; top: calc(100% + 6px); left: 0; right: 0; z-index: 30; padding: 10px; border: 1px solid var(--line-strong); border-radius: var(--radius-md); background: var(--surface); box-shadow: var(--shadow); }
+.search-suggestions h2 { margin: 4px 8px; color: var(--text-muted); font-size: var(--type-caption); font-weight: var(--weight-title); }
+.search-suggestions [role="group"] + [role="group"] { margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--line); }
+.search-suggestion-options { max-height: min(180px, 22vh); overflow: auto; overscroll-behavior: contain; }
+.search-suggestion { display: grid; gap: 2px; width: 100%; min-height: 44px; padding: 7px 8px; border: 0; border-radius: var(--radius-sm); background: transparent; color: var(--text); text-align: left; }
+.search-suggestion span, .search-suggestion small { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.search-suggestion span { font-size: var(--type-control); }
+.search-suggestion small { color: var(--text-muted); font-size: var(--type-caption); }
+.search-suggestion:hover, .search-suggestion[aria-selected="true"] { background: var(--control-selected); }
+.search-suggestion-options p, .search-suggestion-status { margin: 8px; color: var(--text-muted); font-size: var(--type-caption); }
+.search-identity { display: flex; align-items: baseline; gap: 10px; margin-top: 10px; color: var(--text-muted); font-size: var(--type-meta); }
+.search-identity span { min-width: 0; overflow-wrap: anywhere; }
+.search-identity button { flex-shrink: 0; }
 .search-filters { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 16px; }
 .search-filters label { display: flex; align-items: center; gap: 8px; color: var(--text-muted); font-size: 0.8rem; }
 .search-quick-links { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 8px; margin-top: 1.25rem; }

@@ -9,14 +9,33 @@ interface Props {
 }
 
 const { compact = false, initialQuery = "", label = "搜索资源" } = Astro.props;
+const inputId = `search-${compact ? "compact" : "main"}`;
+const suggestionsId = `${inputId}-suggestions`;
 
 ---
 
+<div class="search-entry" data-search-entry-root>
 <form class:list={["search-box", { "is-compact": compact }]} action={urls.sitePath("/search/")} method="get" role="search" data-search-entry>
-  <label class="sr-only" for={`search-${compact ? "compact" : "main"}`}>{label}</label>
+  <label class="sr-only" for={inputId}>{label}</label>
   <svg class="search-box-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.3"/><path d="m16 16 4.5 4.5"/></svg>
-  <input id={`search-${compact ? "compact" : "main"}`} name="q" type="search" value={initialQuery} placeholder="曲名、曲师或资源名称" autocomplete="off" />
+  <input id={inputId} name="q" type="search" value={initialQuery} placeholder="曲名、曲师或资源名称" autocomplete="off" role="combobox" aria-autocomplete="list" aria-controls={suggestionsId} aria-expanded="false" />
+  <input type="hidden" name="field" value="artist" data-search-field disabled />
   <button type="submit">搜索</button>
 </form>
+<div class="search-suggestions" data-search-suggestions hidden>
+  <p class="search-suggestion-status" data-search-suggestion-status role="status" hidden></p>
+  <div id={suggestionsId} role="listbox" aria-label="搜索联想" data-search-suggestion-groups>
+    <div role="group" aria-labelledby={`${suggestionsId}-songs`}>
+      <h2 id={`${suggestionsId}-songs`}>曲名</h2>
+      <div class="search-suggestion-options" data-search-songs></div>
+    </div>
+    <div role="group" aria-labelledby={`${suggestionsId}-artists`}>
+      <h2 id={`${suggestionsId}-artists`}>曲师名</h2>
+      <div class="search-suggestion-options" data-search-artists></div>
+    </div>
+  </div>
+</div>
+<div class="search-identity" data-search-identity hidden><span data-search-identity-label></span><button class="text-link" type="button" data-search-identity-clear>取消</button></div>
+</div>
 
 <script src="../scripts/search-entry.ts"></script>

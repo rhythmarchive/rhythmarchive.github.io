@@ -34,6 +34,8 @@ async function initializeSearch(root: HTMLElement): Promise<void> {
   const queryFromUrl = new URLSearchParams(window.location.search).get("q");
   if (queryFromUrl !== null) input.value = queryFromUrl;
   const params = new URLSearchParams(window.location.search);
+  const field = input.closest("form")?.querySelector<HTMLInputElement>("[data-search-field]");
+  if (field) field.disabled = params.get("field") !== "artist" || !input.value.trim();
   game.value = params.get("game") ?? "";
   category.value = params.get("category") ?? "";
 
@@ -59,6 +61,7 @@ async function initializeSearch(root: HTMLElement): Promise<void> {
     const url = new URL(window.location.href);
     const query = value.trim();
     if (query) url.searchParams.set("q", query); else url.searchParams.delete("q");
+    if (query && field && !field.disabled) url.searchParams.set("field", "artist"); else url.searchParams.delete("field");
     for (const [key, value] of [["game", game.value], ["category", category.value]]) {
       if (value) url.searchParams.set(key!, value); else url.searchParams.delete(key!);
     }
@@ -126,7 +129,7 @@ async function initializeSearch(root: HTMLElement): Promise<void> {
     try {
       const [entries, cardMap] = await Promise.all([loadSearchIndex(), loadSearchCards()]);
       if (signal.aborted || token !== runToken) return;
-      const ranked = rankSearchEntries(entries, query, { game: game.value, category: category.value });
+      const ranked = rankSearchEntries(entries, query, { game: game.value, category: category.value, ...(field && !field.disabled ? { field: "artist" as const } : {}) });
       if (ranked.length === 0) {
         results.replaceChildren();
         status.textContent = "没有找到相关资源。";
@@ -164,7 +167,7 @@ async function initializeSearch(root: HTMLElement): Promise<void> {
   input.addEventListener("compositionstart", () => { composing = true; schedule(); });
   input.addEventListener("compositionend", () => { composing = false; schedule(); });
   input.addEventListener("input", schedule);
-  input.closest("form")?.addEventListener("submit", (event) => { event.preventDefault(); void run(); });
+  input.closest("form")?.addEventListener("submit", (event) => { event.preventDefault(); if (!composing) void run(); });
   game.addEventListener("change", () => void run());
   category.addEventListener("change", () => void run());
   more.addEventListener("click", () => { visibleCount += 48; render(); });
