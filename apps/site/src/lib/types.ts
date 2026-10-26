@@ -137,7 +137,17 @@ export type PublicSearchEntry = {
   category: string;
   categoryLabel: string;
   artist?: string;
+  titleAliases?: string[];
+  artistAliases?: string[];
+  song?: { key: string; title: string; artist?: string };
   keywords: string[];
+};
+
+export type PublicSearchSuggestions = {
+  schemaVersion: 1;
+  generatedAt: string;
+  songs: Array<{ key: string; title: string; game: GameId; artist?: string; aliases: string[] }>;
+  artists: Array<{ name: string; games: GameId[]; aliases: string[] }>;
 };
 
 

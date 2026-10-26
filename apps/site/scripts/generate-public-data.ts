@@ -5,6 +5,7 @@ import { GAME_CONFIG } from "../src/lib/game-config.js";
 import { batchDownloads, browserBrowseData, galleryCard } from "../src/lib/gallery-projection.js";
 import { selectCardPreview, cardImage } from "../src/lib/card-preview.js";
 import { rankingShardKey } from "../src/lib/ranking.js";
+import { buildSearchSuggestions } from "../src/lib/search-suggestions.js";
 import { findWorkspaceRoot, getSiteData, loadCategoryBrowseProjections, loadFormalBrowseProjections } from "../src/lib/site-data.js";
 
 const root = findWorkspaceRoot();
@@ -34,6 +35,7 @@ await writeJson(path.join(publicDataDir, "game-index.json"), data.games);
 // The v1 search bundle predates Berry Melody and cannot resolve its GameConfig.
 await writeJson(path.join(publicDataDir, "search-index.json"), data.searchIndex.filter(entry => entry.game !== "berrymelody"));
 await writeJson(path.join(publicDataDir, "search-index-v2.json"), data.searchIndex);
+await writeJson(path.join(publicDataDir, "search-suggestions-v1.json"), buildSearchSuggestions(data.searchIndex, data.generatedAt));
 // Retain the unversioned contract for already-open predeployment search clients.
 await writeJson(path.join(publicDataDir, "search-cards.json"), data.resources.map(resource => ({ ...toSearchCard(resource), route: resource.route, displayTitle: resource.displayTitle })));
 await writeJson(path.join(publicDataDir, "search-cards-v2.json"), data.resources.map(toSearchCard));

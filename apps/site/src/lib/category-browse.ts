@@ -12,6 +12,7 @@ import type { PublicResource, PublicSearchEntry, PublicSiteData } from "./types"
 import { buildRangeHistogram, chartRangeHistogram, numericIntervals, type RangeHistogram } from "./range-histogram";
 import { chartDifficultyHistogram } from "./chart-filters";
 import { galleryBaseSortOptions, highestChartConstant } from "./gallery-sort";
+import type { FormalBrowseProjections } from "./site-data";
 
 const ROTAENO_CHART_ORDER = ["I", "II", "III", "IV", "IV_Alpha"] as const;
 const PARADIGM_CHART_ORDER = ["DET", "IVD", "MSV", "RBT", "CTC"] as const;
@@ -51,20 +52,36 @@ export type CategoryBrowseProjections = {
   infalsus: InfalsusCategoryBrowseProjectionType;
 };
 
-/** Public song titles and artist names from the formal Browse records, keyed by Resource. */
-export function publicSearchNamesByResource(browse: { arcaea: { songs: ReadonlyArray<{ titleAliases: readonly string[]; artistAliases: readonly string[]; artworks: ReadonlyArray<{ resourceId?: string | null }> }> } }): Map<string, string[]> {
-  const merged = new Map<string, Set<string>>();
+type PublicSearchNames = ReadonlyMap<string, { titleAliases: string[]; artistAliases: string[]; song?: NonNullable<PublicSearchEntry["song"]> }>;
+
+/** Typed, public names only: do not promote filenames, searchTerms or illustrator credits. */
+export function publicSearchNamesByResource(browse: Pick<FormalBrowseProjections, "arcaea" | "phigros" | "rizline">, catalogTitles: ReadonlyArray<{ id: string; aliases: ReadonlyArray<{ kind: string; value: string }> }> = []): PublicSearchNames {
+  const merged = new Map<string, { titleAliases: string[]; artistAliases: string[]; song?: NonNullable<PublicSearchEntry["song"]> }>();
+  const add = (ids: string[], title: string, artist: string | null, titles: readonly string[] = [], artists: readonly string[] = [], isSong = true): void => {
+    const key = ids[0];
+    if (!key) return;
+    for (const id of ids) merged.set(id, {
+      titleAliases: [...new Set([title, ...titles])],
+      artistAliases: [...new Set([...(artist ? [artist] : []), ...artists])],
+      ...(isSong ? { song: { key, title, ...(artist ? { artist } : {}) } } : {}),
+    });
+  };
   for (const song of browse.arcaea.songs) {
-    const names = new Set([...song.titleAliases, ...song.artistAliases]);
-    if (names.size === 0) continue;
-    for (const artwork of song.artworks) {
-      if (!artwork.resourceId) continue;
-      const existing = merged.get(artwork.resourceId) ?? new Set<string>();
-      for (const name of names) existing.add(name);
-      merged.set(artwork.resourceId, existing);
-    }
+    add(song.artworks.flatMap(artwork => artwork.resourceId ? [artwork.resourceId] : []), song.displayTitle, song.artist, song.titleAliases, song.artistAliases);
   }
-  return new Map([...merged].map(([resourceId, names]) => [resourceId, [...names]]));
+  for (const track of browse.phigros.tracks) {
+    add(track.artwork ? [track.artwork.resourceId] : [], track.displayTitle, track.displayArtist, [track.sourceTitle], track.sourceArtist ? [track.sourceArtist] : [], !track.specialKind);
+  }
+  for (const song of browse.rizline.songs) {
+    add(song.artworks.map(artwork => artwork.resourceId), song.displayTitle, song.musicArtist);
+  }
+  for (const resource of catalogTitles) {
+    const titles = resource.aliases.filter(alias => alias.kind === "title").map(alias => alias.value);
+    if (!titles.length) continue;
+    const previous = merged.get(resource.id) ?? { titleAliases: [], artistAliases: [] };
+    merged.set(resource.id, { ...previous, titleAliases: [...new Set([...previous.titleAliases, ...titles])] });
+  }
+  return merged;
 }
 
 export function applyCategoryBrowseSemantics(siteData: PublicSiteData, projections: CategoryBrowseProjections, publicNames: PublicSearchNames = new Map()): PublicSiteData {
@@ -334,18 +351,25 @@ function sortSemanticResources(resources: PublicResource[]): PublicResource[] {
   });
 }
 
-type PublicSearchNames = ReadonlyMap<string, readonly string[]>;
-
 function toSemanticSearchEntry(resource: PublicResource, publicNames: PublicSearchNames = new Map()): PublicSearchEntry {
   const keywords = new Set<string>(resourceSearchTerms(resource));
+  const names = publicNames.get(resource.resourceId);
+  const titleAliases = names?.titleAliases.filter(name => normalizeSearchText(name) !== normalizeSearchText(resource.displayTitle)) ?? [];
+  const artistAliases = names?.artistAliases.filter(name => normalizeSearchText(name) !== normalizeSearchText(resource.artist ?? "")) ?? [];
   // Titles and artist names the public Browse records carry for this Resource; they are not
   // copied into the Resource itself, so the search index is where they become searchable.
-  for (const value of publicNames.get(resource.resourceId) ?? []) keywords.add(value);
+  for (const value of [...(names?.titleAliases ?? []), ...(names?.artistAliases ?? [])]) keywords.add(value);
   // Semantic projections and display fields that only the final stage can contribute.
   for (const value of resource.searchTerms ?? []) keywords.add(value);
   if (resource.subtitle) keywords.add(resource.subtitle);
   for (const badge of resource.badges ?? []) keywords.add(badge);
   for (const values of Object.values(resource.facets ?? {})) for (const value of values) keywords.add(value);
+  // Other games publish song credits through their adopted jacket chart metadata.
+  // Formal Browse games use their typed records above; extras are not inferred as songs.
+  const song = names?.song ?? (!["arcaea", "phigros", "rizline"].includes(resource.game)
+    && resource.category === "jacket" && (resource.charts?.length ?? 0) > 0 && resource.metadata.contentKind !== "段位封面"
+    ? { key: resource.resourceId, title: resource.displayTitle, ...(resource.artist ? { artist: resource.artist } : {}) }
+    : undefined);
   return {
     resourceId: resource.resourceId,
     route: resource.route,
@@ -354,6 +378,9 @@ function toSemanticSearchEntry(resource: PublicResource, publicNames: PublicSear
     category: resource.category,
     categoryLabel: resource.categoryLabel,
     ...(resource.artist ? { artist: resource.artist } : {}),
+    ...(titleAliases.length ? { titleAliases } : {}),
+    ...(artistAliases.length ? { artistAliases } : {}),
+    ...(song ? { song } : {}),
     keywords: [...keywords].filter((value) => normalizeSearchText(value)).sort(compareNaturalText),
   };
 }
