@@ -10,8 +10,29 @@ export type GallerySortCard = {
   displayTitle: string;
   facets?: Record<string, string[]>;
   metadata?: Record<string, unknown>;
-  charts?: Array<{ constant?: string; level?: string }>;
+  charts?: Array<{ constant?: string | undefined; level?: string | undefined; available?: boolean | undefined; status?: string | undefined; structurallyPresent?: boolean | undefined; errorVariant?: boolean | undefined }>;
 };
+
+export function galleryBaseSortOptions(song = false) {
+  const title = song ? "曲名" : "名称";
+  return [
+    { value: "default" as const, label: "默认排序" },
+    { value: "title-asc" as const, label: `${title} A-Z` },
+    { value: "title-desc" as const, label: `${title} Z-A` },
+    ...(song ? [{ value: "artist-asc" as const, label: "曲师 A-Z" }, { value: "artist-desc" as const, label: "曲师 Z-A" }] : []),
+  ];
+}
+
+export function compareNullableText(left: string | null | undefined, right: string | null | undefined, descending = false): number {
+  if (!left && !right) return 0;
+  if (!left) return 1;
+  if (!right) return -1;
+  return descending ? compareNaturalText(right, left) : compareNaturalText(left, right);
+}
+
+function sortableCharts(card: GallerySortCard) {
+  return (card.charts ?? []).filter(chart => chart.available !== false && chart.status !== "error" && chart.status !== "legacy" && chart.structurallyPresent !== false && !chart.errorVariant);
+}
 
 function numericTokens(value: string): number[] {
   return [...value.matchAll(/\d+(?:\.\d+)?/gu)].map((match) => Number(match[0])).filter((number) => Number.isFinite(number));
@@ -38,9 +59,9 @@ export function numericFacetSortValue(card: GallerySortCard, key: string): numbe
 }
 
 export function highestChartConstant(card: GallerySortCard): number | undefined {
-  const values = (card.charts ?? [])
-    .map((chart) => chart.constant === undefined ? Number.NaN : Number(chart.constant))
-    .filter((value) => Number.isFinite(value));
+  const values = sortableCharts(card)
+    .map((chart) => chart.constant && /^\d+(?:\.\d+)?$/u.test(chart.constant) ? Number(chart.constant) : Number.NaN)
+    .filter((value) => Number.isFinite(value) && value > 0);
   return values.length > 0 ? Math.max(...values) : undefined;
 }
 
@@ -64,7 +85,7 @@ export function compareGalleryHighestConstant(left: GallerySortCard, right: Gall
 
 export function compareGalleryHighestLevel(left: GallerySortCard, right: GallerySortCard, descending: boolean): number {
   const highest = (card: GallerySortCard): number | undefined => {
-    const levels = (card.charts ?? []).map(c => Number(c.level)).filter(n => Number.isFinite(n) && n > 0);
+    const levels = sortableCharts(card).map(c => Number(c.level)).filter(n => Number.isFinite(n) && n > 0);
     return levels.length ? Math.max(...levels) : undefined;
   };
   return compareNullableNumber(highest(left), highest(right), descending) || compareNaturalText(left.displayTitle, right.displayTitle);

@@ -6,6 +6,8 @@ import {
   BROWSE_PAGE_SIZE,
   browseDifficultyHistogram,
   compareDisplayLevels,
+  compareBrowseItems,
+  getBrowseSortOptions,
   compareVersionStrings,
   defaultBrowseUrlState,
   displayBrowseItem,
@@ -30,10 +32,53 @@ import { getBrowseGalleryBuild, getSiteData, loadFormalBrowseProjections } from 
 import { browseCardView } from "../src/lib/card-view-model";
 import { formatArcaeaAddedVersion } from "../src/lib/public-display";
 import { browserBrowseData } from "../src/lib/gallery-projection";
+import { highestChartConstant } from "../src/lib/gallery-sort";
+import { getCategoryBrowseConfig } from "../src/lib/category-browse";
+import { compareNaturalText } from "../src/lib/search";
 
 const formalBrowse = getBrowseGalleryBuild();
 const sourceBrowse = loadFormalBrowseProjections();
 const publicIds = new Set(getSiteData().resources.map(resource => resource.resourceId));
+
+test("all jacket menus share base options and verified Arcaea, Rizline and Rotaeno constants are sortable", () => {
+  const expected = ["默认排序", "曲名 A-Z", "曲名 Z-A", "曲师 A-Z", "曲师 Z-A"];
+  for (const game of ["arcaea", "phigros", "rizline", "infalsus"] as const) {
+    assert.deepEqual(getBrowseSortOptions(formalBrowse[game]).slice(0, 5).map(option => option.label), expected);
+  }
+  const rotaeno = getSiteData().resources.filter(resource => resource.game === "rotaeno" && resource.category === "jacket");
+  const options = getCategoryBrowseConfig("rotaeno", "jacket", rotaeno).sortOptions;
+  assert.deepEqual(options.slice(0, 5).map(option => option.label), expected);
+  assert.ok(options.some(option => option.value === "level-desc" && option.label === "最高定数高 → 低"));
+  for (const game of ["arcaea", "rizline"] as const) {
+    const items = formalBrowse[game].items;
+    for (const sort of ["level-desc", "level-asc"] as const) {
+      const state = parseBrowseUrlState(game, `sort=${sort}`, items);
+      assert.equal(state.sort, sort);
+      assert.equal(serializeBrowseUrlState(state).toString(), `sort=${sort}`);
+      const sorted = filterBrowseItems(items, state).filter(item => !["archive-extra", "unresolved-extra"].includes(item.recordKind));
+      const values = sorted.map(highestChartConstant);
+      const firstMissing = values.indexOf(undefined);
+      if (firstMissing >= 0) assert.ok(values.slice(firstMissing).every(value => value === undefined));
+      const known = values.filter((value): value is number => value !== undefined);
+      assert.ok(known.length > 0);
+      assert.deepEqual(known, [...known].sort((a, b) => sort === "level-desc" ? b - a : a - b));
+    }
+  }
+});
+
+test("Browse uses the gallery natural title order and keeps missing artists and versions last", () => {
+  const titles = ["白と黒のバケモノ", "大和撫子 -Wild Dances-", "Song 10", "Song 2"];
+  const items = titles.map(displayTitle => makeArcaeaItem({ displayTitle }));
+  assert.deepEqual([...items].sort((a, b) => compareBrowseItems(a, b, "title-asc")).map(item => item.displayTitle), [...titles].sort(compareNaturalText));
+  const missing = makeArcaeaItem();
+  delete missing.artist;
+  delete missing.version;
+  const known = makeArcaeaItem();
+  for (const sort of ["artist-asc", "artist-desc", "version-asc", "version-desc"] as const) {
+    assert.ok(compareBrowseItems(missing, known, sort) > 0, sort);
+    assert.ok(compareBrowseItems(known, missing, sort) < 0, sort);
+  }
+});
 
 test("Phigros Hydra uses its native title in Browse, detail and search while keeping separate credits", () => {
   const id = "01a00093-3e03-7b58-bed7-2139577cd83b";

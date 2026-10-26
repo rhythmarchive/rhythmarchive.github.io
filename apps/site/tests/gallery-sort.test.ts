@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { compareGalleryBpm, compareGalleryHighestConstant, highestChartConstant, numericFacetSortValue } from "../src/lib/gallery-sort.js";
+import { compareGalleryBpm, compareGalleryHighestConstant, compareNullableText, highestChartConstant, numericFacetSortValue } from "../src/lib/gallery-sort.js";
 
 type Card = Parameters<typeof compareGalleryBpm>[0];
 
@@ -58,4 +58,23 @@ test("chart constants sort descending with data-less cards last", () => {
   const ascending = [...cards].sort((left, right) => compareGalleryHighestConstant(left, right, false)).map((entry) => entry.displayTitle);
   assert.deepEqual(descending, ["High", "Low", "Missing"]);
   assert.deepEqual(ascending, ["Low", "High", "Missing"]);
+});
+
+test("highest constant excludes unavailable, legacy and malformed charts without falling back to levels", () => {
+  const charts = [
+    { constant: "7.8" }, { constant: "99", available: false }, { constant: "98", status: "legacy" },
+    { constant: "97", status: "error" }, { constant: "96", errorVariant: true },
+    { constant: "95", structurallyPresent: false }, { constant: "" }, { level: "15" },
+  ];
+  assert.equal(highestChartConstant({ displayTitle: "test", charts }), 7.8);
+  assert.equal(highestChartConstant({ displayTitle: "level only", charts: [{ level: "15" }] }), undefined);
+});
+
+test("missing artist stays last for both directions", () => {
+  for (const descending of [false, true]) {
+    const names = [undefined, "Artist 10", "Artist 2"].sort((a, b) => compareNullableText(a, b, descending));
+    assert.deepEqual(names, descending ? ["Artist 10", "Artist 2", undefined] : ["Artist 2", "Artist 10", undefined]);
+    assert.ok(compareNullableText(undefined, "Artist", descending) > 0);
+    assert.ok(compareNullableText("Artist", undefined, descending) < 0);
+  }
 });

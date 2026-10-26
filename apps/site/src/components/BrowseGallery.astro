@@ -5,7 +5,7 @@ import GalleryFilters from "./GalleryFilters.astro";
 import BatchTray from "./BatchTray.astro";
 import GalleryLoadError from "./GalleryLoadError.astro";
 import GalleryDownload from "./GalleryDownload.astro";
-import { getBrowseFacetOptions, browseDifficultyHistogram, type ArcaeaFacetOptions, type BrowseGalleryData, type InfalsusFacetOptions, type PhigrosFacetOptions, type RizlineFacetOptions } from "../lib/browse-gallery";
+import { getBrowseFacetOptions, getBrowseSortOptions, browseDifficultyHistogram, type ArcaeaFacetOptions, type BrowseGalleryData, type InfalsusFacetOptions, type PhigrosFacetOptions, type RizlineFacetOptions } from "../lib/browse-gallery";
 import { formatCount } from "../lib/format";
 import { displayFilterDifficultyLabel } from "../lib/game-config";
 import { BASE_PATH } from "../lib/site-config";
@@ -65,27 +65,7 @@ function formatRangeValue(value: number): string {
       <label class="sort-control">
         <span>排序</span>
         <select data-browse-sort aria-label="排序">
-          {data.game === "arcaea" ? (
-            <>
-              <option value="default">游戏顺序</option>
-              <option value="title-asc">曲名 A-Z</option>
-              <option value="title-desc">曲名 Z-A</option>
-              <option value="artist-asc">曲师 A-Z</option>
-              <option value="artist-desc">曲师 Z-A</option>
-              <option value="version-desc">版本从新到旧</option>
-              <option value="version-asc">版本从旧到新</option>
-            </>
-          ) : (
-            <>
-              <option value="default">默认排序</option>
-              <option value="title-asc">曲名 A-Z</option>
-              <option value="title-desc">曲名 Z-A</option>
-              <option value="artist-asc">曲师 A-Z</option>
-              <option value="artist-desc">曲师 Z-A</option>
-              {data.game === "phigros" ? <><option value="pack-asc">曲包 A-Z</option><option value="pack-desc">曲包 Z-A</option><option value="level-desc">最高难度高 → 低</option><option value="level-asc">最高难度低 → 高</option></> : null}
-              {data.game === "infalsus" ? <><option value="level-desc">最高等级高 → 低</option><option value="level-asc">最高等级低 → 高</option></> : null}
-            </>
-          )}
+          {getBrowseSortOptions(data).map(option => <option value={option.value}>{option.label}</option>)}
         </select>
       </label>
     </div>

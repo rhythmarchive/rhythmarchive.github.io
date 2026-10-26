@@ -13,7 +13,7 @@ import { galleryCardView } from "../lib/card-view-model";
 import type { GalleryCard } from "../lib/gallery-projection";
 import { GALLERY_IMAGE_SIZES, SIDEBAR_IMAGE_SIZES } from "../lib/card-preview";
 import { chartDifficultyHistogram, matchesChartFilters } from "../lib/chart-filters";
-import { compareGalleryBpm, compareGalleryHighestConstant, compareGalleryHighestLevel, compareNullableNumber, numericFacetValues } from "../lib/gallery-sort";
+import { compareGalleryBpm, compareGalleryHighestConstant, compareGalleryHighestLevel, compareNullableNumber, compareNullableText, numericFacetValues } from "../lib/gallery-sort";
 import { compareNaturalText, normalizeSearchText } from "../lib/search";
 import { updateResourceStatsInDom } from "../lib/stats-client";
 import { chipKey, reconcileList, setSurfaceVisible } from "./motion";
@@ -255,8 +255,7 @@ async function initializeGallery(root: HTMLElement): Promise<void> {
     if (omitRange || sortValue === "default") return filtered;
     return [...filtered].sort((left, right) => {
       if (sortValue === "artist-asc" || sortValue === "artist-desc") {
-        const artistCompared = compareNaturalText(left.artist ?? "", right.artist ?? "");
-        return (sortValue === "artist-desc" ? -artistCompared : artistCompared) || compareNaturalText(left.displayTitle, right.displayTitle);
+        return compareNullableText(left.artist, right.artist, sortValue === "artist-desc") || compareNaturalText(left.displayTitle, right.displayTitle);
       }
       if (sortValue === "updated-desc" || sortValue === "updated-asc") {
         const compared = compareNullableNumber(resourceDateValue(left), resourceDateValue(right), sortValue === "updated-desc");

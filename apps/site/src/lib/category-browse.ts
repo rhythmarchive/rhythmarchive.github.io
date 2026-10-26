@@ -11,6 +11,7 @@ import { resourceSearchTerms } from "./search-terms";
 import type { PublicResource, PublicSearchEntry, PublicSiteData } from "./types";
 import { buildRangeHistogram, chartRangeHistogram, numericIntervals, type RangeHistogram } from "./range-histogram";
 import { chartDifficultyHistogram } from "./chart-filters";
+import { galleryBaseSortOptions, highestChartConstant } from "./gallery-sort";
 
 const ROTAENO_CHART_ORDER = ["I", "II", "III", "IV", "IV_Alpha"] as const;
 const PARADIGM_CHART_ORDER = ["DET", "IVD", "MSV", "RBT", "CTC"] as const;
@@ -182,21 +183,17 @@ export function getCategoryBrowseConfig(game: GameId, category: string, resource
 }
 
 function baseSortOptions(): CategoryBrowseSortOption[] {
-  return [
-    { value: "default", label: "默认排序" },
-    { value: "title-asc", label: "名称 A-Z" },
-    { value: "title-desc", label: "名称 Z-A" },
-  ];
+  return galleryBaseSortOptions();
 }
 
 function jacketSortOptions(resources: PublicResource[]): CategoryBrowseSortOption[] {
   const game = resources[0]?.game;
-  const options = [...baseSortOptions(), { value: "artist-asc" as const, label: "曲师 A-Z" }, { value: "artist-desc" as const, label: "曲师 Z-A" }];
+  const options: CategoryBrowseSortOption[] = galleryBaseSortOptions(true);
   if (resources.some((resource) => resourceDateValue(resource) !== undefined)) {
     options.push({ value: "updated-desc", label: "更新日期：新 → 旧" }, { value: "updated-asc", label: "更新日期：旧 → 新" });
   }
   if (game === "dynamix" && resources.some(r => (r.charts ?? []).length > 0)) options.push({ value: "level-desc", label: "最高等级高 → 低" }, { value: "level-asc", label: "最高等级低 → 高" });
-  if ((game === "paradigm-reboot" || game === "orzmic" || game === "milthm" || game === "berrymelody") && resources.some((resource) => numericFacetValue(resource, "constant") !== undefined)) {
+  if (resources.some((resource) => highestChartConstant(resource) !== undefined)) {
     options.push({ value: "level-desc", label: "最高定数高 → 低" }, { value: "level-asc", label: "最高定数低 → 高" });
   }
   if (resources.some((resource) => numericFacetValue(resource, "bpm") !== undefined)) {

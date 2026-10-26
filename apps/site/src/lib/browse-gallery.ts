@@ -9,6 +9,7 @@ import type { GameId, ResourceTypeId } from "./game-config";
 import type { CategoryBrowseProjectionType } from "../../../../packages/domain/src/browse.js";
 import { compareNaturalText, normalizeSearchText } from "./search";
 import { chartRangeHistogram, type RangeHistogram } from "./range-histogram";
+import { galleryBaseSortOptions, highestChartConstant, compareGalleryHighestConstant, compareGalleryHighestLevel, compareNullableText } from "./gallery-sort";
 import type { PublicChart, PublicDownload, PublicPreview, PublicResource, PublicSiteData } from "./types";
 
 export const BROWSE_GALLERY_SCHEMA_VERSION = 1 as const;
@@ -116,10 +117,19 @@ export type BrowseGalleryBuildResult = {
   };
 };
 
-export type ArcaeaBrowseSort = "default" | "title-asc" | "title-desc" | "artist-asc" | "artist-desc" | "version-desc" | "version-asc";
+export type ArcaeaBrowseSort = "default" | "title-asc" | "title-desc" | "artist-asc" | "artist-desc" | "version-desc" | "version-asc" | "level-desc" | "level-asc";
 export type PhigrosBrowseSort = "default" | "title-asc" | "title-desc" | "artist-asc" | "artist-desc" | "pack-asc" | "pack-desc" | "level-desc" | "level-asc";
 export type InfalsusBrowseSort = "default" | "title-asc" | "title-desc" | "artist-asc" | "artist-desc" | "level-desc" | "level-asc";
-export type RizlineBrowseSort = "default" | "title-asc" | "title-desc" | "artist-asc" | "artist-desc";
+export type RizlineBrowseSort = "default" | "title-asc" | "title-desc" | "artist-asc" | "artist-desc" | "level-desc" | "level-asc";
+
+export function getBrowseSortOptions(data: BrowseGalleryData) {
+  const options: Array<{ value: ArcaeaBrowseSort | PhigrosBrowseSort | InfalsusBrowseSort; label: string }> = galleryBaseSortOptions(true);
+  if (data.game === "arcaea") options.push({ value: "version-desc", label: "加入版本：新 → 旧" }, { value: "version-asc", label: "加入版本：旧 → 新" });
+  if (data.game === "phigros") options.push({ value: "pack-asc", label: "曲包 A-Z" }, { value: "pack-desc", label: "曲包 Z-A" });
+  if (data.game === "infalsus") options.push({ value: "level-desc", label: "最高等级高 → 低" }, { value: "level-asc", label: "最高等级低 → 高" });
+  else if (data.items.some(item => highestChartConstant(item) !== undefined)) options.push({ value: "level-desc", label: "最高定数高 → 低" }, { value: "level-asc", label: "最高定数低 → 高" });
+  return options;
+}
 
 export type ArcaeaBrowseUrlState = {
   game: "arcaea";
@@ -834,37 +844,16 @@ export function compareBrowseItems(left: BrowseGalleryItem, right: BrowseGallery
   if (sort === "title-asc") result = compareText(left.displayTitle, right.displayTitle);
   else if (sort === "title-desc") result = compareText(right.displayTitle, left.displayTitle);
   else if (sort === "artist-asc") result = compareNullableText(left.artist, right.artist) || compareText(left.displayTitle, right.displayTitle);
-  else if (sort === "artist-desc") result = compareNullableText(right.artist, left.artist) || compareText(left.displayTitle, right.displayTitle);
-  else if (sort === "level-desc" && left.game === "infalsus" && right.game === "infalsus") result = compareInfalsusHighestLevel(left, right, true);
-  else if (sort === "level-asc" && left.game === "infalsus" && right.game === "infalsus") result = compareInfalsusHighestLevel(left, right, false);
+  else if (sort === "artist-desc") result = compareNullableText(left.artist, right.artist, true) || compareText(left.displayTitle, right.displayTitle);
+  else if (sort === "level-desc" && left.game === "infalsus" && right.game === "infalsus") result = compareGalleryHighestLevel(left, right, true);
+  else if (sort === "level-asc" && left.game === "infalsus" && right.game === "infalsus") result = compareGalleryHighestLevel(left, right, false);
   else if (sort === "pack-asc" && left.game === "phigros" && right.game === "phigros") result = compareNullableText(left.pack, right.pack) || compareText(left.displayTitle, right.displayTitle);
-  else if (sort === "pack-desc" && left.game === "phigros" && right.game === "phigros") result = compareNullableText(right.pack, left.pack) || compareText(left.displayTitle, right.displayTitle);
-  else if (sort === "level-desc" && left.game === "phigros" && right.game === "phigros") result = comparePhigrosHighestLevel(left, right, true);
-  else if (sort === "level-asc" && left.game === "phigros" && right.game === "phigros") result = comparePhigrosHighestLevel(left, right, false);
-  else if (sort === "version-desc" && left.game === "arcaea" && right.game === "arcaea") result = compareNullableVersion(right.version, left.version);
-  else if (sort === "version-asc" && left.game === "arcaea" && right.game === "arcaea") result = compareNullableVersion(left.version, right.version);
+  else if (sort === "pack-desc" && left.game === "phigros" && right.game === "phigros") result = compareNullableText(left.pack, right.pack, true) || compareText(left.displayTitle, right.displayTitle);
+  else if (sort === "level-desc" || sort === "level-asc") result = compareGalleryHighestConstant(left, right, sort === "level-desc");
+  else if (sort === "version-desc" && left.game === "arcaea" && right.game === "arcaea") result = compareNullableVersion(left.version, right.version, true) || compareText(left.displayTitle, right.displayTitle);
+  else if (sort === "version-asc" && left.game === "arcaea" && right.game === "arcaea") result = compareNullableVersion(left.version, right.version) || compareText(left.displayTitle, right.displayTitle);
   if (result !== 0) return result;
   return compareBrowseOrder(left, right);
-}
-
-function comparePhigrosHighestLevel(left: BrowseGalleryItem, right: BrowseGalleryItem, descending: boolean): number {
-  const leftLevel = Math.max(...left.charts.filter(isPhigrosChart).filter(isFilterablePhigrosChart).flatMap((chart) => browseNumericDifficulty(chart) ?? []), Number.NEGATIVE_INFINITY);
-  const rightLevel = Math.max(...right.charts.filter(isPhigrosChart).filter(isFilterablePhigrosChart).flatMap((chart) => browseNumericDifficulty(chart) ?? []), Number.NEGATIVE_INFINITY);
-  if (leftLevel === Number.NEGATIVE_INFINITY && rightLevel === Number.NEGATIVE_INFINITY) return 0;
-  // Records without a level always sort last, whichever direction is requested.
-  if (leftLevel === Number.NEGATIVE_INFINITY) return 1;
-  if (rightLevel === Number.NEGATIVE_INFINITY) return -1;
-  return (descending ? rightLevel - leftLevel : leftLevel - rightLevel) || compareText(left.displayTitle, right.displayTitle);
-}
-
-function compareInfalsusHighestLevel(left: BrowseGalleryItem, right: BrowseGalleryItem, descending: boolean): number {
-  const highest = (item: BrowseGalleryItem): number => Math.max(...item.charts.filter(isPublicChart).filter(isFilterablePublicChart).map((chart) => Number(chart.level)).filter(Number.isFinite), Number.NEGATIVE_INFINITY);
-  const leftLevel = highest(left);
-  const rightLevel = highest(right);
-  if (leftLevel === Number.NEGATIVE_INFINITY && rightLevel === Number.NEGATIVE_INFINITY) return 0;
-  if (leftLevel === Number.NEGATIVE_INFINITY) return 1;
-  if (rightLevel === Number.NEGATIVE_INFINITY) return -1;
-  return (descending ? rightLevel - leftLevel : leftLevel - rightLevel) || compareText(left.displayTitle, right.displayTitle);
 }
 
 function compareBrowseTail(left: BrowseGalleryItem, right: BrowseGalleryItem): number {
@@ -1066,7 +1055,7 @@ function formatChartDifficulty(value: number): string {
 }
 
 function isArcaeaSort(value: string | null): value is ArcaeaBrowseSort {
-  return value === "default" || value === "title-asc" || value === "title-desc" || value === "artist-asc" || value === "artist-desc" || value === "version-desc" || value === "version-asc";
+  return value === "default" || value === "title-asc" || value === "title-desc" || value === "artist-asc" || value === "artist-desc" || value === "version-desc" || value === "version-asc" || value === "level-desc" || value === "level-asc";
 }
 
 function isPhigrosSort(value: string | null): value is PhigrosBrowseSort {
@@ -1078,7 +1067,7 @@ function isInfalsusSort(value: string | null): value is InfalsusBrowseSort {
 }
 
 function isRizlineSort(value: string | null): value is RizlineBrowseSort {
-  return value === "default" || value === "title-asc" || value === "title-desc" || value === "artist-asc" || value === "artist-desc";
+  return value === "default" || value === "title-asc" || value === "title-desc" || value === "artist-asc" || value === "artist-desc" || value === "level-desc" || value === "level-asc";
 }
 
 function difficultyOrder(game: BrowseGame, values: string[]): string[] {
@@ -1110,22 +1099,15 @@ function compareNumericStrings(left: string, right: string): number {
   return normalizedLeft.length - normalizedRight.length || normalizedLeft.localeCompare(normalizedRight, "en");
 }
 
-function compareNullableVersion(left: string | null | undefined, right: string | null | undefined): number {
+function compareNullableVersion(left: string | null | undefined, right: string | null | undefined, descending = false): number {
   if (!left && !right) return 0;
   if (!left) return 1;
   if (!right) return -1;
-  return compareVersionStrings(left, right);
-}
-
-function compareNullableText(left: string | null | undefined, right: string | null | undefined): number {
-  if (!left && !right) return 0;
-  if (!left) return 1;
-  if (!right) return -1;
-  return compareText(left, right);
+  return descending ? compareVersionStrings(right, left) : compareVersionStrings(left, right);
 }
 
 function compareText(left: string, right: string): number {
-  return compareNaturalText(left, right, "en");
+  return compareNaturalText(left, right);
 }
 
 function unique<T>(values: T[], comparator: (left: T, right: T) => number): T[] {
