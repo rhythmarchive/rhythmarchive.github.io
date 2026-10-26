@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
 import test from "node:test";
-import { MAX_BATCH_FILES, readResponseBytesWithinLimit, toggleBatchSelection, uniqueZipFilename } from "../src/lib/batch.js";
+import { MAX_BATCH_FILES, MAX_BATCH_BYTES, readResponseBytesWithinLimit, toggleBatchSelection, uniqueZipFilename } from "../src/lib/batch.js";
 import { downloadSelectedBatchFromManifest } from "../src/scripts/batch-tray.js";
 import { unzipSync } from "fflate";
 
@@ -74,6 +74,29 @@ test("batch response reads enforce actual byte limits and safe ZIP names", async
   const used = new Set<string>();
   assert.equal(uniqueZipFilename(used, ".."), "resource.bin");
   assert.equal(uniqueZipFilename(used, ".."), "resource (2).bin");
+});
+
+test("oversized manifests and pre-cancelled downloads never fetch resource objects", async (t) => {
+  const requested: string[] = [];
+  const statuses: string[] = [];
+  t.mock.method(globalThis, "fetch", async (input: string) => {
+    requested.push(input);
+    assert.equal(input, "/batch/search.json");
+    return Response.json({ song: { original: { url: "https://assets.test/large", downloadFilename: "large.png", mime: "image/png", sizeBytes: MAX_BATCH_BYTES + 1 } } });
+  });
+  const options = {
+    selectedIds: ["song"], manifestUrl: "/batch/search.json",
+    getResource: (id: string) => ({ resourceId: id, route: `/r/${id}/`, displayTitle: "Song", preview: { small: null, medium: null, large: null } }),
+    preferUpscaled: false, filename: "search.zip", setStatus: (value: string) => statuses.push(value),
+  };
+  await downloadSelectedBatchFromManifest(options);
+  assert.deepEqual(requested, ["/batch/search.json"]);
+  assert.match(statuses.at(-1)!, /300 MiB/u);
+  const controller = new AbortController();
+  controller.abort();
+  await downloadSelectedBatchFromManifest({ ...options, signal: controller.signal });
+  assert.equal(statuses.at(-1), "下载已取消");
+  assert.deepEqual(requested, ["/batch/search.json"]);
 });
 
 test("Gallery and BrowseGallery share the fixed batch tray and client module", () => {

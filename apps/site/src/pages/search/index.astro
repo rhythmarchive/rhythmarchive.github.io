@@ -2,6 +2,8 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import CardSkeleton from "../../components/CardSkeleton.astro";
 import SearchBox from "../../components/SearchBox.astro";
+import BatchTray from "../../components/BatchTray.astro";
+import GalleryDownload from "../../components/GalleryDownload.astro";
 import { formatCount } from "../../lib/format";
 import { buildSearchQuickLinks } from "../../lib/search-quick-links";
 import { getPublicNavigationGames } from "../../lib/site-data";
@@ -56,7 +58,8 @@ const browseGroups = games.map((game) => ({
     </div>
   </section>
   <section class="page-container search-results" data-search-page data-search-query={query}>
-    <div class="search-results-heading"><span data-search-status aria-live="polite">输入关键词搜索资源</span><button class="text-link search-retry" type="button" data-search-retry hidden>重试</button></div>
+    <div class="gallery-results-bar search-results-heading"><span data-search-status aria-live="polite">输入关键词搜索资源</span><button class="text-link search-retry" type="button" data-search-retry hidden>重试</button><GalleryDownload id="search-result-download" originalLabel="原文件" /></div>
+    <p class="detail-note">打包每项资源的默认文件，可优先使用超分版。</p>
     <div class="search-empty" data-search-empty hidden>
       <p data-search-empty-copy>试试其他关键词，或从游戏库按分类查找。</p>
       <div><button class="button button-secondary" type="button" data-search-clear-category hidden>清除分类</button><button class="button button-secondary" type="button" data-search-clear-filters hidden>清除筛选</button><a class="button button-secondary" href={urls.sitePath("/games/")}>浏览游戏库</a><a class="text-link" href={urls.sitePath("/feedback/")}>反馈缺少的资源</a></div>
@@ -65,5 +68,6 @@ const browseGroups = games.map((game) => ({
     <div data-search-loading hidden><CardSkeleton /></div>
     <div class="gallery-more"><button class="button button-secondary" type="button" data-search-more hidden>加载更多</button></div>
   </section>
+  <BatchTray originalLabel="下载原文件" />
   <script src="../../scripts/search-page.ts"></script>
 </BaseLayout>

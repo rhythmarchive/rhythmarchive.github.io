@@ -3,7 +3,7 @@ import type { BatchTrayController } from "./batch-tray";
 import { onPageCleanup, pageSignal } from "./page-lifecycle";
 import { setSurfaceVisible } from "./motion";
 
-export function setupGalleryDownload(root: HTMLElement, getResults: () => readonly BatchResource[], tray: BatchTrayController, flush: () => void) {
+export function setupGalleryDownload(root: HTMLElement, getResults: () => readonly (Pick<BatchResource, "resourceId" | "hasUpscaled"> & { upscaled?: BatchResource["upscaled"] | boolean })[], tray: BatchTrayController, flush: () => void) {
   const trigger = root.querySelector<HTMLButtonElement>("[data-result-download]")!;
   const limit = root.querySelector<HTMLElement>("[data-result-limit]")!;
   const dialog = root.querySelector<HTMLDialogElement>("[data-result-dialog]")!;
@@ -38,7 +38,7 @@ export function setupGalleryDownload(root: HTMLElement, getResults: () => readon
     dialog.close(); dialog.hidden = false; closing = false;
     document.documentElement.style.overflow = overflow;
     if (!trigger.disabled) trigger.focus({ preventScroll: true });
-    else root.querySelector<HTMLInputElement>('.gallery-search input')?.focus({ preventScroll: true });
+    else root.querySelector<HTMLInputElement>('.gallery-search input, input[type="search"]')?.focus({ preventScroll: true });
   };
   trigger.addEventListener("click", () => {
     flush(); update();

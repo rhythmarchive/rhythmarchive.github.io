@@ -5,7 +5,7 @@ import { DownloadHttpError, reportDownloadFailure } from "../lib/resource-report
 import { DOWNLOAD_CONCURRENCY, MAX_BATCH_BYTES, MAX_BATCH_FILES, readResponseBytesWithinLimit, toggleBatchSelection, uniqueZipFilename, type BatchResource } from "../lib/batch";
 import { getBrowserStatsClient } from "../lib/stats-client";
 import { sitePath } from "../lib/url";
-import type { PublicDownload, PublicPreview } from "../lib/types";
+import type { PublicDownload, PublicSearchImage } from "../lib/types";
 import { pageSignal } from "./page-lifecycle";
 
 type BatchTrayOptions = {
@@ -444,8 +444,8 @@ function createThumbnail(resource: BatchResource, className = "batch-tray-thumb"
     return image;
   }
   image.dataset.viewportSrc = preview.primary.url;
-  image.width = preview.primary.width;
-  image.height = preview.primary.height;
+  if (preview.primary.width) image.width = preview.primary.width;
+  if (preview.primary.height) image.height = preview.primary.height;
   image.alt = resource.displayTitle;
   if (preview.fallback) {
     image.dataset.fallbackSrc = preview.fallback.url;
@@ -458,8 +458,8 @@ function createThumbnail(resource: BatchResource, className = "batch-tray-thumb"
   return image;
 }
 
-function pickPreview(preview: PublicPreview): { primary: NonNullable<PublicPreview["small"]>; fallback?: NonNullable<PublicPreview["small"]> } | undefined {
-  const candidates = [preview.small, preview.medium, preview.large].filter((candidate): candidate is NonNullable<PublicPreview["small"]> => Boolean(candidate));
+function pickPreview(preview: BatchResource["preview"]): { primary: PublicSearchImage; fallback?: PublicSearchImage } | undefined {
+  const candidates = [preview.small, preview.medium, preview.large].filter((candidate): candidate is PublicSearchImage => Boolean(candidate));
   const primary = candidates[0];
   if (!primary) return undefined;
   return { primary, ...(candidates[1] ? { fallback: candidates[1] } : {}) };

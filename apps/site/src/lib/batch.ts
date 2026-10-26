@@ -8,13 +8,13 @@ export function resultBatchLimitMessage(count: number): string | undefined {
   return undefined;
 }
 
-import type { PublicDownload, PublicPreview } from "./types";
+import type { PublicDownload, PublicSearchImage } from "./types";
 
 export type BatchResource = {
   resourceId: string;
   route: string;
   displayTitle: string;
-  preview: PublicPreview;
+  preview: { small: PublicSearchImage | null; medium: PublicSearchImage | null; large: PublicSearchImage | null };
   original?: PublicDownload;
   upscaled?: PublicDownload;
   hasUpscaled?: boolean;

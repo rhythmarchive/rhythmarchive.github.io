@@ -583,7 +583,7 @@ img[data-image-state="loading"], img[data-image-state="error"],
 }
 :root:not([data-motion-level="reduced"]) :is(.filter-popover[open] > .filter-popover-body, .gallery-filter-disclosure[open] > .gallery-filter-row) { animation: archive-surface-in var(--motion-ui) var(--motion-ease); }
 @keyframes archive-surface-in { from { opacity: 0; transform: translateY(4px); } }
-.gallery-shell.has-selection { padding-bottom: 96px; }
+.gallery-shell.has-selection, .search-page .site-main.has-selection { padding-bottom: 96px; }
 .batch-tray { position: fixed; right: max(14px, calc((100vw - var(--content)) / 2)); bottom: calc(12px + env(safe-area-inset-bottom)); z-index: 30; width: min(540px, calc(100vw - 28px)); padding: 10px 12px; border: 1px solid color-mix(in srgb, var(--accent) 42%, var(--line)); border-radius: var(--radius-md); background: var(--surface); box-shadow: var(--shadow-hover); }
 .batch-tray-main { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-width: 0; }
 .batch-tray-summary { display: flex; align-items: center; gap: 9px; min-width: 0; }

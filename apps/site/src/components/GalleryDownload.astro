@@ -1,7 +1,7 @@
 ---
-interface Props { id: string }
+interface Props { id: string; originalLabel?: string }
 import { MAX_BATCH_FILES, MAX_BATCH_BYTES } from "../lib/batch";
-const { id } = Astro.props;
+const { id, originalLabel = "原图" } = Astro.props;
 ---
 <div class="gallery-result-actions">
   <button class="text-link gallery-pack-button" type="button" data-result-download aria-haspopup="dialog" aria-controls={id} aria-describedby={`${id}-note`} disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m-4-4 4 4 4-4M4 16v4h16v-4" /></svg><span class="pack-label-desktop">打包下载结果</span><span class="pack-label-mobile">打包下载</span></button>
@@ -12,8 +12,8 @@ const { id } = Astro.props;
   <header><h2 id={`${id}-title`}>打包下载筛选结果</h2><button class="button button-secondary" type="button" data-result-close aria-label="关闭打包下载">×</button></header>
   <div class="gallery-filter-mount">
     <p data-result-summary></p>
-    <label class="filter-control"><span>下载版本</span><select data-result-version aria-label="下载版本"><option value="original">原图</option><option value="upscaled">优先使用超分版</option></select></label>
-    <p class="detail-note" data-result-upscale-note hidden>没有超分版的资源使用原图。</p>
+    <label class="filter-control"><span>下载版本</span><select data-result-version aria-label="下载版本"><option value="original">{originalLabel}</option><option value="upscaled">优先使用超分版</option></select></label>
+    <p class="detail-note" data-result-upscale-note hidden>没有超分版的资源使用{originalLabel}。</p>
     <p class="detail-note">单次最多 {MAX_BATCH_FILES} 项，总大小不超过 {MAX_BATCH_BYTES / 1048576} MiB。打包不影响你手动勾选的项目。</p>
   </div>
   <footer><button class="button button-secondary" type="button" data-result-close>取消</button><button class="button button-primary" type="button" data-result-confirm>打包下载</button></footer>

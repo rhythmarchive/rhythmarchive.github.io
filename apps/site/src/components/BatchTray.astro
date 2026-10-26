@@ -1,3 +1,7 @@
+---
+interface Props { originalLabel?: string }
+const { originalLabel = "下载原图" } = Astro.props;
+---
 <div class="batch-tray" data-batch-tray hidden>
   <div class="batch-tray-main">
     <div class="batch-tray-summary">
@@ -13,7 +17,7 @@
         <button class="button button-secondary batch-view-selected" type="button" data-batch-view aria-expanded="false" aria-controls="batch-selected-panel">查看已选</button>
       </div>
       <div class="batch-tray-download-actions">
-        <button class="button button-secondary" type="button" data-batch-download="original">下载原图</button>
+        <button class="button button-secondary" type="button" data-batch-download="original">{originalLabel}</button>
         <button class="button button-primary" type="button" data-batch-download="upscaled">优先下载超分版</button>
       </div>
     </div>

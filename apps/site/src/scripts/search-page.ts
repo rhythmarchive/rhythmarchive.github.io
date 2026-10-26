@@ -9,6 +9,9 @@ import { createCardReconciler } from "./render-resource-card";
 import type { CardViewModel } from "../lib/card-view-model";
 import { cardFrameFor } from "../lib/card-frame";
 import type { PublicSearchCard, PublicSearchEntry } from "../lib/types";
+import type { BatchResource } from "../lib/batch";
+import { createBatchTray, downloadSelectedBatchFromManifest } from "./batch-tray";
+import { setupGalleryDownload } from "./gallery-download";
 
 onPageLoad(() => {
   const root = document.querySelector<HTMLElement>("[data-search-page]");
@@ -54,10 +57,51 @@ async function initializeSearch(root: HTMLElement): Promise<void> {
   let visibleCount = 48;
   let timer: number | undefined;
   let composing = false;
+  let loadedEntries: PublicSearchEntry[] | undefined;
+  let loadedCards: Map<string, PublicSearchCard> | undefined;
+  let tray: ReturnType<typeof createBatchTray> | undefined;
+  let resultDownload: ReturnType<typeof setupGalleryDownload> | undefined;
+
+  function setupBatch(entries: PublicSearchEntry[], cards: Map<string, PublicSearchCard>): void {
+    if (tray) return;
+    const byId = new Map(entries.map(entry => [entry.resourceId, entry]));
+    const base = document.documentElement.dataset.basePath ?? "/";
+    // Resolve saved selections from the entire loaded index, even after filters
+    // hide them. Only selected/downloaded items need this small preview adapter.
+    const getResource = (id: string): BatchResource | undefined => {
+      const card = cards.get(id);
+      const entry = byId.get(id);
+      return card && entry ? {
+        resourceId: id, route: card.route ?? entry.route, displayTitle: card.displayTitle ?? entry.title,
+        preview: { small: card.image, medium: card.fallback, large: null }, hasUpscaled: Boolean(card.upscaled),
+      } : undefined;
+    };
+    tray = createBatchTray({
+      root: root.parentElement!, grid: results!, getResource,
+      selectionScope: "search",
+      onDetailLink: navigation.captureLink,
+      onDownload: (preferUpscaled, selectedIds, setStatus, taskSignal) => downloadSelectedBatchFromManifest({
+        selectedIds, getResource, preferUpscaled, setStatus, filename: "rhythm-archive-search.zip",
+        manifestUrl: [...new Set(selectedIds.flatMap(id => {
+          const entry = byId.get(id);
+          return entry ? [sitePath(`/data/batch/${entry.game}/${entry.category}.json`, base)] : [];
+        }))],
+        ...(taskSignal ? { signal: taskSignal } : {}),
+      }),
+    });
+    // The shared result action only reads count, IDs and upscale availability;
+    // keep the full matches array and adapt at most 30 resources on download.
+    resultDownload = setupGalleryDownload(root.parentElement!, () => matches, tray, () => {
+      if (composing) { matches = []; resultDownload?.update(); }
+      else if (timer !== undefined) void run();
+    });
+  }
 
   const render = (): void => {
     const visible = matches.slice(0, visibleCount);
-    reconcile(visible.map(resultCardView), { basePath: document.documentElement.dataset.basePath ?? "/", selectable: false });
+    reconcile(visible.map(resultCardView), { basePath: document.documentElement.dataset.basePath ?? "/" });
+    tray?.syncCards();
+    resultDownload?.update();
     navigation.remember(visibleCount);
     more.hidden = visible.length >= matches.length;
     if (empty) empty.hidden = matches.length > 0;
@@ -122,11 +166,13 @@ async function initializeSearch(root: HTMLElement): Promise<void> {
   const run = async (): Promise<void> => {
     if (signal.aborted) return;
     window.clearTimeout(timer);
+    timer = undefined;
     const token = ++runToken;
     visibleCount = initialRun ? navigation.visibleCount(48) : 48;
     initialRun = false;
     more.hidden = true;
     matches = [];
+    resultDownload?.update();
     const rawQuery = input.value;
     const query = rawQuery.trim();
     const invalidCategory = syncCategories();
@@ -160,8 +206,13 @@ async function initializeSearch(root: HTMLElement): Promise<void> {
       return;
     }
     try {
-      const [entries, cardMap] = await Promise.all([loadSearchIndex(), loadSearchCards()]);
+      // With data loaded, run through render synchronously so the shared pack
+      // action can flush a pending input before snapshotting the whole result set.
+      const [entries, cardMap] = loadedEntries && loadedCards ? [loadedEntries, loadedCards] : await Promise.all([loadSearchIndex(), loadSearchCards()]);
       if (signal.aborted || token !== runToken) return;
+      loadedEntries = entries;
+      loadedCards = cardMap;
+      setupBatch(entries, cardMap);
       const ranked = query || game.value || category.value ? rankSearchEntries(entries, query, { game: game.value, category: category.value, ...(field && !field.disabled ? { field: "artist" as const } : {}) }) : entries;
       matches = ranked.flatMap((entry) => {
         const card = cardMap.get(entry.resourceId);
