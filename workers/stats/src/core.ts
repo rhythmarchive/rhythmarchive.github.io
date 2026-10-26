@@ -1,5 +1,6 @@
 import { isUuidV7, normalizeUuid } from "../../../packages/domain/src/identifiers.js";
 import { getResourceRankingWithCache, type RankingCache } from "./ranking-cache.js";
+import { getTotalDownloadsWithCache } from "./site-downloads-cache.js";
 import { acceptResourceReport } from "./resource-reports.js";
 import { PUBLIC_GAME_DISPLAY_NAMES, PUBLIC_GAME_SLUGS, PUBLIC_RESOURCE_CATALOG_GENERATED_AT, PUBLIC_RESOURCE_REGISTRY_SHA256, PUBLIC_RESOURCE_IDS, type PublicGameSlug } from "./public-resource-registry.js";
 export type { PublicGameSlug } from "./public-resource-registry.js";
@@ -28,7 +29,7 @@ export const UPDATE_REMINDER_NOTIFICATION_MAX_BACKOFF_MS = 6 * 60 * 60 * 1000;
 export const UPDATE_REMINDER_DAILY_EMAIL_LIMIT = 80;
 
 export type StatsEvent =
-  | { type: "site_visit"; visitorId: string }
+  | { type: "site_visit"; visitorId: string; includeDownloads?: boolean }
   | { type: "resource_detail"; visitorId: string; resourceId: string }
   | { type: "resource_download"; visitorId: string; resourceId: string };
 
@@ -46,6 +47,7 @@ export type ResourceRankingEntry = ResourceStats & {
 export type SiteStats = {
   totalVisits: number;
   todayVisits: number;
+  totalDownloads?: number;
   date: string;
 };
 
@@ -106,6 +108,7 @@ export interface StatsStore {
   markUpdateReminderNotificationSent(claim: UpdateReminderNotificationClaim, nowMs: number): Promise<void>;
   markUpdateReminderNotificationFailed(claim: UpdateReminderNotificationClaim, nowMs: number, nextNotificationAt: number | null, errorCode: string): Promise<void>;
   getSiteStats(date: string): Promise<SiteStats>;
+  getTotalDownloads(): Promise<number>;
   getResourceStats(resourceIds: readonly string[]): Promise<Map<string, ResourceStats>>;
   getResourceRanking(period: ResourceRankingPeriod, date: string, limit: number): Promise<ResourceRankingEntry[]>;
 }
@@ -280,6 +283,12 @@ export class D1StatsStore implements StatsStore {
       todayVisits: safeCounter(daily?.total_visits),
       date,
     };
+  }
+
+  async getTotalDownloads(): Promise<number> {
+    const row = await this.db.prepare("SELECT COALESCE(SUM(total_downloads), 0) AS total_downloads FROM resource_stats").first<{ total_downloads: number }>();
+    if (!row || !Number.isSafeInteger(row.total_downloads) || row.total_downloads < 0) throw new Error("invalid_download_total");
+    return row.total_downloads;
   }
 
   async getResourceStats(resourceIds: readonly string[]): Promise<Map<string, ResourceStats>> {
@@ -608,7 +617,10 @@ export function validateEventPayload(value: unknown): { event?: StatsEvent; erro
   if (value.type !== "site_visit" && value.type !== "resource_detail" && value.type !== "resource_download") return { error: "invalid_event_type" };
   const visitorId = normalizeUuid(value.visitorId);
   if (!visitorId || !isValidVisitorId(visitorId)) return { error: "invalid_visitor_id" };
-  if (value.type === "site_visit") return { event: { type: value.type, visitorId } };
+  if (value.type === "site_visit") {
+    if (value.includeDownloads !== undefined && typeof value.includeDownloads !== "boolean") return { error: "invalid_include_downloads" };
+    return { event: { type: value.type, visitorId, ...(value.includeDownloads === true ? { includeDownloads: true } : {}) } };
+  }
   const resourceId = normalizeUuid(value.resourceId);
   if (!resourceId || !isValidResourceId(resourceId)) return { error: "invalid_resource_id" };
   if (!isPublicResourceId(resourceId)) return { error: "resource_not_public" };
@@ -734,6 +746,10 @@ export async function handleRequest(request: Request, env: Env, options: Handler
   if (!store) return json({ error: "stats_unavailable" }, 503, corsHeaders);
   const nowMs = options.now?.() ?? Date.now();
   const date = siteDateKey(nowMs, env.SITE_TIME_ZONE || "Asia/Shanghai");
+  const withDownloads = async (site: SiteStats): Promise<SiteStats> => {
+    try { return { ...site, totalDownloads: await getTotalDownloadsWithCache(store, options.rankingCache, url.origin, nowMs) }; }
+    catch { return site; } // Keep visit counts when only the optional aggregate fails.
+  };
   try {
     const rateLimitConfig = requestRateLimitConfig(path, request.method);
     if (rateLimitConfig) {
@@ -783,7 +799,8 @@ export async function handleRequest(request: Request, env: Env, options: Handler
       return json({ ok: true, status: "retry_scheduled", reminder: retried }, 202, corsHeaders);
     }
     if (path === "/v1/site/stats" && request.method === "GET") {
-      return json(await store.getSiteStats(date), 200, corsHeaders);
+      const site = await store.getSiteStats(date);
+      return json(url.searchParams.get("downloads") === "1" ? await withDownloads(site) : site, 200, corsHeaders);
     }
     if (path === "/v1/resources/ranking" && request.method === "GET") {
       const validation = validateResourceRankingQuery(url.searchParams);
@@ -843,7 +860,7 @@ export async function handleRequest(request: Request, env: Env, options: Handler
           view: recorded.viewCounted,
           download: recorded.downloadCounted,
         },
-        ...(recorded.site ? { site: recorded.site } : {}),
+        ...(recorded.site ? { site: event.type === "site_visit" && event.includeDownloads ? await withDownloads(recorded.site) : recorded.site } : {}),
         ...(recorded.resource && event.type !== "site_visit" ? { resource: { resourceId: event.resourceId, ...recorded.resource } } : {}),
       }, 200, corsHeaders);
     }

@@ -98,6 +98,10 @@ class MemoryStatsStore implements StatsStore {
     return { totalVisits: this.totalVisits, todayVisits: this.dailyVisits.get(date) ?? 0, date };
   }
 
+  async getTotalDownloads(): Promise<number> {
+    return [...this.resources.values()].reduce((sum, stats) => sum + stats.downloads, 0);
+  }
+
   async getResourceStats(ids: readonly string[]): Promise<Map<string, ResourceStats>> {
     return new Map(ids.map((id) => [id, this.resources.get(id) ?? { views: 0, downloads: 0 }]));
   }
@@ -912,6 +916,7 @@ test("database failures become stable 503 responses", async () => {
     markUpdateReminderNotificationSent: async () => { throw new Error("database unavailable"); },
     markUpdateReminderNotificationFailed: async () => { throw new Error("database unavailable"); },
     getSiteStats: async () => { throw new Error("database unavailable"); },
+    getTotalDownloads: async () => { throw new Error("database unavailable"); },
     getResourceStats: async () => { throw new Error("database unavailable"); },
     getResourceRanking: async () => { throw new Error("database unavailable"); },
   };

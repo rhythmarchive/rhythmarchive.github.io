@@ -14,6 +14,7 @@ class SqliteD1 implements D1Database {
   missingRateRow = false;
   failRateRead = false;
   failRanking = false;
+  failDownloads = false;
   constructor(through = "9999") {
     const directory = new URL("../migrations/", import.meta.url);
     for (const file of readdirSync(directory).filter((name) => name.endsWith(".sql") && name.slice(0, 4) <= through).sort()) {
@@ -27,6 +28,7 @@ class SqliteD1 implements D1Database {
         db.queries.push(sql);
         if (db.failRateRead && sql.includes("request_rate_limits")) throw new Error("rate read failed");
         if (db.failRanking && sql.includes("SUM(daily_views) AS total_views")) throw new Error("ranking failed");
+        if (db.failDownloads && sql.includes("SUM(total_downloads)")) throw new Error("download total failed");
         return db.sqlite.prepare(sql);
       }
       return {
@@ -79,6 +81,42 @@ const resourceId = [...PUBLIC_RESOURCE_IDS][0]!;
 const now = Date.UTC(2026, 9, 3, 12);
 const date = "2026-10-03";
 const rankingPath = "/v1/resources/ranking?period=7d&limit=6";
+
+test("download total is opt-in, historical, coalesced and cached without extra writes", async () => {
+  const db = new SqliteD1();
+  db.sqlite.exec(`INSERT INTO resource_stats(resource_id,total_views,total_downloads,updated_at) VALUES ('retired-resource',0,7,1), ('${resourceId}',0,2,1)`);
+  const cache = new TestCache();
+  await api(db, req('/v1/site/stats'), now, cache);
+  await api(db, req('/v1/events', { type: 'site_visit', visitorId }), now, cache);
+  assert.equal(db.queries.filter(sql => sql.includes('SUM(total_downloads)')).length, 0);
+  const responses = await Promise.all(Array.from({ length: 8 }, () => api(db, req('/v1/site/stats?downloads=1'), now, cache)));
+  for (const response of responses) assert.equal((await response.json() as { totalDownloads: number }).totalDownloads, 9);
+  assert.equal(db.queries.filter(sql => sql.includes('SUM(total_downloads)')).length, 1);
+  db.sqlite.exec(`UPDATE resource_stats SET total_downloads=8 WHERE resource_id='retired-resource'`);
+  const warm = await api(db, req('/v1/events', { type: 'site_visit', visitorId, includeDownloads: true }), now + 1, cache);
+  assert.equal((await warm.json() as { site: { totalDownloads: number } }).site.totalDownloads, 9);
+  assert.equal(db.queries.filter(sql => sql.includes('SUM(total_downloads)')).length, 1);
+  const fresh = await api(db, req('/v1/site/stats?downloads=1'), now + RANKING_CACHE_TTL_MS + 1, cache);
+  assert.equal((await fresh.json() as { totalDownloads: number }).totalDownloads, 10);
+  assert.equal(db.queries.filter(sql => sql.includes('SUM(total_downloads)')).length, 2);
+});
+
+test("download aggregate failure keeps visits and does not cache unknown as zero", async () => {
+  const db = new SqliteD1();
+  const cache = new TestCache();
+  db.failDownloads = true;
+  const response = await api(db, req('/v1/events', { type: 'site_visit', visitorId, includeDownloads: true }), now, cache);
+  const value = await response.json() as { site: { totalVisits: number; totalDownloads?: number } };
+  assert.equal(value.site.totalVisits, 1);
+  assert.equal(value.site.totalDownloads, undefined);
+  assert.equal(cache.values.size, 0);
+  db.failDownloads = false;
+  const retry = await api(db, req('/v1/site/stats?downloads=1'), now + 1, cache);
+  assert.equal((await retry.json() as { totalDownloads: number }).totalDownloads, 0);
+  cache.failMatch = cache.failPut = true;
+  assert.equal((await api(db, req('/v1/site/stats?downloads=1'), now + 2, cache)).status, 200);
+});
+
 function req(path: string, body?: StatsEvent, origin = "https://rhythmarchive.github.io") {
   return new Request("https://stats.example.test" + path, {
     method: body ? "POST" : "GET", headers: { Origin: origin, "Content-Type": "application/json" },

@@ -11,6 +11,7 @@ import {
   isValidResourceId,
   isValidVisitorId,
   normalizeStatsApiUrl,
+  renderSiteStats,
 } from "../src/lib/stats-client.js";
 
 const visitorId = "11111111-1111-4111-8111-111111111111";
@@ -78,6 +79,51 @@ test("an existing UUIDv4 visitor in localStorage is reused without regeneration"
 
   assert.equal(client.getVisitorId(), visitorId);
   assert.equal(factoryCalls, 0);
+});
+
+test("homepage download totals share the visit response or one cached follow-up read", async (t) => {
+  let now = 1000;
+  t.mock.method(Date, 'now', () => now);
+  const calls: Array<{ url: string; body?: Record<string, unknown> }> = [];
+  const client = createStatsClient({ apiUrl: "https://stats.example.test", storage: new MemoryStorage(), visitorIdFactory: () => visitorId,
+    fetchImpl: async (input, init) => {
+      const body = init?.body ? JSON.parse(String(init.body)) as Record<string, unknown> : undefined;
+      calls.push({ url: String(input), ...(body ? { body } : {}) });
+      const value = { totalVisits: 3, todayVisits: 1, ...(body?.includeDownloads || String(input).includes('downloads=1') ? { totalDownloads: 27 } : {}) };
+      return Response.json(body ? { site: value } : value);
+    },
+  });
+  await client.trackSiteVisit();
+  assert.equal(calls[0]?.body?.includeDownloads, undefined);
+  const [one, two] = await Promise.all([client.getSiteStats(true), client.getSiteStats(true)]);
+  assert.equal(one?.totalDownloads, 27);
+  assert.deepEqual(one, two);
+  await client.getSiteStats(true);
+  assert.equal(calls.length, 2);
+  await client.trackSiteVisit(true);
+  assert.equal(calls.at(-1)?.body?.includeDownloads, true);
+  const before = calls.length;
+  assert.equal((await client.getSiteStats(true))?.totalDownloads, 27);
+  assert.equal(calls.length, before);
+  now += 60_001;
+  await client.getSiteStats(true);
+  assert.equal(calls.length, before + 1);
+  assert.ok(calls.at(-1)?.url.endsWith('/v1/site/stats?downloads=1'));
+});
+
+test("download rendering distinguishes a known zero from a missing or failed aggregate", () => {
+  const node = () => ({ textContent: '', hidden: false, dataset: {} as Record<string, string>, removeAttribute() {}, setAttribute() {} });
+  const container = node(), total = node(), today = node(), downloads = node();
+  const nodes = new Map([['[data-site-stats]', container], ['[data-site-total-visits]', total], ['[data-site-today-visits]', today], ['[data-site-total-downloads]', downloads]]);
+  const scope = { querySelector: (selector: string) => nodes.get(selector) } as unknown as ParentNode;
+  renderSiteStats({ totalVisits: 5, todayVisits: 1, totalDownloads: 0 }, scope);
+  assert.equal(downloads.textContent, '0');
+  renderSiteStats({ totalVisits: 5, todayVisits: 1 }, scope);
+  assert.equal(downloads.textContent, '—');
+  assert.equal(total.textContent, '5');
+  renderSiteStats(undefined, scope);
+  assert.equal(downloads.textContent, '—');
+  assert.equal(total.textContent, '—');
 });
 test("configured client persists one random visitor ID and reads resource stats in shared batches", async () => {
   const storage = new MemoryStorage();

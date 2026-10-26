@@ -7,6 +7,7 @@
 ## API
 
 - GET /health：健康检查，不访问 D1，并返回绑定的 Public Catalog 生成时间。
+- GET /v1/site/stats：累计与今日来访；只有 `?downloads=1` 才按需返回 `totalDownloads`。首页首次访问可在 site_visit 中传 `includeDownloads: true`，合并到现有响应。其他页面不请求下载总计。
 - POST /v1/events：接受 site_visit、resource_detail、resource_download。resourceId 必须是当前公开 Catalog 投影中的 UUIDv7；格式正确但不在 registry 中的 ID 会以 resource_not_public 拒绝。
 - POST /v1/resources/stats：最多 100 个当前公开资源 ID；只读，不创建统计行。
 - GET /v1/resources/ranking?period=7d|all&limit=N：默认 12 项，最多 50 项；只返回 resourceId、views、downloads，历史/随机 ID 不会进入结果。
@@ -16,6 +17,10 @@
 - POST /v1/admin/update-reminders/:game/retry-notification：鉴权后重置当前通知重试状态。
 
 ## 行为语义
+
+下载总计为 resource_stats 中所有历史 total_downloads 的 SUM，包含后来下架资源；不含 APK 和未经过站内记录的对象访问，也不能证明文件已保存到磁盘。资源下载的10秒去重、批量按资源计数保持原样。
+
+新增聚合复用 Cache API 的60秒窗口及 isolate 内并发合并，不按当前 registry 截断历史。缓存命中新增 D1 读0；缓存未命中增加1条SUM查询，读取资源统计表累计行，新增写0。既有site_visit的去重写入、有效访问的两条计数写入与两条访问总计读取不变；普通site/stats仍只读既有两项访问计数。无迁移、无每次资源下载的新增写入、无前端轮询。聚合单独失败时省略totalDownloads，保留访问计数，界面显示破折号。
 
 公开接口有 body 上限和短期限流。限流键是 Cloudflare edge client 的短期哈希，不保存原始 IP、UA、地理位置或页面轨迹；visitorId 用于去重，不能绕过限流。原生 RATE_LIMITER 对每个 scope 前置拦截 120 次/60 秒；通过后，D1 仍执行独立接口额度：events 和 resource-stats 各 60 次/分钟，update-reminders 20 次/10 分钟，site stats 与 ranking 共用 stats-read 120 次/分钟。没有原生绑定时也执行 D1 窗口；绑定或持久限流失败返回 503。
 

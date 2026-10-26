@@ -6,6 +6,7 @@ export const STATS_BATCH_SIZE = 100;
 export type SiteStats = {
   totalVisits: number;
   todayVisits: number;
+  totalDownloads?: number;
   date?: string;
 };
 
@@ -30,7 +31,8 @@ export type ResourceRanking = {
 export type StatsClient = {
   enabled: boolean;
   getVisitorId(): string | undefined;
-  trackSiteVisit(): Promise<SiteStats | undefined>;
+  trackSiteVisit(includeDownloads?: boolean): Promise<SiteStats | undefined>;
+  getSiteStats(includeDownloads?: boolean): Promise<SiteStats | undefined>;
   trackResourceDetail(resourceId: string): Promise<ResourceStats | undefined>;
   trackResourceDownload(resourceId: string): Promise<ResourceStats | undefined>;
   getResourceStats(resourceIds: readonly string[]): Promise<Map<string, ResourceStats>>;
@@ -94,11 +96,14 @@ export function createStatsClient(options: {
   const rankingCache = new Map<string, ResourceRanking>();
   const pendingRankingRequests = new Map<string, Promise<ResourceRanking | undefined>>();
   let cachedVisitorId: string | undefined;
+  let cachedSite: { value: SiteStats; expiresAt: number } | undefined;
+  const pendingSite = new Map<boolean, Promise<SiteStats | undefined>>();
 
   const client: StatsClient = {
     enabled: Boolean(apiUrl),
     getVisitorId,
     trackSiteVisit,
+    getSiteStats,
     trackResourceDetail,
     trackResourceDownload,
     getResourceStats,
@@ -126,11 +131,30 @@ export function createStatsClient(options: {
     }
   }
 
-  async function trackSiteVisit(): Promise<SiteStats | undefined> {
+  async function trackSiteVisit(includeDownloads = false): Promise<SiteStats | undefined> {
     const visitorId = getVisitorId();
     if (!apiUrl || !visitorId) return undefined;
-    const payload = await postEvent({ type: "site_visit", visitorId });
-    return payload ? parseSiteStats(payload.site) : undefined;
+    const payload = await postEvent({ type: "site_visit", visitorId, ...(includeDownloads ? { includeDownloads: true } : {}) });
+    const value = payload ? parseSiteStats(payload.site) : undefined;
+    if (value) cachedSite = { value, expiresAt: Date.now() + 60_000 };
+    return value;
+  }
+
+  async function getSiteStats(includeDownloads = false): Promise<SiteStats | undefined> {
+    if (!apiUrl) return undefined;
+    if (cachedSite && cachedSite.expiresAt > Date.now() && (!includeDownloads || cachedSite.value.totalDownloads !== undefined)) return cachedSite.value;
+    const existing = pendingSite.get(includeDownloads);
+    if (existing) return existing;
+    const request = (async () => {
+      try {
+        const response = await fetchImpl(`${apiUrl}/v1/site/stats${includeDownloads ? "?downloads=1" : ""}`, { credentials: "omit" });
+        const value = response.ok ? parseSiteStats(await response.json()) : undefined;
+        if (value) cachedSite = { value, expiresAt: Date.now() + 60_000 };
+        return value;
+      } catch { return undefined; }
+    })();
+    pendingSite.set(includeDownloads, request);
+    try { return await request; } finally { pendingSite.delete(includeDownloads); }
   }
 
   async function trackResourceDetail(resourceId: string): Promise<ResourceStats | undefined> {
@@ -235,7 +259,7 @@ export function createStatsClient(options: {
     }
   }
 
-  async function postEvent(event: Record<string, string>): Promise<{ site?: unknown; resource?: unknown } | undefined> {
+  async function postEvent(event: Record<string, string | boolean>): Promise<{ site?: unknown; resource?: unknown } | undefined> {
     if (!apiUrl) return undefined;
     try {
       const response = await fetchImpl(`${apiUrl}/v1/events`, {
@@ -315,16 +339,19 @@ export function renderSiteStats(stats: SiteStats | undefined, scope: ParentNode 
   const container = scope.querySelector<HTMLElement>("[data-site-stats]");
   const total = scope.querySelector<HTMLElement>("[data-site-total-visits]");
   const today = scope.querySelector<HTMLElement>("[data-site-today-visits]");
+  const downloads = scope.querySelector<HTMLElement>("[data-site-total-downloads]");
   if (!container || !total || !today) return;
   container.removeAttribute("aria-busy");
   if (!stats || !Number.isSafeInteger(stats.totalVisits) || !Number.isSafeInteger(stats.todayVisits) || stats.totalVisits < 0 || stats.todayVisits < 0) {
     container.dataset.statsState = "unavailable";
     container.setAttribute("aria-label", "访问统计暂不可用");
     total.textContent = today.textContent = "—";
+    if (downloads) downloads.textContent = "—";
     return;
   }
   total.textContent = formatStatsCount(stats.totalVisits);
   today.textContent = formatStatsCount(stats.todayVisits);
+  if (downloads) downloads.textContent = stats.totalDownloads !== undefined && Number.isSafeInteger(stats.totalDownloads) && stats.totalDownloads >= 0 ? formatStatsCount(stats.totalDownloads) : "—";
   container.hidden = false;
   container.dataset.statsState = "ready";
   container.removeAttribute("aria-label");
@@ -335,7 +362,7 @@ function parseSiteStats(value: unknown): SiteStats | undefined {
   const totalVisits = value.totalVisits;
   const todayVisits = value.todayVisits;
   if (typeof totalVisits !== "number" || typeof todayVisits !== "number") return undefined;
-  return { totalVisits, todayVisits, ...(typeof value.date === "string" ? { date: value.date } : {}) };
+  return { totalVisits, todayVisits, ...(typeof value.totalDownloads === "number" && Number.isSafeInteger(value.totalDownloads) && value.totalDownloads >= 0 ? { totalDownloads: value.totalDownloads } : {}), ...(typeof value.date === "string" ? { date: value.date } : {}) };
 }
 
 function parseResourceStats(value: unknown): ResourceStats | undefined {
