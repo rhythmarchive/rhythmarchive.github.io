@@ -4,6 +4,7 @@ import { changeKind, normalizedVersion, queryVersions, verification, VERSION_SOU
 
 const DAY = 86_400_000;
 const HOUR = 3_600_000;
+const VERIFICATION_REQUEST_ID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 export type OperationsEnv = Env & {
   DAILY_REPORT_ENABLED?: string; VERSION_MONITOR_ENABLED?: string;
   DAILY_REPORT_EMAIL_TO?: string; DAILY_REPORT_EMAIL_FROM?: string;
@@ -33,6 +34,7 @@ export type Snapshot = {
   monitor: Row[] | null; versions: Observation[]; changes: Change[];
   unsupported: typeof UNSUPPORTED_SOURCES;
   recovery?: { rebuiltAt: string; previousError: string; previousAttempts: number };
+  verification?: { id: string; requestedAt: string };
 };
 
 export function beijingDate(now: number): string { return new Date(now + 8 * HOUR).toISOString().slice(0, 10); }
@@ -225,6 +227,7 @@ export function renderReport(s: Snapshot): string {
   const week = s.traffic?.find(x => x.date === beijingDate(dayStart - 7 * DAY));
   const lines = [`Rhythm Archive 每日运营报告 | ${s.reportDate}`, '统计时区：Asia/Shanghai（北京时间），前一日00:00至24:00。',
     '访问按30分钟匿名会话去重；下载为站内可确认计数，不能证明保存到磁盘。累计、待更新状态为生成时快照。', '', '网站统计'];
+  if (s.verification) lines.unshift('手动核验邮件：统计日期沿用原报告，网站和 ROS 状态为本次读取的快照。', '');
   for (const [field, label] of [['visits', '访问量'], ['views', '资源浏览量'], ['downloads', '下载量']] as const) {
     lines.push(`${label}：${number(current?.[field])}；环比 ${difference(current?.[field], prior?.[field])}；上周同日 ${difference(current?.[field], week?.[field])}；累计 ${number(s.totals?.[0]?.[field])}`);
   }
@@ -311,10 +314,47 @@ export async function prepareReport(env: OperationsEnv, day: string, now: number
 function reportEmail(env: OperationsEnv, day: string, snapshot: Snapshot, recovery = false) {
   const email = { from: env.DAILY_REPORT_EMAIL_FROM?.trim() || env.RESOURCE_REPORT_EMAIL_FROM?.trim() || 'Rhythm Archive <onboarding@resend.dev>',
     to: [(env.DAILY_REPORT_EMAIL_TO || env.RESOURCE_REPORT_EMAIL_TO || env.UPDATE_REMINDER_EMAIL_TO || '').trim()],
-    subject: `[Rhythm Archive Daily] ${day} 每日运营报告`, text: renderReport(snapshot),
-    tags: [{ name: 'category', value: 'daily-operations' }, ...(recovery ? [{ name: 'report_revision', value: '1' }] : [])] };
+    subject: snapshot.verification ? `[Rhythm Archive Verify] ${day} 手动核验` : `[Rhythm Archive Daily] ${day} 每日运营报告`, text: renderReport(snapshot),
+    tags: [{ name: 'category', value: snapshot.verification ? 'daily-verification' : 'daily-operations' }, ...(recovery ? [{ name: 'report_revision', value: '1' }] : [])] };
   if (!email.to[0]) throw new Error('recipient_missing');
   return email;
+}
+
+export async function queueReportVerification(env: OperationsEnv, day: string, requestId: string, now: number): Promise<string> {
+  if (!env.DB || env.DAILY_REPORT_ENABLED !== 'true') throw new Error('not_configured');
+  const [, end] = bounds(day);
+  if (end > now || now - end > 6 * DAY) throw new Error('date_outside_retention');
+  if (!VERIFICATION_REQUEST_ID.test(requestId)) throw new Error('invalid_request_id');
+  const id = `check:${day}:${requestId.toLowerCase()}`;
+  // Existing mail outbox, independent key: never replace the formal daily row.
+  await env.DB.prepare(`INSERT OR IGNORE INTO daily_operations_reports(report_date,created_at,snapshot_json,email_json,status)
+    VALUES (?,?,'{}','','verification_pending')`).bind(id, now).run();
+  return id;
+}
+
+async function prepareVerification(env: OperationsEnv, id: string, now: number, fetchImpl: NotificationFetch): Promise<boolean> {
+  const db = env.DB; if (!db) return false;
+  const owner = crypto.randomUUID();
+  const row = await db.prepare(`UPDATE daily_operations_reports SET status='verification_preparing',owner=?,lease_until=?
+    WHERE report_date=? AND status IN ('verification_pending','verification_preparing') AND lease_until<=? AND attempts=0
+    RETURNING created_at`).bind(owner, now + 5 * 60_000, id, now).first<{created_at: number}>();
+  if (!row) return false;
+  try {
+    const day = /^check:(\d{4}-\d{2}-\d{2}):[0-9a-f-]{36}$/.exec(id)?.[1];
+    if (!day) throw new Error('invalid_id');
+    const [, end] = bounds(day);
+    if (end > now || now - end > 6 * DAY) throw new Error('date_outside_retention');
+    const snapshot = await collectReport(db, day, now, fetchImpl, env.OPERATOR_ROS);
+    snapshot.verification = {id, requestedAt:new Date(row.created_at).toISOString()};
+    const updated = await db.prepare(`UPDATE daily_operations_reports SET snapshot_json=?,email_json=?,status='pending',lease_until=0,next_attempt_at=0
+      WHERE report_date=? AND owner=? AND status='verification_preparing'`)
+      .bind(JSON.stringify(snapshot), JSON.stringify(reportEmail(env, day, snapshot)), id, owner).run();
+    return changesCount(updated) > 0;
+  } catch {
+    await db.prepare(`UPDATE daily_operations_reports SET status='needs_review',lease_until=0,last_error='verification_prepare_failed'
+      WHERE report_date=? AND owner=?`).bind(id, owner).run();
+    return false;
+  }
 }
 
 // Explicit recovery only: a first, definitive provider rejection is known not to
@@ -414,7 +454,8 @@ export async function processDailyOperations(env: OperationsEnv, now = Date.now(
   // Privacy retention runs daily even when sending/monitoring is disabled or misconfigured.
   if (hour === 8 && minute === 15) {
     try { await env.DB.batch([
-      env.DB.prepare(`UPDATE daily_operations_reports SET snapshot_json='',email_json='' WHERE report_date<=? AND email_json<>''`)
+      env.DB.prepare(`UPDATE daily_operations_reports SET snapshot_json='',email_json=''
+        WHERE (CASE WHEN report_date GLOB 'check:????-??-??:*' THEN substr(report_date,7,10) ELSE report_date END)<=? AND email_json<>''`)
         .bind(beijingDate(now - 7 * DAY)),
       env.DB.prepare('DELETE FROM version_changes WHERE run_date<?').bind(beijingDate(now - 90 * DAY)),
       env.DB.prepare('DELETE FROM version_checks WHERE run_date<?').bind(beijingDate(now - 90 * DAY)),
@@ -436,11 +477,15 @@ export async function processDailyOperations(env: OperationsEnv, now = Date.now(
   try {
     await prepareReport(env, previousDate(now), now, fetchImpl);
     await env.DB.prepare(`UPDATE daily_operations_reports SET status='needs_review',last_error='attempt_limit_or_window_expired'
-      WHERE status IN ('pending','sending','retry','rebuild_pending','rebuilding') AND lease_until<=? AND (attempts>=3 OR first_attempt_at<=?)`)
-      .bind(now, now - 23 * HOUR).run();
-    const due = await env.DB.prepare(`SELECT report_date,status FROM daily_operations_reports WHERE status IN ('pending','sending','retry','rebuild_pending','rebuilding')
+      WHERE status IN ('pending','sending','retry','rebuild_pending','rebuilding','verification_pending','verification_preparing') AND lease_until<=?
+      AND (attempts>=3 OR first_attempt_at<=? OR (status IN ('verification_pending','verification_preparing') AND created_at<=?))`)
+      .bind(now, now - 23 * HOUR, now - 23 * HOUR).run();
+    const due = await env.DB.prepare(`SELECT report_date,status FROM daily_operations_reports WHERE status IN ('pending','sending','retry','rebuild_pending','rebuilding','verification_pending','verification_preparing')
       AND attempts<3 AND next_attempt_at<=? AND lease_until<=? ORDER BY report_date LIMIT 1`).bind(now, now).first<{report_date: string;status: string}>();
     if (due) {
+      if (due.status === 'verification_pending' || due.status === 'verification_preparing') {
+        if (!await prepareVerification(env, due.report_date, now, fetchImpl)) return;
+      }
       if (due.status === 'rebuild_pending' || due.status === 'rebuilding') {
         const result = await rebuildRejectedReport(env, due.report_date, now, fetchImpl);
         if (result === 'rebuild_not_allowed') {
@@ -464,12 +509,15 @@ export async function handleOperationsRequest(request: Request, env: OperationsE
   const path = new URL(request.url).pathname;
   try {
     if (request.method === 'GET' && path === '/v1/admin/operations') {
-      const reports = await env.DB.prepare(`SELECT report_date,status,attempts,sent_at,provider_id,last_error FROM daily_operations_reports ORDER BY report_date DESC LIMIT 7`).all();
+      const reports = await env.DB.prepare(`SELECT report_date,status,attempts,sent_at,provider_id,last_error,
+        CASE WHEN report_date GLOB 'check:*' THEN 'verification' ELSE 'daily' END AS kind,
+        CASE WHEN report_date GLOB 'check:*' THEN substr(report_date,7,10) ELSE report_date END AS source_date
+        FROM daily_operations_reports ORDER BY created_at DESC LIMIT 7`).all();
       const monitor = await env.DB.prepare('SELECT run_date,status,completed_at,error FROM version_monitor_runs ORDER BY run_date DESC LIMIT 7').all();
       return reply({ reports: reports.results, monitor: monitor.results });
     }
     if (request.method === 'POST' && path === '/v1/admin/operations/monitor') return reply({status: await runVersionMonitor(env, now, fetchImpl)});
-    const match = /^\/v1\/admin\/operations\/reports\/(\d{4}-\d{2}-\d{2})(?:\/(send|retry|rebuild))?$/.exec(path);
+    const match = /^\/v1\/admin\/operations\/reports\/(\d{4}-\d{2}-\d{2})(?:\/(send|retry|rebuild|verify))?$/.exec(path);
     if (!match) return reply({error: 'not_found'}, 404);
     const day = match[1]!, end = bounds(day)[1];
     if (end > now || now - end > 6 * DAY) return reply({error: 'date_outside_retention'}, 400);
@@ -479,6 +527,15 @@ export async function handleOperationsRequest(request: Request, env: OperationsE
     }
     if (request.method !== 'POST' || !match[2]) return reply({error: 'method_not_allowed'}, 405);
     if (env.DAILY_REPORT_ENABLED !== 'true') return reply({error: 'disabled'}, 503);
+    if (match[2] === 'verify') {
+      const requestId = request.headers.get('Idempotency-Key') ?? '';
+      if (!VERIFICATION_REQUEST_ID.test(requestId)) return reply({error:'uuid_idempotency_key_required'},400);
+      const id = await queueReportVerification(env, day, requestId, now);
+      // A repeated request leaves pending retries to Cron; it cannot spend a
+      // second attempt immediately after the first delivery call.
+      if (await prepareVerification(env, id, now, fetchImpl)) return reply({id,status:await sendReport(env,id,now,fetchImpl)});
+      return reply({id,status:'already_queued'});
+    }
     if (match[2] === 'rebuild') return reply({status: await rebuildRejectedReport(env, day, now, fetchImpl)});
     await prepareReport(env, day, now, fetchImpl);
     if (match[2] === 'retry') {

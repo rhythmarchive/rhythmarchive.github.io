@@ -56,6 +56,7 @@
 - `GET /v1/admin/operations/reports/YYYY-MM-DD`：只读实时预览，包含私密反馈；不写日报、不发信。
 - `POST /v1/admin/operations/monitor`：为今天建真实基线/检测，完整任务不重复。
 - `POST /v1/admin/operations/reports/YYYY-MM-DD/send`：生成并发送实际报告，已发送不重放。
+- `POST /v1/admin/operations/reports/YYYY-MM-DD/verify`：带 UUID 格式的 `Idempotency-Key`，生成一封明确标注“手动核验”的新快照邮件。它复用原生产查询、RPC和Resend链路，同一个请求ID不重复发送。已有日报保持不变；核验记录复用现有出箱表，独立键为 `check:统计日期:请求UUID`，正文的 reportDate 仍是真实统计日期，管理列表附带 kind/source_date，不会占用未来日报日期。
 - `POST /v1/admin/operations/reports/YYYY-MM-DD/retry`：仅在原23小时窗口及剩余尝试次数内恢复需要人工处理的报告，不重放已发送项。
 - `POST /v1/admin/operations/reports/YYYY-MM-DD/rebuild`：只对首次明确400/401/403/422拒绝、无provider_id且23小时内的报告显式重新生成正文（例如修复发件域名后）。保留尝试数和UTC每日额度，新正文冻结并使用固定`-r1`幂等键；不允许重建已发送或投递不确定的报告。它本身不调用Resend，后续Cron领取发送。也可由维护者将符合相同条件的记录明确标记`rebuild_pending`，供Cron恢复；默认不会自动重建needs_review。重建中断的租约可恢复，过期/不符合条件记录会退回needs_review，不阻塞新报告。
 
@@ -72,3 +73,5 @@
 日报首次生成12条只读查询：8日visit/资源聚合、累计资源统计、两类昨日排行、反馈/反馈计数/下载异常、提醒、监测任务/checks/changes；资源日统计只扫描8日范围，昨日排行各读当日行，累计只每日扫描一次resource_stats。报告新增1行；发送领取、独立预算、尝试与状态最多6条SQL及1次Resend。排行名称最多20个缓存分片请求、游戏索引1次、ROS RPC1次（现有适配器最多10实例的元数据/监控请求），无对象HEAD/下载/历史ROS遍历。
 
 08:30后每15分钟恢复：已发送时仅已存在报告读取、终结过期任务、待发索引查询共3条SQL，不重新查询第三方。整点监测已完成时仅1条按主键领取检查。留存每天5条范围清理，不在网站热路径执行。没有新增D1每资源每次事件写入。
+
+手动核验仅在明确请求后入箱，也可由已授权维护者通过D1插入符合该键格式、零尝试的verification_pending记录，现有Cron会领取生成；没有新增迁移、队列服务或空闲轮询。入箱1条INSERT，领取与冻结正文2条UPDATE，加既有报告查询和发送成本；没有任务时仍走原有空闲查询数。核验与日报合用UTC日最多3次的预算，不占用提醒/反馈80次额度。生成过程失败或超过23小时的未完成任务转needs_review；敏感正文按真实统计日期的7日窗口清理，独立的幂等账目继续保留。

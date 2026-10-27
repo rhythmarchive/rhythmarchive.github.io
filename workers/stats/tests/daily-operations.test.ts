@@ -3,7 +3,7 @@ import { DatabaseSync, type SQLInputValue } from 'node:sqlite';
 import { readFileSync, readdirSync } from 'node:fs';
 import test from 'node:test';
 import type { D1Database, D1PreparedStatement, D1Result } from '../src/core.js';
-import { beijingDate, previousDate, collectReport, renderReport, runVersionMonitor, prepareReport, rebuildRejectedReport, sendReport, processDailyOperations, handleOperationsRequest, type OperationsEnv } from '../src/daily-operations.js';
+import { beijingDate, previousDate, collectReport, renderReport, runVersionMonitor, prepareReport, rebuildRejectedReport, queueReportVerification, sendReport, processDailyOperations, handleOperationsRequest, type OperationsEnv } from '../src/daily-operations.js';
 import { parseSource, queryVersions, verification, changeKind, VERSION_SOURCES, type Source, type Observation } from '../src/version-sources.js';
 import { PUBLIC_GAME_SLUGS } from '../src/public-resource-registry.js';
 
@@ -251,4 +251,56 @@ test('expired rebuilding record is retired and cannot block the next report', as
   assert.equal(db.row("SELECT status FROM daily_operations_reports WHERE report_date='2026-10-25'").status,'needs_review');
   assert.equal(db.row("SELECT status FROM daily_operations_reports WHERE report_date='2026-10-26'").status,'sent');
   assert.equal(mails,1);
+});
+
+test('manual verification uses a fresh snapshot and independent key without changing the sent daily report', async () => {
+  const db=new Database(),env=envFor(db);await prepareReport(env,day,now,website);
+  await sendReport(env,day,now,async()=>Response.json({id:'original-id'}));
+  const original={...db.row("SELECT * FROM daily_operations_reports WHERE report_date='2026-10-26'")};
+  const requestId='e667bb74-8415-44fa-8cde-f934d9f122bd';
+  const id=await queueReportVerification(env,day,requestId,now);
+  assert.equal(await queueReportVerification(env,day,requestId,now),id);
+  const calls:{key:string|null;body:string}[]=[];
+  const fresh={...env,OPERATOR_ROS:{snapshot:async()=>({state:'ok' as const,observedAt:new Date(now).toISOString(),data:{definition:'live',truncatedInstances:false,
+    instances:[{status:'running',planName:'plan',storagePlanSize:20,planBandwidth:100,storageUsedBytes:10078937414,transferUsedBytes:null,requestCount:null,
+      monitorAvailable:true,periodStart:null,nextResetAt:null,expiresAt:null,definition:'fresh monitor sample'}]}})}};
+  const upstream=async(url:RequestInfo|URL,init?:RequestInit)=>{
+    if(String(url).includes('resend')){calls.push({key:new Headers(init?.headers).get('Idempotency-Key'),body:String(init?.body)});return Response.json({id:'check-id'});}
+    return website();
+  };
+  await processDailyOperations(fresh,now+15*60_000,upstream);
+  assert.equal(calls.length,1);assert.match(calls[0]!.key!,/^rhythm-archive-daily-check:/);
+  const email=JSON.parse(calls[0]!.body);assert.match(email.subject,/Rhythm Archive Verify/);assert.match(email.text,/手动核验邮件/);
+  const checked=db.sqlite.prepare('SELECT * FROM daily_operations_reports WHERE report_date=?').get(id)!;
+  const snapshot=JSON.parse(String(checked.snapshot_json));assert.equal(snapshot.reportDate,day);
+  assert.equal(snapshot.ros.state,'ok');assert.equal(snapshot.ros.data.instances[0].storageUsedBytes,10078937414);
+  assert.equal(snapshot.verification.id,id);assert.equal(checked.status,'sent');
+  assert.deepEqual({...db.row("SELECT * FROM daily_operations_reports WHERE report_date='2026-10-26'")},original);
+  assert.equal(db.row('SELECT attempts FROM daily_operations_email_daily').attempts,2);
+  assert.equal(db.row('SELECT COUNT(*) AS n FROM version_changes').n,0);
+  await processDailyOperations(fresh,now+30*60_000,upstream);assert.equal(calls.length,1);
+});
+
+test('manual verification endpoint is authenticated and repeated nonce cannot resend', async () => {
+  const db=new Database(),env=envFor(db);let mails=0;
+  const url='https://api.example/v1/admin/operations/reports/2026-10-26/verify';
+  const upstream=async(input:RequestInfo|URL)=>String(input).includes('resend')?(mails++,Response.json({id:'check-id'})):website();
+  assert.equal((await handleOperationsRequest(new Request(url,{method:'POST'}),env,now,upstream)).status,401);
+  assert.equal((await handleOperationsRequest(new Request(url,{method:'POST',headers:{Authorization:'Bearer test-admin'}}),env,now,upstream)).status,400);
+  const request=()=>new Request(url,{method:'POST',headers:{Authorization:'Bearer test-admin','Idempotency-Key':'e667bb74-8415-44fa-8cde-f934d9f122bd'}});
+  assert.equal((await handleOperationsRequest(request(),env,now,upstream)).status,200);
+  await handleOperationsRequest(request(),env,now+1000,upstream);assert.equal(mails,1);
+  assert.equal(db.row('SELECT COUNT(*) AS n FROM daily_operations_reports').n,1);
+});
+
+test('verification payload retention uses the source date and expires abandoned preparations', async () => {
+  const db=new Database();
+  db.sqlite.exec(`INSERT INTO daily_operations_reports(report_date,created_at,snapshot_json,email_json,status)
+    VALUES('check:2026-10-20:e667bb74-8415-44fa-8cde-f934d9f122bd',1,'private','private','sent')`);
+  await processDailyOperations({DB:db},Date.parse('2026-10-27T00:15:00Z'),website);
+  assert.equal(db.row('SELECT snapshot_json FROM daily_operations_reports').snapshot_json,'');
+  const env=envFor(db);const id=await queueReportVerification(env,'2026-10-25','f667bb74-8415-44fa-8cde-f934d9f122bd',now-24*3_600_000);
+  db.sqlite.prepare("UPDATE daily_operations_reports SET status='verification_preparing',lease_until=0 WHERE report_date=?").run(id);
+  await processDailyOperations(env,now,async url=>String(url).includes('resend')?Response.json({id:'daily'}):website());
+  assert.equal(db.sqlite.prepare('SELECT status FROM daily_operations_reports WHERE report_date=?').get(id)!.status,'needs_review');
 });
