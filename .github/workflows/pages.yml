@@ -61,6 +61,9 @@ jobs:
               echo "deploy_worker=true" >> "$GITHUB_OUTPUT"
             fi
           fi
+      - name: Install Worker validation dependencies
+        if: steps.scope.outputs.mode == 'FULL' || steps.scope.outputs.worker == 'true' || steps.scope.outputs.deploy_worker == 'true' || inputs.deploy_stats_worker == true
+        run: npm ci --prefix workers/stats
       - name: Change-aware validation and Pages build
         env:
           BASE: ${{ steps.scope.outputs.base }}
@@ -81,7 +84,6 @@ jobs:
           : "${CLOUDFLARE_ACCOUNT_ID:?Configure the CLOUDFLARE_ACCOUNT_ID Actions variable}"
           : "${PUBLIC_STATS_API_URL:?Configure the PUBLIC_STATS_API_URL Actions variable}"
 
-          npm ci --prefix workers/stats
           npm --prefix workers/stats run deploy
 
           node --input-type=module <<'NODE'

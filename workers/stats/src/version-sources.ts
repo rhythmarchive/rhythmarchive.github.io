@@ -183,7 +183,7 @@ export async function queryVersions(now: number, fetchImpl: NotificationFetch = 
     while (next < urls.length) {
       const url = urls[next++]!;
       try {
-        const response = await fetchImpl(url, { signal: AbortSignal.timeout(8000), redirect: 'error',
+        const response = await fetchImpl(url, { signal: AbortSignal.timeout(8000), redirect: 'manual',
           headers: { Accept: 'application/json,text/html', 'User-Agent': 'RhythmArchive-VersionMonitor/1.0 (+https://rhythmarchive.github.io/)' } });
         if (!response.ok) { await response.body?.cancel(); throw new Error(`http_${response.status}`); }
         bodies.set(url, await boundedBody(response));

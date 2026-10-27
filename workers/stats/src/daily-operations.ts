@@ -18,7 +18,8 @@ export type RosReport = { state: 'ok' | 'degraded' | 'unavailable'; observedAt: 
 type Row = Record<string, string | number | null>;
 type Change = { source_id: string; game: string; channel: string; kind: string; previous_json: string; current_json: string };
 type ReportRow = { report_date: string; status: string; attempts: number; email_json: string;
-  first_attempt_at: number | null; next_attempt_at: number; lease_until: number; created_at: number };
+  first_attempt_at: number | null; next_attempt_at: number; lease_until: number; created_at: number;
+  last_error: string | null };
 export type WebsiteGame = { slug: string; displayName: string; contentVersion: string | null;
   lastUpdatedAt: string | null; count: number; categories: {slug: string; label: string; count: number}[] };
 export type Snapshot = {
@@ -31,6 +32,7 @@ export type Snapshot = {
   feedback: Row[] | null; feedbackCount: Row[] | null; downloadFailures: Row[] | null; reminders: Row[] | null;
   monitor: Row[] | null; versions: Observation[]; changes: Change[];
   unsupported: typeof UNSUPPORTED_SOURCES;
+  recovery?: { rebuiltAt: string; previousError: string; previousAttempts: number };
 };
 
 export function beijingDate(now: number): string { return new Date(now + 8 * HOUR).toISOString().slice(0, 10); }
@@ -48,7 +50,9 @@ export async function runVersionMonitor(env: OperationsEnv, now = Date.now(), fe
   const claimed = await db.prepare(`INSERT INTO version_monitor_runs(run_date,started_at,lease_until,owner,status)
     VALUES (?,?,?,?,'running') ON CONFLICT(run_date) DO UPDATE SET started_at=excluded.started_at,
     lease_until=excluded.lease_until,owner=excluded.owner,status='running',error=NULL
-    WHERE version_monitor_runs.status <> 'complete' AND version_monitor_runs.lease_until < ?`)
+    WHERE version_monitor_runs.lease_until < ? AND (version_monitor_runs.status <> 'complete'
+      OR NOT EXISTS(SELECT 1 FROM version_checks WHERE run_date=excluded.run_date
+        AND json_extract(result_json,'$.status')='ok'))`)
     .bind(day, now, now + 10 * 60_000, owner, now).run();
   if (!changesCount(claimed)) return 'already_claimed';
   try {
@@ -76,12 +80,14 @@ export async function runVersionMonitor(env: OperationsEnv, now = Date.now(), fe
         ON CONFLICT(source_id) DO UPDATE SET observation_json=excluded.observation_json,checked_at=excluded.checked_at`)
         .bind(now, payload, day, owner),
     ];
-    statements.push(db.prepare(`UPDATE version_monitor_runs SET status='complete',completed_at=?,lease_until=0
-      WHERE run_date=? AND owner=?`).bind(now, day, owner));
+    const successes = observations.filter(x => x.status === 'ok').length;
+    const status = successes ? 'complete' : 'failed';
+    statements.push(db.prepare(`UPDATE version_monitor_runs SET status=?,completed_at=?,lease_until=?,error=?
+      WHERE run_date=? AND owner=?`).bind(status, now, successes ? 0 : now + 6 * HOUR, successes ? null : 'all_sources_failed', day, owner));
     await db.batch(statements);
     console.log(JSON.stringify({ event: 'version_monitor_complete', date: day, sources: observations.length,
       ok: observations.filter(x => x.status === 'ok').length, unavailable: observations.filter(x => x.status !== 'ok').length }));
-    return 'complete';
+    return status;
   } catch {
     await db.prepare(`UPDATE version_monitor_runs SET status='failed',error='monitor_failed',lease_until=? WHERE run_date=? AND owner=?`)
       .bind(now + 15 * 60_000, day, owner).run();
@@ -134,7 +140,7 @@ export async function collectReport(db: D1Database, day: string, now: number, fe
   }
   for (const [shard, rows] of shards) {
     try {
-      const response = await fetchImpl(`https://rhythmarchive.github.io/data/ranking/${shard}.json`, { signal: AbortSignal.timeout(5000), redirect: 'error' });
+      const response = await fetchImpl(`https://rhythmarchive.github.io/data/ranking/${shard}.json`, { signal: AbortSignal.timeout(5000), redirect: 'manual' });
       if (!response.ok) { await response.body?.cancel(); throw new Error('ranking_unavailable'); }
       const raw = await response.text(); if (raw.length > 256 * 1024) throw new Error('ranking_too_large');
       const cards = JSON.parse(raw) as {resourceId: string; displayTitle: string; game: string; categoryLabel: string}[];
@@ -147,7 +153,7 @@ export async function collectReport(db: D1Database, day: string, now: number, fe
   }
   const website: Snapshot['website'] = { url: 'https://rhythmarchive.github.io/data/game-index.json', checkedAt: new Date(now).toISOString(), games: null };
   try {
-    const response = await fetchImpl(website.url, { signal: AbortSignal.timeout(8000), redirect: 'error' });
+    const response = await fetchImpl(website.url, { signal: AbortSignal.timeout(8000), redirect: 'manual' });
     if (!response.ok) { await response.body?.cancel(); throw new Error('website_unavailable'); }
     // This is the existing small game projection, not the large Catalog or search index.
     const raw = await response.text(); if (raw.length > 128 * 1024) throw new Error('website_too_large');
@@ -297,13 +303,55 @@ export async function prepareReport(env: OperationsEnv, day: string, now: number
   const existing = await env.DB.prepare('SELECT report_date FROM daily_operations_reports WHERE report_date=?').bind(day).first();
   if (existing) return;
   const snapshot = await collectReport(env.DB, day, now, fetchImpl, env.OPERATOR_ROS);
+  const email = reportEmail(env, day, snapshot);
+  await env.DB.prepare(`INSERT OR IGNORE INTO daily_operations_reports(report_date,created_at,snapshot_json,email_json)
+    VALUES (?,?,?,?)`).bind(day, now, JSON.stringify(snapshot), JSON.stringify(email)).run();
+}
+
+function reportEmail(env: OperationsEnv, day: string, snapshot: Snapshot, recovery = false) {
   const email = { from: env.DAILY_REPORT_EMAIL_FROM?.trim() || env.RESOURCE_REPORT_EMAIL_FROM?.trim() || 'Rhythm Archive <onboarding@resend.dev>',
     to: [(env.DAILY_REPORT_EMAIL_TO || env.RESOURCE_REPORT_EMAIL_TO || env.UPDATE_REMINDER_EMAIL_TO || '').trim()],
     subject: `[Rhythm Archive Daily] ${day} 每日运营报告`, text: renderReport(snapshot),
-    tags: [{ name: 'category', value: 'daily-operations' }] };
+    tags: [{ name: 'category', value: 'daily-operations' }, ...(recovery ? [{ name: 'report_revision', value: '1' }] : [])] };
   if (!email.to[0]) throw new Error('recipient_missing');
-  await env.DB.prepare(`INSERT OR IGNORE INTO daily_operations_reports(report_date,created_at,snapshot_json,email_json)
-    VALUES (?,?,?,?)`).bind(day, now, JSON.stringify(snapshot), JSON.stringify(email)).run();
+  return email;
+}
+
+// Explicit recovery only: a first, definitive provider rejection is known not to
+// have delivered. Never rebuild an uncertain/sent report or reset either budget.
+export async function rebuildRejectedReport(env: OperationsEnv, day: string, now: number, fetchImpl: NotificationFetch = fetch): Promise<string> {
+  if (!env.DB) return 'not_configured';
+  const owner = crypto.randomUUID();
+  const row = await env.DB.prepare(`UPDATE daily_operations_reports SET status='rebuilding',owner=?,lease_until=?
+    WHERE report_date=? AND status IN ('needs_review','rebuild_pending','rebuilding') AND attempts=1 AND provider_id IS NULL
+    AND (last_error IN ('http_400','http_401','http_403','http_422') OR last_error GLOB 'http_40[013]:*' OR last_error GLOB 'http_422:*')
+    AND first_attempt_at>? AND lease_until<=? RETURNING *`)
+    .bind(owner, now + 5 * 60_000, day, now - 23 * HOUR, now).first<ReportRow>();
+  if (!row) return 'rebuild_not_allowed';
+  try {
+    const snapshot = await collectReport(env.DB, day, now, fetchImpl, env.OPERATOR_ROS);
+    snapshot.recovery = { rebuiltAt: new Date(now).toISOString(), previousError: row.last_error!, previousAttempts: row.attempts };
+    await env.DB.prepare(`UPDATE daily_operations_reports SET snapshot_json=?,email_json=?,status='retry',lease_until=0,
+      next_attempt_at=0,last_error='rebuilt_after_rejection' WHERE report_date=? AND owner=?`)
+      .bind(JSON.stringify(snapshot), JSON.stringify(reportEmail(env, day, snapshot, true)), day, owner).run();
+    return 'rebuilt';
+  } catch {
+    await env.DB.prepare(`UPDATE daily_operations_reports SET status='needs_review',lease_until=0,last_error=? WHERE report_date=? AND owner=?`)
+      .bind(row.last_error, day, owner).run();
+    return 'rebuild_failed';
+  }
+}
+
+async function resendRejection(response: Response): Promise<string> {
+  const basic = `http_${response.status}`;
+  try {
+    const error = await response.json() as {name?: string; message?: string};
+    const message = typeof error.message === 'string' ? error.message : '';
+    if (response.status === 403 && /can only send testing emails|testing.*own email/i.test(message)) return basic + ':testing_recipient_restricted';
+    if (/domain.*not.*verified|verify.*domain/i.test(message)) return basic + ':sender_domain_unverified';
+    if (typeof error.name === 'string' && /^(validation_error|restricted_api_key|invalid_api_key|missing_api_key|daily_quota_exceeded)$/.test(error.name)) return basic + ':' + error.name;
+  } catch { /* Keep only safe codes, never provider text containing email addresses. */ }
+  return basic;
 }
 
 export async function sendReport(env: OperationsEnv, day: string, now: number, fetchImpl: NotificationFetch = fetch): Promise<string> {
@@ -318,6 +366,15 @@ export async function sendReport(env: OperationsEnv, day: string, now: number, f
     AND (first_attempt_at IS NULL OR first_attempt_at>?) RETURNING *`)
     .bind(owner, now + 5 * 60_000, day, now, now, now - 23 * HOUR).first<ReportRow>();
   if (!row) return 'not_due';
+  let revision = '';
+  try {
+    const payload = JSON.parse(row.email_json) as {tags?: {name: string;value: string}[]};
+    revision = payload.tags?.some(tag => tag.name === 'report_revision' && tag.value === '1') ? '-r1' : '';
+  } catch {
+    await db.prepare(`UPDATE daily_operations_reports SET status='needs_review',lease_until=0,last_error='invalid_payload' WHERE report_date=? AND owner=?`)
+      .bind(day, owner).run();
+    return 'needs_review';
+  }
   const utcDay = new Date(now).toISOString().slice(0, 10);
   const budget = await db.prepare(`INSERT INTO daily_operations_email_daily(send_date,attempts) VALUES(?,1)
     ON CONFLICT(send_date) DO UPDATE SET attempts=attempts+1 WHERE attempts<3 RETURNING attempts`).bind(utcDay).first();
@@ -333,16 +390,15 @@ export async function sendReport(env: OperationsEnv, day: string, now: number, f
   try {
     const response = await fetchImpl('https://api.resend.com/emails', { method: 'POST', signal: AbortSignal.timeout(8000),
       headers: { Authorization: `Bearer ${env.RESEND_API_KEY.trim()}`, 'Content-Type': 'application/json',
-        'Idempotency-Key': `rhythm-archive-daily-${day}` }, body: row.email_json });
+        'Idempotency-Key': `rhythm-archive-daily-${day}${revision}` }, body: row.email_json });
     if (response.ok) {
       // 2xx with a lost/malformed response is uncertain; retry the identical payload/key.
       const body = await response.json() as {id?: string};
       if (typeof body.id !== 'string' || !body.id) throw new Error('missing_provider_id');
       status = 'sent'; providerId = body.id;
     } else {
-      error = `http_${response.status}`;
+      error = await resendRejection(response);
       status = response.status === 429 || response.status >= 500 ? 'retry' : 'needs_review';
-      await response.body?.cancel();
     }
   } catch { error = 'uncertain'; }
   if (status === 'retry' && row.attempts >= 3) status = 'needs_review';
@@ -380,11 +436,21 @@ export async function processDailyOperations(env: OperationsEnv, now = Date.now(
   try {
     await prepareReport(env, previousDate(now), now, fetchImpl);
     await env.DB.prepare(`UPDATE daily_operations_reports SET status='needs_review',last_error='attempt_limit_or_window_expired'
-      WHERE status IN ('pending','sending','retry') AND lease_until<=? AND (attempts>=3 OR first_attempt_at<=?)`)
+      WHERE status IN ('pending','sending','retry','rebuild_pending','rebuilding') AND lease_until<=? AND (attempts>=3 OR first_attempt_at<=?)`)
       .bind(now, now - 23 * HOUR).run();
-    const due = await env.DB.prepare(`SELECT report_date FROM daily_operations_reports WHERE status IN ('pending','sending','retry')
-      AND attempts<3 AND next_attempt_at<=? AND lease_until<=? ORDER BY report_date LIMIT 1`).bind(now, now).first<{report_date: string}>();
-    if (due) await sendReport(env, due.report_date, now, fetchImpl);
+    const due = await env.DB.prepare(`SELECT report_date,status FROM daily_operations_reports WHERE status IN ('pending','sending','retry','rebuild_pending','rebuilding')
+      AND attempts<3 AND next_attempt_at<=? AND lease_until<=? ORDER BY report_date LIMIT 1`).bind(now, now).first<{report_date: string;status: string}>();
+    if (due) {
+      if (due.status === 'rebuild_pending' || due.status === 'rebuilding') {
+        const result = await rebuildRejectedReport(env, due.report_date, now, fetchImpl);
+        if (result === 'rebuild_not_allowed') {
+          await env.DB.prepare(`UPDATE daily_operations_reports SET status='needs_review',last_error='rebuild_not_allowed'
+            WHERE report_date=? AND status IN ('rebuild_pending','rebuilding') AND lease_until<=?`).bind(due.report_date, now).run();
+          return;
+        }
+      }
+      await sendReport(env, due.report_date, now, fetchImpl);
+    }
   } catch { console.error('daily_report_failed'); }
 }
 
@@ -403,7 +469,7 @@ export async function handleOperationsRequest(request: Request, env: OperationsE
       return reply({ reports: reports.results, monitor: monitor.results });
     }
     if (request.method === 'POST' && path === '/v1/admin/operations/monitor') return reply({status: await runVersionMonitor(env, now, fetchImpl)});
-    const match = /^\/v1\/admin\/operations\/reports\/(\d{4}-\d{2}-\d{2})(?:\/(send|retry))?$/.exec(path);
+    const match = /^\/v1\/admin\/operations\/reports\/(\d{4}-\d{2}-\d{2})(?:\/(send|retry|rebuild))?$/.exec(path);
     if (!match) return reply({error: 'not_found'}, 404);
     const day = match[1]!, end = bounds(day)[1];
     if (end > now || now - end > 6 * DAY) return reply({error: 'date_outside_retention'}, 400);
@@ -413,6 +479,7 @@ export async function handleOperationsRequest(request: Request, env: OperationsE
     }
     if (request.method !== 'POST' || !match[2]) return reply({error: 'method_not_allowed'}, 405);
     if (env.DAILY_REPORT_ENABLED !== 'true') return reply({error: 'disabled'}, 503);
+    if (match[2] === 'rebuild') return reply({status: await rebuildRejectedReport(env, day, now, fetchImpl)});
     await prepareReport(env, day, now, fetchImpl);
     if (match[2] === 'retry') {
       await env.DB.prepare(`UPDATE daily_operations_reports SET status='retry',next_attempt_at=0

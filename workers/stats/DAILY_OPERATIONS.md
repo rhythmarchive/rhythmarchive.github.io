@@ -41,7 +41,7 @@
 
 ## 幂等、失败与留存
 
-- `version_monitor_runs`按北京时间日原子领取10分钟租约；每日完整检查（含单来源失败）只运行一次。成功状态、历史checks和changes在同一批事务写入，有owner guard避免过期任务覆盖新领取者。
+- `version_monitor_runs`按北京时间日原子领取10分钟租约；有成功来源的每日完整检查只运行一次。全来源失败明确标记failed并退避6小时，旧版误标complete且没有任何成功检查的任务也允许自然恢复。成功状态、历史checks和changes在同一批事务写入，有owner guard避免过期任务覆盖新领取者。
 - `daily_operations_reports`按报告日唯一，首次生成冻结快照、收件人、主题和邮件正文。并发Cron/人工操作原子领取5分钟租约，所有重试使用相同正文和 `rhythm-archive-daily-YYYY-MM-DD` Resend键。报告发送失败不影响现有提醒/反馈队列。
 - 429、5xx、网络或响应不确定可15分钟后重试，每份报告最多3次；此外新增独立UTC日最多3次Resend调用额度，失败也计入。原提醒/反馈80次额度完全不变，正常最多83次/UTC日，仍需站长确认自己的Resend账户套餐可用额度。没有创建付费额度或更改订阅。
 - Resend幂等键只保证24小时；本实现23小时后停止不确定重试并标`needs_review`，不能跨窗口盲目重放。发送成功记录不再发送。管理重试不重置尝试数、不突破每日额度。人工处理前应先在Resend核对是否已接受；错误收件人/主题修复不会改写已冻结正文。
@@ -57,6 +57,9 @@
 - `POST /v1/admin/operations/monitor`：为今天建真实基线/检测，完整任务不重复。
 - `POST /v1/admin/operations/reports/YYYY-MM-DD/send`：生成并发送实际报告，已发送不重放。
 - `POST /v1/admin/operations/reports/YYYY-MM-DD/retry`：仅在原23小时窗口及剩余尝试次数内恢复需要人工处理的报告，不重放已发送项。
+- `POST /v1/admin/operations/reports/YYYY-MM-DD/rebuild`：只对首次明确400/401/403/422拒绝、无provider_id且23小时内的报告显式重新生成正文（例如修复发件域名后）。保留尝试数和UTC每日额度，新正文冻结并使用固定`-r1`幂等键；不允许重建已发送或投递不确定的报告。它本身不调用Resend，后续Cron领取发送。也可由维护者将符合相同条件的记录明确标记`rebuild_pending`，供Cron恢复；默认不会自动重建needs_review。重建中断的租约可恢复，过期/不符合条件记录会退回needs_review，不阻塞新报告。
+
+2026-10-27生产兼容修复：workerd原生fetch拒绝`redirect: "error"`，Node测试此前未捕获。两端改为`manual`并将所有非2xx状态保留为失败，不跟随外部跳转。新增原生workerd业务测试覆盖版本来源、网站索引、ROS元数据及拒绝重定向；CI在需要Worker检查的范围先安装一次已有Worker开发依赖。Resend错误只持久化脱敏代码（例如`http_403:testing_recipient_restricted`），不保存可能带邮箱的原始错误正文。继续复用原Resend平台；向指定Gmail发信需配置已验证域名下的`DAILY_REPORT_EMAIL_FROM`，测试域限制见[Resend说明](https://resend.com/docs/knowledge-base/403-error-resend-dev-domain)。
 
 先应用本批`0009_daily_operations.sql`迁移，再部署Admin命名RPC入口，最后部署Stats（配置已启用两项开关）。正常干净仓库使用Wrangler migrations apply；工作区若混有其他未授权迁移，只从隔离的migration目录应用本批，不顺带执行其他迁移。不要将远程迁移加入Pages构建。缺少Secret须由维护者在Worker Secrets配置，绝不写入代码或日志。
 

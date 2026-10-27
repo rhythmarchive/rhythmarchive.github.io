@@ -3,7 +3,7 @@ import { DatabaseSync, type SQLInputValue } from 'node:sqlite';
 import { readFileSync, readdirSync } from 'node:fs';
 import test from 'node:test';
 import type { D1Database, D1PreparedStatement, D1Result } from '../src/core.js';
-import { beijingDate, previousDate, collectReport, renderReport, runVersionMonitor, prepareReport, sendReport, processDailyOperations, handleOperationsRequest, type OperationsEnv } from '../src/daily-operations.js';
+import { beijingDate, previousDate, collectReport, renderReport, runVersionMonitor, prepareReport, rebuildRejectedReport, sendReport, processDailyOperations, handleOperationsRequest, type OperationsEnv } from '../src/daily-operations.js';
 import { parseSource, queryVersions, verification, changeKind, VERSION_SOURCES, type Source, type Observation } from '../src/version-sources.js';
 import { PUBLIC_GAME_SLUGS } from '../src/public-resource-registry.js';
 
@@ -105,11 +105,11 @@ test('first success baseline, next day change, failure preserves baseline, repea
   assert.equal(db.row('SELECT COUNT(*) AS n FROM version_changes').n,1);
   failing=true; await runVersionMonitor(env,now+2*86_400_000,upstream);
   assert.equal(JSON.parse(String(db.row('SELECT observation_json FROM version_source_state').observation_json)).version,'4.0.2');
-  version='4.0.2'; await runVersionMonitor(env,now+4*86_400_000,upstream);
-  assert.equal(db.row("SELECT COUNT(*) AS n FROM version_changes WHERE run_date='2026-10-31'").n,0);
   failing=false; version='4.0.1'; await runVersionMonitor(env,now+3*86_400_000,upstream);
   assert.equal(db.row("SELECT kind FROM version_changes WHERE run_date='2026-10-30'").kind,'regression');
   assert.equal(JSON.parse(String(db.row('SELECT observation_json FROM version_source_state').observation_json)).version,'4.0.2');
+  version='4.0.2'; await runVersionMonitor(env,now+4*86_400_000,upstream);
+  assert.equal(db.row("SELECT COUNT(*) AS n FROM version_changes WHERE run_date='2026-10-31'").n,0);
 });
 test('report queries real SQLite, full midnight boundaries, historical comparison and missing days', async () => {
   const db=new Database();
@@ -202,4 +202,53 @@ test('sensitive body cleanup still runs with both features disabled and no mail 
   assert.equal(db.row('SELECT snapshot_json FROM daily_operations_reports').snapshot_json,'');
   assert.equal(db.row('SELECT email_json FROM daily_operations_reports').email_json,'');
   assert.equal(db.row('SELECT status FROM daily_operations_reports').status,'sent');
+});
+
+test('all failed sources are not a valid baseline and legacy all-failure complete runs recover', async () => {
+  const db=new Database(),env=envFor(db);
+  const bad=async()=>new Response('',{status:503});
+  assert.equal(await runVersionMonitor(env,now,bad),'failed');
+  assert.equal(db.row('SELECT error FROM version_monitor_runs').error,'all_sources_failed');
+  assert.equal(await runVersionMonitor(env,now+3_600_000,bad),'already_claimed');
+  db.sqlite.exec(`UPDATE version_monitor_runs SET status='complete',lease_until=0,error=NULL`);
+  const good=async(url: RequestInfo | URL)=>String(url)===source.url?Response.json({results:[{bundleId:source.identity,version:'4.0.1'}]}):bad();
+  assert.equal(await runVersionMonitor(env,now+1000,good),'complete');
+  assert.equal(db.row('SELECT COUNT(*) AS n FROM version_source_state').n,1);
+  assert.equal(db.row('SELECT COUNT(*) AS n FROM version_changes').n,0);
+});
+test('first definitive rejection can explicitly rebuild with a new stable key and preserved budgets', async () => {
+  const db=new Database(),env=envFor(db);await prepareReport(env,day,now,website);
+  assert.equal(await sendReport(env,day,now,async()=>Response.json({name:'validation_error',message:'You can only send testing emails to your own email address (hidden@example.test)'},{status:403})),'needs_review');
+  assert.equal(db.row('SELECT last_error FROM daily_operations_reports').last_error,'http_403:testing_recipient_restricted');
+  const fixed={...env,DAILY_REPORT_EMAIL_FROM:'Rhythm Archive <daily@verified.example>'};
+  assert.equal(await rebuildRejectedReport(fixed,day,now+1000,website),'rebuilt');
+  assert.equal(db.row('SELECT attempts FROM daily_operations_reports').attempts,1);
+  assert.equal(db.row('SELECT attempts FROM daily_operations_email_daily').attempts,1);
+  const calls: {key:string|null;body:string}[]=[];
+  const retry=async(_url: RequestInfo | URL,init?:RequestInit)=>{calls.push({key:new Headers(init?.headers).get('Idempotency-Key'),body:String(init?.body)});return new Response('',{status:503});};
+  await sendReport(fixed,day,now+2000,retry);await sendReport(fixed,day,now+16*60_000,retry);
+  assert.equal(calls[0]?.key,'rhythm-archive-daily-2026-10-26-r1');assert.deepEqual(calls[0],calls[1]);
+  assert.equal(JSON.parse(calls[0]!.body).from,'Rhythm Archive <daily@verified.example>');
+  assert.equal(db.row('SELECT attempts FROM daily_operations_reports').attempts,3);
+  assert.equal(await rebuildRejectedReport(fixed,day,now+17*60_000,website),'rebuild_not_allowed');
+});
+test('uncertain and successful reports cannot be rebuilt or obtain a new idempotency key', async () => {
+  for(const delivery of ['uncertain','sent']) {
+    const db=new Database(),env=envFor(db);await prepareReport(env,day,now,website);
+    await sendReport(env,day,now,async()=>{if(delivery==='uncertain')throw Error('network');return Response.json({id:'real-id'});});
+    db.sqlite.exec(`UPDATE daily_operations_reports SET status='needs_review'`);
+    assert.equal(await rebuildRejectedReport(env,day,now+1000,website),'rebuild_not_allowed');
+  }
+});
+
+test('expired rebuilding record is retired and cannot block the next report', async () => {
+  const db=new Database(),env=envFor(db);
+  await prepareReport(env,'2026-10-25',now-86_400_000,website);
+  db.sqlite.exec(`UPDATE daily_operations_reports SET status='rebuilding',attempts=1,first_attempt_at=${now-24*3_600_000},last_error='http_403',lease_until=0`);
+  let mails=0;
+  const upstream=async(url: RequestInfo | URL)=>String(url).includes('resend')?(mails++,Response.json({id:'new-id'})):website();
+  await processDailyOperations(env,now,upstream);
+  assert.equal(db.row("SELECT status FROM daily_operations_reports WHERE report_date='2026-10-25'").status,'needs_review');
+  assert.equal(db.row("SELECT status FROM daily_operations_reports WHERE report_date='2026-10-26'").status,'sent');
+  assert.equal(mails,1);
 });

@@ -50,7 +50,7 @@ function main(args) {
   if (args.includes('--full')) plan.mode = 'FULL';
   console.log(`${plan.mode}: ${files.length} changed paths; content=${plan.content}; worker=${plan.worker}; deployWorker=${plan.deployWorker}`);
   if (args.includes('--plan')) {
-    if (process.env.GITHUB_OUTPUT) fs.appendFileSync(process.env.GITHUB_OUTPUT, `mode=${plan.mode}\ndeploy_worker=${plan.deployWorker}\n`);
+    if (process.env.GITHUB_OUTPUT) fs.appendFileSync(process.env.GITHUB_OUTPUT, `mode=${plan.mode}\nworker=${plan.worker}\ndeploy_worker=${plan.deployWorker}\n`);
     return;
   }
   if (files.length === 0 && !args.includes('--update') && !args.includes('--full')) {
