@@ -179,7 +179,7 @@ export async function collectReport(db: D1Database, day: string, now: number, fe
   for (const instance of ros.data?.instances ?? []) {
     if (instance.monitorAvailable === false) issues.push('ROS 监控查询失败，容量/流量/请求量无法确认');
     if (instance.storageUsedBytes === null || instance.transferUsedBytes === null || instance.requestCount === null)
-      issues.push('ROS 用量指标未取得已验证映射，不能据此判断剩余额度或费用');
+      issues.push('ROS 部分用量指标缺失或更新时间未验证，不能据此判断剩余流量或费用');
     if (instance.expiresAt && /^\d{4}-\d\d-\d\dT/.test(instance.expiresAt) && Date.parse(instance.expiresAt)-now<=7*DAY)
       issues.push(`ROS 实例到期时间 ${instance.expiresAt}，请人工核查续费状态`);
   }
@@ -255,7 +255,7 @@ export function renderReport(s: Snapshot): string {
   }
   lines.push(`网站版本来源：${s.website.url}；查询时间 ${s.website.checkedAt}。版本不一致只作为核查线索。`);
   lines.push('', 'ROS 当前状态（私有 Operator → 只读脱敏快照 → 本邮件）：', `状态 ${s.ros.state}；查询 ${s.ros.observedAt}；${s.ros.reason ?? ''}`);
-  for(const instance of s.ros.data?.instances ?? []) lines.push(`实例状态 ${instance.status ?? '未提供'}；套餐 ${instance.planName ?? '未提供'}；容量配置原值 ${number(instance.storagePlanSize)}；带宽配置原值 ${number(instance.planBandwidth)}`,
+  for(const instance of s.ros.data?.instances ?? []) lines.push(`实例状态 ${instance.status ?? '未提供'}；套餐 ${instance.planName ?? '未提供'}；容量配置原值 ${number(instance.storagePlanSize)}；套餐流量额度原值 ${number(instance.planBandwidth)}`,
     `存储字节 ${number(instance.storageUsedBytes)}；传输字节 ${number(instance.transferUsedBytes)}；请求 ${number(instance.requestCount)}；监控可用 ${instance.monitorAvailable ?? '未知'}`,
     `周期起点 ${instance.periodStart ?? '未提供'}；下次重置 ${instance.nextResetAt ?? '未提供'}；到期 ${instance.expiresAt ?? '未提供'}`,
     instance.definition);
