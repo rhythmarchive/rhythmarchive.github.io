@@ -36,6 +36,20 @@ test("public updates are sorted, deduplicated and limited to current public reso
   }
 });
 
+test("update images put jackets first, then character portraits, including homepage previews", () => {
+  const data = getSiteData();
+  let mixedUpdates = 0;
+  for (const update of data.updates) {
+    const jackets = update.items.filter(item => item.resourceType === "jacket");
+    const portraits = update.items.filter(item => item.resourceType === "character-portrait");
+    assert.deepEqual(update.items.slice(0, jackets.length), jackets);
+    assert.deepEqual(update.items.slice(jackets.length, jackets.length + portraits.length), portraits);
+    if (jackets.length && portraits.length) mixedUpdates += 1;
+    if (jackets.length >= 4) assert.ok(update.items.slice(0, 4).every(item => item.resourceType === "jacket"));
+  }
+  assert.ok(mixedUpdates > 0, "exercise an update containing both jackets and portraits");
+});
+
 test("public update projection omits Rizline internal resource versions", () => {
   const root = findWorkspaceRoot();
   const raw = loadRawUpdateHistory(root);

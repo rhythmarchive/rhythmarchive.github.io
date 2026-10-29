@@ -29,6 +29,7 @@ type RawUpdateRecord = z.infer<typeof RawUpdateRecord>;
 type RawUpdateHistory = z.infer<typeof RawUpdateHistory>;
 type ProjectedUpdateItem = PublicUpdateItem & { change: PublicUpdateChange };
 const CHANGE_PRIORITY: Record<PublicUpdateChange, number> = { added: 3, supplemented: 2, replaced: 1 };
+const IMAGE_TYPE_PRIORITY: Partial<Record<ResourceTypeId, number>> = { jacket: 0, "character-portrait": 1 };
 
 export function loadRawUpdateHistory(root: string): RawUpdateHistory {
   const filePath = path.join(root, "catalog", "updates", "index.json");
@@ -88,7 +89,7 @@ export function projectUpdates(siteData: Omit<PublicSiteData, "updates">, root: 
       });
     }
     if (projectedItems.length === 0) continue;
-    projectedItems.sort((left, right) => left.category.localeCompare(right.category, "en") || left.displayTitle.localeCompare(right.displayTitle, "zh-CN") || left.resourceId.localeCompare(right.resourceId, "en"));
+    projectedItems.sort((left, right) => (IMAGE_TYPE_PRIORITY[left.resourceType as ResourceTypeId] ?? 2) - (IMAGE_TYPE_PRIORITY[right.resourceType as ResourceTypeId] ?? 2) || left.category.localeCompare(right.category, "en") || left.displayTitle.localeCompare(right.displayTitle, "zh-CN") || left.resourceId.localeCompare(right.resourceId, "en"));
     const summary: PublicUpdate["summary"] = { count: projectedItems.length };
     const categoriesBySlug = new Map<string, PublicUpdate["categories"][number]>();
     for (const item of projectedItems) {
