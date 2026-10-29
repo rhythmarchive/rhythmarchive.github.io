@@ -1,7 +1,7 @@
 {
   "catalogSchemaVersion": "1.0",
   "catalogId": "019fefd6-9c49-7ca0-a760-adc76811a511",
-  "generatedAt": "2026-10-29T10:35:00+08:00",
+  "generatedAt": "2026-10-29T14:26:16+08:00",
   "resources": [
     {
       "catalogSchemaVersion": "1.0",
@@ -523100,7 +523100,7 @@
       "lifecycle": {
         "status": "published",
         "createdAt": "2026-10-29T10:35:00+08:00",
-        "updatedAt": "2026-10-29T10:35:00+08:00",
+        "updatedAt": "2026-10-29T14:26:16+08:00",
         "publishedAt": "2026-10-29T10:35:00+08:00"
       }
     },
@@ -523205,7 +523205,7 @@
       "lifecycle": {
         "status": "published",
         "createdAt": "2026-10-29T10:35:00+08:00",
-        "updatedAt": "2026-10-29T10:35:00+08:00",
+        "updatedAt": "2026-10-29T14:26:16+08:00",
         "publishedAt": "2026-10-29T10:35:00+08:00"
       }
     },
@@ -523310,7 +523310,7 @@
       "lifecycle": {
         "status": "published",
         "createdAt": "2026-10-29T10:35:00+08:00",
-        "updatedAt": "2026-10-29T10:35:00+08:00",
+        "updatedAt": "2026-10-29T14:26:16+08:00",
         "publishedAt": "2026-10-29T10:35:00+08:00"
       }
     },
@@ -523415,7 +523415,7 @@
       "lifecycle": {
         "status": "published",
         "createdAt": "2026-10-29T10:35:00+08:00",
-        "updatedAt": "2026-10-29T10:35:00+08:00",
+        "updatedAt": "2026-10-29T14:26:16+08:00",
         "publishedAt": "2026-10-29T10:35:00+08:00"
       }
     },
@@ -523520,7 +523520,7 @@
       "lifecycle": {
         "status": "published",
         "createdAt": "2026-10-29T10:35:00+08:00",
-        "updatedAt": "2026-10-29T10:35:00+08:00",
+        "updatedAt": "2026-10-29T14:26:16+08:00",
         "publishedAt": "2026-10-29T10:35:00+08:00"
       }
     },
@@ -523625,7 +523625,7 @@
       "lifecycle": {
         "status": "published",
         "createdAt": "2026-10-29T10:35:00+08:00",
-        "updatedAt": "2026-10-29T10:35:00+08:00",
+        "updatedAt": "2026-10-29T14:26:16+08:00",
         "publishedAt": "2026-10-29T10:35:00+08:00"
       }
     },
@@ -523730,7 +523730,7 @@
       "lifecycle": {
         "status": "published",
         "createdAt": "2026-10-29T10:35:00+08:00",
-        "updatedAt": "2026-10-29T10:35:00+08:00",
+        "updatedAt": "2026-10-29T14:26:16+08:00",
         "publishedAt": "2026-10-29T10:35:00+08:00"
       }
     },
@@ -1206405,9 +1206405,9 @@
       "renditionType": "thumbnail-320",
       "origin": "derived",
       "publishable": false,
-      "objectId": "sha256:9cc34dce5dc94a57dcccf6ffeec2cbd0d9f86c8f27491ed6d8187531d0f2c0e1",
+      "objectId": "sha256:626f8d92cbeb386870436281348a9cc59fcd78fa700acc25dda62916e813c938",
       "downloadFilename": "5b46ba64876292acb4ad9f61b8f2aa9fffb9eabaf68c07d81dd801ff199bcd1e_320.webp",
-      "sourceRenditionId": "dc1c7732-525c-73fd-9e48-6673a2cf8ff1",
+      "sourceRenditionId": "6ef00f4b-dd19-7e37-b9c4-415e3ffef9c9",
       "generatedBy": "thumbnailer",
       "createdAt": "2026-10-29T10:35:00+08:00",
       "metadata": {}
@@ -1206419,9 +1206419,9 @@
       "renditionType": "thumbnail-640",
       "origin": "derived",
       "publishable": false,
-      "objectId": "sha256:f04dda0c65e58b1f40f0cd4f20ad89c8e1553f3f0b69a2fb3c657afad4a14ed8",
+      "objectId": "sha256:78a71be5bdb42659f3bc5a1356d72d6eeb421774bdaa5670fd31a1f43707e9ff",
       "downloadFilename": "5b46ba64876292acb4ad9f61b8f2aa9fffb9eabaf68c07d81dd801ff199bcd1e_640.webp",
-      "sourceRenditionId": "dc1c7732-525c-73fd-9e48-6673a2cf8ff1",
+      "sourceRenditionId": "6ef00f4b-dd19-7e37-b9c4-415e3ffef9c9",
       "generatedBy": "thumbnailer",
       "createdAt": "2026-10-29T10:35:00+08:00",
       "metadata": {}
@@ -1206433,9 +1206433,9 @@
       "renditionType": "thumbnail-1280",
       "origin": "derived",
       "publishable": false,
-      "objectId": "sha256:d4b3aeffce914a23a648f4e94d2309e08fd842daf3a216dabcffdbcd3f67ce03",
+      "objectId": "sha256:47c0a9df511bb10140e07071a1cfba76b447eb1f400fe37cae03a29f9fea64ed",
       "downloadFilename": "5b46ba64876292acb4ad9f61b8f2aa9fffb9eabaf68c07d81dd801ff199bcd1e_1280.webp",
-      "sourceRenditionId": "dc1c7732-525c-73fd-9e48-6673a2cf8ff1",
+      "sourceRenditionId": "6ef00f4b-dd19-7e37-b9c4-415e3ffef9c9",
       "generatedBy": "thumbnailer",
       "createdAt": "2026-10-29T10:35:00+08:00",
       "metadata": {}
@@ -1206460,9 +1206460,9 @@
       "renditionType": "thumbnail-320",
       "origin": "derived",
       "publishable": false,
-      "objectId": "sha256:1012aed3240cd3cbf37eca2ff020c909d988e2b4d270dad91ee938b260c017fc",
+      "objectId": "sha256:cb9f9d96de7ab7b41f7a41f20bac86d4dc080400ba108f3b9603ef34c1a650f8",
       "downloadFilename": "45129fce95e82e64cfa8e2afce1bb6c07626b0cc76fb2cdfaac28e8145df94bf_320.webp",
-      "sourceRenditionId": "52b8bb34-63eb-7d17-aa90-ef4206450210",
+      "sourceRenditionId": "30752490-5dff-78ba-a7c0-e8c88be2bf69",
       "generatedBy": "thumbnailer",
       "createdAt": "2026-10-29T10:35:00+08:00",
       "metadata": {}
@@ -1206474,9 +1206474,9 @@
       "renditionType": "thumbnail-640",
       "origin": "derived",
       "publishable": false,
-      "objectId": "sha256:e2cfe7a1df620d1d67c6f8227c08ec47f9bd1fd03b3753ef06f6167bf3460768",
+      "objectId": "sha256:bbf15a42e209e699058ecc35296d7bde08483725f038d91f521ea710337ecc09",
       "downloadFilename": "45129fce95e82e64cfa8e2afce1bb6c07626b0cc76fb2cdfaac28e8145df94bf_640.webp",
-      "sourceRenditionId": "52b8bb34-63eb-7d17-aa90-ef4206450210",
+      "sourceRenditionId": "30752490-5dff-78ba-a7c0-e8c88be2bf69",
       "generatedBy": "thumbnailer",
       "createdAt": "2026-10-29T10:35:00+08:00",
       "metadata": {}
@@ -1206488,9 +1206488,9 @@
       "renditionType": "thumbnail-1280",
       "origin": "derived",
       "publishable": false,
-      "objectId": "sha256:731c4385ec82b7bfc10dbd0b78761ad12ead365e81ff5ed43969295a47a87f1d",
+      "objectId": "sha256:ffa9a5b57464295fd2f13916285295a1271f3ef6a16ae1c9826a359eb219c63b",
       "downloadFilename": "45129fce95e82e64cfa8e2afce1bb6c07626b0cc76fb2cdfaac28e8145df94bf_1280.webp",
-      "sourceRenditionId": "52b8bb34-63eb-7d17-aa90-ef4206450210",
+      "sourceRenditionId": "30752490-5dff-78ba-a7c0-e8c88be2bf69",
       "generatedBy": "thumbnailer",
       "createdAt": "2026-10-29T10:35:00+08:00",
       "metadata": {}
@@ -1206515,9 +1206515,9 @@
       "renditionType": "thumbnail-320",
       "origin": "derived",
       "publishable": false,
-      "objectId": "sha256:5ef01cc132c762ef1e1a0fbfa498cbdeb34b34cbf4b76302432bd38e32db6730",
+      "objectId": "sha256:b3dea3fce759fcf6a747caa6f55797877ffdbc9edd15c39f28d820bc165d035a",
       "downloadFilename": "0c007069ae049c2bde0b043ab7316bc3eb9c49f4a4818da1f2f953b4084139cd_320.webp",
-      "sourceRenditionId": "d615bcef-3d14-70b3-86ff-312c487eaa04",
+      "sourceRenditionId": "5cbc5e2b-66a2-7d12-88de-3718289b40a9",
       "generatedBy": "thumbnailer",
       "createdAt": "2026-10-29T10:35:00+08:00",
       "metadata": {}
@@ -1206529,9 +1206529,9 @@
       "renditionType": "thumbnail-640",
       "origin": "derived",
       "publishable": false,
-      "objectId": "sha256:6474799f125f611c62af887eb58a9da0d25be380541066cadf2e53badb2bc452",
+      "objectId": "sha256:a9d138f01c93eb05efdcbc69138c2793e9374e8449b83cf591676bf3f7f6b4db",
       "downloadFilename": "0c007069ae049c2bde0b043ab7316bc3eb9c49f4a4818da1f2f953b4084139cd_640.webp",
-      "sourceRenditionId": "d615bcef-3d14-70b3-86ff-312c487eaa04",
+      "sourceRenditionId": "5cbc5e2b-66a2-7d12-88de-3718289b40a9",
       "generatedBy": "thumbnailer",
       "createdAt": "2026-10-29T10:35:00+08:00",
       "metadata": {}
@@ -1206543,9 +1206543,9 @@
       "renditionType": "thumbnail-1280",
       "origin": "derived",
       "publishable": false,
-      "objectId": "sha256:989a4d61d665f0c52792ac258782aafab2ffc6f58bef194f9fd17d475db85ecb",
+      "objectId": "sha256:b50b8d7da0d21bbe3afa290f3c8921436d17eac0966d4aa1136272cc58788304",
       "downloadFilename": "0c007069ae049c2bde0b043ab7316bc3eb9c49f4a4818da1f2f953b4084139cd_1280.webp",
-      "sourceRenditionId": "d615bcef-3d14-70b3-86ff-312c487eaa04",
+      "sourceRenditionId": "5cbc5e2b-66a2-7d12-88de-3718289b40a9",
       "generatedBy": "thumbnailer",
       "createdAt": "2026-10-29T10:35:00+08:00",
       "metadata": {}
@@ -1206570,9 +1206570,9 @@
       "renditionType": "thumbnail-320",
       "origin": "derived",
       "publishable": false,
-      "objectId": "sha256:2dc17e64251a1c5b8f03a9b34a2b6bfab350d46342b3e6f0c68f21f5c56925de",
+      "objectId": "sha256:e1503d2dc5250b4c0bb5027d6e49564e218d5197430d6b1550f16c27fa64dfb4",
       "downloadFilename": "019a6152814721c2ce2551b6bb0e37c5b1cead4fcdac4b24565739d8f07f35ea_320.webp",
-      "sourceRenditionId": "a5ad64cd-b08e-74c7-a6e4-89e2aee42765",
+      "sourceRenditionId": "ea8a917d-7c47-76e6-a99f-9bba603af2fe",
       "generatedBy": "thumbnailer",
       "createdAt": "2026-10-29T10:35:00+08:00",
       "metadata": {}
@@ -1206584,9 +1206584,9 @@
       "renditionType": "thumbnail-640",
       "origin": "derived",
       "publishable": false,
-      "objectId": "sha256:34951dbab54e3a5fc7349ae188490605de54856255f20f3df1ad37f7b8e26814",
+      "objectId": "sha256:7d94dec36c42a21c900b743ecffadc9668e61b5a23f42c8adcbb9e65f0fe0ac9",
       "downloadFilename": "019a6152814721c2ce2551b6bb0e37c5b1cead4fcdac4b24565739d8f07f35ea_640.webp",
-      "sourceRenditionId": "a5ad64cd-b08e-74c7-a6e4-89e2aee42765",
+      "sourceRenditionId": "ea8a917d-7c47-76e6-a99f-9bba603af2fe",
       "generatedBy": "thumbnailer",
       "createdAt": "2026-10-29T10:35:00+08:00",
       "metadata": {}
@@ -1206598,9 +1206598,9 @@
       "renditionType": "thumbnail-1280",
       "origin": "derived",
       "publishable": false,
-      "objectId": "sha256:47777f10fbdab6c552f5cf517ff7f84d4a5e855db3ea75744493e6ae1b269d76",
+      "objectId": "sha256:4b527a0830a0c66c48d6933ab508ae6a29adbe244c53019313dfd8f37e24833b",
       "downloadFilename": "019a6152814721c2ce2551b6bb0e37c5b1cead4fcdac4b24565739d8f07f35ea_1280.webp",
-      "sourceRenditionId": "a5ad64cd-b08e-74c7-a6e4-89e2aee42765",
+      "sourceRenditionId": "ea8a917d-7c47-76e6-a99f-9bba603af2fe",
       "generatedBy": "thumbnailer",
       "createdAt": "2026-10-29T10:35:00+08:00",
       "metadata": {}
@@ -1206625,9 +1206625,9 @@
       "renditionType": "thumbnail-320",
       "origin": "derived",
       "publishable": false,
-      "objectId": "sha256:80d0b7f8112dd9dc90f7e4040c5c5c7529548a79e2f5edf51aeeb1a83730819a",
+      "objectId": "sha256:db6833a0bb865ac22d2276435c83bf4ef5d74ce945ba8138e3abae61c690b2f6",
       "downloadFilename": "38cc375118c8c85ce5ce56dcbbee9c751ac05cae8f837254c6d71db7485d32b8_320.webp",
-      "sourceRenditionId": "700330db-f8ba-725d-8b8f-f37f9c16d7cf",
+      "sourceRenditionId": "1c076f66-6890-71ae-9fb0-17fef646b240",
       "generatedBy": "thumbnailer",
       "createdAt": "2026-10-29T10:35:00+08:00",
       "metadata": {}
@@ -1206639,9 +1206639,9 @@
       "renditionType": "thumbnail-640",
       "origin": "derived",
       "publishable": false,
-      "objectId": "sha256:e4d49d6e885c3099bed17feb49abba59930a5d0622d6881dfb34405fa00d79cd",
+      "objectId": "sha256:1e208f7062b2b2bb9ad280dfec41ecb5ceacc02893ca20406f0782f53973d2e8",
       "downloadFilename": "38cc375118c8c85ce5ce56dcbbee9c751ac05cae8f837254c6d71db7485d32b8_640.webp",
-      "sourceRenditionId": "700330db-f8ba-725d-8b8f-f37f9c16d7cf",
+      "sourceRenditionId": "1c076f66-6890-71ae-9fb0-17fef646b240",
       "generatedBy": "thumbnailer",
       "createdAt": "2026-10-29T10:35:00+08:00",
       "metadata": {}
@@ -1206653,9 +1206653,9 @@
       "renditionType": "thumbnail-1280",
       "origin": "derived",
       "publishable": false,
-      "objectId": "sha256:140e02c8bd3986236af55ba451b228eb4063fddf1e46c5619e5810e897d7a494",
+      "objectId": "sha256:6f531a2d805b0ee6968be0ca7ded74dbb2b832ee22c28a8b947c05de8158b717",
       "downloadFilename": "38cc375118c8c85ce5ce56dcbbee9c751ac05cae8f837254c6d71db7485d32b8_1280.webp",
-      "sourceRenditionId": "700330db-f8ba-725d-8b8f-f37f9c16d7cf",
+      "sourceRenditionId": "1c076f66-6890-71ae-9fb0-17fef646b240",
       "generatedBy": "thumbnailer",
       "createdAt": "2026-10-29T10:35:00+08:00",
       "metadata": {}
@@ -1206680,9 +1206680,9 @@
       "renditionType": "thumbnail-320",
       "origin": "derived",
       "publishable": false,
-      "objectId": "sha256:9dd80e94c06ea2a88dbf36028dd0dbab84cfb419575e105449c76df39381fad8",
+      "objectId": "sha256:f05f27e2a6eeb57be661a70ada3d3fbb98866acc5c2b99a378a9b10ed9a492fe",
       "downloadFilename": "9efdccc0fbd8998597dbb0918f39764d66651e915cf7c631cdcc8740f15a79cf_320.webp",
-      "sourceRenditionId": "0891b0f1-9697-7990-b307-161617058e54",
+      "sourceRenditionId": "17dd3bbb-81e1-7488-913a-16dbed7ee2d5",
       "generatedBy": "thumbnailer",
       "createdAt": "2026-10-29T10:35:00+08:00",
       "metadata": {}
@@ -1206694,9 +1206694,9 @@
       "renditionType": "thumbnail-640",
       "origin": "derived",
       "publishable": false,
-      "objectId": "sha256:112b446fefe381a55b6e10656354978f395da2c1c87d93f0524ac0536d7416a7",
+      "objectId": "sha256:7dc0c573f1e87189f48407b7e3690a8223335a61765d3e88308f4d043bb70276",
       "downloadFilename": "9efdccc0fbd8998597dbb0918f39764d66651e915cf7c631cdcc8740f15a79cf_640.webp",
-      "sourceRenditionId": "0891b0f1-9697-7990-b307-161617058e54",
+      "sourceRenditionId": "17dd3bbb-81e1-7488-913a-16dbed7ee2d5",
       "generatedBy": "thumbnailer",
       "createdAt": "2026-10-29T10:35:00+08:00",
       "metadata": {}
@@ -1206708,9 +1206708,9 @@
       "renditionType": "thumbnail-1280",
       "origin": "derived",
       "publishable": false,
-      "objectId": "sha256:d894c334e923d8abc47a6768c6fa36f53f49c88ec8449a37e85dab3dea8fd242",
+      "objectId": "sha256:e088e72adc8daa52ff1cd24d1a3c33eafb29cb42d05246292456f7c11b14d5f2",
       "downloadFilename": "9efdccc0fbd8998597dbb0918f39764d66651e915cf7c631cdcc8740f15a79cf_1280.webp",
-      "sourceRenditionId": "0891b0f1-9697-7990-b307-161617058e54",
+      "sourceRenditionId": "17dd3bbb-81e1-7488-913a-16dbed7ee2d5",
       "generatedBy": "thumbnailer",
       "createdAt": "2026-10-29T10:35:00+08:00",
       "metadata": {}
@@ -1206735,9 +1206735,9 @@
       "renditionType": "thumbnail-320",
       "origin": "derived",
       "publishable": false,
-      "objectId": "sha256:d5e036730800170fd468862234fc2f5a460921462eabfbcaeae30c7c9e7236ab",
+      "objectId": "sha256:4299a25227bb93a5b0df5154878cb48a4d97621aa9f8646246de9dd0bbe2f70a",
       "downloadFilename": "bd45ee1809cd38424471579c1825532ec2751f764b116ba33caec31d2aed19ba_320.webp",
-      "sourceRenditionId": "6d8fa3bd-f20f-75d7-a01a-76420c8f23ea",
+      "sourceRenditionId": "9d84bb05-3c07-7cfa-8032-8f80ba836de5",
       "generatedBy": "thumbnailer",
       "createdAt": "2026-10-29T10:35:00+08:00",
       "metadata": {}
@@ -1206749,9 +1206749,9 @@
       "renditionType": "thumbnail-640",
       "origin": "derived",
       "publishable": false,
-      "objectId": "sha256:3e6c89f71ee1cfe9bf59593fe2df07f5c1943b8b4ecd53dc8101ebaa7eccfcdd",
+      "objectId": "sha256:4c5c57f7f3ee6bf85f22309a1b8f1de61c393e5336c951929c352561d9d12669",
       "downloadFilename": "bd45ee1809cd38424471579c1825532ec2751f764b116ba33caec31d2aed19ba_640.webp",
-      "sourceRenditionId": "6d8fa3bd-f20f-75d7-a01a-76420c8f23ea",
+      "sourceRenditionId": "9d84bb05-3c07-7cfa-8032-8f80ba836de5",
       "generatedBy": "thumbnailer",
       "createdAt": "2026-10-29T10:35:00+08:00",
       "metadata": {}
@@ -1206763,9 +1206763,9 @@
       "renditionType": "thumbnail-1280",
       "origin": "derived",
       "publishable": false,
-      "objectId": "sha256:bed11a5c7a0aa23cf872a3e30bd83c66ba6783fe8100ebf1108430c24fda9024",
+      "objectId": "sha256:ff2d92d292a30d8c4048a88276bfd15337b755ec35bed6daef9ff42bc74651a5",
       "downloadFilename": "bd45ee1809cd38424471579c1825532ec2751f764b116ba33caec31d2aed19ba_1280.webp",
-      "sourceRenditionId": "6d8fa3bd-f20f-75d7-a01a-76420c8f23ea",
+      "sourceRenditionId": "9d84bb05-3c07-7cfa-8032-8f80ba836de5",
       "generatedBy": "thumbnailer",
       "createdAt": "2026-10-29T10:35:00+08:00",
       "metadata": {}
@@ -1207538,6 +1207538,104 @@
       "sourceRenditionId": "c48bb894-6c42-7d41-9d26-46fcc109c047",
       "generatedBy": "thumbnailer",
       "createdAt": "2026-10-29T10:35:00+08:00",
+      "metadata": {}
+    },
+    {
+      "catalogSchemaVersion": "1.0",
+      "id": "6ef00f4b-dd19-7e37-b9c4-415e3ffef9c9",
+      "variantId": "6433ce3f-13b8-7f4d-9adb-839620d43667",
+      "renditionType": "upscaled",
+      "origin": "derived",
+      "publishable": true,
+      "objectId": "sha256:7756297892c12dcef081aad38f9576de5a240e36316a7165349eca421607d403",
+      "downloadFilename": "arcaea - Voyage to the Future.jpg",
+      "sourceRenditionId": "dc1c7732-525c-73fd-9e48-6673a2cf8ff1",
+      "generatedBy": "converter",
+      "createdAt": "2026-10-29T14:26:16+08:00",
+      "metadata": {}
+    },
+    {
+      "catalogSchemaVersion": "1.0",
+      "id": "30752490-5dff-78ba-a7c0-e8c88be2bf69",
+      "variantId": "7cffa691-8cb2-750c-989b-b46b0e1c3917",
+      "renditionType": "upscaled",
+      "origin": "derived",
+      "publishable": true,
+      "objectId": "sha256:2487ae345f7243974a25c5d3b2a2eec0dd98ca19eadf78c97b776133afed6449",
+      "downloadFilename": "arcaea - Ran.jpg",
+      "sourceRenditionId": "52b8bb34-63eb-7d17-aa90-ef4206450210",
+      "generatedBy": "converter",
+      "createdAt": "2026-10-29T14:26:16+08:00",
+      "metadata": {}
+    },
+    {
+      "catalogSchemaVersion": "1.0",
+      "id": "5cbc5e2b-66a2-7d12-88de-3718289b40a9",
+      "variantId": "e5a6b645-e0d1-7c19-8e71-a25cfc59723a",
+      "renditionType": "upscaled",
+      "origin": "derived",
+      "publishable": true,
+      "objectId": "sha256:35b6a0ee6d194bdea3d30b3d4c413815115f603fe37e59a5f29248ec50c025a2",
+      "downloadFilename": "arcaea - Ether Drive.jpg",
+      "sourceRenditionId": "d615bcef-3d14-70b3-86ff-312c487eaa04",
+      "generatedBy": "converter",
+      "createdAt": "2026-10-29T14:26:16+08:00",
+      "metadata": {}
+    },
+    {
+      "catalogSchemaVersion": "1.0",
+      "id": "ea8a917d-7c47-76e6-a99f-9bba603af2fe",
+      "variantId": "982ef357-fe5c-7649-a5cf-6edad939c479",
+      "renditionType": "upscaled",
+      "origin": "derived",
+      "publishable": true,
+      "objectId": "sha256:4e3c8c5f026559629b3215b0e04e4d5babacc9f60d4f9263a12e3cf4ea5fa331",
+      "downloadFilename": "arcaea - Schra Go (Uchina Time).jpg",
+      "sourceRenditionId": "a5ad64cd-b08e-74c7-a6e4-89e2aee42765",
+      "generatedBy": "converter",
+      "createdAt": "2026-10-29T14:26:16+08:00",
+      "metadata": {}
+    },
+    {
+      "catalogSchemaVersion": "1.0",
+      "id": "1c076f66-6890-71ae-9fb0-17fef646b240",
+      "variantId": "3c065dbd-0957-7807-bb88-00d5027fc659",
+      "renditionType": "upscaled",
+      "origin": "derived",
+      "publishable": true,
+      "objectId": "sha256:0dbfbe56dd7a757719014f5aebe896c19f1e848474e99a6c291a36fd6d8bfee1",
+      "downloadFilename": "arcaea - Fatality.jpg",
+      "sourceRenditionId": "700330db-f8ba-725d-8b8f-f37f9c16d7cf",
+      "generatedBy": "converter",
+      "createdAt": "2026-10-29T14:26:16+08:00",
+      "metadata": {}
+    },
+    {
+      "catalogSchemaVersion": "1.0",
+      "id": "17dd3bbb-81e1-7488-913a-16dbed7ee2d5",
+      "variantId": "1a58b17b-7d8b-71fb-8e73-02af75ad844f",
+      "renditionType": "upscaled",
+      "origin": "derived",
+      "publishable": true,
+      "objectId": "sha256:cf82cddb39a0d8e208fbdd1466bb26cc4f9a93a86349066d4a03d957e4be1014",
+      "downloadFilename": "arcaea - Parallax.jpg",
+      "sourceRenditionId": "0891b0f1-9697-7990-b307-161617058e54",
+      "generatedBy": "converter",
+      "createdAt": "2026-10-29T14:26:16+08:00",
+      "metadata": {}
+    },
+    {
+      "catalogSchemaVersion": "1.0",
+      "id": "9d84bb05-3c07-7cfa-8032-8f80ba836de5",
+      "variantId": "fa12c9b8-b2ce-72a7-8d28-fe6b4aa4a3f0",
+      "renditionType": "upscaled",
+      "origin": "derived",
+      "publishable": true,
+      "objectId": "sha256:b58746f71ff8695f205adb1e7d719e74ab2f2dcd49f9bec6e3713a235051eac4",
+      "downloadFilename": "arcaea - Tr!cK Ma-tEr.jpg",
+      "sourceRenditionId": "6d8fa3bd-f20f-75d7-a01a-76420c8f23ea",
+      "generatedBy": "converter",
+      "createdAt": "2026-10-29T14:26:16+08:00",
       "metadata": {}
     }
   ],
@@ -2302431,6 +2302529,1098 @@
             {
               "kind": "apk-relative-path",
               "detail": "assets/songs/pack/1080_select_diversesystem.png",
+              "confidence": "high"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "catalogSchemaVersion": "1.0",
+      "id": "sha256:7756297892c12dcef081aad38f9576de5a240e36316a7165349eca421607d403",
+      "sha256": "7756297892c12dcef081aad38f9576de5a240e36316a7165349eca421607d403",
+      "mime": "image/jpeg",
+      "extension": "jpg",
+      "sizeBytes": 2548096,
+      "width": 3072,
+      "height": 3072,
+      "alpha": "opaque",
+      "objectKey": "objects/7756297892c12dcef081aad38f9576de5a240e36316a7165349eca421607d403/jpg",
+      "createdAt": "2026-10-29T14:26:16+08:00",
+      "provenance": [
+        {
+          "sourceType": "arcaea_apk",
+          "sourceRelativePath": "input/source/20261029-four-games/arcaea/upscale/processed/voyagetofuture.jpg",
+          "sourceFilename": "voyagetofuture.jpg",
+          "sourceSha256": "7756297892c12dcef081aad38f9576de5a240e36316a7165349eca421607d403",
+          "gameVersion": "7.1.0c",
+          "evidence": [
+            {
+              "kind": "metadata",
+              "detail": "User-approved Real-ESRGAN x4plus-anime output; shared JPEG converter, quality 95, 4:4:4, progressive sRGB. Original and optimization PNG retained.",
+              "confidence": "high"
+            },
+            {
+              "kind": "sha256",
+              "detail": "Source original SHA-256 5b46ba64876292acb4ad9f61b8f2aa9fffb9eabaf68c07d81dd801ff199bcd1e; approved optimization PNG SHA-256 72ecab5c734c7b0f9fd3e48788d8350023c90dd659c63fc52cb29dbcb2a1bb04.",
+              "confidence": "high"
+            },
+            {
+              "kind": "visual-review",
+              "detail": "User approved this exact seven-image comparison in the current chat on 2026-10-29.",
+              "confidence": "high"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "catalogSchemaVersion": "1.0",
+      "id": "sha256:626f8d92cbeb386870436281348a9cc59fcd78fa700acc25dda62916e813c938",
+      "sha256": "626f8d92cbeb386870436281348a9cc59fcd78fa700acc25dda62916e813c938",
+      "mime": "image/webp",
+      "extension": "webp",
+      "sizeBytes": 25610,
+      "width": 320,
+      "height": 320,
+      "alpha": "opaque",
+      "objectKey": "objects/626f8d92cbeb386870436281348a9cc59fcd78fa700acc25dda62916e813c938/webp",
+      "createdAt": "2026-10-29T14:26:16+08:00",
+      "provenance": [
+        {
+          "sourceType": "arcaea_apk",
+          "sourceRelativePath": "input/source/20261029-four-games/arcaea/upscale/previews/voyagetofuture_320.webp",
+          "sourceFilename": "voyagetofuture_320.webp",
+          "sourceSha256": "626f8d92cbeb386870436281348a9cc59fcd78fa700acc25dda62916e813c938",
+          "gameVersion": "7.1.0c",
+          "evidence": [
+            {
+              "kind": "metadata",
+              "detail": "Existing shared preview size generated from the adopted upscaled JPEG; originals remain explicit downloads.",
+              "confidence": "high"
+            },
+            {
+              "kind": "sha256",
+              "detail": "Source original SHA-256 5b46ba64876292acb4ad9f61b8f2aa9fffb9eabaf68c07d81dd801ff199bcd1e; approved optimization PNG SHA-256 72ecab5c734c7b0f9fd3e48788d8350023c90dd659c63fc52cb29dbcb2a1bb04.",
+              "confidence": "high"
+            },
+            {
+              "kind": "visual-review",
+              "detail": "User approved this exact seven-image comparison in the current chat on 2026-10-29.",
+              "confidence": "high"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "catalogSchemaVersion": "1.0",
+      "id": "sha256:78a71be5bdb42659f3bc5a1356d72d6eeb421774bdaa5670fd31a1f43707e9ff",
+      "sha256": "78a71be5bdb42659f3bc5a1356d72d6eeb421774bdaa5670fd31a1f43707e9ff",
+      "mime": "image/webp",
+      "extension": "webp",
+      "sizeBytes": 75064,
+      "width": 640,
+      "height": 640,
+      "alpha": "opaque",
+      "objectKey": "objects/78a71be5bdb42659f3bc5a1356d72d6eeb421774bdaa5670fd31a1f43707e9ff/webp",
+      "createdAt": "2026-10-29T14:26:16+08:00",
+      "provenance": [
+        {
+          "sourceType": "arcaea_apk",
+          "sourceRelativePath": "input/source/20261029-four-games/arcaea/upscale/previews/voyagetofuture_640.webp",
+          "sourceFilename": "voyagetofuture_640.webp",
+          "sourceSha256": "78a71be5bdb42659f3bc5a1356d72d6eeb421774bdaa5670fd31a1f43707e9ff",
+          "gameVersion": "7.1.0c",
+          "evidence": [
+            {
+              "kind": "metadata",
+              "detail": "Existing shared preview size generated from the adopted upscaled JPEG; originals remain explicit downloads.",
+              "confidence": "high"
+            },
+            {
+              "kind": "sha256",
+              "detail": "Source original SHA-256 5b46ba64876292acb4ad9f61b8f2aa9fffb9eabaf68c07d81dd801ff199bcd1e; approved optimization PNG SHA-256 72ecab5c734c7b0f9fd3e48788d8350023c90dd659c63fc52cb29dbcb2a1bb04.",
+              "confidence": "high"
+            },
+            {
+              "kind": "visual-review",
+              "detail": "User approved this exact seven-image comparison in the current chat on 2026-10-29.",
+              "confidence": "high"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "catalogSchemaVersion": "1.0",
+      "id": "sha256:47c0a9df511bb10140e07071a1cfba76b447eb1f400fe37cae03a29f9fea64ed",
+      "sha256": "47c0a9df511bb10140e07071a1cfba76b447eb1f400fe37cae03a29f9fea64ed",
+      "mime": "image/webp",
+      "extension": "webp",
+      "sizeBytes": 197658,
+      "width": 1280,
+      "height": 1280,
+      "alpha": "opaque",
+      "objectKey": "objects/47c0a9df511bb10140e07071a1cfba76b447eb1f400fe37cae03a29f9fea64ed/webp",
+      "createdAt": "2026-10-29T14:26:16+08:00",
+      "provenance": [
+        {
+          "sourceType": "arcaea_apk",
+          "sourceRelativePath": "input/source/20261029-four-games/arcaea/upscale/previews/voyagetofuture_1280.webp",
+          "sourceFilename": "voyagetofuture_1280.webp",
+          "sourceSha256": "47c0a9df511bb10140e07071a1cfba76b447eb1f400fe37cae03a29f9fea64ed",
+          "gameVersion": "7.1.0c",
+          "evidence": [
+            {
+              "kind": "metadata",
+              "detail": "Existing shared preview size generated from the adopted upscaled JPEG; originals remain explicit downloads.",
+              "confidence": "high"
+            },
+            {
+              "kind": "sha256",
+              "detail": "Source original SHA-256 5b46ba64876292acb4ad9f61b8f2aa9fffb9eabaf68c07d81dd801ff199bcd1e; approved optimization PNG SHA-256 72ecab5c734c7b0f9fd3e48788d8350023c90dd659c63fc52cb29dbcb2a1bb04.",
+              "confidence": "high"
+            },
+            {
+              "kind": "visual-review",
+              "detail": "User approved this exact seven-image comparison in the current chat on 2026-10-29.",
+              "confidence": "high"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "catalogSchemaVersion": "1.0",
+      "id": "sha256:2487ae345f7243974a25c5d3b2a2eec0dd98ca19eadf78c97b776133afed6449",
+      "sha256": "2487ae345f7243974a25c5d3b2a2eec0dd98ca19eadf78c97b776133afed6449",
+      "mime": "image/jpeg",
+      "extension": "jpg",
+      "sizeBytes": 1968266,
+      "width": 3072,
+      "height": 3072,
+      "alpha": "opaque",
+      "objectKey": "objects/2487ae345f7243974a25c5d3b2a2eec0dd98ca19eadf78c97b776133afed6449/jpg",
+      "createdAt": "2026-10-29T14:26:16+08:00",
+      "provenance": [
+        {
+          "sourceType": "arcaea_apk",
+          "sourceRelativePath": "input/source/20261029-four-games/arcaea/upscale/processed/ran.jpg",
+          "sourceFilename": "ran.jpg",
+          "sourceSha256": "2487ae345f7243974a25c5d3b2a2eec0dd98ca19eadf78c97b776133afed6449",
+          "gameVersion": "7.1.0c",
+          "evidence": [
+            {
+              "kind": "metadata",
+              "detail": "User-approved Real-ESRGAN x4plus-anime output; shared JPEG converter, quality 95, 4:4:4, progressive sRGB. Original and optimization PNG retained.",
+              "confidence": "high"
+            },
+            {
+              "kind": "sha256",
+              "detail": "Source original SHA-256 45129fce95e82e64cfa8e2afce1bb6c07626b0cc76fb2cdfaac28e8145df94bf; approved optimization PNG SHA-256 cf95704db47b8ba045180c83c4c72f711a0e6d0b91eb67b219d2c1152dec6972.",
+              "confidence": "high"
+            },
+            {
+              "kind": "visual-review",
+              "detail": "User approved this exact seven-image comparison in the current chat on 2026-10-29.",
+              "confidence": "high"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "catalogSchemaVersion": "1.0",
+      "id": "sha256:cb9f9d96de7ab7b41f7a41f20bac86d4dc080400ba108f3b9603ef34c1a650f8",
+      "sha256": "cb9f9d96de7ab7b41f7a41f20bac86d4dc080400ba108f3b9603ef34c1a650f8",
+      "mime": "image/webp",
+      "extension": "webp",
+      "sizeBytes": 24130,
+      "width": 320,
+      "height": 320,
+      "alpha": "opaque",
+      "objectKey": "objects/cb9f9d96de7ab7b41f7a41f20bac86d4dc080400ba108f3b9603ef34c1a650f8/webp",
+      "createdAt": "2026-10-29T14:26:16+08:00",
+      "provenance": [
+        {
+          "sourceType": "arcaea_apk",
+          "sourceRelativePath": "input/source/20261029-four-games/arcaea/upscale/previews/ran_320.webp",
+          "sourceFilename": "ran_320.webp",
+          "sourceSha256": "cb9f9d96de7ab7b41f7a41f20bac86d4dc080400ba108f3b9603ef34c1a650f8",
+          "gameVersion": "7.1.0c",
+          "evidence": [
+            {
+              "kind": "metadata",
+              "detail": "Existing shared preview size generated from the adopted upscaled JPEG; originals remain explicit downloads.",
+              "confidence": "high"
+            },
+            {
+              "kind": "sha256",
+              "detail": "Source original SHA-256 45129fce95e82e64cfa8e2afce1bb6c07626b0cc76fb2cdfaac28e8145df94bf; approved optimization PNG SHA-256 cf95704db47b8ba045180c83c4c72f711a0e6d0b91eb67b219d2c1152dec6972.",
+              "confidence": "high"
+            },
+            {
+              "kind": "visual-review",
+              "detail": "User approved this exact seven-image comparison in the current chat on 2026-10-29.",
+              "confidence": "high"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "catalogSchemaVersion": "1.0",
+      "id": "sha256:bbf15a42e209e699058ecc35296d7bde08483725f038d91f521ea710337ecc09",
+      "sha256": "bbf15a42e209e699058ecc35296d7bde08483725f038d91f521ea710337ecc09",
+      "mime": "image/webp",
+      "extension": "webp",
+      "sizeBytes": 67124,
+      "width": 640,
+      "height": 640,
+      "alpha": "opaque",
+      "objectKey": "objects/bbf15a42e209e699058ecc35296d7bde08483725f038d91f521ea710337ecc09/webp",
+      "createdAt": "2026-10-29T14:26:16+08:00",
+      "provenance": [
+        {
+          "sourceType": "arcaea_apk",
+          "sourceRelativePath": "input/source/20261029-four-games/arcaea/upscale/previews/ran_640.webp",
+          "sourceFilename": "ran_640.webp",
+          "sourceSha256": "bbf15a42e209e699058ecc35296d7bde08483725f038d91f521ea710337ecc09",
+          "gameVersion": "7.1.0c",
+          "evidence": [
+            {
+              "kind": "metadata",
+              "detail": "Existing shared preview size generated from the adopted upscaled JPEG; originals remain explicit downloads.",
+              "confidence": "high"
+            },
+            {
+              "kind": "sha256",
+              "detail": "Source original SHA-256 45129fce95e82e64cfa8e2afce1bb6c07626b0cc76fb2cdfaac28e8145df94bf; approved optimization PNG SHA-256 cf95704db47b8ba045180c83c4c72f711a0e6d0b91eb67b219d2c1152dec6972.",
+              "confidence": "high"
+            },
+            {
+              "kind": "visual-review",
+              "detail": "User approved this exact seven-image comparison in the current chat on 2026-10-29.",
+              "confidence": "high"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "catalogSchemaVersion": "1.0",
+      "id": "sha256:ffa9a5b57464295fd2f13916285295a1271f3ef6a16ae1c9826a359eb219c63b",
+      "sha256": "ffa9a5b57464295fd2f13916285295a1271f3ef6a16ae1c9826a359eb219c63b",
+      "mime": "image/webp",
+      "extension": "webp",
+      "sizeBytes": 160388,
+      "width": 1280,
+      "height": 1280,
+      "alpha": "opaque",
+      "objectKey": "objects/ffa9a5b57464295fd2f13916285295a1271f3ef6a16ae1c9826a359eb219c63b/webp",
+      "createdAt": "2026-10-29T14:26:16+08:00",
+      "provenance": [
+        {
+          "sourceType": "arcaea_apk",
+          "sourceRelativePath": "input/source/20261029-four-games/arcaea/upscale/previews/ran_1280.webp",
+          "sourceFilename": "ran_1280.webp",
+          "sourceSha256": "ffa9a5b57464295fd2f13916285295a1271f3ef6a16ae1c9826a359eb219c63b",
+          "gameVersion": "7.1.0c",
+          "evidence": [
+            {
+              "kind": "metadata",
+              "detail": "Existing shared preview size generated from the adopted upscaled JPEG; originals remain explicit downloads.",
+              "confidence": "high"
+            },
+            {
+              "kind": "sha256",
+              "detail": "Source original SHA-256 45129fce95e82e64cfa8e2afce1bb6c07626b0cc76fb2cdfaac28e8145df94bf; approved optimization PNG SHA-256 cf95704db47b8ba045180c83c4c72f711a0e6d0b91eb67b219d2c1152dec6972.",
+              "confidence": "high"
+            },
+            {
+              "kind": "visual-review",
+              "detail": "User approved this exact seven-image comparison in the current chat on 2026-10-29.",
+              "confidence": "high"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "catalogSchemaVersion": "1.0",
+      "id": "sha256:35b6a0ee6d194bdea3d30b3d4c413815115f603fe37e59a5f29248ec50c025a2",
+      "sha256": "35b6a0ee6d194bdea3d30b3d4c413815115f603fe37e59a5f29248ec50c025a2",
+      "mime": "image/jpeg",
+      "extension": "jpg",
+      "sizeBytes": 3459976,
+      "width": 3072,
+      "height": 3072,
+      "alpha": "opaque",
+      "objectKey": "objects/35b6a0ee6d194bdea3d30b3d4c413815115f603fe37e59a5f29248ec50c025a2/jpg",
+      "createdAt": "2026-10-29T14:26:16+08:00",
+      "provenance": [
+        {
+          "sourceType": "arcaea_apk",
+          "sourceRelativePath": "input/source/20261029-four-games/arcaea/upscale/processed/etherdrive.jpg",
+          "sourceFilename": "etherdrive.jpg",
+          "sourceSha256": "35b6a0ee6d194bdea3d30b3d4c413815115f603fe37e59a5f29248ec50c025a2",
+          "gameVersion": "7.1.0c",
+          "evidence": [
+            {
+              "kind": "metadata",
+              "detail": "User-approved Real-ESRGAN x4plus-anime output; shared JPEG converter, quality 95, 4:4:4, progressive sRGB. Original and optimization PNG retained.",
+              "confidence": "high"
+            },
+            {
+              "kind": "sha256",
+              "detail": "Source original SHA-256 0c007069ae049c2bde0b043ab7316bc3eb9c49f4a4818da1f2f953b4084139cd; approved optimization PNG SHA-256 564b4977d115cb2800f95e3799ba345ae100c5284ac7241b21c9877e02aa4d53.",
+              "confidence": "high"
+            },
+            {
+              "kind": "visual-review",
+              "detail": "User approved this exact seven-image comparison in the current chat on 2026-10-29.",
+              "confidence": "high"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "catalogSchemaVersion": "1.0",
+      "id": "sha256:b3dea3fce759fcf6a747caa6f55797877ffdbc9edd15c39f28d820bc165d035a",
+      "sha256": "b3dea3fce759fcf6a747caa6f55797877ffdbc9edd15c39f28d820bc165d035a",
+      "mime": "image/webp",
+      "extension": "webp",
+      "sizeBytes": 24484,
+      "width": 320,
+      "height": 320,
+      "alpha": "opaque",
+      "objectKey": "objects/b3dea3fce759fcf6a747caa6f55797877ffdbc9edd15c39f28d820bc165d035a/webp",
+      "createdAt": "2026-10-29T14:26:16+08:00",
+      "provenance": [
+        {
+          "sourceType": "arcaea_apk",
+          "sourceRelativePath": "input/source/20261029-four-games/arcaea/upscale/previews/etherdrive_320.webp",
+          "sourceFilename": "etherdrive_320.webp",
+          "sourceSha256": "b3dea3fce759fcf6a747caa6f55797877ffdbc9edd15c39f28d820bc165d035a",
+          "gameVersion": "7.1.0c",
+          "evidence": [
+            {
+              "kind": "metadata",
+              "detail": "Existing shared preview size generated from the adopted upscaled JPEG; originals remain explicit downloads.",
+              "confidence": "high"
+            },
+            {
+              "kind": "sha256",
+              "detail": "Source original SHA-256 0c007069ae049c2bde0b043ab7316bc3eb9c49f4a4818da1f2f953b4084139cd; approved optimization PNG SHA-256 564b4977d115cb2800f95e3799ba345ae100c5284ac7241b21c9877e02aa4d53.",
+              "confidence": "high"
+            },
+            {
+              "kind": "visual-review",
+              "detail": "User approved this exact seven-image comparison in the current chat on 2026-10-29.",
+              "confidence": "high"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "catalogSchemaVersion": "1.0",
+      "id": "sha256:a9d138f01c93eb05efdcbc69138c2793e9374e8449b83cf591676bf3f7f6b4db",
+      "sha256": "a9d138f01c93eb05efdcbc69138c2793e9374e8449b83cf591676bf3f7f6b4db",
+      "mime": "image/webp",
+      "extension": "webp",
+      "sizeBytes": 86320,
+      "width": 640,
+      "height": 640,
+      "alpha": "opaque",
+      "objectKey": "objects/a9d138f01c93eb05efdcbc69138c2793e9374e8449b83cf591676bf3f7f6b4db/webp",
+      "createdAt": "2026-10-29T14:26:16+08:00",
+      "provenance": [
+        {
+          "sourceType": "arcaea_apk",
+          "sourceRelativePath": "input/source/20261029-four-games/arcaea/upscale/previews/etherdrive_640.webp",
+          "sourceFilename": "etherdrive_640.webp",
+          "sourceSha256": "a9d138f01c93eb05efdcbc69138c2793e9374e8449b83cf591676bf3f7f6b4db",
+          "gameVersion": "7.1.0c",
+          "evidence": [
+            {
+              "kind": "metadata",
+              "detail": "Existing shared preview size generated from the adopted upscaled JPEG; originals remain explicit downloads.",
+              "confidence": "high"
+            },
+            {
+              "kind": "sha256",
+              "detail": "Source original SHA-256 0c007069ae049c2bde0b043ab7316bc3eb9c49f4a4818da1f2f953b4084139cd; approved optimization PNG SHA-256 564b4977d115cb2800f95e3799ba345ae100c5284ac7241b21c9877e02aa4d53.",
+              "confidence": "high"
+            },
+            {
+              "kind": "visual-review",
+              "detail": "User approved this exact seven-image comparison in the current chat on 2026-10-29.",
+              "confidence": "high"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "catalogSchemaVersion": "1.0",
+      "id": "sha256:b50b8d7da0d21bbe3afa290f3c8921436d17eac0966d4aa1136272cc58788304",
+      "sha256": "b50b8d7da0d21bbe3afa290f3c8921436d17eac0966d4aa1136272cc58788304",
+      "mime": "image/webp",
+      "extension": "webp",
+      "sizeBytes": 243938,
+      "width": 1280,
+      "height": 1280,
+      "alpha": "opaque",
+      "objectKey": "objects/b50b8d7da0d21bbe3afa290f3c8921436d17eac0966d4aa1136272cc58788304/webp",
+      "createdAt": "2026-10-29T14:26:16+08:00",
+      "provenance": [
+        {
+          "sourceType": "arcaea_apk",
+          "sourceRelativePath": "input/source/20261029-four-games/arcaea/upscale/previews/etherdrive_1280.webp",
+          "sourceFilename": "etherdrive_1280.webp",
+          "sourceSha256": "b50b8d7da0d21bbe3afa290f3c8921436d17eac0966d4aa1136272cc58788304",
+          "gameVersion": "7.1.0c",
+          "evidence": [
+            {
+              "kind": "metadata",
+              "detail": "Existing shared preview size generated from the adopted upscaled JPEG; originals remain explicit downloads.",
+              "confidence": "high"
+            },
+            {
+              "kind": "sha256",
+              "detail": "Source original SHA-256 0c007069ae049c2bde0b043ab7316bc3eb9c49f4a4818da1f2f953b4084139cd; approved optimization PNG SHA-256 564b4977d115cb2800f95e3799ba345ae100c5284ac7241b21c9877e02aa4d53.",
+              "confidence": "high"
+            },
+            {
+              "kind": "visual-review",
+              "detail": "User approved this exact seven-image comparison in the current chat on 2026-10-29.",
+              "confidence": "high"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "catalogSchemaVersion": "1.0",
+      "id": "sha256:4e3c8c5f026559629b3215b0e04e4d5babacc9f60d4f9263a12e3cf4ea5fa331",
+      "sha256": "4e3c8c5f026559629b3215b0e04e4d5babacc9f60d4f9263a12e3cf4ea5fa331",
+      "mime": "image/jpeg",
+      "extension": "jpg",
+      "sizeBytes": 1569285,
+      "width": 3072,
+      "height": 3072,
+      "alpha": "opaque",
+      "objectKey": "objects/4e3c8c5f026559629b3215b0e04e4d5babacc9f60d4f9263a12e3cf4ea5fa331/jpg",
+      "createdAt": "2026-10-29T14:26:16+08:00",
+      "provenance": [
+        {
+          "sourceType": "arcaea_apk",
+          "sourceRelativePath": "input/source/20261029-four-games/arcaea/upscale/processed/schrago.jpg",
+          "sourceFilename": "schrago.jpg",
+          "sourceSha256": "4e3c8c5f026559629b3215b0e04e4d5babacc9f60d4f9263a12e3cf4ea5fa331",
+          "gameVersion": "7.1.0c",
+          "evidence": [
+            {
+              "kind": "metadata",
+              "detail": "User-approved Real-ESRGAN x4plus-anime output; shared JPEG converter, quality 95, 4:4:4, progressive sRGB. Original and optimization PNG retained.",
+              "confidence": "high"
+            },
+            {
+              "kind": "sha256",
+              "detail": "Source original SHA-256 019a6152814721c2ce2551b6bb0e37c5b1cead4fcdac4b24565739d8f07f35ea; approved optimization PNG SHA-256 8e073329c7dbe9c412101f98db283c74becde8bd191b2e59d47753d41b5d7a8c.",
+              "confidence": "high"
+            },
+            {
+              "kind": "visual-review",
+              "detail": "User approved this exact seven-image comparison in the current chat on 2026-10-29.",
+              "confidence": "high"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "catalogSchemaVersion": "1.0",
+      "id": "sha256:e1503d2dc5250b4c0bb5027d6e49564e218d5197430d6b1550f16c27fa64dfb4",
+      "sha256": "e1503d2dc5250b4c0bb5027d6e49564e218d5197430d6b1550f16c27fa64dfb4",
+      "mime": "image/webp",
+      "extension": "webp",
+      "sizeBytes": 12868,
+      "width": 320,
+      "height": 320,
+      "alpha": "opaque",
+      "objectKey": "objects/e1503d2dc5250b4c0bb5027d6e49564e218d5197430d6b1550f16c27fa64dfb4/webp",
+      "createdAt": "2026-10-29T14:26:16+08:00",
+      "provenance": [
+        {
+          "sourceType": "arcaea_apk",
+          "sourceRelativePath": "input/source/20261029-four-games/arcaea/upscale/previews/schrago_320.webp",
+          "sourceFilename": "schrago_320.webp",
+          "sourceSha256": "e1503d2dc5250b4c0bb5027d6e49564e218d5197430d6b1550f16c27fa64dfb4",
+          "gameVersion": "7.1.0c",
+          "evidence": [
+            {
+              "kind": "metadata",
+              "detail": "Existing shared preview size generated from the adopted upscaled JPEG; originals remain explicit downloads.",
+              "confidence": "high"
+            },
+            {
+              "kind": "sha256",
+              "detail": "Source original SHA-256 019a6152814721c2ce2551b6bb0e37c5b1cead4fcdac4b24565739d8f07f35ea; approved optimization PNG SHA-256 8e073329c7dbe9c412101f98db283c74becde8bd191b2e59d47753d41b5d7a8c.",
+              "confidence": "high"
+            },
+            {
+              "kind": "visual-review",
+              "detail": "User approved this exact seven-image comparison in the current chat on 2026-10-29.",
+              "confidence": "high"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "catalogSchemaVersion": "1.0",
+      "id": "sha256:7d94dec36c42a21c900b743ecffadc9668e61b5a23f42c8adcbb9e65f0fe0ac9",
+      "sha256": "7d94dec36c42a21c900b743ecffadc9668e61b5a23f42c8adcbb9e65f0fe0ac9",
+      "mime": "image/webp",
+      "extension": "webp",
+      "sizeBytes": 40802,
+      "width": 640,
+      "height": 640,
+      "alpha": "opaque",
+      "objectKey": "objects/7d94dec36c42a21c900b743ecffadc9668e61b5a23f42c8adcbb9e65f0fe0ac9/webp",
+      "createdAt": "2026-10-29T14:26:16+08:00",
+      "provenance": [
+        {
+          "sourceType": "arcaea_apk",
+          "sourceRelativePath": "input/source/20261029-four-games/arcaea/upscale/previews/schrago_640.webp",
+          "sourceFilename": "schrago_640.webp",
+          "sourceSha256": "7d94dec36c42a21c900b743ecffadc9668e61b5a23f42c8adcbb9e65f0fe0ac9",
+          "gameVersion": "7.1.0c",
+          "evidence": [
+            {
+              "kind": "metadata",
+              "detail": "Existing shared preview size generated from the adopted upscaled JPEG; originals remain explicit downloads.",
+              "confidence": "high"
+            },
+            {
+              "kind": "sha256",
+              "detail": "Source original SHA-256 019a6152814721c2ce2551b6bb0e37c5b1cead4fcdac4b24565739d8f07f35ea; approved optimization PNG SHA-256 8e073329c7dbe9c412101f98db283c74becde8bd191b2e59d47753d41b5d7a8c.",
+              "confidence": "high"
+            },
+            {
+              "kind": "visual-review",
+              "detail": "User approved this exact seven-image comparison in the current chat on 2026-10-29.",
+              "confidence": "high"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "catalogSchemaVersion": "1.0",
+      "id": "sha256:4b527a0830a0c66c48d6933ab508ae6a29adbe244c53019313dfd8f37e24833b",
+      "sha256": "4b527a0830a0c66c48d6933ab508ae6a29adbe244c53019313dfd8f37e24833b",
+      "mime": "image/webp",
+      "extension": "webp",
+      "sizeBytes": 114168,
+      "width": 1280,
+      "height": 1280,
+      "alpha": "opaque",
+      "objectKey": "objects/4b527a0830a0c66c48d6933ab508ae6a29adbe244c53019313dfd8f37e24833b/webp",
+      "createdAt": "2026-10-29T14:26:16+08:00",
+      "provenance": [
+        {
+          "sourceType": "arcaea_apk",
+          "sourceRelativePath": "input/source/20261029-four-games/arcaea/upscale/previews/schrago_1280.webp",
+          "sourceFilename": "schrago_1280.webp",
+          "sourceSha256": "4b527a0830a0c66c48d6933ab508ae6a29adbe244c53019313dfd8f37e24833b",
+          "gameVersion": "7.1.0c",
+          "evidence": [
+            {
+              "kind": "metadata",
+              "detail": "Existing shared preview size generated from the adopted upscaled JPEG; originals remain explicit downloads.",
+              "confidence": "high"
+            },
+            {
+              "kind": "sha256",
+              "detail": "Source original SHA-256 019a6152814721c2ce2551b6bb0e37c5b1cead4fcdac4b24565739d8f07f35ea; approved optimization PNG SHA-256 8e073329c7dbe9c412101f98db283c74becde8bd191b2e59d47753d41b5d7a8c.",
+              "confidence": "high"
+            },
+            {
+              "kind": "visual-review",
+              "detail": "User approved this exact seven-image comparison in the current chat on 2026-10-29.",
+              "confidence": "high"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "catalogSchemaVersion": "1.0",
+      "id": "sha256:0dbfbe56dd7a757719014f5aebe896c19f1e848474e99a6c291a36fd6d8bfee1",
+      "sha256": "0dbfbe56dd7a757719014f5aebe896c19f1e848474e99a6c291a36fd6d8bfee1",
+      "mime": "image/jpeg",
+      "extension": "jpg",
+      "sizeBytes": 3417995,
+      "width": 3072,
+      "height": 3072,
+      "alpha": "opaque",
+      "objectKey": "objects/0dbfbe56dd7a757719014f5aebe896c19f1e848474e99a6c291a36fd6d8bfee1/jpg",
+      "createdAt": "2026-10-29T14:26:16+08:00",
+      "provenance": [
+        {
+          "sourceType": "arcaea_apk",
+          "sourceRelativePath": "input/source/20261029-four-games/arcaea/upscale/processed/fatality.jpg",
+          "sourceFilename": "fatality.jpg",
+          "sourceSha256": "0dbfbe56dd7a757719014f5aebe896c19f1e848474e99a6c291a36fd6d8bfee1",
+          "gameVersion": "7.1.0c",
+          "evidence": [
+            {
+              "kind": "metadata",
+              "detail": "User-approved Real-ESRGAN x4plus-anime output; shared JPEG converter, quality 95, 4:4:4, progressive sRGB. Original and optimization PNG retained.",
+              "confidence": "high"
+            },
+            {
+              "kind": "sha256",
+              "detail": "Source original SHA-256 38cc375118c8c85ce5ce56dcbbee9c751ac05cae8f837254c6d71db7485d32b8; approved optimization PNG SHA-256 ad6e2b81f0acb31290056eb64fdc609fed3d649b9415849727652bedfb14432d.",
+              "confidence": "high"
+            },
+            {
+              "kind": "visual-review",
+              "detail": "User approved this exact seven-image comparison in the current chat on 2026-10-29.",
+              "confidence": "high"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "catalogSchemaVersion": "1.0",
+      "id": "sha256:db6833a0bb865ac22d2276435c83bf4ef5d74ce945ba8138e3abae61c690b2f6",
+      "sha256": "db6833a0bb865ac22d2276435c83bf4ef5d74ce945ba8138e3abae61c690b2f6",
+      "mime": "image/webp",
+      "extension": "webp",
+      "sizeBytes": 33940,
+      "width": 320,
+      "height": 320,
+      "alpha": "opaque",
+      "objectKey": "objects/db6833a0bb865ac22d2276435c83bf4ef5d74ce945ba8138e3abae61c690b2f6/webp",
+      "createdAt": "2026-10-29T14:26:16+08:00",
+      "provenance": [
+        {
+          "sourceType": "arcaea_apk",
+          "sourceRelativePath": "input/source/20261029-four-games/arcaea/upscale/previews/fatality_320.webp",
+          "sourceFilename": "fatality_320.webp",
+          "sourceSha256": "db6833a0bb865ac22d2276435c83bf4ef5d74ce945ba8138e3abae61c690b2f6",
+          "gameVersion": "7.1.0c",
+          "evidence": [
+            {
+              "kind": "metadata",
+              "detail": "Existing shared preview size generated from the adopted upscaled JPEG; originals remain explicit downloads.",
+              "confidence": "high"
+            },
+            {
+              "kind": "sha256",
+              "detail": "Source original SHA-256 38cc375118c8c85ce5ce56dcbbee9c751ac05cae8f837254c6d71db7485d32b8; approved optimization PNG SHA-256 ad6e2b81f0acb31290056eb64fdc609fed3d649b9415849727652bedfb14432d.",
+              "confidence": "high"
+            },
+            {
+              "kind": "visual-review",
+              "detail": "User approved this exact seven-image comparison in the current chat on 2026-10-29.",
+              "confidence": "high"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "catalogSchemaVersion": "1.0",
+      "id": "sha256:1e208f7062b2b2bb9ad280dfec41ecb5ceacc02893ca20406f0782f53973d2e8",
+      "sha256": "1e208f7062b2b2bb9ad280dfec41ecb5ceacc02893ca20406f0782f53973d2e8",
+      "mime": "image/webp",
+      "extension": "webp",
+      "sizeBytes": 106748,
+      "width": 640,
+      "height": 640,
+      "alpha": "opaque",
+      "objectKey": "objects/1e208f7062b2b2bb9ad280dfec41ecb5ceacc02893ca20406f0782f53973d2e8/webp",
+      "createdAt": "2026-10-29T14:26:16+08:00",
+      "provenance": [
+        {
+          "sourceType": "arcaea_apk",
+          "sourceRelativePath": "input/source/20261029-four-games/arcaea/upscale/previews/fatality_640.webp",
+          "sourceFilename": "fatality_640.webp",
+          "sourceSha256": "1e208f7062b2b2bb9ad280dfec41ecb5ceacc02893ca20406f0782f53973d2e8",
+          "gameVersion": "7.1.0c",
+          "evidence": [
+            {
+              "kind": "metadata",
+              "detail": "Existing shared preview size generated from the adopted upscaled JPEG; originals remain explicit downloads.",
+              "confidence": "high"
+            },
+            {
+              "kind": "sha256",
+              "detail": "Source original SHA-256 38cc375118c8c85ce5ce56dcbbee9c751ac05cae8f837254c6d71db7485d32b8; approved optimization PNG SHA-256 ad6e2b81f0acb31290056eb64fdc609fed3d649b9415849727652bedfb14432d.",
+              "confidence": "high"
+            },
+            {
+              "kind": "visual-review",
+              "detail": "User approved this exact seven-image comparison in the current chat on 2026-10-29.",
+              "confidence": "high"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "catalogSchemaVersion": "1.0",
+      "id": "sha256:6f531a2d805b0ee6968be0ca7ded74dbb2b832ee22c28a8b947c05de8158b717",
+      "sha256": "6f531a2d805b0ee6968be0ca7ded74dbb2b832ee22c28a8b947c05de8158b717",
+      "mime": "image/webp",
+      "extension": "webp",
+      "sizeBytes": 285666,
+      "width": 1280,
+      "height": 1280,
+      "alpha": "opaque",
+      "objectKey": "objects/6f531a2d805b0ee6968be0ca7ded74dbb2b832ee22c28a8b947c05de8158b717/webp",
+      "createdAt": "2026-10-29T14:26:16+08:00",
+      "provenance": [
+        {
+          "sourceType": "arcaea_apk",
+          "sourceRelativePath": "input/source/20261029-four-games/arcaea/upscale/previews/fatality_1280.webp",
+          "sourceFilename": "fatality_1280.webp",
+          "sourceSha256": "6f531a2d805b0ee6968be0ca7ded74dbb2b832ee22c28a8b947c05de8158b717",
+          "gameVersion": "7.1.0c",
+          "evidence": [
+            {
+              "kind": "metadata",
+              "detail": "Existing shared preview size generated from the adopted upscaled JPEG; originals remain explicit downloads.",
+              "confidence": "high"
+            },
+            {
+              "kind": "sha256",
+              "detail": "Source original SHA-256 38cc375118c8c85ce5ce56dcbbee9c751ac05cae8f837254c6d71db7485d32b8; approved optimization PNG SHA-256 ad6e2b81f0acb31290056eb64fdc609fed3d649b9415849727652bedfb14432d.",
+              "confidence": "high"
+            },
+            {
+              "kind": "visual-review",
+              "detail": "User approved this exact seven-image comparison in the current chat on 2026-10-29.",
+              "confidence": "high"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "catalogSchemaVersion": "1.0",
+      "id": "sha256:cf82cddb39a0d8e208fbdd1466bb26cc4f9a93a86349066d4a03d957e4be1014",
+      "sha256": "cf82cddb39a0d8e208fbdd1466bb26cc4f9a93a86349066d4a03d957e4be1014",
+      "mime": "image/jpeg",
+      "extension": "jpg",
+      "sizeBytes": 3799801,
+      "width": 3072,
+      "height": 3072,
+      "alpha": "opaque",
+      "objectKey": "objects/cf82cddb39a0d8e208fbdd1466bb26cc4f9a93a86349066d4a03d957e4be1014/jpg",
+      "createdAt": "2026-10-29T14:26:16+08:00",
+      "provenance": [
+        {
+          "sourceType": "arcaea_apk",
+          "sourceRelativePath": "input/source/20261029-four-games/arcaea/upscale/processed/parallax.jpg",
+          "sourceFilename": "parallax.jpg",
+          "sourceSha256": "cf82cddb39a0d8e208fbdd1466bb26cc4f9a93a86349066d4a03d957e4be1014",
+          "gameVersion": "7.1.0c",
+          "evidence": [
+            {
+              "kind": "metadata",
+              "detail": "User-approved Real-ESRGAN x4plus-anime output; shared JPEG converter, quality 95, 4:4:4, progressive sRGB. Original and optimization PNG retained.",
+              "confidence": "high"
+            },
+            {
+              "kind": "sha256",
+              "detail": "Source original SHA-256 9efdccc0fbd8998597dbb0918f39764d66651e915cf7c631cdcc8740f15a79cf; approved optimization PNG SHA-256 79609fbfc9cc8026fa580c1e0afa815a98a139ebe60c76db692a8e93a4bbff6d.",
+              "confidence": "high"
+            },
+            {
+              "kind": "visual-review",
+              "detail": "User approved this exact seven-image comparison in the current chat on 2026-10-29.",
+              "confidence": "high"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "catalogSchemaVersion": "1.0",
+      "id": "sha256:f05f27e2a6eeb57be661a70ada3d3fbb98866acc5c2b99a378a9b10ed9a492fe",
+      "sha256": "f05f27e2a6eeb57be661a70ada3d3fbb98866acc5c2b99a378a9b10ed9a492fe",
+      "mime": "image/webp",
+      "extension": "webp",
+      "sizeBytes": 36614,
+      "width": 320,
+      "height": 320,
+      "alpha": "opaque",
+      "objectKey": "objects/f05f27e2a6eeb57be661a70ada3d3fbb98866acc5c2b99a378a9b10ed9a492fe/webp",
+      "createdAt": "2026-10-29T14:26:16+08:00",
+      "provenance": [
+        {
+          "sourceType": "arcaea_apk",
+          "sourceRelativePath": "input/source/20261029-four-games/arcaea/upscale/previews/parallax_320.webp",
+          "sourceFilename": "parallax_320.webp",
+          "sourceSha256": "f05f27e2a6eeb57be661a70ada3d3fbb98866acc5c2b99a378a9b10ed9a492fe",
+          "gameVersion": "7.1.0c",
+          "evidence": [
+            {
+              "kind": "metadata",
+              "detail": "Existing shared preview size generated from the adopted upscaled JPEG; originals remain explicit downloads.",
+              "confidence": "high"
+            },
+            {
+              "kind": "sha256",
+              "detail": "Source original SHA-256 9efdccc0fbd8998597dbb0918f39764d66651e915cf7c631cdcc8740f15a79cf; approved optimization PNG SHA-256 79609fbfc9cc8026fa580c1e0afa815a98a139ebe60c76db692a8e93a4bbff6d.",
+              "confidence": "high"
+            },
+            {
+              "kind": "visual-review",
+              "detail": "User approved this exact seven-image comparison in the current chat on 2026-10-29.",
+              "confidence": "high"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "catalogSchemaVersion": "1.0",
+      "id": "sha256:7dc0c573f1e87189f48407b7e3690a8223335a61765d3e88308f4d043bb70276",
+      "sha256": "7dc0c573f1e87189f48407b7e3690a8223335a61765d3e88308f4d043bb70276",
+      "mime": "image/webp",
+      "extension": "webp",
+      "sizeBytes": 113178,
+      "width": 640,
+      "height": 640,
+      "alpha": "opaque",
+      "objectKey": "objects/7dc0c573f1e87189f48407b7e3690a8223335a61765d3e88308f4d043bb70276/webp",
+      "createdAt": "2026-10-29T14:26:16+08:00",
+      "provenance": [
+        {
+          "sourceType": "arcaea_apk",
+          "sourceRelativePath": "input/source/20261029-four-games/arcaea/upscale/previews/parallax_640.webp",
+          "sourceFilename": "parallax_640.webp",
+          "sourceSha256": "7dc0c573f1e87189f48407b7e3690a8223335a61765d3e88308f4d043bb70276",
+          "gameVersion": "7.1.0c",
+          "evidence": [
+            {
+              "kind": "metadata",
+              "detail": "Existing shared preview size generated from the adopted upscaled JPEG; originals remain explicit downloads.",
+              "confidence": "high"
+            },
+            {
+              "kind": "sha256",
+              "detail": "Source original SHA-256 9efdccc0fbd8998597dbb0918f39764d66651e915cf7c631cdcc8740f15a79cf; approved optimization PNG SHA-256 79609fbfc9cc8026fa580c1e0afa815a98a139ebe60c76db692a8e93a4bbff6d.",
+              "confidence": "high"
+            },
+            {
+              "kind": "visual-review",
+              "detail": "User approved this exact seven-image comparison in the current chat on 2026-10-29.",
+              "confidence": "high"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "catalogSchemaVersion": "1.0",
+      "id": "sha256:e088e72adc8daa52ff1cd24d1a3c33eafb29cb42d05246292456f7c11b14d5f2",
+      "sha256": "e088e72adc8daa52ff1cd24d1a3c33eafb29cb42d05246292456f7c11b14d5f2",
+      "mime": "image/webp",
+      "extension": "webp",
+      "sizeBytes": 306104,
+      "width": 1280,
+      "height": 1280,
+      "alpha": "opaque",
+      "objectKey": "objects/e088e72adc8daa52ff1cd24d1a3c33eafb29cb42d05246292456f7c11b14d5f2/webp",
+      "createdAt": "2026-10-29T14:26:16+08:00",
+      "provenance": [
+        {
+          "sourceType": "arcaea_apk",
+          "sourceRelativePath": "input/source/20261029-four-games/arcaea/upscale/previews/parallax_1280.webp",
+          "sourceFilename": "parallax_1280.webp",
+          "sourceSha256": "e088e72adc8daa52ff1cd24d1a3c33eafb29cb42d05246292456f7c11b14d5f2",
+          "gameVersion": "7.1.0c",
+          "evidence": [
+            {
+              "kind": "metadata",
+              "detail": "Existing shared preview size generated from the adopted upscaled JPEG; originals remain explicit downloads.",
+              "confidence": "high"
+            },
+            {
+              "kind": "sha256",
+              "detail": "Source original SHA-256 9efdccc0fbd8998597dbb0918f39764d66651e915cf7c631cdcc8740f15a79cf; approved optimization PNG SHA-256 79609fbfc9cc8026fa580c1e0afa815a98a139ebe60c76db692a8e93a4bbff6d.",
+              "confidence": "high"
+            },
+            {
+              "kind": "visual-review",
+              "detail": "User approved this exact seven-image comparison in the current chat on 2026-10-29.",
+              "confidence": "high"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "catalogSchemaVersion": "1.0",
+      "id": "sha256:b58746f71ff8695f205adb1e7d719e74ab2f2dcd49f9bec6e3713a235051eac4",
+      "sha256": "b58746f71ff8695f205adb1e7d719e74ab2f2dcd49f9bec6e3713a235051eac4",
+      "mime": "image/jpeg",
+      "extension": "jpg",
+      "sizeBytes": 2719527,
+      "width": 3072,
+      "height": 3072,
+      "alpha": "opaque",
+      "objectKey": "objects/b58746f71ff8695f205adb1e7d719e74ab2f2dcd49f9bec6e3713a235051eac4/jpg",
+      "createdAt": "2026-10-29T14:26:16+08:00",
+      "provenance": [
+        {
+          "sourceType": "arcaea_apk",
+          "sourceRelativePath": "input/source/20261029-four-games/arcaea/upscale/processed/trickmaster.jpg",
+          "sourceFilename": "trickmaster.jpg",
+          "sourceSha256": "b58746f71ff8695f205adb1e7d719e74ab2f2dcd49f9bec6e3713a235051eac4",
+          "gameVersion": "7.1.0c",
+          "evidence": [
+            {
+              "kind": "metadata",
+              "detail": "User-approved Real-ESRGAN x4plus-anime output; shared JPEG converter, quality 95, 4:4:4, progressive sRGB. Original and optimization PNG retained.",
+              "confidence": "high"
+            },
+            {
+              "kind": "sha256",
+              "detail": "Source original SHA-256 bd45ee1809cd38424471579c1825532ec2751f764b116ba33caec31d2aed19ba; approved optimization PNG SHA-256 b17616c687f3785ce71569391209af5bccf5872f0c67bec8e4a6d245b610a2df.",
+              "confidence": "high"
+            },
+            {
+              "kind": "visual-review",
+              "detail": "User approved this exact seven-image comparison in the current chat on 2026-10-29.",
+              "confidence": "high"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "catalogSchemaVersion": "1.0",
+      "id": "sha256:4299a25227bb93a5b0df5154878cb48a4d97621aa9f8646246de9dd0bbe2f70a",
+      "sha256": "4299a25227bb93a5b0df5154878cb48a4d97621aa9f8646246de9dd0bbe2f70a",
+      "mime": "image/webp",
+      "extension": "webp",
+      "sizeBytes": 24564,
+      "width": 320,
+      "height": 320,
+      "alpha": "opaque",
+      "objectKey": "objects/4299a25227bb93a5b0df5154878cb48a4d97621aa9f8646246de9dd0bbe2f70a/webp",
+      "createdAt": "2026-10-29T14:26:16+08:00",
+      "provenance": [
+        {
+          "sourceType": "arcaea_apk",
+          "sourceRelativePath": "input/source/20261029-four-games/arcaea/upscale/previews/trickmaster_320.webp",
+          "sourceFilename": "trickmaster_320.webp",
+          "sourceSha256": "4299a25227bb93a5b0df5154878cb48a4d97621aa9f8646246de9dd0bbe2f70a",
+          "gameVersion": "7.1.0c",
+          "evidence": [
+            {
+              "kind": "metadata",
+              "detail": "Existing shared preview size generated from the adopted upscaled JPEG; originals remain explicit downloads.",
+              "confidence": "high"
+            },
+            {
+              "kind": "sha256",
+              "detail": "Source original SHA-256 bd45ee1809cd38424471579c1825532ec2751f764b116ba33caec31d2aed19ba; approved optimization PNG SHA-256 b17616c687f3785ce71569391209af5bccf5872f0c67bec8e4a6d245b610a2df.",
+              "confidence": "high"
+            },
+            {
+              "kind": "visual-review",
+              "detail": "User approved this exact seven-image comparison in the current chat on 2026-10-29.",
+              "confidence": "high"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "catalogSchemaVersion": "1.0",
+      "id": "sha256:4c5c57f7f3ee6bf85f22309a1b8f1de61c393e5336c951929c352561d9d12669",
+      "sha256": "4c5c57f7f3ee6bf85f22309a1b8f1de61c393e5336c951929c352561d9d12669",
+      "mime": "image/webp",
+      "extension": "webp",
+      "sizeBytes": 75650,
+      "width": 640,
+      "height": 640,
+      "alpha": "opaque",
+      "objectKey": "objects/4c5c57f7f3ee6bf85f22309a1b8f1de61c393e5336c951929c352561d9d12669/webp",
+      "createdAt": "2026-10-29T14:26:16+08:00",
+      "provenance": [
+        {
+          "sourceType": "arcaea_apk",
+          "sourceRelativePath": "input/source/20261029-four-games/arcaea/upscale/previews/trickmaster_640.webp",
+          "sourceFilename": "trickmaster_640.webp",
+          "sourceSha256": "4c5c57f7f3ee6bf85f22309a1b8f1de61c393e5336c951929c352561d9d12669",
+          "gameVersion": "7.1.0c",
+          "evidence": [
+            {
+              "kind": "metadata",
+              "detail": "Existing shared preview size generated from the adopted upscaled JPEG; originals remain explicit downloads.",
+              "confidence": "high"
+            },
+            {
+              "kind": "sha256",
+              "detail": "Source original SHA-256 bd45ee1809cd38424471579c1825532ec2751f764b116ba33caec31d2aed19ba; approved optimization PNG SHA-256 b17616c687f3785ce71569391209af5bccf5872f0c67bec8e4a6d245b610a2df.",
+              "confidence": "high"
+            },
+            {
+              "kind": "visual-review",
+              "detail": "User approved this exact seven-image comparison in the current chat on 2026-10-29.",
+              "confidence": "high"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "catalogSchemaVersion": "1.0",
+      "id": "sha256:ff2d92d292a30d8c4048a88276bfd15337b755ec35bed6daef9ff42bc74651a5",
+      "sha256": "ff2d92d292a30d8c4048a88276bfd15337b755ec35bed6daef9ff42bc74651a5",
+      "mime": "image/webp",
+      "extension": "webp",
+      "sizeBytes": 203774,
+      "width": 1280,
+      "height": 1280,
+      "alpha": "opaque",
+      "objectKey": "objects/ff2d92d292a30d8c4048a88276bfd15337b755ec35bed6daef9ff42bc74651a5/webp",
+      "createdAt": "2026-10-29T14:26:16+08:00",
+      "provenance": [
+        {
+          "sourceType": "arcaea_apk",
+          "sourceRelativePath": "input/source/20261029-four-games/arcaea/upscale/previews/trickmaster_1280.webp",
+          "sourceFilename": "trickmaster_1280.webp",
+          "sourceSha256": "ff2d92d292a30d8c4048a88276bfd15337b755ec35bed6daef9ff42bc74651a5",
+          "gameVersion": "7.1.0c",
+          "evidence": [
+            {
+              "kind": "metadata",
+              "detail": "Existing shared preview size generated from the adopted upscaled JPEG; originals remain explicit downloads.",
+              "confidence": "high"
+            },
+            {
+              "kind": "sha256",
+              "detail": "Source original SHA-256 bd45ee1809cd38424471579c1825532ec2751f764b116ba33caec31d2aed19ba; approved optimization PNG SHA-256 b17616c687f3785ce71569391209af5bccf5872f0c67bec8e4a6d245b610a2df.",
+              "confidence": "high"
+            },
+            {
+              "kind": "visual-review",
+              "detail": "User approved this exact seven-image comparison in the current chat on 2026-10-29.",
               "confidence": "high"
             }
           ]
