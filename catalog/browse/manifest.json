@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-01T12:12:07.609Z",
+  "generatedAt": "2026-10-29T10:35:00+08:00",
   "games": {
     "arcaea": {
-      "sourceVersion": "7.0.260c",
-      "sourceSha256": "2ccc879de95932d47ff62fc1bc18acbbeb43f43671302e4240498005f6e2b9e2",
-      "fileSha256": "70a0cdbfdd12e43d5827392ed8ff9a435ba8b5169dab46d60fe0d346983e73e3",
+      "sourceVersion": "7.1.0c",
+      "sourceSha256": "b169c695634229e20792630558f705e576aa07c1acdc1a5b19f8051651950c09",
+      "fileSha256": "05a5370cdf4bf41a165d9f9983cde31ffc9f30265c6911bec92676c3fa35e40b",
       "recordCounts": {
-        "regularSongs": 553,
-        "currentArtworkSlots": 612,
-        "currentArtworkResourceReferences": 611,
+        "regularSongs": 560,
+        "currentArtworkSlots": 619,
+        "currentArtworkResourceReferences": 618,
         "missingCurrentArtwork": 1,
         "specialRecords": 9,
         "archiveExtras": 3,
@@ -17,9 +17,9 @@
       }
     },
     "phigros": {
-      "sourceVersion": "4.0.1",
-      "sourceSha256": "f59a041f5bc02d0f3eb51a67739ec0271590ac412e68cf6cc6b43621cdf08985",
-      "fileSha256": "b83c0e16e400eff4f79f0c36cd6f20fc0004b7ca0e53f360f4bf06c5d0012cac",
+      "sourceVersion": "4.0.1.2",
+      "sourceSha256": "0fa6de7e4c391d6a89d1a11cb02f8963dcdca62aa50305e3a47d931f76b50674",
+      "fileSha256": "31cee7475ac7530d82f45a50b21d821992eb76ac2921cf2fed30beb06f20ca14",
       "recordCounts": {
         "sourceTrackRecords": 334,
         "currentTrackArtworkEntries": 328,
@@ -47,9 +47,9 @@
       }
     },
     "berrymelody": {
-      "sourceVersion": "3.3.7",
-      "sourceSha256": "f70284fb47b79f088e405f834d01fc32d65291509bbdaae512ab178825857438",
-      "fileSha256": "7b3596610d51c3824937839d10e14679329a5954925f4bf1a7390036beb22c3a",
+      "sourceVersion": "3.4.1",
+      "sourceSha256": "8999df67204761ea43acb6a8b262db91ed0b1719121495224b2ea73c874fcca0",
+      "fileSha256": "7d5142d49010831bd306ec622b649aac05fcad6a7fa3ec804268234ed7bdd4d1",
       "recordCounts": {
         "songs": 245,
         "artworks": 245
@@ -58,8 +58,8 @@
   },
   "catalog": {
     "catalogId": "019fefd6-9c49-7ca0-a760-adc76811a511",
-    "catalogSha256": "e2e6c5b7ab74a7ccdbbf6eab4515726848a25747be2c2804c159034a9cb5ce1b",
-    "catalogGeneratedAt": "2026-10-24T06:34:41.570Z"
+    "catalogSha256": "09b923b165651ee3728f9e4329fb4762cfb4052cbb28ce07c906c1987a49938f",
+    "catalogGeneratedAt": "2026-10-29T10:35:00+08:00"
   },
   "files": {
     "arcaea": "arcaea.json",

@@ -16,6 +16,14 @@ Catalog 的 `metadata.charts` 是详情页和筛选的共同来源。继续使�
 - 内容检查将 `chartDataVersion` 与既有 Browse manifest 的 `sourceVersion` 对齐；没有正式 Browse 的游戏采用 Updates 的最新版本（含 baseline）。升级版本后，旧标记会使 `content:check` / `check:fast` 失败。完成上述复核或移除未确认定数后才能推进标记，不能只改版本字符串消除失败。
 - 定数变更写入 Catalog 后，详情、范围边界和直方图从同一快照生成。按现有流程刷新 Browse 的 Catalog 哈希绑定和公共投影；无需新增资源对象、ROS 上传或运行时请求。
 
+## 2026-10-29 APK 更新复核
+
+Orzmic 3.18.0 逐首重读原生 MusicDatas，224 首的显示等级、档位、定数、谱师与物量采用本版数据；旧曲曲绘均未变化，新增《炳烛志·斩邪》。Berry Melody 3.4.1 采用单 APK 的原生 Info 与精确 Resources/AssetBundle 容器引用，当前 245 首、771 张谱面；新增六首 WeBeat 曲目，以及 CATACLYSM (feat. ricono)、c.s.q.n. 的 RUIN（均为 13.1）。已有在包曲目的定数未变。此前六首 Milthm 曲目未出现在本版原生清单，保留历史图片与已知字段，撤下无法确认本版适用性的 21 个定数。重新压缩的旧曲绘继续使用已发布原图。
+
+Phigros 4.0.1.2 将旧 data.unity3d 内的序列化资源改为 APK 内独立文件。本次定位 level0 的 GameInformation（path ID 50），复用已验证的序列化边界核对全部 328 首原生记录：Exoplanetary Mirage 的 IN 定数由 16.8 调整为 16.9，其余定数、谱师和曲目身份未变。对象原始数据仅此浮点值的三个字节以及脚本引用的一个字节不同。Addressables 的 436 项曲绘/头像没有新增身份，新包将原 RGB 图片改为 ETC2 压缩，保留画质更好的已有原图。元数据调整、重新压缩及版本标记不生成内容更新动态。
+
+Arcaea 7.1.0c 将现行高低等级定数表与全部已有谱面重新比对，成功确认的数值均未变化；未被当前汇总表或可访问单曲来源确认的 undefined PST/PRS、~_+ PST、Château de cartes 四档共七个定数暂留空。新七首曲目的等级与谱师采用本版 songlist，未确认的精确定数留空。新旧 Story ordering、Entry 与 story2 CSB 均未变化，不重建剧情布局或派生图；Android 图标相关 426 个资源也与旧版一致。新增来源、原生清单及本批上传源保留在私有 Workspace 的 input/source/20261029-four-games，源 APK 保持只读。
+
 ## 2026-10-23 Rizline CDN 版本复核
 
 官方配置确认客户端仍为 **2.7.1**，资源版本为 **v145_2_7_1_3e1bee4b02P**。本批从官方 CDN 的 Addressables 目录定位 `Default` AssetList，逐一核对全部 148 首旧曲的曲名、曲师、画师，以及 444 张旧谱面的完整 `difficulty` 和 `designer`；已有值均未变化。定数与谱师的逐字段来源及 `chartDataVersion` 推进至 v145，原有加入版本、显示等级和社区物量来源保留。

@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
   "game": "arcaea",
-  "generatedAt": "2026-10-01T12:12:07.609Z",
+  "generatedAt": "2026-10-29T10:35:00+08:00",
   "source": {
-    "version": "7.0.260c",
-    "sha256": "2ccc879de95932d47ff62fc1bc18acbbeb43f43671302e4240498005f6e2b9e2"
+    "version": "7.1.0c",
+    "sha256": "b169c695634229e20792630558f705e576aa07c1acdc1a5b19f8051651950c09"
   },
   "songs": [
     {
@@ -35366,6 +35366,459 @@
         "しゃとーどかると",
         "ぺるねる"
       ]
+    },
+    {
+      "songId": "voyagetofuture",
+      "displayTitle": "Voyage to the Future",
+      "titleAliases": [
+        "chika",
+        "Voyage to the Future",
+        "보야지 투 더 퓨처",
+        "ぼやーじゅとぅざふゅーちゃー"
+      ],
+      "artist": "Shunji Fujii feat. 千花",
+      "artistAliases": [
+        "치카",
+        "후지이 슌지",
+        "しゅじふじい",
+        "ちか"
+      ],
+      "pack": {
+        "packId": "extend_4",
+        "displayName": null
+      },
+      "version": "7.1",
+      "date": 1793232000,
+      "sideRaw": 0,
+      "bpm": "129",
+      "orderHint": 555,
+      "charts": [
+        {
+          "difficultyClass": "ETR",
+          "displayLevel": "9"
+        },
+        {
+          "difficultyClass": "FTR",
+          "displayLevel": "7+"
+        },
+        {
+          "difficultyClass": "PRS",
+          "displayLevel": "5"
+        },
+        {
+          "difficultyClass": "PST",
+          "displayLevel": "2"
+        }
+      ],
+      "artworks": [
+        {
+          "role": "default",
+          "resourceId": "02c414dd-8ea8-7868-889a-1c1117dec26c",
+          "currentApkPresence": true,
+          "matchStatus": "confirmed",
+          "sourcePath": "assets/songs/dl_voyagetofuture/1080_base.jpg"
+        }
+      ],
+      "relatedSongs": [],
+      "searchTerms": [
+        "chika",
+        "extend_4",
+        "shunji fujii feat. 千花",
+        "voyage to the future",
+        "voyagetofuture",
+        "보야지 투 더 퓨처",
+        "치카",
+        "후지이 슌지",
+        "しゅじふじい",
+        "ちか",
+        "ぼやーじゅとぅざふゅーちゃー"
+      ]
+    },
+    {
+      "songId": "ran",
+      "displayTitle": "Ran",
+      "titleAliases": [
+        "ran",
+        "Ran",
+        "란",
+        "らん",
+        "蘭"
+      ],
+      "artist": "Feryquitous",
+      "artistAliases": [
+        "페리퀴토스",
+        "ふぇりきたす"
+      ],
+      "pack": {
+        "packId": "diversesystem",
+        "displayName": null
+      },
+      "version": "7.1",
+      "date": 1793232001,
+      "sideRaw": 0,
+      "bpm": "180",
+      "orderHint": 556,
+      "charts": [
+        {
+          "difficultyClass": "ETR",
+          "displayLevel": "9+"
+        },
+        {
+          "difficultyClass": "FTR",
+          "displayLevel": "8+"
+        },
+        {
+          "difficultyClass": "PRS",
+          "displayLevel": "6"
+        },
+        {
+          "difficultyClass": "PST",
+          "displayLevel": "3"
+        }
+      ],
+      "artworks": [
+        {
+          "role": "default",
+          "resourceId": "905b0c16-8a8f-74a8-b82e-46b9aa041c99",
+          "currentApkPresence": true,
+          "matchStatus": "confirmed",
+          "sourcePath": "assets/songs/dl_ran/1080_base.jpg"
+        }
+      ],
+      "relatedSongs": [],
+      "searchTerms": [
+        "diversesystem",
+        "feryquitous",
+        "ran",
+        "란",
+        "페리퀴토스",
+        "ふぇりきたす",
+        "らん",
+        "蘭"
+      ]
+    },
+    {
+      "songId": "etherdrive",
+      "displayTitle": "Ether Drive",
+      "titleAliases": [
+        "Ether Drive",
+        "에테르 드라이브",
+        "いーさーどらいぶ",
+        "えーてるどらいぶ"
+      ],
+      "artist": "crayvxn",
+      "artistAliases": [
+        "크레이븐",
+        "くれいぶん"
+      ],
+      "pack": {
+        "packId": "diversesystem",
+        "displayName": null
+      },
+      "version": "7.1",
+      "date": 1793232002,
+      "sideRaw": 0,
+      "bpm": "155",
+      "orderHint": 557,
+      "charts": [
+        {
+          "difficultyClass": "ETR",
+          "displayLevel": "10"
+        },
+        {
+          "difficultyClass": "FTR",
+          "displayLevel": "8+"
+        },
+        {
+          "difficultyClass": "PRS",
+          "displayLevel": "6"
+        },
+        {
+          "difficultyClass": "PST",
+          "displayLevel": "3"
+        }
+      ],
+      "artworks": [
+        {
+          "role": "default",
+          "resourceId": "74962579-0422-77e2-a462-3986b6950321",
+          "currentApkPresence": true,
+          "matchStatus": "confirmed",
+          "sourcePath": "assets/songs/dl_etherdrive/1080_base.jpg"
+        }
+      ],
+      "relatedSongs": [],
+      "searchTerms": [
+        "crayvxn",
+        "diversesystem",
+        "ether drive",
+        "etherdrive",
+        "에테르 드라이브",
+        "크레이븐",
+        "いーさーどらいぶ",
+        "えーてるどらいぶ",
+        "くれいぶん"
+      ]
+    },
+    {
+      "songId": "schrago",
+      "displayTitle": "Schra Go (Uchina Time)",
+      "titleAliases": [
+        "Schra Go (Uchina Time)",
+        "쉬라 고 우치나 테마",
+        "うちなーたいむ",
+        "うちなたいむ",
+        "しゅらごー"
+      ],
+      "artist": "REMO-CON",
+      "artistAliases": [
+        "레모콘",
+        "리모콘",
+        "りもこん"
+      ],
+      "pack": {
+        "packId": "diversesystem",
+        "displayName": null
+      },
+      "version": "7.1",
+      "date": 1793232003,
+      "sideRaw": 1,
+      "bpm": "138-150",
+      "orderHint": 558,
+      "charts": [
+        {
+          "difficultyClass": "ETR",
+          "displayLevel": "10"
+        },
+        {
+          "difficultyClass": "FTR",
+          "displayLevel": "9"
+        },
+        {
+          "difficultyClass": "PRS",
+          "displayLevel": "7"
+        },
+        {
+          "difficultyClass": "PST",
+          "displayLevel": "4"
+        }
+      ],
+      "artworks": [
+        {
+          "role": "default",
+          "resourceId": "a75fa50f-9f34-7daa-930f-d6d07746c50b",
+          "currentApkPresence": true,
+          "matchStatus": "confirmed",
+          "sourcePath": "assets/songs/dl_schrago/1080_base.jpg"
+        }
+      ],
+      "relatedSongs": [],
+      "searchTerms": [
+        "diversesystem",
+        "remo-con",
+        "schra go (uchina time)",
+        "schrago",
+        "레모콘",
+        "리모콘",
+        "쉬라 고 우치나 테마",
+        "うちなーたいむ",
+        "うちなたいむ",
+        "しゅらごー",
+        "りもこん"
+      ]
+    },
+    {
+      "songId": "fatality",
+      "displayTitle": "Fatality",
+      "titleAliases": [
+        "Fatality",
+        "페이탈리티",
+        "ふぇいたりてぃ"
+      ],
+      "artist": "Renpul",
+      "artistAliases": [
+        "렌풀",
+        "렌플",
+        "れんぷーる",
+        "れんぷる"
+      ],
+      "pack": {
+        "packId": "diversesystem",
+        "displayName": null
+      },
+      "version": "7.1",
+      "date": 1793232004,
+      "sideRaw": 1,
+      "bpm": "175",
+      "orderHint": 559,
+      "charts": [
+        {
+          "difficultyClass": "ETR",
+          "displayLevel": "10"
+        },
+        {
+          "difficultyClass": "FTR",
+          "displayLevel": "9"
+        },
+        {
+          "difficultyClass": "PRS",
+          "displayLevel": "7+"
+        },
+        {
+          "difficultyClass": "PST",
+          "displayLevel": "4"
+        }
+      ],
+      "artworks": [
+        {
+          "role": "default",
+          "resourceId": "8522f57e-0b98-7cc2-a3ee-1b5cc84fd8bd",
+          "currentApkPresence": true,
+          "matchStatus": "confirmed",
+          "sourcePath": "assets/songs/dl_fatality/1080_base.jpg"
+        }
+      ],
+      "relatedSongs": [],
+      "searchTerms": [
+        "diversesystem",
+        "fatality",
+        "renpul",
+        "렌풀",
+        "렌플",
+        "페이탈리티",
+        "ふぇいたりてぃ",
+        "れんぷーる",
+        "れんぷる"
+      ]
+    },
+    {
+      "songId": "parallax",
+      "displayTitle": "Parallax",
+      "titleAliases": [
+        "Parallax",
+        "패럴렉스",
+        "ぱららっくす"
+      ],
+      "artist": "xi vs ak+q (lowiro)",
+      "artistAliases": [
+        "시",
+        "에이케이 큐 플러스",
+        "えーけーきゅー",
+        "えーけーぷらすきゅー",
+        "さい"
+      ],
+      "pack": {
+        "packId": "diversesystem",
+        "displayName": null
+      },
+      "version": "7.1",
+      "date": 1793232005,
+      "sideRaw": 0,
+      "bpm": "169",
+      "orderHint": 560,
+      "charts": [
+        {
+          "difficultyClass": "ETR",
+          "displayLevel": "11"
+        },
+        {
+          "difficultyClass": "FTR",
+          "displayLevel": "9+"
+        },
+        {
+          "difficultyClass": "PRS",
+          "displayLevel": "8"
+        },
+        {
+          "difficultyClass": "PST",
+          "displayLevel": "5"
+        }
+      ],
+      "artworks": [
+        {
+          "role": "default",
+          "resourceId": "ee01db9f-6cc8-7daf-b711-3b3927ea84cd",
+          "currentApkPresence": true,
+          "matchStatus": "confirmed",
+          "sourcePath": "assets/songs/dl_parallax/1080_base.jpg"
+        }
+      ],
+      "relatedSongs": [],
+      "searchTerms": [
+        "diversesystem",
+        "parallax",
+        "xi vs ak+q (lowiro)",
+        "시",
+        "에이케이 큐 플러스",
+        "패럴렉스",
+        "えーけーきゅー",
+        "えーけーぷらすきゅー",
+        "さい",
+        "ぱららっくす"
+      ]
+    },
+    {
+      "songId": "trickmaster",
+      "displayTitle": "Tr!cK Ma?tEr",
+      "titleAliases": [
+        "Tr!cK Ma?tEr",
+        "trick master",
+        "트릭 마스터",
+        "とりっくますたー"
+      ],
+      "artist": "Nothing But Requiem",
+      "artistAliases": [
+        "낫띵 벗 레퀴엠",
+        "なっしんぐばっとれくいえむ"
+      ],
+      "pack": {
+        "packId": "single",
+        "displayName": null
+      },
+      "version": "7.1",
+      "date": 1793232006,
+      "sideRaw": 1,
+      "bpm": "195?",
+      "orderHint": 820,
+      "charts": [
+        {
+          "difficultyClass": "ETR",
+          "displayLevel": "10"
+        },
+        {
+          "difficultyClass": "FTR",
+          "displayLevel": "9"
+        },
+        {
+          "difficultyClass": "PRS",
+          "displayLevel": "7+"
+        },
+        {
+          "difficultyClass": "PST",
+          "displayLevel": "4"
+        }
+      ],
+      "artworks": [
+        {
+          "role": "default",
+          "resourceId": "5f962641-97f1-7b8e-8d1a-0e9ede73739c",
+          "currentApkPresence": true,
+          "matchStatus": "confirmed",
+          "sourcePath": "assets/songs/dl_trickmaster/1080_base.jpg"
+        }
+      ],
+      "relatedSongs": [],
+      "searchTerms": [
+        "nothing but requiem",
+        "single",
+        "tr!ck ma?ter",
+        "trick master",
+        "trickmaster",
+        "낫띵 벗 레퀴엠",
+        "트릭 마스터",
+        "とりっくますたー",
+        "なっしんぐばっとれくいえむ"
+      ]
     }
   ],
   "specials": [
@@ -35693,9 +36146,9 @@
     }
   ],
   "recordCounts": {
-    "regularSongs": 553,
-    "currentArtworkSlots": 612,
-    "currentArtworkResourceReferences": 611,
+    "regularSongs": 560,
+    "currentArtworkSlots": 619,
+    "currentArtworkResourceReferences": 618,
     "missingCurrentArtwork": 1,
     "specialRecords": 9,
     "archiveExtras": 3,

@@ -3006,6 +3006,154 @@
           "change": "added"
         }
       ]
+    },
+    {
+      "id": "orzmic-3.18.0-20261029",
+      "game": "orzmic",
+      "releaseIds": [
+        "18d6eefc-db67-783a-b5a6-e54c2b37075d"
+      ],
+      "kind": "update",
+      "publishedAt": "2026-10-29T10:36:00+08:00",
+      "contentVersion": "3.18.0",
+      "items": [
+        {
+          "resourceId": "c90404ab-fb6e-7d8f-a69e-b48e2021d381",
+          "change": "added"
+        }
+      ]
+    },
+    {
+      "id": "berrymelody-3.4.1-20261029",
+      "game": "berrymelody",
+      "releaseIds": [
+        "e9f6b6f8-1a7c-7ed7-9a57-b49f0c7453a0"
+      ],
+      "kind": "update",
+      "publishedAt": "2026-10-29T10:37:00+08:00",
+      "contentVersion": "3.4.1",
+      "items": [
+        {
+          "resourceId": "2b654c32-b069-767f-b7ac-a139eb283544",
+          "change": "added"
+        },
+        {
+          "resourceId": "afca1ed2-1b0f-73eb-a609-0eae336f9498",
+          "change": "added"
+        },
+        {
+          "resourceId": "9b38f769-3e01-7678-8dbc-05f07593fd6f",
+          "change": "added"
+        },
+        {
+          "resourceId": "78956e77-a827-7057-9dcf-cbc5e466e90a",
+          "change": "added"
+        },
+        {
+          "resourceId": "02d8bb84-884f-790a-a2b5-fbf99d15bc99",
+          "change": "added"
+        },
+        {
+          "resourceId": "1afb8afc-3293-7a2e-b4de-025a638b219e",
+          "change": "added"
+        }
+      ]
+    },
+    {
+      "id": "arcaea-7.1.0c-20261029",
+      "game": "arcaea",
+      "releaseIds": [
+        "62a0c1f6-058e-748d-bbd8-5e63bedbc6fd"
+      ],
+      "kind": "update",
+      "publishedAt": "2026-10-29T10:38:00+08:00",
+      "contentVersion": "7.1.0c",
+      "items": [
+        {
+          "resourceId": "02c414dd-8ea8-7868-889a-1c1117dec26c",
+          "change": "added"
+        },
+        {
+          "resourceId": "905b0c16-8a8f-74a8-b82e-46b9aa041c99",
+          "change": "added"
+        },
+        {
+          "resourceId": "74962579-0422-77e2-a462-3986b6950321",
+          "change": "added"
+        },
+        {
+          "resourceId": "a75fa50f-9f34-7daa-930f-d6d07746c50b",
+          "change": "added"
+        },
+        {
+          "resourceId": "8522f57e-0b98-7cc2-a3ee-1b5cc84fd8bd",
+          "change": "added"
+        },
+        {
+          "resourceId": "ee01db9f-6cc8-7daf-b711-3b3927ea84cd",
+          "change": "added"
+        },
+        {
+          "resourceId": "5f962641-97f1-7b8e-8d1a-0e9ede73739c",
+          "change": "added"
+        },
+        {
+          "resourceId": "dc73a2ff-b18c-7ddd-b05b-27a6ba119130",
+          "change": "added"
+        },
+        {
+          "resourceId": "093753d5-3a6b-7b94-8ce9-784c8237470e",
+          "change": "added"
+        },
+        {
+          "resourceId": "f54c1f17-5cd9-7baa-a6b8-fbb07293b584",
+          "change": "added"
+        },
+        {
+          "resourceId": "937e064a-f9d5-75c7-aff6-8fe76b945c85",
+          "change": "added"
+        },
+        {
+          "resourceId": "5a02586e-6027-78a5-b229-a9fa142b3d07",
+          "change": "added"
+        },
+        {
+          "resourceId": "b7ff00e4-4db6-7b89-9180-8d3b13726921",
+          "change": "added"
+        },
+        {
+          "resourceId": "234c92b0-1c22-7e61-9b95-ee1bdd10efb5",
+          "change": "added"
+        },
+        {
+          "resourceId": "e908fc2a-2efa-73ea-a145-a41c6802d98d",
+          "change": "added"
+        },
+        {
+          "resourceId": "721666c6-cbf7-7287-9f11-76f57951cdb7",
+          "change": "added"
+        },
+        {
+          "resourceId": "5d1bfb05-b5fe-7d31-a0a0-2a8a0883ca67",
+          "change": "added"
+        },
+        {
+          "resourceId": "f8d43e53-1ebb-7811-80ce-5799bce151a0",
+          "change": "added"
+        },
+        {
+          "resourceId": "e21b5cd2-ba69-777f-b528-1639444f1bbf",
+          "change": "added"
+        },
+        {
+          "resourceId": "c2c9a75f-be51-70d2-b55e-8d0fa6543f2c",
+          "change": "added"
+        },
+        {
+          "resourceId": "d579e122-4f7c-7859-8ef9-d00d654d6d92",
+          "change": "added"
+        }
+      ]
     }
   ]
 }
