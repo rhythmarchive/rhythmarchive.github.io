@@ -3154,6 +3154,70 @@
           "change": "added"
         }
       ]
+    },
+    {
+      "id": "65862a0f-c0a9-7daf-bb40-1217ec0cf81e",
+      "game": "rotaeno",
+      "releaseIds": [
+        "8cd143a1-4b2f-7674-a6c2-6b63bf763c9e"
+      ],
+      "kind": "update",
+      "publishedAt": "2026-10-30T13:10:00+08:00",
+      "contentVersion": "2.99.0",
+      "items": [
+        {
+          "resourceId": "9baa7ed7-bd7d-7087-9801-ce7aab5fad87",
+          "change": "replaced"
+        },
+        {
+          "resourceId": "bf84cdba-04cc-7e12-8b65-6419d118ec8f",
+          "change": "replaced"
+        },
+        {
+          "resourceId": "537bc417-e8e3-7ffd-bad5-1a59244e4a9c",
+          "change": "replaced"
+        },
+        {
+          "resourceId": "5e42e084-e0da-748d-9e31-ea653bf8540f",
+          "change": "added"
+        },
+        {
+          "resourceId": "73a38ae0-2dde-7ecb-8fe5-3e82ea1e4bfd",
+          "change": "added"
+        },
+        {
+          "resourceId": "9e617a38-9d45-7409-939d-751880650ca9",
+          "change": "added"
+        },
+        {
+          "resourceId": "51a03b9c-99b4-7dcd-9ad6-595569c05882",
+          "change": "added"
+        },
+        {
+          "resourceId": "cca4cb85-d541-7c23-8373-886c24d51416",
+          "change": "added"
+        }
+      ]
+    },
+    {
+      "id": "acc11327-0d30-7d1f-b79e-170907baa037",
+      "game": "paradigm-reboot",
+      "releaseIds": [
+        "d1ca42ae-2163-7e8a-9a9d-4b5418510893"
+      ],
+      "kind": "update",
+      "publishedAt": "2026-10-30T13:10:00+08:00",
+      "contentVersion": "4.12.1",
+      "items": [
+        {
+          "resourceId": "4d6584b2-77f8-715b-8353-2b2a5b55b58c",
+          "change": "added"
+        },
+        {
+          "resourceId": "0af972d5-0feb-766b-86e5-d470e0f8d434",
+          "change": "added"
+        }
+      ]
     }
   ]
 }

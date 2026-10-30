@@ -1,6 +1,6 @@
 /* GENERATED FILE. Run npm run stats:registry after a public Catalog change. */
-export const PUBLIC_RESOURCE_CATALOG_GENERATED_AT = "2026-10-29T10:35:00+08:00" as const;
-export const PUBLIC_RESOURCE_REGISTRY_SHA256 = "ce4f89fd5843622aa992daeeb939d805628adce91e8576075748ac9dfa4caf09" as const;
+export const PUBLIC_RESOURCE_CATALOG_GENERATED_AT = "2026-10-30T13:10:00+08:00" as const;
+export const PUBLIC_RESOURCE_REGISTRY_SHA256 = "035543d76d09fed11da05b66bbb44f67026c8d2c6d604a0893460bcdb7606069" as const;
 export const PUBLIC_RESOURCE_ID_LIST = [
   "0008cc8e-0f13-798c-9e3a-93168d5f8d6e",
   "00495e71-9b2e-7a25-9147-bdf661b5b7c4",
@@ -2395,6 +2395,7 @@ export const PUBLIC_RESOURCE_ID_LIST = [
   "0aa53eac-2641-7259-8919-4f621076c126",
   "0aad3170-e11c-7fcb-a5ee-e21735b6e3d3",
   "0ac1e39d-23d4-7d23-8efd-d880a56d745b",
+  "0af972d5-0feb-766b-86e5-d470e0f8d434",
   "0b0713f0-6d4b-7b08-88b4-9218f60c9083",
   "0b0a359d-a120-7454-9a0b-3a09a5196a06",
   "0b2e39d0-17a7-7633-916d-4fe168939059",
@@ -3187,6 +3188,7 @@ export const PUBLIC_RESOURCE_ID_LIST = [
   "4d3e9b91-4d77-70ae-a86b-8bbad3252aaa",
   "4d4647e4-4bea-7210-a69b-844f3b33a1a2",
   "4d546982-7a98-7e83-b2c4-bc06fb9713a4",
+  "4d6584b2-77f8-715b-8353-2b2a5b55b58c",
   "4d72bcec-4fa7-7c84-bd8f-4ad43443c539",
   "4d7df4fc-24f8-751e-8d5e-7f7a2965fa8a",
   "4dba004f-2867-7f12-a0a8-425389d583bd",
@@ -3243,6 +3245,7 @@ export const PUBLIC_RESOURCE_ID_LIST = [
   "5177b964-d2e1-7922-877d-175e5b431ee6",
   "517a56f6-deee-7870-9a82-b192148904cd",
   "518edfff-1ad0-718f-ba52-0436c06924bb",
+  "51a03b9c-99b4-7dcd-9ad6-595569c05882",
   "51c8d8f2-5964-7f54-a46d-11ebbf4b33c4",
   "51cabbc5-4293-7fee-b557-b983d77c54ad",
   "51d0894e-b44d-7a95-b438-7ca331f893b3",
@@ -3384,6 +3387,7 @@ export const PUBLIC_RESOURCE_ID_LIST = [
   "5de1c1fb-e507-7812-8382-2f2c96ba29c8",
   "5df22840-f703-7691-9614-cdfa58adbac5",
   "5e4287b7-5f3e-7f3b-b21d-a411d7b14f08",
+  "5e42e084-e0da-748d-9e31-ea653bf8540f",
   "5e468a4c-2bb3-7548-ac89-c62ff3161a70",
   "5e985716-4c5f-7ecf-a7de-2853a53b590f",
   "5eafea97-09e3-7bfa-8444-1444de7cbc3d",
@@ -3628,6 +3632,7 @@ export const PUBLIC_RESOURCE_ID_LIST = [
   "735fc662-640f-7610-941e-adb641a70505",
   "738b1d92-2283-7633-a5d9-da340d9914e4",
   "73a35c57-da9d-7556-95db-2324e8888149",
+  "73a38ae0-2dde-7ecb-8fe5-3e82ea1e4bfd",
   "73b3f646-d984-76e0-a4a4-9d6924c9c77f",
   "73bd232c-af36-7afd-92bb-3b3360c8e149",
   "73c15d2d-8270-77f0-8f73-85eddb16211e",
@@ -4112,6 +4117,7 @@ export const PUBLIC_RESOURCE_ID_LIST = [
   "9e37207a-f613-7960-b030-f630eb8826ca",
   "9e3c124e-c8db-7dd7-b5f9-93e06b335919",
   "9e4c07d7-e082-7f01-ab71-c70245f0f91c",
+  "9e617a38-9d45-7409-939d-751880650ca9",
   "9e8c899b-ac94-7234-9b18-4d3128f386ca",
   "9e9e4f0e-4870-7fa7-802b-dbdf9fa787a3",
   "9e9fb5de-cc9b-70dc-97e1-11d1bafde53a",
@@ -4663,6 +4669,7 @@ export const PUBLIC_RESOURCE_ID_LIST = [
   "cc903c06-e912-7c03-be5e-aef70a42ad18",
   "cc9197d4-dc69-73ea-bb2b-23b9c5b1b548",
   "cca488d9-6ce0-7ec2-8793-da0412bdcde8",
+  "cca4cb85-d541-7c23-8373-886c24d51416",
   "ccdc0410-63cd-7d62-a2d9-83388661b521",
   "cce768b4-2c3e-732e-8383-407fb7716031",
   "cd00ec3b-94eb-7fa1-94c1-da06a3228436",

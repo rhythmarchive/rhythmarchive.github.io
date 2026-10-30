@@ -22,6 +22,14 @@ Catalog 的 `metadata.charts` 是详情页和筛选的共同来源。继续使�
 
 Wiki 仍将七首新曲的时长标为空，五首的画师标为未显示；这些字段继续留空并记录具体缺项以供后续复查。更新时缺少新曲元信息须在发布后主动复查补齐，不能以初次留空或访问失败永久结案。元数据补充沿用已有更新记录与时间，不新增更新动态。
 
+## 2026-10-30 Rotaeno / Paradigm: Reboot 更新复核
+
+Rotaeno 2.99.0 重新读取 12 个 Journey map bundle 及本版共享 bundle 的原生 SongDataSO / StandardChartDataSO。233 个已有曲绘绑定定数与本版数据一致；另有 737 个旧定数未得到本版原生数据或现行社区表确认，暂时留空，保留显示等级、已知物量、谱师与原有加入版本。九张尚未核实档位绑定的图片仍不附上整首歌曲的谱面。新增 Orb Theme、Silvano Theme、The Promised Land (New Era Remix) 的定数来自本版原生字段；OCCHOCO-REST-LESS、Terrasphere 已确认实装，尚缺可靠谱面字段的部分留空。仅有曲绘、未获得本版实装依据的 Doppelganger、-1、+ERABY+E CONNEC+10N 三项包内候选暂不发布。
+
+Paradigm: Reboot 4.12.1（D174）按客户端 song_id 与歌曲、曲师身份复核当前维护资料表的全部 434 首旧曲，已采用定数均未变化；Indelible Scar MSV 的等级冲突仍未解决，定数继续留空。新增 ln(guis·tics)、Remnath 两首曲目的定数、物量与谱师采用同一现行维护表，BPM 和客户端时序事实取自本版谱面。重新读取思春期AI Syndrome MSV 与 Indelible Scar RBT 两个变动的客户端谱面，更新对应原生诊断事实。新曲显示等级与时长等未获独立确认的字段留空，不用定数或音频猜测填补。
+
+本次原图、Real-ESRGAN x4 候选、正式下载图、原生安全元数据及维护表快照保留于私有 Workspace 的 `input/source/20261030-rotaeno-paradigm`，供下次更新重新比对。当前维护资料表来源仍为 [Paradigm 曲目资料表](https://docs.google.com/spreadsheets/d/17cZ63khqX81K0bQ98qSJpwWH_0aTgy5hzjrvp-CRemM/edit)。
+
 ## 2026-10-29 APK 更新复核
 
 Orzmic 3.18.0 逐首重读原生 MusicDatas，224 首的显示等级、档位、定数、谱师与物量采用本版数据；旧曲曲绘均未变化，新增《炳烛志·斩邪》。Berry Melody 3.4.1 采用单 APK 的原生 Info 与精确 Resources/AssetBundle 容器引用，当前 245 首、771 张谱面；新增六首 WeBeat 曲目，以及 CATACLYSM (feat. ricono)、c.s.q.n. 的 RUIN（均为 13.1）。已有在包曲目的定数未变。此前六首 Milthm 曲目未出现在本版原生清单，保留历史图片与已知字段，撤下无法确认本版适用性的 21 个定数。重新压缩的旧曲绘继续使用已发布原图。
