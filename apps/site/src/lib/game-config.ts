@@ -82,6 +82,8 @@ export const GAME_CONFIG: Record<GameId, GameConfig> = {
       version: "加入版本",
       releaseDate: "加入日期",
       bpm: "BPM",
+      jacketIllustrator: "曲绘画师",
+      length: "时长",
       characterName: "中文名",
       characterJapaneseName: "日文名",
       characterEnglishName: "英文名",

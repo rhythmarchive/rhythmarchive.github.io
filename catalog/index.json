@@ -1,7 +1,7 @@
 {
   "catalogSchemaVersion": "1.0",
   "catalogId": "019fefd6-9c49-7ca0-a760-adc76811a511",
-  "generatedAt": "2026-10-29T14:26:16+08:00",
+  "generatedAt": "2026-10-30T13:00:44+08:00",
   "resources": [
     {
       "catalogSchemaVersion": "1.0",
@@ -502,11 +502,13 @@
             "noter": "KARA+_~1.TMP",
             "fieldSources": {
               "noter": "apk:7.0.260c/assets/songs/songlist/difficulties.chartDesigner",
-              "notes": "https://wikiwiki.jp/arcaea/ノーツ数順"
+              "notes": "https://wiki.arcaea.cn/?oldid=91910",
+              "constant": "https://wiki.arcaea.cn/?oldid=91910"
             },
             "notes": 869,
             "source": "merged",
-            "sourceUrl": "https://wikiwiki.jp/arcaea/~_%2B"
+            "sourceUrl": "https://wiki.arcaea.cn/?oldid=91910",
+            "constant": "4.5"
           },
           {
             "difficulty": "PRS",
@@ -516,12 +518,12 @@
             "noter": "KARA+_~1.TMP",
             "fieldSources": {
               "noter": "apk:7.0.260c/assets/songs/songlist/difficulties.chartDesigner",
-              "constant": "https://wikiwiki.jp/arcaea/譜面定数表",
-              "notes": "https://wikiwiki.jp/arcaea/ノーツ数順"
+              "constant": "https://wiki.arcaea.cn/?oldid=91910",
+              "notes": "https://wiki.arcaea.cn/?oldid=91910"
             },
             "constant": "8.0",
             "source": "merged",
-            "sourceUrl": "https://wikiwiki.jp/arcaea/譜面定数表",
+            "sourceUrl": "https://wiki.arcaea.cn/?oldid=91910",
             "notes": 994
           },
           {
@@ -532,17 +534,29 @@
             "noter": "KARA+_~1.TMP",
             "fieldSources": {
               "noter": "apk:7.0.260c/assets/songs/songlist/difficulties.chartDesigner",
-              "constant": "https://wikiwiki.jp/arcaea/譜面定数表",
-              "notes": "https://wikiwiki.jp/arcaea/ノーツ数順"
+              "constant": "https://wiki.arcaea.cn/?oldid=91910",
+              "notes": "https://wiki.arcaea.cn/?oldid=91910"
             },
             "constant": "9.9",
             "source": "merged",
-            "sourceUrl": "https://wikiwiki.jp/arcaea/譜面定数表",
+            "sourceUrl": "https://wiki.arcaea.cn/?oldid=91910",
             "notes": 1201
           }
         ],
-        "chartDataUpdatedAt": "2026-10-29",
-        "chartDataVersion": "7.1.0c"
+        "chartDataUpdatedAt": "2026-10-30",
+        "chartDataVersion": "7.1.0c",
+        "artist": "AQUASINE ~ MEMODEMO + METAROOM",
+        "bpm": "213.5",
+        "jacketIllustrator": "なのに！ + Vormis.",
+        "length": "02:38",
+        "pack": "World Extend 4",
+        "fieldSources": {
+          "artist": "apk:7.1.0c/assets/songs/songlist",
+          "bpm": "apk:7.1.0c/assets/songs/songlist",
+          "jacketIllustrator": "https://wiki.arcaea.cn/?oldid=91910",
+          "length": "https://wiki.arcaea.cn/?oldid=91910",
+          "pack": "https://wiki.arcaea.cn/?oldid=91910"
+        }
       },
       "relations": [],
       "provenance": [
@@ -588,7 +602,7 @@
       "lifecycle": {
         "status": "published",
         "createdAt": "2026-08-14T13:57:23.100Z",
-        "updatedAt": "2026-10-19T10:53:06.692Z",
+        "updatedAt": "2026-10-30T13:00:44+08:00",
         "publishedAt": "2026-08-14T13:57:23.100Z"
       }
     },
@@ -60117,11 +60131,13 @@
             "noter": "sidewaves",
             "fieldSources": {
               "noter": "apk:7.0.260c/assets/songs/songlist/difficulties.chartDesigner",
-              "notes": "https://wikiwiki.jp/arcaea/ノーツ数順"
+              "notes": "https://wiki.arcaea.cn/?oldid=92474",
+              "constant": "https://wiki.arcaea.cn/?oldid=92474"
             },
             "notes": 371,
             "source": "merged",
-            "sourceUrl": "https://wikiwiki.jp/arcaea/undefined"
+            "sourceUrl": "https://wiki.arcaea.cn/?oldid=92474",
+            "constant": "3.5"
           },
           {
             "difficulty": "PRS",
@@ -60131,11 +60147,13 @@
             "noter": "sidewaves",
             "fieldSources": {
               "noter": "apk:7.0.260c/assets/songs/songlist/difficulties.chartDesigner",
-              "notes": "https://wikiwiki.jp/arcaea/ノーツ数順"
+              "notes": "https://wiki.arcaea.cn/?oldid=92474",
+              "constant": "https://wiki.arcaea.cn/?oldid=92474"
             },
             "notes": 532,
             "source": "merged",
-            "sourceUrl": "https://wikiwiki.jp/arcaea/undefined"
+            "sourceUrl": "https://wiki.arcaea.cn/?oldid=92474",
+            "constant": "6.0"
           },
           {
             "difficulty": "FTR",
@@ -60145,17 +60163,29 @@
             "noter": "sidewaves + Nitro",
             "fieldSources": {
               "noter": "apk:7.0.260c/assets/songs/songlist/difficulties.chartDesigner",
-              "constant": "https://wikiwiki.jp/arcaea/譜面定数表",
-              "notes": "https://wikiwiki.jp/arcaea/ノーツ数順"
+              "constant": "https://wiki.arcaea.cn/?oldid=92474",
+              "notes": "https://wiki.arcaea.cn/?oldid=92474"
             },
             "constant": "9.4",
             "source": "merged",
-            "sourceUrl": "https://wikiwiki.jp/arcaea/譜面定数表",
+            "sourceUrl": "https://wiki.arcaea.cn/?oldid=92474",
             "notes": 896
           }
         ],
-        "chartDataUpdatedAt": "2026-10-29",
-        "chartDataVersion": "7.1.0c"
+        "chartDataUpdatedAt": "2026-10-30",
+        "chartDataVersion": "7.1.0c",
+        "artist": "planless & 乃花こより",
+        "bpm": "110",
+        "jacketIllustrator": "るあえる",
+        "length": "02:25",
+        "pack": "World Extend 4",
+        "fieldSources": {
+          "artist": "apk:7.1.0c/assets/songs/songlist",
+          "bpm": "apk:7.1.0c/assets/songs/songlist",
+          "jacketIllustrator": "https://wiki.arcaea.cn/?oldid=92474",
+          "length": "https://wiki.arcaea.cn/?oldid=92474",
+          "pack": "https://wiki.arcaea.cn/?oldid=92474"
+        }
       },
       "relations": [],
       "provenance": [
@@ -60201,7 +60231,7 @@
       "lifecycle": {
         "status": "published",
         "createdAt": "2026-08-14T13:57:23.100Z",
-        "updatedAt": "2026-10-19T10:53:06.692Z",
+        "updatedAt": "2026-10-30T13:00:44+08:00",
         "publishedAt": "2026-08-14T13:57:23.100Z"
       }
     },
@@ -402128,10 +402158,14 @@
             "status": "available",
             "noter": "Intérateur",
             "fieldSources": {
-              "noter": "apk:7.0.260c/assets/songs/songlist/difficulties.chartDesigner"
+              "noter": "apk:7.0.260c/assets/songs/songlist/difficulties.chartDesigner",
+              "constant": "https://wiki.arcaea.cn/?oldid=92890",
+              "notes": "https://wiki.arcaea.cn/?oldid=92890"
             },
             "source": "merged",
-            "sourceUrl": "https://wiki.arcaea.cn/Ch%C3%A2teau_de_cartes"
+            "sourceUrl": "https://wiki.arcaea.cn/?oldid=92890",
+            "constant": "4.5",
+            "notes": 994
           },
           {
             "difficulty": "PRS",
@@ -402140,10 +402174,14 @@
             "status": "available",
             "noter": "Intérateur",
             "fieldSources": {
-              "noter": "apk:7.0.260c/assets/songs/songlist/difficulties.chartDesigner"
+              "noter": "apk:7.0.260c/assets/songs/songlist/difficulties.chartDesigner",
+              "constant": "https://wiki.arcaea.cn/?oldid=92890",
+              "notes": "https://wiki.arcaea.cn/?oldid=92890"
             },
             "source": "merged",
-            "sourceUrl": "https://wikiwiki.jp/arcaea/Ch%C3%A2teau%20de%20cartes"
+            "sourceUrl": "https://wiki.arcaea.cn/?oldid=92890",
+            "constant": "7.8",
+            "notes": 1186
           },
           {
             "difficulty": "FTR",
@@ -402152,10 +402190,14 @@
             "status": "available",
             "noter": "Intérateur",
             "fieldSources": {
-              "noter": "apk:7.0.260c/assets/songs/songlist/difficulties.chartDesigner"
+              "noter": "apk:7.0.260c/assets/songs/songlist/difficulties.chartDesigner",
+              "constant": "https://wiki.arcaea.cn/?oldid=92890",
+              "notes": "https://wiki.arcaea.cn/?oldid=92890"
             },
             "source": "merged",
-            "sourceUrl": "https://wikiwiki.jp/arcaea/Ch%C3%A2teau%20de%20cartes"
+            "sourceUrl": "https://wiki.arcaea.cn/?oldid=92890",
+            "constant": "9.4",
+            "notes": 1304
           },
           {
             "difficulty": "ETR",
@@ -402164,14 +402206,28 @@
             "status": "available",
             "noter": "Intérateur",
             "fieldSources": {
-              "noter": "apk:7.0.260c/assets/songs/songlist/difficulties.chartDesigner"
+              "noter": "apk:7.0.260c/assets/songs/songlist/difficulties.chartDesigner",
+              "constant": "https://wiki.arcaea.cn/?oldid=92890",
+              "notes": "https://wiki.arcaea.cn/?oldid=92890"
             },
             "source": "merged",
-            "sourceUrl": "https://wikiwiki.jp/arcaea/Ch%C3%A2teau%20de%20cartes"
+            "sourceUrl": "https://wiki.arcaea.cn/?oldid=92890",
+            "constant": "10.3",
+            "notes": 1391
           }
         ],
-        "chartDataUpdatedAt": "2026-10-29",
-        "chartDataVersion": "7.1.0c"
+        "chartDataUpdatedAt": "2026-10-30",
+        "chartDataVersion": "7.1.0c",
+        "bpm": "126",
+        "jacketIllustrator": "辷",
+        "length": "02:44",
+        "pack": "Memory Archive",
+        "fieldSources": {
+          "bpm": "apk:7.1.0c/assets/songs/songlist",
+          "jacketIllustrator": "https://wiki.arcaea.cn/?oldid=92890",
+          "length": "https://wiki.arcaea.cn/?oldid=92890",
+          "pack": "https://wiki.arcaea.cn/?oldid=92890"
+        }
       },
       "relations": [],
       "provenance": [
@@ -402210,7 +402266,7 @@
       "lifecycle": {
         "status": "published",
         "createdAt": "2026-09-19T15:57:05.564Z",
-        "updatedAt": "2026-10-19T10:53:06.692Z",
+        "updatedAt": "2026-10-30T13:00:44+08:00",
         "publishedAt": "2026-09-19T15:57:05.564Z"
       }
     },
@@ -523024,7 +523080,7 @@
         "songId": "voyagetofuture",
         "artist": "Shunji Fujii feat. 千花",
         "bpm": "129",
-        "pack": "extend_4",
+        "pack": "World Extend 4",
         "charts": [
           {
             "difficulty": "PST",
@@ -523032,11 +523088,16 @@
             "noter": "karat",
             "available": true,
             "status": "available",
-            "source": "apk",
+            "source": "merged",
             "fieldSources": {
               "level": "apk:7.1.0c/assets/songs/songlist",
-              "noter": "apk:7.1.0c/assets/songs/songlist/difficulties.chartDesigner"
-            }
+              "noter": "apk:7.1.0c/assets/songs/songlist/difficulties.chartDesigner",
+              "constant": "https://wiki.arcaea.cn/?oldid=92895",
+              "notes": "https://wiki.arcaea.cn/?oldid=92895"
+            },
+            "constant": "2.5",
+            "notes": 516,
+            "sourceUrl": "https://wiki.arcaea.cn/?oldid=92895"
           },
           {
             "difficulty": "PRS",
@@ -523044,11 +523105,16 @@
             "noter": "karat",
             "available": true,
             "status": "available",
-            "source": "apk",
+            "source": "merged",
             "fieldSources": {
               "level": "apk:7.1.0c/assets/songs/songlist",
-              "noter": "apk:7.1.0c/assets/songs/songlist/difficulties.chartDesigner"
-            }
+              "noter": "apk:7.1.0c/assets/songs/songlist/difficulties.chartDesigner",
+              "constant": "https://wiki.arcaea.cn/?oldid=92895",
+              "notes": "https://wiki.arcaea.cn/?oldid=92895"
+            },
+            "constant": "5.5",
+            "notes": 609,
+            "sourceUrl": "https://wiki.arcaea.cn/?oldid=92895"
           },
           {
             "difficulty": "FTR",
@@ -523056,11 +523122,16 @@
             "noter": "karat",
             "available": true,
             "status": "available",
-            "source": "apk",
+            "source": "merged",
             "fieldSources": {
               "level": "apk:7.1.0c/assets/songs/songlist",
-              "noter": "apk:7.1.0c/assets/songs/songlist/difficulties.chartDesigner"
-            }
+              "noter": "apk:7.1.0c/assets/songs/songlist/difficulties.chartDesigner",
+              "constant": "https://wiki.arcaea.cn/?oldid=92895",
+              "notes": "https://wiki.arcaea.cn/?oldid=92895"
+            },
+            "constant": "7.8",
+            "notes": 634,
+            "sourceUrl": "https://wiki.arcaea.cn/?oldid=92895"
           },
           {
             "difficulty": "ETR",
@@ -523068,16 +523139,24 @@
             "noter": "karat",
             "available": true,
             "status": "available",
-            "source": "apk",
+            "source": "merged",
             "fieldSources": {
               "level": "apk:7.1.0c/assets/songs/songlist",
-              "noter": "apk:7.1.0c/assets/songs/songlist/difficulties.chartDesigner"
-            }
+              "noter": "apk:7.1.0c/assets/songs/songlist/difficulties.chartDesigner",
+              "constant": "https://wiki.arcaea.cn/?oldid=92895",
+              "notes": "https://wiki.arcaea.cn/?oldid=92895"
+            },
+            "constant": "9.4",
+            "notes": 848,
+            "sourceUrl": "https://wiki.arcaea.cn/?oldid=92895"
           }
         ],
         "chartDataVersion": "7.1.0c",
-        "chartDataUpdatedAt": "2026-10-29",
-        "gameVersion": "7.1.0c"
+        "chartDataUpdatedAt": "2026-10-30",
+        "gameVersion": "7.1.0c",
+        "fieldSources": {
+          "pack": "https://wiki.arcaea.cn/?oldid=92895"
+        }
       },
       "relations": [],
       "provenance": [
@@ -523100,7 +523179,7 @@
       "lifecycle": {
         "status": "published",
         "createdAt": "2026-10-29T10:35:00+08:00",
-        "updatedAt": "2026-10-29T14:26:16+08:00",
+        "updatedAt": "2026-10-30T13:00:44+08:00",
         "publishedAt": "2026-10-29T10:35:00+08:00"
       }
     },
@@ -523129,7 +523208,7 @@
         "songId": "ran",
         "artist": "Feryquitous",
         "bpm": "180",
-        "pack": "diversesystem",
+        "pack": "Diverse System Collaboration",
         "charts": [
           {
             "difficulty": "PST",
@@ -523137,11 +523216,16 @@
             "noter": "Nitro",
             "available": true,
             "status": "available",
-            "source": "apk",
+            "source": "merged",
             "fieldSources": {
               "level": "apk:7.1.0c/assets/songs/songlist",
-              "noter": "apk:7.1.0c/assets/songs/songlist/difficulties.chartDesigner"
-            }
+              "noter": "apk:7.1.0c/assets/songs/songlist/difficulties.chartDesigner",
+              "constant": "https://wiki.arcaea.cn/?oldid=92878",
+              "notes": "https://wiki.arcaea.cn/?oldid=92878"
+            },
+            "constant": "3.5",
+            "notes": 631,
+            "sourceUrl": "https://wiki.arcaea.cn/?oldid=92878"
           },
           {
             "difficulty": "PRS",
@@ -523149,11 +523233,16 @@
             "noter": "Nitro",
             "available": true,
             "status": "available",
-            "source": "apk",
+            "source": "merged",
             "fieldSources": {
               "level": "apk:7.1.0c/assets/songs/songlist",
-              "noter": "apk:7.1.0c/assets/songs/songlist/difficulties.chartDesigner"
-            }
+              "noter": "apk:7.1.0c/assets/songs/songlist/difficulties.chartDesigner",
+              "constant": "https://wiki.arcaea.cn/?oldid=92878",
+              "notes": "https://wiki.arcaea.cn/?oldid=92878"
+            },
+            "constant": "6.5",
+            "notes": 813,
+            "sourceUrl": "https://wiki.arcaea.cn/?oldid=92878"
           },
           {
             "difficulty": "FTR",
@@ -523161,11 +523250,16 @@
             "noter": "antymis",
             "available": true,
             "status": "available",
-            "source": "apk",
+            "source": "merged",
             "fieldSources": {
               "level": "apk:7.1.0c/assets/songs/songlist",
-              "noter": "apk:7.1.0c/assets/songs/songlist/difficulties.chartDesigner"
-            }
+              "noter": "apk:7.1.0c/assets/songs/songlist/difficulties.chartDesigner",
+              "constant": "https://wiki.arcaea.cn/?oldid=92878",
+              "notes": "https://wiki.arcaea.cn/?oldid=92878"
+            },
+            "constant": "8.9",
+            "notes": 826,
+            "sourceUrl": "https://wiki.arcaea.cn/?oldid=92878"
           },
           {
             "difficulty": "ETR",
@@ -523173,16 +523267,24 @@
             "noter": "antymis",
             "available": true,
             "status": "available",
-            "source": "apk",
+            "source": "merged",
             "fieldSources": {
               "level": "apk:7.1.0c/assets/songs/songlist",
-              "noter": "apk:7.1.0c/assets/songs/songlist/difficulties.chartDesigner"
-            }
+              "noter": "apk:7.1.0c/assets/songs/songlist/difficulties.chartDesigner",
+              "constant": "https://wiki.arcaea.cn/?oldid=92878",
+              "notes": "https://wiki.arcaea.cn/?oldid=92878"
+            },
+            "constant": "9.8",
+            "notes": 1017,
+            "sourceUrl": "https://wiki.arcaea.cn/?oldid=92878"
           }
         ],
         "chartDataVersion": "7.1.0c",
-        "chartDataUpdatedAt": "2026-10-29",
-        "gameVersion": "7.1.0c"
+        "chartDataUpdatedAt": "2026-10-30",
+        "gameVersion": "7.1.0c",
+        "fieldSources": {
+          "pack": "https://wiki.arcaea.cn/?oldid=92878"
+        }
       },
       "relations": [],
       "provenance": [
@@ -523205,7 +523307,7 @@
       "lifecycle": {
         "status": "published",
         "createdAt": "2026-10-29T10:35:00+08:00",
-        "updatedAt": "2026-10-29T14:26:16+08:00",
+        "updatedAt": "2026-10-30T13:00:44+08:00",
         "publishedAt": "2026-10-29T10:35:00+08:00"
       }
     },
@@ -523234,7 +523336,7 @@
         "songId": "etherdrive",
         "artist": "crayvxn",
         "bpm": "155",
-        "pack": "diversesystem",
+        "pack": "Diverse System Collaboration",
         "charts": [
           {
             "difficulty": "PST",
@@ -523242,11 +523344,16 @@
             "noter": "Exschwasion",
             "available": true,
             "status": "available",
-            "source": "apk",
+            "source": "merged",
             "fieldSources": {
               "level": "apk:7.1.0c/assets/songs/songlist",
-              "noter": "apk:7.1.0c/assets/songs/songlist/difficulties.chartDesigner"
-            }
+              "noter": "apk:7.1.0c/assets/songs/songlist/difficulties.chartDesigner",
+              "constant": "https://wiki.arcaea.cn/?oldid=92877",
+              "notes": "https://wiki.arcaea.cn/?oldid=92877"
+            },
+            "constant": "3.5",
+            "notes": 445,
+            "sourceUrl": "https://wiki.arcaea.cn/?oldid=92877"
           },
           {
             "difficulty": "PRS",
@@ -523254,11 +523361,16 @@
             "noter": "Exschwasion",
             "available": true,
             "status": "available",
-            "source": "apk",
+            "source": "merged",
             "fieldSources": {
               "level": "apk:7.1.0c/assets/songs/songlist",
-              "noter": "apk:7.1.0c/assets/songs/songlist/difficulties.chartDesigner"
-            }
+              "noter": "apk:7.1.0c/assets/songs/songlist/difficulties.chartDesigner",
+              "constant": "https://wiki.arcaea.cn/?oldid=92877",
+              "notes": "https://wiki.arcaea.cn/?oldid=92877"
+            },
+            "constant": "6.5",
+            "notes": 600,
+            "sourceUrl": "https://wiki.arcaea.cn/?oldid=92877"
           },
           {
             "difficulty": "FTR",
@@ -523266,11 +523378,16 @@
             "noter": "Exschwasion",
             "available": true,
             "status": "available",
-            "source": "apk",
+            "source": "merged",
             "fieldSources": {
               "level": "apk:7.1.0c/assets/songs/songlist",
-              "noter": "apk:7.1.0c/assets/songs/songlist/difficulties.chartDesigner"
-            }
+              "noter": "apk:7.1.0c/assets/songs/songlist/difficulties.chartDesigner",
+              "constant": "https://wiki.arcaea.cn/?oldid=92877",
+              "notes": "https://wiki.arcaea.cn/?oldid=92877"
+            },
+            "constant": "8.8",
+            "notes": 845,
+            "sourceUrl": "https://wiki.arcaea.cn/?oldid=92877"
           },
           {
             "difficulty": "ETR",
@@ -523278,16 +523395,24 @@
             "noter": "Exschwasion",
             "available": true,
             "status": "available",
-            "source": "apk",
+            "source": "merged",
             "fieldSources": {
               "level": "apk:7.1.0c/assets/songs/songlist",
-              "noter": "apk:7.1.0c/assets/songs/songlist/difficulties.chartDesigner"
-            }
+              "noter": "apk:7.1.0c/assets/songs/songlist/difficulties.chartDesigner",
+              "constant": "https://wiki.arcaea.cn/?oldid=92877",
+              "notes": "https://wiki.arcaea.cn/?oldid=92877"
+            },
+            "constant": "10.3",
+            "notes": 1061,
+            "sourceUrl": "https://wiki.arcaea.cn/?oldid=92877"
           }
         ],
         "chartDataVersion": "7.1.0c",
-        "chartDataUpdatedAt": "2026-10-29",
-        "gameVersion": "7.1.0c"
+        "chartDataUpdatedAt": "2026-10-30",
+        "gameVersion": "7.1.0c",
+        "fieldSources": {
+          "pack": "https://wiki.arcaea.cn/?oldid=92877"
+        }
       },
       "relations": [],
       "provenance": [
@@ -523310,7 +523435,7 @@
       "lifecycle": {
         "status": "published",
         "createdAt": "2026-10-29T10:35:00+08:00",
-        "updatedAt": "2026-10-29T14:26:16+08:00",
+        "updatedAt": "2026-10-30T13:00:44+08:00",
         "publishedAt": "2026-10-29T10:35:00+08:00"
       }
     },
@@ -523339,7 +523464,7 @@
         "songId": "schrago",
         "artist": "REMO-CON",
         "bpm": "138-150",
-        "pack": "diversesystem",
+        "pack": "Diverse System Collaboration",
         "charts": [
           {
             "difficulty": "PST",
@@ -523347,11 +523472,16 @@
             "noter": "NITRO",
             "available": true,
             "status": "available",
-            "source": "apk",
+            "source": "merged",
             "fieldSources": {
               "level": "apk:7.1.0c/assets/songs/songlist",
-              "noter": "apk:7.1.0c/assets/songs/songlist/difficulties.chartDesigner"
-            }
+              "noter": "apk:7.1.0c/assets/songs/songlist/difficulties.chartDesigner",
+              "constant": "https://wiki.arcaea.cn/?oldid=92876",
+              "notes": "https://wiki.arcaea.cn/?oldid=92876"
+            },
+            "constant": "4.5",
+            "notes": 455,
+            "sourceUrl": "https://wiki.arcaea.cn/?oldid=92876"
           },
           {
             "difficulty": "PRS",
@@ -523359,11 +523489,16 @@
             "noter": "NITRO",
             "available": true,
             "status": "available",
-            "source": "apk",
+            "source": "merged",
             "fieldSources": {
               "level": "apk:7.1.0c/assets/songs/songlist",
-              "noter": "apk:7.1.0c/assets/songs/songlist/difficulties.chartDesigner"
-            }
+              "noter": "apk:7.1.0c/assets/songs/songlist/difficulties.chartDesigner",
+              "constant": "https://wiki.arcaea.cn/?oldid=92876",
+              "notes": "https://wiki.arcaea.cn/?oldid=92876"
+            },
+            "constant": "7.5",
+            "notes": 666,
+            "sourceUrl": "https://wiki.arcaea.cn/?oldid=92876"
           },
           {
             "difficulty": "FTR",
@@ -523371,11 +523506,16 @@
             "noter": "NITRO",
             "available": true,
             "status": "available",
-            "source": "apk",
+            "source": "merged",
             "fieldSources": {
               "level": "apk:7.1.0c/assets/songs/songlist",
-              "noter": "apk:7.1.0c/assets/songs/songlist/difficulties.chartDesigner"
-            }
+              "noter": "apk:7.1.0c/assets/songs/songlist/difficulties.chartDesigner",
+              "constant": "https://wiki.arcaea.cn/?oldid=92876",
+              "notes": "https://wiki.arcaea.cn/?oldid=92876"
+            },
+            "constant": "9.4",
+            "notes": 1000,
+            "sourceUrl": "https://wiki.arcaea.cn/?oldid=92876"
           },
           {
             "difficulty": "ETR",
@@ -523383,16 +523523,24 @@
             "noter": "NITRO",
             "available": true,
             "status": "available",
-            "source": "apk",
+            "source": "merged",
             "fieldSources": {
               "level": "apk:7.1.0c/assets/songs/songlist",
-              "noter": "apk:7.1.0c/assets/songs/songlist/difficulties.chartDesigner"
-            }
+              "noter": "apk:7.1.0c/assets/songs/songlist/difficulties.chartDesigner",
+              "constant": "https://wiki.arcaea.cn/?oldid=92876",
+              "notes": "https://wiki.arcaea.cn/?oldid=92876"
+            },
+            "constant": "10.2",
+            "notes": 1115,
+            "sourceUrl": "https://wiki.arcaea.cn/?oldid=92876"
           }
         ],
         "chartDataVersion": "7.1.0c",
-        "chartDataUpdatedAt": "2026-10-29",
-        "gameVersion": "7.1.0c"
+        "chartDataUpdatedAt": "2026-10-30",
+        "gameVersion": "7.1.0c",
+        "fieldSources": {
+          "pack": "https://wiki.arcaea.cn/?oldid=92876"
+        }
       },
       "relations": [],
       "provenance": [
@@ -523415,7 +523563,7 @@
       "lifecycle": {
         "status": "published",
         "createdAt": "2026-10-29T10:35:00+08:00",
-        "updatedAt": "2026-10-29T14:26:16+08:00",
+        "updatedAt": "2026-10-30T13:00:44+08:00",
         "publishedAt": "2026-10-29T10:35:00+08:00"
       }
     },
@@ -523444,7 +523592,7 @@
         "songId": "fatality",
         "artist": "Renpul",
         "bpm": "175",
-        "pack": "diversesystem",
+        "pack": "Diverse System Collaboration",
         "charts": [
           {
             "difficulty": "PST",
@@ -523452,11 +523600,16 @@
             "noter": "raycast",
             "available": true,
             "status": "available",
-            "source": "apk",
+            "source": "merged",
             "fieldSources": {
               "level": "apk:7.1.0c/assets/songs/songlist",
-              "noter": "apk:7.1.0c/assets/songs/songlist/difficulties.chartDesigner"
-            }
+              "noter": "apk:7.1.0c/assets/songs/songlist/difficulties.chartDesigner",
+              "constant": "https://wiki.arcaea.cn/?oldid=92875",
+              "notes": "https://wiki.arcaea.cn/?oldid=92875"
+            },
+            "constant": "4.5",
+            "notes": 646,
+            "sourceUrl": "https://wiki.arcaea.cn/?oldid=92875"
           },
           {
             "difficulty": "PRS",
@@ -523464,11 +523617,16 @@
             "noter": "raycast",
             "available": true,
             "status": "available",
-            "source": "apk",
+            "source": "merged",
             "fieldSources": {
               "level": "apk:7.1.0c/assets/songs/songlist",
-              "noter": "apk:7.1.0c/assets/songs/songlist/difficulties.chartDesigner"
-            }
+              "noter": "apk:7.1.0c/assets/songs/songlist/difficulties.chartDesigner",
+              "constant": "https://wiki.arcaea.cn/?oldid=92875",
+              "notes": "https://wiki.arcaea.cn/?oldid=92875"
+            },
+            "constant": "7.8",
+            "notes": 783,
+            "sourceUrl": "https://wiki.arcaea.cn/?oldid=92875"
           },
           {
             "difficulty": "FTR",
@@ -523476,11 +523634,16 @@
             "noter": "raycast",
             "available": true,
             "status": "available",
-            "source": "apk",
+            "source": "merged",
             "fieldSources": {
               "level": "apk:7.1.0c/assets/songs/songlist",
-              "noter": "apk:7.1.0c/assets/songs/songlist/difficulties.chartDesigner"
-            }
+              "noter": "apk:7.1.0c/assets/songs/songlist/difficulties.chartDesigner",
+              "constant": "https://wiki.arcaea.cn/?oldid=92875",
+              "notes": "https://wiki.arcaea.cn/?oldid=92875"
+            },
+            "constant": "9.5",
+            "notes": 961,
+            "sourceUrl": "https://wiki.arcaea.cn/?oldid=92875"
           },
           {
             "difficulty": "ETR",
@@ -523488,16 +523651,24 @@
             "noter": "raycast",
             "available": true,
             "status": "available",
-            "source": "apk",
+            "source": "merged",
             "fieldSources": {
               "level": "apk:7.1.0c/assets/songs/songlist",
-              "noter": "apk:7.1.0c/assets/songs/songlist/difficulties.chartDesigner"
-            }
+              "noter": "apk:7.1.0c/assets/songs/songlist/difficulties.chartDesigner",
+              "constant": "https://wiki.arcaea.cn/?oldid=92875",
+              "notes": "https://wiki.arcaea.cn/?oldid=92875"
+            },
+            "constant": "10.4",
+            "notes": 1148,
+            "sourceUrl": "https://wiki.arcaea.cn/?oldid=92875"
           }
         ],
         "chartDataVersion": "7.1.0c",
-        "chartDataUpdatedAt": "2026-10-29",
-        "gameVersion": "7.1.0c"
+        "chartDataUpdatedAt": "2026-10-30",
+        "gameVersion": "7.1.0c",
+        "fieldSources": {
+          "pack": "https://wiki.arcaea.cn/?oldid=92875"
+        }
       },
       "relations": [],
       "provenance": [
@@ -523520,7 +523691,7 @@
       "lifecycle": {
         "status": "published",
         "createdAt": "2026-10-29T10:35:00+08:00",
-        "updatedAt": "2026-10-29T14:26:16+08:00",
+        "updatedAt": "2026-10-30T13:00:44+08:00",
         "publishedAt": "2026-10-29T10:35:00+08:00"
       }
     },
@@ -523549,7 +523720,7 @@
         "songId": "parallax",
         "artist": "xi vs ak+q (lowiro)",
         "bpm": "169",
-        "pack": "diversesystem",
+        "pack": "Diverse System Collaboration",
         "charts": [
           {
             "difficulty": "PST",
@@ -523557,11 +523728,16 @@
             "noter": "M理論_ranked",
             "available": true,
             "status": "available",
-            "source": "apk",
+            "source": "merged",
             "fieldSources": {
               "level": "apk:7.1.0c/assets/songs/songlist",
-              "noter": "apk:7.1.0c/assets/songs/songlist/difficulties.chartDesigner"
-            }
+              "noter": "apk:7.1.0c/assets/songs/songlist/difficulties.chartDesigner",
+              "constant": "https://wiki.arcaea.cn/?oldid=92879",
+              "notes": "https://wiki.arcaea.cn/?oldid=92879"
+            },
+            "constant": "5.5",
+            "notes": 703,
+            "sourceUrl": "https://wiki.arcaea.cn/?oldid=92879"
           },
           {
             "difficulty": "PRS",
@@ -523569,11 +523745,16 @@
             "noter": "M理論_ranked",
             "available": true,
             "status": "available",
-            "source": "apk",
+            "source": "merged",
             "fieldSources": {
               "level": "apk:7.1.0c/assets/songs/songlist",
-              "noter": "apk:7.1.0c/assets/songs/songlist/difficulties.chartDesigner"
-            }
+              "noter": "apk:7.1.0c/assets/songs/songlist/difficulties.chartDesigner",
+              "constant": "https://wiki.arcaea.cn/?oldid=92879",
+              "notes": "https://wiki.arcaea.cn/?oldid=92879"
+            },
+            "constant": "8.4",
+            "notes": 915,
+            "sourceUrl": "https://wiki.arcaea.cn/?oldid=92879"
           },
           {
             "difficulty": "FTR",
@@ -523581,11 +523762,16 @@
             "noter": "M理論 vs 夜浪",
             "available": true,
             "status": "available",
-            "source": "apk",
+            "source": "merged",
             "fieldSources": {
               "level": "apk:7.1.0c/assets/songs/songlist",
-              "noter": "apk:7.1.0c/assets/songs/songlist/difficulties.chartDesigner"
-            }
+              "noter": "apk:7.1.0c/assets/songs/songlist/difficulties.chartDesigner",
+              "constant": "https://wiki.arcaea.cn/?oldid=92879",
+              "notes": "https://wiki.arcaea.cn/?oldid=92879"
+            },
+            "constant": "9.9",
+            "notes": 1196,
+            "sourceUrl": "https://wiki.arcaea.cn/?oldid=92879"
           },
           {
             "difficulty": "ETR",
@@ -523593,16 +523779,26 @@
             "noter": "M理論 vs 夜浪",
             "available": true,
             "status": "available",
-            "source": "apk",
+            "source": "merged",
             "fieldSources": {
               "level": "apk:7.1.0c/assets/songs/songlist",
-              "noter": "apk:7.1.0c/assets/songs/songlist/difficulties.chartDesigner"
-            }
+              "noter": "apk:7.1.0c/assets/songs/songlist/difficulties.chartDesigner",
+              "constant": "https://wiki.arcaea.cn/?oldid=92879",
+              "notes": "https://wiki.arcaea.cn/?oldid=92879"
+            },
+            "constant": "11.3",
+            "notes": 1412,
+            "sourceUrl": "https://wiki.arcaea.cn/?oldid=92879"
           }
         ],
         "chartDataVersion": "7.1.0c",
-        "chartDataUpdatedAt": "2026-10-29",
-        "gameVersion": "7.1.0c"
+        "chartDataUpdatedAt": "2026-10-30",
+        "gameVersion": "7.1.0c",
+        "jacketIllustrator": "PAN.D",
+        "fieldSources": {
+          "jacketIllustrator": "https://wiki.arcaea.cn/?oldid=92879",
+          "pack": "https://wiki.arcaea.cn/?oldid=92879"
+        }
       },
       "relations": [],
       "provenance": [
@@ -523625,7 +523821,7 @@
       "lifecycle": {
         "status": "published",
         "createdAt": "2026-10-29T10:35:00+08:00",
-        "updatedAt": "2026-10-29T14:26:16+08:00",
+        "updatedAt": "2026-10-30T13:00:44+08:00",
         "publishedAt": "2026-10-29T10:35:00+08:00"
       }
     },
@@ -523654,7 +523850,7 @@
         "songId": "trickmaster",
         "artist": "Nothing But Requiem",
         "bpm": "195?",
-        "pack": "single",
+        "pack": "Memory Archive",
         "charts": [
           {
             "difficulty": "PST",
@@ -523662,11 +523858,16 @@
             "noter": "KAr?T",
             "available": true,
             "status": "available",
-            "source": "apk",
+            "source": "merged",
             "fieldSources": {
               "level": "apk:7.1.0c/assets/songs/songlist",
-              "noter": "apk:7.1.0c/assets/songs/songlist/difficulties.chartDesigner"
-            }
+              "noter": "apk:7.1.0c/assets/songs/songlist/difficulties.chartDesigner",
+              "constant": "https://wiki.arcaea.cn/?oldid=92896",
+              "notes": "https://wiki.arcaea.cn/?oldid=92896"
+            },
+            "constant": "4.5",
+            "notes": 767,
+            "sourceUrl": "https://wiki.arcaea.cn/?oldid=92896"
           },
           {
             "difficulty": "PRS",
@@ -523674,11 +523875,16 @@
             "noter": "KAr?T",
             "available": true,
             "status": "available",
-            "source": "apk",
+            "source": "merged",
             "fieldSources": {
               "level": "apk:7.1.0c/assets/songs/songlist",
-              "noter": "apk:7.1.0c/assets/songs/songlist/difficulties.chartDesigner"
-            }
+              "noter": "apk:7.1.0c/assets/songs/songlist/difficulties.chartDesigner",
+              "constant": "https://wiki.arcaea.cn/?oldid=92896",
+              "notes": "https://wiki.arcaea.cn/?oldid=92896"
+            },
+            "constant": "7.8",
+            "notes": 922,
+            "sourceUrl": "https://wiki.arcaea.cn/?oldid=92896"
           },
           {
             "difficulty": "FTR",
@@ -523686,11 +523892,16 @@
             "noter": "KAr?T",
             "available": true,
             "status": "available",
-            "source": "apk",
+            "source": "merged",
             "fieldSources": {
               "level": "apk:7.1.0c/assets/songs/songlist",
-              "noter": "apk:7.1.0c/assets/songs/songlist/difficulties.chartDesigner"
-            }
+              "noter": "apk:7.1.0c/assets/songs/songlist/difficulties.chartDesigner",
+              "constant": "https://wiki.arcaea.cn/?oldid=92896",
+              "notes": "https://wiki.arcaea.cn/?oldid=92896"
+            },
+            "constant": "9.6",
+            "notes": 1023,
+            "sourceUrl": "https://wiki.arcaea.cn/?oldid=92896"
           },
           {
             "difficulty": "ETR",
@@ -523698,16 +523909,26 @@
             "noter": "KAr?T",
             "available": true,
             "status": "available",
-            "source": "apk",
+            "source": "merged",
             "fieldSources": {
               "level": "apk:7.1.0c/assets/songs/songlist",
-              "noter": "apk:7.1.0c/assets/songs/songlist/difficulties.chartDesigner"
-            }
+              "noter": "apk:7.1.0c/assets/songs/songlist/difficulties.chartDesigner",
+              "constant": "https://wiki.arcaea.cn/?oldid=92896",
+              "notes": "https://wiki.arcaea.cn/?oldid=92896"
+            },
+            "constant": "10.5",
+            "notes": 1172,
+            "sourceUrl": "https://wiki.arcaea.cn/?oldid=92896"
           }
         ],
         "chartDataVersion": "7.1.0c",
-        "chartDataUpdatedAt": "2026-10-29",
-        "gameVersion": "7.1.0c"
+        "chartDataUpdatedAt": "2026-10-30",
+        "gameVersion": "7.1.0c",
+        "jacketIllustrator": "nonokuro",
+        "fieldSources": {
+          "jacketIllustrator": "https://wiki.arcaea.cn/?oldid=92896",
+          "pack": "https://wiki.arcaea.cn/?oldid=92896"
+        }
       },
       "relations": [],
       "provenance": [
@@ -523730,7 +523951,7 @@
       "lifecycle": {
         "status": "published",
         "createdAt": "2026-10-29T10:35:00+08:00",
-        "updatedAt": "2026-10-29T14:26:16+08:00",
+        "updatedAt": "2026-10-30T13:00:44+08:00",
         "publishedAt": "2026-10-29T10:35:00+08:00"
       }
     },

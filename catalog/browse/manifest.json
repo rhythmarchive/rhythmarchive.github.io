@@ -5,7 +5,7 @@
     "arcaea": {
       "sourceVersion": "7.1.0c",
       "sourceSha256": "b169c695634229e20792630558f705e576aa07c1acdc1a5b19f8051651950c09",
-      "fileSha256": "05a5370cdf4bf41a165d9f9983cde31ffc9f30265c6911bec92676c3fa35e40b",
+      "fileSha256": "1ce6c1f2d678693036458ac1d3ffa32860d241249cf8b343b0d65a25e69f4ce8",
       "recordCounts": {
         "regularSongs": 560,
         "currentArtworkSlots": 619,
@@ -58,8 +58,8 @@
   },
   "catalog": {
     "catalogId": "019fefd6-9c49-7ca0-a760-adc76811a511",
-    "catalogSha256": "4afac6bd4b2da1afd919d9d5c86bcd6ce5dc9a29acc09a02c046e3f8a8373428",
-    "catalogGeneratedAt": "2026-10-29T14:26:16+08:00"
+    "catalogSha256": "5e3137b5cde8f91198e810a8081500866e8c28892b70176ca11c25ae25c32d62",
+    "catalogGeneratedAt": "2026-10-30T13:00:44+08:00"
   },
   "files": {
     "arcaea": "arcaea.json",

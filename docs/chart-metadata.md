@@ -16,6 +16,12 @@ Catalog 的 `metadata.charts` 是详情页和筛选的共同来源。继续使�
 - 内容检查将 `chartDataVersion` 与既有 Browse manifest 的 `sourceVersion` 对齐；没有正式 Browse 的游戏采用 Updates 的最新版本（含 baseline）。升级版本后，旧标记会使 `content:check` / `check:fast` 失败。完成上述复核或移除未确认定数后才能推进标记，不能只改版本字符串消除失败。
 - 定数变更写入 Catalog 后，详情、范围边界和直方图从同一快照生成。按现有流程刷新 Browse 的 Catalog 哈希绑定和公共投影；无需新增资源对象、ROS 上传或运行时请求。
 
+## 2026-10-30 Arcaea 新曲资料补齐
+
+采用 Arcaea 中文维基当前页面，补齐 7.1.0c 新增七首曲目的 28 个谱面定数及 28 个物量，并补入现已署名的 Parallax（PAN.D）、Tr!cK Ma?tEr（nonokuro）曲绘画师。当前 APK 的等级、曲师与谱师保持优先，逐谱核对 Wiki 等级后才合并；合并的定数和物量逐字段记录对应页面修订链接。此前暂缺的 undefined PST/PRS、~_+ PST、Château de cartes 四档共七个定数也已从可访问的中文单曲页恢复，同时补齐 Château de cartes 的四档物量。另补入上述旧曲页面已确认的画师与时长，曲包展示使用可读名称，原有资源和超分关联不变。
+
+Wiki 仍将七首新曲的时长标为空，五首的画师标为未显示；这些字段继续留空并记录具体缺项以供后续复查。更新时缺少新曲元信息须在发布后主动复查补齐，不能以初次留空或访问失败永久结案。元数据补充沿用已有更新记录与时间，不新增更新动态。
+
 ## 2026-10-29 APK 更新复核
 
 Orzmic 3.18.0 逐首重读原生 MusicDatas，224 首的显示等级、档位、定数、谱师与物量采用本版数据；旧曲曲绘均未变化，新增《炳烛志·斩邪》。Berry Melody 3.4.1 采用单 APK 的原生 Info 与精确 Resources/AssetBundle 容器引用，当前 245 首、771 张谱面；新增六首 WeBeat 曲目，以及 CATACLYSM (feat. ricono)、c.s.q.n. 的 RUIN（均为 13.1）。已有在包曲目的定数未变。此前六首 Milthm 曲目未出现在本版原生清单，保留历史图片与已知字段，撤下无法确认本版适用性的 21 个定数。重新压缩的旧曲绘继续使用已发布原图。
