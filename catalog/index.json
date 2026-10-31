@@ -1,7 +1,7 @@
 {
   "catalogSchemaVersion": "1.0",
   "catalogId": "019fefd6-9c49-7ca0-a760-adc76811a511",
-  "generatedAt": "2026-10-30T13:10:00+08:00",
+  "generatedAt": "2026-10-31T19:35:42+08:00",
   "resources": [
     {
       "catalogSchemaVersion": "1.0",
@@ -521679,8 +521679,10 @@
         "chartDataUpdatedAt": "2026-10-30",
         "gameVersion": "7.1.0c",
         "fieldSources": {
-          "pack": "https://wiki.arcaea.cn/?oldid=92895"
-        }
+          "pack": "https://wiki.arcaea.cn/?oldid=92895",
+          "length": "https://wiki.arcaea.cn/Voyage_to_the_Future"
+        },
+        "length": "02:49"
       },
       "relations": [],
       "provenance": [
@@ -521703,7 +521705,7 @@
       "lifecycle": {
         "status": "published",
         "createdAt": "2026-10-29T10:35:00+08:00",
-        "updatedAt": "2026-10-30T13:00:44+08:00",
+        "updatedAt": "2026-10-31T19:35:42+08:00",
         "publishedAt": "2026-10-29T10:35:00+08:00"
       }
     },
@@ -521807,8 +521809,10 @@
         "chartDataUpdatedAt": "2026-10-30",
         "gameVersion": "7.1.0c",
         "fieldSources": {
-          "pack": "https://wiki.arcaea.cn/?oldid=92878"
-        }
+          "pack": "https://wiki.arcaea.cn/?oldid=92878",
+          "length": "https://wiki.arcaea.cn/Ran"
+        },
+        "length": "02:46"
       },
       "relations": [],
       "provenance": [
@@ -521831,7 +521835,7 @@
       "lifecycle": {
         "status": "published",
         "createdAt": "2026-10-29T10:35:00+08:00",
-        "updatedAt": "2026-10-30T13:00:44+08:00",
+        "updatedAt": "2026-10-31T19:35:42+08:00",
         "publishedAt": "2026-10-29T10:35:00+08:00"
       }
     },
@@ -521935,8 +521939,10 @@
         "chartDataUpdatedAt": "2026-10-30",
         "gameVersion": "7.1.0c",
         "fieldSources": {
-          "pack": "https://wiki.arcaea.cn/?oldid=92877"
-        }
+          "pack": "https://wiki.arcaea.cn/?oldid=92877",
+          "length": "https://wiki.arcaea.cn/Ether_Drive"
+        },
+        "length": "02:22"
       },
       "relations": [],
       "provenance": [
@@ -521959,7 +521965,7 @@
       "lifecycle": {
         "status": "published",
         "createdAt": "2026-10-29T10:35:00+08:00",
-        "updatedAt": "2026-10-30T13:00:44+08:00",
+        "updatedAt": "2026-10-31T19:35:42+08:00",
         "publishedAt": "2026-10-29T10:35:00+08:00"
       }
     },
@@ -522063,8 +522069,10 @@
         "chartDataUpdatedAt": "2026-10-30",
         "gameVersion": "7.1.0c",
         "fieldSources": {
-          "pack": "https://wiki.arcaea.cn/?oldid=92876"
-        }
+          "pack": "https://wiki.arcaea.cn/?oldid=92876",
+          "length": "https://wiki.arcaea.cn/Schra_Go_(Uchina_Time)"
+        },
+        "length": "02:32"
       },
       "relations": [],
       "provenance": [
@@ -522087,7 +522095,7 @@
       "lifecycle": {
         "status": "published",
         "createdAt": "2026-10-29T10:35:00+08:00",
-        "updatedAt": "2026-10-30T13:00:44+08:00",
+        "updatedAt": "2026-10-31T19:35:42+08:00",
         "publishedAt": "2026-10-29T10:35:00+08:00"
       }
     },
@@ -522191,8 +522199,10 @@
         "chartDataUpdatedAt": "2026-10-30",
         "gameVersion": "7.1.0c",
         "fieldSources": {
-          "pack": "https://wiki.arcaea.cn/?oldid=92875"
-        }
+          "pack": "https://wiki.arcaea.cn/?oldid=92875",
+          "length": "https://wiki.arcaea.cn/Fatality"
+        },
+        "length": "02:32"
       },
       "relations": [],
       "provenance": [
@@ -522215,7 +522225,7 @@
       "lifecycle": {
         "status": "published",
         "createdAt": "2026-10-29T10:35:00+08:00",
-        "updatedAt": "2026-10-30T13:00:44+08:00",
+        "updatedAt": "2026-10-31T19:35:42+08:00",
         "publishedAt": "2026-10-29T10:35:00+08:00"
       }
     },
@@ -522321,8 +522331,10 @@
         "jacketIllustrator": "PAN.D",
         "fieldSources": {
           "jacketIllustrator": "https://wiki.arcaea.cn/?oldid=92879",
-          "pack": "https://wiki.arcaea.cn/?oldid=92879"
-        }
+          "pack": "https://wiki.arcaea.cn/?oldid=92879",
+          "length": "https://wiki.arcaea.cn/Parallax"
+        },
+        "length": "02:40"
       },
       "relations": [],
       "provenance": [
@@ -522345,7 +522357,7 @@
       "lifecycle": {
         "status": "published",
         "createdAt": "2026-10-29T10:35:00+08:00",
-        "updatedAt": "2026-10-30T13:00:44+08:00",
+        "updatedAt": "2026-10-31T19:35:42+08:00",
         "publishedAt": "2026-10-29T10:35:00+08:00"
       }
     },
@@ -522451,8 +522463,10 @@
         "jacketIllustrator": "nonokuro",
         "fieldSources": {
           "jacketIllustrator": "https://wiki.arcaea.cn/?oldid=92896",
-          "pack": "https://wiki.arcaea.cn/?oldid=92896"
-        }
+          "pack": "https://wiki.arcaea.cn/?oldid=92896",
+          "length": "https://wiki.arcaea.cn/Tr!cK_Ma%3FtEr"
+        },
+        "length": "02:32"
       },
       "relations": [],
       "provenance": [
@@ -522475,7 +522489,7 @@
       "lifecycle": {
         "status": "published",
         "createdAt": "2026-10-29T10:35:00+08:00",
-        "updatedAt": "2026-10-30T13:00:44+08:00",
+        "updatedAt": "2026-10-31T19:35:42+08:00",
         "publishedAt": "2026-10-29T10:35:00+08:00"
       }
     },

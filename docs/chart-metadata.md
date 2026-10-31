@@ -16,6 +16,10 @@ Catalog 的 `metadata.charts` 是详情页和筛选的共同来源。继续使�
 - 内容检查将 `chartDataVersion` 与既有 Browse manifest 的 `sourceVersion` 对齐；没有正式 Browse 的游戏采用 Updates 的最新版本（含 baseline）。升级版本后，旧标记会使 `content:check` / `check:fast` 失败。完成上述复核或移除未确认定数后才能推进标记，不能只改版本字符串消除失败。
 - 定数变更写入 Catalog 后，详情、范围边界和直方图从同一快照生成。按现有流程刷新 Browse 的 Catalog 哈希绑定和公共投影；无需新增资源对象、ROS 上传或运行时请求。
 
+## 2026-10-31 Arcaea 时长补齐
+
+中文维基当前模板已补入七首 7.1 新曲时长：Voyage to the Future 02:49、Ran 02:46、Ether Drive 02:22、Schra Go (Uchina Time) 02:32、Fatality 02:32、Parallax 02:40、Tr!cK Ma?tEr 02:32。逐项补入现有 length 字段并保留来源链接。五首画师仍标为未显示，继续留空等待可核实署名，跟进清单仅保留这五处。定数、物量、原图、超分与更新记录均保持原值。
+
 ## 2026-10-30 Arcaea 新曲资料补齐
 
 采用 Arcaea 中文维基当前页面，补齐 7.1.0c 新增七首曲目的 28 个谱面定数及 28 个物量，并补入现已署名的 Parallax（PAN.D）、Tr!cK Ma?tEr（nonokuro）曲绘画师。当前 APK 的等级、曲师与谱师保持优先，逐谱核对 Wiki 等级后才合并；合并的定数和物量逐字段记录对应页面修订链接。此前暂缺的 undefined PST/PRS、~_+ PST、Château de cartes 四档共七个定数也已从可访问的中文单曲页恢复，同时补齐 Château de cartes 的四档物量。另补入上述旧曲页面已确认的画师与时长，曲包展示使用可读名称，原有资源和超分关联不变。
