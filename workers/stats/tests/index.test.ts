@@ -129,7 +129,7 @@ class MemoryStatsStore implements StatsStore {
       .slice(0, limit);
   }
 
-  async recordUpdateReminder(visitorId: string, game: PublicGameSlug, nowMs: number): Promise<UpdateReminderResult> {
+  async recordUpdateReminder(visitorId: string, game: PublicGameSlug, nowMs: number, note = ""): Promise<UpdateReminderResult> {
     const summary = this.updateReminderGames.get(game) ?? {
       game,
       pending: false,
@@ -184,6 +184,7 @@ class MemoryStatsStore implements StatsStore {
     summary.lastNotificationError = null;
     const notificationId = crypto.randomUUID();
     this.notifications.set(notificationId, { claim: { notificationId, reminderCount: summary.cycleEffectiveReminderCount,
+      ...(note ? { note } : {}),
       remindedAt: nowMs, cycleId: summary.cycleId!, game, cycleNumber: summary.cycleNumber, attempt: 0, summary: { ...summary } },
       status: "pending", next: null, error: null });
     return {
@@ -633,6 +634,25 @@ test("update reminders reject invalid visitor IDs, unknown games, and missing fi
   assert.equal(invalidGame.payload.error, "invalid_game");
   assert.equal(missingField.response.status, 400);
   assert.equal(missingField.payload.error, "missing_field");
+});
+
+test("reminder notes reach only their own plain-text email and cannot bypass dedupe", async () => {
+  const store = new MemoryStatsStore();
+  const env = { ...makeEnv(store), ...testEmailConfig };
+  const texts: string[] = [];
+  const send = (id: string, note: string, at: number) => handleRequest(request('/v1/update-reminders', 'POST', { visitorId: id, game: 'arcaea', note }), env, {
+    store, now: () => at,
+    fetchImpl: async (_input, init) => { texts.push((JSON.parse(String(init?.body)) as { text: string }).text); return Response.json({ id: 'test-email' }, { status: 202 }); },
+  });
+  const accepted = await send(visitorId, ' first note ', baseTime);
+  assert.equal(accepted.status, 202);
+  assert.ok(!JSON.stringify(await accepted.json()).includes('first note'));
+  assert.equal((await send(visitorId, 'changed note', baseTime + 1)).status, 409);
+  assert.equal((await send(otherVisitorId, 'second note', baseTime + 2)).status, 202);
+  assert.equal(texts.length, 2);
+  assert.ok(texts[0]?.includes('补充说明：first note'));
+  assert.ok(texts[1]?.includes('补充说明：second note'));
+  assert.ok(!texts[1]?.includes('first note'));
 });
 
 test("first reminder email succeeds without exposing visitor identity", async () => {

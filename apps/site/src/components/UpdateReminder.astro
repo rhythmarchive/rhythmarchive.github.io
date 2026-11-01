@@ -1,6 +1,7 @@
 ---
 import { PUBLIC_UPDATE_REMINDERS_TURNSTILE_SITE_KEY } from "../lib/site-config";
 import type { PublicGameIndex } from "../lib/types";
+import { UPDATE_REMINDER_NOTE_MAX_LENGTH } from "../../../../packages/domain/src/update-reminder.js";
 
 interface Props {
   games: readonly PublicGameIndex[];
@@ -11,11 +12,11 @@ const { games } = Astro.props;
 
 <aside class="update-reminder" data-update-reminder aria-labelledby="update-reminder-heading">
   <div class="update-reminder-copy">
-    <span class="section-kicker">Missed an update?</span>
     <h3 id="update-reminder-heading">提醒更新</h3>
     <p id="update-reminder-description">游戏出了新内容、这里还没收录时，可以提醒一下。</p>
+    <label class="update-reminder-note" for="update-reminder-note">补充说明（选填）<input id="update-reminder-note" name="note" type="text" form="update-reminder-form" data-update-reminder-note maxlength={UPDATE_REMINDER_NOTE_MAX_LENGTH} aria-describedby="update-reminder-status" /></label>
   </div>
-  <form class="update-reminder-form" data-update-reminder-form aria-describedby="update-reminder-description update-reminder-status">
+  <form id="update-reminder-form" class="update-reminder-form" data-update-reminder-form aria-describedby="update-reminder-description update-reminder-status">
     <label for="update-reminder-game">
       选择游戏
       <select id="update-reminder-game" name="game" required data-update-reminder-game>

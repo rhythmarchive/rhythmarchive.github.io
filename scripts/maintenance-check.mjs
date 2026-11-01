@@ -11,7 +11,7 @@ export function classifyChanges(files) {
   const content = files.some(f => f.startsWith('catalog/') || f === registryPath || f === 'apps/site/src/lib/site-data.ts');
   const site = files.some(f => f.startsWith('apps/site/') && !f.endsWith('.md'));
   return { mode: full.length ? 'FULL' : 'FAST', reasons: full, worker, content, site, registry: content || files.includes('apps/site/src/lib/game-config.ts'),
-    deployWorker: files.some(f => f.startsWith('workers/stats/') && !f.endsWith('.md') && !f.startsWith('workers/stats/tests/')) || files.includes('packages/domain/src/identifiers.ts') };
+    deployWorker: files.some(f => f.startsWith('workers/stats/') && !f.endsWith('.md') && !f.startsWith('workers/stats/tests/')) || files.some(f => ['packages/domain/src/identifiers.ts', 'packages/domain/src/update-reminder.ts'].includes(f)) };
 }
 function git(args) {
   const r = spawnSync('git', args, { encoding: 'utf8', windowsHide: true });

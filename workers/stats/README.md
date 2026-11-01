@@ -13,10 +13,13 @@
 - GET /v1/resources/ranking?period=7d|all&limit=N：默认 12 项，最多 50 项；只返回 resourceId、views、downloads，历史/随机 ID 不会进入结果。
 - POST /v1/update-reminders：接受当前公共投影中的游戏。每次有效提醒返回 202，同一 visitorId 对同一游戏 10 分钟内重复返回 409；满 10 分钟后可再次有效累计并发送邮件（仍受 Turnstile、IP 限流和每日邮件上限约束）。重复请求不延长去重窗口。
 - GET /v1/admin/update-reminders：需要 Authorization: Bearer UPDATE_REMINDER_ADMIN_TOKEN。
+- 提醒可附 `note`：普通单行文本，前后端共用160个UTF-16单位上限，空白按未填写处理。只存入本条通知并随其纯文本邮件发送，重试沿用原说明，修改说明不能绕过去重，公开响应不返回说明。
 - POST /v1/admin/update-reminders/:game/resolve：鉴权后关闭当前 pending 周期但保留历史。可带 JSON `{ "createdBefore": "带时区 ISO 时间" }`，仅结束在此时间之前已存在的周期；无符合条件的周期返回 404 pending_not_found，防止发布收尾重跑误关新周期。
 - POST /v1/admin/update-reminders/:game/retry-notification：鉴权后重置当前通知重试状态。
 
 ## 行为语义
+
+提醒说明需先应用 `0008_update_reminder_notes.sql` 再部署新Worker。它只给通知表增加默认空字符串的note列，不回放已发送历史。说明加入既有通知INSERT和领取SELECT，常规有效提交/领取的SQL条数、限流/去重/邮件日额度不变，新增的是文本体积，没有额外留言表或额外邮件。
 
 下载总计为 resource_stats 中所有历史 total_downloads 的 SUM，包含后来下架资源；不含 APK 和未经过站内记录的对象访问，也不能证明文件已保存到磁盘。资源下载的10秒去重、批量按资源计数保持原样。
 

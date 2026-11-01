@@ -47,14 +47,16 @@ test("generic gallery chart filters keep difficulty, level, and constant on one 
 });
 
 test("game updates invalidate old chart metadata even with unchanged display grades", () => {
-  const resource = catalog.resources.find((r) => r.game === "rotaeno" && r.resourceType === "jacket" && r.lifecycle.status === "published")!;
+  const source = catalog.resources.find((r) => r.game === "rotaeno" && r.resourceType === "jacket" && r.lifecycle.status === "published")!;
+  const resource = { ...source, metadata: { ...source.metadata, chartDataVersion: "2.27.0" } };
   assert.deepEqual(chartDataVersionIssues([resource], { rotaeno: "2.27.0" }), []);
   assert.match(chartDataVersionIssues([resource], { rotaeno: "2.28.0" })[0]!, /need chart metadata review/u);
   assert.equal(chartDataVersionIssues([{ ...resource, metadata: { ...resource.metadata, chartDataVersion: undefined } }], { rotaeno: "2.27.0" }).length, 1);
   const updated = getSiteData().resources.find((r) => r.game === "rotaeno" && r.displayTitle === "Beat Rise");
-  assert.equal(updated?.charts?.find((c) => c.difficulty === "IV")?.constant, "12.9");
-  const conflict = getSiteData().resources.find((r) => r.resourceId === "fed833e2-2e77-7067-a6fe-06497db769d2");
-  assert.ok(conflict?.charts?.filter((c) => ["I", "II", "III"].includes(c.difficulty)).every((c) => c.constant === undefined));
+  assert.equal(updated?.charts?.find((c) => c.difficulty === "IV")?.level, "12+");
+  assert.equal(updated?.charts?.find((c) => c.difficulty === "IV")?.constant, undefined);
+  const resolved = getSiteData().resources.find((r) => r.resourceId === "fed833e2-2e77-7067-a6fe-06497db769d2");
+  assert.deepEqual(resolved?.charts?.filter((c) => ["I", "II", "III"].includes(c.difficulty)).map((c) => c.constant), ["3.0", "6.0", "11.7"]);
 });
 
 test("jacket galleries keep constant histograms and only verified integer-only games use level ranges", () => {
@@ -757,8 +759,8 @@ test("category semantic browse data keeps player-facing names and conservative u
   assert.equal(ignotusByd?.displayTitle, "Ignotus Afterburn");
   const portraits = siteData.galleries["arcaea/character-portrait"] ?? [];
   const namedPortraits = portraits.filter((resource) => resource.displayTitle !== "未归类角色立绘");
-  assert.equal(namedPortraits.length, 137);
-  assert.equal(portraits.length, 137);
+  assert.equal(namedPortraits.length, 139);
+  assert.equal(portraits.length, 139);
   assert.ok(namedPortraits.some((resource) => resource.displayTitle === "光"));
   assert.ok(namedPortraits.some((resource) => resource.displayTitle === "識眼"));
   const insightPortrait = portraits.find((resource) => resource.metadata.characterEnglishName === "insight_konzetsu");
@@ -1164,8 +1166,8 @@ test('Milthm reuses game routes, previews, search and native chart metadata', ()
 test('Berry Melody preserves native Header art, chart grades and precise constants', () => {
   const data = getSiteData();
   const jackets = data.galleries['berrymelody/jacket']!;
-  assert.equal(jackets.length, 245);
-  assert.equal(jackets.reduce((n, r) => n + (r.charts?.length ?? 0), 0), 766);
+  assert.equal(jackets.length, 251);
+  assert.equal(jackets.reduce((n, r) => n + (r.charts?.length ?? 0), 0), 792);
   assert.ok(jackets.every(r => r.preview?.small && r.original && !r.upscaled));
   const beta = jackets.find(r => r.displayTitle === 'βehexeη-δ')!;
   assert.equal(beta.artist, 'GRAPEWiLD');
@@ -1179,8 +1181,8 @@ test('Berry Melody preserves native Header art, chart grades and precise constan
   const config = getCategoryBrowseConfig('berrymelody', 'jacket', jackets);
   assert.ok(config.facets.find(f => f.key === 'constant')?.histogram);
   assert.equal(config.facets.find(f => f.key === 'level'), undefined);
-  assert.equal(config.facets.find(f => f.key === 'pack')?.options.length, 33);
-  assert.ok(buildSearchQuickLinks(data).some(l => l.href === '/berrymelody/jacket/' && l.count === 245));
+  assert.equal(config.facets.find(f => f.key === 'pack')?.options.length, 34);
+  assert.ok(buildSearchQuickLinks(data).some(l => l.href === '/berrymelody/jacket/' && l.count === 251));
   assert.ok(data.searchIndex.some(e => e.game === 'berrymelody' && e.keywords.includes('bexehendelta')));
   assert.ok(fs.existsSync('apps/site/public/game-icons/berrymelody.webp'));
 });

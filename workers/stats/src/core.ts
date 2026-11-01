@@ -1,6 +1,7 @@
 import { isUuidV7, normalizeUuid } from "../../../packages/domain/src/identifiers.js";
 import { getResourceRankingWithCache, type RankingCache } from "./ranking-cache.js";
 import { getTotalDownloadsWithCache } from "./site-downloads-cache.js";
+import { normalizeUpdateReminderNote } from "../../../packages/domain/src/update-reminder.js";
 import { acceptResourceReport } from "./resource-reports.js";
 import { PUBLIC_GAME_DISPLAY_NAMES, PUBLIC_GAME_SLUGS, PUBLIC_RESOURCE_CATALOG_GENERATED_AT, PUBLIC_RESOURCE_REGISTRY_SHA256, PUBLIC_RESOURCE_IDS, type PublicGameSlug } from "./public-resource-registry.js";
 export type { PublicGameSlug } from "./public-resource-registry.js";
@@ -75,6 +76,7 @@ export type UpdateReminderResult =
   | { status: "duplicate"; nextAllowedAt: number; summary: UpdateReminderSummary };
 
 export type UpdateReminderNotificationClaim = {
+  note?: string;
   notificationId: string;
   reminderCount: number;
   remindedAt: number;
@@ -97,7 +99,7 @@ export type RateLimitBinding = { limit(options: { key: string }): Promise<{ succ
 
 export interface StatsStore {
   recordEvent(event: StatsEvent, nowMs: number, date: string): Promise<RecordedEvent>;
-  recordUpdateReminder(visitorId: string, game: PublicGameSlug, nowMs: number): Promise<UpdateReminderResult>;
+  recordUpdateReminder(visitorId: string, game: PublicGameSlug, nowMs: number, note?: string): Promise<UpdateReminderResult>;
   consumeRequestRateLimit?(rateKey: string, scope: string, nowMs: number, windowMs: number, maxRequests: number): Promise<RequestRateLimitResult>;
   cleanup?(nowMs: number, date: string): Promise<void>;
   listPendingUpdateReminders(): Promise<UpdateReminderSummary[]>;
@@ -342,7 +344,7 @@ export class D1StatsStore implements StatsStore {
     `).bind(game).run();
   }
 
-  async recordUpdateReminder(visitorId: string, game: PublicGameSlug, nowMs: number): Promise<UpdateReminderResult> {
+  async recordUpdateReminder(visitorId: string, game: PublicGameSlug, nowMs: number, note = ""): Promise<UpdateReminderResult> {
     await this.ensureUpdateReminderGame(game);
     let cycle = await this.getPendingUpdateReminderCycleV2(game);
     if (!cycle) cycle = await this.createUpdateReminderCycleV2(game, nowMs);
@@ -379,10 +381,10 @@ export class D1StatsStore implements StatsStore {
           effective_reminder_count = effective_reminder_count + 1
       WHERE game = ?
     `).bind(nowMs, nowMs, nowMs, game), this.db.prepare(`
-      INSERT INTO update_reminder_notifications (id, cycle_id, reminder_count, reminded_at)
-      SELECT ?, id, effective_reminder_count, ? FROM update_reminder_cycles
+      INSERT INTO update_reminder_notifications (id, cycle_id, reminder_count, reminded_at, note)
+      SELECT ?, id, effective_reminder_count, ?, ? FROM update_reminder_cycles
       WHERE id = ? AND pending = 1 AND resolved_at IS NULL
-    `).bind(crypto.randomUUID(), nowMs, cycle.id)]);
+    `).bind(crypto.randomUUID(), nowMs, note, cycle.id)]);
     const summary = await this.getUpdateReminderSummaryV2(game);
     return { status: "accepted", firstReminder: summary.cycleEffectiveReminderCount === 1, summary };
   }
@@ -435,7 +437,7 @@ export class D1StatsStore implements StatsStore {
   }
   async claimDueUpdateReminderNotifications(nowMs: number): Promise<UpdateReminderNotificationClaim[]> {
     const rows = await this.db.prepare(`
-      SELECT n.id, n.cycle_id, n.reminder_count, n.reminded_at, c.game, c.cycle_number
+      SELECT n.id, n.cycle_id, n.reminder_count, n.reminded_at, n.note, c.game, c.cycle_number
       FROM update_reminder_notifications n JOIN update_reminder_cycles c ON c.id = n.cycle_id
       WHERE c.pending = 1 AND c.resolved_at IS NULL AND n.notification_status <> 'sent'
         AND n.notification_attempts < ? AND (
@@ -443,7 +445,7 @@ export class D1StatsStore implements StatsStore {
           OR (n.next_notification_at IS NOT NULL AND n.next_notification_at <= ?))
       ORDER BY n.reminded_at, n.id LIMIT 80
     `).bind(UPDATE_REMINDER_NOTIFICATION_MAX_ATTEMPTS, nowMs).all<{
-      id: string; cycle_id: number; reminder_count: number; reminded_at: number; game: string; cycle_number: number;
+      id: string; cycle_id: number; reminder_count: number; reminded_at: number; note: string; game: string; cycle_number: number;
     }>();
     const claims: UpdateReminderNotificationClaim[] = [];
     for (const row of rows.results ?? []) {
@@ -467,6 +469,7 @@ export class D1StatsStore implements StatsStore {
       `).bind(claimed.notification_attempts, nowMs, nowMs + UPDATE_REMINDER_NOTIFICATION_LEASE_MS,
         row.cycle_id, row.reminder_count).run();
       claims.push({ notificationId: row.id, reminderCount: row.reminder_count, remindedAt: row.reminded_at,
+        ...(row.note ? { note: row.note } : {}),
         cycleId: row.cycle_id, game: row.game, cycleNumber: row.cycle_number,
         attempt: claimed.notification_attempts, summary: await this.getUpdateReminderSummaryV2(row.game) });
     }
@@ -631,15 +634,17 @@ export function isValidPublicGameSlug(value: unknown): value is PublicGameSlug {
   return typeof value === "string" && PUBLIC_GAME_SLUG_SET.has(value);
 }
 
-export function validateUpdateReminderPayload(value: unknown): { reminder?: { visitorId: string; game: PublicGameSlug; turnstileToken?: string }; error?: string } {
+export function validateUpdateReminderPayload(value: unknown): { reminder?: { visitorId: string; game: PublicGameSlug; turnstileToken?: string; note?: string }; error?: string } {
   if (!isRecord(value)) return { error: "invalid_json_body" };
   if (!Object.prototype.hasOwnProperty.call(value, "visitorId") || !Object.prototype.hasOwnProperty.call(value, "game")) return { error: "missing_field" };
   const visitorId = normalizeUuid(value.visitorId);
   if (!visitorId || !isValidVisitorId(visitorId)) return { error: "invalid_visitor_id" };
   if (!isValidPublicGameSlug(value.game)) return { error: "invalid_game" };
+  const parsedNote = normalizeUpdateReminderNote(value.note);
+  if ("error" in parsedNote) return parsedNote;
   const turnstileToken = typeof value.turnstileToken === "string" ? value.turnstileToken.trim() : "";
   if (turnstileToken.length > 2048) return { error: "invalid_turnstile_token" };
-  return { reminder: { visitorId, game: value.game, ...(turnstileToken ? { turnstileToken } : {}) } };
+  return { reminder: { visitorId, game: value.game, ...(parsedNote.note ? { note: parsedNote.note } : {}), ...(turnstileToken ? { turnstileToken } : {}) } };
 }
 
 export function validateResourceIds(value: unknown): { resourceIds?: string[]; error?: string } {
@@ -826,7 +831,7 @@ export async function handleRequest(request: Request, env: Env, options: Handler
         if (!secret || !hostname || !action) return json({ error: "turnstile_unavailable" }, 503, corsHeaders);
         if (!reminder.turnstileToken || !(await verifyTurnstileToken(secret, reminder.turnstileToken, { hostname, action }, options.fetchImpl))) return json({ error: "turnstile_failed" }, 403, corsHeaders);
       }
-      const recorded = await store.recordUpdateReminder(reminder.visitorId, reminder.game, nowMs);
+      const recorded = await store.recordUpdateReminder(reminder.visitorId, reminder.game, nowMs, reminder.note);
       if (recorded.status === "duplicate") {
         return json({
           ok: false,
@@ -977,6 +982,7 @@ export async function sendUpdateReminderNotification(env: Env, claim: UpdateRemi
           "当前 cycle 有效提醒数量：" + claim.reminderCount,
           "首次提醒时间：" + formatNotificationTime(claim.summary.firstReminderAt),
           "最近提醒时间：" + formatNotificationTime(claim.remindedAt),
+          ...(claim.note ? ["补充说明：" + claim.note] : []),
           "当前 pending 状态：是",
         ].join("\n"),
       }),

@@ -56,7 +56,7 @@ test("Rotaeno chart metadata projects difficulty, v2 rating, and Alpha variants"
   assert.deepEqual(projectedFor("song-jacket:a-city-in-serenity")?.charts?.find((chart) => chart.difficulty === "IV") && [
     projectedFor("song-jacket:a-city-in-serenity")?.charts?.find((chart) => chart.difficulty === "IV")?.level,
     projectedFor("song-jacket:a-city-in-serenity")?.charts?.find((chart) => chart.difficulty === "IV")?.constant,
-  ], ["12", "12.0"]);
+  ], ["12", undefined]); // 2.99.0 retained the grade; the old constant is unverified.
 });
 
 test("Rotaeno preserves all requested song metadata and nonnumeric levels", () => {
@@ -64,9 +64,9 @@ test("Rotaeno preserves all requested song metadata and nonnumeric levels", () =
   assert.deepEqual(stage?.charts?.map((chart) => [chart.difficulty, chart.level, chart.notes, chart.constant]), [
     ["I", "2", 396, undefined],
     ["II", "5", 579, undefined],
-    ["III", "8", 988, "8.6"],
-    ["IV", "13", 1513, "13.1"],
-    ["IV_Alpha", "Lv.4", 1920, "14.0"],
+    ["III", "8", 988, undefined],
+    ["IV", "13", 1513, undefined],
+    ["IV_Alpha", "Lv.4", 1920, undefined],
   ]);
   assert.deepEqual(
     [stage?.metadata.length, stage?.metadata.bpm, stage?.metadata.pack, stage?.metadata.updateVersion, stage?.metadata.updateDate, stage?.metadata.metadataStatus],
@@ -75,7 +75,7 @@ test("Rotaeno preserves all requested song metadata and nonnumeric levels", () =
 
   const aleph = projectedFor("song-jacket:aleph-0");
   const alephAlpha = aleph?.charts?.find((chart) => chart.difficulty === "IV_Alpha");
-  assert.deepEqual(alephAlpha && [alephAlpha.level, alephAlpha.notes, alephAlpha.constant], ["Aleph 0", 1420, "13.9"]);
+  assert.deepEqual(alephAlpha && [alephAlpha.level, alephAlpha.notes, alephAlpha.constant], ["Aleph 0", 1420, undefined]);
 
   const special = projectedFor("song-jacket:aoott");
   assert.deepEqual(special?.specialCharts?.map((chart) => [chart.difficulty, chart.level, chart.notes]), [["Meow", "Meow", 2397]]);

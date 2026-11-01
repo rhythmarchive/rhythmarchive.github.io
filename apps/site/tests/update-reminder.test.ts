@@ -10,6 +10,21 @@ import {
 const visitorId = "11111111-1111-4111-8111-111111111111";
 const siteRoot = path.resolve(process.cwd(), "apps", "site");
 
+test("optional reminder notes are trimmed, bounded and omitted when blank", async () => {
+  const bodies: Record<string, unknown>[] = [];
+  const send = (note: string) => submitUpdateReminder({ apiUrl: 'https://stats.example.test', visitorId, game: 'arcaea', note,
+    fetchImpl: async (_input, init) => { bodies.push(JSON.parse(String(init?.body))); return Response.json({ ok: true }, { status: 202 }); },
+  });
+  assert.equal((await send('  新增章节  ')).status, 'accepted');
+  assert.equal(bodies[0]?.note, '新增章节');
+  await send('   ');
+  assert.equal(bodies[1]?.note, undefined);
+  assert.equal((await send('a'.repeat(161))).reason, 'invalid-request');
+  assert.equal((await send('first\nsecond')).reason, 'invalid-request');
+  assert.equal((await send('😀'.repeat(81))).reason, 'invalid-request');
+  assert.equal(bodies.length, 2);
+});
+
 test("update reminder posts the documented visitor/game payload to the future endpoint", async () => {
   let requestUrl = "";
   let requestInit: RequestInit | undefined;

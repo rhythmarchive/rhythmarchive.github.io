@@ -23,3 +23,9 @@ test('Worker tests alone run checks without redeployment', () => {
   const p = classifyChanges(['workers/stats/tests/index.test.ts']);
   assert.equal(p.worker, true); assert.equal(p.deployWorker, false);
 });
+
+test('shared reminder normalization changes deploy both runtime consumers', () => {
+  const p = classifyChanges(['packages/domain/src/update-reminder.ts']);
+  assert.equal(p.mode, 'FULL');
+  assert.equal(p.deployWorker, true);
+});

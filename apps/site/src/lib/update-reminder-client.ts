@@ -1,5 +1,6 @@
 import { normalizeUuid } from "../../../../packages/domain/src/identifiers.js";
 import { normalizeStatsApiUrl } from "./stats-client";
+import { normalizeUpdateReminderNote } from "../../../../packages/domain/src/update-reminder.js";
 
 export type UpdateReminderStatus = "accepted" | "duplicate" | "failed";
 export type UpdateReminderFailureReason = "not-configured" | "invalid-request" | "network" | "server";
@@ -35,21 +36,24 @@ export async function submitUpdateReminder(options: {
   apiUrl?: string | undefined;
   visitorId?: string | undefined;
   game: string;
+  note?: string | undefined;
   turnstileToken?: string | undefined;
   fetchImpl?: UpdateReminderFetch | undefined;
 }): Promise<UpdateReminderResult> {
   const apiUrl = normalizeStatsApiUrl(options.apiUrl);
   const visitorId = normalizeUuid(options.visitorId);
   const game = options.game.trim();
+  const parsedNote = normalizeUpdateReminderNote(options.note);
   if (!apiUrl) return { status: "failed", reason: "not-configured" };
   if (!visitorId || !game) return { status: "failed", reason: "invalid-request" };
+  if ("error" in parsedNote) return { status: "failed", reason: "invalid-request" };
 
   const fetchImpl = options.fetchImpl ?? ((input, init) => fetch(input, init));
   try {
     const response = await fetchImpl(apiUrl + "/v1/update-reminders", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ visitorId, game, ...(options.turnstileToken?.trim() ? { turnstileToken: options.turnstileToken.trim() } : {}) }),
+      body: JSON.stringify({ visitorId, game, ...(parsedNote.note ? { note: parsedNote.note } : {}), ...(options.turnstileToken?.trim() ? { turnstileToken: options.turnstileToken.trim() } : {}) }),
       credentials: "omit",
     });
     const body = await readResponseBody(response);

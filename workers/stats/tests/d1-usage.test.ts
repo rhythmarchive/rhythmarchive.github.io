@@ -82,8 +82,34 @@ const now = Date.UTC(2026, 9, 3, 12);
 const date = "2026-10-03";
 const rankingPath = "/v1/resources/ranking?period=7d&limit=6";
 
+test("reminder note migration preserves history and retries keep each notification's own text", async () => {
+  const db = new SqliteD1('0007');
+  // Production applied the independent operations migration before this draft.
+  db.sqlite.exec(readFileSync(new URL('../migrations/0009_daily_operations.sql', import.meta.url), 'utf8'));
+  db.sqlite.exec("INSERT INTO version_source_state(source_id,observation_json,checked_at) VALUES ('existing-source','{}',1)");
+  db.sqlite.exec(`INSERT INTO update_reminder_cycles(game,cycle_number,first_reminded_at,last_reminded_at) VALUES ('phigros',1,1,1);
+    INSERT INTO update_reminder_notifications(id,cycle_id,reminder_count,reminded_at,notification_status) VALUES ('old-sent',last_insert_rowid(),1,1,'sent')`);
+  db.sqlite.exec(readFileSync(new URL('../migrations/0008_update_reminder_notes.sql', import.meta.url), 'utf8'));
+  assert.deepEqual({ ...db.sqlite.prepare("SELECT note,notification_status FROM update_reminder_notifications WHERE id='old-sent'").get()! }, { note: '', notification_status: 'sent' });
+  assert.equal(db.sqlite.prepare("SELECT checked_at FROM version_source_state WHERE source_id='existing-source'").get()?.checked_at, 1);
+  const store = new D1StatsStore(db);
+  await store.recordUpdateReminder(visitorId, 'arcaea', now, 'first note');
+  const duplicate = await store.recordUpdateReminder(visitorId, 'arcaea', now + 1, 'changed note');
+  assert.equal(duplicate.status, 'duplicate');
+  await store.recordUpdateReminder('22222222-2222-4222-8222-222222222222', 'arcaea', now + 2, 'second note');
+  const claims = await store.claimDueUpdateReminderNotifications(now + 3);
+  assert.deepEqual(claims.map(claim => claim.note), ['first note', 'second note']);
+  const first = claims[0]!;
+  await store.markUpdateReminderNotificationFailed(first, now + 4, now + 1000, 'temporary');
+  const retry = await store.claimDueUpdateReminderNotifications(now + 1001);
+  assert.equal(retry.length, 1);
+  assert.equal(retry[0]?.notificationId, first.notificationId);
+  assert.equal(retry[0]?.note, 'first note');
+});
+
 test("download total is opt-in, historical, coalesced and cached without extra writes", async () => {
-  const db = new SqliteD1();
+  // C1 must work on the existing schema without the C2 note migration.
+  const db = new SqliteD1('0007');
   db.sqlite.exec(`INSERT INTO resource_stats(resource_id,total_views,total_downloads,updated_at) VALUES ('retired-resource',0,7,1), ('${resourceId}',0,2,1)`);
   const cache = new TestCache();
   await api(db, req('/v1/site/stats'), now, cache);
@@ -102,7 +128,7 @@ test("download total is opt-in, historical, coalesced and cached without extra w
 });
 
 test("download aggregate failure keeps visits and does not cache unknown as zero", async () => {
-  const db = new SqliteD1();
+  const db = new SqliteD1('0007');
   const cache = new TestCache();
   db.failDownloads = true;
   const response = await api(db, req('/v1/events', { type: 'site_visit', visitorId, includeDownloads: true }), now, cache);

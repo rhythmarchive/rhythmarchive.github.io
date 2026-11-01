@@ -19,6 +19,7 @@ function initializeUpdateReminder(): void {
   const reminderGameSelect = gameSelectElement;
   const reminderSubmitButton = submitButtonElement;
   const reminderStatus = statusElement;
+  const note = reminder.querySelector<HTMLInputElement>("[data-update-reminder-note]");
   const signal = pageSignal();
   const apiUrl = document.documentElement.dataset.statsApiUrl;
   let uiState: ReminderUiState = "idle";
@@ -47,6 +48,8 @@ function initializeUpdateReminder(): void {
 
   reminderForm.addEventListener("focusin", () => { void initializeTurnstile(); }, { signal });
   reminderForm.addEventListener("pointerdown", () => { void initializeTurnstile(); }, { signal });
+  note?.addEventListener("focus", () => { void initializeTurnstile(); }, { signal });
+  note?.addEventListener("pointerdown", () => { void initializeTurnstile(); }, { signal });
 
   reminderGameSelect.addEventListener("change", () => {
     if (submitting) return;
@@ -61,7 +64,7 @@ function initializeUpdateReminder(): void {
     let result: UpdateReminderResult;
     try {
       const visitorId = getBrowserStatsClient().getVisitorId();
-      result = await submitUpdateReminder({ apiUrl, visitorId, game, ...(turnstileToken ? { turnstileToken } : {}) });
+      result = await submitUpdateReminder({ apiUrl, visitorId, game, note: note?.value, ...(turnstileToken ? { turnstileToken } : {}) });
     } catch {
       result = { status: "failed", reason: "network" };
     }
@@ -71,6 +74,7 @@ function initializeUpdateReminder(): void {
     if (turnstileWidgetId !== undefined) window.turnstile?.reset(turnstileWidgetId);
     turnstileToken = "";
     if (result.status === "accepted") {
+      if (note) note.value = "";
       uiState = "success";
       renderStatus("提醒已提交。", "success");
     } else if (result.status === "duplicate") {
@@ -109,6 +113,7 @@ function initializeUpdateReminder(): void {
   function renderControls(): void {
     const waitingForTurnstile = Boolean(turnstileContainer && !turnstileToken);
     reminderGameSelect.disabled = submitting;
+    if (note) note.disabled = submitting;
     reminderSubmitButton.disabled = submitting;
     reminderForm.setAttribute("aria-busy", String(submitting));
     reminderSubmitButton.textContent = submitting ? "提交中…" : waitingForTurnstile ? "完成验证后提交" : uiState === "error" ? "重试提醒" : "提醒更新";
