@@ -35,7 +35,7 @@ export type CategoryBrowseFacet = {
 };
 
 export type CategoryBrowseSortOption = {
-  value: "default" | "title-asc" | "title-desc" | "artist-asc" | "artist-desc" | "updated-desc" | "updated-asc" | "bpm-desc" | "bpm-asc" | "level-desc" | "level-asc";
+  value: "views-desc" | "default" | "title-asc" | "title-desc" | "artist-asc" | "artist-desc" | "updated-desc" | "updated-asc" | "bpm-desc" | "bpm-asc" | "level-desc" | "level-asc";
   label: string;
 };
 

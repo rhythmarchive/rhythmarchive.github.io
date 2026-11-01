@@ -43,7 +43,6 @@ const ratioStyle = cardRatioStyle(primary?.width ? primary : fallback);
         <noscript><img src={primary.url} srcset={srcset || undefined} sizes={sizes} alt={resourceImageAlt(view)} width={primary.width} height={primary.height} loading="lazy" /></noscript>
         </>
       ) : <div class="resource-card-placeholder" aria-label="图片加载失败">图片暂不可用</div>}
-      {view.hasUpscaled ? <span class="resource-badge is-upscaled">含超分版</span> : null}
     </div>
     <div class="resource-card-body">
       <h3>{view.displayTitle}</h3>

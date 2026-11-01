@@ -41,13 +41,13 @@ const sourceBrowse = loadFormalBrowseProjections();
 const publicIds = new Set(getSiteData().resources.map(resource => resource.resourceId));
 
 test("all jacket menus share base options and verified Arcaea, Rizline and Rotaeno constants are sortable", () => {
-  const expected = ["默认排序", "曲名 A-Z", "曲名 Z-A", "曲师 A-Z", "曲师 Z-A"];
+  const expected = ["默认排序", "浏览量从多到少", "曲名 A-Z", "曲名 Z-A", "曲师 A-Z", "曲师 Z-A"];
   for (const game of ["arcaea", "phigros", "rizline", "infalsus"] as const) {
-    assert.deepEqual(getBrowseSortOptions(formalBrowse[game]).slice(0, 5).map(option => option.label), expected);
+    assert.deepEqual(getBrowseSortOptions(formalBrowse[game]).slice(0, expected.length).map(option => option.label), expected);
   }
   const rotaeno = getSiteData().resources.filter(resource => resource.game === "rotaeno" && resource.category === "jacket");
   const options = getCategoryBrowseConfig("rotaeno", "jacket", rotaeno).sortOptions;
-  assert.deepEqual(options.slice(0, 5).map(option => option.label), expected);
+  assert.deepEqual(options.slice(0, expected.length).map(option => option.label), expected);
   assert.ok(options.some(option => option.value === "level-desc" && option.label === "最高定数高 → 低"));
   for (const game of ["arcaea", "rizline"] as const) {
     const items = formalBrowse[game].items;
@@ -345,12 +345,13 @@ test("Arcaea 7.0 exposes exactly four Inscribed songs and keeps the filter share
 });
 
 test("Browse URL state round-trips multi-select facets with stable encoding", () => {
-  const state = arcaeaState({ pack: ["World Extend 4", "Absolute Reason"], chart: ["BYD", "FTR"], level: ["10+", "9"], version: ["6.9", "6.10"], ai: true });
+  const state = arcaeaState({ pack: ["World Extend 4", "Absolute Reason"], chart: ["BYD", "FTR"], level: ["10+", "9"], version: ["6.9", "6.10"] });
   const serialized = serializeBrowseUrlState(state).toString();
   assert.match(serialized, /chart=FTR%2CBYD/u);
-  assert.match(serialized, /ai=1/u);
+  assert.doesNotMatch(serialized, /ai=/u);
+  assert.equal((parseBrowseUrlState("arcaea", "ai=1", formalBrowse.arcaea.items) as ArcaeaBrowseUrlState).ai, false);
   const parsed = parseBrowseUrlState("arcaea", serialized, formalBrowse.arcaea.items);
-  assert.deepEqual(parsed, arcaeaState({ pack: ["Absolute Reason", "World Extend 4"], chart: ["FTR", "BYD"], version: ["6.10", "6.9"], ai: true }));
+  assert.deepEqual(parsed, arcaeaState({ pack: ["Absolute Reason", "World Extend 4"], chart: ["FTR", "BYD"], version: ["6.10", "6.9"] }));
   assert.equal(serializeBrowseUrlState(parsed).toString(), serialized);
 
   const phigrosState = phigrosStateFor({ q: " After ", chart: ["AT", "EZ"], sort: "title-desc" });

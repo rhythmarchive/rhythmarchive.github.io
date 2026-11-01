@@ -17,6 +17,7 @@ export function galleryBaseSortOptions(song = false) {
   const title = song ? "曲名" : "名称";
   return [
     { value: "default" as const, label: "默认排序" },
+    { value: "views-desc" as const, label: "浏览量从多到少" },
     { value: "title-asc" as const, label: `${title} A-Z` },
     { value: "title-desc" as const, label: `${title} Z-A` },
     ...(song ? [{ value: "artist-asc" as const, label: "曲师 A-Z" }, { value: "artist-desc" as const, label: "曲师 Z-A" }] : []),

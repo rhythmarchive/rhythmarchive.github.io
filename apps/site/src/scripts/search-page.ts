@@ -1,3 +1,4 @@
+import { sortResourcesByViews } from "../lib/resource-views-sort";
 import { loadStaticData } from "./static-data";
 import { onPageLoad, pageSignal, onPageCleanup } from "./page-lifecycle";
 import { compareNaturalText, rankSearchEntries } from "../lib/search";
@@ -30,12 +31,11 @@ async function initializeSearch(root: HTMLElement): Promise<void> {
   const game = document.querySelector<HTMLSelectElement>("[data-search-game]");
   const category = document.querySelector<HTMLSelectElement>("[data-search-category]");
   const sort = document.querySelector<HTMLSelectElement>("[data-search-sort]");
-  const upscaled = document.querySelector<HTMLInputElement>("[data-search-upscaled]");
   const filterNote = document.querySelector<HTMLElement>("[data-search-filter-note]");
   const emptyCopy = root.querySelector<HTMLElement>("[data-search-empty-copy]");
   const clearCategory = root.querySelector<HTMLButtonElement>("[data-search-clear-category]");
   const clearFilters = root.querySelector<HTMLButtonElement>("[data-search-clear-filters]");
-  if (!input || !results || !status || !more || !game || !category || !sort || !upscaled) return;
+  if (!input || !results || !status || !more || !game || !category || !sort) return;
   const navigation = setupListNavigation(results, "search");
   const reconcile = createCardReconciler(results);
   let initialRun = true;
@@ -47,8 +47,7 @@ async function initializeSearch(root: HTMLElement): Promise<void> {
   if (field) field.disabled = params.get("field") !== "artist" || !input.value.trim();
   game.value = params.get("game") ?? "";
   category.value = params.get("category") ?? "";
-  sort.value = ["title-asc", "title-desc"].includes(params.get("sort") ?? "") ? params.get("sort")! : "relevance";
-  upscaled.checked = params.get("ai") === "1";
+  sort.value = ["views-desc", "title-asc", "title-desc"].includes(params.get("sort") ?? "") ? params.get("sort")! : "relevance";
 
   let entriesPromise: Promise<PublicSearchEntry[]> | undefined;
   let searchCardsPromise: Promise<Map<string, PublicSearchCard>> | undefined;
@@ -111,10 +110,11 @@ async function initializeSearch(root: HTMLElement): Promise<void> {
 
   const syncQueryUrl = (value: string): void => {
     const url = new URL(window.location.href);
+    url.searchParams.delete("ai");
     const query = value.trim();
     if (query) url.searchParams.set("q", query); else url.searchParams.delete("q");
     if (query && field && !field.disabled) url.searchParams.set("field", "artist"); else url.searchParams.delete("field");
-    for (const [key, value] of [["game", game.value], ["category", category.value], ["sort", sort.value === "relevance" ? "" : sort.value], ["ai", upscaled.checked ? "1" : ""]]) {
+    for (const [key, value] of [["game", game.value], ["category", category.value], ["sort", sort.value === "relevance" ? "" : sort.value]]) {
       if (value) url.searchParams.set(key!, value); else url.searchParams.delete(key!);
     }
     window.history.replaceState({ ...history.state }, "", url);
@@ -157,8 +157,8 @@ async function initializeSearch(root: HTMLElement): Promise<void> {
     status.textContent = "找到 0 项资源";
     if (empty) empty.hidden = false;
     if (clearCategory) clearCategory.hidden = !invalidCategory;
-    if (clearFilters) clearFilters.hidden = invalidCategory || !(game.value || category.value || upscaled.checked);
-    if (emptyCopy) emptyCopy.textContent = invalidCategory ? "清除分类后可继续搜索。" : game.value || category.value || upscaled.checked ? "没有符合当前条件的资源。" : input.value.trim()
+    if (clearFilters) clearFilters.hidden = invalidCategory || !(game.value || category.value);
+    if (emptyCopy) emptyCopy.textContent = invalidCategory ? "清除分类后可继续搜索。" : game.value || category.value ? "没有符合当前条件的资源。" : input.value.trim()
       ? field && !field.disabled ? "没有找到该曲师的资源。" : "没有找到匹配的资源。试试其他关键词。"
       : "没有符合筛选条件的资源。";
   };
@@ -181,7 +181,7 @@ async function initializeSearch(root: HTMLElement): Promise<void> {
     syncQueryUrl(rawQuery);
     const page = root.closest(".search-page");
     const head = root.previousElementSibling;
-    if (!query && !game.value && !category.value && !upscaled.checked) {
+    if (!query && !game.value && !category.value) {
       page?.classList.remove("has-search-query");
       head?.classList.remove("is-results");
       results.replaceChildren();
@@ -216,9 +216,13 @@ async function initializeSearch(root: HTMLElement): Promise<void> {
       const ranked = query || game.value || category.value ? rankSearchEntries(entries, query, { game: game.value, category: category.value, ...(field && !field.disabled ? { field: "artist" as const } : {}) }) : entries;
       matches = ranked.flatMap((entry) => {
         const card = cardMap.get(entry.resourceId);
-        return card && (!upscaled.checked || card.upscaled) ? [{ ...card, displayTitle: card.displayTitle ?? entry.title }] : [];
+        return card ? [{ ...card, displayTitle: card.displayTitle ?? entry.title }] : [];
       });
-      if (sort.value !== "relevance") matches.sort((a, b) => {
+      if (sort.value === "views-desc") {
+        const sorted = await sortResourcesByViews(matches, (card) => card.resourceId);
+        if (signal.aborted || token !== runToken) return;
+        matches = sorted;
+      } else if (sort.value !== "relevance") matches.sort((a, b) => {
         const compared = compareNaturalText(a.displayTitle ?? "", b.displayTitle ?? "");
         return (sort.value === "title-desc" ? -compared : compared) || a.resourceId.localeCompare(b.resourceId);
       });
@@ -229,10 +233,10 @@ async function initializeSearch(root: HTMLElement): Promise<void> {
       navigation.restore();
     } catch (error) {
       if (signal.aborted || token !== runToken) return;
-      console.error("Search data failed", error);
+      if (sort.value !== "views-desc") console.error("Search data failed", error);
       results.replaceChildren();
       if (empty) empty.hidden = true;
-      status.textContent = "搜索暂时不可用，请重试";
+      status.textContent = sort.value === "views-desc" ? "浏览量排序暂时不可用，请重试或选择其他排序" : "搜索暂时不可用，请重试";
       if (retry) retry.hidden = false;
     } finally {
       if (!signal.aborted && token === runToken) {
@@ -254,9 +258,8 @@ async function initializeSearch(root: HTMLElement): Promise<void> {
   game.addEventListener("change", () => void run());
   category.addEventListener("change", () => void run());
   sort.addEventListener("change", () => void run());
-  upscaled.addEventListener("change", () => void run());
   clearCategory?.addEventListener("click", () => { category.value = ""; void run(); });
-  clearFilters?.addEventListener("click", () => { game.value = category.value = ""; sort.value = "relevance"; upscaled.checked = false; void run(); });
+  clearFilters?.addEventListener("click", () => { game.value = category.value = ""; sort.value = "relevance"; void run(); });
   more.addEventListener("click", () => { visibleCount += 48; render(); });
   retry?.addEventListener("click", () => void run());
   void run();

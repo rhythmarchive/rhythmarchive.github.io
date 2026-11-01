@@ -20,7 +20,6 @@ interface Props {
 const { data, categoryLabel, galleryUrl } = Astro.props;
 const initialItems = data.items.slice(0, 48);
 const cardFrame = cardFrameForPreviews(data.items.map((item) => item.preview));
-const hasUpscale = data.items.some((item) => item.hasUpscaled);
 const searchPlaceholder = data.game === "rizline" ? "搜索曲名、曲师或画师" : "搜索曲名或曲师";
 const browseOptions = getBrowseFacetOptions(data);
 const arcaeaOptions = data.game === "arcaea" ? browseOptions as ArcaeaFacetOptions : undefined;
@@ -107,7 +106,6 @@ function formatRangeValue(value: number): string {
       <label class="filter-control"><span>难度</span><select data-browse-filter-select="chart" aria-label="难度"><option value="">全部</option>{arcaeaOptions.charts.map((value) => <option value={value}>{displayFilterDifficultyLabel(value, "arcaea")}</option>)}</select></label>
       <label class="filter-control"><span>曲包</span><select data-browse-filter-select="pack" aria-label="曲包"><option value="">全部</option>{arcaeaOptions.packs.map((value) => <option value={value}>{value}</option>)}</select></label>
       <label class="filter-control"><span>加入版本</span><select data-browse-filter-select="version" aria-label="加入版本"><option value="">全部</option>{arcaeaOptions.versions.map((value) => <option value={value}>{value}</option>)}</select></label>
-      {hasUpscale ? <label class="filter-check"><input type="checkbox" data-filter-ai /> <span>含超分版</span></label> : null}
     </div>
   ) : data.game === "phigros" ? (
     <div class="gallery-filter-row" data-gallery-filter-row>

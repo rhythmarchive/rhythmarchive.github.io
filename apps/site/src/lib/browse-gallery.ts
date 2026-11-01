@@ -117,10 +117,10 @@ export type BrowseGalleryBuildResult = {
   };
 };
 
-export type ArcaeaBrowseSort = "default" | "title-asc" | "title-desc" | "artist-asc" | "artist-desc" | "version-desc" | "version-asc" | "level-desc" | "level-asc";
-export type PhigrosBrowseSort = "default" | "title-asc" | "title-desc" | "artist-asc" | "artist-desc" | "pack-asc" | "pack-desc" | "level-desc" | "level-asc";
-export type InfalsusBrowseSort = "default" | "title-asc" | "title-desc" | "artist-asc" | "artist-desc" | "level-desc" | "level-asc";
-export type RizlineBrowseSort = "default" | "title-asc" | "title-desc" | "artist-asc" | "artist-desc" | "level-desc" | "level-asc";
+export type ArcaeaBrowseSort = "views-desc" | "default" | "title-asc" | "title-desc" | "artist-asc" | "artist-desc" | "version-desc" | "version-asc" | "level-desc" | "level-asc";
+export type PhigrosBrowseSort = "views-desc" | "default" | "title-asc" | "title-desc" | "artist-asc" | "artist-desc" | "pack-asc" | "pack-desc" | "level-desc" | "level-asc";
+export type InfalsusBrowseSort = "views-desc" | "default" | "title-asc" | "title-desc" | "artist-asc" | "artist-desc" | "level-desc" | "level-asc";
+export type RizlineBrowseSort = "views-desc" | "default" | "title-asc" | "title-desc" | "artist-asc" | "artist-desc" | "level-desc" | "level-asc";
 
 export function getBrowseSortOptions(data: BrowseGalleryData) {
   const options: Array<{ value: ArcaeaBrowseSort | PhigrosBrowseSort | InfalsusBrowseSort; label: string }> = galleryBaseSortOptions(true);
@@ -762,7 +762,6 @@ export function filterBrowseItems(items: BrowseGalleryItem[], state: BrowseUrlSt
       if (item.version !== undefined && state.version.length > 0 && !state.version.includes(item.version ?? "")) return false;
       if (item.version === undefined && state.version.length > 0) return false;
       if (!matchesArcaeaCharts(item, state.chart, state.level, state.difficulty)) return false;
-      if (state.ai && !displayBrowseItem(item, state.chart, state.difficulty, state.level).hasUpscaled) return false;
     } else if (state.game === "phigros") {
       if (state.pack.length > 0 && !state.pack.includes(item.pack ?? "")) return false;
       if (!matchesPhigrosCharts(item, state.chart, state.level, state.difficulty)) return false;
@@ -964,7 +963,7 @@ export function parseBrowseUrlState(game: BrowseGame, input: URLSearchParams | s
       chart: readFacetValues(params, "chart", arcaeaOptions.charts) as ArcaeaDifficulty[],
       level: [],
       version: readFacetValues(params, "version", arcaeaOptions.versions),
-      ai: params.get("ai") === "1" || params.get("ai") === "true",
+      ai: false,
       ...(difficulty ? { difficulty } : {}),
     };
   }
@@ -1004,7 +1003,6 @@ export function serializeBrowseUrlState(state: BrowseUrlState): URLSearchParams 
     if (packs.length > 0) params.set("pack", packs.join(","));
     if (charts.length > 0) params.set("chart", charts.join(","));
     if (versions.length > 0) params.set("version", versions.join(","));
-    if (state.ai) params.set("ai", "1");
   } else if (state.game === "phigros") {
     const packs = stableValues(state.pack, compareText);
     const charts = stableValues(state.chart, (left, right) => PHIGROS_DIFFICULTIES.indexOf(left as PhigrosDifficulty) - PHIGROS_DIFFICULTIES.indexOf(right as PhigrosDifficulty));
@@ -1055,19 +1053,19 @@ function formatChartDifficulty(value: number): string {
 }
 
 function isArcaeaSort(value: string | null): value is ArcaeaBrowseSort {
-  return value === "default" || value === "title-asc" || value === "title-desc" || value === "artist-asc" || value === "artist-desc" || value === "version-desc" || value === "version-asc" || value === "level-desc" || value === "level-asc";
+  return value === "views-desc" || value === "default" || value === "title-asc" || value === "title-desc" || value === "artist-asc" || value === "artist-desc" || value === "version-desc" || value === "version-asc" || value === "level-desc" || value === "level-asc";
 }
 
 function isPhigrosSort(value: string | null): value is PhigrosBrowseSort {
-  return value === "default" || value === "title-asc" || value === "title-desc" || value === "artist-asc" || value === "artist-desc" || value === "pack-asc" || value === "pack-desc" || value === "level-desc" || value === "level-asc";
+  return value === "views-desc" || value === "default" || value === "title-asc" || value === "title-desc" || value === "artist-asc" || value === "artist-desc" || value === "pack-asc" || value === "pack-desc" || value === "level-desc" || value === "level-asc";
 }
 
 function isInfalsusSort(value: string | null): value is InfalsusBrowseSort {
-  return value === "default" || value === "title-asc" || value === "title-desc" || value === "artist-asc" || value === "artist-desc" || value === "level-desc" || value === "level-asc";
+  return value === "views-desc" || value === "default" || value === "title-asc" || value === "title-desc" || value === "artist-asc" || value === "artist-desc" || value === "level-desc" || value === "level-asc";
 }
 
 function isRizlineSort(value: string | null): value is RizlineBrowseSort {
-  return value === "default" || value === "title-asc" || value === "title-desc" || value === "artist-asc" || value === "artist-desc" || value === "level-desc" || value === "level-asc";
+  return value === "views-desc" || value === "default" || value === "title-asc" || value === "title-desc" || value === "artist-asc" || value === "artist-desc" || value === "level-desc" || value === "level-asc";
 }
 
 function difficultyOrder(game: BrowseGame, values: string[]): string[] {

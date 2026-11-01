@@ -31,8 +31,7 @@ const browseGroups = games.map((game) => ({
     <div class="search-filters">
       <label>游戏 <select data-search-game><option value="">全部游戏</option>{games.map((game) => <option value={game.slug} data-categories={game.categories.filter(category => category.count > 0).map(category => category.slug).join(",")}>{game.displayName}</option>)}</select></label>
       <label>分类 <select data-search-category><option value="">全部分类</option>{Object.entries(CATEGORY_LABELS).filter(([slug]) => games.some((game) => game.categories.some((category) => category.slug === slug))).map(([slug, label]) => <option value={slug}>{label}</option>)}</select></label>
-      <label><span class="sr-only">排序</span><select data-search-sort><option value="relevance">相关度</option><option value="title-asc">名称 A-Z</option><option value="title-desc">名称 Z-A</option></select></label>
-      <label class="filter-check"><input type="checkbox" data-search-upscaled />含超分版</label>
+      <label><span class="sr-only">排序</span><select data-search-sort><option value="relevance">相关度</option><option value="views-desc">浏览量从多到少</option><option value="title-asc">名称 A-Z</option><option value="title-desc">名称 Z-A</option></select></label>
     </div>
     <p class="detail-note" data-search-filter-note hidden>所选游戏没有此分类。</p>
     <div class="search-quick-links" data-search-landing>

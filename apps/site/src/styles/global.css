@@ -227,7 +227,7 @@ html[data-navigating] .site-header::after { content: ""; position: absolute; ins
    visit counts join it when the Stats request answers and never take its place. */
 .home-stats { display: flex; align-items: baseline; justify-content: center; flex-wrap: wrap; gap: 6px 0; margin-top: 1rem !important; color: var(--text-muted) !important; font-size: var(--type-meta) !important; }
 .home-stat { display: inline-flex; align-items: baseline; gap: 4px; white-space: nowrap; }
-.home-stat + .home-stat, .home-stats-runtime > .home-stat:first-child { margin-left: 14px; padding-left: 14px; border-left: 1px solid var(--line-strong); }
+.home-stat + .home-stat { margin-left: 14px; padding-left: 14px; border-left: 1px solid var(--line-strong); }
 .home-stat strong { color: var(--text); font-size: 1.05rem; font-variant-numeric: tabular-nums; font-weight: var(--weight-heading); }
 .home-stats-runtime { display: inline-flex; align-items: baseline; flex-wrap: wrap; gap: 6px 0; max-width: 100%; }
 .home-stats-runtime strong { display: inline-block; text-align: left; color: var(--accent-strong); }
@@ -931,7 +931,7 @@ body.detail-lightbox-open .site-main { z-index: 100; }
   .brand-mark { gap: 6px; }
   .brand-mark img { width: 33px; height: 26px; }
   .search-box button { padding-inline: 13px; }
-  .home-stat + .home-stat, .home-stats-runtime > .home-stat:first-child { margin-left: 10px; padding-left: 10px; }
+  .home-stat + .home-stat { margin-left: 10px; padding-left: 10px; }
   .home-stats-runtime > .is-downloads { flex-basis: 100%; margin-left: 0; padding-left: 0; border-left: 0; }
   .download-actions { grid-template-columns: 1fr; }
   .feedback-links .button { flex: 1; padding-inline: 10px; }

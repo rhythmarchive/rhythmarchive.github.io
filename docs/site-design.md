@@ -88,9 +88,9 @@ Chart constant and BPM filters keep the two numeric fields and the dual slider a
 
 ## Home information architecture
 
-    Header -> hero (APK entry, title, lead, totals strip, search | note stage) -> 收录游戏 -> Arcaea APK -> 最近更新 -> 热榜 -> Footer
+    Header -> hero (APK entry, title, lead, visit stats, search | note stage) -> 收录游戏 -> Arcaea APK -> 最近更新 -> 热榜 -> Footer
 
-The hero keeps “音游图片下载站”, a one-line description, totals from PublicSiteData and the shared SearchBox. The totals strip reads number-then-unit with thin separators; the visit counts (`renderSiteStats`) join it when the one site-visit response arrives and never replace the static totals. Recent updates are a three-column grid (two at ≤1080px, swipe carousel on phones). On phones the game cards are two compact columns.
+The hero keeps “音游图片下载站”, a one-line description and the shared SearchBox. The visit/download stats strip reads number-then-unit with thin separators and is filled by `renderSiteStats` from the existing site-visit response; static game/resource totals are omitted. Recent updates are a three-column grid (two at ≤1080px, swipe carousel on phones). On phones the game cards are two compact columns.
 
 Arcaea APK is discoverable from the first screen: the hero's small `.home-apk-entry` link (in the kicker position, quieter than search) jumps to `#arcaea-apk`, which follows the game list. The card reads the existing public manifest through the existing parser once; the same response fills the hero entry's version. Failure falls back to the official entry. A 2 GB file is never offered from the hero directly — the card shows size and date next to the download.
 
@@ -115,7 +115,7 @@ Rows are server-rendered as placeholders (all six on home, so the section does n
 
 ## Shared game index and navigation
 
-The homepage shows at most eight recent games in compact icon-and-text cards (four columns on wide screens, three on medium screens, two on phones); the complete library remains under “全部游戏”. Icons retain their square geometry.
+The homepage shows at most ten recent games in compact icon-and-text cards (five columns on wide screens, three on medium screens, two on phones); the complete library remains under “全部游戏”. Icons retain their square geometry.
 
 `PublicGameIndex` may expose `contentVersion` and `lastUpdatedAt` (max public `lifecycle.updatedAt`; `contentVersion` only from a unique `provenance.gameVersion` of that update, never the official latest version). Home and `/games/` share the game card and link to each game's primary category; default order is `lastUpdatedAt DESC`. The header has one “游戏库” popover; at narrow widths primary nav moves into a menu while search and settings stay visible.
 

@@ -1,3 +1,4 @@
+import { sortResourcesByViews } from "../lib/resource-views-sort";
 import { loadStaticData } from "./static-data";
 import { onPageLoad, pageSignal } from "./page-lifecycle";
 import { createBatchTray, downloadSelectedBatchFromManifest } from "./batch-tray";
@@ -83,6 +84,7 @@ async function initializeGallery(root: HTMLElement): Promise<void> {
   const navigation = setupListNavigation(grid, root.dataset.galleryUrl ?? "gallery");
   let visibleCount = navigation.visibleCount(PAGE_SIZE);
   let batchTray: ReturnType<typeof createBatchTray> | undefined;
+  let renderToken = 0;
   let matchingResults: GalleryCard[] = [];
   let resultDownload: ReturnType<typeof setupGalleryDownload> | undefined;
   const reconcile = createCardReconciler(grid);
@@ -121,7 +123,8 @@ async function initializeGallery(root: HTMLElement): Promise<void> {
       }),
     });
     resultDownload = setupGalleryDownload(root, () => matchingResults, batchTray, () => updates.flush());
-    render();
+    await render();
+    if (signal.aborted) return;
     navigation.restore();
   } catch (error) {
     if (signal.aborted) return;
@@ -252,7 +255,7 @@ async function initializeGallery(root: HTMLElement): Promise<void> {
         && matchesChartFilters(resource, chartCriteria)
         && ranges.filter((range) => range.key !== omitRange && range.key !== "constant" && range.key !== "level").every((range) => matchesRange(resource, range));
     });
-    if (omitRange || sortValue === "default") return filtered;
+    if (omitRange || sortValue === "default" || sortValue === "views-desc") return filtered;
     return [...filtered].sort((left, right) => {
       if (sortValue === "artist-asc" || sortValue === "artist-desc") {
         return compareNullableText(left.artist, right.artist, sortValue === "artist-desc") || compareNaturalText(left.displayTitle, right.displayTitle);
@@ -300,14 +303,24 @@ async function initializeGallery(root: HTMLElement): Promise<void> {
     render();
   }
 
-  function render(): void {
+  async function render(): Promise<void> {
+    const token = ++renderToken;
     syncDifficultyHistograms();
-    const filtered = currentResources();
+    let filtered = currentResources();
+    let viewsFailed = false;
+    if (sort?.value === "views-desc") {
+      count!.textContent = "正在读取浏览量…";
+      root.querySelector<HTMLElement>("[data-gallery-result-count]")!.textContent = count!.textContent;
+      try { filtered = await sortResourcesByViews(filtered, (card) => card.resourceId); }
+      catch { viewsFailed = true; }
+      if (signal.aborted || token !== renderToken) return;
+    }
     matchingResults = filtered;
     const visible = filtered.slice(0, visibleCount);
     reconcile(visible.map(galleryCardView), { basePath: root.dataset.basePath ?? "/", sizes: root.classList.contains("has-filters") ? SIDEBAR_IMAGE_SIZES : GALLERY_IMAGE_SIZES });
     navigation.remember(visibleCount);
     count!.textContent = `${filtered.length.toLocaleString("zh-CN")} 项资源`;
+    if (viewsFailed) count!.textContent += " · 浏览量读取失败，暂按默认排序，请重试或选择其他排序";
     root.querySelector<HTMLElement>("[data-gallery-result-count]")!.textContent = count!.textContent;
     resultDownload?.update();
     loadMore!.hidden = visible.length >= filtered.length;

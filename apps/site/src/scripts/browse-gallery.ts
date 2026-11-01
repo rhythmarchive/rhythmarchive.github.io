@@ -1,3 +1,4 @@
+import { sortResourcesByViews } from "../lib/resource-views-sort";
 import { loadStaticData } from "./static-data";
 import { onPageLoad, pageSignal } from "./page-lifecycle";
 import { createBatchTray, downloadSelectedBatchFromManifest } from "./batch-tray";
@@ -62,7 +63,6 @@ async function initializeBrowseGallery(root: HTMLElement): Promise<void> {
   const empty = root.querySelector<HTMLElement>("[data-browse-empty]");
   const search = root.querySelector<HTMLInputElement>("[data-browse-search]");
   const sort = root.querySelector<HTMLSelectElement>("[data-browse-sort]");
-  const ai = root.querySelector<HTMLInputElement>("[data-filter-ai]");
   const reset = root.querySelector<HTMLButtonElement>("[data-gallery-reset]");
   const emptyReset = root.querySelector<HTMLButtonElement>("[data-browse-empty-reset]");
   const activeChips = root.querySelector<HTMLElement>("[data-browse-active-chips]");
@@ -77,6 +77,7 @@ async function initializeBrowseGallery(root: HTMLElement): Promise<void> {
   let visibleCount = navigation.visibleCount(BROWSE_PAGE_SIZE);
   const batchResources = new Map<string, BatchResource>();
   let batchTray: ReturnType<typeof createBatchTray> | undefined;
+  let renderToken = 0;
   let matchingResults: BrowseGalleryItem[] = [];
   let resultDownload: ReturnType<typeof setupGalleryDownload> | undefined;
   const reconcile = createCardReconciler(grid);
@@ -120,7 +121,8 @@ async function initializeBrowseGallery(root: HTMLElement): Promise<void> {
     populateFacetOptions(data, root);
     state = readState(game, items);
     applyStateToControls(state);
-    render();
+    await render();
+    if (signal.aborted) return;
     navigation.restore();
   } catch (error) {
     if (signal.aborted) return;
@@ -146,7 +148,6 @@ async function initializeBrowseGallery(root: HTMLElement): Promise<void> {
     button.setAttribute("aria-pressed", String(button.getAttribute("aria-pressed") !== "true"));
     commitState("push");
   }));
-  ai?.addEventListener("change", () => commitState("push"));
   root.querySelectorAll<HTMLInputElement>("[data-browse-option-search]").forEach((input) => input.addEventListener("input", () => filterPopoverOptions(input)));
   activeChips?.addEventListener("click", (event) => {
     const target = event.target;
@@ -158,8 +159,6 @@ async function initializeBrowseGallery(root: HTMLElement): Promise<void> {
     if (!name) return;
     if (name === "q") {
       search.value = "";
-    } else if (name === "ai") {
-      if (ai) ai.checked = false;
     } else if (name === "difficulty") {
       if (difficultyRange) syncBrowseDifficultyRange(difficultyRange, difficultyRange.min, difficultyRange.max);
     } else {
@@ -180,14 +179,14 @@ async function initializeBrowseGallery(root: HTMLElement): Promise<void> {
   // on each edit. Astro can treat a return to its last route URL as an in-page
   // traversal, so restore controls here as well as on a full body swap.
   const pathname = location.pathname;
-  window.addEventListener("popstate", () => {
+  window.addEventListener("popstate", async () => {
     if (location.pathname !== pathname) return;
     const entry = history.state;
     state = readState(game, items);
     applyStateToControls(state);
     visibleCount = entry?.resourceListPosition?.url === location.pathname + location.search
       ? entry.resourceListPosition.count : BROWSE_PAGE_SIZE;
-    render();
+    await render();
     requestAnimationFrame(() => { if (!signal.aborted) window.scrollTo({ top: entry?.scrollY ?? 0, behavior: "instant" }); });
   }, { signal });
 
@@ -215,7 +214,7 @@ async function initializeBrowseGallery(root: HTMLElement): Promise<void> {
         chart: selectedValues(root, "chart") as Extract<BrowseUrlState, { game: "arcaea" }>["chart"],
         level: [],
         version: selectedValues(root, "version"),
-        ai: ai?.checked ?? false,
+        ai: false,
         ...(difficulty ? { difficulty } : {}),
       };
     }
@@ -279,7 +278,6 @@ async function initializeBrowseGallery(root: HTMLElement): Promise<void> {
     if (nextState.game === "arcaea") {
       setSelectedValues(root, "pack", nextState.pack);
       setSelectedValues(root, "version", nextState.version);
-      if (ai) ai.checked = nextState.ai;
     } else if (nextState.game === "phigros") {
       setSelectedValues(root, "pack", nextState.pack);
     } else if (nextState.game === "rizline") {
@@ -306,14 +304,25 @@ async function initializeBrowseGallery(root: HTMLElement): Promise<void> {
     if (selection) nextState.difficulty = selection; else delete nextState.difficulty;
   }
 
-  function render(): void {
+  async function render(): Promise<void> {
+    const token = ++renderToken;
     syncDifficultyHistogram(state);
-    const filtered = filterBrowseItems(items, state);
+    let filtered = filterBrowseItems(items, state);
+    let viewsFailed = false;
+    if (state.sort === "views-desc") {
+      count!.textContent = "正在读取浏览量…";
+      root.querySelector<HTMLElement>("[data-gallery-result-count]")!.textContent = count!.textContent;
+      try {
+        filtered = await sortResourcesByViews(filtered, (item) => displayBrowseItem(item, state.chart, state.difficulty, state.game === "arcaea" ? state.level : []).resourceId);
+      } catch { viewsFailed = true; }
+      if (signal.aborted || token !== renderToken) return;
+    }
     matchingResults = filtered;
     const visible = filtered.slice(0, visibleCount).map((item) => displayBrowseItem(item, state.chart, state.difficulty, state.game === "arcaea" ? state.level : []));
     reconcile(visible.map(browseCardView), { basePath: root.dataset.basePath ?? "/", browse: true, sizes: SIDEBAR_IMAGE_SIZES });
     navigation.remember(visibleCount);
     count!.textContent = filtered.length.toLocaleString("zh-CN") + " 项资源";
+    if (viewsFailed) count!.textContent += " · 浏览量读取失败，暂按默认排序，请重试或选择其他排序";
     root.querySelector<HTMLElement>("[data-gallery-result-count]")!.textContent = count!.textContent;
     resultDownload?.update();
     loadMore!.hidden = visible.length >= filtered.length;
@@ -472,7 +481,6 @@ function updateActiveFilters(root: HTMLElement, state: BrowseUrlState): void {
     const versionEntries = new Map<string, string>();
     for (const value of state.version) versionEntries.set(formatArcaeaAddedVersion(value), value);
     for (const [label, value] of versionEntries) entries.push({ name: "version", value, label });
-    if (state.ai) entries.push({ name: "ai", value: "1", label: "含超分版" });
   } else if (state.game === "phigros") {
     for (const value of state.pack) entries.push({ name: "pack", value, label: value });
     for (const value of state.chart) entries.push({ name: "chart", value, label: value });

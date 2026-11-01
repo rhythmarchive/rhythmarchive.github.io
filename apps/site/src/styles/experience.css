@@ -60,9 +60,9 @@
 .home-hero .home-stats { justify-content: flex-start; margin: 1.1rem 0 0 !important; }
 .home-hero .home-search-block { width: min(100%, 620px); margin: 1.5rem 0 0; }
 /* The homepage stays a compact index as the game library grows. */
-.home-games .game-card-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
-.home-games .game-card { grid-template-columns: 64px minmax(0, 1fr); align-items: center; gap: 12px; min-height: 108px; padding: 12px; }
-.home-games .game-card-media { width: 64px; height: 64px; min-height: 0; border-radius: var(--radius-sm); }
+.home-games .game-card-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; }
+.home-games .game-card { grid-template-columns: 52px minmax(0, 1fr); align-items: center; gap: 10px; min-height: 108px; padding: 12px; }
+.home-games .game-card-media { width: 52px; height: 52px; min-height: 0; border-radius: var(--radius-sm); }
 .home-games .game-card-media .game-icon-image { object-fit: contain; }
 .home-games .game-card-body { gap: 5px; padding: 0; }
 .home-games .game-card-heading { flex-wrap: wrap; gap: 4px 6px; }

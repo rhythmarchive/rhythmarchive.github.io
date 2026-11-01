@@ -70,12 +70,6 @@ export function renderResourceCard(view: CardViewModel, options: CardRenderOptio
     placeholder.textContent = "图片暂不可用";
     media.append(placeholder);
   }
-  if (view.hasUpscaled) {
-    const badge = document.createElement("span");
-    badge.className = "resource-badge is-upscaled";
-    badge.textContent = "含超分版";
-    media.append(badge);
-  }
 
   const body = document.createElement("div");
   body.className = "resource-card-body";

@@ -5,16 +5,13 @@ import GameIcon from "../components/GameIcon.astro";
 import SearchBox from "../components/SearchBox.astro";
 import RecentUpdates from "../components/RecentUpdates.astro";
 import ResourceRanking from "../components/ResourceRanking.astro";
-import { formatCount } from "../lib/format";
 import { primaryCategorySlug } from "../lib/game-config";
 import { BASE_PATH, PUBLIC_STATS_API_URL, ROS_BASE_URL } from "../lib/site-config";
-import { getPublicNavigationGames, getSiteData } from "../lib/site-data";
+import { getPublicNavigationGames } from "../lib/site-data";
 import { urls } from "../lib/site-urls";
 
-const siteData = getSiteData();
 const games = getPublicNavigationGames();
-const visibleGames = games.slice(0, 8);
-const resourceCount = siteData.resources.length;
+const visibleGames = games.slice(0, 10);
 const homeOgImage = urls.absoluteUrl("/og/home.png");
 const description = "Rhythm Archive 是音游曲绘、角色立绘与剧情 CG 下载站，收录 Arcaea、Phigros、Rizline、In Falsus 等游戏的图片资源。按游戏或分类查找作品，预览图片并下载原图，部分资源提供超分版。";
 // Three falling lanes built from the local game icons. One loop holds six notes and
@@ -40,10 +37,8 @@ const arcaeaApkManifestUrl = `${ROS_BASE_URL}/apk/arcaea/latest.json`;
         <span class="home-apk-entry-arrow" aria-hidden="true">→</span>
       </a>
       <h1 id="home-heading">音游图片下载站</h1>
-      <p class="home-hero-lead">收录音游曲绘、立绘、CG 等图片资源，原图与超分版都能直接下载。</p>
-      <p class="home-stats" aria-label={`${formatCount(games.length)} 款游戏，${formatCount(resourceCount)} 项资源`}>
-        <span class="home-stat"><strong>{formatCount(games.length)}</strong>款游戏</span>
-        <span class="home-stat"><strong>{formatCount(resourceCount)}</strong>项资源</span>
+      <p class="home-hero-lead">浏览与下载你所需要的图片资源</p>
+      <p class="home-stats" aria-label="访问与下载统计" hidden={!PUBLIC_STATS_API_URL}>
         <span class="home-stats-runtime" data-site-stats data-stats-state="loading" hidden={!PUBLIC_STATS_API_URL} aria-live="polite" aria-busy="true" aria-label="访问统计加载中">
           <span class="home-stat"><strong data-site-total-visits>—</strong>累计来访</span>
           <span class="home-stat is-today"><strong data-site-today-visits>—</strong>今日来访</span>
