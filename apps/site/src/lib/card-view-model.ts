@@ -45,6 +45,6 @@ export function galleryCardView(resource: GalleryCard): CardViewModel {
 }
 
 export function browseCardView(item: BrowseGalleryItem): CardViewModel {
-  const labels = [...(item.badges ?? []), item.badge, item.selectedArtworkDifficulty, item.selectedChartDifficulty, item.game === "arcaea" || item.game === "phigros" ? item.pack : undefined];
+  const labels = [...(item.badges ?? []), item.badge, item.selectedArtworkDifficulty, item.selectedChartDifficulty, item.game === "arcaea" ? item.packLabel ?? item.pack : item.game === "phigros" ? item.pack : undefined];
   return cardView(item, item.hasUpscaled, labels, false);
 }

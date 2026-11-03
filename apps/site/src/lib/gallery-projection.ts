@@ -50,7 +50,7 @@ function browseArtwork(artwork: BrowseArtwork) {
 }
 
 export function browseCard(item: BrowseGalleryItem) {
-  const optionalKeys = ["subtitle", "badges", "artist", "artworkRole", "selectedArtworkDifficulty", "selectedChartDifficulty", "badge", "pack", "version", "releaseDate", "date", "orderHint", "disc", "trackSeries", "specialYear", "variantId", "variantKey", "preferred"] as const;
+  const optionalKeys = ["subtitle", "badges", "artist", "artworkRole", "selectedArtworkDifficulty", "selectedChartDifficulty", "badge", "pack", "packLabel", "version", "releaseDate", "date", "orderHint", "disc", "trackSeries", "specialYear", "variantId", "variantKey", "preferred"] as const;
   const optional = Object.fromEntries(optionalKeys.filter((key) => item[key] !== undefined).map((key) => [key, item[key]]));
   return {
     resourceId: item.resourceId,

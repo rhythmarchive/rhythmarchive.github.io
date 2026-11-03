@@ -5,7 +5,7 @@ import GalleryFilters from "./GalleryFilters.astro";
 import BatchTray from "./BatchTray.astro";
 import GalleryLoadError from "./GalleryLoadError.astro";
 import GalleryDownload from "./GalleryDownload.astro";
-import { getBrowseFacetOptions, getBrowseSortOptions, browseDifficultyHistogram, type ArcaeaFacetOptions, type BrowseGalleryData, type InfalsusFacetOptions, type PhigrosFacetOptions, type RizlineFacetOptions } from "../lib/browse-gallery";
+import { getBrowseFacetOptions, getBrowseSortOptions, browseDifficultyHistogram, formatBrowsePackLabel, type ArcaeaFacetOptions, type BrowseGalleryData, type InfalsusFacetOptions, type PhigrosFacetOptions, type RizlineFacetOptions } from "../lib/browse-gallery";
 import { formatCount } from "../lib/format";
 import { displayFilterDifficultyLabel } from "../lib/game-config";
 import { BASE_PATH } from "../lib/site-config";
@@ -20,7 +20,7 @@ interface Props {
 const { data, categoryLabel, galleryUrl } = Astro.props;
 const initialItems = data.items.slice(0, 48);
 const cardFrame = cardFrameForPreviews(data.items.map((item) => item.preview));
-const searchPlaceholder = data.game === "rizline" ? "搜索曲名、曲师或画师" : "搜索曲名或曲师";
+const searchPlaceholder = data.game === "arcaea" ? "搜索曲名、曲师或曲包" : data.game === "rizline" ? "搜索曲名、曲师或画师" : "搜索曲名或曲师";
 const browseOptions = getBrowseFacetOptions(data);
 const arcaeaOptions = data.game === "arcaea" ? browseOptions as ArcaeaFacetOptions : undefined;
 const phigrosOptions = data.game === "phigros" ? browseOptions as PhigrosFacetOptions : undefined;
@@ -104,7 +104,7 @@ function formatRangeValue(value: number): string {
   {data.game === "arcaea" && arcaeaOptions ? (
     <div class="gallery-filter-row" data-gallery-filter-row>
       <label class="filter-control"><span>难度</span><select data-browse-filter-select="chart" aria-label="难度"><option value="">全部</option>{arcaeaOptions.charts.map((value) => <option value={value}>{displayFilterDifficultyLabel(value, "arcaea")}</option>)}</select></label>
-      <label class="filter-control"><span>曲包</span><select data-browse-filter-select="pack" aria-label="曲包"><option value="">全部</option>{arcaeaOptions.packs.map((value) => <option value={value}>{value}</option>)}</select></label>
+      <label class="filter-control"><span>曲包</span><select data-browse-filter-select="pack" aria-label="曲包"><option value="">全部</option>{arcaeaOptions.packs.map((value) => <option value={value} data-pack-label={formatBrowsePackLabel(value, arcaeaOptions.packLabels)}>{formatBrowsePackLabel(value, arcaeaOptions.packLabels)}</option>)}</select></label>
       <label class="filter-control"><span>加入版本</span><select data-browse-filter-select="version" aria-label="加入版本"><option value="">全部</option>{arcaeaOptions.versions.map((value) => <option value={value}>{value}</option>)}</select></label>
     </div>
   ) : data.game === "phigros" ? (

@@ -69,6 +69,7 @@ export type BrowseGalleryItem = BrowseResolvedResource & {
   badge?: BrowseBadge;
   songId?: string;
   pack?: string | null;
+  packLabel?: string;
   version?: string | null;
   releaseDate?: string;
   date?: number | null;
@@ -176,6 +177,7 @@ export type BrowseUrlState = ArcaeaBrowseUrlState | PhigrosBrowseUrlState | Rizl
 
 export type ArcaeaFacetOptions = {
   packs: string[];
+  packLabels?: Record<string, string>;
   charts: ArcaeaDifficulty[];
   levels: string[];
   versions: string[];
@@ -183,6 +185,10 @@ export type ArcaeaFacetOptions = {
 };
 
 export type BrowseFacetOption = { label: string; values: string[] };
+
+export function formatBrowsePackLabel(value: string, labels: Readonly<Record<string, string>> = {}): string {
+  return Object.hasOwn(labels, value) ? labels[value]! : value;
+}
 
 export function groupBrowseFacetOptions(values: string[], formatValue: (value: string) => string = (value) => value): BrowseFacetOption[] {
   const grouped = new Map<string, string[]>();
@@ -304,6 +310,7 @@ function buildArcaeaItems(
       diagnostics.skipped.push({ recordKind: "song", identity: song.songId, displayTitle: song.displayTitle, reason: "no-resolved-artwork-resource" });
       continue;
     }
+    const packLabel = resources.get(selectedArtwork.resourceId)?.metadata.packDisplayName;
     items.push({
       ...selectedArtwork,
       key: `song:${song.songId}`,
@@ -311,7 +318,7 @@ function buildArcaeaItems(
       recordKind: "song",
       displayTitle: song.displayTitle,
       artist: song.artist,
-      searchTerms: searchTerms([...song.searchTerms, ...song.titleAliases, ...song.artistAliases, ...song.charts.flatMap((chart) => [chart.title, chart.artist]), song.displayTitle, song.artist, song.pack.displayName]),
+      searchTerms: searchTerms([...song.searchTerms, ...song.titleAliases, ...song.artistAliases, ...song.charts.flatMap((chart) => [chart.title, chart.artist]), song.displayTitle, song.artist, song.pack.displayName, typeof packLabel === "string" ? packLabel : undefined]),
       titleAliases: searchTerms([...song.titleAliases, ...song.charts.map((chart) => chart.title)]),
       artistAliases: searchTerms([...song.artistAliases, ...song.charts.map((chart) => chart.artist)]),
       charts: song.charts.map((chart) => {
@@ -324,6 +331,7 @@ function buildArcaeaItems(
       ...(selectedArtwork.difficultyClass ? { selectedArtworkDifficulty: selectedArtwork.difficultyClass } : {}),
       songId: song.songId,
       pack: song.pack.displayName,
+      ...(typeof packLabel === "string" ? { packLabel } : {}),
       version: song.version,
       date: song.date,
       orderHint: song.orderHint,
@@ -683,7 +691,8 @@ export function getBrowseFacetOptions(data: BrowseGalleryData): BrowseFacetOptio
     const charts = ARCAEA_DIFFICULTIES.filter((difficulty) => data.items.some((item) => item.recordKind === "song" && item.charts.some((chart) => isArcaeaChart(chart) && chart.difficultyClass === difficulty)));
     const levels = unique(data.items.flatMap((item) => item.recordKind === "song" ? item.charts.filter(isArcaeaChart).map((chart) => chart.displayLevel) : []), compareDisplayLevels);
     const versions = unique(data.items.flatMap((item) => item.game === "arcaea" && item.version ? [item.version] : []), (a, b) => compareVersionStrings(b, a));
-    return { packs, charts, levels, versions, ...(difficultyRange ? { difficultyRange } : {}) };
+    const packLabels = Object.fromEntries(data.items.flatMap(item => item.pack && item.packLabel ? [[item.pack, item.packLabel]] : []));
+    return { packs, packLabels, charts, levels, versions, ...(difficultyRange ? { difficultyRange } : {}) };
   }
 
   if (data.game === "phigros") {

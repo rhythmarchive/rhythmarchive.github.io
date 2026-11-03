@@ -26,6 +26,7 @@ import {
   defaultBrowseUrlState,
   displayBrowseItem,
   filterBrowseItems,
+  formatBrowsePackLabel,
   groupBrowseFacetOptions,
   getBrowseFacetOptions,
   parseBrowseUrlState,
@@ -413,7 +414,7 @@ function populateFacetOptions(data: BrowseGalleryData, root: HTMLElement): void 
   if (data.game === "arcaea") {
     const arcaeaOptions = options as Extract<BrowseFacetOptions, { levels: string[]; versions: string[] }>;
     setToggles("chart", arcaeaOptions.charts, (value) => displayFilterDifficultyLabel(value, "arcaea"));
-    setCheckboxes("pack", arcaeaOptions.packs);
+    setCheckboxes("pack", arcaeaOptions.packs, value => formatBrowsePackLabel(value, arcaeaOptions.packLabels));
     setCheckboxes("version", arcaeaOptions.versions, formatArcaeaAddedVersion);
     return;
   }
@@ -463,10 +464,17 @@ function updatePopoverSummaries(root: HTMLElement): void {
       ? [...new Set(rawValues.map(formatArcaeaAddedVersion))]
       : name === "chart" && root.dataset.game === "arcaea"
         ? rawValues.map((value) => displayFilterDifficultyLabel(value, "arcaea"))
-        : rawValues;
+        : name === "pack" && root.dataset.game === "arcaea"
+          ? rawValues.map(value => packFilterLabel(root, value))
+          : rawValues;
     const label = name === "pack" ? "曲包" : name === "disc" ? "Disc" : name === "series" ? "精选集" : "版本";
     summary.textContent = values.length === 0 ? label : values.length === 1 ? values[0]! : `${label} ${values.length}`;
   }
+}
+
+function packFilterLabel(root: HTMLElement, value: string): string {
+  const select = root.querySelector<HTMLSelectElement>('[data-browse-filter-select="pack"]');
+  return [...(select?.options ?? [])].find(option => option.value === value)?.dataset.packLabel ?? value;
 }
 
 function updateActiveFilters(root: HTMLElement, state: BrowseUrlState): void {
@@ -476,7 +484,7 @@ function updateActiveFilters(root: HTMLElement, state: BrowseUrlState): void {
   const entries: Array<{ name: string; value: string; label: string }> = [];
   if (state.q) entries.push({ name: "q", value: state.q, label: `搜索：${state.q}` });
   if (state.game === "arcaea") {
-    for (const value of state.pack) entries.push({ name: "pack", value, label: value });
+    for (const value of state.pack) entries.push({ name: "pack", value, label: packFilterLabel(root, value) });
     for (const value of state.chart) entries.push({ name: "chart", value, label: displayFilterDifficultyLabel(value, "arcaea") });
     const versionEntries = new Map<string, string>();
     for (const value of state.version) versionEntries.set(formatArcaeaAddedVersion(value), value);

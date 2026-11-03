@@ -13,6 +13,7 @@ import { buildRangeHistogram, chartRangeHistogram, numericIntervals, type RangeH
 import { chartDifficultyHistogram } from "./chart-filters";
 import { galleryBaseSortOptions, highestChartConstant } from "./gallery-sort";
 import type { FormalBrowseProjections } from "./site-data";
+import { arcaeaPackLabel, localizeArcaeaPackNames } from "./arcaea-pack-names";
 
 const ROTAENO_CHART_ORDER = ["I", "II", "III", "IV", "IV_Alpha"] as const;
 const PARADIGM_CHART_ORDER = ["DET", "IVD", "MSV", "RBT", "CTC"] as const;
@@ -93,8 +94,8 @@ export function applyCategoryBrowseSemantics(siteData: PublicSiteData, projectio
   ]);
   const resources = siteData.resources.map((resource) => {
     const semantic = semanticById.get(resource.resourceId);
-    if (!semantic) return resource;
-    return {
+    if (!semantic) return localizeArcaeaPackNames(resource);
+    return localizeArcaeaPackNames({
       ...resource,
       ...(semantic.displayTitle ? { displayTitle: semantic.displayTitle } : {}),
       ...(semantic.subtitle ? { subtitle: semantic.subtitle } : {}),
@@ -103,7 +104,7 @@ export function applyCategoryBrowseSemantics(siteData: PublicSiteData, projectio
       ...(semantic.sortOrder !== undefined ? { sortOrder: semantic.sortOrder } : {}),
       ...(Object.keys({ ...resource.facets, ...semantic.facets }).length > 0 ? { facets: { ...resource.facets, ...semantic.facets } } : {}),
       metadata: { ...resource.metadata, ...semantic.metadata },
-    };
+    });
   });
   const resourcesById = new Map(resources.map((resource) => [resource.resourceId, resource]));
   const galleries: Record<string, PublicResource[]> = {};
@@ -239,7 +240,9 @@ function facetOptions(resources: PublicResource[], key: string, game?: GameId): 
         ? displayFilterDifficultyLabel(value, game ?? resources[0]?.game)
         : key === "version"
           ? formatVersionFacet(value)
-          : value,
+          : game === "arcaea" && (key === "pack" || key === "path")
+            ? arcaeaPackLabel(value)
+            : value,
     }));
 }
 

@@ -1,5 +1,6 @@
 import type { ArcaeaStoryAtlasType, ArcaeaStorySceneType, ArcaeaStoryStructureType, ArcaeaStoryTextProjectionType } from "../../../../packages/domain/src/browse.js";
 import type { PublicResource } from "./types";
+import { arcaeaPackLabel } from "./arcaea-pack-names";
 
 export type ArcaeaStoryExplorerEntry = {
   pathId: number;
@@ -224,7 +225,7 @@ export function buildArcaeaStoryExplorerModel(resources: PublicResource[], struc
       pathId: storyPath.pathId,
       act: storyPath.act,
       sectionLabel: sectionByAct.get(storyPath.act) ?? `Act ${storyPath.act + 1}`,
-      title: storyPath.title,
+      title: arcaeaPackLabel(storyPath.title),
       type: storyPath.type,
       typeLabel: storyTypeLabel(storyPath.type),
       characterIds: storyPath.characters,
