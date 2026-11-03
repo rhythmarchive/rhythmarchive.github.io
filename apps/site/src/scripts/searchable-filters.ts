@@ -16,8 +16,12 @@ export function setupSearchableFilters(root: HTMLElement) {
     const trigger = document.createElement("button"); trigger.type = "button"; trigger.className = "searchable-filter-trigger";
     const panel = document.createElement("div"); panel.className = "searchable-filter-panel"; panel.setAttribute("popover", "auto");
     panel.id = `filter-options-${root.dataset.game}-${root.dataset.category}-${key}`;
+    // A native invoker stays inside the popover's light-dismiss boundary, so
+    // clicking it again closes once instead of dismissing then reopening.
+    trigger.popoverTargetElement = panel; trigger.popoverTargetAction = "toggle";
     trigger.setAttribute("aria-haspopup", "listbox"); trigger.setAttribute("aria-controls", panel.id); trigger.setAttribute("aria-expanded", "false");
     const search = document.createElement("input"); search.type = "search"; search.className = "popover-search"; search.placeholder = `查找${label}`; search.setAttribute("aria-label", `查找${label}`); search.autocomplete = "off";
+    search.autofocus = true;
     const list = document.createElement("div"); list.className = "searchable-filter-options"; list.setAttribute("role", "listbox"); list.setAttribute("aria-label", label);
     const empty = document.createElement("p"); empty.className = "detail-note"; empty.textContent = "没有匹配的选项"; empty.hidden = true;
     const close = () => { if (panel.matches(":popover-open")) panel.hidePopover(); };
@@ -42,8 +46,9 @@ export function setupSearchableFilters(root: HTMLElement) {
       for (const button of buttons) button.hidden = Boolean(query) && !button.textContent?.toLocaleLowerCase("zh-CN").includes(query);
       empty.hidden = buttons.some((button) => !button.hidden);
     };
-    const open = () => {
-      if (!wide.matches) return;
+    panel.addEventListener("beforetoggle", (event) => {
+      if (event.newState !== "open") return;
+      if (!wide.matches) { event.preventDefault(); return; }
       search.value = ""; filter(); sync();
       const rect = trigger.getBoundingClientRect();
       const below = innerHeight - rect.bottom - 12, above = rect.top - 12;
@@ -53,10 +58,8 @@ export function setupSearchableFilters(root: HTMLElement) {
       panel.style.maxHeight = `${Math.max(80, Math.min(360, useAbove ? above : below))}px`;
       panel.style.top = useAbove ? "auto" : `${rect.bottom + 6}px`;
       panel.style.bottom = useAbove ? `${innerHeight - rect.top + 6}px` : "auto";
-      panel.showPopover(); search.focus({ preventScroll: true });
-    };
-    trigger.addEventListener("click", () => panel.matches(":popover-open") ? close() : open());
-    trigger.addEventListener("keydown", (event) => { if (event.key === "ArrowDown") { event.preventDefault(); open(); buttons.find((button) => button.dataset.value === select.value)?.focus(); } });
+    });
+    trigger.addEventListener("keydown", (event) => { if (event.key === "ArrowDown") { event.preventDefault(); if (!panel.matches(":popover-open")) trigger.click(); buttons.find((button) => button.dataset.value === select.value)?.focus(); } });
     panel.addEventListener("toggle", () => trigger.setAttribute("aria-expanded", String(panel.matches(":popover-open"))));
     search.addEventListener("input", filter);
     panel.addEventListener("keydown", (event) => {
