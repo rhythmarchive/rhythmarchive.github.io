@@ -599,10 +599,12 @@ test("homepage uses the search-first entry architecture and a stable social imag
   const source = fs.readFileSync(path.join(siteRoot, "src", "pages", "index.astro"), "utf8");
   assert.doesNotMatch(source, /找到下一张|想保存的曲绘/u);
   assert.match(source, /<h1 id="home-heading">音游图片下载站<\/h1>/u);
-  assert.match(source, /收录音游曲绘、立绘、CG 等图片资源，原图与超分版都能直接下载。/u);
+  assert.match(source, /<p class="home-hero-lead">\s*\S[^<]*<\/p>/u);
+  assert.match(source, /<SearchBox label="搜索音游图片资源" \/>/u);
   assert.match(source, /class="home-hero-stage" aria-hidden="true"/u);
-  assert.match(source, /formatCount\(games\.length\)/u);
-  assert.match(source, /formatCount\(resourceCount\)/u);
+  assert.match(source, /const visibleGames = games\.slice\(0, 10\)/u);
+  assert.match(source, /visibleGames\.map\(\(game\) => <GameCard game=\{game\} \/>\)/u);
+  assert.doesNotMatch(source, /formatCount\((?:games\.length|resourceCount)\)/u);
   assert.match(source, /data-arcaea-apk-card/u);
   assert.match(source, /版本信息来自官网首页/u);
   assert.match(source, /game-card-grid/u);
@@ -787,7 +789,8 @@ test("category semantic browse data keeps player-facing names and conservative u
   assert.equal(story.length, 241);
   assert.equal(semantic.arcaea.resources.filter((resource) => resource.metadata.storyVisualKind === "VN CG").length, 171);
   const divineCgs = story.filter((resource) => resource.resourceType === "story-cg" && resource.searchTerms?.some((term) => term.startsWith("C-")));
-  assert.ok(divineCgs.every((resource) => resource.displayTitle === "Divine Oblivion"));
+  assert.ok(divineCgs.every((resource) => resource.displayTitle === "Divine Oblivion（神圣毁灭）"));
+  assert.ok(divineCgs.every((resource) => resource.searchTerms?.includes("Divine Oblivion")));
   assert.ok(divineCgs.every((resource) => resource.metadata.storyPathId === 33));
   assert.ok(divineCgs.every((resource) => resource.metadata.storySection === "Act II · Part II"));
   assert.equal(divineCgs.filter((resource) => resource.metadata.storyNode === "C-10").length, 4);
@@ -795,7 +798,8 @@ test("category semantic browse data keeps player-facing names and conservative u
   assert.ok(divineCgs.some((resource) => resource.subtitle?.includes("Entry C-7 · CG 3/3") && (resource.badges ?? []).includes("关联：DEINOS PHAINEIN")));
   const allVnCgs = story.filter((resource) => resource.metadata.storyVisualKind === "VN CG");
   const divineVnCgs = allVnCgs.filter((resource) => resource.metadata.storyPathId === 33);
-  assert.ok(divineVnCgs.every((resource) => resource.displayTitle === "Divine Oblivion" && resource.category === "story-cg" && resource.resourceType === "story-texture"));
+  assert.ok(divineVnCgs.every((resource) => resource.displayTitle === "Divine Oblivion（神圣毁灭）" && resource.category === "story-cg" && resource.resourceType === "story-texture"));
+  assert.ok(divineVnCgs.every((resource) => resource.searchTerms?.includes("Divine Oblivion")));
   assert.ok(divineVnCgs.some((resource) => resource.searchTerms?.some((term) => term.endsWith("story/vn/res/catastrophe/cat_8_1.jpg")) && resource.metadata.storyNode === "C-8"));
   assert.ok(divineVnCgs.some((resource) => resource.searchTerms?.some((term) => term.endsWith("story/vn/res/catastrophe/D-O_CG_4.jpg")) && resource.metadata.storyPathId === 33));
   const firstDivineEndingCg = divineVnCgs.find((resource) => resource.searchTerms?.some((term) => term.endsWith("story/vn/res/catastrophe/D-O_CG_0.jpg")));

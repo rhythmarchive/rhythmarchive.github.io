@@ -248,7 +248,7 @@ test("missing or unavailable stats API never blocks site behavior", async () => 
   assert.equal(fetchCalls, 0);
 });
 
-test("site wiring keeps the original data fallback and only marks real resource actions", () => {
+test("site wiring exposes runtime totals and only marks real resource actions", () => {
   const page = fs.readFileSync(path.join(siteRoot, "src", "pages", "index.astro"), "utf8");
   const detail = fs.readFileSync(path.join(siteRoot, "src", "pages", "r", "[id]", "index.astro"), "utf8");
   const detailScript = fs.readFileSync(path.join(siteRoot, "src", "scripts", "detail.ts"), "utf8");
@@ -256,9 +256,10 @@ test("site wiring keeps the original data fallback and only marks real resource 
   const browse = fs.readFileSync(path.join(siteRoot, "src", "scripts", "browse-gallery.ts"), "utf8");
   const download = fs.readFileSync(path.join(siteRoot, "src", "scripts", "download.ts"), "utf8");
   const stats = fs.readFileSync(path.join(siteRoot, "src", "scripts", "stats.ts"), "utf8");
-  assert.match(page, /formatCount\(games\.length\)/u);
-  assert.match(page, /formatCount\(resourceCount\)/u);
   assert.match(page, /data-site-stats/u);
+  assert.match(page, /data-site-total-visits/u);
+  assert.match(page, /data-site-today-visits/u);
+  assert.match(page, /data-site-total-downloads/u);
   assert.match(detail, /data-resource-id=\{resource\.resourceId\}/u);
   assert.match(detailScript, /trackResourceDetail/u);
   assert.match(gallery, /updateResourceStatsInDom\(grid!/u);
