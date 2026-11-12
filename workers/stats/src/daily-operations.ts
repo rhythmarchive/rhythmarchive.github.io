@@ -130,9 +130,9 @@ export async function collectReport(db: D1Database, day: string, now: number, fe
     read('版本来源', 'SELECT result_json FROM version_checks WHERE run_date=? ORDER BY source_id', [detectDay]),
     read('版本变化', 'SELECT source_id,game,channel,kind,previous_json,current_json FROM version_changes WHERE run_date=? ORDER BY game,channel,source_id', [detectDay]),
   ]);
-  // Resolve only ranked IDs through the site's existing cacheable small shards.
+  // Resolve ranked and failed-download IDs through the existing small shards.
   // Never fetch the full Catalog/search index just to label a few rows.
-  const ranked = [...(hotResources ?? []), ...(topDownloads ?? [])];
+  const ranked = [...(hotResources ?? []), ...(topDownloads ?? []), ...(downloadFailures ?? [])];
   const shards = new Map<string, Row[]>();
   for (const row of ranked) {
     const id = String(row.resource_id);
@@ -151,7 +151,7 @@ export async function collectReport(db: D1Database, day: string, now: number, fe
         const card = cards.find(c => c.resourceId === row.resource_id);
         if (card) { row.title = card.displayTitle; row.game = card.game; row.category = card.categoryLabel; }
       }
-    } catch { issues.push(`热门资源名称分片 ${shard} 查询失败，保留原始资源ID`); }
+    } catch { issues.push(`资源名称分片 ${shard} 查询失败，保留原始资源ID和详情入口`); }
   }
   const website: Snapshot['website'] = { url: 'https://rhythmarchive.github.io/data/game-index.json', checkedAt: new Date(now).toISOString(), games: null };
   try {
@@ -243,7 +243,7 @@ export function renderReport(s: Snapshot): string {
   for (const row of s.feedback ?? []) lines.push(JSON.stringify({ id: row.id, kind: row.kind, resource: resourceUrl(row.resource_id),
     name: row.name, content: row.description, createdAt: row.created_at, delivery: row.delivery }));
   lines.push('下载异常（客户端线索，不能据此认定CDN故障）：');
-  for (const row of s.downloadFailures ?? []) lines.push(`${row.resource_id} | ${row.kind} | ${row.count} | ${resourceUrl(row.resource_id)}`);
+  for (const row of s.downloadFailures ?? []) lines.push(`${row.title ?? row.resource_id} | ${row.game ?? '未映射游戏'} | ${row.category ?? '未映射分类'} | ${row.kind} | ${row.count} | ID ${row.resource_id} | ${resourceUrl(row.resource_id)}`);
   lines.push('', '更新提醒（有效计入次数，非邮件发送数）：');
   for (const game of PUBLIC_GAME_SLUGS) {
     const row = s.reminders?.find(x => x.game === game);

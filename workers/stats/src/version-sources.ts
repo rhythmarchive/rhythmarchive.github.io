@@ -3,7 +3,7 @@ import type { NotificationFetch } from './core.js';
 
 export type Source = {
   id: string; game: PublicGameSlug; channel: string;
-  adapter: 'apple' | 'taptap' | 'steam' | 'mirror616' | 'google' | 'milthm' | 'hykb';
+  adapter: 'apple' | 'taptap' | 'steam' | 'mirror616' | 'milthm' | 'hykb';
   url: string; identity: string; authority: 'official' | 'publisher' | 'mirror';
   variant?: string;
 };
@@ -22,10 +22,6 @@ const apple = (game: PublicGameSlug, id: number, bundle: string, country = 'us')
 const tap = (game: PublicGameSlug, id: number, bundle: string): Source => ({
   id: `${game}:taptap`, game, channel: 'android-taptap-cn', adapter: 'taptap',
   url: `https://www.taptap.cn/app/${id}`, identity: bundle, authority: 'publisher',
-});
-const play = (game: PublicGameSlug, bundle: string): Source => ({
-  id: `${game}:google`, game, channel: 'android-google-us', adapter: 'google',
-  url: `https://play.google.com/store/apps/details?id=${bundle}&hl=en_US&gl=US`, identity: bundle, authority: 'official',
 });
 const mirror = (game: PublicGameSlug, bundle: string, variant = 'google-play', channel = 'android-google-us'): Source => ({
   id: `${game}:616:${variant}`, game, channel, adapter: 'mirror616',
@@ -55,9 +51,6 @@ export const VERSION_SOURCES: readonly Source[] = [
     url: 'https://www.3839.com/a/112696.htm', identity: 'Phigros' },
   { id: 'paradigm-reboot:hykb', game: 'paradigm-reboot', channel: 'android-hykb-cn', adapter: 'hykb', authority: 'publisher',
     url: 'https://www.3839.com/a/128686.htm', identity: '范式：起源' },
-  play('arcaea', 'moe.low.arc'), play('berrymelody', 'com.SkyWayStudio.BerryMelody'),
-  play('dynamix', 'com.c4cat.dynamix'), play('milthm', 'com.morizero.milthm'),
-  play('paradigm-reboot', 'com.tunergames.paradigm'), play('rizline', 'com.PigeonGames.Rizline'),
   mirror('arcaea', 'moe.low.arc'), mirror('arcaea', 'moe.low.arc', 'arcaea-c', 'android-direct-c'),
   mirror('berrymelody', 'com.SkyWayStudio.BerryMelody'), mirror('dynamix', 'com.c4cat.dynamix'),
   mirror('milthm', 'com.morizero.milthm'), mirror('paradigm-reboot', 'com.tunergames.paradigm'),
@@ -65,12 +58,13 @@ export const VERSION_SOURCES: readonly Source[] = [
   mirror('rizline', 'com.leiting.RizlineHk.android', 'google-play-intl'),
   mirror('rizline', 'com.leiting.RizlineHk.android', 'google-play-hk', 'android-google-hk'),
   { id: 'infalsus:steam', game: 'infalsus', channel: 'steam', adapter: 'steam', authority: 'official', identity: '3971950',
-    url: 'https://api.steampowered.com/ISteamNews/GetNewsForApp/v2/?appid=3971950&count=10&maxlength=6000&feeds=steam_community_announcements' },
+    url: 'https://store.steampowered.com/feeds/news/app/3971950/?cc=us&l=english' },
   { id: 'milthm:website', game: 'milthm', channel: 'publisher-notes', adapter: 'milthm', authority: 'official', identity: 'Milthm',
     url: 'https://milthm.com/wiki/hans/changelog/' },
 ];
 
 export const UNSUPPORTED_SOURCES = [
+  { source: 'Google Play Arcaea / Berry Melody / Dynamix / Milthm / 范式国际 / Rizline国际', reason: '公开应用页尚未验证可用版本字段，暂停每日抓取；官方版本不可核实，616镜像不能替代官方确认。' },
   { source: '好游快爆其他游戏', reason: '已核实 Phigros 和范式：起源的公开版本日志，其他游戏尚未验证详情页身份。' },
   { source: 'TapTap 范式：起源', reason: '公开页未提供可校验的 APK 版本记录，暂不接入。' },
   { source: 'TapTap 韵律源点', reason: '国内发行与国际 Arcaea 不同，未验证当前正式版本，暂不接入。' },
@@ -92,6 +86,19 @@ function date(value: unknown): string | null {
 function version(value: unknown): string {
   if (typeof value !== 'string' || !/^\d[\w.+-]*(?:\.[\w+-]+)*$/.test(value) || value.length > 80) throw new Error('version_missing');
   return value;
+}
+
+// Steam's official RSS has escaped HTML descriptions and CDATA links. Do not
+// execute HTML or resolve XML entities/DTDs from third-party content.
+function rssValue(xml: string, tag: string): string {
+  const raw = xml.match(new RegExp(`<${tag}(?:\\s[^>]*)?>([\\s\\S]*?)<\\/${tag}>`))?.[1]?.trim() ?? '';
+  if (raw.startsWith('<![CDATA[') && raw.endsWith(']]>')) return raw.slice(9, -3);
+  return raw.replace(/&(amp|lt|gt|quot|apos|#\d+|#x[0-9a-f]+);/gi, (entity, key: string) => {
+    const named: Record<string, string> = {amp:'&',lt:'<',gt:'>',quot:'"',apos:"'"};
+    if (!key.startsWith('#')) return named[key.toLowerCase()] ?? entity;
+    const n = key[1]?.toLowerCase() === 'x' ? parseInt(key.slice(2),16) : Number(key.slice(1));
+    return n > 0 && n <= 0x10ffff && !(n >= 0xd800 && n <= 0xdfff) ? String.fromCodePoint(n) : '';
+  });
 }
 
 export function parseSource(source: Source, body: string, now: number): Observation {
@@ -127,16 +134,20 @@ export function parseSource(source: Source, body: string, now: number): Observat
     out.dateMeaning = 'mirror-indexed'; out.url = 'https://616.sb/';
     out.notes = '第三方镜像收录，未提供更新日志；收录时间不是官方发布日期。';
   } else if (source.adapter === 'steam') {
-    const news = JSON.parse(body).appnews;
-    if (String(news?.appid) !== source.identity || !Array.isArray(news.newsitems)) throw new Error('app_identity_missing');
-    const item = news.newsitems.filter((x: {feedname: string; is_external_url: boolean}) =>
-      x.feedname === 'steam_community_announcements' && x.is_external_url === false)
-      .sort((a: {date: number}, b: {date: number}) => b.date - a.date)[0];
-    if (!item || !/^\d+$/.test(String(item.gid))) throw new Error('official_news_missing');
-    out.releaseId = String(item.gid); out.publishedAt = date(item.date); out.dateMeaning = 'announcement';
-    out.version = String(item.title).match(/(?:v(?:ersion)?\s*|版本\s*)(\d+\.\d+(?:\.[\w+-]+)*)/i)?.[1] ?? null;
-    out.notes = plainText(`${item.title}\n${item.contents}`);
-    if (/^https:\/\/(?:store\.steampowered\.com|steamcommunity\.com)\//.test(item.url)) out.url = item.url;
+    const appUrl = `https://store.steampowered.com/news/app/${source.identity}/`;
+    if (/<!DOCTYPE|<!ENTITY/i.test(body) || rssValue(body.split('<item>')[0]!, 'link') !== appUrl)
+      throw new Error('app_identity_missing');
+    const items = [...body.matchAll(/<item>([\s\S]*?)<\/item>/g)].map(match => {
+      const xml = match[1]!, url = rssValue(xml,'link'), publishedAt = date(rssValue(xml,'pubDate'));
+      const id = url.startsWith(`${appUrl}view/`) ? url.slice(`${appUrl}view/`.length) : '';
+      return {id, url, publishedAt, title:rssValue(xml,'title'), contents:rssValue(xml,'description')};
+    }).filter(item => /^\d+$/.test(item.id) && item.publishedAt && item.title)
+      .sort((a,b) => Date.parse(b.publishedAt!) - Date.parse(a.publishedAt!));
+    const item = items[0];
+    if (!item) throw new Error('official_news_missing');
+    out.releaseId = item.id; out.publishedAt = item.publishedAt; out.dateMeaning = 'announcement';
+    out.version = item.title.match(/(?:v(?:ersion)?\s*|版本\s*)(\d+\.\d+(?:\.[\w+-]+)*)/i)?.[1] ?? null;
+    out.notes = plainText(`${item.title}\n${item.contents}`); out.url = item.url;
     // A news GID is an announcement identity, never a fabricated Steam build/version.
   } else if (source.adapter === 'hykb') {
     const title = plainText(body.match(/<title>([\s\S]*?)<\/title>/)?.[1]);
@@ -149,16 +160,6 @@ export function parseSource(source: Source, body: string, now: number): Observat
     const m = body.match(/<h2\b[^>]*>\s*Milthm v([\d.]+)[\s\S]*?<\/h2>([\s\S]*?)(?=<h2\b|$)/);
     if (!m) throw new Error('page_structure_changed');
     out.version = version(m[1]); out.notes = plainText(m[2]);
-  } else {
-    // Google does not provide a public unauthenticated version API. Only accept an explicit
-    // SoftwareApplication softwareVersion, never a random number in its private page arrays.
-    const apps = [...body.matchAll(/<script\b[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)]
-      .map(m => JSON.parse(m[1]!));
-    const app = apps.find(x => x['@type'] === 'SoftwareApplication' &&
-      typeof x.url === 'string' && new URL(x.url, source.url).searchParams.get('id') === source.identity);
-    if (!app) throw new Error('public_version_unavailable');
-    out.version = version(app.softwareVersion); out.publishedAt = date(app.dateModified);
-    out.dateMeaning = out.publishedAt ? 'release' : 'not-provided'; out.notes = plainText(app.releaseNotes);
   }
   return out;
 }
@@ -176,8 +177,19 @@ async function boundedBody(response: Response): Promise<string> {
 }
 
 export async function queryVersions(now: number, fetchImpl: NotificationFetch = fetch, sources = VERSION_SOURCES): Promise<Observation[]> {
-  // Shared 616 response: one request for all variants. No retries or historical object requests.
-  const urls = [...new Set(sources.map(x => x.url))]; const bodies = new Map<string, string | Error>();
+  // Apple documents comma-separated Lookup IDs. Share one request per country,
+  // retaining a separate identity-checked observation for each app/channel.
+  const requestUrls = new Map(sources.map(source => {
+    if (source.adapter !== 'apple') return [source.url,source.url];
+    const url = new URL(source.url);
+    const peers = sources.filter(peer => peer.adapter === 'apple' && new URL(peer.url).origin === url.origin &&
+      new URL(peer.url).searchParams.get('country') === url.searchParams.get('country'));
+    url.searchParams.set('id',[...new Set(peers.map(peer => new URL(peer.url).searchParams.get('id')!))].join(','));
+    url.searchParams.set('entity','software');
+    return [source.url,url.href];
+  }));
+  // Shared Apple/616 responses. No retries or historical object requests.
+  const urls = [...new Set(requestUrls.values())]; const bodies = new Map<string, string | Error>();
   let next = 0;
   await Promise.all(Array.from({ length: Math.min(4, urls.length) }, async () => {
     while (next < urls.length) {
@@ -191,7 +203,7 @@ export async function queryVersions(now: number, fetchImpl: NotificationFetch = 
     }
   }));
   return sources.map(source => {
-    try { const body = bodies.get(source.url); if (body instanceof Error) throw body;
+    try { const body = bodies.get(requestUrls.get(source.url)!); if (body instanceof Error) throw body;
       if (!body) throw new Error('empty_body'); return parseSource(source, body, now);
     } catch (error) {
       const message = error instanceof Error ? error.message : '';

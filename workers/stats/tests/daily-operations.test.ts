@@ -44,6 +44,11 @@ class Database implements D1Database {
 const now = Date.parse('2026-10-27T00:30:00Z');
 const day = '2026-10-26';
 const source = VERSION_SOURCES.find(x => x.id === 'phigros:apple:us')!;
+const isAppleLookupFor = (input: RequestInfo | URL, app: Source): boolean => {
+  const url = new URL(String(input)), expected = new URL(app.url);
+  return url.origin === expected.origin && url.searchParams.get('country') === expected.searchParams.get('country') &&
+    Boolean(url.searchParams.get('id')?.split(',').includes(expected.searchParams.get('id')!));
+};
 const observation = (v = '4.0.1'): Observation => parseSource(source, JSON.stringify({results: [{bundleId: source.identity,
   version: v, currentVersionReleaseDate: '2026-10-21T00:00:00Z', releaseNotes: '新增两首歌曲', trackViewUrl: 'https://apps.apple.com/us/app/id1454809109'}]}), now);
 const siteGames = PUBLIC_GAME_SLUGS.map(slug => ({slug, displayName: slug, contentVersion: '1.0.0', count: 20,
@@ -62,7 +67,7 @@ test('strict platform identity, mirror date semantics, and announcements without
   const value = parseSource(mirror, JSON.stringify([{packageName: mirror.identity, variants: [{slug:'arcaea-c', release:{version:'7.0.260c',publishedAt:'2026-10-12T00:00:00Z'}}]}]), now);
   assert.equal(value.dateMeaning, 'mirror-indexed'); assert.equal(verification(value, [value]).status, 'unverified');
   const steam = VERSION_SOURCES.find(x => x.adapter === 'steam')!;
-  const news = parseSource(steam, JSON.stringify({appnews:{appid:3971950,newsitems:[{gid:'123',date:123,feedname:'steam_community_announcements',is_external_url:false,title:'New song pack',contents:'New tracks',url:'https://steamcommunity.com/announcements/123'}]}}), now);
+  const news = parseSource(steam, '<rss><channel><link><![CDATA[https://store.steampowered.com/news/app/3971950/]]></link><item><title>New song pack</title><description>New tracks</description><link><![CDATA[https://store.steampowered.com/news/app/3971950/view/123]]></link><pubDate>Thu, 22 Oct 2026 08:26:59 +0000</pubDate></item></channel></rss>', now);
   assert.equal(news.releaseId, '123'); assert.equal(news.version, null); assert.equal(news.dateMeaning, 'announcement');
 });
 test('TapTap reference table and verified public Hykb markup parse without executing scripts', () => {
@@ -73,6 +78,66 @@ test('TapTap reference table and verified public Hykb markup parse without execu
   const hykb = VERSION_SOURCES.find(x => x.id === 'phigros:hykb')!;
   const value = parseSource(hykb, '<title>Phigros_最新消息</title><div class="game-log js_text"><div class="sp-head">版本  4.0.1.2 2026-10-21</div>新增曲目<br/>修复</div>', now);
   assert.equal(value.version,'4.0.1.2'); assert.equal(value.publishedAt,'2026-10-20T16:00:00.000Z');
+});
+
+test('Steam official RSS checks app and announcement links, decodes HTML and selects newest by date', () => {
+  const steam = VERSION_SOURCES.find(x => x.adapter === 'steam')!;
+  const item = (id: string, title: string, date: string) => `<item><title>${title}</title><description>&lt;p&gt;Tracks &amp;amp; fixes&lt;/p&gt;</description><link><![CDATA[https://store.steampowered.com/news/app/3971950/view/${id}]]></link><pubDate>${date}</pubDate></item>`;
+  const channel = '<rss><channel><link><![CDATA[https://store.steampowered.com/news/app/3971950/]]></link>';
+  const feed = channel + item('678513130127491163','In Falsus v1.0.7 Patch Notes','Thu, 22 Oct 2026 07:23:07 +0000') +
+    item('672882996184877724','CHUNITHM Collaboration &#45; New Songs!','Thu, 22 Oct 2026 08:26:59 +0000') + '</channel></rss>';
+  const news = parseSource(steam,feed,now);
+  assert.equal(news.releaseId,'672882996184877724'); assert.equal(news.version,null);
+  assert.equal(news.publishedAt,'2026-10-22T08:26:59.000Z'); assert.equal(news.dateMeaning,'announcement');
+  assert.match(news.notes,/CHUNITHM Collaboration - New Songs! Tracks & fixes/); assert.doesNotMatch(news.notes,/<p>/);
+  const patch = parseSource(steam,channel + item('678513130127491163','In Falsus v1.0.7 Patch Notes','Thu, 22 Oct 2026 07:23:07 +0000') + '</channel></rss>',now);
+  assert.equal(patch.version,'1.0.7'); assert.equal(patch.dateMeaning,'announcement');
+  assert.throws(()=>parseSource(steam,feed.replaceAll('/app/3971950/','/app/123/'),now),/app_identity_missing/);
+  assert.throws(()=>parseSource(steam,feed.replaceAll('/view/','/view/../'),now),/official_news_missing/);
+  assert.throws(()=>parseSource(steam,channel + '</channel></rss>',now),/official_news_missing/);
+  assert.throws(()=>parseSource(steam,'<!DOCTYPE rss>' + feed,now),/app_identity_missing/);
+});
+
+test('Apple Lookup shares one bounded request per country and never maps another app as success', async () => {
+  const apps = VERSION_SOURCES.filter(x => x.adapter === 'apple'), urls: string[] = [];
+  const observations = await queryVersions(now,async input => {
+    const url = new URL(String(input)); urls.push(url.href);
+    assert.equal(url.searchParams.get('entity'),'software');
+    const group = apps.filter(app => new URL(app.url).searchParams.get('country') === url.searchParams.get('country'));
+    assert.equal(url.searchParams.get('id')?.split(',').length,group.length);
+    return Response.json({results:group.filter(app => app.id !== 'phigros:apple:us').map(app => ({bundleId:app.identity,version:'1.2.3'}))});
+  },apps);
+  assert.equal(urls.length,2); assert.equal(observations.length,10);
+  assert.equal(observations.find(x => x.sourceId === 'phigros:apple:us')?.error,'app_identity_missing');
+  assert.equal(observations.filter(x => x.status === 'ok').length,9);
+  assert(!VERSION_SOURCES.some(x => x.id.endsWith(':google')));
+});
+
+test('download anomalies resolve outside rankings, share shards, and retain IDs and links when metadata fails', async () => {
+  const db = new Database(), start = Date.parse('2026-10-26T00:00:00+08:00');
+  const ranked = '019f0000-0000-7000-8000-000000000001';
+  const failed = '019f0000-0000-7000-8000-000000000081';
+  const missing = '019f0000-0000-7000-8000-000000000002';
+  db.sqlite.prepare('INSERT INTO resource_daily_stats VALUES(?,?,1,0,0)').run(ranked,day);
+  for (const id of [failed,missing]) db.sqlite.prepare("INSERT INTO resource_reports(id,resource_id,kind,created_at,due_at,expires_at) VALUES(?,?,'network',?,0,?)").run(id,id,start,now+86_400_000);
+  const urls: string[] = [];
+  const upstream = async (input: RequestInfo | URL) => {
+    const url = String(input); urls.push(url);
+    if (url.endsWith('/01.json')) return Response.json([
+      {resourceId:ranked,displayTitle:'Ranked',game:'Phigros',categoryLabel:'曲绘'},
+      {resourceId:failed,displayTitle:'Failed resource',game:'Phigros',categoryLabel:'剧情 CG'},
+    ]);
+    if (url.endsWith('/02.json')) return new Response('',{status:503});
+    return website();
+  };
+  const report = await collectReport(db,day,now,upstream), text = renderReport(report);
+  assert.equal(urls.filter(url => url.includes('/ranking/')).length,2);
+  assert.equal(report.downloadFailures?.find(row => row.resource_id === failed)?.title,'Failed resource');
+  assert.match(text,/Failed resource \| Phigros \| 剧情 CG \| network/);
+  assert(text.includes(`ID ${failed} | https://rhythmarchive.github.io/r/${failed}/`));
+  assert(text.includes(`ID ${missing} | https://rhythmarchive.github.io/r/${missing}/`));
+  assert(report.issues.some(issue => issue.includes('资源名称分片 02 查询失败')));
+  assert(!urls.some(url => /catalog|search/i.test(url)));
 });
 test('query isolation, shared URL only fetched once, oversized and malformed bodies fail closed', async () => {
   const sources = VERSION_SOURCES.filter(x => x.adapter === 'mirror616'); let calls = 0;
@@ -95,7 +160,7 @@ test('cross verification never merges channels or accepts mirror alone; detects 
 test('first success baseline, next day change, failure preserves baseline, repeated day is no-op', async () => {
   const db = new Database(), env = envFor(db); let version = '4.0.1', failing = false, calls = 0;
   const upstream = async (url: RequestInfo | URL) => {
-    calls++; if (failing || String(url) !== source.url) return new Response('',{status:503});
+    calls++; if (failing || !isAppleLookupFor(url, source)) return new Response('',{status:503});
     return Response.json({results:[{bundleId:source.identity,version}]});
   };
   assert.equal(await runVersionMonitor(env,now,upstream),'complete');
@@ -211,7 +276,7 @@ test('all failed sources are not a valid baseline and legacy all-failure complet
   assert.equal(db.row('SELECT error FROM version_monitor_runs').error,'all_sources_failed');
   assert.equal(await runVersionMonitor(env,now+3_600_000,bad),'already_claimed');
   db.sqlite.exec(`UPDATE version_monitor_runs SET status='complete',lease_until=0,error=NULL`);
-  const good=async(url: RequestInfo | URL)=>String(url)===source.url?Response.json({results:[{bundleId:source.identity,version:'4.0.1'}]}):bad();
+  const good=async(url: RequestInfo | URL)=>isAppleLookupFor(url, source)?Response.json({results:[{bundleId:source.identity,version:'4.0.1'}]}):bad();
   assert.equal(await runVersionMonitor(env,now+1000,good),'complete');
   assert.equal(db.row('SELECT COUNT(*) AS n FROM version_source_state').n,1);
   assert.equal(db.row('SELECT COUNT(*) AS n FROM version_changes').n,0);
