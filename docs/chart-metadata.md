@@ -16,6 +16,12 @@ Catalog 的 `metadata.charts` 是详情页和筛选的共同来源。继续使�
 - 内容检查将 `chartDataVersion` 与既有 Browse manifest 的 `sourceVersion` 对齐；没有正式 Browse 的游戏采用 Updates 的最新版本（含 baseline）。升级版本后，旧标记会使 `content:check` / `check:fast` 失败。完成上述复核或移除未确认定数后才能推进标记，不能只改版本字符串消除失败。
 - 定数变更写入 Catalog 后，详情、范围边界和直方图从同一快照生成。按现有流程刷新 Browse 的 Catalog 哈希绑定和公共投影；无需新增资源对象、ROS 上传或运行时请求。
 
+## 2026-11-13 Paradigm: Reboot 4.13 复核
+
+4.13（D176）新增《Re：Endless Dreams》五首曲目。按歌曲标题与曲师匹配当前维护资料表，逐一核对 436 首旧曲的 1,331 个已采用定数，均未变化；Indelible Scar MSV 的既有等级冲突尚未解决，定数继续留空。新增五首的 15 张谱面采用同表定数、物量与谱师，BPM 和 offset 来自本版原生谱面。显示等级、时长和曲风未获可靠来源确认，继续留空，逐曲缺项与待复查来源保存在私有 provenance。
+
+原图、经所有者确认的 Real-ESRGAN x4 候选、正式 JPEG、预览、原生谱面以及 D176 清单和维护表快照保存在私有 Workspace 的 `input/source/20261113-paradigm-413`，用于下一版比对及元数据补齐。`chartDataVersion` 为 `4.13`，旧曲加入版本保持原值。纯元数据补充沿用本次更新 ID 与时间。
+
 ## 2026-10-31 Arcaea 时长补齐
 
 中文维基当前模板已补入七首 7.1 新曲时长：Voyage to the Future 02:49、Ran 02:46、Ether Drive 02:22、Schra Go (Uchina Time) 02:32、Fatality 02:32、Parallax 02:40、Tr!cK Ma?tEr 02:32。逐项补入现有 length 字段并保留来源链接。五首画师仍标为未显示，继续留空等待可核实署名，跟进清单仅保留这五处。定数、物量、原图、超分与更新记录均保持原值。
