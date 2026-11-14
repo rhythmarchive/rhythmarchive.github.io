@@ -16,6 +16,10 @@ Catalog 的 `metadata.charts` 是详情页和筛选的共同来源。继续使�
 - 内容检查将 `chartDataVersion` 与既有 Browse manifest 的 `sourceVersion` 对齐；没有正式 Browse 的游戏采用 Updates 的最新版本（含 baseline）。升级版本后，旧标记会使 `content:check` / `check:fast` 失败。完成上述复核或移除未确认定数后才能推进标记，不能只改版本字符串消除失败。
 - 定数变更写入 Catalog 后，详情、范围边界和直方图从同一快照生成。按现有流程刷新 Browse 的 Catalog 哈希绑定和公共投影；无需新增资源对象、ROS 上传或运行时请求。
 
+## 2026-11-14 Paradigm: Reboot 新曲资料补齐
+
+现行维护资料表已补入 4.13 五首新曲的曲风与时长：GRG REMIX 为 HARD RENAISSANCE／2:53，LucaProject Remix 为 ETHNIC WALTZ／2:55，ぴれんどらー Re：mix 为 FULLFLAVOR／3:16，REDALiCE & aran Remix 为 HARDCORE／2:26，Re：Beyond the End of a Dream 为 EUROBEAT／3:07。按标题与 Remix 曲师逐首匹配，来源快照及哈希保留于原 provenance 的 `20261114-source.xlsx`，公开字段记录来源。显示等级尚未获得可核实字段，继续留空；不从定数推导。此次只补元数据，沿用 4.13 更新 ID 与原时间，曲绘和既有谱面值不变。
+
 ## 2026-11-13 Paradigm: Reboot 4.13 复核
 
 4.13（D176）新增《Re：Endless Dreams》五首曲目。按歌曲标题与曲师匹配当前维护资料表，逐一核对 436 首旧曲的 1,331 个已采用定数，均未变化；Indelible Scar MSV 的既有等级冲突尚未解决，定数继续留空。新增五首的 15 张谱面采用同表定数、物量与谱师，BPM 和 offset 来自本版原生谱面。显示等级、时长和曲风未获可靠来源确认，继续留空，逐曲缺项与待复查来源保存在私有 provenance。

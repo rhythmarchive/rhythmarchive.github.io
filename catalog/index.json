@@ -1,7 +1,7 @@
 {
   "catalogSchemaVersion": "1.0",
   "catalogId": "019fefd6-9c49-7ca0-a760-adc76811a511",
-  "generatedAt": "2026-11-13T16:59:00+08:00",
+  "generatedAt": "2026-11-14T09:24:06.000Z",
   "resources": [
     {
       "catalogSchemaVersion": "1.0",
@@ -524172,7 +524172,13 @@
               "offset": "0"
             }
           }
-        ]
+        ],
+        "genre": "HARD RENAISSANCE",
+        "length": "2:53",
+        "metadataProvenance": {
+          "genre": "https://docs.google.com/spreadsheets/d/17cZ63khqX81K0bQ98qSJpwWH_0aTgy5hzjrvp-CRemM/edit",
+          "length": "https://docs.google.com/spreadsheets/d/17cZ63khqX81K0bQ98qSJpwWH_0aTgy5hzjrvp-CRemM/edit"
+        }
       },
       "relations": [],
       "provenance": [
@@ -524190,12 +524196,27 @@
               "confidence": "high"
             }
           ]
+        },
+        {
+          "sourceType": "paradigm_apk",
+          "sourceSnapshot": "paradigm:4.13:D176:metadata-20261114",
+          "gameVersion": "4.13",
+          "sourceRelativePath": "input/source/20261113-paradigm-413/20261114-source.xlsx",
+          "sourceFilename": "20261114-source.xlsx",
+          "sourceSha256": "741547566b929b36509b06b76babe5339cad23f7abeaf49b7d5791e87fbf529a",
+          "evidence": [
+            {
+              "kind": "metadata",
+              "detail": "Community genre and stated length from https://docs.google.com/spreadsheets/d/17cZ63khqX81K0bQ98qSJpwWH_0aTgy5hzjrvp-CRemM/edit; title and remix composer matched. No inference from chart constants or audio.",
+              "confidence": "high"
+            }
+          ]
         }
       ],
       "lifecycle": {
         "status": "published",
         "createdAt": "2026-11-13T16:59:00+08:00",
-        "updatedAt": "2026-11-13T16:59:00+08:00",
+        "updatedAt": "2026-11-14T09:24:06.000Z",
         "publishedAt": "2026-11-13T16:59:00+08:00"
       }
     },
@@ -524290,7 +524311,13 @@
               "offset": "0"
             }
           }
-        ]
+        ],
+        "genre": "ETHNIC WALTZ",
+        "length": "2:55",
+        "metadataProvenance": {
+          "genre": "https://docs.google.com/spreadsheets/d/17cZ63khqX81K0bQ98qSJpwWH_0aTgy5hzjrvp-CRemM/edit",
+          "length": "https://docs.google.com/spreadsheets/d/17cZ63khqX81K0bQ98qSJpwWH_0aTgy5hzjrvp-CRemM/edit"
+        }
       },
       "relations": [],
       "provenance": [
@@ -524308,12 +524335,27 @@
               "confidence": "high"
             }
           ]
+        },
+        {
+          "sourceType": "paradigm_apk",
+          "sourceSnapshot": "paradigm:4.13:D176:metadata-20261114",
+          "gameVersion": "4.13",
+          "sourceRelativePath": "input/source/20261113-paradigm-413/20261114-source.xlsx",
+          "sourceFilename": "20261114-source.xlsx",
+          "sourceSha256": "741547566b929b36509b06b76babe5339cad23f7abeaf49b7d5791e87fbf529a",
+          "evidence": [
+            {
+              "kind": "metadata",
+              "detail": "Community genre and stated length from https://docs.google.com/spreadsheets/d/17cZ63khqX81K0bQ98qSJpwWH_0aTgy5hzjrvp-CRemM/edit; title and remix composer matched. No inference from chart constants or audio.",
+              "confidence": "high"
+            }
+          ]
         }
       ],
       "lifecycle": {
         "status": "published",
         "createdAt": "2026-11-13T16:59:00+08:00",
-        "updatedAt": "2026-11-13T16:59:00+08:00",
+        "updatedAt": "2026-11-14T09:24:06.000Z",
         "publishedAt": "2026-11-13T16:59:00+08:00"
       }
     },
@@ -524408,7 +524450,13 @@
               "offset": "0"
             }
           }
-        ]
+        ],
+        "genre": "FULLFLAVOR",
+        "length": "3:16",
+        "metadataProvenance": {
+          "genre": "https://docs.google.com/spreadsheets/d/17cZ63khqX81K0bQ98qSJpwWH_0aTgy5hzjrvp-CRemM/edit",
+          "length": "https://docs.google.com/spreadsheets/d/17cZ63khqX81K0bQ98qSJpwWH_0aTgy5hzjrvp-CRemM/edit"
+        }
       },
       "relations": [],
       "provenance": [
@@ -524426,12 +524474,27 @@
               "confidence": "high"
             }
           ]
+        },
+        {
+          "sourceType": "paradigm_apk",
+          "sourceSnapshot": "paradigm:4.13:D176:metadata-20261114",
+          "gameVersion": "4.13",
+          "sourceRelativePath": "input/source/20261113-paradigm-413/20261114-source.xlsx",
+          "sourceFilename": "20261114-source.xlsx",
+          "sourceSha256": "741547566b929b36509b06b76babe5339cad23f7abeaf49b7d5791e87fbf529a",
+          "evidence": [
+            {
+              "kind": "metadata",
+              "detail": "Community genre and stated length from https://docs.google.com/spreadsheets/d/17cZ63khqX81K0bQ98qSJpwWH_0aTgy5hzjrvp-CRemM/edit; title and remix composer matched. No inference from chart constants or audio.",
+              "confidence": "high"
+            }
+          ]
         }
       ],
       "lifecycle": {
         "status": "published",
         "createdAt": "2026-11-13T16:59:00+08:00",
-        "updatedAt": "2026-11-13T16:59:00+08:00",
+        "updatedAt": "2026-11-14T09:24:06.000Z",
         "publishedAt": "2026-11-13T16:59:00+08:00"
       }
     },
@@ -524526,7 +524589,13 @@
               "offset": "0"
             }
           }
-        ]
+        ],
+        "genre": "HARDCORE",
+        "length": "2:26",
+        "metadataProvenance": {
+          "genre": "https://docs.google.com/spreadsheets/d/17cZ63khqX81K0bQ98qSJpwWH_0aTgy5hzjrvp-CRemM/edit",
+          "length": "https://docs.google.com/spreadsheets/d/17cZ63khqX81K0bQ98qSJpwWH_0aTgy5hzjrvp-CRemM/edit"
+        }
       },
       "relations": [],
       "provenance": [
@@ -524544,12 +524613,27 @@
               "confidence": "high"
             }
           ]
+        },
+        {
+          "sourceType": "paradigm_apk",
+          "sourceSnapshot": "paradigm:4.13:D176:metadata-20261114",
+          "gameVersion": "4.13",
+          "sourceRelativePath": "input/source/20261113-paradigm-413/20261114-source.xlsx",
+          "sourceFilename": "20261114-source.xlsx",
+          "sourceSha256": "741547566b929b36509b06b76babe5339cad23f7abeaf49b7d5791e87fbf529a",
+          "evidence": [
+            {
+              "kind": "metadata",
+              "detail": "Community genre and stated length from https://docs.google.com/spreadsheets/d/17cZ63khqX81K0bQ98qSJpwWH_0aTgy5hzjrvp-CRemM/edit; title and remix composer matched. No inference from chart constants or audio.",
+              "confidence": "high"
+            }
+          ]
         }
       ],
       "lifecycle": {
         "status": "published",
         "createdAt": "2026-11-13T16:59:00+08:00",
-        "updatedAt": "2026-11-13T16:59:00+08:00",
+        "updatedAt": "2026-11-14T09:24:06.000Z",
         "publishedAt": "2026-11-13T16:59:00+08:00"
       }
     },
@@ -524644,7 +524728,13 @@
               "offset": "0"
             }
           }
-        ]
+        ],
+        "genre": "EUROBEAT",
+        "length": "3:07",
+        "metadataProvenance": {
+          "genre": "https://docs.google.com/spreadsheets/d/17cZ63khqX81K0bQ98qSJpwWH_0aTgy5hzjrvp-CRemM/edit",
+          "length": "https://docs.google.com/spreadsheets/d/17cZ63khqX81K0bQ98qSJpwWH_0aTgy5hzjrvp-CRemM/edit"
+        }
       },
       "relations": [],
       "provenance": [
@@ -524662,12 +524752,27 @@
               "confidence": "high"
             }
           ]
+        },
+        {
+          "sourceType": "paradigm_apk",
+          "sourceSnapshot": "paradigm:4.13:D176:metadata-20261114",
+          "gameVersion": "4.13",
+          "sourceRelativePath": "input/source/20261113-paradigm-413/20261114-source.xlsx",
+          "sourceFilename": "20261114-source.xlsx",
+          "sourceSha256": "741547566b929b36509b06b76babe5339cad23f7abeaf49b7d5791e87fbf529a",
+          "evidence": [
+            {
+              "kind": "metadata",
+              "detail": "Community genre and stated length from https://docs.google.com/spreadsheets/d/17cZ63khqX81K0bQ98qSJpwWH_0aTgy5hzjrvp-CRemM/edit; title and remix composer matched. No inference from chart constants or audio.",
+              "confidence": "high"
+            }
+          ]
         }
       ],
       "lifecycle": {
         "status": "published",
         "createdAt": "2026-11-13T16:59:00+08:00",
-        "updatedAt": "2026-11-13T16:59:00+08:00",
+        "updatedAt": "2026-11-14T09:24:06.000Z",
         "publishedAt": "2026-11-13T16:59:00+08:00"
       }
     }
