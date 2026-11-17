@@ -1,3 +1,4 @@
+import { arcaeaR2ObjectKey, validArcaeaR2Url } from "./apk-download.js";
 import { createHash } from "node:crypto";
 import { createReadStream, createWriteStream } from "node:fs";
 import { mkdir, mkdtemp, open, rename, rm, stat } from "node:fs/promises";
@@ -6,6 +7,7 @@ import { Readable, Transform } from "node:stream";
 import { pipeline } from "node:stream/promises";
 import { ReadableStream } from "node:stream/web";
 import {
+  publicObjectUrl,
   StorageError,
   type StorageClient,
 } from "./storage.js";
@@ -24,7 +26,9 @@ export const ARCAEA_OFFICIAL_CDN_HOST = "arcaea-static.lowiro-cdn.net";
 export const ARCAEA_APK_CONTENT_TYPE = "application/vnd.android.package-archive";
 export const ARCAEA_APK_LATEST_KEY = "apk/arcaea/latest.json";
 export const ARCAEA_APK_MIN_SIZE_BYTES = 1024 * 1024;
-export const ARCAEA_APK_MAX_SIZE_BYTES = 2 * 1024 * 1024 * 1024;
+export const ARCAEA_GITHUB_MAX_SIZE_BYTES = 2 * 1024 ** 3;
+// Independent download/disk ceiling; lightweight validation supports ZIP32 APKs.
+export const ARCAEA_APK_MAX_SIZE_BYTES = 4 * 1024 ** 3 - 1;
 export const ARCAEA_APK_MAX_REDIRECTS = 3;
 export const ARCAEA_LATEST_CACHE_CONTROL = "public, max-age=300";
 export const ARCAEA_APK_GITHUB_REPOSITORY = ARCAEA_GITHUB_REPOSITORY;
@@ -48,14 +52,15 @@ export type ArcaeaApkManifestEntry = {
   fileSize: number;
   sha256: string;
   downloads: {
-    github: string;
+    github: string | null;
+    r2?: string;
     official: string | null;
   };
   publishedAt: string;
 };
 
 export type ArcaeaApkManifest = {
-  schemaVersion: 2;
+  schemaVersion: 2 | 3;
   game: "arcaea";
   generatedAt: string;
   latest: ArcaeaApkManifestEntry;
@@ -218,7 +223,7 @@ async function bodyToText(body: unknown): Promise<string> {
 async function fetchOfficialArcaeaApk(discovery: ArcaeaDiscovery, fetchImpl: FetchLike): Promise<Response> {
   let currentUrl = assertOfficialArcaeaApkUrl(discovery.sourceUrl);
   for (let redirectCount = 0; redirectCount <= ARCAEA_APK_MAX_REDIRECTS; redirectCount += 1) {
-    const response = await fetchImpl(currentUrl, { headers: { Accept: ARCAEA_APK_CONTENT_TYPE }, redirect: "manual", signal: AbortSignal.timeout(30_000) });
+    const response = await fetchImpl(currentUrl, { headers: { Accept: ARCAEA_APK_CONTENT_TYPE }, redirect: "manual", signal: AbortSignal.timeout(45 * 60_000) });
     if (response.status >= 300 && response.status < 400) {
       if (redirectCount === ARCAEA_APK_MAX_REDIRECTS) throw new Error("Official Arcaea APK redirect chain is too long.");
       const location = response.headers.get("Location");
@@ -231,6 +236,8 @@ async function fetchOfficialArcaeaApk(discovery: ArcaeaDiscovery, fetchImpl: Fet
   throw new Error("Official Arcaea APK redirect chain failed.");
 }
 
+class ApkSizeLimitError extends Error {}
+
 function createSizeLimitTransform(maxBytes: number): Transform {
   let bytes = 0;
   return new Transform({
@@ -238,7 +245,7 @@ function createSizeLimitTransform(maxBytes: number): Transform {
       const buffer = Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk as Uint8Array);
       bytes += buffer.byteLength;
       if (bytes > maxBytes) {
-        callback(new Error("Downloaded APK exceeds the maximum size."));
+        callback(new ApkSizeLimitError("Downloaded APK exceeds the maximum size."));
         return;
       }
       callback(null, buffer);
@@ -246,7 +253,7 @@ function createSizeLimitTransform(maxBytes: number): Transform {
   });
 }
 
-export async function downloadOfficialArcaeaApk(discovery: ArcaeaDiscovery, directory: string, fetchImpl: FetchLike = fetch): Promise<string> {
+export async function downloadOfficialArcaeaApk(discovery: ArcaeaDiscovery, directory: string, fetchImpl: FetchLike = fetch, maximumSizeBytes = ARCAEA_APK_MAX_SIZE_BYTES): Promise<string> {
   const canonicalFilename = canonicalArcaeaApkFilename(discovery.version);
   const destination = path.resolve(directory, canonicalFilename);
   const partial = `${destination}.part`;
@@ -257,11 +264,14 @@ export async function downloadOfficialArcaeaApk(discovery: ArcaeaDiscovery, dire
   const finalUrl = assertOfficialArcaeaApkUrl(response.url || discovery.sourceUrl);
   if (finalUrl.hostname.toLowerCase() !== ARCAEA_OFFICIAL_CDN_HOST) throw new Error("Official Arcaea APK redirect left the allowed CDN.");
   const contentLength = Number(response.headers.get("Content-Length"));
-  if (Number.isSafeInteger(contentLength) && contentLength > ARCAEA_APK_MAX_SIZE_BYTES) throw new Error("Official Arcaea APK exceeds the maximum size.");
+  if (Number.isSafeInteger(contentLength) && contentLength > maximumSizeBytes) {
+    await response.body.cancel();
+    throw new ApkSizeLimitError("Official Arcaea APK exceeds the maximum size.");
+  }
   try {
     await pipeline(
       Readable.fromWeb(response.body as unknown as ReadableStream<any>),
-      createSizeLimitTransform(ARCAEA_APK_MAX_SIZE_BYTES),
+      createSizeLimitTransform(maximumSizeBytes),
       createWriteStream(partial, { flags: "w" }),
     );
     await rename(partial, destination);
@@ -294,6 +304,7 @@ async function inspectZipArchive(filePath: string): Promise<{ entryCount: number
     const centralDirectoryOffset = tail.readUInt32LE(eocdOffset + 16);
     if (centralDirectorySize === 0xffffffff || centralDirectoryOffset === 0xffffffff) throw new Error("ZIP64 APK archives are not supported by the lightweight validator.");
     if (centralDirectorySize <= 0 || centralDirectoryOffset + centralDirectorySize > fileSize) throw new Error("APK ZIP central directory is invalid.");
+    if (centralDirectorySize > 32 * 1024 * 1024) throw new Error("APK central directory exceeds validation memory limit.");
     const central = Buffer.alloc(centralDirectorySize);
     const centralResult = await handle.read(central, 0, centralDirectorySize, centralDirectoryOffset);
     if (centralResult.bytesRead !== centralDirectorySize) throw new Error("APK ZIP central directory is truncated.");
@@ -389,28 +400,31 @@ function validManifestEntry(value: unknown, allowMissingOfficial = false): Arcae
   const downloads = record.downloads;
   if (!downloads || typeof downloads !== "object") return null;
   const downloadRecord = downloads as Record<string, unknown>;
-  const github = typeof downloadRecord.github === "string" ? downloadRecord.github : "";
+  const github = downloadRecord.github === null ? null : typeof downloadRecord.github === "string" ? downloadRecord.github : "";
+  const r2 = typeof downloadRecord.r2 === "string" ? downloadRecord.r2 : undefined;
   const official = downloadRecord.official === undefined && allowMissingOfficial ? null : downloadRecord.official === null ? null : typeof downloadRecord.official === "string" ? downloadRecord.official : undefined;
-  if (!version || fileName !== expectedFilename || typeof fileSize !== "number" || !Number.isSafeInteger(fileSize) || fileSize <= 0 || !SHA256_PATTERN.test(sha256) || !publishedAt || versionCode === undefined || !github || official === undefined) return null;
+  if (!version || fileName !== expectedFilename || typeof fileSize !== "number" || !Number.isSafeInteger(fileSize) || fileSize <= 0 || !SHA256_PATTERN.test(sha256) || !publishedAt || versionCode === undefined || (!github && !r2) || official === undefined) return null;
   try {
-    assertArcaeaGithubApkUrl(github, version);
+    if (github) assertArcaeaGithubApkUrl(github, version);
+    if (r2 && !validArcaeaR2Url(r2, version, sha256, process.env.ARCAEA_R2_PUBLIC_BASE_URL)) return null;
     if (official !== null) assertOfficialArcaeaApkUrl(official);
   } catch {
     return null;
   }
-  return { version, versionCode, fileName, fileSize, sha256, downloads: { github, official }, publishedAt };
+  return { version, versionCode, fileName, fileSize, sha256, downloads: { github, official, ...(r2 ? { r2 } : {}) }, publishedAt };
 }
 
 export function parseArcaeaApkManifest(value: unknown, _options: { publicBaseUrl?: string } = {}): ArcaeaApkManifest | null {
   if (!value || typeof value !== "object") return null;
   const record = value as Record<string, unknown>;
-  if (record.schemaVersion !== 2 || record.game !== "arcaea" || typeof record.generatedAt !== "string" || !record.latest) return null;
+  if ((record.schemaVersion !== 2 && record.schemaVersion !== 3) || record.game !== "arcaea" || typeof record.generatedAt !== "string" || !record.latest) return null;
   const latest = validManifestEntry(record.latest);
   if (!latest) return null;
   const previous = record.previous === null ? null : validManifestEntry(record.previous, true);
   if (record.previous !== null && !previous) return null;
   if (previous && compareArcaeaVersion(previous.version, latest.version) >= 0) return null;
-  return { schemaVersion: 2, game: "arcaea", generatedAt: record.generatedAt, latest, previous };
+  if (record.schemaVersion === 3 && (!latest.downloads.r2 || (latest.fileSize < ARCAEA_GITHUB_MAX_SIZE_BYTES ? !latest.downloads.github : latest.downloads.github !== null))) return null;
+  return { schemaVersion: record.schemaVersion, game: "arcaea", generatedAt: record.generatedAt, latest, previous };
 }
 
 export async function readArcaeaApkManifest(storage: StorageClient): Promise<ArcaeaApkManifest | null> {
@@ -426,11 +440,11 @@ export async function readArcaeaApkManifest(storage: StorageClient): Promise<Arc
   }
 }
 
-function createManifestEntry(input: { version: string; fileSize: number; sha256: string; githubUrl: string; officialUrl: string; publishedAt: string }): ArcaeaApkManifestEntry {
+function createManifestEntry(input: { version: string; fileSize: number; sha256: string; githubUrl: string | null; r2Url: string | undefined; officialUrl: string; publishedAt: string }): ArcaeaApkManifestEntry {
   const canonical = canonicalArcaeaVersion(input.version);
   if (!canonical) throw new Error(`Invalid Arcaea version: ${input.version}`);
   const fileName = canonicalArcaeaApkFilename(canonical);
-  const github = assertArcaeaGithubApkUrl(input.githubUrl, canonical).toString();
+  const github = input.githubUrl ? assertArcaeaGithubApkUrl(input.githubUrl, canonical).toString() : null;
   const official = assertOfficialArcaeaApkUrl(input.officialUrl).toString();
   return {
     version: canonical,
@@ -438,18 +452,18 @@ function createManifestEntry(input: { version: string; fileSize: number; sha256:
     fileName,
     fileSize: input.fileSize,
     sha256: input.sha256.toLowerCase(),
-    downloads: { github, official },
+    downloads: { github, official, ...(input.r2Url ? { r2: input.r2Url } : {}) },
     publishedAt: input.publishedAt,
   };
 }
 
-function createArcaeaApkManifest(input: { discovery: ArcaeaDiscovery; validation: ArcaeaApkBinaryMetadata; previous: ArcaeaApkManifest | null; githubUrl: string; now: string }): ArcaeaApkManifest {
+function createArcaeaApkManifest(input: { discovery: ArcaeaDiscovery; validation: ArcaeaApkBinaryMetadata; previous: ArcaeaApkManifest | null; githubUrl: string | null; r2Url: string | undefined; now: string }): ArcaeaApkManifest {
   return {
-    schemaVersion: 2,
+    schemaVersion: input.r2Url ? 3 : 2,
     game: "arcaea",
     generatedAt: input.now,
-    latest: createManifestEntry({ version: input.discovery.version, fileSize: input.validation.fileSize, sha256: input.validation.sha256, githubUrl: input.githubUrl, officialUrl: input.discovery.sourceUrl, publishedAt: input.now }),
-    previous: input.previous?.latest ?? null,
+    latest: createManifestEntry({ version: input.discovery.version, fileSize: input.validation.fileSize, sha256: input.validation.sha256, githubUrl: input.githubUrl, r2Url: input.r2Url, officialUrl: input.discovery.sourceUrl, publishedAt: input.now }),
+    previous: input.previous?.latest.version === input.discovery.version ? input.previous.previous : input.previous?.latest ?? null,
   };
 }
 
@@ -484,7 +498,7 @@ async function ensureGithubReleaseAsset(input: { client: GitHubReleaseClient; ve
     input.log("[arcaea-apk] GitHub Release asset verified.");
     return { uploaded: false, reused: true, assetUrl: verifiedGithubAssetUrl(asset, input.version) };
   }
-  if (asset) await input.client.deleteAsset({ releaseId: release.id, assetId: asset.id });
+  if (asset) throw new Error("Existing GitHub APK differs; refusing to replace a published asset.");
   input.log("[arcaea-apk] Uploading APK to GitHub Release...");
   await input.client.uploadAsset({ tagName, filePath: input.filePath, fileName });
   release = await input.client.getRelease(tagName);
@@ -495,31 +509,10 @@ async function ensureGithubReleaseAsset(input: { client: GitHubReleaseClient; ve
   return { uploaded: true, reused: false, assetUrl: verifiedGithubAssetUrl(asset, input.version) };
 }
 
-async function deleteThirdOldestManagedRelease(input: { client: GitHubReleaseClient; previous: ArcaeaApkManifest | null; log: (message: string) => void }): Promise<string | undefined> {
-  const obsolete = input.previous?.previous;
-  if (!obsolete) return undefined;
-  const tagName = arcaeaGithubReleaseTag(obsolete.version);
-  try {
-    const release = await input.client.getRelease(tagName);
-    if (!release) return undefined;
-    if (!managedArcaeaRelease(release, obsolete.version) || !release.tagName.startsWith(MANAGED_ARCAEA_RELEASE_TAG_PREFIX)) {
-      const warning = `cleanup warning: refusing to delete unmanaged GitHub Release ${tagName}`;
-      input.log(`[arcaea-apk] ${warning}.`);
-      return warning;
-    }
-    await input.client.deleteRelease({ releaseId: release.id, tagName });
-    input.log(`[arcaea-apk] Deleted old managed GitHub Release ${tagName}.`);
-    return undefined;
-  } catch {
-    const warning = `cleanup warning: could not delete managed GitHub Release ${tagName}`;
-    input.log(`[arcaea-apk] ${warning}.`);
-    return warning;
-  }
-}
-
 export async function runArcaeaApkUpdate(options: {
   mode?: "check-only" | "publish";
   storage?: StorageClient;
+  r2Storage?: StorageClient;
   stagingDirectory?: string;
   discover?: () => Promise<ArcaeaDiscovery>;
   download?: (discovery: ArcaeaDiscovery, directory: string) => Promise<string>;
@@ -543,10 +536,12 @@ export async function runArcaeaApkUpdate(options: {
   if (mode === "check-only") return { status: "checked", discovered: normalizedDiscovery, previousManifest: null, uploaded: false, reusedRemote: false };
   const storage = options.storage;
   if (!storage || storage.status !== "READY") throw new Error("ROS credentials are not configured.");
+  const r2 = options.r2Storage;
+  if (r2 && r2.status !== "READY") throw new Error("Arcaea R2 configuration is incomplete.");
   const previousManifest = await readArcaeaApkManifest(storage);
   if (previousManifest) {
     const comparison = compareArcaeaVersion(normalizedDiscovery.version, previousManifest.latest.version);
-    if (comparison === 0) {
+    if (comparison === 0 && (!r2 || previousManifest.latest.downloads.r2)) {
       log(`[arcaea-apk] Version ${normalizedDiscovery.version} is already public; no download or ROS write.`);
       return { status: "no-update", discovered: normalizedDiscovery, previousManifest, uploaded: false, reusedRemote: false };
     }
@@ -560,36 +555,60 @@ export async function runArcaeaApkUpdate(options: {
   await mkdir(root, { recursive: true });
   const runDirectory = await mkdtemp(path.join(root, "run-"));
   const minimumSizeBytes = options.minimumSizeBytes ?? ARCAEA_APK_MIN_SIZE_BYTES;
-  const maximumSizeBytes = options.maximumSizeBytes ?? ARCAEA_APK_MAX_SIZE_BYTES;
+  const maximumSizeBytes = Math.min(options.maximumSizeBytes ?? ARCAEA_APK_MAX_SIZE_BYTES, r2 ? ARCAEA_APK_MAX_SIZE_BYTES : ARCAEA_GITHUB_MAX_SIZE_BYTES - 1);
+  const blockedByGithubSize = (): ArcaeaUpdateResult => {
+    log("[arcaea-apk] APK is at least 2 GiB and R2 is disabled; keeping the existing public download unchanged.");
+    return { status: "blocked-mirror-size", discovered: normalizedDiscovery, previousManifest, uploaded: false, reusedRemote: false };
+  };
   let uploaded = false;
   let reusedReleaseAsset = false;
   try {
     log("[arcaea-apk] Downloading official APK...");
-    const filePath = await (options.download ?? ((discovery, directory) => downloadOfficialArcaeaApk(discovery, directory, fetchImpl)))(normalizedDiscovery, runDirectory);
+    const filePath = await (options.download ?? ((discovery, directory) => downloadOfficialArcaeaApk(discovery, directory, fetchImpl, maximumSizeBytes)))(normalizedDiscovery, runDirectory);
     const downloaded = await stat(filePath);
+    if (!r2 && downloaded.size >= ARCAEA_GITHUB_MAX_SIZE_BYTES) return blockedByGithubSize();
     log(`[arcaea-apk] Download complete: ${formatMiB(downloaded.size)} MiB.`);
     log("[arcaea-apk] Validating APK...");
     const validation = await (options.validate ?? validateArcaeaApk)(filePath, { expectedVersion: normalizedDiscovery.version, minimumSizeBytes, maximumSizeBytes });
     log(`[arcaea-apk] Verified ${formatMiB(validation.fileSize)} MiB APK; SHA-256 ${validation.sha256}.`);
-    if (validation.fileSize >= ARCAEA_APK_MAX_SIZE_BYTES) {
-      log("[arcaea-apk] Arcaea APK exceeds GitHub Release asset size limit.");
-      return { status: "blocked-mirror-size", discovered: normalizedDiscovery, previousManifest, uploaded: false, reusedRemote: false };
+    if (!r2 && validation.fileSize >= ARCAEA_GITHUB_MAX_SIZE_BYTES) return blockedByGithubSize();
+    let r2Url: string | undefined;
+    if (r2) {
+      const objectKey = arcaeaR2ObjectKey(normalizedDiscovery.version, validation.sha256);
+      log("[arcaea-apk] Uploading/reusing and verifying permanent R2 APK...");
+      r2Url = publicObjectUrl(objectKey, r2.publicBaseUrl);
+      const existing = await r2.verifyObject(objectKey, { sizeBytes: validation.fileSize, sha256: validation.sha256 });
+      if (!existing.verified) {
+        if (existing.exists) throw new Error("Existing R2 APK differs; refusing to overwrite.");
+        await r2.putLargeObject({ objectKey, body: createReadStream(filePath), sizeBytes: validation.fileSize,
+          contentType: ARCAEA_APK_CONTENT_TYPE, contentDisposition: `attachment; filename="${canonicalArcaeaApkFilename(normalizedDiscovery.version)}"`, metadata: { sha256: validation.sha256 } });
+        if (!(await r2.verifyObject(objectKey, { sizeBytes: validation.fileSize, sha256: validation.sha256 })).verified) throw new Error("R2 APK integrity verification failed.");
+      }
+      const publicHead = await fetchImpl(r2Url, { method: "HEAD", redirect: "error", signal: AbortSignal.timeout(30_000) });
+      if (!publicHead.ok || Number(publicHead.headers.get("content-length")) !== validation.fileSize) throw new Error("R2 public APK endpoint verification failed.");
     }
-
-    const releaseClient = options.releaseClient ?? createGhGitHubReleaseClient(ARCAEA_APK_GITHUB_REPOSITORY);
-    log("[arcaea-apk] Creating/Reusing GitHub Release...");
-    const release = await ensureGithubReleaseAsset({ client: releaseClient, version: normalizedDiscovery.version, validation, filePath: validation.filePath, log });
-    uploaded = release.uploaded;
-    reusedReleaseAsset = release.reused;
+    let githubUrl: string | null = null;
+    if (validation.fileSize < ARCAEA_GITHUB_MAX_SIZE_BYTES) {
+      log("[arcaea-apk] APK is below 2 GiB; publishing GitHub mirror...");
+      const releaseClient = options.releaseClient ?? createGhGitHubReleaseClient(ARCAEA_APK_GITHUB_REPOSITORY);
+      const release = await ensureGithubReleaseAsset({ client: releaseClient, version: normalizedDiscovery.version, validation, filePath: validation.filePath, log });
+      uploaded = release.uploaded;
+      reusedReleaseAsset = release.reused;
+      githubUrl = release.assetUrl;
+    } else {
+      log("[arcaea-apk] APK is at least 2 GiB; using verified R2 download only.");
+    }
     const now = (options.now ?? (() => new Date()))().toISOString();
-    const manifest = createArcaeaApkManifest({ discovery: normalizedDiscovery, validation, previous: previousManifest, githubUrl: release.assetUrl, now });
+    const manifest = createArcaeaApkManifest({ discovery: normalizedDiscovery, validation, previous: previousManifest, githubUrl, r2Url, now });
     log("[arcaea-apk] Publishing latest.json...");
     await storage.putObject({ objectKey: ARCAEA_APK_LATEST_KEY, body: JSON.stringify(manifest, null, 2), contentType: "application/json; charset=utf-8", cacheControl: ARCAEA_LATEST_CACHE_CONTROL });
     const reloaded = await readArcaeaApkManifest(storage);
-    if (!reloaded || reloaded.latest.version !== manifest.latest.version || reloaded.latest.sha256 !== manifest.latest.sha256 || reloaded.latest.fileSize !== manifest.latest.fileSize || reloaded.latest.downloads.github !== manifest.latest.downloads.github || reloaded.latest.downloads.official !== manifest.latest.downloads.official) throw new Error("ROS latest.json verification failed after publish.");
-    const cleanupWarning = await deleteThirdOldestManagedRelease({ client: releaseClient, previous: previousManifest, log });
+    if (!reloaded || reloaded.latest.version !== manifest.latest.version || reloaded.latest.sha256 !== manifest.latest.sha256 || reloaded.latest.fileSize !== manifest.latest.fileSize || reloaded.latest.downloads.github !== manifest.latest.downloads.github || reloaded.latest.downloads.official !== manifest.latest.downloads.official || reloaded.latest.downloads.r2 !== manifest.latest.downloads.r2) throw new Error("ROS latest.json verification failed after publish.");
     log(`[arcaea-apk] Published ${manifest.latest.version}; previous ${manifest.previous?.version ?? "none"}.`);
-    return { status: "published", discovered: normalizedDiscovery, previousManifest, manifest, releaseTag: arcaeaGithubReleaseTag(normalizedDiscovery.version), githubAssetUrl: manifest.latest.downloads.github, uploaded, reusedRemote: reusedReleaseAsset, reusedReleaseAsset, ...(cleanupWarning ? { cleanupWarning } : {}) };
+    return { status: "published", discovered: normalizedDiscovery, previousManifest, manifest, releaseTag: arcaeaGithubReleaseTag(normalizedDiscovery.version), ...(githubUrl ? { githubAssetUrl: githubUrl } : {}), uploaded, reusedRemote: reusedReleaseAsset, reusedReleaseAsset };
+  } catch (error) {
+    if (!r2 && maximumSizeBytes === ARCAEA_GITHUB_MAX_SIZE_BYTES - 1 && error instanceof ApkSizeLimitError) return blockedByGithubSize();
+    throw error;
   } finally {
     await rm(runDirectory, { recursive: true, force: true });
   }

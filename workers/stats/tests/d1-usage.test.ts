@@ -6,6 +6,27 @@ import { D1StatsStore, handleRequest, processPendingUpdateReminderNotifications,
 import { RANKING_CACHE_TTL_MS, type RankingCache } from "../src/ranking-cache.js";
 import { PUBLIC_RESOURCE_IDS } from "../src/public-resource-registry.js";
 import { acceptResourceReport, processResourceReports, validateResourceReport } from '../src/resource-reports.js';
+import { ARCAEA_APK_STATS_ID } from '../../../packages/domain/src/apk-download.js';
+
+test('APK source switches share download dedupe, site totals, origin checks and exclude image rankings', async () => {
+  const db = new SqliteD1();
+  const env = { DB: db };
+  const request = (origin = 'https://rhythmarchive.github.io') => new Request('https://api.test/v1/events', {
+    method: 'POST', headers: { Origin: origin, 'Content-Type': 'application/json' },
+    body: JSON.stringify({ type: 'apk_download', visitorId: '11111111-1111-4111-8111-111111111111' }),
+  });
+  assert.equal((await handleRequest(request('https://evil.example'), env)).status, 403);
+  for (const [now, expected] of [[1000, true], [1001, false], [11001, true]] as const) {
+    const response = await handleRequest(request(), env, { now: () => now });
+    assert.equal(response.status, 200);
+    assert.equal((await response.json() as { counted: { download: boolean } }).counted.download, expected);
+  }
+  const store = new D1StatsStore(db);
+  assert.equal(await store.getTotalDownloads(), 2);
+  assert.equal(db.sqlite.prepare('SELECT total_downloads FROM resource_stats WHERE resource_id = ?').get(ARCAEA_APK_STATS_ID)?.total_downloads, 2);
+  assert.deepEqual(await store.getResourceRanking('all', '1970-01-01', 12), []);
+  assert.deepEqual(await store.getResourceRanking('7d', '1970-01-01', 12), []);
+});
 
 class SqliteD1 implements D1Database {
   // Existing D1 migrations use SQLite's legacy double-quoted string literals.

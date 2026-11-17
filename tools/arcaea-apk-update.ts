@@ -41,10 +41,26 @@ function parseArgs(argv: string[]): { mode: "check-only" | "publish"; stagingDir
 
 async function main(): Promise<void> {
   const parsed = parseArgs(process.argv.slice(2));
+  const r2Enabled = process.env.ARCAEA_R2_ENABLED === "true";
+  if (parsed.mode === "publish" && r2Enabled) {
+    for (const key of ["ARCAEA_R2_ENDPOINT", "ARCAEA_R2_BUCKET", "ARCAEA_R2_PUBLIC_BASE_URL", "ARCAEA_R2_ACCESS_KEY_ID", "ARCAEA_R2_SECRET_ACCESS_KEY"]) {
+      if (!process.env[key]?.trim()) throw new Error(`Missing configuration: ${key}`);
+    }
+    const publicBase = new URL(process.env.ARCAEA_R2_PUBLIC_BASE_URL!);
+    const endpoint = new URL(process.env.ARCAEA_R2_ENDPOINT!);
+    if (publicBase.protocol !== "https:" || publicBase.username || publicBase.password || publicBase.search || publicBase.hash || publicBase.port || endpoint.protocol !== "https:" || !endpoint.hostname.endsWith(".r2.cloudflarestorage.com")) throw new Error("Invalid R2 endpoint/public URL configuration.");
+  }
   const result = await runArcaeaApkUpdate({
     mode: parsed.mode,
     ...(parsed.stagingDirectory ? { stagingDirectory: parsed.stagingDirectory } : {}),
-    ...(parsed.mode === "publish" ? { storage: new S3StorageClient() } : {}),
+    ...(parsed.mode === "publish" ? { storage: new S3StorageClient(), ...(r2Enabled ? { r2Storage: new S3StorageClient({
+      endpoint: process.env.ARCAEA_R2_ENDPOINT ?? "",
+      bucket: process.env.ARCAEA_R2_BUCKET ?? "",
+      publicBaseUrl: process.env.ARCAEA_R2_PUBLIC_BASE_URL ?? "",
+      region: "auto", forcePathStyle: true,
+      accessKey: process.env.ARCAEA_R2_ACCESS_KEY_ID ?? "",
+      secretKey: process.env.ARCAEA_R2_SECRET_ACCESS_KEY ?? "",
+    }) } : {}) } : {}),
   });
   if (result.status === "checked") {
     console.log(`[arcaea-apk] check-only complete: version ${result.discovered.version}; CDN host ${result.discovered.sourceHost}.`);
@@ -52,7 +68,7 @@ async function main(): Promise<void> {
     console.log("[arcaea-apk] stopped without publishing because the official version is older than the public version.");
     process.exitCode = 2;
   } else if (result.status === "blocked-mirror-size") {
-    console.log("[arcaea-apk] stopped without GitHub mirror publish because the APK is at least 2 GiB.");
+    console.log("[arcaea-apk] R2 is disabled and the official APK cannot fit in GitHub Releases; previous download retained.");
     process.exitCode = 2;
   } else if (result.status === "no-update") {
     console.log("[arcaea-apk] no update; 0 APK download, 0 ROS write, 0 delete.");

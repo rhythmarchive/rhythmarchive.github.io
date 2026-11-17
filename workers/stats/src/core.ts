@@ -1,3 +1,4 @@
+import { ARCAEA_APK_STATS_ID } from "../../../packages/domain/src/apk-download.js";
 import { isUuidV7, normalizeUuid } from "../../../packages/domain/src/identifiers.js";
 import { getResourceRankingWithCache, type RankingCache } from "./ranking-cache.js";
 import { getTotalDownloadsWithCache } from "./site-downloads-cache.js";
@@ -233,7 +234,7 @@ export class D1StatsStore implements StatsStore {
     };
   }
   async recordEvent(event: StatsEvent, nowMs: number, date: string): Promise<RecordedEvent> {
-    if (event.type !== "site_visit" && !isPublicResourceId(event.resourceId)) throw new Error("resource is not in the public Catalog");
+    if (event.type !== "site_visit" && !(event.type === "resource_download" && event.resourceId === ARCAEA_APK_STATS_ID) && !isPublicResourceId(event.resourceId)) throw new Error("resource is not in the public Catalog");
     if (event.type === "site_visit") {
       const counted = await this.claim(event.visitorId, "site", "", nowMs, nowMs + SITE_SESSION_WINDOW_MS);
       if (counted) {
@@ -253,7 +254,7 @@ export class D1StatsStore implements StatsStore {
       return { siteVisitCounted: counted, viewCounted: false, downloadCounted: false, site: await this.getSiteStats(date) };
     }
 
-    const viewCounted = await this.claim(event.visitorId, "view", event.resourceId, nowMs, nowMs + SITE_SESSION_WINDOW_MS);
+    const viewCounted = event.resourceId !== ARCAEA_APK_STATS_ID && await this.claim(event.visitorId, "view", event.resourceId, nowMs, nowMs + SITE_SESSION_WINDOW_MS);
     if (viewCounted) await this.incrementResource(event.resourceId, "views", nowMs, date);
 
     let downloadCounted = false;
@@ -262,6 +263,7 @@ export class D1StatsStore implements StatsStore {
       if (downloadCounted) await this.incrementResource(event.resourceId, "downloads", nowMs, date);
     }
 
+    if (event.resourceId === ARCAEA_APK_STATS_ID) return { siteVisitCounted: false, viewCounted: false, downloadCounted };
     const resourceStats = (await this.getResourceStats([event.resourceId])).get(event.resourceId) ?? { views: 0, downloads: 0 };
     return { siteVisitCounted: false, viewCounted, downloadCounted, resource: resourceStats };
   }
@@ -314,7 +316,7 @@ export class D1StatsStore implements StatsStore {
       ? await this.db.prepare(`
           SELECT resource_id, total_views, total_downloads
           FROM resource_stats
-          WHERE total_views > 0 OR total_downloads > 0
+          WHERE resource_id != '${ARCAEA_APK_STATS_ID}' AND (total_views > 0 OR total_downloads > 0)
           ORDER BY total_views DESC, total_downloads DESC, resource_id ASC
           LIMIT ?
         `).bind(limit).all<{ resource_id: string; total_views?: number; total_downloads?: number }>()
@@ -323,7 +325,7 @@ export class D1StatsStore implements StatsStore {
                  SUM(daily_views) AS total_views,
                  SUM(daily_downloads) AS total_downloads
           FROM resource_daily_stats
-          WHERE stat_date BETWEEN ? AND ?
+          WHERE stat_date BETWEEN ? AND ? AND resource_id != '${ARCAEA_APK_STATS_ID}'
           GROUP BY resource_id
           HAVING SUM(daily_views) > 0 OR SUM(daily_downloads) > 0
           ORDER BY total_views DESC, total_downloads DESC, resource_id ASC
@@ -617,13 +619,14 @@ export function isValidVisitorId(value: unknown): value is string {
 
 export function validateEventPayload(value: unknown): { event?: StatsEvent; error?: string } {
   if (!isRecord(value)) return { error: "invalid_json_body" };
-  if (value.type !== "site_visit" && value.type !== "resource_detail" && value.type !== "resource_download") return { error: "invalid_event_type" };
+  if (value.type !== "apk_download" && value.type !== "site_visit" && value.type !== "resource_detail" && value.type !== "resource_download") return { error: "invalid_event_type" };
   const visitorId = normalizeUuid(value.visitorId);
   if (!visitorId || !isValidVisitorId(visitorId)) return { error: "invalid_visitor_id" };
   if (value.type === "site_visit") {
     if (value.includeDownloads !== undefined && typeof value.includeDownloads !== "boolean") return { error: "invalid_include_downloads" };
     return { event: { type: value.type, visitorId, ...(value.includeDownloads === true ? { includeDownloads: true } : {}) } };
   }
+  if (value.type === "apk_download") return { event: { type: "resource_download", visitorId, resourceId: ARCAEA_APK_STATS_ID } };
   const resourceId = normalizeUuid(value.resourceId);
   if (!resourceId || !isValidResourceId(resourceId)) return { error: "invalid_resource_id" };
   if (!isPublicResourceId(resourceId)) return { error: "resource_not_public" };

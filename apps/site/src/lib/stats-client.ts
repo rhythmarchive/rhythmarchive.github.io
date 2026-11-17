@@ -34,6 +34,7 @@ export type StatsClient = {
   trackSiteVisit(includeDownloads?: boolean): Promise<SiteStats | undefined>;
   getSiteStats(includeDownloads?: boolean): Promise<SiteStats | undefined>;
   trackResourceDetail(resourceId: string): Promise<ResourceStats | undefined>;
+  trackApkDownload(): Promise<void>;
   trackResourceDownload(resourceId: string): Promise<ResourceStats | undefined>;
   getResourceStats(resourceIds: readonly string[]): Promise<Map<string, ResourceStats>>;
   getResourceRanking(period: ResourceRankingPeriod, limit: number): Promise<ResourceRanking | undefined>;
@@ -106,6 +107,10 @@ export function createStatsClient(options: {
     getSiteStats,
     trackResourceDetail,
     trackResourceDownload,
+    async trackApkDownload() {
+      const visitorId = getVisitorId();
+      if (apiUrl && visitorId) await postEvent({ type: "apk_download", visitorId });
+    },
     getResourceStats,
     getResourceRanking,
   };

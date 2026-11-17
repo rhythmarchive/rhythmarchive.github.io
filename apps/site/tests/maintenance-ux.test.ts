@@ -64,7 +64,7 @@ test("all game cards expose adopted game versions, including baseline-only games
     phigros: "4.0.1.2",
     rizline: "2.7.1",
     infalsus: "1.0.7",
-    "paradigm-reboot": "4.12.1",
+    "paradigm-reboot": "4.13",
     rotaeno: "2.99.0",
     orzmic: "3.18.0",
     dynamix: "3.20.01",

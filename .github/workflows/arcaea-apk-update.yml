@@ -46,7 +46,7 @@ jobs:
         run: ln -s tools/arcaea-apk-updater/node_modules node_modules
 
       - name: Run Arcaea APK updater
-        run: npm --prefix tools/arcaea-apk-updater run check -- --mode "${{ inputs.mode || 'publish' }}"
+        run: npm --prefix tools/arcaea-apk-updater run check -- --mode "${{ inputs.mode || 'publish' }}" --staging-dir "$RUNNER_TEMP/arcaea-update"
         env:
           GITHUB_TOKEN: ${{ github.token }}
           ROS_REFERER: https://rhythmarchive.github.io/
@@ -55,3 +55,10 @@ jobs:
           ROS_ENDPOINT: ${{ secrets.ROS_ENDPOINT }}
           ROS_BUCKET: ${{ secrets.ROS_BUCKET }}
           ROS_PUBLIC_BASE_URL: ${{ secrets.ROS_PUBLIC_BASE_URL }}
+          # Explicit opt-in; absent configuration keeps GitHub-only publishing.
+          ARCAEA_R2_ENABLED: ${{ vars.ARCAEA_R2_ENABLED || 'false' }}
+          ARCAEA_R2_ENDPOINT: ${{ vars.ARCAEA_R2_ENDPOINT }}
+          ARCAEA_R2_BUCKET: ${{ vars.ARCAEA_R2_BUCKET }}
+          ARCAEA_R2_PUBLIC_BASE_URL: ${{ vars.PUBLIC_ARCAEA_R2_BASE_URL }}
+          ARCAEA_R2_ACCESS_KEY_ID: ${{ secrets.ARCAEA_R2_ACCESS_KEY_ID }}
+          ARCAEA_R2_SECRET_ACCESS_KEY: ${{ secrets.ARCAEA_R2_SECRET_ACCESS_KEY }}

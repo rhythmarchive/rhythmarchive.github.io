@@ -19,6 +19,20 @@ const resourceId = "aaaaaaaa-aaaa-7aaa-8aaa-aaaaaaaaaaaa";
 const secondResourceId = "bbbbbbbb-bbbb-7bbb-8bbb-bbbbbbbbbbbb";
 const siteRoot = path.resolve(process.cwd(), "apps", "site");
 
+test("APK clicks post a single keepalive event without a resource ID or extra reads", async () => {
+  const requests: { url: string; init?: RequestInit }[] = [];
+  const client = createStatsClient({ apiUrl: "https://api.example.com", storage: new MemoryStorage(), visitorIdFactory: () => visitorId,
+    fetchImpl: (async (url: string | URL | Request, init?: RequestInit) => {
+      requests.push({url:String(url), ...(init ? { init } : {})});
+      return Response.json({ok:true});
+    }) as typeof fetch,
+  });
+  await client.trackApkDownload();
+  assert.equal(requests.length, 1);
+  assert.deepEqual(JSON.parse(requests[0]!.init!.body as string), {type:"apk_download",visitorId});
+  assert.equal(requests[0]!.init!.keepalive, true);
+});
+
 class MemoryStorage {
   private readonly values = new Map<string, string>();
 

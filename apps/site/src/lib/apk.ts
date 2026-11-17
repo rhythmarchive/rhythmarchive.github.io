@@ -1,9 +1,11 @@
+import { validArcaeaR2Url } from "../../../../packages/domain/src/apk-download";
 export const ARCAEA_GITHUB_REPOSITORY = "rhythmarchive/rhythmarchive.github.io";
 export const ARCAEA_GITHUB_RELEASE_TAG_PREFIX = "arcaea-apk-";
 export const ARCAEA_OFFICIAL_CDN_HOST = "arcaea-static.lowiro-cdn.net";
 
 export type PublicArcaeaApkDownloads = {
-  github: string;
+  github: string | null;
+  r2?: string;
   official: string | null;
 };
 
@@ -18,7 +20,7 @@ export type PublicArcaeaApkEntry = {
 };
 
 export type PublicArcaeaApkManifest = {
-  schemaVersion: 2;
+  schemaVersion: 2 | 3;
   game: "arcaea";
   generatedAt: string;
   latest: PublicArcaeaApkEntry;
@@ -58,7 +60,7 @@ function validOfficialUrl(value: string): boolean {
   }
 }
 
-function validEntry(value: unknown, allowMissingOfficial = false): PublicArcaeaApkEntry | null {
+function validEntry(value: unknown, allowMissingOfficial = false, r2BaseUrl?: string): PublicArcaeaApkEntry | null {
   if (!value || typeof value !== "object") return null;
   const record = value as Record<string, unknown>;
   if ("url" in record) return null;
@@ -71,26 +73,29 @@ function validEntry(value: unknown, allowMissingOfficial = false): PublicArcaeaA
   const downloads = record.downloads;
   if (!downloads || typeof downloads !== "object") return null;
   const downloadRecord = downloads as Record<string, unknown>;
-  const github = typeof downloadRecord.github === "string" ? downloadRecord.github : "";
+  const github = downloadRecord.github === null ? null : typeof downloadRecord.github === "string" ? downloadRecord.github : "";
+  const r2 = typeof downloadRecord.r2 === "string" ? downloadRecord.r2 : undefined;
   const official = downloadRecord.official === undefined && allowMissingOfficial ? null : downloadRecord.official === null ? null : typeof downloadRecord.official === "string" ? downloadRecord.official : undefined;
-  if (!version || record.fileName !== fileName || typeof fileSize !== "number" || !Number.isSafeInteger(fileSize) || fileSize <= 0 || !SHA256_PATTERN.test(sha256) || !publishedAt || versionCode === undefined || !github || official === undefined) return null;
-  if (!validGithubUrl(github, version, fileName) || (official !== null && !validOfficialUrl(official))) return null;
-  return { version, versionCode, fileName, fileSize, sha256, publishedAt, downloads: { github, official } };
+  if (!version || record.fileName !== fileName || typeof fileSize !== "number" || !Number.isSafeInteger(fileSize) || fileSize <= 0 || !SHA256_PATTERN.test(sha256) || !publishedAt || versionCode === undefined || (!github && !r2) || official === undefined) return null;
+  if ((github !== null && !validGithubUrl(github, version, fileName)) || (official !== null && !validOfficialUrl(official))) return null;
+  if (r2 && !validArcaeaR2Url(r2, version, sha256, r2BaseUrl)) return null;
+  return { version, versionCode, fileName, fileSize, sha256, publishedAt, downloads: { github, official, ...(r2 ? { r2 } : {}) } };
 }
 
-export function parsePublicArcaeaApkManifest(value: unknown, _options: { publicBaseUrl?: string } = {}): PublicArcaeaApkManifest | null {
+export function parsePublicArcaeaApkManifest(value: unknown, options: { publicBaseUrl?: string } = {}): PublicArcaeaApkManifest | null {
   if (!value || typeof value !== "object") return null;
   const record = value as Record<string, unknown>;
-  if (record.schemaVersion !== 2 || record.game !== "arcaea" || typeof record.generatedAt !== "string") return null;
-  const latest = validEntry(record.latest);
-  const previous = record.previous === null ? null : validEntry(record.previous, true);
+  if ((record.schemaVersion !== 2 && record.schemaVersion !== 3) || record.game !== "arcaea" || typeof record.generatedAt !== "string") return null;
+  const latest = validEntry(record.latest, false, options.publicBaseUrl);
+  const previous = record.previous === null ? null : validEntry(record.previous, true, options.publicBaseUrl);
   if (!latest || (record.previous !== null && !previous)) return null;
-  return { schemaVersion: 2, game: "arcaea", generatedAt: record.generatedAt, latest, previous };
+  if (record.schemaVersion === 3 && (!latest.downloads.r2 || (latest.fileSize < 2 * 1024 ** 3 ? !latest.downloads.github : latest.downloads.github !== null))) return null;
+  return { schemaVersion: record.schemaVersion, game: "arcaea", generatedAt: record.generatedAt, latest, previous };
 }
 
 export function formatPublicApkBytes(value: number): string {
   if (value < 1024) return `${value} B`;
-  const units = ["KB", "MB", "GB"];
+  const units = ["KiB", "MiB", "GiB"];
   let size = value;
   let unit = -1;
   do {
@@ -98,4 +103,11 @@ export function formatPublicApkBytes(value: number): string {
     unit += 1;
   } while (size >= 1024 && unit < units.length - 1);
   return `${size.toFixed(size >= 100 ? 0 : size >= 10 ? 1 : 2)} ${units[unit]}`;
+}
+
+export function apkDownloadLinks(entry: PublicArcaeaApkEntry): { href: string; label: string; primary: boolean }[] {
+  const primary = entry.downloads.github ?? entry.downloads.r2;
+  if (!primary) return [];
+  return [{ href: primary, label: "下载", primary: true },
+    ...(entry.downloads.github && entry.downloads.r2 ? [{ href: entry.downloads.r2, label: "备用下载", primary: false }] : [])];
 }

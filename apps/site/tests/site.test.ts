@@ -517,7 +517,7 @@ test("homepage APK parser accepts GitHub/official downloads and rejects unsafe U
   assert.equal(parsePublicArcaeaApkManifest({ schemaVersion: 2, game: "arcaea", generatedAt: "now", latest: { ...entry("6.17.1"), downloads: { ...entry("6.17.1").downloads, github: "https://evil.example/releases/download/arcaea-apk-6.17.1/Arcaea_6.17.1.apk" } }, previous: null }), null);
   assert.equal(parsePublicArcaeaApkManifest({ schemaVersion: 2, game: "arcaea", generatedAt: "now", latest: { ...entry("6.17.1"), downloads: { ...entry("6.17.1").downloads, official: "http://arcaea-static.lowiro-cdn.net/arcaea.apk" } }, previous: null }), null);
   assert.equal(parsePublicArcaeaApkManifest({ schemaVersion: 2, game: "arcaea", generatedAt: "now", latest: entry("9007199254740993.0.0"), previous: null }), null);
-  assert.equal(formatPublicApkBytes(1234), "1.21 KB");
+  assert.equal(formatPublicApkBytes(1234), "1.21 KiB");
 });
 
 test("public game index projects activity only from final public resources", () => {
@@ -1133,7 +1133,7 @@ test("APK card omits digest and previous-version disclosures while preserving pr
   assert.match(source, /renderManifest\(cardElement, stateElement, manifest\.latest\)/u);
   assert.match(source, /GITHUB_RELEASES_URL/u);
   assert.match(source, /createExternalLink\(GITHUB_RELEASES_URL, "button apk-official-button", "历史版本"\)/u);
-  assert.match(source, /"下载 APK"/u);
+  assert.match(source, /apkDownloadLinks\(latest\)/u);
   assert.doesNotMatch(source, /校验信息|上一版本|createDigest|createPreviousVersion|manifest\.previous|apk-digest|apk-previous/u);
   assert.doesNotMatch(styles, /apk-digest|apk-previous|text-button/u);
   assert.doesNotMatch(source, /官方下载链接|前往Releases|GitHub 下载/u);

@@ -1,6 +1,7 @@
+import { getBrowserStatsClient } from "../lib/stats-client";
 import { onPageLoad, pageSignal } from "./page-lifecycle";
 import { revealContent } from "./motion";
-import { formatPublicApkBytes, parsePublicArcaeaApkManifest, type PublicArcaeaApkEntry } from "../lib/apk";
+import { apkDownloadLinks, formatPublicApkBytes, parsePublicArcaeaApkManifest, type PublicArcaeaApkEntry } from "../lib/apk";
 import { GITHUB_RELEASES_URL } from "../lib/site-config";
 
 onPageLoad(() => {
@@ -16,7 +17,7 @@ async function loadManifest(cardElement: HTMLElement, stateElement: HTMLElement,
   try {
     const response = await fetch(url, { credentials: "omit", signal, headers: { Accept: "application/json" } });
     if (!response.ok) throw new Error("manifest unavailable");
-    const manifest = parsePublicArcaeaApkManifest(await response.json());
+    const manifest = parsePublicArcaeaApkManifest(await response.json(), { publicBaseUrl: import.meta.env.PUBLIC_ARCAEA_R2_BASE_URL });
     if (!manifest) throw new Error("manifest invalid");
     if (!signal.aborted) renderManifest(cardElement, stateElement, manifest.latest);
   } catch {
@@ -66,7 +67,11 @@ function renderManifest(cardElement: HTMLElement, stateElement: HTMLElement, lat
   const actions = document.createElement("div");
   actions.className = "apk-download-actions";
   actions.append(createExternalLink(GITHUB_RELEASES_URL, "button apk-official-button", "历史版本"));
-  actions.append(createDownloadLink(latest.downloads.github, latest.fileName, "button apk-download-button", "下载 APK"));
+  for (const source of apkDownloadLinks(latest)) {
+    const link = createDownloadLink(source.href, latest.fileName, source.primary ? "button apk-download-button" : "button apk-official-button", source.label);
+    link.addEventListener("click", () => { void getBrowserStatsClient().trackApkDownload(); });
+    actions.append(link);
+  }
 
   stateElement.append(main, actions);
   revealContent(stateElement);
