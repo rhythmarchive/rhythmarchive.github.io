@@ -5,6 +5,26 @@ import { buildArcaeaStoryExplorerModel, isArcaeaStoryCgResource, isArcaeaVnCgRes
 import { getSiteData, loadCategoryBrowseProjections } from "../src/lib/site-data.js";
 import type { PublicResource } from "../src/lib/types.js";
 
+test("Arknights keeps native path 104, four entries and all eleven CG relations", () => {
+  const browse = loadCategoryBrowseProjections().arcaea;
+  const atlas = browse.storyAtlas!;
+  const structure = browse.storyStructure!;
+  const path = structure.paths.find((item) => item.pathId === 104);
+  assert.deepEqual(path?.nodes, ["24-0", "24-1", "24-2", "24-3"]);
+  assert.deepEqual(path?.characters, [102]);
+  const relations = atlas.relationEvidence.filter((item) => item.finalPathId === 104);
+  assert.equal(relations.length, 11);
+  assert.deepEqual(["24-0", "24-1", "24-2", "24-3"].map((key) => relations.filter((item) => item.finalNodeKey === key).length), [3, 0, 1, 7]);
+  const text = atlas.text.entries.filter((entry) => path?.nodes.includes(entry.nodeKey));
+  assert.equal(text.length, 4);
+  assert.ok(text.every((entry) => entry.sourcePath === "assets/app-data/story/side/entries_104" && entry.texts["zh-Hans"]));
+  const world = atlas.layout!.sections.at(-1)!.world;
+  assert.equal(world.csbPath, "assets/app-data/story2/act2part2.csb");
+  assert.deepEqual(world.paths.find((item) => item.pathId === 104)?.nodes.map((node) => node.nodeKey), path?.nodes);
+  assert.ok(atlas.derivatives!.ui["entry_arknights.png"]);
+  assert.ok(atlas.derivatives!.ui["entry_arknights2.png"]);
+});
+
 test("Arcaea Story Mode explorer keeps APK Act/Part, Path and Entry order", () => {
   const siteData = getSiteData();
   const structure = loadCategoryBrowseProjections().arcaea.storyStructure;
@@ -16,7 +36,7 @@ test("Arcaea Story Mode explorer keeps APK Act/Part, Path and Entry order", () =
   const model = buildArcaeaStoryExplorerModel(story, structure, storyAtlas);
   const separator = String.fromCharCode(0x00b7);
 
-  assert.equal(structure.source.packageVersion, "7.0.255c");
+  assert.equal(structure.source.packageVersion, "7.3.0c");
   assert.deepEqual(model.sections.map((section) => section.label), [
     "Act I " + separator + " Part I",
     "Act I " + separator + " Part II",
@@ -24,7 +44,7 @@ test("Arcaea Story Mode explorer keeps APK Act/Part, Path and Entry order", () =
     "Act II " + separator + " Part I",
     "Act II " + separator + " Part II",
   ]);
-  assert.deepEqual(model.sections.at(-1)?.paths.map((path) => path.pathId), [29, 30, 31, 32, 33]);
+  assert.deepEqual(model.sections.at(-1)?.paths.map((path) => path.pathId), [29, 30, 31, 32, 33, 104]);
   const divine = model.paths.find((path) => path.pathId === 33);
   assert.ok(divine);
   assert.deepEqual(divine.entries.map((entry) => entry.key), ["C-1", "C-2", "C-3", "C-4", "C-5", "C-6", "C-7", "C-8", "C-9", "C-10"]);
@@ -34,8 +54,8 @@ test("Arcaea Story Mode explorer keeps APK Act/Part, Path and Entry order", () =
   assert.equal(divine.unassignedCg?.displayTitle, "未归类 CG");
   assert.equal(divine.unassignedCg?.resources.length, 7);
   assert.equal(divine.entries.find((entry) => entry.key === "C-8")?.staffRoll, true);
-  assert.equal(model.counts.total, 241);
-  assert.equal(model.counts.storyCg, 70);
+  assert.equal(model.counts.total, 252);
+  assert.equal(model.counts.storyCg, 81);
   assert.equal(model.counts.vnCg, 171);
   assert.equal(model.counts.unassigned, 24);
   assert.equal(model.counts.assigned + model.counts.unassigned, model.counts.total);
@@ -75,7 +95,7 @@ test("Arcaea Story Mode explorer excludes unreviewed story-texture images", () =
   } satisfies PublicResource;
   assert.equal(isArcaeaStoryCgResource(texture), false);
   const model = buildArcaeaStoryExplorerModel([...story, texture], structure);
-  assert.equal(model.counts.total, 241);
+  assert.equal(model.counts.total, 252);
   assert.equal(model.unassignedResources.some((resource) => resource.resourceId === texture.resourceId), false);
 });
 
@@ -265,8 +285,8 @@ test("Arcaea Story projection preserves raw text provenance and deterministic fa
   const c7 = browse.storyAtlas.text.entries.find((entry) => entry.nodeKey === "C-7");
   assert.equal(c7?.storyCgPaths.length, 3);
   assert.equal(c7?.texts["zh-Hans"]?.blocks.filter((block) => block.event === "cg").length, 2);
-  assert.equal(browse.storyAtlas.relationEvidence.length, 203);
-  assert.equal(browse.storyAtlas.relationEvidence.filter((item) => item.finalRelation === "node").length, 154);
+  assert.equal(browse.storyAtlas.relationEvidence.length, 214);
+  assert.equal(browse.storyAtlas.relationEvidence.filter((item) => item.finalRelation === "node").length, 165);
   assert.equal(browse.storyAtlas.relationEvidence.filter((item) => item.finalRelation === "path-scene").length, 49);
   assert.equal(browse.storyAtlas.relationEvidence.filter((item) => item.finalNodeKey === "C-10" && item.finalPathId === 33).length, 4);
   const finaleText = browse.storyAtlas.text.entries.find((entry) => entry.nodeKey === "E-2");
@@ -281,8 +301,8 @@ test("Arcaea Story projection preserves raw text provenance and deterministic fa
   const derivatives = browse.storyAtlas.derivatives;
   assert.ok(derivatives);
   assert.ok(Object.keys(derivatives.ui).length >= 114);
-  assert.equal(Object.keys(derivatives.avatars).length, 21);
-  assert.equal(Object.keys(derivatives.resources).length, 241);
+  assert.equal(Object.keys(derivatives.avatars).length, 22);
+  assert.equal(Object.keys(derivatives.resources).length, 252);
   assert.ok(derivatives.ui["finale-7.png"]);
   const derivativeAssets = Object.values(derivatives.resources).flatMap((group) => [group.thumb, group.preview]);
   assert.equal(derivativeAssets.every((asset) => asset.url.startsWith("/generated/arcaea/story/")), true);

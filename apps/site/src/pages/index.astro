@@ -6,7 +6,7 @@ import SearchBox from "../components/SearchBox.astro";
 import RecentUpdates from "../components/RecentUpdates.astro";
 import ResourceRanking from "../components/ResourceRanking.astro";
 import { primaryCategorySlug } from "../lib/game-config";
-import { BASE_PATH, PUBLIC_STATS_API_URL, ROS_BASE_URL } from "../lib/site-config";
+import { BASE_PATH, PUBLIC_STATS_API_URL } from "../lib/site-config";
 import { getPublicNavigationGames } from "../lib/site-data";
 import { urls } from "../lib/site-urls";
 
@@ -22,7 +22,6 @@ const lanes = [0, 1, 2].map((lane) => {
   const loop = [...filled, ...filled];
   return [...loop, ...loop];
 });
-const arcaeaApkManifestUrl = `${ROS_BASE_URL}/apk/arcaea/latest.json`;
 ---
 
 <BaseLayout title="Rhythm Archive | 音游曲绘下载站" description={description} canonicalPath="/" ogImage={homeOgImage} bodyClass="home-page">
@@ -30,12 +29,6 @@ const arcaeaApkManifestUrl = `${ROS_BASE_URL}/apk/arcaea/latest.json`;
 
   <section class="page-container home-hero" aria-labelledby="home-heading">
     <div class="home-hero-content">
-      <a class="home-apk-entry" href="#arcaea-apk">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M5 19.5h14"></path></svg>
-        <span>Arcaea 安卓安装包</span>
-        <strong data-apk-entry-version hidden></strong>
-        <span class="home-apk-entry-arrow" aria-hidden="true">→</span>
-      </a>
       <h1 id="home-heading">音游图片下载站</h1>
       <p class="home-hero-lead">浏览与下载你所需要的图片资源</p>
       <p class="home-stats" aria-label="访问与下载统计" hidden={!PUBLIC_STATS_API_URL}>
@@ -78,26 +71,7 @@ const arcaeaApkManifestUrl = `${ROS_BASE_URL}/apk/arcaea/latest.json`;
     </div>
   </section>
 
-  <section class="page-container home-apk" id="arcaea-apk" aria-labelledby="apk-heading" data-arcaea-apk-card data-manifest-url={arcaeaApkManifestUrl}>
-    <div class="section-heading">
-      <div><span class="section-kicker">Download</span><h2 id="apk-heading">Arcaea APK 下载</h2></div>
-      <span class="section-heading-note">版本信息来自官网首页</span>
-    </div>
-    <div class="apk-card">
-      <span class="apk-card-icon"><GameIcon game="arcaea" /></span>
-      <div class="apk-card-state" data-arcaea-apk-state aria-busy="true">
-        <div class="apk-card-main" aria-hidden="true">
-          <div class="apk-card-identity"><span class="apk-card-product">Arcaea · Android</span><strong class="async-placeholder">0.0.0</strong><span class="apk-version-tag">最新版本</span></div>
-          <dl class="apk-card-meta"><div><dt>文件大小</dt><dd class="async-placeholder">0.00 GB</dd></div><div><dt>更新时间</dt><dd class="async-placeholder">2026年10月16日 00:00</dd></div></dl>
-        </div>
-        <div class="apk-download-actions" aria-hidden="true"><span class="button apk-official-button async-placeholder">历史版本</span><span class="button apk-download-button async-placeholder">下载 APK</span></div>
-        <span class="sr-only">正在获取版本信息…</span>
-      </div>
-    </div>
-  </section>
-
   <RecentUpdates />
 
   <ResourceRanking compact limit={6} headingId="home-ranking-heading" />
-  <script src="../scripts/apk-card.ts"></script>
 </BaseLayout>

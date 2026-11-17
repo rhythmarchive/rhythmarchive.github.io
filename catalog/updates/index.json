@@ -94,6 +94,158 @@
   ],
   "records": [
     {
+      "id": "57f31190-43f9-7cfc-92c4-de24262cd696",
+      "game": "arcaea",
+      "releaseIds": [
+        "679b1921-7875-78c5-9d47-269698559f05"
+      ],
+      "publishedAt": "2026-11-17T11:15:00+08:00",
+      "contentVersion": "7.3.0c",
+      "kind": "update",
+      "items": [
+        {
+          "resourceId": "873f93d9-4612-70a0-aed4-0258f8702290",
+          "change": "added"
+        },
+        {
+          "resourceId": "e433b225-dd56-7f1a-aee0-3b77e703a37a",
+          "change": "added"
+        },
+        {
+          "resourceId": "1ca92f47-76ac-7679-ba21-7ffc909799b1",
+          "change": "added"
+        },
+        {
+          "resourceId": "60287c3f-7237-7274-a74a-3998da5815ba",
+          "change": "added"
+        },
+        {
+          "resourceId": "24e2da90-8591-7a73-a09a-fedcdacd98aa",
+          "change": "added"
+        },
+        {
+          "resourceId": "6b4bb61d-5800-7dd3-abdd-c926ca9f0fba",
+          "change": "added"
+        },
+        {
+          "resourceId": "c994af8e-1c52-778f-b35c-9485dd30166e",
+          "change": "added"
+        },
+        {
+          "resourceId": "01800c88-2244-7fed-a1e2-41292278d91a",
+          "change": "added"
+        },
+        {
+          "resourceId": "5cf0995d-5353-7816-a677-1c392d40fc98",
+          "change": "added"
+        },
+        {
+          "resourceId": "2abbb6ba-fdd3-711a-b2e8-3b2e086e47f2",
+          "change": "added"
+        },
+        {
+          "resourceId": "0f7b3c49-c50b-73c6-9bd4-a5b8b789702a",
+          "change": "added"
+        },
+        {
+          "resourceId": "9019ef75-76cd-745c-969c-004c59a853d0",
+          "change": "added"
+        },
+        {
+          "resourceId": "89f1bc63-1105-7089-a498-a9ae805e0b64",
+          "change": "added"
+        },
+        {
+          "resourceId": "508e87a5-79c8-7261-8296-cb8135be58a0",
+          "change": "added"
+        },
+        {
+          "resourceId": "3135d47a-b475-7378-b2b3-de02d2814c0a",
+          "change": "added"
+        },
+        {
+          "resourceId": "23c929ca-663e-7e0f-a048-4e78e0b44c7e",
+          "change": "added"
+        },
+        {
+          "resourceId": "ebb8b5ab-a031-7d04-b39a-bc7903611e33",
+          "change": "added"
+        },
+        {
+          "resourceId": "7115ffee-da36-74c6-9215-775d2fab647a",
+          "change": "added"
+        },
+        {
+          "resourceId": "ea0c444e-d395-7c61-8567-f71a0b592c4e",
+          "change": "added"
+        },
+        {
+          "resourceId": "12c1f10d-291f-7f9e-aa75-a84f16b7ab67",
+          "change": "added"
+        },
+        {
+          "resourceId": "e0d05deb-4a8d-7ee3-ae2e-4260d1f54ceb",
+          "change": "added"
+        },
+        {
+          "resourceId": "2c7c131a-5f7a-7a7f-8b4b-fac0fc1815d2",
+          "change": "added"
+        },
+        {
+          "resourceId": "7a178806-5874-7240-aca8-38faaa479846",
+          "change": "added"
+        },
+        {
+          "resourceId": "e90cc6a9-b2d3-7b68-8a86-9b503aa22f21",
+          "change": "added"
+        },
+        {
+          "resourceId": "67495bf9-e375-7d7c-a770-2610be31054c",
+          "change": "added"
+        },
+        {
+          "resourceId": "0239dd2d-06ec-7491-99bc-3b746c8c44e2",
+          "change": "added"
+        },
+        {
+          "resourceId": "f79e05e4-49e7-7885-b45a-2f61a7996ef0",
+          "change": "added"
+        },
+        {
+          "resourceId": "33afd238-b211-7eec-870b-7757735ca799",
+          "change": "added"
+        },
+        {
+          "resourceId": "038d93be-adfe-7c09-bd94-3169f0f33089",
+          "change": "added"
+        },
+        {
+          "resourceId": "8ba1a2ae-6d55-79eb-acee-6296759a7549",
+          "change": "added"
+        },
+        {
+          "resourceId": "cc8f2d12-c529-7ffc-98cc-c9cbdec40463",
+          "change": "added"
+        },
+        {
+          "resourceId": "2a0e338d-90a8-7531-94a2-ecbae09df9eb",
+          "change": "added"
+        },
+        {
+          "resourceId": "6954bfac-21d7-796a-ad81-089e2d73954d",
+          "change": "added"
+        },
+        {
+          "resourceId": "4f6fa8ae-bf19-76ff-940b-3c00bc52b8f1",
+          "change": "added"
+        },
+        {
+          "resourceId": "414351e8-4702-756c-b54b-d71a812efb07",
+          "change": "added"
+        }
+      ]
+    },
+    {
       "id": "87d36238-d6e7-73c6-b9c8-4dac16f09c10",
       "game": "arcaea",
       "releaseIds": [

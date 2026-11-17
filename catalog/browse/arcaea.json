@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
   "game": "arcaea",
-  "generatedAt": "2026-10-29T10:35:00+08:00",
+  "generatedAt": "2026-11-17T11:15:00+08:00",
   "source": {
-    "version": "7.1.0c",
-    "sha256": "b169c695634229e20792630558f705e576aa07c1acdc1a5b19f8051651950c09"
+    "version": "7.3.0c",
+    "sha256": "f43b173e516db1bdfdbbf5ef0467b4287dc0e061a38934b58427b5ee04547408"
   },
   "songs": [
     {
@@ -35355,6 +35355,7 @@
         "château de cartes",
         "chateaudecartes",
         "inverted silence ft. pernelle",
+        "memory archive",
         "single",
         "샤또 드 카뜨",
         "샤또 드 카흐뜨",
@@ -35426,6 +35427,7 @@
         "shunji fujii feat. 千花",
         "voyage to the future",
         "voyagetofuture",
+        "world extend 4",
         "보야지 투 더 퓨처",
         "치카",
         "후지이 슌지",
@@ -35487,6 +35489,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "diverse system collaboration",
         "diversesystem",
         "feryquitous",
         "ran",
@@ -35550,6 +35553,7 @@
       "relatedSongs": [],
       "searchTerms": [
         "crayvxn",
+        "diverse system collaboration",
         "diversesystem",
         "ether drive",
         "etherdrive",
@@ -35614,6 +35618,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "diverse system collaboration",
         "diversesystem",
         "remo-con",
         "schra go (uchina time)",
@@ -35680,6 +35685,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "diverse system collaboration",
         "diversesystem",
         "fatality",
         "renpul",
@@ -35745,6 +35751,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "diverse system collaboration",
         "diversesystem",
         "parallax",
         "xi vs ak+q (lowiro)",
@@ -35779,7 +35786,7 @@
       "date": 1793232006,
       "sideRaw": 1,
       "bpm": "195?",
-      "orderHint": 820,
+      "orderHint": 561,
       "charts": [
         {
           "difficultyClass": "ETR",
@@ -35809,6 +35816,7 @@
       ],
       "relatedSongs": [],
       "searchTerms": [
+        "memory archive",
         "nothing but requiem",
         "single",
         "tr!ck ma?ter",
@@ -35818,6 +35826,618 @@
         "트릭 마스터",
         "とりっくますたー",
         "なっしんぐばっとれくいえむ"
+      ]
+    },
+    {
+      "songId": "renegadeark",
+      "displayTitle": "Renegade",
+      "titleAliases": [
+        "Renegade",
+        "레니게이드",
+        "れねげーど"
+      ],
+      "artist": "Jason Walsh, Substantial, X. ARI",
+      "artistAliases": [
+        "서브스텐셜",
+        "엑스 아리",
+        "제이슨 왈시",
+        "제이슨 월시",
+        "さぶすたんしゃる",
+        "じぇいそんうぉるしゅ",
+        "じぇいそんわるしゅ"
+      ],
+      "pack": {
+        "packId": "base",
+        "displayName": "Arcaea"
+      },
+      "version": "7.3",
+      "date": 1794873600,
+      "sideRaw": 1,
+      "bpm": "154",
+      "orderHint": 562,
+      "charts": [
+        {
+          "difficultyClass": "ETR",
+          "displayLevel": "9"
+        },
+        {
+          "difficultyClass": "FTR",
+          "displayLevel": "7+"
+        },
+        {
+          "difficultyClass": "PRS",
+          "displayLevel": "5"
+        },
+        {
+          "difficultyClass": "PST",
+          "displayLevel": "2"
+        }
+      ],
+      "artworks": [
+        {
+          "role": "default",
+          "resourceId": "3135d47a-b475-7378-b2b3-de02d2814c0a",
+          "currentApkPresence": true,
+          "matchStatus": "confirmed",
+          "sourcePath": "assets/songs/dl_renegadeark/1080_base.jpg"
+        }
+      ],
+      "relatedSongs": [],
+      "searchTerms": [
+        "arknights collaboration",
+        "base",
+        "jason walsh, substantial, x. ari",
+        "renegade",
+        "renegadeark",
+        "레니게이드",
+        "서브스텐셜",
+        "엑스 아리",
+        "제이슨 왈시",
+        "제이슨 월시",
+        "さぶすたんしゃる",
+        "じぇいそんうぉるしゅ",
+        "じぇいそんわるしゅ",
+        "れねげーど"
+      ]
+    },
+    {
+      "songId": "missyou",
+      "displayTitle": "Miss You",
+      "titleAliases": [
+        "Miss You",
+        "미스 유",
+        "みすゆー",
+        "みすゆう"
+      ],
+      "artist": "David Lin, Erik Castro",
+      "artistAliases": [
+        "데이비드 린",
+        "에릭 카스트로",
+        "えりっくかすとろ",
+        "でいゔぃっどりん",
+        "でゔぃっどりん",
+        "でびっどりん"
+      ],
+      "pack": {
+        "packId": "arknights",
+        "displayName": "Arknights Collaboration"
+      },
+      "version": "7.3",
+      "date": 1794873601,
+      "sideRaw": 0,
+      "bpm": "134",
+      "orderHint": 563,
+      "charts": [
+        {
+          "difficultyClass": "FTR",
+          "displayLevel": "8"
+        },
+        {
+          "difficultyClass": "PRS",
+          "displayLevel": "5"
+        },
+        {
+          "difficultyClass": "PST",
+          "displayLevel": "2"
+        }
+      ],
+      "artworks": [
+        {
+          "role": "default",
+          "resourceId": "9019ef75-76cd-745c-969c-004c59a853d0",
+          "currentApkPresence": true,
+          "matchStatus": "confirmed",
+          "sourcePath": "assets/songs/dl_missyou/1080_base.jpg"
+        }
+      ],
+      "relatedSongs": [],
+      "searchTerms": [
+        "arknights",
+        "arknights collaboration",
+        "david lin, erik castro",
+        "miss you",
+        "missyou",
+        "데이비드 린",
+        "미스 유",
+        "에릭 카스트로",
+        "えりっくかすとろ",
+        "でいゔぃっどりん",
+        "でゔぃっどりん",
+        "でびっどりん",
+        "みすゆー",
+        "みすゆう"
+      ]
+    },
+    {
+      "songId": "speedoflight",
+      "displayTitle": "Speed of Light",
+      "titleAliases": [
+        "Speed of Light",
+        "스피드 오브 라이트",
+        "すぴーどおぶらいと"
+      ],
+      "artist": "DJ OKAWARI, 二宮愛",
+      "artistAliases": [
+        "니노미야 아이",
+        "디제이 오카와리",
+        "でぃーじぇーおかわり",
+        "にのみやあい"
+      ],
+      "pack": {
+        "packId": "arknights",
+        "displayName": "Arknights Collaboration"
+      },
+      "version": "7.3",
+      "date": 1794873602,
+      "sideRaw": 0,
+      "bpm": "112",
+      "orderHint": 564,
+      "charts": [
+        {
+          "difficultyClass": "ETR",
+          "displayLevel": "9"
+        },
+        {
+          "difficultyClass": "FTR",
+          "displayLevel": "7+"
+        },
+        {
+          "difficultyClass": "PRS",
+          "displayLevel": "5"
+        },
+        {
+          "difficultyClass": "PST",
+          "displayLevel": "2"
+        }
+      ],
+      "artworks": [
+        {
+          "role": "default",
+          "resourceId": "ebb8b5ab-a031-7d04-b39a-bc7903611e33",
+          "currentApkPresence": true,
+          "matchStatus": "confirmed",
+          "sourcePath": "assets/songs/dl_speedoflight/1080_base.jpg"
+        }
+      ],
+      "relatedSongs": [],
+      "searchTerms": [
+        "arknights",
+        "arknights collaboration",
+        "dj okawari, 二宮愛",
+        "speed of light",
+        "speedoflight",
+        "니노미야 아이",
+        "디제이 오카와리",
+        "스피드 오브 라이트",
+        "すぴーどおぶらいと",
+        "でぃーじぇーおかわり",
+        "にのみやあい"
+      ]
+    },
+    {
+      "songId": "fadingsky",
+      "displayTitle": "Fading Sky",
+      "titleAliases": [
+        "Fading Sky",
+        "페이딩 스카이",
+        "ふぇーでぃんぐすかい",
+        "ふぇいでぃんぐすかい"
+      ],
+      "artist": "AJURIKA",
+      "artistAliases": [
+        "아주리카",
+        "아쥬리카",
+        "あじゅりか"
+      ],
+      "pack": {
+        "packId": "arknights",
+        "displayName": "Arknights Collaboration"
+      },
+      "version": "7.3",
+      "date": 1794873603,
+      "sideRaw": 0,
+      "bpm": "178",
+      "orderHint": 565,
+      "charts": [
+        {
+          "difficultyClass": "ETR",
+          "displayLevel": "9+"
+        },
+        {
+          "difficultyClass": "FTR",
+          "displayLevel": "8"
+        },
+        {
+          "difficultyClass": "PRS",
+          "displayLevel": "6"
+        },
+        {
+          "difficultyClass": "PST",
+          "displayLevel": "3"
+        }
+      ],
+      "artworks": [
+        {
+          "role": "default",
+          "resourceId": "2abbb6ba-fdd3-711a-b2e8-3b2e086e47f2",
+          "currentApkPresence": true,
+          "matchStatus": "confirmed",
+          "sourcePath": "assets/songs/dl_fadingsky/1080_base.jpg"
+        }
+      ],
+      "relatedSongs": [],
+      "searchTerms": [
+        "ajurika",
+        "arknights",
+        "arknights collaboration",
+        "fading sky",
+        "fadingsky",
+        "아주리카",
+        "아쥬리카",
+        "페이딩 스카이",
+        "あじゅりか",
+        "ふぇーでぃんぐすかい",
+        "ふぇいでぃんぐすかい"
+      ]
+    },
+    {
+      "songId": "radiant",
+      "displayTitle": "Radiant",
+      "titleAliases": [
+        "Radiant",
+        "래디언트",
+        "れいでぃあんと"
+      ],
+      "artist": "Mary Clare, Erik Castro",
+      "artistAliases": [
+        "메리 클레어",
+        "에릭 카스트로",
+        "えりっくかすとろ",
+        "まりーくれあ",
+        "めありーくれあ"
+      ],
+      "pack": {
+        "packId": "arknights",
+        "displayName": "Arknights Collaboration"
+      },
+      "version": "7.3",
+      "date": 1794873604,
+      "sideRaw": 0,
+      "bpm": "176",
+      "orderHint": 566,
+      "charts": [
+        {
+          "difficultyClass": "ETR",
+          "displayLevel": "10"
+        },
+        {
+          "difficultyClass": "FTR",
+          "displayLevel": "8+"
+        },
+        {
+          "difficultyClass": "PRS",
+          "displayLevel": "6"
+        },
+        {
+          "difficultyClass": "PST",
+          "displayLevel": "3"
+        }
+      ],
+      "artworks": [
+        {
+          "role": "default",
+          "resourceId": "508e87a5-79c8-7261-8296-cb8135be58a0",
+          "currentApkPresence": true,
+          "matchStatus": "confirmed",
+          "sourcePath": "assets/songs/dl_radiant/1080_base.jpg"
+        }
+      ],
+      "relatedSongs": [],
+      "searchTerms": [
+        "arknights",
+        "arknights collaboration",
+        "mary clare, erik castro",
+        "radiant",
+        "래디언트",
+        "메리 클레어",
+        "에릭 카스트로",
+        "えりっくかすとろ",
+        "まりーくれあ",
+        "めありーくれあ",
+        "れいでぃあんと"
+      ]
+    },
+    {
+      "songId": "alive",
+      "displayTitle": "ALIVE",
+      "titleAliases": [
+        "ALIVE",
+        "얼라이브",
+        "あらいぶ"
+      ],
+      "artist": "Obadiah Brown-Beach, Cristina Vee",
+      "artistAliases": [
+        "오바디아 브라운 비치",
+        "크리스티나 비",
+        "おばだいあぶらうんびーち",
+        "くりすてぃなゔぃー",
+        "くりすてぃなびー"
+      ],
+      "pack": {
+        "packId": "arknights",
+        "displayName": "Arknights Collaboration"
+      },
+      "version": "7.3",
+      "date": 1794873605,
+      "sideRaw": 1,
+      "bpm": "125",
+      "orderHint": 567,
+      "charts": [
+        {
+          "difficultyClass": "FTR",
+          "displayLevel": "10"
+        },
+        {
+          "difficultyClass": "PRS",
+          "displayLevel": "7+"
+        },
+        {
+          "difficultyClass": "PST",
+          "displayLevel": "4"
+        }
+      ],
+      "artworks": [
+        {
+          "role": "default",
+          "resourceId": "5cf0995d-5353-7816-a677-1c392d40fc98",
+          "currentApkPresence": true,
+          "matchStatus": "confirmed",
+          "sourcePath": "assets/songs/dl_alive/1080_base.jpg"
+        }
+      ],
+      "relatedSongs": [],
+      "searchTerms": [
+        "alive",
+        "arknights",
+        "arknights collaboration",
+        "obadiah brown-beach, cristina vee",
+        "얼라이브",
+        "오바디아 브라운 비치",
+        "크리스티나 비",
+        "あらいぶ",
+        "おばだいあぶらうんびーち",
+        "くりすてぃなゔぃー",
+        "くりすてぃなびー"
+      ]
+    },
+    {
+      "songId": "hascome",
+      "displayTitle": "......已至。",
+      "titleAliases": [
+        "......已至。",
+        "masanori akita",
+        "왔다",
+        "이 즈",
+        "해즈 컴",
+        "もうすでに"
+      ],
+      "artist": "秋田真典",
+      "artistAliases": [
+        "아키타 마사노리",
+        "あきたまさのり"
+      ],
+      "pack": {
+        "packId": "arknights",
+        "displayName": "Arknights Collaboration"
+      },
+      "version": "7.3",
+      "date": 1794873606,
+      "sideRaw": 1,
+      "bpm": "146",
+      "orderHint": 568,
+      "charts": [
+        {
+          "difficultyClass": "ETR",
+          "displayLevel": "10"
+        },
+        {
+          "difficultyClass": "FTR",
+          "displayLevel": "9"
+        },
+        {
+          "difficultyClass": "PRS",
+          "displayLevel": "7"
+        },
+        {
+          "difficultyClass": "PST",
+          "displayLevel": "4"
+        }
+      ],
+      "artworks": [
+        {
+          "role": "default",
+          "resourceId": "0f7b3c49-c50b-73c6-9bd4-a5b8b789702a",
+          "currentApkPresence": true,
+          "matchStatus": "confirmed",
+          "sourcePath": "assets/songs/dl_hascome/1080_base.jpg"
+        }
+      ],
+      "relatedSongs": [],
+      "searchTerms": [
+        "......已至。",
+        "arknights",
+        "arknights collaboration",
+        "hascome",
+        "masanori akita",
+        "아키타 마사노리",
+        "왔다",
+        "이 즈",
+        "해즈 컴",
+        "あきたまさのり",
+        "もうすでに",
+        "秋田真典"
+      ]
+    },
+    {
+      "songId": "opspectheme",
+      "displayTitle": "Operation Spectrum Battle Theme",
+      "titleAliases": [
+        "Operation Spectrum Battle Theme",
+        "오퍼레이션 스펙트럼 배틀 테마",
+        "오퍼레이션 스펙트럼 배틀 팀",
+        "おぺれーしょんすぺくとらむばとるてーま"
+      ],
+      "artist": "cybermiso, DOT96, tigerlily",
+      "artistAliases": [
+        "도트구육",
+        "도트나인티식스",
+        "사이버미소",
+        "타이거릴리",
+        "さいばーみそ",
+        "たいがーりりぃ",
+        "どっときゅうじゅうろく",
+        "どっとくろ"
+      ],
+      "pack": {
+        "packId": "arknights",
+        "displayName": "Arknights Collaboration"
+      },
+      "version": "7.3",
+      "date": 1794873607,
+      "sideRaw": 1,
+      "bpm": "174",
+      "orderHint": 569,
+      "charts": [
+        {
+          "difficultyClass": "ETR",
+          "displayLevel": "10+"
+        },
+        {
+          "difficultyClass": "FTR",
+          "displayLevel": "9"
+        },
+        {
+          "difficultyClass": "PRS",
+          "displayLevel": "7"
+        },
+        {
+          "difficultyClass": "PST",
+          "displayLevel": "4"
+        }
+      ],
+      "artworks": [
+        {
+          "role": "default",
+          "resourceId": "89f1bc63-1105-7089-a498-a9ae805e0b64",
+          "currentApkPresence": true,
+          "matchStatus": "confirmed",
+          "sourcePath": "assets/songs/dl_opspectheme/1080_base.jpg"
+        }
+      ],
+      "relatedSongs": [],
+      "searchTerms": [
+        "arknights",
+        "arknights collaboration",
+        "cybermiso, dot96, tigerlily",
+        "operation spectrum battle theme",
+        "opspectheme",
+        "도트구육",
+        "도트나인티식스",
+        "사이버미소",
+        "오퍼레이션 스펙트럼 배틀 테마",
+        "오퍼레이션 스펙트럼 배틀 팀",
+        "타이거릴리",
+        "おぺれーしょんすぺくとらむばとるてーま",
+        "さいばーみそ",
+        "たいがーりりぃ",
+        "どっときゅうじゅうろく",
+        "どっとくろ"
+      ]
+    },
+    {
+      "songId": "somniomancer",
+      "displayTitle": "Somniomancer [null set]",
+      "titleAliases": [
+        "Somniomancer [null set]",
+        "섬니오맨서",
+        "솜니오맨서",
+        "そむにおまんさーぬるせっと",
+        "ぬるせっと"
+      ],
+      "artist": "Crywolf",
+      "artistAliases": [
+        "크라이울프",
+        "くらいうるふ"
+      ],
+      "pack": {
+        "packId": "arknights",
+        "displayName": "Arknights Collaboration"
+      },
+      "version": "7.3",
+      "date": 1794873608,
+      "sideRaw": 1,
+      "bpm": "100",
+      "orderHint": 570,
+      "charts": [
+        {
+          "difficultyClass": "ETR",
+          "displayLevel": "10+"
+        },
+        {
+          "difficultyClass": "FTR",
+          "displayLevel": "9+"
+        },
+        {
+          "difficultyClass": "PRS",
+          "displayLevel": "8"
+        },
+        {
+          "difficultyClass": "PST",
+          "displayLevel": "5"
+        }
+      ],
+      "artworks": [
+        {
+          "role": "default",
+          "resourceId": "23c929ca-663e-7e0f-a048-4e78e0b44c7e",
+          "currentApkPresence": true,
+          "matchStatus": "confirmed",
+          "sourcePath": "assets/songs/dl_somniomancer/1080_base.jpg"
+        }
+      ],
+      "relatedSongs": [],
+      "searchTerms": [
+        "arknights",
+        "arknights collaboration",
+        "crywolf",
+        "somniomancer",
+        "somniomancer [null set]",
+        "섬니오맨서",
+        "솜니오맨서",
+        "크라이울프",
+        "くらいうるふ",
+        "そむにおまんさーぬるせっと",
+        "ぬるせっと"
       ]
     }
   ],
@@ -36146,9 +36766,9 @@
     }
   ],
   "recordCounts": {
-    "regularSongs": 560,
-    "currentArtworkSlots": 619,
-    "currentArtworkResourceReferences": 618,
+    "regularSongs": 569,
+    "currentArtworkSlots": 628,
+    "currentArtworkResourceReferences": 627,
     "missingCurrentArtwork": 1,
     "specialRecords": 9,
     "archiveExtras": 3,

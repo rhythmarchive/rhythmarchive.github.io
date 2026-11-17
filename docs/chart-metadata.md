@@ -16,6 +16,12 @@ Catalog 的 `metadata.charts` 是详情页和筛选的共同来源。继续使�
 - 内容检查将 `chartDataVersion` 与既有 Browse manifest 的 `sourceVersion` 对齐；没有正式 Browse 的游戏采用 Updates 的最新版本（含 baseline）。升级版本后，旧标记会使 `content:check` / `check:fast` 失败。完成上述复核或移除未确认定数后才能推进标记，不能只改版本字符串消除失败。
 - 定数变更写入 Catalog 后，详情、范围边界和直方图从同一快照生成。按现有流程刷新 Browse 的 Catalog 哈希绑定和公共投影；无需新增资源对象、ROS 上传或运行时请求。
 
+## 2026-11-17 Arcaea 7.3.0c 复核
+
+按正式 Browse 的资源 ID 与 APK songId 关联，逐一复核 1,864 个已采用定数。当前中文维基完整定数数据中，felys PST 为 3.0、INTERNET YAMERO FTR 为 10.0，修正此前的 3.5、9.9；后者同时得到单曲改定数说明及本版原生显示等级 10 的支持。其余已采用定数一致。这是当前资料复核与纠正，不据此声称这两项在 7.3 才发生调整。
+
+新增九首曲目的 34 张谱面使用本版原生等级、曲师和谱师，并按 songId 及难度绑定当前中文维基 ChartNotes.json 的物量。同名 Renegade 分别以 renegade 与 renegadeark 保持独立，免费曲 renegadeark 属于 Arcaea 曲包。当前 ChartConstant.json 尚未列出九首新曲，时长与曲绘画师也未获得可核实字段，继续留空；逐曲缺项和本次来源快照保留于 Workspace input/source/20261117-arcaea73，供后续补齐。chartDataVersion 为 7.3.0c，旧曲加入版本保留。
+
 ## 2026-11-14 Paradigm: Reboot 新曲资料补齐
 
 现行维护资料表已补入 4.13 五首新曲的曲风与时长：GRG REMIX 为 HARD RENAISSANCE／2:53，LucaProject Remix 为 ETHNIC WALTZ／2:55，ぴれんどらー Re：mix 为 FULLFLAVOR／3:16，REDALiCE & aran Remix 为 HARDCORE／2:26，Re：Beyond the End of a Dream 为 EUROBEAT／3:07。按标题与 Remix 曲师逐首匹配，来源快照及哈希保留于原 provenance 的 `20261114-source.xlsx`，公开字段记录来源。显示等级尚未获得可核实字段，继续留空；不从定数推导。此次只补元数据，沿用 4.13 更新 ID 与原时间，曲绘和既有谱面值不变。

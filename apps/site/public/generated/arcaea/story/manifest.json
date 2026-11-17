@@ -1,10 +1,10 @@
 {
   "manifestVersion": 1,
   "source": {
-    "packageVersion": "7.0.255c",
-    "packageSha256": "5aeb5edc425808605cc8a682cd9269aecae671fdab9573376b100d08ee3577c6",
+    "packageVersion": "7.3.0c",
+    "packageSha256": "f43b173e516db1bdfdbbf5ef0467b4287dc0e061a38934b58427b5ee04547408",
     "orderingPath": "assets/app-data/story2/ordering",
-    "verifiedAt": "2026-09-02",
+    "verifiedAt": "2026-11-17",
     "wikiSources": [
       {
         "url": "https://wikiwiki.jp/arcaea/%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AA%E3%83%BC",
@@ -329,6 +329,20 @@
       "height": 193,
       "mime": "image/webp",
       "sizeBytes": 6340
+    },
+    "entry_arknights.png": {
+      "url": "/generated/arcaea/story/ui/entry_arknights.webp",
+      "width": 193,
+      "height": 193,
+      "mime": "image/webp",
+      "sizeBytes": 4628
+    },
+    "entry_arknights2.png": {
+      "url": "/generated/arcaea/story/ui/entry_arknights2.webp",
+      "width": 193,
+      "height": 193,
+      "mime": "image/webp",
+      "sizeBytes": 5244
     },
     "entry_ayu2_boss.png": {
       "url": "/generated/arcaea/story/ui/entry_ayu2_boss.webp",
@@ -982,6 +996,13 @@
       "height": 170,
       "mime": "image/webp",
       "sizeBytes": 6714
+    },
+    "24e2da90-8591-7a73-a09a-fedcdacd98aa": {
+      "url": "/generated/arcaea/story/avatars/24e2da90-8591-7a73-a09a-fedcdacd98aa.webp",
+      "width": 170,
+      "height": 170,
+      "mime": "image/webp",
+      "sizeBytes": 7836
     }
   },
   "resources": {
@@ -3321,6 +3342,38 @@
         "sizeBytes": 253390
       }
     },
+    "0239dd2d-06ec-7491-99bc-3b746c8c44e2": {
+      "thumb": {
+        "url": "/generated/arcaea/story/cg/thumb/0239dd2d-06ec-7491-99bc-3b746c8c44e2.webp",
+        "width": 420,
+        "height": 236,
+        "mime": "image/webp",
+        "sizeBytes": 1866
+      },
+      "preview": {
+        "url": "/generated/arcaea/story/cg/preview/0239dd2d-06ec-7491-99bc-3b746c8c44e2.webp",
+        "width": 1200,
+        "height": 675,
+        "mime": "image/webp",
+        "sizeBytes": 15578
+      }
+    },
+    "038d93be-adfe-7c09-bd94-3169f0f33089": {
+      "thumb": {
+        "url": "/generated/arcaea/story/cg/thumb/038d93be-adfe-7c09-bd94-3169f0f33089.webp",
+        "width": 420,
+        "height": 236,
+        "mime": "image/webp",
+        "sizeBytes": 10430
+      },
+      "preview": {
+        "url": "/generated/arcaea/story/cg/preview/038d93be-adfe-7c09-bd94-3169f0f33089.webp",
+        "width": 1200,
+        "height": 675,
+        "mime": "image/webp",
+        "sizeBytes": 60606
+      }
+    },
     "05a0cd3a-4106-7a92-aa40-3e2a09a35e8f": {
       "thumb": {
         "url": "/generated/arcaea/story/cg/thumb/05a0cd3a-4106-7a92-aa40-3e2a09a35e8f.webp",
@@ -3641,6 +3694,22 @@
         "sizeBytes": 175222
       }
     },
+    "2c7c131a-5f7a-7a7f-8b4b-fac0fc1815d2": {
+      "thumb": {
+        "url": "/generated/arcaea/story/cg/thumb/2c7c131a-5f7a-7a7f-8b4b-fac0fc1815d2.webp",
+        "width": 420,
+        "height": 236,
+        "mime": "image/webp",
+        "sizeBytes": 6566
+      },
+      "preview": {
+        "url": "/generated/arcaea/story/cg/preview/2c7c131a-5f7a-7a7f-8b4b-fac0fc1815d2.webp",
+        "width": 1200,
+        "height": 675,
+        "mime": "image/webp",
+        "sizeBytes": 38140
+      }
+    },
     "2e531623-2e2c-73f2-b845-9603238afe2d": {
       "thumb": {
         "url": "/generated/arcaea/story/cg/thumb/2e531623-2e2c-73f2-b845-9603238afe2d.webp",
@@ -3703,6 +3772,22 @@
         "height": 1650,
         "mime": "image/webp",
         "sizeBytes": 188958
+      }
+    },
+    "33afd238-b211-7eec-870b-7757735ca799": {
+      "thumb": {
+        "url": "/generated/arcaea/story/cg/thumb/33afd238-b211-7eec-870b-7757735ca799.webp",
+        "width": 420,
+        "height": 236,
+        "mime": "image/webp",
+        "sizeBytes": 10710
+      },
+      "preview": {
+        "url": "/generated/arcaea/story/cg/preview/33afd238-b211-7eec-870b-7757735ca799.webp",
+        "width": 1200,
+        "height": 675,
+        "mime": "image/webp",
+        "sizeBytes": 50062
       }
     },
     "36607014-cb95-7c42-8845-e506853d5f55": {
@@ -4057,6 +4142,22 @@
         "sizeBytes": 19286
       }
     },
+    "67495bf9-e375-7d7c-a770-2610be31054c": {
+      "thumb": {
+        "url": "/generated/arcaea/story/cg/thumb/67495bf9-e375-7d7c-a770-2610be31054c.webp",
+        "width": 420,
+        "height": 236,
+        "mime": "image/webp",
+        "sizeBytes": 4890
+      },
+      "preview": {
+        "url": "/generated/arcaea/story/cg/preview/67495bf9-e375-7d7c-a770-2610be31054c.webp",
+        "width": 1200,
+        "height": 675,
+        "mime": "image/webp",
+        "sizeBytes": 30176
+      }
+    },
     "6a3a5785-639b-75d4-b733-ab4ca444453d": {
       "thumb": {
         "url": "/generated/arcaea/story/cg/thumb/6a3a5785-639b-75d4-b733-ab4ca444453d.webp",
@@ -4071,6 +4172,22 @@
         "height": 676,
         "mime": "image/webp",
         "sizeBytes": 29628
+      }
+    },
+    "7a178806-5874-7240-aca8-38faaa479846": {
+      "thumb": {
+        "url": "/generated/arcaea/story/cg/thumb/7a178806-5874-7240-aca8-38faaa479846.webp",
+        "width": 420,
+        "height": 236,
+        "mime": "image/webp",
+        "sizeBytes": 5924
+      },
+      "preview": {
+        "url": "/generated/arcaea/story/cg/preview/7a178806-5874-7240-aca8-38faaa479846.webp",
+        "width": 1200,
+        "height": 675,
+        "mime": "image/webp",
+        "sizeBytes": 34064
       }
     },
     "7d92052f-14a4-7374-8d80-73c5f4f209c2": {
@@ -4167,6 +4284,22 @@
         "height": 675,
         "mime": "image/webp",
         "sizeBytes": 198964
+      }
+    },
+    "8ba1a2ae-6d55-79eb-acee-6296759a7549": {
+      "thumb": {
+        "url": "/generated/arcaea/story/cg/thumb/8ba1a2ae-6d55-79eb-acee-6296759a7549.webp",
+        "width": 420,
+        "height": 236,
+        "mime": "image/webp",
+        "sizeBytes": 4074
+      },
+      "preview": {
+        "url": "/generated/arcaea/story/cg/preview/8ba1a2ae-6d55-79eb-acee-6296759a7549.webp",
+        "width": 1200,
+        "height": 675,
+        "mime": "image/webp",
+        "sizeBytes": 18476
       }
     },
     "940697d1-937b-75d5-9fb1-cd84e9b5847b": {
@@ -4649,6 +4782,22 @@
         "sizeBytes": 131334
       }
     },
+    "cc8f2d12-c529-7ffc-98cc-c9cbdec40463": {
+      "thumb": {
+        "url": "/generated/arcaea/story/cg/thumb/cc8f2d12-c529-7ffc-98cc-c9cbdec40463.webp",
+        "width": 420,
+        "height": 236,
+        "mime": "image/webp",
+        "sizeBytes": 2462
+      },
+      "preview": {
+        "url": "/generated/arcaea/story/cg/preview/cc8f2d12-c529-7ffc-98cc-c9cbdec40463.webp",
+        "width": 1200,
+        "height": 675,
+        "mime": "image/webp",
+        "sizeBytes": 12062
+      }
+    },
     "cd2b127c-a998-79d6-a529-80259c8ae465": {
       "thumb": {
         "url": "/generated/arcaea/story/cg/thumb/cd2b127c-a998-79d6-a529-80259c8ae465.webp",
@@ -4745,6 +4894,22 @@
         "sizeBytes": 69146
       }
     },
+    "e0d05deb-4a8d-7ee3-ae2e-4260d1f54ceb": {
+      "thumb": {
+        "url": "/generated/arcaea/story/cg/thumb/e0d05deb-4a8d-7ee3-ae2e-4260d1f54ceb.webp",
+        "width": 420,
+        "height": 236,
+        "mime": "image/webp",
+        "sizeBytes": 6270
+      },
+      "preview": {
+        "url": "/generated/arcaea/story/cg/preview/e0d05deb-4a8d-7ee3-ae2e-4260d1f54ceb.webp",
+        "width": 1200,
+        "height": 675,
+        "mime": "image/webp",
+        "sizeBytes": 36188
+      }
+    },
     "e1f49128-4bc9-70ca-8c64-a7dc393dbe9a": {
       "thumb": {
         "url": "/generated/arcaea/story/cg/thumb/e1f49128-4bc9-70ca-8c64-a7dc393dbe9a.webp",
@@ -4775,6 +4940,22 @@
         "height": 675,
         "mime": "image/webp",
         "sizeBytes": 79792
+      }
+    },
+    "e90cc6a9-b2d3-7b68-8a86-9b503aa22f21": {
+      "thumb": {
+        "url": "/generated/arcaea/story/cg/thumb/e90cc6a9-b2d3-7b68-8a86-9b503aa22f21.webp",
+        "width": 420,
+        "height": 236,
+        "mime": "image/webp",
+        "sizeBytes": 18728
+      },
+      "preview": {
+        "url": "/generated/arcaea/story/cg/preview/e90cc6a9-b2d3-7b68-8a86-9b503aa22f21.webp",
+        "width": 1200,
+        "height": 675,
+        "mime": "image/webp",
+        "sizeBytes": 135416
       }
     },
     "e9456ad4-452c-7a60-b664-e570e9911ac7": {
@@ -4823,6 +5004,22 @@
         "height": 561,
         "mime": "image/webp",
         "sizeBytes": 50960
+      }
+    },
+    "f79e05e4-49e7-7885-b45a-2f61a7996ef0": {
+      "thumb": {
+        "url": "/generated/arcaea/story/cg/thumb/f79e05e4-49e7-7885-b45a-2f61a7996ef0.webp",
+        "width": 420,
+        "height": 236,
+        "mime": "image/webp",
+        "sizeBytes": 9808
+      },
+      "preview": {
+        "url": "/generated/arcaea/story/cg/preview/f79e05e4-49e7-7885-b45a-2f61a7996ef0.webp",
+        "width": 1200,
+        "height": 675,
+        "mime": "image/webp",
+        "sizeBytes": 50618
       }
     },
     "f7bbb3b8-2855-7565-81db-7b4c83cd8ec3": {
