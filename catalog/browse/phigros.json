@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
   "game": "phigros",
-  "generatedAt": "2026-11-17T11:15:00+08:00",
+  "generatedAt": "2026-11-20T09:30:09.795+00:00",
   "source": {
-    "version": "4.0.1.2",
-    "sha256": "0fa6de7e4c391d6a89d1a11cb02f8963dcdca62aa50305e3a47d931f76b50674"
+    "version": "4.1.0",
+    "sha256": "24b0898ba361f3fa051b44b939d11ef69ba193256b8ab401f1ca2b6ba1a80762"
   },
   "tracks": [
     {
@@ -6525,7 +6525,7 @@
       "charts": [
         {
           "difficultyClass": "AT",
-          "structurallyPresent": false,
+          "structurallyPresent": true,
           "errorVariant": false
         },
         {
@@ -8214,6 +8214,51 @@
         "fluorite姜米條",
         "nya",
         "nya!!!(phigros ver.)"
+      ]
+    },
+    {
+      "sourceIdentityCandidate": "Assets/Tracks/OMG.DopamnevszEnsEn.0/",
+      "sourceTrackPath": "Assets/Tracks/OMG.DopamnevszEnsEn.0/",
+      "displayTitle": "OMG",
+      "sourceTitle": "OMG",
+      "displayArtist": "Dopam!ne vs zEnsEn",
+      "sourceArtist": "DopamnevszEnsEn",
+      "indexRaw": "0",
+      "artwork": {
+        "resourceId": "0f7db549-6655-77bf-b1ca-3e4f3ae9b8e1",
+        "confidence": "high",
+        "role": "current-track-artwork"
+      },
+      "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": false,
+          "errorVariant": false
+        },
+        {
+          "difficultyClass": "EZ",
+          "structurallyPresent": true,
+          "errorVariant": false
+        },
+        {
+          "difficultyClass": "HD",
+          "structurallyPresent": true,
+          "errorVariant": false
+        },
+        {
+          "difficultyClass": "IN",
+          "structurallyPresent": true,
+          "errorVariant": false
+        }
+      ],
+      "displayLevel": null,
+      "chapter": null,
+      "searchAliases": [],
+      "searchTerms": [
+        "assets/tracks/omg.dopamnevszensen.0/",
+        "dopam!ne vs zensen",
+        "dopamnevszensen",
+        "omg"
       ]
     },
     {
@@ -10621,6 +10666,51 @@
         "kanonevsblacky",
         "stardust_ray",
         "stardustray"
+      ]
+    },
+    {
+      "sourceIdentityCandidate": "Assets/Tracks/STARGAZERS.proxime.0/",
+      "sourceTrackPath": "Assets/Tracks/STARGAZERS.proxime.0/",
+      "displayTitle": "STARGAZERS",
+      "sourceTitle": "STARGAZERS",
+      "displayArtist": "proxime()",
+      "sourceArtist": "proxime",
+      "indexRaw": "0",
+      "artwork": {
+        "resourceId": "f4d3fa44-20a3-7a74-81c9-09716670aee4",
+        "confidence": "high",
+        "role": "current-track-artwork"
+      },
+      "charts": [
+        {
+          "difficultyClass": "AT",
+          "structurallyPresent": true,
+          "errorVariant": false
+        },
+        {
+          "difficultyClass": "EZ",
+          "structurallyPresent": true,
+          "errorVariant": false
+        },
+        {
+          "difficultyClass": "HD",
+          "structurallyPresent": true,
+          "errorVariant": false
+        },
+        {
+          "difficultyClass": "IN",
+          "structurallyPresent": true,
+          "errorVariant": false
+        }
+      ],
+      "displayLevel": null,
+      "chapter": null,
+      "searchAliases": [],
+      "searchTerms": [
+        "assets/tracks/stargazers.proxime.0/",
+        "proxime",
+        "proxime()",
+        "stargazers"
       ]
     },
     {
@@ -15412,8 +15502,8 @@
     }
   ],
   "recordCounts": {
-    "sourceTrackRecords": 334,
-    "currentTrackArtworkEntries": 328,
+    "sourceTrackRecords": 336,
+    "currentTrackArtworkEntries": 330,
     "specialRecords": 33,
     "archiveExtras": 7,
     "sourceOnlyTracks": 6

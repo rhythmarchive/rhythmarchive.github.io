@@ -3402,6 +3402,34 @@
           "change": "added"
         }
       ]
+    },
+    {
+      "id": "a07be6c1-cd08-7594-bd65-46687b12dc6d",
+      "game": "phigros",
+      "releaseIds": [
+        "59e7748a-6e49-7ffa-9012-693b4a08a03d"
+      ],
+      "kind": "update",
+      "publishedAt": "2026-11-20T09:30:09.795+00:00",
+      "contentVersion": "4.1.0",
+      "items": [
+        {
+          "resourceId": "01a00093-47bc-73f0-aff2-b646e7c3a26d",
+          "change": "supplemented"
+        },
+        {
+          "resourceId": "f4d3fa44-20a3-7a74-81c9-09716670aee4",
+          "change": "added"
+        },
+        {
+          "resourceId": "0f7db549-6655-77bf-b1ca-3e4f3ae9b8e1",
+          "change": "added"
+        },
+        {
+          "resourceId": "b77630d1-5563-7cac-8390-31bcb5a882d2",
+          "change": "added"
+        }
+      ]
     }
   ]
 }

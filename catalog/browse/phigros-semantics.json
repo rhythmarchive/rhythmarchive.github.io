@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
   "game": "phigros",
-  "generatedAt": "2026-10-02T09:42:15.224Z",
+  "generatedAt": "2026-11-20T09:30:09.795+00:00",
   "source": {
-    "snapshot": "Phigros APK 4.0.1",
-    "sha256": "f59a041f5bc02d0f3eb51a67739ec0271590ac412e68cf6cc6b43621cdf08985"
+    "snapshot": "Phigros APK 4.1.0",
+    "sha256": "24b0898ba361f3fa051b44b939d11ef69ba193256b8ab401f1ca2b6ba1a80762"
   },
   "resources": [
     {
@@ -807,6 +807,24 @@
       "facets": {
         "kind": [
           "主线"
+        ]
+      }
+    },
+    {
+      "resourceId": "b77630d1-5563-7cac-8390-31bcb5a882d2",
+      "resourceType": "pack-cover",
+      "displayTitle": "vivid/stasis",
+      "subtitle": "曲包封面",
+      "metadata": {},
+      "badges": [],
+      "searchTerms": [
+        "vivid/stasis",
+        "vividstasis"
+      ],
+      "sortOrder": 3043,
+      "facets": {
+        "kind": [
+          "其他曲包"
         ]
       }
     }
