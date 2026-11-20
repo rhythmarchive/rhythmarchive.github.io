@@ -16,6 +16,10 @@ Catalog 的 `metadata.charts` 是详情页和筛选的共同来源。继续使�
 - 内容检查将 `chartDataVersion` 与既有 Browse manifest 的 `sourceVersion` 对齐；没有正式 Browse 的游戏采用 Updates 的最新版本（含 baseline）。升级版本后，旧标记会使 `content:check` / `check:fast` 失败。完成上述复核或移除未确认定数后才能推进标记，不能只改版本字符串消除失败。
 - 定数变更写入 Catalog 后，详情、范围边界和直方图从同一快照生成。按现有流程刷新 Browse 的 Catalog 哈希绑定和公共投影；无需新增资源对象、ROS 上传或运行时请求。
 
+## 2026-11-20 Rizline 2.8.0 复核
+
+国服 2.8.0 对应资源版本 `v146_2_8_0_fda1c11c76P`。按 v146 原生 `Default.charts` 逐项核对 v145 的 453 条谱面记录，档位、定数与谱师原始字段一致。新增「篇章 - 边际线」六首曲目的 18 张谱面及《Daydream》SP，击打数沿用 Tap、Catch 各一次和 Hold 首尾各一次的计数规则。SP 采用原生难度文字「砖」，定数留空；原生谱师字段是本地化键，等待可核实署名。
+
 ## 2026-11-20 Phigros 4.1.0 复核
 
 从本版 APK 的 `GameInformation.SongBase.difficultyRaw` 逐首比对 328 首既有曲目。唯一的定数变化是《Inverted World》新增 AT，定数 16.5。新增《OMG》和《STARGAZERS》的定数、谱师和画师来自同一原生对象，八张新增谱面的物量按原生谱面的 `notesAbove` 和 `notesBelow` 合计。vivid/stasis 精选集的曲目归属和顺序来自同版章节清单。

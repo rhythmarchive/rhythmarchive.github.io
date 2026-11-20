@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
   "game": "rizline",
-  "generatedAt": "2026-10-23T10:47:50.402Z",
+  "generatedAt": "2026-11-20T10:22:49.933Z",
   "source": {
-    "snapshot": "rizline.remote-canonical:v145_2_7_1_3e1bee4b02P",
-    "sha256": "a40af8d2c1b2bdc5d634e3ea6ec95a988e9217c25d22914be750c223ebbc4540"
+    "snapshot": "rizline.remote-canonical:v146_2_8_0_fda1c11c76P",
+    "sha256": "15515bb3d743b39558c3dfb3930fae91157204e5723a5711b55a739436616250"
   },
   "resources": [
     {
@@ -6145,6 +6145,175 @@
         "Yoso"
       ],
       "sortOrder": 255,
+      "facets": {}
+    },
+    {
+      "resourceId": "f1043350-ae60-7b38-be7f-85dd2a746df6",
+      "resourceType": "jacket",
+      "displayTitle": "Written Lines",
+      "subtitle": "Iris",
+      "metadata": {
+        "gameVersion": "2.8.0",
+        "songId": "WrittenLines.Iris.0",
+        "musicArtist": "Iris",
+        "illustrator": "山山奇",
+        "disc": "Disc Δ",
+        "trackSeries": "篇章 - 边际线"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Written Lines",
+        "WrittenLines.Iris.0",
+        "Iris",
+        "山山奇",
+        "Disc Δ",
+        "篇章 - 边际线"
+      ],
+      "sortOrder": 256,
+      "facets": {}
+    },
+    {
+      "resourceId": "6e4c56e3-4726-7b73-b4e6-b76f86eed9df",
+      "resourceType": "jacket",
+      "displayTitle": "Garden of Eden feat. AKA",
+      "subtitle": "XinG",
+      "metadata": {
+        "gameVersion": "2.8.0",
+        "songId": "GardenofEdenfeatAKA.XinG.0",
+        "musicArtist": "XinG",
+        "illustrator": "群青kurara",
+        "disc": "Disc Δ",
+        "trackSeries": "篇章 - 边际线"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Garden of Eden feat. AKA",
+        "GardenofEdenfeatAKA.XinG.0",
+        "XinG",
+        "群青kurara",
+        "Disc Δ",
+        "篇章 - 边际线"
+      ],
+      "sortOrder": 257,
+      "facets": {}
+    },
+    {
+      "resourceId": "e5544795-c256-75df-a215-fc74ad96273d",
+      "resourceType": "jacket",
+      "displayTitle": "月下桜天国",
+      "subtitle": "Zuxin with Utsuro",
+      "metadata": {
+        "gameVersion": "2.8.0",
+        "songId": "月下桜天国.ZuxinwithUtsuro.0",
+        "musicArtist": "Zuxin with Utsuro",
+        "illustrator": "群青kurara feat. Jimwaz",
+        "disc": "Disc Δ",
+        "trackSeries": "篇章 - 边际线"
+      },
+      "badges": [],
+      "searchTerms": [
+        "月下桜天国",
+        "月下桜天国.ZuxinwithUtsuro.0",
+        "Zuxin with Utsuro",
+        "群青kurara feat. Jimwaz",
+        "Disc Δ",
+        "篇章 - 边际线"
+      ],
+      "sortOrder": 258,
+      "facets": {}
+    },
+    {
+      "resourceId": "b1a24c31-caca-7d37-8632-428ded1b1c1e",
+      "resourceType": "jacket",
+      "displayTitle": "Ho(Riz)oN",
+      "subtitle": "ShiBa",
+      "metadata": {
+        "gameVersion": "2.8.0",
+        "songId": "HoRizoN.ShiBa.0",
+        "musicArtist": "ShiBa",
+        "illustrator": "群青kurara feat. Jimwaz",
+        "disc": "Disc Δ",
+        "trackSeries": "篇章 - 边际线"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Ho(Riz)oN",
+        "HoRizoN.ShiBa.0",
+        "ShiBa",
+        "群青kurara feat. Jimwaz",
+        "Disc Δ",
+        "篇章 - 边际线"
+      ],
+      "sortOrder": 259,
+      "facets": {}
+    },
+    {
+      "resourceId": "cfe0504c-23bb-7a22-8fa2-586230e3661a",
+      "resourceType": "jacket",
+      "displayTitle": "Daydream",
+      "subtitle": "RiraN",
+      "metadata": {
+        "gameVersion": "2.8.0",
+        "songId": "Daydream.RiraN.0",
+        "musicArtist": "RiraN",
+        "illustrator": "Jimwaz",
+        "disc": "Disc Δ",
+        "trackSeries": "篇章 - 边际线"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Daydream",
+        "Daydream.RiraN.0",
+        "RiraN",
+        "Jimwaz",
+        "Disc Δ",
+        "篇章 - 边际线"
+      ],
+      "sortOrder": 260,
+      "facets": {}
+    },
+    {
+      "resourceId": "f0361bb4-1474-7097-a0a7-f1050026e6ce",
+      "resourceType": "jacket",
+      "displayTitle": "conflict",
+      "subtitle": "siromaru + cranky",
+      "metadata": {
+        "gameVersion": "2.8.0",
+        "songId": "conflict.siromarucranky.0",
+        "musicArtist": "siromaru + cranky",
+        "illustrator": "iimo",
+        "disc": "Disc Δ",
+        "trackSeries": "篇章 - 边际线"
+      },
+      "badges": [],
+      "searchTerms": [
+        "conflict",
+        "conflict.siromarucranky.0",
+        "siromaru + cranky",
+        "iimo",
+        "Disc Δ",
+        "篇章 - 边际线"
+      ],
+      "sortOrder": 261,
+      "facets": {}
+    },
+    {
+      "resourceId": "b73035c0-ce63-7718-8405-ee90f4a33971",
+      "resourceType": "special-art",
+      "displayTitle": "思维密码",
+      "metadata": {
+        "gameVersion": "2.8.0",
+        "specialArtId": "rizline:special-art:CipherMind.0",
+        "illustrator": "笔记RE",
+        "collaborationPartner": "思维密码"
+      },
+      "badges": [],
+      "searchTerms": [
+        "思维密码",
+        "CipherMind",
+        "笔记RE"
+      ],
+      "sortOrder": 262,
       "facets": {}
     }
   ]

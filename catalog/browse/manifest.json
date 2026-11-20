@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-20T09:30:09.795+00:00",
+  "generatedAt": "2026-11-20T10:22:49.933Z",
   "games": {
     "arcaea": {
       "sourceVersion": "7.3.0c",
       "sourceSha256": "f43b173e516db1bdfdbbf5ef0467b4287dc0e061a38934b58427b5ee04547408",
-      "fileSha256": "c026a826015306b4a3313cf05039930861c2ea76f1af6533edf0b12b25867a0c",
+      "fileSha256": "2790977ae1cf1c67af1fb742fd9120f7bdc8514842a142e3d49fbfc20cc5535d",
       "recordCounts": {
         "regularSongs": 569,
         "currentArtworkSlots": 628,
@@ -19,7 +19,7 @@
     "phigros": {
       "sourceVersion": "4.1.0",
       "sourceSha256": "24b0898ba361f3fa051b44b939d11ef69ba193256b8ab401f1ca2b6ba1a80762",
-      "fileSha256": "c397a1afc0a3ff9330770683eb8f103235a2b0925170ccc83c0fda02875ab10a",
+      "fileSha256": "01f2aba68a7bf2647760600b70c0706e222aec6a1302889afbd48cc876554b74",
       "recordCounts": {
         "sourceTrackRecords": 336,
         "currentTrackArtworkEntries": 330,
@@ -29,12 +29,12 @@
       }
     },
     "rizline": {
-      "sourceVersion": "v145_2_7_1_3e1bee4b02P",
-      "sourceSha256": "a40af8d2c1b2bdc5d634e3ea6ec95a988e9217c25d22914be750c223ebbc4540",
-      "fileSha256": "d5c1e5e481ec4bb45319b2a99fe90d33628bd803e826674fc2d05b99f75856d0",
+      "sourceVersion": "v146_2_8_0_fda1c11c76P",
+      "sourceSha256": "15515bb3d743b39558c3dfb3930fae91157204e5723a5711b55a739436616250",
+      "fileSha256": "cf8cc0d52b0ce517ad9d91879e1b3beadc651602bd2093b338eb080d960930ae",
       "recordCounts": {
-        "songs": 150,
-        "artworks": 153
+        "songs": 156,
+        "artworks": 159
       }
     },
     "infalsus": {
@@ -58,8 +58,8 @@
   },
   "catalog": {
     "catalogId": "019fefd6-9c49-7ca0-a760-adc76811a511",
-    "catalogSha256": "2aeca936ddb707524a3390a086034ebf86cb330af3d07eb6abd06e23d0fb561e",
-    "catalogGeneratedAt": "2026-11-20T09:30:09.795+00:00"
+    "catalogSha256": "5c95ca2c0f99764b08442c1d5d00a4ac62646fb4f8b33cffd0e2c88731a3ccdd",
+    "catalogGeneratedAt": "2026-11-20T10:22:49.933Z"
   },
   "files": {
     "arcaea": "arcaea.json",

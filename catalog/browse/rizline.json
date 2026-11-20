@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
   "game": "rizline",
-  "generatedAt": "2026-10-23T10:47:50.402Z",
+  "generatedAt": "2026-11-20T10:22:49.933Z",
   "source": {
-    "version": "v145_2_7_1_3e1bee4b02P",
-    "sha256": "a40af8d2c1b2bdc5d634e3ea6ec95a988e9217c25d22914be750c223ebbc4540"
+    "version": "v146_2_8_0_fda1c11c76P",
+    "sha256": "15515bb3d743b39558c3dfb3930fae91157204e5723a5711b55a739436616250"
   },
   "songs": [
     {
@@ -4025,10 +4025,160 @@
         "zukutya & corok-Bb",
         "EX - Single"
       ]
+    },
+    {
+      "songId": "WrittenLines.Iris.0",
+      "displayTitle": "Written Lines",
+      "musicArtist": "Iris",
+      "illustrator": "山山奇",
+      "disc": "Disc Δ",
+      "trackSeries": [],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:WrittenLines.Iris.0__hires",
+          "resourceId": "f1043350-ae60-7b38-be7f-85dd2a746df6",
+          "variantId": "66bbd5c0-9cc1-7be6-a486-8763835bba20",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "Written Lines",
+        "WrittenLines.Iris.0",
+        "Iris",
+        "山山奇",
+        "Disc Δ",
+        "篇章 - 边际线"
+      ]
+    },
+    {
+      "songId": "GardenofEdenfeatAKA.XinG.0",
+      "displayTitle": "Garden of Eden feat. AKA",
+      "musicArtist": "XinG",
+      "illustrator": "群青kurara",
+      "disc": "Disc Δ",
+      "trackSeries": [],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:GardenofEdenfeatAKA.XinG.0__hires",
+          "resourceId": "6e4c56e3-4726-7b73-b4e6-b76f86eed9df",
+          "variantId": "97d6e686-8b65-768f-879f-772b1e8348df",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "Garden of Eden feat. AKA",
+        "GardenofEdenfeatAKA.XinG.0",
+        "XinG",
+        "群青kurara",
+        "Disc Δ",
+        "篇章 - 边际线"
+      ]
+    },
+    {
+      "songId": "月下桜天国.ZuxinwithUtsuro.0",
+      "displayTitle": "月下桜天国",
+      "musicArtist": "Zuxin with Utsuro",
+      "illustrator": "群青kurara feat. Jimwaz",
+      "disc": "Disc Δ",
+      "trackSeries": [],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:月下桜天国.ZuxinwithUtsuro.0__hires",
+          "resourceId": "e5544795-c256-75df-a215-fc74ad96273d",
+          "variantId": "085ab891-dcea-785a-b8d2-82a5adbc07e0",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "月下桜天国",
+        "月下桜天国.ZuxinwithUtsuro.0",
+        "Zuxin with Utsuro",
+        "群青kurara feat. Jimwaz",
+        "Disc Δ",
+        "篇章 - 边际线"
+      ]
+    },
+    {
+      "songId": "HoRizoN.ShiBa.0",
+      "displayTitle": "Ho(Riz)oN",
+      "musicArtist": "ShiBa",
+      "illustrator": "群青kurara feat. Jimwaz",
+      "disc": "Disc Δ",
+      "trackSeries": [],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:HoRizoN.ShiBa.0__hires",
+          "resourceId": "b1a24c31-caca-7d37-8632-428ded1b1c1e",
+          "variantId": "593577b1-451e-78a0-a1f4-89891568fbb7",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "Ho(Riz)oN",
+        "HoRizoN.ShiBa.0",
+        "ShiBa",
+        "群青kurara feat. Jimwaz",
+        "Disc Δ",
+        "篇章 - 边际线"
+      ]
+    },
+    {
+      "songId": "Daydream.RiraN.0",
+      "displayTitle": "Daydream",
+      "musicArtist": "RiraN",
+      "illustrator": "Jimwaz",
+      "disc": "Disc Δ",
+      "trackSeries": [],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:Daydream.RiraN.0__hires",
+          "resourceId": "cfe0504c-23bb-7a22-8fa2-586230e3661a",
+          "variantId": "67330d3c-5f64-7370-a562-98de3d176417",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "Daydream",
+        "Daydream.RiraN.0",
+        "RiraN",
+        "Jimwaz",
+        "Disc Δ",
+        "篇章 - 边际线"
+      ]
+    },
+    {
+      "songId": "conflict.siromarucranky.0",
+      "displayTitle": "conflict",
+      "musicArtist": "siromaru + cranky",
+      "illustrator": "iimo",
+      "disc": "Disc Δ",
+      "trackSeries": [],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:conflict.siromarucranky.0__hires",
+          "resourceId": "f0361bb4-1474-7097-a0a7-f1050026e6ce",
+          "variantId": "0bcfc4a0-9fee-723e-8f37-dda3dbf24a22",
+          "variantKey": "default",
+          "preferred": true
+        }
+      ],
+      "searchTerms": [
+        "conflict",
+        "conflict.siromarucranky.0",
+        "siromaru + cranky",
+        "iimo",
+        "Disc Δ",
+        "篇章 - 边际线"
+      ]
     }
   ],
   "recordCounts": {
-    "songs": 150,
-    "artworks": 153
+    "songs": 156,
+    "artworks": 159
   }
 }
