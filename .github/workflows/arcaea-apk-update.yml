@@ -1,8 +1,9 @@
 name: Arcaea APK update
 
 on:
-  schedule:
-    - cron: "*/30 * * * *"
+  # Automatic runs are paused. Uncomment to resume the 30-minute schedule.
+  # schedule:
+  #   - cron: "*/30 * * * *"
   workflow_dispatch:
     inputs:
       mode:
