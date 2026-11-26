@@ -8,14 +8,15 @@ on:
       mode:
         description: "Updater mode"
         required: true
-        default: publish
+        default: check-only
         type: choice
         options:
           - publish
           - check-only
+          - stage-private
 
 permissions:
-  contents: write
+  contents: read
 
 concurrency:
   group: arcaea-apk-update
@@ -49,14 +50,13 @@ jobs:
       - name: Run Arcaea APK updater
         run: npm --prefix tools/arcaea-apk-updater run check -- --mode "${{ inputs.mode || 'publish' }}" --staging-dir "$RUNNER_TEMP/arcaea-update"
         env:
-          GITHUB_TOKEN: ${{ github.token }}
           ROS_REFERER: https://rhythmarchive.github.io/
           ROS_ACCESS_KEY: ${{ secrets.ROS_ACCESS_KEY }}
           ROS_SECRET_KEY: ${{ secrets.ROS_SECRET_KEY }}
           ROS_ENDPOINT: ${{ secrets.ROS_ENDPOINT }}
           ROS_BUCKET: ${{ secrets.ROS_BUCKET }}
           ROS_PUBLIC_BASE_URL: ${{ secrets.ROS_PUBLIC_BASE_URL }}
-          # Explicit opt-in; absent configuration keeps GitHub-only publishing.
+          # Private staging cannot advance the public manifest.
           ARCAEA_R2_ENABLED: ${{ vars.ARCAEA_R2_ENABLED || 'false' }}
           ARCAEA_R2_ENDPOINT: ${{ vars.ARCAEA_R2_ENDPOINT }}
           ARCAEA_R2_BUCKET: ${{ vars.ARCAEA_R2_BUCKET }}

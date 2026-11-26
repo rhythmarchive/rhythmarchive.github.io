@@ -89,7 +89,7 @@ export function parsePublicArcaeaApkManifest(value: unknown, options: { publicBa
   const latest = validEntry(record.latest, false, options.publicBaseUrl);
   const previous = record.previous === null ? null : validEntry(record.previous, true, options.publicBaseUrl);
   if (!latest || (record.previous !== null && !previous)) return null;
-  if (record.schemaVersion === 3 && (!latest.downloads.r2 || (latest.fileSize < 2 * 1024 ** 3 ? !latest.downloads.github : latest.downloads.github !== null))) return null;
+  if (record.schemaVersion === 3 && !latest.downloads.r2) return null;
   return { schemaVersion: record.schemaVersion, game: "arcaea", generatedAt: record.generatedAt, latest, previous };
 }
 

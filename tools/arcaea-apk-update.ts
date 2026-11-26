@@ -4,7 +4,7 @@ import { S3StorageClient } from "../packages/domain/src/storage.js";
 
 function usage(): never {
   console.log([
-    "Usage: npm --prefix tools/arcaea-apk-updater run check -- [--check-only | --mode check-only|publish] [--staging-dir <dir>]",
+    "Usage: npm --prefix tools/arcaea-apk-updater run check -- [--check-only | --mode check-only|stage-private|publish] [--staging-dir <dir>]",
     "",
     "The official source is fixed to https://webapi.lowiro.com/webapi/serve/static/bin/arcaea/apk.",
     "--check-only discovers the official version and CDN host without reading or writing ROS.",
@@ -12,8 +12,8 @@ function usage(): never {
   process.exit(0);
 }
 
-function parseArgs(argv: string[]): { mode: "check-only" | "publish"; stagingDirectory?: string } {
-  let mode: "check-only" | "publish" = process.env.ARCAEA_APK_MODE === "check-only" ? "check-only" : "publish";
+function parseArgs(argv: string[]): { mode: "check-only" | "stage-private" | "publish"; stagingDirectory?: string } {
+  let mode: "check-only" | "stage-private" | "publish" = process.env.ARCAEA_APK_MODE === "check-only" ? "check-only" : "publish";
   let stagingDirectory: string | undefined;
   for (let index = 0; index < argv.length; index += 1) {
     const arg = argv[index];
@@ -24,7 +24,7 @@ function parseArgs(argv: string[]): { mode: "check-only" | "publish"; stagingDir
     }
     if (arg === "--mode") {
       const value = argv[++index];
-      if (value !== "check-only" && value !== "publish") throw new Error("--mode must be check-only or publish.");
+      if (value !== "check-only" && value !== "stage-private" && value !== "publish") throw new Error("--mode must be check-only or publish.");
       mode = value;
       continue;
     }
@@ -42,7 +42,8 @@ function parseArgs(argv: string[]): { mode: "check-only" | "publish"; stagingDir
 async function main(): Promise<void> {
   const parsed = parseArgs(process.argv.slice(2));
   const r2Enabled = process.env.ARCAEA_R2_ENABLED === "true";
-  if (parsed.mode === "publish" && r2Enabled) {
+  if (parsed.mode === "publish" && !r2Enabled) throw new Error("Public R2 publishing is disabled.");
+  if (parsed.mode !== "check-only") {
     for (const key of ["ARCAEA_R2_ENDPOINT", "ARCAEA_R2_BUCKET", "ARCAEA_R2_PUBLIC_BASE_URL", "ARCAEA_R2_ACCESS_KEY_ID", "ARCAEA_R2_SECRET_ACCESS_KEY"]) {
       if (!process.env[key]?.trim()) throw new Error(`Missing configuration: ${key}`);
     }
@@ -53,7 +54,7 @@ async function main(): Promise<void> {
   const result = await runArcaeaApkUpdate({
     mode: parsed.mode,
     ...(parsed.stagingDirectory ? { stagingDirectory: parsed.stagingDirectory } : {}),
-    ...(parsed.mode === "publish" ? { storage: new S3StorageClient(), ...(r2Enabled ? { r2Storage: new S3StorageClient({
+    ...(parsed.mode !== "check-only" ? { storage: new S3StorageClient(), r2Storage: new S3StorageClient({
       endpoint: process.env.ARCAEA_R2_ENDPOINT ?? "",
       bucket: process.env.ARCAEA_R2_BUCKET ?? "",
       publicBaseUrl: process.env.ARCAEA_R2_PUBLIC_BASE_URL ?? "",
@@ -61,15 +62,12 @@ async function main(): Promise<void> {
       region: "auto", forcePathStyle: true,
       accessKey: process.env.ARCAEA_R2_ACCESS_KEY_ID ?? "",
       secretKey: process.env.ARCAEA_R2_SECRET_ACCESS_KEY ?? "",
-    }) } : {}) } : {}),
+    }) } : {}),
   });
   if (result.status === "checked") {
     console.log(`[arcaea-apk] check-only complete: version ${result.discovered.version}; CDN host ${result.discovered.sourceHost}.`);
   } else if (result.status === "blocked-version-regression") {
     console.log("[arcaea-apk] stopped without publishing because the official version is older than the public version.");
-    process.exitCode = 2;
-  } else if (result.status === "blocked-mirror-size") {
-    console.log("[arcaea-apk] R2 is disabled and the official APK cannot fit in GitHub Releases; previous download retained.");
     process.exitCode = 2;
   } else if (result.status === "no-update") {
     console.log("[arcaea-apk] no update; 0 APK download, 0 ROS write, 0 delete.");
