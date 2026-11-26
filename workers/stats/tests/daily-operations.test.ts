@@ -369,3 +369,13 @@ test('verification payload retention uses the source date and expires abandoned 
   await processDailyOperations(env,now,async url=>String(url).includes('resend')?Response.json({id:'daily'}):website());
   assert.equal(db.sqlite.prepare('SELECT status FROM daily_operations_reports WHERE report_date=?').get(id)!.status,'needs_review');
 });
+
+test('budget rollover inserts once; repeated UTC ticks never refill partly spent rows', async()=>{
+ const {maintain}=await import('../src/infrastructure.js');const db=new Database();
+ db.sqlite.exec(`CREATE TABLE infrastructure_samples(day TEXT PRIMARY KEY,payload TEXT);CREATE TABLE download_read_budget(utc_month TEXT PRIMARY KEY,remaining INTEGER);CREATE TABLE ros_fallback_budget(utc_day TEXT PRIMARY KEY,remaining INTEGER)`);
+ const at=Date.parse('2026-12-31T23:55:00Z'),sec=at/1000;
+ db.sqlite.prepare('INSERT INTO infrastructure_samples VALUES(?,?)').run('2026-12-31',JSON.stringify({day:'2026-12-31',observedAt:new Date(at).toISOString(),ops:{all:20},bucket:{bytes:1024}}));
+ const env={DOWNLOAD_BUDGET:db,OPERATOR_ROS:{async snapshot(){return {state:'ok',data:{truncatedInstances:false,instances:[{status:'running',definition:`更新时间原值：${sec}`,planBandwidth:100,transferUsedBytes:100,periodStart:String(sec-86400),expiresAt:String(sec+86400),nextResetAt:String(sec+86400)}]}}}}} as unknown as OperationsEnv;
+ await maintain(env,at);assert.equal(db.row('SELECT remaining FROM download_read_budget WHERE utc_month=\'2027-01\'').remaining,20000);assert.equal(db.row('SELECT remaining FROM ros_fallback_budget WHERE utc_day=\'2027-01-01\'').remaining,8000000);
+ db.sqlite.exec('UPDATE download_read_budget SET remaining=0;UPDATE ros_fallback_budget SET remaining=123');await maintain(env,at+600000);assert.equal(db.row('SELECT remaining FROM download_read_budget').remaining,0);assert.equal(db.row('SELECT remaining FROM ros_fallback_budget').remaining,123);
+});

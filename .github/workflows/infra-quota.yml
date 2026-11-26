@@ -1,0 +1,36 @@
+name: Infrastructure quota snapshot
+on:
+  schedule:
+    - cron: '38 23 * * *'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency: infrastructure-quota
+jobs:
+  snapshot:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    environment: stats-production
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - run: node scripts/infra-quota.mjs
+        env:
+          ACCOUNT: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
+          WRITE_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          READ_TOKEN: ${{ secrets.CF_ANALYTICS_API_TOKEN || secrets.CLOUDFLARE_API_TOKEN }}
+      - name: Verify live report integration without sending a duplicate email
+        if: github.event_name == 'workflow_dispatch'
+        env:
+          REPORT_TOKEN: ${{ secrets.UPDATE_REMINDER_ADMIN_TOKEN }}
+        run: |
+          node --input-type=module <<'NODE'
+          const day=new Date(Date.now()-86400000).toISOString().slice(0,10);
+          const r=await fetch('https://api.rhythmarchive.top/v1/admin/operations/reports/'+day,{redirect:'error',headers:{Authorization:'Bearer '+process.env.REPORT_TOKEN}});
+          if(!r.ok) throw Error('Preview HTTP '+r.status);
+          const i=(await r.json()).report?.infrastructure;
+          if(i?.metrics?.length!==11) throw Error('New report metrics unavailable');
+          for(const m of i.metrics) console.log(m.label,m.used===null?'unknown':'available',m.risk);
+          NODE

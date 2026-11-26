@@ -1,3 +1,4 @@
+import { infrastructure, formatInfra } from './infrastructure.js';
 import { ARCAEA_APK_STATS_ID } from '../../../packages/domain/src/apk-download.js';
 import type { D1Database, Env, NotificationFetch } from './core.js';
 import { PUBLIC_GAME_DISPLAY_NAMES, PUBLIC_GAME_SLUGS } from './public-resource-registry.js';
@@ -34,6 +35,7 @@ export type Snapshot = {
   ros: RosReport;
   feedback: Row[] | null; feedbackCount: Row[] | null; downloadFailures: Row[] | null; reminders: Row[] | null;
   monitor: Row[] | null; versions: Observation[]; changes: Change[];
+  infrastructure?: Awaited<ReturnType<typeof infrastructure>>;
   downloadBudget?: {utcMonth:string; remainingReads:number|null; state:string};
   downloadSources?: Row[] | null;
   unsupported: typeof UNSUPPORTED_SOURCES;
@@ -216,7 +218,7 @@ export async function collectReport(db: D1Database, day: string, now: number, fe
     state=!row?'本月未分配':row.remaining<10000?'读取余量低':'已分配';
     if(row && row.remaining<10000) issues.push('下载网关剩余读取预算不足一万次，请核对账户用量；不自动追加');
   } catch {issues.push('下载网关预算读取失败');}
-  return { downloadBudget:{utcMonth,remainingReads,state},schemaVersion: 1, reportDate: day, timeZone: 'Asia/Shanghai', generatedAt: new Date(now).toISOString(),
+  return { infrastructure:await infrastructure(budget,now,ros,remainingReads),downloadBudget:{utcMonth,remainingReads,state},schemaVersion: 1, reportDate: day, timeZone: 'Asia/Shanghai', generatedAt: new Date(now).toISOString(),
     period: { start: new Date(start).toISOString(), endExclusive: new Date(end).toISOString() }, issues,
     downloadSources: await read('下载来源', `SELECT stat_date,source,CASE WHEN resource_id=? THEN 'apk_click' ELSE 'resource' END AS kind,
       SUM(events) AS events,SUM(logical_bytes) AS logical_bytes,SUM(manual) AS manual,SUM(automatic) AS automatic FROM download_source_daily
@@ -252,7 +254,7 @@ export function renderReport(s: Snapshot): string {
   lines.push('下载来源（近8日，客户端去重事件；APK 仅为点击，资源字节按文件大小估算，不代表平台传输或保存成功）：',
     s.downloadSources?.length ? JSON.stringify(s.downloadSources) : '来源数据不可用或无记录。',
     `网关读取预算（UTC 月，生成时快照）：${s.downloadBudget?.state ?? '未知'}；剩余 ${number(s.downloadBudget?.remainingReads)}。这是应用预算，不是账单。`,
-    'Cloudflare 账户级存储、Class A/B、已出账金额及费用估算：未核实。不得据此视为零费用。');
+    ...(s.infrastructure?formatInfra(s.infrastructure):['基础设施额度与费用：历史报告未采集。']));
   lines.push('下载排行：');
   for (const row of s.topDownloads ?? []) lines.push(`${row.title ?? row.resource_id} | ${row.game ?? '未映射游戏'} | 下载 ${row.downloads} | ${resourceUrl(row.resource_id)}`);
   lines.push('近8日每日序列（供趋势分析，null表示缺失）：', JSON.stringify(s.traffic));
