@@ -15,29 +15,24 @@ onPageLoad(() => {
 async function loadManifest(cardElement: HTMLElement, stateElement: HTMLElement, url: string): Promise<void> {
   const signal = pageSignal();
   try {
-    const response = await fetch(url, { credentials: "omit", signal, headers: { Accept: "application/json" } });
+    const response = await fetch(url, { credentials: "omit", signal: AbortSignal.any([signal,AbortSignal.timeout(10000)]), headers: { Accept: "application/json" } });
     if (!response.ok) throw new Error("manifest unavailable");
     const manifest = parsePublicArcaeaApkManifest(await response.json(), { publicBaseUrl: import.meta.env.PUBLIC_ARCAEA_R2_BASE_URL });
     if (!manifest) throw new Error("manifest invalid");
     if (!signal.aborted) renderManifest(cardElement, stateElement, manifest.latest);
   } catch {
     if (signal.aborted) return;
-    stateElement.removeAttribute("aria-busy");
-    stateElement.replaceChildren();
-    const message = document.createElement("p");
-    message.textContent = "暂时没拿到安装包信息，可以先去官网下载。";
-    const link = document.createElement("a");
-    link.className = "text-link";
-    link.href = "https://arcaea.lowiro.com/zh";
-    link.target = "_blank";
-    link.rel = "noopener noreferrer";
-    link.textContent = "Arcaea 官网";
-    stateElement.append(message, link);
-    revealContent(stateElement);
+    // Immutable Release: size and SHA-256 verified against its GitHub asset and ROS manifest.
+    // Do not imply that a historical, working download is today's official build.
+    renderManifest(cardElement, stateElement, {
+      version: "7.1.0c", versionCode: null, fileName: "Arcaea_7.1.0c.apk", fileSize: 2145803149,
+      sha256: "b169c695634229e20792630558f705e576aa07c1acdc1a5b19f8051651950c09", publishedAt: "2026-10-29T02:01:46.715Z",
+      downloads: { github: `${GITHUB_RELEASES_URL}/download/arcaea-apk-7.1.0c/Arcaea_7.1.0c.apk`, official: null },
+    }, true);
   }
 }
 
-function renderManifest(cardElement: HTMLElement, stateElement: HTMLElement, latest: PublicArcaeaApkEntry): void {
+function renderManifest(cardElement: HTMLElement, stateElement: HTMLElement, latest: PublicArcaeaApkEntry, offline = false): void {
   stateElement.removeAttribute("aria-busy");
   cardElement.classList.add("is-ready");
   stateElement.replaceChildren();
@@ -53,7 +48,7 @@ function renderManifest(cardElement: HTMLElement, stateElement: HTMLElement, lat
   version.textContent = latest.version;
   const tag = document.createElement("span");
   tag.className = "apk-version-tag";
-  tag.textContent = "收录版本";
+  tag.textContent = offline ? "版本查询失败 · 历史版本" : "收录版本";
   identity.append(product, version, tag);
 
   const metadata = document.createElement("dl");
