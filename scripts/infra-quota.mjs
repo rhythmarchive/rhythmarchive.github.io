@@ -1,4 +1,5 @@
 // One bounded control-plane collection per day. Never list or fetch R2 objects.
+import { createHmac } from "node:crypto";
 const { ACCOUNT: id, READ_TOKEN: read, WRITE_TOKEN: write } = process.env;
 if (!/^[a-f0-9]{32}$/.test(id) || !read || !write)
   throw Error("missing environment");
@@ -6,12 +7,11 @@ const base = `/accounts/${id}`,
   now = new Date(),
   iso = now.toISOString(),
   day = iso.slice(0, 10),
-  month = day.slice(0, 7) + "-01",
-  db = "6203834d-43b6-45c0-b1e8-fcc7ddebae81";
+  month = day.slice(0, 7) + "-01";
 const sample = { observedAt: iso, day, errors: {} };
-async function api(path, body, token = read) {
+async function api(path, body, token = read, method = body ? "POST" : "GET") {
   const r = await fetch("https://api.cloudflare.com/client/v4" + path, {
-    method: body ? "POST" : "GET",
+    method,
     redirect: "error",
     signal: AbortSignal.timeout(15000),
     headers: {
@@ -25,7 +25,7 @@ async function api(path, body, token = read) {
   if (j.errors?.length || j.success === false)
     throw Error(
       "API " +
-        (j.errors?.[0]?.extensions?.code ?? j.errors?.[0]?.code ?? "rejected"),
+        (j.errors?.[0]?.extensions?.code ?? j.errors?.[0]?.code ?? (/permission|authorized|access/i.test(j.errors?.[0]?.message??"") ? "access denied" : /unknown|field|argument/i.test(j.errors?.[0]?.message??"") ? "query field" : "rejected")),
     );
   return j;
 }
@@ -68,7 +68,7 @@ sample.d1 = await get("d1", async () => {
   return { reads: n(rowsRead), writes: n(rowsWritten) };
 });
 sample.d1Bytes = await get("d1Bytes", async () => {
-  const j = await api(base + "/d1/database?per_page=100", null, write);
+  const j = await api(base + "/d1/database?per_page=100", null, read);
   if (
     !j.result?.length ||
     j.result.length >= 100 ||
@@ -80,7 +80,7 @@ sample.d1Bytes = await get("d1Bytes", async () => {
     if (j.result.length > 20) throw Error("inventory cap");
     total += n(
       b.file_size ??
-        (await api(base + "/d1/database/" + b.uuid, null, write)).result
+        (await api(base + "/d1/database/" + b.uuid, null, read)).result
           .file_size,
     );
   }
@@ -152,34 +152,37 @@ sample.lastInvoice = await get("billing", async () => {
   if (!x) throw Error("no confirmed charge");
   return { amount: x.amount, currency: x.currency, at: x.occurred_at };
 });
-async function sql(sql, params = []) {
-  await api(`${base}/d1/database/${db}/query`, { sql, params }, write);
-}
-await sql(
-  "CREATE TABLE IF NOT EXISTS quota_grants(kind TEXT,period TEXT,allocated INTEGER NOT NULL, PRIMARY KEY(kind,period)) WITHOUT ROWID",
-);
-for (const [kind, table, key] of [
-  ["r2", "download_read_budget", "utc_month"],
-  ["ros", "ros_fallback_budget", "utc_day"],
-])
-  await sql(
-    `CREATE TRIGGER IF NOT EXISTS grant_${kind} AFTER INSERT ON ${table} BEGIN INSERT INTO quota_grants VALUES('${kind}',NEW.${key},NEW.remaining); END`,
+// The deployment credential stays on the runner. Provision a purpose-specific secret only on initial setup/rotation.
+const key = createHmac("sha256", write)
+  .update("rhythm-archive/stats/quota-snapshot/v1/" + id)
+  .digest("hex");
+async function publish() {
+  return fetch(
+    "https://api.rhythmarchive.top/v1/admin/operations/quota-snapshot",
+    {
+      method: "POST",
+      redirect: "error",
+      signal: AbortSignal.timeout(15000),
+      headers: {
+        Authorization: "Bearer " + key,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(sample),
+    },
   );
-for (const [k, p, n] of [
-  ["r2", "2026-11", 20064],
-  ["ros", "2026-11-26", 8000000],
-])
-  await sql("INSERT OR IGNORE INTO quota_grants VALUES(?,?,?)", [k, p, n]);
-await sql(
-  "CREATE TABLE IF NOT EXISTS infrastructure_samples(day TEXT PRIMARY KEY, payload TEXT NOT NULL) WITHOUT ROWID",
-);
-await sql(
-  "INSERT INTO infrastructure_samples VALUES(?,?) ON CONFLICT(day) DO UPDATE SET payload=excluded.payload",
-  [day, JSON.stringify(sample)],
-);
-await sql(
-  "DELETE FROM infrastructure_samples WHERE day < date('now','-35 days')",
-);
+}
+let result = await publish();
+if (result.status === 401) {
+  await api(
+    base + "/workers/scripts/rhythm-archive-stats/secrets",
+    { name: "QUOTA_SNAPSHOT_TOKEN", type: "secret_text", text: key },
+    write,
+    "PUT",
+  );
+  await new Promise((r) => setTimeout(r, 6000));
+  result = await publish();
+}
+if (!result.ok) throw Error("Snapshot ingestion HTTP " + result.status);
 console.log(
   "Sample saved; unavailable sources:",
   Object.entries(sample.errors)

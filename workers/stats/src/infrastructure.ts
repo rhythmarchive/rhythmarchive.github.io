@@ -20,6 +20,71 @@ type Sample = {
   lastInvoice: { amount: number; currency: string; at: string } | null;
   errors: Record<string, string>;
 };
+// Only the dedicated production collector can submit observations. This endpoint does not grant budget.
+export async function saveSample(db: D1Database, body: string, now: number) {
+  const s = JSON.parse(body) as Sample,
+    age = now - Date.parse(s?.observedAt);
+  if (
+    !(age >= -60000 && age < 1800000) ||
+    s.day !== s.observedAt.slice(0, 10) ||
+    !s.errors ||
+    typeof s.errors !== "object"
+  )
+    return false;
+  if (
+    s.ops !== null &&
+    (!s.ops ||
+      ![s.ops.all, s.ops.a, s.ops.b, s.ops.unclassified].every(
+        (x) => valid(x) && Number.isSafeInteger(x),
+      ) ||
+      s.ops.a + s.ops.b + s.ops.unclassified !== s.ops.all)
+  )
+    return false;
+  if (
+    s.bucket !== null &&
+    (!s.bucket ||
+      !valid(s.bucket.bytes) ||
+      !Number.isFinite(Date.parse(s.bucket.at)))
+  )
+    return false;
+  const exists = await db
+    .prepare(
+      "SELECT 1 AS ok FROM sqlite_master WHERE type='table' AND name='infrastructure_samples'",
+    )
+    .first();
+  if (!exists) {
+    await db.batch([
+      db.prepare(
+        "CREATE TABLE IF NOT EXISTS quota_grants(kind TEXT,period TEXT,allocated INTEGER NOT NULL, PRIMARY KEY(kind,period)) WITHOUT ROWID",
+      ),
+      ...[
+        ["r2", "download_read_budget", "utc_month"],
+        ["ros", "ros_fallback_budget", "utc_day"],
+      ].map(([kind, table, key]) =>
+        db.prepare(
+          `CREATE TRIGGER IF NOT EXISTS grant_${kind} AFTER INSERT ON ${table} BEGIN INSERT INTO quota_grants VALUES('${kind}',NEW.${key},NEW.remaining); END`,
+        ),
+      ),
+      db.prepare(
+        "INSERT OR IGNORE INTO quota_grants VALUES('r2','2026-11',20064),('ros','2026-11-26',8000000)",
+      ),
+      db.prepare(
+        "CREATE TABLE IF NOT EXISTS infrastructure_samples(day TEXT PRIMARY KEY,payload TEXT NOT NULL) WITHOUT ROWID",
+      ),
+    ]);
+  }
+  await db.batch([
+    db
+      .prepare(
+        "INSERT INTO infrastructure_samples VALUES(?,?) ON CONFLICT(day) DO UPDATE SET payload=excluded.payload WHERE json_extract(excluded.payload,'$.observedAt')>json_extract(infrastructure_samples.payload,'$.observedAt')",
+      )
+      .bind(s.day, body),
+    db.prepare(
+      "DELETE FROM infrastructure_samples WHERE day < date('now','-35 days')",
+    ),
+  ]);
+  return true;
+}
 async function samples(db?: D1Database): Promise<Sample[]> {
   try {
     return (
@@ -134,7 +199,7 @@ export function grants(
       : 0;
   const ros =
     x &&
-    now >= x.at &&
+    now + 60000 >= x.at &&
     now - x.at < 2 * 3600000 &&
     target < x.reset &&
     target < x.expires &&
@@ -191,7 +256,7 @@ export async function infrastructure(
       : null;
   const monthly = a?.day.slice(0, 7) === prev?.day.slice(0, 7),
     x = rosData(r),
-    live = x && now >= x.at && now - x.at < 2 * 3600000 ? x : null;
+    live = x && now + 60000 >= x.at && now - x.at < 2 * 3600000 ? x : null;
   const row = await db
     ?.prepare("SELECT remaining FROM ros_fallback_budget WHERE utc_day=?")
     .bind(utc.slice(0, 10))

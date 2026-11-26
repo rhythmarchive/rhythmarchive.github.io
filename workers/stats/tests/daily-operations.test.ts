@@ -379,3 +379,14 @@ test('budget rollover inserts once; repeated UTC ticks never refill partly spent
  await maintain(env,at);assert.equal(db.row('SELECT remaining FROM download_read_budget WHERE utc_month=\'2027-01\'').remaining,20000);assert.equal(db.row('SELECT remaining FROM ros_fallback_budget WHERE utc_day=\'2027-01-01\'').remaining,8000000);
  db.sqlite.exec('UPDATE download_read_budget SET remaining=0;UPDATE ros_fallback_budget SET remaining=123');await maintain(env,at+600000);assert.equal(db.row('SELECT remaining FROM download_read_budget').remaining,0);assert.equal(db.row('SELECT remaining FROM ros_fallback_budget').remaining,123);
 });
+
+test('collector has a separate credential; schema bootstrap and snapshot replay never issue credit',async()=>{
+ const db=new Database();db.sqlite.exec('CREATE TABLE download_read_budget(utc_month TEXT PRIMARY KEY,remaining INTEGER);CREATE TABLE ros_fallback_budget(utc_day TEXT PRIMARY KEY,remaining INTEGER)');
+ const env={DOWNLOAD_BUDGET:db,UPDATE_REMINDER_ADMIN_TOKEN:'report',QUOTA_SNAPSHOT_TOKEN:'collector'} as OperationsEnv;
+ const input={day:'2026-10-27',observedAt:new Date(now).toISOString(),ops:null,bucket:null,errors:{ops:'denied'}};
+ const req=(token:string)=>new Request('https://example.com/v1/admin/operations/quota-snapshot',{method:'POST',headers:{Authorization:'Bearer '+token},body:JSON.stringify(input)});
+ assert.equal((await handleOperationsRequest(req('report'),env,now)).status,401);
+ for(let i=0;i<2;i++)assert.equal((await handleOperationsRequest(req('collector'),env,now)).status,200);
+ assert.equal(db.row('SELECT count(*) AS n FROM download_read_budget').n,0);
+ db.sqlite.exec("INSERT INTO download_read_budget VALUES('2027-01',123);UPDATE download_read_budget SET remaining=2");assert.equal(db.row("SELECT allocated FROM quota_grants WHERE period='2027-01'").allocated,123);
+});

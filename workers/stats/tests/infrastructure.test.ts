@@ -54,6 +54,8 @@ test("ROS uses provider counter timestamp and refuses stale, expired or high-usa
     },
   } as RosReport;
   assert.equal(grants(now, target, undefined, sample).ros, 8000000);
+  assert.equal(grants(now - 2000, target, undefined, sample).ros, 8000000);
+  assert.equal(grants(now - 61000, target, undefined, sample).ros, 0);
   assert.equal(grants(now + 7200000, target, undefined, sample).ros, 0);
   sample.data!.instances[0]!.transferUsedBytes = 99 * 2 ** 30;
   assert.equal(grants(now, target, undefined, sample).ros, 0);

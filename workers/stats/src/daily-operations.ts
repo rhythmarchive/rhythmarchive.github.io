@@ -1,4 +1,4 @@
-import { infrastructure, formatInfra } from './infrastructure.js';
+import { infrastructure, formatInfra, saveSample } from './infrastructure.js';
 import { ARCAEA_APK_STATS_ID } from '../../../packages/domain/src/apk-download.js';
 import type { D1Database, Env, NotificationFetch } from './core.js';
 import { PUBLIC_GAME_DISPLAY_NAMES, PUBLIC_GAME_SLUGS } from './public-resource-registry.js';
@@ -10,6 +10,7 @@ const VERIFICATION_REQUEST_ID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4
 export type OperationsEnv = Env & {
   DAILY_REPORT_ENABLED?: string; VERSION_MONITOR_ENABLED?: string;
   DAILY_REPORT_EMAIL_TO?: string; DAILY_REPORT_EMAIL_FROM?: string;
+  QUOTA_SNAPSHOT_TOKEN?: string;
   DOWNLOAD_BUDGET?: D1Database;
   OPERATOR_ROS?: { snapshot(): Promise<RosReport> };
 };
@@ -524,6 +525,12 @@ export async function handleOperationsRequest(request: Request, env: OperationsE
   const reply = (body: unknown, status = 200) => new Response(JSON.stringify(body), { status,
     headers: { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store', 'X-Content-Type-Options': 'nosniff' } });
   // Reuse the existing operator bearer token; no public report, recipient, or feedback endpoint.
+  if (new URL(request.url).pathname === '/v1/admin/operations/quota-snapshot') {
+    if(!env.QUOTA_SNAPSHOT_TOKEN || request.headers.get('Authorization')!==`Bearer ${env.QUOTA_SNAPSHOT_TOKEN}`)return reply({error:'unauthorized'},401);
+    if(request.method!=='POST'||!env.DOWNLOAD_BUDGET)return reply({error:'unavailable'},503);
+    if(Number(request.headers.get('Content-Length'))>8192)return reply({error:'too_large'},413);
+    try{const body=await request.text();if(body.length>8192||!await saveSample(env.DOWNLOAD_BUDGET,body,now))return reply({error:'invalid_sample'},400);return reply({saved:true});}catch{return reply({error:'storage_unavailable'},503);}
+  }
   const expected = env.UPDATE_REMINDER_ADMIN_TOKEN?.trim();
   if (!expected || request.headers.get('Authorization') !== `Bearer ${expected}`) return reply({error: 'unauthorized'}, 401);
   if (!env.DB) return reply({error: 'db_missing'}, 503);
