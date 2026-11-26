@@ -86,6 +86,16 @@ sample.d1Bytes = await get("d1Bytes", async () => {
   }
   return total;
 });
+if (sample.d1Bytes === null) {
+  // No directory permission: report observed databases, never claim a verified full inventory.
+  sample.d1Bytes = await get('d1StorageAnalytics', async () => {
+    const since = new Date(+now-864e5).toISOString().slice(0,19)+'Z';
+    const rows = await graph(`d1StorageAdaptiveGroups(limit:100,filter:{datetime_geq:"${since}",datetime_lt:"${iso.slice(0,19)}Z"}){dimensions{databaseId} max{databaseSizeBytes}}`);
+    if(rows.length>=100)throw Error('inventory cap');
+    sample.d1StorageBasis='observed-peaks';
+    return rows.reduce((sum,x)=>sum+n(x.max.databaseSizeBytes),0);
+  });
+}
 const A =
     "ListBuckets PutBucket ListObjects ListObjectsV2 PutObject CopyObject CompleteMultipartUpload CreateMultipartUpload LifecycleStorageTierTransition ListMultipartUploads UploadPart UploadPartCopy ListParts PutBucketEncryption PutBucketCors PutBucketLifecycleConfiguration".split(
       " ",

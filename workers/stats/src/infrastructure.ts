@@ -14,6 +14,7 @@ type Sample = {
   workers: number | null;
   d1: { reads: number; writes: number } | null;
   d1Bytes: number | null;
+  d1StorageBasis?: string;
   ops: { a: number; b: number; all: number; unclassified: number } | null;
   bucket: { bytes: number; at: string } | null;
   gbMonth: number | null;
@@ -306,12 +307,12 @@ export async function infrastructure(
     metric(
       "D1 存储",
       "B",
-      "账户数据库合计",
+      a?.d1StorageBasis === "observed-peaks" ? "账户 Analytics 近24小时有采样的库峰值合计；估算，非完整清单" : "账户数据库清单合计",
       a?.d1Bytes,
       5e9,
       t,
       null,
-      trend(a?.d1Bytes, prev?.d1Bytes),
+      trend(a?.d1Bytes, prev?.d1Bytes, a?.d1StorageBasis === prev?.d1StorageBasis),
     ),
     ...(["a", "b"] as const).map((k) =>
       metric(
