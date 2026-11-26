@@ -4,7 +4,7 @@
 
 以下双平台流程只在后续明确设置仓库变量 `ARCAEA_R2_ENABLED=true` 后启用。本次发布不启用它。
 
-APK 由 `.github/workflows/arcaea-apk-update.yml` 每半小时检查，也可手动运行。网站仍只读取一次 ROS 的 `apk/arcaea/latest.json`，不在构建时查询版本，不修改 Catalog、Browse 或资源更新提醒。APK 版本和网站资源版本是独立的；APK 上传不能提前清除资源更新提醒。
+APK 由 `.github/workflows/arcaea-apk-update.yml` 在启用 R2 后每日检查一次，也可手动运行。网站仍只读取一次 ROS 的 `apk/arcaea/latest.json`，不在构建时查询版本，不修改 Catalog、Browse 或资源更新提醒。APK 版本和网站资源版本是独立的；APK 上传不能提前清除资源更新提醒。
 
 ## 大小与发布顺序
 
@@ -19,16 +19,13 @@ APK 由 `.github/workflows/arcaea-apk-update.yml` 每半小时检查，也可手
 5. 小于 2 GiB 才创建/复用 GitHub Release，验证资产大小和 GitHub 的 SHA-256 digest。已有资产不匹配时停止，避免替换可用下载。达到 2 GiB 完全跳过 GitHub。
 6. 所需平台全部验证成功后，最后一次 PUT 原有 ROS `latest.json`（schema 3），再读回核对。存储、校验或 GitHub 失败不会写新清单；已经成功上传的对象保留供重试。ROS PUT 响应不确定或读回失败应重跑检查，不能据此认定 PUT 未生效。上一版本的对象及 GitHub 资产不会删除。
 
-新清单 `downloads.github` 可为 null，`downloads.r2` 为必需；保留 official 来源记录但不作为备用按钮。旧 schema 2 继续可读。小包显示「下载」「备用下载」，大包只显示「下载」。下载为直链，Worker 不读取 APK 内容。域名必须匹配构建时明确配置的 HTTPS 公共基址和版本/hash 路径，不能任意跳转。
+新清单 `downloads.github` 可为 null，`downloads.r2` 为必需；保留 official 来源记录但不作为备用按钮。旧 schema 2 继续可读。小包显示「下载」「备用下载」，大包只显示「下载」。优先下载经私有桶网关流式传输的 R2 副本；保留已有 GitHub 地址。域名必须匹配构建时明确配置的 HTTPS 公共基址和版本/hash 路径，不能任意跳转。
 
-## Cloudflare 设置（由维护者执行）
+## Cloudflare 设置
 
-1. 在 Cloudflare Dashboard 开通 R2（若未开通，先完成账户要求的开通流程），创建专用 Standard Bucket，例如 `rhythm-archive-apk`；不要复用 ROS 或为此修改现有曲绘存储。
-2. Bucket → Settings → Custom Domains，连接自己管理的域名，例如 `apk.your-domain.example`，等待 HTTPS 生效。生产下载使用自定义域名，不用有限流的 r2.dev 开发地址。
-3. R2 → Manage R2 API Tokens，创建只对这个 Bucket 的 **Object Read & Write** 凭据。保存 Access Key ID、Secret Access Key 和账户 S3 endpoint。该凭据与现有 Cloudflare Worker 部署 Token 不同。
-4. 若启用防盗链，在这个下载域名设置 WAF 规则：仅限制 `/apk/arcaea/`，允许本站 `https://rhythmarchive.github.io/` Referer；同时允许无 Referer（Actions HEAD、浏览器隐私设置和直接下载需要）。不信任无 Referer 的严格保护需要另行设计签名下载，不属于本次直链架构。不要使用要求浏览器交互的挑战阻断 HEAD 或 Range 下载。现有 ROS 防盗链不变。
-5. 不需要浏览器 fetch APK，因此无需为 APK 开放 CORS。保留正常 GET/HEAD、Range 支持。对象由上传器设置 attachment、APK MIME 和一年 immutable 缓存。不要对版本路径设置负缓存或覆盖缓存内容。
-6. 不配置历史 APK 自动过期；可设置未完成 multipart upload 在 7 天后中止的生命周期规则作为强制终止的兜底。持续关注 R2 存储用量及账单，历史清理需另行批准。更新器不做全桶扫描、不删除旧版本，也不会自动回填所有既有历史 GitHub APK。
+复用私有 `rhythm-archive`（Standard，APAC）。禁用 `r2.dev`，不要给桶绑定自定义域名。`dl.rhythmarchive.top` 只允许绑定下载 Worker。核实 Workers Free 与账户级 R2 余量后才开放路由并分配 UTC 月读取预算；无预算时拒绝读取。ROS 自动回退另需经核实的 UTC 日字节预算；未配置时只提供手动备用入口。两张表都不自动充值。读取预约不是平台实际传输量，告警也不是账单封顶。
+
+桶级 Object Read & Write S3 密钥仅交给上传流程，不能与 Worker 部署令牌混用。仅允许一个正式 APK 写入任务同时运行；资源同步和 APK 初次迁移不要并发。上传检查待完成分片、完整对象占用及新文件大小，超预算停止，不自动删除旧版。新增资源使用私有工具 `ros:delta -- --r2`，先 dry-run，再 `--apply`；只发布完成读回校验的内容寻址索引。若桶级以外还有用量，请先调低上传预算。
 
 ## GitHub 设置（由维护者执行）
 
@@ -57,7 +54,7 @@ APK 由 `.github/workflows/arcaea-apk-update.yml` 每半小时检查，也可手
 
 现有 APK 按钮此前没有统计。两个新入口在点击时各发送一次现有 `/v1/events`，固定 `apk_download` 事件映射到保留的 APK 计数 ID；不使用 Catalog 资源、不增加 registry 项、不污染图片排行。沿用 Origin 白名单、body 限制、访客校验、IP 限流和同访客 10 秒下载去重。统计表示下载发起，不能证明保存完成；离开本站、统计请求失败或拦截不阻止下载，也不会重试产生重复。
 
-复用现有 D1 表，无迁移。每次 APK 点击：一条去重 claim；有效点击再更新 resource_stats/resource_daily_stats 两行，不读回 APK 计数、不增加浏览量。现有 IP 限流读写照旧。总下载量仍用已有 SUM 和一分钟缓存，不轮询。页面展示不新增统计请求，只有用户点击才发送事件。
+来源统计使用增量迁移 0010；无来源的旧事件仍可接收。每次 APK 点击：一条去重 claim；有效点击再更新 resource_stats/resource_daily_stats 两行，有来源时额外更新一行按日来源聚合，不读回 APK 计数、不增加浏览量。现有 IP 限流读写照旧。总下载量仍用已有 SUM 和一分钟缓存，不轮询。页面展示不新增统计请求，只有用户点击才发送事件。
 
 发布每次只操作本版本的对象：首次验证 HEAD（缺失则上传），multipart，上传后 HEAD + 一次全对象流式 GET，公开域名 HEAD，ROS 清单 GET/PUT/GET。复用对象需 HEAD + 全对象 GET。大文件校验增加 R2 读取请求及传输时间，但不占整包内存；不会触及 ROS 历史图片。
 

@@ -33,7 +33,7 @@ export const UPDATE_REMINDER_DAILY_EMAIL_LIMIT = 80;
 export type StatsEvent =
   | { type: "site_visit"; visitorId: string; includeDownloads?: boolean }
   | { type: "resource_detail"; visitorId: string; resourceId: string }
-  | { type: "resource_download"; visitorId: string; resourceId: string };
+  | { type: "resource_download"; visitorId: string; resourceId: string; source?: "r2" | "ros" | "github"; bytes?: number; automatic?: boolean; manual?: boolean };
 
 export type ResourceStats = {
   views: number;
@@ -260,7 +260,13 @@ export class D1StatsStore implements StatsStore {
     let downloadCounted = false;
     if (event.type === "resource_download") {
       downloadCounted = await this.claim(event.visitorId, "download", event.resourceId, nowMs, nowMs + DOWNLOAD_DEDUPE_WINDOW_MS);
-      if (downloadCounted) await this.incrementResource(event.resourceId, "downloads", nowMs, date);
+      if (downloadCounted) {
+        await this.incrementResource(event.resourceId, "downloads", nowMs, date);
+        if (event.source) await this.db.prepare(`INSERT INTO download_source_daily(stat_date,resource_id,source,events,logical_bytes,manual,automatic)
+          VALUES(?,?,?,1,?,?,?) ON CONFLICT(stat_date,resource_id,source) DO UPDATE SET events=events+1,
+          logical_bytes=logical_bytes+excluded.logical_bytes, manual=manual+excluded.manual, automatic=automatic+excluded.automatic`)
+          .bind(date,event.resourceId,event.source,event.bytes ?? 0,event.manual ? 1 : 0,event.automatic ? 1 : 0).run();
+      }
     }
 
     if (event.resourceId === ARCAEA_APK_STATS_ID) return { siteVisitCounted: false, viewCounted: false, downloadCounted };
@@ -272,6 +278,7 @@ export class D1StatsStore implements StatsStore {
     await this.db.prepare("DELETE FROM event_dedupe WHERE expires_at <= ?").bind(nowMs).run();
     await this.db.prepare("DELETE FROM request_rate_limits WHERE window_started_at <= ?").bind(nowMs - 24 * 60 * 60 * 1000).run();
     await this.db.prepare("DELETE FROM site_daily WHERE visit_date < ?").bind(dateOffset(date, -SITE_DAILY_STATS_RETENTION_DAYS)).run();
+    await this.db.prepare("DELETE FROM download_source_daily WHERE stat_date < ?").bind(dateOffset(date, -RESOURCE_DAILY_STATS_RETENTION_DAYS)).run();
     await this.db.prepare("DELETE FROM resource_daily_stats WHERE stat_date < ?").bind(dateOffset(date, -RESOURCE_DAILY_STATS_RETENTION_DAYS)).run();
     await this.db.prepare(`
       DELETE FROM update_reminder_cycle_visitors
@@ -626,10 +633,13 @@ export function validateEventPayload(value: unknown): { event?: StatsEvent; erro
     if (value.includeDownloads !== undefined && typeof value.includeDownloads !== "boolean") return { error: "invalid_include_downloads" };
     return { event: { type: value.type, visitorId, ...(value.includeDownloads === true ? { includeDownloads: true } : {}) } };
   }
-  if (value.type === "apk_download") return { event: { type: "resource_download", visitorId, resourceId: ARCAEA_APK_STATS_ID } };
+  if (value.type === "apk_download") return { event: { type: "resource_download", visitorId, resourceId: ARCAEA_APK_STATS_ID, ...(value.source === "r2" || value.source === "github" ? {source:value.source} : {}) } };
   const resourceId = normalizeUuid(value.resourceId);
   if (!resourceId || !isValidResourceId(resourceId)) return { error: "invalid_resource_id" };
   if (!isPublicResourceId(resourceId)) return { error: "resource_not_public" };
+  if (value.type === "resource_download" && (value.source === "r2" || value.source === "ros") && typeof value.bytes === "number" && Number.isSafeInteger(value.bytes) && value.bytes > 0 && value.bytes <= 2**32) {
+    return {event:{type:value.type,visitorId,resourceId,source:value.source,bytes:value.bytes,automatic:value.source === "ros" && value.automatic === true && value.manual !== true,manual:value.source === "ros" && value.manual === true}};
+  }
   return { event: { type: value.type, visitorId, resourceId } };
 }
 

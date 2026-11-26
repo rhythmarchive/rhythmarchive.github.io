@@ -606,7 +606,7 @@ test("homepage uses the search-first entry architecture and a stable social imag
   assert.match(source, /visibleGames\.map\(\(game\) => <GameCard game=\{game\} \/>\)/u);
   assert.doesNotMatch(source, /formatCount\((?:games\.length|resourceCount)\)/u);
   assert.match(source, /data-arcaea-apk-card/u);
-  assert.match(source, /版本信息来自官网首页/u);
+  assert.match(source, /以本站已校验的安装包为准/u);
   assert.match(source, /game-card-grid/u);
   assert.doesNotMatch(source, /home-categories|featuredCategories|games\.map\(\(game\) => game\.displayName\)\.join/u);
   // Games lead the page; the APK card follows them and the hero links to it.
@@ -761,8 +761,8 @@ test("category semantic browse data keeps player-facing names and conservative u
   assert.equal(ignotusByd?.displayTitle, "Ignotus Afterburn");
   const portraits = siteData.galleries["arcaea/character-portrait"] ?? [];
   const namedPortraits = portraits.filter((resource) => resource.displayTitle !== "未归类角色立绘");
-  assert.equal(namedPortraits.length, 139);
-  assert.equal(portraits.length, 139);
+  assert.equal(namedPortraits.length, portraits.length);
+  assert.equal(portraits.length, 141);
   assert.ok(namedPortraits.some((resource) => resource.displayTitle === "光"));
   assert.ok(namedPortraits.some((resource) => resource.displayTitle === "識眼"));
   const insightPortrait = portraits.find((resource) => resource.metadata.characterEnglishName === "insight_konzetsu");
@@ -785,8 +785,8 @@ test("category semantic browse data keeps player-facing names and conservative u
   assert.equal(knownCg?.subtitle, "Main Story · Act I · Part I · Entry 0-3");
   assert.ok((knownCg?.searchTerms ?? []).includes("Shades of Light in a Transcendent Realm"));
   const storyProjection = semantic.arcaea.resources.filter((resource) => resource.resourceType === "story-cg");
-  assert.equal(storyProjection.length, 70);
-  assert.equal(story.length, 241);
+  assert.equal(storyProjection.length, 81);
+  assert.equal(story.length, 252);
   assert.equal(semantic.arcaea.resources.filter((resource) => resource.metadata.storyVisualKind === "VN CG").length, 171);
   const divineCgs = story.filter((resource) => resource.resourceType === "story-cg" && resource.searchTerms?.some((term) => term.startsWith("C-")));
   assert.ok(divineCgs.every((resource) => resource.displayTitle === "Divine Oblivion（神圣毁灭）"));

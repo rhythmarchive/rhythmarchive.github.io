@@ -1,9 +1,8 @@
 name: Arcaea APK update
 
 on:
-  # Automatic runs are paused. Uncomment to resume the 30-minute schedule.
-  # schedule:
-  #   - cron: "*/30 * * * *"
+  schedule:
+    - cron: "17 19 * * *"
   workflow_dispatch:
     inputs:
       mode:
@@ -24,6 +23,7 @@ concurrency:
 
 jobs:
   update:
+    if: github.event_name != 'schedule' || vars.ARCAEA_R2_ENABLED == 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 90
     steps:

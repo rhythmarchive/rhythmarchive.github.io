@@ -48,7 +48,7 @@ async function main(): Promise<void> {
     }
     const publicBase = new URL(process.env.ARCAEA_R2_PUBLIC_BASE_URL!);
     const endpoint = new URL(process.env.ARCAEA_R2_ENDPOINT!);
-    if (publicBase.protocol !== "https:" || publicBase.username || publicBase.password || publicBase.search || publicBase.hash || publicBase.port || endpoint.protocol !== "https:" || !endpoint.hostname.endsWith(".r2.cloudflarestorage.com")) throw new Error("Invalid R2 endpoint/public URL configuration.");
+    if (process.env.ARCAEA_R2_BUCKET !== "rhythm-archive" || publicBase.href !== "https://dl.rhythmarchive.top/" || publicBase.protocol !== "https:" || publicBase.username || publicBase.password || publicBase.search || publicBase.hash || publicBase.port || endpoint.protocol !== "https:" || !endpoint.hostname.endsWith(".r2.cloudflarestorage.com")) throw new Error("Invalid R2 endpoint/public URL configuration.");
   }
   const result = await runArcaeaApkUpdate({
     mode: parsed.mode,
@@ -57,6 +57,7 @@ async function main(): Promise<void> {
       endpoint: process.env.ARCAEA_R2_ENDPOINT ?? "",
       bucket: process.env.ARCAEA_R2_BUCKET ?? "",
       publicBaseUrl: process.env.ARCAEA_R2_PUBLIC_BASE_URL ?? "",
+      uploadCeilingBytes: 8_000_000_000,
       region: "auto", forcePathStyle: true,
       accessKey: process.env.ARCAEA_R2_ACCESS_KEY_ID ?? "",
       secretKey: process.env.ARCAEA_R2_SECRET_ACCESS_KEY ?? "",

@@ -1,3 +1,4 @@
+import { ARCAEA_APK_STATS_ID } from '../../../packages/domain/src/apk-download.js';
 import type { D1Database, Env, NotificationFetch } from './core.js';
 import { PUBLIC_GAME_DISPLAY_NAMES, PUBLIC_GAME_SLUGS } from './public-resource-registry.js';
 import { changeKind, normalizedVersion, queryVersions, verification, VERSION_SOURCES, UNSUPPORTED_SOURCES, type Observation } from './version-sources.js';
@@ -8,6 +9,7 @@ const VERIFICATION_REQUEST_ID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4
 export type OperationsEnv = Env & {
   DAILY_REPORT_ENABLED?: string; VERSION_MONITOR_ENABLED?: string;
   DAILY_REPORT_EMAIL_TO?: string; DAILY_REPORT_EMAIL_FROM?: string;
+  DOWNLOAD_BUDGET?: D1Database;
   OPERATOR_ROS?: { snapshot(): Promise<RosReport> };
 };
 export type RosReport = { state: 'ok' | 'degraded' | 'unavailable'; observedAt: string; reason?: string;
@@ -32,6 +34,8 @@ export type Snapshot = {
   ros: RosReport;
   feedback: Row[] | null; feedbackCount: Row[] | null; downloadFailures: Row[] | null; reminders: Row[] | null;
   monitor: Row[] | null; versions: Observation[]; changes: Change[];
+  downloadBudget?: {utcMonth:string; remainingReads:number|null; state:string};
+  downloadSources?: Row[] | null;
   unsupported: typeof UNSUPPORTED_SOURCES;
   recovery?: { rebuiltAt: string; previousError: string; previousAttempts: number };
   verification?: { id: string; requestedAt: string };
@@ -97,7 +101,7 @@ export async function runVersionMonitor(env: OperationsEnv, now = Date.now(), fe
   }
 }
 
-export async function collectReport(db: D1Database, day: string, now: number, fetchImpl: NotificationFetch = fetch, operatorRos?: OperationsEnv['OPERATOR_ROS']): Promise<Snapshot> {
+export async function collectReport(db: D1Database, day: string, now: number, fetchImpl: NotificationFetch = fetch, operatorRos?: OperationsEnv['OPERATOR_ROS'], budget?: D1Database): Promise<Snapshot> {
   const [start, end] = bounds(day), detectDay = beijingDate(end), issues: string[] = [];
   async function read(label: string, sql: string, values: unknown[] = []): Promise<Row[] | null> {
     try { return (await db.prepare(sql).bind(...values).all<Row>()).results ?? []; }
@@ -204,8 +208,19 @@ export async function collectReport(db: D1Database, day: string, now: number, fe
   if (feedbackCount && Number(feedbackCount[0]?.count) > 100) issues.push('反馈超过100条，邮件仅列前100条，需检查原始反馈');
   if (now - end > 6 * DAY) issues.push('报告已超出原始反馈保留期，不保证反馈完整');
   if (totals?.some(x => [x.visits, x.views, x.downloads].some(n => n === null || Number(n) < 0))) issues.push('累计统计缺失或异常');
-  return { schemaVersion: 1, reportDate: day, timeZone: 'Asia/Shanghai', generatedAt: new Date(now).toISOString(),
+  const utcMonth=new Date(now).toISOString().slice(0,7);
+  let remainingReads:number|null=null, state='不可用';
+  if(budget) try {
+    const row=await budget.prepare('SELECT remaining FROM download_read_budget WHERE utc_month=?').bind(utcMonth).first<{remaining:number}>();
+    remainingReads=row?.remaining ?? null;
+    state=!row?'本月未分配':row.remaining<10000?'读取余量低':'已分配';
+    if(row && row.remaining<10000) issues.push('下载网关剩余读取预算不足一万次，请核对账户用量；不自动追加');
+  } catch {issues.push('下载网关预算读取失败');}
+  return { downloadBudget:{utcMonth,remainingReads,state},schemaVersion: 1, reportDate: day, timeZone: 'Asia/Shanghai', generatedAt: new Date(now).toISOString(),
     period: { start: new Date(start).toISOString(), endExclusive: new Date(end).toISOString() }, issues,
+    downloadSources: await read('下载来源', `SELECT stat_date,source,CASE WHEN resource_id=? THEN 'apk_click' ELSE 'resource' END AS kind,
+      SUM(events) AS events,SUM(logical_bytes) AS logical_bytes,SUM(manual) AS manual,SUM(automatic) AS automatic FROM download_source_daily
+      WHERE stat_date BETWEEN ? AND ? GROUP BY stat_date,source,kind`, [ARCAEA_APK_STATS_ID,previousWeek,day]),
     traffic, totals, hotResources, topDownloads, website, ros, feedback, feedbackCount, downloadFailures, reminders, monitor, versions,
     changes: (changes ?? []) as unknown as Change[], unsupported: UNSUPPORTED_SOURCES };
 }
@@ -234,6 +249,10 @@ export function renderReport(s: Snapshot): string {
   const history = s.traffic?.filter(x => x.date !== s.reportDate && x.visits !== null) ?? [];
   lines.push(`过去7天有记录天数：${history.length}/7；缺失天不补零。`, '热门资源（浏览优先）：');
   for (const row of s.hotResources ?? []) lines.push(`${row.title ?? row.resource_id} | ${row.game ?? '未映射游戏'} | ${row.category ?? '未映射分类'} | 浏览 ${row.views} | 下载 ${row.downloads} | ${resourceUrl(row.resource_id)}`);
+  lines.push('下载来源（近8日，客户端去重事件；APK 仅为点击，资源字节按文件大小估算，不代表平台传输或保存成功）：',
+    s.downloadSources?.length ? JSON.stringify(s.downloadSources) : '来源数据不可用或无记录。',
+    `网关读取预算（UTC 月，生成时快照）：${s.downloadBudget?.state ?? '未知'}；剩余 ${number(s.downloadBudget?.remainingReads)}。这是应用预算，不是账单。`,
+    'Cloudflare 账户级存储、Class A/B、已出账金额及费用估算：未核实。不得据此视为零费用。');
   lines.push('下载排行：');
   for (const row of s.topDownloads ?? []) lines.push(`${row.title ?? row.resource_id} | ${row.game ?? '未映射游戏'} | 下载 ${row.downloads} | ${resourceUrl(row.resource_id)}`);
   lines.push('近8日每日序列（供趋势分析，null表示缺失）：', JSON.stringify(s.traffic));
@@ -305,7 +324,7 @@ export async function prepareReport(env: OperationsEnv, day: string, now: number
   if (!env.DB) throw new Error('db_missing');
   const existing = await env.DB.prepare('SELECT report_date FROM daily_operations_reports WHERE report_date=?').bind(day).first();
   if (existing) return;
-  const snapshot = await collectReport(env.DB, day, now, fetchImpl, env.OPERATOR_ROS);
+  const snapshot = await collectReport(env.DB, day, now, fetchImpl, env.OPERATOR_ROS,env.DOWNLOAD_BUDGET);
   const email = reportEmail(env, day, snapshot);
   await env.DB.prepare(`INSERT OR IGNORE INTO daily_operations_reports(report_date,created_at,snapshot_json,email_json)
     VALUES (?,?,?,?)`).bind(day, now, JSON.stringify(snapshot), JSON.stringify(email)).run();
@@ -344,7 +363,7 @@ async function prepareVerification(env: OperationsEnv, id: string, now: number, 
     if (!day) throw new Error('invalid_id');
     const [, end] = bounds(day);
     if (end > now || now - end > 6 * DAY) throw new Error('date_outside_retention');
-    const snapshot = await collectReport(db, day, now, fetchImpl, env.OPERATOR_ROS);
+    const snapshot = await collectReport(db, day, now, fetchImpl, env.OPERATOR_ROS,env.DOWNLOAD_BUDGET);
     snapshot.verification = {id, requestedAt:new Date(row.created_at).toISOString()};
     const updated = await db.prepare(`UPDATE daily_operations_reports SET snapshot_json=?,email_json=?,status='pending',lease_until=0,next_attempt_at=0
       WHERE report_date=? AND owner=? AND status='verification_preparing'`)
@@ -369,7 +388,7 @@ export async function rebuildRejectedReport(env: OperationsEnv, day: string, now
     .bind(owner, now + 5 * 60_000, day, now - 23 * HOUR, now).first<ReportRow>();
   if (!row) return 'rebuild_not_allowed';
   try {
-    const snapshot = await collectReport(env.DB, day, now, fetchImpl, env.OPERATOR_ROS);
+    const snapshot = await collectReport(env.DB, day, now, fetchImpl, env.OPERATOR_ROS,env.DOWNLOAD_BUDGET);
     snapshot.recovery = { rebuiltAt: new Date(now).toISOString(), previousError: row.last_error!, previousAttempts: row.attempts };
     await env.DB.prepare(`UPDATE daily_operations_reports SET snapshot_json=?,email_json=?,status='retry',lease_until=0,
       next_attempt_at=0,last_error='rebuilt_after_rejection' WHERE report_date=? AND owner=?`)
@@ -523,7 +542,7 @@ export async function handleOperationsRequest(request: Request, env: OperationsE
     if (end > now || now - end > 6 * DAY) return reply({error: 'date_outside_retention'}, 400);
     if (request.method === 'GET' && !match[2]) {
       // Read-only preview: no snapshot persistence, events, or mail.
-      return reply({report: await collectReport(env.DB, day, now, fetchImpl, env.OPERATOR_ROS)});
+      return reply({report: await collectReport(env.DB, day, now, fetchImpl, env.OPERATOR_ROS,env.DOWNLOAD_BUDGET)});
     }
     if (request.method !== 'POST' || !match[2]) return reply({error: 'method_not_allowed'}, 405);
     if (env.DAILY_REPORT_ENABLED !== 'true') return reply({error: 'disabled'}, 503);

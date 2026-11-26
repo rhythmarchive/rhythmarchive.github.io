@@ -7,6 +7,10 @@ import { publicContentVersion, sortPublicGames } from "./game-index";
 import type { PublicAsset, PublicCategory, PublicChart, PublicDownload, PublicGameIndex, PublicPreview, PublicResource, PublicSearchEntry, PublicSiteData, PublicVariant } from "./types";
 import { objectUrl } from "./url";
 
+// Only project R2 for verified downloads, never for previews or unmirrored games.
+import { R2_DOWNLOADS_ENABLED } from "./site-config";
+import verifiedCopies from "../../../../catalog/r2-downloads.json";
+const verifiedR2 = new Set(Object.keys(verifiedCopies));
 const PUBLIC_METADATA_KEYS = new Set([
   "artist",
   "coverPainter",
@@ -300,7 +304,7 @@ function projectGameActivity(resources: Resource[]): Pick<PublicGameIndex, "cont
 
 function projectResource(resource: Resource, variants: Variant[], renditionsByVariant: Map<string, Rendition[]>, objectsById: Map<string, AssetObject>, rosBaseUrl: string, phigrosAprilFoolsYear?: number): PublicResource {
   const projectedVariants = variants
-    .map((variant) => projectVariant(variant, renditionsByVariant.get(variant.id) ?? [], objectsById, rosBaseUrl))
+    .map((variant) => projectVariant(variant, renditionsByVariant.get(variant.id) ?? [], objectsById, rosBaseUrl, resource.game))
     .sort((a, b) => Number(Boolean(b.preferred)) - Number(Boolean(a.preferred)) || (a.sortOrder ?? Number.MAX_SAFE_INTEGER) - (b.sortOrder ?? Number.MAX_SAFE_INTEGER) || a.label.localeCompare(b.label, "en") || a.variantId.localeCompare(b.variantId));
   const active = projectedVariants.find((variant) => variant.preferred) ?? projectedVariants[0];
   const original = active?.original;
@@ -583,7 +587,7 @@ function formatPublicMetadata(game: GameId, metadata: Record<string, string | nu
   return { ...metadata, version: formatArcaeaAddedVersion(metadata.version) };
 }
 
-function projectVariant(variant: Variant, renditions: Rendition[], objectsById: Map<string, AssetObject>, rosBaseUrl: string): PublicVariant {
+function projectVariant(variant: Variant, renditions: Rendition[], objectsById: Map<string, AssetObject>, rosBaseUrl: string, game: string): PublicVariant {
   const preview = {
     small: projectPreview(renditions, "small", objectsById, rosBaseUrl),
     medium: projectPreview(renditions, "medium", objectsById, rosBaseUrl),
@@ -591,11 +595,11 @@ function projectVariant(variant: Variant, renditions: Rendition[], objectsById: 
   } satisfies PublicPreview;
   const originalRenditions = renditions.filter((rendition) => rendition.renditionType === "original" && rendition.publishable);
   const originals = originalRenditions
-    .map((rendition) => projectDownload(rendition, objectsById, rosBaseUrl))
+    .map((rendition) => projectDownload(rendition, objectsById, rosBaseUrl, game))
     .filter((download): download is PublicDownload => Boolean(download));
   const upscaledRendition = renditions.find((rendition) => rendition.renditionType === "upscaled" && rendition.publishable);
   const original = originals[0];
-  const upscaled = upscaledRendition ? projectDownload(upscaledRendition, objectsById, rosBaseUrl) : undefined;
+  const upscaled = upscaledRendition ? projectDownload(upscaledRendition, objectsById, rosBaseUrl, game) : undefined;
   const publicVariant: PublicVariant = {
     variantId: variant.id,
     label: displayVariantLabel(variant),
@@ -620,11 +624,13 @@ function projectPreview(renditions: Rendition[], size: keyof typeof PREVIEW_TYPE
   return { url: objectUrl(object.objectKey, rosBaseUrl), width: object.width, height: object.height, mime: object.mime };
 }
 
-function projectDownload(rendition: Rendition, objectsById: Map<string, AssetObject>, rosBaseUrl: string): PublicDownload | undefined {
+function projectDownload(rendition: Rendition, objectsById: Map<string, AssetObject>, rosBaseUrl: string, game: string): PublicDownload | undefined {
   const object = objectsById.get(rendition.objectId);
   if (!object) return undefined;
   return {
-    url: objectUrl(object.objectKey, rosBaseUrl),
+    ...(R2_DOWNLOADS_ENABLED && (game === "arcaea" || game === "phigros") && verifiedR2.has(object.objectKey)
+      ? { url: `https://dl.rhythmarchive.top/${object.objectKey}`, fallbackUrl: objectUrl(object.objectKey, rosBaseUrl) }
+      : { url: objectUrl(object.objectKey, rosBaseUrl) }),
     downloadFilename: rendition.downloadFilename,
     mime: object.mime,
     sizeBytes: object.sizeBytes,

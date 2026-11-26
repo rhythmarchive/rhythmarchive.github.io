@@ -588,3 +588,10 @@ test("migration preserves legacy history without replaying sent cycles", () => {
   assert.deepEqual({ ...db.sqlite.prepare("SELECT id, reminder_count, notification_status, notification_attempts FROM update_reminder_notifications").get()! },
     { id: "legacy-2", reminder_count: 3, notification_status: "failed", notification_attempts: 2 });
 });
+
+test('reported sources use the existing dedupe claim and distinguish manual starts',async()=>{
+  const db=new SqliteD1(), store=new D1StatsStore(db);
+  const event={type:'resource_download',visitorId,resourceId,source:'ros',bytes:512,manual:true} as const;
+  await store.recordEvent(event,now,date);await store.recordEvent({...event,source:'r2',manual:false},now+1000,date);
+  const row=db.sqlite.prepare('SELECT * FROM download_source_daily').get();assert.equal(row?.events,1);assert.equal(row?.manual,1);assert.equal(row?.logical_bytes,512);assert.equal(row?.source,'ros');
+});

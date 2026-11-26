@@ -53,7 +53,7 @@ function renderManifest(cardElement: HTMLElement, stateElement: HTMLElement, lat
   version.textContent = latest.version;
   const tag = document.createElement("span");
   tag.className = "apk-version-tag";
-  tag.textContent = "最新版本";
+  tag.textContent = "收录版本";
   identity.append(product, version, tag);
 
   const metadata = document.createElement("dl");
@@ -69,7 +69,7 @@ function renderManifest(cardElement: HTMLElement, stateElement: HTMLElement, lat
   actions.append(createExternalLink(GITHUB_RELEASES_URL, "button apk-official-button", "历史版本"));
   for (const source of apkDownloadLinks(latest)) {
     const link = createDownloadLink(source.href, latest.fileName, source.primary ? "button apk-download-button" : "button apk-official-button", source.label);
-    link.addEventListener("click", () => { void getBrowserStatsClient().trackApkDownload(); });
+    link.addEventListener("click", () => { void getBrowserStatsClient().trackApkDownload(source.href === latest.downloads.r2 ? "r2" : "github"); });
     actions.append(link);
   }
 

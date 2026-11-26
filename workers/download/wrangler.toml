@@ -1,0 +1,14 @@
+name = "rhythm-archive-download"
+main = "gateway.mjs"
+compatibility_date = "2026-09-06"
+workers_dev = false
+preview_urls = false
+
+[[r2_buckets]]
+binding = "FILES"
+bucket_name = "rhythm-archive"
+
+[[d1_databases]]
+binding = "BUDGET"
+database_name = "rhythm-archive-download-budget"
+database_id = "6203834d-43b6-45c0-b1e8-fcc7ddebae81"

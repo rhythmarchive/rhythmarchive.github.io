@@ -28,6 +28,7 @@ jobs:
     env:
       PUBLIC_SITE_ORIGIN: https://rhythmarchive.github.io
       PUBLIC_BASE_PATH: /
+      PUBLIC_R2_DOWNLOADS_ENABLED: ${{ vars.PUBLIC_R2_DOWNLOADS_ENABLED }}
       PUBLIC_ARCAEA_R2_BASE_URL: ${{ vars.PUBLIC_ARCAEA_R2_BASE_URL }}
       PUBLIC_ROS_BASE_URL: https://rhythm-assets.cn-nb1.rains3.com
       PUBLIC_STATS_API_URL: ${{ vars.PUBLIC_STATS_API_URL }}

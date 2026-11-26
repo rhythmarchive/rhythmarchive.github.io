@@ -1,3 +1,5 @@
+import copies from '../../catalog/r2-downloads.json' with { type: 'json' };
+const site = 'https://rhythmarchive.github.io';
 const paths = /^(?:apk\/arcaea\/(\d+\.\d+\.\d+[a-z]?)\/[a-f0-9]{64}\/Arcaea_\1\.apk|objects\/[a-f0-9]{64}\/(?:jpg|jpeg|png|webp))$/;
 const reject = (status, extra = {}) => new Response(null,{status,headers:{'Cache-Control':'no-store',...extra}});
 function byteRange(raw,size) {
@@ -10,6 +12,15 @@ function byteRange(raw,size) {
 }
 export default {async fetch(req,env) {
   const url=new URL(req.url), key=url.pathname.slice(1);
+  // Only a failed mirrored resource may obtain a one-file ROS allowance. No row = disabled.
+  if (url.origin === 'https://dl.rhythmarchive.top' && key.startsWith('fallback/') && !url.search) {
+    const bytes=copies[key.slice(9)];
+    if(req.method!=='POST'||req.headers.get('Origin')!==site||typeof bytes!=='number') return reject(403);
+    try {
+      const result=await env.BUDGET.prepare("UPDATE ros_fallback_budget SET remaining=remaining-?1 WHERE utc_day=date('now') AND remaining>=?1").bind(bytes).run();
+      return new Response(null,{status:result.meta.changes===1?204:429,headers:{'Access-Control-Allow-Origin':site,'Cache-Control':'no-store'}});
+    } catch {return reject(503);}
+  }
   if(url.origin!=='https://dl.rhythmarchive.top'||url.search||!paths.test(key)) return reject(404);
   if(!['HEAD','GET'].includes(req.method)) return reject(405,{Allow:'HEAD, GET'});
   try {
@@ -20,6 +31,7 @@ export default {async fetch(req,env) {
     const obj=await env.FILES.head(key);
     if(!obj) return reject(404);
     const headers=new Headers(); obj.writeHttpMetadata(headers);
+    headers.set('Access-Control-Allow-Origin','https://rhythmarchive.github.io'); headers.set('Access-Control-Expose-Headers','ETag, Content-Range');
     headers.set('Content-Length',String(obj.size)); headers.set('Accept-Ranges','bytes'); headers.set('ETag',obj.httpEtag);
     headers.set('Cache-Control','public, max-age=31536000, immutable');headers.set('X-Content-Type-Options','nosniff');
     if(req.method==='HEAD') return new Response(null,{headers});

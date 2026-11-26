@@ -1,3 +1,4 @@
+import { fetchDownload } from "../lib/download-source";
 import { getBrowserStatsClient } from "../lib/stats-client";
 import { DownloadHttpError, reportDownloadFailure } from "../lib/resource-reports-client";
 
@@ -14,10 +15,10 @@ export async function downloadRendition(button: HTMLButtonElement): Promise<void
   button.ariaBusy = "true";
   button.innerHTML = "<span>下载中…</span>";
   if (status) status.textContent = "下载中…";
-  let canOpenDirectly = true;
+  let canOpenDirectly = !button.dataset.backupUrl;
   let fetched = false;
   try {
-    const response = await fetch(url, { credentials: "omit", referrerPolicy: "strict-origin-when-cross-origin" });
+    const {response, automatic} = await fetchDownload(url, button.dataset.backupUrl);
     if (!response.ok) {
       canOpenDirectly = false;
       throw new DownloadHttpError(response.status);
@@ -26,7 +27,7 @@ export async function downloadRendition(button: HTMLButtonElement): Promise<void
     fetched = true;
     const objectUrl = URL.createObjectURL(blob);
     triggerDownload(objectUrl, filename);
-    if (resourceId) void getBrowserStatsClient().trackResourceDownload(resourceId);
+    if (resourceId) void getBrowserStatsClient().trackResourceDownload(resourceId, { source: !automatic && new URL(url).hostname === "dl.rhythmarchive.top" ? "r2" : "ros", bytes: blob.size, automatic, manual: button.dataset.downloadKind === "backup" });
     window.setTimeout(() => URL.revokeObjectURL(objectUrl), 1000);
     if (status) status.textContent = "已开始下载";
   } catch (error) {

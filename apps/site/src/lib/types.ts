@@ -29,6 +29,7 @@ export type PublicChart = {
 };
 
 export type PublicDownload = {
+  fallbackUrl?: string;
   url: string;
   downloadFilename: string;
   mime: string;

@@ -60,8 +60,8 @@ test("site versions follow adopted sources and quick-link counts follow destinat
 test("all game cards expose adopted game versions, including baseline-only games", () => {
   const data = getSiteData();
   assert.deepEqual(Object.fromEntries(data.games.map((game) => [game.slug, game.contentVersion])), {
-    arcaea: "7.1.0c",
-    phigros: "4.0.1.2",
+    arcaea: "7.3.0c",
+    phigros: "4.1.0",
     rizline: "2.7.1",
     infalsus: "1.0.7",
     "paradigm-reboot": "4.13",

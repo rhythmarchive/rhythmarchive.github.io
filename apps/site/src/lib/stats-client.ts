@@ -34,8 +34,8 @@ export type StatsClient = {
   trackSiteVisit(includeDownloads?: boolean): Promise<SiteStats | undefined>;
   getSiteStats(includeDownloads?: boolean): Promise<SiteStats | undefined>;
   trackResourceDetail(resourceId: string): Promise<ResourceStats | undefined>;
-  trackApkDownload(): Promise<void>;
-  trackResourceDownload(resourceId: string): Promise<ResourceStats | undefined>;
+  trackApkDownload(source?: "r2" | "github"): Promise<void>;
+  trackResourceDownload(resourceId: string, delivery?: { source: "r2" | "ros"; bytes: number; automatic?: boolean; manual?: boolean }): Promise<ResourceStats | undefined>;
   getResourceStats(resourceIds: readonly string[]): Promise<Map<string, ResourceStats>>;
   getResourceRanking(period: ResourceRankingPeriod, limit: number): Promise<ResourceRanking | undefined>;
 };
@@ -107,9 +107,9 @@ export function createStatsClient(options: {
     getSiteStats,
     trackResourceDetail,
     trackResourceDownload,
-    async trackApkDownload() {
+    async trackApkDownload(source) {
       const visitorId = getVisitorId();
-      if (apiUrl && visitorId) await postEvent({ type: "apk_download", visitorId });
+      if (apiUrl && visitorId) await postEvent({ type: "apk_download", visitorId, ...(source ? { source } : {}) });
     },
     getResourceStats,
     getResourceRanking,
@@ -166,8 +166,8 @@ export function createStatsClient(options: {
     return trackResourceEvent({ type: "resource_detail", resourceId });
   }
 
-  async function trackResourceDownload(resourceId: string): Promise<ResourceStats | undefined> {
-    return trackResourceEvent({ type: "resource_download", resourceId });
+  async function trackResourceDownload(resourceId: string, delivery?: { source: "r2" | "ros"; bytes: number; automatic?: boolean; manual?: boolean }): Promise<ResourceStats | undefined> {
+    return trackResourceEvent({ type: "resource_download", resourceId, ...delivery });
   }
 
   async function trackResourceEvent(event: { type: "resource_detail" | "resource_download"; resourceId: string }): Promise<ResourceStats | undefined> {
@@ -264,7 +264,7 @@ export function createStatsClient(options: {
     }
   }
 
-  async function postEvent(event: Record<string, string | boolean>): Promise<{ site?: unknown; resource?: unknown } | undefined> {
+  async function postEvent(event: Record<string, string | number | boolean>): Promise<{ site?: unknown; resource?: unknown } | undefined> {
     if (!apiUrl) return undefined;
     try {
       const response = await fetchImpl(`${apiUrl}/v1/events`, {

@@ -14,3 +14,10 @@ test('monthly reservation precedes every R2 read, including ranges above 2 GiB',
   const r=await call('bytes=-1');assert.equal(r.status,206);assert.equal(r.headers.get('Content-Range'),'bytes 2999999999-2999999999/3000000000');assert.equal((await r.arrayBuffer()).byteLength,1);
   assert.equal((await call('bytes=3000000000-')).status,416);assert.equal((await call(null,'HEAD')).status,503);assert.equal(reads,4);db.close();
 });
+
+test('ROS permit consumes exact verified bytes once; missing budget or foreign origin is rejected',async()=>{
+  const db=new DatabaseSync(':memory:');db.exec(readFileSync(new URL('./fallback-budget.sql',import.meta.url),'utf8'));
+  const env={BUDGET:{prepare:sql=>({bind:n=>({run:()=>({meta:db.prepare(sql.replaceAll('?1',':n')).run({n})})})})}};
+  const grant=(origin='https://rhythmarchive.github.io')=>gateway.fetch(new Request('https://dl.rhythmarchive.top/fallback/objects/18fb2ce1ba89273ad7dc4c5f64426f7e723e8b52d065b1bf0fc1017a2f23515f/jpg',{method:'POST',headers:{Origin:origin}}),env);
+  assert.equal((await grant()).status,429);db.exec("INSERT INTO ros_fallback_budget VALUES(date('now'),215325)");assert.equal((await grant('https://example.org')).status,403);assert.equal((await grant()).status,204);assert.equal((await grant()).status,429);db.close();
+});

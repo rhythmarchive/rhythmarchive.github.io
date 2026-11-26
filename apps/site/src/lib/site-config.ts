@@ -9,6 +9,8 @@ export const PUBLIC_STATS_API_URL = optionalUrl(runtimeEnv.PUBLIC_STATS_API_URL)
 export const PUBLIC_UPDATE_REMINDERS_ENABLED = runtimeEnv.PUBLIC_UPDATE_REMINDERS_ENABLED?.trim().toLowerCase() === "true";
 export const PUBLIC_UPDATE_REMINDERS_TURNSTILE_SITE_KEY = runtimeEnv.PUBLIC_UPDATE_REMINDERS_TURNSTILE_SITE_KEY?.trim() || undefined;
 
+export const R2_DOWNLOADS_ENABLED = runtimeEnv.PUBLIC_R2_DOWNLOADS_ENABLED === "true";
+
 export const BILIBILI_URL = "https://space.bilibili.com/385607044";
 export const GITHUB_REPOSITORY_URL = "https://github.com/rhythmarchive/rhythmarchive.github.io";
 export const GITHUB_RELEASES_URL = `${GITHUB_REPOSITORY_URL}/releases`;
