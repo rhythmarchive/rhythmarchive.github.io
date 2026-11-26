@@ -68,7 +68,7 @@ for (const size of [2000000001, 2147483647, 2147483648, 2147483649]) {
           assert.ok(parsed);
           const links = apkDownloadLinks(parsed.latest);
           assert.equal(links.length, r2Enabled && size < ARCAEA_GITHUB_MAX_SIZE_BYTES ? 2 : 1);
-          assert.equal(links[0]!.href, size < ARCAEA_GITHUB_MAX_SIZE_BYTES ? url : `${base}/${arcaeaR2ObjectKey(discovery.version, sha256)}`);
+          assert.equal(links[0]!.href, r2Enabled ? `${base}/${arcaeaR2ObjectKey(discovery.version, sha256)}` : url);
           if (size >= ARCAEA_GITHUB_MAX_SIZE_BYTES) assert.equal(releaseCalls, 0);
           if (r2Enabled) assert.equal(parsePublicArcaeaApkManifest(result.manifest, { publicBaseUrl: "https://evil.example" }), null);
           else {
