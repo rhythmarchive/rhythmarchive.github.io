@@ -7,7 +7,7 @@ import { publicContentVersion, sortPublicGames } from "./game-index";
 import type { PublicAsset, PublicCategory, PublicChart, PublicDownload, PublicGameIndex, PublicPreview, PublicResource, PublicSearchEntry, PublicSiteData, PublicVariant } from "./types";
 import { objectUrl } from "./url";
 
-// Only project R2 for verified downloads, never for previews or unmirrored games.
+// The verified inventory is only needed at build time.
 import { R2_DOWNLOADS_ENABLED } from "./site-config";
 import verifiedCopies from "../../../../catalog/r2-downloads.json";
 const verifiedR2 = new Set(Object.keys(verifiedCopies));
@@ -589,9 +589,9 @@ function formatPublicMetadata(game: GameId, metadata: Record<string, string | nu
 
 function projectVariant(variant: Variant, renditions: Rendition[], objectsById: Map<string, AssetObject>, rosBaseUrl: string, game: string): PublicVariant {
   const preview = {
-    small: projectPreview(renditions, "small", objectsById, rosBaseUrl),
-    medium: projectPreview(renditions, "medium", objectsById, rosBaseUrl),
-    large: projectPreview(renditions, "large", objectsById, rosBaseUrl),
+    small: projectPreview(renditions, "small", objectsById, rosBaseUrl, game),
+    medium: projectPreview(renditions, "medium", objectsById, rosBaseUrl, game),
+    large: projectPreview(renditions, "large", objectsById, rosBaseUrl, game),
   } satisfies PublicPreview;
   const originalRenditions = renditions.filter((rendition) => rendition.renditionType === "original" && rendition.publishable);
   const originals = originalRenditions
@@ -615,22 +615,26 @@ function projectVariant(variant: Variant, renditions: Rendition[], objectsById: 
   return publicVariant;
 }
 
-function projectPreview(renditions: Rendition[], size: keyof typeof PREVIEW_TYPES, objectsById: Map<string, AssetObject>, rosBaseUrl: string): PublicAsset | null {
+function projectPreview(renditions: Rendition[], size: keyof typeof PREVIEW_TYPES, objectsById: Map<string, AssetObject>, rosBaseUrl: string, game: string): PublicAsset | null {
   const rendition = selectPreviewRendition(renditions, size);
   if (!rendition) return null;
   const object = objectsById.get(rendition.objectId);
   if (!object) return null;
   if (object.width === undefined || object.height === undefined || !object.mime.startsWith("image/")) return null;
-  return { url: objectUrl(object.objectKey, rosBaseUrl), width: object.width, height: object.height, mime: object.mime };
+  return { url: assetSource(object.objectKey, rosBaseUrl, game).url, width: object.width, height: object.height, mime: object.mime };
+}
+
+function assetSource(key: string, rosBaseUrl: string, game: string) {
+  const ros = objectUrl(key, rosBaseUrl);
+  return R2_DOWNLOADS_ENABLED && (game === 'arcaea' || game === 'phigros') && verifiedR2.has(key)
+    ? { url: `https://dl.rhythmarchive.top/${key}`, fallbackUrl: ros } : { url: ros };
 }
 
 function projectDownload(rendition: Rendition, objectsById: Map<string, AssetObject>, rosBaseUrl: string, game: string): PublicDownload | undefined {
   const object = objectsById.get(rendition.objectId);
   if (!object) return undefined;
   return {
-    ...(R2_DOWNLOADS_ENABLED && (game === "arcaea" || game === "phigros") && verifiedR2.has(object.objectKey)
-      ? { url: `https://dl.rhythmarchive.top/${object.objectKey}`, fallbackUrl: objectUrl(object.objectKey, rosBaseUrl) }
-      : { url: objectUrl(object.objectKey, rosBaseUrl) }),
+    ...assetSource(object.objectKey, rosBaseUrl, game),
     downloadFilename: rendition.downloadFilename,
     mime: object.mime,
     sizeBytes: object.sizeBytes,

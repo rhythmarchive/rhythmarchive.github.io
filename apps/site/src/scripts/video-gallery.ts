@@ -56,6 +56,7 @@ function initialize(root: HTMLElement) {
     el("[data-screen-duration]").textContent = time(clip.duration);
     const download = el<HTMLButtonElement>("[data-download]");
     download.dataset.downloadUrl = clip.original.url;
+    if(clip.original.fallbackUrl)download.dataset.backupUrl=clip.original.fallbackUrl;else delete download.dataset.backupUrl;
     download.dataset.downloadFilename = clip.original.downloadFilename;
     download.dataset.resourceId = item.id;
     const sizeLabel = root.querySelector<HTMLElement>("[data-original-size]");

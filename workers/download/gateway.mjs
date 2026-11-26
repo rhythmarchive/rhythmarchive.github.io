@@ -1,6 +1,6 @@
 import copies from '../../catalog/r2-downloads.json' with { type: 'json' };
 const site = 'https://rhythmarchive.github.io';
-const paths = /^(?:apk\/arcaea\/(\d+\.\d+\.\d+[a-z]?)\/[a-f0-9]{64}\/Arcaea_\1\.apk|objects\/[a-f0-9]{64}\/(?:jpg|jpeg|png|webp))$/;
+const paths = /^(?:apk\/arcaea\/(\d+\.\d+\.\d+[a-z]?)\/[a-f0-9]{64}\/Arcaea_\1\.apk|objects\/[a-f0-9]{64}\/(?:jpg|jpeg|png|webp|mp4))$/;
 const reject = (status, extra = {}) => new Response(null,{status,headers:{'Cache-Control':'no-store',...extra}});
 function byteRange(raw,size) {
   const m = /^bytes=(\d*)-(\d*)$/.exec(raw);
@@ -10,7 +10,7 @@ function byteRange(raw,size) {
   const offset=m[1]?a:Math.max(0,size-b), end=m[1]&&m[2]?Math.min(b,size-1):size-1;
   return offset<=end?{offset,length:end-offset+1}:null;
 }
-export default {async fetch(req,env) {
+export default {async fetch(req,env,ctx) {
   const url=new URL(req.url), key=url.pathname.slice(1);
   // Only a failed mirrored resource may obtain a one-file ROS allowance. No row = disabled.
   if (url.origin === 'https://dl.rhythmarchive.top' && key.startsWith('fallback/') && !url.search) {
@@ -24,17 +24,31 @@ export default {async fetch(req,env) {
   if(url.origin!=='https://dl.rhythmarchive.top'||url.search||(!paths.test(key)&&key!=='apk/arcaea/latest.json')) return reject(404);
   if(!['HEAD','GET'].includes(req.method)) return reject(405,{Allow:'HEAD, GET'});
   try {
+    const asset=key.startsWith('objects/');
+    if(asset && !Object.hasOwn(copies,key))return reject(404);
+    // Only immutable catalog objects have a shared cache key. Never cache APKs, partial responses, permits or failures.
+    const full=asset && !req.headers.has('Range');
+    const cache=full?globalThis.caches?.default:undefined;
+    const cached=cache?await cache.match(url.href):undefined;
+    if(cached){const headers=new Headers(cached.headers);headers.set('X-Archive-Cache','HIT');return new Response(req.method==='HEAD'?null:cached.body,{headers});}
     // Reserve worst-case R2 reads atomically; never refund failed or partial requests.
-    const cost=req.method==='HEAD'?1:2;
-    const q=await env.BUDGET.prepare("UPDATE download_read_budget SET remaining=remaining-?1 WHERE utc_month=strftime('%Y-%m','now') AND remaining>=?1").bind(cost).run();
+    const cost=full||req.method==='HEAD'?1:2;
+    const q=await env.BUDGET.prepare("UPDATE download_read_budget SET remaining=remaining-?1 WHERE utc_month=strftime('%Y-%m','now') AND remaining>=?1"+(asset?"+1500":"")).bind(cost).run();
     if(q.meta.changes!==1) return reject(503);
-    const obj=await env.FILES.head(key);
+    const direct=full&&req.method==='GET';
+    const obj=direct?await env.FILES.get(key):await env.FILES.head(key);
     if(!obj) return reject(404);
     const headers=new Headers(); obj.writeHttpMetadata(headers);
     headers.set('Access-Control-Allow-Origin','https://rhythmarchive.github.io'); headers.set('Access-Control-Expose-Headers','ETag, Content-Range');
     headers.set('Content-Length',String(obj.size)); headers.set('Accept-Ranges','bytes'); headers.set('ETag',obj.httpEtag);
     headers.set('Cache-Control',key==='apk/arcaea/latest.json'?'public, max-age=60':'public, max-age=31536000, immutable');headers.set('X-Content-Type-Options','nosniff');
     if(req.method==='HEAD') return new Response(null,{headers});
+    if(direct){
+      if(!obj.body||obj.size!==copies[key])return reject(503);
+      headers.set('X-Archive-Cache','MISS');const response=new Response(obj.body,{headers});
+      if(cache && ctx && obj.size<=8_000_000)ctx.waitUntil(cache.put(url.href,response.clone()).catch(()=>{}));
+      return response;
+    }
     let range; const raw=req.headers.get('Range'), tag=req.headers.get('If-Range');
     if(raw!==null&&(!tag||tag===obj.httpEtag)) {
       range=byteRange(raw,obj.size);

@@ -60,3 +60,7 @@ test("ROS uses provider counter timestamp and refuses stale, expired or high-usa
   sample.data!.instances[0]!.transferUsedBytes = 99 * 2 ** 30;
   assert.equal(grants(now, target, undefined, sample).ros, 0);
 });
+
+test('next month uses recent charged units, never unbounded forecasts or a missing grant',async()=>{
+ const {nextReadCap}=await import('../src/infrastructure.js');assert.equal(nextReadCap(0,20000,2000,86400000,31),0);assert.equal(nextReadCap(20000,20000,19000,86400000,30),39000);assert.equal(nextReadCap(20000,999999,0,86400000,31),100000);assert.equal(nextReadCap(20000,5,9,86400000,31),20000);
+});

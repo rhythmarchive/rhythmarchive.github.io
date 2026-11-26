@@ -245,7 +245,7 @@ export class S3StorageClient implements StorageClient {
           if (used > this.config.uploadCeilingBytes) throw new Error("R2 storage allowance exhausted; previous version retained");
           if (part.IsTruncated === false) break;
           token = part.NextContinuationToken;
-          if (!token || page >= 7) throw new Error("Cannot verify R2 capacity within scan budget");
+          if (!token || page >= 15) throw new Error("Cannot verify R2 capacity within scan budget");
         }
       }
       const upload = new Upload({

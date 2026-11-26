@@ -15,7 +15,13 @@ export async function fetchDownload(primary: string, backup: string | undefined,
     if (++failures < 2) {if(response)return {response,automatic:false};throw failure;}
     until=Date.now()+60000;
   }
-  const grant=await fetch(new URL('/fallback'+new URL(primary).pathname,primary),{...options,method:'POST',signal:AbortSignal.any([AbortSignal.timeout(3500),...(signal?[signal]:[])])});
-  if(grant.status!==204) throw new Error('备用下载流量未获分配');
+  if (!await permitBackup(primary,signal)) throw new Error('备用下载流量未获分配');
   return {response:await fetch(backup,options),automatic:true};
+}
+
+export async function permitBackup(primary: string, signal?: AbortSignal) {
+  const grant = await fetch(new URL('/fallback'+new URL(primary).pathname,primary), {
+    credentials:'omit', method:'POST', signal:AbortSignal.any([AbortSignal.timeout(3500),...(signal?[signal]:[])])
+  });
+  return grant.status===204;
 }

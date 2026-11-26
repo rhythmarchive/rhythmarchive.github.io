@@ -215,18 +215,89 @@ export function grants(
       : 0;
   return { reads, ros, day, month: day.slice(0, 7) };
 }
+// Use metered cold reads, not visits. Do not increase an existing month's allowance.
+export function nextReadCap(
+  base: number,
+  prior: number,
+  left: number,
+  elapsed: number,
+  days: number,
+) {
+  if (
+    !base ||
+    !valid(prior) ||
+    !valid(left) ||
+    prior < left ||
+    !Number.isFinite(elapsed) ||
+    elapsed < DAY ||
+    elapsed > 7 * DAY
+  )
+    return base;
+  return Math.min(
+    100000,
+    Math.max(base, Math.ceil((((prior - left) * DAY) / elapsed) * days * 1.3)),
+  );
+}
 export async function maintain(env: OperationsEnv, now: number) {
   const db = env.DOWNLOAD_BUDGET;
   if (!db) return;
   const d = new Date(now),
     m = d.getUTCHours() * 60 + d.getUTCMinutes();
-  if (m !== 1435 && m !== 5 && m !== 25) return;
+  // Cheap hourly recovery: check two indexed rows; never refill existing/exhausted rows.
+  // A delayed provider is no longer locked out until the following day.
+  if (m !== 1435 && m !== 25 && m % 60 !== 5) return;
+  if (m % 60 === 5 && m !== 5) {
+    const period = iso(now);
+    const ok = await db
+      .prepare(
+        "SELECT EXISTS(SELECT 1 FROM download_read_budget WHERE utc_month=?) AND EXISTS(SELECT 1 FROM ros_fallback_budget WHERE utc_day=?) AS ready",
+      )
+      .bind(period.slice(0, 7), period.slice(0, 10))
+      .first<{ ready: number }>();
+    if (ok?.ready) {
+      console.log("download_budget_period_present");
+      return;
+    }
+  }
   const target = m === 1435 ? now + 5 * 60000 : now,
     [ss, r] = await Promise.all([
       samples(db),
       env.OPERATOR_ROS?.snapshot().catch(() => undefined),
     ]);
   const g = grants(now, target, ss[0], r);
+  if (
+    g.reads &&
+    env.DB &&
+    g.day.endsWith("-01") &&
+    ss[0]?.workers != null &&
+    ss[0].workers < 70000 &&
+    ss[0]?.d1 &&
+    ss[0].d1.writes < 70000 &&
+    ss[0].d1.reads < 3500000
+  ) {
+    const monthStart = Date.parse(g.month + "-01T00:00:00Z"),
+      previous = iso(monthStart - 1).slice(0, 7);
+    const startDay = iso(monthStart - 6 * DAY).slice(0, 10),
+      endDay = iso(monthStart).slice(0, 10);
+    const row = await env.DB.prepare(
+      `SELECT json_extract(snapshot_json,'$.generatedAt') AS at,json_extract(snapshot_json,'$.downloadBudget.remainingReads') AS remaining FROM daily_operations_reports WHERE report_date>=? AND report_date<? AND status='sent' AND snapshot_json<>'' AND json_extract(snapshot_json,'$.downloadBudget.utcMonth')=? ORDER BY report_date LIMIT 1`,
+    )
+      .bind(startDay, endDay, previous)
+      .first<{ at: string; remaining: number }>()
+      .catch(() => null);
+    const last = await db
+      .prepare("SELECT remaining FROM download_read_budget WHERE utc_month=?")
+      .bind(previous)
+      .first<{ remaining: number }>();
+    if (row && last)
+      g.reads = nextReadCap(
+        g.reads,
+        row.remaining,
+        last.remaining,
+        now - Date.parse(row.at),
+        (nextMonth(monthStart) - monthStart) / DAY,
+      );
+  }
   for (const [amount, table, key, period] of [
     [g.ros, "ros_fallback_budget", "utc_day", g.day],
     [g.reads, "download_read_budget", "utc_month", g.month],
@@ -307,12 +378,18 @@ export async function infrastructure(
     metric(
       "D1 存储",
       "B",
-      a?.d1StorageBasis === "observed-peaks" ? "账户 Analytics 近24小时有采样的库峰值合计；估算，非完整清单" : "账户数据库清单合计",
+      a?.d1StorageBasis === "observed-peaks"
+        ? "账户 Analytics 近24小时有采样的库峰值合计；估算，非完整清单"
+        : "账户数据库清单合计",
       a?.d1Bytes,
       5e9,
       t,
       null,
-      trend(a?.d1Bytes, prev?.d1Bytes, a?.d1StorageBasis === prev?.d1StorageBasis),
+      trend(
+        a?.d1Bytes,
+        prev?.d1Bytes,
+        a?.d1StorageBasis === prev?.d1StorageBasis,
+      ),
     ),
     ...(["a", "b"] as const).map((k) =>
       metric(

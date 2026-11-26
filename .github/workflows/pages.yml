@@ -54,6 +54,7 @@ jobs:
           if [[ -n "$BEFORE" && ! "$BEFORE" =~ ^0+$ ]]; then
             git fetch --no-tags --depth=1 origin "$BEFORE"
             echo "base=$BEFORE" >> "$GITHUB_OUTPUT"
+            if ! git diff --quiet "$BEFORE" HEAD -- workers/download catalog/r2-downloads.json; then echo 'gateway=true' >> "$GITHUB_OUTPUT"; fi
             node scripts/maintenance-check.mjs --base "$BEFORE" --plan
           else
             echo "mode=FULL" >> "$GITHUB_OUTPUT"
@@ -64,7 +65,7 @@ jobs:
             fi
           fi
       - name: Install Worker validation dependencies
-        if: steps.scope.outputs.mode == 'FULL' || steps.scope.outputs.worker == 'true' || steps.scope.outputs.deploy_worker == 'true' || inputs.deploy_stats_worker == true
+        if: steps.scope.outputs.gateway == 'true' || steps.scope.outputs.mode == 'FULL' || steps.scope.outputs.worker == 'true' || steps.scope.outputs.deploy_worker == 'true' || inputs.deploy_stats_worker == true
         run: npm ci --prefix workers/stats
       - name: Change-aware validation and Pages build
         env:
@@ -75,6 +76,14 @@ jobs:
           else
             npm run check:full
           fi
+      - name: Deploy verified resource gateway before Pages
+        if: github.ref == 'refs/heads/main' && steps.scope.outputs.gateway == 'true'
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          node --test workers/download/gateway.test.mjs
+          workers/stats/node_modules/.bin/wrangler deploy --config workers/download/wrangler.toml
       - name: Deploy Stats Worker and verify its Catalog registry
         if: github.ref == 'refs/heads/main' && (steps.scope.outputs.deploy_worker == 'true' || inputs.deploy_stats_worker == true)
         env:

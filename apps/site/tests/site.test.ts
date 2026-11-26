@@ -18,7 +18,7 @@ import { buildSearchQuickLinks } from "../src/lib/search-quick-links.js";
 import { getCategoryBrowseConfig } from "../src/lib/category-browse.js";
 import { chartDifficultyHistogram, matchesChartFilters } from "../src/lib/chart-filters.js";
 import { adaptiveRangeHistogram, buildRangeHistogram, chartRangeHistogram } from "../src/lib/range-histogram.js";
-import { GISCUS_CONFIG, GITHUB_DISCUSSIONS_URL, GITHUB_RELEASES_URL, GITHUB_REPOSITORY_URL } from "../src/lib/site-config.js";
+import { R2_DOWNLOADS_ENABLED, GISCUS_CONFIG, GITHUB_DISCUSSIONS_URL, GITHUB_RELEASES_URL, GITHUB_REPOSITORY_URL } from "../src/lib/site-config.js";
 import { compareNaturalText, rankSearchEntries } from "../src/lib/search.js";
 import { createUrlHelpers, sitePath } from "../src/lib/url.js";
 import { getBrowseGalleryBuild, getPublicNavigationGames, getSiteData, loadCategoryBrowseProjections, loadFormalBrowseProjections, loadFormalCatalog } from "../src/lib/site-data.js";
@@ -28,6 +28,21 @@ import type { PublicResource, PublicSearchEntry } from "../src/lib/types.js";
 const catalog = loadFormalCatalog();
 const rosBaseUrl = "https://rhythm-assets.cn-nb1.rains3.com";
 const siteRoot = path.resolve(process.cwd(), "apps", "site");
+
+test('verified media and previews share the same origin policy across games', () => {
+  const copies=JSON.parse(fs.readFileSync(path.resolve('catalog/r2-downloads.json'),'utf8')) as Record<string,number>;
+  let previews=0;
+  for(const resource of getSiteData().resources)for(const variant of resource.variants){
+    for(const asset of [...Object.values(variant.preview),...variant.originals??[],variant.upscaled]){
+      if(!asset?.url)continue;
+      const url=new URL(asset.url),key=url.pathname.slice(1);
+      const mirrored=R2_DOWNLOADS_ENABLED&&['arcaea','phigros'].includes(resource.game)&&Object.hasOwn(copies,key);
+      assert.equal(url.origin,mirrored?'https://dl.rhythmarchive.top':rosBaseUrl);
+      if(mirrored && key.endsWith('/webp'))previews++;
+    }
+  }
+  if(R2_DOWNLOADS_ENABLED)assert.ok(previews>0);
+});
 
 test("Arcaea added-version labels keep only major and minor components", () => {
   assert.equal(formatArcaeaAddedVersion("6.13.10"), "6.13");
