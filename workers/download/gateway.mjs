@@ -21,7 +21,7 @@ export default {async fetch(req,env) {
       return new Response(null,{status:result.meta.changes===1?204:429,headers:{'Access-Control-Allow-Origin':site,'Cache-Control':'no-store'}});
     } catch {return reject(503);}
   }
-  if(url.origin!=='https://dl.rhythmarchive.top'||url.search||!paths.test(key)) return reject(404);
+  if(url.origin!=='https://dl.rhythmarchive.top'||url.search||(!paths.test(key)&&key!=='apk/arcaea/latest.json')) return reject(404);
   if(!['HEAD','GET'].includes(req.method)) return reject(405,{Allow:'HEAD, GET'});
   try {
     // Reserve worst-case R2 reads atomically; never refund failed or partial requests.
@@ -33,7 +33,7 @@ export default {async fetch(req,env) {
     const headers=new Headers(); obj.writeHttpMetadata(headers);
     headers.set('Access-Control-Allow-Origin','https://rhythmarchive.github.io'); headers.set('Access-Control-Expose-Headers','ETag, Content-Range');
     headers.set('Content-Length',String(obj.size)); headers.set('Accept-Ranges','bytes'); headers.set('ETag',obj.httpEtag);
-    headers.set('Cache-Control','public, max-age=31536000, immutable');headers.set('X-Content-Type-Options','nosniff');
+    headers.set('Cache-Control',key==='apk/arcaea/latest.json'?'public, max-age=60':'public, max-age=31536000, immutable');headers.set('X-Content-Type-Options','nosniff');
     if(req.method==='HEAD') return new Response(null,{headers});
     let range; const raw=req.headers.get('Range'), tag=req.headers.get('If-Range');
     if(raw!==null&&(!tag||tag===obj.httpEtag)) {

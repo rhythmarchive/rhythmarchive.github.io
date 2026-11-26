@@ -106,8 +106,5 @@ export function formatPublicApkBytes(value: number): string {
 }
 
 export function apkDownloadLinks(entry: PublicArcaeaApkEntry): { href: string; label: string; primary: boolean }[] {
-  const primary = entry.downloads.r2 ?? entry.downloads.github;
-  if (!primary) return [];
-  return [{ href: primary, label: "下载", primary: true },
-    ...(entry.downloads.github && entry.downloads.r2 ? [{ href: entry.downloads.github, label: "备用下载", primary: false }] : [])];
+  return entry.downloads.r2 ? [{ href: entry.downloads.r2, label: "下载", primary: true }] : [];
 }

@@ -2,7 +2,6 @@ import { getBrowserStatsClient } from "../lib/stats-client";
 import { onPageLoad, pageSignal } from "./page-lifecycle";
 import { revealContent } from "./motion";
 import { apkDownloadLinks, formatPublicApkBytes, parsePublicArcaeaApkManifest, type PublicArcaeaApkEntry } from "../lib/apk";
-import { GITHUB_RELEASES_URL } from "../lib/site-config";
 
 onPageLoad(() => {
   const card = document.querySelector<HTMLElement>("[data-arcaea-apk-card]");
@@ -18,21 +17,20 @@ async function loadManifest(cardElement: HTMLElement, stateElement: HTMLElement,
     const response = await fetch(url, { credentials: "omit", signal: AbortSignal.any([signal,AbortSignal.timeout(10000)]), headers: { Accept: "application/json" } });
     if (!response.ok) throw new Error("manifest unavailable");
     const manifest = parsePublicArcaeaApkManifest(await response.json(), { publicBaseUrl: import.meta.env.PUBLIC_ARCAEA_R2_BASE_URL });
-    if (!manifest) throw new Error("manifest invalid");
+    if (!manifest?.latest.downloads.r2) throw new Error("manifest invalid");
     if (!signal.aborted) renderManifest(cardElement, stateElement, manifest.latest);
   } catch {
     if (signal.aborted) return;
-    // Immutable Release: size and SHA-256 verified against its GitHub asset and ROS manifest.
-    // Do not imply that a historical, working download is today's official build.
-    renderManifest(cardElement, stateElement, {
-      version: "7.1.0c", versionCode: null, fileName: "Arcaea_7.1.0c.apk", fileSize: 2145803149,
-      sha256: "b169c695634229e20792630558f705e576aa07c1acdc1a5b19f8051651950c09", publishedAt: "2026-10-29T02:01:46.715Z",
-      downloads: { github: `${GITHUB_RELEASES_URL}/download/arcaea-apk-7.1.0c/Arcaea_7.1.0c.apk`, official: null },
-    }, true);
+    stateElement.removeAttribute("aria-busy");
+    const retry = document.createElement("button");
+    retry.className = "button apk-download-button";
+    retry.textContent = "重新获取版本";
+    retry.onclick = () => { retry.disabled = true; void loadManifest(cardElement, stateElement, url); };
+    stateElement.replaceChildren("版本信息暂时无法获取。", retry);
   }
 }
 
-function renderManifest(cardElement: HTMLElement, stateElement: HTMLElement, latest: PublicArcaeaApkEntry, offline = false): void {
+function renderManifest(cardElement: HTMLElement, stateElement: HTMLElement, latest: PublicArcaeaApkEntry): void {
   stateElement.removeAttribute("aria-busy");
   cardElement.classList.add("is-ready");
   stateElement.replaceChildren();
@@ -48,7 +46,7 @@ function renderManifest(cardElement: HTMLElement, stateElement: HTMLElement, lat
   version.textContent = latest.version;
   const tag = document.createElement("span");
   tag.className = "apk-version-tag";
-  tag.textContent = offline ? "版本查询失败 · 历史版本" : "收录版本";
+  tag.textContent = "收录版本";
   identity.append(product, version, tag);
 
   const metadata = document.createElement("dl");
@@ -61,7 +59,6 @@ function renderManifest(cardElement: HTMLElement, stateElement: HTMLElement, lat
 
   const actions = document.createElement("div");
   actions.className = "apk-download-actions";
-  actions.append(createExternalLink(GITHUB_RELEASES_URL, "button apk-official-button", "历史版本"));
   for (const source of apkDownloadLinks(latest)) {
     const link = createDownloadLink(source.href, latest.fileName, source.primary ? "button apk-download-button" : "button apk-official-button", source.label);
     link.addEventListener("click", () => { void getBrowserStatsClient().trackApkDownload(source.href === latest.downloads.r2 ? "r2" : "github"); });
@@ -93,16 +90,6 @@ function createDownloadLink(href: string, fileName: string, className: string, l
   if (className) link.className = className;
   link.href = href;
   link.setAttribute("download", fileName);
-  link.textContent = label;
-  return link;
-}
-
-function createExternalLink(href: string, className: string, label: string): HTMLAnchorElement {
-  const link = document.createElement("a");
-  if (className) link.className = className;
-  link.href = href;
-  link.target = "_blank";
-  link.rel = "noopener noreferrer";
   link.textContent = label;
   return link;
 }

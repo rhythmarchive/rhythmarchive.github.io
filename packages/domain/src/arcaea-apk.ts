@@ -488,10 +488,11 @@ export async function runArcaeaApkUpdate(options: {
   if (!storage || storage.status !== "READY") throw new Error("ROS credentials are not configured.");
   const r2 = options.r2Storage;
   if (!r2 || r2.status !== "READY") throw new Error("Arcaea R2 configuration is incomplete.");
-  const previousManifest = await readArcaeaApkManifest(storage);
+  const liveR2Manifest = await readArcaeaApkManifest(r2);
+  const previousManifest = liveR2Manifest ?? await readArcaeaApkManifest(storage);
   if (previousManifest) {
     const comparison = compareArcaeaVersion(normalizedDiscovery.version, previousManifest.latest.version);
-    if (comparison === 0 && (!r2 || previousManifest.latest.downloads.r2)) {
+    if (comparison === 0 && liveR2Manifest?.latest.downloads.r2) {
       log(`[arcaea-apk] Version ${normalizedDiscovery.version} is already public; no download or ROS write.`);
       return { status: "no-update", discovered: normalizedDiscovery, previousManifest, uploaded: false, reusedRemote: false };
     }
@@ -554,6 +555,19 @@ export async function runArcaeaApkUpdate(options: {
     await storage.putObject({ objectKey: ARCAEA_APK_LATEST_KEY, body: JSON.stringify(manifest, null, 2), contentType: "application/json; charset=utf-8", cacheControl: ARCAEA_LATEST_CACHE_CONTROL });
     const reloaded = await readArcaeaApkManifest(storage);
     if (!reloaded || reloaded.latest.version !== manifest.latest.version || reloaded.latest.sha256 !== manifest.latest.sha256 || reloaded.latest.fileSize !== manifest.latest.fileSize || reloaded.latest.downloads.github !== manifest.latest.downloads.github || reloaded.latest.downloads.official !== manifest.latest.downloads.official || reloaded.latest.downloads.r2 !== manifest.latest.downloads.r2) throw new Error("ROS latest.json verification failed after publish.");
+    await r2.putObject({ objectKey: ARCAEA_APK_LATEST_KEY, body: JSON.stringify(manifest), contentType: "application/json; charset=utf-8", cacheControl: "public, max-age=60" });
+    const committed = await readArcaeaApkManifest(r2);
+    if (committed?.latest.downloads.r2 !== manifest.latest.downloads.r2) throw new Error("R2 manifest verification failed; previous APK retained.");
+    // Only the previous manifest's exact managed immutable key is eligible. Never sweep the bucket.
+    const retired = previousManifest?.latest;
+    if (retired?.downloads.r2 && retired.version !== reloaded.latest.version &&
+        validArcaeaR2Url(retired.downloads.r2, retired.version, retired.sha256, r2.publicBaseUrl)) {
+      // Let both the R2 pointer and legacy ROS pointer expire from compliant caches.
+      await new Promise(resolve => setTimeout(resolve, 301_000));
+      const live = await readArcaeaApkManifest(r2);
+      if (live?.latest.downloads.r2 !== reloaded.latest.downloads.r2) throw new Error("Pointer changed; previous R2 object retained.");
+      await r2.deleteObject(arcaeaR2ObjectKey(retired.version, retired.sha256));
+    }
     log(`[arcaea-apk] Published ${manifest.latest.version}; previous ${manifest.previous?.version ?? "none"}.`);
     return { status: "published", discovered: normalizedDiscovery, previousManifest, manifest, uploaded, reusedRemote: !uploaded };
   } finally {

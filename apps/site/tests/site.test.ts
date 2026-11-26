@@ -1131,14 +1131,12 @@ test("APK card omits digest and previous-version disclosures while preserving pr
   const source = fs.readFileSync(path.join(siteRoot, "src", "scripts", "apk-card.ts"), "utf8");
   const styles = fs.readFileSync(path.join(siteRoot, "src", "styles", "global.css"), "utf8");
   assert.match(source, /renderManifest\(cardElement, stateElement, manifest\.latest\)/u);
-  assert.match(source, /GITHUB_RELEASES_URL/u);
-  assert.match(source, /createExternalLink\(GITHUB_RELEASES_URL, "button apk-official-button", "历史版本"\)/u);
+  assert.doesNotMatch(source, /GITHUB_RELEASES_URL|releases\/download/u);
   assert.match(source, /apkDownloadLinks\(latest\)/u);
   assert.doesNotMatch(source, /校验信息|上一版本|createDigest|createPreviousVersion|manifest\.previous|apk-digest|apk-previous/u);
   assert.doesNotMatch(styles, /apk-digest|apk-previous|text-button/u);
   assert.doesNotMatch(source, /官方下载链接|前往Releases|GitHub 下载/u);
-  assert.match(source, /target = "_blank"/u);
-  assert.match(source, /rel = "noopener noreferrer"/u);
+  assert.match(source, /重新获取版本/u);
   assert.doesNotMatch(source, /sha256\.slice\(/u);
   assert.doesNotMatch(source, /previousRow\.className/u);
 });
