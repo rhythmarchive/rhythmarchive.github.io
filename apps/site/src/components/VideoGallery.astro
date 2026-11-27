@@ -9,7 +9,7 @@ const duration = (seconds: number) => `${Math.floor(seconds / 60)}:${String(Math
 const size = (bytes: number) => `${(bytes / 1048576).toFixed(2)} MiB`;
 ---
 <section class="video-workspace" data-video-gallery data-media-items={JSON.stringify(items)}>
-  <div class="media-main">
+  <div class="media-main" data-download-panel>
     <div class="media-screen">
       <video data-player controls playsinline preload="none" hidden aria-label="视频演出播放器"></video>
       <div class="media-cover" data-cover>
@@ -19,12 +19,19 @@ const size = (bytes: number) => `${(bytes / 1048576).toFixed(2)} MiB`;
         <button type="button" class="media-play-button" data-play hidden={first.spoiler} aria-label="播放视频"><span class="media-play-icon" aria-hidden="true">▶</span><span>播放</span></button>
         <span class="media-screen-duration" data-screen-duration>{duration(clip.duration)}</span>
       </div>
-      <p class="media-player-error" data-player-error role="alert" hidden>视频无法播放，请稍后重试。</p>
+      <p class="media-player-error" data-player-error role="alert" hidden>视频无法播放，请切换线路或稍后重试。</p>
     </div>
-    <div class="media-player-toolbar"><label data-clip-label hidden>片段 <select data-clip aria-label="演出片段"></select></label><button type="button" class="media-stop" data-stop hidden>停止播放</button></div>
+    <div class="media-player-toolbar">
+      <label data-clip-label hidden>片段 <select data-clip aria-label="演出片段"></select></label>
+      <label data-source-label hidden={!clip.original.fallbackUrl}>线路
+        <select data-source aria-label="视频线路"><option value="auto">自动（R2）</option><option value="r2">R2</option><option value="ros">ROS</option></select>
+      </label>
+      <button type="button" class="media-stop" data-stop hidden>停止播放</button>
+    </div>
     <slot name="resource-info" />
     <div class="media-resource-title media-video-title"><h2 data-title>{first.title}</h2><button type="button" class="button button-secondary media-download" data-download data-download-url={clip.original.url} data-download-filename={clip.original.downloadFilename} data-resource-id={first.id}>下载视频 <span data-original-size>{size(clip.original.sizeBytes)}</span></button></div>
     <p class="sr-only" data-status aria-live="polite"></p>
+    <p class="sr-only" data-download-status aria-live="polite"></p>
   </div>
   {items.length > 1 ? <aside class="media-playlist" aria-label="演出目录">
     <div class="media-playlist-heading"><h2>演出目录</h2><label class="sr-only" for="media-filter">筛选演出类型</label><select id="media-filter" data-filter><option value="all">全部演出</option><option value="unlock">曲目解锁</option><option value="story">剧情过场</option><option value="background">动态背景</option></select></div>

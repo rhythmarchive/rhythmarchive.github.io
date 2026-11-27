@@ -9,7 +9,9 @@ routes = [{ pattern = "dl.rhythmarchive.top", custom_domain = true }]
 binding = "FILES"
 bucket_name = "rhythm-archive"
 
-[[d1_databases]]
-binding = "BUDGET"
-database_name = "rhythm-archive-download-budget"
-database_id = "6203834d-43b6-45c0-b1e8-fcc7ddebae81"
+[[ratelimits]]
+name = "RATE_LIMITER"
+namespace_id = "1334342181"
+[ratelimits.simple]
+limit = 180
+period = 60

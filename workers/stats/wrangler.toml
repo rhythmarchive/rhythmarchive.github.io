@@ -39,6 +39,6 @@ migrations_dir = "migrations"
 crons = ["*/5 * * * *"]
 
 [[d1_databases]]
-binding = "DOWNLOAD_BUDGET"
+binding = "INFRASTRUCTURE_DB"
 database_name = "rhythm-archive-download-budget"
 database_id = "6203834d-43b6-45c0-b1e8-fcc7ddebae81"

@@ -1,13 +1,15 @@
 import type { D1Database } from "./core.js";
-import type { OperationsEnv, RosReport } from "./daily-operations.js";
+import type { RosReport } from "./daily-operations.js";
 const DAY = 86400000,
   iso = (t: number) => new Date(t).toISOString(),
   valid = (v: unknown): v is number =>
     typeof v === "number" && Number.isFinite(v) && v >= 0;
+const nonNegativeInteger = (value: unknown): value is number => valid(value) && Number.isSafeInteger(value);
 const stamp = (v: string | null | undefined) =>
   v && /^\d{10}$/.test(v) ? Number(v) * 1000 : Date.parse(v ?? "");
 const nextMonth = (t: number) =>
   Date.UTC(new Date(t).getUTCFullYear(), new Date(t).getUTCMonth() + 1, 1);
+type GatewayRequests = { total: number; limited: number; clientErrors: number; serverErrors: number };
 type Sample = {
   day: string;
   observedAt: string;
@@ -18,6 +20,10 @@ type Sample = {
   ops: { a: number; b: number; all: number; unclassified: number } | null;
   bucket: { bytes: number; at: string } | null;
   gbMonth: number | null;
+  r2BucketOps?: { reads: number; writes: number; total: number; failed: number; unknown: number } | null;
+  r2DownlinkBytes?: number | null;
+  gatewayDownlinkBytes?: number | null;
+  gatewayRequests?: GatewayRequests | null;
   lastInvoice: { amount: number; currency: string; at: string } | null;
   errors: Record<string, string>;
 };
@@ -48,32 +54,16 @@ export async function saveSample(db: D1Database, body: string, now: number) {
       !Number.isFinite(Date.parse(s.bucket.at)))
   )
     return false;
-  const exists = await db
-    .prepare(
-      "SELECT 1 AS ok FROM sqlite_master WHERE type='table' AND name='infrastructure_samples'",
-    )
-    .first();
-  if (!exists) {
-    await db.batch([
-      db.prepare(
-        "CREATE TABLE IF NOT EXISTS quota_grants(kind TEXT,period TEXT,allocated INTEGER NOT NULL, PRIMARY KEY(kind,period)) WITHOUT ROWID",
-      ),
-      ...[
-        ["r2", "download_read_budget", "utc_month"],
-        ["ros", "ros_fallback_budget", "utc_day"],
-      ].map(([kind, table, key]) =>
-        db.prepare(
-          `CREATE TRIGGER IF NOT EXISTS grant_${kind} AFTER INSERT ON ${table} BEGIN INSERT INTO quota_grants VALUES('${kind}',NEW.${key},NEW.remaining); END`,
-        ),
-      ),
-      db.prepare(
-        "INSERT OR IGNORE INTO quota_grants VALUES('r2','2026-11',20064),('ros','2026-11-26',8000000)",
-      ),
-      db.prepare(
-        "CREATE TABLE IF NOT EXISTS infrastructure_samples(day TEXT PRIMARY KEY,payload TEXT NOT NULL) WITHOUT ROWID",
-      ),
-    ]);
-  }
+  if (s.r2BucketOps && (![s.r2BucketOps.reads, s.r2BucketOps.writes, s.r2BucketOps.total, s.r2BucketOps.failed, s.r2BucketOps.unknown].every(nonNegativeInteger) ||
+    s.r2BucketOps.reads + s.r2BucketOps.writes > s.r2BucketOps.total ||
+    s.r2BucketOps.failed + s.r2BucketOps.unknown > s.r2BucketOps.total)) return false;
+  if ([s.r2DownlinkBytes, s.gatewayDownlinkBytes].some(value => value != null && !nonNegativeInteger(value))) return false;
+  const gateway = s.gatewayRequests;
+  if (gateway != null && (![gateway.total, gateway.limited, gateway.clientErrors, gateway.serverErrors].every(nonNegativeInteger) ||
+    gateway.limited + gateway.clientErrors + gateway.serverErrors > gateway.total)) return false;
+  await db.prepare(
+    "CREATE TABLE IF NOT EXISTS infrastructure_samples(day TEXT PRIMARY KEY,payload TEXT NOT NULL) WITHOUT ROWID",
+  ).run();
   await db.batch([
     db
       .prepare(
@@ -156,8 +146,7 @@ function rosData(r: RosReport | undefined) {
     return null;
   const at = stamp(x.definition?.match(/更新时间原值：(\d{10})(?!\d)/)?.[1]),
     start = stamp(x.periodStart),
-    reset = stamp(x.nextResetAt),
-    expires = stamp(x.expiresAt);
+    reset = stamp(x.nextResetAt);
   if (
     x.status !== "running" ||
     !valid(x.planBandwidth) ||
@@ -170,156 +159,26 @@ function rosData(r: RosReport | undefined) {
     at,
     start,
     reset,
-    expires,
     used: x.transferUsedBytes,
     total: x.planBandwidth * 2 ** 30,
   };
 }
-export function grants(
-  now: number,
-  target: number,
-  s: Sample | undefined,
-  r: RosReport | undefined,
-) {
-  const x = rosData(r),
-    ops = s?.ops,
-    age = now - Date.parse(s?.observedAt ?? ""),
-    day = iso(target).slice(0, 10);
-  // A missing/stale observation never authorizes a grant. Unknown action classes count against BOTH limits.
-  const reads =
-    ops &&
-    valid(ops.all) &&
-    age >= 0 &&
-    age < 2 * 3600000 &&
-    s?.day === s?.observedAt.slice(0, 10) &&
-    ops.all < 700000 &&
-    s?.bucket &&
-    valid(s.bucket.bytes) &&
-    s.bucket.bytes < 8e9
-      ? 20000
-      : 0;
-  const ros =
-    x &&
-    now + 60000 >= x.at &&
-    now - x.at < 2 * 3600000 &&
-    target < x.reset &&
-    target < x.expires &&
-    x.used < x.total * 0.85
-      ? Math.floor(
-          Math.min(
-            8e6,
-            (x.total * 0.85 - x.used) /
-              Math.max(1, Math.ceil((x.reset - target) / DAY)),
-          ),
-        )
-      : 0;
-  return { reads, ros, day, month: day.slice(0, 7) };
+export function estimateStandardR2Cost(sample?: Pick<Sample, 'ops' | 'gbMonth'>): number | null {
+  if (!sample?.ops || !valid(sample.gbMonth)) return null;
+  const billed = (used: number, included: number, unit = 1) => Math.ceil(Math.max(0, used - included) / unit);
+  const cents = 450 * billed(sample.ops.a, 1e6, 1e6) + 36 * billed(sample.ops.b, 1e7, 1e6) + 1.5 * billed(sample.gbMonth, 10);
+  return cents / 100;
 }
-// Use metered cold reads, not visits. Do not increase an existing month's allowance.
-export function nextReadCap(
-  base: number,
-  prior: number,
-  left: number,
-  elapsed: number,
-  days: number,
-) {
-  if (
-    !base ||
-    !valid(prior) ||
-    !valid(left) ||
-    prior < left ||
-    !Number.isFinite(elapsed) ||
-    elapsed < DAY ||
-    elapsed > 7 * DAY
-  )
-    return base;
-  return Math.min(
-    100000,
-    Math.max(base, Math.ceil((((prior - left) * DAY) / elapsed) * days * 1.3)),
-  );
-}
-export async function maintain(env: OperationsEnv, now: number) {
-  const db = env.DOWNLOAD_BUDGET;
-  if (!db) return;
-  const d = new Date(now),
-    m = d.getUTCHours() * 60 + d.getUTCMinutes();
-  // Cheap hourly recovery: check two indexed rows; never refill existing/exhausted rows.
-  // A delayed provider is no longer locked out until the following day.
-  if (m !== 1435 && m !== 25 && m % 60 !== 5) return;
-  if (m % 60 === 5 && m !== 5) {
-    const period = iso(now);
-    const ok = await db
-      .prepare(
-        "SELECT EXISTS(SELECT 1 FROM download_read_budget WHERE utc_month=?) AND EXISTS(SELECT 1 FROM ros_fallback_budget WHERE utc_day=?) AS ready",
-      )
-      .bind(period.slice(0, 7), period.slice(0, 10))
-      .first<{ ready: number }>();
-    if (ok?.ready) {
-      console.log("download_budget_period_present");
-      return;
-    }
-  }
-  const target = m === 1435 ? now + 5 * 60000 : now,
-    [ss, r] = await Promise.all([
-      samples(db),
-      env.OPERATOR_ROS?.snapshot().catch(() => undefined),
-    ]);
-  const g = grants(now, target, ss[0], r);
-  if (
-    g.reads &&
-    env.DB &&
-    g.day.endsWith("-01") &&
-    ss[0]?.workers != null &&
-    ss[0].workers < 70000 &&
-    ss[0]?.d1 &&
-    ss[0].d1.writes < 70000 &&
-    ss[0].d1.reads < 3500000
-  ) {
-    const monthStart = Date.parse(g.month + "-01T00:00:00Z"),
-      previous = iso(monthStart - 1).slice(0, 7);
-    const startDay = iso(monthStart - 6 * DAY).slice(0, 10),
-      endDay = iso(monthStart).slice(0, 10);
-    const row = await env.DB.prepare(
-      `SELECT json_extract(snapshot_json,'$.generatedAt') AS at,json_extract(snapshot_json,'$.downloadBudget.remainingReads') AS remaining FROM daily_operations_reports WHERE report_date>=? AND report_date<? AND status='sent' AND snapshot_json<>'' AND json_extract(snapshot_json,'$.downloadBudget.utcMonth')=? ORDER BY report_date LIMIT 1`,
-    )
-      .bind(startDay, endDay, previous)
-      .first<{ at: string; remaining: number }>()
-      .catch(() => null);
-    const last = await db
-      .prepare("SELECT remaining FROM download_read_budget WHERE utc_month=?")
-      .bind(previous)
-      .first<{ remaining: number }>();
-    if (row && last)
-      g.reads = nextReadCap(
-        g.reads,
-        row.remaining,
-        last.remaining,
-        now - Date.parse(row.at),
-        (nextMonth(monthStart) - monthStart) / DAY,
-      );
-  }
-  for (const [amount, table, key, period] of [
-    [g.ros, "ros_fallback_budget", "utc_day", g.day],
-    [g.reads, "download_read_budget", "utc_month", g.month],
-  ] as const) {
-    if (amount > 0)
-      await db
-        .prepare(`INSERT OR IGNORE INTO ${table}(${key},remaining) VALUES(?,?)`)
-        .bind(period, amount)
-        .run();
-  }
-}
+
 export async function infrastructure(
   db: D1Database | undefined,
   now: number,
   r: RosReport,
-  reads: number | null,
 ) {
   const [s, prev] = await samples(db),
     t = Date.parse(s?.observedAt ?? "") || now,
     fresh = now - t >= 0 && now - t < 26 * 3600000,
     a = fresh ? s : undefined,
-    utc = iso(now),
     end = Date.parse(iso(t).slice(0, 10) + "T00:00:00Z") + DAY,
     start = end - DAY;
   const trend = (v: unknown, p: unknown, same = true) =>
@@ -329,29 +188,6 @@ export async function infrastructure(
   const monthly = a?.day.slice(0, 7) === prev?.day.slice(0, 7),
     x = rosData(r),
     live = x && now + 60000 >= x.at && now - x.at < 2 * 3600000 ? x : null;
-  const row = await db
-    ?.prepare("SELECT remaining FROM ros_fallback_budget WHERE utc_day=?")
-    .bind(utc.slice(0, 10))
-    .first<{ remaining: number }>()
-    .catch(() => null);
-  // The rollover algorithm grants variable ROS headroom; record the exact immutable original allowance via trigger.
-  async function allocation(kind: string, period: string) {
-    return (
-      (
-        await db
-          ?.prepare(
-            "SELECT allocated FROM quota_grants WHERE kind=? AND period=?",
-          )
-          .bind(kind, period)
-          .first<{ allocated: number }>()
-          .catch(() => null)
-      )?.allocated ?? null
-    );
-  }
-  const [ra, fa] = await Promise.all([
-    allocation("r2", utc.slice(0, 7)),
-    allocation("ros", utc.slice(0, 10)),
-  ]);
   const metrics = [
     metric(
       "Workers 请求",
@@ -418,7 +254,7 @@ export async function infrastructure(
       "B",
       "单桶 Analytics 延迟，含元数据",
       a?.bucket?.bytes,
-      8e9,
+      null,
       Date.parse(a?.bucket?.at ?? "") || t,
       null,
       trend(a?.bucket?.bytes, prev?.bucket?.bytes),
@@ -435,70 +271,52 @@ export async function infrastructure(
         ? (live.used * DAY) / (live.at - live.start)
         : null,
     ),
-    metric(
-      "R2 网关读取",
-      "次",
-      "应用月预算",
-      reads !== null && ra !== null ? ra - reads : null,
-      ra,
-      now,
-      nextMonth(now),
-      ra !== null &&
-        reads !== null &&
-        now > Date.parse(utc.slice(0, 7) + "-01T00:00:00Z")
-        ? ((ra - reads) * DAY) /
-            (now - Date.parse(utc.slice(0, 7) + "-01T00:00:00Z"))
-        : null,
-    ),
-    metric(
-      "ROS 自动回退",
-      "B",
-      "应用日预算",
-      row && fa !== null ? fa - row.remaining : null,
-      fa,
-      now,
-      Math.floor(now / DAY) * DAY + DAY,
-      row && fa !== null && now % DAY > 0
-        ? ((fa - row.remaining) * DAY) / (now % DAY)
-        : null,
-    ),
+    metric("R2 桶读取操作", "次", "项目桶 Analytics，UTC 当日累计", a?.r2BucketOps?.reads, null, t, end),
+    metric("R2 桶写入操作", "次", "项目桶 Analytics，UTC 当日累计", a?.r2BucketOps?.writes, null, t, end),
   ];
   const advice = metrics
     .filter((v) => v.early || ["关注", "警告", "严重警告"].includes(v.risk))
     .map((v) => `${v.label}：${v.risk}${v.early ? "，预计重置前耗尽" : ""}`);
-  if (
-    metrics.some(
-      (v) => v.label === "R2 网关读取" && (v.early || v.risk === "严重警告"),
-    ) ||
-    !reads ||
-    reads < 1000
-  )
-    advice.push("Arcaea APK 可能无法下载：读取预算未确认或余量不足");
-  if (!row?.remaining) advice.push("ROS 自动回退未获可用预算");
-  if (!a?.ops) advice.push("账户 R2 操作用量未核实，不发放新月预算");
+  const gateway = a?.gatewayRequests;
+  if (gateway?.limited) advice.push("下载网关出现 429 响应，请核对限速是否影响播放或续传。");
+  if (gateway && gateway.serverErrors >= 20 && gateway.serverErrors / gateway.total >= 0.05) {
+    advice.push("下载网关 5xx 响应比例偏高，请检查下载服务。");
+  }
+  const estimatedCostUsd = estimateStandardR2Cost(a);
+  if (estimatedCostUsd !== null && estimatedCostUsd > 0) advice.push("按 Standard 费率估算，本月已有超出免费额度的用量，请核对账单。");
+  const ops = a?.r2BucketOps;
+  if (ops && ops.failed >= 20 && ops.failed / ops.total >= 0.05) {
+    advice.push("R2 项目桶失败请求比例偏高，请核对网关日志与请求来源。");
+  }
   return {
     metrics,
     advice,
     collectionErrors: s?.errors ?? { snapshot: "未采集" },
     unclassifiedR2Operations: a?.ops?.unclassified ?? null,
     confirmedInvoice: a?.lastInvoice ?? null,
-    gatewayRemaining: reads,
-    fallbackRemaining: row?.remaining ?? null,
+    r2: { estimatedCostUsd, ops: ops ?? null, downlinkBytes: a?.r2DownlinkBytes ?? null,
+      gatewayDownlinkBytes: a?.gatewayDownlinkBytes ?? null, gatewayRequests: gateway ?? null },
   };
 }
 export function formatInfra(v: Awaited<ReturnType<typeof infrastructure>>) {
-  const fmt = (n: number | null) =>
-    n === null
+  const fmt = (n: number | null | undefined) =>
+    n == null
       ? "未知"
       : n.toLocaleString("zh-CN", { maximumFractionDigits: 3 });
   return [
     "",
-    "基础设施额度与费用（采样时刻与重置时间均为 UTC）",
+    "基础设施用量与费用（UTC，额度仅供观察）",
     ...v.metrics.map(
       (m) =>
-        `${m.label}：${fmt(m.used)} / ${fmt(m.total)} ${m.unit}（${fmt(m.percent)}%，${m.risk}）；剩余 ${fmt(m.remaining)}；采样 ${m.asOf}；重置 ${m.resetAt ?? "不适用或未知"}；日均变化 ${fmt(m.perDay)}；预计耗尽 ${m.estimatedExhaustionAt ?? "未知"}。${m.scope}`,
+        `${m.label}：${fmt(m.used)} ${m.unit}${m.total === null ? "" : ` / ${fmt(m.total)}（${fmt(m.percent)}%，${m.risk}）`}。采样 ${m.asOf}。${m.scope}${m.resetAt ? `。重置 ${m.resetAt}` : ""}`,
     ),
+    `R2 项目桶下行（Cloudflare 带宽采样）：${fmt(v.r2?.downlinkBytes)} B。下载网关下行（含边缘缓存）：${fmt(v.r2?.gatewayDownlinkBytes)} B。`,
+    `R2 项目桶请求：${fmt(v.r2?.ops?.total)} 次，失败 ${fmt(v.r2?.ops?.failed)} 次，状态未分类 ${fmt(v.r2?.ops?.unknown)} 次。`,
+    `下载网关请求：${fmt(v.r2?.gatewayRequests?.total)} 次，429 ${fmt(v.r2?.gatewayRequests?.limited)} 次，其他 4xx ${fmt(v.r2?.gatewayRequests?.clientErrors)} 次，5xx ${fmt(v.r2?.gatewayRequests?.serverErrors)} 次。`,
+    `R2 直接下行费用：0 USD。`,
+    `R2 月内已分类用量按 Standard 费率折算：${fmt(v.r2?.estimatedCostUsd)} USD。未分类操作：${fmt(v.unclassifiedR2Operations)} 次。估算不含税费及其他存储类型。`,
+    `最近已核实账项：${v.confirmedInvoice ? JSON.stringify(v.confirmedInvoice) : "未知"}。`,
+    ...Object.entries(v.collectionErrors ?? {}).map(([source, reason]) => `采集状态 ${source}：${reason}`),
     ...v.advice,
-    `最近已核实账项：${v.confirmedInvoice ? JSON.stringify(v.confirmedInvoice) : "未知"}。应用预算不是账户账单硬限制。`,
   ];
 }

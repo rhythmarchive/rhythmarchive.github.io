@@ -96,7 +96,7 @@
 
 .media-category-nav { margin-bottom: 24px; overflow-y: hidden; }
 .media-video-title { padding: 18px 0; }
-.media-player-toolbar:has([data-clip-label][hidden]):has([data-stop][hidden]) { display: none; }
+.media-player-toolbar:has([data-clip-label][hidden]):has([data-source-label][hidden]):has([data-stop][hidden]) { display: none; }
 .media-spoiler .button { margin-top: 18px; }
 
 [data-video-gallery] { margin-top: 24px; }

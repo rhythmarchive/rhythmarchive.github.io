@@ -11,7 +11,7 @@ export type OperationsEnv = Env & {
   DAILY_REPORT_ENABLED?: string; VERSION_MONITOR_ENABLED?: string;
   DAILY_REPORT_EMAIL_TO?: string; DAILY_REPORT_EMAIL_FROM?: string;
   QUOTA_SNAPSHOT_TOKEN?: string;
-  DOWNLOAD_BUDGET?: D1Database;
+  INFRASTRUCTURE_DB?: D1Database;
   OPERATOR_ROS?: { snapshot(): Promise<RosReport> };
 };
 export type RosReport = { state: 'ok' | 'degraded' | 'unavailable'; observedAt: string; reason?: string;
@@ -37,7 +37,6 @@ export type Snapshot = {
   feedback: Row[] | null; feedbackCount: Row[] | null; downloadFailures: Row[] | null; reminders: Row[] | null;
   monitor: Row[] | null; versions: Observation[]; changes: Change[];
   infrastructure?: Awaited<ReturnType<typeof infrastructure>>;
-  downloadBudget?: {utcMonth:string; remainingReads:number|null; state:string};
   downloadSources?: Row[] | null;
   unsupported: typeof UNSUPPORTED_SOURCES;
   recovery?: { rebuiltAt: string; previousError: string; previousAttempts: number };
@@ -104,7 +103,7 @@ export async function runVersionMonitor(env: OperationsEnv, now = Date.now(), fe
   }
 }
 
-export async function collectReport(db: D1Database, day: string, now: number, fetchImpl: NotificationFetch = fetch, operatorRos?: OperationsEnv['OPERATOR_ROS'], budget?: D1Database): Promise<Snapshot> {
+export async function collectReport(db: D1Database, day: string, now: number, fetchImpl: NotificationFetch = fetch, operatorRos?: OperationsEnv['OPERATOR_ROS'], infrastructureDb?: D1Database): Promise<Snapshot> {
   const [start, end] = bounds(day), detectDay = beijingDate(end), issues: string[] = [];
   async function read(label: string, sql: string, values: unknown[] = []): Promise<Row[] | null> {
     try { return (await db.prepare(sql).bind(...values).all<Row>()).results ?? []; }
@@ -211,15 +210,7 @@ export async function collectReport(db: D1Database, day: string, now: number, fe
   if (feedbackCount && Number(feedbackCount[0]?.count) > 100) issues.push('反馈超过100条，邮件仅列前100条，需检查原始反馈');
   if (now - end > 6 * DAY) issues.push('报告已超出原始反馈保留期，不保证反馈完整');
   if (totals?.some(x => [x.visits, x.views, x.downloads].some(n => n === null || Number(n) < 0))) issues.push('累计统计缺失或异常');
-  const utcMonth=new Date(now).toISOString().slice(0,7);
-  let remainingReads:number|null=null, state='不可用';
-  if(budget) try {
-    const row=await budget.prepare('SELECT remaining FROM download_read_budget WHERE utc_month=?').bind(utcMonth).first<{remaining:number}>();
-    remainingReads=row?.remaining ?? null;
-    state=!row?'本月未分配':row.remaining<10000?'读取余量低':'已分配';
-    if(row && row.remaining<10000) issues.push('下载网关剩余读取预算不足一万次，请核对账户用量；不自动追加');
-  } catch {issues.push('下载网关预算读取失败');}
-  return { infrastructure:await infrastructure(budget,now,ros,remainingReads),downloadBudget:{utcMonth,remainingReads,state},schemaVersion: 1, reportDate: day, timeZone: 'Asia/Shanghai', generatedAt: new Date(now).toISOString(),
+  return { infrastructure:await infrastructure(infrastructureDb,now,ros),schemaVersion: 1, reportDate: day, timeZone: 'Asia/Shanghai', generatedAt: new Date(now).toISOString(),
     period: { start: new Date(start).toISOString(), endExclusive: new Date(end).toISOString() }, issues,
     downloadSources: await read('下载来源', `SELECT stat_date,source,CASE WHEN resource_id=? THEN 'apk_click' ELSE 'resource' END AS kind,
       SUM(events) AS events,SUM(logical_bytes) AS logical_bytes,SUM(manual) AS manual,SUM(automatic) AS automatic FROM download_source_daily
@@ -252,10 +243,13 @@ export function renderReport(s: Snapshot): string {
   const history = s.traffic?.filter(x => x.date !== s.reportDate && x.visits !== null) ?? [];
   lines.push(`过去7天有记录天数：${history.length}/7；缺失天不补零。`, '热门资源（浏览优先）：');
   for (const row of s.hotResources ?? []) lines.push(`${row.title ?? row.resource_id} | ${row.game ?? '未映射游戏'} | ${row.category ?? '未映射分类'} | 浏览 ${row.views} | 下载 ${row.downloads} | ${resourceUrl(row.resource_id)}`);
-  lines.push('下载来源（近8日，客户端去重事件；APK 仅为点击，资源字节按文件大小估算，不代表平台传输或保存成功）：',
-    s.downloadSources?.length ? JSON.stringify(s.downloadSources) : '来源数据不可用或无记录。',
-    `网关读取预算（UTC 月，生成时快照）：${s.downloadBudget?.state ?? '未知'}；剩余 ${number(s.downloadBudget?.remainingReads)}。这是应用预算，不是账单。`,
-    ...(s.infrastructure?formatInfra(s.infrastructure):['基础设施额度与费用：历史报告未采集。']));
+  lines.push('下载来源（近 8 日，客户端去重事件。APK 仅统计点击，资源字节按文件大小估算）：');
+  if (!s.downloadSources?.length) lines.push('来源数据不可用或无记录。');
+  for (const row of s.downloadSources ?? []) {
+    const detail = row.source === 'ros' ? `。自动回退 ${number(row.automatic)} 次，手动备用 ${number(row.manual)} 次` : '';
+    lines.push(`${row.stat_date} ${String(row.source).toUpperCase()} ${row.kind === 'apk_click' ? 'APK 点击' : '资源下载'} ${number(row.events)} 次${detail}。文件大小合计 ${number(row.logical_bytes)} B`);
+  }
+  lines.push(...(s.infrastructure ? formatInfra(s.infrastructure) : ['基础设施额度与费用未采集。']));
   lines.push('下载排行：');
   for (const row of s.topDownloads ?? []) lines.push(`${row.title ?? row.resource_id} | ${row.game ?? '未映射游戏'} | 下载 ${row.downloads} | ${resourceUrl(row.resource_id)}`);
   lines.push('近8日每日序列（供趋势分析，null表示缺失）：', JSON.stringify(s.traffic));
@@ -284,7 +278,7 @@ export function renderReport(s: Snapshot): string {
     `存储字节 ${number(instance.storageUsedBytes)}；传输字节 ${number(instance.transferUsedBytes)}；请求 ${number(instance.requestCount)}；监控可用 ${instance.monitorAvailable ?? '未知'}`,
     `周期起点 ${instance.periodStart ?? '未提供'}；下次重置 ${instance.nextResetAt ?? '未提供'}；到期 ${instance.expiresAt ?? '未提供'}`,
     instance.definition);
-  lines.push('套餐字段保留官方原值，不推测单位；不能用站内下载计数估算ROS计费流量、缓存命中率或费用。',
+  lines.push('ROS 预估费用：未知（当前监控未提供可核实的套餐价格、超额费率和账单）。',
     '', '供后续ChatGPT分析的运营问题',
     '结合近8日趋势与下载排行，区分偶发热门资源和持续需求；缺少来源/搜索/地区数据，不能推断推广渠道效果或用户画像。',
     '结合各游戏资源数量、版本差异、有效提醒和反馈，归纳补充内容的优先级；版本差异需先人工核对更新日志。',
@@ -327,7 +321,7 @@ export async function prepareReport(env: OperationsEnv, day: string, now: number
   if (!env.DB) throw new Error('db_missing');
   const existing = await env.DB.prepare('SELECT report_date FROM daily_operations_reports WHERE report_date=?').bind(day).first();
   if (existing) return;
-  const snapshot = await collectReport(env.DB, day, now, fetchImpl, env.OPERATOR_ROS,env.DOWNLOAD_BUDGET);
+  const snapshot = await collectReport(env.DB, day, now, fetchImpl, env.OPERATOR_ROS,env.INFRASTRUCTURE_DB);
   const email = reportEmail(env, day, snapshot);
   await env.DB.prepare(`INSERT OR IGNORE INTO daily_operations_reports(report_date,created_at,snapshot_json,email_json)
     VALUES (?,?,?,?)`).bind(day, now, JSON.stringify(snapshot), JSON.stringify(email)).run();
@@ -366,7 +360,7 @@ async function prepareVerification(env: OperationsEnv, id: string, now: number, 
     if (!day) throw new Error('invalid_id');
     const [, end] = bounds(day);
     if (end > now || now - end > 6 * DAY) throw new Error('date_outside_retention');
-    const snapshot = await collectReport(db, day, now, fetchImpl, env.OPERATOR_ROS,env.DOWNLOAD_BUDGET);
+    const snapshot = await collectReport(db, day, now, fetchImpl, env.OPERATOR_ROS,env.INFRASTRUCTURE_DB);
     snapshot.verification = {id, requestedAt:new Date(row.created_at).toISOString()};
     const updated = await db.prepare(`UPDATE daily_operations_reports SET snapshot_json=?,email_json=?,status='pending',lease_until=0,next_attempt_at=0
       WHERE report_date=? AND owner=? AND status='verification_preparing'`)
@@ -391,7 +385,7 @@ export async function rebuildRejectedReport(env: OperationsEnv, day: string, now
     .bind(owner, now + 5 * 60_000, day, now - 23 * HOUR, now).first<ReportRow>();
   if (!row) return 'rebuild_not_allowed';
   try {
-    const snapshot = await collectReport(env.DB, day, now, fetchImpl, env.OPERATOR_ROS,env.DOWNLOAD_BUDGET);
+    const snapshot = await collectReport(env.DB, day, now, fetchImpl, env.OPERATOR_ROS,env.INFRASTRUCTURE_DB);
     snapshot.recovery = { rebuiltAt: new Date(now).toISOString(), previousError: row.last_error!, previousAttempts: row.attempts };
     await env.DB.prepare(`UPDATE daily_operations_reports SET snapshot_json=?,email_json=?,status='retry',lease_until=0,
       next_attempt_at=0,last_error='rebuilt_after_rejection' WHERE report_date=? AND owner=?`)
@@ -527,9 +521,9 @@ export async function handleOperationsRequest(request: Request, env: OperationsE
   // Reuse the existing operator bearer token; no public report, recipient, or feedback endpoint.
   if (new URL(request.url).pathname === '/v1/admin/operations/quota-snapshot') {
     if(!env.QUOTA_SNAPSHOT_TOKEN || request.headers.get('Authorization')!==`Bearer ${env.QUOTA_SNAPSHOT_TOKEN}`)return reply({error:'unauthorized'},401);
-    if(request.method!=='POST'||!env.DOWNLOAD_BUDGET)return reply({error:'unavailable'},503);
+    if(request.method!=='POST'||!env.INFRASTRUCTURE_DB)return reply({error:'unavailable'},503);
     if(Number(request.headers.get('Content-Length'))>8192)return reply({error:'too_large'},413);
-    try{const body=await request.text();if(body.length>8192||!await saveSample(env.DOWNLOAD_BUDGET,body,now))return reply({error:'invalid_sample'},400);return reply({saved:true});}catch{return reply({error:'storage_unavailable'},503);}
+    try{const body=await request.text();if(body.length>8192||!await saveSample(env.INFRASTRUCTURE_DB,body,now))return reply({error:'invalid_sample'},400);return reply({saved:true});}catch{return reply({error:'storage_unavailable'},503);}
   }
   const expected = env.UPDATE_REMINDER_ADMIN_TOKEN?.trim();
   if (!expected || request.headers.get('Authorization') !== `Bearer ${expected}`) return reply({error: 'unauthorized'}, 401);
@@ -551,7 +545,7 @@ export async function handleOperationsRequest(request: Request, env: OperationsE
     if (end > now || now - end > 6 * DAY) return reply({error: 'date_outside_retention'}, 400);
     if (request.method === 'GET' && !match[2]) {
       // Read-only preview: no snapshot persistence, events, or mail.
-      return reply({report: await collectReport(env.DB, day, now, fetchImpl, env.OPERATOR_ROS,env.DOWNLOAD_BUDGET)});
+      return reply({report: await collectReport(env.DB, day, now, fetchImpl, env.OPERATOR_ROS,env.INFRASTRUCTURE_DB)});
     }
     if (request.method !== 'POST' || !match[2]) return reply({error: 'method_not_allowed'}, 405);
     if (env.DAILY_REPORT_ENABLED !== 'true') return reply({error: 'disabled'}, 503);

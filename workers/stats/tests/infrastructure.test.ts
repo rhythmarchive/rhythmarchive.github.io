@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { grants, metric } from "../src/infrastructure.js";
+import { estimateStandardR2Cost, metric } from "../src/infrastructure.js";
 const now = Date.parse("2026-11-30T23:55:00Z"),
   target = now + 300000;
 test("thresholds and forecast are independent; null is not zero", () => {
@@ -17,50 +17,9 @@ test("thresholds and forecast are independent; null is not zero", () => {
     true,
   );
 });
-test("fresh bounded evidence at UTC year/month/day transitions only", () => {
-  const base = {
-    day: "2026-11-30",
-    observedAt: new Date(now).toISOString(),
-    ops: { all: 100 },
-    bucket: { bytes: 12345 },
-  } as Parameters<typeof grants>[2];
-  assert.deepEqual(grants(now, target, base, undefined), {
-    month: "2026-12",
-    day: "2026-12-01",
-    reads: 20000,
-    ros: 0,
-  });
-  assert.equal(grants(now + 86400000, target, base, undefined).reads, 0);
-  assert.equal(grants(now, target, undefined, undefined).reads, 0);
-});
-
-import type { RosReport } from "../src/daily-operations.js";
-test("ROS uses provider counter timestamp and refuses stale, expired or high-usage instances", () => {
-  const sample = {
-    state: "ok",
-    data: {
-      truncatedInstances: false,
-      instances: [
-        {
-          status: "running",
-          periodStart: String(now / 1000 - 86400),
-          nextResetAt: String(now / 1000 + 86400),
-          expiresAt: String(now / 1000 + 86400),
-          definition: `更新时间原值：${now / 1000}`,
-          transferUsedBytes: 1000,
-          planBandwidth: 100,
-        },
-      ],
-    },
-  } as RosReport;
-  assert.equal(grants(now, target, undefined, sample).ros, 8000000);
-  assert.equal(grants(now - 2000, target, undefined, sample).ros, 8000000);
-  assert.equal(grants(now - 61000, target, undefined, sample).ros, 0);
-  assert.equal(grants(now + 7200000, target, undefined, sample).ros, 0);
-  sample.data!.instances[0]!.transferUsedBytes = 99 * 2 ** 30;
-  assert.equal(grants(now, target, undefined, sample).ros, 0);
-});
-
-test('next month uses recent charged units, never unbounded forecasts or a missing grant',async()=>{
- const {nextReadCap}=await import('../src/infrastructure.js');assert.equal(nextReadCap(0,20000,2000,86400000,31),0);assert.equal(nextReadCap(20000,20000,19000,86400000,30),39000);assert.equal(nextReadCap(20000,999999,0,86400000,31),100000);assert.equal(nextReadCap(20000,5,9,86400000,31),20000);
+test("a Standard cost estimate needs both inputs and uses published free allowances", () => {
+  const ops = { a: 1_000_000, b: 10_000_000, all: 11_000_000, unclassified: 0 };
+  assert.equal(estimateStandardR2Cost({ ops, gbMonth: null }), null);
+  assert.equal(estimateStandardR2Cost({ ops, gbMonth: 10 }), 0);
+  assert.equal(estimateStandardR2Cost({ ops: { ...ops, a: ops.a + 1, b: ops.b + 1 }, gbMonth: 10.01 }), 4.875);
 });

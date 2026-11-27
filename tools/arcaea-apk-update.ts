@@ -58,7 +58,6 @@ async function main(): Promise<void> {
       endpoint: process.env.ARCAEA_R2_ENDPOINT ?? "",
       bucket: process.env.ARCAEA_R2_BUCKET ?? "",
       publicBaseUrl: process.env.ARCAEA_R2_PUBLIC_BASE_URL ?? "",
-      uploadCeilingBytes: 8_000_000_000,
       region: "auto", forcePathStyle: true,
       accessKey: process.env.ARCAEA_R2_ACCESS_KEY_ID ?? "",
       secretKey: process.env.ARCAEA_R2_SECRET_ACCESS_KEY ?? "",

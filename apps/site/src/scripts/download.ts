@@ -1,3 +1,4 @@
+import { pageSignal } from "./page-lifecycle";
 import { fetchDownload } from "../lib/download-source";
 import { getBrowserStatsClient } from "../lib/stats-client";
 import { DownloadHttpError, reportDownloadFailure } from "../lib/resource-reports-client";
@@ -15,22 +16,34 @@ export async function downloadRendition(button: HTMLButtonElement): Promise<void
   button.ariaBusy = "true";
   button.innerHTML = "<span>下载中…</span>";
   if (status) status.textContent = "下载中…";
-  let canOpenDirectly = !button.dataset.backupUrl;
+  const signal = pageSignal();
+  const backup = button.dataset.backupUrl;
+  const manual = button.dataset.downloadKind === "backup";
+  let canOpenDirectly = !backup;
   let fetched = false;
   try {
-    const {response, automatic} = await fetchDownload(url, button.dataset.backupUrl);
+    let { response, automatic } = await fetchDownload(url, backup, signal);
     if (!response.ok) {
       canOpenDirectly = false;
       throw new DownloadHttpError(response.status);
     }
-    const blob = await response.blob();
+    const blob = await response.blob().catch(async error => {
+      signal.throwIfAborted();
+      if (!backup || automatic) throw error;
+      automatic = true;
+      response = (await fetchDownload(backup, undefined, signal)).response;
+      if (!response.ok) throw new DownloadHttpError(response.status);
+      return response.blob();
+    });
+    signal.throwIfAborted();
     fetched = true;
     const objectUrl = URL.createObjectURL(blob);
     triggerDownload(objectUrl, filename);
-    if (resourceId) void getBrowserStatsClient().trackResourceDownload(resourceId, { source: !automatic && new URL(url).hostname === "dl.rhythmarchive.top" ? "r2" : "ros", bytes: blob.size, automatic, manual: button.dataset.downloadKind === "backup" });
+    if (resourceId) void getBrowserStatsClient().trackResourceDownload(resourceId, { source: !automatic && new URL(url).hostname === "dl.rhythmarchive.top" ? "r2" : "ros", bytes: blob.size, automatic, manual });
     window.setTimeout(() => URL.revokeObjectURL(objectUrl), 1000);
     if (status) status.textContent = "已开始下载";
   } catch (error) {
+    if (signal.aborted) return;
     if (resourceId && !fetched) reportDownloadFailure(resourceId, error);
     console.error("Resource download failed", error);
     if (canOpenDirectly) triggerDirectDownload(url, filename);

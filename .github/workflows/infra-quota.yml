@@ -31,6 +31,12 @@ jobs:
           const r=await fetch('https://api.rhythmarchive.top/v1/admin/operations/reports/'+day,{redirect:'error',headers:{Authorization:'Bearer '+process.env.REPORT_TOKEN}});
           if(!r.ok) throw Error('Preview HTTP '+r.status);
           const i=(await r.json()).report?.infrastructure;
-          if(i?.metrics?.length!==11) throw Error('New report metrics unavailable');
+          if(!i?.metrics?.some(m=>m.label==='R2 项目容量') || !i.r2 || !Object.hasOwn(i.r2,'gatewayRequests')) throw Error('Dual-storage report fields unavailable');
+          for(const key of ['ops','estimatedCostUsd','downlinkBytes','gatewayDownlinkBytes','gatewayRequests']) console.log(key,i.r2[key]===null?'unknown':'available');
+          for(const [key,error] of Object.entries(i.collectionErrors ?? {})) console.log(key,error);
           for(const m of i.metrics) console.log(m.label,m.used===null?'unknown':'available',m.risk);
+          const capacity=i.metrics.find(m=>m.label==='R2 项目容量');
+          if(capacity.used===null || Date.now()-Date.parse(capacity.asOf)>26*3600000 || i.r2.ops===null || i.r2.gatewayRequests===null) {
+            throw Error('Fresh R2 capacity, bucket operations or gateway request counts unavailable');
+          }
           NODE

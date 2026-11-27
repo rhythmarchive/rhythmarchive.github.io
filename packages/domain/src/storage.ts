@@ -4,7 +4,6 @@ import {
   GetObjectCommand,
   HeadObjectCommand,
   ListObjectsV2Command,
-  ListMultipartUploadsCommand,
   PutObjectCommand,
   S3Client,
   type GetObjectCommandOutput,
@@ -23,7 +22,6 @@ export type RosStorageConfig = {
   endpoint: string;
   bucket: string;
   publicBaseUrl: string;
-  uploadCeilingBytes?: number;
   region: string;
   forcePathStyle: boolean;
   referer?: string;
@@ -230,24 +228,6 @@ export class S3StorageClient implements StorageClient {
 
   async putLargeObject(input: LargeStorageObjectInput): Promise<void> {
     try {
-      if (this.config.uploadCeilingBytes !== undefined) {
-        // Bucket-local guard. CI serializes APK writers; other account writers need separate headroom.
-        const client = this.requireClient(), Bucket = this.config.bucket;
-        const pending = await client.send(new ListMultipartUploadsCommand({Bucket,MaxUploads:1}));
-        if (pending.Uploads?.length || pending.IsTruncated) throw new Error("Pending multipart upload: capacity unknown");
-        let used = input.sizeBytes, token: string | undefined;
-        for (let page=0; ; page++) {
-          const part = await client.send(new ListObjectsV2Command({Bucket,MaxKeys:1000,...(token ? {ContinuationToken:token} : {})}));
-          for (const object of part.Contents ?? []) {
-            if (!Number.isSafeInteger(object.Size) || object.Size! < 0) throw new Error("Invalid storage size");
-            used += object.Size!;
-          }
-          if (used > this.config.uploadCeilingBytes) throw new Error("R2 storage allowance exhausted; previous version retained");
-          if (part.IsTruncated === false) break;
-          token = part.NextContinuationToken;
-          if (!token || page >= 15) throw new Error("Cannot verify R2 capacity within scan budget");
-        }
-      }
       const upload = new Upload({
         client: this.requireClient(),
         params: {

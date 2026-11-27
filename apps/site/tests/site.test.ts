@@ -29,6 +29,24 @@ const catalog = loadFormalCatalog();
 const rosBaseUrl = "https://rhythm-assets.cn-nb1.rains3.com";
 const siteRoot = path.resolve(process.cwd(), "apps", "site");
 
+test('every Catalog video has matching R2 and ROS download sources', () => {
+  const copies = JSON.parse(fs.readFileSync(path.resolve('catalog/r2-downloads.json'), 'utf8')) as Record<string, number>;
+  const keys = new Set<string>();
+  for (const resource of getSiteData().resources.filter(resource => resource.resourceType === 'video')) {
+    for (const variant of resource.variants) {
+      const original = variant.original!;
+      const url = new URL(original.url);
+      const key = url.pathname.slice(1);
+      assert.equal(url.origin, 'https://dl.rhythmarchive.top');
+      assert.equal(original.fallbackUrl, `${rosBaseUrl}/${key}`);
+      assert.equal(copies[key], original.sizeBytes);
+      keys.add(key);
+    }
+  }
+  assert.ok(keys.size > 0);
+  assert.deepEqual(keys, new Set(Object.keys(copies).filter(key => key.endsWith('/mp4'))));
+});
+
 test('verified media and previews share the same origin policy across games', () => {
   const copies=JSON.parse(fs.readFileSync(path.resolve('catalog/r2-downloads.json'),'utf8')) as Record<string,number>;
   let previews=0;
@@ -36,7 +54,7 @@ test('verified media and previews share the same origin policy across games', ()
     for(const asset of [...Object.values(variant.preview),...variant.originals??[],variant.upscaled]){
       if(!asset?.url)continue;
       const url=new URL(asset.url),key=url.pathname.slice(1);
-      const mirrored=R2_DOWNLOADS_ENABLED&&['arcaea','phigros'].includes(resource.game)&&Object.hasOwn(copies,key);
+      const mirrored = (asset.mime === 'video/mp4' || R2_DOWNLOADS_ENABLED && ['arcaea','phigros'].includes(resource.game)) && Object.hasOwn(copies,key);
       assert.equal(url.origin,mirrored?'https://dl.rhythmarchive.top':rosBaseUrl);
       if(mirrored && key.endsWith('/webp'))previews++;
     }

@@ -1,5 +1,6 @@
 import copies from '../../catalog/r2-downloads.json' with { type: 'json' };
 const site = 'https://rhythmarchive.github.io';
+const origin = 'https://dl.rhythmarchive.top';
 const paths = /^(?:apk\/arcaea\/(\d+\.\d+\.\d+[a-z]?)\/[a-f0-9]{64}\/Arcaea_\1\.apk|objects\/[a-f0-9]{64}\/(?:jpg|jpeg|png|webp|mp4))$/;
 const reject = (status, extra = {}) => new Response(null,{status,headers:{'Cache-Control':'no-store',...extra}});
 function byteRange(raw,size) {
@@ -12,39 +13,44 @@ function byteRange(raw,size) {
 }
 export default {async fetch(req,env,ctx) {
   const url=new URL(req.url), key=url.pathname.slice(1);
-  // Only a failed mirrored resource may obtain a one-file ROS allowance. No row = disabled.
-  if (url.origin === 'https://dl.rhythmarchive.top' && key.startsWith('fallback/') && !url.search) {
-    const bytes=copies[key.slice(9)];
-    if(req.method!=='POST'||req.headers.get('Origin')!==site||typeof bytes!=='number') return reject(403);
-    try {
-      const result=await env.BUDGET.prepare("UPDATE ros_fallback_budget SET remaining=remaining-?1 WHERE utc_day=date('now') AND remaining>=?1").bind(bytes).run();
-      return new Response(null,{status:result.meta.changes===1?204:429,headers:{'Access-Control-Allow-Origin':site,'Cache-Control':'no-store'}});
-    } catch {return reject(503);}
+  // Older Pages clients still call this before falling back. It validates the caller and key without reserving bytes.
+  if (url.origin === origin && key.startsWith('fallback/') && !url.search) {
+    if (req.method !== 'POST' || req.headers.get('Origin') !== site || !Object.hasOwn(copies, key.slice(9))) return reject(403);
+    return new Response(null, { status: 204, headers: { 'Access-Control-Allow-Origin': site, 'Cache-Control': 'no-store' } });
   }
-  if(url.origin!=='https://dl.rhythmarchive.top'||url.search||(!paths.test(key)&&key!=='apk/arcaea/latest.json')) return reject(404);
-  if(!['HEAD','GET'].includes(req.method)) return reject(405,{Allow:'HEAD, GET'});
+  if (url.origin !== origin || url.search || (!paths.test(key) && key !== 'apk/arcaea/latest.json')) return reject(404);
+  const asset = key.startsWith('objects/');
+  if (asset && !Object.hasOwn(copies, key)) return reject(404, { 'Access-Control-Allow-Origin': site });
+  if (req.method === 'OPTIONS' && req.headers.get('Origin') === site) {
+    return new Response(null, { status: 204, headers: {
+      'Access-Control-Allow-Origin': site, 'Access-Control-Allow-Methods': 'GET, HEAD',
+      'Access-Control-Allow-Headers': 'Range, If-Range', 'Access-Control-Max-Age': '600', 'Vary': 'Origin',
+    } });
+  }
+  if (!['HEAD', 'GET'].includes(req.method)) return reject(405, { Allow: 'HEAD, GET, OPTIONS' });
   try {
-    const asset=key.startsWith('objects/');
-    if(asset && !Object.hasOwn(copies,key))return reject(404);
     // Only immutable catalog objects have a shared cache key. Never cache APKs, partial responses, permits or failures.
     const full=asset && !req.headers.has('Range');
     const cache=full?globalThis.caches?.default:undefined;
     const cached=cache?await cache.match(url.href):undefined;
     if(cached){const headers=new Headers(cached.headers);headers.set('X-Archive-Cache','HIT');return new Response(req.method==='HEAD'?null:cached.body,{headers});}
-    // Reserve worst-case R2 reads atomically; never refund failed or partial requests.
-    const cost=full||req.method==='HEAD'?1:2;
-    const q=await env.BUDGET.prepare("UPDATE download_read_budget SET remaining=remaining-?1 WHERE utc_month=strftime('%Y-%m','now') AND remaining>=?1"+(asset?"+1500":"")).bind(cost).run();
-    if(q.meta.changes!==1) return reject(503);
+    // Limit bursts against one object per client. Cache hits and unrelated objects are independent.
+    const ip = req.headers.get('CF-Connecting-IP');
+    if (ip && env.RATE_LIMITER) {
+      const limit = await env.RATE_LIMITER.limit({ key: `${ip}:${key}` }).catch(() => null);
+      if (limit?.success === false) return reject(429, { 'Retry-After': '60', 'Access-Control-Allow-Origin': site });
+    }
     const direct=full&&req.method==='GET';
     const obj=direct?await env.FILES.get(key):await env.FILES.head(key);
-    if(!obj) return reject(404);
+    if (!obj) return reject(404, { 'Access-Control-Allow-Origin': site });
+    if (asset && obj.size !== copies[key]) return reject(503, { 'Access-Control-Allow-Origin': site });
     const headers=new Headers(); obj.writeHttpMetadata(headers);
-    headers.set('Access-Control-Allow-Origin','https://rhythmarchive.github.io'); headers.set('Access-Control-Expose-Headers','ETag, Content-Range');
+    headers.set('Access-Control-Allow-Origin',site); headers.set('Access-Control-Expose-Headers','ETag, Content-Range');
     headers.set('Content-Length',String(obj.size)); headers.set('Accept-Ranges','bytes'); headers.set('ETag',obj.httpEtag);
     headers.set('Cache-Control',key==='apk/arcaea/latest.json'?'public, max-age=60':'public, max-age=31536000, immutable');headers.set('X-Content-Type-Options','nosniff');
     if(req.method==='HEAD') return new Response(null,{headers});
     if(direct){
-      if(!obj.body||obj.size!==copies[key])return reject(503);
+      if (!obj.body) return reject(503, { 'Access-Control-Allow-Origin': site });
       headers.set('X-Archive-Cache','MISS');const response=new Response(obj.body,{headers});
       if(cache && ctx && obj.size<=8_000_000)ctx.waitUntil(cache.put(url.href,response.clone()).catch(()=>{}));
       return response;
@@ -52,11 +58,11 @@ export default {async fetch(req,env,ctx) {
     let range; const raw=req.headers.get('Range'), tag=req.headers.get('If-Range');
     if(raw!==null&&(!tag||tag===obj.httpEtag)) {
       range=byteRange(raw,obj.size);
-      if(!range) return reject(416,{'Content-Range':`bytes */${obj.size}`});
+      if(!range) return reject(416, { 'Content-Range': `bytes */${obj.size}`, 'Access-Control-Allow-Origin': site, 'Access-Control-Expose-Headers': 'Content-Range' });
       headers.set('Content-Range',`bytes ${range.offset}-${range.offset+range.length-1}/${obj.size}`); headers.set('Content-Length',String(range.length));
     }
     const data=await env.FILES.get(key,{onlyIf:{etagMatches:obj.etag},...(range?{range}:{})});
-    if(!data?.body) return reject(503);
+    if (!data?.body) return reject(503, { 'Access-Control-Allow-Origin': site });
     return new Response(data.body,{status:range?206:200,headers});
-  } catch {return reject(503);}
+  } catch { return reject(503, { 'Access-Control-Allow-Origin': site }); }
 }};

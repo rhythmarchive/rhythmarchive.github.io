@@ -11,35 +11,21 @@ export function prepareImage(image: HTMLImageElement): void {
   if (image.complete && image.src && !image.dataset.viewportSrc && !image.dataset.detailSrc) settleImage(image, image.naturalWidth > 0);
 }
 
-// Only failed R2 loads enter this path. Never probe or reserve ROS traffic on success.
-const failedImages = new WeakMap<HTMLImageElement,string>();
-let lastFailure = -Infinity;
+// Try a smaller R2 preview when present before fetching its ROS copy.
 async function recoverMirror(image: HTMLImageElement, src: string) {
-  if (failedImages.get(image) === src) return;
-  failedImages.set(image,src);
-  const now=Date.now(), consecutive=now-lastFailure<60000; lastFailure=now;
-  image.dataset.imageState='error';
-  if(!consecutive){
-    // If another verified resolution exists, try that once rather than spending ROS bytes.
-    const smaller=image.dataset.fallbackSrc;
-    if(smaller?.startsWith('https://dl.rhythmarchive.top/objects/') && smaller!==src){
-      image.removeAttribute('srcset');image.dataset.imageState='loading';image.src=smaller;
-    }
-    return;
-  }
-  try {
-    const [{permitBackup},{ROS_BASE_URL}]=await Promise.all([import('../lib/download-source'),import('../lib/site-config')]);
-    if(!image.isConnected || (image.currentSrc||image.src)!==src || !await permitBackup(src))return;
-    if(!image.isConnected || (image.currentSrc||image.src)!==src)return;
-    image.removeAttribute('srcset');image.dataset.fallbackApplied='true';image.dataset.imageState='loading';
-    image.src=ROS_BASE_URL+new URL(src).pathname;
-  } catch { /* The permit service is unavailable: do not retry or switch without authorization. */ }
+  const smaller = image.dataset.fallbackSrc;
+  const next = smaller?.startsWith("https://dl.rhythmarchive.top/objects/") && smaller !== src && image.dataset.fallbackApplied !== "true"
+    ? smaller
+    : (await import("../lib/site-config")).ROS_BASE_URL + new URL(src).pathname;
+  if (!image.isConnected || (image.currentSrc || image.src) !== src) return;
+  image.removeAttribute("srcset");
+  image.dataset.fallbackApplied = "true";
+  image.dataset.imageState = "loading";
+  image.src = next;
 }
 
 export function settleImage(image: HTMLImageElement, loaded: boolean): void {
   if (loaded) {
-    if(failedImages.has(image))failedImages.delete(image);
-    if((image.currentSrc||image.src)?.startsWith('https://dl.rhythmarchive.top/objects/'))lastFailure=-Infinity;
     if (image.dataset.imageState) image.dataset.imageState = "ready";
     return;
   }

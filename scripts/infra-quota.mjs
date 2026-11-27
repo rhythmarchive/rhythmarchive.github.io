@@ -9,9 +9,9 @@ const base = `/accounts/${id}`,
   day = iso.slice(0, 10),
   month = day.slice(0, 7) + "-01";
 const sample = { observedAt: iso, day, errors: {} };
-async function api(path, body, token = read, method = body ? "POST" : "GET") {
+async function api(path, body, token = read) {
   const r = await fetch("https://api.cloudflare.com/client/v4" + path, {
-    method,
+    method: body ? "POST" : "GET",
     redirect: "error",
     signal: AbortSignal.timeout(15000),
     headers: {
@@ -120,6 +120,50 @@ sample.ops = await get("ops", async () => {
   }
   return { a, b, all, unclassified: all - a - b };
 });
+const project = `bucketName:"rhythm-archive",${daily}`;
+const readActions = new Set(["GetObject", "HeadObject", "ListObjects", "ListObjectsV2", "HeadBucket"]);
+const writeActions = new Set(["PutObject", "CopyObject", "DeleteObject", "DeleteObjects", "CreateMultipartUpload", "CompleteMultipartUpload", "AbortMultipartUpload", "UploadPart", "UploadPartCopy"]);
+sample.r2BucketOps = await get("r2BucketOps", async () => {
+  const rows = await graph(`r2OperationsAdaptiveGroups(limit:500,filter:{${project}}){dimensions{actionType actionStatus} sum{requests}}`);
+  if (rows.length >= 500) throw Error("truncated");
+  const counts = { reads: 0, writes: 0, total: 0, failed: 0, unknown: 0 };
+  for (const { dimensions, sum } of rows) {
+    const count = n(sum.requests);
+    counts.total += count;
+    if (readActions.has(dimensions.actionType)) counts.reads += count;
+    if (writeActions.has(dimensions.actionType)) counts.writes += count;
+    const status = String(dimensions.actionStatus).toLowerCase();
+    if (status === "usererror" || status === "internalerror") counts.failed += count;
+    else if (status !== "success") counts.unknown += count;
+  }
+  return counts;
+});
+sample.r2DownlinkBytes = await get("r2DownlinkBytes", async () => {
+  const rows = await graph(`r2BandwidthUsageAdaptiveGroups(limit:1,filter:{${project}}){sum{bytesDownload}}`);
+  return n(rows[0].sum.bytesDownload);
+});
+const gateway = await get("gateway", async () => {
+  const zone = (await api("/zones?name=rhythmarchive.top")).result?.[0];
+  if (!/^[a-f0-9]{32}$/.test(zone?.id ?? "")) throw Error("zone unavailable");
+  const query = `{viewer{zones(filter:{zoneTag:"${zone.id}"}){rows:httpRequestsAdaptiveGroups(limit:500,filter:{${daily},clientRequestHTTPHost:"dl.rhythmarchive.top"}){count dimensions{edgeResponseStatus} sum{edgeResponseBytes}}}}}`;
+  const result = await api("/graphql", { query });
+  const rows = result.data?.viewer?.zones?.[0]?.rows;
+  if (!rows?.length || rows.length >= 500) throw Error("missing or truncated gateway samples");
+  const counts = { total: 0, limited: 0, clientErrors: 0, serverErrors: 0 };
+  let bytes = 0;
+  for (const { count, dimensions, sum } of rows) {
+    const status = n(dimensions.edgeResponseStatus);
+    const requests = n(count);
+    bytes += n(sum.edgeResponseBytes);
+    counts.total += requests;
+    if (status === 429) counts.limited += requests;
+    else if (status >= 400 && status < 500) counts.clientErrors += requests;
+    else if (status >= 500 && status < 600) counts.serverErrors += requests;
+  }
+  return { bytes, counts };
+});
+sample.gatewayDownlinkBytes = gateway?.bytes ?? null;
+sample.gatewayRequests = gateway?.counts ?? null;
 sample.bucket = await get("bucket", async () => {
   const x = (
     await graph(
@@ -162,7 +206,7 @@ sample.lastInvoice = await get("billing", async () => {
   if (!x) throw Error("no confirmed charge");
   return { amount: x.amount, currency: x.currency, at: x.occurred_at };
 });
-// The deployment credential stays on the runner. Provision a purpose-specific secret only on initial setup/rotation.
+// The existing ingestion credential stays on the runner. Secret changes are operator actions.
 const key = createHmac("sha256", write)
   .update("rhythm-archive/stats/quota-snapshot/v1/" + id)
   .digest("hex");
@@ -181,17 +225,7 @@ async function publish() {
     },
   );
 }
-let result = await publish();
-if (result.status === 401) {
-  await api(
-    base + "/workers/scripts/rhythm-archive-stats/secrets",
-    { name: "QUOTA_SNAPSHOT_TOKEN", type: "secret_text", text: key },
-    write,
-    "PUT",
-  );
-  await new Promise((r) => setTimeout(r, 6000));
-  result = await publish();
-}
+const result = await publish();
 if (!result.ok) throw Error("Snapshot ingestion HTTP " + result.status);
 console.log(
   "Sample saved; unavailable sources:",

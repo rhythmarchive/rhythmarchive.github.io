@@ -370,23 +370,17 @@ test('verification payload retention uses the source date and expires abandoned 
   assert.equal(db.sqlite.prepare('SELECT status FROM daily_operations_reports WHERE report_date=?').get(id)!.status,'needs_review');
 });
 
-test('budget rollover inserts once; repeated UTC ticks never refill partly spent rows', async()=>{
- const {maintain}=await import('../src/infrastructure.js');const db=new Database();
- db.sqlite.exec(`CREATE TABLE infrastructure_samples(day TEXT PRIMARY KEY,payload TEXT);CREATE TABLE download_read_budget(utc_month TEXT PRIMARY KEY,remaining INTEGER);CREATE TABLE ros_fallback_budget(utc_day TEXT PRIMARY KEY,remaining INTEGER)`);
- const at=Date.parse('2026-12-31T23:55:00Z'),sec=at/1000;
- db.sqlite.prepare('INSERT INTO infrastructure_samples VALUES(?,?)').run('2026-12-31',JSON.stringify({day:'2026-12-31',observedAt:new Date(at).toISOString(),ops:{all:20},bucket:{bytes:1024}}));
- const env={DOWNLOAD_BUDGET:db,OPERATOR_ROS:{async snapshot(){return {state:'ok',data:{truncatedInstances:false,instances:[{status:'running',definition:`更新时间原值：${sec}`,planBandwidth:100,transferUsedBytes:100,periodStart:String(sec-86400),expiresAt:String(sec+86400),nextResetAt:String(sec+86400)}]}}}}} as unknown as OperationsEnv;
- await maintain(env,at);assert.equal(db.row('SELECT remaining FROM download_read_budget WHERE utc_month=\'2027-01\'').remaining,20000);assert.equal(db.row('SELECT remaining FROM ros_fallback_budget WHERE utc_day=\'2027-01-01\'').remaining,8000000);
- db.sqlite.exec('UPDATE download_read_budget SET remaining=0;UPDATE ros_fallback_budget SET remaining=123');await maintain(env,at+600000);assert.equal(db.row('SELECT remaining FROM download_read_budget').remaining,0);assert.equal(db.row('SELECT remaining FROM ros_fallback_budget').remaining,123);
-});
-
 test('collector has a separate credential; schema bootstrap and snapshot replay never issue credit',async()=>{
- const db=new Database();db.sqlite.exec('CREATE TABLE download_read_budget(utc_month TEXT PRIMARY KEY,remaining INTEGER);CREATE TABLE ros_fallback_budget(utc_day TEXT PRIMARY KEY,remaining INTEGER)');
- const env={DOWNLOAD_BUDGET:db,UPDATE_REMINDER_ADMIN_TOKEN:'report',QUOTA_SNAPSHOT_TOKEN:'collector'} as OperationsEnv;
- const input={day:'2026-10-27',observedAt:new Date(now).toISOString(),ops:null,bucket:null,errors:{ops:'denied'}};
+ const db=new Database();
+ const env={INFRASTRUCTURE_DB:db,UPDATE_REMINDER_ADMIN_TOKEN:'report',QUOTA_SNAPSHOT_TOKEN:'collector'} as OperationsEnv;
+ const input={day:'2026-10-27',observedAt:new Date(now).toISOString(),ops:null,bucket:null,errors:{ops:'denied'},
+   gatewayDownlinkBytes:1234,gatewayRequests:{total:200,limited:2,clientErrors:5,serverErrors:0}};
  const req=(token:string)=>new Request('https://example.com/v1/admin/operations/quota-snapshot',{method:'POST',headers:{Authorization:'Bearer '+token},body:JSON.stringify(input)});
  assert.equal((await handleOperationsRequest(req('report'),env,now)).status,401);
  for(let i=0;i<2;i++)assert.equal((await handleOperationsRequest(req('collector'),env,now)).status,200);
- assert.equal(db.row('SELECT count(*) AS n FROM download_read_budget').n,0);
- db.sqlite.exec("INSERT INTO download_read_budget VALUES('2027-01',123);UPDATE download_read_budget SET remaining=2");assert.equal(db.row("SELECT allocated FROM quota_grants WHERE period='2027-01'").allocated,123);
+ assert.equal(db.row('SELECT count(*) AS n FROM infrastructure_samples').n,1);
+ assert.deepEqual(JSON.parse(String(db.row('SELECT payload FROM infrastructure_samples').payload)).gatewayRequests,input.gatewayRequests);
+ input.gatewayRequests.limited=201;
+ assert.equal((await handleOperationsRequest(req('collector'),env,now)).status,400);
+ assert.equal(db.row("SELECT count(*) AS n FROM sqlite_master WHERE name GLOB '*budget*' OR name='quota_grants'").n,0);
 });

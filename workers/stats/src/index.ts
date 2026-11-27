@@ -1,6 +1,5 @@
 import { D1StatsStore, handleRequest, processPendingUpdateReminderNotifications, siteDateKey } from "./core.js";
 import { handleOperationsRequest, processDailyOperations, type OperationsEnv } from './daily-operations.js';
-import { maintain } from './infrastructure.js';
 import type { RankingCache } from "./ranking-cache.js";
 import { processResourceReports } from "./resource-reports.js";
 
@@ -18,7 +17,7 @@ export default {
   },
   scheduled(controller: { scheduledTime?: number }, env: OperationsEnv, ctx: WorkerExecutionContext): void {
     const nowMs = controller.scheduledTime ?? Date.now();
-    const tasks: Promise<unknown>[] = [maintain(env, nowMs), processPendingUpdateReminderNotifications(env), processResourceReports(env), processDailyOperations(env, nowMs)];
+    const tasks: Promise<unknown>[] = [processPendingUpdateReminderNotifications(env), processResourceReports(env), processDailyOperations(env, nowMs)];
     if (env.DB) tasks.push(new D1StatsStore(env.DB).cleanup(nowMs, siteDateKey(nowMs, env.SITE_TIME_ZONE || "Asia/Shanghai")));
     ctx.waitUntil(Promise.allSettled(tasks).then(() => undefined));
   },

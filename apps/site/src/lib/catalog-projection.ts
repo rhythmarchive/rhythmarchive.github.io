@@ -626,7 +626,8 @@ function projectPreview(renditions: Rendition[], size: keyof typeof PREVIEW_TYPE
 
 function assetSource(key: string, rosBaseUrl: string, game: string) {
   const ros = objectUrl(key, rosBaseUrl);
-  return R2_DOWNLOADS_ENABLED && (game === 'arcaea' || game === 'phigros') && verifiedR2.has(key)
+  const preferR2 = key.endsWith('/mp4') || (R2_DOWNLOADS_ENABLED && (game === 'arcaea' || game === 'phigros'));
+  return preferR2 && verifiedR2.has(key)
     ? { url: `https://dl.rhythmarchive.top/${key}`, fallbackUrl: ros } : { url: ros };
 }
 
