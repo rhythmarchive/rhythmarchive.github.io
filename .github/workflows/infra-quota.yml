@@ -20,6 +20,7 @@ jobs:
         env:
           ACCOUNT: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
           WRITE_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          ZONE_ANALYTICS_TOKEN: ${{ secrets.CF_GATEWAY_ANALYTICS_API_TOKEN }}
           READ_TOKEN: ${{ secrets.CF_ANALYTICS_API_TOKEN || secrets.CLOUDFLARE_API_TOKEN }}
       - name: Verify live report integration without sending a duplicate email
         if: github.event_name == 'workflow_dispatch'
@@ -36,7 +37,7 @@ jobs:
           for(const [key,error] of Object.entries(i.collectionErrors ?? {})) console.log(key,error);
           for(const m of i.metrics) console.log(m.label,m.used===null?'unknown':'available',m.risk);
           const capacity=i.metrics.find(m=>m.label==='R2 项目容量');
-          if(capacity.used===null || Date.now()-Date.parse(capacity.asOf)>26*3600000 || i.r2.ops===null || i.r2.gatewayRequests===null) {
-            throw Error('Fresh R2 capacity, bucket operations or gateway request counts unavailable');
+          if(capacity.used===null || Date.now()-Date.parse(capacity.asOf)>26*3600000 || i.r2.ops===null || i.r2.gatewayRequests===null || i.r2.estimatedCostUsd===null) {
+            throw Error('Fresh R2 capacity, cost estimate, bucket operations or gateway request counts unavailable');
           }
           NODE

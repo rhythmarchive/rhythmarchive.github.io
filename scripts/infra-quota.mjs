@@ -143,18 +143,35 @@ sample.r2DownlinkBytes = await get("r2DownlinkBytes", async () => {
   return n(rows[0].sum.bytesDownload);
 });
 const gateway = await get("gateway", async () => {
-  const zone = (await api("/zones?name=rhythmarchive.top")).result?.[0];
-  if (!/^[a-f0-9]{32}$/.test(zone?.id ?? "")) throw Error("zone unavailable");
-  const query = `{viewer{zones(filter:{zoneTag:"${zone.id}"}){rows:httpRequestsAdaptiveGroups(limit:500,filter:{${daily},clientRequestHTTPHost:"dl.rhythmarchive.top"}){count dimensions{edgeResponseStatus} sum{edgeResponseBytes}}}}}`;
-  const result = await api("/graphql", { query });
-  const rows = result.data?.viewer?.zones?.[0]?.rows;
-  if (!rows?.length || rows.length >= 500) throw Error("missing or truncated gateway samples");
+  const zoneToken = process.env.ZONE_ANALYTICS_TOKEN;
+  let rows;
+  if (zoneToken) {
+    const zone = (await api("/zones?name=rhythmarchive.top")).result?.[0];
+    if (!/^[a-f0-9]{32}$/.test(zone?.id ?? "")) throw Error("zone unavailable");
+    const query = `{viewer{zones(filter:{zoneTag:"${zone.id}"}){rows:httpRequestsAdaptiveGroups(limit:500,filter:{${daily},clientRequestHTTPHost:"dl.rhythmarchive.top",requestSource:"eyeball"}){count dimensions{edgeResponseStatus} sum{edgeResponseBytes}}}}}`;
+    const result = await api("/graphql", { query }, zoneToken);
+    rows = result.data?.viewer?.zones?.[0]?.rows?.map(({ count, dimensions, sum }) => ({
+      status: dimensions.edgeResponseStatus, requests: count, bytes: sum.edgeResponseBytes,
+    }));
+  } else {
+    const result = await api("/analytics/sql", {
+      query: `SELECT edgeResponseStatus AS status, COUNT(*) AS requests, SUM(edgeResponseBytes) AS bytes
+        FROM events.httpRequests
+        WHERE accountTag = $account AND clientRequestHttpHost = $host
+          AND timestamp >= $start AND timestamp < $end
+        GROUP BY edgeResponseStatus LIMIT 500`,
+      params: { account: id, host: "dl.rhythmarchive.top", start: `${day}T00:00:00Z`, end: iso },
+    });
+    rows = result.data;
+  }
+  if (!Array.isArray(rows) || rows.length >= 500) throw Error("missing or truncated gateway samples");
   const counts = { total: 0, limited: 0, clientErrors: 0, serverErrors: 0 };
   let bytes = 0;
-  for (const { count, dimensions, sum } of rows) {
-    const status = n(dimensions.edgeResponseStatus);
-    const requests = n(count);
-    bytes += n(sum.edgeResponseBytes);
+  const counter = value => n(typeof value === "string" && /^\d+$/.test(value) ? Number(value) : value);
+  for (const row of rows) {
+    const status = counter(row.status);
+    const requests = counter(row.requests);
+    bytes += counter(row.bytes);
     counts.total += requests;
     if (status === 429) counts.limited += requests;
     else if (status >= 400 && status < 500) counts.clientErrors += requests;
@@ -181,12 +198,20 @@ sample.gbMonth = await get("gbMonth", async () => {
     `r2StorageAdaptiveGroups(limit:1000,filter:{date_geq:"${month}",date_leq:"${day}"}){dimensions{date bucketName} max{payloadSize metadataSize}}`,
   );
   if (rows.length >= 1000) throw Error("truncated");
-  const dates = new Set(rows.map((x) => x.dimensions.date));
-  if (dates.size !== now.getUTCDate()) throw Error("missing daily peaks");
-  return (
-    rows.reduce((s, x) => s + n(x.max.payloadSize) + n(x.max.metadataSize), 0) /
-    30e9
-  );
+  const dailyPeaks = new Map();
+  for (const row of rows) {
+    const date = row.dimensions.date;
+    if (typeof date !== "string" || date < month || date > day) throw Error("invalid storage date");
+    const bytes = n(row.max.payloadSize) + n(row.max.metadataSize);
+    dailyPeaks.set(date, (dailyPeaks.get(date) ?? 0) + bytes);
+  }
+  const elapsed = now.getUTCDate();
+  const observed = dailyPeaks.size;
+  const sampledBytes = [...dailyPeaks.values()].reduce((sum, bytes) => sum + bytes, 0);
+  if (observed < elapsed) {
+    sample.errors.gbMonthCoverage = `月内日峰值覆盖 ${observed}/${elapsed} 天，缺失日按已采样日均峰值估算`;
+  }
+  return sampledBytes * (elapsed / observed) / 30e9;
 });
 sample.lastInvoice = await get("billing", async () => {
   const j = await api(
