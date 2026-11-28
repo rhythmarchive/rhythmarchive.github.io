@@ -11,6 +11,17 @@ export type Announcement = {
 // Keep the id for wording corrections; version history lives in CHANGELOG.md.
 export const announcements: Announcement[] = [
   {
+    id: "website-v4-2-0",
+    date: "2026-11-28",
+    title: "Rhythm Archive v4.2.0 更新",
+    notify: true,
+    paragraphs: [
+      "搜索框新增联想功能，输入关键词时会提示匹配的曲名和曲师。",
+      "新增「按浏览量排序」和「按定数排序」。",
+      "新增 Cloudflare 下载源。下载偶尔会有波动，遇到下载失败可以多试几次。如果还是下不了，欢迎向我反馈！",
+    ],
+  },
+  {
     id: "website-v4-1-0",
     date: "2026-10-24",
     title: "Rhythm Archive v4.1.0 更新",
