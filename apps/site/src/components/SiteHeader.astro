@@ -5,6 +5,8 @@ import { formatCount } from "../lib/format";
 import { getPublicNavigationGames } from "../lib/site-data";
 import { primaryCategorySlug } from "../lib/game-config";
 import { urls } from "../lib/site-urls";
+import { ROS_BASE_URL } from "../lib/site-config";
+import { downloadLineNames } from "../lib/download-preference";
 
 const games = getPublicNavigationGames();
 const normalizePath = (pathname: string): string => {
@@ -60,12 +62,12 @@ const isGameLibrary = isWithin(urls.sitePath("/games/"))
       </a>
       <SiteAnnouncements />
       <div class="site-settings">
-        <button class="settings-toggle header-icon-button" type="button" data-settings-toggle aria-haspopup="dialog" aria-controls="site-settings-panel" aria-expanded="false" aria-label="显示设置" title="显示设置">
+        <button class="settings-toggle header-icon-button" type="button" data-settings-toggle aria-haspopup="dialog" aria-controls="site-settings-panel" aria-expanded="false" aria-label="设置" title="设置">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7.5h8.5M17.5 7.5H20M4 16.5h2.5M11.5 16.5H20"/><circle cx="15" cy="7.5" r="2.4"/><circle cx="9" cy="16.5" r="2.4"/></svg>
         </button>
         <div class="settings-panel" id="site-settings-panel" role="dialog" aria-labelledby="site-settings-title" data-settings-panel hidden>
           <div class="settings-panel-heading">
-            <strong id="site-settings-title">显示设置</strong>
+            <strong id="site-settings-title">设置</strong>
             <span>仅保存在当前浏览器</span>
           </div>
           <fieldset class="settings-group">
@@ -87,6 +89,19 @@ const isGameLibrary = isWithin(urls.sitePath("/games/"))
               <label><input type="radio" name="site-motion" value="rich" data-motion-option /><span>丰富</span></label>
             </div>
             <p class="settings-hint" data-motion-hint></p>
+          </fieldset>
+          <fieldset class="settings-group">
+            <legend>下载线路</legend>
+            <div class="segmented" style="--segments: 2">
+              <span class="segmented-thumb" aria-hidden="true"></span>
+              <label><input type="radio" name="download-line" value="r2" data-download-line-option checked /><span>{downloadLineNames.r2}</span><small>推荐</small></label>
+              <label><input type="radio" name="download-line" value="ros" data-download-line-option /><span>{downloadLineNames.ros}</span><small>备用</small></label>
+            </div>
+            <div class="settings-line-actions">
+              <span data-download-line-current>当前首选 {downloadLineNames.r2}</span>
+              <button class="text-link" type="button" data-check-download-lines={ROS_BASE_URL}>检测线路</button>
+            </div>
+            <p class="settings-line-results" role="status" aria-atomic="true" data-download-line-results></p>
           </fieldset>
         </div>
       </div>

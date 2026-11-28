@@ -42,6 +42,13 @@
 .settings-group { min-width: 0; margin: 13px 0 0; padding: 0; border: 0; }
 .settings-group legend { padding: 0 2px 7px; color: var(--text-muted); font-size: var(--type-caption); font-weight: var(--weight-title); }
 .settings-hint { min-height: 2.9em; margin: 8px 2px 0; color: var(--text-soft); font-size: var(--type-caption); line-height: 1.45; }
+[data-settings-panel] { max-height: calc(100dvh - 88px); overflow-y: auto; overscroll-behavior: contain; }
+.settings-group .segmented small { font-size: var(--type-caption); font-weight: var(--weight-control); }
+.settings-line-actions { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin: 2px 2px 0; }
+.settings-line-actions span, .settings-line-results { color: var(--text-soft); font-size: var(--type-caption); }
+.settings-line-actions button { flex: none; padding-inline: 2px; }
+.settings-line-actions button[aria-disabled="true"] { color: var(--text-soft); cursor: wait; text-decoration: none; }
+.settings-line-results { margin: 0 2px; }
 .segmented { --active: 0; position: relative; display: grid; grid-template-columns: repeat(var(--segments), minmax(0, 1fr)); padding: 3px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface-muted); isolation: isolate; }
 .segmented:has(> label:nth-of-type(2) input:checked) { --active: 1; }
 .segmented:has(> label:nth-of-type(3) input:checked) { --active: 2; }

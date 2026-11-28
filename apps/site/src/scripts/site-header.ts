@@ -1,6 +1,8 @@
 import { finishMotion, setSurfaceVisible } from "./motion";
 import { setupAnnouncements } from "./announcements";
 import { motionLevel, motionStorageKey, normalizeMotion, resolveMotion } from "./motion-preference";
+import { downloadLineChange, downloadLineNames, downloadLineStorageKey, getDownloadLine, setDownloadLine } from "../lib/download-preference";
+import { checkDownloadLines } from "../lib/download-line-check";
 
 const root = document.documentElement;
 const motionQuery = matchMedia("(prefers-reduced-motion: reduce)");
@@ -24,6 +26,10 @@ motionQuery.addEventListener("change", () => applyMotion(root.dataset.motion));
 window.addEventListener("storage", (event) => {
   if (event.key === motionStorageKey || event.key === null) applyMotion(event.newValue);
   if (event.key === themeKey || event.key === null) applyTheme(event.newValue ?? "system");
+  if (event.key === downloadLineStorageKey || event.key === null) {
+    autoSelectDownloadLine = false;
+    setDownloadLine(event.newValue, false);
+  }
 });
 
 const themeKey = "rhythm-archive-theme";
@@ -59,6 +65,36 @@ const toggle = document.querySelector<HTMLButtonElement>("[data-menu-toggle]")!;
 const settings = document.querySelector<HTMLElement>(".site-settings")!;
 const settingsToggle = settings.querySelector<HTMLButtonElement>("[data-settings-toggle]")!;
 const settingsPanel = settings.querySelector<HTMLElement>("[data-settings-panel]")!;
+const lineOptions = settingsPanel.querySelectorAll<HTMLInputElement>("[data-download-line-option]");
+const currentLine = settingsPanel.querySelector<HTMLElement>("[data-download-line-current]")!;
+const checkLines = settingsPanel.querySelector<HTMLButtonElement>("[data-check-download-lines]")!;
+const lineResults = settingsPanel.querySelector<HTMLElement>("[data-download-line-results]")!;
+const lineStatus = { reachable: "可连通", unavailable: "不可用", unknown: "无法确认", timeout: "超时" };
+let autoSelectDownloadLine = false;
+
+function renderDownloadLine() {
+  const line = getDownloadLine();
+  for (const option of lineOptions) option.checked = option.value === line;
+  currentLine.textContent = `当前首选 ${downloadLineNames[line]}`;
+}
+
+window.addEventListener(downloadLineChange, renderDownloadLine);
+renderDownloadLine();
+checkLines.addEventListener("click", async () => {
+  if (checkLines.getAttribute("aria-disabled") === "true") return;
+  autoSelectDownloadLine = true;
+  checkLines.setAttribute("aria-disabled", "true");
+  checkLines.textContent = "检测中…";
+  lineResults.textContent = "";
+  try {
+    const { r2, ros, preferred } = await checkDownloadLines(checkLines.dataset.checkDownloadLines!);
+    if (preferred && autoSelectDownloadLine) setDownloadLine(preferred);
+    lineResults.textContent = `R2 ${lineStatus[r2]} · ROS ${lineStatus[ros]}`;
+  } finally {
+    checkLines.removeAttribute("aria-disabled");
+    checkLines.textContent = "检测线路";
+  }
+});
 const mobile = matchMedia("(max-width: 760px)");
 root.classList.add("has-js");
 const library = nav.querySelector<HTMLDetailsElement>(".nav-game-library")!;
@@ -131,6 +167,10 @@ settingsPanel.addEventListener("change", (event) => {
     applyMotion(input.value);
     try { localStorage.setItem(motionStorageKey, input.value); } catch { /* Session still works. */ }
   }
+  if (input.matches("[data-download-line-option]")) {
+    autoSelectDownloadLine = false;
+    setDownloadLine(input.value);
+  }
 });
 toggle.addEventListener("click", () => {
   const open = toggle.getAttribute("aria-expanded") !== "true";
@@ -167,6 +207,7 @@ mobile.addEventListener("change", () => setOpen(false));
 document.addEventListener("astro:after-swap", () => {
   announcements?.close();
   applyMotion(root.dataset.motion);
+  renderDownloadLine();
   setOpen(false);
   setSettingsOpen(false);
   applyTheme(root.dataset.theme ?? "system");

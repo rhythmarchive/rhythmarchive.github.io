@@ -29,7 +29,7 @@ const size = (bytes: number) => `${(bytes / 1048576).toFixed(2)} MiB`;
       <button type="button" class="media-stop" data-stop hidden>停止播放</button>
     </div>
     <slot name="resource-info" />
-    <div class="media-resource-title media-video-title"><h2 data-title>{first.title}</h2><button type="button" class="button button-secondary media-download" data-download data-download-url={clip.original.url} data-download-filename={clip.original.downloadFilename} data-resource-id={first.id}>下载视频 <span data-original-size>{size(clip.original.sizeBytes)}</span></button></div>
+    <div class="media-resource-title media-video-title"><h2 data-title>{first.title}</h2><button type="button" class="button button-secondary media-download" data-download data-download-url={clip.original.url} data-backup-url={clip.original.fallbackUrl} data-download-filename={clip.original.downloadFilename} data-resource-id={first.id}>下载视频 <span data-original-size>{size(clip.original.sizeBytes)}</span></button></div>
     <p class="sr-only" data-status aria-live="polite"></p>
     <p class="sr-only" data-download-status aria-live="polite"></p>
   </div>

@@ -1,8 +1,9 @@
 import { observeImage } from "./viewport-images";
 import { reconcileList, setSurfaceVisible } from "./motion";
 import { zipSync } from "fflate";
-import { DownloadHttpError, reportDownloadFailure } from "../lib/resource-reports-client";
-import { fetchDownload } from "../lib/download-source";
+import { reportDownloadFailure } from "../lib/resource-reports-client";
+import { getDownloadLine } from "../lib/download-preference";
+import { orderDownloadSources, readDownload } from "../lib/download-source";
 import { DownloadStreamError, DOWNLOAD_CONCURRENCY, MAX_BATCH_BYTES, MAX_BATCH_FILES, readResponseBytesWithinLimit, toggleBatchSelection, uniqueZipFilename, type BatchResource } from "../lib/batch";
 import { getBrowserStatsClient } from "../lib/stats-client";
 import { sitePath } from "../lib/url";
@@ -390,48 +391,35 @@ export async function downloadSelectedBatch(options: {
   const controller = new AbortController();
   const page = pageSignal();
   const signal = AbortSignal.any([controller.signal, page, ...(options.signal ? [options.signal] : [])]);
-  const automaticBackups = new Set<string>();
-  const actualSizes = new Map<string, number>();
-  const objects = new Map<string, Promise<Uint8Array>>();
+  const line = getDownloadLine();
+  const objects = new Map<string, ReturnType<typeof readDownload<Uint8Array>>>();
   options.setStatus("正在准备 0 / " + items.length);
   try {
     await runWithConcurrency(items, DOWNLOAD_CONCURRENCY, async ({ download, resource }) => {
       signal.throwIfAborted();
-      let bytes = objects.get(download.url);
-      if (!bytes) {
-        bytes = (async () => {
-          const { response, automatic } = await fetchDownload(download.url, download.fallbackUrl, signal);
-          const read = async (response: Response) => {
-            if (!response.ok) throw new DownloadHttpError(response.status);
-            let received = 0;
-            try {
-              return await readResponseBytesWithinLimit(response, MAX_BATCH_BYTES - downloadedBytes, (size) => {
-                signal.throwIfAborted();
-                if (downloadedBytes + size > MAX_BATCH_BYTES) throw new Error("batch download exceeds the maximum size");
-                downloadedBytes += size;
-                received += size;
-              });
-            } catch (error) {
-              downloadedBytes -= received;
-              throw error;
-            }
-          };
-          if (automatic) automaticBackups.add(download.url);
-          const data = await read(response).catch(async (error) => {
-            signal.throwIfAborted();
-            if (!(error instanceof DownloadStreamError) || automatic || !download.fallbackUrl) throw error;
-            automaticBackups.add(download.url);
-            return read((await fetchDownload(download.fallbackUrl, undefined, signal)).response);
-          });
-          actualSizes.set(download.url, data.byteLength);
-          return data;
-        })().catch((error) => {
+      let delivery = objects.get(download.url);
+      if (!delivery) {
+        const [primary, backup] = orderDownloadSources(download.url, download.fallbackUrl, line);
+        delivery = readDownload(primary, backup, signal, async (response) => {
+          let received = 0;
+          try {
+            return await readResponseBytesWithinLimit(response, MAX_BATCH_BYTES - downloadedBytes, (size) => {
+              signal.throwIfAborted();
+              if (downloadedBytes + size > MAX_BATCH_BYTES) throw new Error("batch download exceeds the maximum size");
+              downloadedBytes += size;
+              received += size;
+            });
+          } catch (error) {
+            downloadedBytes -= received;
+            throw error;
+          }
+        }, error => error instanceof DownloadStreamError).catch((error) => {
           if (!signal.aborted) reportDownloadFailure(resource.resourceId, error);
           controller.abort(); throw error;
         });
-        objects.set(download.url, bytes);
+        objects.set(download.url, delivery);
       }
-      entries[uniqueZipFilename(usedNames, download.downloadFilename)] = await bytes;
+      entries[uniqueZipFilename(usedNames, download.downloadFilename)] = (await delivery).data;
       completed += 1;
       options.setStatus("正在准备 " + completed + " / " + items.length);
     });
@@ -441,7 +429,10 @@ export async function downloadSelectedBatch(options: {
     const objectUrl = URL.createObjectURL(new Blob([archive], { type: "application/zip" }));
     triggerDownload(objectUrl, options.filename);
     const statsClient = getBrowserStatsClient();
-    for (const item of items) void statsClient.trackResourceDownload(item.resource.resourceId, { automatic: automaticBackups.has(item.download.url), source: !automaticBackups.has(item.download.url) && new URL(item.download.url).hostname === "dl.rhythmarchive.top" ? "r2" : "ros", bytes: actualSizes.get(item.download.url) ?? item.download.sizeBytes });
+    for (const { resource, download } of items) {
+      const { data, source, automatic } = await objects.get(download.url)!;
+      void statsClient.trackResourceDownload(resource.resourceId, { source, automatic, bytes: data.byteLength });
+    }
     window.setTimeout(() => URL.revokeObjectURL(objectUrl), 1000);
     options.setStatus("已开始下载");
   } catch (error) {

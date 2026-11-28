@@ -1,5 +1,5 @@
 import { pageSignal } from "./page-lifecycle";
-import { fetchDownload } from "../lib/download-source";
+import { orderDownloadSources, readDownload } from "../lib/download-source";
 import { getBrowserStatsClient } from "../lib/stats-client";
 import { DownloadHttpError, reportDownloadFailure } from "../lib/resource-reports-client";
 
@@ -17,35 +17,24 @@ export async function downloadRendition(button: HTMLButtonElement): Promise<void
   button.innerHTML = "<span>下载中…</span>";
   if (status) status.textContent = "下载中…";
   const signal = pageSignal();
-  const backup = button.dataset.backupUrl;
-  const manual = button.dataset.downloadKind === "backup";
-  let canOpenDirectly = !backup;
+  const override = button.dataset.downloadLine;
+  const [primary, backup] = orderDownloadSources(url, button.dataset.backupUrl, override === "r2" || override === "ros" ? override : undefined);
+  const manual = button.dataset.downloadKind === "backup" || override === "ros";
   let fetched = false;
   try {
-    let { response, automatic } = await fetchDownload(url, backup, signal);
-    if (!response.ok) {
-      canOpenDirectly = false;
-      throw new DownloadHttpError(response.status);
-    }
-    const blob = await response.blob().catch(async error => {
-      signal.throwIfAborted();
-      if (!backup || automatic) throw error;
-      automatic = true;
-      response = (await fetchDownload(backup, undefined, signal)).response;
-      if (!response.ok) throw new DownloadHttpError(response.status);
-      return response.blob();
-    });
+    const { data: blob, source, automatic } = await readDownload(primary, backup, signal, response => response.blob());
     signal.throwIfAborted();
     fetched = true;
     const objectUrl = URL.createObjectURL(blob);
     triggerDownload(objectUrl, filename);
-    if (resourceId) void getBrowserStatsClient().trackResourceDownload(resourceId, { source: !automatic && new URL(url).hostname === "dl.rhythmarchive.top" ? "r2" : "ros", bytes: blob.size, automatic, manual });
+    if (resourceId) void getBrowserStatsClient().trackResourceDownload(resourceId, { source, bytes: blob.size, automatic, manual: manual && !automatic });
     window.setTimeout(() => URL.revokeObjectURL(objectUrl), 1000);
     if (status) status.textContent = "已开始下载";
   } catch (error) {
     if (signal.aborted) return;
     if (resourceId && !fetched) reportDownloadFailure(resourceId, error);
     console.error("Resource download failed", error);
+    const canOpenDirectly = !backup && !(error instanceof DownloadHttpError);
     if (canOpenDirectly) triggerDirectDownload(url, filename);
     if (status) status.textContent = canOpenDirectly
       ? "下载失败，已尝试打开文件链接。如未开始下载，请重试。"

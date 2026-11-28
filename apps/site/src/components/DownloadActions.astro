@@ -26,13 +26,13 @@ const upscaledDimensions = upscaled ? formatImageDimensions(upscaled.width, upsc
       <button class="download-button" type="button" data-download-kind="original" data-resource-id={resourceId} data-download-url={original.url} data-backup-url={original.fallbackUrl} data-download-filename={original.downloadFilename}>
         <span>{originals.length > 1 ? "原图 " + (index + 1) : "原图"}{dimensions ? <em class="download-dimensions">{dimensions}</em> : null}</span><small>{formatBytes(original.sizeBytes)}</small>
       </button>
-      {original.fallbackUrl && <button type="button" class="download-button" data-download-kind="backup" data-resource-id={resourceId} data-download-url={original.fallbackUrl} data-download-filename={original.downloadFilename}>备用下载{originals.length > 1 ? ` ${index + 1}` : ""}</button>}
+      {original.fallbackUrl && <button type="button" class="download-button" data-download-kind="backup" data-resource-id={resourceId} data-download-url={original.url} data-backup-url={original.fallbackUrl} data-download-line="ros" data-download-filename={original.downloadFilename}>ROS 下载{originals.length > 1 ? ` ${index + 1}` : ""}</button>}
     </>))}
     {upscaled ? (<>
       <button class="download-button" type="button" data-download-kind="upscaled" data-resource-id={resourceId} data-download-url={upscaled.url} data-backup-url={upscaled.fallbackUrl} data-download-filename={upscaled.downloadFilename}>
         <span>超分版{upscaledDimensions ? <em class="download-dimensions">{upscaledDimensions}</em> : null}</span><small>{formatBytes(upscaled.sizeBytes)}</small>
       </button>
-      {upscaled.fallbackUrl && <button type="button" class="download-button" data-download-kind="backup" data-resource-id={resourceId} data-download-url={upscaled.fallbackUrl} data-download-filename={upscaled.downloadFilename}>超分版备用下载</button>}
+      {upscaled.fallbackUrl && <button type="button" class="download-button" data-download-kind="backup" data-resource-id={resourceId} data-download-url={upscaled.url} data-backup-url={upscaled.fallbackUrl} data-download-line="ros" data-download-filename={upscaled.downloadFilename}>超分版 ROS 下载</button>}
     </>) : null}
   </div>
 </div>

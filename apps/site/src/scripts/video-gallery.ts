@@ -1,6 +1,8 @@
-import { onPageLoad, onPageCleanup } from "./page-lifecycle";
+import { onPageLoad, onPageCleanup, pageSignal } from "./page-lifecycle";
 import type { MediaItem } from "../lib/media";
 import { downloadRendition } from "./download";
+import { downloadLineChange, getDownloadLine } from "../lib/download-preference";
+import { downloadLineOf, orderDownloadSources } from "../lib/download-source";
 
 onPageLoad(() => {
   const root = document.querySelector<HTMLElement>("[data-video-gallery]");
@@ -31,18 +33,21 @@ function initialize(root: HTMLElement) {
   let load: AbortController | undefined;
   let starting = false;
   let pendingPosition = 0;
+  let playbackBackup: string | undefined;
   const revealed = new Set<string>();
   const currentItem = () => mediaItems[itemIndex]!;
   const currentClip = () => currentItem().clips[clipIndex]!;
   const size = (bytes: number) => `${(bytes / 1048576).toFixed(2)} MiB`;
   const time = (seconds: number) => `${Math.floor(seconds / 60)}:${String(Math.round(seconds % 60)).padStart(2, "0")}`;
+  const setAutoLabel = (line = getDownloadLine()) => { autoOption.textContent = `自动（${line.toUpperCase()}）`; };
 
   function resetPlayer() {
     load?.abort();
     load = undefined;
     starting = false;
     pendingPosition = 0;
-    autoOption.textContent = "自动（R2）";
+    playbackBackup = undefined;
+    setAutoLabel();
     player.pause();
     if (player.hasAttribute("src")) { player.removeAttribute("src"); player.load(); }
     player.preload = "none";
@@ -54,13 +59,16 @@ function initialize(root: HTMLElement) {
   }
 
   onPageCleanup(resetPlayer);
+  window.addEventListener(downloadLineChange, () => {
+    if (source.value !== "auto" || !player.hasAttribute("src")) setAutoLabel();
+  }, { signal: pageSignal() });
 
   function updateDownloadSource() {
     const { url, fallbackUrl } = currentClip().original;
-    const manualRos = Boolean(fallbackUrl && source.value === "ros");
-    download.dataset.downloadUrl = manualRos ? fallbackUrl! : url;
-    download.dataset.downloadKind = manualRos ? "backup" : "original";
-    if (fallbackUrl && source.value === "auto") download.dataset.backupUrl = fallbackUrl;
+    download.dataset.downloadUrl = url;
+    if (source.value === "auto") delete download.dataset.downloadLine;
+    else download.dataset.downloadLine = source.value;
+    if (fallbackUrl) download.dataset.backupUrl = fallbackUrl;
     else delete download.dataset.backupUrl;
   }
 
@@ -92,12 +100,15 @@ function initialize(root: HTMLElement) {
     else { poster.src = clip.poster; poster.alt = `${item.title} · ${clip.label}封面`; }
   }
 
-  function selectedUrl() {
+  function selectPlayback() {
     const { url, fallbackUrl } = currentClip().original;
-    return source.value === "ros" ? fallbackUrl ?? url : url;
+    const line = source.value === "r2" || source.value === "ros" ? source.value : getDownloadLine();
+    const [primary, backup] = orderDownloadSources(url, fallbackUrl, line);
+    playbackBackup = source.value === "auto" ? backup : undefined;
+    return primary;
   }
 
-  function bindVideo(url: string, position = 0, resume = true) {
+  function bindVideo(url: string, position = 0, resume = true, switched = false) {
     load?.abort();
     const { signal } = load = new AbortController();
     player.pause();
@@ -109,7 +120,9 @@ function initialize(root: HTMLElement) {
     cover.hidden = true;
     stop.hidden = false;
     error.hidden = true;
-    status.textContent = autoOption.textContent === "自动（ROS）" ? "已切换到 ROS 线路。" : "正在加载视频。";
+    const line = downloadLineOf(url);
+    if (source.value === "auto") setAutoLabel(line);
+    status.textContent = switched ? `已切换到 ${line.toUpperCase()} 线路。` : "正在加载视频。";
     if (position > 0) {
       player.addEventListener("loadedmetadata", () => {
         player.currentTime = Math.min(position, Number.isFinite(player.duration) ? player.duration : position);
@@ -134,10 +147,10 @@ function initialize(root: HTMLElement) {
 
   function recoverPlayback() {
     if (!load || !player.hasAttribute("src")) return;
-    const { url, fallbackUrl } = currentClip().original;
-    if (source.value === "auto" && fallbackUrl && player.src === url) {
-      autoOption.textContent = "自动（ROS）";
-      bindVideo(fallbackUrl, pendingPosition || player.currentTime, starting || !player.paused);
+    if (playbackBackup) {
+      const backup = playbackBackup;
+      playbackBackup = undefined;
+      bindVideo(backup, pendingPosition || player.currentTime, starting || !player.paused, true);
       return;
     }
     pendingPosition ||= player.currentTime;
@@ -147,16 +160,18 @@ function initialize(root: HTMLElement) {
     player.pause();
     player.removeAttribute("src");
     player.load();
+    setAutoLabel();
     error.hidden = false;
     status.textContent = "视频加载失败。";
   }
 
-  playButton.addEventListener("click", () => bindVideo(selectedUrl()));
+  playButton.addEventListener("click", () => bindVideo(selectPlayback()));
   source.addEventListener("change", () => {
-    autoOption.textContent = "自动（R2）";
+    setAutoLabel();
     updateDownloadSource();
-    if (!error.hidden || (player.hasAttribute("src") && player.src !== selectedUrl())) {
-      bindVideo(selectedUrl(), pendingPosition || player.currentTime, starting || !player.paused || !error.hidden);
+    const url = selectPlayback();
+    if (!error.hidden || (player.hasAttribute("src") && player.src !== url)) {
+      bindVideo(url, pendingPosition || player.currentTime, starting || !player.paused || !error.hidden);
     }
   });
   download.addEventListener("click", async () => {

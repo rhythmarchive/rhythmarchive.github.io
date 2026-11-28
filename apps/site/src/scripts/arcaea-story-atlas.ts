@@ -1,6 +1,7 @@
 import { loadStaticData } from "./static-data";
 import { onPageLoad, pageSignal, onPageCleanup } from "./page-lifecycle";
 import { setSurfaceVisible } from "./motion";
+import { downloadRendition } from "./download";
 import type { ArcaeaStoryAtlasType } from "../../../../packages/domain/src/browse.js";
 
 type CompactResource = {
@@ -12,6 +13,7 @@ type CompactResource = {
   preview?: string;
   original?: string;
   download?: string;
+  downloadBackup?: string;
   downloadFilename?: string;
   assetPaths: string[];
 };
@@ -580,7 +582,22 @@ async function initialize(root: HTMLElement): Promise<void> {
       }
       link.append(textNode("span", resource.title));
       card.append(link);
-      if (resource.download) {
+      if (resource.download && resource.downloadBackup && resource.downloadFilename) {
+        card.dataset.downloadPanel = "";
+        const download = document.createElement("button");
+        download.type = "button";
+        download.className = "story-dialog-download";
+        download.dataset.resourceId = resource.resourceId;
+        download.dataset.downloadUrl = resource.download;
+        download.dataset.backupUrl = resource.downloadBackup;
+        download.dataset.downloadFilename = resource.downloadFilename;
+        download.textContent = "下载原图";
+        download.addEventListener("click", () => void downloadRendition(download));
+        const status = element("span", "story-dialog-download-status");
+        status.dataset.downloadStatus = "";
+        status.setAttribute("role", "status");
+        card.append(download, status);
+      } else if (resource.download) {
         const download = document.createElement("a");
         download.className = "story-dialog-download";
         download.dataset.statsDownload = "true";

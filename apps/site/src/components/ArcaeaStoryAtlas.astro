@@ -151,6 +151,7 @@ function compactResource(resource: PublicResource): Record<string, unknown> {
     preview: preview?.url,
     original: resource.original?.url,
     download: resource.original?.url,
+    downloadBackup: resource.original?.fallbackUrl,
     downloadFilename: resource.original?.downloadFilename ?? resource.downloadFilename,
     assetPaths: (resource.searchTerms ?? []).filter((term) => /^assets\/app-data\/story\//u.test(term)),
   };

@@ -145,6 +145,8 @@
 .story-dialog-resources.is-compact .story-dialog-resource-link img { height: 5.3rem; object-fit: cover; }
 .story-dialog-resource-link span { overflow: hidden; font-size: .68rem; text-overflow: ellipsis; white-space: nowrap; }
 .story-dialog-download { display: inline-block; margin-top: .35rem; color: var(--atlas-cyan); font-size: .64rem; text-decoration: none; }
+button.story-dialog-download { padding: 0; border: 0; background: transparent; }
+.story-dialog-download-status { display: block; color: var(--atlas-cyan); font-size: .64rem; }
 .story-dialog-download:hover,.story-dialog-download:focus-visible { text-decoration: underline; }
 .story-search-empty { margin: 0; padding: .5rem; }
 @media (max-width: 980px) {
