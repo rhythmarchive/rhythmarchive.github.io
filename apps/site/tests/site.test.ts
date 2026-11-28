@@ -890,7 +890,7 @@ test("homepage navigation uses the generated jacket browse counts", () => {
     assert.equal(games.find((entry) => entry.slug === game)?.categories.find((category) => category.slug === "jacket")?.count, browse[game].items.length);
   }
   const rizline = games.find((game) => game.slug === "rizline");
-  assert.equal(rizline?.categories.find((category) => category.slug === "rizcard")?.count, 44);
+  assert.equal(rizline?.categories.find((category) => category.slug === "rizcard")?.count, 78);
   assert.equal(rizline?.categories.some((category) => category.slug === "rizcard-layout"), false);
   assert.deepEqual(rizline?.featuredCategories.map((category) => category.slug), ["jacket", "special-art", "track-series", "rizcard", "character-avatar"]);
 });

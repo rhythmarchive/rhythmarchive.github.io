@@ -3470,6 +3470,158 @@
           "change": "added"
         }
       ]
+    },
+    {
+      "id": "08719c05-2030-7834-ab00-851df04d927c",
+      "game": "rizline",
+      "releaseIds": [
+        "61e7ad67-9cb8-75d8-ad42-d2a17104fca8"
+      ],
+      "contentVersion": "2.8.0",
+      "kind": "update",
+      "publishedAt": "2026-11-28T08:12:32.164Z",
+      "items": [
+        {
+          "resourceId": "99c2e913-a3f2-7dd2-9acd-93592a178ff7",
+          "change": "added"
+        },
+        {
+          "resourceId": "1082c294-625b-7cb0-9e5b-b85eabba17b5",
+          "change": "added"
+        },
+        {
+          "resourceId": "c0682150-bcf6-7415-bde4-f23e5a52b4d4",
+          "change": "added"
+        },
+        {
+          "resourceId": "d1bcf022-84b9-73ba-ab3b-011218eed767",
+          "change": "added"
+        },
+        {
+          "resourceId": "13cc1122-2aee-7adc-aa1e-a1a9a68734e2",
+          "change": "added"
+        },
+        {
+          "resourceId": "9fc2d759-9d33-7429-b320-7948137ae557",
+          "change": "added"
+        },
+        {
+          "resourceId": "5d201808-7da2-79c7-bdcb-3398a191b439",
+          "change": "added"
+        },
+        {
+          "resourceId": "def08f51-d751-7264-8c24-52fc1c4b2a2a",
+          "change": "added"
+        },
+        {
+          "resourceId": "2e9dba5f-0bd4-7243-8095-6be9272e6bea",
+          "change": "added"
+        },
+        {
+          "resourceId": "4fd208a2-9b56-7417-954b-99a9a8822bbb",
+          "change": "added"
+        },
+        {
+          "resourceId": "9747e29d-9522-731f-b5f5-0ca178a1fc81",
+          "change": "added"
+        },
+        {
+          "resourceId": "7eadd1f2-1fe5-77df-8c47-63371b10bfb9",
+          "change": "added"
+        },
+        {
+          "resourceId": "2eab9658-f95f-7b86-a941-d63be55cbd36",
+          "change": "added"
+        },
+        {
+          "resourceId": "6636f6a5-1c42-7917-a21b-cb0d609a6cd7",
+          "change": "added"
+        },
+        {
+          "resourceId": "78ddd716-cbb9-79d4-accd-97f6ddeb099f",
+          "change": "added"
+        },
+        {
+          "resourceId": "e428f457-361f-7b62-8da1-c3f04f1516fe",
+          "change": "added"
+        },
+        {
+          "resourceId": "98726ecf-7e81-7739-a5aa-808bc0033b19",
+          "change": "added"
+        },
+        {
+          "resourceId": "c5f9320e-df70-70f4-8f6e-c6bc446fda4d",
+          "change": "added"
+        },
+        {
+          "resourceId": "b4da706e-7788-7318-9f13-3aebc1ab8b69",
+          "change": "added"
+        },
+        {
+          "resourceId": "f4582bae-0bfa-71c1-9133-870f88d7be70",
+          "change": "added"
+        },
+        {
+          "resourceId": "c5423523-d907-7d8e-ad75-20c76699b826",
+          "change": "added"
+        },
+        {
+          "resourceId": "f574d82e-9d7b-7055-9a60-03d58cb09ae8",
+          "change": "added"
+        },
+        {
+          "resourceId": "a7825b65-c3c9-7570-bb9d-d45761593718",
+          "change": "added"
+        },
+        {
+          "resourceId": "9929003b-29ca-74b6-a52d-0cacf6467519",
+          "change": "added"
+        },
+        {
+          "resourceId": "5a11b619-7fbb-793d-9fc8-a54507fa0c34",
+          "change": "added"
+        },
+        {
+          "resourceId": "7e09d43c-5091-7451-b4f2-838a261d4cf7",
+          "change": "added"
+        },
+        {
+          "resourceId": "83684419-3e6b-7251-b251-2a3e4164b263",
+          "change": "added"
+        },
+        {
+          "resourceId": "7039e5be-3769-753c-9417-b491c80da47a",
+          "change": "added"
+        },
+        {
+          "resourceId": "c77f8f52-ed6a-72b8-acb6-15c41f8c9f9e",
+          "change": "added"
+        },
+        {
+          "resourceId": "28d66c63-07b4-7fc0-9d81-6caa25edda72",
+          "change": "added"
+        },
+        {
+          "resourceId": "9b9a9144-fea9-781b-85ee-09e96ba31634",
+          "change": "added"
+        },
+        {
+          "resourceId": "6f3ae0c6-27ea-70e1-bc3d-746195ecce81",
+          "change": "added"
+        },
+        {
+          "resourceId": "64e31856-7552-7f84-a9ac-7623e9b4d80a",
+          "change": "added"
+        },
+        {
+          "resourceId": "f935fd02-fabf-7cec-ba80-cfe40c59b526",
+          "change": "added"
+        },
+        {
+          "resourceId": "b63714c4-7657-7ee3-adda-1bfb4cec5847",
+          "change": "added"
+        }
+      ]
     }
   ]
 }

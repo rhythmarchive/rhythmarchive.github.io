@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "game": "rizline",
-  "generatedAt": "2026-11-20T10:22:49.933Z",
+  "generatedAt": "2026-11-28T08:12:32.164Z",
   "source": {
     "snapshot": "rizline.remote-canonical:v146_2_8_0_fda1c11c76P",
     "sha256": "15515bb3d743b39558c3dfb3930fae91157204e5723a5711b55a739436616250"
@@ -385,7 +385,10 @@
         "songId": "BRAVEROAD.umavsMorimoriAtsushi.0",
         "musicArtist": "uma vs. モリモリあつし",
         "illustrator": "山山奇 feat. V17AMax",
-        "disc": "Disc 1"
+        "disc": "Disc 1",
+        "chartDataUpdatedAt": "2026-11-20",
+        "chartDataVersion": "v146_2_8_0_fda1c11c76P",
+        "componentRelations": "动画回放卡 · rizcard.Playback001"
       },
       "badges": [],
       "searchTerms": [
@@ -1965,7 +1968,10 @@
         "songId": "NeverSayGoodbye.黒魔.0",
         "musicArtist": "黒魔",
         "illustrator": "山山奇 feat. Jimwaz",
-        "disc": "Disc 2"
+        "disc": "Disc 2",
+        "chartDataUpdatedAt": "2026-11-20",
+        "chartDataVersion": "v146_2_8_0_fda1c11c76P",
+        "componentRelations": "动画回放卡 · rizcard.Playback002"
       },
       "badges": [],
       "searchTerms": [
@@ -6314,6 +6320,789 @@
         "笔记RE"
       ],
       "sortOrder": 262,
+      "facets": {}
+    },
+    {
+      "resourceId": "99c2e913-a3f2-7dd2-9acd-93592a178ff7",
+      "resourceType": "jacket",
+      "displayTitle": "Con::neC",
+      "metadata": {
+        "gameVersion": "2.8.0",
+        "songId": "ConneC.SaltySalt.0",
+        "musicArtist": "Salty Salt",
+        "illustrator": "群青kurara feat. Jimwaz",
+        "disc": "Disc Δ",
+        "trackSeries": "篇章 - 边际线",
+        "chartDataVersion": "v146_2_8_0_fda1c11c76P",
+        "chartDataUpdatedAt": "2026-11-28",
+        "componentRelations": "动画回放卡 · rizcard.Playback003"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Con::neC",
+        "ConneC.SaltySalt.0",
+        "2.8.0",
+        "ConneC.SaltySalt.0",
+        "Salty Salt",
+        "群青kurara feat. Jimwaz",
+        "Disc Δ",
+        "篇章 - 边际线",
+        "v146_2_8_0_fda1c11c76P",
+        "2026-11-28",
+        "动画回放卡 · rizcard.Playback003"
+      ],
+      "sortOrder": 264,
+      "facets": {}
+    },
+    {
+      "resourceId": "1082c294-625b-7cb0-9e5b-b85eabba17b5",
+      "resourceType": "rizcard-layout",
+      "displayTitle": "思维密码",
+      "metadata": {
+        "gameVersion": "2.8.0",
+        "layoutId": "layout.00058",
+        "layout": "思维密码",
+        "collaborationPartner": "思维密码",
+        "componentRelations": "同编号卡片资源键 · rizcard.00058"
+      },
+      "badges": [],
+      "searchTerms": [
+        "思维密码",
+        "layout.00058",
+        "CIPHERMIND",
+        "2.8.0",
+        "layout.00058",
+        "思维密码",
+        "思维密码",
+        "同编号卡片资源键 · rizcard.00058"
+      ],
+      "sortOrder": 265,
+      "facets": {}
+    },
+    {
+      "resourceId": "c0682150-bcf6-7415-bde4-f23e5a52b4d4",
+      "resourceType": "rizcard-layout",
+      "displayTitle": "Layout 00059",
+      "metadata": {
+        "gameVersion": "2.8.0",
+        "layoutId": "layout.00059",
+        "layout": "Layout 00059",
+        "componentRelations": "同编号卡片资源键 · rizcard.00059"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Layout 00059",
+        "layout.00059",
+        "2.8.0",
+        "layout.00059",
+        "Layout 00059",
+        "同编号卡片资源键 · rizcard.00059"
+      ],
+      "sortOrder": 266,
+      "facets": {}
+    },
+    {
+      "resourceId": "d1bcf022-84b9-73ba-ab3b-011218eed767",
+      "resourceType": "rizcard-layout",
+      "displayTitle": "Layout 00060",
+      "metadata": {
+        "gameVersion": "2.8.0",
+        "layoutId": "layout.00060",
+        "layout": "Layout 00060",
+        "componentRelations": "同编号卡片资源键 · rizcard.00060"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Layout 00060",
+        "layout.00060",
+        "2.8.0",
+        "layout.00060",
+        "Layout 00060",
+        "同编号卡片资源键 · rizcard.00060"
+      ],
+      "sortOrder": 267,
+      "facets": {}
+    },
+    {
+      "resourceId": "13cc1122-2aee-7adc-aa1e-a1a9a68734e2",
+      "resourceType": "rizcard-layout",
+      "displayTitle": "Layout 00061",
+      "metadata": {
+        "gameVersion": "2.8.0",
+        "layoutId": "layout.00061",
+        "layout": "Layout 00061",
+        "componentRelations": "同编号卡片资源键 · rizcard.00061"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Layout 00061",
+        "layout.00061",
+        "2.8.0",
+        "layout.00061",
+        "Layout 00061",
+        "同编号卡片资源键 · rizcard.00061"
+      ],
+      "sortOrder": 268,
+      "facets": {}
+    },
+    {
+      "resourceId": "9fc2d759-9d33-7429-b320-7948137ae557",
+      "resourceType": "rizcard-layout",
+      "displayTitle": "Layout 00062",
+      "metadata": {
+        "gameVersion": "2.8.0",
+        "layoutId": "layout.00062",
+        "layout": "Layout 00062",
+        "componentRelations": "同编号卡片资源键 · rizcard.00062"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Layout 00062",
+        "layout.00062",
+        "2.8.0",
+        "layout.00062",
+        "Layout 00062",
+        "同编号卡片资源键 · rizcard.00062"
+      ],
+      "sortOrder": 269,
+      "facets": {}
+    },
+    {
+      "resourceId": "5d201808-7da2-79c7-bdcb-3398a191b439",
+      "resourceType": "rizcard-layout",
+      "displayTitle": "Layout 00063",
+      "metadata": {
+        "gameVersion": "2.8.0",
+        "layoutId": "layout.00063",
+        "layout": "Layout 00063",
+        "componentRelations": "同编号卡片资源键 · rizcard.00063"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Layout 00063",
+        "layout.00063",
+        "2.8.0",
+        "layout.00063",
+        "Layout 00063",
+        "同编号卡片资源键 · rizcard.00063"
+      ],
+      "sortOrder": 270,
+      "facets": {}
+    },
+    {
+      "resourceId": "def08f51-d751-7264-8c24-52fc1c4b2a2a",
+      "resourceType": "rizcard-layout",
+      "displayTitle": "Layout 00064",
+      "metadata": {
+        "gameVersion": "2.8.0",
+        "layoutId": "layout.00064",
+        "layout": "Layout 00064",
+        "componentRelations": "同编号卡片资源键 · rizcard.00064"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Layout 00064",
+        "layout.00064",
+        "2.8.0",
+        "layout.00064",
+        "Layout 00064",
+        "同编号卡片资源键 · rizcard.00064"
+      ],
+      "sortOrder": 271,
+      "facets": {}
+    },
+    {
+      "resourceId": "2e9dba5f-0bd4-7243-8095-6be9272e6bea",
+      "resourceType": "rizcard-layout",
+      "displayTitle": "Layout 00065",
+      "metadata": {
+        "gameVersion": "2.8.0",
+        "layoutId": "layout.00065",
+        "layout": "Layout 00065",
+        "componentRelations": "同编号卡片资源键 · rizcard.00065"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Layout 00065",
+        "layout.00065",
+        "2.8.0",
+        "layout.00065",
+        "Layout 00065",
+        "同编号卡片资源键 · rizcard.00065"
+      ],
+      "sortOrder": 272,
+      "facets": {}
+    },
+    {
+      "resourceId": "4fd208a2-9b56-7417-954b-99a9a8822bbb",
+      "resourceType": "rizcard-layout",
+      "displayTitle": "Layout 00066",
+      "metadata": {
+        "gameVersion": "2.8.0",
+        "layoutId": "layout.00066",
+        "layout": "Layout 00066",
+        "componentRelations": "同编号卡片资源键 · rizcard.00066"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Layout 00066",
+        "layout.00066",
+        "2.8.0",
+        "layout.00066",
+        "Layout 00066",
+        "同编号卡片资源键 · rizcard.00066"
+      ],
+      "sortOrder": 273,
+      "facets": {}
+    },
+    {
+      "resourceId": "9747e29d-9522-731f-b5f5-0ca178a1fc81",
+      "resourceType": "rizcard-layout",
+      "displayTitle": "Layout 00067",
+      "metadata": {
+        "gameVersion": "2.8.0",
+        "layoutId": "layout.00067",
+        "layout": "Layout 00067",
+        "componentRelations": "同编号卡片资源键 · rizcard.00067"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Layout 00067",
+        "layout.00067",
+        "2.8.0",
+        "layout.00067",
+        "Layout 00067",
+        "同编号卡片资源键 · rizcard.00067"
+      ],
+      "sortOrder": 274,
+      "facets": {}
+    },
+    {
+      "resourceId": "7eadd1f2-1fe5-77df-8c47-63371b10bfb9",
+      "resourceType": "rizcard-layout",
+      "displayTitle": "Layout 00068",
+      "metadata": {
+        "gameVersion": "2.8.0",
+        "layoutId": "layout.00068",
+        "layout": "Layout 00068",
+        "componentRelations": "同编号卡片资源键 · rizcard.00068"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Layout 00068",
+        "layout.00068",
+        "2.8.0",
+        "layout.00068",
+        "Layout 00068",
+        "同编号卡片资源键 · rizcard.00068"
+      ],
+      "sortOrder": 275,
+      "facets": {}
+    },
+    {
+      "resourceId": "2eab9658-f95f-7b86-a941-d63be55cbd36",
+      "resourceType": "rizcard-layout",
+      "displayTitle": "Layout 00069",
+      "metadata": {
+        "gameVersion": "2.8.0",
+        "layoutId": "layout.00069",
+        "layout": "Layout 00069",
+        "componentRelations": "同编号卡片资源键 · rizcard.00069"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Layout 00069",
+        "layout.00069",
+        "2.8.0",
+        "layout.00069",
+        "Layout 00069",
+        "同编号卡片资源键 · rizcard.00069"
+      ],
+      "sortOrder": 276,
+      "facets": {}
+    },
+    {
+      "resourceId": "6636f6a5-1c42-7917-a21b-cb0d609a6cd7",
+      "resourceType": "rizcard-layout",
+      "displayTitle": "Layout 00070",
+      "metadata": {
+        "gameVersion": "2.8.0",
+        "layoutId": "layout.00070",
+        "layout": "Layout 00070",
+        "componentRelations": "同编号卡片资源键 · rizcard.00070"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Layout 00070",
+        "layout.00070",
+        "2.8.0",
+        "layout.00070",
+        "Layout 00070",
+        "同编号卡片资源键 · rizcard.00070"
+      ],
+      "sortOrder": 277,
+      "facets": {}
+    },
+    {
+      "resourceId": "78ddd716-cbb9-79d4-accd-97f6ddeb099f",
+      "resourceType": "rizcard-layout",
+      "displayTitle": "Layout 00071",
+      "metadata": {
+        "gameVersion": "2.8.0",
+        "layoutId": "layout.00071",
+        "layout": "Layout 00071",
+        "componentRelations": "同编号卡片资源键 · rizcard.00071"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Layout 00071",
+        "layout.00071",
+        "2.8.0",
+        "layout.00071",
+        "Layout 00071",
+        "同编号卡片资源键 · rizcard.00071"
+      ],
+      "sortOrder": 278,
+      "facets": {}
+    },
+    {
+      "resourceId": "e428f457-361f-7b62-8da1-c3f04f1516fe",
+      "resourceType": "rizcard-layout",
+      "displayTitle": "Layout 00072",
+      "metadata": {
+        "gameVersion": "2.8.0",
+        "layoutId": "layout.00072",
+        "layout": "Layout 00072",
+        "componentRelations": "同编号卡片资源键 · rizcard.00072"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Layout 00072",
+        "layout.00072",
+        "2.8.0",
+        "layout.00072",
+        "Layout 00072",
+        "同编号卡片资源键 · rizcard.00072"
+      ],
+      "sortOrder": 279,
+      "facets": {}
+    },
+    {
+      "resourceId": "98726ecf-7e81-7739-a5aa-808bc0033b19",
+      "resourceType": "rizcard-layout",
+      "displayTitle": "Layout 00073",
+      "metadata": {
+        "gameVersion": "2.8.0",
+        "layoutId": "layout.00073",
+        "layout": "Layout 00073",
+        "componentRelations": "同编号卡片资源键 · rizcard.00073"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Layout 00073",
+        "layout.00073",
+        "2.8.0",
+        "layout.00073",
+        "Layout 00073",
+        "同编号卡片资源键 · rizcard.00073"
+      ],
+      "sortOrder": 280,
+      "facets": {}
+    },
+    {
+      "resourceId": "c5f9320e-df70-70f4-8f6e-c6bc446fda4d",
+      "resourceType": "rizcard-layout",
+      "displayTitle": "Layout 00074",
+      "metadata": {
+        "gameVersion": "2.8.0",
+        "layoutId": "layout.00074",
+        "layout": "Layout 00074",
+        "componentRelations": "同编号卡片资源键 · rizcard.00074"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Layout 00074",
+        "layout.00074",
+        "2.8.0",
+        "layout.00074",
+        "Layout 00074",
+        "同编号卡片资源键 · rizcard.00074"
+      ],
+      "sortOrder": 281,
+      "facets": {}
+    },
+    {
+      "resourceId": "b4da706e-7788-7318-9f13-3aebc1ab8b69",
+      "resourceType": "rizcard-layout",
+      "displayTitle": "Layout 00075",
+      "metadata": {
+        "gameVersion": "2.8.0",
+        "layoutId": "layout.00075",
+        "layout": "Layout 00075",
+        "componentRelations": "同编号卡片资源键 · rizcard.00075"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Layout 00075",
+        "layout.00075",
+        "2.8.0",
+        "layout.00075",
+        "Layout 00075",
+        "同编号卡片资源键 · rizcard.00075"
+      ],
+      "sortOrder": 282,
+      "facets": {}
+    },
+    {
+      "resourceId": "f4582bae-0bfa-71c1-9133-870f88d7be70",
+      "resourceType": "rizcard-layout",
+      "displayTitle": "Layout 00076",
+      "metadata": {
+        "gameVersion": "2.8.0",
+        "layoutId": "layout.00076",
+        "layout": "Layout 00076",
+        "componentRelations": "同编号卡片资源键 · rizcard.00076"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Layout 00076",
+        "layout.00076",
+        "2.8.0",
+        "layout.00076",
+        "Layout 00076",
+        "同编号卡片资源键 · rizcard.00076"
+      ],
+      "sortOrder": 283,
+      "facets": {}
+    },
+    {
+      "resourceId": "c5423523-d907-7d8e-ad75-20c76699b826",
+      "resourceType": "rizcard-layout",
+      "displayTitle": "Layout 00077",
+      "metadata": {
+        "gameVersion": "2.8.0",
+        "layoutId": "layout.00077",
+        "layout": "Layout 00077",
+        "componentRelations": "同编号卡片资源键 · rizcard.00077"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Layout 00077",
+        "layout.00077",
+        "2.8.0",
+        "layout.00077",
+        "Layout 00077",
+        "同编号卡片资源键 · rizcard.00077"
+      ],
+      "sortOrder": 284,
+      "facets": {}
+    },
+    {
+      "resourceId": "f574d82e-9d7b-7055-9a60-03d58cb09ae8",
+      "resourceType": "rizcard-layout",
+      "displayTitle": "Layout 00078",
+      "metadata": {
+        "gameVersion": "2.8.0",
+        "layoutId": "layout.00078",
+        "layout": "Layout 00078",
+        "componentRelations": "同编号卡片资源键 · rizcard.00078"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Layout 00078",
+        "layout.00078",
+        "2.8.0",
+        "layout.00078",
+        "Layout 00078",
+        "同编号卡片资源键 · rizcard.00078"
+      ],
+      "sortOrder": 285,
+      "facets": {}
+    },
+    {
+      "resourceId": "a7825b65-c3c9-7570-bb9d-d45761593718",
+      "resourceType": "rizcard-layout",
+      "displayTitle": "Layout 00079",
+      "metadata": {
+        "gameVersion": "2.8.0",
+        "layoutId": "layout.00079",
+        "layout": "Layout 00079",
+        "componentRelations": "同编号卡片资源键 · rizcard.00079"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Layout 00079",
+        "layout.00079",
+        "2.8.0",
+        "layout.00079",
+        "Layout 00079",
+        "同编号卡片资源键 · rizcard.00079"
+      ],
+      "sortOrder": 286,
+      "facets": {}
+    },
+    {
+      "resourceId": "9929003b-29ca-74b6-a52d-0cacf6467519",
+      "resourceType": "rizcard-layout",
+      "displayTitle": "Layout 00080",
+      "metadata": {
+        "gameVersion": "2.8.0",
+        "layoutId": "layout.00080",
+        "layout": "Layout 00080",
+        "componentRelations": "同编号卡片资源键 · rizcard.00080"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Layout 00080",
+        "layout.00080",
+        "2.8.0",
+        "layout.00080",
+        "Layout 00080",
+        "同编号卡片资源键 · rizcard.00080"
+      ],
+      "sortOrder": 287,
+      "facets": {}
+    },
+    {
+      "resourceId": "5a11b619-7fbb-793d-9fc8-a54507fa0c34",
+      "resourceType": "rizcard-layout",
+      "displayTitle": "Layout 00081",
+      "metadata": {
+        "gameVersion": "2.8.0",
+        "layoutId": "layout.00081",
+        "layout": "Layout 00081",
+        "componentRelations": "同编号卡片资源键 · rizcard.00081"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Layout 00081",
+        "layout.00081",
+        "2.8.0",
+        "layout.00081",
+        "Layout 00081",
+        "同编号卡片资源键 · rizcard.00081"
+      ],
+      "sortOrder": 288,
+      "facets": {}
+    },
+    {
+      "resourceId": "7e09d43c-5091-7451-b4f2-838a261d4cf7",
+      "resourceType": "rizcard-layout",
+      "displayTitle": "Layout 00082",
+      "metadata": {
+        "gameVersion": "2.8.0",
+        "layoutId": "layout.00082",
+        "layout": "Layout 00082",
+        "componentRelations": "同编号卡片资源键 · rizcard.00082"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Layout 00082",
+        "layout.00082",
+        "2.8.0",
+        "layout.00082",
+        "Layout 00082",
+        "同编号卡片资源键 · rizcard.00082"
+      ],
+      "sortOrder": 289,
+      "facets": {}
+    },
+    {
+      "resourceId": "83684419-3e6b-7251-b251-2a3e4164b263",
+      "resourceType": "rizcard-layout",
+      "displayTitle": "Layout 00083",
+      "metadata": {
+        "gameVersion": "2.8.0",
+        "layoutId": "layout.00083",
+        "layout": "Layout 00083",
+        "componentRelations": "同编号卡片资源键 · rizcard.00083"
+      },
+      "badges": [],
+      "searchTerms": [
+        "Layout 00083",
+        "layout.00083",
+        "2.8.0",
+        "layout.00083",
+        "Layout 00083",
+        "同编号卡片资源键 · rizcard.00083"
+      ],
+      "sortOrder": 290,
+      "facets": {}
+    },
+    {
+      "resourceId": "7039e5be-3769-753c-9417-b491c80da47a",
+      "resourceType": "rizcard-layout",
+      "displayTitle": "段位版式 001",
+      "metadata": {
+        "gameVersion": "2.8.0",
+        "layoutId": "layout.rank.001",
+        "layout": "段位版式 001",
+        "componentRelations": "同编号卡片资源键 · rizcard.rank.001"
+      },
+      "badges": [],
+      "searchTerms": [
+        "段位版式 001",
+        "layout.rank.001",
+        "2.8.0",
+        "layout.rank.001",
+        "段位版式 001",
+        "同编号卡片资源键 · rizcard.rank.001"
+      ],
+      "sortOrder": 291,
+      "facets": {}
+    },
+    {
+      "resourceId": "c77f8f52-ed6a-72b8-acb6-15c41f8c9f9e",
+      "resourceType": "rizcard-layout",
+      "displayTitle": "段位版式 002",
+      "metadata": {
+        "gameVersion": "2.8.0",
+        "layoutId": "layout.rank.002",
+        "layout": "段位版式 002",
+        "componentRelations": "同编号卡片资源键 · rizcard.rank.002"
+      },
+      "badges": [],
+      "searchTerms": [
+        "段位版式 002",
+        "layout.rank.002",
+        "2.8.0",
+        "layout.rank.002",
+        "段位版式 002",
+        "同编号卡片资源键 · rizcard.rank.002"
+      ],
+      "sortOrder": 292,
+      "facets": {}
+    },
+    {
+      "resourceId": "28d66c63-07b4-7fc0-9d81-6caa25edda72",
+      "resourceType": "rizcard-layout",
+      "displayTitle": "段位版式 003",
+      "metadata": {
+        "gameVersion": "2.8.0",
+        "layoutId": "layout.rank.003",
+        "layout": "段位版式 003",
+        "componentRelations": "同编号卡片资源键 · rizcard.rank.003"
+      },
+      "badges": [],
+      "searchTerms": [
+        "段位版式 003",
+        "layout.rank.003",
+        "2.8.0",
+        "layout.rank.003",
+        "段位版式 003",
+        "同编号卡片资源键 · rizcard.rank.003"
+      ],
+      "sortOrder": 293,
+      "facets": {}
+    },
+    {
+      "resourceId": "9b9a9144-fea9-781b-85ee-09e96ba31634",
+      "resourceType": "rizcard-layout",
+      "displayTitle": "段位版式 004",
+      "metadata": {
+        "gameVersion": "2.8.0",
+        "layoutId": "layout.rank.004",
+        "layout": "段位版式 004",
+        "componentRelations": "同编号卡片资源键 · rizcard.rank.004"
+      },
+      "badges": [],
+      "searchTerms": [
+        "段位版式 004",
+        "layout.rank.004",
+        "2.8.0",
+        "layout.rank.004",
+        "段位版式 004",
+        "同编号卡片资源键 · rizcard.rank.004"
+      ],
+      "sortOrder": 294,
+      "facets": {}
+    },
+    {
+      "resourceId": "6f3ae0c6-27ea-70e1-bc3d-746195ecce81",
+      "resourceType": "rizcard-layout",
+      "displayTitle": "段位版式 005",
+      "metadata": {
+        "gameVersion": "2.8.0",
+        "layoutId": "layout.rank.005",
+        "layout": "段位版式 005",
+        "componentRelations": "同编号卡片资源键 · rizcard.rank.005"
+      },
+      "badges": [],
+      "searchTerms": [
+        "段位版式 005",
+        "layout.rank.005",
+        "2.8.0",
+        "layout.rank.005",
+        "段位版式 005",
+        "同编号卡片资源键 · rizcard.rank.005"
+      ],
+      "sortOrder": 295,
+      "facets": {}
+    },
+    {
+      "resourceId": "64e31856-7552-7f84-a9ac-7623e9b4d80a",
+      "resourceType": "rizcard-layout",
+      "displayTitle": "段位版式 006",
+      "metadata": {
+        "gameVersion": "2.8.0",
+        "layoutId": "layout.rank.006",
+        "layout": "段位版式 006",
+        "componentRelations": "同编号卡片资源键 · rizcard.rank.006"
+      },
+      "badges": [],
+      "searchTerms": [
+        "段位版式 006",
+        "layout.rank.006",
+        "2.8.0",
+        "layout.rank.006",
+        "段位版式 006",
+        "同编号卡片资源键 · rizcard.rank.006"
+      ],
+      "sortOrder": 296,
+      "facets": {}
+    },
+    {
+      "resourceId": "f935fd02-fabf-7cec-ba80-cfe40c59b526",
+      "resourceType": "rizcard-layout",
+      "displayTitle": "段位版式 007",
+      "metadata": {
+        "gameVersion": "2.8.0",
+        "layoutId": "layout.rank.007",
+        "layout": "段位版式 007",
+        "componentRelations": "同编号卡片资源键 · rizcard.rank.007"
+      },
+      "badges": [],
+      "searchTerms": [
+        "段位版式 007",
+        "layout.rank.007",
+        "2.8.0",
+        "layout.rank.007",
+        "段位版式 007",
+        "同编号卡片资源键 · rizcard.rank.007"
+      ],
+      "sortOrder": 297,
+      "facets": {}
+    },
+    {
+      "resourceId": "b63714c4-7657-7ee3-adda-1bfb4cec5847",
+      "resourceType": "rizcard-layout",
+      "displayTitle": "段位版式 008",
+      "metadata": {
+        "gameVersion": "2.8.0",
+        "layoutId": "layout.rank.008",
+        "layout": "段位版式 008",
+        "componentRelations": "同编号卡片资源键 · rizcard.rank.008"
+      },
+      "badges": [],
+      "searchTerms": [
+        "段位版式 008",
+        "layout.rank.008",
+        "2.8.0",
+        "layout.rank.008",
+        "段位版式 008",
+        "同编号卡片资源键 · rizcard.rank.008"
+      ],
+      "sortOrder": 298,
       "facets": {}
     }
   ]

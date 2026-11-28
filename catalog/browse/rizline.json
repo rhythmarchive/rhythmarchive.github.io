@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "game": "rizline",
-  "generatedAt": "2026-11-20T10:22:49.933Z",
+  "generatedAt": "2026-11-28T08:12:32.164Z",
   "source": {
     "version": "v146_2_8_0_fda1c11c76P",
     "sha256": "15515bb3d743b39558c3dfb3930fae91157204e5723a5711b55a739436616250"
@@ -4175,10 +4175,42 @@
         "Disc Δ",
         "篇章 - 边际线"
       ]
+    },
+    {
+      "songId": "ConneC.SaltySalt.0",
+      "displayTitle": "Con::neC",
+      "musicArtist": "Salty Salt",
+      "illustrator": "群青kurara feat. Jimwaz",
+      "disc": "Disc Δ",
+      "trackSeries": [],
+      "artworks": [
+        {
+          "artworkId": "rizline:illustration:ConneC.SaltySalt.0__hires",
+          "resourceId": "99c2e913-a3f2-7dd2-9acd-93592a178ff7",
+          "variantId": "29169607-79bf-77f9-ac9b-51a08de102d5",
+          "variantKey": "default",
+          "preferred": true
+        },
+        {
+          "artworkId": "rizline:illustration:ConneC.SaltySalt.0__normal",
+          "resourceId": "99c2e913-a3f2-7dd2-9acd-93592a178ff7",
+          "variantId": "cafe1208-ee8d-7767-8f40-b4a9aa9f5f17",
+          "variantKey": "normal",
+          "preferred": false
+        }
+      ],
+      "searchTerms": [
+        "Con::neC",
+        "ConneC.SaltySalt.0",
+        "Salty Salt",
+        "群青kurara feat. Jimwaz",
+        "Disc Δ",
+        "篇章 - 边际线"
+      ]
     }
   ],
   "recordCounts": {
-    "songs": 156,
-    "artworks": 159
+    "songs": 157,
+    "artworks": 161
   }
 }

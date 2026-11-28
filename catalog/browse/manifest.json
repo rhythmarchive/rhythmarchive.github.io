@@ -31,10 +31,10 @@
     "rizline": {
       "sourceVersion": "v146_2_8_0_fda1c11c76P",
       "sourceSha256": "15515bb3d743b39558c3dfb3930fae91157204e5723a5711b55a739436616250",
-      "fileSha256": "cf8cc0d52b0ce517ad9d91879e1b3beadc651602bd2093b338eb080d960930ae",
+      "fileSha256": "c76d149f28ee6aa15d42d1f60353440eb6f65fbc2101da7a7a449e92d302e6a1",
       "recordCounts": {
-        "songs": 156,
-        "artworks": 159
+        "songs": 157,
+        "artworks": 161
       }
     },
     "infalsus": {
@@ -58,8 +58,8 @@
   },
   "catalog": {
     "catalogId": "019fefd6-9c49-7ca0-a760-adc76811a511",
-    "catalogSha256": "3c6dd54ca1208493bffab2b3ba7c416aa60c5e85348d658c6b6662e42d96f3b9",
-    "catalogGeneratedAt": "2026-11-28T07:45:16.723Z"
+    "catalogSha256": "b9ccb71eed5d0c53234e3dec3ece3f4546614a3ea7c66d0798bf9332888b2383",
+    "catalogGeneratedAt": "2026-11-28T08:12:32.164Z"
   },
   "files": {
     "arcaea": "arcaea.json",
