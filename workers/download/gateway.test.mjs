@@ -64,3 +64,23 @@ test('client bursts are limited per object, with no change to cache hits', async
   assert.deepEqual(calls, [`192.0.2.3:${key}`, `192.0.2.3:${key}`]);
   assert.equal(reads, 1);
 });
+
+test('a cache failure falls through to R2 and distinguishes storage errors', async t => {
+  const key = Object.keys(copies).find(key => key.endsWith('/jpg'));
+  Object.defineProperty(globalThis, 'caches', { value: { default: {
+    match: async () => { throw Error('cache unavailable'); },
+  } }, configurable: true });
+  t.after(() => { delete globalThis.caches; });
+  const logs = t.mock.method(console, 'warn', () => {});
+  const success = await send(key, { FILES: storage(copies[key], 'image/jpeg') });
+  assert.equal(success.status, 200);
+  assert.equal(success.headers.get('X-Archive-Cache'), 'MISS');
+  const failure = await send(key, { FILES: { get: async () => { throw Error('upstream failed'); } } });
+  assert.equal(failure.status, 503);
+  assert.equal(failure.headers.get('X-Archive-Error'), 'r2_read');
+  assert.equal(failure.headers.get('Cache-Control'), 'no-store');
+  const missing = await send(key, { FILES: { get: async () => null } });
+  assert.equal(missing.status, 404);
+  assert.equal(missing.headers.get('X-Archive-Error'), 'mirror_missing');
+  assert.deepEqual(logs.mock.calls.map(call => call.arguments[1]), ['cache_read', 'cache_read', 'r2_read', 'cache_read', 'mirror_missing']);
+});

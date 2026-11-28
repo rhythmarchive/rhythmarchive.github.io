@@ -237,8 +237,10 @@ export function changeKind(previous: Observation, current: Observation): string 
 }
 
 function compareNumericVersion(left: string, right: string): number | null {
-  if (!/^\d+(?:\.\d+)*$/.test(left) || !/^\d+(?:\.\d+)*$/.test(right)) return null;
-  const a = left.split('.').map(Number), b = right.split('.').map(Number);
+  const numberAndChannel = /^(\d+(?:\.\d+)*)([a-z]?)$/i;
+  const l = numberAndChannel.exec(left), r = numberAndChannel.exec(right);
+  if (!l || !r || l[2]?.toLowerCase() !== r[2]?.toLowerCase()) return null;
+  const a = l[1]!.split('.').map(Number), b = r[1]!.split('.').map(Number);
   for (let i = 0; i < Math.max(a.length, b.length); i++) {
     const delta = (a[i] ?? 0) - (b[i] ?? 0); if (delta) return Math.sign(delta);
   }

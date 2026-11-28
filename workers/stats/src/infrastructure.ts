@@ -10,6 +10,10 @@ const stamp = (v: string | null | undefined) =>
 const nextMonth = (t: number) =>
   Date.UTC(new Date(t).getUTCFullYear(), new Date(t).getUTCMonth() + 1, 1);
 type GatewayRequests = { total: number; limited: number; clientErrors: number; serverErrors: number };
+type GatewayWindow = {
+  day: string; start: string; endExclusive: string; source: "zone-graphql" | "account-sql" | null;
+  statusCounts: Record<string, number> | null; hourlyServerErrors: Record<string, number> | null;
+};
 type Sample = {
   day: string;
   observedAt: string;
@@ -24,7 +28,10 @@ type Sample = {
   r2DownlinkBytes?: number | null;
   gatewayDownlinkBytes?: number | null;
   gatewayRequests?: GatewayRequests | null;
-  lastInvoice: { amount: number; currency: string; at: string } | null;
+  gatewayWindow?: GatewayWindow;
+  gatewayOutcomes?: Record<string, { requests: number; errors: number }> | null;
+  gbMonthCoverage?: { observedDays: number; elapsedDays: number; observedGBMonth: number };
+  lastInvoice: { amount: number; currency: string; at: string; scope?: "account" } | null;
   errors: Record<string, string>;
 };
 // Only the dedicated production collector can submit observations. This endpoint does not grant budget.
@@ -61,6 +68,18 @@ export async function saveSample(db: D1Database, body: string, now: number) {
   const gateway = s.gatewayRequests;
   if (gateway != null && (![gateway.total, gateway.limited, gateway.clientErrors, gateway.serverErrors].every(nonNegativeInteger) ||
     gateway.limited + gateway.clientErrors + gateway.serverErrors > gateway.total)) return false;
+  const window = s.gatewayWindow;
+  if (window) {
+    const start = Date.parse(window.day + "T00:00:00+08:00");
+    if (!Number.isFinite(start) || window.start !== iso(start) || window.endExclusive !== iso(start + DAY) ||
+      start + DAY > Date.parse(s.observedAt) || ![null, "zone-graphql", "account-sql"].includes(window.source) ||
+      Boolean(window.statusCounts) !== Boolean(gateway)) return false;
+    const statuses = Object.entries(window.statusCounts ?? {});
+    if (statuses.some(([code, count]) => !/^(?:0|[1-5]\d{2})$/.test(code) || !nonNegativeInteger(count)) ||
+      (gateway && statuses.reduce((sum, [, count]) => sum + count, 0) !== gateway.total)) return false;
+    if (Object.entries(window.hourlyServerErrors ?? {}).some(([hour, count]) =>
+      !(Date.parse(hour) >= start && Date.parse(hour) < start + DAY) || !nonNegativeInteger(count))) return false;
+  }
   await db.prepare(
     "CREATE TABLE IF NOT EXISTS infrastructure_samples(day TEXT PRIMARY KEY,payload TEXT NOT NULL) WITHOUT ROWID",
   ).run();
@@ -163,6 +182,44 @@ function rosData(r: RosReport | undefined) {
     total: x.planBandwidth * 2 ** 30,
   };
 }
+type RosPoint = NonNullable<ReturnType<typeof rosData>>;
+// First production R2/ROS rollout without the read budget (Pages run 45970363210).
+const R2_ROLLOUT = Date.parse("2026-11-27T09:08:16Z");
+
+export function rosForecast(current: RosPoint, history: RosPoint[]) {
+  const { at, start, reset, used, total } = current;
+  const cyclePerDay = at > start ? (used * DAY) / (at - start) : null;
+  const remaining = Math.max(0, total - used);
+  const allowedPerDay = (remaining * DAY) / (reset - at);
+  const candidates = history.filter(p => p.start === start && p.reset === reset && p.total === total &&
+    p.at >= R2_ROLLOUT && p.at >= at - 7 * DAY && p.at < at).sort((a, b) => b.at - a.at);
+  let oldest = current, intervals = 0;
+  for (const point of candidates) {
+    const duration = oldest.at - point.at;
+    if (duration < DAY / 2) continue;
+    if (duration > DAY * 2 || point.used > oldest.used) break;
+    oldest = point;
+    intervals++;
+  }
+  const spanDays = (at - oldest.at) / DAY;
+  const recentPerDay = intervals ? (used - oldest.used) / spanDays : null;
+  const confidence = intervals >= 2 && spanDays >= 2 ? "recent" : "insufficient";
+  return { confidence, intervals, spanDays, cyclePerDay, allowedPerDay, recentPerDay,
+    selectedPerDay: confidence === "recent" ? recentPerDay : cyclePerDay };
+}
+
+async function readRosHistory(db: D1Database | undefined, reportDay: string | undefined): Promise<RosPoint[]> {
+  if (!db || !reportDay) return [];
+  try {
+    const rows = await db.prepare(`SELECT json_extract(snapshot_json,'$.ros') AS ros FROM daily_operations_reports
+      WHERE report_date>=date(?,'-7 days') AND report_date<? AND snapshot_json<>''
+      ORDER BY report_date DESC LIMIT 7`).bind(reportDay, reportDay).all<{ ros: string | null }>();
+    return (rows.results ?? []).flatMap(row => {
+      try { const point = rosData(row.ros ? JSON.parse(row.ros) : undefined); return point ? [point] : []; }
+      catch { return []; }
+    });
+  } catch { return []; }
+}
 export function estimateStandardR2Cost(sample?: Pick<Sample, 'ops' | 'gbMonth'>): number | null {
   if (!sample?.ops || !valid(sample.gbMonth)) return null;
   const billed = (used: number, included: number, unit = 1) => Math.ceil(Math.max(0, used - included) / unit);
@@ -174,6 +231,8 @@ export async function infrastructure(
   db: D1Database | undefined,
   now: number,
   r: RosReport,
+  reportDay?: string,
+  statsDb?: D1Database,
 ) {
   const [s, prev] = await samples(db),
     t = Date.parse(s?.observedAt ?? "") || now,
@@ -188,6 +247,7 @@ export async function infrastructure(
   const monthly = a?.day.slice(0, 7) === prev?.day.slice(0, 7),
     x = rosData(r),
     live = x && now + 60000 >= x.at && now - x.at < 2 * 3600000 ? x : null;
+  const forecast = live ? rosForecast(live, await readRosHistory(statsDb, reportDay)) : null;
   const metrics = [
     metric(
       "Workers 请求",
@@ -267,9 +327,7 @@ export async function infrastructure(
       x?.total ?? null,
       x?.at ?? now,
       x?.reset ?? null,
-      live && live.at > live.start
-        ? (live.used * DAY) / (live.at - live.start)
-        : null,
+      forecast?.selectedPerDay ?? null,
     ),
     metric("R2 桶读取操作", "次", "项目桶 Analytics，UTC 当日累计", a?.r2BucketOps?.reads, null, t, end),
     metric("R2 桶写入操作", "次", "项目桶 Analytics，UTC 当日累计", a?.r2BucketOps?.writes, null, t, end),
@@ -277,7 +335,16 @@ export async function infrastructure(
   const advice = metrics
     .filter((v) => v.early || ["关注", "警告", "严重警告"].includes(v.risk))
     .map((v) => `${v.label}：${v.risk}${v.early ? "，预计重置前耗尽" : ""}`);
-  const gateway = a?.gatewayRequests;
+  const gatewaySample = [s, prev].find(sample => sample?.gatewayWindow?.day === reportDay && sample?.gatewayWindow);
+  const gateway = gatewaySample?.gatewayRequests ?? (!s?.gatewayWindow ? a?.gatewayRequests : null);
+  const collectionErrors = { ...(s?.errors ?? { snapshot: "未采集" }) };
+  if (s?.gatewayWindow && s !== gatewaySample) {
+    for (const key of ["gateway", "gatewayHourly", "gatewayOutcomes"]) {
+      delete collectionErrors[key];
+      if (gatewaySample?.errors[key]) collectionErrors[key] = gatewaySample.errors[key];
+    }
+  }
+  if (forecast?.confidence === "insufficient") advice.push("ROS 迁移后有效样本不足，暂按本周期均速提示风险。");
   if (gateway?.limited) advice.push("下载网关出现 429 响应，请核对限速是否影响播放或续传。");
   if (gateway && gateway.serverErrors >= 20 && gateway.serverErrors / gateway.total >= 0.05) {
     advice.push("下载网关 5xx 响应比例偏高，请检查下载服务。");
@@ -291,11 +358,18 @@ export async function infrastructure(
   return {
     metrics,
     advice,
-    collectionErrors: s?.errors ?? { snapshot: "未采集" },
+    collectionErrors,
     unclassifiedR2Operations: a?.ops?.unclassified ?? null,
     confirmedInvoice: a?.lastInvoice ?? null,
+    rosForecast: forecast,
+    collection: { observedAt: s?.observedAt ?? null, state: !s ? "missing" : fresh ? "fresh" : "stale",
+      utcDay: s?.day ?? null },
     r2: { estimatedCostUsd, ops: ops ?? null, downlinkBytes: a?.r2DownlinkBytes ?? null,
-      gatewayDownlinkBytes: a?.gatewayDownlinkBytes ?? null, gatewayRequests: gateway ?? null },
+      gbMonthCoverage: a?.gbMonthCoverage ?? null,
+      gatewayDownlinkBytes: gatewaySample?.gatewayDownlinkBytes ?? (!s?.gatewayWindow ? a?.gatewayDownlinkBytes ?? null : null),
+      gatewayRequests: gateway ?? null,
+      gatewayWindow: gatewaySample?.gatewayWindow ?? null, gatewayObservedAt: gatewaySample?.observedAt ?? null,
+      gatewayOutcomes: gatewaySample?.gatewayOutcomes ?? null },
   };
 }
 export function formatInfra(v: Awaited<ReturnType<typeof infrastructure>>) {
@@ -303,9 +377,11 @@ export function formatInfra(v: Awaited<ReturnType<typeof infrastructure>>) {
     n == null
       ? "未知"
       : n.toLocaleString("zh-CN", { maximumFractionDigits: 3 });
+  const gib = (bytes: number | null) => bytes === null ? "未知" : fmt(bytes / 2 ** 30);
   return [
     "",
-    "基础设施用量与费用（UTC，额度仅供观察）",
+    "基础设施用量与费用",
+    `Cloudflare 额度按 UTC 统计。采集时间 ${v.collection?.observedAt ?? "未知"}，状态 ${v.collection?.state === "fresh" ? "近期采集" : v.collection?.state === "stale" ? "采集过期" : "未采集"}。上游指标可能有延迟。`,
     ...v.metrics.map(
       (m) =>
         `${m.label}：${fmt(m.used)} ${m.unit}${m.total === null ? "" : ` / ${fmt(m.total)}（${fmt(m.percent)}%，${m.risk}）`}。采样 ${m.asOf}。${m.scope}${m.resetAt ? `。重置 ${m.resetAt}` : ""}`,
@@ -313,9 +389,16 @@ export function formatInfra(v: Awaited<ReturnType<typeof infrastructure>>) {
     `R2 项目桶下行（Cloudflare 带宽采样）：${fmt(v.r2?.downlinkBytes)} B。下载网关下行（含边缘缓存）：${fmt(v.r2?.gatewayDownlinkBytes)} B。`,
     `R2 项目桶请求：${fmt(v.r2?.ops?.total)} 次，失败 ${fmt(v.r2?.ops?.failed)} 次，状态未分类 ${fmt(v.r2?.ops?.unknown)} 次。`,
     `下载网关请求：${fmt(v.r2?.gatewayRequests?.total)} 次，429 ${fmt(v.r2?.gatewayRequests?.limited)} 次，其他 4xx ${fmt(v.r2?.gatewayRequests?.clientErrors)} 次，5xx ${fmt(v.r2?.gatewayRequests?.serverErrors)} 次。`,
+    ...(v.r2?.gatewayWindow ? [
+      `下载网关统计区间：${v.r2.gatewayWindow.start} 至 ${v.r2.gatewayWindow.endExclusive}（对应北京时间运营日，左闭右开）。采集 ${v.r2.gatewayObservedAt}，来源 ${v.r2.gatewayWindow.source ?? "未知"}。`,
+      `分状态码：${v.r2.gatewayWindow.statusCounts ? JSON.stringify(v.r2.gatewayWindow.statusCounts) : "未知"}。分小时 5xx（UTC）：${v.r2.gatewayWindow.hourlyServerErrors ? JSON.stringify(v.r2.gatewayWindow.hourlyServerErrors) : "未知"}。`,
+      `Worker 执行结果（与边缘 HTTP 状态分别统计）：${v.r2.gatewayOutcomes ? JSON.stringify(v.r2.gatewayOutcomes) : "未知"}。`,
+    ] : [v.r2?.gatewayRequests ? "旧版网关快照使用采集日 UTC 零点至查询时刻，无法按北京时间运营日对齐。" : "当前运营日的网关采样不可用。"]),
+    ...(v.rosForecast ? [`ROS 速率（GiB/日）：周期 ${gib(v.rosForecast.cyclePerDay)}，迁移后 ${gib(v.rosForecast.recentPerDay)}，剩余周期可用日均 ${gib(v.rosForecast.allowedPerDay)}。有效间隔 ${v.rosForecast.intervals}，覆盖 ${fmt(v.rosForecast.spanDays)} 天。`] : []),
     `R2 直接下行费用：0 USD。`,
     `R2 月内已分类用量按 Standard 费率折算：${fmt(v.r2?.estimatedCostUsd)} USD。未分类操作：${fmt(v.unclassifiedR2Operations)} 次。估算不含税费及其他存储类型。`,
-    `最近已核实账项：${v.confirmedInvoice ? JSON.stringify(v.confirmedInvoice) : "未知"}。`,
+    ...(v.r2?.gbMonthCoverage ? [`R2 月内日峰值覆盖 ${v.r2.gbMonthCoverage.observedDays}/${v.r2.gbMonthCoverage.elapsedDays} 天，已有样本折算 ${fmt(v.r2.gbMonthCoverage.observedGBMonth)} GB-month。`] : []),
+    `最近已核实账项${v.confirmedInvoice?.scope === "account" ? "（Cloudflare 账户，含其他服务）" : ""}：${v.confirmedInvoice ? JSON.stringify(v.confirmedInvoice) : "未知"}。`,
     ...Object.entries(v.collectionErrors ?? {}).map(([source, reason]) => `采集状态 ${source}：${reason}`),
     ...v.advice,
   ];

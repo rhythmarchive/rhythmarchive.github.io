@@ -57,3 +57,11 @@ Worker 的 action 校验与 Pages 客户端需要配套上线。旧客户端不�
 主分支 Pages 使用 change-aware 检查。只有生成的 public-resource-registry.ts 实际变化、Worker 代码/配置变化或共享 UUID 运行代码变化才部署 Worker。Catalog 时间戳、Updates、Browse 排序、页面样式不会触发。registry-only 只验证数据，不重跑 Worker 业务测试。部署后 /health.registryHash 必须匹配生成的 SHA-256，然后发布 Pages。publishedAt 不从部署时间回写。
 
 Pages 工作流的 build job 使用 `stats-production` Environment。请将该 Environment 的部署分支限制为 `main`，并把 `CLOUDFLARE_API_TOKEN` 保存为 Environment Secret；不要保留仓库级同名 Secret。Token 需能编辑 Stats Worker，并管理 `rhythmarchive.top` 区域中的 `api.rhythmarchive.top` Custom Domain。将 `CLOUDFLARE_ACCOUNT_ID` 和 `PUBLIC_STATS_API_URL` 保存为仓库 Variables。手动重发 Worker 时，只允许从 `main` 的 `workflow_dispatch` 勾选 `deploy_stats_worker`。
+
+## 下载网关与基础设施日报
+
+网关边缘响应按北京时间运营日汇总，状态码和 UTC 分小时 5xx 来自 Cloudflare 区域采样。Worker 执行结果来自账户 Analytics，排除平台预览流量，口径独立于边缘 HTTP 状态。受控复查和普通访问可同时出现在公开主机的边缘统计中。网关失败响应的 `X-Archive-Error` 与实时日志使用同一原因码。旧快照覆盖采集日 UTC 零点至查询时刻。
+
+Workers、D1 和 R2 的额度仍按 UTC 周期展示。D1 清单使用现有只读凭据，缺少清单权限时采用近 24 小时可观测的按库峰值。若需要完整清单，优先使用账户的 D1 Metadata Read。账户历史账项读取需要 Billing Read。缺失账单时，R2 的 Standard 折算和峰值覆盖仍单独提供。
+
+ROS 预测复用过去七天正式报告中的套餐累计值。迁移后至少有两个有效间隔并覆盖两天时使用近期速率。此前保留周期均速风险，并展示剩余额度允许的日均流量。私有报告 GET 预览默认返回 JSON，`Accept: text/plain` 会返回正文及同一份内嵌 JSON。手动运行 Infrastructure quota snapshot 可读回预览，无需发送邮件。

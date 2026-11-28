@@ -124,6 +124,35 @@ test("batch failure aborts in-flight transfers and never starts queued ROS downl
   assert.equal(statuses.at(-1), "下载失败，请重试");
 });
 
+test("batch retries an interrupted R2 body and tracks only completed ROS bytes", async (t) => {
+  const realFetch = globalThis.fetch;
+  const ui = browser(t), requests: string[] = [], tracked: unknown[] = [];
+  window.__rhythmArchiveStatsClient!.trackResourceDownload = async (id, delivery) => {
+    tracked.push([id, delivery]);
+    return undefined;
+  };
+  const r2 = "https://dl.rhythmarchive.top/r2", ros = "https://assets.test/backup";
+  t.mock.method(globalThis, "fetch", async (url: string) => {
+    requests.push(url);
+    if (url === ros) return new Response(new Uint8Array([4, 5, 6]));
+    let sent = false;
+    return new Response(new ReadableStream({
+      pull(controller) {
+        if (sent) controller.error(new TypeError("connection lost"));
+        else { sent = true; controller.enqueue(new Uint8Array([1, 2])); }
+      },
+    }));
+  });
+  await downloadSelectedBatch({ selectedIds: ["a"], getResource: id => ({
+    resourceId: id, route: "/", displayTitle: id, preview: { small: null, medium: null, large: null },
+    original: { url: r2, fallbackUrl: ros, downloadFilename: "a.png", sizeBytes: 3, mime: "image/png" },
+  }), preferUpscaled: false, filename: "batch.zip", setStatus: () => undefined });
+  assert.deepEqual(requests, [r2, ros]);
+  const zip = unzipSync(new Uint8Array(await (await realFetch(ui.archiveUrl())).arrayBuffer()));
+  assert.deepEqual([...zip["a.png"]!], [4, 5, 6]);
+  assert.deepEqual(tracked, [["a", { automatic: true, source: "ros", bytes: 3 }]]);
+});
+
 test("download HTTP failures are not retried as direct links; network fallback preserves Referer", async (t) => {
   const ui = browser(t), status = { textContent: "" };
   const button = { dataset: { downloadUrl: "https://assets.test/file", downloadFilename: "file.png", resourceId: "a" }, innerHTML: "下载", disabled: false,

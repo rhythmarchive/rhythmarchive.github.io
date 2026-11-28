@@ -3,7 +3,7 @@ import { reconcileList, setSurfaceVisible } from "./motion";
 import { zipSync } from "fflate";
 import { DownloadHttpError, reportDownloadFailure } from "../lib/resource-reports-client";
 import { fetchDownload } from "../lib/download-source";
-import { DOWNLOAD_CONCURRENCY, MAX_BATCH_BYTES, MAX_BATCH_FILES, readResponseBytesWithinLimit, toggleBatchSelection, uniqueZipFilename, type BatchResource } from "../lib/batch";
+import { DownloadStreamError, DOWNLOAD_CONCURRENCY, MAX_BATCH_BYTES, MAX_BATCH_FILES, readResponseBytesWithinLimit, toggleBatchSelection, uniqueZipFilename, type BatchResource } from "../lib/batch";
 import { getBrowserStatsClient } from "../lib/stats-client";
 import { sitePath } from "../lib/url";
 import type { PublicDownload, PublicSearchImage } from "../lib/types";
@@ -391,6 +391,7 @@ export async function downloadSelectedBatch(options: {
   const page = pageSignal();
   const signal = AbortSignal.any([controller.signal, page, ...(options.signal ? [options.signal] : [])]);
   const automaticBackups = new Set<string>();
+  const actualSizes = new Map<string, number>();
   const objects = new Map<string, Promise<Uint8Array>>();
   options.setStatus("正在准备 0 / " + items.length);
   try {
@@ -399,13 +400,31 @@ export async function downloadSelectedBatch(options: {
       let bytes = objects.get(download.url);
       if (!bytes) {
         bytes = (async () => {
-          const {response, automatic} = await fetchDownload(download.url,download.fallbackUrl,signal);
-          if(automatic) automaticBackups.add(download.url);
-          if (!response.ok) throw new DownloadHttpError(response.status);
-          return await readResponseBytesWithinLimit(response, MAX_BATCH_BYTES - downloadedBytes, (size) => {
-            if (downloadedBytes + size > MAX_BATCH_BYTES) throw new Error("batch download exceeds the maximum size");
-            downloadedBytes += size;
+          const { response, automatic } = await fetchDownload(download.url, download.fallbackUrl, signal);
+          const read = async (response: Response) => {
+            if (!response.ok) throw new DownloadHttpError(response.status);
+            let received = 0;
+            try {
+              return await readResponseBytesWithinLimit(response, MAX_BATCH_BYTES - downloadedBytes, (size) => {
+                signal.throwIfAborted();
+                if (downloadedBytes + size > MAX_BATCH_BYTES) throw new Error("batch download exceeds the maximum size");
+                downloadedBytes += size;
+                received += size;
+              });
+            } catch (error) {
+              downloadedBytes -= received;
+              throw error;
+            }
+          };
+          if (automatic) automaticBackups.add(download.url);
+          const data = await read(response).catch(async (error) => {
+            signal.throwIfAborted();
+            if (!(error instanceof DownloadStreamError) || automatic || !download.fallbackUrl) throw error;
+            automaticBackups.add(download.url);
+            return read((await fetchDownload(download.fallbackUrl, undefined, signal)).response);
           });
+          actualSizes.set(download.url, data.byteLength);
+          return data;
         })().catch((error) => {
           if (!signal.aborted) reportDownloadFailure(resource.resourceId, error);
           controller.abort(); throw error;
@@ -422,7 +441,7 @@ export async function downloadSelectedBatch(options: {
     const objectUrl = URL.createObjectURL(new Blob([archive], { type: "application/zip" }));
     triggerDownload(objectUrl, options.filename);
     const statsClient = getBrowserStatsClient();
-    for (const item of items) void statsClient.trackResourceDownload(item.resource.resourceId, { automatic: automaticBackups.has(item.download.url), source: !automaticBackups.has(item.download.url) && new URL(item.download.url).hostname === "dl.rhythmarchive.top" ? "r2" : "ros", bytes: item.download.sizeBytes });
+    for (const item of items) void statsClient.trackResourceDownload(item.resource.resourceId, { automatic: automaticBackups.has(item.download.url), source: !automaticBackups.has(item.download.url) && new URL(item.download.url).hostname === "dl.rhythmarchive.top" ? "r2" : "ros", bytes: actualSizes.get(item.download.url) ?? item.download.sizeBytes });
     window.setTimeout(() => URL.revokeObjectURL(objectUrl), 1000);
     options.setStatus("已开始下载");
   } catch (error) {

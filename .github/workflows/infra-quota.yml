@@ -28,16 +28,19 @@ jobs:
           REPORT_TOKEN: ${{ secrets.UPDATE_REMINDER_ADMIN_TOKEN }}
         run: |
           node --input-type=module <<'NODE'
-          const day=new Date(Date.now()-86400000).toISOString().slice(0,10);
-          const r=await fetch('https://api.rhythmarchive.top/v1/admin/operations/reports/'+day,{redirect:'error',headers:{Authorization:'Bearer '+process.env.REPORT_TOKEN}});
+          const day=new Date(Date.now()+8*3600000-86400000).toISOString().slice(0,10);
+          const r=await fetch('https://api.rhythmarchive.top/v1/admin/operations/reports/'+day,{redirect:'error',headers:{Authorization:'Bearer '+process.env.REPORT_TOKEN,Accept:'text/plain'}});
           if(!r.ok) throw Error('Preview HTTP '+r.status);
-          const i=(await r.json()).report?.infrastructure;
+          const body=await r.text();
+          const json=body.split('\nBEGIN_RHYTHM_ARCHIVE_REPORT_JSON\n')[1]?.split('\nEND_RHYTHM_ARCHIVE_REPORT_JSON')[0];
+          if(!json || !body.includes(day) || !body.includes('下载网关统计区间')) throw Error('Missing preview text or JSON');
+          const i=JSON.parse(json).infrastructure;
           if(!i?.metrics?.some(m=>m.label==='R2 项目容量') || !i.r2 || !Object.hasOwn(i.r2,'gatewayRequests')) throw Error('Dual-storage report fields unavailable');
           for(const key of ['ops','estimatedCostUsd','downlinkBytes','gatewayDownlinkBytes','gatewayRequests']) console.log(key,i.r2[key]===null?'unknown':'available');
           for(const [key,error] of Object.entries(i.collectionErrors ?? {})) console.log(key,error);
           for(const m of i.metrics) console.log(m.label,m.used===null?'unknown':'available',m.risk);
           const capacity=i.metrics.find(m=>m.label==='R2 项目容量');
-          if(capacity.used===null || Date.now()-Date.parse(capacity.asOf)>26*3600000 || i.r2.ops===null || i.r2.gatewayRequests===null || i.r2.estimatedCostUsd===null) {
-            throw Error('Fresh R2 capacity, cost estimate, bucket operations or gateway request counts unavailable');
+          if(capacity.used===null || Date.now()-Date.parse(capacity.asOf)>26*3600000 || i.r2.ops===null || i.r2.gatewayRequests===null || i.r2.gatewayWindow?.day!==day) {
+            throw Error('Fresh R2 capacity, bucket operations or aligned gateway request counts unavailable');
           }
           NODE

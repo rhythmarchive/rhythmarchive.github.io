@@ -9,6 +9,10 @@ const base = `/accounts/${id}`,
   day = iso.slice(0, 10),
   month = day.slice(0, 7) + "-01";
 const sample = { observedAt: iso, day, errors: {} };
+const DAY = 86_400_000;
+const beijingDay = new Date(+now + 8 * 3_600_000 - DAY).toISOString().slice(0, 10);
+const gatewayStart = new Date(Date.parse(beijingDay + "T00:00:00+08:00")).toISOString();
+const gatewayEnd = new Date(Date.parse(gatewayStart) + DAY).toISOString();
 async function api(path, body, token = read) {
   const r = await fetch("https://api.cloudflare.com/client/v4" + path, {
     method: body ? "POST" : "GET",
@@ -144,15 +148,22 @@ sample.r2DownlinkBytes = await get("r2DownlinkBytes", async () => {
 });
 const gateway = await get("gateway", async () => {
   const zoneToken = process.env.ZONE_ANALYTICS_TOKEN;
-  let rows;
+  let rows, hourly = false;
   if (zoneToken) {
     const zone = (await api("/zones?name=rhythmarchive.top")).result?.[0];
     if (!/^[a-f0-9]{32}$/.test(zone?.id ?? "")) throw Error("zone unavailable");
-    const query = `{viewer{zones(filter:{zoneTag:"${zone.id}"}){rows:httpRequestsAdaptiveGroups(limit:500,filter:{${daily},clientRequestHTTPHost:"dl.rhythmarchive.top",requestSource:"eyeball"}){count dimensions{edgeResponseStatus} sum{edgeResponseBytes}}}}}`;
-    const result = await api("/graphql", { query }, zoneToken);
-    rows = result.data?.viewer?.zones?.[0]?.rows?.map(({ count, dimensions, sum }) => ({
-      status: dimensions.edgeResponseStatus, requests: count, bytes: sum.edgeResponseBytes,
-    }));
+    const zoneRows = async (groupByHour) => {
+      const query = `{viewer{zones(filter:{zoneTag:"${zone.id}"}){rows:httpRequestsAdaptiveGroups(limit:500,filter:{datetime_geq:"${gatewayStart}",datetime_lt:"${gatewayEnd}",clientRequestHTTPHost:"dl.rhythmarchive.top",requestSource:"eyeball"}){count dimensions{edgeResponseStatus${groupByHour ? " datetimeHour" : ""}} sum{edgeResponseBytes}}}}}`;
+      const result = await api("/graphql", { query }, zoneToken);
+      const rows = result.data?.viewer?.zones?.[0]?.rows;
+      if (!Array.isArray(rows) || !rows.length || rows.length >= 500) throw Error("missing or truncated gateway samples");
+      return rows.map(({ count, dimensions, sum }) => ({
+        status: dimensions.edgeResponseStatus, hour: dimensions.datetimeHour, requests: count, bytes: sum.edgeResponseBytes,
+      }));
+    };
+    rows = await get("gatewayHourly", () => zoneRows(true));
+    hourly = rows !== null;
+    if (!rows) rows = await zoneRows(false);
   } else {
     const result = await api("/analytics/sql", {
       query: `SELECT edgeResponseStatus AS status, COUNT(*) AS requests, SUM(edgeResponseBytes) AS bytes
@@ -160,27 +171,43 @@ const gateway = await get("gateway", async () => {
         WHERE accountTag = $account AND clientRequestHttpHost = $host
           AND timestamp >= $start AND timestamp < $end
         GROUP BY edgeResponseStatus LIMIT 500`,
-      params: { account: id, host: "dl.rhythmarchive.top", start: `${day}T00:00:00Z`, end: iso },
+      params: { account: id, host: "dl.rhythmarchive.top", start: gatewayStart, end: gatewayEnd },
     });
     rows = result.data;
   }
-  if (!Array.isArray(rows) || rows.length >= 500) throw Error("missing or truncated gateway samples");
+  if (!Array.isArray(rows) || !rows.length || rows.length >= 500) throw Error("missing or truncated gateway samples");
   const counts = { total: 0, limited: 0, clientErrors: 0, serverErrors: 0 };
+  const statuses = {};
+  const hours = {};
   let bytes = 0;
   const counter = value => n(typeof value === "string" && /^\d+$/.test(value) ? Number(value) : value);
   for (const row of rows) {
     const status = counter(row.status);
+    if (status !== 0 && (status < 100 || status > 599)) throw Error("invalid HTTP status");
     const requests = counter(row.requests);
+    statuses[status] = (statuses[status] ?? 0) + requests;
     bytes += counter(row.bytes);
     counts.total += requests;
     if (status === 429) counts.limited += requests;
     else if (status >= 400 && status < 500) counts.clientErrors += requests;
-    else if (status >= 500 && status < 600) counts.serverErrors += requests;
+    else if (status >= 500 && status < 600) {
+      counts.serverErrors += requests;
+      if (row.hour) hours[row.hour] = (hours[row.hour] ?? 0) + requests;
+    }
   }
-  return { bytes, counts };
+  return { bytes, counts, statuses, hours: hourly ? hours : null, source: zoneToken ? "zone-graphql" : "account-sql" };
 });
 sample.gatewayDownlinkBytes = gateway?.bytes ?? null;
 sample.gatewayRequests = gateway?.counts ?? null;
+sample.gatewayWindow = { day: beijingDay, start: gatewayStart, endExclusive: gatewayEnd,
+  source: gateway?.source ?? null, statusCounts: gateway?.statuses ?? null,
+  hourlyServerErrors: gateway?.hours ?? null };
+sample.gatewayOutcomes = await get("gatewayOutcomes", async () => {
+  const rows = await graph(`workersInvocationsAdaptive(limit:30,filter:{scriptName:"rhythm-archive-download",isPreview:0,datetime_geq:"${gatewayStart}",datetime_lt:"${gatewayEnd}"}){dimensions{status} sum{requests errors}}`);
+  if (rows.length >= 30) throw Error("truncated");
+  return Object.fromEntries(rows.map(({dimensions, sum}) =>
+    [dimensions.status, { requests: n(sum.requests), errors: n(sum.errors) }]));
+});
 sample.bucket = await get("bucket", async () => {
   const x = (
     await graph(
@@ -208,28 +235,25 @@ sample.gbMonth = await get("gbMonth", async () => {
   const elapsed = now.getUTCDate();
   const observed = dailyPeaks.size;
   const sampledBytes = [...dailyPeaks.values()].reduce((sum, bytes) => sum + bytes, 0);
+  sample.gbMonthCoverage = { observedDays: observed, elapsedDays: elapsed, observedGBMonth: sampledBytes / 30e9 };
   if (observed < elapsed) {
     sample.errors.gbMonthCoverage = `月内日峰值覆盖 ${observed}/${elapsed} 天，缺失日按已采样日均峰值估算`;
   }
   return sampledBytes * (elapsed / observed) / 30e9;
 });
 sample.lastInvoice = await get("billing", async () => {
-  const j = await api(
-    "/user/billing/history?per_page=20&order=occurred_at&direction=desc",
-  );
+  const j = await api(base + "/billing/history?per_page=20");
   const x = j.result
     ?.filter(
       (x) =>
-        x.zone?.name === "rhythmarchive.top" &&
-        ["charge", "payment"].includes(x.type) &&
-        ["paid", "payment", "charge"].includes(x.action) &&
-        Number.isFinite(x.amount) &&
+        x.type === "charge" && x.status === "paid" &&
+        Number.isFinite(x.amount) && x.amount > 0 &&
         /^[A-Z]{3}$/.test(x.currency) &&
         Number.isFinite(Date.parse(x.occurred_at)),
     )
     .sort((a, b) => Date.parse(b.occurred_at) - Date.parse(a.occurred_at))[0];
   if (!x) throw Error("no confirmed charge");
-  return { amount: x.amount, currency: x.currency, at: x.occurred_at };
+  return { amount: x.amount, currency: x.currency, at: x.occurred_at, scope: "account" };
 });
 // The existing ingestion credential stays on the runner. Secret changes are operator actions.
 const key = createHmac("sha256", write)

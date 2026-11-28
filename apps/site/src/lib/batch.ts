@@ -54,16 +54,18 @@ export function uniqueZipFilename(used: Set<string>, filename: string): string {
   used.add(result);
   return result;
 }
+export class DownloadStreamError extends TypeError {}
+
 export async function readResponseBytesWithinLimit(response: Response, maxBytes: number, onBytes: (bytes: number) => void = () => undefined): Promise<Uint8Array> {
   if (maxBytes < 0) throw new Error("response exceeds the maximum size");
   const declaredLength = Number(response.headers.get("Content-Length"));
   if (Number.isSafeInteger(declaredLength) && declaredLength > maxBytes) throw new Error("response is larger than the declared budget");
-  if (!response.body) throw new Error("response body is unavailable");
+  if (!response.body) throw new DownloadStreamError("response body is unavailable");
   const reader = response.body.getReader();
   const chunks: Uint8Array[] = [];
   let totalBytes = 0;
   while (true) {
-    const chunk = await reader.read();
+    const chunk = await reader.read().catch(cause => { throw new DownloadStreamError("response stream failed", { cause }); });
     if (chunk.done) break;
     const nextTotal = totalBytes + chunk.value.byteLength;
     if (nextTotal > maxBytes) {

@@ -210,10 +210,11 @@ export async function collectReport(db: D1Database, day: string, now: number, fe
   if (feedbackCount && Number(feedbackCount[0]?.count) > 100) issues.push('反馈超过100条，邮件仅列前100条，需检查原始反馈');
   if (now - end > 6 * DAY) issues.push('报告已超出原始反馈保留期，不保证反馈完整');
   if (totals?.some(x => [x.visits, x.views, x.downloads].some(n => n === null || Number(n) < 0))) issues.push('累计统计缺失或异常');
-  return { infrastructure:await infrastructure(infrastructureDb,now,ros),schemaVersion: 1, reportDate: day, timeZone: 'Asia/Shanghai', generatedAt: new Date(now).toISOString(),
+  return { infrastructure:await infrastructure(infrastructureDb,now,ros,day,db),schemaVersion: 1, reportDate: day, timeZone: 'Asia/Shanghai', generatedAt: new Date(now).toISOString(),
     period: { start: new Date(start).toISOString(), endExclusive: new Date(end).toISOString() }, issues,
     downloadSources: await read('下载来源', `SELECT stat_date,source,CASE WHEN resource_id=? THEN 'apk_click' ELSE 'resource' END AS kind,
-      SUM(events) AS events,SUM(logical_bytes) AS logical_bytes,SUM(manual) AS manual,SUM(automatic) AS automatic FROM download_source_daily
+      SUM(events) AS events,SUM(logical_bytes) AS logical_bytes,SUM(manual) AS manual,SUM(automatic) AS automatic,
+      CASE WHEN source='ros' THEN SUM(events-manual-automatic) END AS other_ros FROM download_source_daily
       WHERE stat_date BETWEEN ? AND ? GROUP BY stat_date,source,kind`, [ARCAEA_APK_STATS_ID,previousWeek,day]),
     traffic, totals, hotResources, topDownloads, website, ros, feedback, feedbackCount, downloadFailures, reminders, monitor, versions,
     changes: (changes ?? []) as unknown as Change[], unsupported: UNSUPPORTED_SOURCES };
@@ -246,7 +247,7 @@ export function renderReport(s: Snapshot): string {
   lines.push('下载来源（近 8 日，客户端去重事件。APK 仅统计点击，资源字节按文件大小估算）：');
   if (!s.downloadSources?.length) lines.push('来源数据不可用或无记录。');
   for (const row of s.downloadSources ?? []) {
-    const detail = row.source === 'ros' ? `。自动回退 ${number(row.automatic)} 次，手动备用 ${number(row.manual)} 次` : '';
+    const detail = row.source === 'ros' ? `。自动回退 ${number(row.automatic)} 次，手动备用 ${number(row.manual)} 次，其余 ROS ${number(row.other_ros ?? (Number(row.events) - Number(row.automatic) - Number(row.manual)))} 次（含 ROS 主线路）` : '';
     lines.push(`${row.stat_date} ${String(row.source).toUpperCase()} ${row.kind === 'apk_click' ? 'APK 点击' : '资源下载'} ${number(row.events)} 次${detail}。文件大小合计 ${number(row.logical_bytes)} B`);
   }
   lines.push(...(s.infrastructure ? formatInfra(s.infrastructure) : ['基础设施额度与费用未采集。']));
@@ -269,7 +270,7 @@ export function renderReport(s: Snapshot): string {
   for (const game of s.website.games ?? []) {
     const sources = s.versions.filter(o => o.game === game.slug && o.status === 'ok');
     lines.push(`${game.displayName} | 网站 ${game.contentVersion ?? '未标注'} | 资源 ${game.count} | 网站更新时间 ${game.lastUpdatedAt ?? '未提供'}`,
-      `  各渠道：${sources.map(o => `${o.channel}=${o.version ?? '公告'} [${o.sourceId}]`).join('；') || '无可用查询'}`,
+      `  各渠道：${sources.map(o => `${o.channel}=${o.version ?? '公告'} [${o.sourceId}${o.authority === 'mirror' ? '，镜像' : ''}]`).join('；') || '无可用查询'}`,
       `  资源分类：${game.categories.map(c => `${c.label} ${c.count}`).join('；')}`);
   }
   lines.push(`网站版本来源：${s.website.url}；查询时间 ${s.website.checkedAt}。版本不一致只作为核查线索。`);
@@ -545,7 +546,11 @@ export async function handleOperationsRequest(request: Request, env: OperationsE
     if (end > now || now - end > 6 * DAY) return reply({error: 'date_outside_retention'}, 400);
     if (request.method === 'GET' && !match[2]) {
       // Read-only preview: no snapshot persistence, events, or mail.
-      return reply({report: await collectReport(env.DB, day, now, fetchImpl, env.OPERATOR_ROS,env.INFRASTRUCTURE_DB)});
+      const report = await collectReport(env.DB, day, now, fetchImpl, env.OPERATOR_ROS,env.INFRASTRUCTURE_DB);
+      if (request.headers.get('Accept') === 'text/plain') return new Response(renderReport(report), {
+        headers: { 'Content-Type': 'text/plain; charset=utf-8', 'Cache-Control': 'no-store', 'X-Content-Type-Options': 'nosniff', Vary: 'Accept' },
+      });
+      return reply({report});
     }
     if (request.method !== 'POST' || !match[2]) return reply({error: 'method_not_allowed'}, 405);
     if (env.DAILY_REPORT_ENABLED !== 'true') return reply({error: 'disabled'}, 503);

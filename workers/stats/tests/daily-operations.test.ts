@@ -6,6 +6,7 @@ import type { D1Database, D1PreparedStatement, D1Result } from '../src/core.js';
 import { beijingDate, previousDate, collectReport, renderReport, runVersionMonitor, prepareReport, rebuildRejectedReport, queueReportVerification, sendReport, processDailyOperations, handleOperationsRequest, type OperationsEnv } from '../src/daily-operations.js';
 import { parseSource, queryVersions, verification, changeKind, VERSION_SOURCES, type Source, type Observation } from '../src/version-sources.js';
 import { PUBLIC_GAME_SLUGS } from '../src/public-resource-registry.js';
+import { infrastructure, saveSample } from '../src/infrastructure.js';
 
 class Database implements D1Database {
   sqlite = new DatabaseSync(':memory:', { enableDoubleQuotedStringLiterals: true });
@@ -60,6 +61,53 @@ const envFor = (DB: Database): OperationsEnv => ({DB, DAILY_REPORT_ENABLED: 'tru
 test('Beijing boundaries and previous day use UTC+8, not host clock', () => {
   assert.equal(beijingDate(Date.parse('2026-10-26T16:00:00Z')), '2026-10-27');
   assert.equal(previousDate(now), day);
+});
+test('authenticated report preview renders the same snapshot in text and JSON without writes', async () => {
+  const db = new Database(), env = envFor(db);
+  const url = 'https://api.rhythmarchive.top/v1/admin/operations/reports/' + day;
+  const auth = { Authorization: 'Bearer test-admin' };
+  const data = await handleOperationsRequest(new Request(url, { headers: auth }), env, now, website);
+  const preview = await handleOperationsRequest(new Request(url, { headers: { ...auth, Accept: 'text/plain' } }), env, now, website);
+  assert.equal(preview.status, 200);
+  assert.match(preview.headers.get('Content-Type') ?? '', /^text\/plain/);
+  const body = await preview.text();
+  const json = body.split('\nBEGIN_RHYTHM_ARCHIVE_REPORT_JSON\n')[1]!.split('\nEND_RHYTHM_ARCHIVE_REPORT_JSON')[0]!;
+  assert.deepEqual(JSON.parse(json), (await data.json() as { report: unknown }).report);
+  assert.ok(db.queries.every(sql => /^SELECT|^WITH/.test(sql)));
+  assert.equal((await handleOperationsRequest(new Request(url, { headers: { Accept: 'text/plain' } }), env, now, website)).status, 401);
+});
+
+test('Arcaea direct-channel suffix is kept when checking version regressions', () => {
+  const previous = { ...observation(), version: '7.3.1c' };
+  assert.equal(changeKind(previous, { ...previous, version: '7.3.0c' }), 'regression');
+  assert.equal(changeKind(previous, { ...previous, version: '7.3.0' }), 'version');
+});
+
+test('gateway reporting selects the Beijing day and keeps missing windows distinct', async () => {
+  const db = new Database();
+  const utcDay = new Date().toISOString().slice(0, 10);
+  const next = Date.parse(utcDay + 'T16:00:00Z'), end = new Date(next - 86_400_000).toISOString();
+  const start = new Date(next - 2 * 86_400_000).toISOString();
+  const day = beijingDate(Date.parse(start));
+  const oldAt = day + 'T23:38:00.000Z', newAt = utcDay + 'T23:38:00.000Z';
+  const base = { workers: 10, d1: null, d1Bytes: null, ops: null, bucket: null, gbMonth: null, lastInvoice: null };
+  const old = { ...base, day, observedAt: oldAt, errors: {}, gatewayDownlinkBytes: 10,
+    gatewayRequests: { total: 6, limited: 0, clientErrors: 0, serverErrors: 2 },
+    gatewayWindow: { day, start, endExclusive: end,
+      source: 'zone-graphql', statusCounts: { 0: 1, 200: 3, 503: 2 }, hourlyServerErrors: { [day + 'T09:00:00Z']: 2 } } };
+  const newer = { ...base, day: utcDay, observedAt: newAt, errors: { gateway: 'HTTP 403' },
+    gatewayWindow: { day: utcDay, start: old.gatewayWindow.endExclusive, endExclusive: new Date(next).toISOString(),
+      source: null, statusCounts: null, hourlyServerErrors: null } };
+  assert.equal(await saveSample(db, JSON.stringify(old), Date.parse(oldAt)), true);
+  assert.equal(await saveSample(db, JSON.stringify(newer), Date.parse(newAt)), true);
+  const unavailable = { state: 'unavailable' as const, observedAt: newAt };
+  const aligned = await infrastructure(db, Date.parse(newAt), unavailable, day);
+  assert.deepEqual(aligned.r2.gatewayWindow, old.gatewayWindow);
+  assert.equal(aligned.r2.gatewayRequests?.serverErrors, 2);
+  assert.equal(aligned.collectionErrors.gateway, undefined);
+  const missing = await infrastructure(db, Date.parse(newAt), unavailable, newer.day);
+  assert.equal(missing.r2.gatewayRequests, null);
+  assert.equal(missing.collectionErrors.gateway, 'HTTP 403');
 });
 test('strict platform identity, mirror date semantics, and announcements without version', () => {
   assert.throws(() => parseSource(source, '{"results":[{"bundleId":"other","version":"9.9"}]}', now), /identity/);
