@@ -3622,6 +3622,22 @@
           "change": "added"
         }
       ]
+    },
+    {
+      "id": "abfc79f9-c44f-71ae-aa71-6bcc5fa4a404",
+      "game": "rizline",
+      "releaseIds": [
+        "d7b2daf8-8937-701c-849b-9ab0865baa2e"
+      ],
+      "contentVersion": "2.8.0",
+      "kind": "update",
+      "publishedAt": "2026-11-28T08:34:33.966Z",
+      "items": [
+        {
+          "resourceId": "7e65b11e-476c-75c4-b4c3-6010c3f01d08",
+          "change": "added"
+        }
+      ]
     }
   ]
 }

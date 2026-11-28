@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "game": "rizline",
-  "generatedAt": "2026-11-28T08:12:32.164Z",
+  "generatedAt": "2026-11-28T08:34:33.966Z",
   "source": {
     "snapshot": "rizline.remote-canonical:v146_2_8_0_fda1c11c76P",
     "sha256": "15515bb3d743b39558c3dfb3930fae91157204e5723a5711b55a739436616250"
@@ -7103,6 +7103,30 @@
         "同编号卡片资源键 · rizcard.rank.008"
       ],
       "sortOrder": 298,
+      "facets": {}
+    },
+    {
+      "resourceId": "7e65b11e-476c-75c4-b4c3-6010c3f01d08",
+      "resourceType": "video",
+      "displayTitle": "Con::neC 解锁动画",
+      "metadata": {
+        "gameVersion": "2.8.0",
+        "musicArtist": "Salty Salt",
+        "relatedSong": "Con::neC",
+        "mediaKind": "unlock",
+        "mediaOrder": 0,
+        "spoiler": true
+      },
+      "badges": [],
+      "searchTerms": [
+        "Con::neC 解锁动画",
+        "D00306_Unlock",
+        "2.8.0",
+        "Salty Salt",
+        "Con::neC",
+        "unlock"
+      ],
+      "sortOrder": 299,
       "facets": {}
     }
   ]

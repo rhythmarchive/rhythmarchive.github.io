@@ -1,7 +1,7 @@
 {
   "catalogSchemaVersion": "1.0",
   "catalogId": "019fefd6-9c49-7ca0-a760-adc76811a511",
-  "generatedAt": "2026-11-28T08:12:32.164Z",
+  "generatedAt": "2026-11-28T08:34:33.966Z",
   "resources": [
     {
       "catalogSchemaVersion": "1.0",
@@ -530952,6 +530952,10 @@
         {
           "type": "related-resource",
           "targetResourceId": "f16f16dc-f3c6-7426-a123-29022e532288"
+        },
+        {
+          "type": "related-resource",
+          "targetResourceId": "7e65b11e-476c-75c4-b4c3-6010c3f01d08"
         }
       ],
       "provenance": [
@@ -534728,6 +534732,65 @@
         "createdAt": "2026-11-28T08:12:32.164Z",
         "updatedAt": "2026-11-28T08:12:32.164Z",
         "publishedAt": "2026-11-28T08:12:32.164Z"
+      }
+    },
+    {
+      "catalogSchemaVersion": "1.0",
+      "id": "7e65b11e-476c-75c4-b4c3-6010c3f01d08",
+      "game": "rizline",
+      "resourceType": "video",
+      "title": "Con::neC 解锁动画",
+      "aliases": [
+        {
+          "value": "D00306_Unlock",
+          "kind": "external-id"
+        }
+      ],
+      "externalIdentities": [
+        {
+          "namespace": "rizline-semantic",
+          "key": "id",
+          "value": "rizline:video:D00306_Unlock",
+          "source": "apk-metadata",
+          "confidence": "high"
+        }
+      ],
+      "metadata": {
+        "gameVersion": "2.8.0",
+        "musicArtist": "Salty Salt",
+        "relatedSong": "Con::neC",
+        "mediaKind": "unlock",
+        "mediaOrder": 0,
+        "spoiler": true
+      },
+      "relations": [
+        {
+          "type": "related-resource",
+          "targetResourceId": "99c2e913-a3f2-7dd2-9acd-93592a178ff7"
+        }
+      ],
+      "provenance": [
+        {
+          "sourceType": "manual",
+          "sourceSnapshot": "rizline:v146_2_8_0_fda1c11c76P",
+          "sourceRelativePath": "apk/律动轨迹_2.8.0.apk",
+          "sourceFilename": "律动轨迹_2.8.0.apk",
+          "sourceSha256": "215687ec59e6211cdbf85d18d94feecc78aff7e1a6a29297101433cb2bd96ab2",
+          "gameVersion": "2.8.0",
+          "evidence": [
+            {
+              "kind": "apk-relative-path",
+              "detail": "assets/D00306/D00306_Unlock.mp4",
+              "confidence": "high"
+            }
+          ]
+        }
+      ],
+      "lifecycle": {
+        "status": "published",
+        "createdAt": "2026-11-28T08:12:32.164Z",
+        "updatedAt": "2026-11-28T08:34:33.966Z",
+        "publishedAt": "2026-11-28T08:34:33.966Z"
       }
     }
   ],
@@ -656511,6 +656574,19 @@
       "semanticStatus": "confirmed",
       "preferred": true,
       "sortOrder": 1,
+      "markers": {
+        "unresolved": []
+      }
+    },
+    {
+      "catalogSchemaVersion": "1.0",
+      "id": "7d88e33d-538c-732e-af01-b95d1a8525ba",
+      "resourceId": "7e65b11e-476c-75c4-b4c3-6010c3f01d08",
+      "variantKey": "default",
+      "kind": "default",
+      "semanticStatus": "confirmed",
+      "preferred": true,
+      "sortOrder": 0,
       "markers": {
         "unresolved": []
       }
@@ -1226420,6 +1226496,57 @@
       "objectId": "sha256:0f591f2522d8accd49b3727b429c825d6e3ad3e9ae7e3fdd6e58f89c4cf4c1a9",
       "downloadFilename": "55f72f10-612f-70a8-86b5-9da98979e2ad_1280.webp",
       "sourceRenditionId": "0c75e8cc-cd07-78c9-85c1-84e3620729aa",
+      "generatedBy": "thumbnailer",
+      "createdAt": "2026-11-28T08:12:32.164Z"
+    },
+    {
+      "catalogSchemaVersion": "1.0",
+      "id": "ad04856c-549b-73fe-9df8-8e8a7f2fcdb7",
+      "variantId": "7d88e33d-538c-732e-af01-b95d1a8525ba",
+      "renditionType": "original",
+      "origin": "source",
+      "publishable": true,
+      "objectId": "sha256:2c85645e13f898de343fe8d7d2e2f272d51aef2ad30355cd4327f6507c4e30b7",
+      "downloadFilename": "D00306_Unlock.mp4",
+      "generatedBy": "extractor",
+      "createdAt": "2026-11-28T08:12:32.164Z"
+    },
+    {
+      "catalogSchemaVersion": "1.0",
+      "id": "a9193a53-86a1-7dee-8f72-dbee71b6b83f",
+      "variantId": "7d88e33d-538c-732e-af01-b95d1a8525ba",
+      "renditionType": "thumbnail-320",
+      "origin": "derived",
+      "publishable": false,
+      "objectId": "sha256:62cbbba927430108bd7c7dddf97b7eb8e720fdae5f8b97a7d817b870ecfdc036",
+      "downloadFilename": "7d88e33d-538c-732e-af01-b95d1a8525ba_320.webp",
+      "sourceRenditionId": "ad04856c-549b-73fe-9df8-8e8a7f2fcdb7",
+      "generatedBy": "thumbnailer",
+      "createdAt": "2026-11-28T08:12:32.164Z"
+    },
+    {
+      "catalogSchemaVersion": "1.0",
+      "id": "46cd0868-cdad-71a8-a6b4-5314a5530fee",
+      "variantId": "7d88e33d-538c-732e-af01-b95d1a8525ba",
+      "renditionType": "thumbnail-640",
+      "origin": "derived",
+      "publishable": false,
+      "objectId": "sha256:61cd9bb03c1aefe22d8da17cae3749cc3b9860d41742a56c3692f7accfba2164",
+      "downloadFilename": "7d88e33d-538c-732e-af01-b95d1a8525ba_640.webp",
+      "sourceRenditionId": "ad04856c-549b-73fe-9df8-8e8a7f2fcdb7",
+      "generatedBy": "thumbnailer",
+      "createdAt": "2026-11-28T08:12:32.164Z"
+    },
+    {
+      "catalogSchemaVersion": "1.0",
+      "id": "032342fc-6323-7d43-80e1-a7ccd36b0770",
+      "variantId": "7d88e33d-538c-732e-af01-b95d1a8525ba",
+      "renditionType": "thumbnail-1280",
+      "origin": "derived",
+      "publishable": false,
+      "objectId": "sha256:01cb76ff8b428783b8ce7892b961682aa34069f7acbdd4c9ba6b2dfd44c73b4a",
+      "downloadFilename": "7d88e33d-538c-732e-af01-b95d1a8525ba_1280.webp",
+      "sourceRenditionId": "ad04856c-549b-73fe-9df8-8e8a7f2fcdb7",
       "generatedBy": "thumbnailer",
       "createdAt": "2026-11-28T08:12:32.164Z"
     }
@@ -2339262,6 +2339389,129 @@
             {
               "kind": "metadata",
               "detail": "Preview derived from layout.rank.008.HiRes",
+              "confidence": "high"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "catalogSchemaVersion": "1.0",
+      "id": "sha256:2c85645e13f898de343fe8d7d2e2f272d51aef2ad30355cd4327f6507c4e30b7",
+      "sha256": "2c85645e13f898de343fe8d7d2e2f272d51aef2ad30355cd4327f6507c4e30b7",
+      "mime": "video/mp4",
+      "extension": "mp4",
+      "sizeBytes": 35037873,
+      "width": 1080,
+      "height": 1920,
+      "alpha": "none",
+      "media": {
+        "durationSeconds": 20,
+        "fps": 60,
+        "hasAudio": true,
+        "videoCodec": "h264",
+        "audioCodec": "aac"
+      },
+      "objectKey": "objects/2c85645e13f898de343fe8d7d2e2f272d51aef2ad30355cd4327f6507c4e30b7/mp4",
+      "createdAt": "2026-11-28T08:12:32.164Z",
+      "provenance": [
+        {
+          "sourceType": "manual",
+          "sourceRelativePath": "provenance/rizline/v146_2_8_0_fda1c11c76P/20261128-materials/objects/2c85645e13f898de343fe8d7d2e2f272d51aef2ad30355cd4327f6507c4e30b7.mp4",
+          "sourceFilename": "2c85645e13f898de343fe8d7d2e2f272d51aef2ad30355cd4327f6507c4e30b7.mp4",
+          "sourceSha256": "2c85645e13f898de343fe8d7d2e2f272d51aef2ad30355cd4327f6507c4e30b7",
+          "gameVersion": "2.8.0",
+          "evidence": [
+            {
+              "kind": "apk-relative-path",
+              "detail": "assets/D00306/D00306_Unlock.mp4",
+              "confidence": "high"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "catalogSchemaVersion": "1.0",
+      "id": "sha256:62cbbba927430108bd7c7dddf97b7eb8e720fdae5f8b97a7d817b870ecfdc036",
+      "sha256": "62cbbba927430108bd7c7dddf97b7eb8e720fdae5f8b97a7d817b870ecfdc036",
+      "mime": "image/webp",
+      "extension": "webp",
+      "sizeBytes": 21272,
+      "width": 320,
+      "height": 569,
+      "alpha": "unknown",
+      "objectKey": "objects/62cbbba927430108bd7c7dddf97b7eb8e720fdae5f8b97a7d817b870ecfdc036/webp",
+      "createdAt": "2026-11-28T08:12:32.164Z",
+      "provenance": [
+        {
+          "sourceType": "manual",
+          "sourceRelativePath": "provenance/rizline/v146_2_8_0_fda1c11c76P/20261128-materials/objects/62cbbba927430108bd7c7dddf97b7eb8e720fdae5f8b97a7d817b870ecfdc036.webp",
+          "sourceFilename": "62cbbba927430108bd7c7dddf97b7eb8e720fdae5f8b97a7d817b870ecfdc036.webp",
+          "sourceSha256": "62cbbba927430108bd7c7dddf97b7eb8e720fdae5f8b97a7d817b870ecfdc036",
+          "gameVersion": "2.8.0",
+          "evidence": [
+            {
+              "kind": "apk-relative-path",
+              "detail": "Preview derived from D00306_Unlock",
+              "confidence": "high"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "catalogSchemaVersion": "1.0",
+      "id": "sha256:61cd9bb03c1aefe22d8da17cae3749cc3b9860d41742a56c3692f7accfba2164",
+      "sha256": "61cd9bb03c1aefe22d8da17cae3749cc3b9860d41742a56c3692f7accfba2164",
+      "mime": "image/webp",
+      "extension": "webp",
+      "sizeBytes": 56214,
+      "width": 640,
+      "height": 1138,
+      "alpha": "unknown",
+      "objectKey": "objects/61cd9bb03c1aefe22d8da17cae3749cc3b9860d41742a56c3692f7accfba2164/webp",
+      "createdAt": "2026-11-28T08:12:32.164Z",
+      "provenance": [
+        {
+          "sourceType": "manual",
+          "sourceRelativePath": "provenance/rizline/v146_2_8_0_fda1c11c76P/20261128-materials/objects/61cd9bb03c1aefe22d8da17cae3749cc3b9860d41742a56c3692f7accfba2164.webp",
+          "sourceFilename": "61cd9bb03c1aefe22d8da17cae3749cc3b9860d41742a56c3692f7accfba2164.webp",
+          "sourceSha256": "61cd9bb03c1aefe22d8da17cae3749cc3b9860d41742a56c3692f7accfba2164",
+          "gameVersion": "2.8.0",
+          "evidence": [
+            {
+              "kind": "apk-relative-path",
+              "detail": "Preview derived from D00306_Unlock",
+              "confidence": "high"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "catalogSchemaVersion": "1.0",
+      "id": "sha256:01cb76ff8b428783b8ce7892b961682aa34069f7acbdd4c9ba6b2dfd44c73b4a",
+      "sha256": "01cb76ff8b428783b8ce7892b961682aa34069f7acbdd4c9ba6b2dfd44c73b4a",
+      "mime": "image/webp",
+      "extension": "webp",
+      "sizeBytes": 109320,
+      "width": 1080,
+      "height": 1920,
+      "alpha": "unknown",
+      "objectKey": "objects/01cb76ff8b428783b8ce7892b961682aa34069f7acbdd4c9ba6b2dfd44c73b4a/webp",
+      "createdAt": "2026-11-28T08:12:32.164Z",
+      "provenance": [
+        {
+          "sourceType": "manual",
+          "sourceRelativePath": "provenance/rizline/v146_2_8_0_fda1c11c76P/20261128-materials/objects/01cb76ff8b428783b8ce7892b961682aa34069f7acbdd4c9ba6b2dfd44c73b4a.webp",
+          "sourceFilename": "01cb76ff8b428783b8ce7892b961682aa34069f7acbdd4c9ba6b2dfd44c73b4a.webp",
+          "sourceSha256": "01cb76ff8b428783b8ce7892b961682aa34069f7acbdd4c9ba6b2dfd44c73b4a",
+          "gameVersion": "2.8.0",
+          "evidence": [
+            {
+              "kind": "apk-relative-path",
+              "detail": "Preview derived from D00306_Unlock",
               "confidence": "high"
             }
           ]
