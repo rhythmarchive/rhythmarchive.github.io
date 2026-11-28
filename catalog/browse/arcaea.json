@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
   "game": "arcaea",
-  "generatedAt": "2026-11-20T10:22:49.933Z",
+  "generatedAt": "2026-11-28T07:45:16.723Z",
   "source": {
-    "version": "7.3.0c",
-    "sha256": "f43b173e516db1bdfdbbf5ef0467b4287dc0e061a38934b58427b5ee04547408"
+    "version": "7.3.1c",
+    "sha256": "93ec16cac536f484ecc37f810d3d95a74976f7f3fc0bdd43d37a04ef84687acc"
   },
   "songs": [
     {
